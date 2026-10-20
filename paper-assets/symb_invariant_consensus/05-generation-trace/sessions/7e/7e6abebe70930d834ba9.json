@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e6abebe70930d834ba9",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis extract prompt template",
+  "task_key": "worker_analysis_extract-prompt-template_20260517T180842",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_extract-prompt-template_20260517T180842_result.json",
+    "occurrence": 1,
+    "bytes": 922,
+    "sha256": "f95f9db328684600f716e45d327f5ca7c8899abe4e4f4d52151376de75d7d7e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/appendix_prompt_template.md`。\n\n内容包含：\n- **System prompt**: `VLLMBackend._SYSTEM_MSG`（constraint_extractor.py:167）\n- **Math domain prompt** (`EXTRACTION_PROMPT`): 含 Z3 语法规则、操作符白名单、组合数学示例\n- **Logic domain prompt** (`LOGIC_EXTRACTION_PROMPT`): 含 fact/rule/derived 类型定义、变量命名规范、3 个递进示例\n- **输出 JSON schema**: constraints 数组 + answer + variables\n- **实际示例 1**: GSM8K 数学题，16 个去重后约束，跨 12 条 trace 的权重分布\n- **实际示例 2**: ProofWriter 逻辑题，单条 trace 提取的 12 个约束（fact + rule）\n- **LLM 调用配置**: temperature=0.1, max_tokens=1024, json_object 模式, 6 并发\n- **Prompt 选择逻辑**: 按 dataset 字段自动切换 math/logic 模板"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-extract-prompt-template.md"
+}

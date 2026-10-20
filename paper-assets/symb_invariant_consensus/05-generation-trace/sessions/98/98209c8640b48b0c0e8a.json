@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98209c8640b48b0c0e8a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ops cleanup 16639 cuda0 vllm",
+  "task_key": "worker_ops_cleanup-16639-cuda0-vllm_20260519T203357",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_cleanup-16639-cuda0-vllm_20260519T203357_result.json",
+    "occurrence": 1,
+    "bytes": 148,
+    "sha256": "803abb7ea70528969106f526631aaa270a3de66d8fa69c19bffa6405a7fc5413"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:0 已释放。显存使用从 89912 MiB → 0 MiB（总 97887 MiB 全部可用）。vLLM 进程和 tmux sessions 均已清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-16639-cuda0-vllm.md"
+}

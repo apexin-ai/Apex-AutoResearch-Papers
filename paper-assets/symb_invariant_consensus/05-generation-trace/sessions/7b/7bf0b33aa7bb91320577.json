@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bf0b33aa7bb91320577",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code sica verify fix",
+  "task_key": "worker_code_sica-verify-fix_20260515T091407",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_sica-verify-fix_20260515T091407_result.json",
+    "occurrence": 1,
+    "bytes": 1709,
+    "sha256": "a7de4d16a0591788cbb59000cf8dcea6ad6c5777b4ee1ab712ae4753a1adf61e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证完成。\n\n---\n\n### 汇报\n\n**1. 代码确认为 SICA，不是 CRD** ✅\n- 无双表征（FOL+SymPy）、无分歧检测/分类、无修复机制、无 ProofWriter\n- Pipeline 正确实现：generate → extract → deduplicate(Z3等价) → MAX-SAT → score → select\n\n**2. 发现并修复的问题**\n\n| 文件 | 问题 | 修复 |\n|------|------|------|\n| `trace_generator.py` | VLLMGenerator 用离线 vllm 库加载模型，非 API 模式 | 改为 OpenAI-compatible API 连接 localhost:8000/v1，支持 auto-detect model |\n| `constraint_extractor.py` | 缺少 API 后端，非 mock 模式无法真正提取约束 | 新增 `APIBasedLLM` 类，通过 vLLM API 调用 |\n| `constraint_extractor.py` | prompt 未明确 Z3 表达式限制 | 增加规则：禁止 sqrt()/log() 函数调用，用 x\\*\\*0.5 替代 |\n| `run_mvp.py` | 硬编码 `MockLLM()`，非 mock 模式也用 mock 提取 | 新增 `build_extractor()`，vllm/api 模式自动用 APIBasedLLM |\n| `run_mvp.py` | model 默认硬编码 Qwen 路径 | 改为 `--model auto`，自动从 /v1/models 获取 |\n\n**3. Z3 功能测试结果** ✅\n- `parse_z3_formula('x + y == 10')` → 解析成功\n- `check_equivalence(x+y==10, y+x==10)` → True（交换律正确识别）\n- MAX-SAT：{x+y==10(w=5), x==3(w=3), x==7(w=4)} → 选出 x+y==10 + x==7（weight=9），排除矛盾的 x==3 ✅\n\n**4. Mock 端到端测试** ✅\n- 50 题 MATH-500 子集（已有真实数据文件），k=3\n- Extraction rate: 100%, Contradiction rate: 0%\n- SICA accuracy: 2%, SC accuracy: 2%（mock 返回固定答案\"7\"，低准确率符合预期）\n- Pipeline 完整跑通，结果保存至 `results/mvp_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sica-verify-fix.md"
+}

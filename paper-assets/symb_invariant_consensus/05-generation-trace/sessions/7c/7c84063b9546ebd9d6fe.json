@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c84063b9546ebd9d6fe",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "monitor l3l1 5q eval",
+  "task_key": "worker_monitor_l3l1_5q_eval_20260516T020540",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_monitor_l3l1_5q_eval_20260516T020540_result.json",
+    "occurrence": 1,
+    "bytes": 135,
+    "sha256": "5a06500440195dda0274843e62abffc8b3f658a5d2182aeb705241c96645a4d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 1/5 完成，题 2（616_Q7 关键多候选题）正在生成 traces（batch 5-8/12）。90 秒后继续轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-l3l1-5q-eval.md"
+}

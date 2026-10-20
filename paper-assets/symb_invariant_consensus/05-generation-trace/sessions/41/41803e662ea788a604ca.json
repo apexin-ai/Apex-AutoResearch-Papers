@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41803e662ea788a604ca",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp051 k16 interim",
+  "task_key": "worker_analysis_exp051-k16-interim_20260519T021809",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp051-k16-interim_20260519T021809_result.json",
+    "occurrence": 1,
+    "bytes": 1376,
+    "sha256": "9dadcd3fb20542c5a4a95d2b8904293542b8f2a857ea45c59c65677c6b876edd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Exp-051 K Sensitivity Interim 分析\n\n### 进度\n\n| K | 完成 | 状态 |\n|---|------|------|\n| 4 | 204/204 | ✅ done |\n| 8 | 204/204 | ✅ done |\n| 12 | 204/204 | ✅ done (exp-033) |\n| 16 | 194/204 | ⏳ running, folio_195 |\n| 20 | 0/204 | pending (K=16完成后自动开始) |\n\n### K Sensitivity 结果\n\n```\n   K |     n |    SC% |  SICA% |   delta |   b |   c | p-value\n-----+---------+--------+--------+---------+-----+-----+---------\n   4 |   204 |  54.41 |  52.94 |  -1.47  |   7 |  10 |  0.6291\n   8 |   204 |  57.35 |  56.37 |  -0.98  |   4 |   6 |  0.7539\n  12 |   204 |  54.41 |  59.31 |  +4.90  |  12 |   2 |  0.0129 *\n  16 |   194 |  55.67 |  57.22 |  +1.55  |  10 |   7 |  0.6291  (interim)\n  20 |     - |      - |      - |       - |   - |   - |       -\n```\n\n### 趋势\n\n1. **K=4, K=8: SICA 反而降低准确率**（-1.47pp, -0.98pp），均不显著。trace 太少，约束提取信号不足，反而引入噪声。\n2. **K=12 是最佳点**：delta +4.90pp，唯一统计显著 (p=0.013)。discordant pair 极度不对称（b=12 vs c=2），说明约束有效纠错。\n3. **K=16 (interim): SICA 有帮助但弱于 K=12**（+1.55pp），不显著。b/c=10/7，不对称性远弱于 K=12。\n\n呈**倒 U 型**趋势：SICA 增益随 K 先升后降，K=12 处峰值。K=16 和 K=20 完成后可确认下降趋势。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp051-k16-interim.md"
+}

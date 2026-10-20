@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c32b64ed169aa4ac7369",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis kill and pure rescore",
+  "task_key": "worker_analysis_kill-and-pure-rescore_20260515T172357",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_kill-and-pure-rescore_20260515T172357_result.json",
+    "occurrence": 1,
+    "bytes": 612,
+    "sha256": "f2fdd32d22b602d9d74ac92a8d6743af4f13d025083c052c36f07b3f5385a8cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结果：\n\n**SC = SICA = 63.6% (7/11)**\n\n| 关键发现 | 详情 |\n|---------|------|\n| P5 翻转成功 | sat_ratio=4.8%, A+C fallback → SC=80 → ✓（旧 SICA=120 已纠正）|\n| P10 未翻转 | sat_ratio=30% > 20% 阈值, 维持 NORMAL 模式, 本身就正确 |\n| P7 parser 异常 | 72 raw → 1 unique, 去重过度但碰巧结果正确 |\n| 4 题失败 | P2/P8/P9/P11 全因 SC 无共识答案, 非 scorer 问题 |\n\n**结论：当前 SICA 未超越 SC。A+C fallback 防止了 P5 退化，但瓶颈在 answer extraction / trace generation，不在约束评分。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-kill-and-pure-rescore.md"
+}

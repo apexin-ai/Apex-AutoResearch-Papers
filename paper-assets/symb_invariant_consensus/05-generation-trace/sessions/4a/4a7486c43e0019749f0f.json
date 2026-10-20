@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a7486c43e0019749f0f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra gpu status fill",
+  "task_key": "worker_infra_gpu-status-fill_20260522T234133",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_gpu-status-fill_20260522T234133_result.json",
+    "occurrence": 1,
+    "bytes": 1936,
+    "sha256": "38ceaca321e60929b4175d177ffc567b723b2125682b9b5ceded555bc385cb5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态报告\n\n### westd-16639（4x RTX PRO 6000 Blackwell, 96GB）\n\n| GPU | 利用率 | vLLM PID | 模型 | 端口 | 实验 | 进度 | 状态 |\n|-----|--------|----------|------|------|------|------|------|\n| 0 | 97% | 662462 | Qwen2.5-14B | 8001 | PW seed456→seed789 chain | 212/600 | **RUNNING** |\n| 1 | 97% | 684518 | LLaMA-8B | 8006 | PW seed123 multiseed chain | 168/600 | **RUNNING** |\n| 2 | **0%** | 711593 | Qwen2.5-14B | 8007 | PW seed789 | 0/600 | **IDLE — runner 已崩溃** |\n| 3 | 98% | 681007 | Qwen2.5-14B | 8005 | PW seed123 rerun | 192/600 | **RUNNING** |\n\n### westd-14391（1x RTX PRO 6000 Blackwell, 96GB）\n\n| GPU | 利用率 | vLLM PID | 模型 | 端口 | 实验 | 进度 | 状态 |\n|-----|--------|----------|------|------|------|------|------|\n| 0 | 100% | 9816 | LLaMA-8B | 8000 | PW seed42 | 240/600 | **RUNNING** |\n\n---\n\n### 空闲卡：westd-16639 cuda:2（1张）\n\n**故障原因：** 实验 runner 在 vLLM 就绪前启动，`APIConnectionError: Connection error` 后崩溃退出。vLLM 后来成功加载但无人使用。此外 vLLM 配置了 `max_model_len=4096` + 实验 `max_tokens=4096`，无空间容纳 prompt，即使重连也会报错。\n\n**当前状态：** vLLM Qwen2.5-14B 在 port 8007 空转，88GB 显存被占用，GPU 利用率 0%。\n\n### 可启动实验建议\n\n注意 GPU 0 已 chain 了 seed456→seed789，seed456 完成后会自动在 port 8001 跑 seed789。所以 GPU 2 不应再跑 PW seed789（会重复）。\n\n**推荐在 GPU 2 上跑：**\n1. **Qwen2.5-14B FOLIO seed123/456/789**（exp-multi-seed-qwen25 FOLIO 部分）— 模型已加载，只需重启 vLLM 修正 `max_model_len`（改为 8192+），然后启动 FOLIO 实验\n2. 或者 kill 当前 vLLM，换模型跑 **Qwen2.5-7B FOLIO**（exp-multi-seed-qwen25-7b-folio，未开始）\n\n两种都需要先 kill port 8007 的 vLLM 再重启（修 `max_model_len`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-status-fill.md"
+}

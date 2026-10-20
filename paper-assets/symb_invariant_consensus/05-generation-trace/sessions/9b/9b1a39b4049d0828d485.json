@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b1a39b4049d0828d485",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp013 constraint ablation",
+  "task_key": "worker_analysis_exp013-constraint-ablation_20260521T225710",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp013-constraint-ablation_20260521T225710_result.json",
+    "occurrence": 1,
+    "bytes": 1332,
+    "sha256": "e113fc195c3cdf41e7d228dc940b7cdffee0b3a6fbe5ca9a6a3b5ad416b6c026"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果非常清晰：\n\n## 结果\n\n### Qwen2.5-14B (exp036 + exp032)\n\n| Method | FOLIO-204 Acc | PW-600 Acc | Overall Acc |\n|--------|--------------|-----------|------------|\n| MaxSAT (SICA) | 0.7549 (154/204) | 0.7150 (429/600) | 0.7251 (583/804) |\n| Count-only | **0.7598** (155/204) | **0.7400** (444/600) | **0.7450** (599/804) |\n\nMaxSAT vs Count-only agreement: FOLIO 98.04%, PW 93.83%\n\n### DeepSeek-R1-Distill-8B (FOLIO, with raw constraints)\n\n| Method | FOLIO Acc |\n|--------|----------|\n| MaxSAT (SICA) | 0.7451 |\n| Count-only (trace vote) | 0.7451 |\n| Constraint-count | 0.7451 |\n| Random-weight | 0.6814 |\n\nMaxSAT vs Count-only agreement: **100%**\nMaxSAT vs Random-weight agreement: 83.33%\n\n## 结论\n\n1. **MaxSAT 没有贡献**：Count-only 在 14B 上反而高 2pp（0.7450 vs 0.7251）。在 8B 上两者 100% 一致。MaxSAT solver 的加权聚合相对于简单计票没有正向收益。\n\n2. **Random-weight 显著更差**（-6.4pp），说明 constraint 的数量结构有意义（不能随机乱赋权），但 MaxSAT 特定的满足性求解并不比\"数票\"更好。\n\n3. **Disagreement 案例**显示 MaxSAT 有时会用少数 trace 的高权重 override 多数投票（如 PW 中 3 票 vs 9 票），这种 override 有正有负，净效果为负。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp013-constraint-ablation.md"
+}

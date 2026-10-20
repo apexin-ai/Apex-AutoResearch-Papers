@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "898c756d9f2df51236a4",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis nli tiebreaking audit",
+  "task_key": "worker_analysis_nli-tiebreaking-audit_20260521T050838",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_nli-tiebreaking-audit_20260521T050838_result.json",
+    "occurrence": 1,
+    "bytes": 1473,
+    "sha256": "0a3fc77f88b9ecbca17726791efb7b804abc7870aa330ac806137104facb2927"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。核心发现：\n\n## BUG 确认\n\n**所有 NLI combo 脚本** 使用 `Counter.most_common(1)[0][0]`（insertion-order tiebreaking），**DRC cascade pilot** 使用 alphabetical tiebreaking。论文的 SC baseline 已统一为 alphabetical，但 NLI combo 没有同步修复。\n\n## Mistral-7B PW600 重算结果\n\n| Weight | Paper (Counter) | Corrected (Alpha) | Delta | Changed Qs |\n|--------|-----------------|-------------------|-------|------------|\n| w=1 | 40.17% (241) | 40.17% (241) | 0pp | 17 |\n| **w=3** | **42.83% (257)** | **46.00% (276)** | **+3.17pp** | 30 |\n| w=5 | 50.00% (300) | 50.33% (302) | +0.33pp | 53 |\n\n**McNemar (combo_w3 vs SC)**: p 从 0.0125 变为 **1.1e-05**（显著性大幅提升）\n\nDRC pilot cross-check: 276/600 = 46.0% — **完美匹配** alphabetical 重算结果。\n\n## SC baseline 本身\n11 题在两种 tiebreaking 下结果不同，但总正确数恰好相同 (236/600)。\n\n## FOLIO\n8 题受影响，alphabetical 反而更差 (-1.47pp: 56.37% vs 57.84%)。\n\n## 其他 3 个模型\n原始数据在 westd-16639，用了相同的 `Counter.most_common()` 代码，需从原服务器重算。高 SC 模型 (70-85%) 预期影响较小。\n\n## 建议行动\n1. 用 alphabetical tiebreaking 重算全部 4 个 PW 模型的 NLI combo\n2. Mistral w=3 从 42.83% → 46.00%，McNemar p 从 0.0125 → 1.1e-05\n3. 重跑 BH correction table\n4. 修复所有 combo 脚本的 tiebreaking 代码"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-nli-tiebreaking-audit.md"
+}

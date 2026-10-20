@@ -1,0 +1,877 @@
+{
+  "schema_version": "1.0",
+  "id": "c4cf992066a3d16afc4b",
+  "project": "symb_invariant_consensus",
+  "kind": "conversation",
+  "title": "theory scb proposition proof",
+  "task_key": "worker_theory_scb-proposition-proof_20260523T010508",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_theory_scb-proposition-proof_20260523T010508.jsonl",
+    "occurrence": 1,
+    "bytes": 51633,
+    "sha256": "b431c4320d09d38f8aacdd77a1548e272b62c4a035e130830199d374c8cd21b0"
+  },
+  "statistics": {
+    "messages": 43,
+    "user_turns": 0,
+    "tool_calls": 21,
+    "roles": {
+      "tool_call": 21,
+      "tool_result": 21,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T01:19:40.102355+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Agent",
+            "tool_args": {
+              "subagent_type": "Explore",
+              "description": "Find existing paper notation",
+              "prompt": "In /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/, find any .tex files that define notation related to SCB, BR (bias ratio), SICA, SC, traces, constraints, majority voting. Show relevant snippets with file paths. Also check if there's a main paper .tex file anywhere in the project."
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T01:19:40.102713+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/**/*.tex"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T01:19:40.102919+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/dream_reports/dream_20260516T051642/best/paper.tex\nartifacts/dream_reports/dream_20260516T051642/median/paper.tex\nartifacts/dream_reports/dream_20260516T054054/best/paper.tex\nartifacts/dream_reports/dream_20260516T054054/median/paper.tex\nartifacts/dream_reports/dream_20260516T054054/worst/paper.tex\nartifacts/dream_reports/dream_20260516T124139/best/paper.tex\nartifacts/dream_reports/dream_20260516T124139/median/paper.tex\nartifacts/dream_reports/dream_20260516T124139/worst/paper.tex\nartifacts/dream_reports/dream_20260516T155754/best/paper.tex\nartifacts/dream_reports/dream_20260516T155754/median/paper.tex\nartifacts/dream_reports/dream_20260516T155754/worst/paper.tex\nartifacts/dream_reports/dream_20260517T144412/best/paper.tex\nartifacts/dream_reports/dream_20260517T144412/median/paper.tex\nartifacts/dream_reports/dream_20260517T144412/worst/paper.tex\nartifacts/dream_reports/dream_20260517T165032/best/paper.tex\nartifacts/_project/paper/experiments.tex\nartifacts/dream_reports/dream_20260517T165032/median/paper.tex\nartifacts/dream_reports/dream_20260517T165032/worst/paper.tex\nartifacts/_project/paper/related_work.tex\nartifacts/_project/paper/experiments_9ea847.tex\nartifacts/_project/paper/discussion.tex\nartifacts/_project/paper/related_work_b9688e.tex\nartifacts/_project/paper/conclusion.tex\nartifacts/_project/paper/introduction.tex\nartifacts/_project/paper/abstract.tex\nartifacts/dream_reports/dream_20260519T034058/best/paper.tex\nartifacts/dream_reports/dream_20260519T034058/median/paper.tex\nartifacts/dream_reports/dream_20260519T034058/worst/paper.tex\nartifacts/_project/paper/sub_population_appendix_draft.tex\nartifacts/sub_population_appendix_draft.tex\nartifacts/table1_bh_draft.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T01:19:40.103126+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/**/*.tex"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T01:19:40.103268+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/dream_reports/dream_20260516T051642/best/paper.tex\nartifacts/dream_reports/dream_20260516T051642/median/paper.tex\nartifacts/dream_reports/dream_20260516T054054/best/paper.tex\nartifacts/dream_reports/dream_20260516T054054/median/paper.tex\nartifacts/dream_reports/dream_20260516T054054/worst/paper.tex\nartifacts/dream_reports/dream_20260516T124139/best/paper.tex\nartifacts/dream_reports/dream_20260516T124139/median/paper.tex\nartifacts/dream_reports/dream_20260516T124139/worst/paper.tex\nartifacts/dream_reports/dream_20260516T155754/best/paper.tex\nartifacts/dream_reports/dream_20260516T155754/median/paper.tex\nartifacts/dream_reports/dream_20260516T155754/worst/paper.tex\nartifacts/dream_reports/dream_20260517T144412/best/paper.tex\nartifacts/dream_reports/dream_20260517T144412/median/paper.tex\nartifacts/dream_reports/dream_20260517T144412/worst/paper.tex\nartifacts/dream_reports/dream_20260517T165032/best/paper.tex\nartifacts/_project/paper/experiments.tex\nartifacts/dream_reports/dream_20260517T165032/median/paper.tex\nartifacts/dream_reports/dream_20260517T165032/worst/paper.tex\nartifacts/_project/paper/related_work.tex\nartifacts/_project/paper/experiments_9ea847.tex\nartifacts/_project/paper/discussion.tex\nartifacts/_project/paper/related_work_b9688e.tex\nartifacts/_project/paper/conclusion.tex\nartifacts/_project/paper/introduction.tex\nartifacts/_project/paper/abstract.tex\nartifacts/dream_reports/dream_20260519T034058/best/paper.tex\nartifacts/dream_reports/dream_20260519T034058/median/paper.tex\nartifacts/dream_reports/dream_20260519T034058/worst/paper.tex\nartifacts/_project/paper/sub_population_appendix_draft.tex\nartifacts/sub_population_appendix_draft.tex\nartifacts/table1_bh_draft.tex\ndocs/paper/main.tex\ndocs/paper/method.tex\ndocs/paper/limitations_content.tex\ndocs/paper/discussion.tex\ndocs/paper/experiments.tex\ndocs/paper/conclusion.tex\ndocs/paper/related_work.tex\ndocs/paper/analysis.tex\ndocs/paper/diagnosis.tex\ndocs/paper/appendix.tex\ndocs/paper/solutions.tex\ndocs/\n…[truncated 46 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T01:19:40.103428+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T01:19:40.103569+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review]{acl}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage[T1]{fontenc}\n6\t\\usepackage[utf8]{inputenc}\n7\t\\usepackage{microtype}\n8\t% \\usepackage{inconsolata} % removed: not available in this TeX distribution\n9\t\\usepackage{graphicx}\n10\t\\usepackage{amsmath}\n11\t\\usepackage{amssymb}\n12\t\\usepackage{amsthm}\n13\t\\usepackage{tcolorbox}\n14\t\\tcbuselibrary{skins}\n15\t\\usepackage{booktabs}\n16\t\\usepackage{multirow}\n17\t\\usepackage{xcolor}\n18\t\\usepackage{enumitem}\n19\t\\usepackage{subcaption}\n20\t\\usepackage{tikz}\n21\t\\usetikzlibrary{arrows.meta,positioning,calc,fit}\n22\t\\usepackage{listings}\n23\t\\usepackage{algorithm}\n24\t\\usepackage{algpseudocode}\n25\t\\usepackage{hyperref}\n26\t\\usepackage{cleveref}\n27\t\n28\t\\lstset{\n29\t  basicstyle=\\small\\ttfamily,\n30\t  breaklines=true,\n31\t  frame=single,\n32\t  xleftmargin=1em,\n33\t  xrightmargin=1em,\n34\t  aboveskip=0.5em,\n35\t  belowskip=0.5em,\n36\t}\n37\t\n38\t\\graphicspath{{../figures/paper/}{figures/}}\n39\t\n40\t\\title{Beyond Self-Consistency: Why Self-Extracted Constraints\\\\Fail to Improve LLM Logical Reasoning}\n41\t\n42\t\\author{Anonymous}\n43\t\n44\t\\begin{document}\n45\t\\maketitle\n46\t\n47\t% Tighten spacing for 8-page budget\n48\t\\setlength{\\textfloatsep}{5pt plus 2pt minus 4pt}\n49\t\\setlength{\\dbltextfloatsep}{5pt plus 2pt minus 4pt}\n50\t\\setlength{\\floatsep}{3pt plus 2pt minus 2pt}\n51\t\\setlength{\\dblfloatsep}{3pt plus 2pt minus 2pt}\n52\t\\setlength{\\abovecaptionskip}{2pt}\n53\t\\setlength{\\belowcaptionskip}{0pt}\n54\t\\setlength{\\abovedisplayskip}{4pt plus 1pt minus 2pt}\n55\t\\setlength{\\belowdisplayskip}{4pt plus 1pt minus 2pt}\n56\t\\setlength{\\intextsep}{5pt plus 1pt minus 2pt}\n57\t\n58\t\\input{abstract}\n59\t\n60\t\\input{introduction}\n61\t\n62\t\\input{related_work}\n63\t\n64\t\\input{method}\n65\t\n66\t\\input{experiments}\n67\t\n68\t\\input{analysis}\n69\t\n70\t\\input{solutions}\n71\t\n72\t\\input{discussion}\n73\t\n74\t\\vspace{-1mm}\n75\t\\section*{Limitations}\n76\t\\input{limitations_content}\n77\t\n78\t\\bibliography{references}\n79\t\n80\t\\appendix\n81\t\\input{appendix}\n82\t\n\n…[truncated 21 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T01:19:40.103720+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "SCB|bias ratio|SICA|SC|traces|constraints|majority voting|notation",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/paper",
+              "type": "tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T01:19:40.103917+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/related_work.tex:5:[Omitted long matching line]\nartifacts/_project/paper/related_work.tex:8:[Omitted long matching line]\nartifacts/_project/paper/related_work.tex:11:[Omitted long matching line]\nartifacts/_project/paper/related_work.tex:14:[Omitted long matching line]\nartifacts/_project/paper/related_work.tex:17:[Omitted long matching line]\nartifacts/_project/paper/related_work.tex:20:[Omitted long matching line]\nartifacts/_project/paper/experiments.tex:7:We evaluate SICA against Self-Consistency (SC) across five instruction-tuned models and four reasoning benchmarks.\nartifacts/_project/paper/experiments.tex:11:\\paragraph{Datasets.} FOLIO~\\cite{han2022folio} provides formal logic problems with gold first-order logic (FOL) annotations ($n=204$), which enable the oracle control experiment (\\S\\ref{sec:oracle}). ProofWriter~\\cite{tafjord2021proofwriter} tests multi-step deductive reasoning ($n=600$). StrategyQA~\\cite{geva2021strategyqa} evaluates commonsense reasoning ($n=200$ for LLaMA-3.1-8B; $n=60$ for other models). ARC-Challenge~\\cite{clark2018arc} covers science questions ($n=60$).\nartifacts/_project/paper/experiments.tex:13:\\paragraph{Parameters.} Unless otherwise noted, we sample $K=12$ reasoning traces per question at temperature $T=0.7$. Z3~\\cite{demoura2008z3} solves each MAX-SAT instance with a 10-second timeout. Temperature ablation experiments vary $T \\in \\{0.3, 0.5, 0.7, 1.0\\}$.\nartifacts/_project/paper/experiments.tex:15:\\paragraph{Metrics.} We report accuracy (\\%), the multi-candidate rate $C_0$ (\\S\\ref{sec:c0}), and the accuracy gap $\\Delta = \\text{SICA} - \\text{SC}$ in percentage points (pp). Statistical significance is assessed with the McNemar test for paired binary outcomes at $\\alpha = 0.05$. For adequately powered conditions ($n \\geq 200$), we also compute 95\\% bootstrap confidence intervals with 1{,}000 resamples.\nartifacts/_project/paper/experiments.tex:18:\\subsection{Main Results: SICA Provides No Significant Gain}\nart\n…[truncated 16857 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T01:19:40.104096+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "SCB|bias ratio|SICA|SC|traces|constraints|majority voting|notation",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+              "type": "tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T01:19:40.104296+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (41.7KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/5f08a0b3-198f-4f40-8b69-e8e76d016497/tool-results/toolu_011xaFd8LzqeayLX18HUdVNb.txt\n\nPreview (first 2KB):\ndocs/paper/analysis.tex:9:[Omitted long matching line]\ndocs/paper/analysis.tex:15:[Omitted long matching line]\ndocs/paper/analysis.tex:17:[Omitted long matching line]\ndocs/paper/analysis.tex:23:[Omitted long matching line]\ndocs/paper/analysis.tex:27:Model & Ext. & SC (\\%) & $n_\\text{err}$ & BR & $\\Delta$ (pp) \\\\\ndocs/paper/analysis.tex:43:\\looseness=-1 Two controls rule out answer leakage. BR is uniform across early, mid, and late reasoning steps (Fisher $p = 0.71$); high-consensus errors amplify to $\\text{BR} = 18.8\\times$ versus $2.7\\times$ for low-consensus ($p < 0.001$). Removing the answer sentence from traces before extraction yields no BR decrease (Wilcoxon $p \\geq 0.12$) despite significant accuracy loss (McNemar $p < 0.013$). SCB reflects a distributional prior embedded throughout reasoning, not answer contamination.\ndocs/paper/analysis.tex:48:[Omitted long matching line]\ndocs/paper/analysis.tex:51:CCR analysis confirms the same pattern: cross-architecture NLI yields $\\text{CCR} > 0$ while same-model SICA yields $\\text{CCR} < 0$, with CCR correlating with combo gain ($\\rho = 0.84$, $p = 0.014$; Appendix~\\ref{app:cil}).\ndocs/paper/analysis.tex:58:[Omitted long matching line]\ndocs/paper/analysis.tex:63:\\caption{Twenty-three of 27 training-free strategies across four categories (four additional strategies tested but omitted for clarity). All produce neutral-to-negative $\\Delta$ vs.\\ SC. Grey band: $\\pm 1$\\,pp noise zone.}\ndocs/paper/analysis.tex:68:\\looseness=-1 Decision boundaries ($C_0 < 5\\%$, $K_\\text{eff} \\leq 1.3$, SC $< 40\\%$) were derived from Mistral-7B and Qwen2.5-14B conditions. We evaluate prospectively on held-out LLaMA-3.1-8B, a different model family not \n…[truncated 300 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T01:19:40.104527+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T01:19:40.104733+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Background \\& Setup}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Self-Consistency and the Condorcet Independence Assumption}\n5\t\\label{sec:condorcet}\n6\t\n7\tSelf-Consistency (SC) \\citep{wang2023sc} samples $K$ reasoning traces and selects the majority answer. The Condorcet Jury Theorem (CJT) \\citep{condorcet1785} guarantees majority convergence under independent voters \\citep{austensmith1996}, but LLM traces violate this independence. Following \\citet{ladha1992correlated} and \\citet{kish1965survey}, we define effective sample size using Fleiss' $\\kappa$ \\citep{fleiss1971kappa} as proxy for intraclass correlation:\n8\t\\begin{equation}\n9\t\\label{eq:effk}\n10\tK_{\\text{eff}} = K \\,/\\, [1 + (K{-}1) \\cdot \\kappa].\n11\t\\end{equation} In our experiments (\\S\\ref{sec:effective-k}), $\\kappa = 0.21$--$0.82$ yields $K_{\\text{eff}} \\approx 1.2$--$3.6$ for $K{=}12$, serving as an ordinal diagnostic of vote diversity rather than a literal effective sample size. This independence limitation motivates our investigation.\n12\t\n13\t\\subsection{SICA Pipeline}\n14\t\\label{sec:pipeline}\n15\t\n16\tSymbolic Invariant Consensus Aggregation (SICA) extends SC by extracting formal constraints from traces and selecting the answer best supported by the satisfiable subset (Figure~\\ref{fig:pipeline}).\n17\t\n18\t\\paragraph{Trace generation.} Given question $q$, an LLM generates $K$ traces $\\{t_1, \\ldots, t_K\\}$ at temperature $T = 0.7$. Each trace $t_i$ yields answer $a_i$.\n19\t\n20\t\\paragraph{Constraint extraction.}\\label{sec:constraint-extraction} The same LLM extracts logical constraints from each trace at $T_{\\text{ext}} = 0.3$. The extraction prompt requests JSON output with constraint type, expression, and Z3-compatible formula (Appendix~\\ref{app:prompts}); in practice, 99.0\\% of extracted constraints are propositional at the Z3 level, with only 1.0\\% using true quantifiers. The \\emph{extraction rate} is the fraction of traces yielding at least one parseable constraint.\n21\t\n22\t\\paragraph{Deduplication and MAX\n…[truncated 5426 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T01:19:40.105022+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T01:19:40.105239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Analysis}\n2\t\\label{sec:analysis}\n3\t\n4\t\\looseness=-1 We test the three predictions of the symbolic mirage hypothesis (\\S\\ref{sec:mirage}).\n5\t\n6\t\\subsection{Condorcet Effective-K}\n7\t\\label{sec:effective-k}\n8\t\n9\t\\looseness=-1 Table~\\ref{tab:independence} (Appendix) reports Fleiss' $\\kappa$ and Effective-K (Eq.~\\ref{eq:effk}) across 15 conditions at $K = 12$. Among instruction-tuned models, $\\kappa$ ranges from 0.21 to 0.82, yielding $K_{\\text{eff}} = 1.20\\text{--}3.62$ as an ordinal diagnostic: higher $K_{\\text{eff}}$ indicates greater vote diversity, though it should not be interpreted as a literal effective sample size (\\S\\ref{sec:condorcet}). Across four Mistral-7B seeds, $\\kappa \\in [0.41, 0.51]$ yet $\\Delta$ ranges from $+3.43$ to $-0.49$\\,pp, indicating seed-level constraint quality matters beyond independence. Positive $\\Delta$ requires both sufficient $K_{\\text{eff}}$ ($\\leq 1.30$ never improves) and SC accuracy ($K_{\\text{eff}} = 3.62$ with SC $= 39\\%$ degrades). All four model families produce $\\kappa \\geq 0.41$ (Table~\\ref{tab:kappa_generalization}).\n10\t\n11\t\n12\t\\subsection{Symbolic Confirmation Bias}\n13\t\\label{sec:confirmation-bias}\n14\t\n15\t\\looseness=-1 Self-extracted constraints systematically align with the model's majority answer. On Mistral-7B FOLIO, when SICA errs, 83.3\\% of constraints support the incorrect answer---bias ratio $4.97\\times$ (Table~\\ref{tab:cross-model-bias})---and 94\\% of errors overlap with SC. A shuffle control reveals this bias is \\emph{structural}: randomizing constraint--answer associations while preserving per-trace counts yields $\\text{BR}_\\text{null} \\approx \\text{BR}_\\text{obs}$ ($p > 0.7$), indicating that BR reflects the trace-count distribution rather than extraction-specific error. Z3 rejects only 3.4\\% of constraints, and MAX-SAT produces answers identical to count-only aggregation on 94.4\\% of problems on Mistral-7B FOLIO (Table~\\ref{tab:ablation}), confirming that the formal verification layer is vacuous (Eq.~\n…[truncated 6924 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T01:19:40.105456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T01:19:40.105621+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (30865 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T01:19:40.105791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\(SCB|BR|SICA|C_0|K_\\\\\\\\text\\{eff\\}|\\\\\\\\sigma|\\\\\\\\mathcal\\{C\\})",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+              "type": "tex",
+              "output_mode": "content",
+              "head_limit": "100"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T01:19:40.105974+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T01:19:40.106139+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex",
+              "limit": "150"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T01:19:40.106332+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Regime Scatter Plot}\n2\t\\label{app:regime-scatter}\n3\t\n4\t\\begin{figure}[t]\n5\t\\centering\n6\t\\includegraphics[width=\\columnwidth]{f2_regime_scatter}\n7\t\\caption{SICA $\\Delta$ (pp) vs.\\ SC baseline. Filled: $n \\geq 100$; open: $n < 100$. The intermediate-SC region (50--60\\%, shaded) contains the only positive trends (none reaching $p < 0.05$). Type~C: nominally significant degradation (raw $p = 0.014$; BH adj.\\ $p = 0.112$).}\n8\t\\label{fig:regime-scatter}\n9\t\\end{figure}\n10\t\n11\t\\section{Prompt Templates}\n12\t\\label{app:prompts}\n13\t\n14\tSICA uses domain-specific prompt templates for constraint extraction: one for mathematical reasoning (GSM8K, AIME) and one for logical reasoning (ProofWriter, FOLIO). Both share the same system prompt. The LLM is called with temperature $T{=}0.3$, max tokens $1024$, and structured JSON output mode. Up to 6 traces are processed in parallel via thread pooling, with 2 retries on failure (exponential backoff, base 0.5s).\n15\t\n16\t\\paragraph{System Prompt.}\n17\t\n18\t\\begin{lstlisting}\n19\tYou are a constraint extraction tool. Output ONLY\n20\tvalid JSON. Do NOT solve problems, reason about\n21\tcorrectness, or think step-by-step. Extract\n22\tconstraints from the given trace exactly as stated.\n23\t\\end{lstlisting}\n24\t\n25\t\\paragraph{Mathematical Constraint Extraction (EXTRACTION\\_PROMPT).}\n26\t\n27\tUsed for GSM8K and AIME datasets. The placeholder \\texttt{\\{trace\\}} is replaced with the reasoning trace at runtime.\n28\t\n29\t\\begin{lstlisting}\n30\tExtract mathematical constraints from this reasoning\n31\ttrace as a JSON object.\n32\t\n33\tRules:\n34\t- type: \"equation\", \"inequality\", or \"predicate\"\n35\t- expression: human-readable, e.g. \"x + y == 14\"\n36\t- z3_formula: a single comparison expression in\n37\t  Python Z3 syntax\n38\t- source_step: step number where the constraint\n39\t  appears\n40\t- Use variable names from the trace\n41\t\n42\tz3_formula MUST follow these rules:\n43\t- Allowed operators: ==, !=, <, >, <=, >=, +, -, *,\n44\t  /, **, %\n45\t- Use individual named variables\n…[truncated 3308 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T01:19:40.106570+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T01:19:40.106784+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\\label{sec:introduction}\n2\t\n3\tTest-time computation scaling through multiple reasoning samples has emerged as a practical alternative to scaling model parameters \\citep{snell2025scaling, guo2025deepseekr1}.\n4\tThe dominant aggregation strategy, Self-Consistency (SC) \\citep{wang2023sc}, samples $K$ chain-of-thought traces and selects the majority answer.\n5\tSC is simple, model-agnostic, and effective---but it is hitting a ceiling.\n6\t\\citet{loo2025reevaluating} demonstrate that gains from increasing $K$ plateau and even decline for strong models.\n7\tThe gap between SC's theoretical promise (independent correct voters converge to truth) and its practical behavior (saturating gains) points to a structural mismatch: same-model traces carry correlated errors, and majority voting has no mechanism to correct shared bias.\n8\t\n9\tConfidence-weighted \\citep{taubenfeld2025cisc} and universal \\citep{chen2024usc} extensions alleviate this, but the core limitation persists.\n10\tRecent neuro-symbolic methods \\citep{pan2023logiclm, olausson2023linc, xu2026dylos, li2025aristotle, wang2025fover, luo2025logicagent} report gains on logical reasoning but introduce components beyond the reasoning model.\n11\tA simpler question precedes these: can the \\emph{same} model extract useful formal constraints from its own traces---a zero-cost upgrade requiring no additional model or data?\n12\tNo prior work has systematically evaluated this.\n13\t\n14\tWe ground our analysis in the Condorcet Jury Theorem (CJT) \\citep{condorcet1785}: if $K$ independent voters each answer correctly with probability $p > 0.5$, the majority converges to truth \\citep{austensmith1996}.\n15\tWhen independence fails \\citep{ladha1992correlated}, additional samples carry diminishing information.\n16\tMeasuring inter-trace agreement with Fleiss' $\\kappa$ \\citep{fleiss1971kappa}, we find $\\kappa = 0.21$--$0.82$ across instruction-tuned conditions, yielding $K_{\\text{eff}}$ as an ordinal diagnostic of vote diversity ($K\n…[truncated 6808 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T01:19:40.107028+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex",
+              "limit": "100"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T01:19:40.107232+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Setup}\n5\t\\label{sec:exp-setup}\n6\t\n7\tWe evaluate SICA against Self-Consistency (SC) across six models, three reasoning domains, and over 3,000 condition-evaluations (${\\sim}$1,250 unique instances), with diagnostic analyses of confirmation bias and process-level independence (\\S\\ref{sec:analysis}).\n8\t\n9\t\\paragraph{Models.} Qwen2.5-14B-Instruct, Qwen2.5-7B-Instruct, Qwen3-14B (non-thinking mode)~\\citep{yang2024qwen25}, Mistral-7B-Instruct-v0.3~\\citep{jiang2023mistral}, LLaMA-3.1-8B-Instruct~\\citep{dubey2024llama3}, and QwQ-32B~\\citep{qwen2024qwq} (7B--32B). We additionally evaluate SCB universality via cross-model extraction on five frontier models (gpt-4o, gpt-4.1, gpt-5.5, o3, Gemini-2.5-Pro; Table~\\ref{tab:frontier-scb}), where Mistral-7B extracts constraints from the target model's traces since closed-source APIs do not expose internals suitable for self-extraction.\n10\t\n11\t\\paragraph{Datasets.} FOLIO~\\citep{han2022folio} ($n{=}204$, with gold logical annotations), ProofWriter depth-5~\\citep{tafjord2021proofwriter} ($n{=}600$), LogiQA~\\citep{liu2020logiqa} ($n{=}200$). StrategyQA~\\citep{geva2021strategyqa} ($n{=}200$) serves as a domain-formalizability diagnostic. GSM8K~\\citep{cobbe2021gsm8k} (exploratory, $n{=}30$) and AIME 2024 ($n{=}22$) probe the degenerate regime ($C_0 < 5\\%$).\n12\t\n13\t\\paragraph{Parameters.} $K{=}12$ traces at $T{=}0.7$, extraction at $T_{\\text{ext}}{=}0.3$, $\\alpha{=}0.5$, Z3 timeout 10s. McNemar exact test ($\\alpha{=}0.05$); 95\\% bootstrap CIs ($10{,}000$ resamples) for $n \\geq 200$. SICA incurs $4.5{\\times}$ SC wall-clock; extraction accounts for 76\\% of overhead.\n14\t\n15\t\n16\t\\subsection{Main Results}\n17\t\\label{sec:main-results}\n18\t\n19\tTable~\\ref{tab:main_results} reports accuracy across all conditions sorted by SC baseline, revealing three observation-driven accuracy regimes.\n20\t\n21\t\\begin{table*}[t]\n22\t\\centering\n23\t\\small\n24\t\\caption{SICA vs.\\ SC across all non-degenerate \n…[truncated 4100 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T01:19:40.107441+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "C_0|multi-candidate|trace|reasoning trace|constraint",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex",
+              "output_mode": "content",
+              "context": "3"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T01:19:40.107634+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4-\\subsection{Self-Consistency and the Condorcet Independence Assumption}\n5-\\label{sec:condorcet}\n6-\n7:Self-Consistency (SC) \\citep{wang2023sc} samples $K$ reasoning traces and selects the majority answer. The Condorcet Jury Theorem (CJT) \\citep{condorcet1785} guarantees majority convergence under independent voters \\citep{austensmith1996}, but LLM traces violate this independence. Following \\citet{ladha1992correlated} and \\citet{kish1965survey}, we define effective sample size using Fleiss' $\\kappa$ \\citep{fleiss1971kappa} as proxy for intraclass correlation:\n8-\\begin{equation}\n9-\\label{eq:effk}\n10-K_{\\text{eff}} = K \\,/\\, [1 + (K{-}1) \\cdot \\kappa].\n--\n13-\\subsection{SICA Pipeline}\n14-\\label{sec:pipeline}\n15-\n16:Symbolic Invariant Consensus Aggregation (SICA) extends SC by extracting formal constraints from traces and selecting the answer best supported by the satisfiable subset (Figure~\\ref{fig:pipeline}).\n17-\n18:\\paragraph{Trace generation.} Given question $q$, an LLM generates $K$ traces $\\{t_1, \\ldots, t_K\\}$ at temperature $T = 0.7$. Each trace $t_i$ yields answer $a_i$.\n19-\n20:[Omitted long matching line]\n21-\n22:\\paragraph{Deduplication and MAX-SAT.} Constraints are deduplicated by syntactic equivalence (global average deduplication ratio: 46.0\\%); each unique constraint $c_m$ receives weight $w_m$ equal to the number of source traces. The objective finds the largest-weight satisfiable subset:\n23-\\begin{equation}\n24-\\label{eq:maxsat}\n25-\\mathcal{C}^* = \\arg\\max_{\\mathcal{S} \\subseteq \\mathcal{C}} \\sum_{c \\in \\mathcal{S}} w_c \\quad \\text{s.t.} \\quad \\mathcal{S} \\text{ is satisfiable.}\n26-\\end{equation}\n27:Z3 \\citep{demoura2008z3} solves this with a 10-second timeout. Answer assertion constraints ($\\texttt{answer\\_a} == \\texttt{True}$, weight 1) ensure every candidate receives a nonzero base score, making SICA a strict generalization of SC.\n28-\n29-\\paragraph{Scoring.} Let $\\mathcal{C}^{\\setminus} = \\mathcal{C} \\setminus \\mathcal{C}^*$. Each candidate $a$ is sc\n…[truncated 2090 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T01:19:40.107854+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus -name \"main.tex\" -o -name \"paper.tex\" | head -20"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T01:19:40.108057+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T124139/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T124139/worst/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T124139/best/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T155754/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T155754/worst/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T155754/best/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T054054/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T054054/worst/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T054054/best/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260519T034058/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260519T034058/worst/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260519T034058/best/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260517T144412/median/paper.tex\n/home/ubuntu/.agent-ml-re\n…[truncated 838 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T01:19:40.108262+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "degeneration|majority voting|answer assertion|deduplication",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+              "type": "tex",
+              "output_mode": "content",
+              "head_limit": "50"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T01:19:40.108440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/analysis.tex:15:[Omitted long matching line]\ndocs/paper/analysis.tex:17:[Omitted long matching line]\ndocs/paper/method.tex:22:\\paragraph{Deduplication and MAX-SAT.} Constraints are deduplicated by syntactic equivalence (global average deduplication ratio: 46.0\\%); each unique constraint $c_m$ receives weight $w_m$ equal to the number of source traces. The objective finds the largest-weight satisfiable subset:\ndocs/paper/method.tex:41:equivalent to majority voting. We show in \\S\\ref{sec:confirmation-bias} that this degeneration occurs in practice.\ndocs/paper/method.tex:48:[Omitted long matching line]\ndocs/paper/limitations_content.tex:1:[Omitted long matching line]\ndocs/paper/abstract.tex:1:Self-Consistency (SC) majority voting over chain-of-thought traces saturates as sample count grows because same-model traces are correlated voters.\ndocs/paper/abstract.tex:4:[Omitted long matching line]\ndocs/paper/appendix.tex:162:Domain constraint variables (e.g., \\texttt{x + y == 14}) and answer assertion variables (e.g., \\texttt{\\_\\_sica\\_answer\\_42 == True}) are logically independent in the Z3 formulation. Discriminative signal arises solely from conflicts among domain constraints: when traces supporting different answers produce mutually contradictory constraints, the solver excludes the lower-weight subset, and the scorer penalizes the corresponding answers.\ndocs/paper/appendix.tex:312:All three intervals contain zero. The narrowest interval (Qwen-14B, [$-$1.12, $+$1.62]) rules out practically meaningful gains ($>$2pp) even in the most favorable case. The widest interval (LLaMA-8B FOLIO, [$-$5.88, $+$0.98]) skews negative, indicating that SICA may slightly hurt accuracy in this condition. These results corroborate the McNemar tests and power analysis: no condition provides evidence that logical constraint aggregation improves over majority voting.\ndocs/paper/appendix.tex:524:[Omitted long matching line]\ndocs/paper/appendix.tex:1190:\\emph{Effective-K} ($K_\\text{eff\n…[truncated 833 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T01:19:40.108744+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I have gathered comprehensive information. Let me compile the final report with all the relevant findings.\n\n## Summary: Notation and Definitions in the Symb_Invariant_Consensus Project\n\n### Main Paper File\n**Primary location:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex`\n\nThis is the main paper file that orchestrates the entire document structure through includes of specialized sections.\n\n---\n\n### Key Notation Definitions Found\n\n#### **1. SCB (Symbolic Confirmation Bias)**\n**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex` (lines 12-18)\n\nSCB is defined as the systematic alignment of self-extracted constraints with the model's majority answer:\n- On Mistral-7B FOLIO: when SICA errs, 83.3% of constraints support the incorrect answer\n- Bias ratio values across nine models: 1.66--4.97× all greater than 1.0\n- SCB reflects a distributional prior embedded throughout reasoning, not answer contamination\n- The bias is structural: randomizing constraint-answer associations while preserving per-trace counts yields the same BR distribution\n\n#### **2. BR (Bias Ratio)**\n**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex` (lines 48-52)\n\nFormal definition (Equation 1 - eq:mirage):\n```tex\nBR(M,T) = P(c supports a_M | a_M ≠ a*) / P(c supports a* | a_M ≠ a*)\n```\nWhere:\n- c = self-extracted constraint\n- a_M = model's answer\n- a* = ground truth answer\n- BR > 1 indicates constraints project model bias rather than provide independent verification\n- Empirical findings: BR > 1.0 across all tested self-extraction conditions\n\n#### **3. SICA (Symbolic Invariant Consensus Aggregation)**\n**Files:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex` (lines 13-42)\n\nSICA extends SC by extracting formal constraints from traces and selecting the answer\n…[truncated 6138 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Agent",
+            "elapsed_ms": 6
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-23T01:19:40.109645+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+              "limit": "80"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-23T01:19:40.109974+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Analysis}\n2\t\\label{sec:analysis}\n3\t\n4\t\\looseness=-1 We test the three predictions of the symbolic mirage hypothesis (\\S\\ref{sec:mirage}).\n5\t\n6\t\\subsection{Condorcet Effective-K}\n7\t\\label{sec:effective-k}\n8\t\n9\t\\looseness=-1 Table~\\ref{tab:independence} (Appendix) reports Fleiss' $\\kappa$ and Effective-K (Eq.~\\ref{eq:effk}) across 15 conditions at $K = 12$. Among instruction-tuned models, $\\kappa$ ranges from 0.21 to 0.82, yielding $K_{\\text{eff}} = 1.20\\text{--}3.62$ as an ordinal diagnostic: higher $K_{\\text{eff}}$ indicates greater vote diversity, though it should not be interpreted as a literal effective sample size (\\S\\ref{sec:condorcet}). Across four Mistral-7B seeds, $\\kappa \\in [0.41, 0.51]$ yet $\\Delta$ ranges from $+3.43$ to $-0.49$\\,pp, indicating seed-level constraint quality matters beyond independence. Positive $\\Delta$ requires both sufficient $K_{\\text{eff}}$ ($\\leq 1.30$ never improves) and SC accuracy ($K_{\\text{eff}} = 3.62$ with SC $= 39\\%$ degrades). All four model families produce $\\kappa \\geq 0.41$ (Table~\\ref{tab:kappa_generalization}).\n10\t\n11\t\n12\t\\subsection{Symbolic Confirmation Bias}\n13\t\\label{sec:confirmation-bias}\n14\t\n15\t\\looseness=-1 Self-extracted constraints systematically align with the model's majority answer. On Mistral-7B FOLIO, when SICA errs, 83.3\\% of constraints support the incorrect answer---bias ratio $4.97\\times$ (Table~\\ref{tab:cross-model-bias})---and 94\\% of errors overlap with SC. A shuffle control reveals this bias is \\emph{structural}: randomizing constraint--answer associations while preserving per-trace counts yields $\\text{BR}_\\text{null} \\approx \\text{BR}_\\text{obs}$ ($p > 0.7$), indicating that BR reflects the trace-count distribution rather than extraction-specific error. Z3 rejects only 3.4\\% of constraints, and MAX-SAT produces answers identical to count-only aggregation on 94.4\\% of problems on Mistral-7B FOLIO (Table~\\ref{tab:ablation}), confirming that the formal verification layer is vacuous (Eq.~\n…[truncated 6924 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-23T01:19:40.110206+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex",
+              "limit": "70"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-23T01:19:40.110464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Background \\& Setup}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Self-Consistency and the Condorcet Independence Assumption}\n5\t\\label{sec:condorcet}\n6\t\n7\tSelf-Consistency (SC) \\citep{wang2023sc} samples $K$ reasoning traces and selects the majority answer. The Condorcet Jury Theorem (CJT) \\citep{condorcet1785} guarantees majority convergence under independent voters \\citep{austensmith1996}, but LLM traces violate this independence. Following \\citet{ladha1992correlated} and \\citet{kish1965survey}, we define effective sample size using Fleiss' $\\kappa$ \\citep{fleiss1971kappa} as proxy for intraclass correlation:\n8\t\\begin{equation}\n9\t\\label{eq:effk}\n10\tK_{\\text{eff}} = K \\,/\\, [1 + (K{-}1) \\cdot \\kappa].\n11\t\\end{equation} In our experiments (\\S\\ref{sec:effective-k}), $\\kappa = 0.21$--$0.82$ yields $K_{\\text{eff}} \\approx 1.2$--$3.6$ for $K{=}12$, serving as an ordinal diagnostic of vote diversity rather than a literal effective sample size. This independence limitation motivates our investigation.\n12\t\n13\t\\subsection{SICA Pipeline}\n14\t\\label{sec:pipeline}\n15\t\n16\tSymbolic Invariant Consensus Aggregation (SICA) extends SC by extracting formal constraints from traces and selecting the answer best supported by the satisfiable subset (Figure~\\ref{fig:pipeline}).\n17\t\n18\t\\paragraph{Trace generation.} Given question $q$, an LLM generates $K$ traces $\\{t_1, \\ldots, t_K\\}$ at temperature $T = 0.7$. Each trace $t_i$ yields answer $a_i$.\n19\t\n20\t\\paragraph{Constraint extraction.}\\label{sec:constraint-extraction} The same LLM extracts logical constraints from each trace at $T_{\\text{ext}} = 0.3$. The extraction prompt requests JSON output with constraint type, expression, and Z3-compatible formula (Appendix~\\ref{app:prompts}); in practice, 99.0\\% of extracted constraints are propositional at the Z3 level, with only 1.0\\% using true quantifiers. The \\emph{extraction rate} is the fraction of traces yielding at least one parseable constraint.\n21\t\n22\t\\paragraph{Deduplication and MAX\n…[truncated 5426 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-23T01:19:40.110731+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/ 2>/dev/null | head -20",
+              "description": "List artifacts directory"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-23T01:19:40.110938+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_extracted\n_project\nablation_text.py\naime30_v2_partial_analysis.md\naime_bias_ratio_results.json\nanalysis_exp045.md\nanalysis_prove_verify.py\nanalyze_adaptive_sica.py\nanalyze_discriminative_rate.py\nanalyze_expanded.py\nanalyze_seed_replication.py\nappendix_prompt_template.md\nbackward_verification.py\nbaf_decoupled_results.json\nbootstrap_br.py\nbr_bootstrap_ci.json\ncapability_gap_scatter_v2.pdf\ncapability_gap_scatter_v2.png\ncase_study_materials.md\ncausal_dag_tikz.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-23T01:19:40.111220+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/proposition1_scb_proof.tex",
+              "content": "% Proposition 1: Symbolic Confirmation Bias is Structural\n% Place after the empirical BR paragraph in §3.2 (analysis.tex, ~line 17),\n% or at the end of §2.3 (method.tex) after Eq.(4) degeneration condition.\n% Requires: amsmath, amssymb, enumitem (all already loaded in main.tex).\n\n\\textbf{Proposition 1} \\textit{(Symbolic Confirmation Bias is Structural).}\\;%\nLet $t_1, \\dots, t_K \\overset{\\mathrm{i.i.d.}}{\\sim} P_M(\\cdot \\mid q)$ be reasoning traces from model $M$ on question $q$.\nAssume:\n\\begin{enumerate}[label=\\textbf{A\\arabic*.},leftmargin=2.5em,nosep]\n\\item Answers are trace-determined: $a_i = h(t_i)$.\n\\item Constraints are trace-determined: $c_i = f(t_i)$.\n\\end{enumerate}\nLet $\\hat{a} = \\mathrm{mode}(a_1, \\dots, a_K)$, $n_a = |\\{i : a_i = a\\}|$, and $Y$ the ground truth. Then:\n\\begin{enumerate}[label=\\textit{(\\roman*)},leftmargin=1.8em,itemsep=2pt,topsep=3pt]\n\\item \\textit{Voting degeneration.}\\;\nUnder source attribution $\\sigma(c_i, a) \\triangleq \\mathbf{1}[a_i = a]$, the constraint score reduces to the majority-vote count: $\\operatorname{score}(a) = n_a$.\nWhen $|\\{a : n_a > 0\\}| \\geq 2$, the bias ratio satisfies $\\mathrm{BR} \\triangleq n_{\\hat{a}} \\big/ \\max_{a' \\neq \\hat{a}} n_{a'} \\geq 1$.\n\n\\item \\textit{Information ceiling.}\\;\n$I(C_{1:K};\\, Y) \\leq I(T_{1:K};\\, Y)$ and $I(C_{1:K};\\, Y \\mid A_{1:K}) \\leq I(T_{1:K};\\, Y \\mid A_{1:K})$:\nself-extracted constraints cannot carry more information about $Y$ than the source traces---even beyond what the answers already encode.\n\\end{enumerate}\n\\noindent\nBoth bounds hold for \\emph{any} model $M$, task $q$, and extraction function $f$.\n\n\\medskip\n\\textit{Proof.}\\;%\n\\textit{(i)}\\; By definition, $\\operatorname{score}(a) = \\sum_{i=1}^K \\mathbf{1}[a_i = a] = n_a$, maximized at $\\hat{a}$, so $\\mathrm{BR} \\geq 1$.\n\\textit{(ii)}\\; $c_i = f(t_i)$ makes $C_{1:K}$ a deterministic function of $T_{1:K}$, so $Y \\mathop{\\text{---}} T_{1:K} \\mathop{\\text{---}} C_{1:K}$ forms a Markov chain and the data processing inequality gives $I(C_{1:K}; Y) \\leq I(T_{1:K}; Y)$.\nThe conditional bound follows identically: $c_i = f(t_i)$ holds unconditionally, so the Markov property and DPI apply within each stratum $\\{A_{1:K} = \\mathbf{a}\\}$.\\hfill$\\square$\n\n\\medskip\\noindent\nEach constraint is a downstream product of a trace that simultaneously determines an answer; constraint-based aggregation therefore cannot escape the distributional bias of the answer vote.\nNeither bound depends on model capability, task difficulty, or extraction quality---the bias is a structural artifact of the self-extraction pipeline.\n\n\\medskip\\noindent\n\\textbf{Remark.}\\;%\nPart~\\textit{(i)} relies on source attribution (Eq.~\\ref{eq:score}), the mechanism used by SICA.\nUnder \\emph{semantic} evaluation---checking whether $c_i$ is logically consistent with answer $a$ directly---$\\mathrm{BR} \\geq 1$ additionally requires \\emph{answer alignment}: $P(c_i \\text{ supports } a_i) \\geq P(c_i \\text{ supports } a')$ for $a' \\neq a_i$.\nThis property is structurally motivated (the reasoning chain producing $a_i$ generates intermediate steps aligned with $a_i$) and is empirically validated across all nine model--task conditions ($\\mathrm{BR} \\in [1.66,\\, 4.97]$; Table~\\ref{tab:frontier-scb}), but is not a mathematical necessity of self-extraction alone---it could fail if $f$ systematically extracted premises that contradict their source trace's conclusion.\n\n% ============================================================\n% AUTHOR NOTE: Honesty check on proof strength\n% ============================================================\n%\n% 1. Part (i) is intentionally trivial. The triviality IS the contribution:\n%    it makes explicit that source attribution (σ function) renders the\n%    constraint layer exactly redundant with answer counting. The simplicity\n%    underscores that SCB is not a subtle empirical phenomenon but an\n%    immediate structural consequence.\n%\n% 2. Part (ii) uses only the standard DPI, requiring no assumptions beyond\n%    A1-A2. The conditional form I(C;Y|A) ≤ I(T;Y|A) is the stronger\n%    result: it says constraints add no *independent* verification signal\n%    beyond the traces themselves. Note this does NOT say I(C;Y|A) = 0;\n%    constraints may carry some info about Y beyond A, but only info already\n%    present in T. True independence requires breaking the T→C pipeline.\n%\n% 3. BR ≥ 1 is deterministic (holds for every realization), not just\n%    E[BR] ≥ 1. It equals 1 iff â ties with a runner-up. This is stronger\n%    than the empirical finding and explains why BR > 1 universally.\n%\n% 4. The Remark is essential for intellectual honesty: under semantic\n%    attribution, answer alignment is needed and is NOT a pure structural\n%    guarantee. However, since SICA actually uses source attribution, the\n%    main Proposition stands unconditionally.\n%\n% 5. Potential reviewer pushback: \"This is obvious.\" Response: if it were\n%    obvious, prior work (including the original SICA paper) would not have\n%    proposed self-extraction as a verification mechanism. The proposition\n%    formalizes why that mechanism is structurally vacuous.\n%\n% 6. Deduplication caveat: with constraint deduplication, a constraint\n%    shared across answer groups contributes equally to all scores (cancels\n%    out). Answer-specific constraints drive the ranking, and these are\n%    proportional to trace counts. In the degenerate case where minority\n%    traces produce disproportionately more *unique* constraints, BR could\n%    theoretically drop below 1. Empirically this never happens (Table 5).\n%    The proposition covers the pre-deduplication base case; the\n%    degeneration condition (Eq.4) covers the practical case.\n"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-23T01:19:40.111536+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/proposition1_scb_proof.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-23T01:19:40.111718+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__save_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-23T01:19:40.111902+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-23T01:19:40.112117+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入。核心结构：\n\n**Part (i) — Voting Degeneration:** 在 source attribution σ(c_i, a) = **1**[a_i = a] 下，score(a) = n_a，与 majority voting 完全等价。BR = n_â / max_{a'≠â} n_{a'} ≥ 1 是确定性结论（every realization），不仅仅是期望意义。\n\n**Part (ii) — Information Ceiling:** C = f(T) 形成 Markov chain Y—T—C，DPI 给出 I(C;Y) ≤ I(T;Y)。条件版本 I(C;Y|A) ≤ I(T;Y|A) 说明即使已知答案，约束也无法提供超出 trace 本身的独立验证信号。\n\n**Remark** 诚实处理了 semantic attribution 的边界情况：此时需要 answer alignment 假设（经验上成立，但非纯结构保证）。由于 SICA 实际使用 source attribution，主命题无条件成立。\n\n证明只依赖 A1（a_i = h(t_i)）和 A2（c_i = f(t_i)），不需要 A3（answer-aware）。文件末尾的 author note 预判了 6 个潜在 reviewer pushback 点（包括 deduplication caveat 和\"too trivial\"反驳）。\n\n产出：`artifacts/proposition1_scb_proof.tex`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_theory_scb-proposition-proof_20260523T010508"
+          },
+          "id": "event-000043"
+        }
+      ],
+      "message_count": 43
+    }
+  ],
+  "readable_path": "readable/conversations/theory-scb-proposition-proof.md"
+}

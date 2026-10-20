@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cbd82caae51899c908e6",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "git push anon kappa v2",
+  "task_key": "worker_git_push-anon-kappa-v2_20260524T075126",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_git_push-anon-kappa-v2_20260524T075126_result.json",
+    "occurrence": 1,
+    "bytes": 292,
+    "sha256": "c2b172a27603b74d94ad17620fbf9f5280c0fddaa3068353fa341e46f17d78a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done.\n\n- **Commit**: `d03c800` — `fix: recompute kappa/K_eff with unified normalization, add pipeline-run footnotes`\n- **Remote**: `https://github.com/anonymous-nlp-2026/symb_invariant_consensus.git`\n- **Branch**: `main`\n- 4 files updated, no leaked identifiers in diff."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/git-push-anon-kappa-v2.md"
+}

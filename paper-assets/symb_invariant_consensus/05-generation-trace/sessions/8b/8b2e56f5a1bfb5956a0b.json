@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b2e56f5a1bfb5956a0b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "eval sica expanded 14b",
+  "task_key": "worker_eval_sica_expanded_14b_20260516T051232",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_sica_expanded_14b_20260516T051232_result.json",
+    "occurrence": 1,
+    "bytes": 581,
+    "sha256": "3a19bc72ce0c1fed7f4a6027c4952c87ab112e1da96a23c785aaac72b51d039d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**汇报：**\n\n| 数据集 | 题数 | 标签分布 |\n|--------|------|----------|\n| ProofWriter D5 | 600 | True=200, False=200, Unknown=200 |\n| FOLIO | 204 | True=72, False=63, Unknown=69 |\n| **合计** | **804** | 远超 ≥200 目标 |\n\n实验已提交运行：\n- 实验 ID: `sica_expanded_14b`\n- tmux session: `sica_expanded_14b`\n- 日志: `~/runs/symb_invariant_consensus/sica_expanded_14b.log`\n- 输出: `results/sica_expanded_14b.json`\n- 参数: K=12, temp=0.7, max_tokens=4096, seed=42\n- 预计运行时间: ~13 小时（804 题 × ~1 min/题）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-sica-expanded-14b.md"
+}

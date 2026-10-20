@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "854e599f1cc2ed935f7f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code exp2 premise formalization",
+  "task_key": "worker_code_exp2-premise-formalization_20260518T180831",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp2-premise-formalization_20260518T180831_result.json",
+    "occurrence": 1,
+    "bytes": 1019,
+    "sha256": "919f0e5da2a92f1658ccdbe35322573c87f091b70ddb4a1ec81b6f9f59a5a958"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。Dry-run 验证报告：\n\n| 检查项 | 状态 |\n|--------|------|\n| python3 可用 | PASS |\n| z3 import (v4.15.4) | PASS |\n| openai import | PASS |\n| 数据文件 `folio_full.json` (215KB) | PASS |\n| 模型路径 `/root/autodl-tmp/models/Qwen2.5-14B-Instruct/` | PASS |\n| `parse_formula` (Implies/Or/Xor/Fact/Complex) | PASS (5/5) |\n| `check_entailment` (True/False/Unknown/Inconsistent) | PASS (4/4) |\n| `parse_problem` (前3条数据解析) | PASS (均解析出6条premises+conclusion) |\n| 模块 import | PASS |\n\n**产出文件：**\n- `/root/symb_invariant_consensus/premise_formalization.py` — 主脚本，K=12 独立 formalization + majority vote\n- `/root/symb_invariant_consensus/scripts/run_premise_formalization.sh` — 启动脚本（自动启动 vLLM，用法: `bash scripts/run_premise_formalization.sh [PORT] [GPU]`）\n\nLLM 调用部分未测试（需要 vLLM server 运行中）。启动实验时运行 `bash scripts/run_premise_formalization.sh` 即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp2-premise-formalization.md"
+}

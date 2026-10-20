@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca72ca835d0d7656f78d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra fix exp070 dual runner",
+  "task_key": "worker_infra_fix-exp070-dual-runner_20260519T125321",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_fix-exp070-dual-runner_20260519T125321_result.json",
+    "occurrence": 1,
+    "bytes": 365,
+    "sha256": "14cd994ad929c069d723937c4f61e3e70ab29defac15ce52fce9c46eb096209e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**报告：**\n\n- **Kill 了**: `run_full_mvp.py` (PID 214184, tmux 启动, 进度 ~187/200)\n- **保留了**: `run_logiqa.py` (PID 213761, submit_training_job 启动, 有 cron 监控)\n- **结果文件状态**: `exp070_results.json` 完整可解析，包含 195/200 条结果 + summary。剩余 5 条由保留的 runner 继续跑完。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fix-exp070-dual-runner.md"
+}

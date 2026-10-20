@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf8bc5a36e901617725b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra exp 049b redeploy cuda3",
+  "task_key": "worker_infra_exp-049b-redeploy-cuda3_20260518T215331",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_exp-049b-redeploy-cuda3_20260518T215331_result.json",
+    "occurrence": 1,
+    "bytes": 408,
+    "sha256": "a364d837b8756c6eaa4cdf89ba0dfc7a5074d6e8823a28f56a10ad349511220f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-049b 部署成功，pipeline 已在运行：\n\n- **tmux session**: `exp049b` (westd-16639)\n- **GPU**: cuda:3, 87,952 MiB 占用\n- **vLLM**: v0.21.0, port 8003, Mistral-7B-Instruct-v0.3\n- **Pipeline**: `run_full_mvp.py` 已启动，正在向 vLLM 发送请求（HTTP 200 OK）\n- **输出**: `results/exp049b_mistral_logiqa200/`\n- **Registry**: `exp-049b-mistral-logiqa200` → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp-049b-redeploy-cuda3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e0fe452856f652dbd5a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code fix vllm install 25068",
+  "task_key": "worker_code_fix-vllm-install-25068_20260518T085007",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix-vllm-install-25068_20260518T085007_result.json",
+    "occurrence": 1,
+    "bytes": 642,
+    "sha256": "95ba78b45be52a04e6ddad9324fdab60ab17fc3e9185128cd317279952aab4c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**vLLM 安装成功。**\n\n| 组件 | 版本 |\n|------|------|\n| vLLM | 0.21.0 |\n| PyTorch | 2.11.0+cu130 |\n| CUDA | 13.0 |\n| GPU | 4x NVIDIA RTX PRO 6000 Blackwell |\n\n变更说明：\n- PyTorch 从 2.8.0+cu128 升级到 2.11.0+cu130（vLLM 0.21.0 要求）\n- CUDA 从 12.8 升级到 13.0\n- 已清理旧 CUDA 12 孤儿包 + pip cache，磁盘 21G 可用（30G 总量的 66%）\n\n问题根因：之前有两个 `pip install vllm` 进程并行执行，互相覆盖导致 3 个 NVIDIA 包（cusparselt-cu13、nccl-cu13、cudnn-cu13）只安装了 metadata 没有实际 .so 文件。已全部重装修复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-vllm-install-25068.md"
+}

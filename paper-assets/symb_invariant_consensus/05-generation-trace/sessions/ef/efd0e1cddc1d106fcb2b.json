@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "efd0e1cddc1d106fcb2b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag exp 070 failure",
+  "task_key": "worker_diag_exp-070-failure_20260519T125802",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_exp-070-failure_20260519T125802_result.json",
+    "occurrence": 1,
+    "bytes": 1287,
+    "sha256": "44df9f3358054d80cd6c8450aa42beaabad6f063accd4c0bddd23ef75edb20a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n### 失败根因\n**非真正失败。** 实验完成全部 200/200 题后，managed wrapper 的 tmux session 收到 SIGHUP 信号，trap handler 将其转为 `exit 129`。Cron 系统看到非零 exit code + 无 W&B metrics，误报为失败。\n\n### 日志路径\n- 运行日志：`/root/symb_invariant_consensus/results/exp070_qwen7b_logiqa200/exp070_run.log`\n- 结果文件：`/root/symb_invariant_consensus/results/exp070_qwen7b_logiqa200/exp070_results.json`\n- Managed log：`~/runs/symb_invariant_consensus/exp-070-qwen7b-logiqa200.log`\n- 200/200 intermediates 完整\n\n### 实验结果\n| Metric | Value |\n|--------|-------|\n| SICA | 71.00% (142/200) |\n| SC | 68.50% (137/200) |\n| Delta | **+2.50pp** |\n| Wall time | 59.3 min |\n\n### 是否可以直接重试\n**无需重试**，结果完整。需要做的是：\n1. 更新 registry 状态为 DONE，补录 metrics（SC=68.50, SICA=71.00, delta=+2.50）\n2. 计算 McNemar p-value 补入 Table 1\n3. 可以关掉 exp070_vllm tmux session 释放 GPU\n\n### 建议修复方案\n针对 cron 误报问题：managed wrapper 的 trap 应在实验正常完成（检测到 DONE 标记）后忽略后续信号，或 cron 监控应优先检查日志中的完成标记而非仅依赖 exit code。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp-070-failure.md"
+}

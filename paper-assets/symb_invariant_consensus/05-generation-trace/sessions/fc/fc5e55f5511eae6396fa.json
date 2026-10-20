@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc5e55f5511eae6396fa",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper figure fig3 process kappa scatter",
+  "task_key": "worker_paper_figure_fig3_process_kappa_scatter_20260520T103952",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure_fig3_process_kappa_scatter_20260520T103952_result.json",
+    "occurrence": 1,
+    "bytes": 339,
+    "sha256": "695dbb1b711035c434b0b60e884c99e7a03356be85e3ed1f34c649318e8d659b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**输出文件**：\n- PDF: `figures/paper/fig3_process_kappa_scatter.pdf` (15.5KB, vector)\n- PNG: `figures/paper/fig3_process_kappa_scatter.png` (146KB, 300 DPI)\n\n**数据验证**：204 个数据点，x∈[0.091, 1.0]，y∈[0.328, 0.883]，r=−0.06 (p=0.36)，mean cosine=0.69 — 全部与预期一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig3-process-kappa-scatter.md"
+}

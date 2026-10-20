@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e58fed7a5883e561885",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "review reference coverage",
+  "task_key": "worker_review_reference-coverage_20260518T052141",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_review_reference-coverage_20260518T052141_result.json",
+    "occurrence": 1,
+    "bytes": 1373,
+    "sha256": "1437c04de511109a933664704f42ac68df468b1b928efa6ef00ba204f471f696"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个列表完全一致，41 个 key，无差异。\n\n## Reference 覆盖度检查\n\n### Table 1 Baseline 论文\n- [OK] SC (Wang et al., 2023): bib key = `wang2023sc`\n- [OK] FOLIO (Han et al., 2022): bib key = `han2022folio`\n- [OK] ProofWriter (Tafjord et al., 2021): bib key = `tafjord2021proofwriter`\n- [OK] StrategyQA (Geva et al., 2021): bib key = `geva2021strategyqa`\n- [OK] ARC-Challenge (Clark et al., 2018): bib key = `clark2018arc`\n- [OK] GSM8K (Cobbe et al., 2021): bib key = `cobbe2021gsm8k`\n\n### Related Work 方法论文\n- [OK] Logic-LM (Pan et al., 2023): bib key = `pan2023logiclm`\n- [OK] LINC (Olausson et al., 2023): bib key = `olausson2023linc`\n- [OK] DyLoS (Xu et al., 2026): bib key = `xu2026dylos`\n- [OK] Aristotle (Li et al., 2025): bib key = `li2025aristotle`\n- [OK] FoVer (Wang et al., 2025): bib key = `wang2025fover`\n- [OK] LogicAgent (Luo et al., 2025): bib key = `luo2025logicagent`\n\n### Z3 Solver\n- [OK] Z3 (de Moura & Bjørner, 2008): bib key = `demoura2008z3`\n\n### \\cite 与 .bib 一致性\n- 未定义的 cite keys: **无**\n- 未被引用的 bib entries: **无**\n- tex 中 41 个 cite key 与 bib 中 41 个 entry 完全一一对应\n\n### 问题清单\n\n**无覆盖度问题。** 所有必需引用均已覆盖，cite key 与 bib entry 完全一致，无 orphan reference，无 undefined citation。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-reference-coverage.md"
+}

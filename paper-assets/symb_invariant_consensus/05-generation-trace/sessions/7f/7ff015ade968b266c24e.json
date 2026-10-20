@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ff015ade968b266c24e",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix sync scatter recompile",
+  "task_key": "worker_fix_sync-scatter-recompile_20260522T231851",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_sync-scatter-recompile_20260522T231851_result.json",
+    "occurrence": 1,
+    "bytes": 526,
+    "sha256": "87a16d990d71fdb10d013fc27b34e5ddf9fd733b833fcfb9c978742f6f48a7cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "### 执行结果\n\n| 步骤 | 状态 | 详情 |\n|------|------|------|\n| 文件复制 | 完成 | `capability_gap_scatter.pdf` (33KB) 和 `.png` (124KB) 已复制到 `docs/paper/figures/` |\n| abstract/intro 验证 | 跳过 | 项目中尚无 `.tex` 文件，abstract.tex / introduction.tex 不存在 |\n| pdflatex 编译 | 跳过 | 无 `main.tex`，`docs/paper/` 目录下目前只有 `figures/` 子目录 |\n\n散点图已就位于 `docs/paper/figures/`，等 LaTeX 论文源码创建后即可直接引用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-sync-scatter-recompile.md"
+}

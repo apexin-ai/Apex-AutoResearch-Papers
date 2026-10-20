@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2122e4022e54347b4d6d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis math domain negative",
+  "task_key": "worker_analysis_math_domain_negative_20260516T012213",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_math_domain_negative_20260516T012213_result.json",
+    "occurrence": 1,
+    "bytes": 781,
+    "sha256": "1bc14aecd2c776da4148777444fc74d820515271f12e6b80ea91e3e07d40def7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已注册为 artifact `art_20260516_778777`，路径：`artifacts/_project/report/math_domain_negative_analysis.md`。\n\n内容覆盖：\n- **证据汇总表**：4 个实验的完整数据（题数、温度、multi-candidate rate、SICA-SC gap），所有数字标注 registry exp_id 来源\n- **根因分析**：CoT 确定性、temperature 无效（0.7/0.9/1.0 三梯度验证）、MaxSAT exclusion 在单候选下退化为 no-op（exclusion_rate=38.7% 但无法改变结果）\n- **方法论含义**：SICA 的价值前提（需要 multi-candidate rate > 0）、数学域作为不适用域的定位、三个解法方向\n- **论文价值**：domain boundary analysis 的定位、与 SC 文献的 model calibration 讨论、建议呈现为 §5.3 独立小节"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-math-domain-negative.md"
+}

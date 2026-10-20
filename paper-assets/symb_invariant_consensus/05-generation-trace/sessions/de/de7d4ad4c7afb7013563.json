@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de7d4ad4c7afb7013563",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper writing experiments",
+  "task_key": "worker_paper_writing_experiments_20260517T170226",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_experiments_20260517T170226_result.json",
+    "occurrence": 1,
+    "bytes": 884,
+    "sha256": "b092dc386b33abc5b5e76417f5659017bcb5a0df1f904b5a179b825074cf6c41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass. No em-dashes in running text, no blacklisted words, no trailing -ing participial phrases.\n\nThe experiments section is written to `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex` with:\n\n- **5 subsections**: Setup, Main Results (Table 1), Oracle Control, Capability Trap Diagnostics (Table 2 + 2 commented-out figures), Constraint Ablation (Table 3)\n- **Narrative arc**: null result across 8 conditions (N>1,300) → oracle proves mechanism works (+8.82pp, p=6.15e-5) → diagnostics identify two failure modes (low C0, non-discriminative constraints) → ablation confirms MAX-SAT degenerates to counting (802/804 agreement with SC)\n- All numbers from registry data, n=60 conditions use \"suggestive/underpowered\" language, 2-decimal accuracy, booktabs tables, self-contained captions"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments.md"
+}

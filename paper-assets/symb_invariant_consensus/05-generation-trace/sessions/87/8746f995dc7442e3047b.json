@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8746f995dc7442e3047b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "eval exp 032 pw600 westd16639",
+  "task_key": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_exp-032-pw600-westd16639_20260518T153636_result.json",
+    "occurrence": 1,
+    "bytes": 683,
+    "sha256": "cabbfd676e4cb73486ae6cb3dd6b9049f2d2f7f54ff1dadb121ee66f45a6bb5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已在运行中。\n\n**状态汇总:**\n- **服务器**: westd-16639, GPU 0 (RTX PRO 6000 Blackwell 98GB)\n- **vLLM**: 46秒启动完成, PID 15937, GPU 占用 88233 MiB\n- **SICA pipeline**: 已开始处理 600 个 ProofWriter 问题 (K=12, T=0.7, seed=42)\n- **Screen session**: `exp032` (PID 15925), detached\n- **进度**: 1/600 正在处理\n- **日志**: `/tmp/exp032_screen.log`, `/tmp/vllm_exp032.log`\n- **结果输出**: `results/exp032_qwen25_14b_pw600/exp032_results.json`\n- **预计时间**: 2-4 小时\n\n监控命令（通过 westd-25068 代理）:\n```bash\nssh -p 16639 root@connect.westd.seetacloud.com \"tail -5 /tmp/exp032_screen.log\"\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-032-pw600-westd16639.md"
+}

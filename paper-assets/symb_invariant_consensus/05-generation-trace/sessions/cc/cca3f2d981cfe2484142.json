@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cca3f2d981cfe2484142",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment e6 closed model api",
+  "task_key": "worker_experiment_e6-closed-model-api_20260521T092521",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_e6-closed-model-api_20260521T092521_result.json",
+    "occurrence": 1,
+    "bytes": 993,
+    "sha256": "7d7217d057fb49e6fd5bd60a8c5581f5ea5e4f8703ea7b09487715e937c04d47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "11 API calls, still on problem 1 trace generation. 实验正常运行。\n\n**当前状态总结:**\n\n| 项目 | 状态 |\n|------|------|\n| **API 连通性** | ✅ gpt-4o via `http://47.94.22.126/v1` 工作正常 |\n| **westd-25068** | ❌ SSH 连不上（端口不可达） |\n| **Dry-run (3问题)** | ✅ 3/3 正确, ~110s/问题 |\n| **全量 FOLIO-204** | 🔄 PID 418902 在 westd-16639 上运行中 |\n| **预计完成时间** | ~6小时（约 23:30 UTC） |\n\n实验参数:\n- 模型: `gpt-4o` (via closed-source API)\n- 数据: FOLIO-204 (204 problems)\n- K=12, temperature=0.7\n- 含 `--save-intermediates` 和 `--resume`（可断点续跑）\n\n实验完成后需要:\n1. 从 `results.json` 读取 SC accuracy 和 SICA accuracy\n2. 在 intermediates 上跑 `compute_fleiss_kappa_unified.py` 得到 Process-κ\n3. 从 `per_trace_constraints` 计算 BR\n4. 保存结果到 artifacts 并 register\n\n要现在定期检查进度，还是等实验完成后再处理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-e6-closed-model-api.md"
+}

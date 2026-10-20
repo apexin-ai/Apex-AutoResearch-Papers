@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b9c83ea2839cd35705a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code analyze expanded",
+  "task_key": "worker_code_analyze-expanded_20260516T080105",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_analyze-expanded_20260516T080105_result.json",
+    "occurrence": 1,
+    "bytes": 682,
+    "sha256": "5d838da591d98739266cfd4f7ed14a1aa7c9d3a77eb03e07835e22b97d14f7f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已部署并验证通过。当前157题（全部proofwriter，FOLIO还没进来）的快照：\n\n```\n| Dataset     |   N | C0%  | SICA Acc | SC Acc  | Δ (pp) | McNemar p |\n|-------------|-----|------|----------|---------|--------|-----------|\n| proofwriter | 157 | 40.1 |  75.80%  |  77.07% | -1.27  | 0.7266    |\n```\n\n- SC ties: 8 (5.1%), SICA tie-acc: 50.0%\n- D012 对比：tie率从8.3%降到5.1%，tie-acc从80%降到50%\n- JSON详细结果已保存到 `results/analysis_expanded.json`\n\n产出文件：`/root/symb_invariant_consensus/scripts/analyze_expanded.py`，`--help` 和实际运行均正常。804题跑完后直接执行即可出报告。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-analyze-expanded.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df4e2eb3e3202e3dd368",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag exp 084 failed",
+  "task_key": "worker_diag_exp-084-failed_20260519T224930",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_exp-084-failed_20260519T224930_result.json",
+    "occurrence": 1,
+    "bytes": 370,
+    "sha256": "214d102cac40627d4bd23f3aa56f5fd42dca5328bef70a23189122fd5a14e5c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结论：**exp-084 未失败，是误报**。\n\n- 进程 PID 295377 当前正常运行，已完成 12/200 样本，ETA ~215 分钟\n- 无退出记录文件，日志无错误，所有 vLLM API 返回 200 OK\n- `results.json` 已有 11 条结果（debate_accuracy=0.3636），13 个中间文件已写入\n- 报告已写到 `artifacts/exp-084-diag.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp-084-failed.md"
+}

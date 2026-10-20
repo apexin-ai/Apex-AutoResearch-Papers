@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "58398c4446cec4085e0c",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "code exp 047 qwen3 thinking prep",
+  "task_key": "worker_code_exp-047-qwen3-thinking-prep_20260518T193103",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp-047-qwen3-thinking-prep_20260518T193103.log",
+    "occurrence": 1,
+    "bytes": 760169,
+    "sha256": "b8f22bdd968b519bf1eb2b1a10f4f797c7fd814e8566b653e616d7fe27d9e187"
+  },
+  "statistics": {
+    "messages": 399,
+    "user_turns": 0,
+    "tool_calls": 161,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 72,
+      "tool_call": 161,
+      "tool_result": 161,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 399,
+      "chunks": [
+        {
+          "path": "58398c4446cec4085e0c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "58398c4446cec4085e0c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "58398c4446cec4085e0c-part-0003.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-047-qwen3-thinking-prep.md"
+}

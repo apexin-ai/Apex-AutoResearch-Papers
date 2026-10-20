@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99e564c0486a7c55c8d5",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "deploy exp 072b 16639",
+  "task_key": "worker_deploy_exp-072b-16639_20260519T174544",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_exp-072b-16639_20260519T174544_result.json",
+    "occurrence": 1,
+    "bytes": 454,
+    "sha256": "2cb42e73880a7ed8bd71d2423f5ad582235314dabf969c8639d21b80dc2c176f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-072b 已部署并运行。\n\n**状态汇总：**\n- **服务器**: westd-16639, GPU 1 (RTX PRO 6000 Blackwell 96GB)\n- **vLLM**: 复用 exp-072 残留的 vLLM 服务（port 8011, LLaMA-3.1-8B-Instruct, max_model_len=8192）\n- **实验**: tmux session `exp072b_run` 中运行，API 请求正常返回 200\n- **Registry**: `exp-072b-llama8b-logiqa200` → RUNNING\n- **输出**: `results/exp072b_llama8b_logiqa200/exp072b_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-exp-072b-16639.md"
+}

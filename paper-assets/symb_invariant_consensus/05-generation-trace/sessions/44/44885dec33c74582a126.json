@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44885dec33c74582a126",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment deberta finetune now",
+  "task_key": "worker_experiment_deberta-finetune-now_20260522T155530",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_deberta-finetune-now_20260522T155530_result.json",
+    "occurrence": 1,
+    "bytes": 1166,
+    "sha256": "9e7761755e17ed332fa30df8f145fb0fd36b9bc9f375f01e7695360d896afd64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动。\n\n## 汇报\n\n| 项目 | 详情 |\n|------|------|\n| **PID** | 640384 |\n| **GPU** | cuda:0, NVIDIA RTX PRO 6000 Blackwell (94GB), 已用 8159 MiB |\n| **训练数据** | tasksource/proofwriter 全量 585,552 条 (True: 158,805 / False: 158,805 / Unknown: 267,942) |\n| **总 steps** | 182,985 (5 epochs × 585,552 / batch_size 16) |\n| **当前速度** | ~3.9 it/s |\n| **预计总耗时** | ~13 小时 |\n| **checkpoint 路径** | `/root/symb_invariant_consensus/checkpoints/deberta-large-pw-finetuned/` |\n| **日志** | `/tmp/deberta_finetune.log` |\n\n**修复记录**：\n1. `scripts/finetune_deberta_pw.py` line 76: `row[\"context\"]` → `row[\"theory\"]`（HF 数据集列名不同）\n2. 添加 `LD_LIBRARY_PATH` 指向 `/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib`（修复 `libnvrtc-builtins.so.13.0` 找不到的问题）\n3. CLASSES tiebreaking bug 已在之前修复过（line 30 已经是 `sorted()`）\n\n**注意**：训练用了全部 585K 数据（包含所有 depth），因为该 HF 数据集的 config 列不含 \"OWA\" 标签。如果只需 OWA 子集，需要调整过滤逻辑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-deberta-finetune-now.md"
+}

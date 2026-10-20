@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4714e9ce390262e78b0",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper writing step2 results",
+  "task_key": "worker_paper_writing_step2_results_20260523T013243",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_step2_results_20260523T013243_result.json",
+    "occurrence": 1,
+    "bytes": 606,
+    "sha256": "02cebebe81b41ba60f95be0ae99f2e56cd0bbcc54655a22d90695bc3c8e521f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both files verified. \n\n**experiments.tex**: Rewritten as `\\section{Results}` with `\\label{sec:results}` and `\\label{sec:main-results}`. Removed Setup subsection and all subsection headers. Content flows as: opening paragraph, Table 1 (unchanged), regime scatter figure (moved from appendix), regime analysis paragraph with $K_{\\text{eff}}$ and three-regime breakdown, condensed TOST/power (2 sentences), multi-seed replication (2 sentences), oracle (2 sentences).\n\n**appendix.tex**: Regime scatter plot section (lines 1-9) removed; file now starts with `\\section{Prompt Templates}`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-step2-results.md"
+}

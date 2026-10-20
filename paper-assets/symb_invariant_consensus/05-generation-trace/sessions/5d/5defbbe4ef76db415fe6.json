@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5defbbe4ef76db415fe6",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra westd25068 env probe",
+  "task_key": "worker_infra_westd25068-env-probe_20260521T163343",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_westd25068-env-probe_20260521T163343_result.json",
+    "occurrence": 1,
+    "bytes": 2003,
+    "sha256": "082516fc36a63ada478ac30d73c4de04cb89490d0511055eebca8063901c59dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-25068 环境探测汇报\n\n### 1. GPU\n| 项目 | 值 |\n|------|-----|\n| 数量 | 4 |\n| 型号 | NVIDIA RTX PRO 6000 Blackwell Server Edition |\n| 单卡显存 | 98 GB |\n| 总显存 | **392 GB** |\n| 当前状态 | **全部空闲**（0 MiB used, 0% util） |\n\n### 2. Qwen-72B 权重\n- **存在**：`/root/autodl-tmp/models/Qwen2.5-72B-Instruct`（100GB，37 个 safetensors shards）\n- **注意：这是 BF16 全精度模型，不是 AWQ 量化版**\n- 392GB 总显存远超 BF16 推理需求（~144GB），无需 AWQ\n\n### 3. Mistral-7B\n- **存在**：`/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3`（16GB）\n\n### 4. vLLM 环境\n- Python 3.12.4（conda base）\n- **vLLM 0.21.0** ✓\n- torch 2.11.0, transformers 5.8.1, flashinfer 0.6.8\n\n### 5. 项目代码\n- **已 sync**：`/root/symb_invariant_consensus/`，FOLIO 数据齐全\n\n### 6. 磁盘\n| 分区 | 总量 | 已用 | 可用 |\n|------|------|------|------|\n| `/`（根） | 30G | 19G | **12G** |\n| `/root/autodl-tmp`（数据盘） | 250G | 250G | **845M** ⚠️ |\n\n数据盘上模型占用明细：Qwen-72B (100G) + gemma-27b (52G) + Qwen2.5-14B (28G) + Qwen3-14B (28G) + Mistral-7B (16G) + Qwen-7B (15G) + DS-R1-8B (8.7G) + DS-R1-Llama-8B (4.3G) ≈ 252G\n\n### 7. 70B 部署可行性评估\n\n**结论：完全可行，无需额外下载。**\n\n- 72B BF16 模型已在盘上，4 卡 392GB 显存绑定 tensor parallelism=2 即可（每卡约 72GB），tp=4 更宽裕（每卡约 36GB）\n- vLLM 0.21.0 已装好，直接 `vllm serve` 即可启动\n- 磁盘虽然满了，但不影响部署（模型已存在，vLLM 无需额外磁盘空间写临时文件，KV cache 在 GPU 内存中）\n- **估算启动时间**：模型加载 2-5 分钟（100GB 从 NVMe 读入 GPU）\n\n**唯一风险**：磁盘 845MB 余量极低，如果 vLLM 需要写日志或临时文件可能报错。建议启动前清理不需要的模型（如 gemma-27b 52G、llama-4-scout 60K 空目录等）释放空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd25068-env-probe.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ec501103fe200a63f6c",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 046 results",
+  "task_key": "worker_analysis_exp-046-results_20260519T011307",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-046-results_20260519T011307_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "4b8cb799f759f2ed6a6fc04d276347b718a4948df1bb0b2048507c7aa40c53bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-046 分析完成。核心结论：\n\n**SICA 在 ProofWriter-D5 上显著劣于 SC**：\n\n| | SC | SICA | delta |\n|--|-----|------|-------|\n| Accuracy | 39.33% | 36.50% | **-2.83pp** (p=0.0095) |\n\nMcNemar 不对称：SC 在 30 个问题上赢 SICA，SICA 只在 13 个问题上赢 SC。\n\n与 exp-033 (FOLIO) 对比，效果方向完全翻转：FOLIO 上 SICA +4.90pp，ProofWriter-D5 上 SICA -2.83pp。可能原因：ProofWriter-D5 的确定性规则推理链对 Mistral-7B 太难（两种方法都不到 40%），模型无法提取有效约束，SICA 的约束重加权反而放大了噪声。\n\n报告已写入 `artifacts/exp046_analysis.md` 并注册 (`art_20260519_203d02`)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-046-results.md"
+}

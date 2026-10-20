@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5fe34af6b7ddf9a56a5c",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "check qwen3 pids",
+  "task_key": "worker_check_qwen3-pids_20260524T015138",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_qwen3-pids_20260524T015138_result.json",
+    "occurrence": 1,
+    "bytes": 368,
+    "sha256": "01fd8b911fb8e0c7669f13d8d180ed8e2c36c0b6d2952a15a58bdf592e651035"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个实验进程和对应的 vLLM 服务均在运行：\n\n```\nseed123 (port 8020, GPU 0): PID=804112\nseed456 (port 8021, GPU 2): PID=804114\nseed789 (port 8022, GPU 3): PID=804116\n```\n\nvLLM 服务进程：\n- port 8020: PID=801558\n- port 8021: PID=801559\n- port 8022: PID=801560\n\n所有进程从 02:07 开始运行，已运行约 8 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-qwen3-pids.md"
+}

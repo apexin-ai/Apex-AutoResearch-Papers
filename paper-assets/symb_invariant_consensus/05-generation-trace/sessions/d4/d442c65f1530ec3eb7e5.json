@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d442c65f1530ec3eb7e5",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag tmux registry mapping",
+  "task_key": "worker_diag_tmux-registry-mapping_20260519T050158",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_tmux-registry-mapping_20260519T050158_result.json",
+    "occurrence": 1,
+    "bytes": 1509,
+    "sha256": "3ba5cd9f211638da3e8c248446086381f1aed8ae661e1528532df338ed7cc5e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全貌已清晰。\n\n## 映射关系\n\n| tmux session | Registry exp_id | 结果目录 | 状态 |\n|---|---|---|---|\n| `exp032` (已退出) | `exp-039-14b-pw600-16639` | `exp032_qwen25_14b_pw600/` | Registry 标记 **failed**，但实际 **已完成** |\n| `exp033` (运行中) | `exp-040-qwen3-pw600-16639` | `exp033_qwen3_14b_pw600_nonthinking/` | 运行中 391/600 |\n\nRegistry `notes` 字段已明确记录了映射（\"实际目录: exp032..., tmux: exp032\"），没有 exp-039/exp-040 目录，因为实际路径用的是 exp032/exp033。\n\n## 问题：exp-039 被误判为 failed\n\nexp-039 的 cron hook 5 次检测不到 sentinel/W&B，自动标记为 failed。但实际日志显示实验完整完成：\n\n**exp032 / exp-039 最终结果 (Qwen2.5-14B, ProofWriter-600)**:\n- SICA: **71.5%** (429/600)\n- SC: **73.5%** (441/600)\n- Delta: **-2.0pp** (SC > SICA)\n- Extraction rate: 99.2%\n- Wall time: 659.6 min\n\n## exp-040 进度\n\ntmux `exp033` 当前 391/600，ETA ~362 min（约 6 小时），端口 8001 正常响应。\n\n## 需要修复\n\nexp-039-14b-pw600-16639 的 registry 条目需要更新：\n1. `conclusion`: `failed` → `negative`（SC > SICA，delta=-2.0pp）\n2. `status`: 保持 `DONE`\n3. 添加 `metrics`: `{sica_accuracy: 71.5, sc_accuracy: 73.5, delta_pp: -2.0, n_problems: 600, extraction_rate: 99.2, wall_time_min: 659.6}`\n4. 移除 `failure_reason`\n5. 添加 `checkpoint_path` 和 `log_path`\n\n是否需要我现在执行这个 registry 修复？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-tmux-registry-mapping.md"
+}

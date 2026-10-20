@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ef1eb38955c0aa74fe85",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "analysis aime bias ratio",
+  "task_key": "worker_analysis_aime-bias-ratio_20260520T134142",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_aime-bias-ratio_20260520T134142.log",
+    "occurrence": 1,
+    "bytes": 666479,
+    "sha256": "a5630cb78067dd33922e8b4f23ca4a2213326f0dc3be2525a9a55029cb938ed3"
+  },
+  "statistics": {
+    "messages": 125,
+    "user_turns": 0,
+    "tool_calls": 47,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 27,
+      "tool_call": 47,
+      "tool_result": 47,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 125,
+      "chunks": [
+        {
+          "path": "ef1eb38955c0aa74fe85-part-0001.json",
+          "message_count": 112
+        },
+        {
+          "path": "ef1eb38955c0aa74fe85-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-aime-bias-ratio.md"
+}

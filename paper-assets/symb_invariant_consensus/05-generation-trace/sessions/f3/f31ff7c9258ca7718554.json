@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f31ff7c9258ca7718554",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "viz fig3 pb v4",
+  "task_key": "worker_viz_fig3-pb-v4_20260524T104246",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_viz_fig3-pb-v4_20260524T104246_result.json",
+    "occurrence": 1,
+    "bytes": 440,
+    "sha256": "78c6868b56bc064638da5fae3102c61b0186fde25e412b34cae36569b7fe3980"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **PNG**: `docs/paper/figures/fig3_causal_dag_pb_v4.png` (2752×1536, 300 DPI)\n- **PDF**: `docs/paper/figures/fig3_causal_dag_pb_v4.pdf`\n\nv4 相比 v3 的改进：渐变对比度更强（顶亮底暗差异明显），阴影偏移更大更清晰，所有节点呈现 skeuomorphic 3D 卡片质感。A→C 红色 bottleneck 箭头是视觉焦点，Y 金色节点突出，底部 C ⊥⊥ Y | A 注释框完整。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig3-pb-v4.md"
+}

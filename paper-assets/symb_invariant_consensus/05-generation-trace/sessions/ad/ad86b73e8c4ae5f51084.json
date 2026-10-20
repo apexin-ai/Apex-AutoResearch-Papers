@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad86b73e8c4ae5f51084",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis g completion check",
+  "task_key": "worker_analysis_g-completion-check_20260520T134934",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_g-completion-check_20260520T134934_result.json",
+    "occurrence": 1,
+    "bytes": 1023,
+    "sha256": "038697b7d01505d9ea8815a2f92fcaa8321c51d70b91ba6ffec0a5450a9959f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进程仍在运行**（PID 307169，已运行 3h34m）。\n\n当前状态：\n- 脚本按顺序跑 3 个策略：`conservative → standard → aggressive`\n- **conservative 已完成** 204/204，acc = **53.9% (110/204)**\n- **standard 刚开始**（日志有 header 无进度行）\n- **aggressive 未开始**\n- 所有结果在 3 个策略全部完成后才写入磁盘（当前 `results.json` 是之前 3 题测试的旧文件）\n\nETA 估算：\n- Conservative 耗时约 3.5h（204 题，~0.02 prob/s）\n- Standard 预计 ~3–3.5h\n- Aggressive 再 ~3–3.5h\n- **总剩余约 6–7 小时**，预计完成时间约 05:00–06:00（北京时间 5 月 21 日凌晨）\n\nConservative 中间结果（从日志）：\n| 指标 | 值 |\n|---|---|\n| G-conservative accuracy | 110/204 = 53.9% |\n| avg truncation | 4.3% |\n| trace match rate | 98% |\n\n注意：SC/SICA baseline 对比和 McNemar 检验需要等脚本跑完写入 `results.json` 后才能做。日志中没有记录 SC baseline 数值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-g-completion-check.md"
+}

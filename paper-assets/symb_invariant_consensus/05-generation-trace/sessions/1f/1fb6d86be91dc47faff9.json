@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "1fb6d86be91dc47faff9",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "download mistral llama redownload",
+  "task_key": "worker_download_mistral-llama-redownload_20260516T084118",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_download_mistral-llama-redownload_20260516T084118.log",
+    "occurrence": 1,
+    "bytes": 997294,
+    "sha256": "a5926ee92b2c93d34a0e7d15323479cf07647c06430b58f8950f91f11dc9290a"
+  },
+  "statistics": {
+    "messages": 907,
+    "user_turns": 0,
+    "tool_calls": 322,
+    "roles": {
+      "log": 1,
+      "system": 34,
+      "record": 2,
+      "assistant": 218,
+      "tool_call": 322,
+      "tool_result": 322,
+      "result": 8
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 907,
+      "chunks": [
+        {
+          "path": "1fb6d86be91dc47faff9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1fb6d86be91dc47faff9-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1fb6d86be91dc47faff9-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "1fb6d86be91dc47faff9-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "1fb6d86be91dc47faff9-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "1fb6d86be91dc47faff9-part-0006.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/download-mistral-llama-redownload.md"
+}

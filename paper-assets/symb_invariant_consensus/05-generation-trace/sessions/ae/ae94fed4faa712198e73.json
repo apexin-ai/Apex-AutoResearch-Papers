@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae94fed4faa712198e73",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra frontier progress check",
+  "task_key": "worker_infra_frontier-progress-check_20260521T153402",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_frontier-progress-check_20260521T153402_result.json",
+    "occurrence": 1,
+    "bytes": 595,
+    "sha256": "ebca6ea12dff620ee36b088f311fac572dac84cebdc721d88a3e04d30671e937"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 实验 | 进度 | PID 存活 |\n|---|---|---|\n| gpt-4.1 | **204/204 ✓** | 444433 已退出（完成） |\n| gpt-5.5 | **70/204** | 444813 ✓ (运行 1h20m) |\n| o3 | **70/204** | 444814 ✓ (运行 1h20m) |\n| R1 cross-extract | **73/93** | 451915 ✓ (运行 24m) |\n| R1 pipeline rerun | **117/113 ✓** | 451575 ✓ (运行 27m，可能在做后处理) |\n| 70B SICA | 10 intermediates | 436077 ✓ (运行 2h54m) |\n| Cross-model | phase1 完成 (6 extraction dirs) | 414515 ✓ (运行 6h54m) |\n\nGPU: 4×H800 全部 100% 利用率，显存几乎满载 (84-88G/98G)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-frontier-progress-check.md"
+}

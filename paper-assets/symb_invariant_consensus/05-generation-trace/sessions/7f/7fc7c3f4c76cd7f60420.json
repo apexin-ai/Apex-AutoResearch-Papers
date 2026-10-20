@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fc7c3f4c76cd7f60420",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code d036 gpu experiment prep",
+  "task_key": "worker_code_d036-gpu-experiment-prep_20260517T120242",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_d036-gpu-experiment-prep_20260517T120242_result.json",
+    "occurrence": 1,
+    "bytes": 943,
+    "sha256": "90264b406aa4d2fe7a8ae1dbb11c8f038cd9221939d81368e87d8ca2918bfa1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个脚本全部通过语法检查。总结：\n\n| 脚本 | 模型 | 数据 | 预计时间 |\n|------|------|------|---------|\n| `run_temperature_ablation.sh` | Qwen2.5-14B | D012 (60题) × 3温度 | ~3h |\n| `run_exp012_gsm8k.sh` | Qwen2.5-14B | GSM8K 30题 | ~1h |\n| `run_exp004_qwen7b.sh` | Qwen2.5-7B* | D012 (60题) | ~2h |\n| `run_mistral_strategyqa.sh` | Mistral-7B | StrategyQA 60题 | ~1.5h |\n\n**注意事项：**\n- Qwen2.5-7B-Instruct 当前不在服务器上，`run_exp004_qwen7b.sh` 包含了自动通过 modelscope 下载的逻辑（首次运行会多花 10-15 分钟下载）\n- 所有脚本已改用端口检测替代 `pkill`——如果端口被占用会报错退出而非强杀进程\n- GSM8K 数据 (`data/gsm8k_200.json`) 和 StrategyQA 数据 (`data/strategyqa_200.json`) 均已就绪\n- 建议执行顺序：temperature_ablation → gsm8k → mistral_strategyqa → qwen7b（下载耗时放最后）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d036-gpu-experiment-prep.md"
+}

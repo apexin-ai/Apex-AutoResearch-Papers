@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf52746d2590e9fcfdfc",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment folio 2x2 master script",
+  "task_key": "worker_experiment_folio-2x2-master-script_20260521T234052",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_folio-2x2-master-script_20260521T234052_result.json",
+    "occurrence": 1,
+    "bytes": 618,
+    "sha256": "c16e4005bfb9f33715b389d8edb892916b3485ffc07fa0b7457e034d71d52bcd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Master 脚本运行正常。\n\n**产出汇总：**\n- **Master PID**: 495418（外层 bash），实际 master.sh 是其子进程\n- **Log 路径**: `/root/symb_invariant_consensus/results/exp_folio_2x2/master.log`\n- **Nohup log**: `/tmp/folio_2x2_master_nohup.log`\n\n**Pipeline 阶段：**\n1. **Phase 1**（当前）：等待 Cell A (113/204) + Qwen3 traces (79/204)，每 2 分钟报告进度\n2. **Phase 2**：Cell B+C 并行 → Cell D 串行\n3. **Phase 3**：调用现有 `compute_folio_2x2_metrics.py`（含 SC/answer-κ/BR/McNemar）\n\n完成时 log 末尾输出 `SENTINEL_FOLIO_2X2_DONE`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-folio-2x2-master-script.md"
+}

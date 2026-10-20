@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "4681e378f90538f28564",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diagnose exp 068 qwen3 logiqa200",
+  "task_key": "worker_diagnose_exp-068-qwen3-logiqa200_20260519T131154",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp-068-qwen3-logiqa200_20260519T131154_result.json",
+    "occurrence": 1,
+    "bytes": 1401,
+    "sha256": "10a4cb58a4ccff8fcbbfeac8ca474846c16b0cddcaf413456202a14bf9ff2982"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已确认。\n\n```json\n{\"root_cause\":\"SIGHUP false alarm — 实验 200/200 全部完成，tmux session 收到 SIGHUP (exit 129)，cron 检测不到 W&B metrics（本实验用 JSON 输出非 W&B）误判为失败，与 exp-070 完全相同的 pattern\",\"error_type\":\"sighup_false_alarm\",\"completed\":true,\"n_completed\":\"200/200\",\"metrics\":{\"sc_accuracy\":0.81,\"sica_accuracy\":0.81,\"delta\":0.0},\"log_path\":\"/root/symb_invariant_consensus/results/exp068_qwen3_logiqa200/exp068.log\",\"results_path\":\"/root/symb_invariant_consensus/results/exp068_qwen3_logiqa200/exp068_results.json\",\"fix_steps\":[\"无需修复，实验已正常完成\"]}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "SIGHUP false alarm — 实验 200/200 全部完成，tmux session 收到 SIGHUP (exit 129)，cron 检测不到 W&B metrics（本实验用 JSON 输出非 W&B）误判为失败，与 exp-070 完全相同的 pattern",
+              "error_type": "sighup_false_alarm",
+              "completed": true,
+              "n_completed": "200/200",
+              "metrics": {
+                "sc_accuracy": 0.81,
+                "sica_accuracy": 0.81,
+                "delta": 0.0
+              },
+              "log_path": "/root/symb_invariant_consensus/results/exp068_qwen3_logiqa200/exp068.log",
+              "results_path": "/root/symb_invariant_consensus/results/exp068_qwen3_logiqa200/exp068_results.json",
+              "fix_steps": [
+                "无需修复，实验已正常完成"
+              ]
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-068-qwen3-logiqa200.md"
+}

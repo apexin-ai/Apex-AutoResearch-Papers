@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2533f9e1b333c19459e3",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "write appendix multiseed sf7",
+  "task_key": "worker_write_appendix-multiseed-sf7_20260523T222444",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_write_appendix-multiseed-sf7_20260523T222444_result.json",
+    "occurrence": 1,
+    "bytes": 571,
+    "sha256": "1416f857d54006b8d2eca0663adcda48c5848fbba8c373da68a13b6c199deb01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "四处修改全部完成：\n\n1. **Caption 更新** — 反映四个 model×dataset 条件，提及 ProofWriter 一致负 Δ 和 Qwen3-14B pending\n2. **Mistral-7B × ProofWriter** — 4 seeds + Mean±SD 行已插入 Qwen2.5 FOLIO 之后\n3. **LLaMA-3.1-8B × ProofWriter** — 4 seeds + Mean±SD 行已插入 Mistral PW 之后、\\bottomrule 之前\n4. **ProofWriter 总结段落** — 已添加在表格之后、Sub-population Analysis 之前\n5. **Yield CV 段落** — 已添加在 Constraint Quality 表格之后、Error Categorization section 之前"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-appendix-multiseed-sf7.md"
+}

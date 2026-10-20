@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7454971d4ba9ce2fe1d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis g pid 384984 check",
+  "task_key": "worker_analysis_g-pid-384984-check_20260520T111709",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_g-pid-384984-check_20260520T111709_result.json",
+    "occurrence": 1,
+    "bytes": 1085,
+    "sha256": "1262be170e4e8d73391b86a51198aa865033ac75af6ff5015676f66046131be7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 回答\n\n### 1. PID 384984 状态: **DEAD**\n\n`ps -p 384984` 返回空，进程不存在。\n\n### 2. 当前活跃的 direction_g 进程\n\n| PID | 启动时间 | 运行时长 | 命令 |\n|-----|---------|---------|------|\n| **307169** | 18:15 | ~1h02m | `python -u direction_g_decoupling.py` |\n\n这是唯一活跃的 direction_g 进程。PID 384984 已死，307169 是后续重新启动的实例。\n\n### 3. 进度\n\n日志显示当前在 **conservative 策略**，已完成 **60/204** 题。\n\n- 当前 accuracy: 0.633 (38/60)\n- 速率: ~0.02 prob/s\n- ETA: ~8655s (~2.4h)\n- `results.json` 里只有 3 题的 dry-run 结果（旧文件），尚未被当前运行覆盖\n\n还有 3 个策略要跑（conservative → standard → aggressive），总时间预计 **~7-8h**。\n\n### 4. 其他相关进程\n\n同一服务器上还有：\n- **PID 314822** — `direction_q_premise_mutation.py`（19:15 启动，端口 8020）\n- 4 个 vLLM 实例分别占 GPU 0-3（端口 8012/8013/8020/8021）\n- direction_g 使用的是 port 8012 或 8013（共享 vLLM）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-g-pid-384984-check.md"
+}

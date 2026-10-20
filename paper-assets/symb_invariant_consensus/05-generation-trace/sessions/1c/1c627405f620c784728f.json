@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c627405f620c784728f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix kill cuda2 cleanup",
+  "task_key": "worker_fix_kill-cuda2-cleanup_20260522T234405",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_kill-cuda2-cleanup_20260522T234405_result.json",
+    "occurrence": 1,
+    "bytes": 330,
+    "sha256": "394d8ac132069ebac7048625b07764966cff3419be4b452a391934ebe8c00f22"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成：\n\n- **进程**：PID 711315/711593、run_full_mvp seed789 相关进程、tmux session `exp-multi-seed-qwen25-pw-seed789` 均已终止\n- **cuda:2**：已完全释放（0 MiB / 97887 MiB，0% 利用率）\n- **删除文件**：`results/multi_seed/qwen25_pw_seed789/results.json`（目录现为空）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-cuda2-cleanup.md"
+}

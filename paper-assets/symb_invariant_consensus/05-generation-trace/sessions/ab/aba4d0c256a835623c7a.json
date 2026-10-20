@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "aba4d0c256a835623c7a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "review figure visual check v2",
+  "task_key": "worker_review_figure-visual-check-v2_20260518T052852",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_review_figure-visual-check-v2_20260518T052852_result.json",
+    "occurrence": 1,
+    "bytes": 2098077,
+    "sha256": "b6328f881be7042b3d7f9ee1dc2c6b324a42a6061562b8902f518c2f58732f53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2098097,
+                "serialized_sha256": "54597db6cf58aacecd083e2278b74a3ee3f98f3dcb4b7c91b17f245dc0468470",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-figure-visual-check-v2.md"
+}

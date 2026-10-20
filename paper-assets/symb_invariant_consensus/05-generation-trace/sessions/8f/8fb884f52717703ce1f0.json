@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8fb884f52717703ce1f0",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment dir l2 single trace n204",
+  "task_key": "worker_experiment_dir-l2-single-trace-n204_20260520T181931",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_dir-l2-single-trace-n204_20260520T181931_result.json",
+    "occurrence": 1,
+    "bytes": 813,
+    "sha256": "b3d324df7f6c3172f8ea98e152fa43857d0d9db2b4438f650efd49b1423f920b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。全部 3 个模型均使用完整 N=204 数据。结果摘要：\n\n| 模型 | N | K | Single-trace mean ± std | SC@12 | Agg gain |\n|---|---|---|---|---|---|\n| Mistral-7B | 204 | 12 | 46.41% ± 2.80% | 54.41% | +8.01 pp |\n| Qwen3-14B non-thinking | 204 | 12 | 79.37% ± 1.99% | 83.82% | +4.45 pp |\n| Qwen3-14B thinking | 204 | 12 | 85.42% ± 1.08% | 86.27% | +0.86 pp |\n\n关键变化（vs Dir-L 旧结果）：Qwen3-thinking 从 166→204 题后，single-trace mean 从 83.28% 升至 **85.42%**（新增 38 题准确率更高），SC@12 = 86.27% 与 Dir-I3 一致，aggregation gain 从 0.45pp 升至 0.86pp。\n\nMistral 和 Qwen3-nonthinking 数字不变（之前已是 204 题）。结果已写入 `/root/symb_invariant_consensus/results/dir_l2_single_trace_n204/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-dir-l2-single-trace-n204.md"
+}

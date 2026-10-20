@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ffb3c5ccc3be46bf6fc",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis sica expanded 14b",
+  "task_key": "worker_analysis_sica_expanded_14b_20260516T192141",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_sica_expanded_14b_20260516T192141_result.json",
+    "occurrence": 1,
+    "bytes": 1041,
+    "sha256": "4c32e35b4402d10cb10630aa84524ba9a5012963b3a6f2799317492ff449999e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**Exp-001 (N=804) 结果：SICA 几乎无优势**\n\n| | SICA | SC | Gap |\n|--|--|--|--|\n| Overall (804) | 76.49% | 76.24% | +0.25 pp |\n| ProofWriter D5 (600) | 75.50% | 75.17% | +0.33 pp |\n| FOLIO (204) | 79.41% | 79.41% | 0.00 pp |\n\n- **Bootstrap p = 0.7433** — 完全不显著，95% CI = [-1.12, +1.62] pp\n- **Disagreements**: 31 题中 SICA wins 16, SC wins 14, both wrong 1 → 净收益仅 +2 题\n- **Tie-break 模式确认**: 20/31 (65%) 的 disagreements 是 SC tie-break (如 6:6 投票)\n- **Capability trap**: SICA 仅在 multi-candidate 问题上有微弱优势 (+0.65 pp)，unanimous 问题为 0\n- **Constraint quality**: 平均 21.5 unique constraints/题，exclusion rate 约在活跃使用中，但过滤力度不足以改变最终答案\n\n与 D012 pilot (+3.3 pp) 相比，full-scale 实验的 gap 从 3.3 pp 坍缩到 0.25 pp，说明 pilot 的正向信号是小样本偏差。\n\n报告已输出到 `/root/symb_invariant_consensus/results/exp001_analysis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sica-expanded-14b.md"
+}

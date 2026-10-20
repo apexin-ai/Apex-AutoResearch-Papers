@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a73308220647cbf55b3",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment direction a prove",
+  "task_key": "worker_experiment_direction-a-prove_20260520T074330",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_direction-a-prove_20260520T074330_result.json",
+    "occurrence": 1,
+    "bytes": 1238,
+    "sha256": "119b401c7f129c979414ce02cf9492740b21a9c632ff02fdf4a262dcf1df4692"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Direction A PROVE 实验完成。结果总结：\n\n| Metric | Value |\n|---|---|\n| Code gen success rate | 15.2% (31/204) |\n| Verification conclusive rate | 7.8% (16/204) |\n| Accuracy (conclusive only) | 50.0% (8/16) |\n| **Accuracy (PROVE + SC fallback)** | **71.6% (146/204)** |\n| **SC baseline (this run)** | **73.5% (150/204)** |\n| SC baseline (exp035 ref) | 77.0% |\n| SICA baseline (exp035 ref) | 76.5% |\n| Total time | 1707s (~28min) |\n\n**结论：负面结果。** PROVE 方向在 Qwen2.5-7B 上不 work：\n1. **代码生成率极低**（15.2%）— 7B 模型难以为自然语言逻辑问题生成有效的 `verify()` 函数\n2. **结论性验证更低**（7.8%）— 即使代码成功生成，多数情况下不是恰好 1 个候选通过\n3. **结论性准确率仅 50%** — 当 PROVE 给出确定答案时，正确率跟随机猜没区别\n4. **PROVE+fallback 反而比纯 SC 低 2 个点**（71.6% vs 73.5%）— 因为 conclusive-but-wrong 的 case 覆盖了原本正确的 SC 投票\n\nServer 完整结果（含 verify_code）：`/root/symb_invariant_consensus/results/direction_a_prove/results.json`\n本地摘要：`artifacts/direction_a_prove_results.json`（已注册 `art_20260520_3762cb`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-direction-a-prove.md"
+}

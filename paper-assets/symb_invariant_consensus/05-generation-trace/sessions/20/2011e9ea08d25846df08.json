@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2011e9ea08d25846df08",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis cil correction",
+  "task_key": "worker_analysis_cil-correction_20260521T094451",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_cil-correction_20260521T094451_result.json",
+    "occurrence": 1,
+    "bytes": 756,
+    "sha256": "a9a48b374cffbcc9cad76fb6620d2afc07d4a02c5f1d7750235ca7ac21bb06ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修正完成。摘要：\n\n**3 pairs 修正：**\n\n| Pair | 旧 SC | 正确 SC | combo_acc | 旧 gain | 新 gain |\n|------|-------|---------|-----------|---------|---------|\n| Mistral+DeBERTa / FOLIO | 54.41% | 55.88% | 58.82% | +4.41pp | +2.94pp |\n| Mistral+SICA / FOLIO | 54.41% | 55.88% | 59.31% | +4.90pp | +3.43pp |\n| Qwen14B+DeBERTa / PW | 70.33% | 74.0% (BH) | 74.33% | +0.83pp | +0.33pp |\n\n**相关性变化（修正后更强）：**\n\n| Metric | Before | After |\n|--------|--------|-------|\n| Spearman ρ | 0.7619 (p=0.028) | **0.8095** (p=0.0149) |\n| Pearson r | 0.7340 (p=0.038) | **0.7994** (p=0.0173) |\n\nCIL 值不变，只修正了 combo_gain_w3 和相关性统计。修正后 CIL-gain 相关性反而更强了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cil-correction.md"
+}

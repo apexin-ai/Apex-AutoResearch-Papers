@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "e07217e5b165d0a7995e",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "code exp5 backward verification",
+  "task_key": "worker_code_exp5-backward-verification_20260518T180900",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp5-backward-verification_20260518T180900.log",
+    "occurrence": 1,
+    "bytes": 616229,
+    "sha256": "e7e926530bf25df54f4154ac5355cef5be41be749a23fc77b5c4de1e5df05fe2"
+  },
+  "statistics": {
+    "messages": 173,
+    "user_turns": 1,
+    "tool_calls": 61,
+    "roles": {
+      "log": 1,
+      "system": 30,
+      "record": 1,
+      "assistant": 17,
+      "tool_call": 61,
+      "user": 1,
+      "tool_result": 61,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "e07217e5b165d0a7995e-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 167,
+      "chunks": [
+        {
+          "path": "e07217e5b165d0a7995e-part-0001.json",
+          "message_count": 155
+        },
+        {
+          "path": "e07217e5b165d0a7995e-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp5-backward-verification.md"
+}

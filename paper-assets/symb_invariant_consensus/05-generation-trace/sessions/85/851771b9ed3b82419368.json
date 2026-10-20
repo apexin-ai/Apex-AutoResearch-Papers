@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "851771b9ed3b82419368",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code exp 002 k ablation",
+  "task_key": "worker_code_exp-002-k-ablation_20260516T184917",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp-002-k-ablation_20260516T184917_result.json",
+    "occurrence": 1,
+    "bytes": 1172,
+    "sha256": "26d79947b8b54cd1533d4655cdbb9941def6c9c6ffc7fa0cf58842ffad505414"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已更新并验证通过。\n\n**完成的修改**（`/root/symb_invariant_consensus/scripts/run_k_ablation.py`）：\n\n1. **默认 K 值**：`6,8,12,16,20` → `6,8,11,12,16,20`（增加 K=11 odd-K 对照组）\n2. **Tiebreak 检测**：新增 `detect_sc_tie()` 函数，检测 SC 投票中前两名票数相同的情况\n3. **每题记录** `sc_is_tie` 字段\n4. **Summary 新增指标**：`tie_count`、`tie_sica_wins`、`tie_sc_wins`、`tie_sica_rate`\n5. **输出表格**：增加 `Ties` 和 `TieWin` 列\n6. **Odd-K 自动验证**：末尾自动检查 K=11 是否 Δ=0（确认 SICA 优势是否完全来自 tiebreak）\n\n**启动命令**（exp-001 完成后执行）：\n```bash\ncd /root/symb_invariant_consensus && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nnohup python scripts/run_k_ablation.py \\\n  --k-values 6,8,11,12,16,20 \\\n  --output-dir results/k_ablation \\\n  --traces-cache results/k_ablation/traces_20.json \\\n  > results/k_ablation/run.log 2>&1 &\n```\n\n预计运行时间：60 题 × 6 个 K 值 × ~3 min/题 ≈ 5-6h（trace 只生成一次 K_max=20 条，后续 K 复用子集）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-002-k-ablation-copy-2.md"
+}

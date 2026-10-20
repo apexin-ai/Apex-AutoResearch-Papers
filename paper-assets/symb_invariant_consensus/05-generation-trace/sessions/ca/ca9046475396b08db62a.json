@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca9046475396b08db62a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code z3 feedback refinement",
+  "task_key": "worker_code_z3-feedback-refinement_20260518T171721",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_z3-feedback-refinement_20260518T171721_result.json",
+    "occurrence": 1,
+    "bytes": 1095,
+    "sha256": "290f4bb2b446d8bd8b598d73e00f2f8d2c9981e20d3d7ee822eeb8fc9a5ded71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All files written and verified. Summary:\n\n**Files created on remote server:**\n- `sica/z3_feedback.py` (316 lines) — `Z3FeedbackRefiner` class with UNSAT core extraction, refinement prompt construction, LLM call, and multi-round feedback loop\n- `run_z3_feedback_folio.py` (272 lines) — entry script that loads existing traces/constraints, runs Z3 feedback refinement, re-scores with dedup+MAX-SAT, outputs JSON with z3fb/vanilla/SC accuracy comparison\n- `scripts/run_z3_feedback_folio.sh` (28 lines) — launcher with vLLM auto-start\n\n**Verification results:**\n- `--help` works, all imports resolve\n- Z3 UNSAT core detection tested on synthetic + real data: correctly identifies SAT (empty core) and UNSAT (conflicting constraints)\n- Scan of all 204 problems: **8 traces across 4 problems** have internal UNSAT (0.3%). One of those (`folio_23`) is currently wrong for both SICA and SC, so refinement could potentially fix it. The other 3 are already correct.\n\n**To run the experiment** (when GPU is free):\n```bash\nbash scripts/run_z3_feedback_folio.sh 8000 0\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-z3-feedback-refinement.md"
+}

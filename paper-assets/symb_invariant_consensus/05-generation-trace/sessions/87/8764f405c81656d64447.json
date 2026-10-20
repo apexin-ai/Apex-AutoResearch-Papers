@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8764f405c81656d64447",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "figure fig1 pipeline pb v4",
+  "task_key": "worker_figure_fig1-pipeline-pb-v4_20260524T140918",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_figure_fig1-pipeline-pb-v4_20260524T140918_result.json",
+    "occurrence": 1,
+    "bytes": 468,
+    "sha256": "508cdf1f15c8fffb038558a6be5fb442ff0ee9d57d901ac396157eebce687ac9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "生成完成。文件：\n\n| 格式 | 路径 | 大小 |\n|------|------|------|\n| PNG (JPEG) | `docs/paper/figures/fig1_pipeline_pb_v4.png` | 1.7 MB |\n| PDF | `docs/paper/figures/fig1_pipeline_pb_v4.pdf` | 216 KB |\n\n分辨率 2752×1536 (300 DPI)，宽高比 ~1.79:1。经 2 轮外部迭代，所有文本标签正确（Answer a*、oracle: gold FOL），Independence Bottleneck 虚线框、SC 分支路径、各阶段语义配色均符合 intent。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig1-pipeline-pb-v4-copy-2.md"
+}

@@ -1,0 +1,559 @@
+{
+  "schema_version": "1.0",
+  "id": "2dab30d52da56d162337",
+  "project": "symb_invariant_consensus",
+  "kind": "conversation",
+  "title": "analysis nli combo data reconcile",
+  "task_key": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analysis_nli-combo-data-reconcile_20260522T145105.jsonl",
+    "occurrence": 1,
+    "bytes": 28187,
+    "sha256": "6bcb073a249fb17c88ea66ca19cce79e67aaf41960fbc9fe054718faee1f3c4e"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "tool_call": 13,
+      "tool_result": 13,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T14:54:03.303647+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T14:54:03.304055+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T14:54:03.304252+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'exp-090'}",
+              "project": "symb_invariant_consensus",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T14:54:03.304394+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4874}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T14:54:03.304522+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'exp-048'}",
+              "project": "symb_invariant_consensus",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T14:54:03.304647+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4346}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T14:54:03.304768+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "limit": "0",
+              "fields": "['exp_id', 'hypothesis', 'status', 'conclusion', 'metrics', 'notes', 'tags']"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T14:54:03.304996+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "file": "paper_framing.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T14:54:03.305751+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (117,040 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/259e8c74-cee8-43ee-8c2a-b39b28aafca2/tool-results/mcp-agent-ml-research-read_registry-1779461485443.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/259e8c74-cee8-43ee-8c2a-b39b28aafca2/tool-results/mcp-agent-ml-research-read_registry-1779461485443.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T14:54:03.306350+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — symb_invariant_consensus\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (ARR May 25)\\\\n- Deadline: May 25, 2026 (ARR submission)\\\\n\\\\n## D063 Direction: Entropy Decomposition + Quality Ladder — 目标 4.0\\\\n\\\\n**从 D060 \\\\\\\"Pure Analysis / negative result\\\\\\\" 升级为 \\\\\\\"Regime-Dependent Mechanism Analysis with Entropy Decomposition\\\\\\\"。** 用户决定冲 4.0。\\\\n\\\\n### Entropy Breakdown 验证结果 (2026-05-19 completed)\\\\n\\\\n**跨模型 entropy mechanism 一致性: 不成立。Selective SICA 非 universal 方案。**\\\\n\\\\n但 entropy decomposition 揭示了更有价值的 regime mechanism：\\\\n\\\\n| Experiment | Model | Dataset | High-E n | High-E Δpp | Low-E n | Low-E Δpp |\\\\n|-----------|-------|---------|----------|-----------|---------|----------|\\\\n| exp-033 s42 | Mistral-7B | FOLIO | 78 | **+12.8** | 126 | 0.0 |\\\\n| exp-052 s123 | Mistral-7B | FOLIO | 77 | **+9.1** | 127 | 0.0 |\\\\n| exp-053 s456 | Mistral-7B | FOLIO | 75 | -1.3 | 129 | 0.0 |\\\\n| exp-046 | Mistral-7B | PW-600 | 267 | -4.9 | 333 | -1.2 |\\\\n| exp-036 | Qwen2.5-14B | FOLIO | 37 | **-8.2** | 167 | -0.6 |\\\\n| exp-038 | Qwen2.5-14B | LogiQA | 23 | -4.3 | 177 | 0.0 |\\\\n| exp-035 | Qwen2.5-7B | FOLIO | 47 | -2.1 | 157 | 0.0 |\\\\n| exp-048 | LLaMA-8B | PW-600 | 76 | -3.9 | 104 | -1.9 |\\\\n\\\\n(注: SC/Δ 使用 pre-tiebreaking 值，entropy grouping 不受 tiebreaking 影响。D064 修正后 deltas 会略有变化但 pattern 不变。)\\\\n\\\\n**三个核心发现：**\\\\n1. **Low-entropy: SICA≈SC 跨模型一致** (8/8 experiments Δ≈0) → traces 一致时 constraints 无新信息\\\\n2. **High-entropy 方向因 regime 而异**：Goldilocks +12.8pp vs Type A -8.2pp vs Type C -4.9pp\\\\n3. **Mechanism 解释**：\\\\n   - Goldilocks (SC~55%, κ~0.46): 真实不确定性 → constraints 打破平局正确方向\\\\n   - Type A (SC>75%, κ>0.65): 偶发错误 → constraints 放大 confirmation bias\\\\n   - Type C (SC<40%, κ~0.20): 系统性错误 → constraints 是噪声\\\\n\\\\n### 调整后核心转变\\\\n\\\\n论文以 \\\\\\\"entropy decomposition 揭示 regime-dependent mechanism\\\\\\\" 为核心分析贡献（不是 \n…[truncated 40407 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 1
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T14:54:03.306597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/259e8c74-cee8-43ee-8c2a-b39b28aafca2/tool-results/mcp-agent-ml-research-read_registry-1779461485443.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\nexps = data['data']['experiments']\n# Search for NLI, combo, cross-arch, deberta, wave3, 090, 048\nkeywords = ['nli', 'combo', 'cross-arch', 'deberta', 'wave3', 'wave3-dir-r', '090', '048', '+6.67', '+3.50', '6.67', '3.50']\nfor exp_id, exp_data in exps.items():\n    exp_str = json.dumps(exp_data, default=str).lower()\n    for kw in keywords:\n        if kw.lower() in exp_str:\n            print(f'=== {exp_id} matches [{kw}] ===')\n            print(json.dumps(exp_data, indent=2, default=str)[:2000])\n            print('---')\n            break\n\" 2>&1 | head -500",
+              "description": "Search registry for NLI/combo/deberta related experiments"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T14:54:03.306998+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== exp-multi-seed-llama-pw matches [048] ===\n{\n  \"status\": \"PREPARING\",\n  \"hypothesis\": \"Multi-seed replication (seeds 42,123,456) of LLaMA-3.1-8B \\u00d7 ProofWriter-600 adds cross-dataset evidence for the third model family. If \\u0394(SICA-SC)\\u22640 holds on PW as well as FOLIO, it confirms SCB is dataset-invariant within LLaMA-8B. Addresses W4 reviewer concern.\",\n  \"notes\": \"PID 614142 on westd-16639 cuda:3 port 8004. vLLM PID 613151 (LLaMA-3.1-8B, max-model-len=8192, max_tokens=2048). 3-seed sequence: 42\\u2192123\\u2192456. Each seed ~600 problems. Model: /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct. Script: scripts/multiseed_llama8b_pw_cuda3.sh\",\n  \"metrics\": {\n    \"pw_seed42\": {\n      \"status\": \"running\",\n      \"progress\": \"60/600\"\n    },\n    \"pw_seed123\": {\n      \"status\": \"pending\"\n    },\n    \"pw_seed456\": {\n      \"status\": \"pending\"\n    }\n  }\n}\n---\n=== exp-multi-seed-llama-folio matches [048] ===\n{\n  \"status\": \"PREPARING\",\n  \"hypothesis\": \"Multi-seed replication (seeds 123,456,789) of LLaMA-3.1-8B \\u00d7 FOLIO-204 shows consistent \\u0394(SICA-SC) direction across seeds, adding a third model family (beyond Qwen2.5 and Mistral) for cross-family consistency evidence. Addresses W4 reviewer concern.\",\n  \"notes\": \"PID 596151 on westd-16639 cuda:1 port 8002. vLLM PID 595261 (max-model-len=8192, max_tokens=2048). Previous attempt failed: max-model-len=4096 caused HTTP 400 on all requests. Fixed by increasing to 8192 + reducing max_tokens to 2048. ~70s/prob, 3 seeds sequential, ETA ~12h (~23:00 UTC May 22). Output: results/multi_seed/llama8b_folio_seed{123,456,789}/\",\n  \"metrics\": {\n    \"seed123\": {\n      \"sc_acc\": 67.16,\n      \"sica_acc\": 63.73,\n      \"delta\": -3.43,\n      \"n\": 204,\n      \"extraction_rate\": 0.959,\n      \"status\": \"COMPLETE\"\n    },\n    \"seed456\": {\n      \"status\": \"running\",\n      \"progress\": \"125/204\"\n    },\n    \"seed789\": {\n      \"status\": \"pending\"\n    }\n  }\n}\n---\n=== exp-multi-seed-mistral-pw matches [6.67] ===\n{\n  \"status\": \"PREPARING\",\n \n…[truncated 19139 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T14:54:03.307188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/nli_multi_verifier*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T14:54:03.307320+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/data/nli_multi_verifier_recomputed.json\nartifacts/_project/data/nli_multi_verifier_recomputed_b79bf3.json\nartifacts/nli_multi_verifier_recomputed.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T14:54:03.307441+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*nli*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T14:54:03.307562+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/direction_r_nli_large/data/direction_r_nli_large_pointer.txt\nartifacts/dir_j2_nli_qwen3.py\nartifacts/dir_j3_nli_multi_verifier.py\nartifacts/push_b_stronger_nli.py\nartifacts/_project/report/nli_tiebreaking_audit.json\nartifacts/nli_tiebreaking_audit.json\nartifacts/_project/data/nli_combo_recomputed.json\nartifacts/nli_combo_recomputed.json\nartifacts/_project/data/nli_multi_verifier_recomputed.json\nartifacts/_project/data/nli_multi_verifier_recomputed_b79bf3.json\nartifacts/nli_multi_verifier_recomputed.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T14:54:03.307727+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/nli_multi_verifier_recomputed.json"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T14:54:03.307973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"roberta_mnli\": {\n3\t    \"standalone_acc\": 37.67,\n4\t    \"standalone_correct\": 226,\n5\t    \"n\": 600,\n6\t    \"mistral_pw_combo\": {\n7\t      \"w1\": {\n8\t        \"acc\": 39.17,\n9\t        \"correct\": 235,\n10\t        \"delta_pp\": -0.17,\n11\t        \"mcnemar_p\": 1.0,\n12\t        \"b\": 8,\n13\t        \"c\": 7\n14\t      },\n15\t      \"w3\": {\n16\t        \"acc\": 43.5,\n17\t        \"correct\": 261,\n18\t        \"delta_pp\": 4.17,\n19\t        \"mcnemar_p\": 0.002626,\n20\t        \"b\": 20,\n21\t        \"c\": 45\n22\t      },\n23\t      \"w5\": {\n24\t        \"acc\": 43.67,\n25\t        \"correct\": 262,\n26\t        \"delta_pp\": 4.33,\n27\t        \"mcnemar_p\": 0.036852,\n28\t        \"b\": 59,\n29\t        \"c\": 85\n30\t      }\n31\t    }\n32\t  },\n33\t  \"bart_mnli\": {\n34\t    \"standalone_acc\": 46.17,\n35\t    \"standalone_correct\": 277,\n36\t    \"n\": 600,\n37\t    \"mistral_pw_combo\": {\n38\t      \"w1\": {\n39\t        \"acc\": 39.33,\n40\t        \"correct\": 236,\n41\t        \"delta_pp\": 0.0,\n42\t        \"mcnemar_p\": 1.0,\n43\t        \"b\": 9,\n44\t        \"c\": 9\n45\t      },\n46\t      \"w3\": {\n47\t        \"acc\": 44.5,\n48\t        \"correct\": 267,\n49\t        \"delta_pp\": 5.17,\n50\t        \"mcnemar_p\": 0.000244,\n51\t        \"b\": 19,\n52\t        \"c\": 50\n53\t      },\n54\t      \"w5\": {\n55\t        \"acc\": 45.67,\n56\t        \"correct\": 274,\n57\t        \"delta_pp\": 6.33,\n58\t        \"mcnemar_p\": 0.002749,\n59\t        \"b\": 58,\n60\t        \"c\": 96\n61\t      }\n62\t    }\n63\t  },\n64\t  \"deberta_mnli_crosscheck\": {\n65\t    \"standalone_acc\": 55.0,\n66\t    \"standalone_correct\": 330,\n67\t    \"w3_combo_acc\": 46.0,\n68\t    \"w3_combo_correct\": 276,\n69\t    \"w3_gain\": 6.67,\n70\t    \"matches_recomputed\": true\n71\t  },\n72\t  \"sc_baseline_crosscheck\": {\n73\t    \"alpha_sc_acc\": 39.33,\n74\t    \"alpha_sc_correct\": 236,\n75\t    \"expected\": 39.33,\n76\t    \"matches\": true\n77\t  },\n78\t  \"spearman_pw6\": {\n79\t    \"description\": \"6 ProofWriter points, all w=3\",\n80\t    \"points\": [\n81\t      {\n82\t        \"label\": \"DeBERTa-L \\u00d7 Mistral-7B\",\n83\t        \"gap\": 15.67,\n84\t        \"gain\": 6.67\n85\t      },\n86\t      {\n87\t        \"la\n…[truncated 2250 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T14:54:03.308161+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/nli_combo_recomputed.json"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T14:54:03.308418+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"proofwriter\": {\n3\t    \"Mistral-7B\": {\n4\t      \"n\": 600,\n5\t      \"sc\": {\n6\t        \"acc\": 39.33,\n7\t        \"n_correct\": 236\n8\t      },\n9\t      \"w1\": {\n10\t        \"acc\": 40.17,\n11\t        \"n_correct\": 241,\n12\t        \"delta_pp\": 0.83,\n13\t        \"mcnemar_p\": 0.359283447265625,\n14\t        \"b\": 12,\n15\t        \"c\": 7\n16\t      },\n17\t      \"w3\": {\n18\t        \"acc\": 46.0,\n19\t        \"n_correct\": 276,\n20\t        \"delta_pp\": 6.67,\n21\t        \"mcnemar_p\": 1.1296023055413025e-05,\n22\t        \"b\": 61,\n23\t        \"c\": 21\n24\t      },\n25\t      \"w5\": {\n26\t        \"acc\": 50.33,\n27\t        \"n_correct\": 302,\n28\t        \"delta_pp\": 11.0,\n29\t        \"mcnemar_p\": 6.178035816936483e-07,\n30\t        \"b\": 120,\n31\t        \"c\": 54\n32\t      }\n33\t    },\n34\t    \"LLaMA-3.1-8B\": {\n35\t      \"n\": 600,\n36\t      \"sc\": {\n37\t        \"acc\": 72.5,\n38\t        \"n_correct\": 435\n39\t      },\n40\t      \"w1\": {\n41\t        \"acc\": 73.33,\n42\t        \"n_correct\": 440,\n43\t        \"delta_pp\": 0.83,\n44\t        \"mcnemar_p\": 0.359283447265625,\n45\t        \"b\": 12,\n46\t        \"c\": 7\n47\t      },\n48\t      \"w3\": {\n49\t        \"acc\": 73.33,\n50\t        \"n_correct\": 440,\n51\t        \"delta_pp\": 0.83,\n52\t        \"mcnemar_p\": 0.6646454904132133,\n53\t        \"b\": 45,\n54\t        \"c\": 40\n55\t      },\n56\t      \"w5\": {\n57\t        \"acc\": 72.0,\n58\t        \"n_correct\": 432,\n59\t        \"delta_pp\": -0.5,\n60\t        \"mcnemar_p\": 0.8707787409560847,\n61\t        \"b\": 74,\n62\t        \"c\": 77\n63\t      }\n64\t    },\n65\t    \"Qwen2.5-14B\": {\n66\t      \"n\": 600,\n67\t      \"sc\": {\n68\t        \"acc\": 74.0,\n69\t        \"n_correct\": 444\n70\t      },\n71\t      \"w1\": {\n72\t        \"acc\": 74.17,\n73\t        \"n_correct\": 445,\n74\t        \"delta_pp\": 0.17,\n75\t        \"mcnemar_p\": 1.0,\n76\t        \"b\": 3,\n77\t        \"c\": 2\n78\t      },\n79\t      \"w3\": {\n80\t        \"acc\": 74.67,\n81\t        \"n_correct\": 448,\n82\t        \"delta_pp\": 0.67,\n83\t        \"mcnemar_p\": 0.5034446716308594,\n84\t        \"b\": 12,\n85\t        \"c\": 8\n86\t      },\n87\t      \"w5\": {\n88\t        \"acc\": 75.17,\n89\t  \n…[truncated 4491 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T14:54:03.308612+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/data/nli_multi_verifier_recomputed.json"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T14:54:03.308805+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"roberta_mnli\": {\n3\t    \"standalone_acc\": 37.67,\n4\t    \"standalone_correct\": 226,\n5\t    \"n\": 600,\n6\t    \"mistral_pw_combo\": {\n7\t      \"w1\": {\n8\t        \"acc\": 39.17,\n9\t        \"correct\": 235,\n10\t        \"delta_pp\": -0.17,\n11\t        \"mcnemar_p\": 1.0,\n12\t        \"b\": 8,\n13\t        \"c\": 7\n14\t      },\n15\t      \"w3\": {\n16\t        \"acc\": 43.5,\n17\t        \"correct\": 261,\n18\t        \"delta_pp\": 4.17,\n19\t        \"mcnemar_p\": 0.002626,\n20\t        \"b\": 20,\n21\t        \"c\": 45\n22\t      },\n23\t      \"w5\": {\n24\t        \"acc\": 43.67,\n25\t        \"correct\": 262,\n26\t        \"delta_pp\": 4.33,\n27\t        \"mcnemar_p\": 0.036852,\n28\t        \"b\": 59,\n29\t        \"c\": 85\n30\t      }\n31\t    }\n32\t  },\n33\t  \"bart_mnli\": {\n34\t    \"standalone_acc\": 46.17,\n35\t    \"standalone_correct\": 277,\n36\t    \"n\": 600,\n37\t    \"mistral_pw_combo\": {\n38\t      \"w1\": {\n39\t        \"acc\": 39.33,\n40\t        \"correct\": 236,\n41\t        \"delta_pp\": 0.0,\n42\t        \"mcnemar_p\": 1.0,\n43\t        \"b\": 9,\n44\t        \"c\": 9\n45\t      },\n46\t      \"w3\": {\n47\t        \"acc\": 44.5,\n48\t        \"correct\": 267,\n49\t        \"delta_pp\": 5.17,\n50\t        \"mcnemar_p\": 0.000244,\n51\t        \"b\": 19,\n52\t        \"c\": 50\n53\t      },\n54\t      \"w5\": {\n55\t        \"acc\": 45.67,\n56\t        \"correct\": 274,\n57\t        \"delta_pp\": 6.33,\n58\t        \"mcnemar_p\": 0.002749,\n59\t        \"b\": 58,\n60\t        \"c\": 96\n61\t      }\n62\t    }\n63\t  },\n64\t  \"deberta_mnli_crosscheck\": {\n65\t    \"standalone_acc\": 55.0,\n66\t    \"standalone_correct\": 330,\n67\t    \"w3_combo_acc\": 46.0,\n68\t    \"w3_combo_correct\": 276,\n69\t    \"w3_gain\": 6.67,\n70\t    \"matches_recomputed\": true\n71\t  },\n72\t  \"sc_baseline_crosscheck\": {\n73\t    \"alpha_sc_acc\": 39.33,\n74\t    \"alpha_sc_correct\": 236,\n75\t    \"expected\": 39.33,\n76\t    \"matches\": true\n77\t  },\n78\t  \"spearman_pw6\": {\n79\t    \"description\": \"6 ProofWriter points, all w=3\",\n80\t    \"points\": [\n81\t      {\n82\t        \"label\": \"DeBERTa-L \\u00d7 Mistral-7B\",\n83\t        \"gap\": 15.67,\n84\t        \"gain\": 6.67\n85\t      },\n86\t      {\n87\t        \"la\n…[truncated 2250 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T14:54:03.309122+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/nli_tiebreaking_audit.json"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T14:54:03.309333+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"investigation\": {\n3\t    \"affected_scripts\": [\n4\t      \"direction_r_deberta_proofwriter.py\",\n5\t      \"dir_j3_nli_multi_verifier.py\",\n6\t      \"dir_k_nli_qwen3_pw600.py\",\n7\t      \"direction_rg_combo.py\",\n8\t      \"direction_r_nli_verifier.py (FOLIO)\"\n9\t    ],\n10\t    \"tiebreaking_method\": \"Counter.most_common(1)[0][0] — insertion-order tiebreaking under ties\",\n11\t    \"correct_method\": \"sorted(tied_candidates)[0] — alphabetical (consistent with SC baseline standard)\",\n12\t    \"drc_cascade_pilot_method\": \"alphabetical (correct, in scripts/drc_cascade_pilot.py)\",\n13\t    \"code_snippet\": \"combo_answer = votes.most_common(1)[0][0]  # BUG: non-alphabetical tiebreaking\"\n14\t  },\n15\t  \"experiments\": {\n16\t    \"exp-090 (Mistral-7B PW)\": {\n17\t      \"n\": 600,\n18\t      \"sc_baseline_alpha\": \"39.33% (236/600)\",\n19\t      \"sc_baseline_counter\": \"39.33% (236/600)\",\n20\t      \"sc_tiebreak_diffs\": 11,\n21\t      \"combo_w1\": {\n22\t        \"current_counter\": \"40.17% (241/600)\",\n23\t        \"corrected_alpha\": \"40.17% (241/600)\",\n24\t        \"delta\": \"0.00pp\",\n25\t        \"changed_questions\": 17,\n26\t        \"mcnemar_alpha_vs_sc\": {\"p\": 0.359283, \"b\": 7, \"c\": 12},\n27\t        \"mcnemar_counter_vs_sc\": {\"p\": 0.266846, \"b\": 4, \"c\": 9}\n28\t      },\n29\t      \"combo_w3\": {\n30\t        \"current_counter\": \"42.83% (257/600)\",\n31\t        \"corrected_alpha\": \"46.00% (276/600)\",\n32\t        \"delta\": \"+3.17pp\",\n33\t        \"changed_questions\": 30,\n34\t        \"mcnemar_alpha_vs_sc\": {\"p\": 1.1e-05, \"b\": 21, \"c\": 61},\n35\t        \"mcnemar_counter_vs_sc\": {\"p\": 0.012503, \"b\": 22, \"c\": 43}\n36\t      },\n37\t      \"combo_w5\": {\n38\t        \"current_counter\": \"50.00% (300/600)\",\n39\t        \"corrected_alpha\": \"50.33% (302/600)\",\n40\t        \"delta\": \"+0.33pp\",\n41\t        \"changed_questions\": 53,\n42\t        \"mcnemar_alpha_vs_sc\": {\"p\": 1e-06, \"b\": 54, \"c\": 120},\n43\t        \"mcnemar_counter_vs_sc\": {\"p\": 0.0, \"b\": 35, \"c\": 99}\n44\t      }\n45\t    },\n46\t    \"exp-091 (Qwen3 PW)\": {\n47\t      \"status\": \"NEEDS_RECOMPUTATION\",\n48\t      \"da\n…[truncated 2402 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T14:54:03.309493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/data/nli_multi_verifier_recomputed_b79bf3.json"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T14:54:03.309680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"roberta_mnli\": {\n3\t    \"standalone_acc\": 37.67,\n4\t    \"standalone_correct\": 226,\n5\t    \"n\": 600,\n6\t    \"mistral_pw_combo\": {\n7\t      \"w1\": {\n8\t        \"acc\": 39.17,\n9\t        \"correct\": 235,\n10\t        \"delta_pp\": -0.17,\n11\t        \"mcnemar_p\": 1.0,\n12\t        \"b\": 8,\n13\t        \"c\": 7\n14\t      },\n15\t      \"w3\": {\n16\t        \"acc\": 43.5,\n17\t        \"correct\": 261,\n18\t        \"delta_pp\": 4.17,\n19\t        \"mcnemar_p\": 0.002626,\n20\t        \"b\": 20,\n21\t        \"c\": 45\n22\t      },\n23\t      \"w5\": {\n24\t        \"acc\": 43.67,\n25\t        \"correct\": 262,\n26\t        \"delta_pp\": 4.33,\n27\t        \"mcnemar_p\": 0.036852,\n28\t        \"b\": 59,\n29\t        \"c\": 85\n30\t      }\n31\t    }\n32\t  },\n33\t  \"bart_mnli\": {\n34\t    \"standalone_acc\": 46.17,\n35\t    \"standalone_correct\": 277,\n36\t    \"n\": 600,\n37\t    \"mistral_pw_combo\": {\n38\t      \"w1\": {\n39\t        \"acc\": 39.33,\n40\t        \"correct\": 236,\n41\t        \"delta_pp\": 0.0,\n42\t        \"mcnemar_p\": 1.0,\n43\t        \"b\": 9,\n44\t        \"c\": 9\n45\t      },\n46\t      \"w3\": {\n47\t        \"acc\": 44.5,\n48\t        \"correct\": 267,\n49\t        \"delta_pp\": 5.17,\n50\t        \"mcnemar_p\": 0.000244,\n51\t        \"b\": 19,\n52\t        \"c\": 50\n53\t      },\n54\t      \"w5\": {\n55\t        \"acc\": 45.67,\n56\t        \"correct\": 274,\n57\t        \"delta_pp\": 6.33,\n58\t        \"mcnemar_p\": 0.002749,\n59\t        \"b\": 58,\n60\t        \"c\": 96\n61\t      }\n62\t    }\n63\t  },\n64\t  \"deberta_mnli_crosscheck\": {\n65\t    \"standalone_acc\": 55.0,\n66\t    \"standalone_correct\": 330,\n67\t    \"w3_combo_acc\": 46.0,\n68\t    \"w3_combo_correct\": 276,\n69\t    \"w3_gain\": 6.67,\n70\t    \"matches_recomputed\": true\n71\t  },\n72\t  \"sc_baseline_crosscheck\": {\n73\t    \"alpha_sc_acc\": 39.33,\n74\t    \"alpha_sc_correct\": 236,\n75\t    \"expected\": 39.33,\n76\t    \"matches\": true\n77\t  },\n78\t  \"spearman_pw6\": {\n79\t    \"description\": \"6 ProofWriter points, all w=3\",\n80\t    \"points\": [\n81\t      {\n82\t        \"label\": \"DeBERTa-L \\u00d7 Mistral-7B\",\n83\t        \"gap\": 15.67,\n84\t        \"gain\": 6.67\n85\t      },\n86\t      {\n87\t        \"la\n…[truncated 2250 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T14:54:03.309936+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整的证据链已找到。根因是 **tiebreaking bug**。\n\n---\n\n## 排查结果\n\n### 1. +6.67pp 来自哪个实验\n\n来自 `nli_combo_recomputed.json`（tiebreaking 修正后的版本）：\n- **配置**: DeBERTa-large-MNLI × Mistral-7B × ProofWriter-600, w=3, n=600\n- **SC baseline**: 39.33% (236/600)\n- **combo w=3**: 46.00% (276/600), **+6.67pp**, McNemar p=1.13e-05\n- **tiebreaking**: 字母序（alphabetical），与 SC baseline 一致\n\n### 2. exp-090 是什么实验\n\n`exp-090-r-nli-proofwriter`，**同一实验的原始版本**（未修正 tiebreaking）：\n- 完全相同的模型、数据集、配置\n- **combo w=3**: 42.83% (257/600), **+3.50pp**, McNemar p=0.0125\n- **tiebreaking**: `Counter.most_common(1)[0][0]`——插入序（insertion-order），与 SC baseline 不一致\n\n### 3. 数据不一致的根因\n\n**Tiebreaking bug**。详见 `nli_tiebreaking_audit.json`：\n\n| 项目 | exp-090 (buggy) | recomputed (corrected) |\n|------|-----------------|----------------------|\n| tiebreaking | `Counter.most_common()` 插入序 | `sorted(tied)[0]` 字母序 |\n| combo w3 correct | 257/600 | 276/600 |\n| delta | +3.50pp | +6.67pp |\n| McNemar p | 0.0125 | 1.13e-05 |\n| 受影响题数 | — | 30题 |\n\ncombo 脚本用 `votes.most_common(1)[0][0]` 做 tie resolution，而 SC baseline 用字母序。两套 tiebreaking 标准导致 combo 在 30 个平票问题上选了不同答案。DRC cascade pilot 独立使用字母序也得到 46.0%，交叉验证了修正值。\n\n### 4. 论文应引用哪组数据\n\n**+6.67pp (recomputed)**。理由：\n- 字母序 tiebreaking 与 SC baseline convention 一致（同一 comparand 同一标准）\n- DRC cascade pilot 独立确认 46.0%\n- BH 校正后 p=6.78e-05，仍 <0.001\n- tiebreaking audit 明确建议更新到修正值\n\n**需要做的**：将 exp-090 registry 的 metrics 更新为修正后数值，避免未来再次产生混淆。exp-091/092/093 也需要同步 recompute（audit 标记为 `NEEDS_RECOMPUTATION`）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_nli-combo-data-reconcile_20260522T145105"
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-nli-combo-data-reconcile.md"
+}

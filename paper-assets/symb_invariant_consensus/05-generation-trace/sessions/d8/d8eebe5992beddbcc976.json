@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8eebe5992beddbcc976",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "research exp001 data schema",
+  "task_key": "worker_research_exp001-data-schema_20260517T042158",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_exp001-data-schema_20260517T042158_result.json",
+    "occurrence": 1,
+    "bytes": 3660,
+    "sha256": "6d274aa8335357ecc8235f4452ef1fabf036b9abaa4d119a96868c8573dfa449"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完整。以下是结论：\n\n---\n\n## 结果\n\n### JSON Schema 树（`sica_expanded_14b.json`，804 题）\n\n```\n{\n  \"summary\": { n_problems, sica_accuracy, sc_accuracy, ... },\n  \"results\": [\n    {\n      \"problem_idx\": int,\n      \"problem_id\": str,\n      \"problem\": str,                    // 完整题目文本\n      \"dataset\": \"proofwriter\"|\"folio\",\n      \"level\": str,\n      \"ground_truth\": str,\n      \"sica_answer\": str,\n      \"sica_scores\": {answer: float},\n      \"sica_correct\": bool,\n      \"sc_answer\": str,\n      \"sc_vote_count\": int,\n      \"sc_vote_distribution\": {answer: int},\n      \"sc_correct\": bool,\n      \"constraints_stats\": {\n        \"total_extracted\": int,          // 所有 trace 提取的总约束数\n        \"traces_with_constraints\": int,  // 有约束的 trace 数\n        \"unique_after_dedup\": int        // z3 去重后唯一约束数\n      },\n      \"maxsat_stats\": {\n        \"satisfied\": int,\n        \"excluded\": int,\n        \"total_weight\": float,\n        \"solve_time_ms\": float\n      },\n      \"timing\": { trace_gen_s, extraction_s, dedup_s, maxsat_s, total_s },\n      \"trace_extraction_stats\": { boxed, fallback, none },\n      \"truncated_traces\": int,\n      \"raw_constraints\": [],             // ⚠️ 始终为空\n      \"per_trace\": [\n        {\n          \"trace_idx\": int,\n          \"answer\": str,\n          \"finish_reason\": str,\n          \"extraction_method\": str,\n          \"trace_len\": int               // token 数，无 trace 文本\n        }\n      ]\n    }\n  ]\n}\n```\n\n### 核心回答：Per-trace raw constraints **不可用**\n\n原因：exp-001 运行时未传 `--save-intermediates` 标志。`run_full_mvp.py:371-372` 表明只有开启该标志才会保存 `raw_constraints`。`extract_constraints_for_ablation.py` 文档字符串明确确认：\n\n> \"Since raw_constraints were not saved during the exp-001 run (--save-intermediates was not effective)\"\n\n### 已保存到什么粒度\n\n| 粒度 | 可用？ | 说明 |\n|------|--------|------|\n| Per-trace answer | 有 | trace_idx + answer + finish_reason + trace_len |\n| Per-trace 完整 trace 文本 | **无**（主文件）/ 43题有（traces_k20.json） | 主实验未保存 |\n| Aggregate constraint stats | 有 | total_extracted / unique_after_dedup |\n| Per-constraint expression + z3_formula + weight + source_traces | **无** | `raw_constraints` 始终 `[]` |\n| MaxSAT 结果 | 有 | satisfied/excluded/total_weight |\n| SICA scores (per-answer) | 有 | 最终加权分数 |\n\n### 可用的 intermediate 文件\n\n| 文件 | 内容 | 规模 |\n|------|------|------|\n| `constraint_cache/` (800+ JSONs) | per_trace answer + aggregate stats only | 804题 |\n| `constraint_cache_consolidated.json` (827KB) | 同上，合并版 | 804题 |\n| `k_ablation/traces_k20.json` (1.7MB) | **完整 trace 文本** + answer | **仅43题**, K=20 |\n| `constraint_ablation.json` (335KB) | per-problem 多方法对比结果 | 804题 |\n\n### 对 CPU-only constraint filtering 实验的影响\n\n无法直接做，因为没有原始约束文本。可选方案：\n1. **重跑 constraint extraction**：主文件有完整 problem text，用 `sica/constraint_extractor.py` 重新从 LLM 生成 traces 并提取约束（需 API 调用）\n2. **小规模 pilot**：`traces_k20.json` 有 43 题的完整 trace，可以只对这 43 题做 CPU-only 约束提取+过滤（无需重新生成 traces，只需 extraction 步骤）\n3. **重跑 exp-001 子集 + `--save-intermediates`**：选 100-200 题重跑，保留 raw constraints"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-exp001-data-schema.md"
+}

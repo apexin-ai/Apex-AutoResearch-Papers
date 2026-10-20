@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9b769af066d8afbe1f0",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis check 16639 completions",
+  "task_key": "worker_analysis_check-16639-completions_20260519T200109",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_check-16639-completions_20260519T200109_result.json",
+    "occurrence": 1,
+    "bytes": 415,
+    "sha256": "da8fe6251f42922b460852044d3bdd8e90cd7d57c94bb0bf74b365de247a7be1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-072b 已完成，结论 negative，registry 已更新。**\n\n| 指标 | 值 |\n|------|-----|\n| SC accuracy | 59.5% |\n| SICA accuracy | 58.5% |\n| Delta | -1.0pp |\n| n_samples | 200 |\n| k | 12 |\n| Wall time | ~2h |\n| Extraction failures | 108/2400 (4.5% JSON parse) |\n\nSICA 在 LLaMA-8B + LogiQA 上未能超过 SC baseline。4.5% 的 JSON 解析失败率可能是一个拖累因素。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-check-16639-completions.md"
+}

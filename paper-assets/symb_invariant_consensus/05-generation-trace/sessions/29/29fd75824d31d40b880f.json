@@ -1,0 +1,655 @@
+{
+  "schema_version": "1.0",
+  "id": "29fd75824d31d40b880f",
+  "project": "symb_invariant_consensus",
+  "kind": "conversation",
+  "title": "cron hook exp 011 llama8b v3 20260517T115909 834505",
+  "task_key": "cron_hook_exp-011-llama8b-v3_20260517T115909_834505",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/archive/cron_hook_exp-011-llama8b-v3_20260517T115909_834505.jsonl",
+    "occurrence": 1,
+    "bytes": 36508,
+    "sha256": "5a6b0c605fe3a4cba0a7bb27c8b5d298e8aaa6f01caafad1565e6708cc0bf24f"
+  },
+  "statistics": {
+    "messages": 32,
+    "user_turns": 2,
+    "tool_calls": 14,
+    "roles": {
+      "user": 2,
+      "tool_call": 14,
+      "tool_result": 14,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T07:55:16.414629+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: exp-011-llama8b-v3\n- project: symb_invariant_consensus\n- server: westd-32608\n- log_path: ~/runs/symb_invariant_consensus/exp-011-llama8b-v3.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T07:55:30.691390+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__compute_coverage_matrix",
+              "max_results": "14"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T07:55:30.742062+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T07:55:34.507510+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T07:55:35.059972+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T07:55:35.112060+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (50.9KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus--claude-sessions-agent-59766726/2a9fa339-9463-44dc-92cd-fbeb7fa3b0f9/tool-results/toolu_01PiRzQPEW7onyX4ktGwgVhq.txt\n\nPreview (first 2KB):\n{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-011-llama8b-v3\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T06:15:02.161Z\\\", \\\"updated_at\\\": \\\"2026-05-17T07:55:14.528Z\\\", \\\"hypothesis\\\": \\\"Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 非 Qwen-specific（v3: 模型 shard 已修复，GPU 空闲后提交）\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-17T06:45:47.789Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp011_llama8b.sh\\\\\\\"\\\", \\\"code_commit\\\": \\\"97aeaa572a6b6571b4bfea9c6ec6bcf915780425\\\", \\\"finished_at\\\": \\\"2026-05-17T07:55:14.227Z\\\", \\\"training_hours\\\": 1.16}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp011_llama8b.sh\\\\\\\"\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"292780\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-011-llama8b-v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T06:45:49.636Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"292780\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-011-llama8b-v3.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T07:55:16.092007+00:00\\\"}]}}, \\\"exp-010-mistral-v3\\\": {\\\"sta\n…[truncated 353 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 604
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T07:55:35.614492+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 554
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T07:55:35.614950+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T07:55:36.117331+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-17T07:55:15Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 31 个实验 — ANALYZING 1, DONE 28, PREPARING 1, QUEUED 1\\\\n**DONE 分布**: failed 9, killed 6, negative 3, success 10\\\\n\\\\n### GPU 占用\\\\n- **分配**: 1 张 — westd-32608:cuda:0\\\\n- **空闲（分配了没跑）**: westd-32608:cuda:0\\\\n\\\\n### 💾 磁盘余量\\\\n- **westd-32608**:\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/usr/bin/nvidia-smi`: 400G/439G 可用（已用 4%）\\\\n\\\\n### 🏃 RUNNING\\\\n_（无）_\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `pilot-contrastive-prompt` [failed] — 2026-05-17T06:45:39 — EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)\\\\n- `exp-018-arc-v2` [success] — 2026-05-17T06:44:33\\\\n- `exp-010-mistral-v2` [failed] — 2026-05-17T06:19:34 — EXIT_CODE=143 (SIGTERM — graceful kill)\\\\n- `pilot-constraint-filtering` [negative] — 2026-05-17T06:11:36\\\\n- `exp-018-arc` [failed] — 2026-05-17T05:31:46 — Traceback → al_arc.py\\\\\\\", line 244, in <module> main() File \\\\\\\"/root/symb_invariant_\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `pilot-contrastive-prompt`: EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)\\\\n- `exp-010-mistral-v2`: EXIT_CODE=143 (SIGTERM — graceful kill)\\\\n- `exp-018-arc`: Traceback → al_arc.py\\\\\\\", line 244, in <module> main() File \\\\\\\"/root/symb_invariant_consensus/scripts/eval_arc.py\\\\\\\", line 142, in main generator = build_generator(args) ^^^^^^^^^^^^^^^ NameError: name 'bui\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-17\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp-011-llama8b-v3 | Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability tra\n…[truncated 1855 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 502
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T07:55:36.168105+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T07:55:36.620615+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md\\\", \\\"content\\\": \\\"# symb_invariant_consensus — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-16 19:22 UTC | 更新原因: exp-001 完成，更新进展和近期任务\\\\n\\\\n## 核心方向\\\\nCapability Trap Analysis Paper：系统揭示为什么 symbolic consensus (SICA) 不能 beat voting (SC)——即使 extraction rate 高、diversity 存在，constraint quality 受 LLM capability 限制导致 aggregation 无贡献。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research (D025 Analysis Paper Pivot) + 审稿进行中\\\\n- **exp-001 完成** (2026-05-16): SICA 76.49% vs SC 76.24% = +0.25pp (n=804, n.s.)\\\\n  - FOLIO: 0.00pp (n=204) — sub-claim dead\\\\n  - ProofWriter D5: +0.33pp (n=600) — not significant\\\\n- **D025 pivot 数据锚定**: headline = \\\\\\\"+0.25pp on 804 questions, not significant\\\\\\\"\\\\n- **Plan 覆盖**: 19 实验，1 done (exp-001)，18 planned\\\\n- **Claim 状态**: C1(mechanism vacuous) 需 exp-013; C2(operating regime) 需 cross-family; C3(C0 predictor) 需 multi-model data\\\\n\\\\n## 近期任务\\\\n- [x] exp-001 完成，registry 修正 conclusion→success\\\\n- [ ] exp-002 K-ablation (K=6,8,11,12,16,20, 60题, ~6h GPU) — 启动中\\\\n- [ ] exp-013 constraint ablation (CPU, MaxSAT vs count-only) — 数据准备中\\\\n- [ ] Mistral-7B HF 下载 (DDL May 17 12:00 UTC, 3次ModelScope失败)\\\\n- [ ] exp-010/011 cross-family (Mistral/LLaMA) — 等模型就绪\\\\n- [ ] exp-017 StrategyQA + exp-018 ARC-Challenge — 等 exp-002 完成后\\\\n\\\\n## GPU 预算\\\\n- 分配: 1× RTX PRO 6000 Blackwell 98GB (cuda:0) on westd-32608\\\\n- 当前: exp-002 启动中 (~6h)\\\\n- 排队: exp-010 (1.5h) → exp-011 (1.5h) → exp-017 (1.5h) → exp-018 (1.5h)\\\\n- 累计已用: ~14h (exp-001)\\\\n- 预估剩余: ~18h GPU for all remaining experiments\\\\n\\\\n## 阻塞项\\\\n- Mistral-7B 下载损坏 (3次81.3%截断) → 尝试 HF 直下，DDL May 17 12:00 UTC\\\\n- ~~Agent session 停滞~~ → 已恢复\\\\n- ~~FOLIO sub-claim~~ → dead (0.00pp)\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D030 | 2026-05-17 | D030: 从 Analysis Paper 转向 Methods Paper — 利用诊断数据设计 | exp-001, exp-013 |\\\\n| D029 | 2026-05-17 | exp-002 最终\n…[truncated 963 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 452
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T07:55:36.621145+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "status": "running"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T07:55:36.822346+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 201
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T07:55:36.822827+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T07:55:37.026007+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [{\\\"server\\\": \\\"westd-32608\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}], \\\"actually_running_gpus\\\": [], \\\"allocated_but_idle\\\": [{\\\"server\\\": \\\"westd-32608\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}], \\\"registered_but_hw_idle\\\": [], \\\"unregistered_but_hw_active\\\": [], \\\"running_experiments\\\": [], \\\"worker_pool\\\": {\\\"total\\\": 0, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 0, \\\"details\\\": []}, \\\"summary\\\": \\\"分配 1 张, 实际跑 0 张 ⚠️ | Worker 0 (GPU 0 / CPU 0)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 203
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T07:55:43.823736+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus--claude-sessions-agent-59766726/2a9fa339-9463-44dc-92cd-fbeb7fa3b0f9/tool-results/toolu_01PiRzQPEW7onyX4ktGwgVhq.txt"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T07:55:44.277654+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-011-llama8b-v3\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T06:15:02.161Z\\\", \\\"updated_at\\\": \\\"2026-05-17T07:55:14.528Z\\\", \\\"hypothesis\\\": \\\"Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 非 Qwen-specific（v3: 模型 shard 已修复，GPU 空闲后提交）\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-17T06:45:47.789Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp011_llama8b.sh\\\\\\\"\\\", \\\"code_commit\\\": \\\"97aeaa572a6b6571b4bfea9c6ec6bcf915780425\\\", \\\"finished_at\\\": \\\"2026-05-17T07:55:14.227Z\\\", \\\"training_hours\\\": 1.16}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp011_llama8b.sh\\\\\\\"\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"292780\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-011-llama8b-v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T06:45:49.636Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"292780\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-011-llama8b-v3.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T07:55:16.092007+00:00\\\"}]}}, \\\"exp-010-mistral-v3\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T06:48:05.255Z\\\", \\\"updated_at\\\": \\\"2026-05-17T06:48:13.585Z\\\", \\\"hypothesis\\\": \\\"Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v3: 脚本内含 vLLM 清理+conda 环境，解决 v2 SIGTERM 问题）\\\", \\\"paren\n…[truncated 50104 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "Read",
+            "elapsed_ms": 453
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T07:55:45.134052+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "file": "paper_framing.md"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T07:55:45.185126+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — symb_invariant_consensus\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (ARR May 25)\\\\n- Fallback: AAAI 2027 (Aug 1)\\\\n- Deadline: May 25, 2026 (ARR submission)\\\\n\\\\n## Core Claims (3 条) — D025 Analysis Paper Pivot\\\\n\\\\n1. **The Capability Trap**: Symbolic consensus methods face a fundamental tension — they require output diversity (C0>20%) to differ from voting, but constraint extraction quality degrades precisely on the challenging tasks that produce diversity. This inverse correlation between diversity and constraint quality bounds the method's effective operating regime to near-zero. Validated across 4 domains × 7 models.\\\\n2. **Operating Regime is Empirically Empty**: Despite instruction models producing high trace diversity (C0=25-50%), symbolic consensus (SICA) provides no accuracy gain over majority voting at scale (804 questions, gap=+0.26pp, n.s.). Across tested conditions, the regime where diversity AND constraint quality are simultaneously sufficient is not realized for current LLMs. Reasoning models (QwQ, DeepSeek-R1) show zero diversity. Instruction models show high diversity but low constraint quality. [Fallback if 1-2 cells positive: \\\\\\\"regime exists but is extremely narrow and domain-specific, unreliable for practical deployment.\\\\\\\"]\\\\n3. **C0 as Necessary-but-Insufficient Diagnostic**: C0 reliably predicts when symbolic consensus CANNOT help (C0<5% → method degenerates to SC), but high C0 does NOT guarantee gains. C0 is a zero-cost early stopping criterion for practitioners considering symbolic aggregation methods — not a predictor of benefit.\\\\n\\\\n### Previous Claims (pre-D025, retained for reference)\\\\n1. ~~Principled Tiebreaking improves accuracy~~ — DEAD (exp-001: +0.26pp at N=762, n.s.)\\\\n2. Operating Regime Characterization — ALIVE but reframed (regime\n…[truncated 8756 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 51
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T07:55:45.185632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T07:55:45.338598+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"exp-001\\\", \\\"name\\\": \\\"sica_expanded_14b\\\", \\\"claim\\\": [1, 2], \\\"description\\\": \\\"Full-scale evaluation: PW D5 600 + FOLIO 204 = 804 questions, K=12, T=0.7. Maximizes statistical power for C3 significance.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 14, \\\"deps\\\": [], \\\"registry_id\\\": \\\"sica_expanded_14b\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"sica_accuracy\\\": 0.765, \\\"sc_accuracy\\\": 0.762, \\\"sica_sc_gap_pp\\\": 0.3, \\\"n_problems\\\": 804, \\\"folio_sica\\\": 0.794, \\\"folio_sc\\\": 0.794, \\\"folio_gap_pp\\\": 0, \\\"folio_n\\\": 204, \\\"proofwriter_sica\\\": 0.755, \\\"proofwriter_sc\\\": 0.752, \\\"proofwriter_gap_pp\\\": 0.3, \\\"proofwriter_n\\\": 600, \\\"extraction_rate\\\": 0.89, \\\"answer_extraction_rate\\\": 1, \\\"contradiction_rate\\\": 0.022, \\\"problems_with_contradictions\\\": 331, \\\"truncated_traces\\\": 0, \\\"wall_time_min\\\": 826}}, {\\\"id\\\": \\\"exp-002\\\", \\\"name\\\": \\\"sica_k_ablation_14b\\\", \\\"claim\\\": [1], \\\"description\\\": \\\"K sensitivity (K=6,8,11,12,16,20) on D012's 60 questions. Includes odd K=11 to test if SICA value persists without exact ties. Key questions: does SICA benefit depend on tiebreaks? What happens at odd K? How does tiebreak frequency change with K?\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 6, \\\"deps\\\": [], \\\"status\\\": \\\"planned\\\", \\\"note\\\": \\\"D024 增加 K=11（odd-K test, Dream 三档一致要求）。如 K=11 gap=0 → 确认 tie-only mechanism；如 gap>0 → SICA has value beyond tiebreaking。\\\"}, {\\\"id\\\": \\\"exp-003\\\", \\\"name\\\": \\\"tiebreak_baseline_analysis\\\", \\\"claim\\\": [1], \\\"description\\\": \\\"Compare SICA vs SC-random-tiebreak vs SC-deterministic on all available data. CPU-only reanalysis. Quantify how much of SICA's gain survives against fair baselines.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [\\\"sica_d012_14b\\\"], \\\"status\\\": \\\"planned\\\", \\\"note\\\": \\\"Completed as CPU analysis, no registry entry. Results: SICA tiebreak 80% (4/5) vs random 50% vs alphabetical 60% vs first-seen 40%. Artifac\n…[truncated 7890 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 152
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T07:56:18.269531+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:exp-011-llama8b-v3",
+              "project": "symb_invariant_consensus",
+              "task_prompt": "## 任务：分析 exp-011-llama8b-v3 实验结果\n\n### 背景\nexp-011-llama8b-v3 是 cross-family validation 实验：LLaMA-3.1-8B-Instruct 在 D012 数据集 (30 ProofWriter + 30 FOLIO = 60 题) 上跑 SICA vs SC，验证 capability trap 是否跨模型家族泛化（非 Qwen-specific）。\n\n实验已正常退出，需要你提取结果指标。\n\n### 具体步骤\n\n1. SSH 到 westd-32608（root 用户），读取日志：\n   ```\n   cat ~/runs/symb_invariant_consensus/exp-011-llama8b-v3.log | tail -200\n   ```\n\n2. 查找结果文件。可能在以下路径：\n   - `/root/symb_invariant_consensus/results/` 下的 JSON 文件（按时间排序找最新的）\n   - 日志中可能打印了结果路径\n\n3. 读取结果 JSON，提取以下关键指标：\n   - `sica_accuracy`: SICA 准确率\n   - `sc_accuracy`: SC (majority voting) 准确率\n   - `delta_pp`: SICA - SC 的差值（百分点）\n   - `n`: 总题数\n   - `k`: traces 数量\n   - `multi_candidate_rate` (C0): 多候选率\n   - `extraction_rate`: 约束提取率\n   - `contradiction_detected`: 检测到矛盾的题数\n   - 如果有分 domain 的结果（ProofWriter vs FOLIO），也要提取\n   - `discordant_sica_wins` 和 `discordant_sc_wins`：不一致对中各自胜出的数量\n\n4. 检查是否有 W&B run（日志中搜 \"wandb\" 或 \"W&B\"），如果有记录 run_id\n\n5. 检查是否有统计检验结果（McNemar test, bootstrap CI 等）\n\n### 输出格式\n把所有提取的指标用 JSON 格式输出，包括：\n- 所有数值指标\n- 结果文件路径\n- 你对 conclusion 的判断（success 如果实验正常完成且数据有效，negative 如果 SICA≈SC 或 SICA<SC）\n- 一句话总结\n\n### 环境\n- 服务器：westd-32608，root 用户\n- conda base 环境\n- 项目路径：/root/symb_invariant_consensus/\n",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T07:56:18.723030+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T07:56:21.152497+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_exp-011-llama8b-v3_20260517T075618\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_analysis_exp-011-llama8b-v3_20260517T075618.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_exp-011-llama8b-v3_20260517T075618 started. Use get_worker_status('worker_analysis_exp-011-llama8b-v3_20260517T075618') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2882
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T07:56:21.152910+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "Read",
+            "elapsed_ms": 2429
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T07:56:37.767961+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__submit_on_allocated,mcp__agent-ml-research__submit_training_job",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T07:56:37.969650+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "ToolSearch",
+            "elapsed_ms": 201
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-17T07:56:54.502687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "westd-32608",
+              "gpu_ids": "['cuda:0']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp010_mistral.sh\"",
+              "exp_id": "exp-010-mistral-v3",
+              "project": "symb_invariant_consensus",
+              "plan_id": "exp-010",
+              "timeout_hours": "3"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-17T07:56:56.212738+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"298717\\\", \\\"log_file\\\": \\\"~/runs/symb_invariant_consensus/exp-010-mistral-v3.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"westd-32608\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"exp-010-mistral-v3\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.68}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 1710
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-17T07:57:14.906618+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-010-mistral-v3 已提交到 GPU，PID 298717。现在：\n- 1 Worker 在分析 exp-011-llama8b-v3 结果\n- exp-010-mistral-v3 在 GPU 上运行\n\n等待分析 Worker 回调后更新 registry 并汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3"
+          },
+          "id": "event-000030"
+        }
+      ],
+      "message_count": 30
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-17T11:58:16.750800+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-17T11:59:09.832632+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只分配 westd-32608:cuda:0 一张卡，严禁用其他 GPU\n- submit_training_job 命令必须 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"` 包裹，否则 tmux 下 sh 执行会 EXIT_CODE=127\n- 禁止在 submit_training_job command 中写 `pkill -f vllm`——v1/v2 因此 SIGTERM 自杀。vLLM 清理必须写在脚本内部或单独执行\n- Mistral 模型下载历史：3 次 ModelScope 截断 + HF 直下成功，不要再尝试 ModelScope\n- sica_expanded_14b (exp-001) EXIT_CODE=129 和 sica_k_sensitivity_14b EXIT_CODE=129 都是 SIGHUP 伪失败，实际 conclusion=success，不要被 exit code 误导\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-32608，root 用户，工作目录 `/root/symb_invariant_consensus/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 模型路径：\n  - Qwen2.5-14B-Instruct: `/root/autodl-tmp/models/Qwen2.5-14B-Instruct`\n  - LLaMA-3.1-8B-Instruct: 应在 `/root/autodl-tmp/models/` 下（v2 曾有 shard 损坏，v3 已修复）\n  - Mistral-7B-Instruct-v0.3: `/root/autodl-tmp/models/` 下（3 shards 4.95+5.00+4.55GB + consolidated 14.5GB）\n- 数据集：`/root/symb_invariant_consensus/data/`（proofwriter_30.json, folio_30.json, proofwriter_full.json, folio_full.json）\n- 结果：`/root/symb_invariant_consensus/results/`\n- 脚本：`/root/symb_invariant_consensus/scripts/run_exp0{10,11,17,18}_*.sh`\n- Git commit: 97aeaa572a6b6571b4bfea9c6ec6bcf915780425\n- 活跃进程：exp-010-mistral-v3 (PID 298717, tmux=exp-010-mistral-v3, cuda:0)，刚提交\n- 磁盘充裕：/autodl-pub 5.3T/7.3T 可用\n\n### 3. 📊 当前状态\n**刚做完**：exp-011-llama8b-v3 进程正常退出，已派 Worker (worker_analysis_exp-011-llama8b-v3_20260517T075618) SSH 分析结果，尚未回调。\n\n**正在跑**：\n- exp-010-mistral-v3 (RUNNING, PID 298717, cuda:0) — Mistral-7B cross-family validation，刚提交，预估 ~1-1.5h\n- Worker: analysis:exp-011-llama8b-v3 — 正在 SSH 读取 LLaMA 实验日志和结果 JSON\n\n**等待中**：\n- Worker 回调：exp-011-llama8b-v3 分析结果 → 需要 update_registry + 汇报 Director\n- Cron 回调：exp-010-mistral-v3 完成 → 同样需要分析+汇报\n- exp-011-llama8b-v3 的 registry 还在 ANALYZING，等 Worker 回来后需要设 conclusion/metrics/checkpoint_path\n\n**未汇报 Director**：exp-011-llama8b-v3 和 exp-010-mistral-v3 的状态都未汇报，等分析完一起报。\n\n### 4. 📋 待办（条件触发式）\n- Worker analysis:exp-011-llama8b-v3 回调 → 读取 metrics → update_registry(conclusion, metrics, checkpoint_path, log_path) → 按 on-experiment-done 分叉处理（success/negative） → 汇报 Director（带 [资源] 行）→ 更新 report.md\n- exp-010-mistral-v3 cron 完成回调 → 同上流程分析 Mistral 结果\n- 两个 cross-family 实验都完成后 → 汇总 3-family (Qwen/LLaMA/Mistral) 对比表 → 这是 Claim 2 的核心证据\n- 如果 LLaMA/Mistral 都 SICA≈SC → 强化 capability trap narrative，准备 exp-019 (constraint quality correlation CPU 分析)\n- 如果任一模型 SICA>SC 显著 → 必须汇报 Director，可能需调整 framing（\"regime exists but narrow\"）\n- GPU 空闲时（exp-010 完成后）→ 按 experiment_plan 优先级排下一个：exp-004 (7B scaling), exp-014 (DeepSeek-R1), exp-012 (GSM8K pilot)，需 Director 批准\n\n### 5. 🎯 战略上下文\n- **核心结论**：SICA≈SC everywhere（capability trap）。804 题 gap=+0.26pp n.s.。论文方向是 D025 Analysis Paper Pivot：\"为什么 symbolic consensus 不能 beat voting\"\n- **决策链**：D025(pivot to analysis) → D027(MaxSAT≈count-only) → D028(K-ablation 确认 tiebreak-only) → D029(所有 K SICA≤SC) → D030(转 Methods Paper 利用诊断数据)\n- **D030 最新决策**：从 Analysis Paper 转向 Methods Paper。这个决策可能影响后续实验优先级，新 session 应先 read decisions.yaml 确认 D030 具体内容\n- **已完成的关键实验**：exp-001(804题 baseline), exp-002(K-ablation 全负), exp-013(MaxSAT≈count-only), exp-005(QwQ operating regime), exp-016(weighted SC 全不显著), exp-017-v3(StrategyQA +3.33pp n.s.), exp-018-v2(ARC -1.67pp)\n- **易错点**：\n  - EXIT_CODE=129 是 SIGHUP 伪失败，不要自动标 failed\n  - exp-010 系列历史：v1 进程死亡(auto-resolved failed), v2 pkill SIGTERM → v3 脚本内置清理，如果 v3 还失败就需要完全不同的方法\n  - paper_framing.md 的 headline numbers 标注 \"PENDING FINAL UPDATE\"，cross-family 数据回来后需要更新\n  - Claim 2 要求 \"4 domains × 7 models\"，目前只有 Qwen-14B 覆盖 4 domain，cross-family 只跑 D012(PW+FOLIO)。还差 7B/72B/DeepSeek-R1 数据点\n  - 目标 deadline: ARR May 25 (8 天后)，时间紧迫\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-011-llama8b-v3"
+          },
+          "id": "event-000032"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-exp-011-llama8b-v3-20260517t115909-834505.md"
+}

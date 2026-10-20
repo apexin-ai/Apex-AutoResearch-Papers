@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7920b31be313b5afc8a0",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ops register crons 073b 074",
+  "task_key": "worker_ops_register-crons-073b-074_20260519T180859",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_register-crons-073b-074_20260519T180859_result.json",
+    "occurrence": 1,
+    "bytes": 338,
+    "sha256": "c42a9bb28aa38fa12bce289d203e31f3d8936a67692d4713a9bdce46790dce53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Two cron monitors registered (every 8 minutes):\n\n| 实验 | PID | Cron Job ID |\n|------|-----|-------------|\n| exp-073b (Qwen7B, LogiQA) | 265264 | `402a0387` |\n| exp-074 (Mistral, FOLIO ICG) | 263311 | `7a0f672e` |\n\nNote: these are session-only monitors,会在 Claude 退出后失效，7 天后自动过期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-register-crons-073b-074.md"
+}

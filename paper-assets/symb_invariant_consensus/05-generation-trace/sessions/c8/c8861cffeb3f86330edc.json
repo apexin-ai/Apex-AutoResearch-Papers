@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8861cffeb3f86330edc",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment d135 gemini launch",
+  "task_key": "worker_experiment_d135-gemini-launch_20260521T143259",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_d135-gemini-launch_20260521T143259_result.json",
+    "occurrence": 1,
+    "bytes": 994,
+    "sha256": "1c666b10e7b387acda5039455ef9c5042c210fec91957c6a0dfad8971077855d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment is stable. Here's the status report:\n\n## Gemini-2.5-Pro FOLIO-204 SCB Status\n\n| Item | Value |\n|------|-------|\n| **PID** | 19972 (westd-25068) |\n| **API** | `http://47.94.22.126/v1` — confirmed working |\n| **Progress** | 2/204 done, both **correct** |\n| **Yield** | 83–100% (avg ~92%) — vastly improved from earlier 17–42% |\n| **SC@12 Accuracy** | 100% (2/2) |\n| **Finish reasons** | 22/24 traces = `stop`, 2 = `unknown` (no truncation) |\n| **Per-problem time** | ~185–226s (avg ~206s) |\n| **ETA** | ~693 min (~11.5 hours) → completion ~10:30 AM |\n| **o3** | No o3 processes running |\n\n**Note**: Script launched with `sem=5` instead of your requested `sem=10`. With sem=10 the rolling window would process 12 traces in ~2 rounds instead of ~3, cutting ETA by ~33% to ~7.5 hours. Want me to kill and restart with `--semaphore 10 --resume`? The `--resume` flag will pick up from where it left off (results are checkpointed every 5 problems)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-d135-gemini-launch.md"
+}

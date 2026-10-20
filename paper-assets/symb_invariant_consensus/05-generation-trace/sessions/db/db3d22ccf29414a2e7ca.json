@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db3d22ccf29414a2e7ca",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code create pilot contrastive v2 wrapper",
+  "task_key": "worker_code_create-pilot-contrastive-v2-wrapper_20260517T075943",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_create-pilot-contrastive-v2-wrapper_20260517T075943_result.json",
+    "occurrence": 1,
+    "bytes": 150,
+    "sha256": "09d0363bc540842b408c305d219382b7adeea85343162be79a0a9c5c2ceca7ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。脚本已写入 `/root/symb_invariant_consensus/scripts/run_pilot_contrastive_v2.sh`，权限已设置，语法验证通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-create-pilot-contrastive-v2-wrapper.md"
+}

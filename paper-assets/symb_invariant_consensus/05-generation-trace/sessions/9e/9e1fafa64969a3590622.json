@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e1fafa64969a3590622",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis text ablation folio",
+  "task_key": "worker_analysis_text-ablation-folio_20260521T021006",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_text-ablation-folio_20260521T021006_result.json",
+    "occurrence": 1,
+    "bytes": 802,
+    "sha256": "6f1cae3952b9612616be0149aa8b3f577955eb8da9dae9fa126a08e666120b39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已在 westd-25068 上稳定运行 (PID 452128)。\n\n**当前状态**：\n- T_ext=0.1 正在处理，第 1/204 个问题完成\n- 每个问题约 26s（12 traces × extraction）\n- 每个 T_ext 约 89 min，共 4 个值需运行（0.1, 0.5, 0.7, 1.0），T_ext=0.3 直接用 exp033 已有结果\n- 预计总耗时约 **6 小时**\n- 结果将保存到 `/root/symb_invariant_consensus/results/text_ablation_results.json`\n\n**已有 baseline (T_ext=0.3)**：\n- SC: 54.41% (111/204)\n- SICA: 59.31% (121/204)  \n- Δpp: +4.9\n\n可以稍后用 `tail -20 /root/symb_invariant_consensus/results/text_ablation.log` 查看进度。实验完成后我会提取结果并生成最终 JSON 到本地 artifacts 目录。\n\n要我现在做其他事情，还是等实验完成后再继续？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-text-ablation-folio.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "984ef83d6e746bbb68a0",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix abstract intro range",
+  "task_key": "worker_fix_abstract-intro-range_20260522T231623",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_abstract-intro-range_20260522T231623_result.json",
+    "occurrence": 1,
+    "bytes": 301,
+    "sha256": "ee95b87bf5857bc9cb36af1b578054e798959b6ac42d56e0a5da43d5db1eee98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**修改对比：**\n- `abstract.tex:8` — `$+$13--26\\,pp` → `$+$12--26\\,pp`\n- `introduction.tex:28` — `$+$13--26\\,pp` → `$+$12--26\\,pp`\n\n**验证：** 无残留 `13--26`，两处均已改为 `12--26`。\n\n**编译：** 成功，输出 main.pdf（27页）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-abstract-intro-range.md"
+}

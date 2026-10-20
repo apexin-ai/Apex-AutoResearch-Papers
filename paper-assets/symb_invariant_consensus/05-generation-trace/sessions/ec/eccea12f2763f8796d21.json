@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eccea12f2763f8796d21",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix folio nli seed456 recompute",
+  "task_key": "worker_fix_folio-nli-seed456-recompute_20260523T172925",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_folio-nli-seed456-recompute_20260523T172925_result.json",
+    "occurrence": 1,
+    "bytes": 1350,
+    "sha256": "2feb3b7848fcbf10fa28667a08f5921218e2eb30ac7e7c66f9e65985b76ea631"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three result files saved on server. Summary of what changed:\n\n**Traces** (canonical exp033/exp-063/exp036/exp_folio_2x2_qwen3, same as `cross_model_sc_ablation.py`) — confirmed SC=55.88/66.18/75.98/83.33 with alphabetical tiebreaking.\n\n**`docs/paper/appendix.tex` updates:**\n\n- `tab:folio-nli-deberta`: SC fixed (Mistral 57.84→55.88, Qwen2.5 77.45→75.98); all 12 combo cells recomputed. DeBERTa w=3 rows now identical to `tab:cross-model-ablation` \"DeBERTa NLI\" rows.\n- `tab:folio-nli-bart`: SC fixed; combo cells recomputed. Caption updated to note Qwen2.5-14B w=5 shows significant degradation (Δ=−3.43, p=.039) — same capability-gap signature.\n- `tab:folio-nli-roberta`: SC fixed; combo cells recomputed. Caption updated to note Qwen2.5-14B w=5 significant degradation (Δ=−4.41, p=.012).\n\n**Script:** `/root/symb_invariant_consensus/scripts/folio_nli_combo_bart_roberta.py` (takes `--verifier` for any of the three models). **Outputs:** `results/folio_nli_combo_all/folio_nli_combo_{deberta,bart,roberta}.json`.\n\n**Caveat for awareness:** the brief said \"seed456 traces\" but `cross_model_sc_ablation.py` actually points at the canonical `exp033_mistral_7b_folio204` (not `exp053_..._seed456`); the 55.88% baseline matches exp033 + alphabetical tiebreaking, so that is what was used for consistency."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-folio-nli-seed456-recompute.md"
+}

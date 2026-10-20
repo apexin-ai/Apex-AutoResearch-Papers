@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d912d2bd44923804856",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code folio max tokens fix",
+  "task_key": "worker_code_folio_max_tokens_fix_20260515T223127",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_folio_max_tokens_fix_20260515T223127_result.json",
+    "occurrence": 1,
+    "bytes": 167,
+    "sha256": "cdb8e304a2895a7baf1091ef396bf552ea19d3f60ba36b25288c2596057f232b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n- **文件**: `eval_folio.py` **第34行**\n- **改动**: `default=16384` → `default=12288`\n- 项目 `*.py` 中无 16384 残留。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-folio-max-tokens-fix.md"
+}

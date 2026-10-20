@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a467e823f4589e08dabc",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix migrate seed456 30973 to 16639",
+  "task_key": "worker_fix_migrate-seed456-30973-to-16639_20260523T214827",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_migrate-seed456-30973-to-16639_20260523T214827_result.json",
+    "occurrence": 1,
+    "bytes": 436,
+    "sha256": "cfef3d53a5205f285aee09afdfdbece60f2603ed133c580641673c4f18fb9ee3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "迁移完成，验证通过。\n\n**结果汇总：**\n\n| 项目 | 值 |\n|------|-----|\n| 文件 | `results.json` (540KB) |\n| SC accuracy | 71.67% |\n| SICA accuracy | 66.17% |\n| n_problems | 600/600 ✓ |\n| 源 (westd-30973) | 无子目录，仅 results.json |\n| 目标 (westd-16639) | 验证通过，数据完整一致 |\n\n**可以安全释放 westd-30973。** seed456 的完整结果已迁移到 westd-16639。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-migrate-seed456-30973-to-16639.md"
+}

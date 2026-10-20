@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76879e711e5238261bb4",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis r8 n1 quantifier proportion",
+  "task_key": "worker_analysis_r8-n1-quantifier-proportion_20260520T201553",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_r8-n1-quantifier-proportion_20260520T201553_result.json",
+    "occurrence": 1,
+    "bytes": 867,
+    "sha256": "28492b83ca80f7fdaabf0e59b6cf87f60e416417c84fbbb7749e453bc1fb22be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果：\n\n**73,264 个约束** across 3 conditions (Mistral-7B FOLIO/PW, Qwen2.5-14B FOLIO):\n\n| 类别 | 占比 | 含义 |\n|------|------|------|\n| Quantified (真 FOL) | **1.0%** (755) | Z3 ForAll/Exists |\n| Grounded FOL | 44.2% (32,361) | `P(X) → Q(X)` 语法，但 Z3 编码为 Bool |\n| Ground Atom | 45.1% (33,026) | `student(bonnie)` 命题式谓词 |\n| Propositional | 9.7% (7,122) | 纯命题逻辑 |\n\n**99.0% 的约束在 Z3 solver 层面是命题式的**。Reviewer 的判断正确。\n\n结果保存在：\n- 服务器：`/root/symb_invariant_consensus/results/r8_n1_quantifier_proportion/`\n- 本地：`artifacts/r8_n1_quantifier_proportion/results.json` + `summary.md`\n\n建议论文修订：将 \"FOL constraints\" 改为 \"symbolic constraints in predicate notation\" 或 \"propositionalized constraints\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r8-n1-quantifier-proportion.md"
+}

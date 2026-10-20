@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "442e6c70d5efefb2b5bf",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp033 per problem data",
+  "task_key": "worker_analysis_exp033-per-problem-data_20260518T223148",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp033-per-problem-data_20260518T223148_result.json",
+    "occurrence": 1,
+    "bytes": 1158,
+    "sha256": "62a528d35ec20e506d728f0ebb66fe0aaa719d0590e32194aae21e08685955c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据提取完成。\n\n### 产出\n\n**文件路径**: `/root/symb_invariant_consensus/results/exp033_per_problem_analysis.json`（204 problems，含所有请求字段）\n\n### 统计摘要\n\n| 指标 | 值 |\n|------|-----|\n| SC accuracy | 0.5441 |\n| SICA accuracy | 0.5931 |\n| Overrides (SICA != SC) | 17 / 204 (8.3%) |\n| Override precision | 12/17 = **70.59%** |\n| Override correct / wrong | 12 / 5 |\n\n**Entropy 分布**\n\n| 分位 | 值 |\n|------|-----|\n| Q25 | 0.4395 |\n| Q50 (median) | 0.8454 |\n| Q75 | 1.1887 |\n| Range | [0.0, 2.4464] |\n\n**SC / SICA accuracy by entropy bin**\n\n| Entropy Bin | n | SC Acc | SICA Acc | Overrides | Override Prec |\n|-------------|---|--------|----------|-----------|---------------|\n| Low (H<0.5) | 65 | 0.7692 | 0.7692 | 0 | N/A |\n| Medium (0.5≤H<1.2) | 89 | 0.4944 | 0.5506 | 6 | 0.8333 |\n| High (H≥1.2) | 50 | 0.3400 | 0.4400 | 11 | 0.6364 |\n\n关键发现：SICA 的增益集中在 medium 和 high entropy 区间。Low entropy 下 SC 和 SICA 完全一致（zero overrides）。High entropy 区间 SICA 将 SC 的 34% 提升到 44%（+10pp），override precision 63.6%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp033-per-problem-data.md"
+}

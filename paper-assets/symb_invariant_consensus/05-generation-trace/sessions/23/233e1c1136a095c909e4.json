@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "233e1c1136a095c909e4",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "infra exp 050 mistral icl cuda2",
+  "task_key": "worker_infra_exp-050-mistral-icl-cuda2_20260518T204914",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_exp-050-mistral-icl-cuda2_20260518T204914.log",
+    "occurrence": 1,
+    "bytes": 670835,
+    "sha256": "ec2ba44cde24dae85c41d0ccce885a411eadd90a3e8e29a20ff04047c4802f54"
+  },
+  "statistics": {
+    "messages": 228,
+    "user_turns": 1,
+    "tool_calls": 78,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 78,
+      "tool_result": 78,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 173,
+      "chunks": [
+        {
+          "path": "233e1c1136a095c909e4-part-0001.json",
+          "message_count": 173
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 55,
+      "chunks": [
+        {
+          "path": "233e1c1136a095c909e4-part-0002.json",
+          "message_count": 55
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-exp-050-mistral-icl-cuda2.md"
+}

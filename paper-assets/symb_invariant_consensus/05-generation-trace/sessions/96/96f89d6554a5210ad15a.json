@@ -1,0 +1,415 @@
+{
+  "schema_version": "1.0",
+  "id": "96f89d6554a5210ad15a",
+  "project": "symb_invariant_consensus",
+  "kind": "conversation",
+  "title": "analysis math domain negative",
+  "task_key": "worker_analysis_math_domain_negative_20260516T012213",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analysis_math_domain_negative_20260516T012213.jsonl",
+    "occurrence": 1,
+    "bytes": 24362,
+    "sha256": "820b39d32c7549916b664c1433d2b0c94927507a5caf1bc95494a6590741da7f"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "tool_call": 9,
+      "tool_result": 9,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T01:24:44.839408+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_math_domain_negative_20260516T012213",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__save_project_file",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T01:24:44.840001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_math_domain_negative_20260516T012213",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T01:24:44.840308+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_math_domain_negative_20260516T012213",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "filters": "{'exp_id': 'sica_smoke_5q'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T01:24:44.840551+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0425}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_math_domain_negative_20260516T012213",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T01:24:44.840764+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_math_domain_negative_20260516T012213",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "filters": "{'exp_id': 'sica_temp_diversity'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T01:24:44.841159+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0601}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_math_domain_negative_20260516T012213",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T01:24:44.841385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_math_domain_negative_20260516T012213",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "filters": "{'exp_id': 'sica_aime30_v3'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T01:24:44.841701+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0317}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_math_domain_negative_20260516T012213",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T01:24:44.841944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_math_domain_negative_20260516T012213",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "filters": "{'exp_id': 'sica_aime30_v2'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T01:24:44.842147+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0377}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_math_domain_negative_20260516T012213",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T01:24:44.842363+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_math_domain_negative_20260516T012213",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "fields": "['*']",
+              "limit": "0"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T01:24:44.842907+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"sica_folio30\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T22:08:43.460Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:38:26.692Z\\\", \\\"hypothesis\\\": \\\"逻辑域（FOLIO）上 SICA 能否利用 FOL 标注检测跨路径矛盾并超越 SC@K=12——FOLIO 有天然 FOL 标注，是 SICA 约束提取的理想场景\\\", \\\"parent\\\": \\\"sica_aime30_v3\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"FOLIO 逻辑域上 SICA 能否利用 FOL 标注检测跨路径矛盾并超越 SC@K=12\\\", \\\"dataset\\\": \\\"FOLIO (yale-nlp/FOLIO validation subset)\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/data/folio_subset.json\\\", \\\"data_count\\\": 30, \\\"label_distribution\\\": {\\\"True\\\": 10, \\\"False\\\": 10, \\\"Unknown\\\": 10}, \\\"has_fol_annotations\\\": true, \\\"model_name\\\": \\\"QwQ-32B\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"command\\\": \\\"python eval_folio.py --n-problems 30 --k 12 --temperature 0.7 --max-tokens 12288 --seed 42 --save-intermediates --output results/folio_eval.json\\\", \\\"k\\\": 12, \\\"temperature\\\": 0.7, \\\"max_tokens\\\": 12288, \\\"seed\\\": 42, \\\"eval_script\\\": \\\"/root/symb_invariant_consensus/eval_folio.py\\\", \\\"dry_run_passed\\\": true, \\\"live_test_passed\\\": true, \\\"live_test_result\\\": \\\"2/2 correct (SICA=100%, SC=100%), pipeline all stages functional\\\"}, \\\"notes\\\": \\\"启动命令必须用 --max-tokens 12288（不是 16384）。vLLM max_model_len=16384，max_tokens=16384 会导致 400 错误。\\\"}, \\\"sica_proofwriter30_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T22:19:01.325Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:19:25.039Z\\\", \\\"hypothesis\\\": \\\"逻辑域（ProofWriter D5）上 SICA 能否检测跨路径 FOL 约束矛盾并超越 SC@K=12（v2: max_tokens=12288 修复）\\\", \\\"parent\\\": \\\"sica_proofwriter30\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_proofwriter.py --n-problems 30 --k 12 --max-tokens 12288 --seed 42 --save-intermediates --output results/proofwriter_30_v2.json\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"155077\\\", \\\"log_path\\\": \\\"/root/runs/symb_invariant_consensus/proofwriter30_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T22:19:16.529Z\\\", \\\"submitted_via\\\": \\\"submit_training\n…[truncated 13910 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_math_domain_negative_20260516T012213",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T01:24:44.843285+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_math_domain_negative_20260516T012213",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "file": "math_domain_negative_analysis.md",
+              "content": "# 数学域 Negative Analysis：SICA ≡ SC on QwQ-32B\n\n## 摘要\n\nQwQ-32B 在数学域（MATH-500、AIME 2024）上的 multi-candidate rate 为 0%，导致 SICA 在所有实验中严格退化为 Self-Consistency（SC），无法产生任何增益。这是推理模型 deterministic CoT 的结构性结果，与温度无关。\n\n## 证据汇总表\n\n| 实验 | 数据集 | 完成题数 | K | 温度 | Multi-candidate Rate | SICA Acc | SC Acc | Gap (pp) | 来源 |\n|------|--------|----------|---|------|---------------------|----------|--------|----------|------|\n| sica_smoke_5q | MATH L1–5 | 5/5 | 12 | 0.7 | 0%¹ | 80.0% | 80.0% | 0 | `sica_smoke_5q` |\n| sica_temp_diversity | MATH L4–5 | 3² | 12 | 0.7 / 0.9 / 1.0 | 0% | — | — | 0 | `sica_temp_diversity` |\n| sica_aime30_v2 | AIME 2024 | 4/30 (killed) | 12 | 0.7 | — ³ | 75.0% | 75.0% | 0 | `sica_aime30_v2` |\n| sica_aime30_v3 | AIME 2024 | 22/30 (killed) | 12 | 0.7 | 0.0% | 72.7% | 72.7% | 0 | `sica_aime30_v3` |\n\n**注释：**\n1. `sica_smoke_5q` 未显式报告 multi-candidate rate，但 SICA=SC=80% 且 5 题中无一因 MaxSAT exclusion 改变投票结果（algebra/2277 有 3 条约束被 exclude，但最终答案未改变）。\n2. `sica_temp_diversity` spec 中 data_count=5，但 metrics 报告 problems_tested=3，原因为 max_tokens=4096 对 L5 题不足导致截断（metrics.max_tokens_issue）。\n3. `sica_aime30_v2` 未单独报告 multi-candidate rate，但 analysis_sica_sc_agreement=9/9 (100%)，与 sica_smoke_5q 的 5 题合并后仍为零分歧。\n\n## 关键数字\n\n- **总验证题数**：34 题（5 + 3 + 4 + 22，去重后）\n- **产生答案分歧的题数**：0\n- **温度覆盖范围**：0.7, 0.9, 1.0（`sica_temp_diversity`）\n- **SICA-SC 总 gap**：0 pp（所有实验）\n- **MaxSAT exclusion rate**（sica_aime30_v3）：38.7%（metrics.vote_diversity_analysis.exclusion_rate），但因单候选无法改变最终选择\n- **Zero-vote problems**（sica_aime30_v3）：6/22（indices [1,7,8,10,13,14]），来源：约束提取失败\n\n## 根因分析\n\n### 1. 推理模型的 CoT 确定性\n\nQwQ-32B 作为 reasoning model，其 chain-of-thought 过程具有极强的确定性。即使 temperature > 0 引入了 token-level 采样随机性，模型的推理链倾向于收敛到相同的求解路径和最终答案。这在数学问题上尤为显著——正确解法通常是唯一的，模型一旦锁定正确路径，12 条 trace 均产生相同答案。\n\n> 来源：`sica_temp_diversity.metrics.finding` — \"QwQ-32B produces zero answer divergence at all temperatures on MATH L4-5. Reasoning model's deterministic chain dominates sampling randomness.\"\n\n### 2. Temperature 对 reasoning model 影响有限\n\n三个温度梯度（0.7 / 0.9 / 1.0）的实验明确证明：temperature 无法打破 CoT 确定性。这与标准语言模型的行为不同——在非推理模型中，temperature 升高通常会增加输出多样性，但推理模型的思维链结构约束了这种多样性。\n\n> 来源：`sica_temp_diversity.metrics.temperatures_tested = [0.7, 0.9, 1.0]`，`problems_with_divergence = 0`\n\n### 3. MaxSAT exclusion 在单候选下退化为 no-op\n\nsica_aime30_v3 的数据显示 exclusion_rate = 38.7%——MaxSAT 约束求解器确实在工作，成功识别并排除了部分约束。但当所有 trace 只产生 1 个候选答案时，排除约束后剩余的投票仍然指向同一个答案。整个 SICA pipeline 的约束提取→MaxSAT 求解→加权投票链条在功能上等价于简单多数投票。\n\n> 来源：`sica_aime30_v3.metrics.vote_diversity_analysis.conclusion` — \"All 16 valid problems have exactly 1 candidate answer. SICA≡SC structurally. MaxSAT exclusion operates but cannot change final selection with only 1 candidate.\"\n\n## 方法论含义\n\n### SICA 的价值前提\n\nSICA 的核心假设是：不同 reasoning trace 之间存在答案分歧，而符号约束可以检测哪些 trace 包含逻辑矛盾，从而过滤掉错误路径。这个假设要求：\n\n1. **trace 间有多个候选答案**（multi-candidate rate > 0）\n2. **约束能区分正确与错误候选**\n\n数学域在条件 1 上就已失败。\n\n### 数学域是 SICA 的不适用域（reasoning model context）\n\n这不是 SICA 方法本身的缺陷，而是 **方法-模型-域** 三者的不匹配：\n- **推理模型 + 数学域** → 零分歧 → SICA 无法发挥作用\n- 如果使用非推理模型（如 GPT-4、Llama-3），数学域可能产生足够分歧\n- 如果使用推理模型但换到逻辑域（如 FOLIO、ProofWriter），天然存在多路径分歧的可能性更高\n\n### 可能的解法方向\n\n1. **换域**：逻辑推理域（FOLIO/ProofWriter）具有 True/False/Unknown 三元标签，模型更容易在不同 trace 中产生不同判断（已启动 `sica_folio30` 和 `sica_proofwriter30_v2` 实验验证）\n2. **换模型**：使用非推理模型可能恢复采样多样性，但会降低 baseline accuracy\n3. **增大 K 或使用 prompt perturbation**：理论上可增加多样性，但在当前证据下收益预期极低\n\n## 论文价值\n\n### 作为 Domain Boundary Analysis\n\n这个 negative 结果对论文有正面价值——它精确划定了 SICA 的适用边界：\n\n> \"SICA improves over SC **when and only when** the sampling process produces answer divergence across traces. On mathematical reasoning with strong reasoning models (QwQ-32B), the deterministic nature of chain-of-thought eliminates this divergence, rendering SICA equivalent to SC. This establishes mathematics as a **boundary domain** for consensus-based aggregation methods under reasoning models.\"\n\n### 与 Self-Consistency 文献的对话\n\nWang et al. (2023) 的 Self-Consistency 工作隐含假设采样多样性的存在。本结果揭示了一个被忽视的前提条件：\n\n- **Model calibration 角度**：reasoning model 在数学域是 \"过度校准\" (over-calibrated) 的——不同样本给出相同答案，模型的 epistemic uncertainty 接近零\n- **SC 的退化条件**：当 K 条采样全部一致时，SC@K 退化为 SC@1（即 greedy decoding），额外的采样成本没有带来信息增益\n- **SICA 的退化条件**：SICA 在此基础上进一步退化——不仅投票一致，约束提取和 MaxSAT 求解的计算开销也变为纯浪费\n\n### 建议呈现方式\n\n在论文中以独立小节呈现（如 §5.3 \"When Does SICA Help? A Domain Boundary Analysis\"），包含：\n- Table：数学域 vs 逻辑域的 multi-candidate rate 对比\n- Figure（可选）：answer distribution 的 entropy 对比——数学域 entropy≈0 vs 逻辑域 entropy>0\n- Discussion：将 SICA 定位为 \"high-divergence regime\" 的方法，与 Self-Consistency 在 \"low-divergence regime\" 的等价性\n\n---\n\n*数据截止：2026-05-16。所有数字来源于 symb_invariant_consensus project registry。*\n"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T01:24:44.843584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'math_domain_negative_analysis.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_math_domain_negative_20260516T012213",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T01:24:44.843817+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_math_domain_negative_20260516T012213",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T01:24:44.844036+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_math_domain_negative_20260516T012213",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T01:24:44.844265+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_math_domain_negative_20260516T012213",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "math_domain_negative_analysis",
+              "type": "report",
+              "description": "数学域 SICA≡SC negative analysis：QwQ-32B 在 MATH-500/AIME 2024 上 multi-candidate rate=0%，SICA 结构性退化为 SC 的根因分析与论文价值评估",
+              "project": "symb_invariant_consensus",
+              "content_filename": "math_domain_negative_analysis.md",
+              "tags": "['negative-result', 'math-domain', 'domain-boundary', 'paper-material']",
+              "content": "# 数学域 Negative Analysis：SICA ≡ SC on QwQ-32B\n\n## 摘要\n\nQwQ-32B 在数学域（MATH-500、AIME 2024）上的 multi-candidate rate 为 0%，导致 SICA 在所有实验中严格退化为 Self-Consistency（SC），无法产生任何增益。这是推理模型 deterministic CoT 的结构性结果，与温度无关。\n\n## 证据汇总表\n\n| 实验 | 数据集 | 完成题数 | K | 温度 | Multi-candidate Rate | SICA Acc | SC Acc | Gap (pp) | 来源 |\n|------|--------|----------|---|------|---------------------|----------|--------|----------|------|\n| sica_smoke_5q | MATH L1–5 | 5/5 | 12 | 0.7 | 0%¹ | 80.0% | 80.0% | 0 | `sica_smoke_5q` |\n| sica_temp_diversity | MATH L4–5 | 3² | 12 | 0.7 / 0.9 / 1.0 | 0% | — | — | 0 | `sica_temp_diversity` |\n| sica_aime30_v2 | AIME 2024 | 4/30 (killed) | 12 | 0.7 | —³ | 75.0% | 75.0% | 0 | `sica_aime30_v2` |\n| sica_aime30_v3 | AIME 2024 | 22/30 (killed) | 12 | 0.7 | 0.0% | 72.7% | 72.7% | 0 | `sica_aime30_v3` |\n\n**注释：**\n1. `sica_smoke_5q` 未显式报告 multi-candidate rate，但 SICA=SC=80% 且 5 题中无一因 MaxSAT exclusion 改变投票结果（algebra/2277 有 3 条约束被 exclude，但最终答案未改变）。\n2. `sica_temp_diversity` spec 中 data_count=5，但 metrics 报告 problems_tested=3，原因为 max_tokens=4096 对 L5 题不足导致截断（metrics.max_tokens_issue）。\n3. `sica_aime30_v2` 未单独报告 multi-candidate rate，但 analysis_sica_sc_agreement=9/9 (100%)，与 sica_smoke_5q 的 5 题合并后仍为零分歧。\n\n## 关键数字\n\n- **总验证题数**：34 题（5 + 3 + 4 + 22，去重后）\n- **产生答案分歧的题数**：0\n- **温度覆盖范围**：0.7, 0.9, 1.0（`sica_temp_diversity`）\n- **SICA-SC 总 gap**：0 pp（所有实验）\n- **MaxSAT exclusion rate**（sica_aime30_v3）：38.7%（metrics.vote_diversity_analysis.exclusion_rate），但因单候选无法改变最终选择\n- **Zero-vote problems**（sica_aime30_v3）：6/22（indices [1,7,8,10,13,14]），来源：约束提取失败\n\n## 根因分析\n\n### 1. 推理模型的 CoT 确定性\n\nQwQ-32B 作为 reasoning model，其 chain-of-thought 过程具有极强的确定性。即使 temperature > 0 引入了 token-level 采样随机性，模型的推理链倾向于收敛到相同的求解路径和最终答案。这在数学问题上尤为显著——正确解法通常是唯一的，模型一旦锁定正确路径，12 条 trace 均产生相同答案。\n\n> 来源：`sica_temp_diversity.metrics.finding` — \"QwQ-32B produces zero answer divergence at all temperatures on MATH L4-5. Reasoning model's deterministic chain dominates sampling randomness.\"\n\n### 2. Temperature 对 reasoning model 影响有限\n\n三个温度梯度（0.7 / 0.9 / 1.0）的实验明确证明：temperature 无法打破 CoT 确定性。这与标准语言模型的行为不同——在非推理模型中，temperature 升高通常会增加输出多样性，但推理模型的思维链结构约束了这种多样性。\n\n> 来源：`sica_temp_diversity.metrics.temperatures_tested = [0.7, 0.9, 1.0]`，`problems_with_divergence = 0`\n\n### 3. MaxSAT exclusion 在单候选下退化为 no-op\n\nsica_aime30_v3 的数据显示 exclusion_rate = 38.7%——MaxSAT 约束求解器确实在工作，成功识别并排除了部分约束。但当所有 trace 只产生 1 个候选答案时，排除约束后剩余的投票仍然指向同一个答案。整个 SICA pipeline 的约束提取→MaxSAT 求解→加权投票链条在功能上等价于简单多数投票。\n\n> 来源：`sica_aime30_v3.metrics.vote_diversity_analysis.conclusion` — \"All 16 valid problems have exactly 1 candidate answer. SICA≡SC structurally. MaxSAT exclusion operates but cannot change final selection with only 1 candidate.\"\n\n## 方法论含义\n\n### SICA 的价值前提\n\nSICA 的核心假设是：不同 reasoning trace 之间存在答案分歧，而符号约束可以检测哪些 trace 包含逻辑矛盾，从而过滤掉错误路径。这个假设要求：\n\n1. **trace 间有多个候选答案**（multi-candidate rate > 0）\n2. **约束能区分正确与错误候选**\n\n数学域在条件 1 上就已失败。\n\n### 数学域是 SICA 的不适用域（reasoning model context）\n\n这不是 SICA 方法本身的缺陷，而是 **方法-模型-域** 三者的不匹配：\n- **推理模型 + 数学域** → 零分歧 → SICA 无法发挥作用\n- 如果使用非推理模型（如 GPT-4、Llama-3），数学域可能产生足够分歧\n- 如果使用推理模型但换到逻辑域（如 FOLIO、ProofWriter），天然存在多路径分歧的可能性更高\n\n### 可能的解法方向\n\n1. **换域**：逻辑推理域（FOLIO/ProofWriter）具有 True/False/Unknown 三元标签，模型更容易在不同 trace 中产生不同判断（已启动 `sica_folio30` 和 `sica_proofwriter30_v2` 实验验证）\n2. **换模型**：使用非推理模型可能恢复采样多样性，但会降低 baseline accuracy\n3. **增大 K 或使用 prompt perturbation**：理论上可增加多样性，但在当前证据下收益预期极低\n\n## 论文价值\n\n### 作为 Domain Boundary Analysis\n\n这个 negative 结果对论文有正面价值——它精确划定了 SICA 的适用边界：\n\n> \"SICA improves over SC **when and only when** the sampling process produces answer divergence across traces. On mathematical reasoning with strong reasoning models (QwQ-32B), the deterministic nature of chain-of-thought eliminates this divergence, rendering SICA equivalent to SC. This establishes mathematics as a **boundary domain** for consensus-based aggregation methods under reasoning models.\"\n\n### 与 Self-Consistency 文献的对话\n\nWang et al. (2023) 的 Self-Consistency 工作隐含假设采样多样性的存在。本结果揭示了一个被忽视的前提条件：\n\n- **Model calibration 角度**：reasoning model 在数学域是 \"过度校准\" (over-calibrated) 的——不同样本给出相同答案，模型的 epistemic uncertainty 接近零\n- **SC 的退化条件**：当 K 条采样全部一致时，SC@K 退化为 SC@1（即 greedy decoding），额外的采样成本没有带来信息增益\n- **SICA 的退化条件**：SICA 在此基础上进一步退化——不仅投票一致，约束提取和 MaxSAT 求解的计算开销也变为纯浪费\n\n### 建议呈现方式\n\n在论文中以独立小节呈现（如 §5.3 \"When Does SICA Help? A Domain Boundary Analysis\"），包含：\n- Table：数学域 vs 逻辑域的 multi-candidate rate 对比\n- Figure（可选）：answer distribution 的 entropy 对比——数学域 entropy≈0 vs 逻辑域 entropy>0\n- Discussion：将 SICA 定位为 \"high-divergence regime\" 的方法，与 Self-Consistency 在 \"low-divergence regime\" 的等价性\n\n---\n\n*数据截止：2026-05-16。所有数字来源于 symb_invariant_consensus project registry。*"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T01:24:44.844617+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_778777\\\", \\\"name\\\": \\\"math_domain_negative_analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"数学域 SICA≡SC negative analysis：QwQ-32B 在 MATH-500/AIME 2024 上 multi-candidate rate=0%，SICA 结构性退化为 SC 的根因分析与论文价值评估\\\", \\\"path\\\": \\\"projects/symb_invariant_consensus/artifacts/_project/report/math_domain_negative_analysis.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T01:24:37.133615+00:00\\\", \\\"tags\\\": [\\\"negative-result\\\", \\\"math-domain\\\", \\\"domain-boundary\\\", \\\"paper-material\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_math_domain_negative_20260516T012213",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T01:24:44.844910+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已注册为 artifact `art_20260516_778777`，路径：`artifacts/_project/report/math_domain_negative_analysis.md`。\n\n内容覆盖：\n- **证据汇总表**：4 个实验的完整数据（题数、温度、multi-candidate rate、SICA-SC gap），所有数字标注 registry exp_id 来源\n- **根因分析**：CoT 确定性、temperature 无效（0.7/0.9/1.0 三梯度验证）、MaxSAT exclusion 在单候选下退化为 no-op（exclusion_rate=38.7% 但无法改变结果）\n- **方法论含义**：SICA 的价值前提（需要 multi-candidate rate > 0）、数学域作为不适用域的定位、三个解法方向\n- **论文价值**：domain boundary analysis 的定位、与 SC 文献的 model calibration 讨论、建议呈现为 §5.3 独立小节"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_math_domain_negative_20260516T012213"
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-math-domain-negative.md"
+}

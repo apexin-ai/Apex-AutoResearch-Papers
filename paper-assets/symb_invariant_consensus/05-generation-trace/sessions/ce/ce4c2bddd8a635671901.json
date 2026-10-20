@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "ce4c2bddd8a635671901",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "figure fig3 causal dag pb v5",
+  "task_key": "worker_figure_fig3-causal-dag-pb-v5_20260524T143911",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_figure_fig3-causal-dag-pb-v5_20260524T143911_result.json",
+    "occurrence": 1,
+    "bytes": 2112740,
+    "sha256": "53df47e135380d2f7b000712ecb2e4026669a1c0c5e185267c309dc5bae4330c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2143834,
+                "serialized_sha256": "ef140bee084a5564dbb65e4a535d66d76ade7e8a43a11c5eb373794d5f966815",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig3-causal-dag-pb-v5.md"
+}

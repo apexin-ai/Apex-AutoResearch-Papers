@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ef5d8cb136604253460",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 034 pw600",
+  "task_key": "worker_analysis_exp-034-pw600_20260518T190404",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-034-pw600_20260518T190404_result.json",
+    "occurrence": 1,
+    "bytes": 2096,
+    "sha256": "504c3af9307f5fcc945c8329b37d0bda30e03a5c17b4e004839f38a88f068757"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验仍在运行，尚未退出。** 进程 PID 69808 活跃中，当前服务器时间 03:05:31 CST，已完成 65/600 题。\n\n以下是基于当前 65 题部分结果的分析：\n\n---\n\n## exp-034 中间分析（65/600 题已完成）\n\n### 核心指标\n\n| 指标 | 值 |\n|---|---|\n| SC accuracy | **70.77%** (46/65) |\n| SICA accuracy | **76.92%** (50/65) |\n| **Delta (SICA - SC)** | **+6.15pp** |\n| 题目完成数 | 65/600 (10.8%) |\n| Extraction rate | 98.85% |\n| Contradiction rate | 0.47% (9/65 题有矛盾) |\n| 平均耗时 | ~69s/题 |\n| 已用时间 | ~75 min |\n| 预计剩余 | ~616 min (~10.3h) |\n\n### 按 Depth Breakdown\n\n当前所有 65 题均为 **OWA-D5**（仅此一个 level），无 D0-D4 breakdown。这说明 proofwriter_full.json 数据集可能只包含 D5 难度题目，或题目按 depth 排序，D5 排在前面。\n\n### 对比 Baseline\n\n| 对比 | SC | SICA | Delta |\n|---|---|---|---|\n| sica_expanded_14b PW 子集 | — | — | +0.3pp |\n| **exp-034 (65题中间)** | 70.77% | 76.92% | **+6.15pp** |\n\n当前 delta = +6.15pp **远大于** 预期的 +0.3pp。但需注意：\n1. 仅完成 65/600 题，样本量小，置信区间宽\n2. 全部是 D5 题目，后续题目分布可能不同\n3. +6.15pp 在 n=65 下的标准误约 ±5.3pp (√(p(1-p)/n))，统计显著性待验证\n\n### 异常检查\n\n- 无 ERROR / Traceback / OOM\n- vLLM server 正常运行\n- 偶有 retry（`Retrying request to /chat/completions`），属正常行为\n- 所有请求返回 HTTP 200\n\n### W&B 数据\n\n未在结果文件中发现 W&B run ID。需等实验完成后检查是否有 W&B logging。\n\n### 结论\n\n**状态：RUNNING（非已退出）**\n\n当前中间结果呈现 capability trap 的 **强信号**（SICA > SC +6.15pp），但：\n- 样本量过小，不能下最终结论\n- 全部 D5 题目，可能存在采样偏差\n- 需等 600 题全部跑完再做最终分析\n\n**建议**：等实验完成（预计 ~10h 后），再做完整分析。如需中途检查进度，可随时读取更新后的 results JSON。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-034-pw600.md"
+}

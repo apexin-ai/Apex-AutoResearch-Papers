@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5756b7217a4c9849c42b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment gpt55 extraction pipeline",
+  "task_key": "worker_experiment_gpt55-extraction-pipeline_20260521T173217",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_gpt55-extraction-pipeline_20260521T173217_result.json",
+    "occurrence": 1,
+    "bytes": 1124,
+    "sha256": "c0afc6c4c9c1cb7143c8e6029e41ae550eeccdaa0639d111f2089b2fce3b23fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。完整对比表：\n\n| Metric | gpt-5.5 | gpt-4.1 (ref) |\n|---|---|---|\n| SC accuracy | **84.31%** | 82.84% |\n| SICA accuracy | **84.80%** | 81.37% |\n| Δ (SICA-SC) | **+0.49pp** | -1.47pp |\n| Mean BR | 3.48 | 2.70 |\n| Median BR | 3.49 | 1.53 |\n| Weighted BR | 3.57 | 3.21 |\n| n_br_finite | 4 | 16 |\n| BR=∞ | 27 | 22 |\n| extraction_rate | 100% | 100% |\n| Process-κ | 0.5625 | 0.792 |\n| Answer Fleiss' κ | **0.9581** | 0.862 |\n\n关键发现：\n- gpt-5.5 SC 和 SICA 都优于 gpt-4.1，且 SICA > SC（+0.49pp），说明跨模型约束提取对 gpt-5.5 有正向增益（gpt-4.1 是 -1.47pp）\n- gpt-5.5 Answer Fleiss' κ 极高（0.958 vs 0.862），K=12 traces 间答案一致性非常强\n- Process-κ 显著更低（0.563 vs 0.792），推理路径多样性更高\n- BR 指标偏高（mean 3.48, median 3.49），且 n_br_finite 只有 4（gpt-4.1 有 16），说明 SICA 判错的 case 中几乎都是 BR=∞（27 个），错误时约束权重完全倾向于错误答案\n- JSON 已保存至 `results/exp_d135_frontier_scb/gpt-5.5/cross_model/gpt55_full_metrics.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-gpt55-extraction-pipeline.md"
+}

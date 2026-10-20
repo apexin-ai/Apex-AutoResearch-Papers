@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "becdd8b3cbc02f2b0010",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "eval exp 035 arc60 s2",
+  "task_key": "worker_eval_exp-035-arc60-s2_20260518T155700",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_exp-035-arc60-s2_20260518T155700_result.json",
+    "occurrence": 1,
+    "bytes": 905,
+    "sha256": "32bad3d30f9e6bc55a7d9bbd934d424475f4541ab1040fbe1dfd29d63a3a7528"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "前 2 题都正确（SICA 和 SC 都对），第 3 题进行中。平均 30s/题，ETA ~29 分钟。\n\n实验稳定运行中。总结如下：\n\n**exp-035 状态：RUNNING**\n\n| 项目 | 详情 |\n|------|------|\n| 服务器 | westd-16639, cuda:3 (RTX PRO 6000 Blackwell 98GB) |\n| 模型 | Qwen2.5-14B-Instruct via vLLM 0.21.0, port 8003 |\n| 数据 | ARC-Challenge 60 题 (HF mirror 下载) |\n| 参数 | K=12, T=0.7, T_ext=0.3, max_tokens=2048 |\n| tmux | `exp035` on westd-16639 |\n| 日志 | `results/qwen25_14b_arc60/run.log` |\n| 输出 | `results/qwen25_14b_arc60/results.json` |\n| 速度 | ~30s/题, ETA ~29 min |\n| Registry | exp-035 = RUNNING |\n\n创建的文件：\n- `data/prepare_arc.py` / `data/prepare_arc_v2.py` — ARC 数据准备\n- `run_arc.py` — ARC 实验主脚本（SICA vs SC@K）\n- `scripts/run_exp035_arc60.sh` — 启动脚本（vLLM server + 实验）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-035-arc60-s2.md"
+}

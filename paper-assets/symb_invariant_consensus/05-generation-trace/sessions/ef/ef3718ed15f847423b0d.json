@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef3718ed15f847423b0d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis push a v3 capability gap 8point",
+  "task_key": "worker_analysis_push-a-v3-capability-gap-8point_20260520T224050",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_push-a-v3-capability-gap-8point_20260520T224050_result.json",
+    "occurrence": 1,
+    "bytes": 1107,
+    "sha256": "38d98979dbe1023ee58d3a47b90bfa33adef592da01e1a947f92f8fbb5dba080"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。输出文件在 `/root/symb_invariant_consensus/results/push_a_v3_capability_gap_8point/`：\n\n### 主要结果（Director 版，LLaMA #5 用 w=3 gain=+4.17）\n\n| 指标 | 值 |\n|------|-----|\n| Spearman ρ | 0.970 (p < 0.001) |\n| Pearson r | 0.907 (p = 0.002) |\n| Linear R² | 0.823, slope=0.143 [0.076, 0.209], RMSE=1.34 pp |\n| Sigmoid R² | 0.875, RMSE=1.13 pp (L=15.0, k=0.059, x₀=7.4) |\n| Isotonic R² | 0.983, RMSE=0.42 pp |\n| Break-even (linear) | Δ* ≈ −43.4 pp |\n| Significant points | 4/8 (p<0.05) |\n\n### w=5 consistent 版（LLaMA #5 用 w=5 gain=+1.67）\n\n| 指标 | 值 |\n|------|-----|\n| Spearman ρ | 0.898 (p = 0.002) |\n| Pearson r | 0.885 (p = 0.004) |\n| Linear R² | 0.784, slope=0.146 [0.069, 0.223] |\n| Sigmoid R² | 0.895, RMSE=1.08 pp |\n| Significant points | 3/8 (p<0.05) |\n\nDirector 版 Spearman 更强（0.970 vs 0.898），因为 LLaMA w=3 的 gain=+4.17 更符合单调递增趋势。\n\n输出文件：`results.json`、`capability_gap_scatter_v3.pdf/png`、`latex_stats.txt`（含两版 LaTeX-ready 统计字符串）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-push-a-v3-capability-gap-8point.md"
+}

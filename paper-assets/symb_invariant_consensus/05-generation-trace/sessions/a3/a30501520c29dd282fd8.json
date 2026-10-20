@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a30501520c29dd282fd8",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "agent / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_1.md",
+    "occurrence": 1,
+    "bytes": 3895,
+    "sha256": "396e339c5196f01c12c3ff2434b69def0dbeb8353d3306dd5e2b052990089cf6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_messages\nupdated: '2026-05-15T15:44:00+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 `cuda:0` @ westd-32608（gpu_ids 白名单只有这一张）\n- vLLM max_model_len=16384（32768 会 crash engine core）\n- 模型固定 QwQ-32B，不可替换（D002/D003 明确）\n- submit_training_job 命令必须 `bash -c \"...\"` 包裹（tmux 用 sh 不支持 source/conda activate）\n- AIME v2 实验如果还在跑（PID 121139），不要 kill——Director 明确说继续收集数据\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-32608，账号 root，工作目录 `/root/symb_invariant_consensus/`\n- Python：conda base，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：`/root/autodl-tmp/models/QwQ-32B/Qwen/QwQ-32B/`（ModelScope 嵌套路径）\n- vLLM：port 8000, bfloat16, max_model_len=16384, gpu_memory_utilization=0.90\n- 数据集：`data/math500_subset.json`(50题), `data/aime2024_subset.json`(30题), `data/proofwriter_subset.json`(10题)\n- 活跃进程：sica_aime30_v2 (PID 121139, tmux=sica_aime30_v2)——但可能已完成或 crash，有 Worker 正在检查\n- Cron：`sica_aime30_v2` @5min 监控已注册\n- 准备好的脚本：`run_math50_fixed.sh`, `run_proofwriter.sh`\n\n### 3. 📊 当前状态\n刚派出 Worker `infra:aime-progress-check` 检查 AIME v2 进度（Director 指令），**尚未收到回调**。这是最关键的待处理事项。\n\nRegistry 状态：\n- `sica_aime30_v2` — RUNNING（可能已结束，等 Worker 确认）\n- `sica_aime30_t07` — DONE(killed)：v1 卡死 6.4h\n- `mvp_math50_t07` — DONE(killed)：25-30h 不可接受\n- `sica_temp_diversity` — DONE(negative)：QwQ-32B 零答案分歧\n- `sica_smoke_5q` — DONE(success)：pipeline 功能验证\n\n代码已累计修复 7 个 bug（全在服务器上生效，但 AIME v2 跑的是修复前的旧代码）：\n1. regex `\\\\\\\\s` → `\\\\s`\n2. response_format=json_object\n3. extraction max_tokens 4096→512→1024\n4. max_workers 4→12→6（加 Semaphore）\n5. HTTP timeout=120s + future timeout=180s\n6. Z3 is_bool 类型检查\n7. pipeline fallback 补全 constraints_stats/maxsat_stats + compute_summary 安全访问\n\n### 4. 📋 待办\n- Worker `aime-progress-check` 回调 → 三种分支：\n  - **还在跑** → 汇报进度（题数、耗时、矛盾数），继续等\n  - **正常完成** → 分析结果，crash 题数 ≤5 用修复代码补跑，>5 整体重跑（注册 sica_aime30_v3）\n  - **crash 了** → 报错误，用修复后代码重跑全量 AIME\n- AIME 有信号（≥3 题矛盾 + SICA > SC）→ 立即跑 `run_math50_fixed.sh`（MATH 50 再跑）\n- AIME 无信号 → 准备 FAIL 路径讨论，向 Director 汇报\n- MATH 50 完成后 → 顺序跑 `run_proofwriter.sh`（ProofWriter 10 题 sanity check）\n- **May 19 UTC checkpoint**：MVP 未 pass → 放弃 EMNLP May 25，切 AAAI 2027\n\n### 5. 🎯 战略上下文\n- 核心假设：SICA 跨路径 MAX-SAT 约束共识能检测统计方法遗漏的矛盾 → 提升准确率\n- **关键发现**：QwQ-32B（reasoning model）在 MATH 上近零答案分歧，SICA 退化为 SC。但 AIME smoke test（1题）显示 4 个约束被 MaxSAT 排除 → **AIME 是最后的 sweet spot 机会**\n- 决策链：D001(MVP 方案) → D002(拒绝 CRD 回归 SICA) → D003(三档判定标准) → D004(继续 MVP) → D005(双管齐下) → D006(Kill MVP 修 bug AIME 优先)\n- **易错点**：\n  - 两个 Worker 同时编辑同一文件会冲突——修复后必须派 Worker 验证最终代码状态\n  - extraction max_tokens 需要根据数据集调整（MATH 512 够，AIME 需要 1024）\n  - `run_full_mvp.py --seed` 参数已添加但 AIME v2 没用上（旧代码），后续实验必须加 `--seed 42`\n  - Narrative 预判：如果 AIME 有信号 → \"SICA 价值随问题难度递增，在 frontier model 不确定区间最有效\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-copy-2.md"
+}

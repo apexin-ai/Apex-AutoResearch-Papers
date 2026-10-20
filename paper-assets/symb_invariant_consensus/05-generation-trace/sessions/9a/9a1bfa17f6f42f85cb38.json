@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a1bfa17f6f42f85cb38",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis gpt41 br computation",
+  "task_key": "worker_analysis_gpt41-br-computation_20260521T164951",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_gpt41-br-computation_20260521T164951_result.json",
+    "occurrence": 1,
+    "bytes": 1034,
+    "sha256": "3ccaf30764169125bffafabe8faf309e1320a77e3bbaf22e356512417db73519"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整指标表：\n\n| 指标 | gpt-4.1 | gpt-4o (参照) |\n|---|---|---|\n| SC accuracy | 82.84% (169/204) | 73.91% |\n| SICA accuracy | 81.37% (166/204) | 72.05% |\n| Δ (SICA-SC) | -1.47pp | -1.86pp |\n| Mean BR | **2.697** | 2.94 |\n| Median BR | **1.534** | 1.91 |\n| Weighted BR | **3.2099** | 3.07 |\n| n_br_finite | **16** (38-22) | 25 |\n| BR=∞ | **22** | 20 |\n| extraction_rate | **1.0000** | — |\n| Process-κ | 0.792 | 0.788 |\n| Answer-κ | 0.862 | 0.801 |\n\n要点：\n- Mean/Median BR 比 gpt-4o 低（2.70 vs 2.94, 1.53 vs 1.91），说明 gpt-4.1 在 SICA-wrong 题上的偏差程度更温和\n- Weighted BR 略高（3.21 vs 3.07），因为高权重题目上偏差更大\n- BR=∞ 占比更高（22/38=57.9% vs 20/45=44.4%），gold answer 零权重的情况更多——n_br_finite 只有 16 题\n- extraction_rate = 100%，所有 trace 都成功提取了约束\n\n结果已保存到 `/root/symb_invariant_consensus/results/exp_d135_frontier_scb/gpt-4.1/cross_model/gpt41_full_metrics.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gpt41-br-computation.md"
+}

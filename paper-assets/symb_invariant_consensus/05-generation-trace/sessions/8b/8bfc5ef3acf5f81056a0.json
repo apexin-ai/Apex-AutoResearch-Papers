@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bfc5ef3acf5f81056a0",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra full status check may22",
+  "task_key": "worker_infra_full-status-check-may22_20260521T214027",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_full-status-check-may22_20260521T214027_result.json",
+    "occurrence": 1,
+    "bytes": 1720,
+    "sha256": "c51568b81e35581a6a2773940caf1135ddd7b05262cded6b5e3fb3d8a0f357ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。汇总如下：\n\n---\n\n## 巡检报告 (2026-05-21)\n\n### westd-16639\n\n| 实验 | 进度 | 完成% | 状态 | 备注 |\n|------|------|-------|------|------|\n| **Cross-model SICA 2×2** (PID 414515) | 204/204 × 4 dirs | **100%** | ✅ 完成 | results.json 已生成，含 SICA/McNemar/Fleiss kappa |\n| **Qwen3→Mistral fix** (reextract) | 204/204 | **100%** | ✅ 完成 | 之前 87/152，现已全部完成 |\n| **Gemini cross-model extraction** | 95/95 | **100%** | ✅ 完成 | Cross-model SICA=86.3%, Original=87.4%, SC=87.4% |\n\n**Cross-model SICA 结果概览** (results.json):\n\n| 条件 | Accuracy |\n|------|----------|\n| Mistral SC@12 | 40.2% |\n| Mistral same-SICA | 34.3% |\n| Mistral cross-SICA (by Qwen3) | 37.7% |\n| Qwen3 SC@12 | 86.8% |\n| Qwen3 same-SICA | 79.9% |\n| Qwen3 cross-SICA (by Mistral) | 79.9% |\n\n**GPU 状态**: 3 台 vLLM 服务加载但空闲 (0% util)\n\n| GPU | VRAM 占用 | 用途 |\n|-----|-----------|------|\n| 0 | 84.2/97.9 GB | vLLM Mistral (port 8000) |\n| 1 | 83.6/97.9 GB | vLLM Qwen3-14B (port 8001) |\n| 2 | 0/97.9 GB | 空闲 |\n| 3 | 89.8/97.9 GB | vLLM Mistral (port 8004) |\n\n**异常**: 2 个 python3 进程 (PID 427876/427984) 正在下载 sentence-transformers/all-MiniLM-L6-v2，已运行 ~10h，可能卡住。\n\n---\n\n### westd-25068\n\n| 实验 | 进度 | 状态 |\n|------|------|------|\n| **70B AWQ SICA** (PID 40007) | 之前 61/204 | ❌ **SSH 认证失败，无法检查** |\n| **Gemini SC API** | 之前 85/204 | ❌ **SSH 认证失败，无法检查** |\n\n**westd-25068 完全不可达**（Authentication failed）。可能实例重启导致端口/密钥变更，需去控制台确认 SSH 配置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-full-status-check-may22.md"
+}

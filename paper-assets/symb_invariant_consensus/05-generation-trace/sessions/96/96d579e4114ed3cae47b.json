@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96d579e4114ed3cae47b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix f2 per problem analysis",
+  "task_key": "worker_fix_f2-per-problem-analysis_20260517T134034",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_f2-per-problem-analysis_20260517T134034_result.json",
+    "occurrence": 1,
+    "bytes": 1409,
+    "sha256": "1f6219a0681083797b262bdd19ea01fd3a651f50333f1976bc2f0ae023ac8307"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。CSV 已保存到 `/root/symb_invariant_consensus/analysis/f2_per_problem.csv`，artifact 已注册。\n\n## 统计摘要\n\n| 指标 | 值 |\n|------|-----|\n| **Multi-candidate problems** | **307** (proofwriter: 235, folio: 72) |\n\n### 相关性\n\n| 关系 | Pearson r | p-value | Spearman ρ | p-value |\n|------|-----------|---------|------------|---------|\n| vote_entropy ↔ sica_flipped | 0.2491 | 1.0e-05 | **0.3574** | **1.1e-10** |\n| constraint_count ↔ sica_correct | -0.0770 | 0.179 | -0.0884 | 0.122 |\n\nvote_entropy 与 SICA 翻转之间有显著正相关（Spearman ρ=0.36, p<1e-10），答案分布越分散，SICA 越倾向于改变 SC 的结果。constraint_count 与 sica_correct 无显著相关。\n\n### constraint_exclusion_rate 分布\n\n| 统计量 | 值 |\n|--------|-----|\n| mean | 0.0536 |\n| median | 0.0435 |\n| std | 0.0400 |\n| Q25 / Q75 | 0.0333 / 0.0625 |\n| max | 0.5000 |\n| 有排除的 problems | 305/307 (99.3%) |\n\n### SICA Flip 分析\n\n| 类型 | 数量 |\n|------|------|\n| 总 flips | 31 |\n| 正确翻转 (SC wrong → SICA right) | **16** |\n| 错误翻转 (SC right → SICA wrong) | **14** |\n| 双方都错但答案不同 | 1 |\n| **净收益** | **+2** |\n\nPer-problem 粒度下 n=307，统计效力比 experiment-level 的 n=7 强得多。vote_entropy 是 F2 hero figure 最有力的 x 轴变量（ρ=0.36 高度显著）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-f2-per-problem-analysis.md"
+}

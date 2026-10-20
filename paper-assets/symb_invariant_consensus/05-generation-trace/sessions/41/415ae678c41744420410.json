@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "415ae678c41744420410",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis data availability check",
+  "task_key": "worker_analysis_data-availability-check_20260518T095819",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_data-availability-check_20260518T095819_result.json",
+    "occurrence": 1,
+    "bytes": 1367,
+    "sha256": "187c895f1127966b1b396f9d305bb2be42a94fe812eea0a593592e9625eb8427"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### exp-001 traces 数据: **不可用**\n\n原始数据在已回收的 westd-32608 上，路径为 `results/sica_expanded_14b.json`。westd-25068 的 `results/` 目录为空，无 intermediates 目录，无大 JSON 文件。\n\n本地仅存元数据（非原始 traces）：\n- `artifacts/sica_expanded_14b/data/sica_expanded_14b_config.txt` — 实验配置（K=12, 804题, temp=0.7）\n- `artifacts/sica_expanded_14b/report/exp001_analysis_summary.txt` — 汇总指标（SICA 76.49% vs SC 76.24%）\n- `artifacts/exp-001/data/f2_per_problem_metadata.txt` — 307 条 multi-candidate 问题元数据（指向 westd-32608 上的 CSV）\n\n**结论：原始 K=12 traces 数据已随 westd-32608 回收丢失，需重新生成。**\n\n### 模型可用性（westd-25068）\n\n| 模型 | 状态 |\n|------|------|\n| Qwen2.5-14B-Instruct | **下载中**（权重在 `._____temp/`，8个 shard 已部分下载，总计 ~569MB，完整应 ~28GB） |\n| Qwen2.5-72B-Instruct | 已下载（39GB） |\n| LLaMA-3.1-8B-Instruct | **未下载** |\n| Mistral-7B-Instruct-v0.3 | **未下载** |\n\n### 建议下一步\n\n1. 等 Qwen-14B 下载完成后，重跑 exp-001（K=12, 804题）生成 traces，这次加 `--save-intermediates` 并将结果同步到本地备份\n2. LLaMA-8B 和 Mistral-7B 需要额外下载（cross-model extraction 依赖）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-data-availability-check.md"
+}

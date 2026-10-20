@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd1cd62213ed43a30119",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "agent / loop_5_1778961863.md",
+  "task_key": "loop_5_1778961863",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_5_1778961863.md",
+    "occurrence": 1,
+    "bytes": 3567,
+    "sha256": "acbebbc02f86a79aeb12a91050eeb958678ba9d31817ea73a47b998d4ee8e2f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-16T04:42:44+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 只能用 **cuda:0**（gpu_ids=[0]，westd-32608 只分配了这一张）\n- Qwen2.5-14B-Instruct vLLM **max_model_len=8192**，脚本 max_tokens 不得超过 4096\n- vLLM 独占：实验运行期间禁止其他进程向 port 8000 发请求\n- May 19 UTC checkpoint：模型 pivot MVP 未 pass → 放弃 EMNLP May 25，切 AAAI 2027\n- sica_d012_14b 正在跑（PID 177178），**不要 kill 它**\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-32608, root@, 工作目录 `/root/symb_invariant_consensus`\n- **Python**: `/root/miniconda3/bin/python` (3.12.3), conda base 环境\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **GPU**: 1× NVIDIA RTX PRO 6000 Blackwell 98GB, cuda:0\n- **活跃模型**: Qwen2.5-14B-Instruct, vLLM PID 174291, port 8000, max_model_len=8192, 27.6 GiB\n- **模型路径**: `/root/autodl-tmp/models/Qwen2.5-14B-Instruct`\n- **QwQ-32B 已停用**: `/root/autodl-tmp/models/QwQ-32B/Qwen/QwQ-32B/`\n- **数据**: `data/proofwriter_30.json` (30题) + `data/folio_30.json` (30题)\n- **活跃进程**: sica_d012_14b, PID 177178, tmux session, cuda:0\n- **磁盘**: 根 16GB free, /root/autodl-tmp 232GB free\n\n### 3. 📊 当前状态\n**刚完成**: D016 C0 预检 PASS（Qwen2.5-14B-Instruct 多候选率 46%，远超 20% 阈值），Director 批准全量 D012 评估。\n\n**正在跑**: `sica_d012_14b` (RUNNING) — Qwen2.5-14B-Instruct 全量 D012 评估，ProofWriter-30 + FOLIO-30 合计 60 题，K=12，使用 `run_full_mvp.py`。提交于 04:05 UTC，命令包含 `--math-data /tmp/empty_math.json`（空文件占位，只跑逻辑域）。\n\n**等待中**:\n- sica_d012_14b cron 回调（完成后需分析 D012 四项指标：C0/C1/C2/C3）\n- sica_folio30: QUEUED 状态，基于旧 QwQ-32B 配置，**已被 d012_14b 取代**（14B 实验覆盖 FOLIO-30）\n\n### 4. 📋 待办（条件触发式）\n- **sica_d012_14b 完成 → 立即分析 D012 四项判定**:\n  - C0: 多候选率 ≥ 20%（预检已 46% 大概率 PASS）\n  - C1: 约束提取率 ≥ 50%\n  - C2: 跨路径矛盾检出 ≥ 5 题\n  - C3: SICA accuracy ≥ SC + 2pp 或 paired bootstrap p < 0.1\n  - PASS → 汇报 Director + 开始 paper writing / 扩展实验\n  - FAIL → 按 red-section 产出 Framing 调整提案\n- **D012 PASS + Director 批准论文写作 → Read `paper_framing.md` + `writing_plan.yaml` + experiment-matrix skill**\n- **D012 FAIL（C3 未达标）→ 考虑备选: (a) 增大 K=24; (b) 换 Qwen2.5-72B-AWQ; (c) 改 scoring 算法**\n\n### 5. 🎯 战略上下文\n- **核心结论链**: QwQ-32B 单候选主导 (D010→D015→D016) → 模型 pivot 到 Qwen2.5-14B-Instruct → C0 预检 PASS (46%) → 全量 D012 进行中\n- **SICA 的核心价值命题**: 从多条推理路径提取符号约束 + MaxSAT 共识，需要 trace 多样性作为前置条件。Reasoning model 自一致性太强使 SICA≡SC，非 reasoning model（14B）提供多样性\n- **时间压力**: May 19 checkpoint（距今 3 天），d012_14b 是关键决策点。PASS 后还需论文初稿\n- **易错点**:\n  - 不要把 QwQ-32B 时代的配置（max_tokens=12288, max_model_len=16384）套到 14B 上\n  - sica_folio30 是旧实验（QwQ-32B），不要试图恢复它——14B 的 d012_14b 已覆盖 FOLIO 数据\n  - D012 判定用**合并 60 题**统计，不要分开看 ProofWriter 和 FOLIO 的 pass/fail\n  - `run_full_mvp.py` 的 `--math-data /tmp/empty_math.json` 是有意的（空文件=跳过数学域）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778961863.md"
+}

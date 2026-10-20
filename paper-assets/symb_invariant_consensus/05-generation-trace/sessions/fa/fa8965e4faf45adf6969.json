@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa8965e4faf45adf6969",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 010 mistral v3",
+  "task_key": "worker_analysis_exp-010-mistral-v3_20260517T081853",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-010-mistral-v3_20260517T081853_result.json",
+    "occurrence": 1,
+    "bytes": 1067,
+    "sha256": "837c1e8fbe9b053d9e5e9ec3ccafb2cf3d38220972d9f5aed3e28444100ebb8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-010-mistral-v3 分析完成\n\n### 核心数据\n\n| | SICA | SC | Delta |\n|---|---|---|---|\n| Overall (n=60) | 48.3% | 48.3% | **0.0pp** |\n| ProofWriter (n=30) | 40.0% | 40.0% | 0.0pp |\n| FOLIO (n=30) | 56.7% | 56.7% | 0.0pp |\n\n4 个 discordant pairs 完美抵消（SICA wins 2, SC wins 2）。基础准确率 48.3% 远高于随机基线 33%，模型能力足够支撑有意义对比。\n\n### 结论: **success**\n\nHypothesis confirmed — Mistral-7B 完美复现 SICA≈SC pattern，capability trap 跨模型家族泛化成立。\n\n### 关键洞察\n\n与 LLaMA-3.1-8B (+6.67pp) 的矛盾值得注意：同为 7B 级弱模型，Mistral 的约束高度一致（MaxSAT sat ratio 0.948）但无判别性，而 LLaMA 的约束恰好携带了 answer-discriminative 信号。这说明 **operating regime 不是简单的模型规模函数**，SICA 增益的关键条件是约束的判别性质量，而非模型弱就一定受益。\n\nRegistry 已更新 (status=DONE, conclusion=success, metrics 完整)，memory.md 已追加完整分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-010-mistral-v3.md"
+}

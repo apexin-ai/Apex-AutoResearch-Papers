@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5196b94e450a34837118",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "verify model downloads",
+  "task_key": "worker_verify_model-downloads_20260516T112704",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_model-downloads_20260516T112704_result.json",
+    "occurrence": 1,
+    "bytes": 1336,
+    "sha256": "78c6104260a988148ba41b80186b513636723cc6fa452bba4938dc824881913c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n| 模型 | 状态 | 详情 |\n|------|------|------|\n| **DeepSeek-R1-Distill-Llama-8B** | ✅ COMPLETE | 2 shards (15GB), tokenizer OK (vocab=128000) |\n| **LLaMA-3.1-8B-Instruct** | ✅ COMPLETE | 4 shards (14.9GB), tokenizer OK (vocab=128000) |\n| **Mistral-7B-Instruct-v0.3** | ⏳ INCOMPLETE | safetensors 在 `._____temp/` 中，正在下载 (~78%, ETA ~40min) |\n\n### 已执行修复\n\n1. **杀死重复下载进程** — 之前有 3 个 Mistral + 2 个 LLaMA 下载进程同时跑，互相竞争带宽（~400KB/s）。已 kill 5 个重复进程，保留 PID 197995 继续 Mistral 下载。\n2. **清理 LLaMA temp 残留** — 删除了 `._____temp/` 下 3.3GB 的无用临时文件。\n\n### vLLM 脚本路径检查\n\n- `start_vllm_mistral_7b.sh` (port 8001): 路径 `…/mistralai/Mistral-7B-Instruct-v0___3` ✓（下载完成后 ModelScope 会自动从 temp 移入）\n- `start_vllm_llama_8b.sh` (port 8002): 路径 `…/LLM-Research/Meta-Llama-3___1-8B-Instruct` ✓\n- `start_vllm_deepseek_r1_8b.sh` (port 8003): 路径 `/root/autodl-tmp/models/DeepSeek-R1-Distill-Llama-8B` ✓\n\n### 待办\n\n- Mistral 下载完成后验证：safetensors 是否从 `._____temp` 移至最终路径，tokenizer 是否可加载。预计 ~40 分钟后完成（去掉竞争进程后速度应提升）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-model-downloads.md"
+}

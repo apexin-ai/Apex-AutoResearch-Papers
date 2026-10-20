@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "67293164d35ae4c2c603",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment r deberta mirror download",
+  "task_key": "worker_experiment_r-deberta-mirror-download_20260520T103156",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_r-deberta-mirror-download_20260520T103156.log",
+    "occurrence": 1,
+    "bytes": 551214,
+    "sha256": "bcbf574b894a5e29f18189ca85a996c0ef7e729a09322e94fb6b80bf4a3ab9f2"
+  },
+  "statistics": {
+    "messages": 291,
+    "user_turns": 0,
+    "tool_calls": 100,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 87,
+      "tool_call": 100,
+      "tool_result": 100,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 291,
+      "chunks": [
+        {
+          "path": "67293164d35ae4c2c603-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "67293164d35ae4c2c603-part-0002.json",
+          "message_count": 111
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-r-deberta-mirror-download.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4de55e226828a3edaa06",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ssh check exp004 results",
+  "task_key": "worker_ssh_check-exp004-results_20260517T174319",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check-exp004-results_20260517T174319_result.json",
+    "occurrence": 1,
+    "bytes": 1273,
+    "sha256": "229b8139f60595ea8933605b4dd4221aeb37c2794ba84c38be5f7c43194e6b3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-004 Qwen-7B 实验结果\n\n**状态**: 已完成（tmux session 仍在，结果文件已生成）\n\n| Metric | Value |\n|---|---|\n| **n** | 56 (summary) / 57 (results array) |\n| **k** | 12 |\n| **SICA accuracy** | 69.64% (39/56) |\n| **SC accuracy** | 69.64% (39/56) |\n| **delta_pp** | 0.00% |\n| **multi_candidate_rate (C0)** | **42.11%** (24/57) |\n| **extraction_rate** | 93.75% |\n| **answer_extraction_rate** | 100% |\n| **contradiction_rate** | 2.69% |\n| **discordant SICA wins** | 2 |\n| **discordant SC wins** | 2 |\n| **mcnemar_p** | 1.0000 (无显著差异) |\n| **wall_time** | 1751.7s (~29 min) |\n| **truncated_traces** | 0 |\n\n### Per-domain breakdown\n\n| Domain | SICA | SC | n |\n|---|---|---|---|\n| **ProofWriter (D5)** | 60.00% | 63.33% | 30 |\n| **FOLIO** | 80.77% | 76.92% | 26 |\n\n### 关键发现\n\n**C0 = 42.11%** — Qwen-7B 在 42% 的问题上产生了多候选答案，说明 within-family scaling 有实质性分歧空间。但 SICA 和 SC 在整体准确率上完全持平（69.64% vs 69.64%），discordant pairs 仅 4 对且对半分（2:2），McNemar p=1.0。\n\nFOLIO 上 SICA 略优于 SC（80.77% vs 76.92%），ProofWriter D5 上 SC 略优（63.33% vs 60.00%），但样本量太小无统计显著性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-exp004-results.md"
+}

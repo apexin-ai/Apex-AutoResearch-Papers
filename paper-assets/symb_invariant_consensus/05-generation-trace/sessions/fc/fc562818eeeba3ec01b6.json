@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc562818eeeba3ec01b6",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "launch 30973 qwen seed789 cuda0",
+  "task_key": "worker_launch_30973-qwen-seed789-cuda0_20260523T060715",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_launch_30973-qwen-seed789-cuda0_20260523T060715_result.json",
+    "occurrence": 1,
+    "bytes": 398,
+    "sha256": "3562116ff90fb88fe733754fb27a6fe99a1dc7f964606a6cf2b9a200f0152b66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已正常运行，正在处理 600 条 proofwriter 数据。\n\n**产出汇总：**\n\n| 项目 | 值 |\n|------|-----|\n| vLLM PID | 3227 |\n| 实验 PID | 6049 |\n| 脚本 | `run_cross_dataset_replication.py` |\n| 端口 | 8000 |\n| tmux session | `exp-multi-seed-qwen25-pw-seed789-v3` |\n| 日志 | `~/runs/symb_invariant_consensus/exp-multi-seed-qwen25-pw-seed789-v3.log` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-30973-qwen-seed789-cuda0.md"
+}

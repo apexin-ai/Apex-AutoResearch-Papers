@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "33f21fd74ef9911e6d24",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment direction b deepconf",
+  "task_key": "worker_experiment_direction-b-deepconf_20260520T074306",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_direction-b-deepconf_20260520T074306.log",
+    "occurrence": 1,
+    "bytes": 773767,
+    "sha256": "16c13311a87be1280eaf67ab643193bf68bb7974a94fd766a6fe3f32ef61a39a"
+  },
+  "statistics": {
+    "messages": 308,
+    "user_turns": 0,
+    "tool_calls": 112,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 4,
+      "assistant": 77,
+      "tool_call": 112,
+      "tool_result": 112,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 308,
+      "chunks": [
+        {
+          "path": "33f21fd74ef9911e6d24-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "33f21fd74ef9911e6d24-part-0002.json",
+          "message_count": 128
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-direction-b-deepconf.md"
+}

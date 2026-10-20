@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29be35d75ffb99fb8eb9",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment llama pw multiseed cuda3",
+  "task_key": "worker_experiment_llama-pw-multiseed-cuda3_20260522T132013",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_llama-pw-multiseed-cuda3_20260522T132013_result.json",
+    "occurrence": 1,
+    "bytes": 655,
+    "sha256": "c0a12ae2f06396e45d12137c3e6252f617807ed130b74eba7c96a3e56d66e1c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**产出汇总：**\n\n| 项目 | 值 |\n|------|-----|\n| 模型路径 | `/root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct` |\n| vLLM PID | 613151 (worker 613156), port 8004, cuda:3 |\n| Sanity check | PASSED (回复 \"4\") |\n| 脚本路径 | `/root/symb_invariant_consensus/scripts/multiseed_llama8b_pw_cuda3.sh` |\n| GPU 确认 | cuda:3 已占用 88259 MiB / 97887 MiB, utilization 0%（待实验启动） |\n\n脚本使用 seeds 42/123/456，参数与现有 Qwen25 PW 脚本一致（`run_full_mvp.py`, k=12, temp=0.7, max-tokens=2048）。脚本已创建但未启动，等 Agent 用 `submit_training_job` 提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-llama-pw-multiseed-cuda3.md"
+}

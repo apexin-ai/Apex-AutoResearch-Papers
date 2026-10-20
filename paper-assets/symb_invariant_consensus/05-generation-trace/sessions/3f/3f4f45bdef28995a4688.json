@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f4f45bdef28995a4688",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code strategyqa logica adaptation",
+  "task_key": "worker_code_strategyqa-logica-adaptation_20260518T171744",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_strategyqa-logica-adaptation_20260518T171744_result.json",
+    "occurrence": 1,
+    "bytes": 1823,
+    "sha256": "401ce69896b6fc839ac65860d6ee3a5fb1e23182e939c5d85c09a999bd634e00"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All verifications pass. Here's a summary of all changes:\n\n### Part 1: StrategyQA Extraction Prompt Fix\n\n**`sica/constraint_extractor.py`**:\n- Added `COMMONSENSE_EXTRACTION_PROMPT` (line 95) with claim/causal/conclusion constraint types for Yes/No commonsense reasoning\n- Added `_COMMONSENSE_TYPES = {\"claim\", \"causal\", \"conclusion\"}` (line 133)\n- Updated `_build_prompt()` to route `domain == \"commonsense\"` to the new prompt\n- Updated `_parse_response()` valid_types to accept commonsense constraint types\n\n**`sica/trace_generator.py`**:\n- Added `COMMONSENSE_SOLVE_PROMPT` (Yes/No format with `\\boxed{Yes}`/`\\boxed{No}`)\n- Added `MULTICHOICE_SOLVE_PROMPT` (for 4-choice with `\\boxed{A}`)\n- Added `extract_yesno_answer()` and `extract_choice_answer()` helper functions\n- Added `domain` property to `TraceGenerator` base class\n- Updated `VLLMGenerator` and `APIGenerator` to use domain-aware prompt selection and answer extraction\n\n**`sica/pipeline.py`**: Added `\"strategyqa\"` to datasets that get logic answer normalization (Yes/No -> True/False)\n\n**`run_full_mvp.py`**: \n- Added `--strategyqa-data` argument and loading logic\n- Updated domain classification: `strategyqa` -> `commonsense`, `logiqa` -> `logic`+`multichoice`\n\n### Part 2: LogiQA 2.0\n\n- **`data/prepare_logiqa.py`**: Downloads from GitHub, converts to pipeline format\n- **`data/logiqa_200.json`**: 200 test problems ready\n- **`run_logiqa.py`**: Full run script with SICA vs SC, resume support, checkpointing\n- **`scripts/run_logiqa200.sh`**: Shell launch script (vLLM startup + pipeline)\n\n### Part 3: Dry-run\n\n- StrategyQA: prompt generates correctly (commonsense types, no math equations), answer extractors pass all tests\n- LogiQA: full mock pipeline runs end-to-end on 2 problems without errors"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-strategyqa-logica-adaptation.md"
+}

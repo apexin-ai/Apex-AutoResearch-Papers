@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49d400fb8ee78cb825f1",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 014 deepseek r1 7b",
+  "task_key": "worker_analysis_exp-014-deepseek-r1-7b_20260517T133544",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-014-deepseek-r1-7b_20260517T133544_result.json",
+    "occurrence": 1,
+    "bytes": 927,
+    "sha256": "95a1ac2104ea9c3b3d61b738290294c75113da1feead3caaf9b4f450b5d4519f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成，报告写入 `artifacts/exp-014/report/exp014_analysis.md`。\n\n**核心发现：**\n\n| 指标 | 值 |\n|------|-----|\n| SICA acc | 68.3% (41/60) |\n| SC acc | 71.7% (43/60) |\n| Gap | **-3.4pp** (SICA < SC) |\n| C0 | **58.3%** (35/60 non-unanimous) |\n| McNemar p | 0.4795 (不显著) |\n| Contradiction rate | 3.7% |\n\n**Hypothesis 判定：FALSIFIED。**\n\nC0 = 58.3%，远高于预期的 < 5%。7B distill 模型并未复现 QwQ-32B 的极端确定性行为，不能作为第二个 capability trap 数据点。\n\n关键差异：QwQ-32B (32B) C0=2.6%，diversity 几乎为零；DeepSeek-R1-7B (7B) 保留了大量 diversity，但 SICA 仍然输给 SC（0 次 rescue，2 次 flip wrong）。这进一步证实了跨所有实验的一致结论：constraint extraction 产出的是 domain facts 而非 answer-discriminative constraints，这才是根本瓶颈，与 diversity 水平无关。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-014-deepseek-r1-7b.md"
+}

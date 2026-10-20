@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d363b4bcb26523d24a17",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "agent / loop_7_1779007269.md",
+  "task_key": "loop_7_1779007269",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_7_1779007269.md",
+    "occurrence": 1,
+    "bytes": 3381,
+    "sha256": "966db2e91488e7817f4757c34d17e5e3e1e0daaf977726cb5ff259ad2d735fe4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-17T08:30:14+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-32608:cuda:0（gpu_ids=[0]，唯一分配）\n- 账号 root，submit_training_job 命令必须自带 `source /root/miniconda3/bin/activate`（服务器无 .venv）\n- EXIT_CODE=129 在此服务器是 SIGHUP 假失败（进程完成后收到），不是真失败——判断时看日志末尾是否有 DONE sentinel\n- exp-017-strategyqa-v2 的 bug 教训：答案提取器必须匹配目标数据集的 label format（StrategyQA 用 Yes/No 不是 True/False）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-32608，工作目录 /root/symb_invariant_consensus/\n- Python：/root/miniconda3/bin/python（conda base）\n- 模型：/root/autodl-tmp/models/Qwen2.5-14B-Instruct（27.6 GiB vLLM）\n- LLaMA 模型权重损坏（shard 2 不完整 3.7G vs 4.9G），Mistral-7B 下载历史失败 3 次（ModelScope）\n- 数据：/root/symb_invariant_consensus/data/（proofwriter_full 600题, folio_full 204题, strategyqa 60题）\n- 结果：/root/symb_invariant_consensus/results/\n- 日志：~/runs/symb_invariant_consensus/\n- 代码 commit: 97aeaa572a6b6571b4bfea9c6ec6bcf915780425\n- 无活跃 cron（reconcile 返回 0）\n\n### 3. 📊 当前状态\n刚收到 exp-017-strategyqa-v3 完成回调（进程正常退出，W&B 可用）。已派 Worker `worker_analysis_exp-017-strategyqa-v3_20260517T042717` 去 SSH 读日志分析结果，尚未回调。\n\nRegistry 状态：\n- exp-017-strategyqa-v3: ANALYZING（等 Worker 分析后推 DONE）\n- exp-010-mistral-v2: QUEUED（Mistral 模型需重新下载）\n- exp-018-arc: QUEUED（ARC-Challenge 跨域验证，等 GPU）\n- smoke-test-5q: PREPARING（废弃，可忽略）\n- GPU cuda:0 当前空闲\n\n### 4. 📋 待办\n- Worker 回调 exp-017-strategyqa-v3 分析结果 → 根据 conclusion 更新 registry + report.md + 汇报 Director\n- 若 conclusion=success（SICA≈SC）→ 强化 C2 claim（capability trap 跨域泛化），启动 exp-018-arc（下一个跨域数据点）\n- 若 conclusion=negative（SICA>SC 显著）→ 需向 Director 汇报异常，可能需 framing 调整\n- exp-010-mistral-v2 阻塞于模型下载 → 需派 Worker 用 HF 直下 Mistral-7B-Instruct-v0.3（之前 ModelScope 3 次失败）\n- exp-018-arc 就绪后可直接提交（脚本应已存在，参照 exp-017 模式）\n\n### 5. 🎯 战略上下文\n- **核心方向已 pivot**：D025 从 \"SICA 方法论文\" pivot 到 \"Capability Trap 分析论文\"——论文故事是揭示为什么 symbolic consensus 不能 beat voting\n- **D030 进一步 pivot**：从 Analysis Paper 转向 Methods Paper——利用诊断数据设计改进方法\n- **关键数据锚**：sica_expanded_14b N=804 → SICA 76.49% vs SC 76.24% (+0.25pp, n.s.)；K-ablation 全 K SICA≤SC；exp-013 MaxSAT≈count-only≈random-weight\n- **三个 Claims**：C1(mechanism vacuous, 已有 exp-013+exp-016 支持)、C2(operating regime boundary, 需 cross-family/cross-domain 数据)、C3(C0 predictor, 需 multi-model)\n- **易错点**：不要把 D012 小样本 +3.3pp 当 signal——N=804 确认这是噪声。FOLIO sub-claim 已 dead (0pp)。exp-005 确认 QwQ-32B C0=2.6% 支持 C2 但该模型已不再用于新实验。\n- **模型问题**：LLaMA-3.1-8B 权重损坏未修复，Mistral-7B 未成功下载——cross-family 验证 (C2) 被阻塞\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1779007269.md"
+}

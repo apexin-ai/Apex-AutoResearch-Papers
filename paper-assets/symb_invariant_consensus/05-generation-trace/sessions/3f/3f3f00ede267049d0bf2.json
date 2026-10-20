@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f3f00ede267049d0bf2",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "verify exp 075b 076b logs",
+  "task_key": "worker_verify_exp-075b-076b-logs_20260519T181150",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_exp-075b-076b-logs_20260519T181150_result.json",
+    "occurrence": 1,
+    "bytes": 640,
+    "sha256": "bb663fc5010447675514309101937904d791d664f7eef9942d1563aa1a4d4736"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验状态汇总：\n\n### exp-075b (Contrastive, cuda:2, port 8002)\n- **状态**: 正常运行中，无报错\n- **进度**: **22/204** (正在处理 folio_22)，ETA ~172 分钟\n- **归一化修复**: 已生效 — 中间结果包含 `normalized_pro`，无 `pro_n_unique`\n- **KeyError**: run.log 中无任何 KeyError\n- **速度**: ~117s/题\n\n### exp-076 (Debate, cuda:3, port 8003)\n- **状态**: 正常运行中，无报错\n- **进度**: **43/204** (正在处理 folio_43)，ETA ~149 分钟\n- **速度**: ~104s/题\n- **中间结果**: 43 个 JSON 文件已保存\n\n两个实验均正常，无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-exp-075b-076b-logs.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e3880ffa43ac57fb653",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code core pipeline",
+  "task_key": "worker_code_core-pipeline_20260515T085018",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_core-pipeline_20260515T085018_result.json",
+    "occurrence": 1,
+    "bytes": 1025,
+    "sha256": "d41fe0643d154b8de63449b37ccdff3a458b30eaad6a0080dcdffd1b52b224d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。写入的文件清单：\n\n| 文件 | 功能 |\n|------|------|\n| `requirements.txt` | 依赖声明 |\n| `sica/__init__.py` | 包标记 |\n| `sica/constraint_extractor.py` | LLM 约束提取（含 MockLLM、ExtractionStats） |\n| `sica/z3_maxsat.py` | Z3 MAX-SAT 求解（ConstraintDeduplicator + MaxSATSolver + parse/equivalence 工具函数） |\n| `sica/scorer.py` | 不变量共识打分 |\n| `sica/trace_generator.py` | Trace 生成（vLLM/API/Mock 三模式） |\n| `sica/pipeline.py` | 端到端编排 |\n| `baselines/__init__.py` | 包标记 |\n| `baselines/self_consistency.py` | SC@K majority vote baseline |\n| `run_mvp.py` | MVP 实验入口（支持 --mode/--k/--output） |\n\nMock 模式下 5 题 pipeline 完整跑通，extraction rate 100%，结果已保存至 `results/mvp_results.json`。accuracy 20% 是预期的——MockLLM 对所有题返回相同的 mock 约束和答案（x=7），只有第一题答案匹配。接入真实 LLM 后会产出有意义的结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-core-pipeline.md"
+}

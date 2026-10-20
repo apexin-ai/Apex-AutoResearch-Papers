@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3ce13fdb9bb89ec7265",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "monitor deberta finetune",
+  "task_key": "worker_monitor_deberta-finetune_20260522T174529",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_monitor_deberta-finetune_20260522T174529_result.json",
+    "occurrence": 1,
+    "bytes": 923,
+    "sha256": "09526d28cd5c85bde1c8606684dc9820f72b5dcb03abb1268300146bd6b862d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态报告\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | PID 650586 存活，已运行 22h14m（含数据加载/tokenization时间） |\n| **当前进度** | Step 4312/21820（19.8%），epoch 1 即将完成（4312/4364 = **98.8%**） |\n| **训练速度** | ~3.5 it/s |\n| **Eval 结果** | 尚无——epoch 1 还差 ~52 步完成，eval 即将触发 |\n| **Checkpoints** | 输出目录 `/root/autodl-tmp/symb_invariant_consensus/models/deberta-large-pw-owa/` 已创建但为空，等 epoch 1 eval 完成后保存 |\n| **预估剩余时间** | (21820-4312) / 3.5 ≈ **1h23m**（不含 eval 时间） |\n| **磁盘** | 数据盘 350G 用了 220G，剩余 131G，充足 |\n\n**关键信息**：每 epoch 4364 步，当前 4312 步，再跑约 15 秒就完成 epoch 1 并触发第一次 eval。5 个 epoch 总计约 1.5h 训练时间（不含 eval），预计约 1h23m 后全部完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-deberta-finetune.md"
+}

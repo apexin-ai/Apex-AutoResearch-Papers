@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97378f560b27fe4a31d9",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code fix script compat 25068",
+  "task_key": "worker_code_fix-script-compat-25068_20260518T080607",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix-script-compat-25068_20260518T080607_result.json",
+    "occurrence": 1,
+    "bytes": 1534,
+    "sha256": "81eec5c72a77ec55126992ebd61c22c8c936cc2ef8089a62dc253ba3a2c12eee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。总结：\n\n### 修改的文件\n**`/root/symb_invariant_consensus/run_full_mvp.py`** (服务器 westd-25068)\n\n### 新增的 5 个 argparse 参数\n| 参数 | 类型 | 默认值 | 作用 |\n|------|------|--------|------|\n| `--temperature` | float | 0.7 | 传递给 VLLMGenerator/APIGenerator |\n| `--max-tokens` | int | 4096 | 传递给 VLLMGenerator/APIGenerator |\n| `--seed` | int | None | 设置 Python random seed |\n| `--folio-data` | str | None | FOLIO 数据集路径 |\n| `--save-intermediates` | flag | False | 保存每题的 sica_result 到 intermediates/ |\n\n### 其他修改\n- `load_all_problems()` 增加可选 `folio_path` 参数，加载 FOLIO 数据并标记 `dataset=\"folio\"`\n- `build_generator()` 将 temperature/max_tokens 从 args 传递给生成器（之前硬编码为默认值）\n- **新增 per-problem domain 切换**：proofwriter/folio 使用 `domain=\"logic\"`（逻辑约束提取 prompt），math 使用 `domain=\"math\"`\n\n### dry-run 验证结果\n- `--help` 输出包含全部新参数\n- 两个实验脚本 (`run_exp024_llama70b.sh`, `run_exp025_qwen72b.sh`) 语法检查通过\n- mock 模式端到端运行：成功加载 0 MATH + 600 ProofWriter + 204 FOLIO = 804 题\n- intermediates 目录正常创建\n\n### 数据加载方式\n实验脚本用 `--math-data data/empty.json`（空数组）跳过 MATH，`--pw-data data/proofwriter_full.json` 加载 600 题，`--folio-data data/folio_full.json` 加载 204 题，合计 804 题在一次运行中处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-script-compat-25068.md"
+}

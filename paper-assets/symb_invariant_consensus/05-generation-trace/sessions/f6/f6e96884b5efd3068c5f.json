@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6e96884b5efd3068c5f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "research oracle mistral prep",
+  "task_key": "worker_research_oracle-mistral-prep_20260520T132540",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_oracle-mistral-prep_20260520T132540_result.json",
+    "occurrence": 1,
+    "bytes": 2017,
+    "sha256": "abab118558507435da016402f3b8b0763ea972fa74af8a728a0395b495790c01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。以下是方案：\n\n## 调研结果\n\n### 已有 oracle 脚本\n`scripts/run_exp031_oracle_folio_regen.py` — Qwen2.5-14B 的 gold FOL oracle SICA 实验，结果：\n- Oracle SICA = **89.71%**, SC = 75.49%, delta = **+14.22pp** (p < 1e-7)\n- CPU-only (Z3 solver)，用时 0.7s\n\n### Mistral-7B traces\n`results/exp033_mistral_7b_folio204/intermediates/folio_{0..203}.json` — 204 个 trace 文件，格式与 Qwen 完全相同：\n```json\n{\n  \"problem\": {\"id\": \"folio_0\", \"premises_fol\": [...], \"conclusion_fol\": \"...\", \"answer\": \"...\"},\n  \"sica_result\": {\"answer\": \"...\", \"traces\": [{...}, ...], \"scores\": {...}}\n}\n```\nGold FOL 已嵌入每个 trace 的 problem 字段。\n\n### FOLIO gold data\n`data/folio_full.json` — 204 条，字段 `premises_fol` / `conclusion_fol` / `answer`。\n\n### exp-050 ≠ 本任务\nexp-050 是 ICL oracle（给 extraction prompt 加 few-shot gold 例子改善约束提取），不是 gold FOL 替换 oracle。且已失败。\n\n---\n\n## 实验方案\n\n**直接复用 exp-031 脚本**，仅改 3 处硬编码：\n\n| 参数 | 原值 (Qwen) | 新值 (Mistral) |\n|------|------------|---------------|\n| `traces_dir` | `results/folio_204_14b/intermediates` | `results/exp033_mistral_7b_folio204/intermediates` |\n| `output_dir` | `results/oracle_folio_regen` | `results/oracle_folio_mistral7b` |\n| `model` 元数据 | `Qwen2.5-14B-Instruct` | `Mistral-7B-Instruct-v0.3` |\n\n- **脚本路径**：复制为 `scripts/run_exp089_oracle_folio_mistral7b.py`（新 exp 编号）\n- **运行命令**：`cd /root/symb_invariant_consensus && python3 scripts/run_exp089_oracle_folio_mistral7b.py`\n- **运行服务器**：westd-25068（Mistral traces 在这，CPU-only 不需 GPU）\n- **预计耗时**：< 2 秒\n- **预期输出**：`results/oracle_folio_mistral7b/exp089_results.json` + `exp089_summary.json`，包含 Mistral-7B oracle SICA accuracy / SC / delta / McNemar p-value\n\n需要现在写脚本部署吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-oracle-mistral-prep.md"
+}

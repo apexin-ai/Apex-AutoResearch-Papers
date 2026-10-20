@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "411416960116394e89b2",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment d134 cil",
+  "task_key": "worker_experiment_d134-cil_20260521T084126",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_d134-cil_20260521T084126_result.json",
+    "occurrence": 1,
+    "bytes": 1632,
+    "sha256": "fd236bad98e0a5bc614460965309fe8cc1f961bd9e5bf92157759fc270a10f93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CIL computation complete. Summary of results:\n\n**8 pairs computed, 2 pairs missing (LLaMA-8B and Qwen3-14B data on westd-16639).**\n\n| Generator | Verifier | Dataset | CIL (bits) | Combo Gain w3 |\n|---|---|---|---|---|\n| Mistral-7B | DeBERTa-MNLI | PW-600 | **+1.67** | +6.67 pp |\n| Mistral-7B | BART-MNLI | PW-600 | **+1.86** | +5.17 pp |\n| Mistral-7B | RoBERTa-MNLI | PW-600 | **+1.42** | +4.17 pp |\n| Qwen2.5-14B | DeBERTa-MNLI | PW-600 | **-0.08** | +0.83 pp |\n| Mistral-7B | DeBERTa-MNLI | FOLIO-204 | **-0.47** | +4.41 pp |\n| Mistral-7B | SICA | FOLIO-204 | **-2.93** | +4.90 pp |\n| Qwen2.5-14B | SICA | PW-600 | **-3.53** | +0.50 pp |\n| Mistral-7B | SICA | PW-600 | **-4.61** | -2.83 pp |\n\n**Correlation: Spearman ρ = 0.762 (p = 0.028), Pearson r = 0.734 (p = 0.038)** — statistically significant.\n\nKey findings:\n- **Cross-architecture NLI verifiers have positive CIL (+1.4 to +1.9)** when paired with weak Mistral on PW-600 — when Mistral is wrong, DeBERTa is correct 75% of the time (vs only 24% when Mistral is right). This is the complementary signal that drives combo gain.\n- **SICA has strongly negative CIL (-2.9 to -4.6)** — expected, since SICA is built from the same generator traces, so errors are highly correlated.\n- **As generator gets stronger (Qwen2.5-14B), CIL drops to ~0** — DeBERTa's advantage over the generator vanishes, explaining why combo gain shrinks.\n- The FOLIO-204 anomaly: negative CIL (-0.47) but positive combo gain (+4.41 pp) — likely a small-sample effect (n=93 wrong) or the weighted voting mechanism recovers differently than raw CIL predicts."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-d134-cil.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9b66365ed3569f7e16b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "research missing citations",
+  "task_key": "worker_research_missing-citations_20260521T072409",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_missing-citations_20260521T072409_result.json",
+    "occurrence": 1,
+    "bytes": 725,
+    "sha256": "109a7568ed25f17c71b3c5e04b3bf4ac3161d3b159bebd357998f0eddda90d97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 BibTeX entries written and registered:\n\n| Key | Paper | Venue |\n|-----|-------|-------|\n| `wan2025unveiling` | Unveiling Confirmation Bias in Chain-of-Thought Reasoning | ACL 2025 Findings |\n| `jhaveri2026failing` | Failing to Falsify: Evaluating and Mitigating Confirmation Bias in Language Models | arXiv 2026 |\n| `miya2025eidoku` | Eidoku: A Neuro-Symbolic Verification Gate for LLM Reasoning via Structural Constraint Satisfaction | arXiv 2025 |\n| `yao2023tree` | Tree of Thoughts: Deliberate Problem Solving with Large Language Models | NeurIPS 2023 |\n\nFiles: `artifacts/missing_citations_r10.bib` and `artifacts/missing_citations_r10_summary.txt`. Artifact registered as `art_20260521_57fabb`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-missing-citations.md"
+}

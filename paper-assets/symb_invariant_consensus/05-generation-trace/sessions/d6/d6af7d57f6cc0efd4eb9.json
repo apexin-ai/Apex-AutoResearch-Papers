@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6af7d57f6cc0efd4eb9",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis cil computation",
+  "task_key": "worker_analysis_cil-computation_20260523T010151",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_cil-computation_20260523T010151_result.json",
+    "occurrence": 1,
+    "bytes": 907,
+    "sha256": "38ad8de179a190a114ca52ef2b079afebab1df42b8377b0bae27b62e4cccf584"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**CIL (Task 1)**:\n- Self CIL 均值 0.028 bits（近零），Cross-ZS 均值 0.108 bits（3.9×），Cross-FT 均值 1.177 bits（42.5×）\n- 层级清晰：Self ≪ Cross-ZS < Cross-FT，架构独立性是信息增益的必要条件\n- Self CIL 技术上 > 0（MI 非负），但量级远小于跨架构条件，且 5/6 自提取条件 SICA 不优于 SC\n\n**Q5 (BR on SC-correct)**:\n- 6/6 条件 BR_correct > 1（范围 1.84–18.00）\n- 4/6 条件 BR_correct > BR_wrong：SC 正确时约束偏差更强（推理路径连贯，约束更一致地确认多数答案）\n\n**Q6 (raw p < 0.05)**:\n- 12/36 条件显著，全部 Δ > 0\n- 共同特征：11/12 涉及 Mistral-7B（最弱生成器），12/12 在 PW-600 上，w3/w5 占 10/12\n- 显著性集中于生成器-验证器能力差距最大的地方\n\n报告已写入 `artifacts/cil_analysis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cil-computation.md"
+}

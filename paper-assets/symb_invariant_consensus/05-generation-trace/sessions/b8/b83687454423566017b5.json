@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b83687454423566017b5",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment dir b psl maxsat",
+  "task_key": "worker_experiment_dir-b-psl-maxsat_20260520T152648",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_dir-b-psl-maxsat_20260520T152648_result.json",
+    "occurrence": 1,
+    "bytes": 2090,
+    "sha256": "3bdd4a75ebe302e5079245b31fff37568c9c3cd9ca30ae66ce9ae6eed6fb2675"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果报告\n\n### 30 题 Pilot\n\n| Strategy | Correct | Acc | Δ vs baseline |\n|---|---|---|---|\n| SC | 16/30 | 53.3% | +3.3% |\n| SICA stored | 16/30 | 53.3% | +3.3% |\n| **baseline** (re-dedup) | 15/30 | 50.0% | — |\n| quadratic (w²) | 16/30 | 53.3% | **+3.3%** |\n| thresh_3 | 16/30 | 53.3% | **+3.3%** |\n| thresh_6 | 16/30 | 53.3% | **+3.3%** |\n| answer_aligned | 16/30 | 53.3% | **+3.3%** |\n\n### 全 204 题扩展\n\n| Strategy | Correct | Acc | Δ vs baseline |\n|---|---|---|---|\n| SC | 112/204 | 54.9% | 0.0% |\n| SICA stored | 121/204 | 59.3% | +4.4% |\n| **baseline** (re-dedup) | 112/204 | 54.9% | — |\n| **quadratic (w²)** | **114/204** | **55.9%** | **+1.0%** |\n| log | 112/204 | 54.9% | 0.0% |\n| sqrt | 111/204 | 54.4% | -0.5% |\n| thresh_3 | 111/204 | 54.4% | -0.5% |\n| thresh_6 | 110/204 | 53.9% | -1.0% |\n| answer_aligned | 111/204 | 54.4% | -0.5% |\n| majority_only | 112/204 | 54.9% | 0.0% |\n\n### 关键发现\n\n1. **Quadratic weighting 是唯一有正向提升的策略** (+1%, 5 gains / 3 losses)，通过放大高频 constraints 的优势来区分信号/噪声。\n\n2. **Confidence filtering 反而伤害性能** — thresh_6 掉了 1%。丢弃低频 constraints 导致信息损失大于噪声消除。\n\n3. **Answer-aligned weighting 无帮助** — 说明 constraint 来源 trace 的答案与 constraint 质量之间关联弱。\n\n4. **主要 confound: Dedup 非确定性**。Re-dedup 产生的 baseline（112/204）比 stored SICA（121/204）低 9 个。22 题上有差异，原因是 z3 等价性检查对执行顺序/超时敏感。所有策略内部比较仍公平（共享同一 dedup），但绝对数字偏低。\n\n5. **Quadratic 的 per-problem flips**:\n   - Gains: folio_8, folio_88, folio_120, folio_175, folio_183\n   - Losses: folio_94, folio_136, folio_148\n\n**结论**: Weighted MAX-SAT 方向效果微弱（+1% 不显著），不建议作为主要改进方向。如果要继续探索，quadratic weighting 是唯一值得深挖的变体，但需要先解决 dedup 确定性问题以获得可靠评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-dir-b-psl-maxsat.md"
+}

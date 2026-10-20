@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82ca33ce1bb919b481ba",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis deberta owa training check",
+  "task_key": "worker_analysis_deberta-owa-training-check_20260522T163802",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_deberta-owa-training-check_20260522T163802_result.json",
+    "occurrence": 1,
+    "bytes": 700,
+    "sha256": "2ee730849fa9ddb7d67ddb43dc39e4c256f08a128366c42e050aec5f0e2af6fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练状态：\n\n| 项目 | 值 |\n|------|-----|\n| 进程 | PID 643576，运行中 |\n| 当前进度 | **step 638 / 5,455**（11.7%） |\n| 当前 epoch | 1/5（epoch 1 约完成 58%） |\n| 速度 | ~1.25 s/step |\n| GPU 显存 | 15,911 MiB，利用率 100% |\n| 错误 | 无 |\n\n**Eval 时间点**：`eval_strategy=\"epoch\"`，首次 eval 在 epoch 1 结束时（step ~1,091），还需约 **9-10 分钟**。目前尚无 eval 指标。\n\n**Loss**：`logging_steps=50` 但 loss 值被 tqdm 进度条的 `\\r` 覆盖，日志文件中无法 grep 到。首次 eval 结束后会有 accuracy 输出。\n\n**预计剩余时间**：(5455 - 638) × 1.25s ≈ **1 小时 40 分钟**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deberta-owa-training-check.md"
+}

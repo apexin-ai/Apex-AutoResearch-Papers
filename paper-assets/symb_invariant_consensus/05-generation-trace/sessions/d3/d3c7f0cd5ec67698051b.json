@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3c7f0cd5ec67698051b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment multi seed qwen25 pw cuda0",
+  "task_key": "worker_experiment_multi-seed-qwen25-pw-cuda0_20260522T072945",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_multi-seed-qwen25-pw-cuda0_20260522T072945_result.json",
+    "occurrence": 1,
+    "bytes": 1140,
+    "sha256": "0e20e60a8f9f2470105357758f51c7aa51a3334beacc30d129477d9ec7d22958"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。汇总：\n\n## 产出\n\n**1. cuda:0 vLLM 部署**\n- Qwen2.5-14B-Instruct on port 8005, PID 551162 (EngineCore 551459)\n- 杀掉了之前空闲的 Qwen3 (port 8001)\n\n**2. cuda:1 进度**\n- FOLIO seed=123 ✅ 完成 (14:03)\n- FOLIO seed=456 正在跑 (118/204, ETA ~1hr)\n- FOLIO seed=789 未开始 (~2.5hr)\n- **PW 部分预计 ~19:00 才开始**\n\n**3. cuda:0 PW master**\n- PID 552333，正在跑 PW seed=123 (1/600, ~50.7s/prob)\n- 脚本：`scripts/multiseed_qwen25_pw_cuda0.sh`\n- 日志：`/tmp/multiseed_qwen25_pw_cuda0_nohup.log`、`/tmp/qwen25_pw_seed{123,456,789}.log`\n\n**4. ETA 估算**\n- 每 seed ~8.4hr (600 × 50.7s)\n- 3 seeds 顺序跑 ~25hr 总计\n- seed=123 完成 ~5/23 00:00\n- 全部完成 ~5/23 ~17:00\n\n**5. 冲突风险**\ncuda:1 master 跑完 FOLIO 后会顺序进入 PW，写到**同一目录** `results/multi_seed/qwen25_pw_seed*/`，且没带 `--resume`，会覆盖 cuda:0 的结果。两个选择：\n- (A) cuda:1 FOLIO 跑完后手动 kill master，只保留 cuda:0 PW 结果\n- (B) 两边都跑，cuda:1 覆盖也无所谓（同模型同参数，结果统计等价）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-multi-seed-qwen25-pw-cuda0.md"
+}

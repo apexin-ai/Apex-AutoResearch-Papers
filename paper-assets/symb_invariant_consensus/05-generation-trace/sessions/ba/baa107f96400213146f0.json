@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "baa107f96400213146f0",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code prep exp014 deepseek r1",
+  "task_key": "worker_code_prep-exp014-deepseek-r1_20260517T113200",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_prep-exp014-deepseek-r1_20260517T113200_result.json",
+    "occurrence": 1,
+    "bytes": 1155,
+    "sha256": "9578091d9c4a2724881adfc6d4fa9c0de0ae3dc99be1776a69419bf6006b19fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本就绪。验证报告：\n\n**模型验证**\n- 实际路径：`/root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B`（嵌套 modelscope 目录结构）\n- 文件完整：`config.json` + `tokenizer.json` + 2 个 safetensors 分片\n- 架构：`Qwen2ForCausalLM`，vLLM 原生支持，无需 `--trust-remote-code`\n\n**数据验证**\n- `data/proofwriter_30.json` ✓（注意：不是 `proofwriter_d5_30.json`）\n- `data/folio_30.json` ✓（已是 30 题，无需 `--folio-limit`）\n- `data/empty.json` ✓（用于跳过 MATH 数据，`--math-data` 是必填项）\n\n**脚本与用户模板的差异**（按实际 argparse 修正）\n- `--model-url` → `--api-base`\n- `--model-name` → 不需要（mode=vllm 时 model 默认 auto，自动检测）\n- `--proofwriter-data` → `--pw-data`\n- `--output-dir` + `--output-file` → `--output`（单个路径）\n- 无 `--folio-limit` 参数（直接用 `folio_30.json`）\n- PORT 用 8000（与默认 `--api-base` 一致）\n\n**语法检查**：通过\n\n脚本路径：`/root/symb_invariant_consensus/scripts/run_exp014_deepseek_r1_7b.sh`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-exp014-deepseek-r1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e1c75d4d0ebdec50779",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment d126 70b sica",
+  "task_key": "worker_experiment_d126-70b-sica_20260521T080236",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_d126-70b-sica_20260521T080236_result.json",
+    "occurrence": 1,
+    "bytes": 184,
+    "sha256": "805af145d25d799e63be6dbf1fa204ca142a0a7b36ba27a1a37f37cb934dbdd5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Download is ~12% done (4.8GB / ~41GB). Downloading 5+ shards in parallel at ~10-15 MB/s aggregate. I'll check back in ~4 minutes to track progress without wasting cache."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-d126-70b-sica.md"
+}

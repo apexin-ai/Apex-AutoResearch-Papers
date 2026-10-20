@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27722e5797316be4fba5",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "deploy exp 073b 074 25068",
+  "task_key": "worker_deploy_exp-073b-074-25068_20260519T174532",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_exp-073b-074-25068_20260519T174532_result.json",
+    "occurrence": 1,
+    "bytes": 605,
+    "sha256": "0157c9dfed1ca6c39a0a4eeff8947ec97f9fb946847edb4996f1c5b08ff3e814"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。westd-25068 当前 4 个 GPU 全部在用：\n\n| GPU | 实验 | 模型 | Port | 状态 |\n|-----|------|------|------|------|\n| 0 | exp-074 ICG | Mistral-7B | 8000 | RUNNING（已在运行） |\n| 1 | **exp-073b** | **Qwen2.5-7B** | **8001** | **RUNNING（刚启动）** |\n| 2 | exp-075 Contrastive | Mistral-7B | 8002 | RUNNING |\n| 3 | exp-076 Debate | Mistral-7B | 8003 | RUNNING |\n\nexp-073b dry-run 验证通过，200 题正式运行已启动（tmux session: `exp073b_run`）。exp-074 之前已被其他 session 部署完毕，registry 已同步更新为 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-exp-073b-074-25068.md"
+}

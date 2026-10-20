@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a3063b7fe075aaee4b7",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix precision unification",
+  "task_key": "worker_fix_precision-unification_20260524T062228",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_precision-unification_20260524T062228_result.json",
+    "occurrence": 1,
+    "bytes": 1700,
+    "sha256": "5fbc65e00fd304509a9cf4510c0e070f412262c754eee0d8ca6a9e6783306838"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功（29 pages）。\n\n## 修改清单\n\n### 已修复的 3 处 inline-vs-table precision mismatch\n\n| 文件 | 行号 | 旧值 | 新值 | 原因 |\n|------|------|------|------|------|\n| analysis.tex | 118 | `$\\Delta = -18.6$\\,pp` | `$\\Delta = -18.63$\\,pp` | Table tab:method_interventions 有 -18.63 |\n| analysis.tex | 40 | `$p = 0.008$` | `$p = 0.0083$` | Table tab:process-gradient caption 有 $p = 0.0083$ |\n| diagnosis.tex | 138 | `$-18.6$\\,pp` | `$-18.63$\\,pp` | 同上，同一 Debate Δ 值 |\n\n### 用户列出的 12 对 — 全部为不同数字，跳过\n\n逐一验证后，12 对均为**不同指标**碰巧数值相近：\n\n| # | analysis.tex | experiments.tex | 判定 |\n|---|-------------|-----------------|------|\n| 1 | 无 2.5 数据值（仅模型名） | -2.50 (Δ) | 找不到 |\n| 2 | ≈1.0× (体积放大) | -1.00 (Δ) | 不同指标 |\n| 3 | ρ = -1.0 (Spearman) | 1.000 (p-value) | 不同指标 |\n| 4 | 83.3% (约束支持率, Mistral-7B) | 83.33 (SC accuracy, Qwen3-14B) | 不同指标 |\n| 5 | κ range 0.41–0.51 | κ range [0.45, 0.51] | 不同范围 |\n| 6 | K_eff shift < 0.5 | 0.581 (p-value) | 不同指标 |\n| 7 | 同上 | +0.50 (Δ) | 不同指标 |\n| 8 | CV = 0.26 | 0.267 (p-value) | 不同指标 |\n| 9 | p = 0.008 (Spearman) | 0.00 (Δ) | 不同指标 |\n| 10 | 2.65 (BR, gpt-4o table) | 2.6× (SC-correct ratio) | 不同指标 |\n| 11 | 0.00 (Δ, table) | p < 0.001 | 不同指标 |\n| 12 | 0.172 (MAX-SAT exclusion rate) | -0.17 (Δ) | 不同指标 |\n\n### Orphan bib entry\n\n`kamoi2024selfcorrect` **并非 orphan** — 在 related_work.tex:22 有引用：`\\citep[cf.][]{kamoi2024selfcorrect}`。未删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-precision-unification.md"
+}

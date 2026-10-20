@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be19db0ea3da684cca65",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis nli combo full table bh",
+  "task_key": "worker_analysis_nli-combo-full-table-bh_20260520T224413",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_nli-combo-full-table-bh_20260520T224413_result.json",
+    "occurrence": 1,
+    "bytes": 1768,
+    "sha256": "54ed404d0e09099d2c1a967d9254efeba124f974a33545b3d7c8464829f20eee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据验证完成，结果已写入。\n\n## 数据验证摘要\n\n- **Mistral-7B**: w=1/w=3 从 `direction_r_nli_pw600/results.json` (westd-25068) 确认；w=5 原文件缺失，从 exp046 SC traces + DeBERTa predictions 重新计算得到 50.00%, +10.67pp, p=2.89e-08 ✓\n- **LLaMA-3.1-8B**: 从 `exp092_llama8b_pw_nli_combo/results.json` (westd-16639) 全部确认 ✓\n- **Qwen2.5-14B**: 从 `qwen14b_pw_nli_combo/results.json` (westd-16639) 全部确认 ✓\n- **Qwen3-14B**: 从 `d116_qwen3_pw_deberta_large/results.json` (westd-16639) 全部确认 ✓\n- **LLaMA SC=70.00%**: 从 `exp048_llama8b_pw600/exp048_results.json` (westd-16639) 确认 ✓\n\n## 完整表格 (m=12, BH correction, α=0.05)\n\n| Generator | n | SC% | Gap | w | Combo% | Δpp | p_raw | p_BH | Sig |\n|---|---|---|---|---|---|---|---|---|---|\n| Mistral-7B | 600 | 39.33 | +15.67 | 1 | 40.17 | +0.83 | .2668 | .3558 | |\n| | | | | 3 | 42.83 | +3.50 | .0125 | **.0375** | * |\n| | | | | 5 | 50.00 | +10.67 | <.0001 | **<.0001** | *** |\n| LLaMA-3.1-8B | 600 | 70.00 | −15.00 | 1 | 72.83 | +2.83 | <.0001 | **.0005** | *** |\n| | | | | 3 | 74.17 | +4.17 | .0035 | **.0142** | * |\n| | | | | 5 | 71.67 | +1.67 | .4335 | .4335 | |\n| Qwen2.5-14B | 600 | 73.50 | −18.50 | 1 | 74.17 | +0.67 | .3438 | .4125 | |\n| | | | | 3 | 74.33 | +0.83 | .4049 | .4335 | |\n| | | | | 5 | 75.33 | +1.83 | .1439 | .2190 | |\n| Qwen3-14B | 600 | 85.00 | −30.00 | 1 | 85.83 | +0.83 | .1250 | .2190 | |\n| | | | | 3 | 86.00 | +1.00 | .1460 | .2190 | |\n| | | | | 5 | 86.83 | +1.83 | .0522 | .1254 | |\n\n**4/12 survive BH correction** at α=0.05: Mistral w=3/w=5, LLaMA w=1/w=3.\n\n结果已写入 `westd-25068:/root/symb_invariant_consensus/results/nli_combo_full_table_bh/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-nli-combo-full-table-bh.md"
+}

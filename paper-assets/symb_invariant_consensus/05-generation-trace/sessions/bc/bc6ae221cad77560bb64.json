@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc6ae221cad77560bb64",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix kill wrong k ablation",
+  "task_key": "worker_fix_kill-wrong-k-ablation_20260516T200324",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_kill-wrong-k-ablation_20260516T200324_result.json",
+    "occurrence": 1,
+    "bytes": 227,
+    "sha256": "cc70df8e043b39117a8036155a35cbc10ffb6399252e966386aa1948699d34bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n- **PID 235733 (exp002)** — 已 kill（tmux session kill 后进程变孤儿，追加 `kill -9` 彻底终止）\n- **PID 237939 (sica_k_sensitivity_14b)** — 正常运行中，已运行约 3 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-wrong-k-ablation.md"
+}

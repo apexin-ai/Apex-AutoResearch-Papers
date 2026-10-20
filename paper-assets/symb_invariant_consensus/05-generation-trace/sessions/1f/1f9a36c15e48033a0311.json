@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f9a36c15e48033a0311",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "launch llama pw seed456 cuda3",
+  "task_key": "worker_launch_llama-pw-seed456-cuda3_20260523T045230",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_launch_llama-pw-seed456-cuda3_20260523T045230_result.json",
+    "occurrence": 1,
+    "bytes": 769,
+    "sha256": "4d35a0156fe02e61c7d2ac3070e221d74e3f2fc19167ba3838d14143593a166d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:3 当前不可用。** Qwen2.5-14B seed123 实验仍在运行中。\n\n当前 4 块 GPU 全部占用（97% utilization）：\n\n| GPU | 模型 | 端口 | 实验 | 状态 |\n|-----|------|------|------|------|\n| cuda:0 | Qwen2.5-14B | 8001 | PW seed456 | 运行中 |\n| cuda:1 | LLaMA-8B | 8006 | PW seed123 | 运行中 |\n| cuda:2 | Qwen2.5-14B | 8007 | PW seed789 | 运行中 |\n| cuda:3 | Qwen2.5-14B | 8005 | PW seed123 | **456/600 (76%)** |\n\ncuda:3 的 Qwen seed123 实验已跑 ~9 小时，剩余 144 个问题，按当前速率约 **3 小时后完成**（~16:00 UTC）。\n\n**选项：**\n1. 等 cuda:3 实验完成后再启动 LLaMA seed456（~3 小时后）\n2. 如果 seed123 不需要，可以 kill 掉立即启动\n\n如何处理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-llama-pw-seed456-cuda3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49a423f7f7cc81f535a5",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 045 backward verification",
+  "task_key": "worker_analysis_exp-045-backward-verification_20260518T194233",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-045-backward-verification_20260518T194233_result.json",
+    "occurrence": 1,
+    "bytes": 1099,
+    "sha256": "99a32c6aed2dac14e78c4e0b572ebbb02018530b8c922a0a900dde07883e95eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-045-backward-verification 分析完成。Conclusion: NEGATIVE。**\n\n核心发现：\n\n- **BV accuracy = 53.92%，SC baseline = 75.00%，delta = -21.08pp**。这是目前测试过的最差方法。\n- **严重 True 偏置**：预测 72.5% 为 True（gold 仅 35.3%）。True 准确率 90.3%，但 False 仅 20.6%，Unknown 仅 46.4%。\n- **Z3 无判别力**：SAT rate 高达 95.3%（supporting 98.4%, contradicting 89.7%）。LLM 生成的 backward FOL 几乎全部被 Z3 满足，scoring 机制退化为统计 FOL 表达式数量而非逻辑有效性。\n- **42.5% 的 rounds 出现 score ties**，进一步削弱决策质量。\n\n**根因**：Backward verification 没有绕过 capability trap，而是把瓶颈从 forward FOL extraction 转移到 backward FOL generation。LLM 生成的 backward FOL 质量同样差，只是表现形式不同（uniformly SAT 而非 incorrect constraints）。验证方向无关紧要，FOL 质量才是约束。\n\n报告已写入 `artifacts/analysis_exp045.md`，registry 已更新（conclusion=negative, metrics, checkpoint_path）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-045-backward-verification.md"
+}

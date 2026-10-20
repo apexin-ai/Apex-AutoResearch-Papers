@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70ec1b6ffa0133666745",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "eval exp 033 qwen3 pw600 s2",
+  "task_key": "worker_eval_exp-033-qwen3-pw600-s2_20260518T155634",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_exp-033-qwen3-pw600-s2_20260518T155634_result.json",
+    "occurrence": 1,
+    "bytes": 826,
+    "sha256": "09f1c2ae5c35fb1cd11fa526475c8d5a9cfa37761f90d84afafdd439e16fae73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-033 已启动并注册。\n\n**状态汇总：**\n- **环境**: vLLM 0.21.0 (已安装), Python 3.12 (`/root/miniconda3/bin/python`)\n- **vLLM 服务**: 在 cuda:1 (RTX PRO 6000 Blackwell, 88GB/97GB used) 端口 8001 已启动\n- **非思考模式**: 已验证 — `extra_body={\"chat_template_kwargs\": {\"enable_thinking\": False}}` 通过 `--no-thinking` 标志传入，响应无 `<think>` 标签\n- **tmux session**: `exp033`，正在处理 600 个 ProofWriter 问题 (1/600 已开始)\n- **代码改动**: 给 `trace_generator.py`, `constraint_extractor.py`, `run_full_mvp.py` 添加了 `extra_body` 支持和 `--no-thinking` 标志\n- **吞吐**: ~500 tokens/s generation, 12 并发请求\n- **预计时间**: 600 问题 × 12 traces × (生成+提取), 非思考模式输出更短，估计 2-4 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-033-qwen3-pw600-s2.md"
+}

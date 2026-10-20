@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6809892dc69d3ec7f813",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "agent / loop_8_1779189322.md",
+  "task_key": "loop_8_1779189322",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_8_1779189322.md",
+    "occurrence": 1,
+    "bytes": 3853,
+    "sha256": "c5849df9d20b9a9e6d5f4e6abaa66aacc107e3081794482b7eb072c8d4c06489"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_wall_time\nupdated: '2026-05-17T21:16:44+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目无 GPU 实验，纯论文写作项目。无 GPU 分配、无服务器。\n- 论文目标：EMNLP 2026 ARR May 25 投稿，8pp 主体限制。\n- 所有 tex 文件在本地 `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/`，不在远程服务器。\n- 引用必须真实——本项目已发生过多次幻觉引用（`diverseaware2025`、`satbench2025`、`llmmeets_cp2025` 曾填 author=\"Various\"，`xu2026dylos` 作者名错误）。改 bib 前必须 WebSearch 验证。\n- 修改论文前必须读 paper-writing-norms skill（CLAUDE.md 已内嵌完整规范）。\n\n### 2. 🖥️ 基础设施快照\n- 工作目录：`/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/`\n- 编译命令：`cd docs/paper && pdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex`\n- 模板：ACL review 模式（`\\usepackage[review]{acl}`），bibtex style = `acl_natbib.bst`\n- 图表 PDF：`docs/figures/paper/` 下有 `fig2_capability_scatter.pdf`、`fig3_operating_regime.pdf`；Figure 1 是 TikZ 内联（method.tex）\n- 无活跃进程、无 cron、无 tmux session、无 Worker\n\n### 3. 📊 当前状态\n**刚完成**：全文最终 proofread + 质量检查，结果已汇报 Director。编译通过（12 页，零 undefined citations/refs）。\n\n**等待 Director 决策**：proofread 发现 7 个问题（详见上次汇报），按优先级排列：\n- P0: \"more than 1,300\" 应为 \"more than 1,500\"（实际 N=1,556），4 个文件需改\n- P0: Appendix power analysis \"six conditions\" 应为 \"seven\"（少算了 GSM8K）\n- P1: method.tex \"-ing phrase\" + answer_a 排版\n- P2: intro 超长句、related_work 推测性声明、AIME 无引用、appendix 表格 overfull\n\n**已完成的 Reviewer Round 1 修复**（上一轮）：\n- C1: 3 个 \"Various\" author bib 条目已补全完整元数据\n- C2: DeepSeek 重复 bib 已去重（删 `deepseek2025r1`，统一用 `guo2025deepseekr1`）\n- W2: method.tex 添加 answer_assertion 机制解释\n- W3: limitations 添加 alternative self-extraction caveat（第 5 条）\n- W4: conclusion P3 压缩为单句引用 §Discussion\n- I1: FOLIO 后加 \"(validation split)\"\n- I3: appendix 删除 MATH-500 引用（3 处）\n- DyLoS 引用验证：论文真实存在，作者修正 Xu, Yifan → Xu, Lei\n\n### 4. 📋 待办\n- Director 批准 proofread 修复清单 → 按优先级逐项修改（预计 5 分钟全部完成）\n- 修改完成 → 重新编译 → 最终 PDF visual review → 汇报 Director\n- Director 如要求额外 Reviewer round → spawn Worker 做全文一致性审查\n- 投稿前 → 需要 reference-audit skill 做最终引用真实性扫描（推荐但未执行）\n\n### 5. 🎯 战略上下文\n**核心结论**：SICA（自提取 FOL 约束 + MAX-SAT 聚合）在所有条件下不优于 Self-Consistency（majority voting）。Oracle 实验 +8.82pp 证明聚合机制有效，瓶颈在自提取质量（capability trap）。这是一篇 well-executed negative result paper。\n\n**论文状态**：内容完成度 ~98%。主要风险是 proofread 中 D1（\"1,300\" vs \"1,500\"）——如果审稿人手动加 Table 1 会立刻发现不一致。这是投稿前必修项。\n\n**易错点**：\n- \"five model families\" 的计数可能被审稿人质疑（QwQ 和 Qwen2.5 都是 Qwen 团队），目前论文将 QwQ 作为 reasoning-specialized 独立算一个 family，这是有意的设计选择。\n- Appendix 表格有 overfull hbox（最大 81.9pt），打印时可能被裁切，加 `\\resizebox` 或 `\\scriptsize` 可修。\n- 温度消融中 T=0.7 的 Δ=-3.33pp 是 n=60 子集结果，不是主表中 Qwen2.5-14B FOLIO (n=204) 的 Δ=0.00——两者不矛盾但容易混淆。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1779189322.md"
+}

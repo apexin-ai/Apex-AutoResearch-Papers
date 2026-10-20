@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3b30bb0c39f9fdf14b3",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis verify tiebreaking all seeds",
+  "task_key": "worker_analysis_verify-tiebreaking-all-seeds_20260523T184137",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_verify-tiebreaking-all-seeds_20260523T184137_result.json",
+    "occurrence": 1,
+    "bytes": 1111,
+    "sha256": "d3b9d23e56ae1193ce395ace5728817830f644a6bb9fd0de3260d90641cd4dbc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 8 个实验均使用 **alphabetical tiebreaking**，stored SC 与 alphabetical 重算完全一致。\n\n汇总：\n\n| Model | Seed | 原 SC | Alpha SC | MC SC | 使用的方法 | 需要修正? |\n|-------|------|-------|----------|-------|-----------|----------|\n| Mistral-7B PW | 123 | 40.83% | 40.83% | 40.50% | ALPHABETICAL | 否 |\n| Mistral-7B PW | 456 | 39.83% | 39.83% | 39.50% | ALPHABETICAL | 否 |\n| Mistral-7B PW | 789 | 38.83% | 38.83% | 38.33% | ALPHABETICAL | 否 |\n| LLaMA-3.1-8B PW | 123 | 71.33% | 71.33% | 69.00% | ALPHABETICAL | 否 |\n| LLaMA-3.1-8B PW | 789 | 71.17% | 71.17% | 70.17% | ALPHABETICAL | 否 |\n| Qwen2.5-14B PW | 123 | 72.33% | 72.33% | 72.50% | ALPHABETICAL | 否 |\n| Qwen2.5-14B PW | 456 | 73.00% | 73.00% | 72.67% | ALPHABETICAL | 否 |\n| Qwen2.5-14B PW | 789 | 73.67% | 73.67% | 73.50% | ALPHABETICAL | 否 |\n\n所有 seeds 123/456/789 的实验均已使用正确的 alphabetical tiebreaking (`max(sorted(groups.keys()), key=...)`)，无需修正。seed42 的 Counter.most_common() 问题仅影响旧实验，不影响这批多种子实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-verify-tiebreaking-all-seeds.md"
+}

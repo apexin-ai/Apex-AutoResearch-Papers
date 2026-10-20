@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9e26ef7c7c5f50ed0dc",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp011 discordant detail",
+  "task_key": "worker_analysis_exp011-discordant-detail_20260517T080745",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp011-discordant-detail_20260517T080745_result.json",
+    "occurrence": 1,
+    "bytes": 1386,
+    "sha256": "cf13eccdcb9cb99bbbedd559e760cb49a2b77954574b4b4de4380d516d97a93f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nDISCORDANT PAIRS (SICA wins):\n#1: problem_id=ProofWriter_RelNoneg-OWA-D5-1036_Q11, domain=PW, truncated=N (0 traces truncated), multi_cand=3\n    SICA=True, SC=Unknown, GT=True\n#2: problem_id=ProofWriter_RelNeg-OWA-D5-856_Q19, domain=PW, truncated=Y (3 traces truncated), multi_cand=3\n    SICA=Unknown, SC=False, GT=Unknown\n#3: problem_id=folio_002, domain=FOL, truncated=N (0 traces truncated), multi_cand=3\n    SICA=True, SC=False, GT=True\n#4: problem_id=folio_014, domain=FOL, truncated=N (0 traces truncated), multi_cand=3\n    SICA=False, SC=Unknown, GT=False\n#5: problem_id=folio_027, domain=FOL, truncated=N (0 traces truncated), multi_cand=2\n    SICA=Unknown, SC=True, GT=Unknown\n\nDISCORDANT PAIRS (SC wins):\n#1: problem_id=ProofWriter_RelNoneg-OWA-D5-709_Q12, domain=PW, truncated=N (0 traces truncated), multi_cand=3\n    SICA=Unknown, SC=False, GT=False\n\nSUMMARY:\nSICA-wins with truncation: 1/5 (only #2 has 3 truncated traces)\nSC-win with truncation: 0/1\nSICA-wins in FOLIO: 3/5\nSICA-wins in ProofWriter: 2/5\n```\n\nKey observation: truncation is **not** the driver of SICA's advantage here. Only 1 of 5 SICA-win cases involved truncated traces. SICA wins primarily by resolving vote-tie or near-tie situations (e.g. #1: SC ties 5-5 between Unknown/True; #5: SC ties 6-6) where constraint-weighted scoring breaks the deadlock correctly."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp011-discordant-detail.md"
+}

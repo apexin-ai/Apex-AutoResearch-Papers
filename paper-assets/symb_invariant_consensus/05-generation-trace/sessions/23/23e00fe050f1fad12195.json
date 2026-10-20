@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23e00fe050f1fad12195",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "investigate gpu mystery processes",
+  "task_key": "worker_investigate_gpu-mystery-processes_20260519T115140",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_investigate_gpu-mystery-processes_20260519T115140_result.json",
+    "occurrence": 1,
+    "bytes": 2033,
+    "sha256": "f732bc759346e08aac9ba57823574fd65919ee02d66d4302eb610631ed15e6b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。\n\n---\n\n## 调查报告\n\n### westd-25068 — 4/4 GPU 占满 (96-97% util)\n\n| GPU | 模型 | 端口 | 实验 | 状态 |\n|-----|------|------|------|------|\n| 0 | Qwen2.5-7B-Instruct | 8010 | exp-065 (PW-600) | 运行中 |\n| 1 | **Mistral-7B-Instruct-v0.3** | 8001 | **exp-069-mistral-logiqa200** | 运行中 (新!) |\n| 2 | Qwen2.5-7B-Instruct | 8002 | exp-070 dry-run **已完成** | vLLM 空转，可复用 |\n| 3 | gemma-3-27b-it | 8003 | exp-062 (Gemma-27B FOLIO, --resume) | 运行中 |\n\n- 原报告称 cuda:1 \"0% util 可能残留\"——**现已被 exp-069 占用**，97% 利用率\n- cuda:2 上 exp-070 dry-run 已完成（1.5 min），vLLM 仍在监听 8002，可直接启动 exp-070 正式运行\n- 占用端口：8001, 8002, 8003, 8010\n- 可用端口：8004-8009, 8011+\n- 老 tmux 会话 `exp-027-qwen3-14b-non-thinking` 仍残留\n\n### westd-16639 — 3/4 GPU, cuda:0 空闲\n\n| GPU | 模型 | 端口 | 实验 | 状态 |\n|-----|------|------|------|------|\n| 0 | — | — | — | **空闲 (0MiB, 0%)** |\n| 1 | **Qwen3-14B (non-thinking)** | 8001 | **exp-068-qwen3-logiqa200** | 运行中 |\n| 2 | deepseek-r1-0528-qwen3-8b | 8002 | exp-064 (DeepSeek-R1 FOLIO) | 运行中 |\n| 3 | Meta-Llama-3.1-8B-Instruct | 8003 | exp-048 (LLaMA-8B PW-600) | 运行中 |\n\n- cuda:1 的不明进程：**就是 exp-068**\n- 占用端口：8001, 8002, 8003\n- 可用端口：8004+，cuda:0 完全空闲\n- 老 tmux 会话 `exp032` 残留\n\n### exp-068 状态\n\n**在 westd-16639 cuda:1 上正常运行。** Qwen3-14B (non-thinking mode) 通过 vLLM 端口 8001 提供服务，`run_logiqa.py` 于 19:13 启动，日志持续输出 HTTP 200，结果文件 126KB 持续增长。Registry 标记 RUNNING 是正确的。\n\n### 可用资源汇总\n\n| 资源 | 位置 |\n|------|------|\n| 空闲 GPU | westd-16639 cuda:0 |\n| 空闲 vLLM (可复用) | westd-25068 cuda:2 (Qwen2.5-7B, port 8002) |\n| 可用端口 (25068) | 8004-8009, 8011+ |\n| 可用端口 (16639) | 8004+ |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-gpu-mystery-processes.md"
+}

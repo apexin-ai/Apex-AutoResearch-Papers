@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "faee95b33cb01144290c",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "code deploy 25068 v2",
+  "task_key": "worker_code_deploy-25068-v2_20260518T074839",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_deploy-25068-v2_20260518T074839.log",
+    "occurrence": 1,
+    "bytes": 644181,
+    "sha256": "6e66873467e1a9ffdc925ea66c515b707b7300b573ba3ab6233f0b61036692bd"
+  },
+  "statistics": {
+    "messages": 301,
+    "user_turns": 0,
+    "tool_calls": 105,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 87,
+      "tool_call": 105,
+      "tool_result": 105,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 301,
+      "chunks": [
+        {
+          "path": "faee95b33cb01144290c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "faee95b33cb01144290c-part-0002.json",
+          "message_count": 121
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-deploy-25068-v2.md"
+}

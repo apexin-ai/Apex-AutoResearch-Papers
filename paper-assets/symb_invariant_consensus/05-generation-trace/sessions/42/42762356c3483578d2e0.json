@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42762356c3483578d2e0",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ops kill llama8b download",
+  "task_key": "worker_ops_kill-llama8b-download_20260518T125512",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill-llama8b-download_20260518T125512_result.json",
+    "occurrence": 1,
+    "bytes": 916,
+    "sha256": "63863b9f56a288a21efa94106a853a77c1d39813589c404e4037de9055e6d9cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**1. LLaMA-8B 下载进程 PID 17783** — 已终止。第一次 `kill` 后进程变为僵尸态（0 内存），`kill -9` 时已不存在，确认已结束。\n\n**2. Qwen3-14B 下载** — 进行中\n- PID 29779 运行中，modelscope `snapshot_download`\n- 已下载 **12G**\n- 已落盘文件：`config.json`, `generation_config.json`, `merges.txt`, `LICENSE` 等配置文件 + `._____temp` 临时目录（权重文件还在下载中）\n\n**3. 磁盘空间**\n- `/root` 所在分区：30G 总量，已用 12G，剩余 **19G (38%)**\n- Qwen3-14B 完整约 28G，当前分区空间不足。注意下载目标是 `/root/autodl-tmp/models/`，需确认 autodl-tmp 是否挂载在独立分区。\n\n**4. exp-026 (folio_regen_v3)**\n- PID 27245 运行中，`run_full_mvp.py --mode vllm` FOLIO 数据集实验\n- 日志最后时间 **20:12:26**，持续产生 HTTP 200 请求，运行正常"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-llama8b-download.md"
+}

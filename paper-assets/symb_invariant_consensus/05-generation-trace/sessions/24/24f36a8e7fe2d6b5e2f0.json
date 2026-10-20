@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24f36a8e7fe2d6b5e2f0",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code prep exp019 strategyqa 200",
+  "task_key": "worker_code_prep-exp019-strategyqa-200_20260517T080735",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_prep-exp019-strategyqa-200_20260517T080735_result.json",
+    "occurrence": 1,
+    "bytes": 583,
+    "sha256": "5e68334c7903b12dedad0505254b8e2d983d2bcdc209396811b7a4d14b6b9b00"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**产出总结：**\n\n| 项目 | 状态 |\n|------|------|\n| 脚本 | `/root/symb_invariant_consensus/scripts/run_exp019_strategyqa_200.sh` ✓ (syntax OK) |\n| 数据 | `data/strategyqa_200.json` 已有 200 题 ✓ |\n| 模型 | `/root/autodl-tmp/models/Llama-3.1-8B-Instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct` ✓ |\n\n**配置：** LLaMA-3.1-8B-Instruct, K=12, T=0.7, max-model-len=8192, max-tokens=4096, gpu-memory-utilization=0.90, seed=42, port=8000, n=200。exp-010 完成后可直接 `bash scripts/run_exp019_strategyqa_200.sh` 启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-exp019-strategyqa-200.md"
+}

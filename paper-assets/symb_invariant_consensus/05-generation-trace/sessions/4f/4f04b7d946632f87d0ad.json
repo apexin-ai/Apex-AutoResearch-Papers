@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "4f04b7d946632f87d0ad",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "analysis nli roberta bart recompute",
+  "task_key": "worker_analysis_nli-roberta-bart-recompute_20260521T055056",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_nli-roberta-bart-recompute_20260521T055056.log",
+    "occurrence": 1,
+    "bytes": 624251,
+    "sha256": "93c7f86af9184c11404a194015c430e9518819a895154f76e2b1a8d884379d3a"
+  },
+  "statistics": {
+    "messages": 245,
+    "user_turns": 0,
+    "tool_calls": 89,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 61,
+      "tool_call": 89,
+      "tool_result": 89,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 245,
+      "chunks": [
+        {
+          "path": "4f04b7d946632f87d0ad-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4f04b7d946632f87d0ad-part-0002.json",
+          "message_count": 65
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-nli-roberta-bart-recompute.md"
+}

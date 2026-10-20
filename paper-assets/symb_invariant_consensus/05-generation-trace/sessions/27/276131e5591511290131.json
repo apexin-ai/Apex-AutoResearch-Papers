@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "276131e5591511290131",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment gemini early extraction",
+  "task_key": "worker_experiment_gemini-early-extraction_20260521T193216",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_gemini-early-extraction_20260521T193216.log",
+    "occurrence": 1,
+    "bytes": 628562,
+    "sha256": "02ca75b9ddf7448dd23d72937d72043701def8fb6c12704c95849c93f1fc583f"
+  },
+  "statistics": {
+    "messages": 356,
+    "user_turns": 0,
+    "tool_calls": 115,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 122,
+      "tool_call": 115,
+      "tool_result": 115,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 356,
+      "chunks": [
+        {
+          "path": "276131e5591511290131-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "276131e5591511290131-part-0002.json",
+          "message_count": 176
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-gemini-early-extraction.md"
+}

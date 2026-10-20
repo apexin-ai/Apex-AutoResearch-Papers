@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "774034cf6298735b4107",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 080 completion check",
+  "task_key": "worker_analysis_exp-080-completion-check_20260519T203431",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-080-completion-check_20260519T203431_result.json",
+    "occurrence": 1,
+    "bytes": 562,
+    "sha256": "cecbf51f0f6e93c40b60c67d4f9e4de4bd7912a7b917f961d89201e28a50866a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验仍在运行，未崩溃。** CRON 误报。\n\n进程 PID 279846 仍然活跃，当前进度 32/200（logiqa_031），日志最后时间 04:35:15，无任何错误。results.json 中已有 30 条结果是中间保存。\n\n当前部分指标（30/200，仅供参考，非最终结果）：\n- SC accuracy: 0.5333\n- Contrastive accuracy: 0.4667\n- Delta: **-0.0667**\n- Degenerate count: 6/30\n\nETA 约 109 分钟（169 remaining），预计约 06:25 完成。\n\n不更新 registry 状态，不删除 CRON 监控——实验仍在跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-080-completion-check.md"
+}

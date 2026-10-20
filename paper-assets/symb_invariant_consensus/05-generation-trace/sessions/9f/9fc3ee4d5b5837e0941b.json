@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fc3ee4d5b5837e0941b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment r deberta mirror download",
+  "task_key": "worker_experiment_r-deberta-mirror-download_20260520T103156",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_r-deberta-mirror-download_20260520T103156_result.json",
+    "occurrence": 1,
+    "bytes": 1480,
+    "sha256": "6287686445d461eaed57e3794517724d3cb4cbaddea66324c9ae1fb261da6641"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 下载方式\n**aria2c 多线程 + ModelScope CDN** 成功。HF mirror 和 ModelScope Python SDK 都在大文件下载时卡住（xet bridge 限速 / 连接中断），最终用 `aria2c -x 16` 直接从 ModelScope CDN 下载 pytorch_model.bin，17 MB/s，约 90 秒完成。小文件（config/tokenizer/vocab）由 HF mirror 的 `snapshot_download` 先行下载成功。\n\n模型存放在根分区 `/root/models/deberta-large-mnli/`（数据盘 `/root/autodl-tmp` 仅剩 1.7GB 不够用）。\n\n### 模型大小\n**406.2M 参数**，pytorch_model.bin = 1.51 GB\n\n### 实验结果\n\n| 方法 | Accuracy | Correct/Total | Delta vs SC |\n|------|----------|---------------|-------------|\n| SC baseline | 54.41% | 111/204 | — |\n| SICA baseline | 59.31% | 121/204 | +4.90pp |\n| **NLI standalone** | **49.51%** | 101/204 | **-4.90pp** |\n| NLI as SC verifier (abstain on disagree) | 68.48% (coverage 45.1%) | 63/92 | — |\n| **NLI + SC combo (w=1)** | **57.84%** | 118/204 | **+3.43pp** |\n| **NLI + SC combo (w=3)** | **58.82%** | 120/204 | **+4.41pp** |\n\n### 关键发现\n- DeBERTa-large-mnli 单独做 NLI 只有 49.51%，严重低估 \"Unknown\"（预测 22 个 vs 真实 69 个），偏向 True/False\n- 但作为投票成员加入 SC（weight=3），达到 58.82%，比 SC 提高 +4.41pp，接近 SICA（59.31%）\n- DeBERTa 与 SC 一致时（45.1% 的问题）准确率高达 68.48%，说明在确定性高的子集上有互补价值"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-r-deberta-mirror-download.md"
+}

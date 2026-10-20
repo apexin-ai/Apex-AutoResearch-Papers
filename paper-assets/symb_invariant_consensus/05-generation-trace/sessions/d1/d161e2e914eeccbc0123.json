@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "id": "d161e2e914eeccbc0123",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment gpt55 extraction pipeline",
+  "task_key": "worker_experiment_gpt55-extraction-pipeline_20260521T173217",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_gpt55-extraction-pipeline_20260521T173217.log",
+    "occurrence": 1,
+    "bytes": 1436161,
+    "sha256": "43abc01ced06bdba08680651eab032a7a168f96607b8ac8d7f3f439d42b988ad"
+  },
+  "statistics": {
+    "messages": 1312,
+    "user_turns": 1,
+    "tool_calls": 605,
+    "roles": {
+      "log": 1,
+      "system": 11,
+      "record": 1,
+      "assistant": 87,
+      "tool_call": 605,
+      "tool_result": 605,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1222,
+      "chunks": [
+        {
+          "path": "d161e2e914eeccbc0123-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d161e2e914eeccbc0123-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d161e2e914eeccbc0123-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d161e2e914eeccbc0123-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "d161e2e914eeccbc0123-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "d161e2e914eeccbc0123-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "d161e2e914eeccbc0123-part-0007.json",
+          "message_count": 142
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 90,
+      "chunks": [
+        {
+          "path": "d161e2e914eeccbc0123-part-0007.json",
+          "message_count": 38
+        },
+        {
+          "path": "d161e2e914eeccbc0123-part-0008.json",
+          "message_count": 52
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-gpt55-extraction-pipeline.md"
+}

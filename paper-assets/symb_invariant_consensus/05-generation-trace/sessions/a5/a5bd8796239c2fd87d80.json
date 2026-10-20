@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5bd8796239c2fd87d80",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diagnose exp 011 llama8b v2",
+  "task_key": "worker_diagnose_exp-011-llama8b-v2_20260517T032306",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp-011-llama8b-v2_20260517T032306_result.json",
+    "occurrence": 1,
+    "bytes": 2067,
+    "sha256": "31c70971f21afa10cb5f6d43a9b89b405c267c76ded5e303f03fdfc8dc90f031"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 失败根因\n\n**模型权重文件损坏**: `model-00002-of-00004.safetensors`\n\n关键错误信息：\n```\nsafetensors_rust.SafetensorError: Error while deserializing header: incomplete metadata, file not fully covered\n```\n\n文件大小对比（LLaMA-3.1-8B 标准 shard 约 4.9G）：\n| 文件 | 实际大小 | 修改时间 |\n|------|----------|----------|\n| model-00001 | 4.7G | May 16 18:15 |\n| **model-00002** | **3.7G** ← 明显偏小 | **May 16 19:29** ← 时间异常 |\n| model-00003 | 4.6G | May 16 18:15 |\n| model-00004 | 1.1G | May 16 18:40 |\n\n`model-00002` 比预期少约 1.2G，且修改时间晚于其他 shard，说明下载中断导致文件不完整。\n\n### 两次失败是否同一原因\n\n是。两次 traceback 完全一致，都在 `safetensors_weights_iterator` 加载权重时失败。v2 所谓的 \"修复 GPU OOM\" 并未解决真正问题。\n\n### 额外问题\n\n当前 GPU 上仍有一个 vLLM 进程在运行（PID 270691，占用 14.6G 显存），可能是之前实验的残留。\n\n### 修复步骤\n\n1. **Kill 残留 vLLM 进程**：\n   ```bash\n   kill 270691\n   ```\n\n2. **重新下载损坏的 shard**：\n   ```bash\n   cd /root/autodl-tmp/models/Llama-3.1-8B-Instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct/\n   rm model-00002-of-00004.safetensors\n   # 用 huggingface-cli 或原始下载方式重新获取该文件\n   huggingface-cli download LLM-Research/Meta-Llama-3.1-8B-Instruct \\\n     model-00002-of-00004.safetensors \\\n     --local-dir . --local-dir-use-symlinks False\n   ```\n   如果 HF 不可用（国内网络），用 modelscope：\n   ```bash\n   modelscope download --model LLM-Research/Meta-Llama-3.1-8B-Instruct \\\n     model-00002-of-00004.safetensors --local_dir .\n   ```\n\n3. **验证文件完整性后重跑**：\n   ```bash\n   python -c \"from safetensors import safe_open; f=safe_open('model-00002-of-00004.safetensors', framework='pt'); print('OK, keys:', len(f.keys()))\"\n   ```\n\n4. 验证通过后重新提交 exp-011。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-011-llama8b-v2.md"
+}

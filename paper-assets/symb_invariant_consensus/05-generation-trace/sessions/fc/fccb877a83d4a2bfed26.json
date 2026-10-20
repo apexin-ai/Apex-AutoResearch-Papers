@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fccb877a83d4a2bfed26",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "gpu exp 062 gemma27b run",
+  "task_key": "worker_gpu_exp-062-gemma27b-run_20260519T084441",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp-062-gemma27b-run_20260519T084441_result.json",
+    "occurrence": 1,
+    "bytes": 1067,
+    "sha256": "dfa848c34d48dbbca56f4e50945e26fa23913718a67233eebae117ec7c4cd52c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全量运行已确认启动。\n\n## 总结\n\n**exp-062-gemma27b-folio204 全量运行已启动。**\n\n执行过程中解决了两个问题：\n\n1. **vLLM `max-model-len=4096` 过小** — trace generation 的 `max_tokens=4096` 占满全部上下文导致 400 错误；降至 2048 后 constraint extraction 的 prompt（含完整 trace ~2000+ tokens）又超限。重启 vLLM 用 `--max-model-len 8192` 解决。\n\n2. **`build_extractor()` 未传递 `max_tokens`** — extractor 默认用 4096，和 generator 脱节。已 patch `run_full_mvp.py` 使 extractor 也使用命令行传入的 `max_tokens`。\n\n**Dry-run 结果（3/3 正确）：**\n| Problem | GT | SICA | SC | SC votes |\n|---------|---------|------|------|----------|\n| folio_0 | Unknown | V | V | 11/12 |\n| folio_1 | True | V | V | 5/12 |\n| folio_2 | False | V | V | 10/12 |\n\n**全量运行配置：**\n- tmux: `exp062_run` (pipeline) / `exp062_vllm` (vLLM server)\n- GPU: cuda:3, RTX PRO 6000 (98GB)\n- 预计耗时: ~6-7 小时（~122s/problem * 204）\n- Registry: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-062-gemma27b-run.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73a3e8722948a248e0e5",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis e6 closed model harvest",
+  "task_key": "worker_analysis_e6-closed-model-harvest_20260521T141147",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_e6-closed-model-harvest_20260521T141147_result.json",
+    "occurrence": 1,
+    "bytes": 726,
+    "sha256": "496f77660fcc55f02b51e42485e8d2eb9432b05352445e28a1d506b4b2bf32e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "收割完成。\n\n## 结果摘要\n\n**状态**: 部分完成 — 154/204 题 (75.5%)，进程在第 155 题无错退出\n\n| 指标 | SICA | SC |\n|------|------|----|\n| **Overall** | **71.4%** (110/154) | **73.4%** (113/154) |\n| True (n=58) | 94.8% | 93.1% |\n| False (n=41) | 82.9% | 82.9% |\n| Unknown (n=55) | 38.2% | 45.5% |\n\n- SICA-SC 分歧: 9 题，SC 赢 5 次，SICA 赢 2 次\n- 约束提取率: 99.6%，矛盾率: 1.6%\n- 总耗时: 4.6h，k=12\n\n**Unknown 类精度明显偏低**（SICA 38.2% / SC 45.5%），与其他模型的 SCB 模式一致。\n\n**已执行**: cron 已删除，artifact 已注册，registry 已更新为 success。剩余 50 题的结果需要恢复运行才能补全。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-e6-closed-model-harvest.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c1ebed562ffcdc25f78",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code accelerate download 25068",
+  "task_key": "worker_code_accelerate-download-25068_20260518T072309",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_accelerate-download-25068_20260518T072309_result.json",
+    "occurrence": 1,
+    "bytes": 1029,
+    "sha256": "d57e43ba1a0e7851e8afb99ec4b385faee69b61f3213272d0b96754b5b8f3c31"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载正在跑。从 15:34 到 15:42（8分钟），下载了 ~3.6G（5.0G - 1.4G pre-existing），平均速度 ~7.5 MB/s。\n\n## 产出\n\n| 项目 | 值 |\n|------|-----|\n| **下载方式** | Python 16-worker 并行 + hf-mirror.com |\n| **当前速度** | ~5-7 MB/s（机器外网出口硬限制） |\n| **已下载** | 5.0 GB / ~140 GB |\n| **预计完成时间** | ~5.5-6.5 小时（约 21:30-22:30 CST） |\n| **PID** | 5399 |\n| **日志** | `/tmp/download_qwen72b_v2.log` |\n\n**监控命令：**\n```bash\n# 查进度\ndu -sh /root/autodl-tmp/models/Qwen2.5-72B-Instruct/\n# 查日志（文件完成后会输出速度）\ntail -20 /tmp/download_qwen72b_v2.log\n# 查进程\nps aux | grep parallel_download\n```\n\n**说明：** 测试了 modelscope、hf_transfer、huggingface-cli (`hf`)、16-worker 并行四种方案。这台机器外网出口带宽上限约 5-7 MB/s，单连接仅 0.6-0.7 MB/s。16 并行连接是在该带宽约束下的最优方案，比原始单连接（3 MB/s）提升约 2x。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-accelerate-download-25068.md"
+}

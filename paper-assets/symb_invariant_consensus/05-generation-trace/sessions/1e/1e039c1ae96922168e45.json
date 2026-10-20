@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e039c1ae96922168e45",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag exp050b 049b progress",
+  "task_key": "worker_diag_exp050b-049b-progress_20260518T225905",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_exp050b-049b-progress_20260518T225905_result.json",
+    "occurrence": 1,
+    "bytes": 934,
+    "sha256": "1fef8f3060cd57b3caa252661cb66023e20f18b78f69aa9c92d2755581b5a77f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度汇总\n\n### exp-050b (Mistral ICL Oracle, cuda:2)\n- **进度**: 168/199 (84.4%)\n- **状态**: 正常运行，HTTP 请求持续返回 200\n- **最新 ETA**: ~15 min (32 remaining, avg 28.3s/prob)\n- **预估完成时间**: ~07:15 UTC (约 15 分钟后)\n\n### exp-049b (Mistral LogiQA, cuda:3)\n- **进度**: 162/200 (81.0%)\n- **状态**: 正常运行，最新一条处理的是 logiqa_161\n- **最新 ETA**: ~15 min (38 remaining, avg 23.9s/prob)\n- **预估完成时间**: ~07:15 UTC (约 15 分钟后)\n\n### GPU 使用\n| GPU | 用途 | 显存 | 利用率 | 温度 |\n|-----|------|------|--------|------|\n| 0 | VLLM (其他任务) | 88.4/97.9 GB | 100% | 58°C |\n| 1 | VLLM (其他任务) | 88.4/97.9 GB | 100% | 56°C |\n| 2 | VLLM (exp-050b) | 88.4/97.9 GB | 96% | 53°C |\n| 3 | VLLM (exp-049b) | 88.1/97.9 GB | 96% | 54°C |\n\n两个实验均正常，预计约 15 分钟后先后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp050b-049b-progress.md"
+}

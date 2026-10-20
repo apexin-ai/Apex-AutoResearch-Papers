@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92b7a8c44ed4f39a73d1",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis f progress check",
+  "task_key": "worker_analysis_f-progress-check_20260520T122055",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_f-progress-check_20260520T122055_result.json",
+    "occurrence": 1,
+    "bytes": 699,
+    "sha256": "fec72cfc246c7737c23bea130fe30c103c496be686099fa211e93a1325f24a1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## F Blind FOL 实验状态\n\n| 项目 | 值 |\n|------|-----|\n| **进程状态** | **Alive** — PID 378776, 运行 2h51m, RSS 93MB |\n| **已完成** | **140 / 204** (68.6%) |\n| **SICA accuracy** | **59.31%** |\n| **SC baseline accuracy** | 54.41% |\n| **Raw accuracy** | 39.29% (55/140) |\n\n**Per-label breakdown:**\n- True: 26.42% (14/53)\n- False: 10.26% (4/39)\n- Unknown: 77.08% (37/48)\n\n**Extraction stats** (1680 traces):\n- Premise extraction: 94.58%\n- Conclusion translation: 92.2%\n- Z3 compilation: 92.2%\n\n进程仍在运行，剩余 64 道题，按当前速度预计还需约 1.5h 完成。tmux 日志文件不存在（`/tmp/exp-wave3-dir-f-blind-fol.log`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-f-progress-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "692220de1838e08237b3",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix sc tiebreaking",
+  "task_key": "worker_fix_sc-tiebreaking_20260519T043806",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_sc-tiebreaking_20260519T043806_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "b4cd110a746d4607ea0dfd5d2296e651a36f3a2af7bd3e21dd7db8612c05ac94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器均已修复，语法验证通过。\n\n修改内容：\n```\n- best_answer = max(groups, key=lambda k: len(groups[k]))\n+ best_answer = max(sorted(groups.keys()), key=lambda k: len(groups[k]))\n```\n\n- **westd-25068**: 已修复 ✓\n- **westd-16639**: 已修复 ✓\n\n平局时现在按字母序选择，与 exp-031 一致（SC = 75.49%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-sc-tiebreaking.md"
+}

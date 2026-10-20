@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "4e9ae8b576dfcc215855",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "analysis text ablation folio",
+  "task_key": "worker_analysis_text-ablation-folio_20260521T021006",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_text-ablation-folio_20260521T021006.log",
+    "occurrence": 1,
+    "bytes": 665330,
+    "sha256": "e173db84c60e305cec1843056c2087755f27396fd3cfb3ebb7f6963ee810e32a"
+  },
+  "statistics": {
+    "messages": 186,
+    "user_turns": 0,
+    "tool_calls": 73,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 36,
+      "tool_call": 73,
+      "tool_result": 73,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 186,
+      "chunks": [
+        {
+          "path": "4e9ae8b576dfcc215855-part-0001.json",
+          "message_count": 149
+        },
+        {
+          "path": "4e9ae8b576dfcc215855-part-0002.json",
+          "message_count": 37
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-text-ablation-folio.md"
+}

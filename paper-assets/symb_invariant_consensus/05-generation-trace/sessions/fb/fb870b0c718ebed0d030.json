@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb870b0c718ebed0d030",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix unified id fix patch",
+  "task_key": "worker_fix_unified-id-fix-patch_20260522T222457",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_unified-id-fix-patch_20260522T222457_result.json",
+    "occurrence": 1,
+    "bytes": 4035,
+    "sha256": "d62ac5630b0a6fb5c380011a76043cad904efbba788f187847be0d8086360f10"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All clear. No residual old values remain. Here's the complete report:\n\n## 修改汇总\n\n| # | 文件:行 | 旧值 | 新值 | 类别 |\n|---|---------|------|------|------|\n| 1 | appendix.tex:875 | SC only & 39.17% | SC only & 39.33% | D |\n| 2 | appendix.tex:892 | SC $= 39.17\\%$ | SC $= 39.33\\%$ | D |\n| 3 | appendix.tex:898 | $+$1.17 | $+$0.83 | E |\n| 4 | appendix.tex:899 | $+$7.00 | $+$6.67 | E |\n| 5 | appendix.tex:900 | $+$11.17 | $+$11.00 | E |\n| 6 | appendix.tex:948 | SC 39.17% | SC 39.33% | D |\n| 7 | appendix.tex:948 | adj. p = 3.00×10⁻⁵ | adj. p = 6.78×10⁻⁵ | BH |\n| 8 | appendix.tex:948 | adj. p = 7.44×10⁻⁶ | adj. p = 7.42×10⁻⁶ | BH |\n| 9 | appendix.tex:965 | SC 39.17%, gap +15.83 | SC 39.33%, gap +15.67 | D/E |\n| 10 | appendix.tex:966 | 40.33 & +1.17 & .189 & .630 | 40.17 & +0.83 & .359 & .720 | E/BH |\n| 11 | appendix.tex:967 | 46.17 & +7.00 & 5.0×10⁻⁶ & 3.00×10⁻⁵ | 46.00 & +6.67 & 1.13×10⁻⁵ & 6.78×10⁻⁵ | E/BH |\n| 12 | appendix.tex:968 | +11.17 & 6.2×10⁻⁷ & 7.44×10⁻⁶ | +11.00 & 6.18×10⁻⁷ & 7.42×10⁻⁶ | E/BH |\n| 13 | appendix.tex:983 | .630 (Qwen3 w5 p_BH) | .720 | BH cascade |\n| 14 | appendix.tex:1001 | SC 39.17% | SC 39.33% | D |\n| 15 | appendix.tex:1002 | +3.17 | +3.00 | FT |\n| 16 | appendix.tex:1003 | +13.00 | +12.83 | FT |\n| 17 | appendix.tex:1004 | +26.33 | +26.17 | FT |\n| 18 | solutions.tex:9 | SC's 39.17%, +7.00 pp | SC's 39.33%, +6.67 pp | D/E-narr |\n| 19 | solutions.tex:12 | SC 39.17%, +7.00 pp | SC 39.33%, +6.67 pp | D/E-narr |\n| 20 | solutions.tex:23 | 39.17% & +15.83 & +7.00 pp | 39.33% & +15.67 & +6.67 pp | D/E |\n| 21 | solutions.tex:32 | +13.00 pp | +12.83 pp | FT |\n| 22 | abstract.tex:8 | +7.00 pp | +6.67 pp | E-narr |\n| 23 | introduction.tex:28 | +7.00 pp | +6.67 pp | E-narr |\n| 24 | scatter.py:35 | (15.83, 7.00) | (15.67, 6.67) | G |\n| 25 | scatter.py:43 | (-1.50, 4.17) | (-1.66, 4.17) | G |\n| 26 | scatter.py:44 | (7.00, 5.17) | (6.84, 5.17) | G |\n| 27 | scatter.py:50 | (60.50, 13.00) | (60.34, 12.83) | G |\n| 28 | scatter.py:134 | (15.83, 7.00) | (15.67, 6.67) | G |\n\n### Canonical 数据读取结果\n\n| Verifier | w | Combo % | Δ (pp) | p_raw | p_BH (m=12) |\n|----------|---|---------|--------|-------|-------------|\n| **SC baseline** | — | **39.33** (236/600) | — | — | — |\n| DeBERTa w1 | 1 | 40.17 | +0.83 | 0.359 | .720 |\n| DeBERTa w3 | 3 | 46.00 | +6.67 | 1.13×10⁻⁵ | 6.78×10⁻⁵*** |\n| DeBERTa w5 | 5 | 50.33 | +11.00 | 6.18×10⁻⁷ | 7.42×10⁻⁶*** |\n| RoBERTa w1 | 1 | 39.17 | −0.17 | 1.0 | 1.0 |\n| RoBERTa w3 | 3 | 43.50 | +4.17 | 0.00263 | .755 |\n| RoBERTa w5 | 5 | 43.67 | +4.33 | 0.0369 | .720 |\n| BART w1 | 1 | 39.33 | 0.00 | 1.0 | 1.0 |\n| BART w3 | 3 | 44.50 | +5.17 | 0.000244 | .755 |\n| BART w5 | 5 | 45.67 | +6.33 | 0.00275 | .720 |\n\nFT DeBERTa (Mistral-7B): w1=42.33 (Δ+3.00), w3=52.17 (Δ+12.83), w5=65.50 (Δ+26.17)\n\n### BH 重算过程 (m=12 cross-generator)\n\n12 条件排序后 step-up + step-down monotonicity 修正。Mistral w1 从 rank 3→4 (raw .189→.359)，导致 Qwen3 w5 BH 也从 .630→.720（rank cascade）。两个显著条件不变（Mistral w3/w5, p_BH < 0.001）。\n\n### 编译状态\n**成功**，27 页，652,500 bytes，0 errors。\n\n### 残留检查\n- `39.17` in *.tex: **0 matches**\n- `+7.00` in *.tex: **0 matches**\n- `15.83` in *.tex: **0 matches**\n- `39.17` in *.py: **0 matches**\n- `7.00` in scatter plot: **0 matches**\n\n### 未修改项（确认不需要变化）\n- RoBERTa/BART Δ 在 multi-NLI 表 (L902-908): canonical 值与当前显示值一致\n- `$+$13--26\\,pp` (abstract/intro): 12.83→13, 26.17→26 四舍五入后范围不变\n- `$14\\times$ amplification` (solutions L32): LLaMA 的 $+0.83→+11.67$，不受影响\n- DRC τ=0.7 accuracy (L876): 无更新后的 Mistral-7B/PW-D5 DRC 数据，45.33% 保留\n- DRC full combo (L877): 46.00% 与 canonical DeBERTa w3 一致\n- 3-verifier BH 表 (L928-933): 只显示 checkmarks，显著性结论不变"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-unified-id-fix-patch.md"
+}

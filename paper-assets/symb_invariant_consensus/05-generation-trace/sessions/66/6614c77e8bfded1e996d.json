@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "6614c77e8bfded1e996d",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "research confirm 3 nli architectures",
+  "task_key": "worker_research_confirm-3-nli-architectures_20260522T135816",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_confirm-3-nli-architectures_20260522T135816.log",
+    "occurrence": 1,
+    "bytes": 792957,
+    "sha256": "1c0a467996d9142dbc3d1ea8fda4a614b8c665dfaf0d5703cecc3333f5be915a"
+  },
+  "statistics": {
+    "messages": 48,
+    "user_turns": 0,
+    "tool_calls": 16,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 12,
+      "tool_call": 16,
+      "tool_result": 16,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 48,
+      "chunks": [
+        {
+          "path": "6614c77e8bfded1e996d-part-0001.json",
+          "message_count": 28
+        },
+        {
+          "path": "6614c77e8bfded1e996d-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-confirm-3-nli-architectures.md"
+}

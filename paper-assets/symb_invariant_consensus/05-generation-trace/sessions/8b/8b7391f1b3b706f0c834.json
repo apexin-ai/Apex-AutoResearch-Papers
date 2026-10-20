@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b7391f1b3b706f0c834",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "figure fig2 kappa delta v2",
+  "task_key": "worker_figure_fig2-kappa-delta-v2_20260524T121555",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_figure_fig2-kappa-delta-v2_20260524T121555_result.json",
+    "occurrence": 1,
+    "bytes": 331,
+    "sha256": "2f533ecab35b258e884385dccafe2c9bedd60b9cde2c68f26c43f3f09a9061ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF (30KB) 和 PNG (113KB) 已生成。\n\n变更总结：\n- 去掉了 7 个温度/种子变体点，保留 9 个 canonical 条件 + 新增 LLaMA-3.1-8B FOLIO（κ=0.41, Δ=-4.41），共 10 个点\n- 图例改为单列、左上角、`frameon=False`\n- 脚本位于 `artifacts/figures/paper/gen_fig2_kappa_delta.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig2-kappa-delta-v2.md"
+}

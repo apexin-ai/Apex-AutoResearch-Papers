@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93570eff851d9cc8c5f5",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis constraint ablation deep",
+  "task_key": "worker_analysis_constraint-ablation-deep_20260517T171933",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_constraint-ablation-deep_20260517T171933_result.json",
+    "occurrence": 1,
+    "bytes": 986,
+    "sha256": "31925e3659e7d3adc5542843742c58cde5bfb562937836304592ce2bf57a337e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n**Raw constraints 不可用**（exp-001 未保存 Z3 formulas），使用 score-level proxy 分析。\n\n| Method | Accuracy | Δ vs SC | McNemar p |\n|--------|----------|---------|-----------|\n| SICA-MaxSAT | 76.49% | +0.25pp | 0.856 |\n| SICA-count-only | 76.62% | +0.37pp | 0.711 |\n| SICA-random-weight | 75.87% | -0.37pp | 0.743 |\n| SC@K | 76.24% | — | — |\n\n**关键数字：**\n- MaxSAT vs Count-only agreement: **803/804 (99.9%)**，95%CI=[99.6%, 100.0%]\n- 唯一分歧：folio_062（分差仅 0.5，本质是 tie）\n- Margin analysis：305 个有 exclusion 的 multi-candidate 问题中，仅 35 个理论可翻转，margin 中位数 4.69x\n- 100-seed random-weight：agreement 96.8%±0.5%\n\n**结论：SAT solver 对最终答案选择几乎无贡献，constraint 计数即决定结果。**\n\n输出文件：\n- 脚本：`scripts/constraint_ablation_deep.py`\n- 结果：`results/constraint_ablation/ablation_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-constraint-ablation-deep.md"
+}

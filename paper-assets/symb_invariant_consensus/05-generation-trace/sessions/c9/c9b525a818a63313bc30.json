@@ -1,0 +1,1252 @@
+{
+  "schema_version": "1.0",
+  "id": "c9b525a818a63313bc30",
+  "project": "symb_invariant_consensus",
+  "kind": "conversation",
+  "title": "analysis pilot constraint discriminative",
+  "task_key": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analysis_pilot-constraint-discriminative_20260517T053102.jsonl",
+    "occurrence": 1,
+    "bytes": 64738,
+    "sha256": "54372c1becb73fd4f0879b192e1101f8879221a85657d8aebe0de0adee05c545"
+  },
+  "statistics": {
+    "messages": 61,
+    "user_turns": 0,
+    "tool_calls": 30,
+    "roles": {
+      "tool_call": 30,
+      "tool_result": 30,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T05:35:18.903079+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T05:35:18.903449+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T05:35:18.903643+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "find /root/symb_invariant_consensus/results/ -name \"*pilot*\" -o -name \"*filtering*\" 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T05:35:18.903793+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T05:35:18.903966+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "find /root/symb_invariant_consensus/scripts/ -name \"*pilot*\" -o -name \"*filter*\" 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T05:35:18.904101+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T05:35:18.904291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "ls /root/symb_invariant_consensus/results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T05:35:18.904451+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"aime30_t07.json\\\\naime30_v2.json\\\\naime30_v2_partial_backup.json\\\\naime30_v2_rescore_analysis.json\\\\nanalysis_expanded.json\\\\nc0_precheck_qwen14b.json\\\\nconstraint_ablation.json\\\\nconstraint_cache\\\\nconstraint_cache_consolidated.json\\\\nd016_smoke_test.json\\\\ndiversity_diagnosis.json\\\\nexp001_analysis.md\\\\nexp010_mistral\\\\nexp011_llama8b\\\\nexp017_strategyqa\\\\nexp018_arc\\\\nfolio_livetest.json\\\\nk_ablation\\\\npilot_constraint_filtering\\\\nproofwriter_30_v2.json\\\\nproofwriter_5_l3l1_fix.json\\\\nqwq_operating_regime.json\\\\nqwq_operating_regime.md\\\\nrescore_pure_results.json\\\\nsica_d012_14b.json\\\\nsica_expanded_14b.json\\\\nsmoke_test_5q.json\\\\ntiebreak_analysis.json\\\\nweighted_sc_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T05:35:18.904626+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "ls /root/symb_invariant_consensus/results/pilot_constraint_filtering/",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T05:35:18.904813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"extracted_constraints.json\\\\npilot_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T05:35:18.904980+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "head -200 /root/symb_invariant_consensus/results/pilot_constraint_filtering/pilot_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T05:35:18.905140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"thresholds\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"threshold\\\\\\\": 1,\\\\n      \\\\\\\"n_constraints_avg\\\\\\\": 22.3,\\\\n      \\\\\\\"sica_accuracy\\\\\\\": 0.7674,\\\\n      \\\\\\\"sc_accuracy\\\\\\\": 0.7442,\\\\n      \\\\\\\"gap_pp\\\\\\\": 2.33,\\\\n      \\\\\\\"n_problems\\\\\\\": 43\\\\n    },\\\\n    {\\\\n      \\\\\\\"threshold\\\\\\\": 2,\\\\n      \\\\\\\"n_constraints_avg\\\\\\\": 18.5,\\\\n      \\\\\\\"sica_accuracy\\\\\\\": 0.7674,\\\\n      \\\\\\\"sc_accuracy\\\\\\\": 0.7442,\\\\n      \\\\\\\"gap_pp\\\\\\\": 2.33,\\\\n      \\\\\\\"n_problems\\\\\\\": 43\\\\n    },\\\\n    {\\\\n      \\\\\\\"threshold\\\\\\\": 3,\\\\n      \\\\\\\"n_constraints_avg\\\\\\\": 16.3,\\\\n      \\\\\\\"sica_accuracy\\\\\\\": 0.7674,\\\\n      \\\\\\\"sc_accuracy\\\\\\\": 0.7442,\\\\n      \\\\\\\"gap_pp\\\\\\\": 2.33,\\\\n      \\\\\\\"n_problems\\\\\\\": 43\\\\n    },\\\\n    {\\\\n      \\\\\\\"threshold\\\\\\\": 5,\\\\n      \\\\\\\"n_constraints_avg\\\\\\\": 13.7,\\\\n      \\\\\\\"sica_accuracy\\\\\\\": 0.7442,\\\\n      \\\\\\\"sc_accuracy\\\\\\\": 0.7442,\\\\n      \\\\\\\"gap_pp\\\\\\\": 0.0,\\\\n      \\\\\\\"n_problems\\\\\\\": 43\\\\n    },\\\\n    {\\\\n      \\\\\\\"threshold\\\\\\\": 7,\\\\n      \\\\\\\"n_constraints_avg\\\\\\\": 9.7,\\\\n      \\\\\\\"sica_accuracy\\\\\\\": 0.7442,\\\\n      \\\\\\\"sc_accuracy\\\\\\\": 0.7442,\\\\n      \\\\\\\"gap_pp\\\\\\\": 0.0,\\\\n      \\\\\\\"n_problems\\\\\\\": 43\\\\n    }\\\\n  ],\\\\n  \\\\\\\"sc_accuracy\\\\\\\": 0.7442\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T05:35:18.905277+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "head -200 /root/symb_invariant_consensus/results/pilot_constraint_filtering/extracted_constraints.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T05:35:18.905516+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n \\\\\\\"ProofWriter_AttNoneg-OWA-D5-1041_Q1\\\\\\\": [\\\\n  [\\\\n   {\\\\n    \\\\\\\"type\\\\\\\": \\\\\\\"fact\\\\\\\",\\\\n    \\\\\\\"expression\\\\\\\": \\\\\\\"kind(charlie)\\\\\\\",\\\\n    \\\\\\\"z3_formula\\\\\\\": \\\\\\\"kind_charlie == True\\\\\\\",\\\\n    \\\\\\\"source_step\\\\\\\": 1\\\\n   }\\\\n  ],\\\\n  [\\\\n   {\\\\n    \\\\\\\"type\\\\\\\": \\\\\\\"fact\\\\\\\",\\\\n    \\\\\\\"expression\\\\\\\": \\\\\\\"kind(charlie)\\\\\\\",\\\\n    \\\\\\\"z3_formula\\\\\\\": \\\\\\\"kind_charlie == True\\\\\\\",\\\\n    \\\\\\\"source_step\\\\\\\": 5\\\\n   },\\\\n   {\\\\n    \\\\\\\"type\\\\\\\": \\\\\\\"fact\\\\\\\",\\\\n    \\\\\\\"expression\\\\\\\": \\\\\\\"quiet(charlie)\\\\\\\",\\\\n    \\\\\\\"z3_formula\\\\\\\": \\\\\\\"quiet_charlie == True\\\\\\\",\\\\n    \\\\\\\"source_step\\\\\\\": 6\\\\n   },\\\\n   {\\\\n    \\\\\\\"type\\\\\\\": \\\\\\\"fact\\\\\\\",\\\\n    \\\\\\\"expression\\\\\\\": \\\\\\\"red(charlie)\\\\\\\",\\\\n    \\\\\\\"z3_formula\\\\\\\": \\\\\\\"red_charlie == True\\\\\\\",\\\\n    \\\\\\\"source_step\\\\\\\": 7\\\\n   },\\\\n   {\\\\n    \\\\\\\"type\\\\\\\": \\\\\\\"fact\\\\\\\",\\\\n    \\\\\\\"expression\\\\\\\": \\\\\\\"rough(charlie)\\\\\\\",\\\\n    \\\\\\\"z3_formula\\\\\\\": \\\\\\\"rough_charlie == True\\\\\\\",\\\\n    \\\\\\\"source_step\\\\\\\": 8\\\\n   },\\\\n   {\\\\n    \\\\\\\"type\\\\\\\": \\\\\\\"rule\\\\\\\",\\\\n    \\\\\\\"expression\\\\\\\": \\\\\\\"quiet(X) & cold(X) -> smart(X)\\\\\\\",\\\\n    \\\\\\\"z3_formula\\\\\\\": \\\\\\\"Implies(And(quiet_charlie, cold_charlie), smart_charlie)\\\\\\\",\\\\n    \\\\\\\"source_step\\\\\\\": 9\\\\n   },\\\\n   {\\\\n    \\\\\\\"type\\\\\\\": \\\\\\\"rule\\\\\\\",\\\\n    \\\\\\\"expression\\\\\\\": \\\\\\\"red(X) & cold(X) -> round(X)\\\\\\\",\\\\n    \\\\\\\"z3_formula\\\\\\\": \\\\\\\"Implies(And(red_charlie, cold_charlie), round_charlie)\\\\\\\",\\\\n    \\\\\\\"source_step\\\\\\\": 10\\\\n   },\\\\n   {\\\\n    \\\\\\\"type\\\\\\\": \\\\\\\"rule\\\\\\\",\\\\n    \\\\\\\"expression\\\\\\\": \\\\\\\"kind(X) & rough(X) -> red(X)\\\\\\\",\\\\n    \\\\\\\"z3_formula\\\\\\\": \\\\\\\"Implies(And(kind_charlie, rough_charlie), red_charlie)\\\\\\\",\\\\n    \\\\\\\"source_step\\\\\\\": 11\\\\n   },\\\\n   {\\\\n    \\\\\\\"type\\\\\\\": \\\\\\\"rule\\\\\\\",\\\\n    \\\\\\\"expression\\\\\\\": \\\\\\\"quiet(X) -> rough(X)\\\\\\\",\\\\n    \\\\\\\"z3_formula\\\\\\\": \\\\\\\"Implies(quiet_charlie, rough_charlie)\\\\\\\",\\\\n    \\\\\\\"source_step\\\\\\\": 12\\\\n   },\\\\n   {\\\\n    \\\\\\\"type\\\\\\\": \\\\\\\"rule\\\\\\\",\\\\n    \n…[truncated 4438 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T05:35:18.905862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "find /root/symb_invariant_consensus/results/pilot_constraint_filtering/ -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T05:35:18.906051+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/results/pilot_constraint_filtering/extracted_constraints.json\\\\n/root/symb_invariant_consensus/results/pilot_constraint_filtering/pilot_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T05:35:18.906181+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "find /root/symb_invariant_consensus/src/ -name \"*filter*\" -o -name \"*pilot*\" -o -name \"*satisfaction*\" -o -name \"*discriminat*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T05:35:18.906328+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/symb_invariant_consensus/src/': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T05:35:18.906456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "find /root/symb_invariant_consensus/ -name \"*.py\" -path \"*constraint*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T05:35:18.906582+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/sica/constraint_extractor.py\\\\n/root/symb_invariant_consensus/scripts/constraint_ablation.py\\\\n/root/symb_invariant_consensus/scripts/extract_constraints_for_ablation.py\\\\n/root/symb_invariant_consensus/scripts/pilot_constraint_filtering.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T05:35:18.906700+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "cat /root/symb_invariant_consensus/scripts/pilot_constraint_filtering.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T05:35:18.906983+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nConstraint Consistency Filtering Pilot Experiment\\\\n\\\\nTests hypothesis: filtering constraints by cross-trace frequency improves SICA accuracy.\\\\nThreshold T means \\\\\\\"keep only constraints appearing in >= T traces.\\\\\\\"\\\\n\\\\nThree phases:\\\\n  Phase 1: Constraint Extraction (needs vLLM)\\\\n  Phase 2: Constraint Consistency Filtering (CPU only)\\\\n  Phase 3: Evaluation with MaxSAT (CPU only)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nfrom __future__ import annotations\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom collections import Counter\\\\nfrom pathlib import Path\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))\\\\n\\\\nfrom sica.constraint_extractor import ConstraintExtractor, VLLMBackend, MockLLM\\\\nfrom sica.z3_maxsat import (\\\\n    ConstraintDeduplicator,\\\\n    MaxSATSolver,\\\\n    UniqueConstraint,\\\\n    parse_z3_formula,\\\\n    check_equivalence,\\\\n)\\\\nfrom sica.scorer import InvariantScorer\\\\nfrom baselines.self_consistency import SelfConsistency\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\",\\\\n    handlers=[logging.StreamHandler(sys.stdout)],\\\\n)\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef load_ground_truth(data_dir: str) -> dict[str, str]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load ground truth from all available ProofWriter data files.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    gt_map = {}\\\\n    for fname in [\\\\n        \\\\\\\"proofwriter_30.json\\\\\\\",\\\\n        \\\\\\\"proofwriter_subset.json\\\\\\\",\\\\n        \\\\\\\"proofwriter_full.json\\\\\\\",\\\\n        \\\\\\\"proofwriter_expanded_70.json\\\\\\\",\\\\n    ]:\\\\n        path = os.path.join(data_dir, fname)\\\\n        if os.path.exists(path):\\\\n            with open(path) as f:\\\\n                items = json.load(f)\\\\n            if isinstance(items, list):\\\\n                for item in items:\\\\n                    gt_map[item[\\\\\\\"id\\\\\\\"]] = item.get(\\\\\\\"answer\\\\\\\", \\\\\\\"\\\\\\\")\\\\n    \n…[truncated 7159 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T05:35:18.907230+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "grep -n \"def evaluate\\|def run_filtering\\|def score\\|satisfied\" /root/symb_invariant_consensus/scripts/pilot_constraint_filtering.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T05:35:18.907376+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T05:35:18.907563+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "cat /root/symb_invariant_consensus/sica/scorer.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T05:35:18.907783+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nInvariant consensus scorer with A+C improvement:\\\\n  A (normal mode): score = positive_weight - alpha * negative_weight\\\\n  C (fallback mode): when satisfied_ratio < threshold, score = -excluded_exposure\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nfrom __future__ import annotations\\\\n\\\\nimport logging\\\\nfrom collections import Counter\\\\n\\\\nfrom .z3_maxsat import MaxSATResult\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\nclass InvariantScorer:\\\\n\\\\n    def __init__(self, alpha: float = 0.5, fallback_threshold: float = 0.2):\\\\n        self.alpha = alpha\\\\n        self.fallback_threshold = fallback_threshold\\\\n\\\\n    def score(\\\\n        self,\\\\n        maxsat_result: MaxSATResult,\\\\n        traces: list[dict],\\\\n        candidates: list[str],\\\\n    ) -> dict[str, float]:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Score each candidate answer using A+C strategy.\\\\n\\\\n        Normal mode (A): score = Σw(satisfied ∩ traces) - α·Σw(excluded ∩ traces)\\\\n        Fallback mode (C): score = -Σw(excluded ∩ traces)\\\\n        Switches to fallback when satisfied_ratio < fallback_threshold.\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        answer_traces: dict[str, set[int]] = {}\\\\n        for t in traces:\\\\n            ans = str(t.get(\\\\\\\"answer\\\\\\\", \\\\\\\"\\\\\\\")).strip()\\\\n            idx = t.get(\\\\\\\"trace_idx\\\\\\\", 0)\\\\n            answer_traces.setdefault(ans, set()).add(idx)\\\\n\\\\n        n_satisfied = len(maxsat_result.satisfied)\\\\n        n_excluded = len(maxsat_result.excluded)\\\\n        n_total = n_satisfied + n_excluded\\\\n\\\\n        if n_total == 0:\\\\n            return {str(c).strip(): 0.0 for c in candidates}\\\\n\\\\n        satisfied_ratio = n_satisfied / n_total\\\\n        fallback = satisfied_ratio < self.fallback_threshold\\\\n\\\\n        logger.info(\\\\n            \\\\\\\"Scorer mode=%s  satisfied_ratio=%.3f (%d/%d)  alpha=%.2f  threshold=%.2f\\\\\\\",\\\\n            \\\\\\\"FALLBACK\\\\\\\" if fallback else \\\\\\\"NORMAL\\\\\\\",\\\\n            satisfied_ratio, n_satisfied, n_total,\\\\n      \n…[truncated 1690 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T05:35:18.907959+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "cat /root/symb_invariant_consensus/sica/z3_maxsat.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-17T05:35:18.908229+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nZ3-based weighted partial MAX-SAT solver for constraint consensus.\\\\nInput: multi-trace constraint lists (list of list of dicts)\\\\nOutput: optimal satisfiable constraint subset, excluded contradictions, per-answer scores\\\\nDependencies: z3-solver\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nfrom __future__ import annotations\\\\n\\\\nimport logging\\\\nimport ast\\\\nimport re\\\\nimport threading\\\\nimport time\\\\nfrom dataclasses import dataclass, field\\\\n\\\\nimport z3\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n_BOOL_INDICATORS = re.compile(r'\\\\\\\\bImplies\\\\\\\\s*\\\\\\\\(|==\\\\\\\\s*True|==\\\\\\\\s*False|\\\\\\\\bNot\\\\\\\\s*\\\\\\\\(|\\\\\\\\bAnd\\\\\\\\s*\\\\\\\\(|\\\\\\\\bOr\\\\\\\\s*\\\\\\\\(')\\\\n\\\\n\\\\ndef _is_boolean_formula(formula_str: str) -> bool:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Detect whether a formula uses boolean logic (vs arithmetic).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return bool(_BOOL_INDICATORS.search(formula_str))\\\\n\\\\n\\\\ndef _strip_nl_prefix(s: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Strip natural language prefix before a formula.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    # Colon separator: \\\\\\\"The constraint is: x + y == 10\\\\\\\"\\\\n    if ':' in s:\\\\n        after = s.split(':', 1)[1].strip()\\\\n        if after and re.match(r'[a-zA-Z_\\\\\\\\d(\\\\\\\\-]', after):\\\\n            return after\\\\n    # Common NL lead-ins without colon: \\\\\\\"We need X\\\\\\\", \\\\\\\"Since X, Y\\\\\\\"\\\\n    m = re.match(\\\\n        r'(?:We\\\\\\\\s+(?:need|have|get|know|require)|'\\\\n        r'(?:Since|Because|Note\\\\\\\\s+that|Given\\\\\\\\s+that|It\\\\\\\\s+follows\\\\\\\\s+that)\\\\\\\\b'\\\\n        r')[,\\\\\\\\s]+',\\\\n        s, re.IGNORECASE,\\\\n    )\\\\n    if m:\\\\n        candidate = s[m.end():].strip()\\\\n        if candidate and re.match(r'[a-zA-Z_\\\\\\\\d(\\\\\\\\-]', candidate):\\\\n            return candidate\\\\n    return s\\\\n\\\\n\\\\ndef _needs_int_vars(formula_str: str) -> bool:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Detect if formula uses integer operations (%, //, Mod).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return bool(re.search(r'(?<![/])%(?!%)|//|\\\\\\\\bMod\\\\\\\\s*\\\\\\\\(', formula_str))\\\\n\\\\n\\\\ndef _ast_rewrite(formula_str: str) -> \n…[truncated 6974 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-17T05:35:18.908437+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "find /root/symb_invariant_consensus/data/ -name \"*proofwriter*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-17T05:35:18.908583+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/data/prepare_proofwriter.py\\\\n/root/symb_invariant_consensus/data/proofwriter_subset.json\\\\n/root/symb_invariant_consensus/data/__pycache__/proofwriter_loader.cpython-312.pyc\\\\n/root/symb_invariant_consensus/data/proofwriter_loader.py\\\\n/root/symb_invariant_consensus/data/proofwriter_30.json\\\\n/root/symb_invariant_consensus/data/proofwriter_full.json\\\\n/root/symb_invariant_consensus/data/proofwriter_expanded_70.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-17T05:35:18.908712+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "grep -rn \"def evaluate\" /root/symb_invariant_consensus/scripts/pilot_constraint_filtering.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-17T05:35:18.908846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"156:def evaluate(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-17T05:35:18.908992+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "head -5 /root/symb_invariant_consensus/data/proofwriter_30.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-17T05:35:18.909128+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"id\\\\\\\": \\\\\\\"ProofWriter_AttNeg-OWA-D5-979_Q9\\\\\\\",\\\\n    \\\\\\\"problem\\\\\\\": \\\\\\\"Given the following facts and rules:\\\\\\\\nCharlie is red. Dave is red. Dave is rough. Dave is round. Dave is young. Fiona is quiet. Fiona is red. Harry is furry. Harry is kind. Harry is young. All rough things are round. All rough things are round. All round, rough things are young. All red things are young. If Fiona is young and Fiona is not furry then Fiona is kind. If something is furry then it is rough. Quiet, kind things are rough. All quiet, young things are kind. Young things are quiet.\\\\\\\\n\\\\\\\\nDetermine whether the following statement is true, false, or unknown:\\\\\\\\nFiona is round.\\\\\\\",\\\\n    \\\\\\\"solution\\\\\\\": \\\\\\\"\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-17T05:35:18.909254+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "grep -n \"traces\\|answer\" /root/symb_invariant_consensus/data/proofwriter_30.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-17T05:35:18.909374+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-17T05:35:18.909490+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "grep -n \"traces\" /root/symb_invariant_consensus/data/proofwriter_30.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-17T05:35:18.909607+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-17T05:35:18.909720+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "grep -n \"answer\" /root/symb_invariant_consensus/data/proofwriter_30.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-17T05:35:18.909893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"6:    \\\\\\\"answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n13:    \\\\\\\"answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n20:    \\\\\\\"answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n27:    \\\\\\\"answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n34:    \\\\\\\"answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n41:    \\\\\\\"answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n48:    \\\\\\\"answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n55:    \\\\\\\"answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n62:    \\\\\\\"answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n69:    \\\\\\\"answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n76:    \\\\\\\"answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n83:    \\\\\\\"answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n90:    \\\\\\\"answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n97:    \\\\\\\"answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n104:    \\\\\\\"answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n111:    \\\\\\\"answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n118:    \\\\\\\"answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n125:    \\\\\\\"answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n132:    \\\\\\\"answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n139:    \\\\\\\"answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n146:    \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n153:    \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n160:    \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n167:    \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n174:    \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n181:    \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n188:    \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n195:    \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n202:    \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n209:    \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-17T05:35:18.910067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "find /root/symb_invariant_consensus/ -name \"*aime30*\" -o -name \"*trace*\" -o -name \"*v2*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-17T05:35:18.910201+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/sica/trace_generator.py\\\\n/root/symb_invariant_consensus/sica/__pycache__/trace_generator.cpython-312.pyc\\\\n/root/symb_invariant_consensus/sica/trace_generator.py.bak_pre_logic\\\\n/root/symb_invariant_consensus/results/aime30_t07.json\\\\n/root/symb_invariant_consensus/results/aime30_v2.json\\\\n/root/symb_invariant_consensus/results/aime30_v2_partial_backup.json\\\\n/root/symb_invariant_consensus/results/aime30_v2_rescore_analysis.json\\\\n/root/symb_invariant_consensus/results/proofwriter_30_v2.json\\\\n/root/symb_invariant_consensus/results/k_ablation/traces_k20.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-17T05:35:18.910372+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "head -50 /root/symb_invariant_consensus/results/proofwriter_30_v2.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-17T05:35:18.910836+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"proofwriter\\\\\\\",\\\\n    \\\\\\\"n_problems\\\\\\\": 17,\\\\n    \\\\\\\"depth\\\\\\\": 5,\\\\n    \\\\\\\"k\\\\\\\": 12,\\\\n    \\\\\\\"temperature\\\\\\\": 0.7,\\\\n    \\\\\\\"sica_accuracy\\\\\\\": 0.8235,\\\\n    \\\\\\\"sica_correct\\\\\\\": 14,\\\\n    \\\\\\\"sc_accuracy\\\\\\\": 0.8824,\\\\n    \\\\\\\"sc_correct\\\\\\\": 15,\\\\n    \\\\\\\"total_wall_time_s\\\\\\\": 11797.0\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"ProofWriter_AttNeg-OWA-D5-979_Q9\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"proofwriter\\\\\\\",\\\\n      \\\\\\\"depth\\\\\\\": \\\\\\\"D5\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sica_correct\\\\\\\": true,\\\\n      \\\\\\\"sica_scores\\\\\\\": {\\\\n        \\\\\\\"True\\\\\\\": 64.0\\\\n      },\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sc_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n        \\\\\\\"True\\\\\\\": 12\\\\n      },\\\\n      \\\\\\\"constraints_stats\\\\\\\": {\\\\n        \\\\\\\"total_extracted\\\\\\\": 64,\\\\n        \\\\\\\"traces_with_constraints\\\\\\\": 4,\\\\n        \\\\\\\"unique_after_dedup\\\\\\\": 29\\\\n      },\\\\n      \\\\\\\"maxsat_stats\\\\\\\": {\\\\n        \\\\\\\"satisfied\\\\\\\": 29,\\\\n        \\\\\\\"excluded\\\\\\\": 0,\\\\n        \\\\\\\"total_weight\\\\\\\": 64,\\\\n        \\\\\\\"solve_time_ms\\\\\\\": 1.1307450477033854\\\\n      },\\\\n      \\\\\\\"timing\\\\\\\": {\\\\n        \\\\\\\"trace_gen_s\\\\\\\": 282.18,\\\\n        \\\\\\\"extraction_s\\\\\\\": 107.174,\\\\n        \\\\\\\"dedup_s\\\\\\\": 0.77,\\\\n        \\\\\\\"maxsat_s\\\\\\\": 0.004,\\\\n        \\\\\\\"total_s\\\\\\\": 390.128\\\\n      },\\\\n      \\\\\\\"wall_time_s\\\\\\\": 390.13,\\\\n      \\\\\\\"per_trace\\\\\\\": [\\\\n        {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-17T05:35:18.911014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "grep -n \"sc_vote_distribution\" /root/symb_invariant_consensus/results/proofwriter_30_v2.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-17T05:35:18.911700+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"27:      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n112:      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n197:      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n282:      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n368:      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n454:      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n539:      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n624:      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n709:      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n794:      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n880:      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n966:      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n1051:      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n1138:      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n1225:      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n1310:      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n1396:      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-17T05:35:18.911893+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "find /root/symb_invariant_consensus/scripts/ -name \"*pilot*\" -o -name \"*run*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-17T05:35:18.912044+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/scripts/run_k_ablation.py\\\\n/root/symb_invariant_consensus/scripts/__pycache__/run_k_ablation.cpython-312.pyc\\\\n/root/symb_invariant_consensus/scripts/run_gsm8k_pilot.py\\\\n/root/symb_invariant_consensus/scripts/run_k_ablation.py.bak\\\\n/root/symb_invariant_consensus/scripts/run_k_ablation.sh\\\\n/root/symb_invariant_consensus/scripts/run_exp011_llama8b.sh\\\\n/root/symb_invariant_consensus/scripts/run_exp017_strategyqa.sh\\\\n/root/symb_invariant_consensus/scripts/run_exp018_arc.sh\\\\n/root/symb_invariant_consensus/scripts/run_exp010_mistral.sh\\\\n/root/symb_invariant_consensus/scripts/pilot_constraint_filtering.py\\\\n/root/symb_invariant_consensus/scripts/run_pilot_constraint_filtering.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-17T05:35:18.912176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "grep -rn \"data_dir\\|input.*json\\|load_data\\|data.*path\" /root/symb_invariant_consensus/scripts/pilot_constraint_filtering.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-17T05:35:18.912300+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-17T05:35:18.912420+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "cat /root/symb_invariant_consensus/scripts/run_pilot_constraint_filtering.sh",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-17T05:35:18.912556+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# Pilot: Constraint Consistency Filtering\\\\n# Run AFTER exp-017 completes (needs vLLM on port 8000)\\\\n#\\\\n# Usage:\\\\n#   ./scripts/run_pilot_constraint_filtering.sh           # full run\\\\n#   ./scripts/run_pilot_constraint_filtering.sh --dry-run # test Phase 2+3 only\\\\n\\\\nset -euo pipefail\\\\ncd /root/symb_invariant_consensus\\\\n\\\\nPYTHON=/root/miniconda3/bin/python\\\\nOUTPUT_DIR=results/pilot_constraint_filtering\\\\nVLLM_URL=${VLLM_URL:-http://localhost:8000/v1}\\\\n\\\\necho \\\\\\\"=== Constraint Consistency Filtering Pilot ===\\\\\\\"\\\\necho \\\\\\\"Output: $OUTPUT_DIR\\\\\\\"\\\\necho \\\\\\\"vLLM URL: $VLLM_URL\\\\\\\"\\\\necho \\\\\\\"\\\\\\\"\\\\n\\\\n$PYTHON scripts/pilot_constraint_filtering.py \\\\\\\\\\\\n    --data-path results/k_ablation/traces_k20.json \\\\\\\\\\\\n    --data-dir data \\\\\\\\\\\\n    --output-dir \\\\\\\"$OUTPUT_DIR\\\\\\\" \\\\\\\\\\\\n    --vllm-url \\\\\\\"$VLLM_URL\\\\\\\" \\\\\\\\\\\\n    --thresholds \\\\\\\"1,2,3,5,7\\\\\\\" \\\\\\\\\\\\n    \\\\\\\"$@\\\\\\\"\\\\n\\\\necho \\\\\\\"\\\\\\\"\\\\necho \\\\\\\"PILOT_CONSTRAINT_FILTERING_DONE\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-17T05:35:18.912711+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "head -80 /root/symb_invariant_consensus/results/k_ablation/traces_k20.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-17T05:35:18.913030+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"ProofWriter_AttNoneg-OWA-D5-1041_Q1\\\\\\\": {\\\\n    \\\\\\\"problem_text\\\\\\\": \\\\\\\"Given the following facts and rules:\\\\\\\\nBob is cold. Bob is quiet. Bob is red. Bob is smart. Charlie is kind. Charlie is quiet. Charlie is red. Charlie is rough. Dave is cold. Dave is kind. Dave is smart. Fiona is quiet. If something is quiet and cold then it is smart. Red, cold things are round. If something is kind and rough then it is red. All quiet things are rough. Cold, smart things are red. If something is rough then it is cold. All red things are rough. If Dave is smart and Dave is kind then Dave is quiet.\\\\\\\\n\\\\\\\\nDetermine whether the following statement is true, false, or unknown:\\\\\\\\nCharlie is kind.\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"proofwriter\\\\\\\",\\\\n    \\\\\\\"traces\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"trace\\\\\\\": \\\\\\\"Let's analyze the given information step-by-step to determine if the statement \\\\\\\\\\\\\\\"Charlie is kind\\\\\\\\\\\\\\\" is true, false, or unknown.\\\\\\\\n\\\\\\\\nFirstly, we have the direct fact from the given data that:\\\\\\\\n- Charlie is kind.\\\\\\\\n\\\\\\\\nThis directly confirms the statement that \\\\\\\\\\\\\\\"Charlie is kind.\\\\\\\\\\\\\\\" There are no contradictions provided in the rules or additional facts that would invalidate this statement.\\\\\\\\n\\\\\\\\nThus, based on the given information:\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\\boxed{True}\\\\\\\",\\\\n        \\\\\\\"answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"trace_idx\\\\\\\": 0,\\\\n        \\\\\\\"finish_reason\\\\\\\": \\\\\\\"stop\\\\\\\",\\\\n        \\\\\\\"extraction_method\\\\\\\": \\\\\\\"boxed\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"trace\\\\\\\": \\\\\\\"Let's analyze the given facts and rules step by step to determine if we can confirm that \\\\\\\\\\\\\\\"Charlie is kind\\\\\\\\\\\\\\\" is true, false, or unknown based on the provided information.\\\\\\\\n\\\\\\\\nGiven Facts:\\\\\\\\n- Bob is cold.\\\\\\\\n- Bob is quiet.\\\\\\\\n- Bob is red.\\\\\\\\n- Bob is smart.\\\\\\\\n- Charlie is kind.\\\\\\\\n- Charlie is quiet.\\\\\\\\n- Charlie is red.\\\\\\\\n- Charlie is rough.\\\\\\\\n- Dave is cold.\\\\\\\\n- Da\n…[truncated 7661 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-17T05:35:18.913279+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "cat << 'EOF' > /root/symb_invariant_consensus/scripts/analyze_discriminative_power.py\n\"\"\"\nAnalyze discriminative power of extracted constraints.\n\nFor each problem with multiple answer candidates:\n- Check which constraints were extracted from traces giving different answers\n- A constraint is DISCRIMINATIVE if its source traces all give the SAME answer\n  (i.e., it's exclusively associated with one answer candidate)\n- A constraint is NON-DISCRIMINATIVE if its source traces give multiple different answers\n\"\"\"\nimport json\nfrom collections import defaultdict\n\n# Load data\nwith open(\"/root/symb_invariant_consensus/results/k_ablation/traces_k20.json\") as f:\n    traces_data = json.load(f)\n\nwith open(\"/root/symb_invariant_consensus/results/pilot_constraint_filtering/extracted_constraints.json\") as f:\n    constraints_data = json.load(f)\n\nprint(\"=\" * 72)\nprint(\"CONSTRAINT DISCRIMINATIVE POWER ANALYSIS\")\nprint(\"=\" * 72)\n\n# Per-problem analysis\ntotal_problems = 0\nproblems_with_multiple_answers = 0\ntotal_constraints = 0\ndiscriminative_constraints = 0\nnon_discriminative_constraints = 0\nproblems_with_any_discriminative = 0\n\nper_problem_stats = []\n\nfor prob_id in constraints_data:\n    if prob_id not in traces_data:\n        continue\n    \n    total_problems += 1\n    traces = traces_data[prob_id][\"traces\"]\n    per_trace_constraints = constraints_data[prob_id]\n    \n    # Get answer per trace\n    trace_answers = {}\n    for t in traces:\n        trace_answers[t[\"trace_idx\"]] = t[\"answer\"]\n    \n    # Distinct answer candidates\n    distinct_answers = set(trace_answers.values())\n    n_candidates = len(distinct_answers)\n    \n    if n_candidates <= 1:\n        # Only 1 answer candidate - constraints can't discriminate\n        n_constraints_this = sum(len(tc) for tc in per_trace_constraints)\n        total_constraints += n_constraints_this\n        non_discriminative_constraints += n_constraints_this\n        per_problem_stats.append({\n            \"id\": prob_id,\n            \"n_candidates\": 1,\n            \"n_constraints\": n_constraints_this,\n            \"n_discriminative\": 0,\n            \"n_non_discriminative\": n_constraints_this,\n            \"answer_dist\": {a: sum(1 for v in trace_answers.values() if v == a) for a in distinct_answers}\n        })\n        continue\n    \n    problems_with_multiple_answers += 1\n    \n    # For problems with multiple answers, analyze each constraint's provenance\n    # Group constraints by their z3_formula (as proxy for identity)\n    constraint_provenance = defaultdict(set)  # formula -> set of trace_indices\n    constraint_count = 0\n    \n    for trace_idx, trace_constraints in enumerate(per_trace_constraints):\n        for c in trace_constraints:\n            formula = c.get(\"z3_formula\", c.get(\"expression\", \"\"))\n            constraint_provenance[formula].add(trace_idx)\n            constraint_count += 1\n    \n    # For each unique constraint, check if its source traces give the same answer\n    n_disc = 0\n    n_non_disc = 0\n    \n    for formula, source_traces in constraint_provenance.items():\n        # What answers do the source traces give?\n        answers_for_constraint = set()\n        for t_idx in source_traces:\n            if t_idx in trace_answers:\n                answers_for_constraint.add(trace_answers[t_idx])\n        \n        if len(answers_for_constraint) == 1:\n            n_disc += 1\n        else:\n            n_non_disc += 1\n    \n    total_unique = len(constraint_provenance)\n    total_constraints += total_unique\n    discriminative_constraints += n_disc\n    non_discriminative_constraints += n_non_disc\n    \n    if n_disc > 0:\n        problems_with_any_discriminative += 1\n    \n    per_problem_stats.append({\n        \"id\": prob_id,\n        \"n_candidates\": n_candidates,\n        \"n_constraints\": total_unique,\n        \"n_discriminative\": n_disc,\n        \"n_non_discriminative\": n_non_disc,\n        \"disc_ratio\": n_disc / max(total_unique, 1),\n        \"answer_dist\": {a: sum(1 for v in trace_answers.values() if v == a) for a in distinct_answers}\n    })\n\n# Summary\nprint(f\"\\nTotal problems analyzed: {total_problems}\")\nprint(f\"Problems with multiple answer candidates: {problems_with_multiple_answers}\")\nprint(f\"Problems with only 1 answer candidate: {total_problems - problems_with_multiple_answers}\")\nprint()\nprint(f\"--- Among problems with MULTIPLE candidates ---\")\nprint(f\"Total unique constraints: {total_constraints}\")\nprint(f\"Discriminative constraints: {discriminative_constraints} ({discriminative_constraints}/{total_constraints} = {discriminative_constraints/max(total_constraints,1)*100:.1f}%)\")\nprint(f\"Non-discriminative constraints: {non_discriminative_constraints} ({non_discriminative_constraints}/{total_constraints} = {non_discriminative_constraints/max(total_constraints,1)*100:.1f}%)\")\nprint(f\"Problems with >=1 discriminative constraint: {problems_with_any_discriminative}/{problems_with_multiple_answers}\")\nprint()\n\n# Show problems with multiple answers (most interesting)\nmulti_answer_stats = [s for s in per_problem_stats if s[\"n_candidates\"] > 1]\nmulti_answer_stats.sort(key=lambda x: x.get(\"disc_ratio\", 0), reverse=True)\n\nprint(\"=\" * 72)\nprint(\"PER-PROBLEM BREAKDOWN (problems with multiple answer candidates)\")\nprint(\"=\" * 72)\nprint(f\"{'Problem ID':<45} {'Cands':>5} {'Constr':>6} {'Disc':>5} {'Ratio':>6} {'Answer Dist'}\")\nprint(\"-\" * 110)\nfor s in multi_answer_stats:\n    dist_str = str(s[\"answer_dist\"])\n    print(f\"{s['id']:<45} {s['n_candidates']:>5} {s['n_constraints']:>6} {s['n_discriminative']:>5} {s.get('disc_ratio',0):>5.1%} {dist_str}\")\n\nprint()\nprint(\"=\" * 72)\nprint(\"UNANIMOUS-ANSWER PROBLEMS (no discrimination possible)\")\nprint(\"=\" * 72)\nunanimous = [s for s in per_problem_stats if s[\"n_candidates\"] == 1]\nprint(f\"Count: {len(unanimous)}/{total_problems}\")\nfor s in unanimous[:10]:\n    print(f\"  {s['id']}: answer={list(s['answer_dist'].keys())[0]}, constraints={s['n_constraints']}\")\nif len(unanimous) > 10:\n    print(f\"  ... and {len(unanimous)-10} more\")\n\n# Overall conclusion\nprint()\nprint(\"=\" * 72)\nprint(\"CONCLUSION\")\nprint(\"=\" * 72)\nif problems_with_multiple_answers == 0:\n    print(\"ALL problems have unanimous answers across traces.\")\n    print(\"=> Discriminative constraints CANNOT EXIST because there is only 1 candidate per problem.\")\n    print(\"=> The constraint filtering approach is structurally unable to differentiate answers.\")\nelif discriminative_constraints / max(total_constraints, 1) < 0.05:\n    print(f\"Only {discriminative_constraints/max(total_constraints,1)*100:.1f}% of constraints are discriminative.\")\n    print(\"=> Effectively confirms: discriminative constraints are near-absent.\")\nelse:\n    print(f\"{discriminative_constraints/max(total_constraints,1)*100:.1f}% of constraints are discriminative.\")\n    print(\"=> Some discriminative signal exists.\")\nEOF\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-17T05:35:18.913484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-17T05:35:18.913615+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "cd /root/symb_invariant_consensus && /root/miniconda3/bin/python scripts/analyze_discriminative_power.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-17T05:35:18.913785+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"========================================================================\\\\nCONSTRAINT DISCRIMINATIVE POWER ANALYSIS\\\\n========================================================================\\\\n\\\\nTotal problems analyzed: 43\\\\nProblems with multiple answer candidates: 23\\\\nProblems with only 1 answer candidate: 20\\\\n\\\\n--- Among problems with MULTIPLE candidates ---\\\\nTotal unique constraints: 3614\\\\nDiscriminative constraints: 414 (414/3614 = 11.5%)\\\\nNon-discriminative constraints: 3200 (3200/3614 = 88.5%)\\\\nProblems with >=1 discriminative constraint: 23/23\\\\n\\\\n========================================================================\\\\nPER-PROBLEM BREAKDOWN (problems with multiple answer candidates)\\\\n========================================================================\\\\nProblem ID                                    Cands Constr  Disc  Ratio Answer Dist\\\\n--------------------------------------------------------------------------------------------------------------\\\\nProofWriter_RelNoneg-OWA-D5-949_Q8                2      4     4 100.0% {'Unknown': 15, 'False': 5}\\\\nProofWriter_AttNeg-OWA-D5-401_Q15                 2     31    31 100.0% {'True': 4, 'Unknown': 16}\\\\nProofWriter_RelNeg-OWA-D5-747_Q6                  2     41    41 100.0% {'True': 1, 'Unknown': 19}\\\\nProofWriter_RelNeg-OWA-D5-144_Q7                  2     18    18 100.0% {'True': 9, 'Unknown': 11}\\\\nProofWriter_RelNoneg-OWA-D5-992_Q8                2     37    36 97.3% {'Unknown': 15, 'False': 5}\\\\nProofWriter_AttNeg-OWA-D5-270_Q8                  2     41    37 90.2% {'True': 5, 'False': 15}\\\\nProofWriter_RelNeg-OWA-D5-115_Q19                 2     20    17 85.0% {'True': 4, 'Unknown': 16}\\\\nProofWriter_AttNoneg-OWA-D5-165_Q13               2     21    17 81.0% {'True': 5, 'Unknown': 15}\\\\nProofWriter_AttNoneg-OWA-D5-613_Q12               2     31    23 74.2% {'Unknown': 3, 'False': 17}\\\\nProofWriter_AttNoneg-OWA-D5-352_Q8                3 \n…[truncated 2672 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-17T05:35:18.914041+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "cat << 'EOF' > /root/symb_invariant_consensus/scripts/analyze_discriminative_power_v2.py\n\"\"\"\nExtended analysis: effective discriminative WEIGHT and why pilot gap is only +2.33pp.\n\"\"\"\nimport json\nfrom collections import defaultdict\n\nwith open(\"/root/symb_invariant_consensus/results/k_ablation/traces_k20.json\") as f:\n    traces_data = json.load(f)\n\nwith open(\"/root/symb_invariant_consensus/results/pilot_constraint_filtering/extracted_constraints.json\") as f:\n    constraints_data = json.load(f)\n\nprint(\"=\" * 72)\nprint(\"EXTENDED DISCRIMINATIVE ANALYSIS: Weight & Mechanism\")\nprint(\"=\" * 72)\n\n# Track across all multi-answer problems\ntotal_disc_weight = 0\ntotal_non_disc_weight = 0\ntotal_all_weight = 0\nproblems_where_disc_flips_answer = 0\nproblems_with_multiple_answers = 0\n\nfor prob_id in constraints_data:\n    if prob_id not in traces_data:\n        continue\n    \n    traces = traces_data[prob_id][\"traces\"]\n    per_trace_constraints = constraints_data[prob_id]\n    \n    trace_answers = {}\n    for t in traces:\n        trace_answers[t[\"trace_idx\"]] = t[\"answer\"]\n    \n    distinct_answers = set(trace_answers.values())\n    if len(distinct_answers) <= 1:\n        continue\n    \n    problems_with_multiple_answers += 1\n    \n    # Build constraint -> (source_traces, weight)\n    # Weight = number of trace occurrences (like deduplicator does)\n    constraint_info = defaultdict(lambda: {\"traces\": set(), \"weight\": 0})\n    \n    for trace_idx, trace_constraints in enumerate(per_trace_constraints):\n        for c in trace_constraints:\n            formula = c.get(\"z3_formula\", c.get(\"expression\", \"\"))\n            constraint_info[formula][\"traces\"].add(trace_idx)\n            constraint_info[formula][\"weight\"] += 1\n    \n    # Score each answer: sum of weights from constraints exclusive to that answer's traces\n    # vs non-discriminative constraints (shared across answers)\n    answer_traces = defaultdict(set)\n    for t_idx, ans in trace_answers.items():\n        answer_traces[ans].add(t_idx)\n    \n    # SC answer (majority vote)\n    from collections import Counter\n    answer_counts = Counter(trace_answers.values())\n    sc_answer = answer_counts.most_common(1)[0][0]\n    \n    # Per-answer discriminative weight\n    answer_disc_weight = defaultdict(float)\n    shared_weight = 0\n    \n    for formula, info in constraint_info.items():\n        source_traces = info[\"traces\"]\n        weight = info[\"weight\"]\n        \n        # What answers do source traces give?\n        answers_for_this = set()\n        for t_idx in source_traces:\n            if t_idx in trace_answers:\n                answers_for_this.add(trace_answers[t_idx])\n        \n        if len(answers_for_this) == 1:\n            # Discriminative: all weight goes to one answer\n            the_answer = list(answers_for_this)[0]\n            answer_disc_weight[the_answer] += weight\n            total_disc_weight += weight\n        else:\n            # Non-discriminative: weight split across answers\n            shared_weight += weight\n            total_non_disc_weight += weight\n        \n        total_all_weight += weight\n    \n    # Would discriminative constraints change the answer?\n    # In NORMAL mode (all satisfied): score(ans) = sum of weights from constraints with matching traces\n    # The discriminative part gives differential signal; the shared part is roughly proportional to trace count\n    \n    # Check if discriminative weight alone would flip vs SC\n    if answer_disc_weight:\n        disc_winner = max(answer_disc_weight, key=answer_disc_weight.get)\n        if disc_winner != sc_answer:\n            problems_where_disc_flips_answer += 1\n\nprint(f\"\\nProblems with multiple answer candidates: {problems_with_multiple_answers}\")\nprint(f\"\\n--- Weight Analysis ---\")\nprint(f\"Total constraint weight (multi-answer problems): {total_all_weight}\")\nprint(f\"Discriminative weight: {total_disc_weight} ({total_disc_weight/max(total_all_weight,1)*100:.1f}%)\")\nprint(f\"Non-discriminative (shared) weight: {total_non_disc_weight} ({total_non_disc_weight/max(total_all_weight,1)*100:.1f}%)\")\nprint(f\"\\nProblems where discriminative constraints favor different answer than SC: {problems_where_disc_flips_answer}/{problems_with_multiple_answers}\")\n\nprint(f\"\\n--- Root Cause: Why satisfied_ratio=1.0 AND low discrimination ---\")\nprint(f\"1. All constraints are logically satisfiable together (no Z3 contradictions)\")\nprint(f\"   → MaxSAT excluded=0 for all problems → satisfied_ratio=1.0\")\nprint(f\"2. Scoring mechanism in NORMAL mode: score(ans) = Σweight(constraints from ans's traces)\")\nprint(f\"   → This is effectively a WEIGHTED majority vote\")\nprint(f\"   → Non-discriminative constraints (88.5%) contribute proportionally to trace count\")\nprint(f\"   → So SICA reduces to ~SC when non-disc weight dominates\")\nprint(f\"3. Only {total_disc_weight/max(total_all_weight,1)*100:.1f}% of weight provides differential signal\")\nprint(f\"   → Explains the tiny +2.33pp gap\")\n\nprint(f\"\\n--- Key Insight ---\")\nprint(f\"The constraints are INTERMEDIATE REASONING STEPS (facts/rules), not\")\nprint(f\"ANSWER-DISCRIMINATING predicates. Most steps are shared across traces\")\nprint(f\"regardless of final answer. The Z3 formulas like 'kind_charlie == True'\")\nprint(f\"are domain facts that hold for ALL answer candidates.\")\nprint(f\"\")\nprint(f\"DISCRIMINATIVE_RATIO = {total_disc_weight}/{total_all_weight} = {total_disc_weight/max(total_all_weight,1)*100:.1f}% (by weight)\")\nEOF\ncd /root/symb_invariant_consensus && /root/miniconda3/bin/python scripts/analyze_discriminative_power_v2.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-17T05:35:18.914275+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"========================================================================\\\\nEXTENDED DISCRIMINATIVE ANALYSIS: Weight & Mechanism\\\\n========================================================================\\\\n\\\\nProblems with multiple answer candidates: 23\\\\n\\\\n--- Weight Analysis ---\\\\nTotal constraint weight (multi-answer problems): 5114\\\\nDiscriminative weight: 1903 (37.2%)\\\\nNon-discriminative (shared) weight: 3211 (62.8%)\\\\n\\\\nProblems where discriminative constraints favor different answer than SC: 4/23\\\\n\\\\n--- Root Cause: Why satisfied_ratio=1.0 AND low discrimination ---\\\\n1. All constraints are logically satisfiable together (no Z3 contradictions)\\\\n   → MaxSAT excluded=0 for all problems → satisfied_ratio=1.0\\\\n2. Scoring mechanism in NORMAL mode: score(ans) = Σweight(constraints from ans's traces)\\\\n   → This is effectively a WEIGHTED majority vote\\\\n   → Non-discriminative constraints (88.5%) contribute proportionally to trace count\\\\n   → So SICA reduces to ~SC when non-disc weight dominates\\\\n3. Only 37.2% of weight provides differential signal\\\\n   → Explains the tiny +2.33pp gap\\\\n\\\\n--- Key Insight ---\\\\nThe constraints are INTERMEDIATE REASONING STEPS (facts/rules), not\\\\nANSWER-DISCRIMINATING predicates. Most steps are shared across traces\\\\nregardless of final answer. The Z3 formulas like 'kind_charlie == True'\\\\nare domain facts that hold for ALL answer candidates.\\\\n\\\\nDISCRIMINATIVE_RATIO = 1903/5114 = 37.2% (by weight)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-17T05:35:18.914502+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已经很清楚了。让我输出最终总结。\n\n```\n========================================================================\nCONSTRAINT DISCRIMINATIVE ANALYSIS - FINAL SUMMARY\n========================================================================\n\nTotal problems: 43\n  - Unanimous (1 answer candidate): 20/43 (46.5%)\n  - Multi-answer (≥2 candidates):   23/43 (53.5%)\n\nAmong multi-answer problems:\n  Total unique constraints: 3614\n  Discriminative (by count): 414/3614 = 11.5%\n  Discriminative (by weight): 1903/5114 = 37.2%\n  Problems with ≥1 discriminative constraint: 23/23 (100%)\n  \n  Problems where disc. constraints favor different answer than SC: 4/23\n\n========================================================================\nCONCLUSION\n========================================================================\n```\n\n**Discriminative constraints DO exist, but are structurally weak:**\n\n1. **satisfied_ratio=1.0 的原因**：所有约束都是中间推理步骤（domain facts/rules），Z3 可以同时满足所有约束，没有逻辑矛盾。MaxSAT excluded=0。\n\n2. **Discriminative power 有限的原因**：\n   - 88.5% 的 unique 约束出现在给出不同答案的 trace 中（non-discriminative）\n   - 这些 \"共享\" 约束的权重与 trace 数量成正比 → SICA 退化为加权 majority vote ≈ SC\n   - 仅 37.2% 的权重提供差异化信号\n   - 只有 4/23 问题中 discriminative 信号指向不同于 SC 的答案\n\n3. **根本原因**：提取的约束是 `kind_charlie == True`、`Implies(rough_charlie, cold_charlie)` 这类 domain facts — 无论最终答案是 True/False/Unknown，这些中间推理步骤大部分是共通的。约束系统没有提取\"答案级别\"的判别谓词。\n\n**D030 Pivot 决策输入**: `discriminative_ratio = 37.2%` (by weight)，但有效 flip 率仅 4/23 = 17.4%，最终只贡献 +2.33pp。这证实 constraint filtering 路线的天花板极低 — 不是因为 discriminative constraints \"不存在\"，而是因为约束的语义层次错误（中间步骤 vs 答案判别）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pilot-constraint-discriminative_20260517T053102"
+          },
+          "id": "event-000061"
+        }
+      ],
+      "message_count": 61
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-pilot-constraint-discriminative.md"
+}

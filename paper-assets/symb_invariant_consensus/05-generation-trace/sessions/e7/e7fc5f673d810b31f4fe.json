@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7fc5f673d810b31f4fe",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diagnose exp 042b premise formal",
+  "task_key": "worker_diagnose_exp-042b-premise-formal_20260518T192035",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp-042b-premise-formal_20260518T192035_result.json",
+    "occurrence": 1,
+    "bytes": 958,
+    "sha256": "f2abacd2b8480a405dcf33c1f83a4b768bd04395fdbbbcb77e3c545bd10dcefe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 根本原因：脚本参数顺序传反\n\n脚本 `run_premise_formalization.sh` 定义的参数顺序是：\n\n```bash\nPORT=${1:-8000}\nGPU=${2:-0}\n```\n\n但启动命令传的是 `bash scripts/run_premise_formalization.sh 2 8002`，导致：\n- **PORT=2**（应为 8002）\n- **GPU=8002**（应为 2）\n\nvLLM 启动时 `CUDA_VISIBLE_DEVICES=8002`，调用 `pynvml.nvmlDeviceGetHandleByIndex()` 找不到 device 8002，抛出 `NVMLError_InvalidArgument` 崩溃。等待 120s 超时后脚本 exit 1。\n\n### 是否有部分输出\n\n无。vLLM 根本没启动成功，Python 推理脚本从未执行。输出目录不存在。\n\n### 修复\n\n参数顺序调换即可。正确命令：\n\n```bash\nbash scripts/run_premise_formalization.sh 8002 2\n```\n\n或者修改脚本，将参数顺序改为更符合直觉的 `GPU PORT`（与调用方的心智模型一致）：\n\n```bash\nGPU=${1:-0}\nPORT=${2:-8000}\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-042b-premise-formal.md"
+}

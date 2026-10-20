@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9e0f3b0d54a5287c867",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis discriminative rate full v2",
+  "task_key": "worker_analysis_discriminative-rate-full-v2_20260518T040537",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_discriminative-rate-full-v2_20260518T040537_result.json",
+    "occurrence": 1,
+    "bytes": 1069,
+    "sha256": "2465ef0acd3c63d922f42289783eea5224a9590192bd909df9d610cbf4b5bfb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis complete. Results:\n\n**Full 804-Instance Discriminative Rate:**\n\n| Metric | Value | 95% CI |\n|--------|-------|--------|\n| Disc rate (weight) | **39.2%** | [38.7%, 39.8%] |\n| Disc rate (count, est.) | **12.1%** | [12.0%, 12.3%] |\n| Problems with any disc | 289/307 (94.1%) | - |\n\n**Per-domain:** ProofWriter 36.4% (weight), FOLIO 54.0% (weight).\n\n**Pilot validation:** Corrected formula on pilot subset yields 37.6% vs pilot exact 37.2%, delta = **0.38pp** (vs previous worker's 9.8pp error). The fix was accounting for asymmetric assertion weights in the scorer formula (majority assertion satisfied vs minority excluded with 0.5 penalty).\n\n**Estimated count rate (12.1%)** is consistent with pilot's 11.5%, confirming that ~88% of unique constraints are domain facts shared across answers.\n\nFiles saved:\n- `/root/symb_invariant_consensus/analysis/discriminative_rate_full_804.json`\n- `/root/symb_invariant_consensus/analysis/discriminative_rate_report.md`\n- `/root/symb_invariant_consensus/analysis/discriminative_rate_v2.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-discriminative-rate-full-v2.md"
+}

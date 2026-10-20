@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f16615945188ba6aa354",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "gpu exp 060 cross qwen25 14b extractor",
+  "task_key": "worker_gpu_exp-060-cross-qwen25-14b-extractor_20260519T063740",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp-060-cross-qwen25-14b-extractor_20260519T063740_result.json",
+    "occurrence": 1,
+    "bytes": 745,
+    "sha256": "33f92f8ed7e3be2d6a12b273c093a0e7b45342eb8cd5f8cff684eff0b3478509"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## EXP-060 完成\n\n**Qwen2.5-14B 跨模型 FOL 提取实验 (FOLIO-204)**\n\n| 方法 | 正确 | 准确率 | Δ vs Orig |\n|------|------|--------|-----------|\n| Orig SICA (Mistral self-extraction) | 121/204 | **59.31%** | — |\n| Cross SICA (Qwen2.5-14B extractor) | 119/204 | **58.33%** | **-0.98pp** |\n| SC@K baseline | 114/204 | **55.88%** | -3.43pp |\n\n- 分歧点: 12/204 (5.9%)\n- 结论: **negative** — Qwen2.5-14B 跨模型提取比 Mistral 自提取略差约 1pp，但仍然比 SC baseline 高 2.45pp\n- SICA 的 extraction quality 对最终准确率影响较小，绝大多数情况下 (192/204=94%) cross-extraction 与 self-extraction 给出相同答案\n- Wall time: 106.1 min, vLLM 已停止，GPU 已释放"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-060-cross-qwen25-14b-extractor.md"
+}

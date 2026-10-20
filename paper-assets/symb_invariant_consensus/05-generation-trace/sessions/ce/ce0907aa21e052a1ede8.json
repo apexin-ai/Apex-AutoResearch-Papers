@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce0907aa21e052a1ede8",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 074d",
+  "task_key": "worker_analysis_exp-074d_20260519T214428",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-074d_20260519T214428_result.json",
+    "occurrence": 1,
+    "bytes": 718,
+    "sha256": "ab496feffb0fca158fb6f4df3045289d9478f750189f6435ce845ab27480d54b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。汇总：\n\n**exp-074d (seed=456) 结果**\n\n| 指标 | 值 |\n|------|-----|\n| SC accuracy | 55.88% (114/204) |\n| ICG accuracy | 54.90% (112/204) |\n| Delta | -0.98pp |\n| Wall time | 57.3 min |\n| Conclusion | negative |\n\n**3-seed 汇总 (ICG × Mistral-7B × FOLIO-204)**\n\n| Seed | SC | ICG | Δ |\n|------|-----|-----|-----|\n| 42 | 53.92% | 51.96% | -1.96pp |\n| 123 | 57.35% | 58.82% | +1.47pp |\n| 456 | 55.88% | 54.90% | -0.98pp |\n| **Mean** | **55.72%** | **55.23%** | **-0.49pp** |\n| **Std** | | | **1.77pp** |\n\nICG 在 FOLIO-204 上跨 3 seed 均值 Δ=-0.49pp±1.77pp，效果不显著且方向不一致（2 negative, 1 positive），确认 negative。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-074d.md"
+}

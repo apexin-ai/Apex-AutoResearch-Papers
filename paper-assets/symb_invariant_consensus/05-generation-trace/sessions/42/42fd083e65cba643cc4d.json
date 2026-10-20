@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42fd083e65cba643cc4d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "research proofwriter oracle feasibility",
+  "task_key": "worker_research_proofwriter-oracle-feasibility_20260518T031530",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_proofwriter-oracle-feasibility_20260518T031530_result.json",
+    "occurrence": 1,
+    "bytes": 977,
+    "sha256": "eb420cd3fcb8c25aae23ec83df3174a5ddff7c5ff15d1d74855077d686e686ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `/root/symb_invariant_consensus/analysis/proofwriter_oracle_feasibility.md`。\n\n**核心结论**: 完全可行，且比 FOLIO 更简单。\n\n关键发现:\n- ProofWriter 原始 JSONL 有 `raw_logic_programs` 字段，是高度结构化的 DSL（`Pred(x, True) && Pred(y, True) >>> Pred(z, True)` 格式），比 FOLIO 的 Unicode FOL 更规则\n- 已有全部 600 题的 Qwen-14B K=12 traces（在 `sica_expanded_14b.json` 中）\n- `prepare_full.py` 转换时丢弃了这个字段，需要补回来或直接从原始 JSONL 加载\n\n**推荐路径**: 写一个 ~150 行的 `ProofWriterDSLToZ3` parser 直接解析 DSL → Z3，不需要 LLM。DSL 语法完全规则，四种模式（一元/二元 × 有/无否定）都可确定性解析。\n\n**预估工作量**: 4-6 小时，主要是 parser 编写 + 单元测试。风险可控，最大的不确定性是 D5 深度推理链的 Z3 求解时间，但 FOLIO 实验 solver error rate 为 0。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-proofwriter-oracle-feasibility.md"
+}

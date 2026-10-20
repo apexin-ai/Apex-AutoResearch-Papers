@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "519631ac7a9323c612e6",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code exp 013 ablation",
+  "task_key": "worker_code_exp-013-ablation_20260516T063525",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp-013-ablation_20260516T063525_result.json",
+    "occurrence": 1,
+    "bytes": 950,
+    "sha256": "7b5741f97011484c6f09e282ebbeae4bbc9549c493529ee95906b937732cdf15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行正常，JSON 输出格式完整：包含 methods 汇总、agreement 统计、per_problem 逐题详情。\n\n产出：\n- **脚本**：`/root/symb_invariant_consensus/scripts/constraint_ablation.py`（~340 行）\n- **验证**：`--help` 正常，实际数据试跑正常，JSON 输出 `results/constraint_ablation.json`\n\n当前结果（近似模式）：87 题中三种方法准确率均为 71.3%，与 SC 相同。这是因为近似模式下，排除的约束权重太小（每题仅 1 个排除约束，权重 3-6）无法改变排名。这是合理结果——当 contradiction rate 仅 ~2.6% 时，聚合方法的选择对准确率影响微小。\n\n要获得精确的 count-only 和 random-weight 结果，需要：\n1. 修改 pipeline 保存中间约束数据（`UniqueConstraint` 的 `z3_formula_str`、`weight`、`source_traces`）\n2. 生成 constraint cache JSON\n3. 用 `--constraint-cache` 参数运行脚本"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-013-ablation.md"
+}

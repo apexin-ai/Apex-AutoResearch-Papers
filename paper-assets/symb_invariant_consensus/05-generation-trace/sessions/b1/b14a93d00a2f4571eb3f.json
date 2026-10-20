@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b14a93d00a2f4571eb3f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ops vllm cleanup 068 070",
+  "task_key": "worker_ops_vllm-cleanup-068-070_20260519T133154",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_vllm-cleanup-068-070_20260519T133154_result.json",
+    "occurrence": 1,
+    "bytes": 1003,
+    "sha256": "97fe1ee3d768885891db67239d0e207fe20af3a9021b08f7a7ce0c8d0dce578f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。汇总如下：\n\n### westd-16639 (exp-068 清理)\n\n| GPU | 清理前 | 清理后 |\n|-----|--------|--------|\n| cuda:0 | PID 152729, 88255MiB, 96% (exp-064) | 不变 |\n| **cuda:1** | **PID 142896, 88287MiB, 0%** (exp-068) | **0MiB, 已释放** |\n| cuda:2 | PID 151829, 88263MiB, 97% (exp-069) | 不变 |\n| cuda:3 | PID 76474, 88263MiB, 97% (exp-048) | 不变 |\n\n### westd-25068 (exp-070 清理)\n\n| GPU | 清理前 | 清理后 |\n|-----|--------|--------|\n| cuda:0 | PID 190753, 88301MiB, 97% (exp-065) | 不变 |\n| cuda:1 | PID 211709, 88099MiB, 0% | 不变 (未在清理范围) |\n| **cuda:2** | **PID 211015, 88301MiB, 0%** (exp-070) | **0MiB, 已释放** |\n| cuda:3 | PID 192666, 88115MiB, 96% (exp-062) | 不变 |\n\n---\n\n**注意**: westd-25068 的 **cuda:1** 上仍有一个 0% 利用率的 vLLM 进程 (PID 211709)，对应 tmux session `exp069_vllm`。这个不在本次清理范围内，但看起来也是空闲残留，是否需要一并清理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-vllm-cleanup-068-070.md"
+}

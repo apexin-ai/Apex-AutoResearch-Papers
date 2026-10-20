@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aee7d6f370e9cd522dd2",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis high cv sica agreement",
+  "task_key": "worker_analysis_high-cv-sica-agreement_20260524T233637",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_high-cv-sica-agreement_20260524T233637_result.json",
+    "occurrence": 1,
+    "bytes": 480,
+    "sha256": "b7c5414f6bd2e85336098ed46ea25871b2dce9d081044e9cec535b8238ccf8a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n```\nTotal problems: 204\nExp033 per-problem entries: 204\n\nProblems with CV > 0.5: 18\n\nSICA-SC agreement on high CV problems: 18/18 (100.0%)\n\nGlobal SICA-SC agreement: 187/204 (91.7%)\n```\n\n**关键数字：高 CV（>0.5）的 18 个问题上，SICA 和 SC 答案完全一致（100%）。** 全局 agreement 为 91.7%（187/204）。这意味着即使在 constraint yield 波动最大的问题上，SICA 和 SC 的最终判断也没有分歧。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-high-cv-sica-agreement.md"
+}

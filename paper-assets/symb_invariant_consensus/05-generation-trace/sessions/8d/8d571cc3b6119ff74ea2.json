@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d571cc3b6119ff74ea2",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis qwen25 folio read harvest",
+  "task_key": "worker_analysis_qwen25-folio-read-harvest_20260522T105020",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_qwen25-folio-read-harvest_20260522T105020_result.json",
+    "occurrence": 1,
+    "bytes": 812,
+    "sha256": "a66658f73cef4dbedc1820d790a5e20076677010fd3bf0ffc56385e952fe4260"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "seed=789 还未完成——只有 195/204，实验仍在跑。seed 123 和 456 都是 204 个。\n\n汇总当前状态：\n\n| Seed | N | SC (%) | SICA (%) | Delta (pp) | Status |\n|------|---|--------|----------|------------|--------|\n| 42 | — | 77.50 | 75.49 | -2.01 | Done (given) |\n| 123 | 204 | 74.51 | 73.04 | -1.47 | Done |\n| 456 | 204 | 74.02 | 74.02 | 0.00 | Done |\n| 789 | 195 | 73.85 | 72.31 | -1.54 | **Incomplete (195/204)** |\n\n**seed=789 还差 9 个问题。** 收割脚本 (PID 576920) 仍在轮询等待。实验进程仍在跑。\n\n进程状态：\n- PID 510872: **ALIVE**\n- PID 555317 (Guard): **ALIVE**\n- PID 576920 (Harvest): **ALIVE**\n- GPU 1: 97% utilization, 90161 MiB used\n\n实验还在跑，等剩余 9 个问题完成后收割脚本会自动触发计算。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen25-folio-read-harvest.md"
+}

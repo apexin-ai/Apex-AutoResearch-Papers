@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4c0ba0969ce655175b4",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp011 statistical verification",
+  "task_key": "worker_analysis_exp011-statistical-verification_20260517T080055",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp011-statistical-verification_20260517T080055_result.json",
+    "occurrence": 1,
+    "bytes": 1677,
+    "sha256": "da8254a2ad130538f21019cb80a228d186ca6781f5efc3e4253cfd39f637409e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nSTATISTICAL VERIFICATION SUMMARY\n============================================================\nMcNemar exact p-value (two-sided): 0.2188\nMcNemar exact p-value (one-sided): 0.1094\nBootstrap gap: +6.67 pp [0.00, 15.00]\nBootstrap p(gap≤0): 0.0607\n\nTRUNCATION ANALYSIS:\n  Problems with truncated traces: 16/60\n  Gap (truncated group): +6.25 pp\n  Gap (clean group): +6.82 pp\n  Discordant SICA-wins in truncated: 1/5\n\nPER-DOMAIN:\n  PROOFWRITER: +3.33pp, McNemar p=1.0000, Bootstrap CI=[-6.67, 13.33]\n  FOLIO: +10.00pp, McNemar p=0.2500, Bootstrap CI=[0.00, 23.33]\n\nVERDICT: NOT SIGNIFICANT (underpowered, suggestive trend)\n```\n\n关键发现：\n\n1. **McNemar p=0.2188**：6 个 discordant pairs（5:1）不足以达到显著性。精确二项检验在 n=6 时 power 极低，即使真实 OR=5.0，95% CI 跨越 1（[0.56, 236.5]），无法排除随机波动。\n\n2. **Bootstrap CI 下界恰好触及 0**：[0.00, 15.00]，p(gap≤0)=6.07%。处于 marginal 区间，不满足 p<0.05。\n\n3. **截断不是 artifact 来源**：这是最重要的好消息。截断组 gap（+6.25pp）与干净组 gap（+6.82pp）几乎一致，5 个 SICA-win discordant pairs 中只有 1 个含截断 traces。+6.67pp 的增益在两组中均匀分布，不是截断造成的伪效应。\n\n4. **域差异**：FOLIO 贡献了大部分增益（+10.00pp, bootstrap p=0.04），ProofWriter 增益弱（+3.33pp, p=1.0）。\n\n**结论**：+6.67pp 是真实方向性效应（非 truncation artifact），但 n=60 样本量不足以达到统计显著。需要扩大到约 200+ 题才可能在 McNemar test 中达到 p<0.05。FOLIO 子集单独看接近显著。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp011-statistical-verification.md"
+}

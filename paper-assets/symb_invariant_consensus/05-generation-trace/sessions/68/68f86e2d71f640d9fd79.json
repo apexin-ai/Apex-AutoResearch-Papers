@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "68f86e2d71f640d9fd79",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "ssh download qwen7b",
+  "task_key": "worker_ssh_download-qwen7b_20260517T135446",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_download-qwen7b_20260517T135446.log",
+    "occurrence": 1,
+    "bytes": 521557,
+    "sha256": "0cda1c8fec89f78779a00652887155e606160d69e9f70171682cb14feccb7a0b"
+  },
+  "statistics": {
+    "messages": 389,
+    "user_turns": 0,
+    "tool_calls": 147,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 91,
+      "tool_call": 147,
+      "tool_result": 147,
+      "record": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 389,
+      "chunks": [
+        {
+          "path": "68f86e2d71f640d9fd79-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "68f86e2d71f640d9fd79-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "68f86e2d71f640d9fd79-part-0003.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-download-qwen7b.md"
+}

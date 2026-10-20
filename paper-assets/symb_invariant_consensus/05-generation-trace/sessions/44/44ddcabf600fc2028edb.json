@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "44ddcabf600fc2028edb",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment wild3 problem perturbation",
+  "task_key": "worker_experiment_wild3-problem-perturbation_20260520T080205",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_wild3-problem-perturbation_20260520T080205.log",
+    "occurrence": 1,
+    "bytes": 826590,
+    "sha256": "939dc74a3942335d12c7478ff3b01b6418c7d536f5cc854f0c5359e2847215cf"
+  },
+  "statistics": {
+    "messages": 278,
+    "user_turns": 0,
+    "tool_calls": 108,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 56,
+      "tool_call": 108,
+      "tool_result": 108,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 278,
+      "chunks": [
+        {
+          "path": "44ddcabf600fc2028edb-part-0001.json",
+          "message_count": 177
+        },
+        {
+          "path": "44ddcabf600fc2028edb-part-0002.json",
+          "message_count": 101
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-wild3-problem-perturbation.md"
+}

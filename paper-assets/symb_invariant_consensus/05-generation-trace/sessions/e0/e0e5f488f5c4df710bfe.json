@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0e5f488f5c4df710bfe",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "research data pipeline audit 069",
+  "task_key": "worker_research_data-pipeline-audit-069_20260519T131154",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_data-pipeline-audit-069_20260519T131154_result.json",
+    "occurrence": 1,
+    "bytes": 629,
+    "sha256": "fbb976b0486fa23219d514d8d0a98857f473b5d351e6fcfd9719c8d9cec9716c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：数据通道 VALID，无需重跑。**\n\n核心机制：`logiqa_200.json` 每条数据已自带 `\"dataset\": \"logiqa\"` 字段，`load_all_problems()` 中的 `setdefault(\"dataset\", \"strategyqa\")` 不会覆盖已存在的 key。主循环根据 `dataset == \"logiqa\"` 分支正确设置了 `generator.domain = \"multichoice\"` + `extractor.domain = \"logic\"`，与专用的 `run_logiqa.py` 行为一致。prompt 模板（多选题格式）、答案抽取（A/B/C/D）、答案比对（`is_equiv` 字符串匹配）均无问题。\n\n报告已保存至 `artifacts/exp069_data_pipeline_audit.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-data-pipeline-audit-069.md"
+}

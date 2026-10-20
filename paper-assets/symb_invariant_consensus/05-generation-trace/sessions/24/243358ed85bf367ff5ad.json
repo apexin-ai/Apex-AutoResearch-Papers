@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "243358ed85bf367ff5ad",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "eval exp 028 qwen3 thinking",
+  "task_key": "worker_eval_exp-028-qwen3-thinking_20260518T140432",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_exp-028-qwen3-thinking_20260518T140432_result.json",
+    "occurrence": 1,
+    "bytes": 585,
+    "sha256": "86039e719cb0f3c60317c5c88f29e100e0010343e2f905496db7ce6931585e3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pre-flight 全部通过，vLLM 正在启动中。\n\n**报告：**\n\n| 项目 | 状态 |\n|------|------|\n| Qwen3-14B 模型 | `/root/autodl-tmp/models/Qwen3-14B`，8 分片完整 |\n| Thinking mode 配置 | vLLM `--reasoning-parser qwen3`，默认启用 thinking，max-model-len=16384，max-tokens=8192 |\n| 脚本路径 | `/root/symb_invariant_consensus/scripts/run_qwen3_14b_thinking.sh` |\n| PID | 35447，tmux session: `exp-028-qwen3-14b-thinking` |\n| GPU | cuda:2 (3 MiB used, clean)，端口 8002 |\n| 状态 | vLLM 加载中，pre-flight checks 全部通过 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-028-qwen3-thinking.md"
+}

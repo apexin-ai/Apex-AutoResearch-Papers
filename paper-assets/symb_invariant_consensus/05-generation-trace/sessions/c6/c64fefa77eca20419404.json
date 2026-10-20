@@ -1,0 +1,572 @@
+{
+  "schema_version": "1.0",
+  "id": "c64fefa77eca20419404",
+  "project": "symb_invariant_consensus",
+  "kind": "conversation",
+  "title": "check westd25068 027 028 030",
+  "task_key": "worker_check_westd25068-027-028-030_20260518T153616",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_check_westd25068-027-028-030_20260518T153616.jsonl",
+    "occurrence": 1,
+    "bytes": 27427,
+    "sha256": "0b3cf4c8cc8afb932a11508539300ddd502cb7726d9cc8970de75168da61342d"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "tool_call": 13,
+      "tool_result": 13,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T15:37:22.575020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T15:37:22.576109+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "ToolSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T15:37:22.576328+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "for pid in 38106 40990 46525; do ps -p $pid -o pid,cmd --no-headers 2>/dev/null && echo \"PID $pid ALIVE\" || echo \"PID $pid DEAD\"; done",
+              "warn": "True"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T15:37:22.576472+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "nvidia-smi",
+              "warn": "True"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T15:37:22.576601+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "tmux ls 2>/dev/null || echo \"no tmux sessions\"",
+              "warn": "True"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T15:37:22.576726+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "filters": "{'exp_id': 'exp-027'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T15:37:22.576851+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "filters": "{'exp_id': 'exp-028'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T15:37:22.577007+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "filters": "{'exp_id': 'exp-030'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T15:37:22.577179+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 38106 bash -c rm -f /tmp/agent-ml-exit/exp-027-qwen3-14b-non-thinking.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp-027-qwen3-14b-non-thinking.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/symb_invariant_consensus && export CUDA_VISIBLE_DEVICES=1 && timeout 86400 env bash -c 'bash /root/symb_invariant_consensus/scripts/run_qwen3_14b_nonthinking.sh'; } > ~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log 2>&1\\\\nPID 38106 ALIVE\\\\n 40990 bash -c rm -f /tmp/agent-ml-exit/exp-028-qwen3-14b-thinking.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp-028-qwen3-14b-thinking.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/symb_invariant_consensus && export CUDA_VISIBLE_DEVICES=2 && timeout 86400 env bash -c 'bash -c \\\\\\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && bash scripts/run_qwen3_14b_thinking.sh\\\\\\\"'; } > ~/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log 2>&1\\\\nPID 40990 ALIVE\\\\n 46525 bash -c rm -f /tmp/agent-ml-exit/exp-030-crossmodel-mistral-folio204.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/symb_invariant_consensus/exp-030-crossmodel-mistral-folio204.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp-030-crossmodel-mistral-folio204.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/symb_invariant_conse\n…[truncated 448 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T15:37:22.577380+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Mon May 18 23:36:41 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:16:00.0 Off |                  Off |\\\\n| N/A   59C    P0            339W /  600W |   88639MiB /  97887MiB |     96%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:49:00.0 Off |                  Off |\\\\n| N/A   59C    P0            347W /  600W |   88287MiB /  97887MiB |     97%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:A8:00.0 Off |                  Off |\\\\n| N/A   61C    P0            361W /  600W |   88287MiB /  97887MiB |     97%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\\\n| N/A   26C    P8             \n…[truncated 1205 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T15:37:22.577773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp-027-qwen3-14b-non-thinking: 1 windows (created Mon May 18 22:08:01 2026)\\\\nexp-028-qwen3-14b-thinking: 1 windows (created Mon May 18 22:21:40 2026)\\\\nexp-030-crossmodel-mistral-folio204: 1 windows (created Mon May 18 22:50:44 2026)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.24}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 1
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T15:37:22.578179+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2209}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T15:37:22.578375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2429}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T15:37:22.578519+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2319}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T15:37:22.578679+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "tail -30 ~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log 2>/dev/null",
+              "warn": "True"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T15:37:22.578804+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "tail -30 ~/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log 2>/dev/null",
+              "warn": "True"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T15:37:22.580059+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 23:36:13,968 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:14,591 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:15,655 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:22,799 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:23,240 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:26,479 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:27,044 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:33,677 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:33,800 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:33,999 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:37,708 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:40,623 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:40,691 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:44,679 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:45,552 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:45,964 INFO Scorer mode=NORMAL  satisfied_ratio=1.000 (21/21)  alpha=0.50  threshold=0.20\\\\nSICA: Unknown (V)\\\\n  Constraints: 97 extracted -> 21 unique\\\\n  MaxSAT: 21 sat, 0 excl, solve=\n…[truncated 600 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 1
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T15:37:22.580311+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "tail -30 ~/runs/symb_invariant_consensus/exp-030-crossmodel-mistral-folio204.log 2>/dev/null",
+              "warn": "True"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T15:37:22.580482+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"To determine the truth value of the conclusion *\\\\\\\"All squares are shapes\\\\\\\"*, we ...\\\\n2026-05-18 23:35:01,655 WARNING Empty after stripping thinking for trace: \\\\n\\\\nTo determine whether the conclusion \\\\\\\"All squares are shapes\\\\\\\" is true, false, o...\\\\n2026-05-18 23:35:01,655 WARNING Empty after stripping thinking for trace: \\\\n\\\\nTo determine the truth value of the conclusion **\\\\\\\"All squares are shapes\\\\\\\"**, w...\\\\n2026-05-18 23:35:01,695 INFO Scorer mode=NORMAL  satisfied_ratio=1.000 (6/6)  alpha=0.50  threshold=0.20\\\\nSICA: True (V)\\\\n  Constraints: 24 extracted -> 6 unique\\\\n  MaxSAT: 6 sat, 0 excl, solve=0.4584360867738724ms\\\\n  Timing: trace=27.2s extract=263.7s total=290.9s\\\\nSC:   True (V) -- votes: 12/12\\\\nTime: 290.9s\\\\nETA: 856.3 min (188 remaining, avg 273.3s/prob)\\\\n\\\\n--- [17/204] (overall 17/204) ---\\\\nID: folio_16 | Dataset: folio | Level: validation\\\\nQ: Given the following premises:\\\\nAll rabbits are cute.  Some turtles exist.  An animal is either a rabbit or a squirrel. If...\\\\nGT: Unknown\\\\n2026-05-18 23:35:01,698 INFO Retrying request to /chat/completions in 0.447560 seconds\\\\n2026-05-18 23:36:01,939 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:20,968 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:27,351 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:34,495 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:42,029 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:42,690 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:47,312 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05\n…[truncated 213 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 1
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T15:37:22.580629+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "curl -s http://localhost:8000/v1/models 2>/dev/null | head -5 && echo \"port 8000 OK\" || echo \"port 8000 DOWN\"; curl -s http://localhost:8001/v1/models 2>/dev/null | head -5 && echo \"port 8001 OK\" || echo \"port 8001 DOWN\"; curl -s http://localhost:8002/v1/models 2>/dev/null | head -5 && echo \"port 8002 OK\" || echo \"port 8002 DOWN\"",
+              "warn": "True"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T15:37:22.581018+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 23:36:32,442 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:34,223 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:36,141 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:36,673 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:36,920 INFO Scorer mode=NORMAL  satisfied_ratio=0.967 (29/30)  alpha=0.50  threshold=0.20\\\\n  Cross-model: False (V) | Original: False (V) | SC: False (V)\\\\n  Constraints: 61 extracted -> 30 unique\\\\n  Time: 16.6s\\\\n  ETA: 17.6 min (57 remaining)\\\\n\\\\n--- [148/204] folio_48 (folio) ---\\\\n2026-05-18 23:36:40,754 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:42,585 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:42,832 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:42,843 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:45,144 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:45,336 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:48,273 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:48,441 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:49,657 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:36:50,037 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:\n…[truncated 633 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T15:37:22.581292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"object\\\\\\\":\\\\\\\"list\\\\\\\",\\\\\\\"data\\\\\\\":[{\\\\\\\"id\\\\\\\":\\\\\\\"/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\\\\\\\",\\\\\\\"object\\\\\\\":\\\\\\\"model\\\\\\\",\\\\\\\"created\\\\\\\":1779118620,\\\\\\\"owned_by\\\\\\\":\\\\\\\"vllm\\\\\\\",\\\\\\\"root\\\\\\\":\\\\\\\"/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\\\\\\\",\\\\\\\"parent\\\\\\\":null,\\\\\\\"max_model_len\\\\\\\":8192,\\\\\\\"permission\\\\\\\":[{\\\\\\\"id\\\\\\\":\\\\\\\"modelperm-815b0af8ae9e9fda\\\\\\\",\\\\\\\"object\\\\\\\":\\\\\\\"model_permission\\\\\\\",\\\\\\\"created\\\\\\\":1779118620,\\\\\\\"allow_create_engine\\\\\\\":false,\\\\\\\"allow_sampling\\\\\\\":true,\\\\\\\"allow_logprobs\\\\\\\":true,\\\\\\\"allow_search_indices\\\\\\\":false,\\\\\\\"allow_view\\\\\\\":true,\\\\\\\"allow_fine_tuning\\\\\\\":false,\\\\\\\"organization\\\\\\\":\\\\\\\"*\\\\\\\",\\\\\\\"group\\\\\\\":null,\\\\\\\"is_blocking\\\\\\\":false}]}]}port 8000 OK\\\\n{\\\\\\\"object\\\\\\\":\\\\\\\"list\\\\\\\",\\\\\\\"data\\\\\\\":[{\\\\\\\"id\\\\\\\":\\\\\\\"/root/autodl-tmp/models/Qwen3-14B\\\\\\\",\\\\\\\"object\\\\\\\":\\\\\\\"model\\\\\\\",\\\\\\\"created\\\\\\\":1779118620,\\\\\\\"owned_by\\\\\\\":\\\\\\\"vllm\\\\\\\",\\\\\\\"root\\\\\\\":\\\\\\\"/root/autodl-tmp/models/Qwen3-14B\\\\\\\",\\\\\\\"parent\\\\\\\":null,\\\\\\\"max_model_len\\\\\\\":8192,\\\\\\\"permission\\\\\\\":[{\\\\\\\"id\\\\\\\":\\\\\\\"modelperm-a7d9650c605bd275\\\\\\\",\\\\\\\"object\\\\\\\":\\\\\\\"model_permission\\\\\\\",\\\\\\\"created\\\\\\\":1779118620,\\\\\\\"allow_create_engine\\\\\\\":false,\\\\\\\"allow_sampling\\\\\\\":true,\\\\\\\"allow_logprobs\\\\\\\":true,\\\\\\\"allow_search_indices\\\\\\\":false,\\\\\\\"allow_view\\\\\\\":true,\\\\\\\"allow_fine_tuning\\\\\\\":false,\\\\\\\"organization\\\\\\\":\\\\\\\"*\\\\\\\",\\\\\\\"group\\\\\\\":null,\\\\\\\"is_blocking\\\\\\\":false}]}]}port 8001 OK\\\\n{\\\\\\\"object\\\\\\\":\\\\\\\"list\\\\\\\",\\\\\\\"data\\\\\\\":[{\\\\\\\"id\\\\\\\":\\\\\\\"/root/autodl-tmp/models/Qwen3-14B\\\\\\\",\\\\\\\"object\\\\\\\":\\\\\\\"model\\\\\\\",\\\\\\\"created\\\\\\\":1779118620,\\\\\\\"owned_by\\\\\\\":\\\\\\\"vllm\\\\\\\",\\\\\\\"root\\\\\\\":\\\\\\\"/root/autodl-tmp/models/Qwen3-14B\\\\\\\",\\\\\\\"parent\\\\\\\":null,\\\\\\\"max_model_len\\\\\\\":16384,\\\\\\\"permission\\\\\\\":[{\\\\\\\"id\\\\\\\":\\\\\\\"modelperm-bb2b93c2fbb3fb7d\\\\\\\",\\\\\\\"object\\\\\\\":\\\\\\\"model_permission\\\\\\\",\\\\\\\"created\\\\\\\":1779118620,\\\\\\\"allow_create_engine\\\\\\\":false,\\\\\\\"allow_sampling\\\\\\\":true,\\\\\\\"allow_logprobs\\\\\\\":true,\\\\\\\"allow_sear\n…[truncated 276 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T15:37:22.581461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "echo \"=== exp-027 results ===\" && find /root -path \"*exp-027*\" -name \"*.json\" 2>/dev/null | head -5 && find /root -path \"*qwen3*non*think*\" -name \"*.json\" 2>/dev/null | head -5 && echo \"=== exp-028 results ===\" && find /root -path \"*exp-028*\" -name \"*.json\" 2>/dev/null | head -5 && find /root -path \"*qwen3*think*\" -name \"*.json\" -not -path \"*non*\" 2>/dev/null | head -5 && echo \"=== exp-030 results ===\" && find /root -path \"*exp-030*\" -name \"*.json\" 2>/dev/null | head -5 && find /root -path \"*cross*model*\" -name \"*.json\" 2>/dev/null | head -5 && find /root -path \"*mistral*folio*\" -name \"*.json\" 2>/dev/null | head -5",
+              "warn": "True"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T15:37:22.581797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "limit": "20",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T15:37:22.582002+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== exp-027 results ===\\\\n/root/symb_invariant_consensus/results/exp027_qwen3_14b_nonthinking/intermediates/folio_0.json\\\\n/root/symb_invariant_consensus/results/exp027_qwen3_14b_nonthinking/intermediates/folio_1.json\\\\n/root/symb_invariant_consensus/results/exp027_qwen3_14b_nonthinking/intermediates/folio_2.json\\\\n/root/symb_invariant_consensus/results/exp027_qwen3_14b_nonthinking/intermediates/folio_3.json\\\\n/root/symb_invariant_consensus/results/exp027_qwen3_14b_nonthinking/intermediates/folio_4.json\\\\n=== exp-028 results ===\\\\n/root/symb_invariant_consensus/results/exp028_qwen3_14b_thinking/intermediates/folio_0.json\\\\n/root/symb_invariant_consensus/results/exp028_qwen3_14b_thinking/intermediates/folio_1.json\\\\n/root/symb_invariant_consensus/results/exp028_qwen3_14b_thinking/intermediates/folio_2.json\\\\n/root/symb_invariant_consensus/results/exp028_qwen3_14b_thinking/intermediates/folio_3.json\\\\n/root/symb_invariant_consensus/results/exp028_qwen3_14b_thinking/intermediates/folio_4.json\\\\n=== exp-030 results ===\\\\n/root/symb_invariant_consensus/results/cross_model_mistral_folio/cross_model_mistral_results.json\\\\n/root/symb_invariant_consensus/results/cross_model_mistral_folio/cross_model_mistral_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.03}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T15:37:22.583204+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-029-contrastive-folio204\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T14:22:03.513Z\\\", \\\"updated_at\\\": \\\"2026-05-18T15:37:01.319Z\\\", \\\"hypothesis\\\": \\\"Contrastive constraint extraction (answer-conditioned supporting/opposing constraints with structured JSON output and MaxSAT integration) will achieve discriminative_rate >20% (vs baseline 8.2%) and positive recovery_rate on FOLIO 204, because per-candidate opposing constraints provide stronger signal than simple majority voting for disambiguating closely-scored answers.\\\", \\\"parent\\\": \\\"exp-026-folio204-trace-regen\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp029_contrastive.sh'\\\", \\\"server\\\": \\\"westd-25068\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"42353\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T14:24:26.683Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/results/folio_204_14b/intermediates/\\\", \\\"data_count\\\": 181, \\\"model_name\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"exp-026-folio204-trace-regen\\\", \\\"eval_data\\\": \\\"FOLIO-204\\\", \\\"wall_clock_seconds\\\": 4354.6, \\\"gpu_hours\\\": 1.21}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"results/exp-029-contrastive-folio204/contrastive_results.json\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log\\\", \\\"completed_at\\\": \\\"2026-05-18T15:37:01.319Z\\\"}, \\\"exp-030-crossmodel-mistral-folio204\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T14:47:46.451Z\\\", \\\"updated_at\\\": \\\"2026-05-18T15:36:56.809Z\\\", \\\"hypothesis\\\": \\\"Cross-model extraction: Mistral-7B 从 Qwen2.5-14B 的 FOLIO 204 traces 中提取 constraints，能否打破 same-model capability trap？不同模型有不同的 extractio\n…[truncated 35198 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-18T15:37:22.584647+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个实验全部 ALIVE，GPU 0/1/2 满载运行，vLLM 端口 8000/8001/8002 全部 OK。Registry 状态均为 RUNNING，无需修复。\n\n## 状态报告\n\n| exp_id | 进程 | GPU | 进度 | ETA | 关键信息 |\n|--------|------|-----|------|-----|---------|\n| **exp-027** (Qwen3-14B non-thinking) | PID 38106 ALIVE | cuda:1, 97%, 88GB | **101/204** (49.5%) | ~92 min | avg 52.9s/prob, SICA/SC 正常产出 |\n| **exp-028** (Qwen3-14B thinking) | PID 40990 ALIVE | cuda:2, 97%, 88GB | **17/204** (8.3%) | ~856 min (~14h) | avg 273.3s/prob, thinking mode 慢 5x, 有 \"Empty after stripping thinking\" warnings |\n| **exp-030** (cross-model Mistral) | PID 46525 ALIVE | cuda:0, 96%, 88GB | **149/204** (73.0%) | ~17 min | avg ~19s/prob, satisfied_ratio 0.93-0.97, 即将完成 |\n\nRegistry 状态全部正确 (RUNNING)，无需修复。GPU:3 空闲。exp-030 预计 ~17 分钟内完成，exp-027 约 1.5 小时，exp-028 因 thinking mode 极慢需要约 14 小时。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westd25068-027-028-030_20260518T153616"
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/conversations/check-westd25068-027-028-030.md"
+}

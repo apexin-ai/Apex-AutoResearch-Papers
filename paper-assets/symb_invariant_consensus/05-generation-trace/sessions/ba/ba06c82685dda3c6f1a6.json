@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba06c82685dda3c6f1a6",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "prep exp 013 data extract",
+  "task_key": "worker_prep_exp-013-data-extract_20260516T194125",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_prep_exp-013-data-extract_20260516T194125_result.json",
+    "occurrence": 1,
+    "bytes": 1076,
+    "sha256": "ecc2ec5c40343b966fecddb244a0c4af4617b3a85aa47906812ffd614805a33d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出总结：\n\n**产出**：\n- `scripts/extract_constraints_for_ablation.py` — 从 exp-001 结果提取 804 个 per-problem JSON\n- `results/constraint_cache/` — 804 个文件（每个问题一个）\n- `results/constraint_cache_consolidated.json` — 合并版本（808 KB）\n- `results/constraint_ablation.json` — 完整 804 问题的 ablation 结果（覆盖了之前的 87 问题版本）\n\n**关键发现**：\n- `raw_constraints` 在 exp-001 输出中全部为空（pipeline 运行时未生效 save-intermediates），因此 count-only 和 random-weight 使用近似公式\n- 三种方法高度一致（802/804 问题结果相同），仅 2 个问题存在分歧\n- 近似结果：MaxSAT 76.49% / count-only 76.62% / random-weight 76.37% / SC baseline 76.24%\n- 所有 McNemar p-values > 0.7，三种方法间无统计显著差异\n\n**限制**：由于缺少原始 z3 formulas，count-only 和 random-weight 结果标记为 approximate。若需精确比较，需重跑 pipeline 加 `--save-intermediates` 获取原始约束数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-exp-013-data-extract.md"
+}

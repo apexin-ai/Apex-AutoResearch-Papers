@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75bd09948de272b8b8e9",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag exp044b 028b progress",
+  "task_key": "worker_diag_exp044b-028b-progress_20260518T222746",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_exp044b-028b-progress_20260518T222746_result.json",
+    "occurrence": 1,
+    "bytes": 960,
+    "sha256": "c8475d5f5ff0711c9c56408c72c75000b2bdc8f45baec2e6c148e2946986f7b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总 (截至 2026-05-19 06:28 UTC)\n\n| 实验 | 进度 | 已用时间 | 预估剩余 | 预计完成 | 状态 |\n|------|------|----------|----------|----------|------|\n| **exp-044b** (ICL Oracle, cuda:0) | 161/199 | ~2h 8min | **~31 min** | ~07:00 UTC | 正常 |\n| **exp-028b** (Qwen3-14B thinking, cuda:3) | 43/204 | ~1h 47min | **~412 min (~6.9h)** | ~13:20 UTC | 正常 |\n| **exp-046** (Mistral pw600, cuda:2) | 266/600 | ~2h 11min | **~162 min (~2.7h)** | ~09:10 UTC | 正常 |\n\n### 关键细节\n\n- **exp-044b**: avg 48.0s/prob，即将完成（还剩 39 题）\n- **exp-028b**: avg 152.7s/prob（thinking mode 导致每题耗时长，单题 trace+extract ~221s），进度较慢，预计还需近 7 小时\n- **exp-046**: avg 29.0s/prob，稳定运行，600 题规模较大\n\n### GPU 状态\n4x NVIDIA RTX PRO 6000 Blackwell (96GB)，全部 96-97% 利用率，内存占用 ~88/97GB。满负荷运行，无空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp044b-028b-progress.md"
+}

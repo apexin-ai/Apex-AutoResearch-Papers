@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7022ad00aeb132e3334e",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code mvp launch script",
+  "task_key": "worker_code_mvp-launch-script_20260515T110631",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_mvp-launch-script_20260515T110631_result.json",
+    "occurrence": 1,
+    "bytes": 1070,
+    "sha256": "165b68c54996313b22533344324d4451e885762db80e8cbf08d00815e2b86afe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出汇总：\n\n**服务器文件**（westd-32608:/root/symb_invariant_consensus/）：\n- `run_full_mvp.py` — 60 题完整 MVP 实验脚本\n- `launch_mvp.sh` — 一键启动脚本\n\n**功能**：\n- 合并加载 50 MATH-500 + 10 ProofWriter（共 60 题）\n- SICA pipeline（K=12）+ SC baseline 对比\n- `is_equiv` 等价判定（math_verify → sympy → numeric fallback）\n- 断点续传：`--resume` 自动跳过已完成题目\n- 每题实时打印进度、约束统计、MaxSAT 结果\n- ETA 估算（基于滑动平均耗时）\n- 每题完成后自动保存 checkpoint 到 `results/mvp_full_results.json`\n- 输出指标：总体 accuracy、按数据集分（MATH/ProofWriter）、按难度分（Level 1-5）\n\n**验证结果**：\n- Python 语法 OK\n- Import OK（所有依赖可解析）\n- Shell 语法 OK\n- Mock 模式 60 题端到端通过\n- Resume 功能正常（检测已完成题目并跳过）\n\n**启动方式**：Smoke test 通过后，执行 `bash launch_mvp.sh`（或 `bash launch_mvp.sh --resume` 断点续传）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-launch-script.md"
+}

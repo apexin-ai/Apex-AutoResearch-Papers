@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc92555d00a3364bda98",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis sc baseline discrepancy",
+  "task_key": "worker_analysis_sc-baseline-discrepancy_20260520T135659",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_sc-baseline-discrepancy_20260520T135659_result.json",
+    "occurrence": 1,
+    "bytes": 2219,
+    "sha256": "2114614828ab815212b62771e7c1d3e018371a7df559cd9974d99dc5de2fea01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "根因完全确认。以下是完整调查结果：\n\n---\n\n## 调查结果\n\n### 差异根因：Tiebreaking 策略不同\n\n7 个问题（不是 3 个）的 SC 判定不同，**全部是投票 tie**（票数完全相等）。净差异 = 5 - 2 = 3 题。\n\n| 问题 | Gold | 票数分布 | exp033 选择 | exp089 选择 | 谁对 |\n|------|------|---------|------------|------------|------|\n| folio_42 | True | Unknown:5, True:5 | Unknown | True | exp089 |\n| folio_65 | True | True:5, False:5, Unknown:2 | True | False | exp033 |\n| folio_83 | False | Unknown:5, False:5, +1噪声 | Unknown | False | exp089 |\n| folio_99 | Unknown | Unknown:5, True:5, +1噪声 | Unknown | True | exp033 |\n| folio_100 | True | Unknown:4, True:4, +2噪声 | Unknown | True | exp089 |\n| folio_157 | False | Unknown:5, False:5 | Unknown | False | exp089 |\n| folio_163 | False | Unknown:5, False:5 | Unknown | False | exp089 |\n\n### 两种 Tiebreaking 机制\n\n**exp033** (`SelfConsistency` class, 旧版本): `max(groups.keys(), key=count)` — **dict 插入顺序** 决定 tie。由于 traces 中 \"Unknown\" 通常出现在前面的 trace 中，ties 倾向于选 \"Unknown\"。\n\n**exp089** (独立脚本): `max(sorted(candidates), key=count)` — **字母序** 决定 tie。\"False\" < \"True\" < \"Unknown\"。\n\n### Normalization 完全一致\n\n两边都使用相同的 `normalize_logic_answer()`，映射表一致：\n```python\n{\"true\": \"True\", \"false\": \"False\", \"unknown\": \"Unknown\", \"uncertain\": \"Unknown\", ...}\n```\n\n`is_equiv()` vs `==` 的差异**不影响**结果——对 \"True\"/\"False\"/\"Unknown\" 这些简单字符串，两者等价。\n\n### 建议\n\n1. **论文用 exp089 的值 (SC = 55.88%, 114/204)**。字母序 tiebreaking 是确定性的、可复现的，而 dict 插入顺序依赖 trace 生成顺序。\n2. **统一 normalization**：当前 `SelfConsistency` class 已更新为 `max(sorted(...))` 版本，与 exp089 一致。无需再改代码。\n3. **论文注脚建议**：可以提到 204 题中 7 题存在 exact majority-vote tie（3.4%），SC baseline 对 tiebreaking convention 敏感。这也说明 SICA 在 tie 区域提供额外信号的价值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sc-baseline-discrepancy.md"
+}

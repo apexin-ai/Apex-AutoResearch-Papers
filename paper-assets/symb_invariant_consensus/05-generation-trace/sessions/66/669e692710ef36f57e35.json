@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "669e692710ef36f57e35",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag exp 040 completion",
+  "task_key": "worker_diag_exp-040-completion_20260519T105944",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_exp-040-completion_20260519T105944_result.json",
+    "occurrence": 1,
+    "bytes": 560,
+    "sha256": "732ceb016812ae57daa0132be14bf61bce02a6f9fc347b8f9c459e06dadc7ac3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-040 诊断结果\n\n| 项目 | 值 |\n|------|------|\n| 状态 | **成功完成** (FULL_MVP_DONE) |\n| SICA | 85.7% (514/600) |\n| SC | 85.0% (510/600) |\n| **Δ** | **+0.7pp** |\n| Extraction rate | 99.7% |\n| Contradiction rate | 0.4% |\n| Wall time | 1032.2 min (~17.2h) |\n| GPU 1 | **已释放** (0MiB) |\n| vLLM port 8001 | **已停止** |\n\n结论：**negative**。Qwen3-14B (non-thinking) 在 PW-600 上 SC 已达 85%，Δ 仅 +0.7pp，确认 capability trap — 高能力模型 SICA 增益极小。Registry 已更新为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp-040-completion.md"
+}

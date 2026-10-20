@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2477f6c51fc85f1143e8",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "gpu exp 067 mistral folio seed789",
+  "task_key": "worker_gpu_exp-067-mistral-folio-seed789_20260519T090941",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp-067-mistral-folio-seed789_20260519T090941_result.json",
+    "occurrence": 1,
+    "bytes": 507,
+    "sha256": "22937bbc52e5d551bc2b3c2df5335702f7161b065b5f885e970de6f8777f80d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-067 全量运行已确认启动，正在处理第 1/204 题。\n\n**汇总：**\n- cuda:2 空闲 ✓，端口 8012 空闲 ✓\n- vLLM 启动就绪 ✓ (tmux: `exp067_vllm`)\n- Dry-run 3 题通过 ✓ (SICA=100%, SC=100%, extraction=100%)\n- 全量运行 204 题已启动 ✓ (tmux: `exp067_run`)\n- Registry 已注册为 RUNNING ✓ (`exp-067-mistral-folio-seed789`, parent=exp-033)\n- 未触碰 cuda:0/1/3，未保存 intermediates\n- 预估运行时间: ~37.8s/题 × 204 ≈ 128 分钟"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-067-mistral-folio-seed789.md"
+}

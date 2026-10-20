@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98069f1c80a84a4b8bcb",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix llama seed789 sync",
+  "task_key": "worker_fix_llama-seed789-sync_20260522T220809",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_llama-seed789-sync_20260522T220809_result.json",
+    "occurrence": 1,
+    "bytes": 384,
+    "sha256": "4d9f44da7c569601b7273f52a068752b720005f87648d5290a87571575036e8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。\n\n| 项目 | westd-14391 (源) | westd-16639 (目标) |\n|------|-----------------|-------------------|\n| 题目数 | 204 | **204** ✓ |\n| 文件大小 | 300639 bytes | **300639 bytes** ✓ |\n| 备份文件 | — | `results_incomplete_189.json.bak` |\n\nwestd-16639 上的数据已从 189 题同步为完整的 204 题，文件大小完全一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-llama-seed789-sync.md"
+}

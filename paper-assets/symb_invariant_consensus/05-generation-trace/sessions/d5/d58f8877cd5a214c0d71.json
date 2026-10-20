@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d58f8877cd5a214c0d71",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix folio nli gpu restart",
+  "task_key": "worker_fix_folio-nli-gpu-restart_20260523T165556",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_folio-nli-gpu-restart_20260523T165556_result.json",
+    "occurrence": 1,
+    "bytes": 848,
+    "sha256": "426cbd956fbfb6b386b07e20c8b2b0397aafe3d29543d1cf3848b689edb81ab6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**执行结果**：\n- Kill 了 3 个 CPU 进程（PID 35767/35904/36041），清理了旧 tmux sessions\n- 修复了 `libnvrtc-builtins.so.13.0` 路径问题（加 LD_LIBRARY_PATH）\n- 3 个 verifier 在 cuda:0 上串行完成，每个 ~2-4 秒/generator（vs CPU 上数小时）\n- cuda:2 上的 LLaMA seed456-v2 实验未受影响\n\n**关键发现**：\n- NLI standalone ~47-50%，接近随机——NLI 模型无法处理 FOLIO 的一阶逻辑推理\n- 弱 generator（Mistral-7B）受益最多（+3.4~+4.4pp at w=5），但均不显著（best p=0.0636）\n- 强 generator（Qwen2.5-14B）反而下降 -0.5~-1.0pp\n- **全部 36 个 verifier×generator×weight 组合均无统计显著提升**（p > 0.05）\n- 3 个 NLI 架构表现高度一致，结论稳健\n\nArtifact 已注册：`art_20260523_4140cb`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-folio-nli-gpu-restart.md"
+}

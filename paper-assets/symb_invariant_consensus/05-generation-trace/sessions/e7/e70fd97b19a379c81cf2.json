@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "e70fd97b19a379c81cf2",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "download mistral 7b westd16639",
+  "task_key": "worker_download_mistral-7b-westd16639_20260518T140611",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_download_mistral-7b-westd16639_20260518T140611.log",
+    "occurrence": 1,
+    "bytes": 823983,
+    "sha256": "5500405cd5bd12e9d6baf8309f04835dbfd2a4cbede4c006ace661727977c307"
+  },
+  "statistics": {
+    "messages": 611,
+    "user_turns": 0,
+    "tool_calls": 229,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 149,
+      "tool_call": 229,
+      "tool_result": 229,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 611,
+      "chunks": [
+        {
+          "path": "e70fd97b19a379c81cf2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e70fd97b19a379c81cf2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e70fd97b19a379c81cf2-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "e70fd97b19a379c81cf2-part-0004.json",
+          "message_count": 71
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/download-mistral-7b-westd16639.md"
+}

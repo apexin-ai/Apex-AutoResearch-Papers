@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29e41166d50f41d74893",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code prep exp020 folio204",
+  "task_key": "worker_code_prep-exp020-folio204_20260517T085951",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_prep-exp020-folio204_20260517T085951_result.json",
+    "occurrence": 1,
+    "bytes": 1242,
+    "sha256": "1651c06d1504ac1a2967a81d89bee8aee198237d00d60be76aa5954b6d98c218"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已就绪，无需创建。以下是验证报告：\n\n## exp-020 脚本状态：Ready-to-run\n\n**脚本路径**: `/root/symb_invariant_consensus/scripts/run_exp020_llama8b_folio204.sh`\n\n**验证通过项**:\n| 项目 | 状态 |\n|------|------|\n| 模型路径 | `/root/autodl-tmp/models/Llama-3.1-8B-Instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct/` — 4 shards 完整 |\n| 数据文件 | `data/folio_full.json` — 204 条记录，格式正确（含 premises_fol, conclusion_fol） |\n| 评估脚本 | `run_full_mvp.py` 存在，`--folio-data` / `--no-proofwriter` 参数已确认 |\n| 辅助文件 | `data/empty.json` 存在（用于 --math-data 占位） |\n| 语法检查 | `bash -n` 通过 |\n\n**配置参数**:\n- K=12, T=0.7, max-tokens=4096, seed=42\n- vLLM: max-model-len=8192, gpu-memory-utilization=0.90\n- 输出: `results/exp020_llama8b_folio204/`\n\n**预估运行指标**:\n- GPU 内存: ~18-20GB（LLaMA-8B FP16，98GB 卡绰绰有余）\n- 运行时间: ~40-60 分钟（204 题 × K=12 = 2448 次推理，vLLM batch 加速）\n- vLLM 启动: ~30-60 秒\n\n**运行命令**:\n```bash\nnohup bash /root/symb_invariant_consensus/scripts/run_exp020_llama8b_folio204.sh > /tmp/exp020.log 2>&1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-exp020-folio204-copy-2.md"
+}

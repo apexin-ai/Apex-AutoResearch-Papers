@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76e4fa31bba53ab84e8f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "launch llama pw seed789 cuda0",
+  "task_key": "worker_launch_llama-pw-seed789-cuda0_20260523T045240",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_launch_llama-pw-seed789-cuda0_20260523T045240_result.json",
+    "occurrence": 1,
+    "bytes": 509,
+    "sha256": "3fd82bfee8855f29a5ff7be511682022dbf596ab4ede9e4ad275d1b0a7ae7038"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动并在正常推理中。\n\n**状态汇总：**\n\n| 项目 | 详情 |\n|------|------|\n| vLLM | LLaMA-3.1-8B-Instruct on cuda:0, port 8009, PID 744821 |\n| 实验 | `exp-multi-seed-llama-pw-seed789`, tmux session 运行中, PID 745722 |\n| 日志 | `~/runs/symb_invariant_consensus/exp-multi-seed-llama-pw-seed789.log` |\n| 超时 | 12 小时 |\n| 预计完成 | 参考同配置 seed123 实验（已运行 ~9h），预计 6-10 小时内完成（约今晚 19:00-23:00） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-llama-pw-seed789-cuda0.md"
+}

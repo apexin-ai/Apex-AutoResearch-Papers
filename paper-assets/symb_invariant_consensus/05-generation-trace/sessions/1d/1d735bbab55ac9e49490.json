@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d735bbab55ac9e49490",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diagnose multiseed mistral pw",
+  "task_key": "worker_diagnose_multiseed-mistral-pw_20260522T232552",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_multiseed-mistral-pw_20260522T232552_result.json",
+    "occurrence": 1,
+    "bytes": 538,
+    "sha256": "84c6c3f557b169cf00b4bfcce6e63276d5bb34c414a438f6ed4e9633dab596dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**exp-multi-seed-mistral-pw 诊断结果：**\n\n| Seed | SC (%) | SICA (%) | Δ (pp) |\n|------|--------|----------|--------|\n| 42   | 40.00  | 36.67    | -3.33  |\n| 123  | 40.83  | 37.50    | -3.33  |\n| 456  | 39.83  | 38.67    | -1.17  |\n| 789  | 38.83  | 37.17    | -1.67  |\n| **Mean±SD** | **39.87±0.82** | **37.50±0.85** | **-2.38±1.12** |\n\n- 4/4 seeds 600/600 完整，4/4 seeds Δ≤0\n- Registry → DONE(success)，metrics 已更新含 mean/sd\n- Cron `exp-multi-seed-mistral-pw` 已删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-multiseed-mistral-pw.md"
+}

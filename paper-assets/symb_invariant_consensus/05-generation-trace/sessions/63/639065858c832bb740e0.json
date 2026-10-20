@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "639065858c832bb740e0",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "code exp 077 kappa v2",
+  "task_key": "worker_code_exp-077-kappa-v2_20260519T181014",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp-077-kappa-v2_20260519T181014.log",
+    "occurrence": 1,
+    "bytes": 664082,
+    "sha256": "43180320dd12b7f75b2bd8e9ddb86665e2f841cdbe629d7235579fa878cfef3c"
+  },
+  "statistics": {
+    "messages": 243,
+    "user_turns": 0,
+    "tool_calls": 100,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 100,
+      "tool_result": 100,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 243,
+      "chunks": [
+        {
+          "path": "639065858c832bb740e0-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "639065858c832bb740e0-part-0002.json",
+          "message_count": 63
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-077-kappa-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0f8bd1dfe9d7cb7aa02",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment qwen14b pw oracle rerun",
+  "task_key": "worker_experiment_qwen14b-pw-oracle-rerun_20260521T103658",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_qwen14b-pw-oracle-rerun_20260521T103658_result.json",
+    "occurrence": 1,
+    "bytes": 719,
+    "sha256": "5fe2c39ef3481be58b4cf80ddd4b6eb05b0997c2959aae41c49b33559ada941b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| Metric | exp-022 (旧 traces) | exp032 (canonical) |\n|--------|---------------------|-------------------|\n| **Oracle-SICA** | 86.67% (520/600) | **91.17% (547/600)** |\n| SC | — | 73.50% (441/600) |\n| SICA(self) | — | 71.50% (429/600) |\n| Delta (Oracle vs SC) | — | +17.67 pp |\n| Z3-gold match rate | — | 97.14% (577/594) |\n| Parse errors | — | 6/600 |\n\nPer-subtype Oracle:\n- AttNoneg: 98.7% | AttNeg: 91.9% | RelNoneg: 84.2% | RelNeg: 89.3%\n\nOracle 从 86.67% 升至 91.17%（+4.5pp），表明 exp032 canonical traces 质量更高。完整结果在服务器 `/root/symb_invariant_consensus/results/exp032_qwen14b_pw_oracle/results.json`，artifact 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-qwen14b-pw-oracle-rerun.md"
+}

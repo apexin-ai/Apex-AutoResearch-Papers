@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b9bd032f5ac7d4be7b6",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra download diagnose",
+  "task_key": "worker_infra_download-diagnose_20260515T093832",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_download-diagnose_20260515T093832_result.json",
+    "occurrence": 1,
+    "bytes": 937,
+    "sha256": "94df32703e724a5ecb19559feddf075212bd99157f741ef5bf695d61f3a02478"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "vLLM is up and serving QwQ-32B!\n\n**汇报：**\n\n1. **下载诊断**：ModelScope 并行下载 6 个分片，速度 17-26 MB/s（稳定增长），无阻塞问题。下载走的是 ModelScope cache 结构（`Qwen/QwQ-32B/` 嵌套路径），不是平坦目录。\n\n2. **采取的措施**：\n   - 持续监控下载进度直到完成（从 ~46GB 到 ~62GB，约 20 分钟）\n   - 清理了 `._____temp/` 和 `.lock/` 目录\n   - 另一个 Worker 在我的首次 vLLM 启动失败后（engine core 初始化错误），成功以 `max_model_len=16384` 启动了 vLLM\n\n3. **最终状态**：\n   - 14/14 shards 全部下载完成，模型路径 `/root/autodl-tmp/models/QwQ-32B/Qwen/QwQ-32B/`\n   - vLLM 0.20.2 已启动，bfloat16，61.04 GiB 显存占用\n   - 服务端点：`http://localhost:8000/v1/models`\n   - GPU：RTX PRO 6000 Blackwell (98GB)，充足空间\n   - `max_model_len=16384`，最大并发 5.31x"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-download-diagnose.md"
+}

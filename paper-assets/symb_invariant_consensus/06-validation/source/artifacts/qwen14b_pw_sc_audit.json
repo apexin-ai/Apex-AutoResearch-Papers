@@ -1,0 +1,132 @@
+{
+  "audit": "Qwen2.5-14B ProofWriter D5-600 SC Accuracy Discrepancy",
+  "date": "2026-05-21",
+  "summary": "Three different SC accuracy values traced to THREE different experiment runs, not tiebreaking differences",
+
+  "three_values": {
+    "75.17_pct": {
+      "value": 75.17,
+      "correct": 451,
+      "total": 600,
+      "source_experiment": "sica_expanded_14b (early run, likely westd-25068)",
+      "appears_in": ["Main Table (experiments.tex line 33)", "BH correction table (table1_bh_correction.json)", "exp-022-oracle-proofwriter (same traces)"],
+      "registry_match": "sica_expanded_14b: proofwriter_sc=0.752, exp-022: sc_accuracy=0.7517",
+      "explanation": "First complete Qwen2.5-14B PW-600 run. Different trace generation from later experiments."
+    },
+    "74.00_pct": {
+      "value": 74.00,
+      "correct": 444,
+      "total": 600,
+      "source_experiment": "exp032_qwen25_14b_pw600 (westd-16639) with ALPHABETICAL tiebreaking",
+      "appears_in": ["Cross-gen NLI Table (solutions.tex line 29)", "CIL corrected value"],
+      "raw_sc_without_tiebreak": {"value": 73.50, "correct": 441, "method": "first-seen (Python max() on dict)"},
+      "registry_match": "exp-039-14b-pw600-16639: sc_accuracy=73.5%, exp-091-qwen14b-pw-nli-combo: sc_accuracy=0.735",
+      "explanation": "Later re-run on westd-16639. 441 correct with first-seen tiebreaking, 444 correct with alphabetical tiebreaking (sorted(tied)[0])."
+    },
+    "70.33_pct": {
+      "value": 70.33,
+      "correct": 422,
+      "total": 600,
+      "source_experiment": "exp034_qwen25_14b_proofwriter intermediates (likely westd-25068, server now down)",
+      "appears_in": ["Initial CIL computation (cil_results.json, before correction)"],
+      "registry_match": "exp-034: n_problems=93, status=DONE (crashed at 93/600 but intermediates may contain prior run data)",
+      "explanation": "Third distinct trace generation. CIL script loaded from exp034 intermediates on westd-25068. Was later manually corrected to 74.00% in cil_results.json.",
+      "cil_complementarity_counts": {
+        "both_right": 236,
+        "v_right_g_wrong": 94,
+        "g_right_v_wrong": 186,
+        "both_wrong": 84,
+        "sc_correct_from_counts": 422,
+        "deberta_correct_from_counts": 330,
+        "note": "DeBERTa correct=330 matches all experiments (generator-independent)"
+      }
+    }
+  },
+
+  "tiebreaking_analysis": {
+    "source": "exp032_qwen25_14b_pw600 on westd-16639 (600 questions, K=12)",
+    "n_ties": 21,
+    "tie_rate": "3.50%",
+    "all_ties_are_6_6": "20 of 21 are 6:6 two-way ties; 1 is 4:4:4 three-way tie",
+    "results_by_method": {
+      "first_seen": {"correct": 441, "accuracy": "73.50%", "note": "Python max() on dict, order depends on JSON serialization"},
+      "alphabetical": {"correct": 444, "accuracy": "74.00%", "note": "sorted(tied_candidates)[0], deterministic"},
+      "random_seed_42": {"correct": 439, "accuracy": "73.17%"},
+      "random_seed_123": {"correct": 437, "accuracy": "72.83%"},
+      "random_seed_456": {"correct": 435, "accuracy": "72.50%"},
+      "random_seed_789": {"correct": 440, "accuracy": "73.33%"},
+      "random_seed_0": {"correct": 442, "accuracy": "73.67%"}
+    },
+    "tie_impact": "Tiebreaking affects 21 questions, flipping 0-6 answers vs first-seen. Max possible swing: ~1.0pp",
+    "tie_details": [
+      {"qid": "AttNeg-OWA-D5-891_Q9", "gold": "True", "dist": {"True": 6, "Unknown": 6}, "alpha": "True", "first_seen": "True"},
+      {"qid": "AttNoneg-OWA-D5-650_Q11", "gold": "True", "dist": {"Unknown": 6, "True": 6}, "alpha": "True", "first_seen": "Unknown"},
+      {"qid": "AttNoneg-OWA-D5-785_Q10", "gold": "False", "dist": {"False": 6, "Unknown": 6}, "alpha": "False", "first_seen": "False"},
+      {"qid": "RelNeg-OWA-D5-922_Q7", "gold": "True", "dist": {"Unknown": 6, "False": 6}, "alpha": "False", "first_seen": "Unknown"},
+      {"qid": "RelNoneg-OWA-D5-151_Q4", "gold": "False", "dist": {"Unknown": 6, "False": 6}, "alpha": "False", "first_seen": "Unknown"},
+      {"qid": "AttNoneg-OWA-D5-1187_Q7", "gold": "True", "dist": {"True": 6, "Unknown": 6}, "alpha": "True", "first_seen": "True"},
+      {"qid": "RelNeg-OWA-D5-249_Q9", "gold": "True", "dist": {"True": 6, "Unknown": 6}, "alpha": "True", "first_seen": "True"},
+      {"qid": "RelNeg-OWA-D5-604_Q14", "gold": "Unknown", "dist": {"Unknown": 6, "False": 6}, "alpha": "False", "first_seen": "Unknown"},
+      {"qid": "RelNeg-OWA-D5-587_Q8", "gold": "False", "dist": {"True": 6, "False": 6}, "alpha": "False", "first_seen": "True"},
+      {"qid": "AttNeg-OWA-D5-1233_Q11", "gold": "True", "dist": {"Unknown": 6, "True": 6}, "alpha": "True", "first_seen": "Unknown"},
+      {"qid": "RelNoneg-OWA-D5-616_Q7", "gold": "True", "dist": {"True": 6, "Unknown": 6}, "alpha": "True", "first_seen": "True"},
+      {"qid": "RelNoneg-OWA-D5-691_Q3", "gold": "True", "dist": {"Unknown": 6, "True": 6}, "alpha": "True", "first_seen": "Unknown"},
+      {"qid": "RelNeg-OWA-D5-77_Q15", "gold": "Unknown", "dist": {"True": 6, "Unknown": 6}, "alpha": "True", "first_seen": "True"},
+      {"qid": "AttNeg-OWA-D5-664_Q1", "gold": "True", "dist": {"True": 4, "Unknown": 4, "False": 4}, "alpha": "False", "first_seen": "True"},
+      {"qid": "RelNoneg-OWA-D5-582_Q12", "gold": "False", "dist": {"Unknown": 5, "True": 5, "False": 2}, "alpha": "True", "first_seen": "Unknown"},
+      {"qid": "RelNeg-OWA-D5-903_Q6", "gold": "False", "dist": {"True": 5, "Unknown": 5, "False": 2}, "alpha": "True", "first_seen": "True"},
+      {"qid": "RelNeg-OWA-D5-602_Q16", "gold": "Unknown", "dist": {"True": 6, "Unknown": 6}, "alpha": "True", "first_seen": "True"},
+      {"qid": "RelNoneg-OWA-D5-739_Q12", "gold": "False", "dist": {"Unknown": 6, "True": 6}, "alpha": "True", "first_seen": "Unknown"},
+      {"qid": "RelNoneg-OWA-D5-649_Q12", "gold": "False", "dist": {"Unknown": 6, "True": 6}, "alpha": "True", "first_seen": "Unknown"},
+      {"qid": "RelNoneg-OWA-D5-1036_Q11", "gold": "True", "dist": {"Unknown": 6, "False": 6}, "alpha": "False", "first_seen": "Unknown"},
+      {"qid": "AttNoneg-OWA-D5-785_Q8", "gold": "False", "dist": {"False": 5, "Unknown": 2, "True": 5}, "alpha": "False", "first_seen": "False"}
+    ]
+  },
+
+  "root_cause": {
+    "primary": "Three different experiment runs (different trace generations) produced different SC accuracies",
+    "secondary": "Tiebreaking method differences add ~0.5pp variation on top",
+    "NOT_the_cause": "BH correction does not change SC accuracy — it only adjusts p-values for multiple testing"
+  },
+
+  "canonical_recommendation": {
+    "recommended_value": 73.50,
+    "recommended_value_pct": "73.50%",
+    "recommended_correct": 441,
+    "recommended_source": "exp032_qwen25_14b_pw600 (westd-16639), first-seen tiebreaking",
+    "reasoning": [
+      "exp032 is the complete run on the accessible server with full per-question data and intermediates",
+      "exp032 traces are used by NLI combo experiments (exp-091), making them the basis for downstream analyses",
+      "First-seen tiebreaking matches the original SICA pipeline behavior (Python max() on dict)",
+      "Alphabetical tiebreaking (74.00%) is defensible but introduces a tiebreaking convention not used elsewhere",
+      "sica_expanded_14b (75.17%) was an earlier, separate run — using it in Main Table while NLI analyses use exp032 creates inconsistency"
+    ],
+    "action_items": [
+      "UPDATE Main Table: change Qwen2.5-14B PW-600 from 75.17% to 73.50% (SC) and from 75.50% to 71.50% (SICA), delta from +0.33 to -2.00",
+      "KEEP solutions.tex NLI table at 73.50% (or 74.00% if alphabetical tiebreaking is adopted project-wide)",
+      "VERIFY CIL: recompute CIL using exp032 intermediates (not exp034) to get correct complementarity counts",
+      "DECIDE: adopt consistent tiebreaking method across all experiments and document it"
+    ]
+  },
+
+  "alternative_recommendation": {
+    "if_keeping_75_17": {
+      "value": 75.17,
+      "reasoning": "If sica_expanded_14b is considered the canonical run, update NLI combo and CIL to use the same traces",
+      "action_items": [
+        "Rerun NLI combo experiment using sica_expanded_14b traces",
+        "Recompute CIL from sica_expanded_14b intermediates",
+        "This would require access to westd-25068 (currently down)"
+      ]
+    }
+  },
+
+  "experiments_inventory": {
+    "sica_expanded_14b": {"server": "likely westd-25068", "sc": 0.752, "sica": 0.755, "n": 600, "sc_correct": 451, "status": "DONE"},
+    "exp-022-oracle-proofwriter": {"server": "likely westd-25068", "sc": 0.7517, "sica_oracle": 0.8667, "n": 600, "sc_correct": 451, "status": "DONE", "note": "Oracle experiment, same traces as sica_expanded_14b"},
+    "exp032_qwen25_14b_pw600": {"server": "westd-16639", "sc": 0.735, "sica": 0.715, "n": 600, "sc_correct": 441, "status": "DONE"},
+    "exp-039-14b-pw600-16639": {"server": "westd-16639", "sc": 0.735, "sica": 0.715, "n": 600, "sc_correct": 441, "status": "DONE", "note": "Registry alias for exp032"},
+    "exp-091-qwen14b-pw-nli-combo": {"server": "westd-16639", "sc_baseline": 0.735, "n": 600, "status": "DONE", "note": "Uses exp032 traces"},
+    "exp034_qwen25_14b_proofwriter": {"server": "likely westd-25068", "sc": 0.7033, "n": 600, "sc_correct": 422, "status": "DONE (crashed at 93/600 in registry but intermediates may be from prior run)"}
+  }
+}

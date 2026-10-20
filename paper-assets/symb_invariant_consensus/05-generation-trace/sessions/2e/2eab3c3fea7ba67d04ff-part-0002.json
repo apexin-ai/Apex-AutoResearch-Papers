@@ -1,0 +1,576 @@
+{
+  "schema_version": "1.0",
+  "session_id": "2eab3c3fea7ba67d04ff",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 170,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y9Qh5bTN8fSphhDF9hkvrP",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Diagnose: write script to compare exp-001 vs exp4 per-problem results, identify differing problems",
+                    "status": "completed",
+                    "activeForm": "Writing diagnostic script to identify differing problems"
+                  },
+                  {
+                    "content": "Root cause: trace non-determinism sources in code (set ordering, Z3 seeds, dedup order)",
+                    "status": "completed",
+                    "activeForm": "Tracing non-determinism sources in code"
+                  },
+                  {
+                    "content": "Fix: save constraints in pipeline + fix set ordering + deterministic tiebreaking",
+                    "status": "completed",
+                    "activeForm": "Patching non-determinism sources and fixing pipeline to save constraints"
+                  },
+                  {
+                    "content": "Verify: run fixed code on all 204 problems, confirm deterministic results",
+                    "status": "completed",
+                    "activeForm": "Verifying fix produces consistent results"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67dd2233-b983-4e4f-a850-73c09499b8fb",
+            "uuid": "0ca7ecb8-9a58-4a97-a972-1bc2a360c1ba",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PyQRKeD1a3fSYP9Fsa3yp1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 355,
+                "cache_read_input_tokens": 107479,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 355
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-18T19:09:35.114Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y9Qh5bTN8fSphhDF9hkvrP",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "67dd2233-b983-4e4f-a850-73c09499b8fb",
+            "uuid": "8181eed7-b7a0-4719-83d8-058e691f93e2",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "Diagnose: write script to compare exp-001 vs exp4 per-problem results, identify differing problems",
+                  "status": "completed",
+                  "activeForm": "Writing diagnostic script to identify differing problems"
+                },
+                {
+                  "content": "Root cause: trace non-determinism sources in code (set ordering, Z3 seeds, dedup order)",
+                  "status": "completed",
+                  "activeForm": "Tracing non-determinism sources in code"
+                },
+                {
+                  "content": "Fix: save constraints in pipeline + fix set ordering + deterministic tiebreaking",
+                  "status": "completed",
+                  "activeForm": "Patching non-determinism sources and fixing pipeline to save constraints"
+                },
+                {
+                  "content": "Verify: run fixed code on all 204 problems, confirm deterministic results",
+                  "status": "in_progress",
+                  "activeForm": "Verifying fix produces consistent results"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Diagnose: write script to compare exp-001 vs exp4 per-problem results, identify differing problems",
+                  "status": "completed",
+                  "activeForm": "Writing diagnostic script to identify differing problems"
+                },
+                {
+                  "content": "Root cause: trace non-determinism sources in code (set ordering, Z3 seeds, dedup order)",
+                  "status": "completed",
+                  "activeForm": "Tracing non-determinism sources in code"
+                },
+                {
+                  "content": "Fix: save constraints in pipeline + fix set ordering + deterministic tiebreaking",
+                  "status": "completed",
+                  "activeForm": "Patching non-determinism sources and fixing pipeline to save constraints"
+                },
+                {
+                  "content": "Verify: run fixed code on all 204 problems, confirm deterministic results",
+                  "status": "completed",
+                  "activeForm": "Verifying fix produces consistent results"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me clean up the diagnostic scripts and write the report."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67dd2233-b983-4e4f-a850-73c09499b8fb",
+            "uuid": "fe770c6c-3ab7-4172-a8ef-8ea9962d8072",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NwPDDnEVXPvoY3E9SvXgbr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 334,
+                "cache_read_input_tokens": 107834,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 334
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ReTotQ7ew4iYKdxcEqv6aj",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-25068",
+                "command": "rm /root/symb_invariant_consensus/diagnose_nondeterminism.py /root/symb_invariant_consensus/diagnose_z3_stability.py /root/symb_invariant_consensus/diagnose_constraint_diff.py /root/symb_invariant_consensus/verify_determinism.py /root/symb_invariant_consensus/verify_cross_process.py /root/symb_invariant_consensus/verify_cross_process_full.py /tmp/fix_pipeline.py /tmp/fix_scorer.py /tmp/fix_run_scripts.py /tmp/fix_run_full_mvp.py /tmp/check_folio154.py /tmp/verify_output.txt",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67dd2233-b983-4e4f-a850-73c09499b8fb",
+            "uuid": "34e9699e-54f2-4672-ac73-04cac33250a5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NwPDDnEVXPvoY3E9SvXgbr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 334,
+                "cache_read_input_tokens": 107834,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 334
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": "2026-05-18T19:09:41.268Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ReTotQ7ew4iYKdxcEqv6aj",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "67dd2233-b983-4e4f-a850-73c09499b8fb",
+            "uuid": "169d0d44-53dd-4594-a233-e54eb36bfc64",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me save the root cause analysis to the project artifacts."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67dd2233-b983-4e4f-a850-73c09499b8fb",
+            "uuid": "008a9863-cbb0-4d9b-a0fc-676794cc6dd2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KP4es8wVcFh28RQ3fdJ8j4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 359,
+                "cache_read_input_tokens": 108168,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 359
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K1jSn8AFCDJ9tRYFWHmFLa",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-25068",
+                "command": "cat << 'EOF' > /root/symb_invariant_consensus/artifacts/nondeterminism_root_cause.md\n# SICA Pipeline Non-determinism: Root Cause Analysis\n\n## Problem\n- exp-001 (in-memory pipeline): SICA = 74.51% (152/204)\n- exp4 (JSON reload, T=1): SICA = 77.94% (159/204)\n- Difference: ~3.4pp (7 problems)\n\n## Root Cause: Different Constraint Data\n\nThe per_trace_constraints files were generated by `extract_constraints.py`, which **re-extracted constraints from saved traces via separate LLM calls** (temperature=0.1). This produced DIFFERENT constraints than what the in-memory pipeline used during exp-001.\n\nEvidence:\n- 202/204 problems have different total constraint counts between exp-001 intermediates and per_trace_constraints\n- Z3 dedup+MaxSAT is fully deterministic within and across processes (verified with PYTHONHASHSEED=0/42/random, all produce identical fingerprint `77b240fb54dca62dfbf8e0497b53526f`)\n- 15 problems produce different answers when using per_trace_constraints vs exp-001 in-memory (net +7 correct)\n\n## NOT the cause\n- Python set() iteration order: verified 0 problems affected (sorted vs unsorted candidates produce same results)\n- Z3 solver non-determinism: verified stable across 5 runs within process and 3 runs across processes\n- JSON serialization changing constraint representation: same constraints from JSON always produce same dedup/MaxSAT result\n\n## Fixes Applied\n\n### 1. Pipeline saves raw constraints (`sica/pipeline.py`)\n- `run_single()` now returns `per_trace_constraints` in output dict\n- `run_full_mvp.py` saves per_trace_constraints files alongside intermediates\n- Future experiments use the SAME constraints that were used for scoring\n\n### 2. Deterministic candidate ordering (`sorted(set(...))`)\n- `sica/pipeline.py:73` — SICAPipeline candidates\n- `sica/pipeline.py:245` — ContrastiveSICAPipeline candidates\n- `run_consistency_filtering.py:60`\n- `run_z3_feedback_folio.py:96`\n\n### 3. Deterministic tiebreaking (`sica/scorer.py`)\n- `select_answer()`: ties broken by alphabetical sort after frequency\n- Prevents answer depending on dict insertion order\n\n### 4. Z3 seed setting (`sica/z3_maxsat.py`)\n- `z3.set_param('smt.random_seed', 42)`\n- `z3.set_param('sat.random_seed', 42)`\n\n## Verified Result\n- Fixed pipeline produces fingerprint `77b240fb54dca62dfbf8e0497b53526f` (159/204)\n- Identical across PYTHONHASHSEED=0, 42, and random\n- Identical across 3 independent Python processes\n\n## Impact on Paper\nThe \"SICA = 74.51%\" number from exp-001 is correct FOR THE CONSTRAINTS USED IN THAT RUN.\nThe \"SICA = 77.94%\" from exp4 is correct FOR THE RE-EXTRACTED CONSTRAINTS.\nThey are not comparable because they use different constraint sets.\nThe canonical accuracy should be based on the constraints from the original pipeline run.\nSince those constraints were not saved, re-running the pipeline is needed to get the canonical number.\nEOF\necho \"Report saved\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67dd2233-b983-4e4f-a850-73c09499b8fb",
+            "uuid": "dd49b98f-dbee-4c66-a790-c577ac55da15",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KP4es8wVcFh28RQ3fdJ8j4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 359,
+                "cache_read_input_tokens": 108168,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 359
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-18T19:10:11.169Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K1jSn8AFCDJ9tRYFWHmFLa",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Report saved\\\\n\\\", \\\"stderr\\\": \\\"bash: line 1: /root/symb_invariant_consensus/artifacts/nondeterminism_root_cause.md: No such file or directory\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "67dd2233-b983-4e4f-a850-73c09499b8fb",
+            "uuid": "f620706d-a807-480f-8f5a-7ed2956a5b5b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Report saved\\\\n\\\", \\\"stderr\\\": \\\"bash: line 1: /root/symb_invariant_consensus/artifacts/nondeterminism_root_cause.md: No such file or directory\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Report saved\\n\", \"stderr\": \"bash: line 1: /root/symb_invariant_consensus/artifacts/nondeterminism_root_cause.md: No such file or directory\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WY91idtRu2W8XeHiKyCAwY",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-25068",
+                "command": "mkdir -p /root/symb_invariant_consensus/artifacts && cat << 'EOF' > /root/symb_invariant_consensus/artifacts/nondeterminism_root_cause.md\n# SICA Pipeline Non-determinism: Root Cause Analysis\n\n## Problem\n- exp-001 (in-memory pipeline): SICA = 74.51% (152/204)\n- exp4 (JSON reload, T=1): SICA = 77.94% (159/204)\n- Difference: ~3.4pp (7 problems)\n\n## Root Cause: Different Constraint Data\n\nThe per_trace_constraints files were generated by extract_constraints.py, which re-extracted constraints from saved traces via separate LLM calls (temperature=0.1). This produced DIFFERENT constraints than what the in-memory pipeline used during exp-001.\n\nEvidence:\n- 202/204 problems have different total constraint counts between exp-001 intermediates and per_trace_constraints\n- Z3 dedup+MaxSAT is fully deterministic within and across processes (verified with PYTHONHASHSEED=0/42/random, all produce identical fingerprint 77b240fb54dca62dfbf8e0497b53526f)\n- 15 problems produce different answers when using per_trace_constraints vs exp-001 in-memory (net +7 correct)\n\n## NOT the cause\n- Python set() iteration order: verified 0 problems affected\n- Z3 solver non-determinism: verified stable across 5 runs within process and 3 runs across processes\n- JSON serialization changing constraint representation: same constraints from JSON always produce same dedup/MaxSAT result\n\n## Fixes Applied\n\n1. Pipeline saves raw constraints (sica/pipeline.py) - run_single() returns per_trace_constraints; run_full_mvp.py saves them\n2. Deterministic candidate ordering - sorted(set(...)) in pipeline.py, run_consistency_filtering.py, run_z3_feedback_folio.py\n3. Deterministic tiebreaking (sica/scorer.py) - alphabetical sort after frequency tie\n4. Z3 seed setting (sica/z3_maxsat.py) - smt.random_seed=42, sat.random_seed=42\n\n## Verified Result\nFixed pipeline: fingerprint 77b240fb54dca62dfbf8e0497b53526f (159/204), identical across PYTHONHASHSEED=0/42/random and 3 independent processes.\nEOF\necho \"Report saved\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67dd2233-b983-4e4f-a850-73c09499b8fb",
+            "uuid": "a4a6ce3a-82b5-419e-a57b-0e9e39724c5e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011UBK6ynfBUGV3rabiDYQHE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1063,
+                "cache_read_input_tokens": 108527,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1063
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": "2026-05-18T19:10:20.568Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WY91idtRu2W8XeHiKyCAwY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Report saved\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "67dd2233-b983-4e4f-a850-73c09499b8fb",
+            "uuid": "42f7fae7-3810-4b21-aff0-cc9526f208c3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Report saved\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Report saved\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## Summary\n\n### Root Cause\nThe ~3pp accuracy difference (74.51% vs 77.94%) is **NOT** from pipeline non-determinism. It's from **different constraint data**: `extract_constraints.py` re-extracted constraints via separate LLM calls (temperature=0.1), producing different constraints than exp-001's in-memory extraction. 202/204 problems have different constraint counts between the two datasets.\n\n### Fixes Applied (4 files)\n\n| File | Change |\n|---|---|\n| `sica/pipeline.py` | `list(set(...))` → `sorted(set(...))` (2 locations); returns `per_trace_constraints` in output |\n| `sica/scorer.py` | Deterministic tiebreaking: alphabetical sort after frequency tie |\n| `sica/z3_maxsat.py` | Added `z3.set_param('smt.random_seed', 42)` and `z3.set_param('sat.random_seed', 42)` |\n| `run_consistency_filtering.py` | `list(set(...))` → `sorted(set(...))` |\n| `run_z3_feedback_folio.py` | `list(set(...))` → `sorted(set(...))` |\n| `run_full_mvp.py` | Saves per_trace_constraints files alongside intermediates |\n\n### Verification\nFixed pipeline produces identical results (fingerprint `77b240fb54dca62dfbf8e0497b53526f`, 159/204) across:\n- PYTHONHASHSEED = 0, 42, random\n- 3 independent Python processes\n\n### Impact on Paper\nThe canonical SICA accuracy should be re-established by re-running the full pipeline once with the fixes, which will now save the exact constraints used for scoring. The 74.51% from exp-001 and 77.94% from exp4 are both valid but computed on different constraint sets."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67dd2233-b983-4e4f-a850-73c09499b8fb",
+            "uuid": "fbf807fa-8855-4f7b-b830-1d588b722e42",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UBk9bvZkNH2risjraY9snt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 759,
+                "cache_read_input_tokens": 109590,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 759
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## Summary\n\n### Root Cause\nThe ~3pp accuracy difference (74.51% vs 77.94%) is **NOT** from pipeline non-determinism. It's from **different constraint data**: `extract_constraints.py` re-extracted constraints via separate LLM calls (temperature=0.1), producing different constraints than exp-001's in-memory extraction. 202/204 problems have different constraint counts between the two datasets.\n\n### Fixes Applied (4 files)\n\n| File | Change |\n|---|---|\n| `sica/pipeline.py` | `list(set(...))` → `sorted(set(...))` (2 locations); returns `per_trace_constraints` in output |\n| `sica/scorer.py` | Deterministic tiebreaking: alphabetical sort after frequency tie |\n| `sica/z3_maxsat.py` | Added `z3.set_param('smt.random_seed', 42)` and `z3.set_param('sat.random_seed', 42)` |\n| `run_consistency_filtering.py` | `list(set(...))` → `sorted(set(...))` |\n| `run_z3_feedback_folio.py` | `list(set(...))` → `sorted(set(...))` |\n| `run_full_mvp.py` | Saves per_trace_constraints files alongside intermediates |\n\n### Verification\nFixed pipeline produces identical results (fingerprint `77b240fb54dca62dfbf8e0497b53526f`, 159/204) across:\n- PYTHONHASHSEED = 0, 42, random\n- 3 independent Python processes\n\n### Impact on Paper\nThe canonical SICA accuracy should be re-established by re-running the full pipeline once with the fixes, which will now save the exact constraints used for scoring. The 74.51% from exp-001 and 77.94% from exp4 are both valid but computed on different constraint sets."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 977650,
+            "duration_api_ms": 730438,
+            "num_turns": 67,
+            "stop_reason": "end_turn",
+            "session_id": "67dd2233-b983-4e4f-a850-73c09499b8fb",
+            "total_cost_usd": 3.4285300000000003,
+            "usage": {
+              "input_tokens": 56,
+              "cache_creation_input_tokens": 98508,
+              "cache_read_input_tokens": 4106934,
+              "output_tokens": 30285,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 98508,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 466,
+                  "cache_read_input_tokens": 109590,
+                  "cache_creation_input_tokens": 759,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 759
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1893,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001983,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 56,
+                "outputTokens": 30285,
+                "cacheReadInputTokens": 4106934,
+                "cacheCreationInputTokens": 98508,
+                "webSearchRequests": 0,
+                "costUSD": 3.4265470000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "ee11af9c-1743-4731-8a27-0aa08b84aa25"
+          },
+          "id": "event-000181"
+        }
+      ]
+    }
+  ]
+}

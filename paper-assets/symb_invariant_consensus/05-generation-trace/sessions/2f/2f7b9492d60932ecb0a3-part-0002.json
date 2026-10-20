@@ -1,0 +1,1126 @@
+{
+  "schema_version": "1.0",
+  "session_id": "2f7b9492d60932ecb0a3",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-22T20:20:02.309Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EU7e9T5KqfpPxCTpEF225S",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Meta-Llama-3.1-8B-Instruct\\\\nMistral-7B-Instruct-v0.3\\\\nQwen2.5-14B-Instruct\\\\nQwen2.5-72B-Instruct-AWQ\\\\nQwen3-14B\\\\nbart-large-mnli\\\\ndeberta-base-mnli\\\\ndeberta-large-mnli\\\\ndeberta-v3-large-mnli-fever-anli-ling-wanli\\\\ndeepseek-ai\\\\ndeepseek-r1-0528-qwen3-8b\\\\ngemma-3-27b-it\\\\niic\\\\nllama-4-scout\\\\nphi-4-reasoning\\\\nroberta-large-mnli\\\\ntest_hf_speed\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "f1634b3c-bc4a-4821-be8c-581480720024",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Meta-Llama-3.1-8B-Instruct\\\\nMistral-7B-Instruct-v0.3\\\\nQwen2.5-14B-Instruct\\\\nQwen2.5-72B-Instruct-AWQ\\\\nQwen3-14B\\\\nbart-large-mnli\\\\ndeberta-base-mnli\\\\ndeberta-large-mnli\\\\ndeberta-v3-large-mnli-fever-anli-ling-wanli\\\\ndeepseek-ai\\\\ndeepseek-r1-0528-qwen3-8b\\\\ngemma-3-27b-it\\\\niic\\\\nllama-4-scout\\\\nphi-4-reasoning\\\\nroberta-large-mnli\\\\ntest_hf_speed\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Meta-Llama-3.1-8B-Instruct\\nMistral-7B-Instruct-v0.3\\nQwen2.5-14B-Instruct\\nQwen2.5-72B-Instruct-AWQ\\nQwen3-14B\\nbart-large-mnli\\ndeberta-base-mnli\\ndeberta-large-mnli\\ndeberta-v3-large-mnli-fever-anli-ling-wanli\\ndeepseek-ai\\ndeepseek-r1-0528-qwen3-8b\\ngemma-3-27b-it\\niic\\nllama-4-scout\\nphi-4-reasoning\\nroberta-large-mnli\\ntest_hf_speed\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Models available. Now let me write and run the FOLIO zero-shot DeBERTa combo script with D061 tiebreaking."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "d3208ddd-f990-45cd-98f6-6f5460c6ed67",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KisY72XPgovk8ZzzY4tQ9M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 647,
+                "cache_read_input_tokens": 109936,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 647
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Cwcbh5k57oW7h1qT5VXiS5",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16639",
+                "command": "cd /root/symb_invariant_consensus && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\n\"\"\"FOLIO zero-shot DeBERTa combo audit with D061 tiebreaking.\nRuns DeBERTa-large-MNLI zero-shot on FOLIO-204, then combines with LLM SC votes.\n\"\"\"\nimport json, time, os\nimport torch\nimport numpy as np\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\nfrom scipy.stats import binomtest\nfrom collections import Counter\n\nFOLIO_DATA = \"/root/symb_invariant_consensus/data/folio_full.json\"\nDEBERTA_PATH = \"/root/autodl-tmp/models/deberta-large-mnli\"\nCLASSES = sorted([\"True\", \"False\", \"Unknown\"])\nWEIGHTS = [1, 3, 5]\n\nFOLIO_TRACES = {\n    \"mistral\": {\n        \"path\": \"results/exp033_mistral_7b_folio204/exp033_results.json\",\n        \"name\": \"Mistral-7B\",\n    },\n    \"llama8b\": {\n        \"path\": \"results/exp-063-llama8b-folio204-16639/results.json\",\n        \"name\": \"LLaMA-3.1-8B\",\n    },\n    \"qwen14b\": {\n        \"path\": \"results/exp036_qwen25_14b_folio204/results.json\",\n        \"name\": \"Qwen2.5-14B\",\n    },\n    \"qwen3\": {\n        \"path\": \"results/exp_folio_2x2_qwen3/results.json\",\n        \"name\": \"Qwen3-14B\",\n    },\n}\n\ndef split_folio_problem(text):\n    for marker in [\n        \"Determine whether the following conclusion is true, false, or uncertain:\\n\",\n        \"Determine whether the following conclusion is True, False, or Unknown:\\n\",\n        \"Determine whether the following conclusion is true, false, or unknown:\\n\",\n    ]:\n        idx = text.find(marker)\n        if idx != -1:\n            premise = text[:idx].strip()\n            # Remove \"Given the following premises:\" prefix\n            for prefix in [\"Given the following premises:\\n\", \"Given the following premises:\"]:\n                if premise.startswith(prefix):\n                    premise = premise[len(prefix):].strip()\n            hypothesis = text[idx + len(marker):].strip()\n            return premise, hypothesis\n    return text, \"\"\n\ndef d061_sc(votes):\n    if not votes:\n        return None\n    max_v = max(votes.get(c, 0) for c in CLASSES if c in votes)\n    tied = [c for c in CLASSES if votes.get(c, 0) == max_v and max_v > 0]\n    if not tied:\n        return None\n    return sorted(tied)[0]\n\ndef mcnemar_exact(a, b):\n    n01 = sum(1 for x, y in zip(a, b) if not x and y)\n    n10 = sum(1 for x, y in zip(a, b) if x and not y)\n    n = n01 + n10\n    if n == 0:\n        return 1.0, n01, n10\n    return binomtest(n01, n, 0.5).pvalue, n01, n10\n\n# 1. Load FOLIO data\nwith open(FOLIO_DATA) as f:\n    folio = json.load(f)\ngt = {p[\"id\"]: p[\"answer\"] for p in folio}\nproblems = {p[\"id\"]: p[\"problem\"] for p in folio}\nprint(f\"Loaded {len(folio)} FOLIO problems\")\n\n# 2. Run DeBERTa-large-MNLI zero-shot\nprint(f\"\\nLoading DeBERTa-large-MNLI from {DEBERTA_PATH}...\")\ntokenizer = AutoTokenizer.from_pretrained(DEBERTA_PATH)\nmodel = AutoModelForSequenceClassification.from_pretrained(DEBERTA_PATH)\nmodel.eval()\n\n# DeBERTa MNLI label mapping: 0=contradiction, 1=neutral, 2=entailment\nlabel_map = {0: \"False\", 1: \"Unknown\", 2: \"True\"}\n\nnli_preds = {}\nnli_probs_all = {}\nt0 = time.time()\n\nfor pid in sorted(gt.keys()):\n    premise, hypothesis = split_folio_problem(problems[pid])\n    if not hypothesis:\n        print(f\"  WARNING: could not parse {pid}\")\n        continue\n    \n    inputs = tokenizer(premise, hypothesis, return_tensors=\"pt\", truncation=True, max_length=512)\n    with torch.no_grad():\n        outputs = model(**inputs)\n    \n    probs = torch.softmax(outputs.logits, dim=-1)[0]\n    pred_idx = probs.argmax().item()\n    pred = label_map[pred_idx]\n    \n    nli_preds[pid] = pred\n    nli_probs_all[pid] = {label_map[i]: round(probs[i].item(), 4) for i in range(3)}\n\nelapsed = time.time() - t0\nn_nli = len(nli_preds)\nnli_correct = sum(1 for pid in nli_preds if nli_preds[pid] == gt[pid])\nprint(f\"DeBERTa-large-MNLI zero-shot on FOLIO: {nli_correct}/{n_nli} = {100*nli_correct/n_nli:.2f}%\")\nprint(f\"Inference time: {elapsed:.1f}s ({elapsed/n_nli:.3f}s/sample)\")\n\n# Distribution\nnli_dist = Counter(nli_preds.values())\ngt_dist = Counter(gt.values())\nprint(f\"NLI pred distribution: {dict(sorted(nli_dist.items()))}\")\nprint(f\"Gold distribution: {dict(sorted(gt_dist.items()))}\")\n\n# 3. Load SC traces and compute combo\nprint(\"\\n\" + \"=\" * 120)\nprint(f\"{'Model':<20} {'SC(D061)':>10} {'NLI':>10} {'combo_w1':>10} {'Δw1':>8} {'pw1':>10} {'combo_w3':>10} {'Δw3':>8} {'pw3':>10} {'combo_w5':>10} {'Δw5':>8} {'pw5':>10}\")\nprint(\"=\" * 120)\n\nall_results = {\n    \"nli_standalone\": {\n        \"model\": \"DeBERTa-large-MNLI (zero-shot)\",\n        \"n\": n_nli,\n        \"accuracy\": round(nli_correct / n_nli, 4),\n        \"correct\": nli_correct,\n        \"inference_time_s\": round(elapsed, 1),\n        \"pred_distribution\": dict(sorted(nli_dist.items())),\n    }\n}\n\nfor key, info in FOLIO_TRACES.items():\n    if not os.path.exists(info[\"path\"]):\n        print(f\"  {info['name']:<18} FILE NOT FOUND: {info['path']}\")\n        continue\n    \n    with open(info[\"path\"]) as f:\n        data = json.load(f)\n    items = data[\"results\"]\n    \n    # Build vote dicts by problem_id\n    sc_votes_by_id = {}\n    for item in items:\n        pid = item.get(\"problem_id\", \"\")\n        votes = item.get(\"sc_vote_distribution\", item.get(\"sc_votes\", {}))\n        # Normalize vote keys to CLASSES\n        norm_votes = {}\n        for k, v in votes.items():\n            if k in CLASSES:\n                norm_votes[k] = norm_votes.get(k, 0) + v\n        sc_votes_by_id[pid] = norm_votes\n    \n    # Compute D061 SC baseline\n    common_pids = sorted(set(sc_votes_by_id.keys()) & set(nli_preds.keys()) & set(gt.keys()))\n    n_common = len(common_pids)\n    \n    sc_correct_list = []\n    combo_correct = {w: [] for w in WEIGHTS}\n    \n    per_problem = {}\n    \n    for pid in common_pids:\n        gold = gt[pid]\n        votes = sc_votes_by_id.get(pid, {})\n        sc_pred = d061_sc(votes) if votes else None\n        nli_pred = nli_preds[pid]\n        nli_probs = nli_probs_all[pid]\n        \n        sc_ok = sc_pred == gold if sc_pred else False\n        sc_correct_list.append(sc_ok)\n        \n        per_problem[pid] = {\n            \"gold\": gold,\n            \"sc_pred\": sc_pred,\n            \"nli_pred\": nli_pred,\n            \"sc_correct\": sc_ok,\n            \"nli_correct\": nli_pred == gold,\n        }\n        \n        # Compute combo for each weight\n        for w in WEIGHTS:\n            combo_votes = {}\n            for c in CLASSES:\n                combo_votes[c] = votes.get(c, 0) + w * (1 if nli_pred == c else 0)\n            combo_pred = d061_sc(combo_votes)\n            combo_ok = combo_pred == gold if combo_pred else False\n            combo_correct[w].append(combo_ok)\n            per_problem[pid][f\"combo_w{w}_pred\"] = combo_pred\n            per_problem[pid][f\"combo_w{w}_correct\"] = combo_ok\n    \n    sc_acc = sum(sc_correct_list) / n_common\n    \n    model_result = {\n        \"generator\": info[\"name\"],\n        \"n\": n_common,\n        \"sc_baseline\": round(sc_acc, 4),\n        \"sc_correct\": sum(sc_correct_list),\n        \"complementarity\": {\n            \"nli_right_sc_wrong\": sum(1 for pid in common_pids if nli_preds[pid] == gt[pid] and d061_sc(sc_votes_by_id.get(pid, {})) != gt[pid]),\n            \"sc_right_nli_wrong\": sum(1 for pid in common_pids if nli_preds[pid] != gt[pid] and d061_sc(sc_votes_by_id.get(pid, {})) == gt[pid]),\n            \"both_right\": sum(1 for pid in common_pids if nli_preds[pid] == gt[pid] and d061_sc(sc_votes_by_id.get(pid, {})) == gt[pid]),\n            \"both_wrong\": sum(1 for pid in common_pids if nli_preds[pid] != gt[pid] and d061_sc(sc_votes_by_id.get(pid, {})) != gt[pid]),\n        },\n    }\n    \n    w_results = {}\n    for w in WEIGHTS:\n        combo_acc = sum(combo_correct[w]) / n_common\n        delta = combo_acc - sc_acc\n        p, n01, n10 = mcnemar_exact(sc_correct_list, combo_correct[w])\n        w_results[f\"w{w}\"] = {\n            \"accuracy\": round(combo_acc, 4),\n            \"correct\": sum(combo_correct[w]),\n            \"delta_pp\": round(delta * 100, 2),\n            \"mcnemar_p\": round(p, 6),\n            \"discordant\": [n01, n10],\n        }\n    \n    model_result.update(w_results)\n    all_results[key] = model_result\n    \n    w1 = w_results[\"w1\"]\n    w3 = w_results[\"w3\"]\n    w5 = w_results[\"w5\"]\n    \n    print(f\"{info['name']:<20} {sc_acc*100:>10.2f} {nli_correct/n_nli*100:>10.2f} {w1['accuracy']*100:>10.2f} {w1['delta_pp']:>+8.2f} {w1['mcnemar_p']:>10.4f} {w3['accuracy']*100:>10.2f} {w3['delta_pp']:>+8.2f} {w3['mcnemar_p']:>10.4f} {w5['accuracy']*100:>10.2f} {w5['delta_pp']:>+8.2f} {w5['mcnemar_p']:>10.4f}\")\n\n# Save results\noutput_path = \"results/folio_zeroshot_nli_combo_d061.json\"\nwith open(output_path, \"w\") as f:\n    json.dump(all_results, f, indent=2)\nprint(f\"\\nSaved to {output_path}\")\n\nPYEOF",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "8e4d11a8-afed-48ad-aee3-86f649fbb624",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KisY72XPgovk8ZzzY4tQ9M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 647,
+                "cache_read_input_tokens": 109936,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 647
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": "2026-05-22T20:21:24.413Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Cwcbh5k57oW7h1qT5VXiS5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/symb_invariant_consensus && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << \\\\\\\\'PYEOF\\\\\\\\'\\\\\\\\n\\\\\\\"\\\\\\\"\\\\\\\"FOLIO zero-shot DeBERTa combo audit with D061 tiebreaking.\\\\\\\\nRuns DeBERTa-large-MNLI zero-shot on FOLIO-204, then combines with LLM SC votes.\\\\\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\\\\\nimport json, time, os\\\\\\\\nimport torch\\\\\\\\nimport numpy as np\\\\\\\\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\\\\\\\\nfrom scipy.stats import binomtest\\\\\\\\nfrom collections import Counter\\\\\\\\n\\\\\\\\nFOLIO_DATA = \\\\\\\"/root/symb_invariant_consensus/data/folio_full.json\\\\\\\"\\\\\\\\nDEBERTA_PATH = \\\\\\\"/root/autodl-tmp/models/deberta-large-mnli\\\\\\\"\\\\\\\\nCLASSES = sorted([\\\\\\\"True\\\\\\\", \\\\\\\"False\\\\\\\", \\\\\\\"Unknown\\\\\\\"])\\\\\\\\nWEIGHTS = [1, 3, 5]\\\\\\\\n\\\\\\\\nFOLIO_TRACES = {\\\\\\\\n    \\\\\\\"mistral\\\\\\\": {\\\\\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"results/exp033_mistral_7b_folio204/exp033_results.json\\\\\\\",\\\\\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\\\\\n    },\\\\\\\\n    \\\\\\\"llama8b\\\\\\\": {\\\\\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"results/exp-063-llama8b-folio204-16639/results.json\\\\\\\",\\\\\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"LLaMA-3.1-8B\\\\\\\",\\\\\\\\n    },\\\\\\\\n    \\\\\\\"qwen14b\\\\\\\": {\\\\\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"results/exp036_qwen25_14b_folio204/results.json\\\\\\\",\\\\\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"Qwen2.5-14B\\\\\\\",\\\\\\\\n    },\\\\\\\\n    \\\\\\\"qwen3\\\\\\\": {\\\\\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"results/exp_folio_2x2_qwen3/results.json\\\\\\\",\\\\\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"Qwen3-14B\\\\\\\",\\\\\\\\n    },\\\\\\\\n}\\\\\\\\n\\\\\\\\ndef split_folio_problem(text):\\\\\\\\n    for marker in [\\\\\\\\n        \\\\\\\"Determine whether the following conclusion is true, false, or uncertain:\\\\\\\\\\\\\\\\n\\\\\\\",\\\\\\\\n        \\\\\\\"Determine whether the following conclusion is True, False, or Unknown:\\\\\\\\\\\\\\\\n\\\\\\\",\\\\\\\\n        \\\\\\\"Determine whether the following conclusion is true, false, or unknown:\\\\\\\\\\\\\\\\n\\\\\\\",\\\\\\\\n    ]:\\\\\\\\n        idx = text.find(marker)\\\\\\\\n        if idx != -1:\\\\\\\\n            premise = text[:idx].strip()\\\\\\\\n            # Remove \\\\\\\"Given the following premises:\\\\\\\" prefix\\\\\\\\n            for prefix in [\\\\\\\"Given the following premises:\\\\\\\\\\\\\\\\n\\\\\\\", \\\\\\\"Given the following premises:\\\\\\\"]:\\\\\\\\n                if premise.startswith(prefix):\\\\\\\\n                    premise = premise[len(prefix):].strip()\\\\\\\\n            hypothesis = text[idx + len(marker):].strip()\\\\\\\\n            return premise, hypothesis\\\\\\\\n    return text, \\\\\\\"\\\\\\\"\\\\\\\\n\\\\\\\\ndef d061_sc(votes):\\\\\\\\n    if not votes:\\\\\\\\n        return None\\\\\\\\n    max_v = max(votes.get(c, 0) for c in CLASSES if c in votes)\\\\\\\\n    tied = [c for c in CLASSES if votes.get(c, 0) == max_v and max_v > 0]\\\\\\\\n    if not tied:\\\\\\\\n        return None\\\\\\\\n    return sorted(tied)[0]\\\\\\\\n\\\\\\\\ndef mcnemar_exact(a, b):\\\\\\\\n    n01 = sum(1 for x, y in zip(a, b) if not x and y)\\\\\\\\n    n10 = sum(1 for x, y in zip(a, b) if x and not y)\\\\\\\\n    n = n01 + n10\\\\\\\\n    if n == 0:\\\\\\\\n        return 1.0, n01, n10\\\\\\\\n    return binomtest(n01, n, 0.5).pvalue, n01, n10\\\\\\\\n\\\\\\\\n# 1. Load FOLIO data\\\\\\\\nwith open(FOLIO_DATA) as f:\\\\\\\\n    folio = json.load(f)\\\\\\\\ngt = {p[\\\\\\\"id\\\\\\\"]: p[\\\\\\\"answer\\\\\\\"] for p in folio}\\\\\\\\nproblems = {p[\\\\\\\"id\\\\\\\"]: p[\\\\\\\"problem\\\\\\\"] for p in folio}\\\\\\\\nprint(f\\\\\\\"Loaded {len(folio)} FOLIO problems\\\\\\\")\\\\\\\\n\\\\\\\\n# 2. Run DeBERTa-large-MNLI zero-shot\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\nLoading DeBERTa-large-MNLI from {DEBERTA_PATH}...\\\\\\\")\\\\\\\\ntokenizer = AutoTokenizer.from_pretrained(DEBERTA_PATH)\\\\\\\\nmodel = AutoModelForSequenceClassification.from_pretrained(DEBERTA_PATH)\\\\\\\\nmodel.eval()\\\\\\\\n\\\\\\\\n# DeBERTa MNLI label mapping: 0=contradiction, 1=neutral, 2=entailment\\\\\\\\nlabel_map = {0: \\\\\\\"False\\\\\\\", 1: \\\\\\\"Unknown\\\\\\\", 2: \\\\\\\"True\\\\\\\"}\\\\\\\\n\\\\\\\\nnli_preds = {}\\\\\\\\nnli_probs_all = {}\\\\\\\\nt0 = time.time()\\\\\\\\n\\\\\\\\nfor pid in sorted(gt.keys()):\\\\\\\\n    premise, hypothesis = split_folio_problem(problems[pid])\\\\\\\\n    if not hypothesis:\\\\\\\\n        print(f\\\\\\\"  WARNING: could not parse {pid}\\\\\\\")\\\\\\\\n        continue\\\\\\\\n    \\\\\\\\n    inputs = tokenizer(premise, hypothesis, return_tensors=\\\\\\\"pt\\\\\\\", truncation=True, max_length=512)\\\\\\\\n    with torch.no_grad():\\\\\\\\n        outputs = model(**inputs)\\\\\\\\n    \\\\\\\\n    probs = torch.softmax(outputs.logits, dim=-1)[0]\\\\\\\\n    pred_idx = probs.argmax().item()\\\\\\\\n    pred = label_map[pred_idx]\\\\\\\\n    \\\\\\\\n    nli_preds[pid] = pred\\\\\\\\n    nli_probs_all[pid] = {label_map[i]: round(probs[i].item(), 4) for i in range(3)}\\\\\\\\n\\\\\\\\nelapsed = time.time() - t0\\\\\\\\nn_nli = len(nli_preds)\\\\\\\\nnli_correct = sum(1 for pid in nli_preds if nli_preds[pid] == gt[pid])\\\\\\\\nprint(f\\\\\\\"DeBERTa-large-MNLI zero-shot on FOLIO: {nli_correct}/{n_nli} = {100*nli_correct/n_nli:.2f}%\\\\\\\")\\\\\\\\nprint(f\\\\\\\"Inference time: {elapsed:.1f}s ({elapsed/n_nli:.3f}s/sample)\\\\\\\")\\\\\\\\n\\\\\\\\n# Distribution\\\\\\\\nnli_dist = Counter(nli_preds.values())\\\\\\\\ngt_dist = Counter(gt.values())\\\\\\\\nprint(f\\\\\\\"NLI pred distribution: {dict(sorted(nli_dist.items()))}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"Gold distribution: {dict(sorted(gt_dist.items()))}\\\\\\\")\\\\\\\\n\\\\\\\\n# 3. Load SC traces and compute combo\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 120)\\\\\\\\nprint(f\\\\\\\"{\\\\\\\\'Model\\\\\\\\':<20} {\\\\\\\\'SC(D061)\\\\\\\\':>10} {\\\\\\\\'NLI\\\\\\\\':>10} {\\\\\\\\'combo_w1\\\\\\\\':>10} {\\\\\\\\'Δw1\\\\\\\\':>8} {\\\\\\\\'pw1\\\\\\\\':>10} {\\\\\\\\'combo_w3\\\\\\\\':>10} {\\\\\\\\'Δw3\\\\\\\\':>8} {\\\\\\\\'pw3\\\\\\\\':>10} {\\\\\\\\'combo_w5\\\\\\\\':>10} {\\\\\\\\'Δw5\\\\\\\\':>8} {\\\\\\\\'pw5\\\\\\\\':>10}\\\\\\\")\\\\\\\\nprint(\\\\\\\"=\\\\\\\" * 120)\\\\\\\\n\\\\\\\\nall_results = {\\\\\\\\n    \\\\\\\"nli_standalone\\\\\\\": {\\\\\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"DeBERTa-large-MNLI (zero-shot)\\\\\\\",\\\\\\\\n        \\\\\\\"n\\\\\\\": n_nli,\\\\\\\\n        \\\\\\\"accuracy\\\\\\\": round(nli_correct / n_nli, 4),\\\\\\\\n        \\\\\\\"correct\\\\\\\": nli_correct,\\\\\\\\n        \\\\\\\"inference_time_s\\\\\\\": round(elapsed, 1),\\\\\\\\n        \\\\\\\"pred_distribution\\\\\\\": dict(sorted(nli_dist.items())),\\\\\\\\n    }\\\\\\\\n}\\\\\\\\n\\\\\\\\nfor key, info in FOLIO_TRACES.items():\\\\\\\\n    if not os.path.exists(info[\\\\\\\"path\\\\\\\"]):\\\\\\\\n        print(f\\\\\\\"  {info[\\\\\\\\'name\\\\\\\\']:<18} FILE NOT FOUND: {info[\\\\\\\\'path\\\\\\\\']}\\\\\\\")\\\\\\\\n        continue\\\\\\\\n    \\\\\\\\n    with open(info[\\\\\\\"path\\\\\\\"]) as f:\\\\\\\\n        data = json.load(f)\\\\\\\\n    items = data[\\\\\\\"results\\\\\\\"]\\\\\\\\n    \\\\\\\\n    # Build vote dicts by problem_id\\\\\\\\n    sc_votes_by_id = {}\\\\\\\\n    for item in items:\\\\\\\\n        pid = item.get(\\\\\\\"problem_id\\\\\\\", \\\\\\\"\\\\\\\")\\\\\\\\n        votes = item.get(\\\\\\\"sc_vote_distribution\\\\\\\", item.get(\\\\\\\"sc_votes\\\\\\\", {}))\\\\\\\\n        # Normalize vote keys to CLASSES\\\\\\\\n        norm_votes = {}\\\\\\\\n        for k, v in votes.items():\\\\\\\\n            if k in CLASSES:\\\\\\\\n                norm_votes[k] = norm_votes.get(k, 0) + v\\\\\\\\n        sc_votes_by_id[pid] = norm_votes\\\\\\\\n    \\\\\\\\n    # Compute D061 SC baseline\\\\\\\\n    common_pids = sorted(set(sc_votes_by_id.keys()) & set(nli_preds.keys()) & set(gt.keys()))\\\\\\\\n    n_common = len(common_pids)\\\\\\\\n    \\\\\\\\n    sc_correct_list = []\\\\\\\\n    combo_correct = {w: [] for w in WEIGHTS}\\\\\\\\n    \\\\\\\\n    per_problem = {}\\\\\\\\n    \\\\\\\\n    for pid in common_pids:\\\\\\\\n        gold = gt[pid]\\\\\\\\n        votes = sc_votes_by_id.get(pid, {})\\\\\\\\n        sc_pred = d061_sc(votes) if votes else None\\\\\\\\n        nli_pred = nli_preds[pid]\\\\\\\\n        nli_probs = nli_probs_all[pid]\\\\\\\\n        \\\\\\\\n        sc_ok = sc_pred == gold if sc_pred else False\\\\\\\\n        sc_correct_list.append(sc_ok)\\\\\\\\n        \\\\\\\\n        per_problem[pid] = {\\\\\\\\n            \\\\\\\"gold\\\\\\\": gold,\\\\\\\\n            \\\\\\\"sc_pred\\\\\\\": sc_pred,\\\\\\\\n            \\\\\\\"nli_pred\\\\\\\": nli_pred,\\\\\\\\n            \\\\\\\"sc_correct\\\\\\\": sc_ok,\\\\\\\\n            \\\\\\\"nli_correct\\\\\\\": nli_pred == gold,\\\\\\\\n        }\\\\\\\\n        \\\\\\\\n        # Compute combo for each weight\\\\\\\\n        for w in WEIGHTS:\\\\\\\\n            combo_votes = {}\\\\\\\\n            for c in CLASSES:\\\\\\\\n                combo_votes[c] = votes.get(c, 0) + w * (1 if nli_pred == c else 0)\\\\\\\\n            combo_pred = d061_sc(combo_votes)\\\\\\\\n            combo_ok = combo_pred == gold if combo_pred else False\\\\\\\\n            combo_correct[w].append(combo_ok)\\\\\\\\n            per_problem[pid][f\\\\\\\"combo_w{w}_pred\\\\\\\"] = combo_pred\\\\\\\\n            per_problem[pid][f\\\\\\\"combo_w{w}_correct\\\\\\\"] = combo_ok\\\\\\\\n    \\\\\\\\n    sc_acc = sum(sc_correct_list) / n_common\\\\\\\\n    \\\\\\\\n    model_result = {\\\\\\\\n        \\\\\\\"generator\\\\\\\": info[\\\\\\\"name\\\\\\\"],\\\\\\\\n        \\\\\\\"n\\\\\\\": n_common,\\\\\\\\n        \\\\\\\"sc_baseline\\\\\\\": round(sc_acc, 4),\\\\\\\\n        \\\\\\\"sc_correct\\\\\\\": sum(sc_correct_list),\\\\\\\\n        \\\\\\\"complementarity\\\\\\\": {\\\\\\\\n            \\\\\\\"nli_right_sc_wrong\\\\\\\": sum(1 for pid in common_pids if nli_preds[pid] == gt[pid] and d061_sc(sc_votes_by_id.get(pid, {})) != gt[pid]),\\\\\\\\n            \\\\\\\"sc_right_nli_wrong\\\\\\\": sum(1 for pid in common_pids if nli_preds[pid] != gt[pid] and d061_sc(sc_votes_by_id.get(pid, {})) == gt[pid]),\\\\\\\\n            \\\\\\\"both_right\\\\\\\": sum(1 for pid in common_pids if nli_preds[pid] == gt[pid] and d061_sc(sc_votes_by_id.get(pid, {})) == gt[pid]),\\\\\\\\n            \\\\\\\"both_wrong\\\\\\\": sum(1 for pid in common_pids if nli_preds[pid] != gt[pid] and d061_sc(sc_votes_by_id.get(pid, {})) != gt[pid]),\\\\\\\\n        },\\\\\\\\n    }\\\\\\\\n    \\\\\\\\n    w_results = {}\\\\\\\\n    for w in WEIGHTS:\\\\\\\\n        combo_acc = sum(combo_correct[w]) / n_common\\\\\\\\n        delta = combo_acc - sc_acc\\\\\\\\n        p, n01, n10 = mcnemar_exact(sc_correct_list, combo_correct[w])\\\\\\\\n        w_results[f\\\\\\\"w{w}\\\\\\\"] = {\\\\\\\\n            \\\\\\\"accuracy\\\\\\\": round(combo_acc, 4),\\\\\\\\n            \\\\\\\"correct\\\\\\\": sum(combo_correct[w]),\\\\\\\\n            \\\\\\\"delta_pp\\\\\\\": round(delta * 100, 2),\\\\\\\\n            \\\\\\\"mcnemar_p\\\\\\\": round(p, 6),\\\\\\\\n            \\\\\\\"discordant\\\\\\\": [n01, n10],\\\\\\\\n        }\\\\\\\\n    \\\\\\\\n    model_result.update(w_results)\\\\\\\\n    all_results[key] = model_result\\\\\\\\n    \\\\\\\\n    w1 = w_results[\\\\\\\"w1\\\\\\\"]\\\\\\\\n    w3 = w_results[\\\\\\\"w3\\\\\\\"]\\\\\\\\n    w5 = w_results[\\\\\\\"w5\\\\\\\"]\\\\\\\\n    \\\\\\\\n    print(f\\\\\\\"{info[\\\\\\\\'name\\\\\\\\']:<20} {sc_acc*100:>10.2f} {nli_correct/n_nli*100:>10.2f} {w1[\\\\\\\\'accuracy\\\\\\\\']*100:>10.2f} {w1[\\\\\\\\'delta_pp\\\\\\\\']:>+8.2f} {w1[\\\\\\\\'mcnemar_p\\\\\\\\']:>10.4f} {w3[\\\\\\\\'accuracy\\\\\\\\']*100:>10.2f} {w3[\\\\\\\\'delta_pp\\\\\\\\']:>+8.2f} {w3[\\\\\\\\'mcnemar_p\\\\\\\\']:>10.4f} {w5[\\\\\\\\'accuracy\\\\\\\\']*100:>10.2f} {w5[\\\\\\\\'delta_pp\\\\\\\\']:>+8.2f} {w5[\\\\\\\\'mcnemar_p\\\\\\\\']:>10.4f}\\\\\\\")\\\\\\\\n\\\\\\\\n# Save results\\\\\\\\noutput_path = \\\\\\\"results/folio_zeroshot_nli_combo_d061.json\\\\\\\"\\\\\\\\nwith open(output_path, \\\\\\\"w\\\\\\\") as f:\\\\\\\\n    json.dump(all_results, f, indent=2)\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\nSaved to {output_path}\\\\\\\")\\\\\\\\n\\\\\\\\nPYEOF'\\\\n\\\\nStdout:\\\\n\\\\nLoaded 204 FOLIO problems\\\\n\\\\nLoading DeBERTa-large-MNLI from /root/autodl-tmp/models/deberta-large-mnli...\\\\n\\\\nStderr:\\\\n\\\\n\\\\nLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\\\nLoading weights: 100%|██████████| 392/392 [00:00<00:00, 11121.49it/s]\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "0159e9db-1108-486e-9b8a-919901542164",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/symb_invariant_consensus && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << \\\\\\\\'PYEOF\\\\\\\\'\\\\\\\\n\\\\\\\"\\\\\\\"\\\\\\\"FOLIO zero-shot DeBERTa combo audit with D061 tiebreaking.\\\\\\\\nRuns DeBERTa-large-MNLI zero-shot on FOLIO-204, then combines with LLM SC votes.\\\\\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\\\\\nimport json, time, os\\\\\\\\nimport torch\\\\\\\\nimport numpy as np\\\\\\\\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\\\\\\\\nfrom scipy.stats import binomtest\\\\\\\\nfrom collections import Counter\\\\\\\\n\\\\\\\\nFOLIO_DATA = \\\\\\\"/root/symb_invariant_consensus/data/folio_full.json\\\\\\\"\\\\\\\\nDEBERTA_PATH = \\\\\\\"/root/autodl-tmp/models/deberta-large-mnli\\\\\\\"\\\\\\\\nCLASSES = sorted([\\\\\\\"True\\\\\\\", \\\\\\\"False\\\\\\\", \\\\\\\"Unknown\\\\\\\"])\\\\\\\\nWEIGHTS = [1, 3, 5]\\\\\\\\n\\\\\\\\nFOLIO_TRACES = {\\\\\\\\n    \\\\\\\"mistral\\\\\\\": {\\\\\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"results/exp033_mistral_7b_folio204/exp033_results.json\\\\\\\",\\\\\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\\\\\n    },\\\\\\\\n    \\\\\\\"llama8b\\\\\\\": {\\\\\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"results/exp-063-llama8b-folio204-16639/results.json\\\\\\\",\\\\\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"LLaMA-3.1-8B\\\\\\\",\\\\\\\\n    },\\\\\\\\n    \\\\\\\"qwen14b\\\\\\\": {\\\\\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"results/exp036_qwen25_14b_folio204/results.json\\\\\\\",\\\\\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"Qwen2.5-14B\\\\\\\",\\\\\\\\n    },\\\\\\\\n    \\\\\\\"qwen3\\\\\\\": {\\\\\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"results/exp_folio_2x2_qwen3/results.json\\\\\\\",\\\\\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"Qwen3-14B\\\\\\\",\\\\\\\\n    },\\\\\\\\n}\\\\\\\\n\\\\\\\\ndef split_folio_problem(text):\\\\\\\\n    for marker in [\\\\\\\\n        \\\\\\\"Determine whether the following conclusion is true, false, or uncertain:\\\\\\\\\\\\\\\\n\\\\\\\",\\\\\\\\n        \\\\\\\"Determine whether the following conclusion is True, False, or Unknown:\\\\\\\\\\\\\\\\n\\\\\\\",\\\\\\\\n        \\\\\\\"Determine whether the following conclusion is true, false, or unknown:\\\\\\\\\\\\\\\\n\\\\\\\",\\\\\\\\n    ]:\\\\\\\\n        idx = text.find(marker)\\\\\\\\n        if idx != -1:\\\\\\\\n            premise = text[:idx].strip()\\\\\\\\n            # Remove \\\\\\\"Given the following premises:\\\\\\\" prefix\\\\\\\\n            for prefix in [\\\\\\\"Given the following premises:\\\\\\\\\\\\\\\\n\\\\\\\", \\\\\\\"Given the following premises:\\\\\\\"]:\\\\\\\\n                if premise.startswith(prefix):\\\\\\\\n                    premise = premise[len(prefix):].strip()\\\\\\\\n            hypothesis = text[idx + len(marker):].strip()\\\\\\\\n            return premise, hypothesis\\\\\\\\n    return text, \\\\\\\"\\\\\\\"\\\\\\\\n\\\\\\\\ndef d061_sc(votes):\\\\\\\\n    if not votes:\\\\\\\\n        return None\\\\\\\\n    max_v = max(votes.get(c, 0) for c in CLASSES if c in votes)\\\\\\\\n    tied = [c for c in CLASSES if votes.get(c, 0) == max_v and max_v > 0]\\\\\\\\n    if not tied:\\\\\\\\n        return None\\\\\\\\n    return sorted(tied)[0]\\\\\\\\n\\\\\\\\ndef mcnemar_exact(a, b):\\\\\\\\n    n01 = sum(1 for x, y in zip(a, b) if not x and y)\\\\\\\\n    n10 = sum(1 for x, y in zip(a, b) if x and not y)\\\\\\\\n    n = n01 + n10\\\\\\\\n    if n == 0:\\\\\\\\n        return 1.0, n01, n10\\\\\\\\n    return binomtest(n01, n, 0.5).pvalue, n01, n10\\\\\\\\n\\\\\\\\n# 1. Load FOLIO data\\\\\\\\nwith open(FOLIO_DATA) as f:\\\\\\\\n    folio = json.load(f)\\\\\\\\ngt = {p[\\\\\\\"id\\\\\\\"]: p[\\\\\\\"answer\\\\\\\"] for p in folio}\\\\\\\\nproblems = {p[\\\\\\\"id\\\\\\\"]: p[\\\\\\\"problem\\\\\\\"] for p in folio}\\\\\\\\nprint(f\\\\\\\"Loaded {len(folio)} FOLIO problems\\\\\\\")\\\\\\\\n\\\\\\\\n# 2. Run DeBERTa-large-MNLI zero-shot\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\nLoading DeBERTa-large-MNLI from {DEBERTA_PATH}...\\\\\\\")\\\\\\\\ntokenizer = AutoTokenizer.from_pretrained(DEBERTA_PATH)\\\\\\\\nmodel = AutoModelForSequenceClassification.from_pretrained(DEBERTA_PATH)\\\\\\\\nmodel.eval()\\\\\\\\n\\\\\\\\n# DeBERTa MNLI label mapping: 0=contradiction, 1=neutral, 2=entailment\\\\\\\\nlabel_map = {0: \\\\\\\"False\\\\\\\", 1: \\\\\\\"Unknown\\\\\\\", 2: \\\\\\\"True\\\\\\\"}\\\\\\\\n\\\\\\\\nnli_preds = {}\\\\\\\\nnli_probs_all = {}\\\\\\\\nt0 = time.time()\\\\\\\\n\\\\\\\\nfor pid in sorted(gt.keys()):\\\\\\\\n    premise, hypothesis = split_folio_problem(problems[pid])\\\\\\\\n    if not hypothesis:\\\\\\\\n        print(f\\\\\\\"  WARNING: could not parse {pid}\\\\\\\")\\\\\\\\n        continue\\\\\\\\n    \\\\\\\\n    inputs = tokenizer(premise, hypothesis, return_tensors=\\\\\\\"pt\\\\\\\", truncation=True, max_length=512)\\\\\\\\n    with torch.no_grad():\\\\\\\\n        outputs = model(**inputs)\\\\\\\\n    \\\\\\\\n    probs = torch.softmax(outputs.logits, dim=-1)[0]\\\\\\\\n    pred_idx = probs.argmax().item()\\\\\\\\n    pred = label_map[pred_idx]\\\\\\\\n    \\\\\\\\n    nli_preds[pid] = pred\\\\\\\\n    nli_probs_all[pid] = {label_map[i]: round(probs[i].item(), 4) for i in range(3)}\\\\\\\\n\\\\\\\\nelapsed = time.time() - t0\\\\\\\\nn_nli = len(nli_preds)\\\\\\\\nnli_correct = sum(1 for pid in nli_preds if nli_preds[pid] == gt[pid])\\\\\\\\nprint(f\\\\\\\"DeBERTa-large-MNLI zero-shot on FOLIO: {nli_correct}/{n_nli} = {100*nli_correct/n_nli:.2f}%\\\\\\\")\\\\\\\\nprint(f\\\\\\\"Inference time: {elapsed:.1f}s ({elapsed/n_nli:.3f}s/sample)\\\\\\\")\\\\\\\\n\\\\\\\\n# Distribution\\\\\\\\nnli_dist = Counter(nli_preds.values())\\\\\\\\ngt_dist = Counter(gt.values())\\\\\\\\nprint(f\\\\\\\"NLI pred distribution: {dict(sorted(nli_dist.items()))}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"Gold distribution: {dict(sorted(gt_dist.items()))}\\\\\\\")\\\\\\\\n\\\\\\\\n# 3. Load SC traces and compute combo\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 120)\\\\\\\\nprint(f\\\\\\\"{\\\\\\\\'Model\\\\\\\\':<20} {\\\\\\\\'SC(D061)\\\\\\\\':>10} {\\\\\\\\'NLI\\\\\\\\':>10} {\\\\\\\\'combo_w1\\\\\\\\':>10} {\\\\\\\\'Δw1\\\\\\\\':>8} {\\\\\\\\'pw1\\\\\\\\':>10} {\\\\\\\\'combo_w3\\\\\\\\':>10} {\\\\\\\\'Δw3\\\\\\\\':>8} {\\\\\\\\'pw3\\\\\\\\':>10} {\\\\\\\\'combo_w5\\\\\\\\':>10} {\\\\\\\\'Δw5\\\\\\\\':>8} {\\\\\\\\'pw5\\\\\\\\':>10}\\\\\\\")\\\\\\\\nprint(\\\\\\\"=\\\\\\\" * 120)\\\\\\\\n\\\\\\\\nall_results = {\\\\\\\\n    \\\\\\\"nli_standalone\\\\\\\": {\\\\\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"DeBERTa-large-MNLI (zero-shot)\\\\\\\",\\\\\\\\n        \\\\\\\"n\\\\\\\": n_nli,\\\\\\\\n        \\\\\\\"accuracy\\\\\\\": round(nli_correct / n_nli, 4),\\\\\\\\n        \\\\\\\"correct\\\\\\\": nli_correct,\\\\\\\\n        \\\\\\\"inference_time_s\\\\\\\": round(elapsed, 1),\\\\\\\\n        \\\\\\\"pred_distribution\\\\\\\": dict(sorted(nli_dist.items())),\\\\\\\\n    }\\\\\\\\n}\\\\\\\\n\\\\\\\\nfor key, info in FOLIO_TRACES.items():\\\\\\\\n    if not os.path.exists(info[\\\\\\\"path\\\\\\\"]):\\\\\\\\n        print(f\\\\\\\"  {info[\\\\\\\\'name\\\\\\\\']:<18} FILE NOT FOUND: {info[\\\\\\\\'path\\\\\\\\']}\\\\\\\")\\\\\\\\n        continue\\\\\\\\n    \\\\\\\\n    with open(info[\\\\\\\"path\\\\\\\"]) as f:\\\\\\\\n        data = json.load(f)\\\\\\\\n    items = data[\\\\\\\"results\\\\\\\"]\\\\\\\\n    \\\\\\\\n    # Build vote dicts by problem_id\\\\\\\\n    sc_votes_by_id = {}\\\\\\\\n    for item in items:\\\\\\\\n        pid = item.get(\\\\\\\"problem_id\\\\\\\", \\\\\\\"\\\\\\\")\\\\\\\\n        votes = item.get(\\\\\\\"sc_vote_distribution\\\\\\\", item.get(\\\\\\\"sc_votes\\\\\\\", {}))\\\\\\\\n        # Normalize vote keys to CLASSES\\\\\\\\n        norm_votes = {}\\\\\\\\n        for k, v in votes.items():\\\\\\\\n            if k in CLASSES:\\\\\\\\n                norm_votes[k] = norm_votes.get(k, 0) + v\\\\\\\\n        sc_votes_by_id[pid] = norm_votes\\\\\\\\n    \\\\\\\\n    # Compute D061 SC baseline\\\\\\\\n    common_pids = sorted(set(sc_votes_by_id.keys()) & set(nli_preds.keys()) & set(gt.keys()))\\\\\\\\n    n_common = len(common_pids)\\\\\\\\n    \\\\\\\\n    sc_correct_list = []\\\\\\\\n    combo_correct = {w: [] for w in WEIGHTS}\\\\\\\\n    \\\\\\\\n    per_problem = {}\\\\\\\\n    \\\\\\\\n    for pid in common_pids:\\\\\\\\n        gold = gt[pid]\\\\\\\\n        votes = sc_votes_by_id.get(pid, {})\\\\\\\\n        sc_pred = d061_sc(votes) if votes else None\\\\\\\\n        nli_pred = nli_preds[pid]\\\\\\\\n        nli_probs = nli_probs_all[pid]\\\\\\\\n        \\\\\\\\n        sc_ok = sc_pred == gold if sc_pred else False\\\\\\\\n        sc_correct_list.append(sc_ok)\\\\\\\\n        \\\\\\\\n        per_problem[pid] = {\\\\\\\\n            \\\\\\\"gold\\\\\\\": gold,\\\\\\\\n            \\\\\\\"sc_pred\\\\\\\": sc_pred,\\\\\\\\n            \\\\\\\"nli_pred\\\\\\\": nli_pred,\\\\\\\\n            \\\\\\\"sc_correct\\\\\\\": sc_ok,\\\\\\\\n            \\\\\\\"nli_correct\\\\\\\": nli_pred == gold,\\\\\\\\n        }\\\\\\\\n        \\\\\\\\n        # Compute combo for each weight\\\\\\\\n        for w in WEIGHTS:\\\\\\\\n            combo_votes = {}\\\\\\\\n            for c in CLASSES:\\\\\\\\n                combo_votes[c] = votes.get(c, 0) + w * (1 if nli_pred == c else 0)\\\\\\\\n            combo_pred = d061_sc(combo_votes)\\\\\\\\n            combo_ok = combo_pred == gold if combo_pred else False\\\\\\\\n            combo_correct[w].append(combo_ok)\\\\\\\\n            per_problem[pid][f\\\\\\\"combo_w{w}_pred\\\\\\\"] = combo_pred\\\\\\\\n            per_problem[pid][f\\\\\\\"combo_w{w}_correct\\\\\\\"] = combo_ok\\\\\\\\n    \\\\\\\\n    sc_acc = sum(sc_correct_list) / n_common\\\\\\\\n    \\\\\\\\n    model_result = {\\\\\\\\n        \\\\\\\"generator\\\\\\\": info[\\\\\\\"name\\\\\\\"],\\\\\\\\n        \\\\\\\"n\\\\\\\": n_common,\\\\\\\\n        \\\\\\\"sc_baseline\\\\\\\": round(sc_acc, 4),\\\\\\\\n        \\\\\\\"sc_correct\\\\\\\": sum(sc_correct_list),\\\\\\\\n        \\\\\\\"complementarity\\\\\\\": {\\\\\\\\n            \\\\\\\"nli_right_sc_wrong\\\\\\\": sum(1 for pid in common_pids if nli_preds[pid] == gt[pid] and d061_sc(sc_votes_by_id.get(pid, {})) != gt[pid]),\\\\\\\\n            \\\\\\\"sc_right_nli_wrong\\\\\\\": sum(1 for pid in common_pids if nli_preds[pid] != gt[pid] and d061_sc(sc_votes_by_id.get(pid, {})) == gt[pid]),\\\\\\\\n            \\\\\\\"both_right\\\\\\\": sum(1 for pid in common_pids if nli_preds[pid] == gt[pid] and d061_sc(sc_votes_by_id.get(pid, {})) == gt[pid]),\\\\\\\\n            \\\\\\\"both_wrong\\\\\\\": sum(1 for pid in common_pids if nli_preds[pid] != gt[pid] and d061_sc(sc_votes_by_id.get(pid, {})) != gt[pid]),\\\\\\\\n        },\\\\\\\\n    }\\\\\\\\n    \\\\\\\\n    w_results = {}\\\\\\\\n    for w in WEIGHTS:\\\\\\\\n        combo_acc = sum(combo_correct[w]) / n_common\\\\\\\\n        delta = combo_acc - sc_acc\\\\\\\\n        p, n01, n10 = mcnemar_exact(sc_correct_list, combo_correct[w])\\\\\\\\n        w_results[f\\\\\\\"w{w}\\\\\\\"] = {\\\\\\\\n            \\\\\\\"accuracy\\\\\\\": round(combo_acc, 4),\\\\\\\\n            \\\\\\\"correct\\\\\\\": sum(combo_correct[w]),\\\\\\\\n            \\\\\\\"delta_pp\\\\\\\": round(delta * 100, 2),\\\\\\\\n            \\\\\\\"mcnemar_p\\\\\\\": round(p, 6),\\\\\\\\n            \\\\\\\"discordant\\\\\\\": [n01, n10],\\\\\\\\n        }\\\\\\\\n    \\\\\\\\n    model_result.update(w_results)\\\\\\\\n    all_results[key] = model_result\\\\\\\\n    \\\\\\\\n    w1 = w_results[\\\\\\\"w1\\\\\\\"]\\\\\\\\n    w3 = w_results[\\\\\\\"w3\\\\\\\"]\\\\\\\\n    w5 = w_results[\\\\\\\"w5\\\\\\\"]\\\\\\\\n    \\\\\\\\n    print(f\\\\\\\"{info[\\\\\\\\'name\\\\\\\\']:<20} {sc_acc*100:>10.2f} {nli_correct/n_nli*100:>10.2f} {w1[\\\\\\\\'accuracy\\\\\\\\']*100:>10.2f} {w1[\\\\\\\\'delta_pp\\\\\\\\']:>+8.2f} {w1[\\\\\\\\'mcnemar_p\\\\\\\\']:>10.4f} {w3[\\\\\\\\'accuracy\\\\\\\\']*100:>10.2f} {w3[\\\\\\\\'delta_pp\\\\\\\\']:>+8.2f} {w3[\\\\\\\\'mcnemar_p\\\\\\\\']:>10.4f} {w5[\\\\\\\\'accuracy\\\\\\\\']*100:>10.2f} {w5[\\\\\\\\'delta_pp\\\\\\\\']:>+8.2f} {w5[\\\\\\\\'mcnemar_p\\\\\\\\']:>10.4f}\\\\\\\")\\\\\\\\n\\\\\\\\n# Save results\\\\\\\\noutput_path = \\\\\\\"results/folio_zeroshot_nli_combo_d061.json\\\\\\\"\\\\\\\\nwith open(output_path, \\\\\\\"w\\\\\\\") as f:\\\\\\\\n    json.dump(all_results, f, indent=2)\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\nSaved to {output_path}\\\\\\\")\\\\\\\\n\\\\\\\\nPYEOF'\\\\n\\\\nStdout:\\\\n\\\\nLoaded 204 FOLIO problems\\\\n\\\\nLoading DeBERTa-large-MNLI from /root/autodl-tmp/models/deberta-large-mnli...\\\\n\\\\nStderr:\\\\n\\\\n\\\\nLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\\\nLoading weights: 100%|██████████| 392/392 [00:00<00:00, 11121.49it/s]\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/symb_invariant_consensus && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << \\\\'PYEOF\\\\'\\\\n\\\"\\\"\\\"FOLIO zero-shot DeBERTa combo audit with D061 tiebreaking.\\\\nRuns DeBERTa-large-MNLI zero-shot on FOLIO-204, then combines with LLM SC votes.\\\\n\\\"\\\"\\\"\\\\nimport json, time, os\\\\nimport torch\\\\nimport numpy as np\\\\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\\\\nfrom scipy.stats import binomtest\\\\nfrom collections import Counter\\\\n\\\\nFOLIO_DATA = \\\"/root/symb_invariant_consensus/data/folio_full.json\\\"\\\\nDEBERTA_PATH = \\\"/root/autodl-tmp/models/deberta-large-mnli\\\"\\\\nCLASSES = sorted([\\\"True\\\", \\\"False\\\", \\\"Unknown\\\"])\\\\nWEIGHTS = [1, 3, 5]\\\\n\\\\nFOLIO_TRACES = {\\\\n    \\\"mistral\\\": {\\\\n        \\\"path\\\": \\\"results/exp033_mistral_7b_folio204/exp033_results.json\\\",\\\\n        \\\"name\\\": \\\"Mistral-7B\\\",\\\\n    },\\\\n    \\\"llama8b\\\": {\\\\n        \\\"path\\\": \\\"results/exp-063-llama8b-folio204-16639/results.json\\\",\\\\n        \\\"name\\\": \\\"LLaMA-3.1-8B\\\",\\\\n    },\\\\n    \\\"qwen14b\\\": {\\\\n        \\\"path\\\": \\\"results/exp036_qwen25_14b_folio204/results.json\\\",\\\\n        \\\"name\\\": \\\"Qwen2.5-14B\\\",\\\\n    },\\\\n    \\\"qwen3\\\": {\\\\n        \\\"path\\\": \\\"results/exp_folio_2x2_qwen3/results.json\\\",\\\\n        \\\"name\\\": \\\"Qwen3-14B\\\",\\\\n    },\\\\n}\\\\n\\\\ndef split_folio_problem(text):\\\\n    for marker in [\\\\n        \\\"Determine whether the following conclusion is true, false, or uncertain:\\\\\\\\n\\\",\\\\n        \\\"Determine whether the following conclusion is True, False, or Unknown:\\\\\\\\n\\\",\\\\n        \\\"Determine whether the following conclusion is true, false, or unknown:\\\\\\\\n\\\",\\\\n    ]:\\\\n        idx = text.find(marker)\\\\n        if idx != -1:\\\\n            premise = text[:idx].strip()\\\\n            # Remove \\\"Given the following premises:\\\" prefix\\\\n            for prefix in [\\\"Given the following premises:\\\\\\\\n\\\", \\\"Given the following premises:\\\"]:\\\\n                if premise.startswith(prefix):\\\\n                    premise = premise[len(prefix):].strip()\\\\n            hypothesis = text[idx + len(marker):].strip()\\\\n            return premise, hypothesis\\\\n    return text, \\\"\\\"\\\\n\\\\ndef d061_sc(votes):\\\\n    if not votes:\\\\n        return None\\\\n    max_v = max(votes.get(c, 0) for c in CLASSES if c in votes)\\\\n    tied = [c for c in CLASSES if votes.get(c, 0) == max_v and max_v > 0]\\\\n    if not tied:\\\\n        return None\\\\n    return sorted(tied)[0]\\\\n\\\\ndef mcnemar_exact(a, b):\\\\n    n01 = sum(1 for x, y in zip(a, b) if not x and y)\\\\n    n10 = sum(1 for x, y in zip(a, b) if x and not y)\\\\n    n = n01 + n10\\\\n    if n == 0:\\\\n        return 1.0, n01, n10\\\\n    return binomtest(n01, n, 0.5).pvalue, n01, n10\\\\n\\\\n# 1. Load FOLIO data\\\\nwith open(FOLIO_DATA) as f:\\\\n    folio = json.load(f)\\\\ngt = {p[\\\"id\\\"]: p[\\\"answer\\\"] for p in folio}\\\\nproblems = {p[\\\"id\\\"]: p[\\\"problem\\\"] for p in folio}\\\\nprint(f\\\"Loaded {len(folio)} FOLIO problems\\\")\\\\n\\\\n# 2. Run DeBERTa-large-MNLI zero-shot\\\\nprint(f\\\"\\\\\\\\nLoading DeBERTa-large-MNLI from {DEBERTA_PATH}...\\\")\\\\ntokenizer = AutoTokenizer.from_pretrained(DEBERTA_PATH)\\\\nmodel = AutoModelForSequenceClassification.from_pretrained(DEBERTA_PATH)\\\\nmodel.eval()\\\\n\\\\n# DeBERTa MNLI label mapping: 0=contradiction, 1=neutral, 2=entailment\\\\nlabel_map = {0: \\\"False\\\", 1: \\\"Unknown\\\", 2: \\\"True\\\"}\\\\n\\\\nnli_preds = {}\\\\nnli_probs_all = {}\\\\nt0 = time.time()\\\\n\\\\nfor pid in sorted(gt.keys()):\\\\n    premise, hypothesis = split_folio_problem(problems[pid])\\\\n    if not hypothesis:\\\\n        print(f\\\"  WARNING: could not parse {pid}\\\")\\\\n        continue\\\\n    \\\\n    inputs = tokenizer(premise, hypothesis, return_tensors=\\\"pt\\\", truncation=True, max_length=512)\\\\n    with torch.no_grad():\\\\n        outputs = model(**inputs)\\\\n    \\\\n    probs = torch.softmax(outputs.logits, dim=-1)[0]\\\\n    pred_idx = probs.argmax().item()\\\\n    pred = label_map[pred_idx]\\\\n    \\\\n    nli_preds[pid] = pred\\\\n    nli_probs_all[pid] = {label_map[i]: round(probs[i].item(), 4) for i in range(3)}\\\\n\\\\nelapsed = time.time() - t0\\\\nn_nli = len(nli_preds)\\\\nnli_correct = sum(1 for pid in nli_preds if nli_preds[pid] == gt[pid])\\\\nprint(f\\\"DeBERTa-large-MNLI zero-shot on FOLIO: {nli_correct}/{n_nli} = {100*nli_correct/n_nli:.2f}%\\\")\\\\nprint(f\\\"Inference time: {elapsed:.1f}s ({elapsed/n_nli:.3f}s/sample)\\\")\\\\n\\\\n# Distribution\\\\nnli_dist = Counter(nli_preds.values())\\\\ngt_dist = Counter(gt.values())\\\\nprint(f\\\"NLI pred distribution: {dict(sorted(nli_dist.items()))}\\\")\\\\nprint(f\\\"Gold distribution: {dict(sorted(gt_dist.items()))}\\\")\\\\n\\\\n# 3. Load SC traces and compute combo\\\\nprint(\\\"\\\\\\\\n\\\" + \\\"=\\\" * 120)\\\\nprint(f\\\"{\\\\'Model\\\\':<20} {\\\\'SC(D061)\\\\':>10} {\\\\'NLI\\\\':>10} {\\\\'combo_w1\\\\':>10} {\\\\'Δw1\\\\':>8} {\\\\'pw1\\\\':>10} {\\\\'combo_w3\\\\':>10} {\\\\'Δw3\\\\':>8} {\\\\'pw3\\\\':>10} {\\\\'combo_w5\\\\':>10} {\\\\'Δw5\\\\':>8} {\\\\'pw5\\\\':>10}\\\")\\\\nprint(\\\"=\\\" * 120)\\\\n\\\\nall_results = {\\\\n    \\\"nli_standalone\\\": {\\\\n        \\\"model\\\": \\\"DeBERTa-large-MNLI (zero-shot)\\\",\\\\n        \\\"n\\\": n_nli,\\\\n        \\\"accuracy\\\": round(nli_correct / n_nli, 4),\\\\n        \\\"correct\\\": nli_correct,\\\\n        \\\"inference_time_s\\\": round(elapsed, 1),\\\\n        \\\"pred_distribution\\\": dict(sorted(nli_dist.items())),\\\\n    }\\\\n}\\\\n\\\\nfor key, info in FOLIO_TRACES.items():\\\\n    if not os.path.exists(info[\\\"path\\\"]):\\\\n        print(f\\\"  {info[\\\\'name\\\\']:<18} FILE NOT FOUND: {info[\\\\'path\\\\']}\\\")\\\\n        continue\\\\n    \\\\n    with open(info[\\\"path\\\"]) as f:\\\\n        data = json.load(f)\\\\n    items = data[\\\"results\\\"]\\\\n    \\\\n    # Build vote dicts by problem_id\\\\n    sc_votes_by_id = {}\\\\n    for item in items:\\\\n        pid = item.get(\\\"problem_id\\\", \\\"\\\")\\\\n        votes = item.get(\\\"sc_vote_distribution\\\", item.get(\\\"sc_votes\\\", {}))\\\\n        # Normalize vote keys to CLASSES\\\\n        norm_votes = {}\\\\n        for k, v in votes.items():\\\\n            if k in CLASSES:\\\\n                norm_votes[k] = norm_votes.get(k, 0) + v\\\\n        sc_votes_by_id[pid] = norm_votes\\\\n    \\\\n    # Compute D061 SC baseline\\\\n    common_pids = sorted(set(sc_votes_by_id.keys()) & set(nli_preds.keys()) & set(gt.keys()))\\\\n    n_common = len(common_pids)\\\\n    \\\\n    sc_correct_list = []\\\\n    combo_correct = {w: [] for w in WEIGHTS}\\\\n    \\\\n    per_problem = {}\\\\n    \\\\n    for pid in common_pids:\\\\n        gold = gt[pid]\\\\n        votes = sc_votes_by_id.get(pid, {})\\\\n        sc_pred = d061_sc(votes) if votes else None\\\\n        nli_pred = nli_preds[pid]\\\\n        nli_probs = nli_probs_all[pid]\\\\n        \\\\n        sc_ok = sc_pred == gold if sc_pred else False\\\\n        sc_correct_list.append(sc_ok)\\\\n        \\\\n        per_problem[pid] = {\\\\n            \\\"gold\\\": gold,\\\\n            \\\"sc_pred\\\": sc_pred,\\\\n            \\\"nli_pred\\\": nli_pred,\\\\n            \\\"sc_correct\\\": sc_ok,\\\\n            \\\"nli_correct\\\": nli_pred == gold,\\\\n        }\\\\n        \\\\n        # Compute combo for each weight\\\\n        for w in WEIGHTS:\\\\n            combo_votes = {}\\\\n            for c in CLASSES:\\\\n                combo_votes[c] = votes.get(c, 0) + w * (1 if nli_pred == c else 0)\\\\n            combo_pred = d061_sc(combo_votes)\\\\n            combo_ok = combo_pred == gold if combo_pred else False\\\\n            combo_correct[w].append(combo_ok)\\\\n            per_problem[pid][f\\\"combo_w{w}_pred\\\"] = combo_pred\\\\n            per_problem[pid][f\\\"combo_w{w}_correct\\\"] = combo_ok\\\\n    \\\\n    sc_acc = sum(sc_correct_list) / n_common\\\\n    \\\\n    model_result = {\\\\n        \\\"generator\\\": info[\\\"name\\\"],\\\\n        \\\"n\\\": n_common,\\\\n        \\\"sc_baseline\\\": round(sc_acc, 4),\\\\n        \\\"sc_correct\\\": sum(sc_correct_list),\\\\n        \\\"complementarity\\\": {\\\\n            \\\"nli_right_sc_wrong\\\": sum(1 for pid in common_pids if nli_preds[pid] == gt[pid] and d061_sc(sc_votes_by_id.get(pid, {})) != gt[pid]),\\\\n            \\\"sc_right_nli_wrong\\\": sum(1 for pid in common_pids if nli_preds[pid] != gt[pid] and d061_sc(sc_votes_by_id.get(pid, {})) == gt[pid]),\\\\n            \\\"both_right\\\": sum(1 for pid in common_pids if nli_preds[pid] == gt[pid] and d061_sc(sc_votes_by_id.get(pid, {})) == gt[pid]),\\\\n            \\\"both_wrong\\\": sum(1 for pid in common_pids if nli_preds[pid] != gt[pid] and d061_sc(sc_votes_by_id.get(pid, {})) != gt[pid]),\\\\n        },\\\\n    }\\\\n    \\\\n    w_results = {}\\\\n    for w in WEIGHTS:\\\\n        combo_acc = sum(combo_correct[w]) / n_common\\\\n        delta = combo_acc - sc_acc\\\\n        p, n01, n10 = mcnemar_exact(sc_correct_list, combo_correct[w])\\\\n        w_results[f\\\"w{w}\\\"] = {\\\\n            \\\"accuracy\\\": round(combo_acc, 4),\\\\n            \\\"correct\\\": sum(combo_correct[w]),\\\\n            \\\"delta_pp\\\": round(delta * 100, 2),\\\\n            \\\"mcnemar_p\\\": round(p, 6),\\\\n            \\\"discordant\\\": [n01, n10],\\\\n        }\\\\n    \\\\n    model_result.update(w_results)\\\\n    all_results[key] = model_result\\\\n    \\\\n    w1 = w_results[\\\"w1\\\"]\\\\n    w3 = w_results[\\\"w3\\\"]\\\\n    w5 = w_results[\\\"w5\\\"]\\\\n    \\\\n    print(f\\\"{info[\\\\'name\\\\']:<20} {sc_acc*100:>10.2f} {nli_correct/n_nli*100:>10.2f} {w1[\\\\'accuracy\\\\']*100:>10.2f} {w1[\\\\'delta_pp\\\\']:>+8.2f} {w1[\\\\'mcnemar_p\\\\']:>10.4f} {w3[\\\\'accuracy\\\\']*100:>10.2f} {w3[\\\\'delta_pp\\\\']:>+8.2f} {w3[\\\\'mcnemar_p\\\\']:>10.4f} {w5[\\\\'accuracy\\\\']*100:>10.2f} {w5[\\\\'delta_pp\\\\']:>+8.2f} {w5[\\\\'mcnemar_p\\\\']:>10.4f}\\\")\\\\n\\\\n# Save results\\\\noutput_path = \\\"results/folio_zeroshot_nli_combo_d061.json\\\"\\\\nwith open(output_path, \\\"w\\\") as f:\\\\n    json.dump(all_results, f, indent=2)\\\\nprint(f\\\"\\\\\\\\nSaved to {output_path}\\\")\\\\n\\\\nPYEOF'\\n\\nStdout:\\n\\nLoaded 204 FOLIO problems\\n\\nLoading DeBERTa-large-MNLI from /root/autodl-tmp/models/deberta-large-mnli...\\n\\nStderr:\\n\\n\\nLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\nLoading weights: 100%|██████████| 392/392 [00:00<00:00, 11121.49it/s]\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.44}}"
+              }
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The command timed out at 30 seconds. The model loaded but the inference loop is still running. Let me run this as a background job with a longer timeout, or save the script as a file and run it with nohup.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "fa9db59b-5c80-4262-86b1-a51816e3fcd9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012kWfm1FVMmRM4obze6MK4k",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7966,
+                "cache_read_input_tokens": 110583,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7966
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script timed out during DeBERTa inference. Let me save it as a file and run with nohup."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "a8c232b6-5160-4209-884c-6b4112b4d0ea",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012kWfm1FVMmRM4obze6MK4k",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7966,
+                "cache_read_input_tokens": 110583,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7966
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WfXw2bXshz6nzKJ3aaZ56S",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16639",
+                "command": "cat > /root/symb_invariant_consensus/scripts/folio_zeroshot_combo_d061.py << 'PYEOF'\n\"\"\"FOLIO zero-shot DeBERTa combo audit with D061 tiebreaking.\"\"\"\nimport json, time, os, sys\nimport torch\nimport numpy as np\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\nfrom scipy.stats import binomtest\nfrom collections import Counter\n\nFOLIO_DATA = \"/root/symb_invariant_consensus/data/folio_full.json\"\nDEBERTA_PATH = \"/root/autodl-tmp/models/deberta-large-mnli\"\nCLASSES = sorted([\"True\", \"False\", \"Unknown\"])\nWEIGHTS = [1, 3, 5]\n\nFOLIO_TRACES = {\n    \"mistral\": {\n        \"path\": \"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json\",\n        \"name\": \"Mistral-7B\",\n    },\n    \"llama8b\": {\n        \"path\": \"/root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/results.json\",\n        \"name\": \"LLaMA-3.1-8B\",\n    },\n    \"qwen14b\": {\n        \"path\": \"/root/symb_invariant_consensus/results/exp036_qwen25_14b_folio204/results.json\",\n        \"name\": \"Qwen2.5-14B\",\n    },\n    \"qwen3\": {\n        \"path\": \"/root/symb_invariant_consensus/results/exp_folio_2x2_qwen3/results.json\",\n        \"name\": \"Qwen3-14B\",\n    },\n}\n\ndef split_folio_problem(text):\n    for marker in [\n        \"Determine whether the following conclusion is true, false, or uncertain:\\n\",\n        \"Determine whether the following conclusion is True, False, or Unknown:\\n\",\n        \"Determine whether the following conclusion is true, false, or unknown:\\n\",\n    ]:\n        idx = text.find(marker)\n        if idx != -1:\n            premise = text[:idx].strip()\n            for prefix in [\"Given the following premises:\\n\", \"Given the following premises:\"]:\n                if premise.startswith(prefix):\n                    premise = premise[len(prefix):].strip()\n            hypothesis = text[idx + len(marker):].strip()\n            return premise, hypothesis\n    return text, \"\"\n\ndef d061_sc(votes):\n    if not votes:\n        return None\n    valid = {k: v for k, v in votes.items() if v > 0}\n    if not valid:\n        return None\n    max_v = max(valid.values())\n    tied = sorted([k for k, v in valid.items() if v == max_v])\n    return tied[0]\n\ndef mcnemar_exact(a, b):\n    n01 = sum(1 for x, y in zip(a, b) if not x and y)\n    n10 = sum(1 for x, y in zip(a, b) if x and not y)\n    n = n01 + n10\n    if n == 0:\n        return 1.0, n01, n10\n    return binomtest(n01, n, 0.5).pvalue, n01, n10\n\ndef main():\n    with open(FOLIO_DATA) as f:\n        folio = json.load(f)\n    gt = {p[\"id\"]: p[\"answer\"] for p in folio}\n    problems = {p[\"id\"]: p[\"problem\"] for p in folio}\n    print(f\"Loaded {len(folio)} FOLIO problems\", flush=True)\n\n    print(f\"\\nLoading DeBERTa-large-MNLI from {DEBERTA_PATH}...\", flush=True)\n    tokenizer = AutoTokenizer.from_pretrained(DEBERTA_PATH)\n    model = AutoModelForSequenceClassification.from_pretrained(DEBERTA_PATH)\n    model.eval()\n\n    label_map = {0: \"False\", 1: \"Unknown\", 2: \"True\"}\n\n    nli_preds = {}\n    nli_probs_all = {}\n    t0 = time.time()\n\n    for i, pid in enumerate(sorted(gt.keys())):\n        premise, hypothesis = split_folio_problem(problems[pid])\n        if not hypothesis:\n            print(f\"  WARNING: could not parse {pid}\", flush=True)\n            continue\n        \n        inputs = tokenizer(premise, hypothesis, return_tensors=\"pt\", truncation=True, max_length=512)\n        with torch.no_grad():\n            outputs = model(**inputs)\n        \n        probs = torch.softmax(outputs.logits, dim=-1)[0]\n        pred_idx = probs.argmax().item()\n        pred = label_map[pred_idx]\n        \n        nli_preds[pid] = pred\n        nli_probs_all[pid] = {label_map[j]: round(probs[j].item(), 4) for j in range(3)}\n        \n        if (i + 1) % 50 == 0:\n            print(f\"  processed {i+1}/{len(gt)}\", flush=True)\n\n    elapsed = time.time() - t0\n    n_nli = len(nli_preds)\n    nli_correct = sum(1 for pid in nli_preds if nli_preds[pid] == gt[pid])\n    print(f\"\\nDeBERTa-large-MNLI zero-shot on FOLIO: {nli_correct}/{n_nli} = {100*nli_correct/n_nli:.2f}%\")\n    print(f\"Inference time: {elapsed:.1f}s ({elapsed/n_nli:.3f}s/sample)\")\n\n    nli_dist = Counter(nli_preds.values())\n    gt_dist = Counter(gt.values())\n    print(f\"NLI pred distribution: {dict(sorted(nli_dist.items()))}\")\n    print(f\"Gold distribution: {dict(sorted(gt_dist.items()))}\")\n\n    print(\"\\n\" + \"=\" * 130)\n    print(f\"{'Model':<20} {'SC(D061)':>10} {'NLI':>10} {'combo_w1':>10} {'Dw1':>8} {'pw1':>10} {'combo_w3':>10} {'Dw3':>8} {'pw3':>10} {'combo_w5':>10} {'Dw5':>8} {'pw5':>10}\")\n    print(\"=\" * 130)\n\n    all_results = {\n        \"nli_standalone\": {\n            \"model\": \"DeBERTa-large-MNLI (zero-shot)\",\n            \"n\": n_nli,\n            \"accuracy\": round(nli_correct / n_nli, 4),\n            \"correct\": nli_correct,\n            \"inference_time_s\": round(elapsed, 1),\n            \"pred_distribution\": dict(sorted(nli_dist.items())),\n        }\n    }\n\n    for key, info in FOLIO_TRACES.items():\n        if not os.path.exists(info[\"path\"]):\n            print(f\"  {info['name']:<18} FILE NOT FOUND: {info['path']}\")\n            continue\n        \n        with open(info[\"path\"]) as f:\n            data = json.load(f)\n        items = data[\"results\"]\n        \n        sc_votes_by_id = {}\n        for item in items:\n            pid = item.get(\"problem_id\", \"\")\n            votes = item.get(\"sc_vote_distribution\", item.get(\"sc_votes\", {}))\n            norm_votes = {}\n            for k, v in votes.items():\n                if k in CLASSES:\n                    norm_votes[k] = norm_votes.get(k, 0) + v\n            sc_votes_by_id[pid] = norm_votes\n        \n        common_pids = sorted(set(sc_votes_by_id.keys()) & set(nli_preds.keys()) & set(gt.keys()))\n        n_common = len(common_pids)\n        \n        sc_correct_list = []\n        combo_correct = {w: [] for w in WEIGHTS}\n        \n        for pid in common_pids:\n            gold = gt[pid]\n            votes = sc_votes_by_id.get(pid, {})\n            sc_pred = d061_sc(votes) if votes else None\n            nli_pred = nli_preds[pid]\n            \n            sc_ok = sc_pred == gold if sc_pred else False\n            sc_correct_list.append(sc_ok)\n            \n            for w in WEIGHTS:\n                combo_votes = {}\n                for c in CLASSES:\n                    combo_votes[c] = votes.get(c, 0) + w * (1 if nli_pred == c else 0)\n                combo_pred = d061_sc(combo_votes)\n                combo_ok = combo_pred == gold if combo_pred else False\n                combo_correct[w].append(combo_ok)\n        \n        sc_acc = sum(sc_correct_list) / n_common\n        \n        model_result = {\n            \"generator\": info[\"name\"],\n            \"n\": n_common,\n            \"sc_baseline_d061\": round(sc_acc, 4),\n            \"sc_correct\": sum(sc_correct_list),\n            \"complementarity\": {\n                \"nli_right_sc_wrong\": sum(1 for pid in common_pids if nli_preds[pid] == gt[pid] and d061_sc(sc_votes_by_id.get(pid, {})) != gt[pid]),\n                \"sc_right_nli_wrong\": sum(1 for pid in common_pids if nli_preds[pid] != gt[pid] and d061_sc(sc_votes_by_id.get(pid, {})) == gt[pid]),\n                \"both_right\": sum(1 for pid in common_pids if nli_preds[pid] == gt[pid] and d061_sc(sc_votes_by_id.get(pid, {})) == gt[pid]),\n                \"both_wrong\": sum(1 for pid in common_pids if nli_preds[pid] != gt[pid] and d061_sc(sc_votes_by_id.get(pid, {})) != gt[pid]),\n            },\n        }\n        \n        for w in WEIGHTS:\n            combo_acc = sum(combo_correct[w]) / n_common\n            delta = combo_acc - sc_acc\n            p, n01, n10 = mcnemar_exact(sc_correct_list, combo_correct[w])\n            model_result[f\"w{w}\"] = {\n                \"accuracy\": round(combo_acc, 4),\n                \"correct\": sum(combo_correct[w]),\n                \"delta_pp\": round(delta * 100, 2),\n                \"mcnemar_p\": round(p, 6),\n                \"discordant\": [n01, n10],\n            }\n        \n        all_results[key] = model_result\n        \n        w1 = model_result[\"w1\"]\n        w3 = model_result[\"w3\"]\n        w5 = model_result[\"w5\"]\n        \n        print(f\"{info['name']:<20} {sc_acc*100:>10.2f} {nli_correct/n_nli*100:>10.2f} {w1['accuracy']*100:>10.2f} {w1['delta_pp']:>+8.2f} {w1['mcnemar_p']:>10.4f} {w3['accuracy']*100:>10.2f} {w3['delta_pp']:>+8.2f} {w3['mcnemar_p']:>10.4f} {w5['accuracy']*100:>10.2f} {w5['delta_pp']:>+8.2f} {w5['mcnemar_p']:>10.4f}\")\n\n    output_path = \"/root/symb_invariant_consensus/results/folio_zeroshot_nli_combo_d061.json\"\n    with open(output_path, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    print(f\"\\nSaved to {output_path}\")\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "942ad040-aa59-4344-9f78-2466e89f1523",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012kWfm1FVMmRM4obze6MK4k",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7966,
+                "cache_read_input_tokens": 110583,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7966
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-22T20:22:09.460Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WfXw2bXshz6nzKJ3aaZ56S",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "4e3be1cd-f58b-4c23-9cca-037b64fd1535",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"
+              }
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012izJmENNg8xwVQLSwAS1AF",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16639",
+                "command": "cd /root/symb_invariant_consensus && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python3 scripts/folio_zeroshot_combo_d061.py > /tmp/folio_combo_d061.log 2>&1 & echo \"PID=$!\"",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "26c28cf3-9cdc-4a9d-8987-85ab76088bd7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KKYquywK3TfRJzXMPoSGgE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3498,
+                "cache_read_input_tokens": 118549,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3498
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": "2026-05-22T20:22:54.135Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012izJmENNg8xwVQLSwAS1AF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/symb_invariant_consensus && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python3 scripts/folio_zeroshot_combo_d061.py > /tmp/folio_combo_d061.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=687805\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "c9dd4629-b718-4940-bde8-12dc2325901c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/symb_invariant_consensus && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python3 scripts/folio_zeroshot_combo_d061.py > /tmp/folio_combo_d061.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=687805\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.41}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/symb_invariant_consensus && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python3 scripts/folio_zeroshot_combo_d061.py > /tmp/folio_combo_d061.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=687805\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.41}}"
+              }
+            }
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The command printed PID=687805 but then timed out (the ssh_execute has a 30 second timeout). The background process is running with PID 687805. Let me poll for completion.",
+              "signature": "EvECCmMIDRgCKkAq8ECe/UxTd4GYjdgyzNVTLfvo02zfUKymnew5qIKjGLidwRQ3gOtoh8dcWYdTacFdfDsB68H78RZ9h5tLDqmXMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDLN4uOiBteYO5+prTBoMwY2EfVZNwBFq0bpHIjBCE4RxKMZnBpcmti100bPcZAjLqfjj86O7gsVSsNETaqx9TkWhL/L52SMJDjU/6mIquwHuuyFDRtj0/faGtIQudKMWOCeXSXF8IRPKP/CbkG0LFh//6PslDGhXiJ0ucwJE6MO4IOKWUMiInx+dlX/H14VwhXsmYIHGNPH/zBdCqyjB0kwSeOQARqoVroIKUgFquLSnZyR4fdY4eqyUzahvXUbFTn7iaH5uPuFXvUlQYs0oX+PS9DIAj979yw1Or+TYt2610wXktzuY+qBddPGuEZkOq8hJ1Dgdtk1EQ/fSQvL3weRoITnBnZKGO7eQGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "0b3a3fd8-9932-4f19-9e00-a4dcb5733529",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XqkER7zpJEsgXgA1iFji5p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 366,
+                "cache_read_input_tokens": 122047,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 366
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Background job started (PID 687805). Let me check if it's still running and check the output."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "0baadd74-dd33-441c-b548-3d1259476ac7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XqkER7zpJEsgXgA1iFji5p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 366,
+                "cache_read_input_tokens": 122047,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 366
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MxDXu2ZKj14DV4fUaxuvY2",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16639",
+                "command": "cat /tmp/folio_combo_d061.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "efdcd7d6-4249-4feb-ace8-b6386f47ae42",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XqkER7zpJEsgXgA1iFji5p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 366,
+                "cache_read_input_tokens": 122047,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 366
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": "2026-05-22T20:23:04.609Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MxDXu2ZKj14DV4fUaxuvY2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 204 FOLIO problems\\\\n\\\\nLoading DeBERTa-large-MNLI from /root/autodl-tmp/models/deberta-large-mnli...\\\\n\\\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 10997.63it/s]\\\\n  processed 50/204\\\\n  processed 100/204\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "93745681-f75d-4059-9702-b7fde21efd69",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 204 FOLIO problems\\\\n\\\\nLoading DeBERTa-large-MNLI from /root/autodl-tmp/models/deberta-large-mnli...\\\\n\\\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 10997.63it/s]\\\\n  processed 50/204\\\\n  processed 100/204\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded 204 FOLIO problems\\n\\nLoading DeBERTa-large-MNLI from /root/autodl-tmp/models/deberta-large-mnli...\\n\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 10997.63it/s]\\n  processed 50/204\\n  processed 100/204\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+              }
+            }
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Still running. Let me wait a bit and check again."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "fdfc2d2f-c7b5-417b-874b-fdd302013204",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NGMaXrjhPCLAQXaf2cEYzy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 384,
+                "cache_read_input_tokens": 122413,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 384
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Uab9p5pMvgeysfTm1kFmQ2",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16639",
+                "command": "tail -30 /tmp/folio_combo_d061.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "14a60c1c-4b9f-4f07-81ad-5b52c590e115",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NGMaXrjhPCLAQXaf2cEYzy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 384,
+                "cache_read_input_tokens": 122413,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 384
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": "2026-05-22T20:23:08.287Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Uab9p5pMvgeysfTm1kFmQ2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 204 FOLIO problems\\\\n\\\\nLoading DeBERTa-large-MNLI from /root/autodl-tmp/models/deberta-large-mnli...\\\\n\\\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 10997.63it/s]\\\\n  processed 50/204\\\\n  processed 100/204\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "d1166138-c800-45b3-b55e-37014953697a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 204 FOLIO problems\\\\n\\\\nLoading DeBERTa-large-MNLI from /root/autodl-tmp/models/deberta-large-mnli...\\\\n\\\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 10997.63it/s]\\\\n  processed 50/204\\\\n  processed 100/204\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded 204 FOLIO problems\\n\\nLoading DeBERTa-large-MNLI from /root/autodl-tmp/models/deberta-large-mnli...\\n\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 10997.63it/s]\\n  processed 50/204\\n  processed 100/204\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XvDVHBjNmE1RYwvy7jNstC",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16639",
+                "command": "tail -30 /tmp/folio_combo_d061.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "18f121d5-83b2-45ca-baa0-4b76d2b400c8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J8WAZ158ZsExRQLBMPqm6h",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 316,
+                "cache_read_input_tokens": 122797,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 316
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": "2026-05-22T20:23:12.046Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XvDVHBjNmE1RYwvy7jNstC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 204 FOLIO problems\\\\n\\\\nLoading DeBERTa-large-MNLI from /root/autodl-tmp/models/deberta-large-mnli...\\\\n\\\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 10997.63it/s]\\\\n  processed 50/204\\\\n  processed 100/204\\\\n  processed 150/204\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "e49a0168-2fcb-4b2e-a783-e30831b336db",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 204 FOLIO problems\\\\n\\\\nLoading DeBERTa-large-MNLI from /root/autodl-tmp/models/deberta-large-mnli...\\\\n\\\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 10997.63it/s]\\\\n  processed 50/204\\\\n  processed 100/204\\\\n  processed 150/204\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded 204 FOLIO problems\\n\\nLoading DeBERTa-large-MNLI from /root/autodl-tmp/models/deberta-large-mnli...\\n\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 10997.63it/s]\\n  processed 50/204\\n  processed 100/204\\n  processed 150/204\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TyeR3Sznp6Fus3qt9P5kbm",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16639",
+                "command": "tail -40 /tmp/folio_combo_d061.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "b8a07355-30e9-4412-9fd3-ea4dd6ac2f60",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DGPgRyieP86TaywPnwKYq8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 311,
+                "cache_read_input_tokens": 123113,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 311
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000200"
+        },
+        {
+          "source_line": 201,
+          "timestamp": "2026-05-22T20:23:16.238Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TyeR3Sznp6Fus3qt9P5kbm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 204 FOLIO problems\\\\n\\\\nLoading DeBERTa-large-MNLI from /root/autodl-tmp/models/deberta-large-mnli...\\\\n\\\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 10997.63it/s]\\\\n  processed 50/204\\\\n  processed 100/204\\\\n  processed 150/204\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "7d2be1f2-66a8-41ce-bf5f-eb39ac2983da",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 204 FOLIO problems\\\\n\\\\nLoading DeBERTa-large-MNLI from /root/autodl-tmp/models/deberta-large-mnli...\\\\n\\\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 10997.63it/s]\\\\n  processed 50/204\\\\n  processed 100/204\\\\n  processed 150/204\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded 204 FOLIO problems\\n\\nLoading DeBERTa-large-MNLI from /root/autodl-tmp/models/deberta-large-mnli...\\n\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 10997.63it/s]\\n  processed 50/204\\n  processed 100/204\\n  processed 150/204\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000201"
+        },
+        {
+          "source_line": 202,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SHFmAvWN8f6fC1YojgYQwt",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16639",
+                "command": "tail -50 /tmp/folio_combo_d061.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "7f93e081-2c62-4711-8ddd-ca677e44de5f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JJ7neCRuPSA7odAHiTnAGH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 311,
+                "cache_read_input_tokens": 123424,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 311
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000202"
+        },
+        {
+          "source_line": 203,
+          "timestamp": "2026-05-22T20:23:24.054Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SHFmAvWN8f6fC1YojgYQwt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 204 FOLIO problems\\\\n\\\\nLoading DeBERTa-large-MNLI from /root/autodl-tmp/models/deberta-large-mnli...\\\\n\\\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 10997.63it/s]\\\\n  processed 50/204\\\\n  processed 100/204\\\\n  processed 150/204\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "c7a48d4d-a943-4c19-89cc-5c6011c1fc34",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 204 FOLIO problems\\\\n\\\\nLoading DeBERTa-large-MNLI from /root/autodl-tmp/models/deberta-large-mnli...\\\\n\\\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 10997.63it/s]\\\\n  processed 50/204\\\\n  processed 100/204\\\\n  processed 150/204\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded 204 FOLIO problems\\n\\nLoading DeBERTa-large-MNLI from /root/autodl-tmp/models/deberta-large-mnli...\\n\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 10997.63it/s]\\n  processed 50/204\\n  processed 100/204\\n  processed 150/204\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000203"
+        },
+        {
+          "source_line": 204,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0157hswV8eN5PZXr5x6y7tMd",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16639",
+                "command": "cat /tmp/folio_combo_d061.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "0ce52fa4-89fb-407a-93c9-295ffed8c77b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JrukTH4nwiBSKWHxTyZ295",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 311,
+                "cache_read_input_tokens": 123735,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 311
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000204"
+        },
+        {
+          "source_line": 205,
+          "timestamp": "2026-05-22T20:23:30.253Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0157hswV8eN5PZXr5x6y7tMd",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 204 FOLIO problems\\\\n\\\\nLoading DeBERTa-large-MNLI from /root/autodl-tmp/models/deberta-large-mnli...\\\\n\\\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 10997.63it/s]\\\\n  processed 50/204\\\\n  processed 100/204\\\\n  processed 150/204\\\\n  processed 200/204\\\\n\\\\nDeBERTa-large-MNLI zero-shot on FOLIO: 101/204 = 49.51%\\\\nInference time: 58.0s (0.284s/sample)\\\\nNLI pred distribution: {'False': 99, 'True': 83, 'Unknown': 22}\\\\nGold distribution: {'False': 63, 'True': 72, 'Unknown': 69}\\\\n\\\\n==================================================================================================================================\\\\nModel                  SC(D061)        NLI   combo_w1      Dw1        pw1   combo_w3      Dw3        pw3   combo_w5      Dw5        pw5\\\\n==================================================================================================================================\\\\nMistral-7B                55.88      49.51      56.37    +0.49     1.0000      58.82    +2.94     0.2101      59.80    +3.92     0.2005\\\\nLLaMA-3.1-8B              66.18      49.51      65.69    -0.49     1.0000      65.20    -0.98     0.8238      64.22    -1.96     0.6076\\\\nQwen2.5-14B               75.98      49.51      76.96    +0.98     0.5000      75.49    -0.49     1.0000      73.53    -2.45     0.1797\\\\nQwen3-14B                 83.33      49.51      83.33    +0.00     1.0000      84.80    +1.47     0.2500      83.33    +0.00     1.0000\\\\n\\\\nSaved to /root/symb_invariant_consensus/results/folio_zeroshot_nli_combo_d061.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "59d890e0-8a98-4e54-842f-2212abb91ba3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 204 FOLIO problems\\\\n\\\\nLoading DeBERTa-large-MNLI from /root/autodl-tmp/models/deberta-large-mnli...\\\\n\\\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 10997.63it/s]\\\\n  processed 50/204\\\\n  processed 100/204\\\\n  processed 150/204\\\\n  processed 200/204\\\\n\\\\nDeBERTa-large-MNLI zero-shot on FOLIO: 101/204 = 49.51%\\\\nInference time: 58.0s (0.284s/sample)\\\\nNLI pred distribution: {'False': 99, 'True': 83, 'Unknown': 22}\\\\nGold distribution: {'False': 63, 'True': 72, 'Unknown': 69}\\\\n\\\\n==================================================================================================================================\\\\nModel                  SC(D061)        NLI   combo_w1      Dw1        pw1   combo_w3      Dw3        pw3   combo_w5      Dw5        pw5\\\\n==================================================================================================================================\\\\nMistral-7B                55.88      49.51      56.37    +0.49     1.0000      58.82    +2.94     0.2101      59.80    +3.92     0.2005\\\\nLLaMA-3.1-8B              66.18      49.51      65.69    -0.49     1.0000      65.20    -0.98     0.8238      64.22    -1.96     0.6076\\\\nQwen2.5-14B               75.98      49.51      76.96    +0.98     0.5000      75.49    -0.49     1.0000      73.53    -2.45     0.1797\\\\nQwen3-14B                 83.33      49.51      83.33    +0.00     1.0000      84.80    +1.47     0.2500      83.33    +0.00     1.0000\\\\n\\\\nSaved to /root/symb_invariant_consensus/results/folio_zeroshot_nli_combo_d061.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded 204 FOLIO problems\\n\\nLoading DeBERTa-large-MNLI from /root/autodl-tmp/models/deberta-large-mnli...\\n\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 10997.63it/s]\\n  processed 50/204\\n  processed 100/204\\n  processed 150/204\\n  processed 200/204\\n\\nDeBERTa-large-MNLI zero-shot on FOLIO: 101/204 = 49.51%\\nInference time: 58.0s (0.284s/sample)\\nNLI pred distribution: {'False': 99, 'True': 83, 'Unknown': 22}\\nGold distribution: {'False': 63, 'True': 72, 'Unknown': 69}\\n\\n==================================================================================================================================\\nModel                  SC(D061)        NLI   combo_w1      Dw1        pw1   combo_w3      Dw3        pw3   combo_w5      Dw5        pw5\\n==================================================================================================================================\\nMistral-7B                55.88      49.51      56.37    +0.49     1.0000      58.82    +2.94     0.2101      59.80    +3.92     0.2005\\nLLaMA-3.1-8B              66.18      49.51      65.69    -0.49     1.0000      65.20    -0.98     0.8238      64.22    -1.96     0.6076\\nQwen2.5-14B               75.98      49.51      76.96    +0.98     0.5000      75.49    -0.49     1.0000      73.53    -2.45     0.1797\\nQwen3-14B                 83.33      49.51      83.33    +0.00     1.0000      84.80    +1.47     0.2500      83.33    +0.00     1.0000\\n\\nSaved to /root/symb_invariant_consensus/results/folio_zeroshot_nli_combo_d061.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000205"
+        },
+        {
+          "source_line": 206,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The FOLIO combo results are complete. Let me summarize:\n\n**DeBERTa-large-MNLI zero-shot on FOLIO**: 49.51% (101/204) - barely above random for a 3-class task (33.3%). The prediction distribution is very skewed: 99 False, 83 True, 22 Unknown. Gold is more balanced: 63F, 72T, 69U. So the model massively under-predicts \"Unknown\".\n\n**FOLIO combo results (with D061 tiebreaking):**\n\n| Model | SC(D061) | combo w=1 | Δ | p | combo w=3 | Δ | p | combo w=5 | Δ | p |\n\n\n|-------|---------|-----------|---|---|-----------|---|---|-----------|---|---|\n| Mistral-7B | 55.88% | 56.37% | +0.49 | 1.000 | 58.82% | +2.94 | 0.210 | 59.80% | +3.92 | 0.200 |\n| LLaMA-3.1-8B | 66.18% | 65.69% | -0.49 | 1.000 | 65.20% | -0.98 | 0.824 | 64.22% | -1.96 | 0.608 |\n| Qwen2.5-14B | 75.98% | 76.96% | +0.98 | 0.500 |\n\nGenerating results table...\n\nThe DeBERTa-large-MNLI model shows a significant performance gap between FOLIO and ProofWriter datasets, likely because FOLIO contains more varied natural language premises that don't align as well with the model's training. Looking at the combined approach results, none of the improvements reach statistical significance—the zero-shot NLI component just isn't strong enough to provide meaningful gains to the semantic composition baseline.\n\nInterestingly, Mistral-7B achieves the best combo improvement at +3.92 percentage points when weighted at 5, which fits the pattern that weaker semantic composition models benefit more from external signals, though this improvement still doesn't reach significance. In contrast, the stronger models like LLaMA, Qwen2.5, and Qwen3 either see no benefit or actually perform worse when combining approaches.\n\nI'm also noticing some discrepancies between the reported scores and what I'm seeing in the combo results—Qwen2.5-14B shows 75.98% on FOLIO D061 rather than the 75.49% from the main table, and Qwen3-14B shows 83.33% instead of 84.80%. These differences suggest I need to verify the baseline scores before finalizing the summary. Looking at the Qwen3-14B results more carefully, the stored and D061 values both show 83.33%, but Table 1 lists 84.80% for the SC column—which actually matches the SICA accuracy from the summary. This suggests the table might have mixed up the SC and SICA values, or the exp_folio_2x2_qwen3 file isn't the actual source for these numbers. I've identified the discrepancy—the Table 1 entry appears to be mixing metrics, likely showing SICA instead of SC for the Qwen3-14B FOLIO result. Now I'm ready to put together the complete analysis.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "09040635-cb98-4c1c-af72-7388beba7fd4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Nr2uhaBtAYdA1AuNZXV5sq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 764,
+                "cache_read_input_tokens": 124046,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 764
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000206"
+        },
+        {
+          "source_line": 207,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Let me compile the complete summary.\n\n---\n\n## Part 1: Table 1 D061 SC 重算结果\n\n### 已确认使用 D061 的条目（无需修改）\n\n| Model × Dataset | Stored SC | D061 SC | Table 1 SC | Match? |\n|---|---|---|---|---|\n| Mistral-7B × FOLIO (default) | 54.41% | 55.88% | 55.88% | ✓ D061 |\n| Mistral-7B × FOLIO (s123) | 53.92% | 54.41% | 54.41% | ✓ D061 |\n| Mistral-7B × FOLIO (s456) | 56.37% | 55.88% | 55.88% | ✓ D061 |\n| Qwen2.5-14B × PW-D5 | 73.50% | 74.00% | 74.00% | ✓ D061 |\n| LLaMA-8B × FOLIO | 66.18% | 66.18% | 66.18% | ✓ 无tie变化 |\n\n### ⚠️ 需要更新的条目（Table 1 仍使用 stored SC）\n\n**1. Mistral-7B × LogiQA (7 samples affected)**\n- SC: 51.00% → **50.00%**\n- SICA: 51.50% (不变)\n- Δ: +0.50 → **+1.50pp**\n- p: 1.000 → **0.581**\n\n**2. Qwen2.5-14B × LogiQA (1 sample affected)**\n- SC: 78.50% → **79.00%**\n- SICA: 78.00% (不变)\n- Δ: -0.50 → **-1.00pp**\n- p: 1.000 → **0.625**\n\n**3. Qwen3-14B × PW-D5 (9 samples affected)** ← 方向翻转！\n- SC: 85.00% → **85.83%**\n- SICA: 85.67% (不变)\n- Δ: **+0.67 → -0.17pp** (正变负)\n- p: 1.000 → 1.000\n\n### ⚠️ 存在 discrepancy 的条目\n\n**Qwen2.5-14B × FOLIO**\n- Stored=77.45%, D061=75.98%, Table=75.49%（都不match）\n- SICA: stored=75.49%, Table=74.51%（也不match）\n- exp036 文件数据和 Table 1 数值不一致，差 1 sample\n\n**Qwen3-14B × FOLIO**\n- Stored=83.33%, D061=83.33% (无tie变化), Table=84.80%\n- Table 的 \"SC=84.80%\" 实际上等于 exp_folio_2x2_qwen3 的 **SICA** accuracy\n- 疑似 SC/SICA 列值填反\n\n### 无法验证的条目（文件不在 westd-16639）\n\n| Entry | Table SC | Status |\n|---|---|---|\n| Mistral-7B × PW-D5 | 39.33% | 所有 multi_seed PW 均不匹配 |\n| Mistral-7B × FOLIO (s789) | 54.41% | multi_seed=59.31%, 不匹配 |\n| LLaMA-8B × StrategyQA | 72.00% | 文件不存在 |\n| Qwen2.5-14B × FOLIO ICL | 74.37% | 文件不存在 |\n| Qwen2.5-7B × FOLIO | 75.98% | 文件不存在 |\n| Degenerate entries | — | 文件不存在 |\n\n---\n\n## Part 2: FOLIO zero-shot DeBERTa combo D061 结果\n\n**DeBERTa-large-MNLI zero-shot standalone**: 49.51% (101/204)\n- 预测分布严重偏移：False=99, True=83, Unknown=22 (gold: F=63, T=72, U=69)\n\n| Model × FOLIO | SC(D061) | combo w=1 | Δ | p | combo w=3 | Δ | p | combo w=5 | Δ | p |\n|---|---|---|---|---|---|---|---|---|---|---|\n| Mistral-7B | 55.88% | 56.37% | +0.49 | 1.000 | 58.82% | +2.94 | 0.210 | 59.80% | +3.92 | 0.201 |\n| LLaMA-3.1-8B | 66.18% | 65.69% | -0.49 | 1.000 | 65.20% | -0.98 | 0.824 | 64.22% | -1.96 | 0.608 |\n| Qwen2.5-14B | 75.98% | 76.96% | +0.98 | 0.500 | 75.49% | -0.49 | 1.000 | 73.53% | -2.45 | 0.180 |\n| Qwen3-14B | 83.33% | 83.33% | +0.00 | 1.000 | 84.80% | +1.47 | 0.250 | 83.33% | +0.00 | 1.000 |\n\n**所有 combo 均不显著**（p > 0.05）。零样本 NLI (49.51%) 太弱，无法改善 FOLIO 上的 SC。\n\n---\n\n## 总结\n\n**必须更新 Table 1 的 3 行：**\n1. Mistral-7B × LogiQA: SC 51.00→50.00, Δ +0.50→+1.50\n2. Qwen2.5-14B × LogiQA: SC 78.50→79.00, Δ -0.50→-1.00\n3. Qwen3-14B × PW-D5: SC 85.00→85.83, **Δ 从 +0.67 翻转为 -0.17**\n\n**需要排查的 2 行：**\n1. Qwen2.5-14B × FOLIO: Table 数值和 exp036 数据不一致\n2. Qwen3-14B × FOLIO: 疑似 SC/SICA 列填反\n\n结果已保存到 `results/folio_zeroshot_nli_combo_d061.json`。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "uuid": "8f4fe07b-cb5f-49ee-a3ac-9c27dd280478",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Nr2uhaBtAYdA1AuNZXV5sq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 764,
+                "cache_read_input_tokens": 124046,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 764
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000207"
+        },
+        {
+          "source_line": 208,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Let me compile the complete summary.\n\n---\n\n## Part 1: Table 1 D061 SC 重算结果\n\n### 已确认使用 D061 的条目（无需修改）\n\n| Model × Dataset | Stored SC | D061 SC | Table 1 SC | Match? |\n|---|---|---|---|---|\n| Mistral-7B × FOLIO (default) | 54.41% | 55.88% | 55.88% | ✓ D061 |\n| Mistral-7B × FOLIO (s123) | 53.92% | 54.41% | 54.41% | ✓ D061 |\n| Mistral-7B × FOLIO (s456) | 56.37% | 55.88% | 55.88% | ✓ D061 |\n| Qwen2.5-14B × PW-D5 | 73.50% | 74.00% | 74.00% | ✓ D061 |\n| LLaMA-8B × FOLIO | 66.18% | 66.18% | 66.18% | ✓ 无tie变化 |\n\n### ⚠️ 需要更新的条目（Table 1 仍使用 stored SC）\n\n**1. Mistral-7B × LogiQA (7 samples affected)**\n- SC: 51.00% → **50.00%**\n- SICA: 51.50% (不变)\n- Δ: +0.50 → **+1.50pp**\n- p: 1.000 → **0.581**\n\n**2. Qwen2.5-14B × LogiQA (1 sample affected)**\n- SC: 78.50% → **79.00%**\n- SICA: 78.00% (不变)\n- Δ: -0.50 → **-1.00pp**\n- p: 1.000 → **0.625**\n\n**3. Qwen3-14B × PW-D5 (9 samples affected)** ← 方向翻转！\n- SC: 85.00% → **85.83%**\n- SICA: 85.67% (不变)\n- Δ: **+0.67 → -0.17pp** (正变负)\n- p: 1.000 → 1.000\n\n### ⚠️ 存在 discrepancy 的条目\n\n**Qwen2.5-14B × FOLIO**\n- Stored=77.45%, D061=75.98%, Table=75.49%（都不match）\n- SICA: stored=75.49%, Table=74.51%（也不match）\n- exp036 文件数据和 Table 1 数值不一致，差 1 sample\n\n**Qwen3-14B × FOLIO**\n- Stored=83.33%, D061=83.33% (无tie变化), Table=84.80%\n- Table 的 \"SC=84.80%\" 实际上等于 exp_folio_2x2_qwen3 的 **SICA** accuracy\n- 疑似 SC/SICA 列值填反\n\n### 无法验证的条目（文件不在 westd-16639）\n\n| Entry | Table SC | Status |\n|---|---|---|\n| Mistral-7B × PW-D5 | 39.33% | 所有 multi_seed PW 均不匹配 |\n| Mistral-7B × FOLIO (s789) | 54.41% | multi_seed=59.31%, 不匹配 |\n| LLaMA-8B × StrategyQA | 72.00% | 文件不存在 |\n| Qwen2.5-14B × FOLIO ICL | 74.37% | 文件不存在 |\n| Qwen2.5-7B × FOLIO | 75.98% | 文件不存在 |\n| Degenerate entries | — | 文件不存在 |\n\n---\n\n## Part 2: FOLIO zero-shot DeBERTa combo D061 结果\n\n**DeBERTa-large-MNLI zero-shot standalone**: 49.51% (101/204)\n- 预测分布严重偏移：False=99, True=83, Unknown=22 (gold: F=63, T=72, U=69)\n\n| Model × FOLIO | SC(D061) | combo w=1 | Δ | p | combo w=3 | Δ | p | combo w=5 | Δ | p |\n|---|---|---|---|---|---|---|---|---|---|---|\n| Mistral-7B | 55.88% | 56.37% | +0.49 | 1.000 | 58.82% | +2.94 | 0.210 | 59.80% | +3.92 | 0.201 |\n| LLaMA-3.1-8B | 66.18% | 65.69% | -0.49 | 1.000 | 65.20% | -0.98 | 0.824 | 64.22% | -1.96 | 0.608 |\n| Qwen2.5-14B | 75.98% | 76.96% | +0.98 | 0.500 | 75.49% | -0.49 | 1.000 | 73.53% | -2.45 | 0.180 |\n| Qwen3-14B | 83.33% | 83.33% | +0.00 | 1.000 | 84.80% | +1.47 | 0.250 | 83.33% | +0.00 | 1.000 |\n\n**所有 combo 均不显著**（p > 0.05）。零样本 NLI (49.51%) 太弱，无法改善 FOLIO 上的 SC。\n\n---\n\n## 总结\n\n**必须更新 Table 1 的 3 行：**\n1. Mistral-7B × LogiQA: SC 51.00→50.00, Δ +0.50→+1.50\n2. Qwen2.5-14B × LogiQA: SC 78.50→79.00, Δ -0.50→-1.00\n3. Qwen3-14B × PW-D5: SC 85.00→85.83, **Δ 从 +0.67 翻转为 -0.17**\n\n**需要排查的 2 行：**\n1. Qwen2.5-14B × FOLIO: Table 数值和 exp036 数据不一致\n2. Qwen3-14B × FOLIO: 疑似 SC/SICA 列填反\n\n结果已保存到 `results/folio_zeroshot_nli_combo_d061.json`。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1058445,
+            "duration_api_ms": 978224,
+            "num_turns": 80,
+            "stop_reason": "end_turn",
+            "session_id": "11ccc702-e627-476f-a5de-a6db6e180e22",
+            "total_cost_usd": 3.4405617500000005,
+            "usage": {
+              "input_tokens": 48,
+              "cache_creation_input_tokens": 112969,
+              "cache_read_input_tokens": 3284235,
+              "output_tokens": 43544,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 112969,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 3212,
+                  "cache_read_input_tokens": 124046,
+                  "cache_creation_input_tokens": 764,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 764
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 3423,
+                "outputTokens": 25,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.003548,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 48,
+                "outputTokens": 43544,
+                "cacheReadInputTokens": 3284235,
+                "cacheCreationInputTokens": 112969,
+                "webSearchRequests": 0,
+                "costUSD": 3.43701375,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "68a2effd-001f-4ae1-b5e7-30d374150413"
+          },
+          "id": "event-000208"
+        }
+      ]
+    }
+  ]
+}

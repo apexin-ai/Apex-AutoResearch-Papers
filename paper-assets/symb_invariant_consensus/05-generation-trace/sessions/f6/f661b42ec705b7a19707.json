@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f661b42ec705b7a19707",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "check verify seed789 16639",
+  "task_key": "worker_check_verify-seed789-16639_20260523T204157",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_verify-seed789-16639_20260523T204157_result.json",
+    "occurrence": 1,
+    "bytes": 1130,
+    "sha256": "afbc6881211066eb06c10eb5ad5fb247df4685fae0713a5a70dbdc8f60e6a84b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### ProofWriter seed789 (`llama8b_pw_seed789`)\n\n| 项目 | 值 |\n|------|-----|\n| 路径 | `/root/symb_invariant_consensus/results/multi_seed/llama8b_pw_seed789/results.json` |\n| 完整性 | **600/600** ✓ (problem_idx 0–599) |\n| SC | **71.17%** |\n| SICA | **66.17%** |\n| Δ (SICA−SC) | **−5.0pp** |\n| k | 12 |\n| wall_time | 42744s (~11.9h) |\n| intermediates | 无（目录仅含 results.json，但 per_problem 数据完整） |\n| tiebreaking | 结果文件中无显式字段，无法直接判断 |\n\n### FOLIO seed789 (`llama8b_folio_seed789`，附带发现)\n\n| 项目 | 值 |\n|------|-----|\n| 路径 | `/root/symb_invariant_consensus/results/multi_seed/llama8b_folio_seed789/results.json` |\n| 完整性 | **204/204** ✓ (results.json 中 per_problem 完整) |\n| SC | **67.16%** |\n| SICA | **68.14%** |\n| Δ (SICA−SC) | **+0.98pp** |\n| k | 12 |\n| intermediates | 189 个文件 (folio_0–folio_188)，缺 folio_189–folio_203，但 results.json 已包含全部 204 条 |\n\nPW seed789 SICA 低于 SC 5个点，与其他 seed 的表现趋势是否一致需要对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-verify-seed789-16639.md"
+}

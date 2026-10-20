@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb86eee5ef42a4fc0fcb",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra exp 034 monitor cron",
+  "task_key": "worker_infra_exp-034-monitor-cron_20260518T211028",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_exp-034-monitor-cron_20260518T211028_result.json",
+    "occurrence": 1,
+    "bytes": 766,
+    "sha256": "5b82cbd56644089c2be612c6e28ce6574cf6fc6512403ecfcbc96f85bdb1d3fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 监控已注册（每小时 :17 触发，session-only）。\n\n**汇总：**\n\n| 项目 | 值 |\n|---|---|\n| 进度 | **180/600** |\n| tmux session | `exp034_run` |\n| Python PID | **69808** |\n| VLLM PID | **68846** (cuda:1, 88230MiB, 98% util) |\n| 模型 | Qwen2.5-14B-Instruct |\n| avg 速度 | 67.7s/问题 |\n| ETA | ~475 min (~**7.9 小时**，约 13:05 UTC) |\n| cron job | `e820d976`，每小时 :17 检查 |\n\n**问题：** Registry 状态机卡住——从 ANALYZING(failed) 尝试恢复到 RUNNING 时，经过 DONE→DEPLOYING→DEPLOYED 后 DEPLOYED 没有合法的出向转移，当前停留在 DEPLOYED。notes 已更新记录实际运行状态。如需彻底修复 registry 状态，可能需要直接编辑 registry 文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp-034-monitor-cron.md"
+}

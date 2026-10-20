@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92dd98cc0625d21d8324",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "download mistral 7b westd16639",
+  "task_key": "worker_download_mistral-7b-westd16639_20260518T140611",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_download_mistral-7b-westd16639_20260518T140611_result.json",
+    "occurrence": 1,
+    "bytes": 1061,
+    "sha256": "da7c21b3ccda694a2a3fb5449264a47b263f33d02706e0b09a6ca65068ca152e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "flashinfer_cubin (295.2 MB) 正在下载 - vllm 安装最后一个大包。模型下载仍然慢 (97 MB / 13500 MB)。\n\n**当前状态总结：**\n\n### 已完成\n- **服务器信息 (Task 3)**: 4x NVIDIA RTX PRO 6000 Blackwell (98GB VRAM each), 1TB RAM, Ubuntu 22.04.5, CUDA 13.0\n- **Python 依赖 (部分)**: z3-solver 4.16.0.0, transformers 5.8.1, accelerate 1.13.0, huggingface_hub 1.15.0 已装\n- **磁盘**: /root 30GB, /root/autodl-tmp 350GB\n\n### 进行中\n- **vllm**: 安装中，正下载 flashinfer_cubin (295.2 MB)，预计 ~10 分钟完成\n- **Mistral-7B-Instruct-v0.3**: 97 MB / ~13.5 GB (0.7%)。极慢，因为后台有 Qwen2.5-14B-Instruct 下载脚本 (`/root/download_qwen25.sh`) 占了绝大部分带宽 (~15 MB/s)。我们的 wget 下载只分到 ~0.1 MB/s\n\n### 瓶颈\n`download_qwen25.sh` 在后台下载 Qwen2.5-14B-Instruct（当前 21G/~28G），抢占了几乎全部带宽。等 Qwen 完成后 Mistral 下载会加速到 ~15 MB/s（约 15 分钟内完成）。\n\n要继续等还是要我杀掉 Qwen 下载？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/download-mistral-7b-westd16639.md"
+}

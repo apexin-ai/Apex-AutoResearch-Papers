@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "73f866eca2cc9c66b293",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "audit 7549 cascade",
+  "task_key": "worker_audit_7549-cascade_20260522T204325",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_7549-cascade_20260522T204325.log",
+    "occurrence": 1,
+    "bytes": 677099,
+    "sha256": "3634fd109e9ed44bd46ae2320385c8bfb03ba578baf2a0ee0cdc44f03eaddfb0"
+  },
+  "statistics": {
+    "messages": 235,
+    "user_turns": 0,
+    "tool_calls": 90,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 51,
+      "tool_call": 90,
+      "tool_result": 90,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 235,
+      "chunks": [
+        {
+          "path": "73f866eca2cc9c66b293-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "73f866eca2cc9c66b293-part-0002.json",
+          "message_count": 55
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-7549-cascade.md"
+}

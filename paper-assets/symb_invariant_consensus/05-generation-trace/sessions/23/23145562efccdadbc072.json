@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23145562efccdadbc072",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code temperature ablation",
+  "task_key": "worker_code_temperature-ablation_20260517T134633",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_temperature-ablation_20260517T134633_result.json",
+    "occurrence": 1,
+    "bytes": 632,
+    "sha256": "dc1c214304017825ce25e591b9e34fe5cd422a6866889e36463c47da8dbebea8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行正常，所有请求返回 200 OK。K=12 traces 分 3 batch（4 per batch）生成中。\n\n**实验已成功提交并运行：**\n\n| 项目 | 详情 |\n|------|------|\n| 脚本 | `scripts/run_temperature_ablation.sh` |\n| 修复 | `--max-model-len` 从 4096 改为 8192 |\n| tmux session | `temp_ablation` |\n| 三个 T | 0.3 → 0.5 → 1.0 串行执行 |\n| 输出 | `results/temperature_ablation/temperature_ablation_T{0.3,0.5,1.0}_results.json` |\n| Registry | 三个条目均已标记 RUNNING |\n| 日志 | `/tmp/temperature_ablation.log` |\n| 预计时长 | ~3h（每个 T 约 1h，60 题 × K=12） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-temperature-ablation.md"
+}

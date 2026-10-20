@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "f07724a58ffb2aab73bc",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "viz fig1 pipeline pb v2",
+  "task_key": "worker_viz_fig1-pipeline-pb-v2_20260524T094102",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_viz_fig1-pipeline-pb-v2_20260524T094102_result.json",
+    "occurrence": 1,
+    "bytes": 2112140,
+    "sha256": "e6e13ca3961fa9f3fb4611d951082f0b8954a3de3ba9d5d1d51d1938ab89cc03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2142084,
+                "serialized_sha256": "ce3b3ae98daf88dc6bfa10eaea558ee01eba51e004c36830f1fc82f60e32abe4",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig1-pipeline-pb-v2.md"
+}

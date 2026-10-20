@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c1af86f7f5ffafb1e3c",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code qwen3 tiebreaking fix",
+  "task_key": "worker_code_qwen3-tiebreaking-fix_20260524T112203",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_qwen3-tiebreaking-fix_20260524T112203_result.json",
+    "occurrence": 1,
+    "bytes": 1816,
+    "sha256": "aa73879ec031ae7dba2a1a2fb4ce80ade9eeff6f608c88b5fe69a69c560ca324"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n---\n\n## Part 1: Tiebreaking 代码对比结论\n\n`run_full_mvp.py` 和 `run_cross_dataset_replication.py` **调用同一个** `SelfConsistency().run()` 方法（`baselines/self_consistency.py`）。当前实现用 `max(sorted(groups.keys()), key=...)` — 即 **alphabetical tiebreaking**。\n\n差异不在两个脚本之间，而是在 `SelfConsistency` 类的**修改前后**。旧版使用插入序（非确定性），后被修复为 alphabetical。`_fix_tiebreaking.py` 和 `sc_tiebreak_revalidation.py` 的存在佐证了这一修复历史。\n\n## Part 2: 其他模型多种子验证\n\n| 模型 | 数据集 | Seeds | Tiebreaking | 状态 |\n|------|--------|-------|-------------|------|\n| Mistral-7B | PW | 42/123/456/789 | ALPHABETICAL | 全部正确 |\n| LLaMA-8B | PW | 42/123/456/789 | ALPHABETICAL | 全部正确（seed42 n=223, seed456 n=184 不完整但 tiebreaking 正确）|\n| Qwen2.5-14B | PW | 123/456/789 | ALPHABETICAL | 全部正确 |\n| **Qwen3-14B** | PW | 123/456/789 | ALPHABETICAL | **全部正确，0 mismatch** |\n| **Qwen3-14B** | PW | 42 (exp033) | **MISMATCH** | **9 个 tie 选错** |\n\n## Part 3: 修正脚本 + 试运行结果\n\n`/root/symb_invariant_consensus/fix_qwen3_tiebreaking.py` 已就绪。\n\n**exp033 (Qwen3 seed42) 试运行结果**：\n- 9 个 question 的 SC answer 变化（全部是 6:6 tie，旧版选了 Unknown，alphabetical 选 False/True）\n- SC: 85.00% → **85.83%** (+0.83pp)\n- SICA: 85.67%（不变）\n- Δ(SICA-SC): +0.67pp → **-0.17pp**\n- 7 个 GAINED, 2 个 LOST\n\n**Qwen3 多种子 (seed123/456/789): 0 个变化，无需修正。**\n\n核心结论：Reviewer 的 concern 只影响 exp033 (seed42)。三个多种子实验在 `SelfConsistency` 修复后运行，已经是 alphabetical。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen3-tiebreaking-fix.md"
+}

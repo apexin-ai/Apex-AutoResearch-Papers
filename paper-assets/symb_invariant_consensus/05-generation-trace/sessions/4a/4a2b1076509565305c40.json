@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a2b1076509565305c40",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis wild1 max unsat",
+  "task_key": "worker_analysis_wild1-max-unsat_20260520T072215",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_wild1-max-unsat_20260520T072215_result.json",
+    "occurrence": 1,
+    "bytes": 1420,
+    "sha256": "bc4971e54726eb80696f178722352081a8308fadb388c26f1b08a04d2e14525c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n```\nMethod                        Acc      N   Δ vs SC   Δ vs MAXSAT\n──────────────────────────────────────────────────────────────────\nSC (majority vote)           54.4%   111     ---         ---\nMAX-SAT (current SICA)       55.9%   114   +1.5pp       ---\nMIN-UNSAT-raw                49.5%   101   -4.9pp      -6.4pp\nMIN-UNSAT-weighted           49.0%   100   -5.4pp      -6.9pp\nMAX-SAT-discrim-only         55.9%   114   +1.5pp      +0.0pp\n\nTrivially satisfied: 371/7767 (4.8%)\n```\n\n**MIN-UNSAT 假设被否定。** 核心原因：MAX-SAT solver 每个问题平均只排除 1.3 条约束（80/204 题排除数为 0）。信号太弱——65/204 题所有候选答案 MIN-UNSAT 得分相同（退化为 SC），剩余有差异的情况中也倾向于选错。\n\n去除 trivially satisfied 约束也无效——实际只有 4.8%（非假设的 43%），对分数排序零影响。\n\n注意：re-run MAX-SAT（55.9%）低于原始 SICA（59.3%），因 z3 dedup 顺序敏感性导致 15/204 题约束集略有差异。各方法间的相对比较在同一约束集上，是公平的。\n\n服务器结果：`/root/symb_invariant_consensus/results/wild1_max_unsat/results.json`\n本地 artifact：已注册为 `art_20260520_7451a6`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-wild1-max-unsat.md"
+}

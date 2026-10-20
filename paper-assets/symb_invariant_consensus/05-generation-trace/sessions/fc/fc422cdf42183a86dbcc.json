@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "fc422cdf42183a86dbcc",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "paper page compression",
+  "task_key": "worker_paper_page-compression_20260524T123654",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_page-compression_20260524T123654.log",
+    "occurrence": 1,
+    "bytes": 692526,
+    "sha256": "bc8e775bd32a79d801973ef2e1a26f8e0811dbf0563e9e32fd463de7579c2442"
+  },
+  "statistics": {
+    "messages": 164,
+    "user_turns": 0,
+    "tool_calls": 61,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 37,
+      "tool_call": 61,
+      "tool_result": 61,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 164,
+      "chunks": [
+        {
+          "path": "fc422cdf42183a86dbcc-part-0001.json",
+          "message_count": 114
+        },
+        {
+          "path": "fc422cdf42183a86dbcc-part-0002.json",
+          "message_count": 50
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-page-compression.md"
+}

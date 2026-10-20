@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9948c8f425c64621c2a8",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diagnosis qwen3 pw seed456",
+  "task_key": "worker_diagnosis_qwen3-pw-seed456_20260524T112631",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnosis_qwen3-pw-seed456_20260524T112631_result.json",
+    "occurrence": 1,
+    "bytes": 546,
+    "sha256": "073e3b126da8c89f92ecad842f4b513bfa66eb74271cee1c34080926560d8011"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n## 结论：**success**\n\n| 指标 | 值 |\n|------|-----|\n| SC accuracy | 84.50% (507/600) |\n| SICA accuracy | 86.83% (521/600) |\n| Δ(SICA-SC) | **+2.33pp** |\n| n_questions | 600 |\n| extraction_rate | 99.6% |\n| contradiction_rate | 0.42% |\n| wall_time | 17.3h |\n\n注意：SC 值可能受 `Counter.most_common()` tiebreaking 影响（已知 run_full_mvp.py 问题），已在 metrics note 中记录。\n\n已完成：\n- Registry → DONE, conclusion=success, metrics 已记录\n- Cron 监控已删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-qwen3-pw-seed456.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2cc78c99264eb1db0cbb",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra exp058 deploy",
+  "task_key": "worker_infra_exp058-deploy_20260519T031050",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_exp058-deploy_20260519T031050_result.json",
+    "occurrence": 1,
+    "bytes": 580,
+    "sha256": "a224cebadec6cdda4f5b80554c7fd390cff2bce0748becad777d2382052d3951"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n**Phase 1 — Kill 遗留进程**\n- cuda:3 上原运行 **Qwen3-14B** vLLM (PID 99897/100181, port 8003)，属于 `exp028b` tmux session\n- 已 kill tmux session `exp028b`，cuda:3 释放至 0MiB\n\n**Phase 2 — 部署 exp-058**\n- vLLM: Mistral-7B-Instruct-v0.3，cuda:3，port 8003，tmux session `exp058_vllm`\n- 实验: T=0.5, k=12, FOLIO-204, seed=42，tmux session `exp058_run`，已在活跃发送请求\n- 输出: `results/exp058_mistral_folio204_t05/exp058_results.json`\n- Registry: `exp-058-mistral-folio204-t05` → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp058-deploy.md"
+}

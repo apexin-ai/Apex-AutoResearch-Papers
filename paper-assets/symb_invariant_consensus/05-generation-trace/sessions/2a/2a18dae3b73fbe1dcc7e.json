@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a18dae3b73fbe1dcc7e",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code trace optim data",
+  "task_key": "worker_code_trace-optim-data_20260515T093902",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_trace-optim-data_20260515T093902_result.json",
+    "occurrence": 1,
+    "bytes": 1498,
+    "sha256": "e635dcb1f39b6052d4b6f8d3c952f29825ad1d980f474fda9627b4adcdefc827"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n### 1. trace_generator.py — n=K 改动\n\n- `VLLMGenerator.generate()` 优先使用 `n=k` 参数一次请求生成 K 条 completion（`_generate_n_batch`），vLLM 内部 batch 处理比多次请求高效得多\n- 如果 API 不支持 `n` 参数（抛异常），自动 fallback 到原来的 asyncio 并发模式（`_generate_async_fallback`）\n- `APIGenerator.generate()` 也加了 retry\n\n### 2. 重试逻辑添加位置\n\n| 位置 | 重试方式 |\n|------|---------|\n| `VLLMGenerator._generate_n_batch()` | 3 次 exponential backoff（API 调用） |\n| `APIGenerator.generate()` 每次循环 | 3 次 exponential backoff（API 调用） |\n| `VLLMBackend.call()` | 3 次 exponential backoff（API 调用） |\n| `APIBasedLLM.call()` | 3 次 exponential backoff（API 调用） |\n| `ConstraintExtractor.extract()` | JSON 解析失败时重新提取，最多 2 次 |\n| `ConstraintExtractor.extract_batch()` | 批量结果中解析失败的条目 fallback 到单条 extract（含重试） |\n\n### 3. ProofWriter 数据\n\n- 来源：CRD 项目已有的 `/root/autodl-tmp/crdd/data/proofwriter/proofwriter-OWA-D5-validation.jsonl`（600 条）\n- 分布：True 4 题、False 3 题、Unknown 3 题（原始数据集均匀分布 200/200/200）\n- 保存：`data/proofwriter_subset.json`，格式与 math500_subset.json 一致\n\n### 4. Mock 端到端测试\n\n通过。50 题 k=3 正常运行，extraction rate 100%，pipeline 各阶段无报错。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-trace-optim-data.md"
+}

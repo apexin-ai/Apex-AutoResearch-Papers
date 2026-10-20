@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "5b89c2a19329b616b273",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "download deepseek r1 llama 8b",
+  "task_key": "worker_download_deepseek-r1-llama-8b_20260516T065515",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_download_deepseek-r1-llama-8b_20260516T065515.log",
+    "occurrence": 1,
+    "bytes": 1249531,
+    "sha256": "24b36129944ca0448c3e675264d1976e357d94c7cc54d0144ead94db4f5df540"
+  },
+  "statistics": {
+    "messages": 900,
+    "user_turns": 1,
+    "tool_calls": 380,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "record": 1,
+      "assistant": 128,
+      "tool_call": 380,
+      "tool_result": 380,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 763,
+      "chunks": [
+        {
+          "path": "5b89c2a19329b616b273-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5b89c2a19329b616b273-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "5b89c2a19329b616b273-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "5b89c2a19329b616b273-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "5b89c2a19329b616b273-part-0005.json",
+          "message_count": 43
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 137,
+      "chunks": [
+        {
+          "path": "5b89c2a19329b616b273-part-0005.json",
+          "message_count": 137
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/download-deepseek-r1-llama-8b.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "927d5f15ba29a7fb90ec",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra env probe setup",
+  "task_key": "worker_infra_env-probe-setup_20260515T084922",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_env-probe-setup_20260515T084922_result.json",
+    "occurrence": 1,
+    "bytes": 1241,
+    "sha256": "af99f9bb984525744f06a1d7aff4cbf3e80e84d5a66383c9a94adefc4f2d3bee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ModelScope 正在下载，速度 1.5-3 MB/s，已下载 831MB。QwQ-32B 约 65GB，预计下载需要较长时间。\n\n以下是当前已完成的全部环境搭建和数据准备的汇报：\n\n---\n\n### 产出汇报\n\n| 项目 | 结果 |\n|------|------|\n| **GPU** | NVIDIA RTX PRO 6000 Blackwell Server Edition, **98GB VRAM** |\n| **CUDA** | 12.8 (nvcc V12.8.93) |\n| **Python 环境策略** | **conda** (`/root/miniconda3`, Python 3.12.3, base 环境) |\n| **核心依赖** | 全部已装：z3-solver 4.15.4, sympy 1.14.0, datasets 4.8.4 ✅ |\n| **ML 依赖** | torch 2.11.0+cu130, transformers 5.8.1, accelerate 1.13.0 ✅ |\n| **vllm** | 已安装 v0.20.2 ✅（VRAM 98GB ≥ 40GB） |\n| **QwQ-32B 模型** | 通过 ModelScope 后台下载中 (PID=92103)，~65GB，预计数小时 |\n| **MATH-500 子集** | `/root/symb_invariant_consensus/data/math500_subset.json` ✅ |\n| **分层分布** | Level 1: 10, Level 2: 10, Level 3: 10, Level 4: 10, Level 5: 10 (共 50 题) |\n| **磁盘** | 根分区 30GB (50% used, 16GB free)；数据盘 250GB (8% used, 232GB free) |\n\nQwQ-32B 模型下载是唯一未完成的项，后台进程运行中。可用 `tail /root/autodl-tmp/model_download_qwq_ms.log` 监控进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-env-probe-setup.md"
+}

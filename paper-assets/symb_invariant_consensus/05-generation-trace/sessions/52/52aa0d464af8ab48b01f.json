@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52aa0d464af8ab48b01f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis process kappa diagnostic",
+  "task_key": "worker_analysis_process-kappa-diagnostic_20260520T134125",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_process-kappa-diagnostic_20260520T134125_result.json",
+    "occurrence": 1,
+    "bytes": 1641,
+    "sha256": "a83d3d21e482d829d64fef492cb2350362da46646186b4ca5770f547427423de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n### 三分位表\n\n| Tercile | n | SC Acc | SICA Acc | Mean κ |\n|---------|---|--------|----------|--------|\n| low     | 68 | 0.5588 | 0.5882 | 0.6483 |\n| mid     | 68 | 0.5147 | 0.5882 | 0.7504 |\n| high    | 68 | 0.5588 | 0.6029 | 0.8300 |\n\n### Abstention Curve (丢弃 high-κ)\n\n| Drop% | Coverage | n | SC Acc | SICA Acc |\n|-------|----------|---|--------|----------|\n| 10% | 0.90 | 184 | 0.5272 | 0.5761 |\n| 20% | 0.80 | 164 | 0.5244 | 0.5732 |\n| 30% | 0.70 | 143 | 0.5315 | 0.5804 |\n| 40% | 0.60 | 123 | 0.5366 | 0.5935 |\n| 50% | 0.50 | 102 | 0.5588 | 0.6078 |\n\n### 统计检验\n\n- **Fisher exact test**: odds ratio = 1.0, p = 1.0（low-κ vs high-κ SC accuracy 完全相同，38/68 vs 38/68）\n- **AUROC**: 0.4930（≈ 随机，process-κ 对 SC 错误无预测力）\n\n### Baselines\n\n- Overall SC: 54.41% (110/204)\n- Overall SICA: 59.31% (121/204)\n\n### 结论\n\n**负结果**：TF-IDF cosine similarity 定义的 process-κ 在此数据上对 SC 可靠性没有区分能力。三个分层 SC accuracy 几乎一样（~0.53-0.56），AUROC 0.493 低于随机。高同质化的 traces 并不比低同质化的更容易出错。\n\n可能原因：(1) TF-IDF 在长推理文本上粒度太粗，词袋级相似度无法捕捉推理结构的同质化；(2) Mistral-7B 在 FOLIO 上整体 SC accuracy 只有 54%，本身就接近随机，信号太弱。可考虑用 sentence embedding (e.g., Sentence-BERT) 替代 TF-IDF，或在更强模型的数据上验证。\n\nJSON 已保存至 `westd-25068:/root/symb_invariant_consensus/results/process_kappa_diagnostic/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-process-kappa-diagnostic.md"
+}

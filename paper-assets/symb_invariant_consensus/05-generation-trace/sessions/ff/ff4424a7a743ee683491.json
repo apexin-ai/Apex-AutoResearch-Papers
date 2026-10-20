@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff4424a7a743ee683491",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis sc baseline qwen3 discrepancy",
+  "task_key": "worker_analysis_sc-baseline-qwen3-discrepancy_20260520T175251",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_sc-baseline-qwen3-discrepancy_20260520T175251_result.json",
+    "occurrence": 1,
+    "bytes": 810,
+    "sha256": "0b1d0f4e33f93534ec0bb5b4c18f94a727ae6c4bbd41ec457189f0cc5c5c9de8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。\n\n**根因：Dir-I2 和 Dir-I3 用的是不同的 Qwen3-14B 推理配置，不是同一个 baseline。**\n\n- **Dir-I2 (83.82%)** = `exp027_qwen3_14b_nonthinking` — 非思考模式\n- **Dir-I3 (86.27%)** = `exp028b_qwen3_thinking_folio204` — 思考模式（带 `<think>` block）\n\n两个值都是各自配置下的正确结果，没有数据错误或代码 bug。\n\n逐题对比：17 个 correctness 分歧（20 个 prediction 分歧），思考模式净赢 5 题（+11 -6）。非思考模式的主要弱点是倾向于过度预测 Unknown（11 个失败中 9 个是这样）。\n\n报告已写入：\n- `/root/symb_invariant_consensus/results/sc_qwen3_discrepancy_analysis/report.json`\n- `/root/symb_invariant_consensus/results/sc_qwen3_discrepancy_analysis/report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sc-baseline-qwen3-discrepancy.md"
+}

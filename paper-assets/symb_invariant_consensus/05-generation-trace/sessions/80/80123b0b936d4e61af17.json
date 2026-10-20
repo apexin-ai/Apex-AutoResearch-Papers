@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80123b0b936d4e61af17",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra kill 70b cuda2",
+  "task_key": "worker_infra_kill-70b-cuda2_20260521T190926",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_kill-70b-cuda2_20260521T190926_result.json",
+    "occurrence": 1,
+    "bytes": 454,
+    "sha256": "6cdccfd0148bfcc33c2df9711be9c5d427569f596f9aaf9754803043f3b1d3af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇报：\n\n1. **PID 436077** — 已 kill，确认进程不存在\n2. **vLLM 8002** — 无对应进程运行，已停止\n3. **GPU 释放** — cuda:2 显存 **0 MiB / 97887 MiB**，已完全释放\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 84225 / 97887 MiB | 0% |\n| 1 | 83565 / 97887 MiB | 100% |\n| **2** | **0 / 97887 MiB** | **0%** |\n| 3 | 87933 / 97887 MiB | 0% |\n\ncuda:2 已空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-70b-cuda2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d354322e9022a43a0f61",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis qwen25 folio 4seed harvest v2",
+  "task_key": "worker_analysis_qwen25-folio-4seed-harvest-v2_20260522T104319",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_qwen25-folio-4seed-harvest-v2_20260522T104319_result.json",
+    "occurrence": 1,
+    "bytes": 61,
+    "sha256": "8b3725e7864c4d1badf404e81037e30bcb199056e0cd9f9fe79227d78d2f808c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "seed=789 当前 185/204，2 分钟后复查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen25-folio-4seed-harvest-v2.md"
+}

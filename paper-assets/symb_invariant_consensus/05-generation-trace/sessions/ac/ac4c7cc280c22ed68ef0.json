@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac4c7cc280c22ed68ef0",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code exp3 icl oracle",
+  "task_key": "worker_code_exp3-icl-oracle_20260518T180847",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp3-icl-oracle_20260518T180847_result.json",
+    "occurrence": 1,
+    "bytes": 1163,
+    "sha256": "4a481373ce380f59920f39ca4e1d3c7dbac04772f9fde67e24e9b281b6d85774"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。Dry-run 验证报告：\n\n**产出文件**\n- `/root/symb_invariant_consensus/run_icl_oracle.py` — 主脚本\n- `/root/symb_invariant_consensus/scripts/run_icl_oracle.sh` — 启动脚本\n\n**ICL Examples (5题，从评测中排除)**\n\n| idx | id | answer | 推理类型 |\n|-----|---------|---------|----------|\n| 15 | folio_15 | True | 全称量化链 (2 premises) |\n| 6 | folio_6 | True | 存在量词 + 条件推理 (6 premises) |\n| 79 | folio_79 | False | 否定链推理 (5 premises) |\n| 52 | folio_52 | False | 关系否定 (6 premises) |\n| 3 | folio_3 | Unknown | XOR / 信息不足 (7 premises) |\n\n**C001 Dry-run 验证结果**\n- python3 可用\n- 所有 import 通过\n- 5 个 ICL example 的 `premises_fol` / `conclusion_fol` 均非空\n- ICL block: 9034 chars, 增强 prompt: 10461 chars\n- 模板替换无残留占位符\n- 评测集: 199 题 (70 True + 61 False + 68 Unknown)\n- 模型路径存在: `/root/autodl-tmp/models/Qwen2.5-14B-Instruct`\n- Mock 模式全流程跑通 199 题，extraction 796/796 成功，`ICL_ORACLE_DONE` 正常输出\n\n**启动命令**: `bash scripts/run_icl_oracle.sh 0 8000`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp3-icl-oracle.md"
+}

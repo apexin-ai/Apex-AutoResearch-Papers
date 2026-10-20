@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96155d45568b808c6b94",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra post restart status",
+  "task_key": "worker_infra_post-restart-status_20260522T020854",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_post-restart-status_20260522T020854_result.json",
+    "occurrence": 1,
+    "bytes": 1422,
+    "sha256": "c5517f9077c969c2d0918478d9d4f1180a9cc38cbb3412f3cad961a67e5ea7f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-16639 状态汇报\n\n### FOLIO 2×2 Master Script (PID 495418, 运行 ~2h30m)\n\n**Phase 1 — 完成** (10:11)\n| 任务 | 进度 | 状态 |\n|------|------|------|\n| Cell A (Mistral→Mistral) | 204/204 | done (08:10 完成) |\n| Qwen3 traces (k=12) | 204/204 | done (traces 08:38 完成, mvp 进程 10:11 退出) |\n\n注意：mvp 进程在 traces 全部完成后又多跑了 ~1.5h 才退出（可能在做 constraint 聚合），导致 Phase 1 到 10:11 才结束。\n\n**Phase 2 — 刚启动** (10:11)\n| Cell | 方向 | PID | 进度 |\n|------|------|-----|------|\n| Cell B | Mistral gen → Qwen3 ext | 504508 | 0/204 (刚开始) |\n| Cell C | Qwen3 gen → Mistral ext | 504509 | 0/204 (刚开始) |\n| Cell D | Qwen3 gen → Qwen3 ext | — | 等待 B+C 完成 |\n| Metrics | — | — | 等待 B+C+D 完成 |\n\n### Qwen3-14B 单模型结果 (已出)\n- **SICA accuracy: 84.8%** (173/204)\n- **SC accuracy: 83.3%** (170/204)\n- k=12, wall time ~3h\n\n### GPU 状态\n| GPU | 显存 | 利用率 | 用途 |\n|-----|------|--------|------|\n| 0 | 90207 MiB | 97% | Qwen3-14B vLLM (port 8001) |\n| 1 | 0 MiB | 0% | 空闲 |\n| 2 | 0 MiB | 0% | 空闲 |\n| 3 | 89811 MiB | 0% | Mistral-7B vLLM (port 8004) |\n\n### westd-25068\n**连接失败** — Authentication failed。服务器重启后 SSH 端口大概率已变更，需去 AutoDL 控制台查看新端口并更新 `~/.ssh/config`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-post-restart-status.md"
+}

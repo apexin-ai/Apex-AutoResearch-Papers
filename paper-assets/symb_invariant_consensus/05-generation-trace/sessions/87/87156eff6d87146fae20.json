@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87156eff6d87146fae20",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "gpu exp 061 qwen7b folio204",
+  "task_key": "worker_gpu_exp-061-qwen7b-folio204_20260519T071421",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp-061-qwen7b-folio204_20260519T071421_result.json",
+    "occurrence": 1,
+    "bytes": 555,
+    "sha256": "47be278544b963c92ca4657792c2de54fa34fe0fe243d6f27d9825d9c9335c52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正常运行中。第1题已完成，正在处理第2题。\n\n**状态汇总：**\n\n- **vLLM**: 运行在 tmux `exp061_vllm`, cuda:2, port 8002, Qwen2.5-7B-Instruct\n- **实验**: 运行在 tmux `exp061_run`, K=12, T=0.7, seed=42, FOLIO-204\n- **注册**: exp-061-qwen7b-folio204 → RUNNING\n- **预计耗时**: ~95 min (基于第1题 28.2s/prob)\n- **输出**: `results/exp061_qwen25_7b_folio204/exp061_results.json`\n\nexp-033 (Mistral-7B) 跑了 81 min，这次应该差不多。完成后检查结果报告 SC%, SICA%, Δ(pp)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-061-qwen7b-folio204.md"
+}

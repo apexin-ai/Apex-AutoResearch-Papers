@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2551f35231f3ef2aa43d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "deploy exp 075 contrastive mistral folio",
+  "task_key": "worker_deploy_exp-075-contrastive-mistral-folio_20260519T172758",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_exp-075-contrastive-mistral-folio_20260519T172758_result.json",
+    "occurrence": 1,
+    "bytes": 478,
+    "sha256": "8960c1f8a230ba9d4ae1033064138f946a83cc6f3835102add1db7823ffdd77a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。汇报：\n\n- **vLLM**: Mistral-7B-Instruct-v0.3 在 cuda:2 (port 8002) 启动成功。遇到 FlashInfer 不兼容 Blackwell GPU 的问题，通过设置 `VLLM_ATTENTION_BACKEND=FLASH_ATTN` + `VLLM_USE_FLASHINFER_SAMPLER=0` 解决。KV cache 592K tokens，bf16。\n- **实验**: tmux session `exp075_run` 已启动，正在处理（1/204 已开始）\n- **Registry**: `exp-075-contrastive-mistral-folio` 状态已更新为 RUNNING，spec 已写入"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-exp-075-contrastive-mistral-folio.md"
+}

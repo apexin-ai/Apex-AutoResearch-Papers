@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "id": "3148f8f7ad319b3cfbbc",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diagnose exp 048 llama8b pw600",
+  "task_key": "worker_diagnose_exp-048-llama8b-pw600_20260519T153820",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp-048-llama8b-pw600_20260519T153820_result.json",
+    "occurrence": 1,
+    "bytes": 2029,
+    "sha256": "fa10fbe35eb7d1993e5d5b0ac909f784f6c208e13b8271b102bfbc4e473423b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 与日志完全吻合。交叉验证通过：\n\n- `n_problems`: 600 (JSON summary) = 600 (日志)\n- `sica_accuracy`: 0.6483 (JSON) = 64.8% (日志), 389/600\n- `sc_accuracy`: 0.7 (JSON) = 70.0% (日志), 420/600\n- `delta_pp`: SC - SICA = 70.0% - 64.8% = **+5.2pp**\n\n```json\n{\"actually_completed\": true, \"root_cause\": \"Cron 监控要求 W&B sentinel 但 exp-048 用 JSON 输出，进程正常退出后被误判为 'dead 5× with no sentinel' — 与 exp-070 完全相同的误报模式。日志末尾有 FULL_MVP_DONE，600/600 问题全部完成。\", \"error_type\": \"misreport\", \"metrics\": {\"sc_accuracy\": 0.7, \"sica_accuracy\": 0.6483, \"delta_pp\": 0.052, \"n_problems\": 600}, \"log_path\": \"/root/symb_invariant_consensus/results/exp048_llama8b_pw600/exp048.log\", \"results_path\": \"/root/symb_invariant_consensus/results/exp048_llama8b_pw600/exp048_results.json\", \"fix_steps\": [\"将 exp-048 状态从 failed 更正为 completed\", \"Cron 监控逻辑应增加对 JSON 输出实验的完成检测（检查 FULL_MVP_DONE sentinel 或结果文件存在性）\"], \"can_auto_fix\": true}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "actually_completed": true,
+              "root_cause": "Cron 监控要求 W&B sentinel 但 exp-048 用 JSON 输出，进程正常退出后被误判为 'dead 5× with no sentinel' — 与 exp-070 完全相同的误报模式。日志末尾有 FULL_MVP_DONE，600/600 问题全部完成。",
+              "error_type": "misreport",
+              "metrics": {
+                "sc_accuracy": 0.7,
+                "sica_accuracy": 0.6483,
+                "delta_pp": 0.052,
+                "n_problems": 600
+              },
+              "log_path": "/root/symb_invariant_consensus/results/exp048_llama8b_pw600/exp048.log",
+              "results_path": "/root/symb_invariant_consensus/results/exp048_llama8b_pw600/exp048_results.json",
+              "fix_steps": [
+                "将 exp-048 状态从 failed 更正为 completed",
+                "Cron 监控逻辑应增加对 JSON 输出实验的完成检测（检查 FULL_MVP_DONE sentinel 或结果文件存在性）"
+              ],
+              "can_auto_fix": true
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-048-llama8b-pw600.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "afd1480426bda027e40d",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "data combo json audit",
+  "task_key": "worker_data_combo-json-audit_20260522T194156",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_data_combo-json-audit_20260522T194156.log",
+    "occurrence": 1,
+    "bytes": 621156,
+    "sha256": "2b2f8ae0ea3ca8aacd405d670708efc2714600be88853c7d2e42010ec6514173"
+  },
+  "statistics": {
+    "messages": 180,
+    "user_turns": 0,
+    "tool_calls": 63,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 50,
+      "tool_call": 63,
+      "tool_result": 63,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 180,
+      "chunks": [
+        {
+          "path": "afd1480426bda027e40d-part-0001.json",
+          "message_count": 165
+        },
+        {
+          "path": "afd1480426bda027e40d-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/data-combo-json-audit.md"
+}

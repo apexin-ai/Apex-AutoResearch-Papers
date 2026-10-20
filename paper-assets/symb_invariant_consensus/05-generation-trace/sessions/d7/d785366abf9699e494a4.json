@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d785366abf9699e494a4",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment multi seed qwen25",
+  "task_key": "worker_experiment_multi-seed-qwen25_20260522T032516",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_multi-seed-qwen25_20260522T032516_result.json",
+    "occurrence": 1,
+    "bytes": 905,
+    "sha256": "745aeb203b90f8092b5161eddf19ed762ec0655810881a7549ecdb85df14823e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验状态汇总：\n\n**已完成：**\n- vLLM Qwen2.5-14B 部署在 cuda:1 port 8002\n- seed=42 基线提取完成\n\n**正在运行：**\n- Master 脚本 PID=510872 串行运行 6 个实验\n- 当前：FOLIO seed=123 — 4/204，~64s/prob，ETA ~3.5h\n- 接下来：FOLIO seed=456 → 789 → PW seed=123 → 456 → 789\n\n**seed=42 基线：**\n\n| 条件 | SC | SICA | Δ |\n|------|-----|------|---|\n| Qwen2.5-14B × FOLIO | 77.5% | 75.5% | -1.96pp |\n| Qwen2.5-14B × PW | 73.5% | 71.5% | -2.00pp |\n\n**时间估算：**\n- 3 × FOLIO (204题) ≈ 3×3.5h = 10.5h\n- 3 × PW (600题) ≈ 3×10.7h = 32h\n- 总计 ≈ ~42h，预计全部完成时间约 5/24 凌晨\n\nMaster 脚本 log 在 `/tmp/multi_seed_qwen25_master.log`，各 seed 的 log 分别在 `/tmp/qwen25_folio_seed{123,456,789}.log` 和 `/tmp/qwen25_pw_seed{123,456,789}.log`。\n\n需要我定期检查进度吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-multi-seed-qwen25.md"
+}

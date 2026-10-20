@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4cfa465b4a17d36a607",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag gpu check westd25068",
+  "task_key": "worker_diag_gpu-check-westd25068_20260519T043248",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_gpu-check-westd25068_20260519T043248_result.json",
+    "occurrence": 1,
+    "bytes": 1094,
+    "sha256": "3feae502c300f5ed910ab336acaaa42ba113d2cab725f9d09db7ef9f5bc48e66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-25068 GPU 状态\n\n| GPU | 预期实验 | 实际状态 | PID | 进度 | 备注 |\n|-----|---------|---------|-----|------|------|\n| cuda:0 | exp-051 K=20 | **空闲 (已完成)** | — | 204/204 (全部K值完成) | k4/k8/k16/k20 均 204/204，k20 耗时 124.3min，日志显示 FULL_MVP_DONE |\n| cuda:1 | exp-034 Qwen-14B PW-600 | **运行中** 97% | 69808 (runner) / 68555 (vLLM:8001) | ~565/600 | Qwen2.5-14B-Instruct, 01:44 启动，估计很快完成 |\n| cuda:2 | 空闲 | **空闲** | — | — | 确认空闲 |\n| cuda:3 | exp-058 T=0.5 | **运行中** 97% | 150540 (runner) / 149633 (vLLM:8003) | ~203/204 | Mistral-7B FOLIO-204 T=0.5, 11:13 启动，即将完成 |\n\n**磁盘**: 12G/30G (39%)\n**vLLM 进程**: 2 个 (port 8001 = Qwen2.5-14B for exp034, port 8003 = Mistral-7B for exp058)\n**tmux sessions**: exp033_run, exp034_run, exp035_run, exp058_run, exp058_vllm, model_dl_25068\n\n**关键发现: cuda:0 和 cuda:2 均空闲，可立即部署新实验。** exp-051 已全部完成（4 个 K 值各 204 题），exp-034 和 exp-058 均接近尾声。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-gpu-check-westd25068.md"
+}

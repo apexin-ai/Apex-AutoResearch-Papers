@@ -1,0 +1,131 @@
+{
+  "schema_version": "1.0",
+  "id": "e79abafb3ce553afe80c",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "gpu exp 062 gemma27b cleanup deploy",
+  "task_key": "worker_gpu_exp-062-gemma27b-cleanup-deploy_20260519T073829",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp-062-gemma27b-cleanup-deploy_20260519T073829.log",
+    "occurrence": 1,
+    "bytes": 3258211,
+    "sha256": "19a7e733783cba387a7f40c5887fd9efc8bbc99a4d53209413fb573ef89d833b"
+  },
+  "statistics": {
+    "messages": 2414,
+    "user_turns": 3,
+    "tool_calls": 953,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 3,
+      "assistant": 490,
+      "tool_call": 953,
+      "tool_result": 953,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 780,
+      "chunks": [
+        {
+          "path": "e79abafb3ce553afe80c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e79abafb3ce553afe80c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e79abafb3ce553afe80c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "e79abafb3ce553afe80c-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "e79abafb3ce553afe80c-part-0005.json",
+          "message_count": 60
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 788,
+      "chunks": [
+        {
+          "path": "e79abafb3ce553afe80c-part-0005.json",
+          "message_count": 120
+        },
+        {
+          "path": "e79abafb3ce553afe80c-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "e79abafb3ce553afe80c-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "e79abafb3ce553afe80c-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "e79abafb3ce553afe80c-part-0009.json",
+          "message_count": 128
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 822,
+      "chunks": [
+        {
+          "path": "e79abafb3ce553afe80c-part-0009.json",
+          "message_count": 52
+        },
+        {
+          "path": "e79abafb3ce553afe80c-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "e79abafb3ce553afe80c-part-0011.json",
+          "message_count": 180
+        },
+        {
+          "path": "e79abafb3ce553afe80c-part-0012.json",
+          "message_count": 180
+        },
+        {
+          "path": "e79abafb3ce553afe80c-part-0013.json",
+          "message_count": 180
+        },
+        {
+          "path": "e79abafb3ce553afe80c-part-0014.json",
+          "message_count": 50
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 24,
+      "chunks": [
+        {
+          "path": "e79abafb3ce553afe80c-part-0014.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gpu-exp-062-gemma27b-cleanup-deploy.md"
+}

@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "id": "b944f78318438176d48f",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "infra anonymous repo push 20260523T130230 retry1",
+  "task_key": "worker_infra_anonymous-repo-push_20260523T130230_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_anonymous-repo-push_20260523T130230_retry1.log",
+    "occurrence": 1,
+    "bytes": 1225185,
+    "sha256": "781054914f30b1001b7054bf3cb5e36ef6497399bbf1109a71ff9f13d7324ee3"
+  },
+  "statistics": {
+    "messages": 321,
+    "user_turns": 4,
+    "tool_calls": 105,
+    "roles": {
+      "system": 103,
+      "record": 4,
+      "assistant": 7,
+      "tool_call": 105,
+      "tool_result": 98,
+      "user": 4
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 25,
+      "chunks": [
+        {
+          "path": "b944f78318438176d48f-part-0001.json",
+          "message_count": 25
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 3,
+      "chunks": [
+        {
+          "path": "b944f78318438176d48f-part-0001.json",
+          "message_count": 3
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 9,
+      "chunks": [
+        {
+          "path": "b944f78318438176d48f-part-0001.json",
+          "message_count": 9
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 26,
+      "chunks": [
+        {
+          "path": "b944f78318438176d48f-part-0001.json",
+          "message_count": 26
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 258,
+      "chunks": [
+        {
+          "path": "b944f78318438176d48f-part-0001.json",
+          "message_count": 117
+        },
+        {
+          "path": "b944f78318438176d48f-part-0002.json",
+          "message_count": 135
+        },
+        {
+          "path": "b944f78318438176d48f-part-0003.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-anonymous-repo-push-20260523t130230-retry1.md"
+}

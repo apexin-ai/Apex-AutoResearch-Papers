@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c499460bc757c2fa8f58",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "check mistral download status",
+  "task_key": "worker_check_mistral-download-status_20260517T010339",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_mistral-download-status_20260517T010339_result.json",
+    "occurrence": 1,
+    "bytes": 788,
+    "sha256": "c67ced94b9f2920c387ca05512b7de14cdcdbc7ae54ac4ff023fed98c99be04b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**下载状态: 完成（有冗余文件）**\n\n模型文件列表：\n\n| 文件 | 大小 |\n|------|------|\n| model-00001-of-00003.safetensors | 4.95 GB |\n| model-00002-of-00003.safetensors | 5.00 GB |\n| model-00003-of-00003.safetensors | 4.55 GB |\n| consolidated.safetensors | 14.50 GB |\n| config.json, tokenizer.model 等 | 正常 |\n\n**3 个 shard 合计 ~14.5 GB，完整。** 另外还有一个 `consolidated.safetensors`（14.5 GB），是合并后的单文件版本，两者都可用。\n\n下载日志显示最后一次操作因 `httpx.ConnectTimeout` (SSL handshake timeout) 失败，但这应该是之前某次重试的残留错误，模型文件本身已完整下载。\n\n无 `.incomplete` 或 `.tmp` 文件，无缺损迹象。模型可直接使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-mistral-download-status.md"
+}

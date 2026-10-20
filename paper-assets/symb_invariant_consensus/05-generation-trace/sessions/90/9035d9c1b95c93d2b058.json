@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9035d9c1b95c93d2b058",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "verify br residual check",
+  "task_key": "worker_verify_br-residual-check_20260522T224205",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_br-residual-check_20260522T224205_result.json",
+    "occurrence": 1,
+    "bytes": 813,
+    "sha256": "3147b27e3c03b1e25d3b4e395ac1f0be481bd762438da49e94b091a958c4f001"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n### 3.93 残留\n| 文件 | 行号 | 说明 |\n|------|------|------|\n| `docs/paper/r8_response_drafts.md` | 31 | rebuttal 草稿中写了 `$3.93\\times$ (Qwen-14B)` |\n\n仅 1 处，在 `.md` 草稿文件中，**不在任何 `.tex` 文件中**。\n\n### 3.85 出现位置（已更新值）\n| 文件 | 行号 | 说明 |\n|------|------|------|\n| `analysis.tex` | 31 | Table 行：Qwen-14B BR = 3.85 |\n| `appendix.tex` | 415 | alpha-ablation 表 caption |\n| `appendix.tex` | 602 | cross-model bias 讨论段落 |\n| `diagnosis.tex` | 55, 138 | 正文引用 |\n\n### 结论\n\n**tex 文件无残留**——所有 `.tex` 中 Qwen-14B 的 BR 已统一为 3.85。唯一的 3.93 残留在 `r8_response_drafts.md`（rebuttal 草稿），需要更新该处为 3.85。是否修改？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-br-residual-check.md"
+}

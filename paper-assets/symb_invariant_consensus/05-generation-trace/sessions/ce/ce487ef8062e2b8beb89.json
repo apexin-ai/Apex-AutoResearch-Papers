@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "ce487ef8062e2b8beb89",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment wave3 dir r deberta verifier",
+  "task_key": "worker_experiment_wave3-dir-r-deberta-verifier_20260520T094517",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_wave3-dir-r-deberta-verifier_20260520T094517.log",
+    "occurrence": 1,
+    "bytes": 1635809,
+    "sha256": "6e35d1126d3f374ac56c251a754fbaecbe517fc367a313c18d83d2e0f5832b32"
+  },
+  "statistics": {
+    "messages": 1169,
+    "user_turns": 1,
+    "tool_calls": 466,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 230,
+      "tool_call": 466,
+      "tool_result": 466,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 605,
+      "chunks": [
+        {
+          "path": "ce487ef8062e2b8beb89-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce487ef8062e2b8beb89-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce487ef8062e2b8beb89-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce487ef8062e2b8beb89-part-0004.json",
+          "message_count": 65
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 564,
+      "chunks": [
+        {
+          "path": "ce487ef8062e2b8beb89-part-0004.json",
+          "message_count": 115
+        },
+        {
+          "path": "ce487ef8062e2b8beb89-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce487ef8062e2b8beb89-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce487ef8062e2b8beb89-part-0007.json",
+          "message_count": 89
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-wave3-dir-r-deberta-verifier.md"
+}

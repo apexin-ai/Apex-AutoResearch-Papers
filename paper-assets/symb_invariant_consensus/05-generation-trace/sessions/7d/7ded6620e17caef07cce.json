@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ded6620e17caef07cce",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "deploy exp 077 kappa 16639",
+  "task_key": "worker_deploy_exp-077-kappa-16639_20260519T182247",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_exp-077-kappa-16639_20260519T182247_result.json",
+    "occurrence": 1,
+    "bytes": 523,
+    "sha256": "b6db495b34b293713a247b7b0e597dbcbede240289d72fa654fe1cc9c773b35b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动并正在运行：\n\n- **数据**：204 问题加载完成，exp-033 SC traces 全部读入\n- **模型**：Mistral-7B-Instruct-v0.3 via vLLM (port 8012, cuda:2)\n- **进度**：Phase (a) SC traces 已完成，正在处理 LLM-Debate/Diverse-Prompt 推理（当前 folio_0）\n- **Registry**：exp-077-kappa-generalization → RUNNING\n- **日志**：`results/exp077_kappa_generalization/exp077.log`\n- **tmux sessions**：`exp077_vllm`（vLLM 服务）、`exp077_run`（实验进程）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-exp-077-kappa-16639.md"
+}

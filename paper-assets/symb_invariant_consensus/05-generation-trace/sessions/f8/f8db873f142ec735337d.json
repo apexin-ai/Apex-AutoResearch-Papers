@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8db873f142ec735337d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment r deberta small nli",
+  "task_key": "worker_experiment_r-deberta-small-nli_20260520T103141",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_r-deberta-small-nli_20260520T103141_result.json",
+    "occurrence": 1,
+    "bytes": 1557,
+    "sha256": "cf27bc11be4e6114fe070de4aa5b59cdc7bd9e628f96772d8e7611de85d45631"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成！4.3 秒跑完 204 题。结果非常有意义：\n\n## Direction R 结果：DeBERTa-Large-MNLI 外部验证器\n\n| Strategy | Acc | Correct | Delta vs SC |\n|---|---|---|---|\n| SC baseline (Mistral-7B K=12) | 54.41% | 111 | — |\n| NLI standalone | 49.51% | 101 | -4.90% |\n| NLI-as-verifier | 49.51% | 101 | -4.90% |\n| **NLI-SICA-combo** | **57.84%** | **118** | **+3.43%** |\n\n### Per-label 分析\n\n| Label | NLI Acc | SC Acc | 观察 |\n|---|---|---|---|\n| True (n=72) | 59.72% | 55.56% | NLI 略强 |\n| **False (n=63)** | **71.43%** | **38.10%** | **NLI 大幅领先 (+33pp)** |\n| Unknown (n=69) | 18.84% | 68.12% | NLI 极弱 (-49pp) |\n\n### 关键发现\n\n1. **NLI 在 contradiction 检测上碾压 LLM**：False label 上 NLI 71.43% vs SC 38.10%，差距 33 个百分点。这正是 NLI 模型训练的强项。\n\n2. **NLI 几乎无法处理 Unknown/neutral**：仅 18.84%。NLI 模型倾向于给出 entailment 或 contradiction，很少预测 neutral——这与 FOLIO 的三值逻辑不匹配。\n\n3. **NLI-as-verifier 策略失败**：因为 NLI 和 SC 只有 45% 一致率，disagreement 时 NLI 仅 34% 正确(38/112)，直接替换反而更差。\n\n4. **NLI-SICA-combo 最佳**（+3.43%）：NLI 作为额外 1 票加入 12 票 SC 中，在 False 类问题上修正了 SC 的错误，同时在 Unknown 上 SC 多数票能压过 NLI 的错误预测。\n\n5. **互补性明确**：NLI 擅长 False（contradiction），LLM 擅长 Unknown（逻辑推理中的不确定性）。两者结构性互补。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-r-deberta-small-nli.md"
+}

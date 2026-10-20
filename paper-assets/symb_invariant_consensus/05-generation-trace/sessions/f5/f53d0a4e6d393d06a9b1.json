@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f53d0a4e6d393d06a9b1",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code sf2 proofwriter nli script",
+  "task_key": "worker_code_sf2-proofwriter-nli-script_20260520T134627",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_sf2-proofwriter-nli-script_20260520T134627_result.json",
+    "occurrence": 1,
+    "bytes": 883,
+    "sha256": "1bf6ec60328bcbfe9fe0560b8ebb9405f5bfe703977db16eae0004bd7c3b1dec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过。结果摘要：\n\n**Dry-run 输出 (3题)**：\n- DeBERTa standalone: 66.67% (2/3)\n- SC baseline: 33.33% (1/3)\n- NLI label mapping: ENTAILMENT→True, CONTRADICTION→False, NEUTRAL→Unknown\n- 推理时间: 0.8s/3题\n- 所有模块（complementarity、combo、McNemar、SICA agreement、JSON 保存）均正常运行\n\n**完整运行预估**：\n- 3题用时 0.8s（含模型加载），纯推理约 0.25s/题\n- 600题估计：模型加载 ~5s + 推理 ~150s = **约 2.5-3 分钟** (CPU)\n- 如果有 GPU 可用会更快（<1 min）\n\n**修复记录**：`scipy.stats.binom_test` 在新版 scipy 中已更名为 `binomtest`，已修复。\n\n脚本位置：`/root/symb_invariant_consensus/direction_r_deberta_proofwriter.py`，完整运行命令：\n```bash\ncd /root/symb_invariant_consensus && python3 direction_r_deberta_proofwriter.py\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sf2-proofwriter-nli-script.md"
+}

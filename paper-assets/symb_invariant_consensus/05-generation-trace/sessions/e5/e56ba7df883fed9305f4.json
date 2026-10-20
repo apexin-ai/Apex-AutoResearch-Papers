@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e56ba7df883fed9305f4",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "check experiment countdown urgent",
+  "task_key": "worker_check_experiment-countdown-urgent_20260523T051009",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_experiment-countdown-urgent_20260523T051009_result.json",
+    "occurrence": 1,
+    "bytes": 1774,
+    "sha256": "af8d44c8286f04dc03bf963f4320f4493164faac00936f96632bbc000e483faf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "qwen25_pw_seed456 确认无进程运行。现在汇总结果。\n\n## 实验倒计时表 (UTC: 2026-05-23 05:12)\n\n### 活跃实验 (westd-16639, 4×GPU 97%)\n\n| 实验 | GPU | Port | 进度 | 速率 | 剩余 | 预计完成 (UTC) |\n|------|-----|------|------|------|------|----------------|\n| Qwen2.5 PW seed123 | cuda:3 | 8005 | 474/600 (79%) | 0.87/min | 146 min | 05-23 07:38 |\n| LLaMA-8B PW seed123 | cuda:1 | 8006 | 430/600 (72%) | 0.79/min | 216 min | 05-23 08:49 |\n| Qwen2.5 PW seed789 (v2) | cuda:2 | 8007 | 53/600 (9%) | 0.85/min | 641 min | 05-23 15:54 |\n| LLaMA-8B PW seed789 | cuda:0 | 8009 | 12/600 (2%) | 0.70/min | 838 min | 05-23 19:11 |\n\n> LLaMA seed789 仅 12 样本，速率估计可能偏低，后续会稳定到 ~0.8/min。\n\n### 已停止\n\n| 实验 | 进度 | 状态 |\n|------|------|------|\n| **Qwen2.5 PW seed456** | **478/600** | **已停止 19min，无活跃进程** |\n| LLaMA-8B PW seed42 | 223/600 | 已停止 (12h+) |\n\n### 已完成\n\n| 实验 | 进度 | 状态 |\n|------|------|------|\n| Mistral PW seed42/123/456/789 | 600/600 ×4 | DONE |\n| 全部 FOLIO (3模型×3种子=9组) | 204/204 ×9 | DONE (FOLIO 数据集=204条) |\n\n### Qwen seed456 恢复计划\n\n- **当前状态**: 478/600 截断，无活跃进程，文件 19min 前最后更新\n- **恢复方案**: 当前 4 GPU 全部占用，需等待一个实验完成后释放 GPU。最快释放的是 **Qwen seed123 (cuda:3)**，预计 07:38 UTC 完成。届时可用同一 vLLM (port 8005) 以 `--resume` 或从 478 继续跑剩余 122 条\n- **预计恢复完成时间**: 07:38 + 122/0.85 ≈ 07:38 + 144min ≈ **05-23 10:02 UTC**\n\n### westd-14391\n\n该服务器不在当前项目配置中，未检查。如需检查请确认服务器名称。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-experiment-countdown-urgent.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9519d92c7d190c00152f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "gpu kill 064 deploy 069 llama8b",
+  "task_key": "worker_gpu_kill-064-deploy-069-llama8b_20260519T120406",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_kill-064-deploy-069-llama8b_20260519T120406_result.json",
+    "occurrence": 1,
+    "bytes": 599,
+    "sha256": "6adc359a555cee92c8b406d1112f876c203f3c49803bc9f404068c4e2ed3e14e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n| 项目 | 状态 |\n|---|---|\n| exp-064 kill | 已清理（vLLM port 8002 + runner + 2个 tmux session） |\n| cuda:0 孤儿 vLLM (port 8005) | 已清理 |\n| exp-069-llama8b-logiqa200 | 运行中，vLLM port 8012 on cuda:2，HTTP 200 正常返回 |\n\n**nvidia-smi 最终状态：**\n- cuda:0: 7% util, 16477 MiB（有一个小进程，非 exp-064 相关）\n- cuda:1: 97%, 88287 MiB\n- cuda:2: 97%, 88261 MiB — exp-069 LLaMA-8B 运行中\n- cuda:3: 97%, 88263 MiB\n\n注意 cuda:0 上多了 16GB 占用，不是我们启动的。可能是其他用户进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-kill-064-deploy-069-llama8b.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd331ee7dc728659fd38",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ssh qwen7b symlink",
+  "task_key": "worker_ssh_qwen7b-symlink_20260517T144426",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_qwen7b-symlink_20260517T144426_result.json",
+    "occurrence": 1,
+    "bytes": 114,
+    "sha256": "1b8390e1efb09a3f564dcfea3bc4fcd7c4a25380b81cd64472131d3e461e8314"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Symlink 创建成功，`/root/autodl-tmp/models/Qwen2.5-7B-Instruct/config.json` 可正常访问。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-qwen7b-symlink.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "efc205c18946c51af4ae",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "prep exp 011 llama8b",
+  "task_key": "worker_prep_exp-011-llama8b_20260516T204635",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_prep_exp-011-llama8b_20260516T204635_result.json",
+    "occurrence": 1,
+    "bytes": 583,
+    "sha256": "098ba556e7ce952945e1c68d6652798bb39bce247b16ae50bedca45cca990422"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-011 准备完成。\n\n**总结：**\n\n| 项目 | 状态 |\n|------|------|\n| LLaMA-3.1-8B-Instruct 模型 | ✓ 14GB, 4 shards 完整 |\n| D012 数据集 (30 PW + 30 FOLIO) | ✓ 60 题已确认 |\n| 启动脚本 | ✓ `scripts/run_exp011_llama8b.sh` 已创建 |\n| GPU (RTX PRO 6000 98GB) | exp-002 占用中，exp-011 预计仅需 ~25-30GB |\n\n**一键启动命令**（exp-002 结束后）：\n```bash\nnohup bash /root/symb_invariant_consensus/scripts/run_exp011_llama8b.sh > /tmp/exp011.log 2>&1 &\n```\n\n预估运行时间 ~1-1.5 小时。无缺失项。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-exp-011-llama8b.md"
+}

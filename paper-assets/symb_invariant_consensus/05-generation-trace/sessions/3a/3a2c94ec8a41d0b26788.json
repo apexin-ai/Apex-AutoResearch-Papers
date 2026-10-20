@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a2c94ec8a41d0b26788",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis correlation alpha rejection",
+  "task_key": "worker_analysis_correlation-alpha-rejection_20260520T152445",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_correlation-alpha-rejection_20260520T152445_result.json",
+    "occurrence": 1,
+    "bytes": 2322,
+    "sha256": "234d4e080a9abfcafa521c1da191cde34b37f68cead236b93b06177e4c902322"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results saved. Here's the summary:\n\n---\n\n## Task 3: Pairwise Vote Correlation\n\n| Model | Mean Pearson r ± SD | Fleiss' κ |\n|-------|-------------------|-----------|\n| **Mistral-7B** | 0.625 ± 0.062 | 0.460 |\n| Qwen2.5-7B | 0.751 ± 0.038 | 0.658 |\n| Qwen2.5-14B | 0.815 ± 0.029 | 0.738 |\n| Qwen3-14B | 0.858 ± 0.026 | 0.773 |\n\nAll 66 pairwise correlations per condition (C(12,2)). Encoding: True=1, False=0, Unknown=0.5. Pairwise Pearson r and Fleiss' κ are monotonically related across models — lower agreement models (Mistral-7B) have both lower κ and lower r, confirming κ is a valid consensus measure. Mistral-7B's relatively high variance (0.062) reflects its higher nondeterminism.\n\n## Task 5: α Sensitivity\n\n| α | Accuracy | Δ vs α=0.5 |\n|---|---------|------------|\n| 0.0 | 55.88% | +0.00pp |\n| 0.1 | 55.39% | −0.49pp |\n| 0.3 | 55.88% | +0.00pp |\n| **0.5** | **55.88%** | **baseline** |\n| 0.7 | 55.88% | +0.00pp |\n| 1.0 | 55.88% | +0.00pp |\n\nMax accuracy variation: **0.49pp** across all α values. α has negligible effect because: (1) 37% of problems have zero excluded constraints, (2) for the rest, mean rejection is only 3.4%, so the penalty term α·neg(c) rarely flips the argmax. Only 8 out of 204 problems have a score gap < 2.0 between the top two candidates.\n\nNote: Re-scored accuracy (55.88%) is ~3.4pp below original (59.31%) due to Z3 dedup non-determinism on re-run; the relative insensitivity to α is the key finding.\n\n## Task 6: Constraint Rejection Rate\n\n| Group | n | Mean Rate ± SD | Median |\n|-------|---|---------------|--------|\n| **Overall** | 203 | 3.44% ± 4.04% | 2.33% |\n| Correct | 120 | 3.33% ± 4.39% | 2.02% |\n| Incorrect | 83 | 3.60% ± 3.46% | 3.12% |\n\n- **t-test**: t=−0.474, p=0.636 (no significant difference)\n- 75 problems (36.9%) have zero rejected constraints\n- Mean excluded count: correct=1.31, incorrect=1.49\n- Distribution: 0 excluded (75), 1 (59), 2 (32), 3 (13), ≥5 (7)\n\nThe MAX-SAT solver accepts the vast majority of constraints (mean rejection 3.4%), indicating that LLM-generated constraints are largely internally consistent. No significant difference in rejection rate between correct/incorrect predictions → Eq.4 degeneration (high rejection → SC fallback) is rare in practice."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-correlation-alpha-rejection.md"
+}

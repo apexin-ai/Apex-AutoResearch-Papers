@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65cc237bd06bbf7fc744",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code prep 70b experiment",
+  "task_key": "worker_code_prep-70b-experiment_20260518T063344",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_prep-70b-experiment_20260518T063344_result.json",
+    "occurrence": 1,
+    "bytes": 3006,
+    "sha256": "1552a5c4f99e51e1fa70ea05e648a0bc537071d2e63fc5e2893281934432768f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已部署。以下是完整审查报告。\n\n---\n\n## exp-024 代码审查报告\n\n### 1. 多 GPU 支持状态\n\n**结论：Pipeline 完全兼容多 GPU，无需代码修改。**\n\n- Pipeline 通过 HTTP API (`localhost:8000/v1`) 连接 vLLM，与 GPU 拓扑解耦\n- `VLLMGenerator` 和 `VLLMBackend` 均使用 OpenAI-compatible API client，无 GPU 相关代码\n- 只需在 vLLM 启动命令添加 `--tensor-parallel-size 2`\n- 无 `CUDA_VISIBLE_DEVICES` 硬编码（exp-011/exp-020 脚本均无此设置）\n- vLLM 0.20.2 原生支持 tensor parallel\n\n### 2. 脚本产出\n\n`/root/symb_invariant_consensus/scripts/run_exp024_llama70b.sh` (147行, 755权限)\n\n基于 exp-011/exp-020 脚本模式，关键差异：\n\n| 参数 | 7B/14B 实验 | 70B 实验 |\n|---|---|---|\n| tensor-parallel-size | (无，单GPU) | 2 |\n| gpu-memory-utilization | 0.90 | 0.95 |\n| K | 12 | 10 |\n| vLLM 启动超时 | 180s | 600s |\n| max-model-len | 8192 | 8192 |\n| max-tokens | 4096 | 4096 |\n\n### 3. 数据可用性\n\n| 数据集 | 文件 | 题数 | 状态 |\n|---|---|---|---|\n| FOLIO | `data/folio_full.json` | 204 | OK |\n| ProofWriter | `data/proofwriter_full.json` | 600 | OK |\n| 空占位 | `data/empty.json` | 0 | OK |\n\n### 4. vLLM 版本\n\n- **版本**: 0.20.2 (支持 tensor parallel, json_object response format)\n- **入口**: `python -m vllm.entrypoints.openai.api_server` (与现有脚本一致)\n\n### 5. 模型下载\n\n**70B 模型尚未在服务器上。** `/root/autodl-tmp/models/` 现有模型：\n- Llama-3.1-8B-Instruct, DeepSeek-R1-Distill-Llama-8B, Mistral-7B, Qwen2.5-14B, Qwen2.5-7B, QwQ-32B, Qwen3-32B-AWQ\n\nGPU 到位后需先下载：\n```bash\nsource /etc/network_turbo 2>/dev/null || true\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nhuggingface-cli download meta-llama/Llama-3.1-70B-Instruct \\\n    --local-dir /root/autodl-tmp/models/Llama-3.1-70B-Instruct\n```\n预估下载大小：~140GB (FP16)。确认 autodl-tmp 有足够磁盘空间。\n\n### 6. 资源估算\n\n- LLaMA-3.1-70B FP16: ~140GB VRAM\n- 2×A100-80G = 160GB, `gpu-memory-utilization=0.95` → 152GB 可用\n- KV cache 预算: ~12GB → max-model-len=8192 时约 4 并发序列\n- K=10 并发请求会被 vLLM 自动排队，不影响正确性\n- 如果 VRAM 紧张 (OOM)，备选方案:\n  - 降 `--gpu-memory-utilization 0.90` (减少 KV cache 但更稳定)\n  - 降 `--max-model-len 4096` (增加并发但可能截断长 trace)\n  - 使用 AWQ 量化版 `meta-llama/Llama-3.1-70B-Instruct-AWQ` + `--quantization awq` (~35GB, 单 A100 即可)\n\n### 7. 温度配置\n\n- Trace generation: T=0.7 (从 `--temperature` 参数传入 `VLLMGenerator`)\n- Constraint extraction: T=0.1 (硬编码在 `sica/constraint_extractor.py:VLLMBackend.call()`)\n- 与 14B expanded 实验一致，无需修改\n\n### 8. 启动命令\n\nGPU 到位 + 模型下载完成后：\n```bash\nnohup bash /root/symb_invariant_consensus/scripts/run_exp024_llama70b.sh \\\n    > /tmp/exp024.log 2>&1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-70b-experiment.md"
+}

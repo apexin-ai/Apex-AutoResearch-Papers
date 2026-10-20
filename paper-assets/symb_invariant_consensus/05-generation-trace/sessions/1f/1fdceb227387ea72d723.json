@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "1fdceb227387ea72d723",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "fix cross table kappa footnote",
+  "task_key": "worker_fix_cross-table-kappa-footnote_20260524T074516",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_cross-table-kappa-footnote_20260524T074516.log",
+    "occurrence": 1,
+    "bytes": 996275,
+    "sha256": "41f652c5c4a007452d238fa6cbca564be3a4f5062bb4f3fd9123c2a0d3f8735a"
+  },
+  "statistics": {
+    "messages": 43,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 14,
+      "tool_result": 14,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 43,
+      "chunks": [
+        {
+          "path": "1fdceb227387ea72d723-part-0001.json",
+          "message_count": 21
+        },
+        {
+          "path": "1fdceb227387ea72d723-part-0002.json",
+          "message_count": 22
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-cross-table-kappa-footnote.md"
+}

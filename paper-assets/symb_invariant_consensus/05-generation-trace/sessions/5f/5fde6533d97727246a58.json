@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5fde6533d97727246a58",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code exp 077 kappa v2",
+  "task_key": "worker_code_exp-077-kappa-v2_20260519T181014",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp-077-kappa-v2_20260519T181014_result.json",
+    "occurrence": 1,
+    "bytes": 818,
+    "sha256": "2644be3c6768e8ec84b16a006447d7e4bd13301be397ece04f11eb7491993dab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 3 题成功完成，无 crash。输出 JSON 格式正确。\n\n结果摘要：\n- 代码已部署到 `/root/symb_invariant_consensus/run_kappa_generalization.py`\n- `--help` 参数验证通过\n- 3 题 dry-run 完成（3.8 min），输出格式正确\n- SC 的 n_questions=2（folio_2 不在 SC limit=3 的排序中，正式全量运行时 204 题不受影响）\n- 3 题的 κ 值偏低是因为样本量太小，正式 204 题运行预计会更显著\n\n正式运行命令：\n```bash\npython -u run_kappa_generalization.py \\\n  --mode vllm --api-base http://localhost:8002/v1 --model auto \\\n  --data data/folio_full.json \\\n  --sc-traces-dir results/exp033_mistral_7b_folio204 \\\n  --seed 42 \\\n  --output results/exp077_kappa_generalization/results.json \\\n  --save-intermediates\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-077-kappa-v2.md"
+}

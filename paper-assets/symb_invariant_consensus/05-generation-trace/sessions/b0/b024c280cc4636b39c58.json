@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b024c280cc4636b39c58",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 013 constraint ablation",
+  "task_key": "worker_analysis_exp-013-constraint-ablation_20260519T235109",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-013-constraint-ablation_20260519T235109_result.json",
+    "occurrence": 1,
+    "bytes": 1025,
+    "sha256": "a310cd909ce9b15d36bb8b6a537425b00c2acf74b3deb0ddf43374da79575630"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-013 完成。结果汇总：\n\n| Method | Overall (804) | FOLIO (204) | PW (600) |\n|---|---|---|---|\n| **SICA-MaxSAT** | 42.29% | 59.31% | 36.50% |\n| **SICA-count-only** | 42.16% | 56.86% | 37.17% |\n| **SICA-random-weight** | 42.06%±0.42% | 55.59%±0.73% | 37.47%±0.39% |\n| **SC baseline** | 43.16% | 54.41% | 39.33% |\n\n**核心发现**：\n- **MaxSAT vs count-only**: Δ = +0.12pp，agreement 94.4%。在45个分歧问题上 MaxSAT 赢18次 vs count 赢17次——基本是随机。**假设confirmed：SAT solver 几乎无贡献。**\n- **所有 constraint 方法都比 SC 差**（-0.87pp to -1.09pp），说明 constraint-based scoring 的整体价值存疑。\n- 分数据集看：FOLIO 上 MaxSAT 比 SC 好 +4.9pp，但 count-only 也比 SC 好 +2.5pp，Z3 只贡献 +2.4pp。PW 上所有 constraint 方法都比 SC 差。\n\n数据和脚本保存在 `westd-25068:/root/symb_invariant_consensus/results/exp013_constraint_ablation/`，已注册 registry (exp-013-constraint-ablation, DONE)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-013-constraint-ablation.md"
+}

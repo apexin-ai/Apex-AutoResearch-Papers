@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f72ce7392756b6f9076",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code 70b script fix deploy",
+  "task_key": "worker_code_70b-script-fix-deploy_20260518T065432",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_70b-script-fix-deploy_20260518T065432_result.json",
+    "occurrence": 1,
+    "bytes": 1015,
+    "sha256": "1f897f4cbce514130bf4474ad86b727e147a94a9e6088152df3d62a4ae4aa25d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。结果汇总：\n\n**脚本已部署到 westd-25068:**\n- `/root/symb_invariant_consensus/scripts/run_exp024_llama70b.sh` (chmod +x, syntax OK)\n- `/root/symb_invariant_consensus/scripts/run_exp025_qwen72b.sh` (chmod +x, syntax OK)\n\n**exp024 修正项已确认：**\n1. K=10 → **K=12** (line 33)\n2. tensor-parallel-size=2 → **tensor-parallel-size=4** (line 81)，GPU 检查阈值也从 2 → 4\n3. 注释更新为 **westd-25068, 4×GPU**\n\n**项目代码未部署：** `/root/symb_invariant_consensus/` 目前只有 `scripts/` 目录。运行脚本前需要先将完整项目代码（sica/、baselines/、utils/、data/、run_full_mvp.py 等）同步到服务器。\n\n**额外注意：** 脚本中调用的 `run_full_mvp.py` 使用了 `--temperature`、`--max-tokens`、`--seed`、`--folio-data`、`--save-intermediates` 等参数，这些在当前本地的 `run_full_mvp.py` 中尚未实现。部署项目代码时需要确保 `run_full_mvp.py` 已更新支持这些参数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-70b-script-fix-deploy.md"
+}

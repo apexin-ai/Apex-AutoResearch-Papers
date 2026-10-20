@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f01c4307453182bd1fff",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment qwen25 7b folio multiseed cuda3",
+  "task_key": "worker_experiment_qwen25-7b-folio-multiseed-cuda3_20260522T115915",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_qwen25-7b-folio-multiseed-cuda3_20260522T115915_result.json",
+    "occurrence": 1,
+    "bytes": 232,
+    "sha256": "d3d62ddfcaa5ac9657d301608b319f1bd9507e696504e71db05d6c4c8488ba30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Mistral FOLIO seed=789 正在跑 178/204，ETA 约 11 分钟。已设置 ~4.5 分钟后轮询检查完成状态。完成后会依次：杀旧 vLLM → 部署 Qwen2.5-7B → sanity check → 创建 multi-seed 脚本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-qwen25-7b-folio-multiseed-cuda3.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "29ad09e979eb187c7df1",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "analysis nli combo recompute pw",
+  "task_key": "worker_analysis_nli-combo-recompute-pw_20260521T052024",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_nli-combo-recompute-pw_20260521T052024.log",
+    "occurrence": 1,
+    "bytes": 624166,
+    "sha256": "32b3a33fd448adf974383b143fd84c0cba328872da9bbdcc9ec93ff76cdd696b"
+  },
+  "statistics": {
+    "messages": 151,
+    "user_turns": 0,
+    "tool_calls": 54,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 54,
+      "tool_result": 54,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 151,
+      "chunks": [
+        {
+          "path": "29ad09e979eb187c7df1-part-0001.json",
+          "message_count": 138
+        },
+        {
+          "path": "29ad09e979eb187c7df1-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-nli-combo-recompute-pw.md"
+}

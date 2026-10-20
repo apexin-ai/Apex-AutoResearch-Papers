@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "f249d72780a16cb85725",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code cross model sica phase2",
+  "task_key": "worker_code_cross-model-sica-phase2_20260520T062511",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_cross-model-sica-phase2_20260520T062511_result.json",
+    "occurrence": 1,
+    "bytes": 2312757,
+    "sha256": "03d35096463b303f300bea1b9f07ee7ad2324098befdc6f46e73974a96e7c9e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2312777,
+                "serialized_sha256": "a04171dfb54c8a4812c8b4254aacfd445037c3501e50cd91eb73862d5e55cecb",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cross-model-sica-phase2.md"
+}

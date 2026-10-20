@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "951651aad70ebb0d02bf",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "agent / loop_7_1779039548.md",
+  "task_key": "loop_7_1779039548",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_7_1779039548.md",
+    "occurrence": 1,
+    "bytes": 4900,
+    "sha256": "fed681e8b15b7e47b87c796d08f3f82f62823de78494c6ebdcab1243a95f08ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-17T11:59:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只分配 westd-32608:cuda:0 一张卡，严禁用其他 GPU\n- submit_training_job 命令必须 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"` 包裹，否则 tmux 下 sh 执行会 EXIT_CODE=127\n- 禁止在 submit_training_job command 中写 `pkill -f vllm`——v1/v2 因此 SIGTERM 自杀。vLLM 清理必须写在脚本内部或单独执行\n- Mistral 模型下载历史：3 次 ModelScope 截断 + HF 直下成功，不要再尝试 ModelScope\n- sica_expanded_14b (exp-001) EXIT_CODE=129 和 sica_k_sensitivity_14b EXIT_CODE=129 都是 SIGHUP 伪失败，实际 conclusion=success，不要被 exit code 误导\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-32608，root 用户，工作目录 `/root/symb_invariant_consensus/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 模型路径：\n  - Qwen2.5-14B-Instruct: `/root/autodl-tmp/models/Qwen2.5-14B-Instruct`\n  - LLaMA-3.1-8B-Instruct: 应在 `/root/autodl-tmp/models/` 下（v2 曾有 shard 损坏，v3 已修复）\n  - Mistral-7B-Instruct-v0.3: `/root/autodl-tmp/models/` 下（3 shards 4.95+5.00+4.55GB + consolidated 14.5GB）\n- 数据集：`/root/symb_invariant_consensus/data/`（proofwriter_30.json, folio_30.json, proofwriter_full.json, folio_full.json）\n- 结果：`/root/symb_invariant_consensus/results/`\n- 脚本：`/root/symb_invariant_consensus/scripts/run_exp0{10,11,17,18}_*.sh`\n- Git commit: 97aeaa572a6b6571b4bfea9c6ec6bcf915780425\n- 活跃进程：exp-010-mistral-v3 (PID 298717, tmux=exp-010-mistral-v3, cuda:0)，刚提交\n- 磁盘充裕：/autodl-pub 5.3T/7.3T 可用\n\n### 3. 📊 当前状态\n**刚做完**：exp-011-llama8b-v3 进程正常退出，已派 Worker (worker_analysis_exp-011-llama8b-v3_20260517T075618) SSH 分析结果，尚未回调。\n\n**正在跑**：\n- exp-010-mistral-v3 (RUNNING, PID 298717, cuda:0) — Mistral-7B cross-family validation，刚提交，预估 ~1-1.5h\n- Worker: analysis:exp-011-llama8b-v3 — 正在 SSH 读取 LLaMA 实验日志和结果 JSON\n\n**等待中**：\n- Worker 回调：exp-011-llama8b-v3 分析结果 → 需要 update_registry + 汇报 Director\n- Cron 回调：exp-010-mistral-v3 完成 → 同样需要分析+汇报\n- exp-011-llama8b-v3 的 registry 还在 ANALYZING，等 Worker 回来后需要设 conclusion/metrics/checkpoint_path\n\n**未汇报 Director**：exp-011-llama8b-v3 和 exp-010-mistral-v3 的状态都未汇报，等分析完一起报。\n\n### 4. 📋 待办（条件触发式）\n- Worker analysis:exp-011-llama8b-v3 回调 → 读取 metrics → update_registry(conclusion, metrics, checkpoint_path, log_path) → 按 on-experiment-done 分叉处理（success/negative） → 汇报 Director（带 [资源] 行）→ 更新 report.md\n- exp-010-mistral-v3 cron 完成回调 → 同上流程分析 Mistral 结果\n- 两个 cross-family 实验都完成后 → 汇总 3-family (Qwen/LLaMA/Mistral) 对比表 → 这是 Claim 2 的核心证据\n- 如果 LLaMA/Mistral 都 SICA≈SC → 强化 capability trap narrative，准备 exp-019 (constraint quality correlation CPU 分析)\n- 如果任一模型 SICA>SC 显著 → 必须汇报 Director，可能需调整 framing（\"regime exists but narrow\"）\n- GPU 空闲时（exp-010 完成后）→ 按 experiment_plan 优先级排下一个：exp-004 (7B scaling), exp-014 (DeepSeek-R1), exp-012 (GSM8K pilot)，需 Director 批准\n\n### 5. 🎯 战略上下文\n- **核心结论**：SICA≈SC everywhere（capability trap）。804 题 gap=+0.26pp n.s.。论文方向是 D025 Analysis Paper Pivot：\"为什么 symbolic consensus 不能 beat voting\"\n- **决策链**：D025(pivot to analysis) → D027(MaxSAT≈count-only) → D028(K-ablation 确认 tiebreak-only) → D029(所有 K SICA≤SC) → D030(转 Methods Paper 利用诊断数据)\n- **D030 最新决策**：从 Analysis Paper 转向 Methods Paper。这个决策可能影响后续实验优先级，新 session 应先 read decisions.yaml 确认 D030 具体内容\n- **已完成的关键实验**：exp-001(804题 baseline), exp-002(K-ablation 全负), exp-013(MaxSAT≈count-only), exp-005(QwQ operating regime), exp-016(weighted SC 全不显著), exp-017-v3(StrategyQA +3.33pp n.s.), exp-018-v2(ARC -1.67pp)\n- **易错点**：\n  - EXIT_CODE=129 是 SIGHUP 伪失败，不要自动标 failed\n  - exp-010 系列历史：v1 进程死亡(auto-resolved failed), v2 pkill SIGTERM → v3 脚本内置清理，如果 v3 还失败就需要完全不同的方法\n  - paper_framing.md 的 headline numbers 标注 \"PENDING FINAL UPDATE\"，cross-family 数据回来后需要更新\n  - Claim 2 要求 \"4 domains × 7 models\"，目前只有 Qwen-14B 覆盖 4 domain，cross-family 只跑 D012(PW+FOLIO)。还差 7B/72B/DeepSeek-R1 数据点\n  - 目标 deadline: ARR May 25 (8 天后)，时间紧迫\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1779039548.md"
+}

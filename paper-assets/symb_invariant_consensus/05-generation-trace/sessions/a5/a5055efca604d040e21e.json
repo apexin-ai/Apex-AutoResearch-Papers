@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5055efca604d040e21e",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis o3 metrics harvest",
+  "task_key": "worker_analysis_o3-metrics-harvest_20260521T190655",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_o3-metrics-harvest_20260521T190655_result.json",
+    "occurrence": 1,
+    "bytes": 1051,
+    "sha256": "ff3962039c9a90197257be5333047f2487e47d22db98e702bb19374152bb8571"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "o3 完整指标已计算并保存到 `o3_full_metrics.json`。\n\n### o3 完整指标（vs gpt-5.5 参考）\n\n| Metric | o3 | gpt-5.5 |\n|---|---|---|\n| SC accuracy | **0.8265** (162/196) | 0.8431 |\n| SICA accuracy | **0.8265** (162/196) | 0.8480 |\n| Δ(SICA-SC) | **+0.00pp** | +0.49pp |\n| Mean BR | **1.6565** | 3.4806 |\n| Median BR | **1.2902** | 3.4935 |\n| Weighted BR | **1.8120** | 3.5735 |\n| n_br_finite | **6** | 4 |\n| n_br_inf | **28** | 27 |\n| Extraction rate | **1.0000** | 1.0000 |\n| Process-κ | **0.5964** | 0.5625 |\n| Answer Fleiss' κ | **0.9221** | 0.9581 |\n\n关键发现：\n- **SICA = SC，Δ=0**：SICA 对 o3 无增益，cross-model extraction 没有纠正任何 SC 错误\n- **BR 远低于 gpt-5.5**（mean 1.66 vs 3.48）：o3 错的题上，SICA 给错误答案的权重相对较低——说明 o3 的错误模式更\"确定\"，constraint 提取无法翻盘\n- **28/34 错题 BR=∞**：绝大多数错题中 gold answer 在 MaxSAT 中权重为 0，constraint 完全无法覆盖正确推理路径"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-o3-metrics-harvest.md"
+}

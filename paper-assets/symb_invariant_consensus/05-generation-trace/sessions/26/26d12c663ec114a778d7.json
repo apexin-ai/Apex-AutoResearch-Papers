@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26d12c663ec114a778d7",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code fix extraction parse",
+  "task_key": "worker_code_fix-extraction-parse_20260515T122228",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix-extraction-parse_20260515T122228_result.json",
+    "occurrence": 1,
+    "bytes": 1139,
+    "sha256": "c24fdebc3c8b058acd3ddfa1de858ada16206246c3ab9d53b9639bb9c1ede1cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "端到端验证通过。提取成功返回 3 个约束，**0 个 JSON parse 失败**。\n\n## 修复总结\n\n**根因**: `_parse_response` 中的正则 `r'```(?:json)?\\\\s*(.*?)```'` 有 bug — raw string 中 `\\\\s` 是两个字符 `\\` + `s`，在正则中匹配的是字面量反斜杠+s，而非空白字符。导致 code-fenced JSON 永远无法提取，后续 `json.loads` 对包含大量推理文本的原始响应直接 parse 必然失败。\n\n**修复内容** (`constraint_extractor.py`):\n\n| 问题 | 修复 |\n|------|------|\n| `\\\\s` regex bug | `\\\\s` → `\\s`（单反斜杠，正确匹配空白） |\n| 无 fallback 提取 | 新增 `_extract_json_str`: 先试 code fence，再试 `{...}` 括号匹配 |\n| 截断 `<think>` 未处理 | `_strip_thinking` 处理有/无 `</think>` 两种情况 |\n| 无 JSON 修复 | `_repair_json` 处理 trailing comma、单引号 |\n| `extract_batch` 对每个失败重试 3 次 LLM 调用 | 移除级联重试（batch 失败不再调 `self.extract()`） |\n| `parse_retries=2` 默认太高 | 降为 1 |\n| `_retry_with_backoff` 3次/1s base | 降为 2次/0.5s base |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-extraction-parse.md"
+}

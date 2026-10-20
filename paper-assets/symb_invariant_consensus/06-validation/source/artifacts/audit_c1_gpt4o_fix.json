@@ -1,0 +1,31 @@
+{
+  "issue": "C1: gpt-4o row in Table frontier-scb had 4 unsourced values",
+  "date": "2026-05-25",
+  "old_values": {
+    "SC": 76.96,
+    "n_err": 47,
+    "BR": 2.65,
+    "delta_pp": -1.96,
+    "source": "NONE — 76.96 only appears as R1-Distill SICA in registry, not gpt-4o SC"
+  },
+  "new_values": {
+    "SC": 73.91,
+    "n_err": 42,
+    "BR": 2.94,
+    "delta_pp": -1.86,
+    "n_completed": 161,
+    "n_total": 204,
+    "n_api_failures": 43,
+    "annotation": "\\ddagger (n=161, 43 API failures excluded)"
+  },
+  "sources": {
+    "SC_and_delta": "gpt4o_br_process_kappa.json: sc_accuracy=0.7391, sica_accuracy=0.7205, delta_pp=-1.86",
+    "BR": "gpt4o_br_process_kappa.json: mean_br=2.9398 (rounded to 2.94)",
+    "n_err_calculation": "161 * (1 - 0.7391) = 42.005 → 42",
+    "registry_cross_check": "exp-d134-e6-closed-model: completed=161, SC=73.91%; exp-d135-frontier-scb: gpt4o_self SC=73.9%, BR_mean=2.94"
+  },
+  "files_modified": [
+    "docs/paper/analysis.tex (line 12: caption +\\ddagger; line 23: gpt-4o row values)"
+  ],
+  "narrative_impact": "BR range 1.66--4.97× unchanged. All claims about 'all models exhibit BR>1' still hold."
+}

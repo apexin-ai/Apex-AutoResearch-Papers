@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84f5438bf7b9ffca0294",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis c0 domain split",
+  "task_key": "worker_analysis_c0-domain-split_20260517T172311",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_c0-domain-split_20260517T172311_result.json",
+    "occurrence": 1,
+    "bytes": 580,
+    "sha256": "f82680ef135b8c980f9d43b9f73d64c679c3c1002fd653b57016ed3f73a8e1ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已写入 `analysis/c0_domain_split.json`。\n\n**域内 C0 拆分：**\n\n| Domain | n | C0 | SC Acc | SICA Acc |\n|--------|---:|-----:|-------:|---------:|\n| FOLIO | 204 | 35.3% | 79.4% | 79.4% |\n| ProofWriter | 600 | 39.2% | 75.2% | 75.5% |\n| Combined | 804 | 38.2% | 76.2% | 76.5% |\n\nCombined 数字与 registry 完全一致。ProofWriter 的 C0 (39.2%) 高于 FOLIO (35.3%)，说明 PW 的 D5 难度下模型回答分歧更大。FOLIO 上 SC 和 SICA 表现相同（79.4%），SICA 的增益主要来自 ProofWriter（75.2% → 75.5%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-c0-domain-split.md"
+}

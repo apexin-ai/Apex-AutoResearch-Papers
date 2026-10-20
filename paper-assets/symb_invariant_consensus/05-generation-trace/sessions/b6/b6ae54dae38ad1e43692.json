@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6ae54dae38ad1e43692",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "gpu exp 069 mistral logiqa200",
+  "task_key": "worker_gpu_exp-069-mistral-logiqa200_20260519T114529",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp-069-mistral-logiqa200_20260519T114529_result.json",
+    "occurrence": 1,
+    "bytes": 591,
+    "sha256": "c5d9bf0b78a52179725cedb447c16cadfabcf2e01277e91f4e269456b3d28db0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-069 部署完成，全量实验正在运行。\n\n**部署摘要：**\n- **vLLM**: tmux `exp069_vllm`, Mistral-7B-Instruct-v0.3, cuda:1, port 8001\n- **实验**: tmux `exp-069-mistral-logiqa200`, 200 条 LogiQA, K=12, T=0.7, seed=42\n- **Dry-run 结果**: 5 条通过，SICA=40% SC=20% (Δ=+20pp)，无 OOM/crash\n- **输出**: `results/exp069_mistral_logiqa200/exp069_results.json`\n- **预估运行时间**: ~80 分钟 (基于 dry-run 5 条 ~2 分钟推算)\n- **注**: 清理了已完成的 exp066_vllm (Qwen2.5-14B, GPU 1 idle) 和 exp033/034/035 的 finished sessions"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-069-mistral-logiqa200.md"
+}

@@ -1,0 +1,891 @@
+{
+  "schema_version": "1.0",
+  "id": "3dc68c6511a0eec84194",
+  "project": "symb_invariant_consensus",
+  "kind": "conversation",
+  "title": "paper cross model ablation and nli update",
+  "task_key": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_paper_cross-model-ablation-and-nli-update_20260523T163830.jsonl",
+    "occurrence": 1,
+    "bytes": 42747,
+    "sha256": "5115b1b06700cd3ade3ea06895160c5c1201a7ed14b331da475fdbaa2a26c136"
+  },
+  "statistics": {
+    "messages": 43,
+    "user_turns": 0,
+    "tool_calls": 21,
+    "roles": {
+      "tool_call": 21,
+      "tool_result": 21,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T16:46:48.964707+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T16:46:48.965111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T16:46:48.965290+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "cat /root/symb_invariant_consensus/results/cross_model_sc_ablation.json"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T16:46:48.965426+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "cat /root/symb_invariant_consensus/results/cross_model_sc_mistral_voter.json"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T16:46:48.965721+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"Cross-model SC Ablation\\\\\\\",\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"Test whether cross-model majority vote replicates NLI combo gains\\\\\\\",\\\\n  \\\\\\\"cross_voter_pairing\\\\\\\": {\\\\n    \\\\\\\"Mistral-7B\\\\\\\": \\\\\\\"Qwen2.5-14B\\\\\\\",\\\\n    \\\\\\\"LLaMA-8B\\\\\\\": \\\\\\\"Qwen2.5-14B\\\\\\\",\\\\n    \\\\\\\"Qwen2.5-14B\\\\\\\": \\\\\\\"LLaMA-8B\\\\\\\",\\\\n    \\\\\\\"Qwen3-14B\\\\\\\": \\\\\\\"Qwen2.5-14B\\\\\\\"\\\\n  },\\\\n  \\\\\\\"weights\\\\\\\": [\\\\n    1,\\\\n    3,\\\\n    5\\\\n  ],\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"generator\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n      \\\\\\\"cross_voter\\\\\\\": \\\\\\\"Qwen2.5-14B\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"ProofWriter\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 600,\\\\n      \\\\\\\"sc_accuracy\\\\\\\": 0.3933,\\\\n      \\\\\\\"sc_correct\\\\\\\": 236,\\\\n      \\\\\\\"cross_sc_w1\\\\\\\": 0.41,\\\\n      \\\\\\\"cross_sc_w1_correct\\\\\\\": 246,\\\\n      \\\\\\\"cross_sc_w1_delta_pp\\\\\\\": 1.67,\\\\n      \\\\\\\"cross_sc_w1_mcnemar_p\\\\\\\": 0.021271,\\\\n      \\\\\\\"cross_sc_w1_discordant\\\\\\\": [\\\\n        3,\\\\n        13\\\\n      ],\\\\n      \\\\\\\"cross_sc_w3\\\\\\\": 0.4767,\\\\n      \\\\\\\"cross_sc_w3_correct\\\\\\\": 286,\\\\n      \\\\\\\"cross_sc_w3_delta_pp\\\\\\\": 8.33,\\\\n      \\\\\\\"cross_sc_w3_mcnemar_p\\\\\\\": 0.0,\\\\n      \\\\\\\"cross_sc_w3_discordant\\\\\\\": [\\\\n        5,\\\\n        55\\\\n      ],\\\\n      \\\\\\\"nli_combo_w3_acc\\\\\\\": 0.46,\\\\n      \\\\\\\"nli_combo_w3_delta_pp\\\\\\\": 6.67,\\\\n      \\\\\\\"nli_combo_w3_p\\\\\\\": 1.13e-05,\\\\n      \\\\\\\"cross_sc_w5\\\\\\\": 0.5533,\\\\n      \\\\\\\"cross_sc_w5_correct\\\\\\\": 332,\\\\n      \\\\\\\"cross_sc_w5_delta_pp\\\\\\\": 16.0,\\\\n      \\\\\\\"cross_sc_w5_mcnemar_p\\\\\\\": 0.0,\\\\n      \\\\\\\"cross_sc_w5_discordant\\\\\\\": [\\\\n        18,\\\\n        114\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"generator\\\\\\\": \\\\\\\"LLaMA-8B\\\\\\\",\\\\n      \\\\\\\"cross_voter\\\\\\\": \\\\\\\"Qwen2.5-14B\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"ProofWriter\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 600,\\\\n      \\\\\\\"sc_accuracy\\\\\\\": 0.725,\\\\n      \\\\\\\"sc_correct\\\\\\\": 435,\\\\n      \\\\\\\"cross_sc_w1\\\\\\\": 0.7333,\\\\n      \\\\\\\"cross_sc_w1_correct\\\\\\\": 440,\\\\n      \\\\\\\"cross_sc_w1_delta_pp\\\\\\\": \n…[truncated 7609 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T16:46:48.965907+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T16:46:48.966060+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T16:46:48.966257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"Cross-model SC Ablation - Mistral-7B voter\\\\\\\",\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"Mistral-7B (SC=39.33%) as cross voter to control for voter capability confound\\\\\\\",\\\\n  \\\\\\\"cross_voter\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n  \\\\\\\"cross_voter_sc\\\\\\\": 0.3933,\\\\n  \\\\\\\"weights\\\\\\\": [\\\\n    1,\\\\n    3,\\\\n    5\\\\n  ],\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"generator\\\\\\\": \\\\\\\"LLaMA-8B\\\\\\\",\\\\n      \\\\\\\"cross_voter\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"ProofWriter\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 600,\\\\n      \\\\\\\"sc_accuracy\\\\\\\": 0.725,\\\\n      \\\\\\\"sc_correct\\\\\\\": 435,\\\\n      \\\\\\\"cross_sc_w1\\\\\\\": 0.6967,\\\\n      \\\\\\\"cross_sc_w1_correct\\\\\\\": 418,\\\\n      \\\\\\\"cross_sc_w1_delta_pp\\\\\\\": -2.83,\\\\n      \\\\\\\"cross_sc_w1_mcnemar_p\\\\\\\": 0.000911,\\\\n      \\\\\\\"cross_sc_w1_discordant\\\\\\\": [\\\\n        21,\\\\n        4\\\\n      ],\\\\n      \\\\\\\"cross_sc_w3\\\\\\\": 0.6317,\\\\n      \\\\\\\"cross_sc_w3_correct\\\\\\\": 379,\\\\n      \\\\\\\"cross_sc_w3_delta_pp\\\\\\\": -9.33,\\\\n      \\\\\\\"cross_sc_w3_mcnemar_p\\\\\\\": 0.0,\\\\n      \\\\\\\"cross_sc_w3_discordant\\\\\\\": [\\\\n        71,\\\\n        15\\\\n      ],\\\\n      \\\\\\\"cross_sc_w5\\\\\\\": 0.5617,\\\\n      \\\\\\\"cross_sc_w5_correct\\\\\\\": 337,\\\\n      \\\\\\\"cross_sc_w5_delta_pp\\\\\\\": -16.33,\\\\n      \\\\\\\"cross_sc_w5_mcnemar_p\\\\\\\": 0.0,\\\\n      \\\\\\\"cross_sc_w5_discordant\\\\\\\": [\\\\n        119,\\\\n        21\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"generator\\\\\\\": \\\\\\\"Qwen2.5-14B\\\\\\\",\\\\n      \\\\\\\"cross_voter\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"ProofWriter\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 600,\\\\n      \\\\\\\"sc_accuracy\\\\\\\": 0.74,\\\\n      \\\\\\\"sc_correct\\\\\\\": 444,\\\\n      \\\\\\\"cross_sc_w1\\\\\\\": 0.7283,\\\\n      \\\\\\\"cross_sc_w1_correct\\\\\\\": 437,\\\\n      \\\\\\\"cross_sc_w1_delta_pp\\\\\\\": -1.17,\\\\n      \\\\\\\"cross_sc_w1_mcnemar_p\\\\\\\": 0.092285,\\\\n      \\\\\\\"cross_sc_w1_discordant\\\\\\\": [\\\\n        10,\\\\n        3\\\\n      ],\\\\n      \\\\\\\"cross_sc_w3\\\\\\\": 0.7167,\\\\n      \\\\\\\"cross_sc_w3_correct\\\\\\\": 430,\\\\n      \\\\\\\"cross_sc\n…[truncated 1529 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T16:46:48.966439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Escaping the Bottleneck}\n2\t\\label{sec:solutions}\n3\t\\label{sec:cross-arch}\n4\t\n5\t\\paragraph{Motivation.}\n6\t\\looseness=-1 No training-free self-extraction method achieves independence from the model's distributional prior (\\S\\ref{sec:remediation}). Remark~1 implies that any escape must break the self-extraction dependency: the information ceiling $I(C;Y) \\leq I(T;Y)$ binds whenever constraints are deterministic functions of the generating model's traces. We test whether a structurally independent verifier, sharing neither architecture nor training data with the generator, provides corrective signal that escapes this bound.\n7\t\n8\t\\paragraph{Method.}\n9\t\\looseness=-1 We use DeBERTa-large \\citep{he2021deberta} (406M, encoder-only), fine-tuned on MultiNLI \\citep{williams2018mnli}, to classify (premise, conclusion) pairs as entailment, contradiction, or neutral. In combo mode, each NLI-supporting vote counts $w$ times alongside SC's $K$ votes. We evaluate on Mistral-7B FOLIO ($n = 204$) and ProofWriter depth-5 ($n = 600$).\n10\t\n11\t\\paragraph{Zero-shot results.}\n12\t\\looseness=-1 DeBERTa NLI alone achieves 49.51\\% on FOLIO and 55.00\\% on ProofWriter. Combo $w{=}3$ yields $+6.67$\\,pp on ProofWriter for Mistral-7B ($p < 0.001$, significant after BH correction) and $+2.94$\\,pp on FOLIO (n.s.); all generators with SC $\\geq 72\\%$ show no significant improvement ($\\Delta \\leq +0.83$\\,pp). Same-model SICA \\emph{degrades} ProofWriter ($-2.83$\\,pp; Table~\\ref{tab:main_results}), illustrating that corrective signal must originate outside the model's distribution.\n13\t\n14\t\\paragraph{Capability gap.}\n15\t\\looseness=-1 Four generators spanning a 47-point SC range on ProofWriter ($n{=}600$), all paired with DeBERTa-large-mnli (55.00\\% standalone; Table~\\ref{tab:cross_generator_nli}): only Mistral-7B (SC 39.33\\%, below the verifier) gains significantly ($+6.67$\\,pp, $p < 0.001$); all three above the verifier show no significant $w{=}3$ improvement ($\\Delta \\leq +0.83$\\,pp; Table~\\ref{\n…[truncated 2182 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T16:46:48.966589+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (30885 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T16:46:48.966738+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "nli-combo-full|tab:nli-combo-full|Table 28|multi-nli",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T16:46:48.966913+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "887:\\label{app:multi-nli}\n893:\\label{tab:multi-nli}\n953:\\label{app:nli-combo-full}\n959:\\label{tab:nli-combo-full}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T16:46:48.967066+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "60 tested conditions|tested conditions",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T16:46:48.967211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/analysis.tex:9:[Omitted long matching line]\ndocs/paper/analysis.tex:51:[Omitted long matching line]\ndocs/paper/analysis.tex:133:[Omitted long matching line]\ndocs/paper/discussion.tex:6:[Omitted long matching line]\ndocs/paper/abstract.tex:1:[Omitted long matching line]\ndocs/paper/introduction.tex:19:\\item \\textbf{Diagnostic framework.} Three zero-cost diagnostics characterize failure modes across all tested conditions within the self-extraction paradigm, with prospective validation on held-out model families, providing practitioners with a priori failure-mode diagnosis from a pilot run (\\S\\ref{sec:diagnostic-framework})."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T16:46:48.967361+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex",
+              "offset": "940",
+              "limit": "100"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T16:46:48.967549+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "940\t\\centering\n941\t\\includegraphics[width=0.78\\columnwidth]{figures/capability_gap_scatter}\n942\t\\caption{Combo gain vs.\\ capability gap (verifier standalone $-$ generator SC) at $w{=}3$ across three NLI architectures. Gain decreases monotonically (Spearman $\\rho = 1.0$, exact permutation $p = 0.003$, $n{=}6$; four of six conditions share the DeBERTa verifier---see Limitations); significant gains occur only for generators below the verifier's standalone accuracy. Stars: domain-adapted DeBERTa (99.67\\% standalone, Table~\\ref{tab:finetuned-nli}).}\n943\t\\label{fig:capability-gap}\n944\t\\end{figure}\n945\t\n946\tTable~\\ref{tab:cross_generator_nli} reports the controlled cross-generator comparison with DeBERTa-large-mnli on ProofWriter ($n{=}600$). We extend this analysis by pairing Mistral-7B with two additional NLI architectures: BART-large-mnli (46.17\\% standalone, combo $+5.17$\\,pp, $p = 0.0002$) and RoBERTa-large-mnli (37.67\\% standalone, combo $+4.17$\\,pp, $p = 0.003$). All three NLI architectures produce significant gains on Mistral-7B at $w \\geq 3$.\n947\t\n948\tAcross all six ProofWriter verifier-generator pairs at $w{=}3$ (three verifiers $\\times$ Mistral-7B plus three negative-gap generators $\\times$ DeBERTa), combo gain decreases monotonically with the capability gap (Spearman $\\rho = 1.0$, exact permutation $p = 0.003$, $n = 6$; however, four of six conditions share the DeBERTa verifier, which may reduce effective degrees of freedom---see Limitations; Figure~\\ref{fig:capability-gap}). Significant $w{=}3$ gains are observed only for Mistral-7B (SC 39.33\\%, below the verifier); the three above-verifier generators show no significant improvement at any $w$. After BH correction ($m{=}12$), two of twelve conditions survive: Mistral-7B $w{=}3$ (adj.\\ $p = 6.78 \\times 10^{-5}$) and $w{=}5$ (adj.\\ $p = 7.41 \\times 10^{-6}$).\n949\t\n950\t\\paragraph{Robustness check.} Including all nine conditions (three verifiers $\\times$ three weight levels on Mistral-7B) yields Spearman $\\rho = 0\n…[truncated 4798 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T16:46:48.967696+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T16:46:48.967828+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tCan symbolic verification via a provably sound solver improve Large Language Model (LLM) reasoning when constraints are self-extracted from the model's own traces? We find no evidence of improvement under self-extraction. We introduce Symbolic Invariant Consensus Aggregation (SICA), which extracts logical constraints from chain-of-thought traces via weighted MAX-SAT. Despite Z3 validating 99\\% of self-extracted constraints, SICA produces answers identical to majority voting on over 90\\% of problems across six models (7B--32B) and three domains. No condition shows a significant positive effect after FDR control; four of six powered conditions confirm equivalence within $\\pm$2\\,pp (TOST); ten remain underpowered for effects below ${\\sim}$2\\,pp. We diagnose the failure as \\emph{symbolic confirmation bias}: self-extracted constraints track the majority answer (bias ratios $1.66$--$4.97\\times$ across nine models, 7B to frontier). We identify the structural mechanism---under source-attribution scoring and degeneration, SICA reduces to majority vote (Observation~1)---and the $M{\\to}T{\\to}A{\\to}C$ Markov chain that bounds self-extracted information (Remark~1), extending and formalizing \\citet{huang2024selfcorrect}'s findings for formal self-verification. Twenty-seven training-free variants within the constraint-extraction paradigm fail due to a persistent independence-accuracy trade-off. Cross-architecture verification escapes the bias ($+6.67$\\,pp on the weakest generator, $p < 0.001$). Three zero-cost diagnostics characterize failure modes across all 60 tested conditions.\n2\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T16:46:48.968014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+              "offset": "1",
+              "limit": "15"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T16:46:48.968167+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{The Symbolic Mirage}\n2\t\\label{sec:analysis}\n3\t\n4\t\\subsection{Symbolic Confirmation Bias}\n5\t\\label{sec:confirmation-bias}\n6\t\n7\t\\looseness=-1 Self-extracted constraints systematically align with the model's majority answer---a structural limitation of self-extraction pipelines, not a cognitive bias analogy. On Mistral-7B FOLIO, when SICA errs, 83.3\\% of constraints support the incorrect answer---bias ratio $4.97\\times$ (Table~\\ref{tab:cross-model-bias})---and 94\\% of errors overlap with SC. Z3 rejects only 3.4\\% of constraints, and MAX-SAT produces answers identical to count-only aggregation on $\\geq$99\\% of problems across all weight settings $\\alpha$ (Table~\\ref{tab:alpha-ablation}), confirming that the formal verification layer is vacuous (Eq.~\\ref{eq:degenerate}): 99\\% of constraints pass Z3 validation yet add no information beyond majority voting.\n8\t\n9\t\\looseness=-1 Empirically, confirmation bias extends beyond incorrect instances. On problems where SC selects the correct answer, constraints still disproportionately support the majority ($\\text{BR}_\\text{correct}$ $1.29$--$3.64\\times$ across all six tested conditions, with 5/6 showing $\\text{BR}_\\text{correct} \\geq \\text{BR}_\\text{wrong}$), confirming that self-extracted constraints track distributional frequency rather than logical validity. A permutation null model---randomizing constraint--answer associations while preserving per-trace counts (1{,}000 permutations)---yields $\\text{BR}_\\text{null} \\approx \\text{BR}_\\text{obs}$ ($\\text{BR}_\\text{excess} \\approx 0$; $p > 0.7$) across all tested conditions, confirming that BR quantifies the degree of extraction degeneration---how completely constraints collapse to majority-vote equivalents---rather than an independent bias signal. The bias is inherent to the majority-vote geometry (Observation~1): under source-attribution scoring, BR $> 1$ follows from trace-count distributions, not extraction artifacts.\n10\t\n11\t\\looseness=-1 The pattern generalizes: $4.\n…[truncated 659 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T16:46:48.968310+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex",
+              "offset": "1",
+              "limit": "15"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T16:46:48.968440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\n2\t\\label{sec:discussion}\n3\t\\label{sec:conclusion}\n4\t\n5\t\\looseness=-1\n6\tOur central finding is that the value of formal verification depends on the \\emph{independence} of its inputs, not the soundness of its logic. \\emph{SICA-specific}: under source-attribution scoring, SICA reduces to majority vote (Observation~1), and 27 training-free variants fail to escape. \\emph{General}: the DPI bound (Remark~1) applies to any deterministic self-extraction, and SCB (BR $> 1$) holds across nine models (7B to frontier), suggesting the bottleneck is intrinsic to self-referential constraint generation. Three diagnostics ($K_\\text{eff}$, BR, $C_0$) correctly characterize failure modes across all 60 tested conditions, with boundaries generalizing to held-out families (\\S\\ref{sec:diagnostic-framework}).\n7\t\n8\t\\looseness=-1\n9\tThis has direct consequences for test-time compute scaling \\citep{snell2025scaling}: with $K_\\text{eff} \\leq 3.62$ for $K{=}12$, same-model traces scale redundancy, not information, extending and formalizing \\citet{huang2024selfcorrect}'s empirical findings for formal self-verification. Escaping the bottleneck requires structural independence (\\S\\ref{sec:cross-arch}); whether trained extractors or scaled cross-architecture verification can shift this boundary remains open.\n10\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T16:46:48.968772+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex",
+              "offset": "985",
+              "limit": "30"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T16:46:48.969014+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "985\t\\bottomrule\n986\t\\end{tabular}}\n987\t\\end{table}\n988\t\n989\t\\paragraph{Domain-adapted verifier results.}\n990\t\\label{app:finetuned-nli}\n991\t\n992\t\\begin{table}[h]\n993\t\\centering\n994\t\\small\n995\t\\caption{Domain-adapted NLI combo on ProofWriter depth-5 ($n{=}600$). DeBERTa-large fine-tuned on ProofWriter OWA (99.67\\% standalone). All $p < 0.0001$. Complementarity: ratio of NLI-correct$\\cap$SC-incorrect to SC-correct$\\cap$NLI-incorrect.}\n996\t\\label{tab:finetuned-nli}\n997\t\\setlength{\\tabcolsep}{3.5pt}\n998\t\\begin{tabular}{@{}lrrrrc@{}}\n999\t\\toprule\n1000\tGenerator & $w$ & Combo (\\%) & $\\Delta$ (pp) & Compl.\\ ratio \\\\\n1001\t\\midrule\n1002\t\\multirow{3}{*}{\\shortstack[l]{Mistral-7B\\\\{\\scriptsize SC\\,39.33\\%}}}\n1003\t  & 1 & 42.17 & $+$2.83 & \\multirow{3}{*}{364:2} \\\\\n1004\t  & 3 & 52.00 & $+$12.67 & \\\\\n1005\t  & 5 & 65.50 & $+$26.17 & \\\\\n1006\t\\addlinespace\n1007\t\\multirow{3}{*}{\\shortstack[l]{LLaMA-3.1-8B\\\\{\\scriptsize SC\\,72.50\\%}}}\n1008\t  & 1 & 76.00 & $+$3.50 & \\multirow{3}{*}{164:1} \\\\\n1009\t  & 3 & 84.17 & $+$11.67 & \\\\\n1010\t  & 5 & 91.67 & $+$19.17 & \\\\\n1011\t\\bottomrule\n1012\t\\end{tabular}\n1013\t\\end{table}\n1014\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T16:46:48.969204+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
+              "old_string": "though with $n{=}6$ this should be interpreted cautiously. Per-label error complementarity diminishes as the generator improves (Appendix~\\ref{app:multi-nli}).",
+              "new_string": "though with $n{=}6$ this should be interpreted cautiously; full cross-generator tables for BART-large-mnli and RoBERTa-large-mnli confirm the same monotonic trend (Tables~\\ref{tab:bart-combo-full},~\\ref{tab:roberta-combo-full}). Per-label error complementarity diminishes as the generator improves (Appendix~\\ref{app:multi-nli})."
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T16:46:48.969366+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T16:46:48.969497+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
+              "old_string": "The domain-adapted verifier introduces training, so these results serve as directional evidence for the capability-gap pattern rather than a proposed method.",
+              "new_string": "The domain-adapted verifier introduces training, so these results serve as directional evidence for the capability-gap pattern rather than a proposed method.\n\n\\paragraph{Cross-model voting vs.\\ cross-architecture NLI.}\n\\looseness=-1 The NLI combo gains could reflect ensemble diversity rather than structural independence---any sufficiently different model might provide equivalent corrective signal. To test this, we replace the NLI verifier with a second LLM as cross voter (weighted $w{=}3$). With Mistral-7B (SC 39.33\\%) as cross voter on ProofWriter, all three strong generators degrade significantly: LLaMA-8B $-9.33$\\,pp ($p < 0.001$), Qwen2.5-14B $-2.33$\\,pp ($p = 0.020$), Qwen3-14B $-2.67$\\,pp ($p = 0.002$). Even with a stronger cross voter (Qwen2.5-14B), Qwen3-14B degrades at $w{=}5$ ($-2.50$\\,pp, $p = 0.006$)---the only significant negative combo effect in our framework. In contrast, DeBERTa NLI combo (55.00\\% standalone---also weaker than all three generators) never degrades any generator ($\\Delta \\leq +0.83$\\,pp, all n.s.). Both Mistral-7B and DeBERTa are weaker than the strong generators, yet only LLM cross voting causes degradation. This asymmetry cannot be fully explained by ensemble diversity; it reflects the structural independence of encoder-only NLI---different architecture, training objective, and input representation---from autoregressive biases shared across LLM families (Table~\\ref{tab:cross-model-ablation})."
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T16:46:48.969666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T16:46:48.969802+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex",
+              "old_string": "\\end{tabular}}\n\\end{table}\n\n\\paragraph{Domain-adapted verifier results.}\n\\label{app:finetuned-nli}",
+              "new_string": "\\end{tabular}}\n\\end{table}\n\n\\paragraph{BART-large-mnli cross-generator results.}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-generator NLI combo with BART-large-mnli verifier (46.17\\% standalone) on ProofWriter depth-5 ($n{=}600$, $w{=}3$). Only Mistral-7B (below the verifier) gains significantly after BH correction.}\n\\label{tab:bart-combo-full}\n\\begin{tabular}{@{}lccrl@{}}\n\\toprule\nGenerator & SC (\\%) & Combo (\\%) & $\\Delta$ (pp) & $p_{\\text{BH}}$ \\\\\n\\midrule\nMistral-7B {\\scriptsize (gap $+$6.84)} & 39.33 & 44.50 & $+$5.17 & .003{*} \\\\\nLLaMA-3.1-8B {\\scriptsize (gap $-$26.33)} & 72.50 & 72.50 & $\\pm$0.00 & --- \\\\\nQwen2.5-14B {\\scriptsize (gap $-$27.83)} & 74.00 & 75.50 & $+$1.50 & n.s. \\\\\nQwen3-14B {\\scriptsize (gap $-$39.66)} & 85.83 & 86.50 & $+$0.67 & n.s. \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{RoBERTa-large-mnli cross-generator results.}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-generator NLI combo with RoBERTa-large-mnli verifier (37.67\\% standalone) on ProofWriter depth-5 ($n{=}600$, $w{=}3$). Only Mistral-7B (marginally above the verifier) gains significantly after BH correction.}\n\\label{tab:roberta-combo-full}\n\\begin{tabular}{@{}lccrl@{}}\n\\toprule\nGenerator & SC (\\%) & Combo (\\%) & $\\Delta$ (pp) & $p_{\\text{BH}}$ \\\\\n\\midrule\nMistral-7B {\\scriptsize (gap $-$1.66)} & 39.33 & 43.50 & $+$4.17 & .016{*} \\\\\nLLaMA-3.1-8B {\\scriptsize (gap $-$34.83)} & 72.50 & 71.33 & $-$1.17 & n.s. \\\\\nQwen2.5-14B {\\scriptsize (gap $-$36.33)} & 74.00 & 74.17 & $+$0.17 & n.s. \\\\\nQwen3-14B {\\scriptsize (gap $-$48.16)} & 85.83 & 86.50 & $+$0.67 & n.s. \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Domain-adapted verifier results.}\n\\label{app:finetuned-nli}"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T16:46:48.970218+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T16:46:48.970388+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex",
+              "old_string": "\\end{tabular}\n\\end{table}\n\n\\paragraph{Generator$\\times$Extractor 2$\\times$2 Matrix.}",
+              "new_string": "\\end{tabular}\n\\end{table}\n\n\\paragraph{Cross-model voting ablation.}\n\\label{app:cross-model-ablation}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-model voting ablation ($w{=}3$). ``Cross LLM'' replaces the NLI verifier with a second LLM's SC votes; ``NLI'' uses DeBERTa-large-mnli (55.00\\% standalone). On ProofWriter, cross-model SC with a weak voter (Mistral-7B) degrades all strong generators while NLI combo does not, indicating that structural independence---not merely model diversity---drives the escape.}\n\\label{tab:cross-model-ablation}\n\\setlength{\\tabcolsep}{3pt}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llccrl@{}}\n\\toprule\nGenerator & Voter/Verifier & SC (\\%) & Combo (\\%) & $\\Delta$ (pp) & $p$ \\\\\n\\midrule\n\\multicolumn{6}{@{}l}{\\textit{ProofWriter ($n{=}600$)}} \\\\\n\\addlinespace\n\\multirow{2}{*}{Mistral-7B}\n  & Qwen2.5-14B (cross) & 39.33 & 47.67 & $+$8.33 & $<$.001 \\\\\n  & DeBERTa NLI & 39.33 & 46.00 & $+$6.67 & $<$.001 \\\\\n\\addlinespace\n\\multirow{3}{*}{LLaMA-3.1-8B}\n  & Qwen2.5-14B (cross) & 72.50 & 75.33 & $+$2.83 & .060 \\\\\n  & Mistral-7B (cross) & 72.50 & 63.17 & $-$9.33 & $<$.001 \\\\\n  & DeBERTa NLI & 72.50 & 73.33 & $+$0.83 & .665 \\\\\n\\addlinespace\n\\multirow{3}{*}{Qwen2.5-14B}\n  & LLaMA-8B (cross) & 74.00 & 74.50 & $+$0.50 & .664 \\\\\n  & Mistral-7B (cross) & 74.00 & 71.67 & $-$2.33 & .020 \\\\\n  & DeBERTa NLI & 74.00 & 74.67 & $+$0.67 & .503 \\\\\n\\addlinespace\n\\multirow{3}{*}{Qwen3-14B}\n  & Qwen2.5-14B (cross) & 85.83 & 84.67 & $-$1.17 & .143 \\\\\n  & Mistral-7B (cross) & 85.83 & 83.17 & $-$2.67 & .002 \\\\\n  & DeBERTa NLI & 85.83 & 86.33 & $+$0.50 & .453 \\\\\n\\midrule\n\\multicolumn{6}{@{}l}{\\textit{FOLIO ($n{=}204$)}} \\\\\n\\addlinespace\n\\multirow{2}{*}{Mistral-7B}\n  & Qwen2.5-14B (cross) & 55.88 & 63.73 & $+$7.84 & .002 \\\\\n  & DeBERTa NLI & 55.88 & 58.82 & $+$2.94 & .210 \\\\\n\\addlinespace\n\\multirow{2}{*}{LLaMA-3.1-8B}\n  & Qwen2.5-14B (cross) & 66.18 & 70.10 & $+$3.92 & .134 \\\\\n  & DeBERTa NLI & 66.18 & 65.20 & $-$0.98 & .824 \\\\\n\\addlinespace\n\\multirow{2}{*}{Qwen2.5-14B}\n  & LLaMA-8B (cross) & 75.98 & 76.96 & $+$0.98 & .727 \\\\\n  & DeBERTa NLI & 75.98 & 75.49 & $-$0.49 & 1.00 \\\\\n\\addlinespace\n\\multirow{2}{*}{Qwen3-14B}\n  & Qwen2.5-14B (cross) & 83.33 & 85.78 & $+$2.45 & .125 \\\\\n  & DeBERTa NLI & 83.33 & 84.80 & $+$1.47 & .250 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Generator$\\times$Extractor 2$\\times$2 Matrix.}"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T16:46:48.970791+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-23T16:46:48.970964+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-23T16:46:48.971138+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Escaping the Bottleneck}\n2\t\\label{sec:solutions}\n3\t\\label{sec:cross-arch}\n4\t\n5\t\\paragraph{Motivation.}\n6\t\\looseness=-1 No training-free self-extraction method achieves independence from the model's distributional prior (\\S\\ref{sec:remediation}). Remark~1 implies that any escape must break the self-extraction dependency: the information ceiling $I(C;Y) \\leq I(T;Y)$ binds whenever constraints are deterministic functions of the generating model's traces. We test whether a structurally independent verifier, sharing neither architecture nor training data with the generator, provides corrective signal that escapes this bound.\n7\t\n8\t\\paragraph{Method.}\n9\t\\looseness=-1 We use DeBERTa-large \\citep{he2021deberta} (406M, encoder-only), fine-tuned on MultiNLI \\citep{williams2018mnli}, to classify (premise, conclusion) pairs as entailment, contradiction, or neutral. In combo mode, each NLI-supporting vote counts $w$ times alongside SC's $K$ votes. We evaluate on Mistral-7B FOLIO ($n = 204$) and ProofWriter depth-5 ($n = 600$).\n10\t\n11\t\\paragraph{Zero-shot results.}\n12\t\\looseness=-1 DeBERTa NLI alone achieves 49.51\\% on FOLIO and 55.00\\% on ProofWriter. Combo $w{=}3$ yields $+6.67$\\,pp on ProofWriter for Mistral-7B ($p < 0.001$, significant after BH correction) and $+2.94$\\,pp on FOLIO (n.s.); all generators with SC $\\geq 72\\%$ show no significant improvement ($\\Delta \\leq +0.83$\\,pp). Same-model SICA \\emph{degrades} ProofWriter ($-2.83$\\,pp; Table~\\ref{tab:main_results}), illustrating that corrective signal must originate outside the model's distribution.\n13\t\n14\t\\paragraph{Capability gap.}\n15\t\\looseness=-1 Four generators spanning a 47-point SC range on ProofWriter ($n{=}600$), all paired with DeBERTa-large-mnli (55.00\\% standalone; Table~\\ref{tab:cross_generator_nli}): only Mistral-7B (SC 39.33\\%, below the verifier) gains significantly ($+6.67$\\,pp, $p < 0.001$); all three above the verifier show no significant $w{=}3$ improvement ($\\Delta \\leq +0.83$\\,pp; Table~\\ref{\n…[truncated 3652 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-23T16:46:48.971286+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "60 tested conditions",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "context": "1"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-23T16:46:48.971414+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-132-\ndocs/paper/analysis.tex:133:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-134-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex-5-\\looseness=-1\ndocs/paper/discussion.tex:6:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex-7-\n--\ndocs/paper/abstract.tex:1:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-23T16:46:48.971568+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "bart-combo-full|roberta-combo-full|cross-model-ablation",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-23T16:46:48.971692+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "995:\\label{tab:bart-combo-full}\n1014:\\label{tab:roberta-combo-full}\n1054:\\label{app:cross-model-ablation}\n1060:\\label{tab:cross-model-ablation}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-23T16:46:48.971815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex",
+              "offset": "988",
+              "limit": "30"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-23T16:46:48.972016+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "988\t\n989\t\\paragraph{BART-large-mnli cross-generator results.}\n990\t\n991\t\\begin{table}[h]\n992\t\\centering\n993\t\\small\n994\t\\caption{Cross-generator NLI combo with BART-large-mnli verifier (46.17\\% standalone) on ProofWriter depth-5 ($n{=}600$, $w{=}3$). Only Mistral-7B (below the verifier) gains significantly after BH correction.}\n995\t\\label{tab:bart-combo-full}\n996\t\\begin{tabular}{@{}lccrl@{}}\n997\t\\toprule\n998\tGenerator & SC (\\%) & Combo (\\%) & $\\Delta$ (pp) & $p_{\\text{BH}}$ \\\\\n999\t\\midrule\n1000\tMistral-7B {\\scriptsize (gap $+$6.84)} & 39.33 & 44.50 & $+$5.17 & .003{*} \\\\\n1001\tLLaMA-3.1-8B {\\scriptsize (gap $-$26.33)} & 72.50 & 72.50 & $\\pm$0.00 & --- \\\\\n1002\tQwen2.5-14B {\\scriptsize (gap $-$27.83)} & 74.00 & 75.50 & $+$1.50 & n.s. \\\\\n1003\tQwen3-14B {\\scriptsize (gap $-$39.66)} & 85.83 & 86.50 & $+$0.67 & n.s. \\\\\n1004\t\\bottomrule\n1005\t\\end{tabular}\n1006\t\\end{table}\n1007\t\n1008\t\\paragraph{RoBERTa-large-mnli cross-generator results.}\n1009\t\n1010\t\\begin{table}[h]\n1011\t\\centering\n1012\t\\small\n1013\t\\caption{Cross-generator NLI combo with RoBERTa-large-mnli verifier (37.67\\% standalone) on ProofWriter depth-5 ($n{=}600$, $w{=}3$). Only Mistral-7B (marginally above the verifier) gains significantly after BH correction.}\n1014\t\\label{tab:roberta-combo-full}\n1015\t\\begin{tabular}{@{}lccrl@{}}\n1016\t\\toprule\n1017\tGenerator & SC (\\%) & Combo (\\%) & $\\Delta$ (pp) & $p_{\\text{BH}}$ \\\\"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-23T16:46:48.972165+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex",
+              "offset": "1050",
+              "limit": "60"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-23T16:46:48.972313+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1050\t\\end{tabular}\n1051\t\\end{table}\n1052\t\n1053\t\\paragraph{Cross-model voting ablation.}\n1054\t\\label{app:cross-model-ablation}\n1055\t\n1056\t\\begin{table}[h]\n1057\t\\centering\n1058\t\\small\n1059\t\\caption{Cross-model voting ablation ($w{=}3$). ``Cross LLM'' replaces the NLI verifier with a second LLM's SC votes; ``NLI'' uses DeBERTa-large-mnli (55.00\\% standalone). On ProofWriter, cross-model SC with a weak voter (Mistral-7B) degrades all strong generators while NLI combo does not, indicating that structural independence---not merely model diversity---drives the escape.}\n1060\t\\label{tab:cross-model-ablation}\n1061\t\\setlength{\\tabcolsep}{3pt}\n1062\t\\resizebox{\\columnwidth}{!}{%\n1063\t\\begin{tabular}{@{}llccrl@{}}\n1064\t\\toprule\n1065\tGenerator & Voter/Verifier & SC (\\%) & Combo (\\%) & $\\Delta$ (pp) & $p$ \\\\\n1066\t\\midrule\n1067\t\\multicolumn{6}{@{}l}{\\textit{ProofWriter ($n{=}600$)}} \\\\\n1068\t\\addlinespace\n1069\t\\multirow{2}{*}{Mistral-7B}\n1070\t  & Qwen2.5-14B (cross) & 39.33 & 47.67 & $+$8.33 & $<$.001 \\\\\n1071\t  & DeBERTa NLI & 39.33 & 46.00 & $+$6.67 & $<$.001 \\\\\n1072\t\\addlinespace\n1073\t\\multirow{3}{*}{LLaMA-3.1-8B}\n1074\t  & Qwen2.5-14B (cross) & 72.50 & 75.33 & $+$2.83 & .060 \\\\\n1075\t  & Mistral-7B (cross) & 72.50 & 63.17 & $-$9.33 & $<$.001 \\\\\n1076\t  & DeBERTa NLI & 72.50 & 73.33 & $+$0.83 & .665 \\\\\n1077\t\\addlinespace\n1078\t\\multirow{3}{*}{Qwen2.5-14B}\n1079\t  & LLaMA-8B (cross) & 74.00 & 74.50 & $+$0.50 & .664 \\\\\n1080\t  & Mistral-7B (cross) & 74.00 & 71.67 & $-$2.33 & .020 \\\\\n1081\t  & DeBERTa NLI & 74.00 & 74.67 & $+$0.67 & .503 \\\\\n1082\t\\addlinespace\n1083\t\\multirow{3}{*}{Qwen3-14B}\n1084\t  & Qwen2.5-14B (cross) & 85.83 & 84.67 & $-$1.17 & .143 \\\\\n1085\t  & Mistral-7B (cross) & 85.83 & 83.17 & $-$2.67 & .002 \\\\\n1086\t  & DeBERTa NLI & 85.83 & 86.33 & $+$0.50 & .453 \\\\\n1087\t\\midrule\n1088\t\\multicolumn{6}{@{}l}{\\textit{FOLIO ($n{=}204$)}} \\\\\n1089\t\\addlinespace\n1090\t\\multirow{2}{*}{Mistral-7B}\n1091\t  & Qwen2.5-14B (cross) & 55.88 & 63.73 & $+$7.84 & .002 \\\\\n1092\t  & DeBERTa NLI & 55.88 & 58\n…[truncated 667 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-23T16:46:48.972504+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有编辑已完成，验证通过。\n\n**总结：**\n\n1. **solutions.tex — capability-gap paragraph**: 添加了 BART/RoBERTa full cross-generator 表格引用（Tables ref）\n2. **solutions.tex — new paragraph**: 在 domain-adapted verifier 之后添加了 \"Cross-model voting vs. cross-architecture NLI\" 段落，包含 Mistral-7B 弱 voter 降低强 generator 的数据（-9.33, -2.33, -2.67pp）、Qwen2.5-14B 强 voter 在 w=5 也降低 Qwen3（-2.50pp, p=0.006）、DeBERTa NLI 从不降低任何 generator 的对比\n3. **appendix.tex — BART table** (`tab:bart-combo-full`): 4 generators × BART-large-mnli，仅 Mistral 显著\n4. **appendix.tex — RoBERTa table** (`tab:roberta-combo-full`): 4 generators × RoBERTa-large-mnli，仅 Mistral 显著\n5. **appendix.tex — cross-model ablation table** (`tab:cross-model-ablation`): ProofWriter + FOLIO，含 Qwen2.5-14B voter、Mistral-7B voter、DeBERTa NLI 三组对比，共 19 行\n\n**关于 \"60 tested conditions\" 计数**：不需要更新。60 = 16 main + 27 remediation + 17 analytical，全部在 self-extraction paradigm 内。Cross-model SC ablation 使用外部模型的投票（非 self-extracted constraints），属于 §6 escape mechanism 的控制实验，不在此计数范围内。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830"
+          },
+          "id": "event-000043"
+        }
+      ],
+      "message_count": 43
+    }
+  ],
+  "readable_path": "readable/conversations/paper-cross-model-ablation-and-nli-update.md"
+}

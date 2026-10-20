@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30a84ca714b27f76b585",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "check sica proofwriter30 v2",
+  "task_key": "worker_check_sica_proofwriter30_v2_20260516T012108",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_sica_proofwriter30_v2_20260516T012108_result.json",
+    "occurrence": 1,
+    "bytes": 1946,
+    "sha256": "1271f47f21d2ca4f9681dbb37a0cf7d26cc37df1b660e2c6f42f6eec355660da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## sica_proofwriter30_v2 实验状态报告\n\n### 1. 进程状态: **RUNNING**\n- PID 155077 存活，tmux session `sica_proofwriter30_v2` 活跃\n- 启动时间: 2026-05-16 06:19，已运行约 3 小时\n\n### 2. vLLM 状态: **ALIVE**\n- PID 129131，QwQ-32B，tensor-parallel=1，max-model-len=16384\n- HTTP 请求持续 200 OK\n\n### 3. 输出文件: **存在（部分）**\n- `/root/symb_invariant_consensus/results/proofwriter_30_v2.json` — 29757 bytes\n- 当前进度: **16/30 完成**，正在处理第 17 题\n- 每题平均 ~11 分钟，预计还需 ~2.5 小时完成\n\n### 4. 日志关键内容\n- 大量 `No JSON found in response for trace` 警告（FOL 约束提取失败的 trace）\n- 当前 Scorer 报告 `satisfied_ratio=1.000`，MaxSAT 全部满足，未排除任何 trace\n\n### 5. D012 指标（部分结果 16/30）\n\n```\nC0 多候选率:    3/16 = 18.8%  — FAIL (≥20%)\nC1 约束提取率:  93/192 = 48.4% — FAIL (≥50%)\nC2 矛盾检测:    0 题          — FAIL (≥1)\nC3 SICA-SC gap: -6.2 pp       — FAIL (>0)\n```\n\n**全部 4 项 FAIL。**\n\n关键问题：\n- **SICA 比 SC 差 6.2pp**（87.5% vs 93.8%）。Problem `RelNeg-498_Q8` SICA 答错 (True)、SC 答对 (False)——多候选场景下 SICA 被约束误导，选了错误答案\n- **0 矛盾检测**：MaxSAT 从未排除任何 trace（excluded=0 全场），约束系统形同虚设\n- 3 个多候选问题中，2 个约束提取 twc=0（无约束可用），SICA 退化为随机选择\n- C0/C1 都在阈值边缘，剩余 14 题可能略有改善，但 C2/C3 趋势很难翻转\n\n### 6. 结论预判\n\n实验尚未完成，但当前趋势 **strongly negative**。即使剩余 14 题表现更好，C3（SICA-SC gap）从 -6.2pp 翻正的可能性很低。建议等实验跑完后再做最终判定，但应开始准备分析 failure mode——核心问题是约束提取质量不足以驱动有意义的 MaxSAT 筛选。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-sica-proofwriter30-v2.md"
+}

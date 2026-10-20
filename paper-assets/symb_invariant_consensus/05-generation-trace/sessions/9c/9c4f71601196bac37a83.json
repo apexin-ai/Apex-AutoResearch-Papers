@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c4f71601196bac37a83",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "eval qwen deberta ft combo",
+  "task_key": "worker_eval_qwen-deberta-ft-combo_20260522T185637",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_qwen-deberta-ft-combo_20260522T185637_result.json",
+    "occurrence": 1,
+    "bytes": 944,
+    "sha256": "01ee2ef4a5d83d06022a5ae155c1a19b9bd6b110092669a694b248e69fa43c43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果汇总：\n\n### DeBERTa-large-FT Standalone: **99.67%** (598/600)\n\n---\n\n### Qwen2.5-14B-Instruct\n- **SC baseline**: 74.00% (444/600)\n- **Combo w=1**: 75.00% (+1.00pp, p=0.0312 \\*)\n- **Combo w=3**: 78.50% (+4.50pp, p<0.0001 \\*\\*\\*)\n- **Combo w=5**: 83.00% (+9.00pp, p<0.0001 \\*\\*\\*)\n- **互补性**: NLI↑SC↓=155, SC↑NLI↓=1, both↑=443, both↓=1\n- Agreement 时 acc=100%\n\n### Qwen3-14B (non-thinking)\n- **SC baseline**: 85.83% (515/600)\n- **Combo w=1**: 86.50% (+0.67pp, p=0.1250 n.s.)\n- **Combo w=3**: 88.00% (+2.17pp, p=0.0002 \\*\\*\\*)\n- **Combo w=5**: 90.00% (+4.17pp, p<0.0001 \\*\\*\\*)\n- **互补性**: NLI↑SC↓=85, SC↑NLI↓=2, both↑=513, both↓=0\n- Agreement 时 acc=100%\n\nQwen3 thinking mode 在 ProofWriter 上无 traces，仅有 FOLIO 的 (`exp028b_qwen3_thinking_folio204`)。\n\n结果已保存至 `results/eval_finetuned_qwen_combo/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-qwen-deberta-ft-combo.md"
+}

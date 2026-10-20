@@ -1,0 +1,966 @@
+{
+  "schema_version": "1.0",
+  "id": "2c326e36bef34d0688f3",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "analysis exp 067 metrics extract",
+  "task_key": "worker_analysis_exp-067-metrics-extract_20260519T120836",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-067-metrics-extract_20260519T120836.log",
+    "occurrence": 1,
+    "bytes": 45464,
+    "sha256": "e72ed6aa04c9a44eaf8bf1f694e41cc256814d4eb8e3d6751c3d3087c773ecdf"
+  },
+  "statistics": {
+    "messages": 22,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 7,
+      "tool_result": 7,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+                "session_id": "9b931777-8827-4aa2-a2e9-61bc8566cd72",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "10138887-8c49-4a3b-874d-1b5227d5da8c",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779205200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "2ed946e1-a134-45c1-ad52-5311a42ee543",
+                "session_id": "9b931777-8827-4aa2-a2e9-61bc8566cd72"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Looking at the result file structure first."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b931777-8827-4aa2-a2e9-61bc8566cd72",
+            "uuid": "11f29b93-1518-47e8-be7a-77c02dfb3ad0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XvZuREcNPLJJZDfgfvVfti",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12963,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12963
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Gxiizj6GXV5deCTtBHkski",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b931777-8827-4aa2-a2e9-61bc8566cd72",
+            "uuid": "d8f2196f-eed2-4443-b6a6-24fffa874b9f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XvZuREcNPLJJZDfgfvVfti",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12963,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12963
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T12:08:52.951Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Gxiizj6GXV5deCTtBHkski",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b931777-8827-4aa2-a2e9-61bc8566cd72",
+            "uuid": "0ca1e634-5829-4bf3-8dee-94ba60fa31dd",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KtfT9utm63qh2S7mwT3pWg",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-25068",
+                "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789/exp067_results.json')); print(type(d)); print(list(d.keys())[:10] if isinstance(d, dict) else len(d))\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b931777-8827-4aa2-a2e9-61bc8566cd72",
+            "uuid": "feffc2fd-95c7-45ab-8a83-797d96a2cac8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GMCD3PuZQc4huXkKgteem3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 434,
+                "cache_read_input_tokens": 24804,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 434
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T12:08:56.867Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KtfT9utm63qh2S7mwT3pWg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b931777-8827-4aa2-a2e9-61bc8566cd72",
+            "uuid": "00f61080-46b1-40f7-b783-afdf6638248f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DPKL6v3CHKtjBUGcYqTasa",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-25068",
+                "command": "head -100 /root/symb_invariant_consensus/results/exp067_mistral_folio_seed789/exp067_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b931777-8827-4aa2-a2e9-61bc8566cd72",
+            "uuid": "42100203-13ef-4619-97a2-dc901393fa6f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013zANkNvGxEFjq26MqucRjK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 259,
+                "cache_read_input_tokens": 25238,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 259
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T12:09:03.501Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DPKL6v3CHKtjBUGcYqTasa",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 204,\\\\n    \\\\\\\"sica_accuracy\\\\\\\": 0.5392156862745098,\\\\n    \\\\\\\"sc_accuracy\\\\\\\": 0.5441176470588235,\\\\n    \\\\\\\"sica_correct\\\\\\\": 110,\\\\n    \\\\\\\"sc_correct\\\\\\\": 111,\\\\n    \\\\\\\"extraction_rate\\\\\\\": 0.9709967320261438,\\\\n    \\\\\\\"total_constraints_extracted\\\\\\\": 14042,\\\\n    \\\\\\\"total_unique_constraints\\\\\\\": 7837,\\\\n    \\\\\\\"contradiction_rate\\\\\\\": 0.03279316064820722,\\\\n    \\\\\\\"problems_with_contradictions\\\\\\\": 117,\\\\n    \\\\\\\"per_level_accuracy\\\\\\\": {\\\\n      \\\\\\\"validation\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.5392156862745098,\\\\n        \\\\\\\"sc\\\\\\\": 0.5441176470588235,\\\\n        \\\\\\\"n\\\\\\\": 204\\\\n      }\\\\n    },\\\\n    \\\\\\\"per_dataset_accuracy\\\\\\\": {\\\\n      \\\\\\\"folio\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.5392156862745098,\\\\n        \\\\\\\"sc\\\\\\\": 0.5441176470588235,\\\\n        \\\\\\\"n\\\\\\\": 204\\\\n      }\\\\n    },\\\\n    \\\\\\\"k\\\\\\\": 12,\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"vllm\\\\\\\",\\\\n    \\\\\\\"total_wall_time_s\\\\\\\": 4907.6\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"problem_idx\\\\\\\": 0,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"folio_0\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Given the following premises:\\\\\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\\\\\n\\\\\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\\\\\nBonnie performs in school talent shows often.\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"folio\\\\\\\",\\\\n      \\\\\\\"level\\\\\\\": \\\\\\\"validation\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sica_scores\\\\\\\": {\\\\n        \\\\\\\"Bonnie performs in school talent shows often.\\\\\\\": 5.5,\\\\n        \\\\\\\"False\\\\\\\": 7.0,\\\\n        \\\\\\\"True\\\\\\\": 14.0,\\\\n        \\\\\\\"Unknown\\\\\\\": 51.0\\\\n      },\\\\n      \\\\\\\"sica_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sc_vote_count\\\\\\\": 7,\\\\n      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n        \\\\\\\"Unknown\\\\\\\": 7,\\\\n        \\\\\\\"Bonnie performs in school talent shows often.\\\\\\\": 1,\\\\n        \\\\\\\"False\\\\\\\": 1,\\\\n        \\\\\\\"True\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"sc_correct\\\\\\\": true,\\\\n      \\\\\\\"constraints_stats\\\\\\\": {\\\\n        \\\\\\\"total_extracted\\\\\\\": 84,\\\\n        \\\\\\\"traces_with_constraints\\\\\\\": 12,\\\\n        \\\\\\\"unique_after_dedup\\\\\\\": 64\\\\n      },\\\\n      \\\\\\\"maxsat_stats\\\\\\\": {\\\\n        \\\\\\\"satisfied\\\\\\\": 62,\\\\n        \\\\\\\"excluded\\\\\\\": 2,\\\\n        \\\\\\\"total_weight\\\\\\\": 76,\\\\n        \\\\\\\"solve_time_ms\\\\\\\": 1.656421460211277\\\\n      },\\\\n      \\\\\\\"timing\\\\\\\": {\\\\n        \\\\\\\"trace_gen_s\\\\\\\": 6.535,\\\\n        \\\\\\\"extraction_s\\\\\\\": 30.575,\\\\n        \\\\\\\"dedup_s\\\\\\\": 1.15,\\\\n        \\\\\\\"maxsat_s\\\\\\\": 0.005,\\\\n        \\\\\\\"total_s\\\\\\\": 38.265\\\\n      },\\\\n      \\\\\\\"wall_time_s\\\\\\\": 38.27\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_idx\\\\\\\": 1,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"folio_1\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Given the following premises:\\\\\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\\\\\n\\\\\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\\\\\nIf Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"folio\\\\\\\",\\\\n      \\\\\\\"level\\\\\\\": \\\\\\\"validation\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sica_scores\\\\\\\": {\\\\n        \\\\\\\"False\\\\\\\": 14.0,\\\\n        \\\\\\\"The conclusion is true.\\\\\\\": 12.0,\\\\n        \\\\\\\"True\\\\\\\": 40.0,\\\\n        \\\\\\\"Unknown\\\\\\\": 40.5\\\\n      },\\\\n      \\\\\\\"sica_correct\\\\\\\": false,\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sc_vote_count\\\\\\\": 5,\\\\n      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n        \\\\\\\"False\\\\\\\": 1,\\\\n        \\\\\\\"True\\\\\\\": 5,\\\\n        \\\\\\\"The conclusion is true.\\\\\\\": 1,\\\\n        \\\\\\\"Unknown\\\\\\\": 5\\\\n      },\\\\n      \\\\\\\"sc_correct\\\\\\\": true,\\\\n      \\\\\\\"constraints_stats\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.23}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b931777-8827-4aa2-a2e9-61bc8566cd72",
+            "uuid": "2653f096-e9c4-4537-ac77-41a34acccf01",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 204,\\\\n    \\\\\\\"sica_accuracy\\\\\\\": 0.5392156862745098,\\\\n    \\\\\\\"sc_accuracy\\\\\\\": 0.5441176470588235,\\\\n    \\\\\\\"sica_correct\\\\\\\": 110,\\\\n    \\\\\\\"sc_correct\\\\\\\": 111,\\\\n    \\\\\\\"extraction_rate\\\\\\\": 0.9709967320261438,\\\\n    \\\\\\\"total_constraints_extracted\\\\\\\": 14042,\\\\n    \\\\\\\"total_unique_constraints\\\\\\\": 7837,\\\\n    \\\\\\\"contradiction_rate\\\\\\\": 0.03279316064820722,\\\\n    \\\\\\\"problems_with_contradictions\\\\\\\": 117,\\\\n    \\\\\\\"per_level_accuracy\\\\\\\": {\\\\n      \\\\\\\"validation\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.5392156862745098,\\\\n        \\\\\\\"sc\\\\\\\": 0.5441176470588235,\\\\n        \\\\\\\"n\\\\\\\": 204\\\\n      }\\\\n    },\\\\n    \\\\\\\"per_dataset_accuracy\\\\\\\": {\\\\n      \\\\\\\"folio\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.5392156862745098,\\\\n        \\\\\\\"sc\\\\\\\": 0.5441176470588235,\\\\n        \\\\\\\"n\\\\\\\": 204\\\\n      }\\\\n    },\\\\n    \\\\\\\"k\\\\\\\": 12,\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"vllm\\\\\\\",\\\\n    \\\\\\\"total_wall_time_s\\\\\\\": 4907.6\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"problem_idx\\\\\\\": 0,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"folio_0\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Given the following premises:\\\\\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\\\\\n\\\\\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\\\\\nBonnie performs in school talent shows often.\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"folio\\\\\\\",\\\\n      \\\\\\\"level\\\\\\\": \\\\\\\"validation\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sica_scores\\\\\\\": {\\\\n        \\\\\\\"Bonnie performs in school talent shows often.\\\\\\\": 5.5,\\\\n        \\\\\\\"False\\\\\\\": 7.0,\\\\n        \\\\\\\"True\\\\\\\": 14.0,\\\\n        \\\\\\\"Unknown\\\\\\\": 51.0\\\\n      },\\\\n      \\\\\\\"sica_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sc_vote_count\\\\\\\": 7,\\\\n      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n        \\\\\\\"Unknown\\\\\\\": 7,\\\\n        \\\\\\\"Bonnie performs in school talent shows often.\\\\\\\": 1,\\\\n        \\\\\\\"False\\\\\\\": 1,\\\\n        \\\\\\\"True\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"sc_correct\\\\\\\": true,\\\\n      \\\\\\\"constraints_stats\\\\\\\": {\\\\n        \\\\\\\"total_extracted\\\\\\\": 84,\\\\n        \\\\\\\"traces_with_constraints\\\\\\\": 12,\\\\n        \\\\\\\"unique_after_dedup\\\\\\\": 64\\\\n      },\\\\n      \\\\\\\"maxsat_stats\\\\\\\": {\\\\n        \\\\\\\"satisfied\\\\\\\": 62,\\\\n        \\\\\\\"excluded\\\\\\\": 2,\\\\n        \\\\\\\"total_weight\\\\\\\": 76,\\\\n        \\\\\\\"solve_time_ms\\\\\\\": 1.656421460211277\\\\n      },\\\\n      \\\\\\\"timing\\\\\\\": {\\\\n        \\\\\\\"trace_gen_s\\\\\\\": 6.535,\\\\n        \\\\\\\"extraction_s\\\\\\\": 30.575,\\\\n        \\\\\\\"dedup_s\\\\\\\": 1.15,\\\\n        \\\\\\\"maxsat_s\\\\\\\": 0.005,\\\\n        \\\\\\\"total_s\\\\\\\": 38.265\\\\n      },\\\\n      \\\\\\\"wall_time_s\\\\\\\": 38.27\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_idx\\\\\\\": 1,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"folio_1\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Given the following premises:\\\\\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\\\\\n\\\\\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\\\\\nIf Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"folio\\\\\\\",\\\\n      \\\\\\\"level\\\\\\\": \\\\\\\"validation\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sica_scores\\\\\\\": {\\\\n        \\\\\\\"False\\\\\\\": 14.0,\\\\n        \\\\\\\"The conclusion is true.\\\\\\\": 12.0,\\\\n        \\\\\\\"True\\\\\\\": 40.0,\\\\n        \\\\\\\"Unknown\\\\\\\": 40.5\\\\n      },\\\\n      \\\\\\\"sica_correct\\\\\\\": false,\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sc_vote_count\\\\\\\": 5,\\\\n      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n        \\\\\\\"False\\\\\\\": 1,\\\\n        \\\\\\\"True\\\\\\\": 5,\\\\n        \\\\\\\"The conclusion is true.\\\\\\\": 1,\\\\n        \\\\\\\"Unknown\\\\\\\": 5\\\\n      },\\\\n      \\\\\\\"sc_correct\\\\\\\": true,\\\\n      \\\\\\\"constraints_stats\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.23}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 204,\\n    \\\"sica_accuracy\\\": 0.5392156862745098,\\n    \\\"sc_accuracy\\\": 0.5441176470588235,\\n    \\\"sica_correct\\\": 110,\\n    \\\"sc_correct\\\": 111,\\n    \\\"extraction_rate\\\": 0.9709967320261438,\\n    \\\"total_constraints_extracted\\\": 14042,\\n    \\\"total_unique_constraints\\\": 7837,\\n    \\\"contradiction_rate\\\": 0.03279316064820722,\\n    \\\"problems_with_contradictions\\\": 117,\\n    \\\"per_level_accuracy\\\": {\\n      \\\"validation\\\": {\\n        \\\"sica\\\": 0.5392156862745098,\\n        \\\"sc\\\": 0.5441176470588235,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"per_dataset_accuracy\\\": {\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.5392156862745098,\\n        \\\"sc\\\": 0.5441176470588235,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"total_wall_time_s\\\": 4907.6\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_idx\\\": 0,\\n      \\\"problem_id\\\": \\\"folio_0\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nBonnie performs in school talent shows often.\\\",\\n      \\\"dataset\\\": \\\"folio\\\",\\n      \\\"level\\\": \\\"validation\\\",\\n      \\\"ground_truth\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_scores\\\": {\\n        \\\"Bonnie performs in school talent shows often.\\\": 5.5,\\n        \\\"False\\\": 7.0,\\n        \\\"True\\\": 14.0,\\n        \\\"Unknown\\\": 51.0\\n      },\\n      \\\"sica_correct\\\": true,\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sc_vote_count\\\": 7,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"Unknown\\\": 7,\\n        \\\"Bonnie performs in school talent shows often.\\\": 1,\\n        \\\"False\\\": 1,\\n        \\\"True\\\": 1\\n      },\\n      \\\"sc_correct\\\": true,\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 84,\\n        \\\"traces_with_constraints\\\": 12,\\n        \\\"unique_after_dedup\\\": 64\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 62,\\n        \\\"excluded\\\": 2,\\n        \\\"total_weight\\\": 76,\\n        \\\"solve_time_ms\\\": 1.656421460211277\\n      },\\n      \\\"timing\\\": {\\n        \\\"trace_gen_s\\\": 6.535,\\n        \\\"extraction_s\\\": 30.575,\\n        \\\"dedup_s\\\": 1.15,\\n        \\\"maxsat_s\\\": 0.005,\\n        \\\"total_s\\\": 38.265\\n      },\\n      \\\"wall_time_s\\\": 38.27\\n    },\\n    {\\n      \\\"problem_idx\\\": 1,\\n      \\\"problem_id\\\": \\\"folio_1\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nIf Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\\\",\\n      \\\"dataset\\\": \\\"folio\\\",\\n      \\\"level\\\": \\\"validation\\\",\\n      \\\"ground_truth\\\": \\\"True\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_scores\\\": {\\n        \\\"False\\\": 14.0,\\n        \\\"The conclusion is true.\\\": 12.0,\\n        \\\"True\\\": 40.0,\\n        \\\"Unknown\\\": 40.5\\n      },\\n      \\\"sica_correct\\\": false,\\n      \\\"sc_answer\\\": \\\"True\\\",\\n      \\\"sc_vote_count\\\": 5,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"False\\\": 1,\\n        \\\"True\\\": 5,\\n        \\\"The conclusion is true.\\\": 1,\\n        \\\"Unknown\\\": 5\\n      },\\n      \\\"sc_correct\\\": true,\\n      \\\"constraints_stats\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.23}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I can see the structure. The summary already has the key metrics. Let me now compute the McNemar test. I need to get the per-problem sc_correct and sica_correct fields. Let me write a python one-liner to do this.\n\nThe summary shows:\n- n = 204\n- SC accuracy = 0.5441176470588235 (111/204 = 54.41%)\n- SICA accuracy = 0.5392156862745098 (110/204 = 53.92%)\n- Δ = SICA - SC = -0.49 pp\n\n\nNow I need to set up the McNemar test by computing the four contingency cells: both methods correct, SC correct but SICA wrong, SC wrong but SICA correct, and both wrong. I'll run a Python script to extract these values from the data.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b931777-8827-4aa2-a2e9-61bc8566cd72",
+            "uuid": "b996645e-4bbd-4608-9bcb-ec06e49c9525",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UZp2ycyNo3FXjixG1VeBvt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2075,
+                "cache_read_input_tokens": 25497,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2075
+                },
+                "output_tokens": 12,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Summary is in the file. Now computing McNemar contingency table."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b931777-8827-4aa2-a2e9-61bc8566cd72",
+            "uuid": "24ac7d52-ba62-4367-a1b3-408499067c28",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UZp2ycyNo3FXjixG1VeBvt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2075,
+                "cache_read_input_tokens": 25497,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2075
+                },
+                "output_tokens": 12,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K6ostRk4Lg4Udvt9XthKjM",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b931777-8827-4aa2-a2e9-61bc8566cd72",
+            "uuid": "ffab76a2-1f61-4a54-a885-77867afb196d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UZp2ycyNo3FXjixG1VeBvt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2075,
+                "cache_read_input_tokens": 25497,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2075
+                },
+                "output_tokens": 12,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T12:09:11.788Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01K6ostRk4Lg4Udvt9XthKjM",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b931777-8827-4aa2-a2e9-61bc8566cd72",
+            "uuid": "386793ab-f576-4e8e-bba5-21f3f3038549",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K3A2CEX5FV1wVaYhswWubt",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-25068",
+                "command": "python3 -c \"\nimport json\nfrom math import comb\n\nd = json.load(open('/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789/exp067_results.json'))\nresults = d['results']\n\na = b = c = dd = 0\nfor r in results:\n    sc = r['sc_correct']\n    si = r['sica_correct']\n    if sc and si: a += 1\n    elif sc and not si: b += 1\n    elif not sc and si: c += 1\n    else: dd += 1\n\nn = len(results)\nsc_acc = sum(1 for r in results if r['sc_correct']) / n * 100\nsica_acc = sum(1 for r in results if r['sica_correct']) / n * 100\ndelta = sica_acc - sc_acc\n\n# McNemar exact\nk = min(b, c)\nnn = b + c\np = 2 * sum(comb(nn, i) * 0.5**nn for i in range(k+1))\np = min(p, 1.0)\n\nprint(f'n = {n}')\nprint(f'SC  = {sc_acc:.2f}%  ({sum(1 for r in results if r[\\\"sc_correct\\\"])}/{n})')\nprint(f'SICA = {sica_acc:.2f}%  ({sum(1 for r in results if r[\\\"sica_correct\\\"])}/{n})')\nprint(f'Delta (SICA - SC) = {delta:+.2f} pp')\nprint(f'McNemar table: a={a}, b={b}, c={c}, d={dd}')\nprint(f'McNemar exact p = {p:.4f}')\n\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b931777-8827-4aa2-a2e9-61bc8566cd72",
+            "uuid": "73feda95-858f-44d4-9c3a-620c17fd81d6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RaayGmCzUm7tpwD5XhJhmp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 569,
+                "cache_read_input_tokens": 27572,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 569
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T12:09:25.047Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K3A2CEX5FV1wVaYhswWubt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\nfrom math import comb\\\\\\\\n\\\\\\\\nd = json.load(open(\\\\\\\\'/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789/exp067_results.json\\\\\\\\'))\\\\\\\\nresults = d[\\\\\\\\'results\\\\\\\\']\\\\\\\\n\\\\\\\\na = b = c = dd = 0\\\\\\\\nfor r in results:\\\\\\\\n    sc = r[\\\\\\\\'sc_correct\\\\\\\\']\\\\\\\\n    si = r[\\\\\\\\'sica_correct\\\\\\\\']\\\\\\\\n    if sc and si: a += 1\\\\\\\\n    elif sc and not si: b += 1\\\\\\\\n    elif not sc and si: c += 1\\\\\\\\n    else: dd += 1\\\\\\\\n\\\\\\\\nn = len(results)\\\\\\\\nsc_acc = sum(1 for r in results if r[\\\\\\\\'sc_correct\\\\\\\\']) / n * 100\\\\\\\\nsica_acc = sum(1 for r in results if r[\\\\\\\\'sica_correct\\\\\\\\']) / n * 100\\\\\\\\ndelta = sica_acc - sc_acc\\\\\\\\n\\\\\\\\n# McNemar exact\\\\\\\\nk = min(b, c)\\\\\\\\nnn = b + c\\\\\\\\np = 2 * sum(comb(nn, i) * 0.5**nn for i in range(k+1))\\\\\\\\np = min(p, 1.0)\\\\\\\\n\\\\\\\\nprint(f\\\\\\\\'n = {n}\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'SC  = {sc_acc:.2f}%  ({sum(1 for r in results if r[\\\\\\\\\\\\\\\\\\\\\\\"sc_correct\\\\\\\\\\\\\\\\\\\\\\\"])}/{n})\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'SICA = {sica_acc:.2f}%  ({sum(1 for r in results if r[\\\\\\\\\\\\\\\\\\\\\\\"sica_correct\\\\\\\\\\\\\\\\\\\\\\\"])}/{n})\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'Delta (SICA - SC) = {delta:+.2f} pp\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'McNemar table: a={a}, b={b}, c={c}, d={dd}\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'McNemar exact p = {p:.4f}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b931777-8827-4aa2-a2e9-61bc8566cd72",
+            "uuid": "81b1c2d2-5043-4145-bd07-f271eb91ec3d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\nfrom math import comb\\\\\\\\n\\\\\\\\nd = json.load(open(\\\\\\\\'/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789/exp067_results.json\\\\\\\\'))\\\\\\\\nresults = d[\\\\\\\\'results\\\\\\\\']\\\\\\\\n\\\\\\\\na = b = c = dd = 0\\\\\\\\nfor r in results:\\\\\\\\n    sc = r[\\\\\\\\'sc_correct\\\\\\\\']\\\\\\\\n    si = r[\\\\\\\\'sica_correct\\\\\\\\']\\\\\\\\n    if sc and si: a += 1\\\\\\\\n    elif sc and not si: b += 1\\\\\\\\n    elif not sc and si: c += 1\\\\\\\\n    else: dd += 1\\\\\\\\n\\\\\\\\nn = len(results)\\\\\\\\nsc_acc = sum(1 for r in results if r[\\\\\\\\'sc_correct\\\\\\\\']) / n * 100\\\\\\\\nsica_acc = sum(1 for r in results if r[\\\\\\\\'sica_correct\\\\\\\\']) / n * 100\\\\\\\\ndelta = sica_acc - sc_acc\\\\\\\\n\\\\\\\\n# McNemar exact\\\\\\\\nk = min(b, c)\\\\\\\\nnn = b + c\\\\\\\\np = 2 * sum(comb(nn, i) * 0.5**nn for i in range(k+1))\\\\\\\\np = min(p, 1.0)\\\\\\\\n\\\\\\\\nprint(f\\\\\\\\'n = {n}\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'SC  = {sc_acc:.2f}%  ({sum(1 for r in results if r[\\\\\\\\\\\\\\\\\\\\\\\"sc_correct\\\\\\\\\\\\\\\\\\\\\\\"])}/{n})\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'SICA = {sica_acc:.2f}%  ({sum(1 for r in results if r[\\\\\\\\\\\\\\\\\\\\\\\"sica_correct\\\\\\\\\\\\\\\\\\\\\\\"])}/{n})\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'Delta (SICA - SC) = {delta:+.2f} pp\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'McNemar table: a={a}, b={b}, c={c}, d={dd}\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'McNemar exact p = {p:.4f}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\nimport json\\\\nfrom math import comb\\\\n\\\\nd = json.load(open(\\\\'/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789/exp067_results.json\\\\'))\\\\nresults = d[\\\\'results\\\\']\\\\n\\\\na = b = c = dd = 0\\\\nfor r in results:\\\\n    sc = r[\\\\'sc_correct\\\\']\\\\n    si = r[\\\\'sica_correct\\\\']\\\\n    if sc and si: a += 1\\\\n    elif sc and not si: b += 1\\\\n    elif not sc and si: c += 1\\\\n    else: dd += 1\\\\n\\\\nn = len(results)\\\\nsc_acc = sum(1 for r in results if r[\\\\'sc_correct\\\\']) / n * 100\\\\nsica_acc = sum(1 for r in results if r[\\\\'sica_correct\\\\']) / n * 100\\\\ndelta = sica_acc - sc_acc\\\\n\\\\n# McNemar exact\\\\nk = min(b, c)\\\\nnn = b + c\\\\np = 2 * sum(comb(nn, i) * 0.5**nn for i in range(k+1))\\\\np = min(p, 1.0)\\\\n\\\\nprint(f\\\\'n = {n}\\\\')\\\\nprint(f\\\\'SC  = {sc_acc:.2f}%  ({sum(1 for r in results if r[\\\\\\\\\\\"sc_correct\\\\\\\\\\\"])}/{n})\\\\')\\\\nprint(f\\\\'SICA = {sica_acc:.2f}%  ({sum(1 for r in results if r[\\\\\\\\\\\"sica_correct\\\\\\\\\\\"])}/{n})\\\\')\\\\nprint(f\\\\'Delta (SICA - SC) = {delta:+.2f} pp\\\\')\\\\nprint(f\\\\'McNemar table: a={a}, b={b}, c={c}, d={dd}\\\\')\\\\nprint(f\\\\'McNemar exact p = {p:.4f}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Sy46tUt32vGMzano3fk1tB",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-25068",
+                "command": "which python"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b931777-8827-4aa2-a2e9-61bc8566cd72",
+            "uuid": "d0063346-75a9-408f-ac1d-7d7694973a5d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CrJQ3u1CZSwghMDJJ5WfMH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1229,
+                "cache_read_input_tokens": 28141,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1229
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T12:09:29.615Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Sy46tUt32vGMzano3fk1tB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/usr/local/bin/python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b931777-8827-4aa2-a2e9-61bc8566cd72",
+            "uuid": "97e597dc-4549-4bd1-a4c0-bd736953cb98",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/usr/local/bin/python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/usr/local/bin/python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BSobA49W4TRuTSMCHmQcgp",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-25068",
+                "command": "cat << 'PYEOF' > /tmp/mcnemar_exp067.py\nimport json\nfrom math import comb\n\nd = json.load(open('/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789/exp067_results.json'))\nresults = d['results']\n\na = b = c = dd = 0\nfor r in results:\n    sc = r['sc_correct']\n    si = r['sica_correct']\n    if sc and si: a += 1\n    elif sc and not si: b += 1\n    elif not sc and si: c += 1\n    else: dd += 1\n\nn = len(results)\nsc_acc = sum(1 for r in results if r['sc_correct']) / n * 100\nsica_acc = sum(1 for r in results if r['sica_correct']) / n * 100\ndelta = sica_acc - sc_acc\n\nk = min(b, c)\nnn = b + c\np = 2 * sum(comb(nn, i) * 0.5**nn for i in range(k+1))\np = min(p, 1.0)\n\nprint(f'n = {n}')\nprint(f'SC  = {sc_acc:.2f}%  ({sum(1 for r in results if r[\"sc_correct\"])}/{n})')\nprint(f'SICA = {sica_acc:.2f}%  ({sum(1 for r in results if r[\"sica_correct\"])}/{n})')\nprint(f'Delta (SICA - SC) = {delta:+.2f} pp')\nprint(f'McNemar table: a={a}, b={b}, c={c}, d={dd}')\nprint(f'McNemar exact p = {p:.4f}')\nPYEOF\npython /tmp/mcnemar_exp067.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b931777-8827-4aa2-a2e9-61bc8566cd72",
+            "uuid": "27de98ed-0a8c-4435-b420-7bad8449d575",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016f9Rh628mJK6JxAVoz5xbH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 167,
+                "cache_read_input_tokens": 29370,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 167
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T12:09:47.390Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BSobA49W4TRuTSMCHmQcgp",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"n = 204\\\\nSC  = 54.41%  (111/204)\\\\nSICA = 53.92%  (110/204)\\\\nDelta (SICA - SC) = -0.49 pp\\\\nMcNemar table: a=105, b=6, c=5, d=88\\\\nMcNemar exact p = 1.0000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b931777-8827-4aa2-a2e9-61bc8566cd72",
+            "uuid": "11c88df9-50f1-4094-b723-baff6ee6edc0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"n = 204\\\\nSC  = 54.41%  (111/204)\\\\nSICA = 53.92%  (110/204)\\\\nDelta (SICA - SC) = -0.49 pp\\\\nMcNemar table: a=105, b=6, c=5, d=88\\\\nMcNemar exact p = 1.0000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"n = 204\\nSC  = 54.41%  (111/204)\\nSICA = 53.92%  (110/204)\\nDelta (SICA - SC) = -0.49 pp\\nMcNemar table: a=105, b=6, c=5, d=88\\nMcNemar exact p = 1.0000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-067 结果** (Mistral-7B-Instruct-v0.3, FOLIO-204, seed=789, K=12):\n\n| Metric | Value |\n|---|---|\n| SC | 54.41% (111/204) |\n| SICA | 53.92% (110/204) |\n| Δ (SICA − SC) | −0.49 pp |\n| n | 204 |\n| McNemar b/c | 6 / 5 |\n| McNemar exact p | 1.0000 |\n\nSICA 略低于 SC，差异完全不显著 (p=1.0)。discordant pairs 极少 (b+c=11)，两种方法在绝大多数问题上一致 (a+d=193/204)。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b931777-8827-4aa2-a2e9-61bc8566cd72",
+            "uuid": "16e1330c-ba59-4573-a44b-f0835e0349a3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Thtx2UwirnBQhJQS7upEL1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 712,
+                "cache_read_input_tokens": 29537,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 712
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-067 结果** (Mistral-7B-Instruct-v0.3, FOLIO-204, seed=789, K=12):\n\n| Metric | Value |\n|---|---|\n| SC | 54.41% (111/204) |\n| SICA | 53.92% (110/204) |\n| Δ (SICA − SC) | −0.49 pp |\n| n | 204 |\n| McNemar b/c | 6 / 5 |\n| McNemar exact p | 1.0000 |\n\nSICA 略低于 SC，差异完全不显著 (p=1.0)。discordant pairs 极少 (b+c=11)，两种方法在绝大多数问题上一致 (a+d=193/204)。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 69354,
+            "duration_api_ms": 70835,
+            "num_turns": 8,
+            "stop_reason": "end_turn",
+            "session_id": "9b931777-8827-4aa2-a2e9-61bc8566cd72",
+            "total_cost_usd": 0.269002,
+            "usage": {
+              "input_tokens": 13,
+              "cache_creation_input_tokens": 18408,
+              "cache_read_input_tokens": 202000,
+              "output_tokens": 2060,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 18408,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 214,
+                  "cache_read_input_tokens": 29537,
+                  "cache_creation_input_tokens": 712,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 712
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1267,
+                "outputTokens": 24,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001387,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 13,
+                "outputTokens": 2060,
+                "cacheReadInputTokens": 202000,
+                "cacheCreationInputTokens": 18408,
+                "webSearchRequests": 0,
+                "costUSD": 0.26761500000000005,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "547c8479-55b8-4740-ad69-d861bc787742"
+          },
+          "id": "event-000022"
+        }
+      ],
+      "message_count": 22
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-exp-067-metrics-extract.md"
+}

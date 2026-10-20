@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "790f00ef29325f35c528",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment wave3 dir f blind fol",
+  "task_key": "worker_experiment_wave3-dir-f-blind-fol_20260520T092551",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_wave3-dir-f-blind-fol_20260520T092551_result.json",
+    "occurrence": 1,
+    "bytes": 529,
+    "sha256": "c4632d1bb057d141284ff0e86dd3352c0661b95e43b6de546ab355e3dcdc069e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全量运行稳定进行中。第 2 题刚完成（99.7 秒），与 dry-run 一致。\n\n**运行状态总结**:\n- PID: 378776 (python -u direction_f_blind_fol.py)\n- 速度: ~90-100 秒/题\n- 预计总耗时: ~5-5.5 小时\n- 日志: `/tmp/direction_f_full.log`\n- 结果: 每 10 题自动 checkpoint 到 `results/direction_f_blind_fol/results.json`\n- 初步趋势: 全部预测 Unknown（blind FOL 约束不足以让 Z3 判定 entailment）\n\n可以随时用 `tail /tmp/direction_f_full.log` 查看进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-wave3-dir-f-blind-fol.md"
+}

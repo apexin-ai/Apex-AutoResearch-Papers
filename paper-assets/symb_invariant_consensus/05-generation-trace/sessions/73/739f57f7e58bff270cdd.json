@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "739f57f7e58bff270cdd",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code math equiv fix",
+  "task_key": "worker_code_math-equiv-fix_20260515T094849",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_math-equiv-fix_20260515T094849_result.json",
+    "occurrence": 1,
+    "bytes": 890,
+    "sha256": "6e8196217b46a74b8090b408b6e85a742d491fd3a40906da0f332dd7b51a4396"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n### 结果\n\n1. **is_equiv 单元测试**：全部 7 个 assert 通过，分组测试正确（5 个答案归为 2 组）\n\n2. **修改的文件**：\n   - **`utils/math_equiv.py`**（新建）：`is_equiv()` + `group_equivalent_answers()`，优先用 math_verify，sympy fallback，最后数值 fallback\n   - **`utils/__init__.py`**（新建）：空文件\n   - **`run_mvp.py`**：import `is_equiv`，`sica_ok`/`sc_ok` 从 `==` 改为 `is_equiv()`\n   - **`baselines/self_consistency.py`**：`Counter(valid)` 替换为 `group_equivalent_answers(valid)`\n   - **`sica/pipeline.py`**：候选答案先做等价归组，trace answers 统一映射为 canonical form 后再送 scorer\n\n3. **Mock 端到端**：通过，50 题正常跑完无报错\n\n4. **math_verify**：已安装 v0.9.0（底层用 `latex2sympy2_extended`），作为主判定层"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-math-equiv-fix.md"
+}

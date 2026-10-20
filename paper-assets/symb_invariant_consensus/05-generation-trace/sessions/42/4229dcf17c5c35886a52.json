@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4229dcf17c5c35886a52",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code exp 019 prep",
+  "task_key": "worker_code_exp-019-prep_20260517T081945",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp-019-prep_20260517T081945_result.json",
+    "occurrence": 1,
+    "bytes": 1315,
+    "sha256": "ad06f6b7646a73f5f6f71f7ea85c2f622996ff50bb554414c906782543a2c184"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**exp-019 已经在运行中**，无需额外准备。当前状态：\n\n| 项目 | 状态 |\n|------|------|\n| **脚本** | `~/symb_invariant_consensus/scripts/run_exp019_strategyqa_200.sh` ✓ 已存在 |\n| **数据** | `data/strategyqa_200.json` ✓ (200题，格式正确) |\n| **模型** | LLaMA-3.1-8B-Instruct ✓ 已下载，vLLM 正在服务 (port 8000) |\n| **进度** | **8/200 完成** (SICA 75%, SC 75%, delta=0.0)，正在跑 |\n| **参数** | K=12, T=0.7, max-tokens=4096, seed=42 |\n| **日志** | `~/runs/symb_invariant_consensus/exp-019-llama8b-strategyqa-200.log` |\n\n### 注意事项\n\n1. **K=12 vs K=5**：任务要求 K=5，但现有脚本和正在运行的实验用 K=12（与 exp-011 一致）。如果需要改为 K=5，需要中止当前运行并重跑。请确认是否要继续 K=12 还是改为 K=5。\n\n2. **无阻塞项**：环境、模型、数据、脚本全部就绪，实验已自动启动。\n\n3. **预估运行时间**：每题约 20-25s（从日志看），200题预计 ~70-80 分钟总耗时。已跑约 3 分钟完成 8 题，剩余约 80 分钟。\n\n4. **没有 bootstrap test**：现有脚本不含 bootstrap p-value 计算（exp-011 也没有内建在脚本里）。如果需要 p-value，需要在实验完成后单独跑分析脚本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-019-prep.md"
+}

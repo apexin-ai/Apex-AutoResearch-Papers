@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b923d902c153d88cb56b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment gpt41 mistral extraction",
+  "task_key": "worker_experiment_gpt41-mistral-extraction_20260521T153803",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_gpt41-mistral-extraction_20260521T153803_result.json",
+    "occurrence": 1,
+    "bytes": 377,
+    "sha256": "a97a14b2240c863460b66517fcf48b8ba44026983023aa38aae81f8bf1bb889c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Interim status:**\n\ngpt-4.1 cross-model extraction (Mistral-7B) is running on westd-16639, PID 456759.\n\nMetrics already computed (no extraction needed):\n| Metric | Value |\n|---|---|\n| SC@12 accuracy | 0.8284 (169/204) |\n| Process-κ (TF-IDF) | 0.7916 |\n| Answer Fleiss' κ | 0.8620 |\n\nExtraction progress: 5/204, ETA ~79 min. Checking back in 10 min."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-gpt41-mistral-extraction.md"
+}

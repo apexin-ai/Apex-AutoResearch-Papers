@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b8459fab37c9c464d60",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "director / loop_4.md",
+  "task_key": "loop_4",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/director/loop_4.md",
+    "occurrence": 1,
+    "bytes": 3036,
+    "sha256": "26928f6359dc0fd39de60da7573e52bfb285f4b1ca2a284052983dde4c760dd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: max_messages\nupdated: '2026-05-16T05:21:57+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只分配 cuda:0（westd-32608），严禁使用其他 GPU\n- 模型路径 `/root/autodl-tmp/models/Qwen2.5-14B-Instruct`，不要重新下载\n- sica_expanded_14b 正在跑（PID 181992），不要 kill 它\n- exp-001 (sica_expanded_14b) 是 804 题大规模评估，完成前不要启动 K 消融（串行依赖同一 GPU）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-32608 (connect.westd.seetacloud.com)，工作目录 `/root/symb_invariant_consensus`\n- Python：conda base 环境（aml-train 镜像），`/root/miniconda3/bin/python`\n- 模型：`/root/autodl-tmp/models/Qwen2.5-14B-Instruct`（14B Instruct）\n- 活跃进程：sica_expanded_14b PID 181992, tmux=`sica_expanded_14b`, cuda:0\n- 预计完成：~May 16 晚或 May 17 凌晨（804 题，~11.5h）\n- W&B / Git 未配置\n\n### 3. 📊 当前状态\nsica_expanded_14b（exp-001，804 题大规模评估）正在运行，是当前最关键实验——为 Claim 1 提供统计显著性证据。\n\nQUEUED: sica_k_sensitivity_14b（exp-002，K 消融，等 exp-001 完成后用同一 GPU 跑）\n其余实验全部 DONE（success 4 / negative 1 / killed 5 / failed 1）。\n\nReviewer 刚交了一份 ROADMAP + Paper Framing + Experiment Plan 审查（severity: warning），核心问题：\n- Claim 2 \"operating regime\" 只有 2 个模型数据点，建议 exp-007 (72B-AWQ) 提升到 P1\n- Claim 3 \"C0 as diagnostic\" 数据点不足，建议降为 \"preliminary correlation\"\n- exp-003 / exp-005 的 registry 状态需要修正（小问题）\n\n我尚未对这份 Reviewer 报告采取行动（收到后即触发 RESET）。\n\n### 4. 📋 待办\n- sica_expanded_14b 完成回调 → 分析结果：tie 比例是否稳定、binomial test p 值、C3 增益是否显著 → 更新 ROADMAP\n- exp-001 完成 → 立即启动 sica_k_sensitivity_14b (K=6,8,16,20 消融)\n- 处理 Reviewer warning：评估 exp-007 (72B-AWQ) 是否提到 P1；决定 Claim 2/3 措辞是否调整\n- exp-003 / exp-005 registry 状态修正 → 派 Agent 补 registry_id\n\n### 5. 🎯 战略上下文\n**核心方法**：SICA（Symbolic Invariant Consensus Aggregation）— 用符号约束检测 LLM 多路径推理中的矛盾来打破 Self-Consistency 平票。\n\n**关键数字**：MVP D012 在 60 题上 C3=+3.3pp PASS，但 p=0.317 统计不显著，增益全来自 4 个 6:6 平票翻转。exp-001 (804 题) 是补统计显著性的核心实验。\n\n**决策链要点**：D016 从 QwQ-32B pivot 到 Qwen2.5-14B（QwQ C0=3.6% 太低，几乎没有平票可打破）；D017/D018 诚实标注 MVP \"技术 PASS 但统计 INCONCLUSIVE\"。\n\n**易错点**：\n- Claim 2 \"operating regime\" 当前只有 QwQ-32B 和 Qwen2.5-14B 两个点，Reviewer 必攻——72B 是关键补充但需要额外 GPU（可能要申请云卡）\n- 不要过度包装 p=0.317 的结果，等 exp-001 804 题结果出来再下结论\n- tie 比例（当前 ~8.3%）在大样本中是否稳定是 Claim 1 成立的前提\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4.md"
+}

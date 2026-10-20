@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "315edab2b1f3f95fb6c2",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment llama folio fix rerun",
+  "task_key": "worker_experiment_llama-folio-fix-rerun_20260522T110510",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_llama-folio-fix-rerun_20260522T110510_result.json",
+    "occurrence": 1,
+    "bytes": 615,
+    "sha256": "2e8766093aa3546632a7fc64cf2b02fa767cf4cf7725d51ae840d1ed0530a6cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成，实验正常运行。\n\n**汇报：**\n\n| 项目 | 值 |\n|------|-----|\n| 新 vLLM PID | 595261 (port 8002, max-model-len=8192) |\n| Master PID | 596151 |\n| 首个问题结果 | folio_0: SICA=Unknown, SC=Unknown, gold=Unknown → **两个都正确** |\n| 首个问题耗时 | 70.5s |\n| SICA accuracy (1/1) | 1.0 |\n| SC accuracy (1/1) | 1.0 |\n| ETA | FOLIO 204 题 × ~70s/题 × 3 seeds ≈ **~12 小时** |\n\n根因确认：之前 `max-model-len=4096` + `max_tokens=4096` 导致所有请求 400。现已改为 `max-model-len=8192` + `max_tokens=2048`，请求全部 200 OK。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-llama-folio-fix-rerun.md"
+}

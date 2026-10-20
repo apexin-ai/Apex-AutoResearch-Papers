@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "da65d13cafa9cda212e4",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "analysis q5 q6 review answers",
+  "task_key": "worker_analysis_q5-q6-review-answers_20260523T010439",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_q5-q6-review-answers_20260523T010439.log",
+    "occurrence": 1,
+    "bytes": 829835,
+    "sha256": "6258491d5e67d4628cb16bf30acd37ce3cbfbe40b625cb4634a6b81750dfd912"
+  },
+  "statistics": {
+    "messages": 229,
+    "user_turns": 0,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 42,
+      "tool_call": 91,
+      "tool_result": 91,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 229,
+      "chunks": [
+        {
+          "path": "da65d13cafa9cda212e4-part-0001.json",
+          "message_count": 160
+        },
+        {
+          "path": "da65d13cafa9cda212e4-part-0002.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-q5-q6-review-answers.md"
+}

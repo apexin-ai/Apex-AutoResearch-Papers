@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "da4adf1ccfcfa634d987",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "audit pre submission numbers",
+  "task_key": "worker_audit_pre-submission-numbers_20260524T042807",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_pre-submission-numbers_20260524T042807.log",
+    "occurrence": 1,
+    "bytes": 858946,
+    "sha256": "6b5239e10b92f763c6e00b47b5486922a76da6ddad9d0e5799386a2a13d64ae5"
+  },
+  "statistics": {
+    "messages": 102,
+    "user_turns": 0,
+    "tool_calls": 38,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 22,
+      "tool_call": 38,
+      "tool_result": 38,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 102,
+      "chunks": [
+        {
+          "path": "da4adf1ccfcfa634d987-part-0001.json",
+          "message_count": 51
+        },
+        {
+          "path": "da4adf1ccfcfa634d987-part-0002.json",
+          "message_count": 51
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-pre-submission-numbers.md"
+}

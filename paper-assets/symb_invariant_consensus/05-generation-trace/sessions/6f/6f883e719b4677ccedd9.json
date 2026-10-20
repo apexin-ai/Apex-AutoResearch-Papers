@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "6f883e719b4677ccedd9",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "analysis g mcnemar from logs",
+  "task_key": "worker_analysis_g-mcnemar-from-logs_20260520T135311",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_g-mcnemar-from-logs_20260520T135311.log",
+    "occurrence": 1,
+    "bytes": 1176039,
+    "sha256": "1936b9d3bde16d2345605719a212062e913d2364e361ceca21b7d474cd4f5f97"
+  },
+  "statistics": {
+    "messages": 975,
+    "user_turns": 1,
+    "tool_calls": 453,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 4,
+      "assistant": 58,
+      "tool_call": 453,
+      "tool_result": 453,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 963,
+      "chunks": [
+        {
+          "path": "6f883e719b4677ccedd9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6f883e719b4677ccedd9-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6f883e719b4677ccedd9-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "6f883e719b4677ccedd9-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "6f883e719b4677ccedd9-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "6f883e719b4677ccedd9-part-0006.json",
+          "message_count": 63
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "6f883e719b4677ccedd9-part-0006.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-g-mcnemar-from-logs.md"
+}

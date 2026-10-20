@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a175f1c9d66d3769591a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code check models 25068",
+  "task_key": "worker_code_check-models-25068_20260518T084830",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_check-models-25068_20260518T084830_result.json",
+    "occurrence": 1,
+    "bytes": 703,
+    "sha256": "9a1d2d6d072bfaded3976f7203ed4a591cbb0a0254b6bf64e3b40f63a1455ea7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 已有模型\n| 模型 | 位置 | 大小 |\n|------|------|------|\n| Qwen2.5-72B-Instruct | `/root/autodl-tmp/models/Qwen2.5-72B-Instruct/` | 17G（下载中） |\n\n### 已有数据集\n- `tasksource/proofwriter` — 29M（HF cache）\n- `yale-nlp/FOLIO` — 8K（HF cache，几乎空）\n\n### Qwen-72B 下载进度\n- **进行中**：`parallel_download_v2.py` 进程运行中（PID 5399）\n- 已下载 **18/37** 个 safetensors shard，当前约 17G\n- 完整模型约 145G（FP16），进度约 **12%**（按总大小算，大部分 shard 还是小文件，大 shard ~4GB 只完成了 2 个）\n\n### vLLM\n**未安装**。`import vllm` 报 `ModuleNotFoundError`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-models-25068.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e089fc2a171a2a2b1d5",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ops check disk qwen3",
+  "task_key": "worker_ops_check-disk-qwen3_20260518T125856",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-disk-qwen3_20260518T125856_result.json",
+    "occurrence": 1,
+    "bytes": 1144,
+    "sha256": "86470c7fe9c1ce51af7ccbf2decd9a76697267e6efb3917929d9bc937ac88578"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n## 磁盘空间\n\n| 分区 | 挂载点 | 总量 | 已用 | 可用 | 用量 |\n|------|--------|------|------|------|------|\n| overlay | / (含 /root) | 30G | 12G | 19G | 38% |\n| /dev/md0 | /root/autodl-tmp | **250G** | 151G | **100G** | 61% |\n| /dev/sda2 | (系统盘) | 879G | 407G | 427G | 49% |\n\n**`/root/autodl-tmp` 是独立分区，250G 总量，100G 可用。空间充足，继续下载没问题。**\n\n## Qwen3-14B 下载状态\n\n- **PID 29779 运行中**，20:48 启动，已运行约 11 分钟，CPU 28.6%\n- 已下载：**16G**（完整约 28G，进度约 57%）\n- 下载完成后 autodl-tmp 预计剩余约 88G，完全够用\n\n## autodl-tmp/models/ 已有模型\n\n| 模型 | 占用 |\n|------|------|\n| Qwen2.5-72B-Instruct | 75G |\n| Qwen2.5-14B-Instruct | 28G |\n| Qwen3-14B (下载中) | 16G |\n| Llama-3.1-8B-Instruct | 存在 |\n| Mistral-7B-Instruct-v0.3 | 存在 |\n\n## exp-026 状态\n\n- **PID 27245 运行中**，20:11 启动，正常执行\n- vLLM 服务端 (Qwen2.5-14B) PID 23182 正常\n- 最新日志 20:59:25 仍在持续发送推理请求，HTTP 200 OK，一切正常"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-disk-qwen3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2afc71d0cddf55b11d6d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "prep k ablation start",
+  "task_key": "worker_prep_k-ablation-start_20260516T192219",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_prep_k-ablation-start_20260516T192219_result.json",
+    "occurrence": 1,
+    "bytes": 1043,
+    "sha256": "36ef251e585b6b5386784e7af1aa08d4088914802a0a2e2cea66b10cacfb58f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Everything verified. Here's the report:\n\n```\nVLLM_STATUS: running (PID=174298, Qwen2.5-14B-Instruct, max_model_len=8192)\nDATA_PW: /root/symb_invariant_consensus/data/proofwriter_30.json (30 problems)\nDATA_FOLIO: /root/symb_invariant_consensus/data/folio_30.json (30 problems)\nCOMMAND: bash /root/symb_invariant_consensus/scripts/run_k_ablation.sh\nEST_GPU_H: ~5.8h (D012 K=12 took 58min for 60 problems × 6 K-values, but cost scales ~linearly with K; weighted avg ≈ 58min × (6+8+11+12+16+20)/(12×6) ≈ 58min × 1.01 per run → ~5.8h total)\n```\n\n**Notes:**\n- Script is at `/root/symb_invariant_consensus/scripts/run_k_ablation.sh`, chmod +x done\n- D012 baseline (K=12, 60 problems) took 3500s. Since LLM calls scale linearly with K, the 6 runs will take roughly: K6≈29min, K8≈39min, K11≈53min, K12≈58min, K16≈77min, K20≈97min → **total ~5.9h**\n- `--seed 42` added for reproducibility\n- Ready for `submit_training_job` with command: `bash /root/symb_invariant_consensus/scripts/run_k_ablation.sh`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-k-ablation-start.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dadfa76e6ea3e860a54b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "research d030 answer conditioned constraints",
+  "task_key": "worker_research_d030-answer-conditioned-constraints_20260517T061408",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_d030-answer-conditioned-constraints_20260517T061408_result.json",
+    "occurrence": 1,
+    "bytes": 1922,
+    "sha256": "9fab8f4d1e462df798b571d856d907046054d32b1ce5e31621646918ce8bde2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 调研报告：Answer-Conditioned Constraint Extraction\n\n### 最相关论文\n\n| # | 论文 | Venue | 核心思路 |\n|---|------|-------|----------|\n| 1 | [Math-Shepherd](https://arxiv.org/abs/2312.08935) | ACL 2024 | 从每步续写多条路径，检查能否到达正确答案——步骤标签本质是 outcome-conditioned |\n| 2 | [GRACE](https://arxiv.org/abs/2305.14934) | EMNLP 2023 | 对比学习训练 step-level discriminator，区分正确/错误推理步骤，解码时引导生成 |\n| 3 | [DiVeRSe](https://arxiv.org/abs/2206.02336) | ACL 2023 | 多样路径 + step-aware verifier 逐步验证 + 加权投票 |\n| 4 | Multi-Agent Debate (D3) | 2024 | 实证表明 debate 增益主要来自 aggregation 而非论证交互——与 SICA 退化问题一致 |\n| 5 | [Atomic-SNLI](https://arxiv.org/html/2601.06528v1) | 2025 | 将推理分解为 atomic facts，用 NLI 逐个判断蕴含/矛盾关系 |\n\n### 可适配到 SICA 的技术方案\n\n**推荐优先级: C → B → A**\n\n- **C. Contrastive prompt**（改动最小）: 修改 prompt 为\"列出支持答案 X / 反对答案 X 的约束\"，使约束天然 answer-conditioned。零额外成本。\n- **B. NLI-based filtering**（轻量后处理）: 用现成 NLI 模型判断\"约束 → 答案\"蕴含关系，过滤掉对所有答案都成立的 domain facts。不需训练，推理成本低。\n- **A. Outcome-conditioned labeling**（Math-Shepherd 式）: 对每条约束续写检查与各候选答案兼容性。更精确但推理成本高（每条约束需多次 LLM 调用）。\n\n### 可行性评估\n\n- 方案 C/B 不需训练额外模型，可在现有 pipeline 上快速验证\n- 方案 A 推理成本约为当前 3-5 倍（每条约束 × 候选答案数次续写）\n- 训练 discriminator（方案 D/GRACE 式）需要标注数据，适合后期优化而非 pilot 阶段\n\n报告已保存到项目 memory.md。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-d030-answer-conditioned-constraints.md"
+}

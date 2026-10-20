@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa32f8857cd304fa8fde",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra status check all servers",
+  "task_key": "worker_infra_status-check-all-servers_20260519T111808",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_status-check-all-servers_20260519T111808_result.json",
+    "occurrence": 1,
+    "bytes": 1113,
+    "sha256": "d3d249dc119875b5877582833e188e3941c6943a849df186995c53d68a9ea84b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下：\n\n**实际 RUNNING: 6 个 | FINISHED: 2 个**（Registry 显示 10 个 RUNNING 不准确）\n\n### westd-25068\n| 实验 | 模型 | GPU | 状态 | 进度 |\n|------|------|-----|------|------|\n| exp-062 | Gemma-27B | cuda:3 | RUNNING | 80/204 (39%) |\n| exp-065 | Qwen2.5-7B | cuda:0 | RUNNING | 262/600 (44%) |\n| exp-066 | Qwen2.5-14B | cuda:1 | RUNNING | 198/204 (97%) 即将完成 |\n| exp-067 | Mistral-7B | - | **FINISHED** | 结果文件已生成 (314KB) |\n\n空闲: **cuda:2**\n\n### westd-16639\n| 实验 | 模型 | GPU | 状态 | 进度 |\n|------|------|-----|------|------|\n| exp-048 | LLaMA-8B | cuda:3 | RUNNING | 419/600 (70%) |\n| exp-063 | LLaMA-8B | - | **FINISHED** | SICA=61.8%, SC=66.2%, 结果文件已生成 (300KB) |\n| exp-064 | DeepSeek-R1-8B | cuda:2 | RUNNING | 52/204 (25%) |\n| exp-068 | Qwen3-14B | cuda:1 | RUNNING | 11/200 (6%) 刚启动 |\n\n空闲: **cuda:0**\n\n额外发现：westd-25068 还有旧 tmux session（exp033/034/035_run, model_dl_25068），无 GPU 占用，可清理。\n\n报告已写入 `artifacts/status_check_20260519.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-status-check-all-servers.md"
+}

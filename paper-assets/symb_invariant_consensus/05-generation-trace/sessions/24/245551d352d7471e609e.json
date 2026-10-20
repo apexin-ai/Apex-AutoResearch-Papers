@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "245551d352d7471e609e",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 081 082 status check",
+  "task_key": "worker_analysis_exp-081-082-status-check_20260519T230809",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-081-082-status-check_20260519T230809_result.json",
+    "occurrence": 1,
+    "bytes": 983,
+    "sha256": "51a090d6ebbb7cc1fcd156101a60b1edf528914e4234abf224decaf7e00e4034"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均 **仍在运行中**，状态汇总：\n\n### exp-081: Debate × Mistral-7B × FOLIO-204 (seed=123)\n- **状态**: 运行中，116/204 (56.9%)\n- **已用时间**: ~100 min，ETA ~78 min\n- **当前中间指标** (n=115):\n  - debate_accuracy = **0.4174**\n  - sc_accuracy = **0.5739**\n  - delta = **-0.1565** (debate 比 SC 差)\n  - fallback_count = 11\n  - total_debate_constraints = 2,347\n\n### exp-082: Contrastive × Mistral-7B × FOLIO-204 (seed=123)\n- **状态**: 运行中，105/204 (51.5%)\n- **已用时间**: ~100 min，ETA ~97 min\n- **当前中间指标** (n=104):\n  - contrastive_accuracy = **0.5096**\n  - sc_accuracy = **0.5769**\n  - delta = **-0.0673** (contrastive 比 SC 差)\n  - degenerate_count = 18\n  - pro_constraints = 533, con_constraints = 478\n\n两个方法目前都未超过 SC baseline。Contrastive 的 delta (-0.067) 比 Debate 的 (-0.157) 小，表现相对更好。预计两个实验还需 ~1.5 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-081-082-status-check.md"
+}

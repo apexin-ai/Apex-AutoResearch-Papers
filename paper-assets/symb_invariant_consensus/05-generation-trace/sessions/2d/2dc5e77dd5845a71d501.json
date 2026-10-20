@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2dc5e77dd5845a71d501",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment wave3 dir g decoupling 16639",
+  "task_key": "worker_experiment_wave3-dir-g-decoupling-16639_20260520T100631",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_wave3-dir-g-decoupling-16639_20260520T100631_result.json",
+    "occurrence": 1,
+    "bytes": 487,
+    "sha256": "041bc2295898129710fd073501b5fc50c7cb5c69b11dabbfe95136238773bf8e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Direction G 全量运行已启动：\n\n- **服务器**: westd-16639\n- **PID**: 307164\n- **vLLM**: port 8020 (GPU 0, 已有空闲实例复用)\n- **日志**: `/tmp/direction_g_full.log`\n- **进度**: 已开始 strategy `conservative`，204 题，共 3 策略 (conservative/standard/aggressive)\n- **Baselines**: SC 54.41%, SICA 59.31%\n\nDry-run 3 题验证通过 (acc=0.667, matched=100%)。预计全量运行约 2-3 小时（204 题 × 3 策略 × 12 traces/题）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-wave3-dir-g-decoupling-16639.md"
+}

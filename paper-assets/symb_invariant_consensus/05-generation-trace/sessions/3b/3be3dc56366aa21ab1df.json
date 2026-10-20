@@ -1,0 +1,546 @@
+{
+  "schema_version": "1.0",
+  "id": "3be3dc56366aa21ab1df",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "paper bib entries mathshepherd grace",
+  "task_key": "worker_paper_bib-entries-mathshepherd-grace_20260525T000445",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_bib-entries-mathshepherd-grace_20260525T000445.log",
+    "occurrence": 1,
+    "bytes": 57427,
+    "sha256": "ede2051e06f2fcd36b7debae705353ad0445489f7c8c2079e9e16c200b67a24c"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 0,
+    "tool_calls": 2,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 2,
+      "tool_result": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+                "session_id": "918f3ef6-eada-4f79-bb59-250954707386",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "ba1f70f1-b252-4257-88f4-431c5f930614",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1779818400,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.92,
+                  "isUsingOverage": false,
+                  "surpassedThreshold": 0.75
+                },
+                "uuid": "8017f856-63a4-4b9e-af5f-4f9521a48a39",
+                "session_id": "918f3ef6-eada-4f79-bb59-250954707386"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me start by reading the existing references.bib and searching for the two papers in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "918f3ef6-eada-4f79-bb59-250954707386",
+            "uuid": "e5f8efd4-25a7-48c6-a304-7b7afe5df793",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017H5Xj4JDJCRt9tkUh1r4KU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12159,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12159
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013YRVkRN6XkALme7sqnjrTZ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "918f3ef6-eada-4f79-bb59-250954707386",
+            "uuid": "ec45fdf7-c3c2-4529-a18a-8828ff12e53e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017H5Xj4JDJCRt9tkUh1r4KU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12159,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12159
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-25T00:04:59.271Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013YRVkRN6XkALme7sqnjrTZ",
+              "type": "tool_result",
+              "content": "1\t% References for SICA paper\n2\t% Generated from literature_map.yaml — 2026-05-17\n3\t\n4\t@book{cover2006elements,\n5\t  title={Elements of Information Theory},\n6\t  author={Cover, Thomas M. and Thomas, Joy A.},\n7\t  edition={2nd},\n8\t  publisher={Wiley-Interscience},\n9\t  year={2006}\n10\t}\n11\t\n12\t%%% SAT-Based Reasoning %%%\n13\t\n14\t@inproceedings{ye2024satlm,\n15\t  title={SatLM: Satisfiability-Aided Language Models Using Declarative Prompting},\n16\t  author={Ye, Xi and Chen, Qiaochu and Dillig, Isil and Durrett, Greg},\n17\t  booktitle={Advances in Neural Information Processing Systems},\n18\t  volume={36},\n19\t  year={2024}\n20\t}\n21\t\n22\t%%% Program-Aided Reasoning %%%\n23\t\n24\t@inproceedings{gao2023pal,\n25\t  title={{PAL}: Program-aided Language Models},\n26\t  author={Gao, Luyu and Madaan, Aman and Zhou, Shuyan and Alon, Uri and Liu, Pengfei and Yang, Yiming and Callan, Jamie and Neubig, Graham},\n27\t  booktitle={Proceedings of the 40th International Conference on Machine Learning (ICML)},\n28\t  year={2023}\n29\t}\n30\t\n31\t@article{chen2023program,\n32\t  title={Program of Thoughts Prompting: Disentangling Computation from Reasoning for Numerical Reasoning Tasks},\n33\t  author={Chen, Wenhu and Ma, Xueguang and Wang, Xinyi and Cohen, William W.},\n34\t  journal={Transactions on Machine Learning Research},\n35\t  year={2023}\n36\t}\n37\t\n38\t@inproceedings{lyu2023faithful,\n39\t  title={Faithful Chain-of-Thought Reasoning},\n40\t  author={Lyu, Qing and Havaldar, Shreya and Stein, Adam and Zhang, Li and Rao, Delip and Wong, Eric and Apidianaki, Marianna and Callison-Burch, Chris},\n41\t  booktitle={Proceedings of the 13th International Joint Conference on Natural Language Processing and the 3rd Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics},\n42\t  year={2023}\n43\t}\n44\t\n45\t%%% Theoretical Foundations %%%\n46\t\n47\t@book{condorcet1785,\n48\t  title={Essai sur l'application de l'analyse \\`a la probabilit\\'e des d\\'ecisions rendues \\`a la pluralit\\'e des voix},\n49\t  author={de Condorcet, Marie Jean Antoine Nicolas de Caritat},\n50\t  year={1785},\n51\t  publisher={Imprimerie Royale},\n52\t  address={Paris}\n53\t}\n54\t\n55\t@article{ladha1992correlated,\n56\t  title={The {C}ondorcet Jury Theorem, Free Speech, and Correlated Votes},\n57\t  author={Ladha, Krishna K.},\n58\t  journal={American Journal of Political Science},\n59\t  volume={36},\n60\t  number={3},\n61\t  pages={617--634},\n62\t  year={1992}\n63\t}\n64\t\n65\t@article{fleiss1971kappa,\n66\t  title={Measuring Nominal Scale Agreement Among Many Raters},\n67\t  author={Fleiss, Joseph L.},\n68\t  journal={Psychological Bulletin},\n69\t  volume={76},\n70\t  number={5},\n71\t  pages={378--382},\n72\t  year={1971}\n73\t}\n74\t\n75\t%%% Self-Consistency and Variants %%%\n76\t\n77\t@inproceedings{wang2023sc,\n78\t  title={Self-Consistency Improves Chain of Thought Reasoning in Language Models},\n79\t  author={Wang, Xuezhi and Wei, Jason and Schuurmans, Dale and Le, Quoc and Chi, Ed and Narang, Sharan and Chowdhery, Aakanksha and Zhou, Denny},\n80\t  booktitle={ICLR},\n81\t  year={2023}\n82\t}\n83\t\n84\t@inproceedings{chen2024usc,\n85\t  title={Universal Self-Consistency for Large Language Model Generation},\n86\t  author={Chen, Xinyun and Aksitov, Renat and Alon, Uri and Ren, Jie and Xiao, Kefan and Yin, Pengcheng and Prakash, Sushant and Sutton, Charles and Wang, Xuezhi and Zhou, Denny},\n87\t  booktitle={ICML},\n88\t  year={2024}\n89\t}\n90\t\n91\t@inproceedings{taubenfeld2025cisc,\n92\t  title={Confidence Improves Self-Consistency in {LLM}s},\n93\t  author={Taubenfeld, Asaf and Goldstein, Ido and Tsur, Oren},\n94\t  booktitle={ACL Findings},\n95\t  year={2025}\n96\t}\n97\t\n98\t@article{loo2025reevaluating,\n99\t  title={Reevaluating Self-Consistency Scaling in Multi-Agent Systems},\n100\t  author={Loo, Ryan and others},\n101\t  journal={arXiv preprint arXiv:2511.00751},\n102\t  year={2025}\n103\t}\n104\t\n105\t@inproceedings{li2023diverse,\n106\t  title={Making Language Models Better Reasoners with Step-Aware Verifier},\n107\t  author={Li, Yifei and Lin, Zeqi and Zhang, Shizhuo and Fu, Qiang and Chen, Bei and Lou, Jian-Guang and Chen, Weizhu},\n108\t  booktitle={ACL},\n109\t  year={2023}\n110\t}\n111\t\n112\t%%% Neuro-Symbolic Reasoning %%%\n113\t\n114\t@inproceedings{pan2023logiclm,\n115\t  title={Logic-{LM}: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning},\n116\t  author={Pan, Liangming and Alber, Alon and Xu, Wenhu and Deng, Yixin and Chen, Huan and Ji, Heng},\n117\t  booktitle={EMNLP Findings},\n118\t  year={2023}\n119\t}\n120\t\n121\t@inproceedings{olausson2023linc,\n122\t  title={{LINC}: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers},\n123\t  author={Olausson, Theo X. and Gu, Alex and Lipkin, Benjamin and Zhang, Cedegao E. and Solar-Lezama, Armando and Tenenbaum, Joshua B. and Levy, Roger},\n124\t  booktitle={EMNLP},\n125\t  year={2023}\n126\t}\n127\t\n128\t@inproceedings{xu2026dylos,\n129\t  title={Adaptive {LLM}-Symbolic Reasoning via Dynamic Logical Solver Composition ({DyLoS})},\n130\t  author={Xu, Lei and Beckmann, Pierre and Valentino, Marco and Freitas, Andre},\n131\t  booktitle={EACL},\n132\t  year={2026}\n133\t}\n134\t\n135\t@article{wang2025fover,\n136\t  title={{FoVer}: First-Order Logic Verification for Natural Language Reasoning},\n137\t  author={Wang, Yilun and others},\n138\t  journal={TACL},\n139\t  year={2025}\n140\t}\n141\t\n142\t@inproceedings{li2025aristotle,\n143\t  title={Aristotle: Mastering Logical Reasoning with A Logic-Complete Decompose-Search-Resolve Framework},\n144\t  author={Li, Jundong and others},\n145\t  booktitle={ACL},\n146\t  year={2025}\n147\t}\n148\t\n149\t@article{luo2025logicagent,\n150\t  title={From Ambiguity to Verdict: A Semiotic-Grounded Multi-Perspective Agent for {LLM} Logical Reasoning},\n151\t  author={Luo, Yiqi and others},\n152\t  journal={arXiv preprint arXiv:2509.24765},\n153\t  year={2025}\n154\t}\n155\t\n156\t%%% Test-Time Compute and Reasoning Models %%%\n157\t\n158\t@inproceedings{snell2025scaling,\n159\t  title={Scaling {LLM} Test-Time Compute Optimally Can be More Effective than Scaling Parameters},\n160\t  author={Snell, Charlie and Lee, Jaehoon and Xu, Kelvin and Kumar, Aviral},\n161\t  booktitle={ICLR (Oral)},\n162\t  year={2025}\n163\t}\n164\t\n165\t@inproceedings{yao2023tree,\n166\t  title={Tree of Thoughts: Deliberate Problem Solving with Large Language Models},\n167\t  author={Yao, Shunyu and Yu, Dian and Zhao, Jeffrey and Shafran, Izhak and Griffiths, Thomas L. and Cao, Yuan and Narasimhan, Karthik},\n168\t  booktitle={Advances in Neural Information Processing Systems},\n169\t  volume={36},\n170\t  year={2023}\n171\t}\n172\t\n173\t\n174\t%%% Verification and Reranking %%%\n175\t\n176\t@article{cobbe2021gsm8k,\n177\t  title={Training Verifiers to Solve Math Word Problems},\n178\t  author={Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},\n179\t  journal={arXiv preprint arXiv:2110.14168},\n180\t  year={2021}\n181\t}\n182\t\n183\t@inproceedings{lightman2024prm,\n184\t  title={Let's Verify Step by Step},\n185\t  author={Lightman, Hunter and Kosaraju, Vineet and Burda, Yura and Edwards, Harri and Baker, Bowen and Lee, Teddy and Leike, Jan and Schulman, John and Sutskever, Ilya and Cobbe, Karl},\n186\t  booktitle={ICLR},\n187\t  year={2024}\n188\t}\n189\t\n190\t@inproceedings{wang2024mathshepherd,\n191\t  title={Math-Shepherd: Verify and Reinforce {LLM}s Step-by-step without Human Annotations},\n192\t  author={Wang, Peiyi and Li, Lei and Shao, Zhihong and Xu, R.X. and Dai, Damai and Li, Yifei and Chen, Deli and Wu, Y. and Sui, Zhifang},\n193\t  booktitle={ACL},\n194\t  year={2024}\n195\t}\n196\t\n197\t@inproceedings{khalifa2023grace,\n198\t  title={{GRACE}: Discriminator-Guided Chain-of-Thought Reasoning},\n199\t  author={Khalifa, Muhammad and Logeswaran, Lajanugen and Lee, Moontae and Lee, Honglak and Wang, Lu},\n200\t  booktitle={Findings of EMNLP},\n201\t  year={2023}\n202\t}\n203\t\n204\t%%% Constraint Satisfaction in NLP %%%\n205\t\n206\t%%% Debate and Multi-Agent %%%\n207\t\n208\t@article{liang2023encouraging,\n209\t  title={Encouraging Divergent Thinking in Large Language Models through Multi-Agent Debate},\n210\t  author={Liang, Tian and He, Zhiwei and Jiao, Wenxiang and Wang, Xing and Wang, Yan and Wang, Rui and Yang, Yujiu and Tu, Zhaopeng and Shi, Shuming},\n211\t  journal={arXiv preprint arXiv:2305.19118},\n212\t  year={2023}\n213\t}\n214\t\n215\t@inproceedings{du2023improving,\n216\t  title={Improving Factuality and Reasoning in Language Models through Multiagent Debate},\n217\t  author={Du, Yilun and Li, Shuang and Torralba, Antonio and Tenenbaum, Joshua B. and Mordatch, Igor},\n218\t  booktitle={ICML},\n219\t  year={2024}\n220\t}\n221\t\n222\t%%% Benchmarks and Datasets %%%\n223\t\n224\t@article{han2022folio,\n225\t  title={{FOLIO}: Natural Language Reasoning with First-Order Logic},\n226\t  author={Han, Simeng and Schoelkopf, Hailey and Zhao, Yilun and Qi, Zhenting and Riddell, Martin and Benson, Luke and Sun, Lucy and Zubova, Ekaterina and Qiao, Yujie and Burtell, Matthew and Peng, David and Fan, Jonathan and Liu, Yi and Wong, Brian and Sailor, Malcolm and Ni, Ansong and Nan, Linyong and Kasai, Jungo and Yu, Tao and Zhang, Rui and Joty, Shafiq and Fabbri, Alexander R. and Kryscinski, Wojciech and Lin, Xi Victoria and Xiong, Caiming and Radev, Dragomir},\n227\t  journal={arXiv preprint arXiv:2209.00840},\n228\t  year={2022}\n229\t}\n230\t\n231\t@inproceedings{tafjord2021proofwriter,\n232\t  title={{ProofWriter}: Generating Implications, Proofs, and Abductive Statements over Natural Language},\n233\t  author={Tafjord, Oyvind and Dalvi, Bhavana and Clark, Peter},\n234\t  booktitle={ACL Findings},\n235\t  year={2021}\n236\t}\n237\t\n238\t@article{geva2021strategyqa,\n239\t  title={Did {Aristotle} Use a Laptop? A Question Answering Benchmark with Implicit Reasoning Strategies},\n240\t  author={Geva, Mor and Khashabi, Daniel and Segal, Elad and Khot, Tushar and Roth, Dan and Berant, Jonathan},\n241\t  journal={TACL},\n242\t  year={2021}\n243\t}\n244\t\n245\t@inproceedings{liu2020logiqa,\n246\t  title={{LogiQA}: A Challenge Dataset for Machine Reading Comprehension with Logical Reasoning},\n247\t  author={Liu, Jian and Cui, Leyang and Liu, Hanmeng and Huang, Dandan and Wang, Yile and Zhang, Yue},\n248\t  booktitle={IJCAI},\n249\t  pages={3622--3628},\n250\t  year={2020}\n251\t}\n252\t\n253\t%%% Negative Results / Analysis Papers %%%\n254\t\n255\t@inproceedings{huang2024selfcorrect,\n256\t  title={Large Language Models Cannot Self-Correct Reasoning Yet},\n257\t  author={Huang, Jie and Chen, Xinyun and Mishra, Swaroop and Zheng, Huaixiu Steven and Yu, Adams Wei and Song, Xinying and Zhou, Denny},\n258\t  booktitle={ICLR},\n259\t  year={2024}\n260\t}\n261\t\n262\t@inproceedings{xie2023selfevaluation,\n263\t  title={Self-Evaluation Guided Beam Search for Reasoning},\n264\t  author={Xie, Yuxi and Kawaguchi, Kenji and Zhao, Yiran and Zhao, Xu and Kan, Min-Yen and He, Junehao and Xie, Qian},\n265\t  booktitle={NeurIPS},\n266\t  year={2023}\n267\t}\n268\t\n269\t@inproceedings{weng2023selfverification,\n270\t  title={Large Language Models are Better Reasoners with Self-Verification},\n271\t  author={Weng, Yixuan and Zhu, Minjun and Xia, Fei and Li, Bin and He, Shizhu and Liu, Shengping and Sun, Bin and Liu, Kang and Zhao, Jun},\n272\t  booktitle={Findings of EMNLP},\n273\t  year={2023}\n274\t}\n275\t\n276\t@article{dhuliawala2023chainofverification,\n277\t  title={Chain-of-Verification Reduces Hallucination in Large Language Models},\n278\t  author={Dhuliawala, Shehzaad and Komeili, Mojtaba and Xu, Jing and Raileanu, Roberta and Li, Xian and Celikyilmaz, Asli and Weston, Jason},\n279\t  journal={arXiv preprint arXiv:2309.11495},\n280\t  year={2023}\n281\t}\n282\t\n283\t@inproceedings{madaan2023selfrefine,\n284\t  title={Self-Refine: Iterative Refinement with Self-Feedback},\n285\t  author={Madaan, Aman and Tandon, Niket and Gupta, Prakhar and Hallinan, Skyler and Gao, Luyu and Wiegreffe, Sarah and Alon, Uri and Dziri, Nouha and Prabhumoye, Shrimai and Yang, Yiming and others},\n286\t  booktitle={NeurIPS},\n287\t  year={2023}\n288\t}\n289\t\n290\t@inproceedings{gou2024critic,\n291\t  title={{CRITIC}: Large Language Models Can Self-Correct with Tool-Interactive Critiquing},\n292\t  author={Gou, Zhibin and Shao, Zhihong and Gong, Yeyun and Shen, Yelong and Yang, Yujiu and Huang, Minlie and Duan, Nan and Chen, Weizhu},\n293\t  booktitle={ICLR},\n294\t  year={2024}\n295\t}\n296\t\n297\t@article{zhu2025vericot,\n298\t  title={VeriCoT: Verified Chain of Thought},\n299\t  author={Zhu, Hao and Gao, Yuxuan and Ke, Nuo Xu and Lu, Pan},\n300\t  journal={arXiv preprint arXiv:2511.04662},\n301\t  year={2025}\n302\t}\n303\t\n304\t%%% Model Papers %%%\n305\t\n306\t@article{yang2024qwen25,\n307\t  title={Qwen2.5 Technical Report},\n308\t  author={Yang, An and Yang, Baosong and Zhang, Beichen and Hui, Binyuan and Wang, Bo and others},\n309\t  journal={arXiv preprint arXiv:2412.15115},\n310\t  year={2024}\n311\t}\n312\t\n313\t@article{jiang2023mistral,\n314\t  title={Mistral 7{B}},\n315\t  author={Jiang, Albert Q. and Sablayrolles, Alexandre and Mensch, Arthur and Bamford, Chris and Chaplot, Devendra Singh and de las Casas, Diego and Bressand, Florian and Lengyel, Gianna and Lample, Guillaume and Saulnier, Lucile and Lavaud, L{\\'e}lio Renard and Lachaux, Marie-Anne and Stock, Pierre and Scao, Teven Le and Lavril, Thibaut and Wang, Thomas and Lacroix, Timoth{\\'e}e and El Sayed, William},\n316\t  journal={arXiv preprint arXiv:2310.06825},\n317\t  year={2023}\n318\t}\n319\t\n320\t@article{dubey2024llama3,\n321\t  title={The {Llama} 3 Herd of Models},\n322\t  author={Dubey, Abhimanyu and Jauhri, Abhinav and Pandey, Abhinav and Kadian, Abhishek and others},\n323\t  journal={arXiv preprint arXiv:2407.21783},\n324\t  year={2024}\n325\t}\n326\t\n327\t@article{guo2025deepseekr1,\n328\t  title={{DeepSeek-R1}: Incentivizing Reasoning Capability in {LLM}s via Reinforcement Learning},\n329\t  author={Guo, Daya and Yang, Dejian and Zhang, He and Song, Junxiao and others},\n330\t  journal={arXiv preprint arXiv:2501.12948},\n331\t  year={2025}\n332\t}\n333\t\n334\t@misc{qwen2024qwq,\n335\t  title={{QwQ}: Reflect Deeply on the Boundaries of the Unknown},\n336\t  author={{Qwen Team}},\n337\t  year={2024},\n338\t  howpublished={Technical Blog},\n339\t  note={\\url{https://qwenlm.github.io/blog/qwq-32b-preview/}}\n340\t}\n341\t\n342\t%%% Oracle/Upper-Bound Experiments %%%\n343\t\n344\t%%% Reasoning-Aware SC Variants %%%\n345\t\n346\t@article{wan2024rasc,\n347\t  title={Reasoning Aware Self-Consistency: Leveraging Reasoning Paths for Efficient {LLM} Sampling},\n348\t  author={Wan, Guangya and Wu, Yuqi and Chen, Jie and Li, Sheng},\n349\t  journal={arXiv preprint arXiv:2408.17017},\n350\t  year={2024}\n351\t}\n352\t\n353\t@article{kim2026reasc,\n354\t  title={Reliability-Aware Adaptive Self-Consistency for Efficient Sampling in {LLM} Reasoning},\n355\t  author={Kim, Junseok and Yang, Nakyeong and Min, Kyungmin and Jung, Kyomin},\n356\t  journal={arXiv preprint arXiv:2601.02970},\n357\t  year={2026}\n358\t}\n359\t\n360\t%%% LLM Formalization %%%\n361\t\n362\t@article{amonkar2025realitycheck,\n363\t  title={A Reality Check of Language Models as Formalizers on Constraint Satisfaction Problems},\n364\t  author={Amonkar, Rikhil and Kayan, Ceyhun Efe and Lai, Qimei and Le Bras, Ronan and Zhang, Li},\n365\t  journal={arXiv preprint arXiv:2505.13252},\n366\t  year={2025}\n367\t}\n368\t\n369\t%%% Tools and Solvers %%%\n370\t\n371\t@inproceedings{demoura2008z3,\n372\t  title={{Z3}: An Efficient {SMT} Solver},\n373\t  author={de Moura, Leonardo and Bj{\\o}rner, Nikolaj},\n374\t  booktitle={TACAS},\n375\t  year={2008}\n376\t}\n377\t\n378\t%%% Condorcet / Voting Theory %%%\n379\t\n380\t%%% CoT Faithfulness %%%\n381\t\n382\t@inproceedings{turpin2023language,\n383\t  title={Language Models Don't Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting},\n384\t  author={Turpin, Miles and Michael, Julian and Perez, Ethan and Bowman, Samuel},\n385\t  booktitle={NeurIPS},\n386\t  year={2023}\n387\t}\n388\t\n389\t%%% Confirmation Bias in LLM Reasoning %%%\n390\t\n391\t@inproceedings{wan2025unveiling,\n392\t  title={Unveiling Confirmation Bias in Chain-of-Thought Reasoning},\n393\t  author={Wan, Yue and Jia, Xiaowei and Li, Xiang Lorraine},\n394\t  booktitle={Findings of the Association for Computational Linguistics: ACL 2025},\n395\t  year={2025}\n396\t}\n397\t\n398\t@article{jhaveri2026failing,\n399\t  title={Failing to Falsify: Evaluating and Mitigating Confirmation Bias in Language Models},\n400\t  author={Jhaveri, Ayush Rajesh and GX-Chen, Anthony and Sucholutsky, Ilia and Choi, Eunsol},\n401\t  journal={arXiv preprint arXiv:2604.02485},\n402\t  year={2026}\n403\t}\n404\t\n405\t@article{miya2025eidoku,\n406\t  title={Eidoku: A Neuro-Symbolic Verification Gate for {LLM} Reasoning via Structural Constraint Satisfaction},\n407\t  author={Miya, Shinobu},\n408\t  journal={arXiv preprint arXiv:2512.20664},\n409\t  year={2025}\n410\t}\n411\t\n412\t%%% Ensemble Diversity %%%\n413\t\n414\t@incollection{dietterich2000ensemble,\n415\t  title={Ensemble Methods in Machine Learning},\n416\t  author={Dietterich, Thomas G.},\n417\t  booktitle={Multiple Classifier Systems (MCS)},\n418\t  pages={1--15},\n419\t  year={2000},\n420\t  publisher={Springer}\n421\t}\n422\t\n423\t@inproceedings{krogh1994neural,\n424\t  title={Neural Network Ensembles, Cross Validation, and Active Learning},\n425\t  author={Krogh, Anders and Vedelsby, Jesper},\n426\t  booktitle={Advances in Neural Information Processing Systems},\n427\t  volume={7},\n428\t  year={1994}\n429\t}\n430\t\n431\t@article{brown2005diversity,\n432\t  title={Diversity Creation Methods: A Survey and Categorisation},\n433\t  author={Brown, Gavin and Wyatt, Jeremy and Harris, Rachel and Yao, Xin},\n434\t  journal={Information Fusion},\n435\t  volume={6},\n436\t  number={1},\n437\t  pages={5--20},\n438\t  year={2005}\n439\t}\n440\t\n441\t%%% Cross-Architecture Verification %%%\n442\t\n443\t@inproceedings{he2021deberta,\n444\t  title={{DeBERTa}: Decoding-enhanced {BERT} with Disentangled Attention},\n445\t  author={He, Pengcheng and Liu, Xiaodong and Gao, Jianfeng and Chen, Weizhu},\n446\t  booktitle={Proceedings of ICLR},\n447\t  year={2021}\n448\t}\n449\t\n450\t@inproceedings{williams2018mnli,\n451\t  title={A Broad-Coverage Challenge Corpus for Sentence Understanding through Inference},\n452\t  author={Williams, Adina and Nangia, Nikita and Bowman, Samuel},\n453\t  booktitle={Proceedings of NAACL-HLT},\n454\t  pages={1112--1122},\n455\t  year={2018}\n456\t}\n457\t\n458\t%%% Compositional / Iterative Neuro-Symbolic Verification %%%\n459\t\n460\t@inproceedings{ryu2025clover,\n461\t  title={Divide and Translate: Compositional First-Order Logic Translation and Verification for Complex Logical Reasoning},\n462\t  author={Ryu, Hyun and Kim, Gyeongman and Lee, Hyemin S. and Yang, Eunho},\n463\t  booktitle={International Conference on Learning Representations (ICLR)},\n464\t  year={2025}\n465\t}\n466\t\n467\t@article{singh2026verge,\n468\t  title={{VERGE}: Formal Refinement and Guidance Engine for Verifiable {LLM} Reasoning},\n469\t  author={Singh, Vikash and Cassel, Darion and Weir, Nathaniel and Feng, Nick and Bayless, Sam},\n470\t  journal={arXiv preprint arXiv:2601.20055},\n471\t  year={2026}\n472\t}\n473\t\n474\t%%% Programs-as-Verifiers %%%\n475\t\n476\t@article{toh2024notallvotes,\n477\t  title={Not All Votes Count! Programs as Verifiers Improve Self-Consistency of Language Models for Math Reasoning},\n478\t  author={Toh, Vernon Y.H. and Ghosal, Deepanway and Poria, Soujanya},\n479\t  journal={arXiv preprint arXiv:2410.12608},\n480\t  year={2024}\n481\t}\n482\t\n483\t%%% Logical Soundness Critique %%%\n484\t\n485\t@article{chan2026position,\n486\t  title={Position: Logical Soundness is not a Reliable Criterion for Neurosymbolic Fact-Checking with {LLMs}},\n487\t  author={Chan, Jason and Gaizauskas, Robert and Zhao, Zhixue},\n488\t  journal={arXiv preprint arXiv:2604.04177},\n489\t  year={2026}\n490\t}\n491\t\n492\t%%% Statistical Methods %%%\n493\t\n494\t@article{lakens2017equivalence,\n495\t  title={Equivalence Tests: A Practical Primer for $t$ Tests, Correlations, and Meta-Analyses},\n496\t  author={Lakens, Dani{\\\"e}l},\n497\t  journal={Social Psychological and Personality Science},\n498\t  volume={8},\n499\t  number={4},\n500\t  pages={355--362},\n501\t  year={2017},\n502\t  doi={10.1177/1948550617697177}\n503\t}\n504\t\n505\t%%% R11 Added Citations %%%\n506\t\n507\t@article{byerly2025selfconsistency,\n508\t  title={Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems},\n509\t  author={Byerly, Adam and Khashabi, Daniel},\n510\t  journal={Transactions of the Association for Computational Linguistics},\n511\t  year={2025},\n512\t  note={arXiv:2411.01101}\n513\t}\n514\t\n515\t@article{kuai2026independent,\n516\t  title={How Independent are Large Language Models? {A} Statistical Framework for Auditing Behavioral Entanglement and Reweighting Verifier Ensembles},\n517\t  author={Kuai, Chenchen and Jiang, Jiwan and Zhu, Zihao and Wang, Hao and Wu, Keshu and Li, Zihao and Zhang, Yunlong and Liu, Chenxi and Tu, Zhengzhong and Fan, Zhiwen and Zhou, Yang},\n518\t  journal={arXiv preprint arXiv:2604.07650},\n519\t  year={2026}\n520\t}\n521\t\n522\t@article{kim2025correlated,\n523\t  title={Correlated Errors in Large Language Models},\n524\t  author={Kim, Elliot and Garg, Avi and Peng, Kenny and Garg, Nikhil},\n525\t  journal={arXiv preprint arXiv:2506.07962},\n526\t  year={2025}\n527\t}\n528\t\n529\t@article{chen2025sets,\n530\t  title={{SETS}: Leveraging Self-Verification and Self-Correction for Improved Test-Time Scaling},\n531\t  author={Chen, Jiefeng and Ren, Jie and Chen, Xinyun and Yang, Chengrun and Sun, Ruoxi and Yoon, Jinsung and Ar{\\i}k, Sercan {\\\"O}.},\n532\t  journal={arXiv preprint arXiv:2501.19306},\n533\t  year={2025}\n534\t}\n535\t\n536\t\n537\t\n538\t@article{kuncheva2003measures,\n539\t  title={Measures of Diversity in Classifier Ensembles and Their Relationship with the Ensemble Accuracy},\n540\t  author={Kuncheva, Ludmila I. and Whitaker, Christopher J.},\n541\t  journal={Machine Learning},\n542\t  volume={51},\n543\t  number={2},\n544\t  pages={181--207},\n545\t  year={2003}\n546\t}\n547\t\n548\t%%% Test-Time Scaling and Multi-Agent Verification %%%\n549\t\n550\t@article{lifshitz2025mav,\n551\t  title={Multi-Agent Verification: Scaling Test-Time Compute with Multiple Verifiers},\n552\t  author={Lifshitz, Shalev and McIlraith, Sheila A. and Du, Simon S.},\n553\t  journal={arXiv preprint arXiv:2502.20379},\n554\t  year={2025}\n555\t}\n556\t\n557\t%%% Training-Based Self-Verification %%%\n558\t\n559\t@article{kamoi2024selfcorrect,\n560\t  title={When Can {LLMs} Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of {LLMs}},\n561\t  author={Kamoi, Ryo and Kobayashi, Yusen and Goyal, Tharindu and Hou, Rui and Sun, Hanjie and Caverlee, James},\n562\t  journal={Transactions of the Association for Computational Linguistics},\n563\t  volume={12},\n564\t  pages={1--20},\n565\t  year={2024}\n566\t}\n567\t\n568\t\n569\t@inproceedings{zeng2025s2r,\n570\t  title={{S$^2$R}: Teaching {LLMs} to Self-verify and Self-correct via Reinforcement Learning},\n571\t  author={Zeng, Ruotian and Liu, Yuanzhi and others},\n572\t  booktitle={Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL)},\n573\t  year={2025}\n574\t}\n575\t\n576\t@article{dupo2025,\n577\t  title={{DuPO}: Enabling Reliable {LLM} Self-Verification via Dual Preference Optimization},\n578\t  author={She, Shuaijie and Bao, Yu and Lu, Yu and Xu, Lu and Li, Tao and Zhu, Wenhao and Huang, Shujian and Cheng, Shanbo and Lu, Lu and Wang, Yuxuan},\n579\t  journal={arXiv preprint arXiv:2508.14460},\n580\t  year={2025}\n581\t}\n582\t\n583\t@inproceedings{li2022alphacode,\n584\t  title={Competition-Level Code Generation with {AlphaCode}},\n585\t  author={Li, Yujia and Choi, David and Chung, Junyoung and Kushman, Nate and Schrittwieser, Julian and others},\n586\t  booktitle={Science},\n587\t  volume={378},\n588\t  number={6624},\n589\t  pages={1092--1097},\n590\t  year={2022}\n591\t}\n592\t\n593\t@inproceedings{chen2023codet,\n594\t  title={{CodeT}: Code Generation with Generated Tests},\n595\t  author={Chen, Bei and Zhang, Fengji and Nguyen, Anh and Zan, Daoguang and Lin, Zeqi and Lou, Jian-Guang and Chen, Weizhu},\n596\t  booktitle={Proceedings of the 11th International Conference on Learning Representations (ICLR)},\n597\t  year={2023}\n598\t}\n599\t\n600\t\n601\t@inproceedings{shinn2023reflexion,\n602\t  title={Reflexion: Language Agents with Verbal Reinforcement Learning},\n603\t  author={Shinn, Noah and Cassano, Federico and Gopinath, Ashwin and Narasimhan, Karthik and Yao, Shunyu},\n604\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n605\t  year={2023}\n606\t}\n607\t\n608\t@inproceedings{zhou2023lats,\n609\t  title={Language Agent Tree Search Unifies Reasoning Acting and Planning in Language Models},\n610\t  author={Zhou, Andy and Yan, Kai and Shlapentokh-Rothman, Michal and Wang, Haohan and Wang, Yu-Xiong},\n611\t  booktitle={International Conference on Machine Learning (ICML)},\n612\t  year={2024}\n613\t}\n614\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "918f3ef6-eada-4f79-bb59-250954707386",
+            "uuid": "8dcd3df1-071e-4dea-a411-ddefc2f1860a",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib",
+                "content": "% References for SICA paper\n% Generated from literature_map.yaml — 2026-05-17\n\n@book{cover2006elements,\n  title={Elements of Information Theory},\n  author={Cover, Thomas M. and Thomas, Joy A.},\n  edition={2nd},\n  publisher={Wiley-Interscience},\n  year={2006}\n}\n\n%%% SAT-Based Reasoning %%%\n\n@inproceedings{ye2024satlm,\n  title={SatLM: Satisfiability-Aided Language Models Using Declarative Prompting},\n  author={Ye, Xi and Chen, Qiaochu and Dillig, Isil and Durrett, Greg},\n  booktitle={Advances in Neural Information Processing Systems},\n  volume={36},\n  year={2024}\n}\n\n%%% Program-Aided Reasoning %%%\n\n@inproceedings{gao2023pal,\n  title={{PAL}: Program-aided Language Models},\n  author={Gao, Luyu and Madaan, Aman and Zhou, Shuyan and Alon, Uri and Liu, Pengfei and Yang, Yiming and Callan, Jamie and Neubig, Graham},\n  booktitle={Proceedings of the 40th International Conference on Machine Learning (ICML)},\n  year={2023}\n}\n\n@article{chen2023program,\n  title={Program of Thoughts Prompting: Disentangling Computation from Reasoning for Numerical Reasoning Tasks},\n  author={Chen, Wenhu and Ma, Xueguang and Wang, Xinyi and Cohen, William W.},\n  journal={Transactions on Machine Learning Research},\n  year={2023}\n}\n\n@inproceedings{lyu2023faithful,\n  title={Faithful Chain-of-Thought Reasoning},\n  author={Lyu, Qing and Havaldar, Shreya and Stein, Adam and Zhang, Li and Rao, Delip and Wong, Eric and Apidianaki, Marianna and Callison-Burch, Chris},\n  booktitle={Proceedings of the 13th International Joint Conference on Natural Language Processing and the 3rd Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics},\n  year={2023}\n}\n\n%%% Theoretical Foundations %%%\n\n@book{condorcet1785,\n  title={Essai sur l'application de l'analyse \\`a la probabilit\\'e des d\\'ecisions rendues \\`a la pluralit\\'e des voix},\n  author={de Condorcet, Marie Jean Antoine Nicolas de Caritat},\n  year={1785},\n  publisher={Imprimerie Royale},\n  address={Paris}\n}\n\n@article{ladha1992correlated,\n  title={The {C}ondorcet Jury Theorem, Free Speech, and Correlated Votes},\n  author={Ladha, Krishna K.},\n  journal={American Journal of Political Science},\n  volume={36},\n  number={3},\n  pages={617--634},\n  year={1992}\n}\n\n@article{fleiss1971kappa,\n  title={Measuring Nominal Scale Agreement Among Many Raters},\n  author={Fleiss, Joseph L.},\n  journal={Psychological Bulletin},\n  volume={76},\n  number={5},\n  pages={378--382},\n  year={1971}\n}\n\n%%% Self-Consistency and Variants %%%\n\n@inproceedings{wang2023sc,\n  title={Self-Consistency Improves Chain of Thought Reasoning in Language Models},\n  author={Wang, Xuezhi and Wei, Jason and Schuurmans, Dale and Le, Quoc and Chi, Ed and Narang, Sharan and Chowdhery, Aakanksha and Zhou, Denny},\n  booktitle={ICLR},\n  year={2023}\n}\n\n@inproceedings{chen2024usc,\n  title={Universal Self-Consistency for Large Language Model Generation},\n  author={Chen, Xinyun and Aksitov, Renat and Alon, Uri and Ren, Jie and Xiao, Kefan and Yin, Pengcheng and Prakash, Sushant and Sutton, Charles and Wang, Xuezhi and Zhou, Denny},\n  booktitle={ICML},\n  year={2024}\n}\n\n@inproceedings{taubenfeld2025cisc,\n  title={Confidence Improves Self-Consistency in {LLM}s},\n  author={Taubenfeld, Asaf and Goldstein, Ido and Tsur, Oren},\n  booktitle={ACL Findings},\n  year={2025}\n}\n\n@article{loo2025reevaluating,\n  title={Reevaluating Self-Consistency Scaling in Multi-Agent Systems},\n  author={Loo, Ryan and others},\n  journal={arXiv preprint arXiv:2511.00751},\n  year={2025}\n}\n\n@inproceedings{li2023diverse,\n  title={Making Language Models Better Reasoners with Step-Aware Verifier},\n  author={Li, Yifei and Lin, Zeqi and Zhang, Shizhuo and Fu, Qiang and Chen, Bei and Lou, Jian-Guang and Chen, Weizhu},\n  booktitle={ACL},\n  year={2023}\n}\n\n%%% Neuro-Symbolic Reasoning %%%\n\n@inproceedings{pan2023logiclm,\n  title={Logic-{LM}: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning},\n  author={Pan, Liangming and Alber, Alon and Xu, Wenhu and Deng, Yixin and Chen, Huan and Ji, Heng},\n  booktitle={EMNLP Findings},\n  year={2023}\n}\n\n@inproceedings{olausson2023linc,\n  title={{LINC}: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers},\n  author={Olausson, Theo X. and Gu, Alex and Lipkin, Benjamin and Zhang, Cedegao E. and Solar-Lezama, Armando and Tenenbaum, Joshua B. and Levy, Roger},\n  booktitle={EMNLP},\n  year={2023}\n}\n\n@inproceedings{xu2026dylos,\n  title={Adaptive {LLM}-Symbolic Reasoning via Dynamic Logical Solver Composition ({DyLoS})},\n  author={Xu, Lei and Beckmann, Pierre and Valentino, Marco and Freitas, Andre},\n  booktitle={EACL},\n  year={2026}\n}\n\n@article{wang2025fover,\n  title={{FoVer}: First-Order Logic Verification for Natural Language Reasoning},\n  author={Wang, Yilun and others},\n  journal={TACL},\n  year={2025}\n}\n\n@inproceedings{li2025aristotle,\n  title={Aristotle: Mastering Logical Reasoning with A Logic-Complete Decompose-Search-Resolve Framework},\n  author={Li, Jundong and others},\n  booktitle={ACL},\n  year={2025}\n}\n\n@article{luo2025logicagent,\n  title={From Ambiguity to Verdict: A Semiotic-Grounded Multi-Perspective Agent for {LLM} Logical Reasoning},\n  author={Luo, Yiqi and others},\n  journal={arXiv preprint arXiv:2509.24765},\n  year={2025}\n}\n\n%%% Test-Time Compute and Reasoning Models %%%\n\n@inproceedings{snell2025scaling,\n  title={Scaling {LLM} Test-Time Compute Optimally Can be More Effective than Scaling Parameters},\n  author={Snell, Charlie and Lee, Jaehoon and Xu, Kelvin and Kumar, Aviral},\n  booktitle={ICLR (Oral)},\n  year={2025}\n}\n\n@inproceedings{yao2023tree,\n  title={Tree of Thoughts: Deliberate Problem Solving with Large Language Models},\n  author={Yao, Shunyu and Yu, Dian and Zhao, Jeffrey and Shafran, Izhak and Griffiths, Thomas L. and Cao, Yuan and Narasimhan, Karthik},\n  booktitle={Advances in Neural Information Processing Systems},\n  volume={36},\n  year={2023}\n}\n\n\n%%% Verification and Reranking %%%\n\n@article{cobbe2021gsm8k,\n  title={Training Verifiers to Solve Math Word Problems},\n  author={Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},\n  journal={arXiv preprint arXiv:2110.14168},\n  year={2021}\n}\n\n@inproceedings{lightman2024prm,\n  title={Let's Verify Step by Step},\n  author={Lightman, Hunter and Kosaraju, Vineet and Burda, Yura and Edwards, Harri and Baker, Bowen and Lee, Teddy and Leike, Jan and Schulman, John and Sutskever, Ilya and Cobbe, Karl},\n  booktitle={ICLR},\n  year={2024}\n}\n\n@inproceedings{wang2024mathshepherd,\n  title={Math-Shepherd: Verify and Reinforce {LLM}s Step-by-step without Human Annotations},\n  author={Wang, Peiyi and Li, Lei and Shao, Zhihong and Xu, R.X. and Dai, Damai and Li, Yifei and Chen, Deli and Wu, Y. and Sui, Zhifang},\n  booktitle={ACL},\n  year={2024}\n}\n\n@inproceedings{khalifa2023grace,\n  title={{GRACE}: Discriminator-Guided Chain-of-Thought Reasoning},\n  author={Khalifa, Muhammad and Logeswaran, Lajanugen and Lee, Moontae and Lee, Honglak and Wang, Lu},\n  booktitle={Findings of EMNLP},\n  year={2023}\n}\n\n%%% Constraint Satisfaction in NLP %%%\n\n%%% Debate and Multi-Agent %%%\n\n@article{liang2023encouraging,\n  title={Encouraging Divergent Thinking in Large Language Models through Multi-Agent Debate},\n  author={Liang, Tian and He, Zhiwei and Jiao, Wenxiang and Wang, Xing and Wang, Yan and Wang, Rui and Yang, Yujiu and Tu, Zhaopeng and Shi, Shuming},\n  journal={arXiv preprint arXiv:2305.19118},\n  year={2023}\n}\n\n@inproceedings{du2023improving,\n  title={Improving Factuality and Reasoning in Language Models through Multiagent Debate},\n  author={Du, Yilun and Li, Shuang and Torralba, Antonio and Tenenbaum, Joshua B. and Mordatch, Igor},\n  booktitle={ICML},\n  year={2024}\n}\n\n%%% Benchmarks and Datasets %%%\n\n@article{han2022folio,\n  title={{FOLIO}: Natural Language Reasoning with First-Order Logic},\n  author={Han, Simeng and Schoelkopf, Hailey and Zhao, Yilun and Qi, Zhenting and Riddell, Martin and Benson, Luke and Sun, Lucy and Zubova, Ekaterina and Qiao, Yujie and Burtell, Matthew and Peng, David and Fan, Jonathan and Liu, Yi and Wong, Brian and Sailor, Malcolm and Ni, Ansong and Nan, Linyong and Kasai, Jungo and Yu, Tao and Zhang, Rui and Joty, Shafiq and Fabbri, Alexander R. and Kryscinski, Wojciech and Lin, Xi Victoria and Xiong, Caiming and Radev, Dragomir},\n  journal={arXiv preprint arXiv:2209.00840},\n  year={2022}\n}\n\n@inproceedings{tafjord2021proofwriter,\n  title={{ProofWriter}: Generating Implications, Proofs, and Abductive Statements over Natural Language},\n  author={Tafjord, Oyvind and Dalvi, Bhavana and Clark, Peter},\n  booktitle={ACL Findings},\n  year={2021}\n}\n\n@article{geva2021strategyqa,\n  title={Did {Aristotle} Use a Laptop? A Question Answering Benchmark with Implicit Reasoning Strategies},\n  author={Geva, Mor and Khashabi, Daniel and Segal, Elad and Khot, Tushar and Roth, Dan and Berant, Jonathan},\n  journal={TACL},\n  year={2021}\n}\n\n@inproceedings{liu2020logiqa,\n  title={{LogiQA}: A Challenge Dataset for Machine Reading Comprehension with Logical Reasoning},\n  author={Liu, Jian and Cui, Leyang and Liu, Hanmeng and Huang, Dandan and Wang, Yile and Zhang, Yue},\n  booktitle={IJCAI},\n  pages={3622--3628},\n  year={2020}\n}\n\n%%% Negative Results / Analysis Papers %%%\n\n@inproceedings{huang2024selfcorrect,\n  title={Large Language Models Cannot Self-Correct Reasoning Yet},\n  author={Huang, Jie and Chen, Xinyun and Mishra, Swaroop and Zheng, Huaixiu Steven and Yu, Adams Wei and Song, Xinying and Zhou, Denny},\n  booktitle={ICLR},\n  year={2024}\n}\n\n@inproceedings{xie2023selfevaluation,\n  title={Self-Evaluation Guided Beam Search for Reasoning},\n  author={Xie, Yuxi and Kawaguchi, Kenji and Zhao, Yiran and Zhao, Xu and Kan, Min-Yen and He, Junehao and Xie, Qian},\n  booktitle={NeurIPS},\n  year={2023}\n}\n\n@inproceedings{weng2023selfverification,\n  title={Large Language Models are Better Reasoners with Self-Verification},\n  author={Weng, Yixuan and Zhu, Minjun and Xia, Fei and Li, Bin and He, Shizhu and Liu, Shengping and Sun, Bin and Liu, Kang and Zhao, Jun},\n  booktitle={Findings of EMNLP},\n  year={2023}\n}\n\n@article{dhuliawala2023chainofverification,\n  title={Chain-of-Verification Reduces Hallucination in Large Language Models},\n  author={Dhuliawala, Shehzaad and Komeili, Mojtaba and Xu, Jing and Raileanu, Roberta and Li, Xian and Celikyilmaz, Asli and Weston, Jason},\n  journal={arXiv preprint arXiv:2309.11495},\n  year={2023}\n}\n\n@inproceedings{madaan2023selfrefine,\n  title={Self-Refine: Iterative Refinement with Self-Feedback},\n  author={Madaan, Aman and Tandon, Niket and Gupta, Prakhar and Hallinan, Skyler and Gao, Luyu and Wiegreffe, Sarah and Alon, Uri and Dziri, Nouha and Prabhumoye, Shrimai and Yang, Yiming and others},\n  booktitle={NeurIPS},\n  year={2023}\n}\n\n@inproceedings{gou2024critic,\n  title={{CRITIC}: Large Language Models Can Self-Correct with Tool-Interactive Critiquing},\n  author={Gou, Zhibin and Shao, Zhihong and Gong, Yeyun and Shen, Yelong and Yang, Yujiu and Huang, Minlie and Duan, Nan and Chen, Weizhu},\n  booktitle={ICLR},\n  year={2024}\n}\n\n@article{zhu2025vericot,\n  title={VeriCoT: Verified Chain of Thought},\n  author={Zhu, Hao and Gao, Yuxuan and Ke, Nuo Xu and Lu, Pan},\n  journal={arXiv preprint arXiv:2511.04662},\n  year={2025}\n}\n\n%%% Model Papers %%%\n\n@article{yang2024qwen25,\n  title={Qwen2.5 Technical Report},\n  author={Yang, An and Yang, Baosong and Zhang, Beichen and Hui, Binyuan and Wang, Bo and others},\n  journal={arXiv preprint arXiv:2412.15115},\n  year={2024}\n}\n\n@article{jiang2023mistral,\n  title={Mistral 7{B}},\n  author={Jiang, Albert Q. and Sablayrolles, Alexandre and Mensch, Arthur and Bamford, Chris and Chaplot, Devendra Singh and de las Casas, Diego and Bressand, Florian and Lengyel, Gianna and Lample, Guillaume and Saulnier, Lucile and Lavaud, L{\\'e}lio Renard and Lachaux, Marie-Anne and Stock, Pierre and Scao, Teven Le and Lavril, Thibaut and Wang, Thomas and Lacroix, Timoth{\\'e}e and El Sayed, William},\n  journal={arXiv preprint arXiv:2310.06825},\n  year={2023}\n}\n\n@article{dubey2024llama3,\n  title={The {Llama} 3 Herd of Models},\n  author={Dubey, Abhimanyu and Jauhri, Abhinav and Pandey, Abhinav and Kadian, Abhishek and others},\n  journal={arXiv preprint arXiv:2407.21783},\n  year={2024}\n}\n\n@article{guo2025deepseekr1,\n  title={{DeepSeek-R1}: Incentivizing Reasoning Capability in {LLM}s via Reinforcement Learning},\n  author={Guo, Daya and Yang, Dejian and Zhang, He and Song, Junxiao and others},\n  journal={arXiv preprint arXiv:2501.12948},\n  year={2025}\n}\n\n@misc{qwen2024qwq,\n  title={{QwQ}: Reflect Deeply on the Boundaries of the Unknown},\n  author={{Qwen Team}},\n  year={2024},\n  howpublished={Technical Blog},\n  note={\\url{https://qwenlm.github.io/blog/qwq-32b-preview/}}\n}\n\n%%% Oracle/Upper-Bound Experiments %%%\n\n%%% Reasoning-Aware SC Variants %%%\n\n@article{wan2024rasc,\n  title={Reasoning Aware Self-Consistency: Leveraging Reasoning Paths for Efficient {LLM} Sampling},\n  author={Wan, Guangya and Wu, Yuqi and Chen, Jie and Li, Sheng},\n  journal={arXiv preprint arXiv:2408.17017},\n  year={2024}\n}\n\n@article{kim2026reasc,\n  title={Reliability-Aware Adaptive Self-Consistency for Efficient Sampling in {LLM} Reasoning},\n  author={Kim, Junseok and Yang, Nakyeong and Min, Kyungmin and Jung, Kyomin},\n  journal={arXiv preprint arXiv:2601.02970},\n  year={2026}\n}\n\n%%% LLM Formalization %%%\n\n@article{amonkar2025realitycheck,\n  title={A Reality Check of Language Models as Formalizers on Constraint Satisfaction Problems},\n  author={Amonkar, Rikhil and Kayan, Ceyhun Efe and Lai, Qimei and Le Bras, Ronan and Zhang, Li},\n  journal={arXiv preprint arXiv:2505.13252},\n  year={2025}\n}\n\n%%% Tools and Solvers %%%\n\n@inproceedings{demoura2008z3,\n  title={{Z3}: An Efficient {SMT} Solver},\n  author={de Moura, Leonardo and Bj{\\o}rner, Nikolaj},\n  booktitle={TACAS},\n  year={2008}\n}\n\n%%% Condorcet / Voting Theory %%%\n\n%%% CoT Faithfulness %%%\n\n@inproceedings{turpin2023language,\n  title={Language Models Don't Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting},\n  author={Turpin, Miles and Michael, Julian and Perez, Ethan and Bowman, Samuel},\n  booktitle={NeurIPS},\n  year={2023}\n}\n\n%%% Confirmation Bias in LLM Reasoning %%%\n\n@inproceedings{wan2025unveiling,\n  title={Unveiling Confirmation Bias in Chain-of-Thought Reasoning},\n  author={Wan, Yue and Jia, Xiaowei and Li, Xiang Lorraine},\n  booktitle={Findings of the Association for Computational Linguistics: ACL 2025},\n  year={2025}\n}\n\n@article{jhaveri2026failing,\n  title={Failing to Falsify: Evaluating and Mitigating Confirmation Bias in Language Models},\n  author={Jhaveri, Ayush Rajesh and GX-Chen, Anthony and Sucholutsky, Ilia and Choi, Eunsol},\n  journal={arXiv preprint arXiv:2604.02485},\n  year={2026}\n}\n\n@article{miya2025eidoku,\n  title={Eidoku: A Neuro-Symbolic Verification Gate for {LLM} Reasoning via Structural Constraint Satisfaction},\n  author={Miya, Shinobu},\n  journal={arXiv preprint arXiv:2512.20664},\n  year={2025}\n}\n\n%%% Ensemble Diversity %%%\n\n@incollection{dietterich2000ensemble,\n  title={Ensemble Methods in Machine Learning},\n  author={Dietterich, Thomas G.},\n  booktitle={Multiple Classifier Systems (MCS)},\n  pages={1--15},\n  year={2000},\n  publisher={Springer}\n}\n\n@inproceedings{krogh1994neural,\n  title={Neural Network Ensembles, Cross Validation, and Active Learning},\n  author={Krogh, Anders and Vedelsby, Jesper},\n  booktitle={Advances in Neural Information Processing Systems},\n  volume={7},\n  year={1994}\n}\n\n@article{brown2005diversity,\n  title={Diversity Creation Methods: A Survey and Categorisation},\n  author={Brown, Gavin and Wyatt, Jeremy and Harris, Rachel and Yao, Xin},\n  journal={Information Fusion},\n  volume={6},\n  number={1},\n  pages={5--20},\n  year={2005}\n}\n\n%%% Cross-Architecture Verification %%%\n\n@inproceedings{he2021deberta,\n  title={{DeBERTa}: Decoding-enhanced {BERT} with Disentangled Attention},\n  author={He, Pengcheng and Liu, Xiaodong and Gao, Jianfeng and Chen, Weizhu},\n  booktitle={Proceedings of ICLR},\n  year={2021}\n}\n\n@inproceedings{williams2018mnli,\n  title={A Broad-Coverage Challenge Corpus for Sentence Understanding through Inference},\n  author={Williams, Adina and Nangia, Nikita and Bowman, Samuel},\n  booktitle={Proceedings of NAACL-HLT},\n  pages={1112--1122},\n  year={2018}\n}\n\n%%% Compositional / Iterative Neuro-Symbolic Verification %%%\n\n@inproceedings{ryu2025clover,\n  title={Divide and Translate: Compositional First-Order Logic Translation and Verification for Complex Logical Reasoning},\n  author={Ryu, Hyun and Kim, Gyeongman and Lee, Hyemin S. and Yang, Eunho},\n  booktitle={International Conference on Learning Representations (ICLR)},\n  year={2025}\n}\n\n@article{singh2026verge,\n  title={{VERGE}: Formal Refinement and Guidance Engine for Verifiable {LLM} Reasoning},\n  author={Singh, Vikash and Cassel, Darion and Weir, Nathaniel and Feng, Nick and Bayless, Sam},\n  journal={arXiv preprint arXiv:2601.20055},\n  year={2026}\n}\n\n%%% Programs-as-Verifiers %%%\n\n@article{toh2024notallvotes,\n  title={Not All Votes Count! Programs as Verifiers Improve Self-Consistency of Language Models for Math Reasoning},\n  author={Toh, Vernon Y.H. and Ghosal, Deepanway and Poria, Soujanya},\n  journal={arXiv preprint arXiv:2410.12608},\n  year={2024}\n}\n\n%%% Logical Soundness Critique %%%\n\n@article{chan2026position,\n  title={Position: Logical Soundness is not a Reliable Criterion for Neurosymbolic Fact-Checking with {LLMs}},\n  author={Chan, Jason and Gaizauskas, Robert and Zhao, Zhixue},\n  journal={arXiv preprint arXiv:2604.04177},\n  year={2026}\n}\n\n%%% Statistical Methods %%%\n\n@article{lakens2017equivalence,\n  title={Equivalence Tests: A Practical Primer for $t$ Tests, Correlations, and Meta-Analyses},\n  author={Lakens, Dani{\\\"e}l},\n  journal={Social Psychological and Personality Science},\n  volume={8},\n  number={4},\n  pages={355--362},\n  year={2017},\n  doi={10.1177/1948550617697177}\n}\n\n%%% R11 Added Citations %%%\n\n@article{byerly2025selfconsistency,\n  title={Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems},\n  author={Byerly, Adam and Khashabi, Daniel},\n  journal={Transactions of the Association for Computational Linguistics},\n  year={2025},\n  note={arXiv:2411.01101}\n}\n\n@article{kuai2026independent,\n  title={How Independent are Large Language Models? {A} Statistical Framework for Auditing Behavioral Entanglement and Reweighting Verifier Ensembles},\n  author={Kuai, Chenchen and Jiang, Jiwan and Zhu, Zihao and Wang, Hao and Wu, Keshu and Li, Zihao and Zhang, Yunlong and Liu, Chenxi and Tu, Zhengzhong and Fan, Zhiwen and Zhou, Yang},\n  journal={arXiv preprint arXiv:2604.07650},\n  year={2026}\n}\n\n@article{kim2025correlated,\n  title={Correlated Errors in Large Language Models},\n  author={Kim, Elliot and Garg, Avi and Peng, Kenny and Garg, Nikhil},\n  journal={arXiv preprint arXiv:2506.07962},\n  year={2025}\n}\n\n@article{chen2025sets,\n  title={{SETS}: Leveraging Self-Verification and Self-Correction for Improved Test-Time Scaling},\n  author={Chen, Jiefeng and Ren, Jie and Chen, Xinyun and Yang, Chengrun and Sun, Ruoxi and Yoon, Jinsung and Ar{\\i}k, Sercan {\\\"O}.},\n  journal={arXiv preprint arXiv:2501.19306},\n  year={2025}\n}\n\n\n\n@article{kuncheva2003measures,\n  title={Measures of Diversity in Classifier Ensembles and Their Relationship with the Ensemble Accuracy},\n  author={Kuncheva, Ludmila I. and Whitaker, Christopher J.},\n  journal={Machine Learning},\n  volume={51},\n  number={2},\n  pages={181--207},\n  year={2003}\n}\n\n%%% Test-Time Scaling and Multi-Agent Verification %%%\n\n@article{lifshitz2025mav,\n  title={Multi-Agent Verification: Scaling Test-Time Compute with Multiple Verifiers},\n  author={Lifshitz, Shalev and McIlraith, Sheila A. and Du, Simon S.},\n  journal={arXiv preprint arXiv:2502.20379},\n  year={2025}\n}\n\n%%% Training-Based Self-Verification %%%\n\n@article{kamoi2024selfcorrect,\n  title={When Can {LLMs} Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of {LLMs}},\n  author={Kamoi, Ryo and Kobayashi, Yusen and Goyal, Tharindu and Hou, Rui and Sun, Hanjie and Caverlee, James},\n  journal={Transactions of the Association for Computational Linguistics},\n  volume={12},\n  pages={1--20},\n  year={2024}\n}\n\n\n@inproceedings{zeng2025s2r,\n  title={{S$^2$R}: Teaching {LLMs} to Self-verify and Self-correct via Reinforcement Learning},\n  author={Zeng, Ruotian and Liu, Yuanzhi and others},\n  booktitle={Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year={2025}\n}\n\n@article{dupo2025,\n  title={{DuPO}: Enabling Reliable {LLM} Self-Verification via Dual Preference Optimization},\n  author={She, Shuaijie and Bao, Yu and Lu, Yu and Xu, Lu and Li, Tao and Zhu, Wenhao and Huang, Shujian and Cheng, Shanbo and Lu, Lu and Wang, Yuxuan},\n  journal={arXiv preprint arXiv:2508.14460},\n  year={2025}\n}\n\n@inproceedings{li2022alphacode,\n  title={Competition-Level Code Generation with {AlphaCode}},\n  author={Li, Yujia and Choi, David and Chung, Junyoung and Kushman, Nate and Schrittwieser, Julian and others},\n  booktitle={Science},\n  volume={378},\n  number={6624},\n  pages={1092--1097},\n  year={2022}\n}\n\n@inproceedings{chen2023codet,\n  title={{CodeT}: Code Generation with Generated Tests},\n  author={Chen, Bei and Zhang, Fengji and Nguyen, Anh and Zan, Daoguang and Lin, Zeqi and Lou, Jian-Guang and Chen, Weizhu},\n  booktitle={Proceedings of the 11th International Conference on Learning Representations (ICLR)},\n  year={2023}\n}\n\n\n@inproceedings{shinn2023reflexion,\n  title={Reflexion: Language Agents with Verbal Reinforcement Learning},\n  author={Shinn, Noah and Cassano, Federico and Gopinath, Ashwin and Narasimhan, Karthik and Yao, Shunyu},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2023}\n}\n\n@inproceedings{zhou2023lats,\n  title={Language Agent Tree Search Unifies Reasoning Acting and Planning in Language Models},\n  author={Zhou, Andy and Yan, Kai and Shlapentokh-Rothman, Michal and Wang, Haohan and Wang, Yu-Xiong},\n  booktitle={International Conference on Machine Learning (ICML)},\n  year={2024}\n}\n",
+                "numLines": 614,
+                "startLine": 1,
+                "totalLines": 614
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qx5cM1vgAnYfZntcfst1fB",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "918f3ef6-eada-4f79-bb59-250954707386",
+            "uuid": "4e931e66-be03-4487-862d-0802f7b2cfcf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017H5Xj4JDJCRt9tkUh1r4KU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12159,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12159
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-25T00:04:59.288Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Qx5cM1vgAnYfZntcfst1fB",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "918f3ef6-eada-4f79-bb59-250954707386",
+            "uuid": "d0d0c6b3-d935-4daa-a442-8f23c37d9a14",
+            "tool_use_result": {
+              "matches": [
+                "WebSearch"
+              ],
+              "query": "select:WebSearch",
+              "total_deferred_tools": 22
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Both papers already exist in the bib file:\n\n1. **Math-Shepherd** — line 190-195, key `wang2024mathshepherd`\n2. **GRACE** — line 197-201, key `khalifa2023grace`\n\nNo action needed.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "918f3ef6-eada-4f79-bb59-250954707386",
+            "uuid": "48eee4ca-ace3-4f45-b875-b3f5a567487d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XCywHfp3DzBEkV5y9HV2F2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 10386,
+                "cache_read_input_tokens": 24000,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10386
+                },
+                "output_tokens": 17,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个条目都已存在：\n\n- **Math-Shepherd**: `wang2024mathshepherd`（第190-195行）\n- **GRACE**: `khalifa2023grace`（第197-201行）\n\n无需添加。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "918f3ef6-eada-4f79-bb59-250954707386",
+            "uuid": "98a54c5f-559b-4620-854e-96e61a0d63fc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XCywHfp3DzBEkV5y9HV2F2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 10386,
+                "cache_read_input_tokens": 24000,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10386
+                },
+                "output_tokens": 17,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个条目都已存在：\n\n- **Math-Shepherd**: `wang2024mathshepherd`（第190-195行）\n- **GRACE**: `khalifa2023grace`（第197-201行）\n\n无需添加。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 11203,
+            "duration_api_ms": 12041,
+            "num_turns": 3,
+            "stop_reason": "end_turn",
+            "session_id": "918f3ef6-eada-4f79-bb59-250954707386",
+            "total_cost_usd": 0.16789175,
+            "usage": {
+              "input_tokens": 5,
+              "cache_creation_input_tokens": 22545,
+              "cache_read_input_tokens": 35841,
+              "output_tokens": 311,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 22545,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 3,
+                  "output_tokens": 141,
+                  "cache_read_input_tokens": 24000,
+                  "cache_creation_input_tokens": 10386,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 10386
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1190,
+                "outputTokens": 15,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001265,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 5,
+                "outputTokens": 311,
+                "cacheReadInputTokens": 35841,
+                "cacheCreationInputTokens": 22545,
+                "webSearchRequests": 0,
+                "costUSD": 0.16662675,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "cebcc4e6-3176-4a3e-8a9b-60bc70b0dc90"
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-bib-entries-mathshepherd-grace.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37413446f78efc28d8d9",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis v3 progress monitor",
+  "task_key": "worker_analysis_v3-progress-monitor_20260515T185720",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_v3-progress-monitor_20260515T185720_result.json",
+    "occurrence": 1,
+    "bytes": 913,
+    "sha256": "75b0957f6d637a332ed5f1580a0d8e6c813e1c974b37da0a6b82907d88e35b79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## sica_aime30_v3 实验状态\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | alive, PID 129992, 已运行 3h05m |\n| **进度** | **20/30** 已完成，当前处理第 21 题 `aime2024_I_06` (GT=294) |\n| **ETA** | ~111 min（剩余 10 题，平均 668s/题） |\n| **vLLM** | 正常（curl 被 read_only 拦截，但日志中所有 HTTP 请求均 200 OK） |\n| **GPU** | 89173 / 97887 MiB (91%), 利用率 100% |\n\n**最近完成的题目：**\n\n| 题目 | SICA | SC | SC votes | 耗时 |\n|------|------|----|----------|------|\n| `aime2024_I_02` (#17) | 25 ✓ | 25 ✓ | 11/12 | 615s |\n| `aime2024_I_03` (#18) | 809 ✓ | 809 ✓ | 12/12 | 450s |\n| `aime2024_I_04` (#19) | 116 ✓ | 116 ✓ | 12/12 | 361s |\n| `aime2024_I_05` (#20) | 104 ✓ | 104 ✓ | 4/12 | 725s |\n\n**报错**: 1 条 WARNING `No JSON found in response for trace`（在 #17 题），未影响最终结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v3-progress-monitor.md"
+}

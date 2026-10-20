@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "999db20d0b1acc5ab9f7",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment mistral folio multiseed cuda3",
+  "task_key": "worker_experiment_mistral-folio-multiseed-cuda3_20260522T104059",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_mistral-folio-multiseed-cuda3_20260522T104059_result.json",
+    "occurrence": 1,
+    "bytes": 510,
+    "sha256": "47dc6a09f4b37316e95807b0caf98e5fd62b873a6a4a39110a3956c860bfc9fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行正常。\n\n- **Master PID**: 575732\n- **Seed 123**: 已开始，当前 2/204 problems，API 调用正常 (port 8004)\n- **预计完成时间**: ~35s/problem × 204 × 3 seeds ≈ 6h，约 05-23 00:45 (UTC)\n- **日志**: `/tmp/multiseed_mistral_folio_cuda3_nohup.log`\n- **输出目录**: `results/multi_seed/mistral_folio_seed{123,456,789}/`\n- **SENTINEL**: 每个 seed 完成后输出 `SENTINEL_MISTRAL_FOLIO_SEED{X}_DONE`，全部完成输出 `SENTINEL_MISTRAL_FOLIO_MULTISEED_DONE`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-mistral-folio-multiseed-cuda3.md"
+}

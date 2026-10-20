@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "38cd70905fdcc365d5cd",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment r1 distill sica br",
+  "task_key": "worker_experiment_r1-distill-sica-br_20260521T145943",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_r1-distill-sica-br_20260521T145943.log",
+    "occurrence": 1,
+    "bytes": 1139970,
+    "sha256": "c09c33850447f9c06ff0a636ea0502e3b43a391381965be7845bdcfd61c939c2"
+  },
+  "statistics": {
+    "messages": 894,
+    "user_turns": 1,
+    "tool_calls": 392,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 102,
+      "tool_call": 392,
+      "tool_result": 392,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 875,
+      "chunks": [
+        {
+          "path": "38cd70905fdcc365d5cd-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "38cd70905fdcc365d5cd-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "38cd70905fdcc365d5cd-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "38cd70905fdcc365d5cd-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "38cd70905fdcc365d5cd-part-0005.json",
+          "message_count": 155
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "38cd70905fdcc365d5cd-part-0005.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-r1-distill-sica-br.md"
+}

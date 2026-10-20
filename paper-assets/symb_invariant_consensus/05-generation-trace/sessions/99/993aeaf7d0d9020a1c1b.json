@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "993aeaf7d0d9020a1c1b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "verify multi nli d061",
+  "task_key": "worker_verify_multi-nli-d061_20260522T213004",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_multi-nli-d061_20260522T213004_result.json",
+    "occurrence": 1,
+    "bytes": 2052,
+    "sha256": "f7a5068574018d98123a32c02b5e9c6cd17be8abf408bb24840748297e3a7f13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the verification report.\n\n## Multi-NLI D061 验证结果\n\n### 数据源确认\n`r11_3verifier_canonical.json` 使用 **alphabetical tiebreaking (D061)**，脚本中所有 `sc_answer_alpha()` 和 `combo_answer_alpha()` 函数均通过 `sorted(tied)[0]` 实现。\n\nSC baseline (D061): **39.33%** (236/600)\n\n---\n\n### tab:multi-nli (appendix L892–908)\n\n**Caption 问题**: 写的 `SC = 39.17%`，应为 **39.33%** ❌\n\n| Verifier | w | 论文 Δ | D061 combo | D061 Δ | 匹配？ |\n|----------|---|--------|-----------|--------|--------|\n| DeBERTa | 1 | +1.17 | 40.17% (241) | **+0.83** | ❌ |\n| DeBERTa | 3 | +7.00 | 46.00% (276) | **+6.67** | ❌ |\n| DeBERTa | 5 | +11.17 | 50.33% (302) | **+11.00** | ❌ |\n| RoBERTa | 1 | −0.17 | 39.17% (235) | −0.17 | ✅ |\n| RoBERTa | 3 | +4.17 | 43.50% (261) | +4.17 | ✅ |\n| RoBERTa | 5 | +4.33 | 43.67% (262) | +4.33 | ✅ |\n| BART | 1 | 0.00 | 39.33% (236) | 0.00 | ✅ |\n| BART | 3 | +5.17 | 44.50% (267) | +5.17 | ✅ |\n| BART | 5 | +6.33 | 45.67% (274) | +6.33 | ✅ |\n\n**RoBERTa 和 BART combo 值均正确**，与 D061 完全一致。仅 DeBERTa 三行需更新（之前 DRC 审计已发现）。所有 p 值也匹配。\n\n---\n\n### 额外发现：表间不一致\n\n**tab:cil_empirical (L226)** DeBERTa Δ 已更新为 **+6.67**（D061 正确值），但 **tab:multi-nli (L899)** 同一 w=3 仍写 **+7.00**。两表之间存在矛盾。\n\n**tab:nli-combo-full (L965–968)** 也未更新——Mistral-7B DeBERTa 行：\n- SC baseline: 39.17% → 应为 39.33%\n- w=1 combo: 40.33% → 应为 40.17%, Δ: +1.17 → +0.83\n- w=3 combo: 46.17% → 应为 46.00%, Δ: +7.00 → +6.67\n- w=5 combo: 50.33% ✅, Δ: +11.17 → +11.00\n\n---\n\n### 需修改汇总\n\n1. **tab:multi-nli caption**: SC 39.17% → 39.33%\n2. **tab:multi-nli DeBERTa 三行 Δ**: +1.17→+0.83, +7.00→+6.67, +11.17→+11.00\n3. **tab:nli-combo-full**: SC baseline、DeBERTa combo 绝对值和 Δ 同步更新\n4. RoBERTa 和 BART — **无需修改**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-multi-nli-d061.md"
+}

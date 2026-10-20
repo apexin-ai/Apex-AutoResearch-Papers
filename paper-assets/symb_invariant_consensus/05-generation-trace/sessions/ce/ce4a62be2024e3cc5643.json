@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce4a62be2024e3cc5643",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra post restart gpu check",
+  "task_key": "worker_infra_post-restart-gpu-check_20260523T034405",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_post-restart-gpu-check_20260523T034405_result.json",
+    "occurrence": 1,
+    "bytes": 1578,
+    "sha256": "525bf49e41b28cd907bf1b9a741f0ad76985e7376f291b9cbdb0dd3ba0143544"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息到手。汇总如下：\n\n---\n\n## 实验状态汇总\n\n### westd-16639\n\n| GPU | 实验 | 状态 | 进度 | ETA |\n|-----|------|------|------|-----|\n| 0 | Qwen2.5-14B PW seed123 (rerun) | **运行中** | 399/600 | — |\n| 1 | LLaMA-8B PW seed123 | **运行中** | 361/600 | ~5.1h |\n| 2 | — | **空闲** | — | — |\n| 3 | Qwen2.5-14B PW seed456 (rerun) | **运行中** | 418/600 | ~3.5h |\n\n**旧的部分结果**（重启前保存，现在正在被重跑覆盖）：\n\n| 实验 | n | SC% | SICA% | Δ(SICA-SC) |\n|------|---|-----|-------|------------|\n| qwen25_pw_seed456 | 415 | 74.22 | 73.25 | -0.96 |\n| qwen25_pw_seed123 | 397 | 74.06 | 72.54 | -1.51 |\n| llama8b_pw_seed123 | 359 | 72.42 | 63.79 | -8.64 |\n\n### westd-14391\n\n| GPU | 实验 | 状态 | 进度 | ETA |\n|-----|------|------|------|-----|\n| 0 | LLaMA-8B PW seed42 | **运行中** | 498/600 | ~1.6h |\n\n旧部分结果：SC=72.93%, SICA=67.47%, Δ=-5.45% (n=495)\n\n---\n\n### 问题\n\n1. **Qwen PW seed789 失败** — vLLM 启动失败（Mistral 端口 8005 RuntimeError），导致实验脚本 Connection error。`qwen25_pw_seed789/` 目录为空。\n2. **GPU 2 空闲** — 可以用来跑 seed789 或其他实验。\n\n### 初步趋势（基于部分数据，仅供参考）\n\n- Qwen2.5-14B 在 PW 上 Δ(SICA-SC) 约 -1% 到 -1.5%，SICA 略低于 SC\n- LLaMA-8B 在 PW 上 SICA 下降更大（Δ 约 -5% ~ -9%），表明 LLaMA 的约束提取质量更弱\n\n等重跑完成后会有完整 n=600 的结果。需要我在 GPU 2 上启动 seed789 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-post-restart-gpu-check.md"
+}

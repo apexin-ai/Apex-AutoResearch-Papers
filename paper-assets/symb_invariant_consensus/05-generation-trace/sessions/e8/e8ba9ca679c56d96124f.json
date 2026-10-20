@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8ba9ca679c56d96124f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper figure fig app interventions summary",
+  "task_key": "worker_paper_figure_fig_app_interventions_summary_20260520T105901",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure_fig_app_interventions_summary_20260520T105901_result.json",
+    "occurrence": 1,
+    "bytes": 516,
+    "sha256": "19e8e320567977d721b06dde8aa4f1062871da481050eb5645311d14d709fc04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册。\n\n**输出文件**：\n- PDF: `figures/paper/fig_app_interventions_summary.pdf`\n- PNG: `figures/paper/fig_app_interventions_summary.png`\n\n**设计要点**：\n- 3 个类别分组，组间有间距和分隔线，组标题用对应颜色加粗\n- 组内按 Δpp 排序（最差在前）\n- LLM-Debate (-18.63pp) 在 x=-11.5 处截断，标注 \"-18.6 pp ←\"\n- ±1pp 灰色噪声带\n- Contrastive Scoring (-9.3) 和 MIN-UNSAT (-6.5) 的数值标注在 bar 内部白字"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-app-interventions-summary.md"
+}

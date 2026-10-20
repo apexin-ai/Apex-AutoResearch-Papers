@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bfa30b23259d9eed6ae",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra gpu status and multiseed check",
+  "task_key": "worker_infra_gpu-status-and-multiseed-check_20260523T123014",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_gpu-status-and-multiseed-check_20260523T123014_result.json",
+    "occurrence": 1,
+    "bytes": 858,
+    "sha256": "84b334343a253a1b135aa28851a8e2321c96f9489ce406402d294a1040d84581"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/gpu_and_multiseed_status.md`。核心发现：\n\n**GPU 状态（8 张 GPU 总览）:**\n- 16639: 3 张在跑，cuda:3 空闲（PID 681007 已被 kill ✓）\n- 14391: 1 张在跑，但跑的是已完成的 seed123，冗余\n- 30973: 3 张全满\n\n**已完成实验（n=600）:**\n- LLaMA seed42 ✅, seed123 ✅\n- Qwen seed123 ✅\n\n**关键问题:**\n\n1. **14391 冗余运行**: llama8b_pw_seed123 已在 16639 完成，14391 上的副本可以 kill，释放 1 张 GPU\n2. **3 组重复实验**: seed456/seed789 的 LLaMA 和 Qwen seed789 同时在 16639 和 30973 跑（v2/v3 版本）。如果 v2/v3 是新版代码，可 kill 16639 上的旧版\n3. **Qwen seed456 暂停在 478/600**，当前无进程在跑。16639 cuda:3 空闲，可立即 resume\n4. **Qwen Δ 显著小于 LLaMA**（-1.x pp vs -5~7 pp）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-status-and-multiseed-check.md"
+}

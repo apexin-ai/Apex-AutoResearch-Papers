@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c2626d2b7dc1e529709",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code exp 046 mistral pw600 prep",
+  "task_key": "worker_code_exp-046-mistral-pw600-prep_20260518T193046",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp-046-mistral-pw600-prep_20260518T193046_result.json",
+    "occurrence": 1,
+    "bytes": 1796,
+    "sha256": "891a753b9e88ab09940143e51b61feb11d8148577228b0886509e9bed1adc0dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Port 8002 空闲，run_full_mvp.py 参数确认无误。\n\n由于 vLLM 启动测试需要先加载模型到 GPU 2（约 60s），且会实际占 GPU 显存，我直接准备最终命令，跳过加载测试（GPU 2 有 97GB 显存，Mistral-7B 绰绰有余，且同模型已在 GPU 0 上成功运行）。\n\n---\n\n## C001 Dry-Run 结果\n\n| 检查项 | 状态 |\n|--------|------|\n| 模型文件 `/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3/` | 完整（3 shards + tokenizer） |\n| 数据 `proofwriter_full.json` | 存在，6001 行 |\n| `empty.json` | 存在 |\n| 输出目录 | 已创建 |\n| Port 8002 | 空闲 |\n| GPU 2 | 空闲（0 MiB / 97887 MiB） |\n| `run_full_mvp.py` 参数 | 验证通过 |\n\n## 与原计划的变更\n\n- **cuda:1 → cuda:2**（cuda:1 被 exp-034 占用）\n- **port 8001 → port 8002**（port 8001 被 exp-034 占用）\n\n## 最终部署命令\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && mkdir -p results/exp046_mistral_7b_pw600 && CUDA_VISIBLE_DEVICES=2 VLLM_USE_FLASHINFER_SAMPLER=0 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --max-model-len 8192 --gpu-memory-utilization 0.90 --port 8002 --dtype auto --trust-remote-code --enforce-eager > /tmp/vllm_exp046.log 2>&1 & sleep 120 && python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --api-base http://localhost:8002/v1 --model auto --seed 42 --math-data data/empty.json --pw-data data/proofwriter_full.json --folio-data data/empty.json --output results/exp046_mistral_7b_pw600/exp046_results.json --save-intermediates 2>&1 | tee results/exp046_mistral_7b_pw600/exp046.log\"\n```\n\n确认后我来执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-046-mistral-pw600-prep.md"
+}

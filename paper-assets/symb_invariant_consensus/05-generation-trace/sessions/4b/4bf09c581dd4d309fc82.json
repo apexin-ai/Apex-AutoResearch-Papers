@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4bf09c581dd4d309fc82",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper writing analysis",
+  "task_key": "worker_paper_writing_analysis_20260519T041251",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_analysis_20260519T041251_result.json",
+    "occurrence": 1,
+    "bytes": 478,
+    "sha256": "dacb7f8ea01c72c4084cd63ee5f35769ca93210bbee05f5dc3173d74e7df1f6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All style checks pass: no em-dashes, no explanatory en-dashes, no banned words, and the one participial -ing phrase is fixed. The file is written to `docs/paper/analysis.tex` with all seven subsections (5.1 through 5.7), Table 3 (`tab:independence`), Figure 3 (`fig:k-sensitivity`), and cross-references consistent with method.tex and experiments.tex. The `sec:interventions` alias label is included so the existing reference in discussion.tex resolves correctly."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-analysis.md"
+}

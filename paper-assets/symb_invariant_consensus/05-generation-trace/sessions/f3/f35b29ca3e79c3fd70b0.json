@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f35b29ca3e79c3fd70b0",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix redownload llama8b shard2",
+  "task_key": "worker_fix_redownload-llama8b-shard2_20260517T032512",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_redownload-llama8b-shard2_20260517T032512_result.json",
+    "occurrence": 1,
+    "bytes": 571,
+    "sha256": "b970a51424f3df67348107b97d03c6e0954d5ed0b2fc1dd220601e4c6fe8af80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**修复结果：**\n\n1. **文件修复成功**\n   - 路径：`/root/autodl-tmp/models/Llama-3.1-8B-Instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct/model-00002-of-00004.safetensors`\n   - 大小：4,999,802,720 bytes (4.66G) — 之前损坏时为 3,877,634,048 bytes (3.6G)\n   - safetensors 验证：OK，104 keys\n\n2. **启动脚本已修改**\n   - 路径：`/root/symb_invariant_consensus/scripts/run_exp011_llama8b.sh`\n   - 在 vLLM 启动前加入了 `pkill -f \"vllm.entrypoints.*--port 8002\"` + `sleep 2` 清理防护"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-redownload-llama8b-shard2.md"
+}

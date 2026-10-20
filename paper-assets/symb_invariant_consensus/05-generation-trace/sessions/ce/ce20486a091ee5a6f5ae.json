@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce20486a091ee5a6f5ae",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp050b 049b final v2",
+  "task_key": "worker_analysis_exp050b-049b-final-v2_20260518T231314",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp050b-049b-final-v2_20260518T231314_result.json",
+    "occurrence": 1,
+    "bytes": 1099,
+    "sha256": "cab4336cf79032634c87f1c4988640f966e775f2204f0506ea323cd73cd6e0b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。汇总如下：\n\n## 实验结果\n\n| Experiment | Model | Dataset | n | SC | SICA | Delta | b | c | McNemar p | Sig |\n|---|---|---|---|---|---|---|---|---|---|---|\n| **exp-050b** | Mistral-7B + ICL Oracle | FOLIO-199 | 199 | 57.79% (115) | 54.27% (108) | **-3.52pp** | 6 | 13 | 0.167 | No |\n| **exp-049b** | Mistral-7B | LogiQA-200 | 200 | 51.00% (102) | 51.50% (103) | **+0.50pp** | 6 | 5 | 1.000 | No |\n\n### exp-050b 要点\n- ICL 将 SC 从 vanilla 54.41% (exp-033) 提升到 57.79% (+3.38pp)，说明 ICL 对 SC 有效\n- 但 SICA 反而低于 SC (54.27% < 57.79%)，delta 为负\n- 解读：ICL 提高了单条 trace 质量从而增强 majority vote，但降低了 trace 间的 diversity，使 MaxSAT 加权失去 discriminative power\n\n### exp-049b 要点\n- Mistral FOLIO 上的 +4.90pp 优势未迁移到 LogiQA\n- SC=51% 接近 4 选 1 随机水平，模型在 LogiQA 上能力不足\n- 与 exp-038 (14B LogiQA delta=-0.50pp) 一致：SICA 在 LogiQA 上无论模型都无效\n\n两个实验均为 **negative**，registry 已标记 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp050b-049b-final-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e7786361874f6ded1b3",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag exp028b interim 100",
+  "task_key": "worker_diag_exp028b-interim-100_20260518T232503",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_exp028b-interim-100_20260518T232503_result.json",
+    "occurrence": 1,
+    "bytes": 754,
+    "sha256": "603e827f2413cec5a185c54608864239b4d82d4a26088f80bc0daa0ac0dfc4e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-028b 状态报告 (Qwen3-14B thinking, FOLIO-204)**\n\n| 指标 | 值 |\n|---|---|\n| 进度 | **71 / 204** (34.8%) |\n| SC accuracy | 85.92% (61/71) |\n| SICA accuracy | 88.73% (63/71) |\n| **delta** | **+2.82pp** |\n| Discordant pairs | b=2 (SICA wins), c=0 (SC wins) |\n| Override precision | **100%** (2/2) |\n| Extraction rate | 92.0% |\n| Contradiction rate | 1.03% |\n| 已运行 | 2.8h, 143.3s/problem |\n| **ETA** | **~5.3h** (约 12:45 服务器时间) |\n\n对比上次 (60题): 新增 11 题, SC 85.92% vs 83.05% (+2.87pp), SICA 88.73% vs 86.44% (+2.29pp), delta 从 +3.39pp 收窄到 +2.82pp。两个指标都在上升，delta 略收窄但 SICA 仍稳定领先，override precision 保持 100%。实验正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp028b-interim-100.md"
+}

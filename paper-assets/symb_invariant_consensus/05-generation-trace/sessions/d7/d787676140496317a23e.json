@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d787676140496317a23e",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag exp028b interim check",
+  "task_key": "worker_diag_exp028b-interim-check_20260518T230802",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_exp028b-interim-check_20260518T230802_result.json",
+    "occurrence": 1,
+    "bytes": 1862,
+    "sha256": "d3cddc4f6d1a0b4a24e08300d86d23bad944ec7487cd8a268eace9e554fe4b64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已拿到。汇总如下：\n\n---\n\n## exp-028b (Qwen3-14B thinking mode) — Interim Report\n\n### 进度\n- **60/204** (正在跑 folio_59)，59 个已完成并写入 results JSON\n- 已跑 2.5h，avg 152s/problem\n- **ETA: ~6.1h** (预计约 13:10 UTC 完成)\n\n### Interim Metrics (59/204)\n\n| Metric | SC (K=12) | SICA | Delta |\n|--------|-----------|------|-------|\n| **Overall** | **83.05%** (49/59) | **86.44%** (51/59) | **+3.39 pp** |\n\n### Per Answer Type\n\n| GT | n | SC | SICA | Delta | Overrides |\n|----|---|----|------|-------|-----------|\n| True | 21 | 76.2% | 81.0% | +4.8 pp | 1 |\n| False | 16 | 75.0% | 81.2% | +6.2 pp | 1 |\n| Unknown | 23 | 95.7% | 95.7% | +0.0 pp | 0 |\n\n### Override Analysis\n- Total overrides: **2** (100% precision)\n- `folio_19`: GT=True, SC=Unknown → SICA=True (**GAIN**)\n- `folio_20`: GT=False, SC=Unknown → SICA=False (**GAIN**)\n- Harmful overrides: **0**\n- Net gain: **+2 problems**\n\n### 其他指标\n- Extraction rate: 91.1%\n- Contradiction rate: 1.1% (11/59 problems had contradictions)\n- Avg unique constraints per problem: ~25.7\n\n---\n\n## exp-051 (Mistral K sensitivity)\n\n- **K=4 正在跑**：32/204，avg 11.7s/problem，ETA ~34 min\n- 使用 localhost:8000 (与 exp-028b 的 localhost:8003 不冲突)\n- K=8, K=16, K=20 目录已存在（可能已完成或待跑）\n\n---\n\n### 关键观察\n\n1. SICA delta **+3.39 pp** 在 Qwen3-14B thinking mode 上表现稳健，override precision 100% (2/2)\n2. 增益主要来自 True/False 类型（各 +4.8/+6.2 pp），Unknown 类型 SC 已经很强 (95.7%)，SICA 无额外增益\n3. 两次 override 都是 SC 投出 Unknown 但 SICA 通过约束纠正为正确答案，符合预期机制\n4. 152s/problem 的速度偏慢（thinking mode 的 trace 生成耗时较长），全部跑完约需 8.6h 总时间"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp028b-interim-check.md"
+}

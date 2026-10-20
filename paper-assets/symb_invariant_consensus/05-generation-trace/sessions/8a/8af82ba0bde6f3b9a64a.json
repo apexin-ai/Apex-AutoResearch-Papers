@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8af82ba0bde6f3b9a64a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis crossmodel 2x2 harvest",
+  "task_key": "worker_analysis_crossmodel-2x2-harvest_20260521T213632",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_crossmodel-2x2-harvest_20260521T213632_result.json",
+    "occurrence": 1,
+    "bytes": 927,
+    "sha256": "893e385cecee8408b490f5c31b423c2f90fc4335bd3ad6dfd6efb306a6866920"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整 2×2 矩阵已保存到 `results/exp_d126_crossmodel_sica/crossmodel_2x2_metrics.json`。\n\n**2×2 矩阵结果：**\n\n|  | **Mistral ext** | **Qwen3 ext** |\n|---|---|---|\n| **Mistral gen** (SC=40.2%) | SICA 34.31%, Δ-5.88pp, BR 3.44, BR∞ 32.1%, κ 0.619 | SICA 79.90%, Δ+39.71pp, BR 2.85, BR∞ 17.1%, κ 0.619 |\n| **Qwen3 gen** (SC=86.8%) | SICA 37.75%, Δ-49.02pp, BR 2.16, BR∞ 45.7%, κ 0.836 | SICA 79.90%, Δ-6.86pp, BR 1.16, BR∞ 63.4%, κ 0.836 |\n\n关键发现：\n- **Extractor 能力主导 SICA 准确率**：Qwen3 作为 extractor 无论 generator 是谁都达到 ~79.9%，Mistral 作为 extractor 都在 34-38%\n- Mistral→Qwen3 方向出现罕见的 **+39.71pp** 提升（弱 generator + 强 extractor 组合）\n- Qwen3→Mistral 方向 **-49.02pp** 大幅下降（强 generator 被弱 extractor 拖垮）\n- Process-κ 只取决于 generator（Qwen3 0.836 >> Mistral 0.619）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-crossmodel-2x2-harvest.md"
+}

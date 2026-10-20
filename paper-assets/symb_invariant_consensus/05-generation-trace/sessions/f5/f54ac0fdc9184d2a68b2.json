@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f54ac0fdc9184d2a68b2",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "agent / loop_7_1779014961.md",
+  "task_key": "loop_7_1779014961",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_7_1779014961.md",
+    "occurrence": 1,
+    "bytes": 3259,
+    "sha256": "a2db643fa20251c503a35aa750dfa6c264ab9ddce6b4924204c9452f7d88a30c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-17T10:42:05+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-32608:cuda:0（gpu_ids=[0]，唯一分配）\n- 禁止在 submit_training_job 命令中使用 pkill（exp-010-mistral-v2 事故：pkill 误杀 tmux 父进程链导致 SIGTERM）\n- vLLM 清理必须在独立步骤完成，不能与实验启动脚本写在同一行\n- EXIT_CODE=129 是 SIGHUP 伪信号（进程退出阶段收到），不是真实失败——sica_expanded_14b 和 sica_k_sensitivity_14b 都是这样\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-32608，root@，工作目录 /root/symb_invariant_consensus\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 模型：/root/autodl-tmp/models/Qwen2.5-14B-Instruct（主力模型，27.6 GiB vLLM）\n- LLaMA-3.1-8B-Instruct：/root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct（shard 已修复）\n- Mistral-7B-Instruct-v0.3：/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3（3 shards + consolidated）\n- 数据集：/root/symb_invariant_consensus/data/（proofwriter_full.json 600题, folio_full.json 204题, proofwriter_30.json, folio_30.json, aime2024_subset.json）\n- 结果目录：/root/symb_invariant_consensus/results/\n- Git commit：97aeaa572a6b6571b4bfea9c6ec6bcf915780425\n- 无活跃 cron（reconcile 返回 0）\n- 磁盘充裕：/autodl-pub 5.3T/7.3T 可用\n\n### 3. 📊 当前状态\n刚收到 exp-018-arc-v2 完成回调（ANALYZING），已派 Worker `worker_analysis_exp-018-arc-v2_20260517T064035` 去 SSH 读日志提取 metrics。等 Worker 回调后更新 registry 并汇报 Director。\n\nRegistry 摘要：\n- exp-018-arc-v2: ANALYZING — ARC-Challenge 跨域验证（v2, build_generator bug 修复版）\n- exp-011-llama8b-v3: QUEUED — LLaMA-3.1-8B 跨模型验证（等 GPU 空闲）\n- pilot-contrastive-prompt: PREPARING — Contrastive Prompt 机制改进实验\n\n等待中：\n- Worker 回调：worker_analysis_exp-018-arc-v2_20260517T064035\n- 无 Director 决策 pending\n\n### 4. 📋 待办\n- Worker 回调 exp-018-arc-v2 分析完成 → update_registry(conclusion=X, metrics=...) → 汇报 Director → 提交 exp-011-llama8b-v3（GPU 空闲了）\n- exp-011-llama8b-v3 提交后 → GPU 占满，等完成回调\n- Director 决策 pilot-contrastive-prompt 方案 → 准备脚本并提交\n- 所有跨域/跨模型验证完成 → 汇总 Capability Trap 泛化证据表，为 Methods Paper (D030) 提供数据支撑\n\n### 5. 🎯 战略上下文\n- D030 决策：从 Analysis Paper 转向 Methods Paper——利用诊断数据设计改进方法\n- 核心结论链：sica_expanded_14b (+0.25pp n.s., N=804) → K-ablation (SICA≤SC all K) → exp-013 (MaxSAT≈count-only≈random) → pilot-constraint-filtering (negative, 天花板低) → **Capability Trap 确认**\n- exp-017-strategyqa-v3 是唯一略正向的跨域点 (+3.33pp n.s.)，exp-018-arc-v2 结果决定跨域 narrative 强度\n- pilot-contrastive-prompt 是当前最有希望的改进方向（将 discriminative ratio 从 37.2% 提升到 >70%），这是 Methods Paper 的核心实验\n- 易错点：不要把 n.s. 的正向结果当 success claim——paper framing 是 \"capability trap\"（SICA 不 work），正向但不显著恰好支持这个 narrative\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1779014961.md"
+}

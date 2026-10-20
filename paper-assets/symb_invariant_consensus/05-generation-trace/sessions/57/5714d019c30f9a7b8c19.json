@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5714d019c30f9a7b8c19",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "research confirm 3 nli architectures",
+  "task_key": "worker_research_confirm-3-nli-architectures_20260522T135816",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_confirm-3-nli-architectures_20260522T135816_result.json",
+    "occurrence": 1,
+    "bytes": 1779,
+    "sha256": "ccb118e1b0c91c34b920a142441459cd7288f39e3d5c71128b8b4a628477a6c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data located. Here's the complete answer:\n\n---\n\n## 三个 NLI 架构\n\n1. **DeBERTa-large-MNLI** (microsoft/deberta-large-mnli, 406M)\n2. **RoBERTa-large-MNLI** (37.67% standalone on PW)\n3. **BART-large-MNLI** (46.17% standalone on PW)\n\n## ProofWriter Mistral-7B combo 结果 (n=600, SC=39.33%)\n\n| Verifier | Standalone | w=1 Δpp (p) | w=3 Δpp (p) | w=5 Δpp (p) |\n|----------|-----------|-------------|-------------|-------------|\n| DeBERTa-MNLI | 55.00% | +0.83 (n.s.) | **+6.67** (p<0.001) | **+11.00** (p<0.001) |\n| RoBERTa-MNLI | 37.67% | -0.17 (n.s.) | **+4.17** (p=0.003) | **+4.33** (p=0.037) |\n| BART-MNLI | 46.17% | +0.00 (n.s.) | **+5.17** (p<0.001) | **+6.33** (p=0.003) |\n\nBH 校正后 (m=15): 10/15 条件显著，所有 w≥3 条件均通过。\n\n## 论文中 claim 的原文\n\n`solutions.tex:12` — \"all three NLI architectures produce gains at w ≥ 3\"\n\n## 数据位置\n\n- **主表 (Table 3)**: `solutions.tex` — cross-generator comparison，仅 DeBERTa × 4 generators，w=3\n- **附录 Table 26** (`appendix.tex:888`, Appendix W): 3 verifiers × 3 weights 完整矩阵（上表数据）\n- **附录 BH Table** (`appendix.tex:917`): 3 verifiers × 5 weights BH 校正\n- **Artifact**: `artifacts/_project/data/nli_multi_verifier_recomputed.json`\n- **Figure 7** (`appendix.tex:938`): capability gap scatter, 6 points across 3 architectures\n\n## 数据来源实验\n\nregistry 中对应 `exp-wave3-dir-r-nli-verifier` (DeBERTa) 和 `exp-wave3-dir-r-combo-extended`。RoBERTa/BART 数据在 `nli_multi_verifier_recomputed.json` 中，经 alphabetical tiebreaking 重算。\n\n**Claim 成立**: 三个 NLI 架构在 ProofWriter Mistral-7B 上 w≥3 均产生显著正增益（p<0.05），BH 校正后仍然成立。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-confirm-3-nli-architectures.md"
+}

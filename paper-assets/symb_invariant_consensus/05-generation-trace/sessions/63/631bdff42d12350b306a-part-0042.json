@@ -1,0 +1,3577 @@
+{
+  "schema_version": "1.0",
+  "session_id": "631bdff42d12350b306a",
+  "rounds": [
+    {
+      "number": 540,
+      "messages": [
+        {
+          "source_line": 7381,
+          "timestamp": "2026-05-25T10:56:54.933799+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-007381"
+        },
+        {
+          "source_line": 7382,
+          "timestamp": "2026-05-25T10:56:58.849304+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && grep \"newlabel{fig:\\|newlabel{tab:\" main.aux | grep -v \"caption\" | head -10",
+              "description": "Check figure/table label numbering"
+            }
+          },
+          "id": "event-007382"
+        },
+        {
+          "source_line": 7383,
+          "timestamp": "2026-05-25T10:56:58.900005+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_47e5a40d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-007383"
+        },
+        {
+          "source_line": 7384,
+          "timestamp": "2026-05-25T10:57:03.016456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep 'newlabel{fig:\\|newlabel{tab:' /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.aux | head -10",
+              "description": "Check figure/table numbering in aux file"
+            }
+          },
+          "id": "event-007384"
+        },
+        {
+          "source_line": 7385,
+          "timestamp": "2026-05-25T10:57:03.067730+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\\newlabel{fig:pipeline}{{1}{2}{The SICA pipeline. SC selects the majority answer from $K$ traces. SICA extracts logical constraints, deduplicates, and solves MAX-SAT via Z3. Red dashed box: the independence bottleneck. Dashed arrow: oracle variant with gold FOL}{figure.caption.1}{}}\n\\newlabel{tab:main_results}{{1}{5}{SICA vs.\\ SC across all non-degenerate self-extraction conditions (sorted by SC). Two conditions show significant degradation after BH correction ($m{=}6$ confirmatory; remaining exploratory); no condition shows a significant gain. $\\Delta $ = SICA $-$ SC (pp). Symbols: $^b$gold ICL; \\textbf {bold}: $p < 0.05$; {*}\\,BH adj.\\ $p = 0.042$; $^{3s}$\\,3-seed aggregate; $^{4s}$\\,4-seed confirmatory aggregate; $^\\dagger $\\,4-seed replication in Table~\\ref {tab:multi-seed} (unmarked: single-seed exploratory; s123/s456/s789 are individual seed runs). All conditions have McNemar power $< 80\\%$ for $|\\Delta | = 2$\\,pp (Appendix~\\ref {app:power}). Degenerate conditions ($C_0 < 5\\%$: QwQ-32B AIME$^\\ddagger $ $n{=}22$, Qwen2.5-14B GSM8K$^\\ddagger $ $n{=}30$) yield $\\Delta = 0$ and are reported separately in Appendix~\\ref {app:oracle}. $^\\ddagger $Pilot conditions ($n{\\leq }30$); included for coverage, not confirmatory evidence. Single-seed conditions use seed 123 (not selected post hoc)}{table.caption.15}{}}\n\\newlabel{fig:regime-scatter}{{2}{6}{SICA $\\Delta $ (pp) vs.\\ Fleiss' $\\kappa $ (inter-trace agreement). Color encodes model family; shape encodes dataset (\\scalebox {0.7}{$\\bullet $}\\,PW, \\scalebox {0.7}{$\\blacktriangle $}\\,FOLIO, \\scalebox {0.7}{$\\blacksquare $}\\,LogiQA). Error bars show multi-seed standard deviation. High $\\kappa $ ($K_{\\text {eff}} \\to 1$) clusters near $\\Delta \\approx 0$; only the low-$\\kappa $ region admits nonzero effects, consistent with the independence bottleneck}{figure.caption.16}{}}\n\\newlabel{fig:causal-dag}{{3}{7}{Causal DAG of the self-extraction pipeline. Traces $T$ produce both answers $A$ and constraints $C$; under degeneration \n…[truncated 2143 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 51
+          },
+          "id": "event-007385"
+        },
+        {
+          "source_line": 7386,
+          "timestamp": "2026-05-25T10:57:15.434566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "Figure 2 放大 + 分页完成。\n\n**操作：** Figure 2 从 `figure[t]` + `width=\\columnwidth`（单栏）改为 `figure*[t]` + `width=\\textwidth`（双栏全宽）。作为 `figure*`，它自动浮动到下一页顶部，与 Table 1 分离。\n\n**最终布局：**\n| Float | Page |\n|---|---|\n| Figure 1 (pipeline) | 2 |\n| Table 1 (main results) | 5 |\n| **Figure 2 (regime scatter, 全宽)** | **6** |\n| Figure 3 (causal DAG) | 7 |\n| Figure 4 (kappa-accuracy) | 7 |\n| Table 2 (cross-generator NLI) | 7 |\n| Discussion | 7 |\n| Limitations | 8 |\n| References | 8 |\n\n- Table 1 和 Figure 2 分页 ✓（page 5 vs page 6）\n- Figure 2 从单栏宽 → 双栏全宽 ✓\n- 编号顺序正确 ✓\n- undefined references: 0 ✓\n- 正文 ≤ 8 页 ✓",
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-007386"
+        },
+        {
+          "source_line": 7387,
+          "timestamp": "2026-05-25T10:57:19.249140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3814
+          },
+          "id": "event-007387"
+        },
+        {
+          "source_line": 7388,
+          "timestamp": "2026-05-25T10:57:22.402484+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "编号顺序正确：\n- Figure 1 (p2) → Figure 2 (p6) → Figure 3 (p7) → Figure 4 (p7)\n- Table 1 (p5) → Table 2 (p7)\n- 0 undefined references"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-007388"
+        }
+      ]
+    },
+    {
+      "number": 541,
+      "messages": [
+        {
+          "source_line": 7389,
+          "timestamp": "2026-05-25T11:00:30.837257+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] **Figure 2 移到第 4 页，Figure 3 移到第 6 页**\n\n用户要求：\n- Figure 2 (regime scatter, `figure*`) 移到第 4 页\n- Figure 3 (causal DAG, `figure*`) 移到第 6 页\n\n操作思路：\n1. Figure 2 当前在第 6 页，要移到第 4 页——需要在 .tex 源码中把 Figure 2 的定义大幅前移。`figure*` 环境只能放在下一页顶部，所以需要把定义放在第 3 页对应的文本位置附近。可能需要从 experiments.tex 移到 method.tex 末尾或 experiments.tex 开头之前。\n\n2. Figure 3 当前在第 7 页，要移到第 6 页——需要把 Figure 3 定义也适当前移。\n\n3. 调整后编译验证，反复微调直到 Figure 2 落在第 4 页、Figure 3 落在第 6 页。\n\n4. **关键约束**：\n   - Figure 编号顺序必须和文中首次引用顺序一致\n   - 0 undefined reference\n   - 正文 ≤ 8 页\n\n汇报最终每个 float 在第几页。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "director"
+          },
+          "id": "event-007389"
+        },
+        {
+          "source_line": 7390,
+          "timestamp": "2026-05-25T11:00:37.642933+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex",
+              "limit": "10"
+            }
+          },
+          "id": "event-007390"
+        },
+        {
+          "source_line": 7391,
+          "timestamp": "2026-05-25T11:00:38.246108+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\\label{sec:pipeline}\n4\t\\label{sec:condorcet}\n5\t\\label{sec:effective-k}\n6\t\n7\tSelf-Consistency (SC) \\citep{wang2023sc} samples $K$ reasoning traces and selects the majority answer. Under correlated traces (Fleiss' $\\kappa$ \\citep{fleiss1971kappa}), the effective ensemble size $K_\\text{eff}$ is\n8\t\\begin{equation}\n9\t\\label{eq:effk}\n10\tK_{\\text{eff}} = K \\,/\\, [1 + (K{-}1) \\cdot \\kappa]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 603
+          },
+          "id": "event-007391"
+        },
+        {
+          "source_line": 7392,
+          "timestamp": "2026-05-25T11:00:38.246459+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-007392"
+        },
+        {
+          "source_line": 7393,
+          "timestamp": "2026-05-25T11:00:38.297067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:results}\n3\t\\label{sec:main-results}\n4\t\n5\t\\subsection{Experimental Setup}\n6\t\\label{sec:exp-setup}\n7\t\n8\t\\looseness=-1\n9\t\\paragraph{Models.} Qwen2.5-14B-Instruct, Qwen2.5-7B-Instruct, Qwen3-14B (non-thinking mode)~\\citep{yang2024qwen25}, Mistral-7B-Instruct-v0.3~\\citep{jiang2023mistral}, LLaMA-3.1-8B-Instruct~\\citep{dubey2024llama3}, and QwQ-32B~\\citep{qwen2024qwq} (7B--32B). We also evaluate the universality of symbolic confirmation bias on six additional models: gpt-4o uses self-extraction via API; four frontier models (gpt-4.1, gpt-5.5, o3, Gemini-2.5-Pro) use cross-model extraction where Mistral-7B extracts constraints from target traces; DeepSeek-R1-Distill-Qwen-8B likewise uses Mistral-7B cross-extraction (Appendix Table~\\ref{tab:frontier-scb}).\n10\t\n11\t\\paragraph{Datasets.} FOLIO~\\citep{han2022folio} ($n{=}204$, gold logical annotations), ProofWriter depth-5~\\citep{tafjord2021proofwriter} ($n{=}600$), LogiQA~\\citep{liu2020logiqa} ($n{=}200$), StrategyQA~\\citep{geva2021strategyqa} ($n{=}200$). GSM8K ($n{=}30$) and AIME 2024 ($n{=}22$) probe the degenerate regime ($C_0 < 5\\%$).\n12\t\n13\t\\paragraph{Parameters.} $K{=}12$ traces at $T{=}0.7$, extraction at $T_{\\text{ext}}{=}0.3$, $\\alpha{=}0.5$, Z3 timeout 10s (K-sensitivity and extraction-temperature analysis in Appendix~\\ref{app:sensitivity}). McNemar exact test ($\\alpha{=}0.05$); 95\\% bootstrap CIs ($10{,}000$ resamples; Appendix~\\ref{app:bootstrap}) for $n \\geq 200$. SICA incurs $4.5{\\times}$ SC wall-clock; extraction accounts for 76\\% of overhead.\n14\t\n15\t\\subsection{Main Results}\n16\t\n17\t\\looseness=-1 Table~\\ref{tab:main_results} reports accuracy across all non-degenerate self-extraction conditions sorted by SC baseline. Two confirmatory conditions show significant degradation after Benjamini--Hochberg (BH) FDR control ($m{=}6$; multi-seed aggregates and extensions are exploratory): Mistral-7B on ProofWriter ($-2.83$\\,pp, raw $p = 0.014$, adj.\\ $p = 0.042$) and Qwen2.5-14B on Pro\n…[truncated 6223 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-007393"
+        },
+        {
+          "source_line": 7394,
+          "timestamp": "2026-05-25T11:01:07.432506+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex",
+              "old_string": "\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{f2_regime_scatter_v2}\n\\caption{SICA $\\Delta$ (pp) vs.\\ Fleiss' $\\kappa$ (inter-trace agreement). Color encodes model family; shape encodes dataset (\\scalebox{0.7}{$\\bullet$}\\,PW, \\scalebox{0.7}{$\\blacktriangle$}\\,FOLIO, \\scalebox{0.7}{$\\blacksquare$}\\,LogiQA). Error bars show multi-seed standard deviation. High $\\kappa$ ($K_{\\text{eff}} \\to 1$) clusters near $\\Delta \\approx 0$; only the low-$\\kappa$ region admits nonzero effects, consistent with the independence bottleneck.}\n\\label{fig:regime-scatter}\n\\end{figure*}\n\n\\looseness=-1 Figure~\\ref{fig:regime-scatter}",
+              "new_string": "\\looseness=-1 Figure~\\ref{fig:regime-scatter}"
+            }
+          },
+          "id": "event-007394"
+        },
+        {
+          "source_line": 7395,
+          "timestamp": "2026-05-25T11:01:07.484136+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-007395"
+        },
+        {
+          "source_line": 7396,
+          "timestamp": "2026-05-25T11:01:13.435358+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex",
+              "old_string": "\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig3_causal_dag_v11.pdf}\n\\caption{Causal DAG of the self-extraction pipeline. Traces $T$ produce both answers $A$ and constraints $C$; under degeneration (Observation~1), $C$ is determined by $A$ (dashed arrow), yielding $I(C;Y) \\leq I(A;Y)$.}\n\\label{fig:causal-dag}\n\\end{figure*}",
+              "new_string": ""
+            }
+          },
+          "id": "event-007396"
+        },
+        {
+          "source_line": 7397,
+          "timestamp": "2026-05-25T11:01:13.486065+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-007397"
+        },
+        {
+          "source_line": 7398,
+          "timestamp": "2026-05-25T11:01:16.851143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex",
+              "offset": "45",
+              "limit": "10"
+            }
+          },
+          "id": "event-007398"
+        },
+        {
+          "source_line": 7399,
+          "timestamp": "2026-05-25T11:01:16.901841+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "45\t\\begin{equation}\\label{eq:mirage}\n46\t\\text{BR}(M,T) = \\frac{P(c \\text{ supports } a_M \\mid a_M \\neq a^*)}{P(c \\text{ supports } a^* \\mid a_M \\neq a^*)},\n47\t\\end{equation}\n48\twhere $c$ is a self-extracted constraint, $a_M$ the model's majority answer, and $a^*$ the ground truth. BR quantifies the degree of extraction degeneration under source-attribution scoring (Observation~1): values above 1 reflect the trace-count base rate inherent to source-attributed constraints. $\\text{BR} = 1$ indicates no coupling beyond chance. We validate this metric empirically in \\S\\ref{sec:confirmation-bias}.\n49\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-007399"
+        },
+        {
+          "source_line": 7400,
+          "timestamp": "2026-05-25T11:01:23.863736+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex",
+              "old_string": "We validate this metric empirically in \\S\\ref{sec:confirmation-bias}.",
+              "new_string": "We validate this metric empirically in \\S\\ref{sec:confirmation-bias}.\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{f2_regime_scatter_v2}\n\\caption{SICA $\\Delta$ (pp) vs.\\ Fleiss' $\\kappa$ (inter-trace agreement). Color encodes model family; shape encodes dataset (\\scalebox{0.7}{$\\bullet$}\\,PW, \\scalebox{0.7}{$\\blacktriangle$}\\,FOLIO, \\scalebox{0.7}{$\\blacksquare$}\\,LogiQA). Error bars show multi-seed standard deviation. High $\\kappa$ ($K_{\\text{eff}} \\to 1$) clusters near $\\Delta \\approx 0$; only the low-$\\kappa$ region admits nonzero effects, consistent with the independence bottleneck.}\n\\label{fig:regime-scatter}\n\\end{figure*}"
+            }
+          },
+          "id": "event-007400"
+        },
+        {
+          "source_line": 7401,
+          "timestamp": "2026-05-25T11:01:23.914465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-007401"
+        },
+        {
+          "source_line": 7402,
+          "timestamp": "2026-05-25T11:01:28.935579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+              "limit": "8"
+            }
+          },
+          "id": "event-007402"
+        },
+        {
+          "source_line": 7403,
+          "timestamp": "2026-05-25T11:01:28.986261+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Analysis}\n2\t\\label{sec:analysis}\n3\t\n4\t\\subsection{Symbolic Confirmation Bias}\n5\t\\label{sec:confirmation-bias}\n6\t\n7\t\\looseness=-1 Self-extracted constraints systematically align with the model's majority answer. On Mistral-7B FOLIO, when SICA errs, 83.3\\% of constraints support the incorrect answer (bias ratio $4.97\\times$; Table~\\ref{tab:cross-model-bias}), and 94\\% of errors overlap with SC. Z3 rejects only 3.4\\% of constraints, and MAX-SAT produces answers identical to count-only aggregation on ${\\geq}99\\%$ of problems (Table~\\ref{tab:alpha-ablation}), confirming the formal verification layer is vacuous (Eq.~\\ref{eq:degenerate}). The pattern generalizes across nine models from 7B to frontier (BR $1.66$--$4.97\\times$; Appendix~\\ref{app:frontier-scb}) and all cells of a $2{\\times}2$ generator${\\times}$extractor matrix (Appendix~\\ref{app:2x2}). A permutation test confirms BR reflects trace-count geometry, not extraction bias (Appendix~\\ref{app:br-permutation}); controls rule out answer leakage (Appendix~\\ref{app:per-trace-separation}).\n8\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-007403"
+        },
+        {
+          "source_line": 7404,
+          "timestamp": "2026-05-25T11:01:36.168109+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+              "old_string": "\\section{Analysis}\n\\label{sec:analysis}\n\n\\subsection{Symbolic Confirmation Bias}",
+              "new_string": "\\section{Analysis}\n\\label{sec:analysis}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig3_causal_dag_v11.pdf}\n\\caption{Causal DAG of the self-extraction pipeline. Traces $T$ produce both answers $A$ and constraints $C$; under degeneration (Observation~1), $C$ is determined by $A$ (dashed arrow), yielding $I(C;Y) \\leq I(A;Y)$.}\n\\label{fig:causal-dag}\n\\end{figure*}\n\n\\subsection{Symbolic Confirmation Bias}"
+            }
+          },
+          "id": "event-007404"
+        },
+        {
+          "source_line": 7405,
+          "timestamp": "2026-05-25T11:01:36.219369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-007405"
+        },
+        {
+          "source_line": 7406,
+          "timestamp": "2026-05-25T11:01:39.940078+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"Error|undefined\" | head -5 && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"Error|undefined\" | head -5",
+              "description": "Compile twice",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-007406"
+        },
+        {
+          "source_line": 7407,
+          "timestamp": "2026-05-25T11:01:43.707107+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_47e5a40d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 3767
+          },
+          "id": "event-007407"
+        },
+        {
+          "source_line": 7408,
+          "timestamp": "2026-05-25T11:01:51.338282+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdftotext main.pdf - | awk 'BEGIN{page=1} /\\f/{page++} /Figure [0-9]:/{if(page<=10) print \"page \" page \": \" $0} /Table [0-9]:/{if(page<=10) print \"page \" page \": \" $0} /^Limitations$/{print \"page \" page \": Limitations\"} /Discussion and Conclusion/{print \"page \" page \": Discussion\"} /^References$/{print \"page \" page \": References\"}'",
+              "description": "Check all float and section positions"
+            }
+          },
+          "id": "event-007408"
+        },
+        {
+          "source_line": 7409,
+          "timestamp": "2026-05-25T11:01:51.690105+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "page 2: \fFigure 1: The SICA pipeline. SC selects the majority answer from K traces. SICA extracts logical constraints,\npage 5: Figure 2: SICA ∆ (pp) vs. Fleiss’ κ (inter-trace agreement). Color encodes model family; shape encodes dataset\npage 6: \fTable 1: SICA vs. SC across all non-degenerate self-extraction conditions (sorted by SC). Two conditions show\npage 7: Figure 3: Causal DAG of the self-extraction pipeline. Traces T produce both answers A and constraints C; under\npage 7: Table 2: Cross-generator NLI escape with DeBERTalarge-mnli verifier (55.00% standalone, ProofWriter\npage 7: Figure 4: Independence-accuracy trade-off on FOLIO\npage 7: Discussion\npage 8: Limitations\npage 8: References\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_47e5a40d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 351
+          },
+          "id": "event-007409"
+        },
+        {
+          "source_line": 7410,
+          "timestamp": "2026-05-25T11:02:02.182723+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdftotext main.pdf - | awk 'BEGIN{page=1} /\\f/{page++} /^Method$/{print \"page \" page \": Method\"} /^Experiments$/{print \"page \" page \": Experiments\"} /^Analysis$/{print \"page \" page \": Analysis\"} /Experimental Setup/{if(page<=8) print \"page \" page \": ExpSetup\"} /Main Results/{if(page<=8) print \"page \" page \": MainResults\"}'",
+              "description": "Check section positions on pages 3-5"
+            }
+          },
+          "id": "event-007410"
+        },
+        {
+          "source_line": 7411,
+          "timestamp": "2026-05-25T11:02:02.585138+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "page 3: Method\npage 4: Experiments\npage 4: ExpSetup\npage 4: MainResults\npage 5: Analysis\npage 17: Method\npage 18: Method\npage 21: Method\npage 23: Method\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_47e5a40d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 402
+          },
+          "id": "event-007411"
+        },
+        {
+          "source_line": 7412,
+          "timestamp": "2026-05-25T11:02:19.804574+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex",
+              "offset": "14",
+              "limit": "10"
+            }
+          },
+          "id": "event-007412"
+        },
+        {
+          "source_line": 7413,
+          "timestamp": "2026-05-25T11:02:19.955713+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "14\tSymbolic Invariant Consensus Aggregation (SICA) extends SC by extracting formal constraints from traces and selecting the answer best supported by the satisfiable subset (Figure~\\ref{fig:pipeline}).\n15\t\n16\t\\paragraph{Trace generation.} Given question $q$, an LLM generates $K$ traces $\\{t_1, \\ldots, t_K\\}$ at temperature $T = 0.7$. Each trace $t_i$ yields answer $a_i$.\n17\t\n18\t\\looseness=-1\n19\t\\paragraph{Constraint extraction.}\\label{sec:constraint-extraction} The same LLM extracts logical constraints from each trace at $T_{\\text{ext}} = 0.3$. The extraction prompt requests JSON output with constraint type, expression, and Z3-compatible formula (Appendix~\\ref{app:prompts}); in practice, 99.0\\% of extracted constraints are propositional at the Z3 level, with only 1.0\\% using true quantifiers. The \\emph{extraction rate} is the fraction of traces yielding at least one parseable constraint.\n20\t\n21\t\\paragraph{Deduplication and MAX-SAT.} Constraints are deduplicated by syntactic equivalence (global average deduplication ratio: 46.0\\%); each unique constraint $c_m$ receives weight $w_m$ equal to the number of source traces. The objective finds the largest-weight satisfiable subset:\n22\t\\begin{equation}\n23\t\\label{eq:maxsat}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-007413"
+        },
+        {
+          "source_line": 7414,
+          "timestamp": "2026-05-25T11:02:29.777438+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex",
+              "old_string": "Symbolic Invariant Consensus Aggregation (SICA) extends SC by extracting formal constraints from traces and selecting the answer best supported by the satisfiable subset (Figure~\\ref{fig:pipeline}).\n\n\\paragraph{Trace generation.}",
+              "new_string": "Symbolic Invariant Consensus Aggregation (SICA) extends SC by extracting formal constraints from traces and selecting the answer best supported by the satisfiable subset (Figure~\\ref{fig:pipeline}).\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{f2_regime_scatter_v2}\n\\caption{SICA $\\Delta$ (pp) vs.\\ Fleiss' $\\kappa$ (inter-trace agreement). Color encodes model family; shape encodes dataset (\\scalebox{0.7}{$\\bullet$}\\,PW, \\scalebox{0.7}{$\\blacktriangle$}\\,FOLIO, \\scalebox{0.7}{$\\blacksquare$}\\,LogiQA). Error bars show multi-seed standard deviation. High $\\kappa$ ($K_{\\text{eff}} \\to 1$) clusters near $\\Delta \\approx 0$; only the low-$\\kappa$ region admits nonzero effects, consistent with the independence bottleneck.}\n\\label{fig:regime-scatter}\n\\end{figure*}\n\n\\paragraph{Trace generation.}"
+            }
+          },
+          "id": "event-007414"
+        },
+        {
+          "source_line": 7415,
+          "timestamp": "2026-05-25T11:02:29.828106+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-007415"
+        },
+        {
+          "source_line": 7416,
+          "timestamp": "2026-05-25T11:02:35.801465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex",
+              "old_string": "We validate this metric empirically in \\S\\ref{sec:confirmation-bias}.\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{f2_regime_scatter_v2}\n\\caption{SICA $\\Delta$ (pp) vs.\\ Fleiss' $\\kappa$ (inter-trace agreement). Color encodes model family; shape encodes dataset (\\scalebox{0.7}{$\\bullet$}\\,PW, \\scalebox{0.7}{$\\blacktriangle$}\\,FOLIO, \\scalebox{0.7}{$\\blacksquare$}\\,LogiQA). Error bars show multi-seed standard deviation. High $\\kappa$ ($K_{\\text{eff}} \\to 1$) clusters near $\\Delta \\approx 0$; only the low-$\\kappa$ region admits nonzero effects, consistent with the independence bottleneck.}\n\\label{fig:regime-scatter}\n\\end{figure*}",
+              "new_string": "We validate this metric empirically in \\S\\ref{sec:confirmation-bias}."
+            }
+          },
+          "id": "event-007416"
+        },
+        {
+          "source_line": 7417,
+          "timestamp": "2026-05-25T11:02:35.852209+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-007417"
+        },
+        {
+          "source_line": 7418,
+          "timestamp": "2026-05-25T11:04:31.189016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -20",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-007418"
+        },
+        {
+          "source_line": 7419,
+          "timestamp": "2026-05-25T11:04:33.050538+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "pe1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub\nlic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams\nfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c\nm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.\npfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></us\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/\ntexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/\ntexmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-di\nst/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fon\nts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type\n1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi\nc/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo\nnts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sym\nbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.p\nfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/sha\nre/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texm\nf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty\npe1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (29 pages, 3779329 bytes).\nTranscript written on main.log.\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_47e5a40d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 1861
+          },
+          "id": "event-007419"
+        },
+        {
+          "source_line": 7420,
+          "timestamp": "2026-05-25T11:04:35.511086+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-007420"
+        },
+        {
+          "source_line": 7421,
+          "timestamp": "2026-05-25T11:04:37.270164+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "f-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts\n/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/time\ns/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (29 pages, 3779229 bytes).\nTranscript written on main.log.\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_47e5a40d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 1759
+          },
+          "id": "event-007421"
+        },
+        {
+          "source_line": 7422,
+          "timestamp": "2026-05-25T11:04:41.417915+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdftotext main.pdf - | grep -n \"Figure [0-9]\" | head -20",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-007422"
+        },
+        {
+          "source_line": 7423,
+          "timestamp": "2026-05-25T11:04:41.771037+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "102:via weighted partial MAX-SAT (§3; Figure 1).\n176:\fFigure 1: The SICA pipeline. SC selects the majority answer from K traces. SICA extracts logical constraints,\n436:by the satisfiable subset (Figure 1).\n524:Figure 2: SICA ∆ (pp) vs. Fleiss’ κ (inter-trace agreement). Color encodes model family; shape encodes dataset\n712:Figure 2 reveals regime structure. Fleiss’\n1073:(Figure 4; Appendices K–M), revealing a\n1107:I(C; Y ) ≤ I(A; Y ) (Figure 3). Process-level\n1173:Figure 3: Causal DAG of the self-extraction pipeline. Traces T produce both answers A and constraints C; under\n1219:Figure 4: Independence-accuracy trade-off on FOLIO\n1324:p = 0.003; exploratory, n=6; Figure 9). Finetuning extends gains to generators with SC up to\n3484:Figure 5: Twenty-three of 27 training-free strategies across four categories (four additional strategies tested but\n3700:Figure 6: Answer agreement vs. CoT cosine similarity\n3719:Figure 7 shows SICA ∆ as a function of the number\n3868:Figure 7: SICA ∆ (pp) vs. number of traces K for\n4508:The independence-accuracy scatter plot is presented in Figure 4 in the main text.\n4975:supporting the uniformity assumption (Figure 8).\n5058:Figure 8: Distribution of per-problem within-group CV\n5502:share the DeBERTa verifier, which may reduce effective degrees of freedom—see Limitations; Figure 9). Significant w=3 gains are observed only\n5514:Figure 9: Combo gain vs. capability gap (verifier standalone − generator SC) at w=3 across three NLI architectures. Gain decreases monotonically (Spearman\n6236:27 training-free remediation strategies (Figure 5),\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_47e5a40d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 353
+          },
+          "id": "event-007423"
+        },
+        {
+          "source_line": 7424,
+          "timestamp": "2026-05-25T11:04:45.585556+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdftotext main.pdf - | awk 'BEGIN{page=1} /\\f/{page++} /Figure 2: SICA/{print \"Figure 2 caption on page \" page} /Figure 3: Causal DAG/{print \"Figure 3 caption on page \" page} /Figure 4: Independence/{print \"Figure 4 caption on page \" page}'",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-007424"
+        },
+        {
+          "source_line": 7425,
+          "timestamp": "2026-05-25T11:04:45.987838+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 2 caption on page 4\nFigure 3 caption on page 7\nFigure 4 caption on page 7\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_47e5a40d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 402
+          },
+          "id": "event-007425"
+        },
+        {
+          "source_line": 7426,
+          "timestamp": "2026-05-25T11:04:52.613582+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdftotext main.pdf - | awk 'BEGIN{page=1} /\\f/{page++} /Table 1/{print \"Page \" page \": \" $0}' | head -5",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-007426"
+        },
+        {
+          "source_line": 7427,
+          "timestamp": "2026-05-25T11:04:52.966116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Page 1: after FDR control (Table 1). Four of 11 conditions\nPage 5: Table 1 reports accuracy across all non-degenerate\nPage 5: Keff = 1.20–3.94 at K = 12 (Table 19;\nPage 5: use cross-model extraction where Mistral-7B extracts constraints from target traces; DeepSeek-R1Distill-Qwen-8B likewise uses Mistral-7B crossextraction (Appendix Table 16).\nPage 5: the incorrect answer (bias ratio 4.97×; Table 15),\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_47e5a40d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 352
+          },
+          "id": "event-007427"
+        },
+        {
+          "source_line": 7428,
+          "timestamp": "2026-05-25T11:04:56.280082+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdftotext main.pdf - | awk 'BEGIN{page=1} /\\f/{page++} /Table 1:/{print \"Table 1 caption on page \" page}'",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-007428"
+        },
+        {
+          "source_line": 7429,
+          "timestamp": "2026-05-25T11:04:56.631778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Table 1 caption on page 6\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_47e5a40d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 351
+          },
+          "id": "event-007429"
+        },
+        {
+          "source_line": 7430,
+          "timestamp": "2026-05-25T11:05:01.050068+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-007430"
+        },
+        {
+          "source_line": 7431,
+          "timestamp": "2026-05-25T11:05:01.050715+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:results}\n3\t\\label{sec:main-results}\n4\t\n5\t\\subsection{Experimental Setup}\n6\t\\label{sec:exp-setup}\n7\t\n8\t\\looseness=-1\n9\t\\paragraph{Models.} Qwen2.5-14B-Instruct, Qwen2.5-7B-Instruct, Qwen3-14B (non-thinking mode)~\\citep{yang2024qwen25}, Mistral-7B-Instruct-v0.3~\\citep{jiang2023mistral}, LLaMA-3.1-8B-Instruct~\\citep{dubey2024llama3}, and QwQ-32B~\\citep{qwen2024qwq} (7B--32B). We also evaluate the universality of symbolic confirmation bias on six additional models: gpt-4o uses self-extraction via API; four frontier models (gpt-4.1, gpt-5.5, o3, Gemini-2.5-Pro) use cross-model extraction where Mistral-7B extracts constraints from target traces; DeepSeek-R1-Distill-Qwen-8B likewise uses Mistral-7B cross-extraction (Appendix Table~\\ref{tab:frontier-scb}).\n10\t\n11\t\\paragraph{Datasets.} FOLIO~\\citep{han2022folio} ($n{=}204$, gold logical annotations), ProofWriter depth-5~\\citep{tafjord2021proofwriter} ($n{=}600$), LogiQA~\\citep{liu2020logiqa} ($n{=}200$), StrategyQA~\\citep{geva2021strategyqa} ($n{=}200$). GSM8K ($n{=}30$) and AIME 2024 ($n{=}22$) probe the degenerate regime ($C_0 < 5\\%$).\n12\t\n13\t\\paragraph{Parameters.} $K{=}12$ traces at $T{=}0.7$, extraction at $T_{\\text{ext}}{=}0.3$, $\\alpha{=}0.5$, Z3 timeout 10s (K-sensitivity and extraction-temperature analysis in Appendix~\\ref{app:sensitivity}). McNemar exact test ($\\alpha{=}0.05$); 95\\% bootstrap CIs ($10{,}000$ resamples; Appendix~\\ref{app:bootstrap}) for $n \\geq 200$. SICA incurs $4.5{\\times}$ SC wall-clock; extraction accounts for 76\\% of overhead.\n14\t\n15\t\\subsection{Main Results}\n16\t\n17\t\\looseness=-1 Table~\\ref{tab:main_results} reports accuracy across all non-degenerate self-extraction conditions sorted by SC baseline. Two confirmatory conditions show significant degradation after Benjamini--Hochberg (BH) FDR control ($m{=}6$; multi-seed aggregates and extensions are exploratory): Mistral-7B on ProofWriter ($-2.83$\\,pp, raw $p = 0.014$, adj.\\ $p = 0.042$) and Qwen2.5-14B on Pro\n…[truncated 5243 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-007431"
+        },
+        {
+          "source_line": 7432,
+          "timestamp": "2026-05-25T11:05:41.460423+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+              "old_string": "\\section{Analysis}\n\\label{sec:analysis}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig3_causal_dag_v11.pdf}\n\\caption{Causal DAG of the self-extraction pipeline. Traces $T$ produce both answers $A$ and constraints $C$; under degeneration (Observation~1), $C$ is determined by $A$ (dashed arrow), yielding $I(C;Y) \\leq I(A;Y)$.}\n\\label{fig:causal-dag}\n\\end{figure*}\n\n\\subsection{Symbolic Confirmation Bias}",
+              "new_string": "\\section{Analysis}\n\\label{sec:analysis}\n\n\\subsection{Symbolic Confirmation Bias}"
+            }
+          },
+          "id": "event-007432"
+        },
+        {
+          "source_line": 7433,
+          "timestamp": "2026-05-25T11:05:41.561353+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 100
+          },
+          "id": "event-007433"
+        },
+        {
+          "source_line": 7434,
+          "timestamp": "2026-05-25T11:05:46.933062+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex",
+              "old_string": "\\begin{table*}[t]\n\\centering\n\\small\n\\caption{SICA vs.\\ SC across all non-degenerate self-extraction conditions",
+              "new_string": "\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig3_causal_dag_v11.pdf}\n\\caption{Causal DAG of the self-extraction pipeline. Traces $T$ produce both answers $A$ and constraints $C$; under degeneration (Observation~1), $C$ is determined by $A$ (dashed arrow), yielding $I(C;Y) \\leq I(A;Y)$.}\n\\label{fig:causal-dag}\n\\end{figure*}\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{SICA vs.\\ SC across all non-degenerate self-extraction conditions"
+            }
+          },
+          "id": "event-007434"
+        },
+        {
+          "source_line": 7435,
+          "timestamp": "2026-05-25T11:05:46.983718+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-007435"
+        },
+        {
+          "source_line": 7436,
+          "timestamp": "2026-05-25T11:05:51.602388+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"Warning|Error\" | head -10 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-007436"
+        },
+        {
+          "source_line": 7437,
+          "timestamp": "2026-05-25T11:05:55.114666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\ns/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (29 pages, 3779218 bytes).\nTranscript written on main.log.\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_47e5a40d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 3512
+          },
+          "id": "event-007437"
+        },
+        {
+          "source_line": 7438,
+          "timestamp": "2026-05-25T11:05:59.933783+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdftotext main.pdf - | awk 'BEGIN{page=1} /\\f/{page++} /Figure 2: SICA/{print \"Figure 2 caption on page \" page} /Figure 3: Causal DAG/{print \"Figure 3 caption on page \" page} /Figure 4: Independence/{print \"Figure 4 caption on page \" page} /Table 1:/{print \"Table 1 caption on page \" page}'",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-007438"
+        },
+        {
+          "source_line": 7439,
+          "timestamp": "2026-05-25T11:06:00.285621+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 2 caption on page 4\nFigure 3 caption on page 6\nTable 1 caption on page 7\nFigure 4 caption on page 7\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_47e5a40d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 351
+          },
+          "id": "event-007439"
+        },
+        {
+          "source_line": 7440,
+          "timestamp": "2026-05-25T11:06:07.365890+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdftotext main.pdf - | awk 'BEGIN{page=1} /\\f/{page++} /\\\\section|^[0-9]+ [A-Z]/{if(page<=9) print \"Page \" page \": \" $0}' | head -20",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-007440"
+        },
+        {
+          "source_line": 7441,
+          "timestamp": "2026-05-25T11:06:07.717735+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_47e5a40d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 351
+          },
+          "id": "event-007441"
+        },
+        {
+          "source_line": 7442,
+          "timestamp": "2026-05-25T11:06:11.460777+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdftotext main.pdf - | awk 'BEGIN{page=1} /\\f/{page++} page<=9 && /^[0-9]+ (Introduction|Related|Method|Experiments|Analysis|Discussion|Limitation)/{print \"Page \" page \": \" $0}'",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-007442"
+        },
+        {
+          "source_line": 7443,
+          "timestamp": "2026-05-25T11:06:11.873340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_47e5a40d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 412
+          },
+          "id": "event-007443"
+        },
+        {
+          "source_line": 7444,
+          "timestamp": "2026-05-25T11:06:14.583965+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdftotext main.pdf - | awk 'BEGIN{page=1} /\\f/{page++} {if(page<=9) print page\": \"$0}' | grep -E \"^[0-9]+: [0-9]+ (Introduction|Related|Method|Experiment|Analysis|Discussion|Limitation)\"",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-007444"
+        },
+        {
+          "source_line": 7445,
+          "timestamp": "2026-05-25T11:06:14.936778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 352
+          },
+          "id": "event-007445"
+        },
+        {
+          "source_line": 7446,
+          "timestamp": "2026-05-25T11:06:17.396166+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdftotext main.pdf - | awk 'BEGIN{page=1} /\\f/{page++} {if(page<=10) print page\": \"$0}' | grep -iE \"Limitation|Discussion|Reference\"",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-007446"
+        },
+        {
+          "source_line": 7447,
+          "timestamp": "2026-05-25T11:06:17.747915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3: self-verification (Zeng et al., 2025), dual preference optimization (She et al., 2025), and executionbased filtering (Li et al., 2022; Chen et al., 2023a).\n7: Discussion and Conclusion\n8: Limitations\n8: References\n10: Zhu, Shujian Huang, Shanbo Cheng, Lu Lu, and Yuxuan Wang. 2025. DuPO: Enabling reliable LLM selfverification via dual preference optimization. arXiv\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_47e5a40d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 351
+          },
+          "id": "event-007447"
+        },
+        {
+          "source_line": 7448,
+          "timestamp": "2026-05-25T11:06:22.315578+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && grep -c \"undefined\" main.log",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-007448"
+        },
+        {
+          "source_line": 7449,
+          "timestamp": "2026-05-25T11:06:22.466597+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-007449"
+        },
+        {
+          "source_line": 7450,
+          "timestamp": "2026-05-25T11:06:26.235274+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__main_agent_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-007450"
+        },
+        {
+          "source_line": 7451,
+          "timestamp": "2026-05-25T11:06:26.336095+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-007451"
+        },
+        {
+          "source_line": 7452,
+          "timestamp": "2026-05-25T11:06:35.321025+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 0/0 | Worker 0 | 磁盘: N/A\n\n**Figure 位置调整完成**\n\n- Figure 2 (regime scatter): 第 4 页 ✓\n- Figure 3 (causal DAG): 第 6 页 ✓\n- Table 1 (main results): 第 7 页（从第 6 页移开，为 Figure 3 腾位）\n- Figure 4 (kappa-accuracy): 第 7 页\n\n实现方式：Figure 3 定义从 analysis.tex 移到 experiments.tex（Table 1 定义之前），利用 float queue 优先级让 Figure 3 先占第 6 页顶部。\n\n正文 7 页 + Limitations 第 8 页，0 undefined references。\n\n注意：匿名仓库尚未同步这批改动（§5+§6 合并、结构重组、figure 重排等），需要时可推送。",
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-007452"
+        },
+        {
+          "source_line": 7453,
+          "timestamp": "2026-05-25T11:06:39.186999+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3865
+          },
+          "id": "event-007453"
+        },
+        {
+          "source_line": 7454,
+          "timestamp": "2026-05-25T11:06:43.454848+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 位置调整完成：Figure 2 → 第 4 页，Figure 3 → 第 6 页，正文 8 页内，0 undefined references。已汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-007454"
+        }
+      ]
+    },
+    {
+      "number": 542,
+      "messages": [
+        {
+          "source_line": 7455,
+          "timestamp": "2026-05-25T11:06:43.986956+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] **紧急：论文脚注链接替换为匿名链接**\n\n论文中的 GitHub 链接不符合匿名审稿要求，必须替换为 anonymous.4open.science 链接。\n\n执行：\n\n1. 在论文所有 .tex 文件中搜索 `github.com/anonymous-nlp-2026/symb_invariant_consensus`\n2. 将所有出现替换为 `https://anonymous.4open.science/r/symb_invariant_consensus-2E1F/`\n3. 特别检查 Abstract 的脚注，确保格式正确：\n   ```\n   ... (Abstract 最后一句原文)\\footnote{Code and data are available at \\url{https://anonymous.4open.science/r/symb_invariant_consensus-2E1F/}.}.\n   ```\n4. 检查 Introduction、其他章节是否还有 GitHub 链接残留\n5. 编译验证\n\n**注意**：只改论文 .tex 文件中的链接，不要改 git remote 配置（日常 push 仍用 GitHub 地址）。\n\n汇报：替换了几处、最终脚注内容、编译结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "director"
+          },
+          "id": "event-007455"
+        },
+        {
+          "source_line": 7456,
+          "timestamp": "2026-05-25T11:06:52.541455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "github\\.com/anonymous-nlp-2026/symb_invariant_consensus",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-007456"
+        },
+        {
+          "source_line": 7457,
+          "timestamp": "2026-05-25T11:06:53.246575+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex:10:Three zero-cost diagnostics predict failure modes from a pilot run\\footnote{Code and data are available at \\url{https://github.com/anonymous-nlp-2026/symb_invariant_consensus}.}."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Grep",
+            "elapsed_ms": 705
+          },
+          "id": "event-007457"
+        },
+        {
+          "source_line": 7458,
+          "timestamp": "2026-05-25T11:06:53.398071+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "github\\.com",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-007458"
+        },
+        {
+          "source_line": 7459,
+          "timestamp": "2026-05-25T11:06:53.398506+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex:10:Three zero-cost diagnostics predict failure modes from a pilot run\\footnote{Code and data are available at \\url{https://github.com/anonymous-nlp-2026/symb_invariant_consensus}.}."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-007459"
+        },
+        {
+          "source_line": 7460,
+          "timestamp": "2026-05-25T11:06:57.516214+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex",
+              "old_string": "\\url{https://github.com/anonymous-nlp-2026/symb_invariant_consensus}",
+              "new_string": "\\url{https://anonymous.4open.science/r/symb_invariant_consensus-2E1F/}"
+            }
+          },
+          "id": "event-007460"
+        },
+        {
+          "source_line": 7461,
+          "timestamp": "2026-05-25T11:06:57.566813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-007461"
+        },
+        {
+          "source_line": 7462,
+          "timestamp": "2026-05-25T11:06:59.424043+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-007462"
+        },
+        {
+          "source_line": 7463,
+          "timestamp": "2026-05-25T11:06:59.474729+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tSelf-Consistency (SC) improves large language model (LLM) reasoning via majority voting over chain-of-thought (CoT) traces.\n3\tA natural extension is to extract formal constraints and aggregate them with a symbolic solver; but does it work?\n4\tUnder zero-shot extraction, we test this through Symbolic Invariant Consensus Aggregation (SICA), which extracts first-order logic constraints and solves weighted partial MAX-SAT.\n5\tAcross six models (7B--32B), four benchmarks, and over 1{,}200 instances, SICA reduces to majority voting: no condition shows significant improvement after FDR control; 4 of 11 conditions pass TOST equivalence tests ($\\pm 2$\\,pp margin); the remaining 7 are underpowered (MDE $4.6$--$4.8$\\,pp) but show consistent directional evidence ($|\\Delta| \\leq 4.41$\\,pp).\n6\tWe diagnose this as \\emph{symbolic confirmation bias}: under zero-shot self-extraction, constraints systematically confirm their source trace's answer, with bias ratios $1.66$--$4.97\\times$ across nine models up to frontier scale.\n7\tThe mechanism is formalized through effective ensemble size $K_\\text{eff}$ from inter-trace agreement $\\kappa$: correlated traces collapse nominal $K{=}12$ to $K_\\text{eff}$ as low as 1.20.\n8\tTwenty-seven training-free remediation strategies fail to break this bottleneck.\n9\tAs preliminary evidence (exploratory; $n{=}6$ generator--verifier pairs), a cross-architecture encoder-only verifier escapes the bias ($+6.67$\\,pp, $p < 0.001$), suggesting that architectural independence can restore corrective signal.\n10\tThree zero-cost diagnostics predict failure modes from a pilot run\\footnote{Code and data are available at \\url{https://github.com/anonymous-nlp-2026/symb_invariant_consensus}.}.\n11\t\\end{abstract}\n12\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-007463"
+        },
+        {
+          "source_line": 7464,
+          "timestamp": "2026-05-25T11:07:02.336924+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex",
+              "old_string": "\\url{https://github.com/anonymous-nlp-2026/symb_invariant_consensus}",
+              "new_string": "\\url{https://anonymous.4open.science/r/symb_invariant_consensus-2E1F/}"
+            }
+          },
+          "id": "event-007464"
+        },
+        {
+          "source_line": 7465,
+          "timestamp": "2026-05-25T11:07:02.387686+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-007465"
+        },
+        {
+          "source_line": 7466,
+          "timestamp": "2026-05-25T11:07:05.854096+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -cE \"^!\" && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-007466"
+        },
+        {
+          "source_line": 7467,
+          "timestamp": "2026-05-25T11:07:07.762792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\n0"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 1908
+          },
+          "id": "event-007467"
+        },
+        {
+          "source_line": 7468,
+          "timestamp": "2026-05-25T11:07:10.524136+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-007468"
+        },
+        {
+          "source_line": 7469,
+          "timestamp": "2026-05-25T11:07:12.484678+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "s/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (29 pages, 3778896 bytes).\nTranscript written on main.log.\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_47e5a40d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 1960
+          },
+          "id": "event-007469"
+        },
+        {
+          "source_line": 7470,
+          "timestamp": "2026-05-25T11:07:19.312472+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 0/0 | Worker 0 | 磁盘: N/A\n\n**脚注链接替换完成**\n\n替换 1 处（abstract.tex 第 10 行），论文其他 .tex 文件无 GitHub 链接残留。\n\n最终脚注内容：\n```\n\\footnote{Code and data are available at \\url{https://anonymous.4open.science/r/symb_invariant_consensus-2E1F/}.}\n```\n\n编译通过，0 错误，29 页。",
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-007470"
+        },
+        {
+          "source_line": 7471,
+          "timestamp": "2026-05-25T11:07:23.127183+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3814
+          },
+          "id": "event-007471"
+        },
+        {
+          "source_line": 7472,
+          "timestamp": "2026-05-25T11:07:25.771675+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "替换完成：abstract.tex 1 处 GitHub 链接 → anonymous.4open.science，编译通过。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-007472"
+        }
+      ]
+    },
+    {
+      "number": 543,
+      "messages": [
+        {
+          "source_line": 7473,
+          "timestamp": "2026-05-25T11:12:40.344009+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] **重写 Abstract**\n\n将 abstract.tex 替换为以下内容（保留 SICA 名称，其余按新叙事逻辑重写）：\n\n```latex\n\\begin{abstract}\nSelf-Consistency (SC) improves LLM reasoning by majority voting over chain-of-thought traces. A natural extension extracts formal logical constraints from traces and aggregates them with a symbolic solver—but we show this is a \\emph{symbolic mirage}. We test this through Symbolic Invariant Consensus Aggregation (SICA), which extracts first-order logic constraints under zero-shot prompting and solves weighted partial MAX-SAT. Self-extracted constraints systematically confirm their source trace's answer rather than providing independent verification, a phenomenon we term \\emph{symbolic confirmation bias} (SCB). Formally, when nearly all constraints pass satisfiability checking, constraint-based aggregation degenerates to majority voting. This bias persists across nine models from 7B to frontier scale, with bias ratios of $1.66$--$4.97\\times$. Twenty-seven training-free remediation strategies fail to break this bottleneck, revealing a fundamental independence--accuracy trade-off: methods that reduce trace correlation also destroy accuracy. Only a structurally independent cross-architecture verifier restores corrective signal, suggesting that the bottleneck lies in self-extraction itself, not model capability. We provide three zero-cost diagnostics that predict failure modes from a pilot run\\footnote{Code and data are available at \\url{https://anonymous.4open.science/r/symb_invariant_consensus-2E1F/}.}.\n\\end{abstract}\n```\n\n**关键点：**\n1. 第 3 句介绍 SICA（保留方法名 + MAX-SAT）\n2. 删除所有统计检验细节（TOST/MDE/FDR/p-value/条件数/K_eff）\n3. 只保留 2 个数字：9 models、BR 1.66-4.97×\n4. 脚注格式和匿名链接不变\n5. 确认 ≤ 200 words\n\n编译验证后汇报 word count。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "director"
+          },
+          "id": "event-007473"
+        },
+        {
+          "source_line": 7474,
+          "timestamp": "2026-05-25T11:12:45.842071+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-007474"
+        },
+        {
+          "source_line": 7475,
+          "timestamp": "2026-05-25T11:12:45.943023+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tSelf-Consistency (SC) improves large language model (LLM) reasoning via majority voting over chain-of-thought (CoT) traces.\n3\tA natural extension is to extract formal constraints and aggregate them with a symbolic solver; but does it work?\n4\tUnder zero-shot extraction, we test this through Symbolic Invariant Consensus Aggregation (SICA), which extracts first-order logic constraints and solves weighted partial MAX-SAT.\n5\tAcross six models (7B--32B), four benchmarks, and over 1{,}200 instances, SICA reduces to majority voting: no condition shows significant improvement after FDR control; 4 of 11 conditions pass TOST equivalence tests ($\\pm 2$\\,pp margin); the remaining 7 are underpowered (MDE $4.6$--$4.8$\\,pp) but show consistent directional evidence ($|\\Delta| \\leq 4.41$\\,pp).\n6\tWe diagnose this as \\emph{symbolic confirmation bias}: under zero-shot self-extraction, constraints systematically confirm their source trace's answer, with bias ratios $1.66$--$4.97\\times$ across nine models up to frontier scale.\n7\tThe mechanism is formalized through effective ensemble size $K_\\text{eff}$ from inter-trace agreement $\\kappa$: correlated traces collapse nominal $K{=}12$ to $K_\\text{eff}$ as low as 1.20.\n8\tTwenty-seven training-free remediation strategies fail to break this bottleneck.\n9\tAs preliminary evidence (exploratory; $n{=}6$ generator--verifier pairs), a cross-architecture encoder-only verifier escapes the bias ($+6.67$\\,pp, $p < 0.001$), suggesting that architectural independence can restore corrective signal.\n10\tThree zero-cost diagnostics predict failure modes from a pilot run\\footnote{Code and data are available at \\url{https://anonymous.4open.science/r/symb_invariant_consensus-2E1F/}.}.\n11\t\\end{abstract}\n12\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-007475"
+        },
+        {
+          "source_line": 7476,
+          "timestamp": "2026-05-25T11:12:51.413249+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex",
+              "content": "\\begin{abstract}\nSelf-Consistency (SC) improves LLM reasoning by majority voting over chain-of-thought traces. A natural extension extracts formal logical constraints from traces and aggregates them with a symbolic solver—but we show this is a \\emph{symbolic mirage}. We test this through Symbolic Invariant Consensus Aggregation (SICA), which extracts first-order logic constraints under zero-shot prompting and solves weighted partial MAX-SAT. Self-extracted constraints systematically confirm their source trace's answer rather than providing independent verification, a phenomenon we term \\emph{symbolic confirmation bias} (SCB). Formally, when nearly all constraints pass satisfiability checking, constraint-based aggregation degenerates to majority voting. This bias persists across nine models from 7B to frontier scale, with bias ratios of $1.66$--$4.97\\times$. Twenty-seven training-free remediation strategies fail to break this bottleneck, revealing a fundamental independence--accuracy trade-off: methods that reduce trace correlation also destroy accuracy. Only a structurally independent cross-architecture verifier restores corrective signal, suggesting that the bottleneck lies in self-extraction itself, not model capability. We provide three zero-cost diagnostics that predict failure modes from a pilot run\\footnote{Code and data are available at \\url{https://anonymous.4open.science/r/symb_invariant_consensus-2E1F/}.}.\n\\end{abstract}\n"
+            }
+          },
+          "id": "event-007476"
+        },
+        {
+          "source_line": 7477,
+          "timestamp": "2026-05-25T11:12:51.413833+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-007477"
+        },
+        {
+          "source_line": 7478,
+          "timestamp": "2026-05-25T11:12:54.777064+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -c \"^!\" && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-007478"
+        },
+        {
+          "source_line": 7479,
+          "timestamp": "2026-05-25T11:12:56.635056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\n0"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 1857
+          },
+          "id": "event-007479"
+        },
+        {
+          "source_line": 7480,
+          "timestamp": "2026-05-25T11:12:59.697466+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-007480"
+        },
+        {
+          "source_line": 7481,
+          "timestamp": "2026-05-25T11:13:01.555633+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "s/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (29 pages, 3778403 bytes).\nTranscript written on main.log.\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_47e5a40d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 1858
+          },
+          "id": "event-007481"
+        },
+        {
+          "source_line": 7482,
+          "timestamp": "2026-05-25T11:13:06.477635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && sed -n '/\\\\begin{abstract}/,/\\\\end{abstract}/p' abstract.tex | sed 's/\\\\begin{abstract}//;s/\\\\end{abstract}//;s/\\\\emph{[^}]*}//g;s/\\\\textit{[^}]*}//g;s/\\\\url{[^}]*}//g;s/\\\\footnote{[^}]*}//g;s/\\\\[a-zA-Z]*//g;s/\\$[^$]*\\$//g;s/[{}]//g;s/---/—/g;s/--/-/g' | wc -w",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-007482"
+        },
+        {
+          "source_line": 7483,
+          "timestamp": "2026-05-25T11:13:06.578536+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "158\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_47e5a40d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-007483"
+        },
+        {
+          "source_line": 7484,
+          "timestamp": "2026-05-25T11:13:09.139609+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && texcount -inc -brief abstract.tex 2>/dev/null || echo \"texcount not available\"",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-007484"
+        },
+        {
+          "source_line": 7485,
+          "timestamp": "2026-05-25T11:13:09.190351+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "texcount not available\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_47e5a40d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-007485"
+        },
+        {
+          "source_line": 7486,
+          "timestamp": "2026-05-25T11:13:12.052070+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdftotext main.pdf - | awk '/^Abstract$/,/^1 Introduction$/' | head -30 | wc -w",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-007486"
+        },
+        {
+          "source_line": 7487,
+          "timestamp": "2026-05-25T11:13:12.203053+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "177\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_47e5a40d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 150
+          },
+          "id": "event-007487"
+        },
+        {
+          "source_line": 7488,
+          "timestamp": "2026-05-25T11:13:22.130591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 0/0 | Worker 0 | 磁盘: N/A\n\n**Abstract 重写完成**\n\n- 按指定内容完整替换，SICA 名称+MAX-SAT 保留\n- 统计检验细节（TOST/MDE/FDR/p-value/K_eff）已全部删除\n- 保留数字：9 models、BR 1.66–4.97×\n- 脚注格式和匿名链接不变\n- Word count: ~170 words（≤200 ✓）\n- 编译通过，29 页，0 错误",
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-007488"
+        },
+        {
+          "source_line": 7489,
+          "timestamp": "2026-05-25T11:13:26.095273+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3964
+          },
+          "id": "event-007489"
+        },
+        {
+          "source_line": 7490,
+          "timestamp": "2026-05-25T11:13:28.176482+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Abstract 重写完成，~170 words，编译通过。已汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-007490"
+        }
+      ]
+    },
+    {
+      "number": 544,
+      "messages": [
+        {
+          "source_line": 7491,
+          "timestamp": "2026-05-25T11:30:36.933100+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] **批量修复审计报告所有问题**\n\n用户要求修复全部问题。按优先级逐一执行：\n\n### 1. [Critical] Abstract em-dash 替换\nabstract.tex 中 \"solver—but we show\" 的 Unicode em-dash（—）替换为逗号或句号拆分。例如：\n- \"...with a symbolic solver, but we show this is a \\emph{symbolic mirage}.\"\n- 或拆成两句\n\n### 2. [Warning] Claim 强度修正（abstract.tex）\n- \"revealing a fundamental independence--accuracy trade-off\" → \"revealing a persistent independence--accuracy trade-off\"\n- \"Only a structurally independent cross-architecture verifier restores corrective signal\" → \"Among training-free approaches, only a structurally independent cross-architecture verifier restores corrective signal\"\n\n### 3. [Warning] 缩写首次展开\n- abstract.tex: \"LLM\" → \"large language model (LLM)\"（首次出现处）\n- analysis.tex: \"DPI\" 首次使用处展开为 \"data processing inequality (DPI)\"\n- analysis.tex: \"NLI\" 首次使用处展开为 \"natural language inference (NLI)\"\n- experiments.tex: \"MDE\" 首次使用处展开为 \"minimum detectable effect (MDE)\"\n\n### 4. [Warning] AI 风格 -ing 尾句修复（全部 8 处）\n把 \", Ving...\" 结构改为独立句或其他非 AI 风格表达：\n- abstract.tex: \"revealing a persistent...\" → 改写\n- abstract.tex: \"suggesting that the bottleneck...\" → 改写\n- introduction.tex:26: \"providing practitioners with...\" → 改写\n- analysis.tex:7: \", confirming the formal verification layer is vacuous\" → 改写\n- analysis.tex:47: \", illustrating that corrective signal must originate...\" → 改写\n- discussion.tex:5: \", suggesting \\emph{architectural diversity} over scale\" → 改写\n- experiments.tex:17: \", indicating that constraint-based reweighting introduces noise\" → 改写\n\n改写策略：用分号+独立从句、句号拆分、或 \"which confirms/shows...\" 等非 -ing 结构。\n\n### 5. [Warning] \"nine models\" 计数核实和统一\n搜索全文所有 \"nine models\" 出现处。核实准确数字：\n- 如果 SCB 验证确实覆盖 9 个模型（6 main + 3 additional），保留 \"nine\"\n- 如果实际是 12 个，改为 \"twelve\"\n- 在 Experiments 或 Analysis 加一句说明计数方式\n\n### 6. [Warning] Discussion 扩写\n当前 Discussion ~80 词太单薄。扩写到 ~200-250 词（不超过，保持页数限制），增加：\n- neuro-symbolic 社区的更广泛启示（self-extraction 的局限性意味着什么）\n- 与 PRM/ORM process reward 方法的对比（已有引用 Lightman/Cobbe/Math-Shepherd/GRACE，展开 1-2 句）\n- 本研究对 test-time compute scaling 的意义\n- 保留现有内容，在其基础上扩展\n\n### 7. [Warning] Table 1 位置\n尝试将 Table 1 的定义在 experiments.tex 中前移，使其更接近第 5 页的首次引用。`table*` float 会尝试放在下一页顶部。如果无法精确到第 5 页，至少缩短到 1 页间隔。\n\n### 8. [Warning] 第 7 页密度\n如果 Table 1 成功前移，第 7 页的密度会自然降低。检查最终排版，如果仍然有 3 个 display items 堆叠，尝试将 Table 2 或 Figure 4 移到第 8 页（Limitations 之前仍有空间）。\n\n### 编译验证\n- 0 undefined reference\n- 正文 ≤ 8 页\n- 全文搜索确认无 Unicode em-dash 残留\n- 全文搜索确认无 \", Ving\" AI 风格残留\n\n完成后汇报每项修复的具体改动。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "director"
+          },
+          "id": "event-007491"
+        },
+        {
+          "source_line": 7492,
+          "timestamp": "2026-05-25T11:30:44.736015+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-007492"
+        },
+        {
+          "source_line": 7493,
+          "timestamp": "2026-05-25T11:30:45.239103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tSelf-Consistency (SC) improves LLM reasoning by majority voting over chain-of-thought traces. A natural extension extracts formal logical constraints from traces and aggregates them with a symbolic solver—but we show this is a \\emph{symbolic mirage}. We test this through Symbolic Invariant Consensus Aggregation (SICA), which extracts first-order logic constraints under zero-shot prompting and solves weighted partial MAX-SAT. Self-extracted constraints systematically confirm their source trace's answer rather than providing independent verification, a phenomenon we term \\emph{symbolic confirmation bias} (SCB). Formally, when nearly all constraints pass satisfiability checking, constraint-based aggregation degenerates to majority voting. This bias persists across nine models from 7B to frontier scale, with bias ratios of $1.66$--$4.97\\times$. Twenty-seven training-free remediation strategies fail to break this bottleneck, revealing a fundamental independence--accuracy trade-off: methods that reduce trace correlation also destroy accuracy. Only a structurally independent cross-architecture verifier restores corrective signal, suggesting that the bottleneck lies in self-extraction itself, not model capability. We provide three zero-cost diagnostics that predict failure modes from a pilot run\\footnote{Code and data are available at \\url{https://anonymous.4open.science/r/symb_invariant_consensus-2E1F/}.}.\n3\t\\end{abstract}\n4\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 503
+          },
+          "id": "event-007493"
+        },
+        {
+          "source_line": 7494,
+          "timestamp": "2026-05-25T11:30:45.289818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-007494"
+        },
+        {
+          "source_line": 7495,
+          "timestamp": "2026-05-25T11:30:45.792773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\\label{sec:introduction}\n2\t\n3\t\\looseness=-1\n4\tSelf-Consistency (SC) \\citep{wang2023sc} selects the majority answer across $K$ chain-of-thought traces, a strategy grounded in the Condorcet Jury Theorem: independent voters converge to truth \\citep{condorcet1785, ladha1992correlated}. In practice, SC's gains plateau for strong models \\citep{loo2025reevaluating, byerly2025selfconsistency}, and correlated LLM errors \\citep{kim2025correlated} reduce the effective ensemble size \\citep{dietterich2000ensemble}. A natural remedy is to move beyond simple vote-counting: extract logical constraints from the traces, as in neuro-symbolic approaches \\citep{pan2023logiclm, olausson2023linc, ye2024satlm}, and let a provably sound solver adjudicate. If the solver can filter contradictions and enforce logical consistency, it should recover information that raw majority voting discards.\n5\t\n6\t\\begin{figure*}[t!]\n7\t\\centering\n8\t\\includegraphics[width=\\textwidth]{figures/fig1_pipeline_v8.pdf}\n9\t\\caption{The SICA pipeline. SC selects the majority answer from $K$ traces. SICA extracts logical constraints, deduplicates, and solves MAX-SAT via Z3. Red dashed box: the independence bottleneck. Dashed arrow: oracle variant with gold FOL.}\n10\t\\label{fig:pipeline}\n11\t\\end{figure*}\n12\t\n13\t\\looseness=-1\n14\tWe test this intuition through Symbolic Invariant Consensus Aggregation (SICA), which extracts logical constraints from reasoning traces (prompted as first-order logic (FOL); 99\\% are propositional at the level of the Z3 SMT solver) and selects answers via weighted partial MAX-SAT (\\S\\ref{sec:pipeline}; Figure~\\ref{fig:pipeline}). Despite Z3 validating nearly all self-extracted constraints \\citep[cf.][]{chan2026position}, SICA produces answers identical to majority voting on the vast majority of problems. Across six models (7B--32B), four benchmarks, and multi-seed replication, no condition shows a significant positive effect after FDR control (Table~\\ref{tab:main_results}).\n…[truncated 3231 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-007495"
+        },
+        {
+          "source_line": 7496,
+          "timestamp": "2026-05-25T11:30:45.793244+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex"
+            }
+          },
+          "id": "event-007496"
+        },
+        {
+          "source_line": 7497,
+          "timestamp": "2026-05-25T11:30:46.296371+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Analysis}\n2\t\\label{sec:analysis}\n3\t\n4\t\\subsection{Symbolic Confirmation Bias}\n5\t\\label{sec:confirmation-bias}\n6\t\n7\t\\looseness=-1 Self-extracted constraints systematically align with the model's majority answer. On Mistral-7B FOLIO, when SICA errs, 83.3\\% of constraints support the incorrect answer (bias ratio $4.97\\times$; Table~\\ref{tab:cross-model-bias}), and 94\\% of errors overlap with SC. Z3 rejects only 3.4\\% of constraints, and MAX-SAT produces answers identical to count-only aggregation on ${\\geq}99\\%$ of problems (Table~\\ref{tab:alpha-ablation}), confirming the formal verification layer is vacuous (Eq.~\\ref{eq:degenerate}). The pattern generalizes across nine models from 7B to frontier (BR $1.66$--$4.97\\times$; Appendix~\\ref{app:frontier-scb}) and all cells of a $2{\\times}2$ generator${\\times}$extractor matrix (Appendix~\\ref{app:2x2}). A permutation test confirms BR reflects trace-count geometry, not extraction bias (Appendix~\\ref{app:br-permutation}); controls rule out answer leakage (Appendix~\\ref{app:per-trace-separation}).\n8\t\n9\t\\smallskip\\noindent\n10\t\\textbf{Observation 1} \\textit{(Argmax Preservation).}\\;%\n11\tLet $t_1, \\ldots, t_K \\overset{\\mathrm{i.i.d.}}{\\sim} P_M(\\cdot \\mid q)$ with trace-determined answers $a_i = h(t_i)$ and $n_a = |\\{i : a_i = a\\}|$.\n12\tUnder (i)~the degeneration condition $|\\mathcal{C}^{\\setminus}| \\approx 0$ (Eq.~\\ref{eq:degenerate}), (ii)~source-attribution scoring where $\\sigma(c,a) {=} 1$ iff $c$ originates from a trace producing $a$ (Eq.~\\ref{eq:score}), and (iii)~approximately uniform constraint yield per trace, SICA reduces to majority vote: $\\arg\\max_a \\operatorname{score}(a) = \\arg\\max_a n_a$.\n13\t\n14\t\\smallskip\\noindent\n15\t\\textit{Empirical support.}\\;%\n16\tZ3 rejection rate $|\\mathcal{C}^{\\setminus}|/|\\mathcal{C}| \\approx 0.034$ confirms $|\\mathcal{C}^{\\setminus}| \\approx 0$. Per-trace yield averages $5.6$--$6.0$ constraints across answer groups (CV${=}0.26$; Appendix~\\ref{app:yield-cv}), making weight proporti\n…[truncated 5759 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 503
+          },
+          "id": "event-007497"
+        },
+        {
+          "source_line": 7498,
+          "timestamp": "2026-05-25T11:30:46.296982+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-007498"
+        },
+        {
+          "source_line": 7499,
+          "timestamp": "2026-05-25T11:30:46.648705+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\n2\t\\label{sec:discussion}\n3\t\\label{sec:conclusion}\n4\t\\looseness=-1\n5\tFormal verification's value depends on the \\emph{independence} of its inputs, not the soundness of its logic. SICA reduces to majority vote under source-attribution scoring (Observation~1), and 27 training-free variants fail to escape; symbolic confirmation bias holds across nine models (7B to frontier). Three zero-cost diagnostics predict failure from a $K{=}12$ pilot (\\S\\ref{sec:diagnostic-framework}). Cross-architecture verification escapes only when the verifier exceeds generator accuracy (\\S\\ref{sec:cross-arch}), suggesting \\emph{architectural diversity} over scale. Trained verifiers---PRM \\citep{lightman2024prm,wang2024mathshepherd}, ORM \\citep{cobbe2021gsm8k}---succeed by breaking the $M{\\to}T{\\to}A{\\to}C$ chain with external signal; our NLI escape instantiates this without task-specific training ($+6.67$\\,pp). Lightweight trained verification is a natural next step (Appendix~\\ref{app:extended-discussion}).\n6\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 351
+          },
+          "id": "event-007499"
+        },
+        {
+          "source_line": 7500,
+          "timestamp": "2026-05-25T11:30:46.649210+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-007500"
+        },
+        {
+          "source_line": 7501,
+          "timestamp": "2026-05-25T11:30:46.699749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:results}\n3\t\\label{sec:main-results}\n4\t\n5\t\\subsection{Experimental Setup}\n6\t\\label{sec:exp-setup}\n7\t\n8\t\\looseness=-1\n9\t\\paragraph{Models.} Qwen2.5-14B-Instruct, Qwen2.5-7B-Instruct, Qwen3-14B (non-thinking mode)~\\citep{yang2024qwen25}, Mistral-7B-Instruct-v0.3~\\citep{jiang2023mistral}, LLaMA-3.1-8B-Instruct~\\citep{dubey2024llama3}, and QwQ-32B~\\citep{qwen2024qwq} (7B--32B). We also evaluate the universality of symbolic confirmation bias on six additional models: gpt-4o uses self-extraction via API; four frontier models (gpt-4.1, gpt-5.5, o3, Gemini-2.5-Pro) use cross-model extraction where Mistral-7B extracts constraints from target traces; DeepSeek-R1-Distill-Qwen-8B likewise uses Mistral-7B cross-extraction (Appendix Table~\\ref{tab:frontier-scb}).\n10\t\n11\t\\paragraph{Datasets.} FOLIO~\\citep{han2022folio} ($n{=}204$, gold logical annotations), ProofWriter depth-5~\\citep{tafjord2021proofwriter} ($n{=}600$), LogiQA~\\citep{liu2020logiqa} ($n{=}200$), StrategyQA~\\citep{geva2021strategyqa} ($n{=}200$). GSM8K ($n{=}30$) and AIME 2024 ($n{=}22$) probe the degenerate regime ($C_0 < 5\\%$).\n12\t\n13\t\\paragraph{Parameters.} $K{=}12$ traces at $T{=}0.7$, extraction at $T_{\\text{ext}}{=}0.3$, $\\alpha{=}0.5$, Z3 timeout 10s (K-sensitivity and extraction-temperature analysis in Appendix~\\ref{app:sensitivity}). McNemar exact test ($\\alpha{=}0.05$); 95\\% bootstrap CIs ($10{,}000$ resamples; Appendix~\\ref{app:bootstrap}) for $n \\geq 200$. SICA incurs $4.5{\\times}$ SC wall-clock; extraction accounts for 76\\% of overhead.\n14\t\n15\t\\subsection{Main Results}\n16\t\n17\t\\looseness=-1 Table~\\ref{tab:main_results} reports accuracy across all non-degenerate self-extraction conditions sorted by SC baseline. Two confirmatory conditions show significant degradation after Benjamini--Hochberg (BH) FDR control ($m{=}6$; multi-seed aggregates and extensions are exploratory): Mistral-7B on ProofWriter ($-2.83$\\,pp, raw $p = 0.014$, adj.\\ $p = 0.042$) and Qwen2.5-14B on Pro\n…[truncated 5619 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-007501"
+        },
+        {
+          "source_line": 7502,
+          "timestamp": "2026-05-25T11:35:08.545421+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex"
+            }
+          },
+          "id": "event-007502"
+        },
+        {
+          "source_line": 7503,
+          "timestamp": "2026-05-25T11:35:08.646372+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\\label{sec:pipeline}\n4\t\\label{sec:condorcet}\n5\t\\label{sec:effective-k}\n6\t\n7\tSelf-Consistency (SC) \\citep{wang2023sc} samples $K$ reasoning traces and selects the majority answer. Under correlated traces (Fleiss' $\\kappa$ \\citep{fleiss1971kappa}), the effective ensemble size $K_\\text{eff}$ is\n8\t\\begin{equation}\n9\t\\label{eq:effk}\n10\tK_{\\text{eff}} = K \\,/\\, [1 + (K{-}1) \\cdot \\kappa]\n11\t\\end{equation}\n12\t(following \\citet{ladha1992correlated}). Intuitively, $K_\\text{eff}$ measures how many effectively independent votes $K$ correlated traces contribute; e.g., $K{=}12$ traces with $\\kappa{=}0.69$ yield $K_\\text{eff} \\approx 1.3$, meaning twelve correlated traces carry no more independent information than 1.3 uncorrelated ones. This motivates constraint-based aggregation.\n13\t\n14\tSymbolic Invariant Consensus Aggregation (SICA) extends SC by extracting formal constraints from traces and selecting the answer best supported by the satisfiable subset (Figure~\\ref{fig:pipeline}).\n15\t\n16\t\\begin{figure*}[t]\n17\t\\centering\n18\t\\includegraphics[width=\\textwidth]{f2_regime_scatter_v2}\n19\t\\caption{SICA $\\Delta$ (pp) vs.\\ Fleiss' $\\kappa$ (inter-trace agreement). Color encodes model family; shape encodes dataset (\\scalebox{0.7}{$\\bullet$}\\,PW, \\scalebox{0.7}{$\\blacktriangle$}\\,FOLIO, \\scalebox{0.7}{$\\blacksquare$}\\,LogiQA). Error bars show multi-seed standard deviation. High $\\kappa$ ($K_{\\text{eff}} \\to 1$) clusters near $\\Delta \\approx 0$; only the low-$\\kappa$ region admits nonzero effects, consistent with the independence bottleneck.}\n20\t\\label{fig:regime-scatter}\n21\t\\end{figure*}\n22\t\n23\t\\paragraph{Trace generation.} Given question $q$, an LLM generates $K$ traces $\\{t_1, \\ldots, t_K\\}$ at temperature $T = 0.7$. Each trace $t_i$ yields answer $a_i$.\n24\t\n25\t\\looseness=-1\n26\t\\paragraph{Constraint extraction.}\\label{sec:constraint-extraction} The same LLM extracts logical constraints from each trace at $T_{\\text{ext}} = 0.3$. The extraction pr\n…[truncated 3078 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-007503"
+        },
+        {
+          "source_line": 7504,
+          "timestamp": "2026-05-25T11:35:22.850573+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": ", (confirming|revealing|suggesting|providing|indicating|illustrating|making|showing|demonstrating|implying|establishing|highlighting|underscoring|enabling) ",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-007504"
+        },
+        {
+          "source_line": 7505,
+          "timestamp": "2026-05-25T11:35:22.989895+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex:7:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex:16:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex:25:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex:47:\\looseness=-1 DeBERTa alone achieves 49.51\\% on FOLIO and 55.00\\% on ProofWriter. Combo $w{=}3$ yields $+6.67$\\,pp on ProofWriter for Mistral-7B ($p < 0.001$, significant after BH correction) and $+2.94$\\,pp on FOLIO (n.s.); all generators with SC $\\geq 72\\%$ show no significant improvement ($\\Delta \\leq +1.47$\\,pp). Same-model SICA \\emph{degrades} ProofWriter ($-2.83$\\,pp; Table~\\ref{tab:main_results}), illustrating that corrective signal must originate outside the model's distribution.\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex:66:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex:17:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex:5:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/diagnosis.tex:113:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/diagnosis.tex:144:\\caption{Independence-accuracy trade-off (FOLIO, $n = 204$). Top: aggregation methods on Mistral-7B; bottom: SC across three model families. All families produce $\\kappa \\geq 0.41$, confirming an architecture-independent ceiling. $\\kappa$: Fleiss' kappa on raw answers.}\n/home/ubuntu/.agent-ml-research-idea_gen_0513\n…[truncated 7204 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Grep",
+            "elapsed_ms": 139
+          },
+          "id": "event-007505"
+        },
+        {
+          "source_line": 7506,
+          "timestamp": "2026-05-25T11:36:28.921806+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex",
+              "content": "\\begin{abstract}\nSelf-Consistency (SC) improves large language model (LLM) reasoning by majority voting over chain-of-thought traces. A natural extension extracts formal logical constraints from traces and aggregates them with a symbolic solver, but we show this is a \\emph{symbolic mirage}. We test this through Symbolic Invariant Consensus Aggregation (SICA), which extracts first-order logic constraints under zero-shot prompting and solves weighted partial MAX-SAT. Self-extracted constraints systematically confirm their source trace's answer rather than providing independent verification, a phenomenon we term \\emph{symbolic confirmation bias} (SCB). Formally, when nearly all constraints pass satisfiability checking, constraint-based aggregation degenerates to majority voting. This bias persists across nine models from 7B to frontier scale, with bias ratios of $1.66$--$4.97\\times$. Twenty-seven training-free remediation strategies fail to break this bottleneck; a persistent independence--accuracy trade-off emerges where methods that reduce trace correlation also destroy accuracy. Among training-free approaches, only a structurally independent cross-architecture verifier restores corrective signal; the bottleneck lies in self-extraction itself, not model capability. We provide three zero-cost diagnostics that predict failure modes from a pilot run\\footnote{Code and data are available at \\url{https://anonymous.4open.science/r/symb_invariant_consensus-2E1F/}.}.\n\\end{abstract}\n"
+            }
+          },
+          "id": "event-007506"
+        },
+        {
+          "source_line": 7507,
+          "timestamp": "2026-05-25T11:36:29.223304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Write",
+            "elapsed_ms": 301
+          },
+          "id": "event-007507"
+        },
+        {
+          "source_line": 7508,
+          "timestamp": "2026-05-25T11:36:30.176949+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex",
+              "old_string": ", providing a Markov chain formalization and actionable diagnostics for self-verification.",
+              "new_string": "; we provide a Markov chain formalization and actionable diagnostics for self-verification."
+            }
+          },
+          "id": "event-007508"
+        },
+        {
+          "source_line": 7509,
+          "timestamp": "2026-05-25T11:36:30.628995+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-007509"
+        },
+        {
+          "source_line": 7510,
+          "timestamp": "2026-05-25T11:36:31.131196+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex",
+              "old_string": ", providing practitioners with a priori failure-mode diagnosis from a pilot run",
+              "new_string": "; these give practitioners a priori failure-mode diagnosis from a pilot run"
+            }
+          },
+          "id": "event-007510"
+        },
+        {
+          "source_line": 7511,
+          "timestamp": "2026-05-25T11:36:31.633492+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 502
+          },
+          "id": "event-007511"
+        },
+        {
+          "source_line": 7512,
+          "timestamp": "2026-05-25T11:36:32.386866+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+              "old_string": ", confirming the formal verification layer is vacuous",
+              "new_string": "; the formal verification layer is thus vacuous"
+            }
+          },
+          "id": "event-007512"
+        },
+        {
+          "source_line": 7513,
+          "timestamp": "2026-05-25T11:36:32.588152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 201
+          },
+          "id": "event-007513"
+        },
+        {
+          "source_line": 7514,
+          "timestamp": "2026-05-25T11:36:33.040366+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+              "old_string": ", making weight proportional to $n_a$",
+              "new_string": "; weight is thus proportional to $n_a$"
+            }
+          },
+          "id": "event-007514"
+        },
+        {
+          "source_line": 7515,
+          "timestamp": "2026-05-25T11:36:33.191427+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 151
+          },
+          "id": "event-007515"
+        },
+        {
+          "source_line": 7516,
+          "timestamp": "2026-05-25T11:36:34.446372+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+              "old_string": "via the DPI",
+              "new_string": "via the data processing inequality (DPI)"
+            }
+          },
+          "id": "event-007516"
+        },
+        {
+          "source_line": 7517,
+          "timestamp": "2026-05-25T11:36:34.898659+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-007517"
+        },
+        {
+          "source_line": 7518,
+          "timestamp": "2026-05-25T11:36:35.401380+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+              "old_string": "), revealing a persistent independence-accuracy trade-off.",
+              "new_string": "); a persistent independence--accuracy trade-off emerges."
+            }
+          },
+          "id": "event-007518"
+        },
+        {
+          "source_line": 7519,
+          "timestamp": "2026-05-25T11:36:35.853629+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-007519"
+        },
+        {
+          "source_line": 7520,
+          "timestamp": "2026-05-25T11:36:36.456588+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+              "old_string": "for NLI. Each",
+              "new_string": "for natural language inference (NLI). Each"
+            }
+          },
+          "id": "event-007520"
+        },
+        {
+          "source_line": 7521,
+          "timestamp": "2026-05-25T11:36:36.758477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 301
+          },
+          "id": "event-007521"
+        },
+        {
+          "source_line": 7522,
+          "timestamp": "2026-05-25T11:36:37.260928+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+              "old_string": ", illustrating that corrective signal must originate outside the model's distribution.",
+              "new_string": "; corrective signal must therefore originate outside the model's distribution."
+            }
+          },
+          "id": "event-007522"
+        },
+        {
+          "source_line": 7523,
+          "timestamp": "2026-05-25T11:36:37.411998+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 151
+          },
+          "id": "event-007523"
+        },
+        {
+          "source_line": 7524,
+          "timestamp": "2026-05-25T11:36:41.753377+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+              "old_string": ", confirming structural independence drives the escape",
+              "new_string": "; structural independence drives the escape"
+            }
+          },
+          "id": "event-007524"
+        },
+        {
+          "source_line": 7525,
+          "timestamp": "2026-05-25T11:36:41.753776+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-007525"
+        },
+        {
+          "source_line": 7526,
+          "timestamp": "2026-05-25T11:36:42.507048+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+              "old_string": "nine models from 7B to frontier (BR $1.66$--$4.97\\times$; Appendix~\\ref{app:frontier-scb})",
+              "new_string": "nine models from 7B to frontier (three primary generators plus six additional models; BR $1.66$--$4.97\\times$; Appendix~\\ref{app:frontier-scb})"
+            }
+          },
+          "id": "event-007526"
+        },
+        {
+          "source_line": 7527,
+          "timestamp": "2026-05-25T11:36:42.507634+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-007527"
+        },
+        {
+          "source_line": 7528,
+          "timestamp": "2026-05-25T11:36:42.608515+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex",
+              "old_string": ", indicating that constraint-based reweighting introduces noise rather than corrective signal",
+              "new_string": "; constraint-based reweighting thus introduces noise rather than corrective signal"
+            }
+          },
+          "id": "event-007528"
+        },
+        {
+          "source_line": 7529,
+          "timestamp": "2026-05-25T11:36:42.609184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-007529"
+        },
+        {
+          "source_line": 7530,
+          "timestamp": "2026-05-25T11:36:42.659719+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex",
+              "old_string": "TOST equivalence (MDE",
+              "new_string": "TOST equivalence (minimum detectable effect (MDE)"
+            }
+          },
+          "id": "event-007530"
+        },
+        {
+          "source_line": 7531,
+          "timestamp": "2026-05-25T11:36:42.962113+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 302
+          },
+          "id": "event-007531"
+        },
+        {
+          "source_line": 7532,
+          "timestamp": "2026-05-25T11:36:43.767075+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex",
+              "old_string": ", making SICA a strict generalization of SC.",
+              "new_string": "; SICA is thus a strict generalization of SC."
+            }
+          },
+          "id": "event-007532"
+        },
+        {
+          "source_line": 7533,
+          "timestamp": "2026-05-25T11:36:43.817712+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-007533"
+        },
+        {
+          "source_line": 7534,
+          "timestamp": "2026-05-25T11:36:58.229459+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex",
+              "content": "\\section{Discussion and Conclusion}\n\\label{sec:discussion}\n\\label{sec:conclusion}\n\\looseness=-1\nFormal verification's value depends on the \\emph{independence} of its inputs, not the soundness of its logic. SICA reduces to majority vote under source-attribution scoring (Observation~1), and 27 training-free variants fail to escape; symbolic confirmation bias holds across nine models (7B to frontier). Three zero-cost diagnostics predict failure from a $K{=}12$ pilot (\\S\\ref{sec:diagnostic-framework}).\n\n\\looseness=-1\nFor the broader neuro-symbolic community, our results expose a structural limitation of self-extraction pipelines: when the same model generates both reasoning and formal constraints, the symbolic layer inherits the model's distributional prior rather than providing an independent check. This limitation is not specific to logical constraint extraction; it applies to any self-verification paradigm where the verifier shares the generator's knowledge boundary \\citep{huang2024selfcorrect}.\n\n\\looseness=-1\nCross-architecture verification escapes only when the verifier exceeds generator accuracy (\\S\\ref{sec:cross-arch}); this points to \\emph{architectural diversity} over scale as the key design principle. Trained verifiers---PRM \\citep{lightman2024prm,wang2024mathshepherd}, ORM \\citep{cobbe2021gsm8k}---succeed precisely because they break the $M{\\to}T{\\to}A{\\to}C$ chain with independently supervised signal; our NLI escape instantiates this principle without task-specific training ($+6.67$\\,pp). For test-time compute scaling \\citep{snell2025scaling}, our findings imply that allocating additional inference budget to self-consistent sampling yields diminishing returns once $K_\\text{eff}$ saturates; redirecting compute toward structurally independent verification offers a more efficient path. Lightweight trained verification is a natural next step (Appendix~\\ref{app:extended-discussion}).\n"
+            }
+          },
+          "id": "event-007534"
+        },
+        {
+          "source_line": 7535,
+          "timestamp": "2026-05-25T11:36:58.230051+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-007535"
+        },
+        {
+          "source_line": 7536,
+          "timestamp": "2026-05-25T11:37:01.947786+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -c \"^!\" && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-007536"
+        },
+        {
+          "source_line": 7537,
+          "timestamp": "2026-05-25T11:37:03.109716+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "—",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-007537"
+        },
+        {
+          "source_line": 7538,
+          "timestamp": "2026-05-25T11:37:03.962642+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\n0"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 2014
+          },
+          "id": "event-007538"
+        },
+        {
+          "source_line": 7539,
+          "timestamp": "2026-05-25T11:37:03.963034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(cd /home/ubuntu/.agent-ml-research-idea_…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Grep",
+            "elapsed_ms": 853
+          },
+          "id": "event-007539"
+        },
+        {
+          "source_line": 7540,
+          "timestamp": "2026-05-25T11:37:07.426529+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-007540"
+        },
+        {
+          "source_line": 7541,
+          "timestamp": "2026-05-25T11:37:09.182844+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "s/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (29 pages, 3779960 bytes).\nTranscript written on main.log.\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_47e5a40d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 1756
+          },
+          "id": "event-007541"
+        },
+        {
+          "source_line": 7542,
+          "timestamp": "2026-05-25T11:37:12.044795+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && grep -c \"undefined\" main.log",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-007542"
+        },
+        {
+          "source_line": 7543,
+          "timestamp": "2026-05-25T11:37:12.497116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 452
+          },
+          "id": "event-007543"
+        },
+        {
+          "source_line": 7544,
+          "timestamp": "2026-05-25T11:37:12.999671+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "—",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-007544"
+        },
+        {
+          "source_line": 7545,
+          "timestamp": "2026-05-25T11:37:14.405578+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Grep",
+            "elapsed_ms": 1405
+          },
+          "id": "event-007545"
+        },
+        {
+          "source_line": 7546,
+          "timestamp": "2026-05-25T11:37:15.661029+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": ", (confirming|revealing|suggesting|providing|indicating|illustrating|making|showing|demonstrating|implying|establishing|highlighting|underscoring|enabling) ",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+              "glob": "\"{abstract,introduction,method,experiments,analysis,discussion,related_work,solutions}.tex\"",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-007546"
+        },
+        {
+          "source_line": 7547,
+          "timestamp": "2026-05-25T11:37:15.761800+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-007547"
+        },
+        {
+          "source_line": 7548,
+          "timestamp": "2026-05-25T11:37:22.940075+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdftotext main.pdf - | awk 'BEGIN{page=1} /\\f/{page++} /Figure 2: SICA/{print \"Figure 2: page \" page} /Figure 3: Causal/{print \"Figure 3: page \" page} /Figure 4: Independence/{print \"Figure 4: page \" page} /Table 1:/{print \"Table 1: page \" page} /^Limitation/{if(page<=10) print \"Limitations: page \" page} /^Reference/{if(page<=10) print \"References: page \" page} /Discussion and Conclusion/{if(page<=10) print \"Discussion: page \" page}'",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-007548"
+        },
+        {
+          "source_line": 7549,
+          "timestamp": "2026-05-25T11:37:23.241489+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 2: page 4\nFigure 3: page 6\nTable 1: page 7\nFigure 4: page 7\nDiscussion: page 7\nLimitations: page 8\nReferences: page 8\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_47e5a40d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 301
+          },
+          "id": "event-007549"
+        },
+        {
+          "source_line": 7550,
+          "timestamp": "2026-05-25T11:37:30.943619+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdftotext main.pdf - | awk 'BEGIN{page=1} /\\f/{page++} /Table 1 reports/{print \"First Table 1 ref: page \" page; exit}'",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-007550"
+        },
+        {
+          "source_line": 7551,
+          "timestamp": "2026-05-25T11:37:31.095744+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "First Table 1 ref: page 5\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_47e5a40d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 152
+          },
+          "id": "event-007551"
+        },
+        {
+          "source_line": 7552,
+          "timestamp": "2026-05-25T11:38:10.118776+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex",
+              "limit": "30"
+            }
+          },
+          "id": "event-007552"
+        },
+        {
+          "source_line": 7553,
+          "timestamp": "2026-05-25T11:38:10.169545+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:results}\n3\t\\label{sec:main-results}\n4\t\n5\t\\subsection{Experimental Setup}\n6\t\\label{sec:exp-setup}\n7\t\n8\t\\looseness=-1\n9\t\\paragraph{Models.} Qwen2.5-14B-Instruct, Qwen2.5-7B-Instruct, Qwen3-14B (non-thinking mode)~\\citep{yang2024qwen25}, Mistral-7B-Instruct-v0.3~\\citep{jiang2023mistral}, LLaMA-3.1-8B-Instruct~\\citep{dubey2024llama3}, and QwQ-32B~\\citep{qwen2024qwq} (7B--32B). We also evaluate the universality of symbolic confirmation bias on six additional models: gpt-4o uses self-extraction via API; four frontier models (gpt-4.1, gpt-5.5, o3, Gemini-2.5-Pro) use cross-model extraction where Mistral-7B extracts constraints from target traces; DeepSeek-R1-Distill-Qwen-8B likewise uses Mistral-7B cross-extraction (Appendix Table~\\ref{tab:frontier-scb}).\n10\t\n11\t\\paragraph{Datasets.} FOLIO~\\citep{han2022folio} ($n{=}204$, gold logical annotations), ProofWriter depth-5~\\citep{tafjord2021proofwriter} ($n{=}600$), LogiQA~\\citep{liu2020logiqa} ($n{=}200$), StrategyQA~\\citep{geva2021strategyqa} ($n{=}200$). GSM8K ($n{=}30$) and AIME 2024 ($n{=}22$) probe the degenerate regime ($C_0 < 5\\%$).\n12\t\n13\t\\paragraph{Parameters.} $K{=}12$ traces at $T{=}0.7$, extraction at $T_{\\text{ext}}{=}0.3$, $\\alpha{=}0.5$, Z3 timeout 10s (K-sensitivity and extraction-temperature analysis in Appendix~\\ref{app:sensitivity}). McNemar exact test ($\\alpha{=}0.05$); 95\\% bootstrap CIs ($10{,}000$ resamples; Appendix~\\ref{app:bootstrap}) for $n \\geq 200$. SICA incurs $4.5{\\times}$ SC wall-clock; extraction accounts for 76\\% of overhead.\n14\t\n15\t\\subsection{Main Results}\n16\t\n17\t\\looseness=-1 Table~\\ref{tab:main_results} reports accuracy across all non-degenerate self-extraction conditions sorted by SC baseline. Two confirmatory conditions show significant degradation after Benjamini--Hochberg (BH) FDR control ($m{=}6$; multi-seed aggregates and extensions are exploratory): Mistral-7B on ProofWriter ($-2.83$\\,pp, raw $p = 0.014$, adj.\\ $p = 0.042$) and Qwen2.5-14B on Pro\n…[truncated 1937 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-007553"
+        },
+        {
+          "source_line": 7554,
+          "timestamp": "2026-05-25T11:38:17.147124+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex",
+              "old_string": "\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig3_causal_dag_v11.pdf}\n\\caption{Causal DAG of the self-extraction pipeline. Traces $T$ produce both answers $A$ and constraints $C$; under degeneration (Observation~1), $C$ is determined by $A$ (dashed arrow), yielding $I(C;Y) \\leq I(A;Y)$.}\n\\label{fig:causal-dag}\n\\end{figure*}\n\n\\begin{table*}[t]",
+              "new_string": "\\begin{table*}[t]"
+            }
+          },
+          "id": "event-007554"
+        },
+        {
+          "source_line": 7555,
+          "timestamp": "2026-05-25T11:38:17.197845+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-007555"
+        },
+        {
+          "source_line": 7556,
+          "timestamp": "2026-05-25T11:38:23.472285+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex",
+              "offset": "48",
+              "limit": "20"
+            }
+          },
+          "id": "event-007556"
+        },
+        {
+          "source_line": 7557,
+          "timestamp": "2026-05-25T11:38:23.673516+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "48\tQwen3-14B & FOLIO & 204 & 83.33 & 84.80 & $+$1.47 & 1.000 \\\\\n49\tQwen3-14B$^\\dagger$ & PW-D5 & 600 & 85.83 & 85.67 & $-$0.17 & 1.000 \\\\\n50\tQwen3-14B (think) & FOLIO & 204 & 86.27 & 86.76 & $+$0.49 & 1.000 \\\\\n51\t\\bottomrule\n52\t\\end{tabular}\n53\t\\end{table*}\n54\t\n55\t\\looseness=-1 Figure~\\ref{fig:regime-scatter} reveals regime structure. Fleiss' $\\kappa$ ranges from 0.19 to 0.82, yielding $K_{\\text{eff}} = 1.20\\text{--}3.94$ at $K = 12$ (Table~\\ref{tab:independence}; Appendix~\\ref{app:cross-model-kappa}). Three regimes emerge: Type~C (SC $\\leq 40\\%$), where low accuracy causes error amplification; an intermediate band (50--60\\%), containing the only positive trends; and Type~A (SC $\\geq 60\\%$), where symbolic confirmation bias dominates. Seed-level noise is substantial: across three Mistral-7B seeds, $\\Delta$ ranges from $+2.94$ to $-2.45$\\,pp despite $\\kappa \\in [0.45, 0.46]$. We trace the mechanism in \\S\\ref{sec:analysis}.\n56\t\n57\t\\looseness=-1 We use TOST equivalence tests \\citep{lakens2017equivalence} with margin $\\pm 2$\\,pp, justified on four grounds: (1)~on FOLIO ($n{=}204$), $\\pm$2\\,pp corresponds to ${\\sim}$4 problems, near single-item influence; (2)~cross-seed $\\sigma = 2.70$\\,pp (Mistral-7B), placing $\\pm$2\\,pp below noise; (3)~the observed $|\\Delta|$ median across 11 conditions is 1.47\\,pp, so $\\pm$2\\,pp captures the central tendency; (4)~sensitivity analysis confirms $\\pm$2\\,pp as the narrowest discriminating window ($\\pm$1\\,pp: zero conditions pass; $\\pm$3\\,pp: all pass; Appendix~\\ref{app:tost}). Four of 11 conditions pass TOST equivalence (minimum detectable effect (MDE) $\\leq 2$\\,pp); the remaining seven are underpowered (MDE $4.6$--$4.8$\\,pp) but provide consistent directional evidence ($|\\Delta| \\leq 4.41$\\,pp, none significant; Appendix~\\ref{app:power}). Multi-seed replication: mean $\\Delta = +0.16 \\pm 2.70$\\,pp across three Mistral-7B seeds (Table~\\ref{tab:multi-seed}); four Qwen2.5-14B seeds yield $\\Delta \\in [0.00, -2.01]$\\,pp; four Qwen3-14B seeds \n…[truncated 339 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 201
+          },
+          "id": "event-007557"
+        },
+        {
+          "source_line": 7558,
+          "timestamp": "2026-05-25T11:38:36.060233+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex",
+              "old_string": "\\end{table*}\n\n\\looseness=-1 Figure~\\ref{fig:regime-scatter} reveals",
+              "new_string": "\\end{table*}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig3_causal_dag_v11.pdf}\n\\caption{Causal DAG of the self-extraction pipeline. Traces $T$ produce both answers $A$ and constraints $C$; under degeneration (Observation~1), $C$ is determined by $A$ (dashed arrow), yielding $I(C;Y) \\leq I(A;Y)$.}\n\\label{fig:causal-dag}\n\\end{figure*}\n\n\\looseness=-1 Figure~\\ref{fig:regime-scatter} reveals"
+            }
+          },
+          "id": "event-007558"
+        },
+        {
+          "source_line": 7559,
+          "timestamp": "2026-05-25T11:38:36.110920+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-007559"
+        },
+        {
+          "source_line": 7560,
+          "timestamp": "2026-05-25T11:38:41.016405+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-007560"
+        }
+      ]
+    }
+  ]
+}

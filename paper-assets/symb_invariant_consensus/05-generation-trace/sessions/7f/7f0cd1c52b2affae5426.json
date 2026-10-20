@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f0cd1c52b2affae5426",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis f2 discriminative analysis",
+  "task_key": "worker_analysis_f2-discriminative-analysis_20260518T110418",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_f2-discriminative-analysis_20260518T110418_result.json",
+    "occurrence": 1,
+    "bytes": 842,
+    "sha256": "3725d97fbc9122da3c042fb3ceafac7cc5c8f51dfb0132ca6490099c69fea781"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成，报告已保存到 `artifacts/f2_discriminative_analysis.md`。\n\n核心发现：\n\n- **r = -0.58**: constraint count 与 exclusion rate 强负相关，更多约束 = 更多噪声（domain facts 堆积），直接支持 capability trap 叙事\n- **85% 问题只有 1 个 excluded constraint**: SICA 的整个机制在绝大多数情况下依赖单个判别性约束的权重\n- **entropy=1.0 是 SICA 的核心优势区间**: 38 个 4:4 平票问题上 SICA +10.5pp（55.3% vs 44.7%），52.6% 发生 flip，SICA 赢 12:8\n- **GT=Unknown 问题 SICA 优势最大**: flipped 案例中 SICA 6:3 赢 SC，约束对开放世界推理（\"不确定\"作为合法答案）帮助最大\n- **低 cc + 高 ER vs 高 cc + 低 ER**: 12pp 准确率差距（69.5% vs 57.5%），少而精的约束远优于多而泛的约束"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-f2-discriminative-analysis.md"
+}

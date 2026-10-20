@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3d8d0028b24d5f99bcd",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis v3 urgent check",
+  "task_key": "worker_analysis_v3-urgent-check_20260515T194406",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_v3-urgent-check_20260515T194406_result.json",
+    "occurrence": 1,
+    "bytes": 265,
+    "sha256": "7020115a388962d8e1e1e81251f699dde23e3949e8fb09932860dd5b42d28801"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三条结果：\n\n1. **进程 129992**: 存活，运行时间 `03:51:50`（约 3 小时 52 分），RSS `208380` KB（~204 MB）\n2. **aime30_v2.json**: 已完成 **22** 个 problem\n3. **GPU**: `0 %` 利用率，`89173 MiB / 97887 MiB` 显存占用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v3-urgent-check.md"
+}

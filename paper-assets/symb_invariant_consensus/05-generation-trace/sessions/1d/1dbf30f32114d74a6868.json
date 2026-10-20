@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1dbf30f32114d74a6868",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix cross table kappa footnote",
+  "task_key": "worker_fix_cross-table-kappa-footnote_20260524T074516",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_cross-table-kappa-footnote_20260524T074516_result.json",
+    "occurrence": 1,
+    "bytes": 1553,
+    "sha256": "ea386c43c33d47f8da439a7d6af7ccb11d341c6cfc7e96a42d26c6e3fd11cf44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "L678 is in `tab:kappa_generalization` with K=10 — same situation as the diagnosis.tex table the user warned about. This is a K=10 result, not K=12, so correctly left unchanged.\n\nL765 (0.447) is a cosine similarity value, unrelated to κ.\n\nCompilation succeeded (29 pages, no errors).\n\n---\n\n**All modifications in appendix.tex:**\n\n| Location | Old | New |\n|---|---|---|\n| L726 prose | `Mistral-7B ($\\kappa = 0.44$)` | `Mistral-7B ($\\kappa = 0.46$)` |\n| L726 prose | `$\\Delta\\kappa = 0.03$` | `$\\Delta\\kappa = 0.05$` |\n| L726 prose | `$\\Delta\\kappa$ up to 0.22` | `$\\Delta\\kappa$ up to 0.20` |\n| L739 tab:cross_model_kappa | `0.44 & 2.02 & 56.86` | `0.46 & 1.98 & 55.88` |\n| L703 tab:independence | `0.91 &` | `0.91$^{\\dag}$ &` (Qwen3 think) |\n| L707 tab:independence | `0.66 &` | `0.66$^{\\dag}$ &` (Qwen2.5-7B) |\n| L709 tab:independence | `0.53 &` | `0.53$^{\\dag}$ &` (Mistral T=0.3) |\n| L710 tab:independence | `0.52 &` | `0.52$^{\\dag}$ &` (Mistral T=0.5) |\n| L712 tab:independence | `0.48 &` | `0.48$^{\\dag}$ &` (Mistral T=1.0) |\n| L697 caption | (end) | added `$^{\\dag}$\\,$\\kappa$ computed in an earlier pipeline run...` |\n\n**Not changed** (correct):\n- L678 `tab:kappa_generalization`: Mistral-7B SC κ=0.44 at K=10 — different experiment, left as-is\n- diagnosis.tex — not touched per instructions\n\n**Derived values also fixed**: Δκ 0.03→0.05 and Δκ 0.22→0.20 in the prose paragraph, since they were computed from the old 0.44 value.\n\nCompilation passed, 29 pages, no errors."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-cross-table-kappa-footnote.md"
+}

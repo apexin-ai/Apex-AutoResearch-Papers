@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "d0584ff8aad551c2e7e6",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra p0 westd25068 awq fix",
+  "task_key": "worker_infra_p0-westd25068-awq-fix_20260521T180738",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_p0-westd25068-awq-fix_20260521T180738_result.json",
+    "occurrence": 1,
+    "bytes": 2829727,
+    "sha256": "958ac82377c6bcf60eb44547a9bde1e32ff78c3318a862601f828dd11e8c9292"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2829747,
+                "serialized_sha256": "77e9fb77ca9428d1b1334f21db3e2a115f9aea0e97a3d5b48c9996d00b70920e",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-p0-westd25068-awq-fix.md"
+}

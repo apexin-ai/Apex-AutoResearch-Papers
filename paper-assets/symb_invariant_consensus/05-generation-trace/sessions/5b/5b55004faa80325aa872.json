@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b55004faa80325aa872",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper remove emdashes",
+  "task_key": "worker_paper_remove-emdashes_20260525T052845",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_remove-emdashes_20260525T052845_result.json",
+    "occurrence": 1,
+    "bytes": 736,
+    "sha256": "26b1defe48aa647a130fcca2b1e7ec98b9a782aaea2fb586577b4a147f41739b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功。\n\n## 汇总\n\n只有 **1 处** 需要修改（主体文件中的其他 `---` 已在此前被清理）：\n\n| 文件 | 行 | 原文 | 修改后 |\n|------|-----|------|--------|\n| `diagnosis.tex` | 53 | `...the incorrect majority answer---a bias ratio of $4.97\\times$...` | `...the incorrect majority answer, with a bias ratio of $4.97\\times$...` |\n\n保留未动的：\n- `diagnosis.tex` 37-38: `\\textrm{---}`（表格\"不适用\"标记）\n- `appendix.tex` 所有实例（按要求不改附录）\n- `abstract.tex`, `analysis.tex`, `discussion.tex`, `experiments.tex`, `introduction.tex`, `solutions.tex`, `method.tex`, `conclusion.tex`, `limitations_content.tex`, `related_work.tex`：无 `---`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-remove-emdashes.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3f53efcdebb3ce572aa",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "check exp 029 results",
+  "task_key": "worker_check_exp-029-results_20260518T153603",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_exp-029-results_20260518T153603_result.json",
+    "occurrence": 1,
+    "bytes": 960,
+    "sha256": "6d518dca9e111a70a773fd31ceef6314643644811828fa07923bdf8cb6897079"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n## exp-029 结果：**负结果**\n\n| Metric | Value |\n|---|---|\n| **Contrastive accuracy** | 72.53% (132/182) |\n| **SC baseline** | 73.63% (134/182) |\n| **Delta** | **-1.10pp** |\n| **Discriminative rate** | 6.04% (11/182) — 目标 >20%, baseline 8.2%, 更差 |\n| **Recovery rate** | **-8.3%** (vs oracle 13.24pp gap) |\n| **McNemar p-value** | 0.7518 (不显著) |\n\n**Disagree breakdown** (11 cases): contrastive wins 4, SC wins 6, both wrong 1\n\n**Constraint distribution**: Supporting 43.2%, Opposing 56.8%, avg 24.4 extracted / 10.4 unique per problem\n\n**结论**: 假设被证伪。Contrastive constraint extraction 在全量 FOLIO 204 上不仅没有提升，反而略低于 SC baseline。discriminative rate (6.04%) 甚至低于之前的 baseline (8.2%)。早期 n=14 的 +14.3pp 增益是小样本偏差。opposing constraints 虽然数量略多 (56.8%)，但未能转化为有效的区分信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp-029-results.md"
+}

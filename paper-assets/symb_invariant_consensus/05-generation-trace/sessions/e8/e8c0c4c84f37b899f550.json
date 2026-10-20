@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "e8c0c4c84f37b899f550",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "code multi seed prep debate logiqa",
+  "task_key": "worker_code_multi-seed-prep-debate-logiqa_20260519T181220",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_multi-seed-prep-debate-logiqa_20260519T181220.log",
+    "occurrence": 1,
+    "bytes": 1085623,
+    "sha256": "d88ddf402511e94bdbba5e8cad49e2b3340805365e89c55ac15e1faef1605d35"
+  },
+  "statistics": {
+    "messages": 383,
+    "user_turns": 1,
+    "tool_calls": 143,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 89,
+      "tool_call": 143,
+      "tool_result": 143,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 233,
+      "chunks": [
+        {
+          "path": "e8c0c4c84f37b899f550-part-0001.json",
+          "message_count": 165
+        },
+        {
+          "path": "e8c0c4c84f37b899f550-part-0002.json",
+          "message_count": 68
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 150,
+      "chunks": [
+        {
+          "path": "e8c0c4c84f37b899f550-part-0002.json",
+          "message_count": 112
+        },
+        {
+          "path": "e8c0c4c84f37b899f550-part-0003.json",
+          "message_count": 38
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-multi-seed-prep-debate-logiqa.md"
+}

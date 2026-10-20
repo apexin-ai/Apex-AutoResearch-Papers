@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "418d5ed4d2aad99f9b93",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "check experiment progress all servers",
+  "task_key": "worker_check_experiment-progress-all-servers_20260523T141505",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_experiment-progress-all-servers_20260523T141505_result.json",
+    "occurrence": 1,
+    "bytes": 1425,
+    "sha256": "86e9ac67a3537d40b17b5aaac9a626a7aad1e0958f3bd006723ecbb590a34bca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度汇总\n\n| 服务器 | GPU | 实验 | 进度 | 预计剩余 | 状态 |\n|--------|-----|------|------|---------|------|\n| westd-30973 | cuda:0 | — | — | — | 空闲 |\n| westd-30973 | cuda:1 | — | — | — | 空闲 |\n| westd-30973 | cuda:2 | LLaMA seed456-v2 | 415/600 (69%) | ~3.5h | 运行中 |\n| westd-30973 | ~~cuda:1~~ | LLaMA seed789-v2 | 325/600 (54%) | — | **已终止** (EXIT_CODE=143) |\n| westd-16639 | cuda:0 | LLaMA seed789 | 470/600 (78%) | ~2.5h | 运行中 |\n| westd-16639 | cuda:1 | — | — | — | 空闲 |\n| westd-16639 | cuda:2 | Qwen seed789 | 534/600 (89%) | ~1.2h | 运行中 |\n| westd-16639 | cuda:3 | Qwen seed456 resume | 559/600 (93%) | ~0.8h | 运行中 |\n\n### 关键发现\n\n**FOLIO NLI combo: 未启动。** westd-30973 上没有 `nli_folio_deberta/bart/roberta` 相关 tmux session 或日志文件。\n\n**接近完成 (>90%):**\n- Qwen seed456 resume — 559/600 (93%)，预计 ~45 分钟完成\n\n**接近完成 (>85%):**\n- Qwen seed789 — 534/600 (89%)，预计 ~1.2 小时完成\n\n**异常:**\n- **westd-30973 LLaMA seed789-v2 被 SIGTERM 终止**（EXIT_CODE=143），停在 325/600。vLLM（port 8001）已关闭，GPU 1 空闲。日志最后时间戳 20:40，之后被 kill。\n- **westd-30973 有 2 个 GPU 完全空闲**（cuda:0, cuda:1），可用于部署 FOLIO NLI 实验或重启 seed789-v2。\n- westd-16639 cuda:1 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-experiment-progress-all-servers.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d5eb244c4d76e3c0399",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper research",
+  "task_key": "worker_paper_research_20260520T101251",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_research_20260520T101251_result.json",
+    "occurrence": 1,
+    "bytes": 761,
+    "sha256": "c3e70da8730790167b84d2c2fe38a42dfa7b7f7854317f076882eff6ae320586"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "YAML 验证通过，67 篇论文全部正确解析。\n\n**新增 14 篇论文汇总：**\n\n| 方向 | 新增 | 论文 |\n|------|------|------|\n| 1. Symbolic verification | +3 | LogicGuide (Poesia'23), SatLM (Ye, NeurIPS'23), SymbCoT (Xu, ACL'24) |\n| 2. SC & aggregation | +1 | Complexity-Based Prompting (Fu, ICLR'23) |\n| 3. NLI as verifier | +5 | DeBERTa (He, ICLR'21), RoBERTa (Liu'19), MultiNLI (Williams, NAACL'18), FEVER (Thorne, NAACL'18), TRUE (Honovich, NAACL'22) |\n| 4. Calibration & selective prediction | +5 | Kadavath'22, Guo (ICML'17), Geifman (NeurIPS'17), Ren'23, Xiong (ICLR'24) |\n\n新增 2 个 category：`nli_verification`、`calibration_selective_prediction`。所有论文 `verified: false`，待后续统一核实。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research.md"
+}

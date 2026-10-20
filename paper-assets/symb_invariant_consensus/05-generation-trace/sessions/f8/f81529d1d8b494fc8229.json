@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f81529d1d8b494fc8229",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis gemini interim metrics v2",
+  "task_key": "worker_analysis_gemini-interim-metrics-v2_20260521T201425",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_gemini-interim-metrics-v2_20260521T201425_result.json",
+    "occurrence": 1,
+    "bytes": 1054,
+    "sha256": "c0551becf1419efc37d60ce81ba81648b77086afd1d36a97e57c3cf957a8c106"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Gemini 2.5 Pro 95 题 interim metrics：\n\n| Metric | Gemini-2.5-Pro | o3 (ref) | gpt-5.5 (ref) |\n|---|---|---|---|\n| **SC accuracy** | **0.8737** (83/95) | 0.8265 | 0.8431 |\n| **SICA accuracy** | **0.8632** (82/95) | 0.8265 | 0.8480 |\n| **Δ(SICA-SC)** | **-1.05pp** | +0.00pp | +0.49pp |\n| **Mean BR** | **2.7895** | 1.6565 | 3.4806 |\n| **Weighted BR** | **2.5232** | 1.812 | 3.5735 |\n| **n_br_finite** | **8** | 6 | 4 |\n| **BR=∞** | **5** | 28 | 27 |\n| **Process-κ** | **0.7896** | 0.5964 | 0.5625 |\n| **Answer-κ** | **0.7532** | 0.9221 | 0.9581 |\n\n要点：\n- SC 准确率最高 (87.4%)，但 SICA 比 SC 低 1.05pp（Delta 为负）\n- BR=∞ 仅 5 例（远少于 o3 的 28 和 gpt-5.5 的 27），说明 SICA 错误时 gold 答案通常仍有非零权重\n- Process-κ 最高 (0.79)，表明 Gemini CoT traces 之间文本相似度高（推理路径更一致）\n- Answer-κ 最低 (0.75)，说明 12 次 sampling 的答案分歧比 o3/gpt-5.5 大\n\n结果已保存到 `gemini_interim_95_metrics.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gemini-interim-metrics-v2.md"
+}

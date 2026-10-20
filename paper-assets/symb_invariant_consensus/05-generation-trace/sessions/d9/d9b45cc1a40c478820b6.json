@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9b45cc1a40c478820b6",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis mistral folio data audit",
+  "task_key": "worker_analysis_mistral-folio-data-audit_20260522T144713",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_mistral-folio-data-audit_20260522T144713_result.json",
+    "occurrence": 1,
+    "bytes": 2601,
+    "sha256": "51b025242dd7f51cbe6cf30e74ae36a4190a724236f364b9ce513335af13bbc8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the full analysis:\n\n---\n\n## 排查结论\n\n### 1. seed=123: 67.16% 来源确认\n\n**67.16% 是 LLaMA-8B FOLIO seed=123 的 SC 准确率**（137/204），不是 Mistral。Agent 报告时混淆了模型。\n\n实际 Mistral FOLIO seed=123 数据：\n\n| 目录 | SC | SICA | 文件大小 |\n|------|-----|------|---------|\n| `multi_seed/mistral_folio_seed123` | **57.84%** (118/204) | 57.84% (118/204) | 313,772 B |\n| `exp052_mistral_folio204_seed123` | **53.92%** (110/204) | 57.35% (117/204) | — |\n\nmulti_seed 和 exp052 是不同次运行，结果有差异（SC差4pp），说明存在不完全的随机性控制或代码版本差异。multi_seed 中 SC=SICA 完全一致（均为118/204），稍显可疑但非致命。\n\n### 2. seed=456: vLLM 崩溃确认，数据无效\n\n| 指标 | seed=456 (multi_seed) | exp053 (安全数据) |\n|------|----------------------|-------------------|\n| SC | **28.92%** (59/204) | 56.37% (115/204) |\n| SICA | 27.94% (57/204) | 55.88% (114/204) |\n| 空问题 (sc_vote_count=0) | **111/204** | 0 |\n| 总约束数 | 6,242 | 13,914 |\n| 运行时长 | 2,210s | ~4,900s |\n| 文件大小 | 273,711 B (偏小) | — |\n\n**结论：seed=456 multi_seed 数据严重腐坏。** 111/204 问题完全为空（无投票、无约束、无答案），是 vLLM 中途崩溃的典型特征。运行时长仅 2210s（正常 ~4800s），约束总数不到正常的一半。**该数据不可用。**\n\n### 3. seed=789: 数据完整，无异常\n\n| 项目 | 值 |\n|------|-----|\n| SC | 59.31% (121/204) |\n| SICA | 56.86% (116/204) |\n| main vs backup | **完全一致**（同为 316,151 B，同指标） |\n| 运行时长 | 4,798s（正常范围） |\n| main Birth | 2026-05-22 18:49:51 |\n| backup Birth | 2026-05-22 20:36:33（后于 main 27分钟复制） |\n\n时间线合理：seed=789 与 seed=123 几乎同时启动（18:49 vs 18:43，大概率并行运行），seed=456 在它们完成后顺序启动（20:02）。backup 是主文件的手动副本，无异常。\n\n### 4. 总结\n\n| Seed | 状态 | 可用性 | 备注 |\n|------|------|--------|------|\n| 123 | ⚠️ 可用但有差异 | **可用**（论文用 exp052） | multi_seed 与 exp052 差 4pp，论文已用 exp052 安全数据 |\n| 456 | ❌ 崩溃腐坏 | **无效** | 111/204 空问题，需重跑或仅用 exp053 |\n| 789 | ✅ 完整 | **可用** | backup 与 main 一致 |\n\n**67.16% 误报原因**：Agent 将 `llama8b_folio_seed123` 的 SC=67.16% 错误归因给了 Mistral FOLIO seed=123。论文现有 exp-052/053 数据不受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mistral-folio-data-audit.md"
+}

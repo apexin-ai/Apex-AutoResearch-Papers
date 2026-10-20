@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2834367631fd39db016",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code contrastive extraction",
+  "task_key": "worker_code_contrastive-extraction_20260518T140457",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_contrastive-extraction_20260518T140457_result.json",
+    "occurrence": 1,
+    "bytes": 2010,
+    "sha256": "ec1c5086baa27c0c325603f0f0af31f4fa2632a4514c2024987267095589201b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. 24/24 extractions succeeded, 0 parse failures.\n\n---\n\n## 产出报告\n\n### 1. 修改的文件\n\n| 文件 | 变更 |\n|------|------|\n| `sica/constraint_extractor.py` | 新增 `CONTRASTIVE_EXTRACTION_PROMPT`、`ContrastiveConstraintExtractor` 类 |\n| `sica/pipeline.py` | 新增 `ContrastiveScorer`、`ContrastiveSICAPipeline` 类 |\n| `run_contrastive_folio.py` | 新建，contrastive 实验入口 |\n| `scripts/run_contrastive_folio.sh` | 新建，shell 运行脚本 |\n\n### 2. Contrastive Extraction Prompt 核心设计\n\nPrompt 要求 LLM 对**每个候选答案**提取 supporting 和 opposing 约束：\n- `stance`: \"supporting\" / \"opposing\"\n- `target`: 约束针对的候选答案 (True/False/Unknown)\n- `z3_formula`: Z3 布尔公式\n\n关键指令：**\"Focus on DISCRIMINATIVE constraints: ones where the logical content genuinely differentiates between candidate answers.\"**\n\n### 3. Aggregation 权重处理\n\n- MaxSAT 层：所有约束以频率权重正常求解（找最大可满足子集）\n- 评分层：对每个 satisfied 约束，按 stance 标签计分\n  - `supporting` → `scores[target] += weight`\n  - `opposing` → `scores[target] -= alpha * weight`\n- `alpha` 默认 1.0，可通过 `--scorer-alpha` 调整\n\n### 4. 运行脚本\n\n```bash\n# 完整运行（需 vLLM + Qwen2.5-14B）\nbash scripts/run_contrastive_folio.sh\n\n# 仅测试几个例子\npython run_contrastive_folio.py \\\n    --traces-dir results/folio_204_14b/intermediates \\\n    --mode vllm --dry-run 5\n```\n\n### 5. Dry-run 结果（2 examples, real vLLM）\n\n| 问题 | GT | Contrastive | SC | \n|------|----|-------------|-----|\n| folio_0 | Unknown | **Unknown (V)** | True (X) |\n| folio_1 | True | True (V) | True (V) |\n\n- Contrastive: **2/2 (100%)**, SC: 1/2 (50%)\n- 提取成功率 24/24，平均每题 ~20s\n- folio_0 的 stance 分布：supporting=9, opposing=16。opposing 约束成功惩罚了 True (-4.0) 和 False (-2.0)，Unknown 保持 0.0 胜出"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-contrastive-extraction.md"
+}

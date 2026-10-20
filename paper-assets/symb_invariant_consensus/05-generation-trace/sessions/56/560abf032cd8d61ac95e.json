@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "560abf032cd8d61ac95e",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment wave3 dir h adversarial",
+  "task_key": "worker_experiment_wave3-dir-h-adversarial_20260520T094545",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_wave3-dir-h-adversarial_20260520T094545_result.json",
+    "occurrence": 1,
+    "bytes": 671,
+    "sha256": "f3b4e6956a5c7351268e7aa79a8d2e09a6e02e75d02e599cd9e9f310f63a1e57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已经在运行，无需重新启动。当前状态：\n\n**进度**: 57/204 (28%), 速度 ~30s/题, 预计 ~19:05 完成\n\n**中间正确率 (57题)**:\n- SC: 34/57 = **59.6%**\n- AdvW: 32/57 = **56.1%**\n\nAdvW 暂时低于 SC 3.5pp。看起来 adversarial weighting 在一些 case 上翻转了原本正确的 SC 答案（如 folio_16: SC=Unknown(Y) → AdvW=False(N)）。\n\n脚本代码完整，用 port 8012 上的 vLLM，输出到 `results/direction_h_adversarial/results.json`。还有 adv_only、adv_filter 两个策略会在最终结果中一起报告。\n\n等它跑完后收集最终结果。要现在轮询等待，还是稍后再查？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-wave3-dir-h-adversarial.md"
+}

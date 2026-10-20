@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a9a804df1487764d191",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix model download resume",
+  "task_key": "worker_fix_model-download-resume_20260516T084308",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_model-download-resume_20260516T084308_result.json",
+    "occurrence": 1,
+    "bytes": 568,
+    "sha256": "44b44d34289dc1b247d59d7e5293a49d23a8dee808fc48b79e5567aa1bd4327e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Status update — downloads running, both alive:**\n\n| Model | Downloaded | Speed | ETA |\n|-------|-----------|-------|-----|\n| Mistral-7B (3 shards, ~13.5GB) | ~93MB | ~330 KB/s | ~3.5-4h |\n| LLaMA-8B (4 shards, ~15GB) | ~109MB | ~800 KB/s | ~1.5-1.7h |\n\nBoth processes (PID 197994, 198197) are running with correct ignore filters — no consolidated/pth files being downloaded.\n\nLLaMA should finish first (~1.5h). Mistral will take longer (~3.5h). I can check back periodically or you can ask me to poll. Want me to set up a monitoring loop?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-model-download-resume.md"
+}

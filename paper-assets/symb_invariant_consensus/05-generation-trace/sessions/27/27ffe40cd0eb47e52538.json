@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27ffe40cd0eb47e52538",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis diverse prompt accuracy and scatter fix",
+  "task_key": "worker_analysis_diverse-prompt-accuracy-and-scatter-fix_20260520T025854",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_diverse-prompt-accuracy-and-scatter-fix_20260520T025854_result.json",
+    "occurrence": 1,
+    "bytes": 891,
+    "sha256": "020085a9511d202e59adc090da314b93e4083c425a0451fa4faa322a33d41212"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**子任务 1 结果**：\n| Method | Majority-Vote Accuracy | 来源 |\n|--------|----------------------|------|\n| Diverse-Prompt | **54.41%** (111/204) | exp-077 per-question 数据，12 traces majority vote |\n| SC | 54.41% (111/204) | exp-077 交叉验证（vs 原始 56.86%，因 n_raters 6-12 不一致） |\n| Debate | 49.02% (100/204) | exp-077 交叉验证（vs 原始 38.24%，不同实验参数） |\n\n27 个 diverse answers 无法归一化为 True/False/Unknown（如 \"Partially True\"、实体陈述句等），但 fuzzy normalization 后结果不变（仍 54.41%）。\n\n**子任务 2 完成**：\n- Diverse-Prompt accuracy: 55.0% → **54.41%**\n- X 轴标签: \"Trace Correlation\" → **\"Output Correlation\"**\n- 生成文件：\n  - `docs/paper/figures/f6_kappa_accuracy_scatter.pdf`\n  - `docs/paper/figures/f6_kappa_accuracy_scatter.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-diverse-prompt-accuracy-and-scatter-fix.md"
+}

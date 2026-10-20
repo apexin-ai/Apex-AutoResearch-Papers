@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62427448c1097de2848c",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag exp 028b failure",
+  "task_key": "worker_diag_exp-028b-failure_20260519T032113",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_exp-028b-failure_20260519T032113_result.json",
+    "occurrence": 1,
+    "bytes": 1321,
+    "sha256": "94fec66a91cbed726b025bc927c858b0f5cded2817848e3da05579c6fdf549fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n### 失败根因：资源冲突（非 OOM）\n\n**exp058 在 11:12 部署到 cuda:3 + port 8003，直接杀死了 exp028b 的 vLLM 服务。**\n\n证据链：\n1. exp028b 的 vLLM (PID 99897) 已死，`ps -p 99897` 无结果\n2. GPU 3 当前进程 PID 149906 是 exp058 的 Mistral-7B EngineCore（父进程 149633，启动于 11:12）\n3. exp058 的启动命令明确使用 `CUDA_VISIBLE_DEVICES=3 --port 8003`，与 exp028b 完全冲突\n4. vLLM 日志最后一条记录停在 11:12:10，之后无新日志\n5. GPU KV cache usage 仅 ~5-8%，不存在 OOM 问题\n\n### 进度与数据恢复\n\n| 项目 | 状态 |\n|------|------|\n| 完成进度 | 166/204 (81%) |\n| 中间结果 | `intermediates/folio_0~folio_165` 共 166 个 JSON 完整保存 |\n| 最终结果 | `exp028b_results.json` 仅 2 条（未来得及写入完整结果） |\n| 剩余工作 | 38 题，预计 ~90 min |\n\n### 残留进程\n\nexp028b 无残留进程。cuda:3 当前被 exp058 占用：\n- PID 149633: vLLM APIServer (Mistral-7B, port 8003)\n- PID 149906: VLLM::EngineCore, 88104 MiB\n\n### 重试建议\n\n值得重试。实验支持 resume（`--save-intermediates` + 自动跳过已完成），只需跑剩余 38 题。但需等 exp058 完成后释放 cuda:3 和 port 8003，或改用其他 GPU/端口。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp-028b-failure.md"
+}

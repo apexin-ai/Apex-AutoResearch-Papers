@@ -1,0 +1,292 @@
+{
+  "schema_version": "1.0",
+  "id": "6067f64e96fd6a532e6a",
+  "project": "symb_invariant_consensus",
+  "kind": "conversation",
+  "title": "analysis exp 011 truncation bias",
+  "task_key": "worker_analysis_exp-011-truncation-bias_20260517T081040",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analysis_exp-011-truncation-bias_20260517T081040.jsonl",
+    "occurrence": 1,
+    "bytes": 19845,
+    "sha256": "7eecfc7d40e1a8ed1bc4aa09d100f3840ea89bc138f4e38e844a9c59eb67cf99"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "tool_call": 6,
+      "tool_result": 6,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T08:12:14.966032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-011-truncation-bias_20260517T081040",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T08:12:14.966743+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-011-truncation-bias_20260517T081040",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T08:12:14.967243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-011-truncation-bias_20260517T081040",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "find /root/symb_invariant_consensus/results/ -name \"*\" -type f | head -50",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T08:12:14.967776+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-011-truncation-bias_20260517T081040",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T08:12:14.968010+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-011-truncation-bias_20260517T081040",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "find /root/runs/symb_invariant_consensus/ -name \"*\" -type f 2>/dev/null | head -50",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T08:12:14.968274+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-011-truncation-bias_20260517T081040",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T08:12:14.968416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-011-truncation-bias_20260517T081040",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "find /root/symb_invariant_consensus/results/ -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T08:12:14.968901+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/results/smoke_test_5q.json\\\\n/root/symb_invariant_consensus/results/diversity_diagnosis.json\\\\n/root/symb_invariant_consensus/results/aime30_t07.json\\\\n/root/symb_invariant_consensus/results/aime30_v2.json\\\\n/root/symb_invariant_consensus/results/aime30_v2_partial_backup.json\\\\n/root/symb_invariant_consensus/results/aime30_v2_rescore_analysis.json\\\\n/root/symb_invariant_consensus/results/rescore_pure_results.json\\\\n/root/symb_invariant_consensus/results/folio_livetest.json\\\\n/root/symb_invariant_consensus/results/proofwriter_30_v2.json\\\\n/root/symb_invariant_consensus/results/proofwriter_5_l3l1_fix.json\\\\n/root/symb_invariant_consensus/results/c0_precheck_qwen14b.json\\\\n/root/symb_invariant_consensus/results/d016_smoke_test.json\\\\n/root/symb_invariant_consensus/results/sica_d012_14b.json\\\\n/root/symb_invariant_consensus/results/tiebreak_analysis.json\\\\n/root/symb_invariant_consensus/results/sica_expanded_14b.json\\\\n/root/symb_invariant_consensus/results/qwq_operating_regime.json\\\\n/root/symb_invariant_consensus/results/qwq_operating_regime.md\\\\n/root/symb_invariant_consensus/results/constraint_ablation.json\\\\n/root/symb_invariant_consensus/results/analysis_expanded.json\\\\n/root/symb_invariant_consensus/results/exp001_analysis.md\\\\n/root/symb_invariant_consensus/results/k_ablation/traces_k20.json\\\\n/root/symb_invariant_consensus/results/k_ablation/k6_results.json\\\\n/root/symb_invariant_consensus/results/k_ablation/k8_results.json\\\\n/root/symb_invariant_consensus/results/k_ablation/k11_results.json\\\\n/root/symb_invariant_consensus/results/k_ablation/k12_results.json\\\\n/root/symb_invariant_consensus/results/k_ablation/k16_results.json\\\\n/root/symb_invariant_consensus/results/k_ablation/k20_results.json\\\\n/root/symb_invariant_consensus/results/constraint_cache/ProofWriter_AttNoneg-OWA-D5-1041_Q1.json\\\\n/root/symb_invariant_consensus/results/constraint_cache/ProofWriter_RelNeg-OWA-D5-8\n…[truncated 6414 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-011-truncation-bias_20260517T081040",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T08:12:14.969131+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-011-truncation-bias_20260517T081040",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "cat /root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T08:12:14.969493+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 60,\\\\n    \\\\\\\"sica_accuracy\\\\\\\": 0.6666666666666666,\\\\n    \\\\\\\"sc_accuracy\\\\\\\": 0.6,\\\\n    \\\\\\\"sica_correct\\\\\\\": 40,\\\\n    \\\\\\\"sc_correct\\\\\\\": 36,\\\\n    \\\\\\\"extraction_rate\\\\\\\": 0.8555555555555555,\\\\n    \\\\\\\"answer_extraction_rate\\\\\\\": 0.8958333333333334,\\\\n    \\\\\\\"answer_extraction_counts\\\\\\\": {\\\\n      \\\\\\\"boxed\\\\\\\": 621,\\\\n      \\\\\\\"fallback\\\\\\\": 24,\\\\n      \\\\\\\"none\\\\\\\": 75\\\\n    },\\\\n    \\\\\\\"truncated_traces\\\\\\\": 44,\\\\n    \\\\\\\"total_constraints_extracted\\\\\\\": 6059,\\\\n    \\\\\\\"total_unique_constraints\\\\\\\": 1804,\\\\n    \\\\\\\"contradiction_rate\\\\\\\": 0.05266075388026607,\\\\n    \\\\\\\"problems_with_contradictions\\\\\\\": 43,\\\\n    \\\\\\\"per_level_accuracy\\\\\\\": {\\\\n      \\\\\\\"D5\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.6333333333333333,\\\\n        \\\\\\\"sc\\\\\\\": 0.6,\\\\n        \\\\\\\"n\\\\\\\": 30\\\\n      },\\\\n      \\\\\\\"folio\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.7,\\\\n        \\\\\\\"sc\\\\\\\": 0.6,\\\\n        \\\\\\\"n\\\\\\\": 30\\\\n      }\\\\n    },\\\\n    \\\\\\\"per_dataset_accuracy\\\\\\\": {\\\\n      \\\\\\\"proofwriter\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.6333333333333333,\\\\n        \\\\\\\"sc\\\\\\\": 0.6,\\\\n        \\\\\\\"n\\\\\\\": 30\\\\n      },\\\\n      \\\\\\\"folio\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.7,\\\\n        \\\\\\\"sc\\\\\\\": 0.6,\\\\n        \\\\\\\"n\\\\\\\": 30\\\\n      }\\\\n    },\\\\n    \\\\\\\"k\\\\\\\": 12,\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"vllm\\\\\\\",\\\\n    \\\\\\\"total_wall_time_s\\\\\\\": 3983.3\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"problem_idx\\\\\\\": 0,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"ProofWriter_AttNeg-OWA-D5-979_Q9\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Given the following facts and rules:\\\\\\\\nCharlie is red. Dave is red. Dave is rough. Dave is round. Dave is young. Fiona is quiet. Fiona is red. Harry is furry. Harry is kind. Harry is young. All rough things are round. All rough things are round. All round, rough things are young. All red things are young. If Fiona is young and Fiona is not furry then Fiona is kind. If something is furry then it is rough. Quiet, k\n…[truncated 8334 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-011-truncation-bias_20260517T081040",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T08:12:14.969799+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-011-truncation-bias_20260517T081040",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "cat << 'PYEOF' > /tmp/truncation_bias_analysis.py\nimport json\nimport numpy as np\nfrom scipy import stats\n\nwith open('/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json') as f:\n    data = json.load(f)\n\nresults = data['results']\nn = len(results)\n\n# Per-problem analysis\nrecords = []\nfor r in results:\n    pid = r['problem_id']\n    trunc = r['truncated_traces']\n    k = len(r['per_trace'])\n    trunc_rate = trunc / k if k > 0 else 0\n    sica_ok = r['sica_correct']\n    sc_ok = r['sc_correct']\n    \n    if sica_ok and sc_ok:\n        pair_type = 'concordant_both_right'\n    elif not sica_ok and not sc_ok:\n        pair_type = 'concordant_both_wrong'\n    elif sica_ok and not sc_ok:\n        pair_type = 'discordant_sica_wins'\n    else:\n        pair_type = 'discordant_sc_wins'\n    \n    records.append({\n        'pid': pid,\n        'truncated': trunc,\n        'k': k,\n        'trunc_rate': trunc_rate,\n        'sica_correct': sica_ok,\n        'sc_correct': sc_ok,\n        'pair_type': pair_type\n    })\n\n# Categorize\nsica_wins = [r for r in records if r['pair_type'] == 'discordant_sica_wins']\nsc_wins = [r for r in records if r['pair_type'] == 'discordant_sc_wins']\nconcordant_right = [r for r in records if r['pair_type'] == 'concordant_both_right']\nconcordant_wrong = [r for r in records if r['pair_type'] == 'concordant_both_wrong']\n\nprint(\"=\" * 70)\nprint(\"EXP-011 TRUNCATION BIAS ANALYSIS\")\nprint(\"=\" * 70)\n\nprint(f\"\\n1. PAIR CLASSIFICATION (N={n})\")\nprint(f\"   Concordant (both right):  {len(concordant_right)}\")\nprint(f\"   Concordant (both wrong):  {len(concordant_wrong)}\")\nprint(f\"   Discordant (SICA wins):   {len(sica_wins)}\")\nprint(f\"   Discordant (SC wins):     {len(sc_wins)}\")\n\nprint(f\"\\n2. TRUNCATION DISTRIBUTION\")\ntrunc_counts = [r['truncated'] for r in records]\nprint(f\"   Total truncated traces: {sum(trunc_counts)} across {n} problems\")\nprint(f\"   Problems with 0 truncated: {sum(1 for t in trunc_counts if t == 0)}\")\nprint(f\"   Problems with 1+ truncated: {sum(1 for t in trunc_counts if t >= 1)}\")\nprint(f\"   Problems with 2+ truncated: {sum(1 for t in trunc_counts if t >= 2)}\")\nprint(f\"   Problems with 3+ truncated: {sum(1 for t in trunc_counts if t >= 3)}\")\nprint(f\"   Mean truncated per problem: {np.mean(trunc_counts):.2f}\")\nprint(f\"   Median: {np.median(trunc_counts):.1f}\")\n\nprint(f\"\\n3. TRUNCATION RATE BY PAIR TYPE\")\nfor label, group in [('SICA wins', sica_wins), ('SC wins', sc_wins),\n                      ('Concordant right', concordant_right), ('Concordant wrong', concordant_wrong)]:\n    if group:\n        rates = [r['trunc_rate'] for r in group]\n        counts = [r['truncated'] for r in group]\n        print(f\"   {label:20s}: n={len(group):2d}, mean_trunc={np.mean(counts):.2f}, \"\n              f\"mean_rate={np.mean(rates):.3f}, median_trunc={np.median(counts):.1f}\")\n    else:\n        print(f\"   {label:20s}: n=0\")\n\nprint(f\"\\n4. DETAILED DISCORDANT PAIRS\")\nprint(f\"\\n   4a. SICA wins (SICA correct, SC wrong):\")\nfor r in sica_wins:\n    print(f\"       {r['pid'][:50]:50s}  trunc={r['truncated']}/{r['k']}\")\n\nprint(f\"\\n   4b. SC wins (SC correct, SICA wrong):\")\nfor r in sc_wins:\n    print(f\"       {r['pid'][:50]:50s}  trunc={r['truncated']}/{r['k']}\")\n\n# Fisher exact test: truncation (high/low) vs SICA advantage\n# Split: problems with any truncation vs no truncation\nprint(f\"\\n5. STATISTICAL TESTS\")\n\n# Test 1: Among discordant pairs, is truncation associated with SICA winning?\ndisc_all = sica_wins + sc_wins\nif len(disc_all) >= 2:\n    # For each discordant pair: has truncation? SICA wins?\n    trunc_sica_win = sum(1 for r in sica_wins if r['truncated'] > 0)\n    trunc_sc_win = sum(1 for r in sc_wins if r['truncated'] > 0)\n    no_trunc_sica_win = sum(1 for r in sica_wins if r['truncated'] == 0)\n    no_trunc_sc_win = sum(1 for r in sc_wins if r['truncated'] == 0)\n    \n    table = [[trunc_sica_win, trunc_sc_win],\n             [no_trunc_sica_win, no_trunc_sc_win]]\n    print(f\"\\n   Fisher exact test (discordant pairs only):\")\n    print(f\"                    SICA wins  SC wins\")\n    print(f\"   Has truncation:  {trunc_sica_win:9d}  {trunc_sc_win:7d}\")\n    print(f\"   No truncation:   {no_trunc_sica_win:9d}  {no_trunc_sc_win:7d}\")\n    \n    odds, p = stats.fisher_exact(table)\n    print(f\"   Odds ratio: {odds:.3f}, p-value: {p:.4f}\")\nelse:\n    print(\"   Not enough discordant pairs for Fisher test\")\n\n# Test 2: Mann-Whitney U on truncation counts: SICA-wins vs rest\nprint(f\"\\n   Mann-Whitney U: truncation counts in SICA-wins vs all others\")\nsica_win_trunc = [r['truncated'] for r in sica_wins]\nother_trunc = [r['truncated'] for r in records if r['pair_type'] != 'discordant_sica_wins']\nif len(sica_win_trunc) >= 1 and len(other_trunc) >= 1:\n    u_stat, u_p = stats.mannwhitneyu(sica_win_trunc, other_trunc, alternative='greater')\n    print(f\"   SICA-wins mean trunc: {np.mean(sica_win_trunc):.2f}\")\n    print(f\"   Others mean trunc: {np.mean(other_trunc):.2f}\")\n    print(f\"   U={u_stat:.1f}, p={u_p:.4f} (one-sided: SICA-wins > others)\")\n\n# Test 3: Point-biserial correlation: truncation rate vs SICA advantage\nprint(f\"\\n   Point-biserial: trunc_rate vs (SICA_correct - SC_correct)\")\nsica_advantage = [int(r['sica_correct']) - int(r['sc_correct']) for r in records]\ntrunc_rates = [r['trunc_rate'] for r in records]\nr_pb, p_pb = stats.pointbiserialr(\n    [1 if a > 0 else 0 for a in sica_advantage],  # binary: SICA strictly better\n    trunc_rates\n)\n# Actually, let's use Spearman on the raw values\nr_sp, p_sp = stats.spearmanr(trunc_rates, sica_advantage)\nprint(f\"   Spearman rho(trunc_rate, sica_advantage): {r_sp:.4f}, p={p_sp:.4f}\")\n\n# Test 4: Compare truncation between datasets\nprint(f\"\\n6. TRUNCATION BY DATASET\")\nfor ds in ['proofwriter', 'folio']:\n    ds_records = [r for r in records if ds in r['pid'].lower()]\n    ds_trunc = [r['truncated'] for r in ds_records]\n    print(f\"   {ds:12s}: n={len(ds_records)}, mean_trunc={np.mean(ds_trunc):.2f}, \"\n          f\"total_trunc={sum(ds_trunc)}\")\n\n# Median split analysis\nprint(f\"\\n7. MEDIAN SPLIT ANALYSIS\")\nmed = np.median(trunc_counts)\nhigh_trunc = [r for r in records if r['truncated'] > med]\nlow_trunc = [r for r in records if r['truncated'] <= med]\nif high_trunc and low_trunc:\n    high_sica = np.mean([int(r['sica_correct']) for r in high_trunc])\n    high_sc = np.mean([int(r['sc_correct']) for r in high_trunc])\n    low_sica = np.mean([int(r['sica_correct']) for r in low_trunc])\n    low_sc = np.mean([int(r['sc_correct']) for r in low_trunc])\n    print(f\"   Median truncation = {med}\")\n    print(f\"   High-trunc group (trunc>{med:.0f}): n={len(high_trunc)}, \"\n          f\"SICA={high_sica:.3f}, SC={high_sc:.3f}, delta={high_sica-high_sc:+.3f}\")\n    print(f\"   Low-trunc group (trunc<={med:.0f}):  n={len(low_trunc)}, \"\n          f\"SICA={low_sica:.3f}, SC={low_sc:.3f}, delta={low_sica-low_sc:+.3f}\")\n\nprint(f\"\\n8. CONCLUSION\")\n# Summarize\nsica_wins_trunc_mean = np.mean([r['truncated'] for r in sica_wins]) if sica_wins else 0\nother_mean = np.mean([r['truncated'] for r in records if r['pair_type'] != 'discordant_sica_wins'])\nprint(f\"   SICA-wins discordant pairs avg truncation: {sica_wins_trunc_mean:.2f}\")\nprint(f\"   All other problems avg truncation: {other_mean:.2f}\")\n\nPYEOF\nsource /root/miniconda3/bin/activate && python /tmp/truncation_bias_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T08:12:14.970089+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"======================================================================\\\\nEXP-011 TRUNCATION BIAS ANALYSIS\\\\n======================================================================\\\\n\\\\n1. PAIR CLASSIFICATION (N=60)\\\\n   Concordant (both right):  35\\\\n   Concordant (both wrong):  19\\\\n   Discordant (SICA wins):   5\\\\n   Discordant (SC wins):     1\\\\n\\\\n2. TRUNCATION DISTRIBUTION\\\\n   Total truncated traces: 44 across 60 problems\\\\n   Problems with 0 truncated: 44\\\\n   Problems with 1+ truncated: 16\\\\n   Problems with 2+ truncated: 13\\\\n   Problems with 3+ truncated: 9\\\\n   Mean truncated per problem: 0.73\\\\n   Median: 0.0\\\\n\\\\n3. TRUNCATION RATE BY PAIR TYPE\\\\n   SICA wins           : n= 5, mean_trunc=0.60, mean_rate=0.050, median_trunc=0.0\\\\n   SC wins             : n= 1, mean_trunc=0.00, mean_rate=0.000, median_trunc=0.0\\\\n   Concordant right    : n=35, mean_trunc=0.74, mean_rate=0.062, median_trunc=0.0\\\\n   Concordant wrong    : n=19, mean_trunc=0.79, mean_rate=0.066, median_trunc=0.0\\\\n\\\\n4. DETAILED DISCORDANT PAIRS\\\\n\\\\n   4a. SICA wins (SICA correct, SC wrong):\\\\n       ProofWriter_RelNoneg-OWA-D5-1036_Q11                trunc=0/12\\\\n       ProofWriter_RelNeg-OWA-D5-856_Q19                   trunc=3/12\\\\n       folio_002                                           trunc=0/12\\\\n       folio_014                                           trunc=0/12\\\\n       folio_027                                           trunc=0/12\\\\n\\\\n   4b. SC wins (SC correct, SICA wrong):\\\\n       ProofWriter_RelNoneg-OWA-D5-709_Q12                 trunc=0/12\\\\n\\\\n5. STATISTICAL TESTS\\\\n\\\\n   Fisher exact test (discordant pairs only):\\\\n                    SICA wins  SC wins\\\\n   Has truncation:          1        0\\\\n   No truncation:           4        1\\\\n   Odds ratio: inf, p-value: 1.0000\\\\n\\\\n   Mann-Whitney U: truncation counts in SICA-wins vs all others\\\\n   SICA-wins mean trunc: 0.60\\\\n   Others mean trunc: 0.75\\\\n   U=129.5, p\n…[truncated 745 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-011-truncation-bias_20260517T081040",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T08:12:14.970296+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-011 截断偏差分析报告\n\n### 截断分布\n- 44 条 truncated traces 分布在 16/60 个问题上（73% 的问题无截断）\n- 截断集中在 ProofWriter（39/44），FOLIO 几乎无截断（5/44）\n- 平均每题 0.73 条截断，中位数 0\n\n### 核心发现：截断不偏向 SICA\n\n**Discordant pairs 截断情况：**\n\n| 类型 | n | 有截断的问题数 | 平均截断数 |\n|------|---|---------------|-----------|\n| SICA wins | 5 | 1 (仅 RelNeg-856_Q19, 3/12) | 0.60 |\n| SC wins | 1 | 0 | 0.00 |\n\n5 个 SICA-wins discordant pair 中，4 个完全无截断，只有 1 个有 3 条截断。\n\n**统计检验（全部不显著）：**\n\n| 检验 | 结果 |\n|------|------|\n| Fisher exact (discordant pairs: 截断 vs SICA胜) | p=1.000 |\n| Mann-Whitney U (SICA-wins vs 其他的截断量) | p=0.615，方向相反（SICA-wins 截断更少） |\n| Spearman ρ (截断率 vs SICA优势) | ρ=-0.002, p=0.987 |\n\n**Median split：**\n- 有截断组 (n=16): SICA-SC = +6.2pp\n- 无截断组 (n=44): SICA-SC = +6.8pp\n- 两组 SICA 增益几乎相同，无截断组反而略高\n\n### 结论\n\n**截断不构成系统性偏差。** SICA 的 +6.67pp 增益在有/无截断的问题子集上均一致存在（+6.2pp vs +6.8pp）。SICA 胜出的 5 个 discordant pair 中 4 个无截断，且 SICA-wins 组的平均截断量（0.60）低于全局均值（0.75）。所有统计检验均不显著。\n\n对 exp-019 设计的启示：增加 max_tokens 是好的工程实践（减少信息丢失），但截断不是当前增益的驱动因素，不需要因此质疑 +6.67pp 的可信度。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-011-truncation-bias_20260517T081040"
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-exp-011-truncation-bias.md"
+}

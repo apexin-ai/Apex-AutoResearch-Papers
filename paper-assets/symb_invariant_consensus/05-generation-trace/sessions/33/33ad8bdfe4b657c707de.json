@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33ad8bdfe4b657c707de",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra aime progress check",
+  "task_key": "worker_infra_aime-progress-check_20260515T154305",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_aime-progress-check_20260515T154305_result.json",
+    "occurrence": 1,
+    "bytes": 1393,
+    "sha256": "9d2a2f2f93b4521cecf2af93efcc4ad2a87d7dc8b135bd73cd0fc0a96295e2d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## AIME v2 实验进度报告\n\n**状态：卡住** — Problem 5 自 22:11 起 vLLM 请求持续超时，已卡 ~1.5 小时。\n\n### 配置\n- 模型：QwQ-32B (vLLM)，k=12，temperature=0.7，max-tokens=10240\n- 开始时间：21:24，已运行 ~2h19m\n\n### 已完成 4/30 题（总耗时 2227s ≈ 37min）\n\n| # | Problem ID | GT | SICA | SC | Constraints | Unique | Excluded | 耗时 |\n|---|-----------|-----|------|-----|------------|--------|---------|------|\n| 1 | aime2024_II_01 | 73 | ✓(73) | ✓(73) 12/12 | 56 | 33 | 5 | 470s |\n| 2 | aime2024_II_02 | 236 | ✗ | ✗ 0/0 | 0 | 0 | 0 | 624s |\n| 3 | aime2024_II_03 | 45 | ✓(45) | ✓(45) 11/12 | 51 | 18 | 0 | 631s |\n| 4 | aime2024_II_04 | 33 | ✓(33) | ✓(33) 12/12 | 20 | 5 | 1 | 502s |\n\n### 汇总\n- **SICA 准确率：3/4 (75%)**\n- **SC 准确率：3/4 (75%)**\n- 平均耗时：~557s/题\n- 按此速度完成全部30题预估需 ~4.6h（但当前已卡住）\n\n### 问题\n\n1. **P2 Z3 错误**：`z3_maxsat.py:163` 抛 `Z3Exception: Value cannot be converted into a Z3 Boolean value`，导致 SICA 完全失败（0 constraints extracted），SC 也无投票。\n\n2. **P5 vLLM 超时**：从 22:11 起每 ~10min 重试一次，已重试多轮仍在超时。vLLM 服务可能挂了或 GPU OOM。**需要人工干预** — 检查 vLLM 进程/GPU 状态，可能需要重启 vLLM 再 resume。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-aime-progress-check.md"
+}

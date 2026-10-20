@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9af0730a270c93b50aec",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "figure fig1 fontsize fix",
+  "task_key": "worker_figure_fig1-fontsize-fix_20260517T171000",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_figure_fig1-fontsize-fix_20260517T171000_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "8b0e1f197c946f383904ca92ee52b1809bd009a444116bb1d3bd7b0da337eb9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF (45.7KB) 和 PNG (180KB) 均已更新。\n\n修改完成。总结变更：\n\n1. **`figsize`**: `(16, 7)` → `(8, 3.5)`\n2. **`ax.set_position([0, 0, 1, 1])`**: 让 axes 填满整个 figure，最大化元素间物理间距\n3. **加宽 4 个溢出最严重的 box**：\n   - Question: 1.5 → 1.8\n   - K Reasoning: 1.5 → 1.7\n   - MAX-SAT (Z3): 1.5 → 2.0\n   - Most Frequent: 1.7 → 2.0\n4. **字号全部保持不变** (8-14pt range)\n\n输出 8.20 × 3.70 inches。放入 EMNLP 6.75\" 双栏时 scale=0.823：\n- Box 文字 (10pt) → **8.2pt** ✓\n- 注释 (8pt) → **6.6pt** (接近可读)\n- 标题 (13-14pt) → **10.7-11.5pt** ✓\n- 最大 box 溢出从原来的 51% 降至 13%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig1-fontsize-fix.md"
+}

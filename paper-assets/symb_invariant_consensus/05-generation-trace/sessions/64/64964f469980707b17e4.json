@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64964f469980707b17e4",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "agent / loop_7_1779019149.md",
+  "task_key": "loop_7_1779019149",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_7_1779019149.md",
+    "occurrence": 1,
+    "bytes": 3874,
+    "sha256": "b7138261342f3da9ff8a103b3b62d19066af8f52d5ea17562aa96bf7de17b7c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-17T10:49:21+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只分配 westd-32608:cuda:0，禁止使用其他 GPU\n- submit_training_job 命令必须带 conda 激活前缀：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...`，裸 `python` 在 tmux 中不可用（EXIT_CODE=127，刚踩过）\n- 禁止在命令中混合 `pkill -f vllm` 和实验脚本（exp-010-mistral-v2 事故教训：pkill 误杀 tmux 父进程链导致 SIGTERM）\n- pilot-contrastive-prompt 是 D030 methods paper 方向的首个 pilot，失败后需重提交为 v2，不能跳过\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-32608，工作目录 `/root/symb_invariant_consensus`\n- Python：`/root/miniconda3/bin/python`（需 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型：Qwen2.5-14B-Instruct 在 `/root/autodl-tmp/models/Qwen2.5-14B-Instruct`；LLaMA-3.1-8B-Instruct 模型 shard 已修复（exp-011-llama8b-v3 QUEUED 等 GPU）\n- 数据集：D012 = `data/proofwriter_30.json` + `data/folio_30.json`（60 题）；Full = `data/proofwriter_full.json`(600) + `data/folio_full.json`(204)\n- 磁盘：400GB/439GB 可用（4%），充裕\n- 活跃进程：无（GPU 空闲）\n- Worker 在跑：`worker_diagnose_pilot-contrastive-prompt_20260517T064455`（SSH 诊断 + dry-run 验证）\n\n### 3. 📊 当前状态\n刚处理 pilot-contrastive-prompt 的 cron 失败回调（EXIT_CODE=127，环境激活缺失）。已完成：\n- registry 更新 notes（记录根因和修复方案）\n- 飞书结果卡片已发\n- Director 已汇报\n- memory.md 已追加失败模式记录\n- 等待 Worker 回调确认 dry-run 通过，然后重提交为 pilot-contrastive-prompt-v2\n\nRegistry 状态：\n- 30 个实验：DONE 28（success 10, negative 3, failed 9, killed 6），PREPARING 1（smoke-test-5q），QUEUED 1（exp-011-llama8b-v3）\n- **GPU 空闲**：cuda:0 无任何进程，Worker 确认后应立即重提交\n\n### 4. 📋 待办\n- Worker `diagnose_pilot-contrastive-prompt` 回调 → 读取诊断结果 → 用正确命令重提交为 `pilot-contrastive-prompt-v2`（命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python scripts/pilot_contrastive_constraints.py`）\n- pilot-contrastive-prompt-v2 完成 → 按 on-experiment-done 处理：若 discriminative ratio >70% 且 SICA(contrastive)>SC ≥3pp → D030 methods paper 方向验证通过；若 negative → 推导下一步（方案 B: NLI-based filtering）\n- exp-011-llama8b-v3 仍在 QUEUED → GPU 空闲时提交（LLaMA cross-family validation）\n- GPU 空闲时应同时考虑：pilot-contrastive-prompt-v2 优先（pilot 验证 D030 方向），跑完再跑 exp-011-llama8b-v3\n\n### 5. 🎯 战略上下文\n- **核心结论**：SICA ≈ SC（+0.25pp, N=804, n.s.）。原始 methods paper 方向已 pivot 到 Analysis Paper（D025），后又转 D030 Methods Paper——利用诊断数据设计改进方法\n- **D030 方向**：从 analysis 转回 methods，关键洞察是约束提取产出 domain facts 而非 answer-discriminative constraints，导致 MaxSAT ≡ majority vote。pilot-contrastive-prompt 测试最简改进方案（方案 C: contrastive prompt）\n- **决策链**：D025(pivot to analysis) → D027(MaxSAT≈count-only) → D029(SICA≤SC for all K) → D030(转 methods paper，利用诊断设计改进)\n- **易错点**：\n  - 不要混淆 QwQ-32B 结果和 Qwen2.5-14B 结果——QwQ 全域 C0 FAIL(3.6%)，已 pivot 到 14B\n  - pilot-constraint-filtering 已 negative（T=1/2/3 结果一致，discriminative ratio 仅 37.2%），contrastive prompt 是在此基础上的改进尝试\n  - exp-018-arc-v2(ARC success) 和 exp-017-strategyqa-v3(StrategyQA success) 都确认 capability trap 跨任务泛化，但 delta 不显著\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1779019149.md"
+}

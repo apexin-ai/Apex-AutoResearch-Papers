@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b3ac53dd1486658da7b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag exp034 status cron",
+  "task_key": "worker_diag_exp034-status-cron_20260519T042929",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_exp034-status-cron_20260519T042929_result.json",
+    "occurrence": 1,
+    "bytes": 500,
+    "sha256": "6cef65bbedd78cfd37001e85b81c9cfc3cc56d59181a096ce9776c05d4f997a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**exp-034 状态：正常运行中**\n- 进度：**562/600** (93.7%)，剩余 39 题\n- ETA：~45 分钟（avg 68.6s/prob）\n- tmux session：`exp034_run`，VLLM PID=68846，cuda:1，port 8001\n- Cron 监控：**已注册**（120s 间隔）\n- Registry 状态：仍为 DEPLOYED（状态机不允许 DEPLOYED→RUNNING 转换），notes 已更新为实际运行状态\n- 早期 93 题 partial metrics：SICA=77.42% vs SC=74.19%, delta=+3.23pp（待全量完成后更新）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp034-status-cron.md"
+}

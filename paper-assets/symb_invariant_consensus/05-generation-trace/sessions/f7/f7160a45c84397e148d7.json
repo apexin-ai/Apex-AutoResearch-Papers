@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7160a45c84397e148d7",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code submit exp010 mistral v3",
+  "task_key": "worker_code_submit-exp010-mistral-v3_20260517T080138",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_submit-exp010-mistral-v3_20260517T080138_result.json",
+    "occurrence": 1,
+    "bytes": 297,
+    "sha256": "0e85b22c4dd4d0765a3cc1e0d3fafc2b2a0a0b96ed5270d310b9750e457bad44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-010-mistral-v3 运行正常：\n\n- 进度：12/60 问题已完成，ETA 约 17 分钟\n- vLLM 服务器正常响应（HTTP 200）\n- 当前在处理 ProofWriter D5 难度题目\n- SICA 和 SC 推理都在正常输出结果\n\n无需任何干预，实验已在正常执行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-submit-exp010-mistral-v3.md"
+}

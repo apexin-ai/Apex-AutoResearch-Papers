@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2be8827783aaf805494",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra cleanup and bootstrap ci",
+  "task_key": "worker_infra_cleanup-and-bootstrap-ci_20260521T215950",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_cleanup-and-bootstrap-ci_20260521T215950_result.json",
+    "occurrence": 1,
+    "bytes": 1065,
+    "sha256": "453129405b0fa352c320f2fdcec51abfd7d25141593e09123e9517202560b690"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务均完成。\n\n---\n\n## 产出\n\n### 任务 1: GPU 清理对比\n\n| GPU | 清理前 | 清理后 | 说明 |\n|-----|--------|--------|------|\n| 0 | 84,225 MiB | 0 MiB | vLLM Mistral:8000 已 kill |\n| 1 | 83,565 MiB | 0 MiB | vLLM Qwen3:8001 已 kill |\n| 2 | 0 MiB | 0 MiB | 无变化 |\n| 3 | 89,811 MiB | 89,811 MiB | Mistral:8004 保留 |\n\n已 kill 进程：ModelScope 下载 (427876, 427984)、vLLM 8000 (412708, 412714)、vLLM 8001 (413553, 413558)。释放约 168 GB 显存。\n\n### 任务 2: Bootstrap CI 结果\n\n| 指标 | 值 |\n|------|-----|\n| Point estimate | ρ = **-1.000**, p = 0.000 |\n| Bootstrap 95% CI | **[-1.000, -1.000]** |\n| Mean ρ | **-1.000** |\n| Proportion ρ < 0 | **1.000** |\n| Valid bootstrap samples | 9,982 / 10,000 |\n\n5 个模型的 κ 和 Δ 呈完美单调递减关系（κ 严格递增时 Δ 严格递减），因此 Spearman ρ = -1.000。所有非退化 bootstrap 样本均保持该完美负相关，CI 退化为点。18 个无效样本是 bootstrap 抽到常数输入导致的 NaN。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-cleanup-and-bootstrap-ci.md"
+}

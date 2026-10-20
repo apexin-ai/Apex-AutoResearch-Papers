@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "813c3ad3472a573b2c60",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis verify tiebreaking seeds",
+  "task_key": "worker_analysis_verify-tiebreaking-seeds_20260523T184225",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_verify-tiebreaking-seeds_20260523T184225_result.json",
+    "occurrence": 1,
+    "bytes": 1046,
+    "sha256": "7a30c33fab2b90a376d97d5fd0776f258f233aa3eb929b72beb47bf88c41712e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**所有 seeds 123/456/789 均使用 alphabetical tiebreaking，无需修复。**\n\n### SC tiebreaking 验证\n\n| 实验 | N | SC Ties | 全部 alphabetical |\n|------|---|---------|-------------------|\n| Mistral PW seed123/456/789 | 600/600/600 | 29/21/30 | ✓ |\n| LLaMA PW seed123/456/789 | 600/**184**/600 | 32/8/36 | ✓ |\n| Qwen2.5 PW seed123/456/789 | 600/600/600 | 18/19/12 | ✓ |\n| Mistral FOLIO seed123/456/789 | 204/204/204 | 11/2/10 | ✓ |\n| LLaMA FOLIO seed123/456/789 | 204/204/204 | 14/4/7 | ✓ |\n| Qwen2.5 FOLIO seed123/456/789 | 204/204/204 | 2/8/5 | ✓ |\n\nSC 使用 `max(sorted(groups.keys()), key=...)` — ties 时取 alphabetically first。18 个实验中 0 个 mismatch。\n\n### SICA tiebreaking 验证\n\nSICA 使用三级 tiebreak：score → frequency → alphabetical。18 个实验中 0 个 bug，行为与代码 `select_answer()` 一致。\n\n### 附注\n\n**LLaMA PW seed456 只有 184/600 条结果**，是一个不完整的实验（但 tiebreaking 本身是正确的）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-verify-tiebreaking-seeds.md"
+}

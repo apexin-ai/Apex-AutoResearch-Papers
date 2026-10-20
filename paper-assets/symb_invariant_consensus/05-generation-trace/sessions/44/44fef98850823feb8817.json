@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44fef98850823feb8817",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "monitor proofwriter30 v2 progress",
+  "task_key": "worker_monitor_proofwriter30_v2_progress_20260516T012153",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_monitor_proofwriter30_v2_progress_20260516T012153_result.json",
+    "occurrence": 1,
+    "bytes": 976,
+    "sha256": "a193a95e541c0e09f6bb524305f0db93344e2bb5d8f643f72aa7a4d5f1a8275d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## proofwriter30_v2 进度报告\n\n**状态**: 运行中 (PID 155077, elapsed 3h02m)\n\n### 进度\n- **16/30 完成**，当前在 #17\n- 平均 668s/题，预估 **~2.6h 后完成**（约 11:50 UTC）\n- 无 400 错误\n\n### 准确率 (16题)\n\n| 方法 | 正确 | 准确率 |\n|------|------|--------|\n| SICA | 14/16 | 87.5% |\n| SC | 15/16 | **93.75%** |\n\nSC 暂时领先 1 题。差异来自 #11：SICA 的不变量给了 True 更高分（38 vs 27），但 gold=False。\n\n### Multi-candidate Rate: 3/16 = 18.75%\n- 3 个多候选题中 2 个不变量得分全为 0（extraction 失败）\n- 99 次 \"No JSON found\" 警告（~51.6% trace 未产生可解析 JSON）\n- 3/16 题 unique_after_dedup=0（完全无不变量）\n\n### 核心问题\nQwQ-32B 的 invariant extraction 成功率偏低，SICA 在无不变量时退化为随机 tie-break，这是 SC 暂时领先的主因。\n\n报告已写入 `artifacts/report_proofwriter30_v2_progress.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-proofwriter30-v2-progress.md"
+}

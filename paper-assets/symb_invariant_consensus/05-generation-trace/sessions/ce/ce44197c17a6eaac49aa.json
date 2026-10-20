@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "ce44197c17a6eaac49aa",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "paper appendix fixes",
+  "task_key": "worker_paper_appendix-fixes_20260524T152031",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_appendix-fixes_20260524T152031.log",
+    "occurrence": 1,
+    "bytes": 2170676,
+    "sha256": "246903a473e2945e8603588ada8554cd0ac8102a1ac845f11b5b734ff9eb9dca"
+  },
+  "statistics": {
+    "messages": 104,
+    "user_turns": 0,
+    "tool_calls": 39,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 2,
+      "assistant": 15,
+      "tool_call": 39,
+      "tool_result": 39,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 104,
+      "chunks": [
+        {
+          "path": "ce44197c17a6eaac49aa-part-0001.json",
+          "message_count": 43
+        },
+        {
+          "path": "ce44197c17a6eaac49aa-part-0002.json",
+          "message_count": 12
+        },
+        {
+          "path": "ce44197c17a6eaac49aa-part-0003.json",
+          "message_count": 27
+        },
+        {
+          "path": "ce44197c17a6eaac49aa-part-0004.json",
+          "message_count": 22
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-appendix-fixes.md"
+}

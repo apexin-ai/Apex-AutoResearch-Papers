@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2da1ddcf84249c4b0d55",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra figure7 scatter plot",
+  "task_key": "worker_infra_figure7-scatter-plot_20260522T163828",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_figure7-scatter-plot_20260522T163828_result.json",
+    "occurrence": 1,
+    "bytes": 393,
+    "sha256": "b126e5291ad56a9c2529c75b8fcc026d30e4c4d9d8be65ec1c1fa2056ae539f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行完成，文件已生成：\n\n- `capability_gap_scatter.pdf` (33 KB)\n- `capability_gap_scatter.png` (124 KB)\n\n统计量：\n- **DeBERTa-only (excl LLaMA)**: Spearman ρ=0.986, p=0.0003 (n=6)\n- **DeBERTa-all (incl LLaMA)**: Spearman ρ=0.955, p=0.0008 (n=7)\n- **Linear fit**: R²=0.919, p=0.0007\n- **Sigmoid fit (9pt)**: R²=0.909, inflection=-8.1pp, L=5.00, k=0.144"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-figure7-scatter-plot.md"
+}

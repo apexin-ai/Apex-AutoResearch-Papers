@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fade606dae407011cdc3",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment dir h provenance analysis",
+  "task_key": "worker_experiment_dir-h-provenance-analysis_20260520T161427",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_dir-h-provenance-analysis_20260520T161427_result.json",
+    "occurrence": 1,
+    "bytes": 105,
+    "sha256": "0bbfbc79e65c4b76f47800d0040b5603961dfb9ee63a480ee439ae83324e34a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有后台任务均已完成。分析结果之前已完整汇报，无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-dir-h-provenance-analysis.md"
+}

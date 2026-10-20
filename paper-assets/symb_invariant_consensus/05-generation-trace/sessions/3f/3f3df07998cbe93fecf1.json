@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f3df07998cbe93fecf1",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code exp 022 oracle proofwriter",
+  "task_key": "worker_code_exp-022-oracle-proofwriter_20260518T033659",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp-022-oracle-proofwriter_20260518T033659_result.json",
+    "occurrence": 1,
+    "bytes": 994,
+    "sha256": "6a876c823b40d2719245dc7b4a76a847b3d767ddb1bd1004c32278ba6382985f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-022 完成。结果：\n\n**Oracle-SICA: 86.67% vs SC: 75.17% (+11.50 pp, McNemar p=9.2e-15)**\n\n| 指标 | 值 |\n|------|-----|\n| Oracle-SICA | 86.67% (520/600) |\n| SC | 75.17% (451/600) |\n| SICA(self) | 75.50% (453/600) |\n| Delta (Oracle vs SC) | **+11.50 pp** |\n| Z3 gold agreement | 97.14% (577/594) |\n| Parse errors | 6/600 (1%) |\n| Solver errors | 0/7128 |\n\n**Per-subtype breakdown** (delta 从大到小):\n- **RelNeg**: +17.86 pp (77.86% vs 60.00%)\n- **RelNoneg**: +13.01 pp (79.45% vs 66.44%)\n- **AttNoneg**: +9.09 pp (96.10% vs 87.01%)\n- **AttNeg**: +6.87 pp (91.88% vs 85.00%)\n\n**与 FOLIO (exp-021) 对比**:\n- FOLIO: +8.82 pp (p=6.15e-5, N=204)\n- ProofWriter: **+11.50 pp** (p=9.21e-15, N=600)\n\nProofWriter delta 更大且统计显著性更强，符合预期（合成数据更规则，D5 推理链长）。关系谓词子类型 (Rel*) 获益远大于属性谓词 (Att*)，说明二元谓词推理链更长时 oracle 约束的增益更显著。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-022-oracle-proofwriter.md"
+}

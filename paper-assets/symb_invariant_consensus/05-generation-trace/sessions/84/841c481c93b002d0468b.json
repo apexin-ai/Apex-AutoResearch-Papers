@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "841c481c93b002d0468b",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "fix table3 tiebreak recompute",
+  "task_key": "worker_fix_table3-tiebreak-recompute_20260523T111613",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_table3-tiebreak-recompute_20260523T111613.log",
+    "occurrence": 1,
+    "bytes": 1048498,
+    "sha256": "2f2894dc2897fae30d7fbd587a6fe8e1f2319e42097200ea9fd2449a5e922559"
+  },
+  "statistics": {
+    "messages": 299,
+    "user_turns": 1,
+    "tool_calls": 105,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 81,
+      "tool_call": 105,
+      "tool_result": 105,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 286,
+      "chunks": [
+        {
+          "path": "841c481c93b002d0468b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "841c481c93b002d0468b-part-0002.json",
+          "message_count": 106
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "841c481c93b002d0468b-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-table3-tiebreak-recompute.md"
+}

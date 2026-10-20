@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "6e7bddd273de0996446c",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "infra westd25068 network gpu saturation",
+  "task_key": "worker_infra_westd25068-network-gpu-saturation_20260518T173821",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_westd25068-network-gpu-saturation_20260518T173821.log",
+    "occurrence": 1,
+    "bytes": 689851,
+    "sha256": "059dd4e54c6e48a9f27c11e04e5c9a1d42a66855d36833639298f3e0b572d2f9"
+  },
+  "statistics": {
+    "messages": 261,
+    "user_turns": 0,
+    "tool_calls": 95,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 67,
+      "tool_call": 95,
+      "tool_result": 95,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 261,
+      "chunks": [
+        {
+          "path": "6e7bddd273de0996446c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6e7bddd273de0996446c-part-0002.json",
+          "message_count": 81
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-westd25068-network-gpu-saturation.md"
+}

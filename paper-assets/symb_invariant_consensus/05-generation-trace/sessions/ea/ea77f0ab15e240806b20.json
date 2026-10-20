@@ -1,0 +1,852 @@
+{
+  "schema_version": "1.0",
+  "id": "ea77f0ab15e240806b20",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "computation raw kappa t05",
+  "task_key": "worker_computation_raw-kappa-t05_20260519T054942",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_computation_raw-kappa-t05_20260519T054942.log",
+    "occurrence": 1,
+    "bytes": 23631,
+    "sha256": "177fb6f1ce776ae43b00f56c0df6ae181e8fddeff1f53b90437833acdf26a26c"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 5,
+      "tool_result": 5,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+                "session_id": "98d4f995-8ad1-4085-89bc-414b550cb91d",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "715b42ff-c9eb-41be-bf60-369f8f54995e",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779187200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "5a32f04c-af05-4310-8074-91c7342d0d9e",
+                "session_id": "98d4f995-8ad1-4085-89bc-414b550cb91d"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll SSH to the server and find the exp-058 traces, then compute the raw Fleiss' κ."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98d4f995-8ad1-4085-89bc-414b550cb91d",
+            "uuid": "90c62861-0817-4b4f-9648-91c3a7c81147",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0126bUHHoP8ThdVA2Spi6LTx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12863,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12863
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017hFcbLWc9CWxCyiac7cmtW",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98d4f995-8ad1-4085-89bc-414b550cb91d",
+            "uuid": "846616c9-f640-4ced-a3b4-1f284c6b1d3c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0126bUHHoP8ThdVA2Spi6LTx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12863,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12863
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T05:49:52.897Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_017hFcbLWc9CWxCyiac7cmtW",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "98d4f995-8ad1-4085-89bc-414b550cb91d",
+            "uuid": "4897e263-d280-4891-9eb5-621ad5649931",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me find the exp-058 traces files first.",
+              "signature": "EuYBClkIDRgCKkA6A1MJgd9SUolSSOoWLotg8x4MoL3Z5lBrbrOCb/3deihJic6twoeEXvuKX2NBDtRQEw3fLcTUAt92seHwKcbLMg9jbGF1ZGUtb3B1cy00LTY4ABIMPNPn4J52srArScD7GgwoyVinhu+cawXYpnIiMGvsFcxRRnuk11yp1nM5f2wjJhWHpaUYCFW+9uAttOS8XcbnBe2HUkHVW9g9K2r9hCo7ca4qzW9QFHqIWcpLs4bigJnTXohfM6/Qz4PQJ1sTwp8Q18Fn8B7hRq7tVkhAJ1KpwvwPZUH/aVeqWMcYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98d4f995-8ad1-4085-89bc-414b550cb91d",
+            "uuid": "6f1614a4-33ae-4bcf-832c-7115940cb2cc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VJ6sB4Zhe4HMUUZCwW3d5q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 373,
+                "cache_read_input_tokens": 24704,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 373
+                },
+                "output_tokens": 52,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PhfGoMG75d3TVGqZhHK2fP",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-25068",
+                "command": "find /root/symb_invariant_consensus/results -name \"*exp058*\" -o -name \"*exp-058*\" | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98d4f995-8ad1-4085-89bc-414b550cb91d",
+            "uuid": "8ebfd131-f2b7-4b83-ad07-8a161a391462",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VJ6sB4Zhe4HMUUZCwW3d5q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 373,
+                "cache_read_input_tokens": 24704,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 373
+                },
+                "output_tokens": 52,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T05:49:57.487Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PhfGoMG75d3TVGqZhHK2fP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/results/exp058_mistral_folio204_t05\\\\n/root/symb_invariant_consensus/results/exp058_mistral_folio204_t05/exp058.log\\\\n/root/symb_invariant_consensus/results/exp058_mistral_folio204_t05/exp058_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "98d4f995-8ad1-4085-89bc-414b550cb91d",
+            "uuid": "d4bb9e81-d6c9-4c85-934a-d3069c3ca122",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/results/exp058_mistral_folio204_t05\\\\n/root/symb_invariant_consensus/results/exp058_mistral_folio204_t05/exp058.log\\\\n/root/symb_invariant_consensus/results/exp058_mistral_folio204_t05/exp058_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.37}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/exp058_mistral_folio204_t05\\n/root/symb_invariant_consensus/results/exp058_mistral_folio204_t05/exp058.log\\n/root/symb_invariant_consensus/results/exp058_mistral_folio204_t05/exp058_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.37}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HtaqgMXpFjtSWsRNgwnMaj",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-25068",
+                "command": "ls -la /root/symb_invariant_consensus/results/exp058_mistral_folio204_t05/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98d4f995-8ad1-4085-89bc-414b550cb91d",
+            "uuid": "6e2ce0c0-cfd2-4b8f-b40b-fe899766b230",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EKvBFR247UW67jpkqQ5mmP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 311,
+                "cache_read_input_tokens": 25077,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 311
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T05:50:00.667Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HtaqgMXpFjtSWsRNgwnMaj",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 980\\\\ndrwxr-xr-x  4 root root    121 May 19 11:14 .\\\\ndrwxr-xr-x 27 root root   4096 May 19 12:13 ..\\\\n-rw-r--r--  1 root root 660500 May 19 12:33 exp058.log\\\\n-rw-r--r--  1 root root 310427 May 19 12:33 exp058_results.json\\\\ndrwxr-xr-x  2 root root   8192 May 19 12:33 intermediates\\\\ndrwxr-xr-x  2 root root   8192 May 19 12:33 per_trace_constraints\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "98d4f995-8ad1-4085-89bc-414b550cb91d",
+            "uuid": "71b5b66c-175c-4692-b747-37b572c1f3a9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 980\\\\ndrwxr-xr-x  4 root root    121 May 19 11:14 .\\\\ndrwxr-xr-x 27 root root   4096 May 19 12:13 ..\\\\n-rw-r--r--  1 root root 660500 May 19 12:33 exp058.log\\\\n-rw-r--r--  1 root root 310427 May 19 12:33 exp058_results.json\\\\ndrwxr-xr-x  2 root root   8192 May 19 12:33 intermediates\\\\ndrwxr-xr-x  2 root root   8192 May 19 12:33 per_trace_constraints\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 980\\ndrwxr-xr-x  4 root root    121 May 19 11:14 .\\ndrwxr-xr-x 27 root root   4096 May 19 12:13 ..\\n-rw-r--r--  1 root root 660500 May 19 12:33 exp058.log\\n-rw-r--r--  1 root root 310427 May 19 12:33 exp058_results.json\\ndrwxr-xr-x  2 root root   8192 May 19 12:33 intermediates\\ndrwxr-xr-x  2 root root   8192 May 19 12:33 per_trace_constraints\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018wjyRLWbLfjB19LKRgghAu",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-25068",
+                "command": "python /root/symb_invariant_consensus/scripts/compute_fleiss_kappa_unified.py --help"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98d4f995-8ad1-4085-89bc-414b550cb91d",
+            "uuid": "3cf98e01-f1cf-4a91-abb4-e512d2a3410e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EKvBFR247UW67jpkqQ5mmP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 311,
+                "cache_read_input_tokens": 25077,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 311
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T05:50:01.455Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018wjyRLWbLfjB19LKRgghAu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: compute_fleiss_kappa_unified.py [-h] --results-dir RESULTS_DIR\\\\n                                       [--output OUTPUT] [--exp [EXP ...]]\\\\n                                       [--raw] [--K K]\\\\n\\\\nUnified Fleiss' kappa for SICA experiments\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --results-dir RESULTS_DIR\\\\n                        Path to results/ directory\\\\n  --output OUTPUT       Output JSON path\\\\n  --exp [EXP ...]       Specific experiment dir names (default: all with\\\\n                        intermediates/)\\\\n  --raw                 Skip T/F/U normalization (non-standard answers\\\\n                        excluded, not mapped to Unknown)\\\\n  --K K                 Override K for Eff-K computation (default: 12)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "98d4f995-8ad1-4085-89bc-414b550cb91d",
+            "uuid": "5b7dbf81-74f1-4963-85a9-b87cb77dc401",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: compute_fleiss_kappa_unified.py [-h] --results-dir RESULTS_DIR\\\\n                                       [--output OUTPUT] [--exp [EXP ...]]\\\\n                                       [--raw] [--K K]\\\\n\\\\nUnified Fleiss' kappa for SICA experiments\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --results-dir RESULTS_DIR\\\\n                        Path to results/ directory\\\\n  --output OUTPUT       Output JSON path\\\\n  --exp [EXP ...]       Specific experiment dir names (default: all with\\\\n                        intermediates/)\\\\n  --raw                 Skip T/F/U normalization (non-standard answers\\\\n                        excluded, not mapped to Unknown)\\\\n  --K K                 Override K for Eff-K computation (default: 12)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: compute_fleiss_kappa_unified.py [-h] --results-dir RESULTS_DIR\\n                                       [--output OUTPUT] [--exp [EXP ...]]\\n                                       [--raw] [--K K]\\n\\nUnified Fleiss' kappa for SICA experiments\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --results-dir RESULTS_DIR\\n                        Path to results/ directory\\n  --output OUTPUT       Output JSON path\\n  --exp [EXP ...]       Specific experiment dir names (default: all with\\n                        intermediates/)\\n  --raw                 Skip T/F/U normalization (non-standard answers\\n                        excluded, not mapped to Unknown)\\n  --K K                 Override K for Eff-K computation (default: 12)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The script takes `--results-dir` pointing to the results/ directory, and `--exp` to specify specific experiment dirs. Let me run it with `--raw` flag for exp058.",
+              "signature": "Et0CClkIDRgCKkA4jxWZ3W5WBKzZg8tgbLHQ+ua4qHG1QcaPnVyFwPw+uak+D2n0wfoXunIp8MNb8h2C8hsRVPqHBylFY379Jg6cMg9jbGF1ZGUtb3B1cy00LTY4ABIMepuq5BdM/39qWGgEGgyt2F2/XUGCnLxr+7UiMEQsmYGImuxtBz0f4HZVY5ZJSecJYEkwmYS5wZgUmW9hEMZSDrerccUNmMIzzGQ+4iqxATeAOnUBgAE83rHCTv2lUuCWCli1TcGZ2uDfReuJapjSIMJf+L2+TZJ8OsRIdb2ugW38KjhtOb9/JxhxTwIRupxE1dkIvGVtra2gwgB+bN+i9Klh89hdIlnrNg//ze+mOtpr4iBVkT6GMlv8l8FDNIsOz03yZ+imSC1N+7tIGFYAqc7P7yAYFzkKiYcJLzqVYtc92YIQMlMA8E+ifCvCQ6pdUbVAFVLMTdshwGz8885HthgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98d4f995-8ad1-4085-89bc-414b550cb91d",
+            "uuid": "a011cffc-cc46-4a03-aa6e-7e864bf4b2e3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P3o5ifnqK7qe5dvocRZg1j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 804,
+                "cache_read_input_tokens": 25388,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 804
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Traces found. Running the raw κ computation now."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98d4f995-8ad1-4085-89bc-414b550cb91d",
+            "uuid": "1b237754-dd2e-4e6c-9346-2f0ac4a1dec0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P3o5ifnqK7qe5dvocRZg1j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 804,
+                "cache_read_input_tokens": 25388,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 804
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R22iq3NT3ajzmR3smMhDQQ",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-25068",
+                "command": "cd /root/symb_invariant_consensus && python scripts/compute_fleiss_kappa_unified.py --results-dir results --exp exp058_mistral_folio204_t05 --raw --K 12"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98d4f995-8ad1-4085-89bc-414b550cb91d",
+            "uuid": "52eac53f-70ff-4608-b040-0fc9d631060c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P3o5ifnqK7qe5dvocRZg1j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 804,
+                "cache_read_input_tokens": 25388,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 804
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T05:50:06.636Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R22iq3NT3ajzmR3smMhDQQ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  exp058_mistral_folio204_t05  (folio)\\\\n============================================================\\\\n  n_problems:          204\\\\n  Mean valid votes/q:  10.27\\\\n  Valid vote rate:     0.8562\\\\n  Non-standard->Unk:  0\\\\n  Excluded (empty):   352\\\\n  ---\\\\n  Fleiss' kappa:       0.5159\\\\n  Eff-K (K=12):       1.80\\\\n  SC accuracy:        58.33%\\\\n  SICA accuracy:      57.84%\\\\n  Delta (pp):         -0.49\\\\n  Unanimous rate:     26.5%\\\\n  Category dist:      {'True': 26.33587786259542, 'False': 24.188931297709924, 'Unknown': 49.475190839694655}\\\\n\\\\n============================================================\\\\nResults saved to results/fleiss_kappa_unified.json\\\\nTotal experiments processed: 1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "98d4f995-8ad1-4085-89bc-414b550cb91d",
+            "uuid": "90d0b78c-71d6-445a-9a9c-7fcf9af9abc2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  exp058_mistral_folio204_t05  (folio)\\\\n============================================================\\\\n  n_problems:          204\\\\n  Mean valid votes/q:  10.27\\\\n  Valid vote rate:     0.8562\\\\n  Non-standard->Unk:  0\\\\n  Excluded (empty):   352\\\\n  ---\\\\n  Fleiss' kappa:       0.5159\\\\n  Eff-K (K=12):       1.80\\\\n  SC accuracy:        58.33%\\\\n  SICA accuracy:      57.84%\\\\n  Delta (pp):         -0.49\\\\n  Unanimous rate:     26.5%\\\\n  Category dist:      {'True': 26.33587786259542, 'False': 24.188931297709924, 'Unknown': 49.475190839694655}\\\\n\\\\n============================================================\\\\nResults saved to results/fleiss_kappa_unified.json\\\\nTotal experiments processed: 1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  exp058_mistral_folio204_t05  (folio)\\n============================================================\\n  n_problems:          204\\n  Mean valid votes/q:  10.27\\n  Valid vote rate:     0.8562\\n  Non-standard->Unk:  0\\n  Excluded (empty):   352\\n  ---\\n  Fleiss' kappa:       0.5159\\n  Eff-K (K=12):       1.80\\n  SC accuracy:        58.33%\\n  SICA accuracy:      57.84%\\n  Delta (pp):         -0.49\\n  Unanimous rate:     26.5%\\n  Category dist:      {'True': 26.33587786259542, 'False': 24.188931297709924, 'Unknown': 49.475190839694655}\\n\\n============================================================\\nResults saved to results/fleiss_kappa_unified.json\\nTotal experiments processed: 1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-058 (T=0.5) raw Fleiss' κ 结果：**\n\n| 指标 | 值 |\n|---|---|\n| raw κ | **0.5159** |\n| Eff-K (K=12) | **1.80** |\n| Valid rate | 0.8562 |\n| N | 204 |\n\n验算 Eff-K：K / (1 + (K-1)×κ) = 12 / (1 + 11×0.5159) = 12 / 6.6749 ≈ **1.80** ✓"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98d4f995-8ad1-4085-89bc-414b550cb91d",
+            "uuid": "dbb4e1e5-8fa8-476d-9ea9-9478160f12bd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PAQ33QjnWY38hmt8BqH4Mh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 522,
+                "cache_read_input_tokens": 26192,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 522
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-058 (T=0.5) raw Fleiss' κ 结果：**\n\n| 指标 | 值 |\n|---|---|\n| raw κ | **0.5159** |\n| Eff-K (K=12) | **1.80** |\n| Valid rate | 0.8562 |\n| N | 204 |\n\n验算 Eff-K：K / (1 + (K-1)×κ) = 12 / (1 + 11×0.5159) = 12 / 6.6749 ≈ **1.80** ✓"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 22088,
+            "duration_api_ms": 20803,
+            "num_turns": 6,
+            "stop_reason": "end_turn",
+            "session_id": "98d4f995-8ad1-4085-89bc-414b550cb91d",
+            "total_cost_usd": 0.17146524999999999,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 14873,
+              "cache_read_input_tokens": 113202,
+              "output_tokens": 822,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 14873,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 159,
+                  "cache_read_input_tokens": 26192,
+                  "cache_creation_input_tokens": 522,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 522
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1168,
+                "outputTokens": 29,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001313,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 822,
+                "cacheReadInputTokens": 113202,
+                "cacheCreationInputTokens": 14873,
+                "webSearchRequests": 0,
+                "costUSD": 0.17015225000000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "805dae7a-69d7-4fd5-9e07-c2fcddf05d1b"
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/worker-executions/computation-raw-kappa-t05.md"
+}

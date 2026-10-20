@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cccbd6407ae27e838444",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis qwen14b pw sc audit",
+  "task_key": "worker_analysis_qwen14b-pw-sc-audit_20260521T095214",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_qwen14b-pw-sc-audit_20260521T095214_result.json",
+    "occurrence": 1,
+    "bytes": 1333,
+    "sha256": "55883a5a6ab689e6bab6ce815a3dc6a03f3e5c0c8c3aa09b8860b0955d80cf63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。核心发现：\n\n## 三个值的来源\n\n| 值 | 正确数 | 来源 | 出现位置 |\n|---|---|---|---|\n| **75.17%** | 451/600 | `sica_expanded_14b` (早期实验, westd-25068) | Main Table (experiments.tex) |\n| **74.00%** | 444/600 | `exp032` (westd-16639) + **alphabetical tiebreaking** | Cross-gen NLI Table (solutions.tex) |\n| **70.33%** | 422/600 | `exp034` intermediates (westd-25068, 已下线) | CIL 初始计算 (已修正为 74.00%) |\n\n## 根因\n\n**不是 tiebreaking 差异，是三次不同的实验 run**（不同 trace 生成），产生了不同的 SC 正确数（451 vs 441 vs 422）。\n\nTiebreaking 只在 exp032 上造成额外 ~0.5pp 差异：\n- **21 个 tie**（3.5%），全部是 6:6 平票（K=12）\n- First-seen: 441/600 = 73.50%\n- Alphabetical: 444/600 = 74.00%（+3 正确）\n- Random: 435-442/600（72.50%-73.67%）\n\n## Canonical 推荐\n\n**73.50%**（exp032, first-seen tiebreaking）：\n- exp032 是可访问服务器上的完整 run，有全部 per-question 数据\n- NLI combo 实验 (exp-091) 基于同一组 traces\n- First-seen 匹配原始 SICA pipeline 行为\n\n**关键不一致**：Main Table 用 sica_expanded_14b (75.17%)，NLI 分析用 exp032 (73.50/74.00%)——同一模型同一数据集引用了不同实验 run 的结果。需统一。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen14b-pw-sc-audit.md"
+}

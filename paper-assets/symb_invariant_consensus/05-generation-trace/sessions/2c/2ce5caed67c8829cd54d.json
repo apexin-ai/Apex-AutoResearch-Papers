@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ce5caed67c8829cd54d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "download llama 3 1 8b instruct",
+  "task_key": "worker_download_llama-3_1-8b-instruct_20260516T065531",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_download_llama-3_1-8b-instruct_20260516T065531_result.json",
+    "occurrence": 1,
+    "bytes": 842,
+    "sha256": "53e40e55bb02cdcda746e9af402b3233b4c98b490421253de26af844e2d4cd63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件在增长（时间戳从 14:56 → 14:57）。下载进行中，预计每个 shard 最终 ~4.7GB，当前 ~1.4GB（约 30%）。\n\n**当前状态汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| **下载方式** | ModelScope (`LLM-Research/Meta-Llama-3.1-8B-Instruct`) |\n| **原因** | 服务器无 HF_TOKEN |\n| **进程** | PID 186855，14:25 启动，正在运行 |\n| **模型总大小** | ~15 GB (16,060,522,496 bytes) |\n| **已下载** | ~6.5 GB (~43%) |\n| **模型路径** | `/root/autodl-tmp/models/Llama-3.1-8B-Instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct/` |\n| **vLLM 脚本** | `/root/symb_invariant_consensus/scripts/start_vllm_llama_8b.sh` (port 8002) |\n\n下载预计还需 30-60 分钟完成。完成后需要验证 tokenizer 加载正常。是否需要我稍后轮询确认下载完成？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/download-llama-3-1-8b-instruct.md"
+}

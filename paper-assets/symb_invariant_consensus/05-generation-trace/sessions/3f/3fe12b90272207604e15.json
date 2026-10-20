@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fe12b90272207604e15",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "gpu exp 063 llama8b folio204",
+  "task_key": "worker_gpu_exp-063-llama8b-folio204_20260519T073755",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp-063-llama8b-folio204_20260519T073755_result.json",
+    "occurrence": 1,
+    "bytes": 675,
+    "sha256": "3b1f69a2790c5706a322e661796fdec05207b54697a7fc51c47927090560e500"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "正在处理第 2 题。实验稳定运行中。\n\n**exp-063 状态汇总：**\n- **服务器**: westd-16639, GPU cuda:0, vLLM 端口 8004\n- **模型**: Meta-Llama-3.1-8B-Instruct\n- **数据**: FOLIO-204, K=12, T=0.7, seed=42\n- **Dryrun**: 3/3 通过（SICA 66.7%, SC 33.3%）\n- **全量**: 已启动，tmux session `exp063_run`，预计 ~5 小时完成\n- **Tie-breaking**: 已确认修正版 `max(sorted(groups.keys()), ...)`\n- **Registry**: exp-063 → RUNNING, parent=exp-020\n- **输出**: `results/exp-063-llama8b-folio204-16639/exp063_results.json`\n\n完成后需检查日志中 `FULL_MVP_DONE` 标志，读取结果获取 SC%、SICA%、Δ(pp)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-063-llama8b-folio204.md"
+}

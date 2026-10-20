@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de1136298ec4a93b9fab",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra kill redundant and resume qwen456",
+  "task_key": "worker_infra_kill-redundant-and-resume-qwen456_20260523T123946",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_kill-redundant-and-resume-qwen456_20260523T123946_result.json",
+    "occurrence": 1,
+    "bytes": 952,
+    "sha256": "8fe0e79a2286aecea7b0e9dabb160804a19f80787ff58c68129debae2d999b24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 最终状态汇报\n\n### Kill 结果\n| 服务器 | GPU | 实验 | 状态 |\n|--------|-----|------|------|\n| westd-14391 | cuda:0 | LLaMA seed123 | ✓ 已释放，GPU 空闲 |\n| westd-30973 | cuda:0 | Qwen seed789-v3 | ✓ 已释放，GPU 空闲 |\n| westd-30973 | cuda:1 | LLaMA seed789-v2 | ✓ 已释放，GPU 空闲 |\n| westd-16639 | cuda:1 | LLaMA seed456 | ✓ 已释放，GPU 空闲 |\n\n### Resume 结果\nQwen seed456 resume 成功：跳过 478 条已完成，从第 479/600 开始运行，剩余 122 条。tmux session: `qwen_seed456_resume`。\n\n### 最终 GPU 布局\n\n| 服务器 | cuda:0 | cuda:1 | cuda:2 | cuda:3 |\n|--------|--------|--------|--------|--------|\n| westd-14391 | 空闲 | — | — | — |\n| westd-30973 | 空闲 | 空闲 | LLaMA seed456-v2 (326/600) | — |\n| westd-16639 | LLaMA seed789 (383/600) | 空闲 | Qwen seed789 (441/600) | **Qwen seed456 resume (478→600)** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-redundant-and-resume-qwen456.md"
+}

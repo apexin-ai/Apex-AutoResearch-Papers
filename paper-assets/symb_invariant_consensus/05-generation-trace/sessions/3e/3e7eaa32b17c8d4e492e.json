@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e7eaa32b17c8d4e492e",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis sica proofwriter30",
+  "task_key": "worker_analysis_sica_proofwriter30_20260515T221704",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_sica_proofwriter30_20260515T221704_result.json",
+    "occurrence": 1,
+    "bytes": 750,
+    "sha256": "9de8889e8c58d4e97876db185857933228ea7bb5fc721cdb745bb25a560b04c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n## sica_proofwriter30 分析结果：配置错误，完全失败\n\n**根因**：`--max-tokens 16384` = vLLM `--max-model-len 16384`，留给 prompt 的空间为 0 tokens。所有 API 请求立即返回 400 Bad Request。\n\n**结果**：\n- 30/30 题全部失败，SICA = SC = 0%\n- 0 条 trace 生成，0 条约束提取，0 次投票\n- 4 分钟跑完（全是 retry 开销）\n- 无 intermediates 产出\n\n**无法评估 sanity check 标准**（提取率、矛盾检出等），因为没有任何推理发生。\n\n**修复**：重跑时将 `--max-tokens` 降至 10240（AIME 实验验证可用）或 12288。ProofWriter 题目 prompt 约 900-1500 characters，10240 output tokens 绰绰有余。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sica-proofwriter30.md"
+}

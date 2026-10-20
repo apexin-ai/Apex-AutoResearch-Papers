@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b62a5865e4f31d813a6",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment deberta finetune launch",
+  "task_key": "worker_experiment_deberta-finetune-launch_20260522T153517",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_deberta-finetune-launch_20260522T153517_result.json",
+    "occurrence": 1,
+    "bytes": 106,
+    "sha256": "f6003845dbd90df26f391e7f9e28213667b78a0a6781e1f598f704b182974cce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "20 分钟后自动检查。如果 FOLIO 提前完成你想立即启动，随时告诉我。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-deberta-finetune-launch.md"
+}

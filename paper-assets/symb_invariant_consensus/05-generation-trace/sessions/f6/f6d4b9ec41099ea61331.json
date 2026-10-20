@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6d4b9ec41099ea61331",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code prep temp ablation",
+  "task_key": "worker_code_prep-temp-ablation_20260517T120251",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_prep-temp-ablation_20260517T120251_result.json",
+    "occurrence": 1,
+    "bytes": 759,
+    "sha256": "a84e395a51ff93e09fe7b027ccb825342f9bf8d5bff85a2a2a801bc25082eb78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个脚本已创建并验证完毕。\n\n| 脚本 | 温度 | 输出目录 |\n|------|------|----------|\n| `scripts/run_exp021_temp_t03.sh` | T=0.3 | `results/exp021_temp_t03/` |\n| `scripts/run_exp022_temp_t05.sh` | T=0.5 | `results/exp022_temp_t05/` |\n| `scripts/run_exp023_temp_t10.sh` | T=1.0 | `results/exp023_temp_t10/` |\n\n所有脚本共享参数：\n- 模型：`/root/autodl-tmp/models/Qwen2.5-14B-Instruct`（路径已确认存在）\n- 数据：`proofwriter_30.json` + `folio_30.json`（60 problems，路径已确认）\n- K=12, seed=42, max-tokens=4096\n- 包含 vLLM cleanup、conda 激活、vLLM 启动等待、运行后清理\n\n脚本已 `chmod +x`，未启动实验。三个脚本需顺序执行（共用 GPU port 8000）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-temp-ablation.md"
+}

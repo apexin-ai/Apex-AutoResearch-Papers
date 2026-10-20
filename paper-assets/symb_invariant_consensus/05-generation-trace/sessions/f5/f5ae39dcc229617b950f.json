@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5ae39dcc229617b950f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis mistral folio 789 complete harvest",
+  "task_key": "worker_analysis_mistral-folio-789-complete-harvest_20260522T115844",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_mistral-folio-789-complete-harvest_20260522T115844_result.json",
+    "occurrence": 1,
+    "bytes": 764,
+    "sha256": "7a89fa37b0d3ea228f70d08d91e983301b97a7381bc43d3e0a4673dc2d40956a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程仍在运行，当前进度 178/204，ETA ~10.7 分钟。\n\n## 当前状态\n\n| 指标 | 值 |\n|------|-----|\n| **进度** | 178/204（正在跑 folio_177） |\n| **已完成 n** | 175（results.json 中） |\n| **SC** | 58.86% (103/175) |\n| **SICA** | 56.00% (98/175) |\n| **Δ (SICA - SC)** | **-2.86pp** |\n| **ETA** | ~10.7 min（27 remaining, avg 23.8s/prob），约 20:10 UTC 完成 |\n| **Wall time** | 已跑 ~1h10m |\n| **vLLM port 8004** | **在用中** — 实验脚本正通过 localhost:8004 调用 vLLM |\n\n注意：当前 SICA < SC（负 delta），最终 204 题结果可能略有变动。进程预计 ~10 分钟后完成，vLLM 8004 被本实验占用，部署 Qwen2.5-7B 需等实验结束后释放或用其他端口。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mistral-folio-789-complete-harvest.md"
+}

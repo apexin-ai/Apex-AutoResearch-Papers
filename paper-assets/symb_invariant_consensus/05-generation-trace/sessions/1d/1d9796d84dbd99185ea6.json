@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d9796d84dbd99185ea6",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "review citation verification",
+  "task_key": "worker_review_citation-verification_20260519T054740",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_review_citation-verification_20260519T054740_result.json",
+    "occurrence": 1,
+    "bytes": 1837,
+    "sha256": "86d86e6e89c0bf31a792dd455ea411117a530c79631b778ec80d7bba321ffb26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。汇总结果：\n\n---\n\n## 验证结果\n\n### 1. `diverseaware2026` — ⚠️ 存在但会议接收状态存疑\n\n- **标题**: \"Diversity-Aware Training for Test-Time Scaling\" ✅ 匹配\n- **作者**: Lyu, Bohan 等 10 人 ✅ 匹配\n- **Bib 声称**: `booktitle={ICLR}, year={2026}`\n- **实际状态**: 论文在 [OpenReview](https://openreview.net/forum?id=UVL10ozjtl) 提交，PDF 头部仍为 **\"Under review as a conference paper at ICLR 2026\"**。无法在 iclr.cc 虚拟会议页面找到对应 poster。**无法确认已被 ICLR 2026 接收。**\n- **建议**: 将 bib 条目改为 arXiv preprint 格式（需查找对应 arXiv ID），或改为 `@inproceedings{..., note={Under review}}`，避免误标为已发表。\n\n### 2. `kim2026reasc` — ✅ 确认存在且信息准确\n\n- **标题**: \"Reliability-Aware Adaptive Self-Consistency for Efficient Sampling in LLM Reasoning\" ✅ 匹配\n- **作者**: Kim, Junseok; Yang, Nakyeong; Min, Kyungmin; Jung, Kyomin ✅ 匹配\n- **arXiv ID**: [2601.02970](https://arxiv.org/abs/2601.02970) ✅ 匹配\n- **发表日期**: 2026年1月6日 ✅\n- **结论**: 信息完全准确，无需修改。\n\n### 3. `xu2026dylos` — ✅ 确认存在且信息准确\n\n- **标题**: \"Adaptive LLM-Symbolic Reasoning via Dynamic Logical Solver Composition (DyLoS)\" ✅ 匹配\n- **作者**: Xu, Lei; Beckmann, Pierre; Valentino, Marco; Freitas, Andre ✅ 匹配\n- **会议**: EACL 2026 ✅ — 已在 [ACL Anthology](https://aclanthology.org/2026.eacl-long.54/) 收录\n- **结论**: 信息完全准确，无需修改。\n\n---\n\n**总结**: 3 篇中 2 篇完全确认，1 篇（`diverseaware2026`）论文真实存在但 ICLR 2026 接收状态不明确，bib 中 `booktitle={ICLR}` 可能不准确，建议核实或改为 preprint 引用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-citation-verification.md"
+}

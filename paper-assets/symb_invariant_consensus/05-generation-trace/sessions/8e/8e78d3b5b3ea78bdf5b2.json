@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e78d3b5b3ea78bdf5b2",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "reviewer / loop_7.md",
+  "task_key": "loop_7",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/reviewer/loop_7.md",
+    "occurrence": 1,
+    "bytes": 3572,
+    "sha256": "6f6e6982371dc5f2c28b658978d81a0deb71b065bb83ac0965751a1a69873bb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: max_wall_time\nupdated: '2026-05-17T17:10:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 `westd-32608:cuda:0`（RTX PRO 6000 98GB）。任何进程跑在其他设备上立即 CRITICAL\n- exp-011 (n=30, +10pp) 是噪声（SE≈9pp），禁止作为正面证据引用。exp-020 同任务 n=204 显示 -2.4pp\n- n=60 条件只能说\"suggestive/consistent with\"，n≥200 才能说\"confirms null\"\n- 论文标题和 claims 必须限定在\"self-extracted constraints / SICA\"范围内，不能泛化到\"symbolic consensus\"整体（DyLoS/Aristotle/FoVer/LogicAgent 在相同 benchmark 上有正面结果）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-32608(root)，工作目录 `/root/symb_invariant_consensus`\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/`\n- 模型路径：`/root/autodl-tmp/models/Qwen2.5-14B-Instruct`\n- 数据：`data/folio_full.json`(204题), `data/gsm8k_200.json`(1601行), `data/D012_60.json`(60题)\n- vLLM：exp-012 完成后已自动停止（`EXP012_DONE` in log）。当前 GPU 应已释放\n- 无 wandb 配置。无活跃 tmux/cron\n\n### 3. 📊 当前状态\n**刚完成的审查（已提交 Director）：**\n- Method section (method.tex)：3 WARNING（σ函数未定义、FOL名实不符、缺prompt示例）\n- Fig 1 pipeline 图：1 WARNING（figsize=16×7 缩放后字号<7pt）\n- exp-012 GSM8K：PASS（SICA=SC=96.67%, C0=13.3%, 约束提取率仅14.7%）\n\n**Registry 状态：**\n- exp-012-gsm8k-pilot：服务器上已完成（`GSM8K_PILOT_DONE`），但 registry 仍标 RUNNING——Agent 还没处理结果\n- 所有其他实验 DONE（共38条）\n\n**等待中：**\n- Agent 处理 exp-012 完成并更新 registry\n- ROADMAP 排队：exp-004 Qwen-7B scaling → Mistral StrategyQA（各~1.5h GPU）\n- Paper Agent 可能继续写其他章节（Introduction/Experiments/Related Work）\n\n### 4. 📋 待办\n- exp-012 registry 更新为 DONE → 核实 metrics 是否包含 C0=13.3% 和 extraction_rate=14.7%\n- exp-004 Qwen-7B 启动 → 检查 GPU 合规（必须 cuda:0）、检查模型路径是否存在\n- 新论文章节 worker 完成 → 按 §5 协议审查（Claim可信度 + 叙事逻辑 + 审稿人攻击面）\n- Paper Agent 提交 `paper_agent_request_review` → 必须用 §5.3 评分模板（5维度+Overall）\n- Fig 1 修复版完成 → 验证字号≥7pt at print scale\n\n### 5. 🎯 战略上下文\n**核心结论链：** SICA ≈ SC everywhere（5 models, 3 domains, N>1300）。原因是 capability trap：instruction-scale 模型有 diversity（C0=38-62%）但约束无判别力；reasoning 模型（QwQ-32B）无 diversity（C0<5%）。Oracle exp-021 是杀手锏：gold FOL → +8.82pp (p<0.001)，证明聚合机制有效、瓶颈在提取。\n\n**易错点：**\n1. GSM8K 的失败模式与 FOLIO 不同——GSM8K 是\"约束提取不出来\"（85%空），FOLIO 是\"提取出来但无判别力\"。论文不能用同一个 framing 解释两个 domain\n2. exp-021 用的是 Qwen-14B traces（sica_expanded_14b.json），不是设计文档说的 LLaMA-8B traces。已标 WARNING 但未 CRITICAL（实际选择对论文更好）\n3. Temperature ablation C0 range 只到 43%（T=1.0），没到预期的 60%+。Agent notes 里写\"高于 T=0.7 的 53% 预期但合理\"有矛盾——T=0.7 的 C0 是 53% 但 T=1.0 只有 43%？需要核实 T=0.7 的 C0 是来自 D012(60题) 还是 sica_expanded_14b(804题) 不同数据集\n4. paper_provenance.yaml 和 constraints.yaml 未创建（标⚠️），论文写作推进后需要 Agent 补建\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-copy-3.md"
+}

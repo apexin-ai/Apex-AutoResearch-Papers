@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf9c9c11d0aaa97a3350",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis truncation bias exp011",
+  "task_key": "worker_analysis_truncation-bias-exp011_20260517T104437",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_truncation-bias-exp011_20260517T104437_result.json",
+    "occurrence": 1,
+    "bytes": 1378,
+    "sha256": "bbfe239e8ad63ac38f0e8010da626c006a08a704c72046db6de537355cfa880b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心数据已经清楚，写总结。\n\n## 分析结论\n\n### Truncation 与 Discordant Pairs 无关联\n\n6 个 discordant pairs 中，**5 个没有任何截断 trace**（truncated=0/12）。唯一有截断的 idx=24（3/12 truncated），其 3 条截断 trace 全部无法提取答案（empty），对 SC 和 SICA 投票均无贡献。\n\n### 关键数据\n\n| 指标 | 值 |\n|---|---|\n| 截断 trace 无答案率 | 84.1%（37/44） |\n| 截断 trace 准确率（有答案的 7 条） | 28.6% |\n| 非截断 trace 准确率 | 63.8% |\n| 去掉截断 trace 后 SC 准确率 | 60.0%（不变） |\n| Discordant pairs 含截断 | 1/6，且截断 trace 全部无答案 |\n\n### 结论（<200字）\n\n**不存在 truncation bias。** SICA 的 +6.67pp 增益与截断无关。6 个 discordant pairs 中 5 个完全没有截断 trace，唯一有截断的 idx=24 中 3 条截断 trace 全部无法提取答案，对投票无影响。去掉全部 44 条截断 trace 后 SC 准确率保持 60.0% 不变。截断 trace 的主要效应是丧失答案（84.1% 无答案率），而非引入噪声投票。SICA 的增益来源是约束权重对近似票数分裂（如 5:5:1:1）的有效区分，而非截断 artifact。论文叙事可安全使用 +6.67pp 数据，无需加 truncation caveat。\n\n需要我把这个分析写入 artifacts 目录吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-truncation-bias-exp011.md"
+}

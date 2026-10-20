@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a30f76204a0479d5f359",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code fix answer normalization",
+  "task_key": "worker_code_fix-answer-normalization_20260518T113208",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix-answer-normalization_20260518T113208_result.json",
+    "occurrence": 1,
+    "bytes": 1777,
+    "sha256": "5069d4809d3cdd41bb986021fa507bba4f334b69a2aedfd928413547f3f50e66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n## 修改总结\n\n### 新增函数\n- **`sica/pipeline.py:117-132`** — `normalize_logic_answer(ans)`: 先用 regex `^\\\\+text\\{...\\}$` 剥离 LaTeX `\\text{...}` 包装，再通过 `_LOGIC_CANONICAL` 字典做大小写归一化映射\n\n### 修改点\n\n| 文件 | 行 | 修改内容 |\n|------|-----|---------|\n| `sica/pipeline.py:10` | 新增 `import re` |\n| `sica/pipeline.py:67-71` | `run_single()` scoring 前，对 logic 数据集 trace answers 调用 `normalize_logic_answer()` |\n| `sica/pipeline.py:135-141` | `_group_logic_answers()` 改用 `normalize_logic_answer()` 替代原始 `.strip().lower()` lookup |\n| `run_case_study.py:16` | import 增加 `normalize_logic_answer` |\n| `run_case_study.py:104-108` | scoring 前对所有 trace answers 归一化 |\n| `scripts/cross_model_extract.py:17` | 新增 `from sica.pipeline import normalize_logic_answer` |\n| `scripts/cross_model_extract.py:105-109` | scoring 前对 logic 数据集 trace answers 归一化 |\n\n### 归一化在 pipeline 中的调用点\n\n1. **SC voting** — `_group_logic_answers()` 内部调用 `normalize_logic_answer()` (被 `self_consistency.py` 和 `run_case_study.py` 使用)\n2. **SICA scoring** — `SICAPipeline.run_single()` 在构建 candidates/answer_counts 前归一化 trace answers，确保 scorer 读取的也是归一化后的值\n3. **Cross-model extraction** — `cross_model_extract.py` 在独立 scoring 流程前归一化\n\n### 覆盖的变体 (23 test cases 全部通过)\n- 大小写: `true/TRUE/True`, `false/FALSE/False`, `unknown/UNKNOWN/Unknown`\n- 同义词: `yes→True`, `no→False`, `uncertain→Unknown`, `undetermined→Unknown`\n- LaTeX: `\\text{True}`, `\\text{false}`, `\\\\text{Unknown}`, `\\text{uncertain}` 等"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-answer-normalization.md"
+}

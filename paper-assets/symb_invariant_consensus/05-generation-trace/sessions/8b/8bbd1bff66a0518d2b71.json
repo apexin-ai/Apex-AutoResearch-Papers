@@ -1,0 +1,554 @@
+{
+  "schema_version": "1.0",
+  "id": "8bbd1bff66a0518d2b71",
+  "project": "symb_invariant_consensus",
+  "kind": "conversation",
+  "title": "paper writing abstract",
+  "task_key": "worker_paper_writing_abstract_20260519T051733",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_paper_writing_abstract_20260519T051733.jsonl",
+    "occurrence": 1,
+    "bytes": 32210,
+    "sha256": "5124a64fcb8490b0c478e86541535ea49ce716ee43de2b4dd2b4c083c451e16b"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "tool_call": 13,
+      "tool_result": 13,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T05:19:53.215728+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T05:19:53.245646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Read",
+            "elapsed_ms": 29
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T05:19:53.245971+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T05:19:53.246467+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 4866 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T05:19:53.246713+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T05:19:53.247402+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\\label{sec:introduction}\n2\t\n3\tTest-time computation scaling through multiple reasoning samples has emerged as a practical alternative to scaling model parameters \\citep{snell2025scaling, guo2025deepseekr1}.\n4\tThe dominant aggregation strategy, Self-Consistency (SC) \\citep{wang2023sc}, samples $K$ chain-of-thought traces and selects the majority answer.\n5\tSC is simple, model-agnostic, and effective across tasks without additional training.\n6\tIt is also hitting a ceiling.\n7\t\\citet{loo2025reevaluating} demonstrate that gains from increasing $K$ plateau and even decline for strong models, a pattern consistent across model families and reasoning tasks.\n8\tThe plateau is consequential: test-time compute is the primary knob available to practitioners who cannot retrain or scale model parameters, and if additional samples stop helping, aggregation-based scaling faces a hard limit.\n9\tThe gap between SC's theoretical promise (independent correct voters converge to truth) and its practical behavior (saturating gains) points to a structural mismatch between the independence assumption underlying majority voting and the correlated nature of same-model traces.\n10\t\n11\tConfidence-weighted \\citep{taubenfeld2025cisc} and universal \\citep{chen2024usc} extensions of SC alleviate this to a degree, but the core limitation persists.\n12\tTraces sampled from the same model carry correlated errors.\n13\tWhen most traces converge on the same (possibly wrong) answer, additional samples provide no new information, and majority voting has no mechanism to correct the shared bias.\n14\tTrained reward models \\citep{lightman2024prm, wang2024mathshepherd} and diversity-aware sampling \\citep{diverseaware2026} break this plateau by injecting external signal or controlling trace diversity, but require either trained verifiers or modifications to the sampling procedure.\n15\tA more fundamental question remains: can \\emph{structured aggregation} over symbolic representations extract inform\n…[truncated 8763 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T05:19:53.287670+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex",
+              "limit": "40"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T05:19:53.297886+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\tThe oracle experiments provide a causal identification of the failure source.\n5\tHolding all pipeline components fixed and varying only the constraint source, gold annotations yield $+14.22$\\,pp on FOLIO and $+11.50$\\,pp on ProofWriter (both $p < 0.001$; \\S\\ref{sec:oracle}).\n6\tSelf-extraction captures only 34.5\\% of this ceiling.\n7\tBecause the aggregation mechanism is identical in both conditions, the gap between oracle and self-extracted performance localizes entirely to extraction quality, not to solver limitations or the MAX-SAT formulation.\n8\tThe aggregation mechanism is sound; the constraints are not.\n9\t\n10\tThe Condorcet Jury Theorem predicts that aggregation improves accuracy only when voters contribute independent information \\citep{condorcet1785, ladha1992correlated}.\n11\tEff-$K < 2$ for most conditions (Table~\\ref{tab:independence}) confirms that same-model traces violate this requirement at $K = 12$.\n12\tSymbolic constraints, despite their formal appearance, do not escape this bound.\n13\tThe extraction step maps natural language traces to FOL through the same model distribution, so constraints inherit the correlation structure of the traces that produced them.\n14\tEven symbolic representations, which appear to introduce a qualitatively different signal (formal logic rather than natural language votes), collapse back into the shared model distribution once the extraction is performed by the same model.\n15\tThe independence bottleneck is not about symbolic reasoning as a formalism; it is about self-extraction being unable to introduce information that the model does not already encode in its traces.\n16\t\n17\tNine interventions spanning six dimensions all fail to widen the Goldilocks zone (\\S\\ref{sec:remediation}).\n18\tContrastive prompting reduces discriminativeness from 8.2\\% to 6.0\\%.\n19\tCross-model extraction produces 0\\% discriminative constraints.\n20\tRaising temperature to $T = 1.0$ collapses $\\Delta$ from $+4\n…[truncated 2215 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Read",
+            "elapsed_ms": 10
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T05:19:53.305131+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex",
+              "limit": "60"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T05:19:53.313997+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:exp-setup}\n6\t\n7\tWe evaluate SICA against Self-Consistency (SC) across seven instruction-tuned and reasoning-specialized models on four reasoning domains, with more than 2,400 evaluation instances.\n8\t\n9\t\\paragraph{Models.} Qwen2.5-14B-Instruct, Qwen2.5-7B-Instruct, and Qwen3-14B (non-thinking mode)~\\citep{yang2024qwen25}, Mistral-7B-Instruct-v0.3~\\citep{jiang2023mistral}, LLaMA-3.1-8B-Instruct~\\citep{dubey2024llama3}, DeepSeek-R1-Distill-Qwen-7B~\\citep{guo2025deepseekr1}, and QwQ-32B~\\citep{qwen2024qwq}. Parameter counts range from 7B to 32B.\n10\t\n11\t\\paragraph{Datasets.} FOLIO~\\citep{han2022folio} ($n=204$) provides formal logic problems with gold first-order logic (FOL) annotations for the oracle control (\\S\\ref{sec:oracle}). ProofWriter~\\citep{tafjord2021proofwriter} ($n=600$) tests multi-step deductive reasoning at depth~5. LogiQA~\\citep{liu2020logiqa} ($n=200$) evaluates logical reasoning from standardized examinations. StrategyQA~\\citep{geva2021strategyqa} ($n=200$) covers commonsense multi-hop reasoning. GSM8K~\\citep{cobbe2021gsm8k} ($n=30$) and AIME 2024 ($n=22$) serve as operating-regime probes for the degenerate case ($C_0 < 5\\%$).\n12\t\n13\t\\paragraph{Parameters.} $K=12$ traces at sampling temperature $T=0.7$. Constraint extraction at $T_{\\text{ext}}=0.3$ (Appendix~\\ref{app:prompts}). Z3~\\citep{demoura2008z3} timeout: 10 seconds per problem. Penalty weight $\\alpha = 0.5$ in all experiments.\n14\t\n15\t\\paragraph{Metrics.} Accuracy (\\%), $\\Delta = \\text{SICA} - \\text{SC}$ in percentage points (pp). Statistical significance via McNemar exact test at $\\alpha = 0.05$; 95\\% bootstrap confidence intervals from 10{,}000 resamples for datasets with $n \\geq 200$.\n16\t\n17\t\n18\t\\subsection{Main Results: A Regime-Dependent Effect}\n19\t\\label{sec:main-results}\n20\t\n21\tTable~\\ref{tab:main_results} reports accuracy across all model-dataset conditions sorted by SC baseline. SICA effect\n…[truncated 2410 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Read",
+            "elapsed_ms": 8
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T05:19:53.314319+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex",
+              "content": "Self-Consistency (SC) majority voting over multiple chain-of-thought traces is the dominant test-time aggregation strategy for large language models (LLMs), but accuracy gains saturate as sample count grows. The Condorcet Jury Theorem (CJT) explains this plateau: same-model traces are correlated voters, so additional samples carry diminishing independent information. Symbolic constraints expressed in first-order logic (FOL) appear to offer a way forward, since formal validity is independent of the generative model. Yet when constraints are extracted by the same model that produces the traces, they inherit the traces' correlation structure. We term this the \\emph{independence bottleneck}. We study this bottleneck through Symbolic Invariant Consensus Aggregation (SICA), which extracts FOL constraints from reasoning traces and selects answers via weighted partial MAX-SAT. Evaluating seven models (7B to 32B parameters) across four reasoning domains with over 2,400 instances and three-seed replication, we find that SICA gains are confined to a narrow accuracy regime around 50 to 55\\% SC baseline. Outside this zone, constraints either echo the majority (confirmation bias) or amplify errors. Oracle controls with gold FOL annotations confirm the aggregation mechanism is sound, yet self-extraction captures only 35\\% of the oracle ceiling. Nine remediation strategies spanning six intervention dimensions all fail to widen the effective zone. The bottleneck is structural: same-model self-extraction cannot supply the independent signal that CJT requires for aggregation to surpass majority voting.\n"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T05:19:53.314500+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T05:19:53.314629+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex 2>&1 || echo \"FILE_NOT_EXIST\"",
+              "description": "Check if abstract.tex exists"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T05:19:53.314753+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T05:19:53.314869+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T05:19:53.315101+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tNeuro-symbolic methods extract first-order logic (FOL) constraints from Large Language Model (LLM) reasoning traces to improve answer aggregation beyond majority voting. Whether the reasoning model itself can produce useful constraints through self-extraction remains an open question. We evaluate Symbolic Invariant Consensus Aggregation (SICA), which formulates a weighted partial Maximum Satisfiability (MAX-SAT) problem over self-extracted FOL constraints, across seven models from four base architectures (7B to 32B parameters) on four reasoning domains with more than 2,400 total instances. SICA benefits exist only in a narrow Goldilocks zone ($\\sim$50--55\\% Self-Consistency): Mistral-7B achieves $+4.90$ percentage points on FOLIO ($p = 0.013$). Outside this band, SICA fails in three distinct ways. Above $\\sim$60\\% Self-Consistency, confirmation bias causes constraints to mirror model answers, reducing SICA to majority voting (eight conditions, all nonsignificant). Below $\\sim$40\\%, predominantly incorrect traces produce noisy constraints that actively hurt performance (Mistral-7B on ProofWriter-D5: $\\Delta = -4.67$ pp). When domain structure resists formalization, extraction yields no discriminative signal regardless of accuracy. Oracle controls substituting gold FOL annotations yield $+14.22$ and $+11.50$ percentage points (both $p < 0.001$), confirming that aggregation works with discriminative constraints and localizing the bottleneck to extraction quality. Six remediation strategies, including in-context learning with gold FOL examples, all fail to widen this zone. The multi-candidate rate $C_0$ combined with Self-Consistency accuracy provides a two-dimensional deployment diagnostic.\n3\t\\end{abstract}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T05:19:53.315394+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex",
+              "content": "Self-Consistency (SC) majority voting over multiple chain-of-thought traces is the dominant test-time aggregation strategy for large language models (LLMs), but accuracy gains saturate as sample count grows. The Condorcet Jury Theorem (CJT) explains this plateau: same-model traces are correlated voters, so additional samples carry diminishing independent information. Symbolic constraints expressed in first-order logic (FOL) appear to offer a way forward, since formal validity is independent of the generative model. Yet when constraints are extracted by the same model that produces the traces, they inherit the traces' correlation structure. We term this the \\emph{independence bottleneck}. We study this bottleneck through Symbolic Invariant Consensus Aggregation (SICA), which extracts FOL constraints from reasoning traces and selects answers via weighted partial MAX-SAT. Evaluating seven models (7B to 32B parameters) across four reasoning domains with over 2,400 instances and three-seed replication, we find that SICA gains are confined to a narrow accuracy regime around 50 to 55\\% SC baseline. Outside this zone, constraints either echo the majority (confirmation bias) or amplify errors. Oracle controls with gold FOL annotations confirm the aggregation mechanism is sound, yet self-extraction captures only 35\\% of the oracle ceiling. Nine remediation strategies spanning six intervention dimensions all fail to widen the effective zone. The bottleneck is structural: same-model self-extraction cannot supply the independent signal that CJT requires for aggregation to surpass majority voting.\n"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T05:19:53.315630+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T05:19:53.315825+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T05:19:53.316068+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tSelf-Consistency (SC) selects the majority answer from multiple chain-of-thought traces, but accuracy gains plateau as sample count grows. The Condorcet Jury Theorem (CJT) explains this ceiling: same-model traces are correlated voters, not independent ones. We measure inter-trace agreement with Fleiss' $\\kappa$ and find values of 0.21--0.82 across model-dataset conditions, compressing the effective ensemble size to $K_{\\text{eff}} = 1.20$--$3.63$ for nominal $K = 12$. Symbolic constraints extracted as first-order logic (FOL) appear to introduce independent signal, but when the same model performs extraction, the constraints inherit the traces' correlation structure. We evaluate this independence bottleneck through Symbolic Invariant Consensus Aggregation (SICA), a weighted partial MAX-SAT pipeline, across seven models (7B to 32B parameters), four reasoning domains, and more than 2,400 instances with three-seed replication. SICA gains are confined to a narrow Goldilocks zone (${\\sim}$50--55\\% SC accuracy), where Mistral-7B achieves $+4.90$ percentage points on FOLIO ($p = 0.013$). Outside this zone, confirmation bias (high-accuracy regime) or error amplification ($\\Delta = -2.83$\\,pp, low-accuracy regime) neutralize or reverse the effect. Oracle controls substituting gold FOL annotations yield $+14.22$\\,pp on FOLIO and $+11.50$\\,pp on ProofWriter (both $p < 0.001$), proving the aggregation mechanism is sound; the failure localizes to extraction quality. Nine remediation strategies spanning six intervention dimensions all fail to widen the effective zone. The bottleneck is structural: same-model self-extraction cannot supply the independent signal that CJT requires.\n3\t\\end{abstract}\n4\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T05:19:53.316348+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex",
+              "content": "Self-Consistency (SC) majority voting over multiple chain-of-thought traces is the dominant test-time aggregation strategy for large language models (LLMs), but accuracy gains saturate as sample count grows. The Condorcet Jury Theorem (CJT) explains this plateau: same-model traces are correlated voters, so additional samples carry diminishing independent information. Symbolic constraints expressed in first-order logic (FOL) appear to offer a way forward, since formal validity is independent of the generative model. Yet when constraints are extracted by the same model that produces the traces, they inherit the traces' correlation structure. We term this the \\emph{independence bottleneck}. We study this bottleneck through Symbolic Invariant Consensus Aggregation (SICA), which extracts FOL constraints from reasoning traces and selects answers via weighted partial MAX-SAT. Evaluating seven models (7B to 32B parameters) across four reasoning domains with over 2,400 instances and three-seed replication, we find that SICA gains are confined to a narrow accuracy regime around 50 to 55\\% SC baseline. Outside this zone, constraints either echo the majority (confirmation bias) or amplify errors. Oracle controls with gold FOL annotations confirm the aggregation mechanism is sound, yet self-extraction captures only 35\\% of the oracle ceiling. Nine remediation strategies spanning six intervention dimensions all fail to widen the effective zone. The bottleneck is structural: same-model self-extraction cannot supply the independent signal that CJT requires for aggregation to surpass majority voting.\n"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T05:19:53.316568+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T05:19:53.316757+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T05:19:53.317003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tSelf-Consistency (SC) selects the majority answer from multiple chain-of-thought traces, but accuracy gains plateau as sample count grows. The Condorcet Jury Theorem (CJT) explains this ceiling: same-model traces are correlated voters, not independent ones. We measure inter-trace agreement with Fleiss' $\\kappa$ and find values of 0.21--0.82 across model-dataset conditions, compressing the effective ensemble size to $K_{\\text{eff}} = 1.20$--$3.63$ for nominal $K = 12$. Symbolic constraints extracted as first-order logic (FOL) appear to introduce independent signal, but when the same model performs extraction, the constraints inherit the traces' correlation structure. We evaluate this independence bottleneck through Symbolic Invariant Consensus Aggregation (SICA), a weighted partial MAX-SAT pipeline, across seven models (7B to 32B parameters), four reasoning domains, and more than 2,400 instances with three-seed replication. SICA gains are confined to a narrow Goldilocks zone (${\\sim}$50--55\\% SC accuracy), where Mistral-7B achieves $+4.90$ percentage points on FOLIO ($p = 0.013$). Outside this zone, confirmation bias (high-accuracy regime) or error amplification ($\\Delta = -2.83$\\,pp, low-accuracy regime) neutralize or reverse the effect. Oracle controls substituting gold FOL annotations yield $+14.22$\\,pp on FOLIO and $+11.50$\\,pp on ProofWriter (both $p < 0.001$), proving the aggregation mechanism is sound; the failure localizes to extraction quality. Nine remediation strategies spanning six intervention dimensions all fail to widen the effective zone. The bottleneck is structural: same-model self-extraction cannot supply the independent signal that CJT requires.\n3\t\\end{abstract}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T05:19:53.317247+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex",
+              "content": "Self-Consistency (SC) majority voting over multiple chain-of-thought traces is the dominant test-time aggregation strategy for large language models (LLMs), but accuracy gains saturate as sample count grows. The Condorcet Jury Theorem (CJT) explains this plateau: same-model traces are correlated voters, so additional samples carry diminishing independent information. Symbolic constraints expressed in first-order logic (FOL) appear to offer a way forward, since formal validity is independent of the generative model. Yet when constraints are extracted by the same model that produces the traces, they inherit the traces' correlation structure. We term this the \\emph{independence bottleneck}. We study this bottleneck through Symbolic Invariant Consensus Aggregation (SICA), which extracts FOL constraints from reasoning traces and selects answers via weighted partial MAX-SAT. Evaluating seven models (7B to 32B parameters) across four reasoning domains with over 2,400 instances and three-seed replication, we find that SICA gains are confined to a narrow accuracy regime around 50 to 55\\% SC baseline. Outside this zone, constraints either echo the majority (confirmation bias) or amplify errors. Oracle controls with gold FOL annotations confirm the aggregation mechanism is sound, yet self-extraction captures only 35\\% of the oracle ceiling. Nine remediation strategies spanning six intervention dimensions all fail to widen the effective zone. The bottleneck is structural: same-model self-extraction cannot supply the independent signal that CJT requires for aggregation to surpass majority voting.\n"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T05:19:53.317435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T05:19:53.317619+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Abstract written (~222 words). Key changes from the previous version:\n\n- **Reframed around independence bottleneck**: the CJT explanation leads directly to why self-extracted symbolic constraints fail, rather than starting with SICA as a method\n- **Eliminated data pile-up**: removed Fleiss' κ ranges, K_eff numbers, specific Δ values, and p-values; kept only \"35% of oracle ceiling\" and the \"50 to 55%\" regime as the two key numbers serving claims\n- **Removed all dashes**: no em-dash or en-dash (previous version used `--` for number ranges)\n- **Removed `\\begin{abstract}/\\end{abstract}` wrapper**: file now contains only the body text as requested\n- **No -ing phrase endings, no blacklisted words, all abbreviations expanded on first use**"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260519T051733"
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-abstract.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c31480f4c7a499dcbd90",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix caption and narrative correction",
+  "task_key": "worker_fix_caption-and-narrative-correction_20260523T001013",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_caption-and-narrative-correction_20260523T001013_result.json",
+    "occurrence": 1,
+    "bytes": 1482,
+    "sha256": "b0ca672c5f4a7087e2cdca42f7d64c17c9762a97ad863c57dc4fb1f072e39dc8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过，27 页，0 error。\n\n**Diff 汇总：**\n\n**appendix.tex L1089** — `\\caption` 内：\n```diff\n- Three of four conditions show consistent $\\Delta \\leq 0$ across all seeds; Mistral-7B $\\times$ FOLIO is the exception ($+0.16 \\pm 2.70$\\,pp).\n+ Two of four conditions (Mistral-7B $\\times$ PW, Qwen2.5-14B $\\times$ FOLIO) show $\\Delta \\leq 0$ across all seeds; the remaining two show mixed signs with negative means ($+0.16 \\pm 2.70$, $-0.98 \\pm 2.25$\\,pp).\n```\n\n**experiments.tex L57** — 多种子叙事：\n```diff\n- Four-seed replication on Mistral-7B $\\times$ ProofWriter ($\\bar{\\Delta}{=}{-}2.38 \\pm 1.12$\\,pp, 4/4 seeds $\\Delta \\leq 0$) and three-seed replication on LLaMA-3.1-8B $\\times$ FOLIO ($\\bar{\\Delta}{=}{-}0.98 \\pm 2.25$\\,pp) confirm that the SICA${\\leq}$SC pattern is stable across seeds, models, and datasets (Table~\\ref{tab:multi-seed}). Four-seed replication on Qwen2.5-14B $\\times$ FOLIO confirms the single-seed pattern: $\\Delta \\in [0.00, -2.01]$\\,pp (mean $-1.24 \\pm 0.86$; Table~\\ref{tab:multi-seed}).\n+ Multi-seed replication confirms robustness: Mistral-7B $\\times$ ProofWriter (4 seeds, $\\bar\\Delta=-2.38\\pm1.12$\\,pp, all $\\Delta\\leq0$) and Qwen2.5-14B $\\times$ FOLIO (4 seeds, $\\bar\\Delta=-1.79\\pm0.25$\\,pp, all $\\Delta\\leq0$) show uniformly non-positive $\\Delta$; the remaining two conditions yield near-zero means with mixed signs (Table~\\ref{tab:multi-seed}).\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-caption-and-narrative-correction.md"
+}

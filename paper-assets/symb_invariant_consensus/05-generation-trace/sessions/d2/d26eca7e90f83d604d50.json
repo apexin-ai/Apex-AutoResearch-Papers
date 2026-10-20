@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d26eca7e90f83d604d50",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diagnose exp 010 mistral v2",
+  "task_key": "worker_diagnose_exp-010-mistral-v2_20260517T055243",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp-010-mistral-v2_20260517T055243_result.json",
+    "occurrence": 1,
+    "bytes": 562,
+    "sha256": "d262b98ed7ff092affd0687150ca7f64fb8a8126b2fb89d16891ff8022e31fd6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。产出已写入 `artifacts/exp-010-mistral-v2/diagnosis.md`。\n\n**总结：**\n\n| | v2 | v1 |\n|---|---|---|\n| 死因 | 外部 SIGTERM（GPU 被 Qwen2.5-14B 占用，13:51 提交时 pilot-constraint-filtering 仍在跑） | vLLM 忽略 `--max-model-len 8192`，实际用 4096，所有请求 400 |\n| 可用结果 | 无 | 26 条空壳记录（0% accuracy），不可用 |\n\n**重跑需要修两处：**\n1. 确保 GPU 空闲再提交\n2. 降 `--max-tokens` 为 2048（或换 `python -m vllm.serve` 新入口确保 8192 生效）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-010-mistral-v2.md"
+}

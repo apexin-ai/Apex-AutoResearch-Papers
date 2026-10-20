@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7721f2cdf64c9c83fc2d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix kill 30973 redundant",
+  "task_key": "worker_fix_kill-30973-redundant_20260523T182216",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_kill-30973-redundant_20260523T182216_result.json",
+    "occurrence": 1,
+    "bytes": 690,
+    "sha256": "e355f6af3d772e87bfc23dc789c91099bc183e1c4eb709414334c1dc27d95442"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### 结果\n\n| GPU | 状态 | 说明 |\n|-----|------|------|\n| cuda:0 | 已空闲 (0MiB) | qwen25-pw-seed789-v3 在连接前已结束 |\n| cuda:1 | 已空闲 (0MiB) | killed llama-pw-seed789-v2 残留进程 (PIDs 48261, 48260, 48252) |\n| cuda:2 | 正常运行 (88275MiB) | vLLM (LLaMA, port 8002) 未受影响 |\n\n**被 kill 的进程**：\n- PID 48261 — `run_cross_dataset_replication.py` (llama-pw-seed789-v2 主进程)\n- PID 48260 — timeout wrapper\n- PID 48252 — bash wrapper\n\n**注意**：qwen25-pw-seed789-v3 的实验进程和对应的 vLLM 在连接时已经不存在，无需操作。cuda:2 的 vLLM 和 seed456 实验完全未受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-30973-redundant.md"
+}

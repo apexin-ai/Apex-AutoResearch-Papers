@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "8cbd8996c23b72e897fb",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "gpu exp 060 cross qwen25 14b extractor",
+  "task_key": "worker_gpu_exp-060-cross-qwen25-14b-extractor_20260519T063740",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp-060-cross-qwen25-14b-extractor_20260519T063740.log",
+    "occurrence": 1,
+    "bytes": 894014,
+    "sha256": "26e730bf5b8fb8c9428682ec73dbd928b05f22d90210bc232bad8c889693f47f"
+  },
+  "statistics": {
+    "messages": 579,
+    "user_turns": 0,
+    "tool_calls": 247,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 80,
+      "record": 2,
+      "tool_call": 247,
+      "tool_result": 247,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 579,
+      "chunks": [
+        {
+          "path": "8cbd8996c23b72e897fb-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8cbd8996c23b72e897fb-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8cbd8996c23b72e897fb-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "8cbd8996c23b72e897fb-part-0004.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gpu-exp-060-cross-qwen25-14b-extractor.md"
+}

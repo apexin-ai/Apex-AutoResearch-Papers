@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ba85f1f9cbb7216840d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix exp013 agreement verify",
+  "task_key": "worker_fix_exp013-agreement-verify_20260517T183035",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_exp013-agreement-verify_20260517T183035_result.json",
+    "occurrence": 1,
+    "bytes": 1072,
+    "sha256": "75fef15ed4719c1d89132aef3c9242873c3eb2f62adcc63f9ef41231cd92381c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整结果出来了。所有 ablation_results.json 的数字与 recomputation 完全吻合。\n\n## 结论\n\n**Registry 的 `agreement_802_of_804` 是错误的。** 没有任何一对方法的 agreement 是 802。\n\n完整 pairwise agreement matrix（804 题）：\n\n| Method A | vs Method B | Agree | Disagree | A wins | B wins | Both wrong diff |\n|---|---|---|---|---|---|---|\n| MaxSAT | Count-only | **803** | 1 | 0 | 1 | 0 |\n| MaxSAT | Random-wt | **785** | 19 | 10 | 5 | 4 |\n| MaxSAT | SC | **773** | 31 | 16 | 14 | 1 |\n| Count-only | Random-wt | **786** | 18 | 10 | 4 | 4 |\n| Count-only | SC | **774** | 30 | 16 | 13 | 1 |\n| Random-wt | SC | **764** | 40 | 17 | 20 | 3 |\n\n各方法 accuracy：MaxSAT 76.49% (615), Count-only 76.62% (616), Random-wt 75.87% (610), SC 76.24% (613)\n\n三项 cross-check 与 ablation_results.json 完全一致（803, 785, 774）。MaxSAT vs SC = 773/804 是新计算的（ablation 原始 JSON 未包含此对）。\n\n结果已写入 `/root/symb_invariant_consensus/analysis/exp013_agreement_matrix.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp013-agreement-verify.md"
+}

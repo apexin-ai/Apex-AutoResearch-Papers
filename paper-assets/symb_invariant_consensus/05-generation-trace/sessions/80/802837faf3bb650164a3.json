@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "802837faf3bb650164a3",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis w4 strategy count",
+  "task_key": "worker_analysis_w4-strategy-count_20260520T133113",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_w4-strategy-count_20260520T133113_result.json",
+    "occurrence": 1,
+    "bytes": 4261,
+    "sha256": "1a92feeb38dc943b3df4a556ab800676257b2cedd4c92a0b24da3fdf138b273b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's the complete analysis.\n\n---\n\n## Strategy Count Verification\n\n### Paper Claims\n- Introduction (line 25): \"More than twenty-five remediation strategies\"\n- Introduction (line 33): \"Twenty-five+ remediation strategies fail\"\n- Analysis §5.5 (line 77): \"more than twenty remediation strategies\"\n- Appendix Table 7 caption: \"22+ distinct approaches\"\n\n### Explicitly Enumerated in Tables: **23 individual configurations**\n\n**Table 5 (tab:remediation) — 9 prompt-level strategies:**\n\n| # | Strategy | Target |\n|---|----------|--------|\n| 1 | Contrastive prompting | Prompt |\n| 2 | Cross-model extraction (2 directions) | Architecture |\n| 3 | Qwen3-14B extractor | Capability |\n| 4 | Z3 feedback | Solver |\n| 5 | Consistency filtering | Noise |\n| 6 | Cross-trace UNSAT | Independence |\n| 7 | T=1.0 | Diversity |\n| 8 | Multi-temperature | Diversity |\n| 9 | Discriminative filtering | Filtering |\n\n**Table 6 (tab:method_interventions) — 3 method-level strategies:**\n\n| # | Strategy | Target |\n|---|----------|--------|\n| 10 | ICG (Independent Constraint Generation) | Trace coupling |\n| 11 | Contrastive scoring | Scoring bias |\n| 12 | Debate | Role diversity |\n\n**Table 7 (tab:additional_interventions) — 11 additional strategies:**\n\n| # | Strategy | Target |\n|---|----------|--------|\n| 13 | PROVE (code verification) | Formal proof |\n| 14 | CEGIS (iterative) | Consistency |\n| 15 | DeepConf (logprob) | Confidence |\n| 16 | Cross-model SICA | Independence |\n| 17 | Problem perturbation | Trace diversity |\n| 18 | MIN-UNSAT | Constraint selection |\n| 19 | κ-aware SC | Weighted voting |\n| 20 | Z3 trace filter | Quality |\n| 21 | Bootstrapped gold | Self-improvement |\n| 22 | Selective abstention | Confidence |\n| 23 | ASCII perturbation | Format diversity |\n\n### Unlisted strategies that close the gap to \"25+\":\n- **ICL with gold FOL** — appears in Table 1 (main results) as a separate condition (Δ=+0.50, n.s.) but not numbered in remediation tables\n- **Backward verification** — exp-045 in registry, not in any table\n- **Cross-model extraction** counted as 2 directions (weak→strong, strong→weak) in Table 5 footnote\n\nWith these: 23 + 2 unlisted + 1 split = **26**, making the \"25+\" claim defensible.\n\n### Distinct Strategy Families: **15 families**\n\n| Family | Configs | Members |\n|--------|---------|---------|\n| 1. Contrastive/Pro-Con | 2 | #1 contrastive prompting, #11 contrastive scoring |\n| 2. Cross-Model | 3 | #2 cross-model extraction (2 dirs), #16 cross-model SICA |\n| 3. Stronger Extractor | 1 | #3 Qwen3-14B |\n| 4. Solver Feedback/Objectives | 2 | #4 Z3 feedback, #18 MIN-UNSAT |\n| 5. Constraint Filtering | 3 | #5 consistency filtering, #9 disc. filtering, #20 Z3 trace filter |\n| 6. Cross-Trace Analysis | 1 | #6 cross-trace UNSAT |\n| 7. Temperature/Diversity | 2 | #7 T=1.0, #8 multi-temp |\n| 8. Independent Generation (ICG) | 1 | #10 |\n| 9. Debate | 1 | #12 |\n| 10. Code Verification | 1 | #13 PROVE |\n| 11. Iterative Refinement | 2 | #14 CEGIS, #21 bootstrapped gold |\n| 12. Confidence Filtering | 2 | #15 DeepConf, #22 selective abstention |\n| 13. Input Perturbation | 2 | #17 problem perturbation, #23 ASCII perturbation |\n| 14. Weighted Voting | 1 | #19 κ-aware SC |\n| 15. ICL with Gold FOL | 1 | Table 1 condition (unlisted) |\n\n### Registry Verification\n- **76 experiments** with `conclusion=negative` in registry\n- **0 experiments** with `conclusion=positive`\n- The 76 experiments cover the 23 strategies plus many replication runs across seeds, datasets, and models (e.g., debate alone has exp-076, exp-078, exp-081, exp-084 for different dataset/seed combos)\n\n### Summary\n- **Individual configurations explicitly in tables: 23**\n- **Including unlisted but documented: ~26** (supports \"25+\" claim)\n- **Distinct strategy families: 15**\n- **Registry negative experiments: 76** (replications across seeds/datasets/models)\n- The intro's \"25+\" is defensible but slightly loose — the appendix's \"22+\" is more conservative and precisely matches the table-enumerated count. For the paper, recommend saying **\"23 distinct strategies across 15 families\"** or keeping \"25+\" if counting unlisted variants."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-w4-strategy-count.md"
+}

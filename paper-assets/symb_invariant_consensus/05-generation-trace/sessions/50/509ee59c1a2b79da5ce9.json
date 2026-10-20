@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "509ee59c1a2b79da5ce9",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code finetune deberta pw",
+  "task_key": "worker_code_finetune-deberta-pw_20260522T141015",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_finetune-deberta-pw_20260522T141015_result.json",
+    "occurrence": 1,
+    "bytes": 1946,
+    "sha256": "38f2b95f040084bdb69f885e1728ab1f26745d41f97d47e4d2184c5a0e39262d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出总结：\n\n### 产出文件\n1. **`/root/symb_invariant_consensus/scripts/finetune_deberta_pw.py`** (341行) — 训练脚本\n2. **`/root/symb_invariant_consensus/scripts/eval_finetuned_nli.py`** (323行) — 评估+combo脚本\n\n### Token 长度分布\n| 指标 | 值 |\n|------|-----|\n| Mean | 151 |\n| Median | 136 |\n| P95 | 220 |\n| P99 | 239 |\n| Max | 263 |\n| >512截断率 | **0%** |\n\nmax_length=512 完全够用，无需扩展。\n\n### Dry-run 结果\n仅 2 步训练（在 val 数据 80/20 split 上），已观察到 Unknown 类显著改善：\n\n| 类别 | 预训练 (55%) | 2步后 (69.2%) |\n|------|------------|--------------|\n| True | 64.0% | 94.1% |\n| False | 97.5% | 74.4% |\n| Unknown | **3.5%** | **46.8%** |\n\n核心瓶颈确认：预训练模型几乎不预测 Unknown（9/600），fine-tune 能修复。\n\n### 启动训练的命令\n```bash\ncd /root/symb_invariant_consensus\nexport CUDA_VISIBLE_DEVICES=<free_gpu>\nexport LD_LIBRARY_PATH=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib:$LD_LIBRARY_PATH\n\n# 训练（需先等 HF 数据下载完成，或手动放到 data/proofwriter_train_hf.jsonl）\npython3 scripts/finetune_deberta_pw.py --epochs 5 --lr 2e-5 --batch-size 16\n\n# 评估\npython3 scripts/eval_finetuned_nli.py \\\n    --model-path checkpoints/deberta-large-pw-finetuned/best \\\n    --sc-sources llama8b qwen14b\n```\n\n### 预估训练时间\n- DeBERTa-large fp32, batch_size=16, ~600 val 示例推理 ~7秒\n- HF 训练集大小待确认（下载仍在后台进行，PID 626998）\n- 单 GPU fp32, 预计 OWA 全深度数据 5 epoch ~10-30分钟\n\n### 待解决\n- HF 数据集下载慢（后台运行中），下载完成后会保存为 `data/proofwriter_train_hf.jsonl`\n- 所有 GPU 当前被占用（仅 ~9GB 空闲），正式训练需要专用 GPU 或等现有任务结束\n- DeBERTa v1 不支持 fp16/bf16 混合精度，已改为 fp32 训练"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-finetune-deberta-pw.md"
+}

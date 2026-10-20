@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e39cf2f88755a86582c6",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "emergency westd16639 kill polluted",
+  "task_key": "worker_emergency_westd16639-kill-polluted_20260518T161516",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_emergency_westd16639-kill-polluted_20260518T161516_result.json",
+    "occurrence": 1,
+    "bytes": 2568,
+    "sha256": "101430c96dec9ecfbbce6a6f81bf92d15d05026dfa2790374a20c6fb81658c19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集。有一个重要问题需要报告。\n\n## 诊断报告\n\n### 1. Kill 结果\n\n| 实验 | 进程 | 状态 |\n|------|------|------|\n| exp-032 | PID 16922 (run_full_mvp) + SCREEN 15925 | 首轮 pkill 已 kill |\n| exp-033 | PID 21125, 20113, 20110, 20109 | 二轮 kill -9 已 kill |\n| vLLM :8000 | 已在 00:05:54 自行崩溃 | 无需 kill（进程已不存在） |\n| vLLM :8001 | 同上，已崩溃 | 无需 kill |\n\n**⚠️ 副作用：kill PID 20109（exp033 tmux）时，该 PID 是 tmux server（最先创建的 session），导致所有 tmux session 被终止，exp-034 和 exp-035 也被连带 kill。** nvidia-smi 确认 4 张 GPU 均已清空（0 MiB），无任何 GPU 进程。\n\n### 2. 被污染文件 + 备份\n\n| 文件 | 备份路径 |\n|------|----------|\n| `results/exp032_qwen25_14b_pw600/exp032_results.json` | `.polluted.bak` ✓ 已备份并删除 |\n| `results/qwen3_14b_pw600_nonthinking/exp033_results.json` | `.polluted.bak` ✓ 已备份并删除 |\n\n### 3. Intermediates（有效数据，可 resume）\n\n| 实验 | 有效 intermediates | 总题数 | 可 resume |\n|------|-------------------|--------|-----------|\n| exp-032 (Qwen2.5-14B, PW600) | 509 个 JSON | 600 | 剩余 ~91 题 |\n| exp-033 (Qwen3-14B, PW600, no-thinking) | 518 个 JSON | 600 | 剩余 ~82 题 |\n\nintermediates 结构为 `{problem, sica_result}`，是 vLLM 崩溃前的有效推理结果。\n\n### 4. 崩溃根因\n\n**vLLM EngineCore 崩溃（非 OOM）。** dmesg 无 OOM 记录。\n\nvLLM :8000 日志关键信息：\n```\n(EngineCore pid=16369) Shutdown initiated (timeout=0)\n(EngineCore pid=16369) Aborting 1 requests\nvllm.v1.engine.exceptions.EngineDeadError: EngineCore encountered an issue\n```\n崩溃时间：00:05:54。之后 vLLM 返回 500，实验脚本持续无限重试（每秒几次），写入的结果为垃圾数据。vLLM :8001 应有类似崩溃。\n\n### 5. GPU 当前状态\n\n| GPU | 型号 | 显存使用 | 温度 | 状态 |\n|-----|------|----------|------|------|\n| 0 | RTX PRO 6000 Blackwell 97GB | 0 MiB | 26°C | **空闲** |\n| 1 | RTX PRO 6000 Blackwell 97GB | 0 MiB | 28°C | **空闲** |\n| 2 | RTX PRO 6000 Blackwell 97GB | 0 MiB | 37°C | **空闲** |\n| 3 | RTX PRO 6000 Blackwell 97GB | 0 MiB | 50°C | **空闲** |\n\n系统内存：42Gi used / 1.0Ti total。\n\n### 6. exp-035 状态\n\n**❌ 已被意外终止。** kill exp-033 tmux PID 时连带杀死了 tmux server，exp-035 (ARC-60, port 8003) 和 exp-034 (StrategyQA-200, port 8002) 均被终止。需要重启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/emergency-westd16639-kill-polluted.md"
+}

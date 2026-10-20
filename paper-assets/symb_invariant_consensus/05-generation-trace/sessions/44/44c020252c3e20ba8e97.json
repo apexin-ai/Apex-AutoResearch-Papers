@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44c020252c3e20ba8e97",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code normalization fix v3 precise",
+  "task_key": "worker_code_normalization-fix-v3-precise_20260518T120552",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_normalization-fix-v3-precise_20260518T120552_result.json",
+    "occurrence": 1,
+    "bytes": 1054,
+    "sha256": "b7964ea96c2b962d68082bc122b72ff5960b24a197ff4fd7cc37315612ed09ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "答案格式完全干净。\n\n## 产出报告\n\n| 项目 | 结果 |\n|---|---|\n| **1. 旧进程 kill** | PID 25650 已 kill，tmux folio_regen 已清除 |\n| **2. 修改的文件** | |\n| `sica/pipeline.py` | 删除 `import re`、删除 `_LATEX_TEXT_RE` 行；`normalize_logic_answer` 从 regex 改为 `s.startswith('\\\\text{')` + 字符串切片 |\n| `utils/math_equiv.py` | `normalize_answer` 开头增加 `\\\\text{}` 剥离（L26-30） |\n| **3. normalize_logic_answer 测试** | **ALL PASS**（7/7：`\\text{True`、`\\text{false`、`\\text{uncertain`、`\\text{True}`、`True`、`Unknown`、`False`） |\n| **4. 温度验证** | `--temperature` 默认 0.7 ✓；VLLMBackend 默认 0.3 ✓；`build_extractor` 不传 temperature ✓；脚本 `--temperature 0.7` ✓ |\n| **5. 新进程** | PID **27245**，日志 `logs/folio_regen_v3_20260518_201127.log` |\n| **6. 答案格式验证** | folio_0: answers=`{True, Unknown, False}` → sica=`Unknown` ✓；folio_1: answers=`{True}` → sica=`True` ✓。**无 `\\text{}` 残留** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-normalization-fix-v3-precise.md"
+}

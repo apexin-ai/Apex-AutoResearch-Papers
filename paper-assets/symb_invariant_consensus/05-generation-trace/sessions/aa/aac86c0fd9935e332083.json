@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aac86c0fd9935e332083",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code fix async extraction",
+  "task_key": "worker_code_fix-async-extraction_20260515T111651",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix-async-extraction_20260515T111651_result.json",
+    "occurrence": 1,
+    "bytes": 783,
+    "sha256": "5706e03d2f2d4a722753e82a42ccf04c0614be7375bd91c9a2f48d8f06ca6e88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "测试完成。结果：\n\n**修改内容：**\n1. `VLLMBackend` 和 `APIBasedLLM` 的 `batch_call` 从 asyncio 改为 `ThreadPoolExecutor`（无 event loop 错误）\n2. 删除了 `import asyncio`、`AsyncOpenAI`、`async_call`、`nest_asyncio` 依赖\n3. `VLLMBackend.max_tokens` 默认 2048 → 1024\n4. `APIBasedLLM.max_tokens` 默认 8192 → 1024\n5. 两个类的 `__init__` 都接受 `max_tokens` 参数\n\n**测试结果：**\n- Backend: VLLMBackend, Model: QwQ-32B, max_tokens: 1024\n- `batch_call` 3 个 prompt 并发执行，**45.0s** 完成（无 RuntimeError）\n- 每个结果 3551-3896 chars（QwQ 仍有思考内容，但被 1024 token 限制截断，远比之前 ~700s/题快）\n- 3 个请求并发而非串行，总时间约等于单次请求时间"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-async-extraction.md"
+}

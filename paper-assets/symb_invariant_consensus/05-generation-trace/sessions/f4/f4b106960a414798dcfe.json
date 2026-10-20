@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "f4b106960a414798dcfe",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper figure generation",
+  "task_key": "worker_paper_figure-generation_20260519T052550",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure-generation_20260519T052550_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "be81898bfd0e91c95835927b9203537083d856e2737cbd923145a325287e4f08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Could not process image\"},\"request_id\":\"req_011CbBPoXc84dUuwwAL9vcni\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "type": "invalid_request_error",
+                "message": "Could not process image"
+              },
+              "request_id": "req_011CbBPoXc84dUuwwAL9vcni"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-generation.md"
+}

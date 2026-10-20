@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5c5b35c3f1082d054d4",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "exp logiqa nli combo 16639",
+  "task_key": "worker_exp_logiqa-nli-combo-16639_20260523T165310",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_logiqa-nli-combo-16639_20260523T165310_result.json",
+    "occurrence": 1,
+    "bytes": 995,
+    "sha256": "07d630da5fe86e4727db15f7d7ad37f49f08f6cf0a1829fc7f4400a65b17376d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n**3 个 NLI verifier × 4 个 generator × 3 个 weight = 36 组实验，全部在 ~3 分钟内跑完。**\n\n核心结论：**0/36 显著**。NLI combo 在 LogiQA 上无效。\n\n| 指标 | LogiQA | ProofWriter (对比) |\n|------|--------|-------------------|\n| NLI standalone | 26.5–33.0% (近随机) | ~46% |\n| Capability gap | −20 to −55pp | +6.8pp (弱 gen) |\n| 显著改善 | 0/36 | 多个 |\n\n原因：零样本 NLI 模型不具备 LogiQA 所需的多跳逻辑推理能力，NLI standalone 几乎等于随机猜（25%），无法为 SC 投票提供有信息量的信号。\n\n产出文件：\n- `results/logiqa_nli_combo_deberta.json`\n- `results/logiqa_nli_combo_bart.json`\n- `results/logiqa_nli_combo_roberta.json`\n- artifact 已注册 (`art_20260523_2c0e3e`)\n\n注意：cuda:3 当前被占用（83GB），只使用了 CPU。Blackwell GPU 的 DeBERTa 有 nvrtc 编译问题，但 CPU 推理够快（66s/46s/40s per verifier）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-logiqa-nli-combo-16639.md"
+}

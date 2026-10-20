@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37031b3e81fa4eac4039",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 016 weighted sc",
+  "task_key": "worker_analysis_exp-016-weighted-sc_20260516T204729",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-016-weighted-sc_20260516T204729_result.json",
+    "occurrence": 1,
+    "bytes": 887,
+    "sha256": "404a0e3f4a577847f52d3b0d1524f177725a995336d1c86e9419582a78113705"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-016 完成。结果汇总：\n\n| Method | Accuracy | vs SC (p) | vs SICA (p) |\n|--------|----------|-----------|-------------|\n| **SICA** (ref) | **76.49%** (615) | — | — |\n| **SC / Uniform** | **76.24%** (613) | — | 0.855 |\n| Inv-length-weighted | 76.74% (617) | 0.453 | 0.864 |\n| Length-weighted | 75.25% (605) | 0.153 | 0.066 |\n| Constraint-count (=length) | 75.25% (605) | 0.153 | 0.066 |\n\n**结论**：\n- 所有加权变体 vs SC/SICA 均不显著（p > 0.05）\n- Length-weighting 反而伤害性能（-1pp），长 trace 略微不可靠\n- Inverse-length 有微弱正向效果（+0.5pp），但远非显著\n- 简单加权投票不能替代 SICA，同时也确认 SICA 本身相对 SC 的优势也不显著\n\n产出已注册：报告 `art_20260516_c7cc07`，数据 `art_20260516_7eef43`。脚本在服务器 `scripts/weighted_sc_baseline.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-016-weighted-sc.md"
+}

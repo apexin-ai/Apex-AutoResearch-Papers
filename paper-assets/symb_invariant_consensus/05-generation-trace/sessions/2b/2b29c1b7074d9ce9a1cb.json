@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "2b29c1b7074d9ce9a1cb",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment r1 distill fix v2",
+  "task_key": "worker_experiment_r1-distill-fix-v2_20260521T145252",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_r1-distill-fix-v2_20260521T145252.log",
+    "occurrence": 1,
+    "bytes": 806309,
+    "sha256": "3501c7b6bebd169f577e47b543db449e37ce185bc21d1488d9ea6b3b0d5f7971"
+  },
+  "statistics": {
+    "messages": 266,
+    "user_turns": 0,
+    "tool_calls": 84,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 94,
+      "tool_call": 84,
+      "tool_result": 84,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 266,
+      "chunks": [
+        {
+          "path": "2b29c1b7074d9ce9a1cb-part-0001.json",
+          "message_count": 163
+        },
+        {
+          "path": "2b29c1b7074d9ce9a1cb-part-0002.json",
+          "message_count": 103
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-r1-distill-fix-v2.md"
+}

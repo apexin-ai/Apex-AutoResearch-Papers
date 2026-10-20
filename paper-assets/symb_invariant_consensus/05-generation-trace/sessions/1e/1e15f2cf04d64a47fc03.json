@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e15f2cf04d64a47fc03",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 011 truncation bias",
+  "task_key": "worker_analysis_exp-011-truncation-bias_20260517T081040",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-011-truncation-bias_20260517T081040_result.json",
+    "occurrence": 1,
+    "bytes": 1637,
+    "sha256": "9f390e1a939270a69ed3f19ff1a5576d6e119da15ced619e2351069a8561e88c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-011 截断偏差分析报告\n\n### 截断分布\n- 44 条 truncated traces 分布在 16/60 个问题上（73% 的问题无截断）\n- 截断集中在 ProofWriter（39/44），FOLIO 几乎无截断（5/44）\n- 平均每题 0.73 条截断，中位数 0\n\n### 核心发现：截断不偏向 SICA\n\n**Discordant pairs 截断情况：**\n\n| 类型 | n | 有截断的问题数 | 平均截断数 |\n|------|---|---------------|-----------|\n| SICA wins | 5 | 1 (仅 RelNeg-856_Q19, 3/12) | 0.60 |\n| SC wins | 1 | 0 | 0.00 |\n\n5 个 SICA-wins discordant pair 中，4 个完全无截断，只有 1 个有 3 条截断。\n\n**统计检验（全部不显著）：**\n\n| 检验 | 结果 |\n|------|------|\n| Fisher exact (discordant pairs: 截断 vs SICA胜) | p=1.000 |\n| Mann-Whitney U (SICA-wins vs 其他的截断量) | p=0.615，方向相反（SICA-wins 截断更少） |\n| Spearman ρ (截断率 vs SICA优势) | ρ=-0.002, p=0.987 |\n\n**Median split：**\n- 有截断组 (n=16): SICA-SC = +6.2pp\n- 无截断组 (n=44): SICA-SC = +6.8pp\n- 两组 SICA 增益几乎相同，无截断组反而略高\n\n### 结论\n\n**截断不构成系统性偏差。** SICA 的 +6.67pp 增益在有/无截断的问题子集上均一致存在（+6.2pp vs +6.8pp）。SICA 胜出的 5 个 discordant pair 中 4 个无截断，且 SICA-wins 组的平均截断量（0.60）低于全局均值（0.75）。所有统计检验均不显著。\n\n对 exp-019 设计的启示：增加 max_tokens 是好的工程实践（减少信息丢失），但截断不是当前增益的驱动因素，不需要因此质疑 +6.67pp 的可信度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-011-truncation-bias-copy-2.md"
+}

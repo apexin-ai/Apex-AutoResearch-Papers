@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "acbaf73a03e752fecbd7",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "eval exp 004 qwen7b rerun",
+  "task_key": "worker_eval_exp-004-qwen7b-rerun_20260518T161756",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_exp-004-qwen7b-rerun_20260518T161756.log",
+    "occurrence": 1,
+    "bytes": 879684,
+    "sha256": "0bea7efc08b277ebb780fe498bd603ffeab27b00367d63df978ad9151ca8f53f"
+  },
+  "statistics": {
+    "messages": 354,
+    "user_turns": 0,
+    "tool_calls": 137,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 75,
+      "tool_call": 137,
+      "tool_result": 137,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 354,
+      "chunks": [
+        {
+          "path": "acbaf73a03e752fecbd7-part-0001.json",
+          "message_count": 150
+        },
+        {
+          "path": "acbaf73a03e752fecbd7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "acbaf73a03e752fecbd7-part-0003.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-exp-004-qwen7b-rerun.md"
+}

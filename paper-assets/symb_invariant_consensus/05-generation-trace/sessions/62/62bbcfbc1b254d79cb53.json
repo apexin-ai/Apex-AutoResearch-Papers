@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62bbcfbc1b254d79cb53",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra exp052 053 seed replication",
+  "task_key": "worker_infra_exp052-053-seed-replication_20260518T231815",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_exp052-053-seed-replication_20260518T231815_result.json",
+    "occurrence": 1,
+    "bytes": 592,
+    "sha256": "e5851a78bcc5f277ed71cdf0136a06e8f4244a4e7d39e930cd45671288b3d642"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。总结：\n\n| 实验 | GPU | Seed | Port | tmux session | 状态 |\n|------|-----|------|------|-------------|------|\n| exp-052 | cuda:2 | 123 | 8002 | `exp052` | RUNNING, vLLM 已加载 (87952MiB) |\n| exp-053 | cuda:3 | 456 | 8003 | `exp053` | RUNNING, vLLM 已加载 (87952MiB) |\n\n两个 vLLM server 正在加载模型，命令中 `sleep 120` 后会自动启动 `run_full_mvp.py`。配置：K=12, temperature=0.7, max-tokens=4096, FOLIO-204, Mistral-7B-Instruct-v0.3，`VLLM_USE_FLASHINFER_SAMPLER=0` + `--enforce-eager`。Registry 已更新为 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp052-053-seed-replication.md"
+}

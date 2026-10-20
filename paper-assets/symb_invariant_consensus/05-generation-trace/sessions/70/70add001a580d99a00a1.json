@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70add001a580d99a00a1",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 005 qwq regime",
+  "task_key": "worker_analysis_exp-005-qwq-regime_20260516T204929",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-005-qwq-regime_20260516T204929_result.json",
+    "occurrence": 1,
+    "bytes": 772,
+    "sha256": "269bb7df3e4d0418fd00368077bff036962863563aa32b31907ef4beff840714"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-005 完成。\n\n**产出**：\n- `art_20260516_bf444f` — `operating_regime_data.json`：结构化 JSON，含 4 组实验的完整 metrics + 对比模型数据 + operating regime boundary 定义\n- `art_20260516_d6966d` — `operating_regime_report.md`：paper section draft，含 summary table、per-problem case study、temperature ablation、operating regime 定义\n\n**关键数字验证**（与 registry 一致）：\n\n| 指标 | QwQ-32B | Qwen2.5-14B |\n|------|---------|-------------|\n| C0 (effective) | 2.6% | 46% |\n| Diversity ratio | — | 17.7× |\n| AIME Δ(SICA−SC) | 0.0pp | — |\n| ProofWriter Δ | −5.9pp | — |\n| C0 threshold | < 20% (FAIL) | ≥ 20% (PASS) |\n\nRegistry `exp-005` 已标记 DONE (conclusion: negative)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-005-qwq-regime.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29d149567cf4f472ee72",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "prep gsm8k data",
+  "task_key": "worker_prep_gsm8k-data_20260516T061700",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_prep_gsm8k-data_20260516T061700_result.json",
+    "occurrence": 1,
+    "bytes": 964,
+    "sha256": "77825c7dca0fb76d84d441253ec03df1102b1e06d8ec280305e5fd066cbca810"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n### 产出报告\n\n**数据文件**: `/root/symb_invariant_consensus/data/gsm8k_200.json`\n- 200 题，从 GSM8K test set (1319题) 随机采样，seed=42\n- 字段: `id`, `problem`, `solution`, `answer`, `level`, `dataset`\n- 答案类型: 全部为整数 (从 `#### 数字` 格式提取)\n- 格式与 proofwriter/folio/math500 兼容\n\n**数据准备脚本**: `/root/symb_invariant_consensus/scripts/prepare_gsm8k.py`\n- 可复现: seed=42, 200题随机采样\n- 自动提取 `#### N` 格式的纯数字答案\n\n**评估脚本**: `/root/symb_invariant_consensus/scripts/eval_gsm8k.py`\n- 完全对齐 `eval_math500.py` 接口 (SICA vs SC@K)\n- 支持参数: `--mode`, `--k`, `--n-problems`, `--temperature`, `--max-tokens`, `--seed`, `--output`, `--resume`, `--save-intermediates`\n- 答案判定: `is_equiv()` 数值精确匹配\n- 支持 checkpoint/resume, 包含 ETA 估计\n- `task_type=\"math\"` 走数学推理 pipeline"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-gsm8k-data.md"
+}

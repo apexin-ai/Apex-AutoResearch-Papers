@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "e2099d5210e3b9fe3d9b",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "analysis r11 3verifier combo",
+  "task_key": "worker_analysis_r11-3verifier-combo_20260521T112038",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_r11-3verifier-combo_20260521T112038.log",
+    "occurrence": 1,
+    "bytes": 963407,
+    "sha256": "d2b81e0fe9e5cf26e9ab0b3ac879936abe1d6506c196f545440a1b59f4993b49"
+  },
+  "statistics": {
+    "messages": 453,
+    "user_turns": 0,
+    "tool_calls": 176,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 94,
+      "tool_call": 176,
+      "tool_result": 176,
+      "record": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 453,
+      "chunks": [
+        {
+          "path": "e2099d5210e3b9fe3d9b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e2099d5210e3b9fe3d9b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e2099d5210e3b9fe3d9b-part-0003.json",
+          "message_count": 93
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-r11-3verifier-combo.md"
+}

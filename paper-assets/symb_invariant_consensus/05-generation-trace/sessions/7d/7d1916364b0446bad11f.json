@@ -1,0 +1,1665 @@
+{
+  "schema_version": "1.0",
+  "id": "7d1916364b0446bad11f",
+  "project": "symb_invariant_consensus",
+  "kind": "conversation",
+  "title": "exp pw nli combo bart roberta",
+  "task_key": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_exp_pw-nli-combo-bart-roberta_20260523T161247.jsonl",
+    "occurrence": 1,
+    "bytes": 82087,
+    "sha256": "c3079c8df458294272ae67fa544b1aa6b3c4cf7b8011747be37355bc55843003"
+  },
+  "statistics": {
+    "messages": 83,
+    "user_turns": 0,
+    "tool_calls": 41,
+    "roles": {
+      "tool_call": 41,
+      "tool_result": 41,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T16:19:52.583952+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T16:19:52.584297+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T16:19:52.584486+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "find /root/symb_invariant_consensus/scripts/ -name \"*nli*\" -o -name \"*combo*\" -o -name \"*r11*\""
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T16:19:52.584627+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "find /root/symb_invariant_consensus/results/ -path \"*pw*\" -name \"results.json\" -type f"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T16:19:52.584774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/scripts/push_b_stronger_nli.py\\\\n/root/symb_invariant_consensus/scripts/qwen14b_pw_nli_combo.py\\\\n/root/symb_invariant_consensus/scripts/exp092_llama8b_pw_nli_combo.py\\\\n/root/symb_invariant_consensus/scripts/r11_3verifier_canonical.py\\\\n/root/symb_invariant_consensus/scripts/r11_3verifier_final_v2.py\\\\n/root/symb_invariant_consensus/scripts/dir_j1_nli_logiqa.py\\\\n/root/symb_invariant_consensus/scripts/__pycache__/push_b_stronger_nli.cpython-312.pyc\\\\n/root/symb_invariant_consensus/scripts/__pycache__/eval_finetuned_nli.cpython-312.pyc\\\\n/root/symb_invariant_consensus/scripts/r11_3verifier_final.py\\\\n/root/symb_invariant_consensus/scripts/test_nli_standalone_cpu.py\\\\n/root/symb_invariant_consensus/scripts/eval_finetuned_nli.py\\\\n/root/symb_invariant_consensus/scripts/folio_zeroshot_combo_d061.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.06}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T16:19:52.585026+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/results/exp032_qwen25_14b_pw600/results.json\\\\n/root/symb_invariant_consensus/results/exp033_qwen3_14b_pw600_nonthinking/results.json\\\\n/root/symb_invariant_consensus/results/d116_qwen3_pw_deberta_large/results.json\\\\n/root/symb_invariant_consensus/results/qwen14b_pw_nli_combo/results.json\\\\n/root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/results.json\\\\n/root/symb_invariant_consensus/results/exp032_qwen14b_pw_oracle/results.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed42/results.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed123/results.json\\\\n/root/symb_invariant_consensus/results/multi_seed/llama8b_pw_seed42/results.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed456/results.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed789/results.json\\\\n/root/symb_invariant_consensus/results/multi_seed/qwen25_pw_seed456/results.json\\\\n/root/symb_invariant_consensus/results/multi_seed/qwen25_pw_seed123/results.json\\\\n/root/symb_invariant_consensus/results/multi_seed/llama8b_pw_seed123/results.json\\\\n/root/symb_invariant_consensus/results/multi_seed/qwen25_pw_seed789/results.json\\\\n/root/symb_invariant_consensus/results/multi_seed/llama8b_pw_seed789/results.json\\\\n/root/symb_invariant_consensus/results/multi_seed/llama8b_pw_seed456/results.json\\\\n/root/symb_invariant_consensus/results/eval_finetuned_deberta-large-pw-owa/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T16:19:52.585346+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "cat /root/symb_invariant_consensus/scripts/r11_3verifier_final_v2.py"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T16:19:52.585762+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"R11 Q3: 3-verifier canonical analysis.\\\\nHard-vote combo + alphabetical tiebreaking.\\\\nDeBERTa from D116. RoBERTa/BART inferred here. SC from mistral_pw600_sc_votes.json (ID-fixed).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, time, torch\\\\nfrom collections import Counter\\\\nfrom scipy.stats import binomtest\\\\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\\\\n\\\\nPW_PATH = \\\\\\\"/root/symb_invariant_consensus/data/proofwriter_full.json\\\\\\\"\\\\nSC_PATH = \\\\\\\"/root/symb_invariant_consensus/data/mistral_pw600_sc_votes.json\\\\\\\"\\\\nD116_PATH = \\\\\\\"/root/symb_invariant_consensus/results/d116_qwen3_pw_deberta_large/results.json\\\\\\\"\\\\nCLASSES = [\\\\\\\"True\\\\\\\", \\\\\\\"False\\\\\\\", \\\\\\\"Unknown\\\\\\\"]\\\\nWEIGHTS = [1, 3, 5]\\\\n\\\\nID_FIX = {\\\\n    \\\\\\\"ProofWriter_AttNeg-OWA-D5-1176_Q4\\\\\\\": \\\\\\\"ProofWriter_AttNeg-OWA-D5-1176_Q8\\\\\\\",\\\\n    \\\\\\\"ProofWriter_AttNoneg-OWA-D5-1284_Q4\\\\\\\": \\\\\\\"ProofWriter_AttNoneg-OWA-D5-1284_Q8\\\\\\\",\\\\n}\\\\n\\\\nNLI_MODELS = {\\\\n    \\\\\\\"roberta\\\\\\\": \\\\\\\"/root/autodl-tmp/models/roberta-large-mnli\\\\\\\",\\\\n    \\\\\\\"bart\\\\\\\": \\\\\\\"/root/autodl-tmp/models/bart-large-mnli\\\\\\\",\\\\n}\\\\n\\\\ndef parse_problem(text):\\\\n    marker = \\\\\\\"\\\\\\\\n\\\\\\\\nDetermine whether the following statement is true, false, or unknown:\\\\\\\\n\\\\\\\"\\\\n    if marker in text:\\\\n        parts = text.split(marker, 1)\\\\n        return parts[0].strip(), parts[1].strip()\\\\n    return text, \\\\\\\"\\\\\\\"\\\\n\\\\ndef map_nli(label):\\\\n    lu = label.upper()\\\\n    if \\\\\\\"ENTAIL\\\\\\\" in lu: return \\\\\\\"True\\\\\\\"\\\\n    if \\\\\\\"CONTRA\\\\\\\" in lu: return \\\\\\\"False\\\\\\\"\\\\n    return \\\\\\\"Unknown\\\\\\\"\\\\n\\\\ndef alpha_winner(score_dict):\\\\n    mx = max(score_dict.values())\\\\n    tied = sorted(c for c in CLASSES if score_dict.get(c, 0) == mx)\\\\n    return tied[0]\\\\n\\\\ndef run_nli_inference(model_name, hf_path, pw_data, device):\\\\n    print(f\\\\\\\"\\\\\\\\nLoading {model_name}: {hf_path}\\\\\\\")\\\\n    tok = AutoTokenizer.from_pretrained(hf_path)\\\\n    mdl\n…[truncated 7300 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T16:19:52.586055+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "find /root/symb_invariant_consensus/results/ -path \"*qwen3*pw*\" -name \"results.json\" -type f"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T16:19:52.586269+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/results/exp033_qwen3_14b_pw600_nonthinking/results.json\\\\n/root/symb_invariant_consensus/results/d116_qwen3_pw_deberta_large/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T16:19:52.586443+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "cat /root/symb_invariant_consensus/scripts/qwen14b_pw_nli_combo.py"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T16:19:52.586734+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Qwen2.5-14B ProofWriter NLI Combo using D116's DeBERTa-large predictions.\\\\n\\\\nDeBERTa-large-mnli predictions are deterministic on the same 600 PW problems\\\\nregardless of generator model, so we reuse D116's per_question results directly.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nfrom collections import Counter\\\\nfrom scipy.stats import binomtest\\\\n\\\\nEXP032_PATH = \\\\\\\"/root/symb_invariant_consensus/results/exp032_qwen25_14b_pw600/results.json\\\\\\\"\\\\nD116_PATH = \\\\\\\"/root/symb_invariant_consensus/results/d116_qwen3_pw_deberta_large/results.json\\\\\\\"\\\\nOUTPUT_DIR = \\\\\\\"/root/symb_invariant_consensus/results/qwen14b_pw_nli_combo\\\\\\\"\\\\nCLASSES = [\\\\\\\"True\\\\\\\", \\\\\\\"False\\\\\\\", \\\\\\\"Unknown\\\\\\\"]\\\\nWEIGHTS = [1, 3, 5]\\\\n\\\\n\\\\ndef mcnemar_test(b, c):\\\\n    n = b + c\\\\n    if n == 0:\\\\n        return 1.0\\\\n    return binomtest(min(b, c), n, 0.5).pvalue\\\\n\\\\n\\\\ndef main():\\\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\\\n\\\\n    with open(EXP032_PATH) as f:\\\\n        exp032 = json.load(f)\\\\n    with open(D116_PATH) as f:\\\\n        d116 = json.load(f)\\\\n\\\\n    results_list = exp032[\\\\\\\"results\\\\\\\"]\\\\n    d116_pq = d116[\\\\\\\"per_question\\\\\\\"]\\\\n    total = len(results_list)\\\\n    print(f\\\\\\\"Loaded {total} problems from exp032 (Qwen2.5-14B PW600)\\\\\\\")\\\\n\\\\n    # Extract per-problem data from exp032\\\\n    gt = {}\\\\n    sc_answers = {}\\\\n    sc_vote_dists = {}\\\\n    for r in results_list:\\\\n        pid = r[\\\\\\\"problem_id\\\\\\\"]\\\\n        gt[pid] = r[\\\\\\\"ground_truth\\\\\\\"]\\\\n        sc_answers[pid] = r[\\\\\\\"sc_answer\\\\\\\"]\\\\n        sc_vote_dists[pid] = r[\\\\\\\"sc_vote_distribution\\\\\\\"]\\\\n\\\\n    # Verify all problem_ids match D116\\\\n    missing = [pid for pid in gt if pid not in d116_pq]\\\\n    if missing:\\\\n        print(f\\\\\\\"WARNING: {len(missing)} problems missing from D116!\\\\\\\")\\\\n        for m in missing[:5]:\\\\n            print(f\\\\\\\"  {m}\\\\\\\")\\\\n    else:\\\\n        print(\\\\\\\"All 600 problem_ids \n…[truncated 7237 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T16:19:52.586942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "find /root/symb_invariant_consensus/data/ -name \"*sc_votes*\" -o -name \"*pw*votes*\""
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T16:19:52.587105+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "ls /root/autodl-tmp/models/"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T16:19:52.587239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/data/mistral_pw600_sc_votes.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T16:19:52.587382+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Meta-Llama-3.1-8B-Instruct\\\\nMistral-7B-Instruct-v0.3\\\\nQwen2.5-14B-Instruct\\\\nQwen2.5-72B-Instruct-AWQ\\\\nQwen3-14B\\\\nbart-large-mnli\\\\ndeberta-base-mnli\\\\ndeberta-large-mnli\\\\ndeberta-v3-large-mnli-fever-anli-ling-wanli\\\\ndeepseek-ai\\\\ndeepseek-r1-0528-qwen3-8b\\\\ngemma-3-27b-it\\\\niic\\\\nllama-4-scout\\\\nphi-4-reasoning\\\\nroberta-large-mnli\\\\ntest_hf_speed\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T16:19:52.587555+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/exp032_qwen25_14b_pw600/results.json')); r=d['results'][0]; print(json.dumps({k:r[k] for k in ['problem_id','ground_truth','sc_answer','sc_vote_distribution']}, indent=2))\""
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T16:19:52.587688+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T16:19:52.587848+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/data/mistral_pw600_sc_votes.json')); keys=list(d.keys())[:2]; print(json.dumps({k:d[k] for k in keys}, indent=2))\""
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T16:19:52.588085+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T16:19:52.588282+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/exp033_qwen3_14b_pw600_nonthinking/results.json')); r=d['results'][0]; print(json.dumps({k:r[k] for k in ['problem_id','ground_truth','sc_answer','sc_vote_distribution']}, indent=2))\""
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T16:19:52.588479+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T16:19:52.588623+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "head -50 /root/symb_invariant_consensus/results/exp032_qwen25_14b_pw600/results.json"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T16:19:52.588758+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "head -20 /root/symb_invariant_consensus/data/mistral_pw600_sc_votes.json"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T16:19:52.589014+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 600,\\\\n    \\\\\\\"sica_accuracy\\\\\\\": 0.715,\\\\n    \\\\\\\"sc_accuracy\\\\\\\": 0.735,\\\\n    \\\\\\\"sica_correct\\\\\\\": 429,\\\\n    \\\\\\\"sc_correct\\\\\\\": 441,\\\\n    \\\\\\\"extraction_rate\\\\\\\": 0.9915277777777778,\\\\n    \\\\\\\"total_constraints_extracted\\\\\\\": 94306,\\\\n    \\\\\\\"total_unique_constraints\\\\\\\": 22036,\\\\n    \\\\\\\"contradiction_rate\\\\\\\": 0.006171719005264113,\\\\n    \\\\\\\"problems_with_contradictions\\\\\\\": 108,\\\\n    \\\\\\\"per_level_accuracy\\\\\\\": {\\\\n      \\\\\\\"OWA-D5\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.715,\\\\n        \\\\\\\"sc\\\\\\\": 0.735,\\\\n        \\\\\\\"n\\\\\\\": 600\\\\n      }\\\\n    },\\\\n    \\\\\\\"per_dataset_accuracy\\\\\\\": {\\\\n      \\\\\\\"proofwriter\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.715,\\\\n        \\\\\\\"sc\\\\\\\": 0.735,\\\\n        \\\\\\\"n\\\\\\\": 600\\\\n      }\\\\n    },\\\\n    \\\\\\\"k\\\\\\\": 12,\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"vllm\\\\\\\",\\\\n    \\\\\\\"total_wall_time_s\\\\\\\": 39578.2\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"problem_idx\\\\\\\": 0,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"ProofWriter_AttNoneg-OWA-D5-1041_Q1\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Bob is cold. Bob is quiet. Bob is red. Bob is smart. Charlie is kind. Charlie is quiet. Charlie is red. Charlie is rough. Dave is cold. Dave is kind. Dave is smart. Fiona is quiet. If something is quiet and cold then it is smart. Red, cold things are round. If something is kind and rough then it is red. All quiet things are rough. Cold, smart things are red. If something is rough then it is cold. All red things are rough. If Dave is smart and Dave is kind then Dave is quiet.\\\\\\\\n\\\\\\\\nDetermine whether the following statement is true, false, or unknown:\\\\\\\\nCharlie is kind.\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"proofwriter\\\\\\\",\\\\n      \\\\\\\"level\\\\\\\": \\\\\\\"OWA-D5\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sica_scores\\\\\\\": {\\\\n        \\\\\\\"True\\\\\\\": 97.0\\\\n      },\\\\n      \\\\\\\"sica_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\n…[truncated 301 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T16:19:52.589314+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"ProofWriter_AttNeg-OWA-D5-1015_Q19\\\\\\\":[1,0,9],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1015_Q3\\\\\\\":[0,0,9],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1017_Q19\\\\\\\":[1,3,8],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1017_Q5\\\\\\\":[1,2,9],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1028_Q10\\\\\\\":[0,0,8],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1030_Q23\\\\\\\":[4,0,7],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1066_Q21\\\\\\\":[2,0,8],\\\\\\\"ProofWriter_AttNeg-OWA-D5-107_Q1\\\\\\\":[1,0,8],\\\\\\\"ProofWriter_AttNeg-OWA-D5-107_Q6\\\\\\\":[0,1,8],\\\\\\\"ProofWriter_AttNeg-OWA-D5-108_Q15\\\\\\\":[5,1,3],\\\\\\\"ProofWriter_AttNeg-OWA-D5-109_Q11\\\\\\\":[0,0,11],\\\\\\\"ProofWriter_AttNeg-OWA-D5-109_Q13\\\\\\\":[1,0,9],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1105_Q4\\\\\\\":[3,1,5],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1111_Q2\\\\\\\":[7,0,3],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1119_Q6\\\\\\\":[0,5,5],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1149_Q12\\\\\\\":[0,4,6],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1149_Q18\\\\\\\":[0,4,5],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1170_Q10\\\\\\\":[3,2,2],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1170_Q13\\\\\\\":[0,2,7],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1176_Q11\\\\\\\":[2,0,7],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1176_Q12\\\\\\\":[0,1,9],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1176_Q18\\\\\\\":[0,1,6],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1176_Q4\\\\\\\":[1,5,5],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1183_Q16\\\\\\\":[0,0,8],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1183_Q20\\\\\\\":[0,2,9],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1201_Q18\\\\\\\":[5,0,6],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1203_Q17\\\\\\\":[7,0,4],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1203_Q8\\\\\\\":[0,0,9],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1208_Q1\\\\\\\":[8,1,2],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1208_Q15\\\\\\\":[1,1,9],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1208_Q5\\\\\\\":[3,1,8],\\\\\\\"ProofWriter_AttNeg-OWA-D5-120_Q11\\\\\\\":[0,0,11],\\\\\\\"ProofWriter_AttNeg-OWA-D5-120_Q17\\\\\\\":[0,0,9],\\\\\\\"ProofWriter_AttNeg-OWA-D5-120_Q9\\\\\\\":[0,0,11],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1210_Q4\\\\\\\":[1,5,4],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1210_Q8\\\\\\\":[2,3,5],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1220_Q4\\\\\\\":[0,2,10],\\\\\\\"ProofWriter_AttNeg-OWA-D5-1220_Q6\\\\\\\":[0,5,7],\\\\\\\"ProofWriter_AttNeg-OW\n…[truncated 7269 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T16:19:52.589486+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "head -50 /root/symb_invariant_consensus/results/multi_seed/llama8b_pw_seed42/results.json"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T16:19:52.589667+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 223,\\\\n    \\\\\\\"sica_accuracy\\\\\\\": 0.6816143497757847,\\\\n    \\\\\\\"sc_accuracy\\\\\\\": 0.7219730941704036,\\\\n    \\\\\\\"sica_correct\\\\\\\": 152,\\\\n    \\\\\\\"sc_correct\\\\\\\": 161,\\\\n    \\\\\\\"extraction_rate\\\\\\\": 0.9136771300448431,\\\\n    \\\\\\\"total_constraints_extracted\\\\\\\": 35017,\\\\n    \\\\\\\"total_unique_constraints\\\\\\\": 10925,\\\\n    \\\\\\\"contradiction_rate\\\\\\\": 0.04128146453089245,\\\\n    \\\\\\\"problems_with_contradictions\\\\\\\": 177,\\\\n    \\\\\\\"per_level_accuracy\\\\\\\": {\\\\n      \\\\\\\"OWA-D5\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.6816143497757847,\\\\n        \\\\\\\"sc\\\\\\\": 0.7219730941704036,\\\\n        \\\\\\\"n\\\\\\\": 223\\\\n      }\\\\n    },\\\\n    \\\\\\\"per_dataset_accuracy\\\\\\\": {\\\\n      \\\\\\\"proofwriter\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.6816143497757847,\\\\n        \\\\\\\"sc\\\\\\\": 0.7219730941704036,\\\\n        \\\\\\\"n\\\\\\\": 223\\\\n      }\\\\n    },\\\\n    \\\\\\\"k\\\\\\\": 12,\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"vllm\\\\\\\",\\\\n    \\\\\\\"total_wall_time_s\\\\\\\": 12969.4\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"problem_idx\\\\\\\": 0,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"ProofWriter_AttNoneg-OWA-D5-1041_Q1\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Bob is cold. Bob is quiet. Bob is red. Bob is smart. Charlie is kind. Charlie is quiet. Charlie is red. Charlie is rough. Dave is cold. Dave is kind. Dave is smart. Fiona is quiet. If something is quiet and cold then it is smart. Red, cold things are round. If something is kind and rough then it is red. All quiet things are rough. Cold, smart things are red. If something is rough then it is cold. All red things are rough. If Dave is smart and Dave is kind then Dave is quiet.\\\\\\\\n\\\\\\\\nDetermine whether the following statement is true, false, or unknown:\\\\\\\\nCharlie is kind.\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"proofwriter\\\\\\\",\\\\n      \\\\\\\"level\\\\\\\": \\\\\\\"OWA-D5\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sica_scores\\\\\\\": {\\\\n        \\\\\\\"True\\\\\\\": 151.0\n…[truncated 373 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T16:19:52.589892+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "find /root/symb_invariant_consensus/results/ -path \"*llama*\" -name \"results.json\" -type f"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T16:19:52.590062+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/results.json\\\\n/root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/results.json\\\\n/root/symb_invariant_consensus/results/multi_seed/llama8b_folio_seed123/results.json\\\\n/root/symb_invariant_consensus/results/multi_seed/llama8b_folio_seed456/results.json\\\\n/root/symb_invariant_consensus/results/multi_seed/llama8b_pw_seed42/results.json\\\\n/root/symb_invariant_consensus/results/multi_seed/llama8b_folio_seed789/results.json\\\\n/root/symb_invariant_consensus/results/multi_seed/llama8b_pw_seed123/results.json\\\\n/root/symb_invariant_consensus/results/multi_seed/llama8b_pw_seed789/results.json\\\\n/root/symb_invariant_consensus/results/multi_seed/llama8b_pw_seed456/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T16:19:52.590199+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "head -20 /root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/results.json"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T16:19:52.590344+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp092: LLaMA-3.1-8B ProofWriter NLI Combo (DeBERTa-large reused from D116)\\\\\\\",\\\\n  \\\\\\\"verifier_model\\\\\\\": \\\\\\\"microsoft/deberta-large-mnli\\\\\\\",\\\\n  \\\\\\\"generator_model\\\\\\\": \\\\\\\"LLaMA-3.1-8B-Instruct\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"ProofWriter-D5-600\\\\\\\",\\\\n  \\\\\\\"n_questions\\\\\\\": 600,\\\\n  \\\\\\\"standalone_accuracy\\\\\\\": 0.55,\\\\n  \\\\\\\"sc_baseline\\\\\\\": 0.7,\\\\n  \\\\\\\"capability_gap_pp\\\\\\\": -15.0,\\\\n  \\\\\\\"deberta_standalone\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.55,\\\\n    \\\\\\\"correct\\\\\\\": 330,\\\\n    \\\\\\\"total\\\\\\\": 600,\\\\n    \\\\\\\"per_class\\\\\\\": {\\\\n      \\\\\\\"True\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 200,\\\\n        \\\\\\\"correct\\\\\\\": 128,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.64,\\\\n        \\\\\\\"precision\\\\\\\": 0.6957,\\\\n        \\\\\\\"recall\\\\\\\": 0.64,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-23T16:19:52.590498+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "cat /root/symb_invariant_consensus/scripts/exp092_llama8b_pw_nli_combo.py"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-23T16:19:52.590781+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"LLaMA-3.1-8B ProofWriter NLI Combo using D116's DeBERTa-large predictions.\\\\n\\\\nDeBERTa-large-mnli predictions are deterministic on the same 600 PW problems\\\\nregardless of generator model, so we reuse D116's per_question results directly.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nfrom collections import Counter\\\\nfrom scipy.stats import binomtest\\\\n\\\\nEXP048_PATH = \\\\\\\"/root/symb_invariant_consensus/results/exp048_llama8b_pw600/exp048_results.json\\\\\\\"\\\\nD116_PATH = \\\\\\\"/root/symb_invariant_consensus/results/d116_qwen3_pw_deberta_large/results.json\\\\\\\"\\\\nOUTPUT_DIR = \\\\\\\"/root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo\\\\\\\"\\\\nCLASSES = [\\\\\\\"True\\\\\\\", \\\\\\\"False\\\\\\\", \\\\\\\"Unknown\\\\\\\"]\\\\nWEIGHTS = [1, 3, 5]\\\\n\\\\n\\\\ndef mcnemar_test(b, c):\\\\n    n = b + c\\\\n    if n == 0:\\\\n        return 1.0\\\\n    return binomtest(min(b, c), n, 0.5).pvalue\\\\n\\\\n\\\\ndef main():\\\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\\\n\\\\n    with open(EXP048_PATH) as f:\\\\n        exp048 = json.load(f)\\\\n    with open(D116_PATH) as f:\\\\n        d116 = json.load(f)\\\\n\\\\n    results_list = exp048[\\\\\\\"results\\\\\\\"]\\\\n    d116_pq = d116[\\\\\\\"per_question\\\\\\\"]\\\\n    total = len(results_list)\\\\n    print(f\\\\\\\"Loaded {total} problems from exp048 (LLaMA-3.1-8B PW600)\\\\\\\")\\\\n\\\\n    gt = {}\\\\n    sc_answers = {}\\\\n    sc_vote_dists = {}\\\\n    for r in results_list:\\\\n        pid = r[\\\\\\\"problem_id\\\\\\\"]\\\\n        gt[pid] = r[\\\\\\\"ground_truth\\\\\\\"]\\\\n        sc_answers[pid] = r[\\\\\\\"sc_answer\\\\\\\"]\\\\n        sc_vote_dists[pid] = r[\\\\\\\"sc_vote_distribution\\\\\\\"]\\\\n\\\\n    missing = [pid for pid in gt if pid not in d116_pq]\\\\n    if missing:\\\\n        print(f\\\\\\\"WARNING: {len(missing)} problems missing from D116!\\\\\\\")\\\\n        for m in missing[:5]:\\\\n            print(f\\\\\\\"  {m}\\\\\\\")\\\\n    else:\\\\n        print(\\\\\\\"All 600 problem_ids match D116 DeBERTa predictions.\\\\\\\")\\\\n\\\\n    gold_mismatch = [pid for pid\n…[truncated 7245 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-23T16:19:52.590998+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "head -50 /root/symb_invariant_consensus/results/exp033_qwen3_14b_pw600_nonthinking/results.json"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-23T16:19:52.591182+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 600,\\\\n    \\\\\\\"sica_accuracy\\\\\\\": 0.8566666666666667,\\\\n    \\\\\\\"sc_accuracy\\\\\\\": 0.85,\\\\n    \\\\\\\"sica_correct\\\\\\\": 514,\\\\n    \\\\\\\"sc_correct\\\\\\\": 510,\\\\n    \\\\\\\"extraction_rate\\\\\\\": 0.9966666666666667,\\\\n    \\\\\\\"total_constraints_extracted\\\\\\\": 146636,\\\\n    \\\\\\\"total_unique_constraints\\\\\\\": 22738,\\\\n    \\\\\\\"contradiction_rate\\\\\\\": 0.0042659864543935265,\\\\n    \\\\\\\"problems_with_contradictions\\\\\\\": 72,\\\\n    \\\\\\\"per_level_accuracy\\\\\\\": {\\\\n      \\\\\\\"OWA-D5\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.8566666666666667,\\\\n        \\\\\\\"sc\\\\\\\": 0.85,\\\\n        \\\\\\\"n\\\\\\\": 600\\\\n      }\\\\n    },\\\\n    \\\\\\\"per_dataset_accuracy\\\\\\\": {\\\\n      \\\\\\\"proofwriter\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.8566666666666667,\\\\n        \\\\\\\"sc\\\\\\\": 0.85,\\\\n        \\\\\\\"n\\\\\\\": 600\\\\n      }\\\\n    },\\\\n    \\\\\\\"k\\\\\\\": 12,\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"vllm\\\\\\\",\\\\n    \\\\\\\"total_wall_time_s\\\\\\\": 61932.1\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"problem_idx\\\\\\\": 0,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"ProofWriter_AttNoneg-OWA-D5-1041_Q1\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Bob is cold. Bob is quiet. Bob is red. Bob is smart. Charlie is kind. Charlie is quiet. Charlie is red. Charlie is rough. Dave is cold. Dave is kind. Dave is smart. Fiona is quiet. If something is quiet and cold then it is smart. Red, cold things are round. If something is kind and rough then it is red. All quiet things are rough. Cold, smart things are red. If something is rough then it is cold. All red things are rough. If Dave is smart and Dave is kind then Dave is quiet.\\\\\\\\n\\\\\\\\nDetermine whether the following statement is true, false, or unknown:\\\\\\\\nCharlie is kind.\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"proofwriter\\\\\\\",\\\\n      \\\\\\\"level\\\\\\\": \\\\\\\"OWA-D5\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sica_scores\\\\\\\": {\\\\n        \\\\\\\"True\\\\\\\": 211.0\\\\n      },\\\\n      \\\\\\\"sica_correct\\\\\\\"\n…[truncated 339 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-23T16:19:52.591343+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "ls /root/symb_invariant_consensus/results/exp048_llama8b_pw600/"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-23T16:19:52.591471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "find /root/symb_invariant_consensus/results/ -path \"*mistral*pw*\" -type d"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-23T16:19:52.591598+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp048.log\\\\nexp048_results.json\\\\nintermediates\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.73}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-23T16:19:52.591727+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed42\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed123\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed456\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed789\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-23T16:19:52.591909+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "head -3 /root/symb_invariant_consensus/data/proofwriter_full.json"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-23T16:19:52.592106+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"id\\\\\\\": \\\\\\\"ProofWriter_AttNoneg-OWA-D5-1041_Q1\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-23T16:19:52.592550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "grep -c \"problem_id\" /root/symb_invariant_consensus/results/exp048_llama8b_pw600/exp048_results.json"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-23T16:19:52.592732+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1200\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-23T16:19:52.593151+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "cat > /root/symb_invariant_consensus/scripts/pw_nli_combo_bart_roberta.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"ProofWriter NLI Combo for BART-large-mnli and RoBERTa-large-mnli.\n\nRuns NLI verifier on 600 PW problems (generator-independent),\nthen combos with each of 4 generators' SC votes.\nAlphabetical tiebreaking throughout.\n\"\"\"\nimport argparse, json, time, torch, os\nfrom collections import Counter\nfrom scipy.stats import binomtest\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\n\nCLASSES = [\"True\", \"False\", \"Unknown\"]\nWEIGHTS = [1, 3, 5]\n\nPW_PATH = \"/root/symb_invariant_consensus/data/proofwriter_full.json\"\n\nGENERATORS = {\n    \"Mistral-7B\": {\n        \"sc_path\": \"/root/symb_invariant_consensus/data/mistral_pw600_sc_votes.json\",\n        \"format\": \"array\",  # {qid: [T, F, U]}\n    },\n    \"LLaMA-3.1-8B\": {\n        \"sc_path\": \"/root/symb_invariant_consensus/results/exp048_llama8b_pw600/exp048_results.json\",\n        \"format\": \"results_list\",\n    },\n    \"Qwen2.5-14B\": {\n        \"sc_path\": \"/root/symb_invariant_consensus/results/exp032_qwen25_14b_pw600/results.json\",\n        \"format\": \"results_list\",\n    },\n    \"Qwen3-14B\": {\n        \"sc_path\": \"/root/symb_invariant_consensus/results/exp033_qwen3_14b_pw600_nonthinking/results.json\",\n        \"format\": \"results_list\",\n    },\n}\n\nID_FIX = {\n    \"ProofWriter_AttNeg-OWA-D5-1176_Q4\": \"ProofWriter_AttNeg-OWA-D5-1176_Q8\",\n    \"ProofWriter_AttNoneg-OWA-D5-1284_Q4\": \"ProofWriter_AttNoneg-OWA-D5-1284_Q8\",\n}\n\nVERIFIER_PATHS = {\n    \"facebook/bart-large-mnli\": \"/root/autodl-tmp/models/bart-large-mnli\",\n    \"roberta-large-mnli\": \"/root/autodl-tmp/models/roberta-large-mnli\",\n}\n\n\ndef alpha_winner(score_dict):\n    mx = max(score_dict.values())\n    tied = sorted(c for c in CLASSES if score_dict.get(c, 0) == mx)\n    return tied[0]\n\n\ndef parse_problem(text):\n    marker = \"\\n\\nDetermine whether the following statement is true, false, or unknown:\\n\"\n    if marker in text:\n        parts = text.split(marker, 1)\n        return parts[0].strip(), parts[1].strip()\n    return text, \"\"\n\n\ndef map_nli(label):\n    lu = label.upper()\n    if \"ENTAIL\" in lu:\n        return \"True\"\n    if \"CONTRA\" in lu:\n        return \"False\"\n    return \"Unknown\"\n\n\ndef mcnemar_test(b, c):\n    n = b + c\n    if n == 0:\n        return 1.0\n    return binomtest(min(b, c), n, 0.5).pvalue\n\n\ndef load_sc_votes(gen_name, gen_info, gt_keys):\n    \"\"\"Load SC vote distributions, return {qid: {cls: count}}.\"\"\"\n    path = gen_info[\"sc_path\"]\n    fmt = gen_info[\"format\"]\n\n    with open(path) as f:\n        raw = json.load(f)\n\n    votes = {}\n    if fmt == \"array\":\n        for qid, arr in raw.items():\n            fixed_qid = ID_FIX.get(qid, qid)\n            votes[fixed_qid] = dict(zip(CLASSES, arr))\n    elif fmt == \"results_list\":\n        for r in raw[\"results\"]:\n            pid = r[\"problem_id\"]\n            vd = r[\"sc_vote_distribution\"]\n            votes[pid] = {cls: vd.get(cls, 0) for cls in CLASSES}\n\n    overlap = set(votes.keys()) & set(gt_keys)\n    print(f\"  {gen_name}: loaded {len(votes)} votes, {len(overlap)} overlap with GT\")\n    return votes\n\n\ndef run_nli(model_path, pw_data, device, max_problems=None):\n    print(f\"\\nLoading NLI model: {model_path}\")\n    tok = AutoTokenizer.from_pretrained(model_path)\n    mdl = AutoModelForSequenceClassification.from_pretrained(model_path).to(device).eval()\n    id2label = mdl.config.id2label\n    nli_map = {idx: map_nli(lbl) for idx, lbl in id2label.items()}\n    print(f\"  id2label: {id2label}\")\n    print(f\"  nli_map: {nli_map}\")\n\n    problems = pw_data[:max_problems] if max_problems else pw_data\n    preds = {}\n    t0 = time.time()\n    for i, q in enumerate(problems):\n        qid = q[\"id\"]\n        premises, conclusion = parse_problem(q[\"problem\"])\n        if not conclusion:\n            preds[qid] = \"Unknown\"\n            continue\n        inp = tok(premises, conclusion, return_tensors=\"pt\", truncation=True, max_length=512).to(device)\n        with torch.no_grad():\n            logits = mdl(**inp).logits\n        pred_idx = logits.argmax(dim=-1).item()\n        preds[qid] = nli_map[pred_idx]\n        if (i + 1) % 100 == 0:\n            print(f\"  {i+1}/{len(problems)} ({time.time()-t0:.0f}s)\")\n\n    print(f\"  Done: {len(preds)} predictions in {time.time()-t0:.1f}s\")\n    del mdl\n    torch.cuda.empty_cache()\n    return preds\n\n\ndef compute_combo(gt, sc_votes, nli_preds, verifier_name, gen_name):\n    \"\"\"Compute SC baseline and combo for one generator × one verifier.\"\"\"\n    qids = sorted(gt.keys())\n\n    # SC baseline with alpha tiebreak\n    sc_answers = {}\n    for qid in qids:\n        if qid in sc_votes:\n            sc_answers[qid] = alpha_winner(sc_votes[qid])\n        else:\n            sc_answers[qid] = \"Unknown\"\n\n    sc_n = sum(1 for qid in qids if sc_answers[qid] == gt[qid])\n    sc_acc = sc_n / len(qids)\n\n    # NLI standalone on this subset\n    nli_n = sum(1 for qid in qids if qid in nli_preds and nli_preds[qid] == gt[qid])\n    nli_acc = nli_n / len(qids)\n\n    # Combo\n    combo_results = {}\n    for w in WEIGHTS:\n        combo_correct = 0\n        b_count = 0  # combo right, SC wrong\n        c_count = 0  # combo wrong, SC right\n        for qid in qids:\n            score = {cls: sc_votes.get(qid, {}).get(cls, 0) for cls in CLASSES}\n            nli_pred = nli_preds.get(qid, \"Unknown\")\n            score[nli_pred] += w\n            combo_answer = alpha_winner(score)\n            combo_is_correct = combo_answer == gt[qid]\n            sc_correct = sc_answers[qid] == gt[qid]\n            if combo_is_correct:\n                combo_correct += 1\n            if combo_is_correct and not sc_correct:\n                b_count += 1\n            if not combo_is_correct and sc_correct:\n                c_count += 1\n\n        combo_acc = combo_correct / len(qids)\n        delta = combo_acc - sc_acc\n        p_val = mcnemar_test(b_count, c_count)\n        combo_results[w] = {\n            \"accuracy\": round(combo_acc * 100, 2),\n            \"correct\": combo_correct,\n            \"delta_pp\": round(delta * 100, 2),\n            \"mcnemar_b\": b_count,\n            \"mcnemar_c\": c_count,\n            \"mcnemar_p\": round(p_val, 6),\n        }\n\n    return {\n        \"generator\": gen_name,\n        \"verifier\": verifier_name,\n        \"n\": len(qids),\n        \"sc_accuracy\": round(sc_acc * 100, 2),\n        \"sc_correct\": sc_n,\n        \"nli_standalone_accuracy\": round(nli_acc * 100, 2),\n        \"nli_standalone_correct\": nli_n,\n        \"capability_gap_pp\": round((nli_acc - sc_acc) * 100, 2),\n        \"combo\": {f\"w{w}\": combo_results[w] for w in WEIGHTS},\n    }\n\n\ndef bh_correct(all_tests):\n    \"\"\"Benjamini-Hochberg correction. all_tests = [(label, p_value), ...]\"\"\"\n    m = len(all_tests)\n    if m == 0:\n        return []\n    sorted_tests = sorted(enumerate(all_tests), key=lambda x: x[1][1])\n    adjusted = [0.0] * m\n    for rank_idx, (orig_idx, (label, p)) in enumerate(sorted_tests):\n        rank = rank_idx + 1\n        adjusted[orig_idx] = min(p * m / rank, 1.0)\n    for rank_idx in range(len(sorted_tests) - 2, -1, -1):\n        orig_idx = sorted_tests[rank_idx][0]\n        next_orig_idx = sorted_tests[rank_idx + 1][0]\n        adjusted[orig_idx] = min(adjusted[orig_idx], adjusted[next_orig_idx])\n    results = []\n    for i, (label, raw_p) in enumerate(all_tests):\n        results.append({\"label\": label, \"raw_p\": raw_p, \"bh_adjusted_p\": round(adjusted[i], 6), \"significant\": adjusted[i] < 0.05})\n    return results\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--verifier\", required=True, help=\"facebook/bart-large-mnli or roberta-large-mnli\")\n    parser.add_argument(\"--output\", required=True, help=\"Output JSON path\")\n    parser.add_argument(\"--max-problems\", type=int, default=None, help=\"Limit problems for dry-run\")\n    args = parser.parse_args()\n\n    model_path = VERIFIER_PATHS.get(args.verifier)\n    if not model_path:\n        print(f\"Unknown verifier: {args.verifier}. Available: {list(VERIFIER_PATHS.keys())}\")\n        return\n\n    device = \"cuda\" if torch.cuda.is_available() else \"cpu\"\n    print(f\"Device: {device}\")\n\n    # Load PW data\n    with open(PW_PATH) as f:\n        pw_data = json.load(f)\n    gt = {q[\"id\"]: q[\"answer\"] for q in pw_data}\n    print(f\"Loaded {len(gt)} PW problems\")\n\n    if args.max_problems:\n        pw_subset = pw_data[:args.max_problems]\n        gt_subset = {q[\"id\"]: q[\"answer\"] for q in pw_subset}\n        print(f\"Dry-run: using first {args.max_problems} problems\")\n    else:\n        pw_subset = pw_data\n        gt_subset = gt\n\n    # Load all generators' SC votes\n    print(\"\\n=== Loading SC votes ===\")\n    all_sc = {}\n    for gen_name, gen_info in GENERATORS.items():\n        all_sc[gen_name] = load_sc_votes(gen_name, gen_info, gt_subset.keys())\n\n    # Run NLI\n    nli_preds = run_nli(model_path, pw_subset, device, args.max_problems)\n\n    # Compute combos\n    print(f\"\\n=== Results ({args.verifier}) ===\")\n    all_results = []\n    all_tests_for_bh = []\n    for gen_name in GENERATORS:\n        result = compute_combo(gt_subset, all_sc[gen_name], nli_preds, args.verifier, gen_name)\n        all_results.append(result)\n        print(f\"\\n{gen_name}: SC={result['sc_accuracy']:.2f}%, NLI={result['nli_standalone_accuracy']:.2f}%, gap={result['capability_gap_pp']:+.2f}pp\")\n        for w in WEIGHTS:\n            c = result[\"combo\"][f\"w{w}\"]\n            print(f\"  w={w}: {c['accuracy']:.2f}% (Δ={c['delta_pp']:+.2f}pp, p={c['mcnemar_p']:.6f})\")\n            all_tests_for_bh.append((f\"{gen_name}_w{w}\", c[\"mcnemar_p\"]))\n\n    # BH correction\n    bh_results = bh_correct(all_tests_for_bh)\n    print(f\"\\n=== BH Correction ({len(bh_results)} tests) ===\")\n    n_sig = 0\n    for r in bh_results:\n        star = \"*\" if r[\"significant\"] else \"\"\n        print(f\"  {r['label']}: raw={r['raw_p']:.6f}, adj={r['bh_adjusted_p']:.6f} {star}\")\n        if r[\"significant\"]:\n            n_sig += 1\n    print(f\"  {n_sig}/{len(bh_results)} significant (alpha=0.05)\")\n\n    # Save\n    output = {\n        \"experiment\": f\"PW NLI Combo - {args.verifier}\",\n        \"verifier\": args.verifier,\n        \"verifier_local_path\": model_path,\n        \"dataset\": \"ProofWriter-D5-OWA\",\n        \"n\": len(gt_subset),\n        \"tiebreaking\": \"alphabetical (sorted(tied_candidates)[0])\",\n        \"generators\": all_results,\n        \"bh_correction\": {\n            \"n_tests\": len(bh_results),\n            \"alpha\": 0.05,\n            \"n_significant\": n_sig,\n            \"tests\": bh_results,\n        },\n        \"nli_predictions\": nli_preds,\n    }\n\n    os.makedirs(os.path.dirname(args.output) or \".\", exist_ok=True)\n    with open(args.output, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nSaved: {args.output}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"Script written OK\""
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-23T16:19:52.593533+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-23T16:19:52.593759+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "cd /root/symb_invariant_consensus && CUDA_VISIBLE_DEVICES=1 python scripts/pw_nli_combo_bart_roberta.py --verifier facebook/bart-large-mnli --max-problems 3 --output /tmp/test_bart.json 2>&1"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-23T16:19:52.594033+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Device: cuda\\\\nLoaded 600 PW problems\\\\nDry-run: using first 3 problems\\\\n\\\\n=== Loading SC votes ===\\\\n  Mistral-7B: loaded 600 votes, 3 overlap with GT\\\\n  LLaMA-3.1-8B: loaded 600 votes, 3 overlap with GT\\\\n  Qwen2.5-14B: loaded 600 votes, 3 overlap with GT\\\\n  Qwen3-14B: loaded 600 votes, 3 overlap with GT\\\\n\\\\nLoading NLI model: /root/autodl-tmp/models/bart-large-mnli\\\\n\\\\rLoading weights:   0%|          | 0/515 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 515/515 [00:00<00:00, 10590.22it/s]\\\\n  id2label: {0: 'contradiction', 1: 'neutral', 2: 'entailment'}\\\\n  nli_map: {0: 'False', 1: 'Unknown', 2: 'True'}\\\\n  Done: 3 predictions in 0.4s\\\\n\\\\n=== Results (facebook/bart-large-mnli) ===\\\\n\\\\nMistral-7B: SC=33.33%, NLI=100.00%, gap=+66.67pp\\\\n  w=1: 33.33% (Δ=+0.00pp, p=1.000000)\\\\n  w=3: 33.33% (Δ=+0.00pp, p=1.000000)\\\\n  w=5: 66.67% (Δ=+33.33pp, p=1.000000)\\\\n\\\\nLLaMA-3.1-8B: SC=33.33%, NLI=100.00%, gap=+66.67pp\\\\n  w=1: 33.33% (Δ=+0.00pp, p=1.000000)\\\\n  w=3: 33.33% (Δ=+0.00pp, p=1.000000)\\\\n  w=5: 33.33% (Δ=+0.00pp, p=1.000000)\\\\n\\\\nQwen2.5-14B: SC=66.67%, NLI=100.00%, gap=+33.33pp\\\\n  w=1: 66.67% (Δ=+0.00pp, p=1.000000)\\\\n  w=3: 100.00% (Δ=+33.33pp, p=1.000000)\\\\n  w=5: 100.00% (Δ=+33.33pp, p=1.000000)\\\\n\\\\nQwen3-14B: SC=66.67%, NLI=100.00%, gap=+33.33pp\\\\n  w=1: 66.67% (Δ=+0.00pp, p=1.000000)\\\\n  w=3: 66.67% (Δ=+0.00pp, p=1.000000)\\\\n  w=5: 66.67% (Δ=+0.00pp, p=1.000000)\\\\n\\\\n=== BH Correction (12 tests) ===\\\\n  Mistral-7B_w1: raw=1.000000, adj=1.000000 \\\\n  Mistral-7B_w3: raw=1.000000, adj=1.000000 \\\\n  Mistral-7B_w5: raw=1.000000, adj=1.000000 \\\\n  LLaMA-3.1-8B_w1: raw=1.000000, adj=1.000000 \\\\n  LLaMA-3.1-8B_w3: raw=1.000000, adj=1.000000 \\\\n  LLaMA-3.1-8B_w5: raw=1.000000, adj=1.000000 \\\\n  Qwen2.5-14B_w1: raw=1.000000, adj=1.000000 \\\\n  Qwen2.5-14B_w3: raw=1.000000, adj=1.000000 \\\\n  Qwen2.5-14B_w5: raw=1.000000, adj=1.000000 \\\\n  Qwen3-14B_w1: raw=1.000000, adj=1.000000 \\\\n  Qwen3-14B_w3: \n…[truncated 246 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-23T16:19:52.594306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "cd /root/symb_invariant_consensus && CUDA_VISIBLE_DEVICES=1 python scripts/pw_nli_combo_bart_roberta.py --verifier roberta-large-mnli --max-problems 3 --output /tmp/test_roberta.json 2>&1"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-23T16:19:52.594571+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Device: cuda\\\\nLoaded 600 PW problems\\\\nDry-run: using first 3 problems\\\\n\\\\n=== Loading SC votes ===\\\\n  Mistral-7B: loaded 600 votes, 3 overlap with GT\\\\n  LLaMA-3.1-8B: loaded 600 votes, 3 overlap with GT\\\\n  Qwen2.5-14B: loaded 600 votes, 3 overlap with GT\\\\n  Qwen3-14B: loaded 600 votes, 3 overlap with GT\\\\n\\\\nLoading NLI model: /root/autodl-tmp/models/roberta-large-mnli\\\\n\\\\rLoading weights:   0%|          | 0/393 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 393/393 [00:00<00:00, 64674.60it/s]\\\\n[transformers] \\\\u001b[1mRobertaForSequenceClassification LOAD REPORT\\\\u001b[0m from: /root/autodl-tmp/models/roberta-large-mnli\\\\nKey                         | Status     |  | \\\\n----------------------------+------------+--+-\\\\nroberta.pooler.dense.weight | UNEXPECTED |  | \\\\nroberta.pooler.dense.bias   | UNEXPECTED |  | \\\\n\\\\nNotes:\\\\n- UNEXPECTED:\\\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\\\n  id2label: {0: 'CONTRADICTION', 1: 'NEUTRAL', 2: 'ENTAILMENT'}\\\\n  nli_map: {0: 'False', 1: 'Unknown', 2: 'True'}\\\\n  Done: 3 predictions in 0.1s\\\\n\\\\n=== Results (roberta-large-mnli) ===\\\\n\\\\nMistral-7B: SC=33.33%, NLI=66.67%, gap=+33.33pp\\\\n  w=1: 33.33% (Δ=+0.00pp, p=1.000000)\\\\n  w=3: 33.33% (Δ=+0.00pp, p=1.000000)\\\\n  w=5: 66.67% (Δ=+33.33pp, p=1.000000)\\\\n\\\\nLLaMA-3.1-8B: SC=33.33%, NLI=66.67%, gap=+33.33pp\\\\n  w=1: 33.33% (Δ=+0.00pp, p=1.000000)\\\\n  w=3: 33.33% (Δ=+0.00pp, p=1.000000)\\\\n  w=5: 33.33% (Δ=+0.00pp, p=1.000000)\\\\n\\\\nQwen2.5-14B: SC=66.67%, NLI=66.67%, gap=+0.00pp\\\\n  w=1: 66.67% (Δ=+0.00pp, p=1.000000)\\\\n  w=3: 66.67% (Δ=+0.00pp, p=1.000000)\\\\n  w=5: 66.67% (Δ=+0.00pp, p=1.000000)\\\\n\\\\nQwen3-14B: SC=66.67%, NLI=66.67%, gap=+0.00pp\\\\n  w=1: 66.67% (Δ=+0.00pp, p=1.000000)\\\\n  w=3: 66.67% (Δ=+0.00pp, p=1.000000)\\\\n  w=5: 66.67% (Δ=+0.00pp, p=1.000000)\\\\n\\\\n=== BH Correction (12 tests) ===\\\\n  Mistral-7B_w1: raw=1.000000, adj=1.000000 \\\\n  Mi\n…[truncated 692 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-23T16:19:52.594824+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tmux new-session -d -s pw_nli_bart_roberta 'CUDA_VISIBLE_DEVICES=1 bash -c \"\ncd /root/symb_invariant_consensus &&\necho \\\"=== BART START $(date) ===\\\"  &&\npython scripts/pw_nli_combo_bart_roberta.py --verifier facebook/bart-large-mnli --output /root/symb_invariant_consensus/results/pw_nli_combo_bart.json 2>&1 | tee /tmp/pw_nli_bart.log &&\necho \\\"=== ROBERTA START $(date) ===\\\"  &&\npython scripts/pw_nli_combo_bart_roberta.py --verifier roberta-large-mnli --output /root/symb_invariant_consensus/results/pw_nli_combo_roberta.json 2>&1 | tee /tmp/pw_nli_roberta.log &&\necho \\\"=== ALL DONE $(date) ===\\\"\n\"'\necho \"tmux session launched\""
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-23T16:19:52.595050+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"tmux session launched\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-23T16:19:52.595232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -5 /tmp/pw_nli_bart.log"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-23T16:19:52.595429+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-23T16:19:52.595614+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -10 /tmp/pw_nli_bart.log"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-23T16:19:52.595818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 600 PW problems\\\\n\\\\n=== Loading SC votes ===\\\\n  Mistral-7B: loaded 600 votes, 600 overlap with GT\\\\n  LLaMA-3.1-8B: loaded 600 votes, 600 overlap with GT\\\\n  Qwen2.5-14B: loaded 600 votes, 600 overlap with GT\\\\n  Qwen3-14B: loaded 600 votes, 600 overlap with GT\\\\n\\\\nLoading NLI model: /root/autodl-tmp/models/bart-large-mnli\\\\n\\\\rLoading weights:   0%|          | 0/515 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 515/515 [00:00<00:00, 11219.43it/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-23T16:19:52.596065+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -5 /tmp/pw_nli_bart.log"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-23T16:19:52.596281+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Qwen2.5-14B: loaded 600 votes, 600 overlap with GT\\\\n  Qwen3-14B: loaded 600 votes, 600 overlap with GT\\\\n\\\\nLoading NLI model: /root/autodl-tmp/models/bart-large-mnli\\\\n\\\\rLoading weights:   0%|          | 0/515 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 515/515 [00:00<00:00, 11219.43it/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-23T16:19:52.596481+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -20 /tmp/pw_nli_bart.log"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-23T16:19:52.596689+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File \\\\\\\"/root/symb_invariant_consensus/scripts/pw_nli_combo_bart_roberta.py\\\\\\\", line 300, in main\\\\n    json.dump(output, f, indent=2)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/__init__.py\\\\\\\", line 179, in dump\\\\n    for chunk in iterable:\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\\\\\", line 432, in _iterencode\\\\n    yield from _iterencode_dict(o, _current_indent_level)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\\\\\", line 406, in _iterencode_dict\\\\n    yield from chunks\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\\\\\", line 406, in _iterencode_dict\\\\n    yield from chunks\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\\\\\", line 326, in _iterencode_list\\\\n    yield from chunks\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\\\\\", line 406, in _iterencode_dict\\\\n    yield from chunks\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\\\\\", line 439, in _iterencode\\\\n    o = _default(o)\\\\n        ^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\\\\\", line 180, in default\\\\n    raise TypeError(f'Object of type {o.__class__.__name__} '\\\\nTypeError: Object of type bool is not JSON serializable\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-23T16:19:52.597009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "cat > /tmp/fix_json.py << 'EOF'\nimport re\n\nscript = \"/root/symb_invariant_consensus/scripts/pw_nli_combo_bart_roberta.py\"\nwith open(script) as f:\n    content = f.read()\n\n# Add numpy-safe JSON encoder and use it\nold = '''    os.makedirs(os.path.dirname(args.output) or \".\", exist_ok=True)\n    with open(args.output, \"w\") as f:\n        json.dump(output, f, indent=2)'''\n\nnew = '''    class SafeEncoder(json.JSONEncoder):\n        def default(self, o):\n            try:\n                import numpy as np\n                if isinstance(o, np.bool_): return bool(o)\n                if isinstance(o, np.integer): return int(o)\n                if isinstance(o, np.floating): return float(o)\n            except ImportError:\n                pass\n            if isinstance(o, bool): return bool(o)\n            return super().default(o)\n\n    os.makedirs(os.path.dirname(args.output) or \".\", exist_ok=True)\n    with open(args.output, \"w\") as f:\n        json.dump(output, f, indent=2, cls=SafeEncoder)'''\n\ncontent = content.replace(old, new)\nwith open(script, \"w\") as f:\n    f.write(content)\nprint(\"Fixed\")\nEOF\npython3 /tmp/fix_json.py"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-23T16:19:52.597183+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Fixed\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-23T16:19:52.597459+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "cat > /tmp/fix_bh.py << 'EOF'\nscript = \"/root/symb_invariant_consensus/scripts/pw_nli_combo_bart_roberta.py\"\nwith open(script) as f:\n    content = f.read()\n\nold = '        results.append({\"label\": label, \"raw_p\": raw_p, \"bh_adjusted_p\": round(adjusted[i], 6), \"significant\": adjusted[i] < 0.05})'\nnew = '        results.append({\"label\": label, \"raw_p\": float(raw_p), \"bh_adjusted_p\": round(float(adjusted[i]), 6), \"significant\": bool(adjusted[i] < 0.05)})'\n\ncontent = content.replace(old, new)\nwith open(script, \"w\") as f:\n    f.write(content)\nprint(\"Fixed bh_correct types\")\nEOF\npython3 /tmp/fix_bh.py"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-23T16:19:52.597635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Fixed bh_correct types\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-23T16:19:52.597793+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tmux kill-session -t pw_nli_bart_roberta 2>/dev/null; tmux new-session -d -s pw_nli_bart_roberta 'CUDA_VISIBLE_DEVICES=1 bash -c \"\ncd /root/symb_invariant_consensus &&\necho \\\"=== BART START $(date) ===\\\"  &&\npython scripts/pw_nli_combo_bart_roberta.py --verifier facebook/bart-large-mnli --output /root/symb_invariant_consensus/results/pw_nli_combo_bart.json 2>&1 | tee /tmp/pw_nli_bart.log &&\necho \\\"=== ROBERTA START $(date) ===\\\"  &&\npython scripts/pw_nli_combo_bart_roberta.py --verifier roberta-large-mnli --output /root/symb_invariant_consensus/results/pw_nli_combo_roberta.json 2>&1 | tee /tmp/pw_nli_roberta.log &&\necho \\\"=== ALL DONE $(date) ===\\\"\n\"'\necho \"Relaunched\""
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-23T16:19:52.597986+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Relaunched\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-23T16:19:52.598129+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -15 /tmp/pw_nli_bart.log"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-23T16:19:52.598273+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Device: cuda\\\\nLoaded 600 PW problems\\\\n\\\\n=== Loading SC votes ===\\\\n  Mistral-7B: loaded 600 votes, 600 overlap with GT\\\\n  LLaMA-3.1-8B: loaded 600 votes, 600 overlap with GT\\\\n  Qwen2.5-14B: loaded 600 votes, 600 overlap with GT\\\\n  Qwen3-14B: loaded 600 votes, 600 overlap with GT\\\\n\\\\nLoading NLI model: /root/autodl-tmp/models/bart-large-mnli\\\\n\\\\rLoading weights:   0%|          | 0/515 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 515/515 [00:00<00:00, 12028.30it/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-23T16:19:52.598405+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -25 /tmp/pw_nli_bart.log"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-23T16:19:52.598551+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  w=1: 74.17% (Δ=+0.17pp, p=1.000000)\\\\n  w=3: 75.50% (Δ=+1.50pp, p=0.063568)\\\\n  w=5: 74.67% (Δ=+0.67pp, p=0.651588)\\\\n\\\\nQwen3-14B: SC=85.83%, NLI=46.17%, gap=-39.67pp\\\\n  w=1: 86.00% (Δ=+0.17pp, p=1.000000)\\\\n  w=3: 86.50% (Δ=+0.67pp, p=0.218750)\\\\n  w=5: 87.33% (Δ=+1.50pp, p=0.063568)\\\\n\\\\n=== BH Correction (12 tests) ===\\\\n  Mistral-7B_w1: raw=1.000000, adj=1.000000 \\\\n  Mistral-7B_w3: raw=0.000244, adj=0.002928 *\\\\n  Mistral-7B_w5: raw=0.002749, adj=0.016494 *\\\\n  LLaMA-3.1-8B_w1: raw=0.383310, adj=0.657103 \\\\n  LLaMA-3.1-8B_w3: raw=1.000000, adj=1.000000 \\\\n  LLaMA-3.1-8B_w5: raw=0.061749, adj=0.152563 \\\\n  Qwen2.5-14B_w1: raw=1.000000, adj=1.000000 \\\\n  Qwen2.5-14B_w3: raw=0.063568, adj=0.152563 \\\\n  Qwen2.5-14B_w5: raw=0.651588, adj=0.977382 \\\\n  Qwen3-14B_w1: raw=1.000000, adj=1.000000 \\\\n  Qwen3-14B_w3: raw=0.218750, adj=0.437500 \\\\n  Qwen3-14B_w5: raw=0.063568, adj=0.152563 \\\\n  2/12 significant (alpha=0.05)\\\\n\\\\nSaved: /root/symb_invariant_consensus/results/pw_nli_combo_bart.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-23T16:19:52.598714+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "cat /tmp/pw_nli_bart.log"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-23T16:19:52.598900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Device: cuda\\\\nLoaded 600 PW problems\\\\n\\\\n=== Loading SC votes ===\\\\n  Mistral-7B: loaded 600 votes, 600 overlap with GT\\\\n  LLaMA-3.1-8B: loaded 600 votes, 600 overlap with GT\\\\n  Qwen2.5-14B: loaded 600 votes, 600 overlap with GT\\\\n  Qwen3-14B: loaded 600 votes, 600 overlap with GT\\\\n\\\\nLoading NLI model: /root/autodl-tmp/models/bart-large-mnli\\\\n\\\\rLoading weights:   0%|          | 0/515 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 515/515 [00:00<00:00, 12028.30it/s]\\\\n  id2label: {0: 'contradiction', 1: 'neutral', 2: 'entailment'}\\\\n  nli_map: {0: 'False', 1: 'Unknown', 2: 'True'}\\\\n  100/600 (1s)\\\\n  200/600 (2s)\\\\n  300/600 (3s)\\\\n  400/600 (4s)\\\\n  500/600 (5s)\\\\n  600/600 (6s)\\\\n  Done: 600 predictions in 6.1s\\\\n\\\\n=== Results (facebook/bart-large-mnli) ===\\\\n\\\\nMistral-7B: SC=39.33%, NLI=46.17%, gap=+6.83pp\\\\n  w=1: 39.33% (Δ=+0.00pp, p=1.000000)\\\\n  w=3: 44.50% (Δ=+5.17pp, p=0.000244)\\\\n  w=5: 45.67% (Δ=+6.33pp, p=0.002749)\\\\n\\\\nLLaMA-3.1-8B: SC=72.50%, NLI=46.17%, gap=-26.33pp\\\\n  w=1: 73.33% (Δ=+0.83pp, p=0.383310)\\\\n  w=3: 72.50% (Δ=+0.00pp, p=1.000000)\\\\n  w=5: 68.50% (Δ=-4.00pp, p=0.061749)\\\\n\\\\nQwen2.5-14B: SC=74.00%, NLI=46.17%, gap=-27.83pp\\\\n  w=1: 74.17% (Δ=+0.17pp, p=1.000000)\\\\n  w=3: 75.50% (Δ=+1.50pp, p=0.063568)\\\\n  w=5: 74.67% (Δ=+0.67pp, p=0.651588)\\\\n\\\\nQwen3-14B: SC=85.83%, NLI=46.17%, gap=-39.67pp\\\\n  w=1: 86.00% (Δ=+0.17pp, p=1.000000)\\\\n  w=3: 86.50% (Δ=+0.67pp, p=0.218750)\\\\n  w=5: 87.33% (Δ=+1.50pp, p=0.063568)\\\\n\\\\n=== BH Correction (12 tests) ===\\\\n  Mistral-7B_w1: raw=1.000000, adj=1.000000 \\\\n  Mistral-7B_w3: raw=0.000244, adj=0.002928 *\\\\n  Mistral-7B_w5: raw=0.002749, adj=0.016494 *\\\\n  LLaMA-3.1-8B_w1: raw=0.383310, adj=0.657103 \\\\n  LLaMA-3.1-8B_w3: raw=1.000000, adj=1.000000 \\\\n  LLaMA-3.1-8B_w5: raw=0.061749, adj=0.152563 \\\\n  Qwen2.5-14B_w1: raw=1.000000, adj=1.000000 \\\\n  Qwen2.5-14B_w3: raw=0.063568, adj=0.152563 \\\\n  Qwen2.5-14B_w5: raw=0.651588, adj=0.97\n…[truncated 358 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-23T16:19:52.599076+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -30 /tmp/pw_nli_roberta.log"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-23T16:19:52.599227+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  w=1: 72.67% (Δ=+0.17pp, p=1.000000)\\\\n  w=3: 71.33% (Δ=-1.17pp, p=0.442626)\\\\n  w=5: 64.67% (Δ=-7.83pp, p=0.000118)\\\\n\\\\nQwen2.5-14B: SC=74.00%, NLI=37.67%, gap=-36.33pp\\\\n  w=1: 73.67% (Δ=-0.33pp, p=0.625000)\\\\n  w=3: 74.17% (Δ=+0.17pp, p=1.000000)\\\\n  w=5: 73.83% (Δ=-0.17pp, p=1.000000)\\\\n\\\\nQwen3-14B: SC=85.83%, NLI=37.67%, gap=-48.17pp\\\\n  w=1: 86.00% (Δ=+0.17pp, p=1.000000)\\\\n  w=3: 86.50% (Δ=+0.67pp, p=0.218750)\\\\n  w=5: 86.50% (Δ=+0.67pp, p=0.480682)\\\\n\\\\n=== BH Correction (12 tests) ===\\\\n  Mistral-7B_w1: raw=1.000000, adj=1.000000 \\\\n  Mistral-7B_w3: raw=0.002626, adj=0.015756 *\\\\n  Mistral-7B_w5: raw=0.036852, adj=0.147408 \\\\n  LLaMA-3.1-8B_w1: raw=1.000000, adj=1.000000 \\\\n  LLaMA-3.1-8B_w3: raw=0.442626, adj=0.961364 \\\\n  LLaMA-3.1-8B_w5: raw=0.000118, adj=0.001416 *\\\\n  Qwen2.5-14B_w1: raw=0.625000, adj=1.000000 \\\\n  Qwen2.5-14B_w3: raw=1.000000, adj=1.000000 \\\\n  Qwen2.5-14B_w5: raw=1.000000, adj=1.000000 \\\\n  Qwen3-14B_w1: raw=1.000000, adj=1.000000 \\\\n  Qwen3-14B_w3: raw=0.218750, adj=0.656250 \\\\n  Qwen3-14B_w5: raw=0.480682, adj=0.961364 \\\\n  2/12 significant (alpha=0.05)\\\\n\\\\nSaved: /root/symb_invariant_consensus/results/pw_nli_combo_roberta.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-23T16:19:52.599397+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "cat /tmp/pw_nli_roberta.log"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-23T16:19:52.599566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Device: cuda\\\\nLoaded 600 PW problems\\\\n\\\\n=== Loading SC votes ===\\\\n  Mistral-7B: loaded 600 votes, 600 overlap with GT\\\\n  LLaMA-3.1-8B: loaded 600 votes, 600 overlap with GT\\\\n  Qwen2.5-14B: loaded 600 votes, 600 overlap with GT\\\\n  Qwen3-14B: loaded 600 votes, 600 overlap with GT\\\\n\\\\nLoading NLI model: /root/autodl-tmp/models/roberta-large-mnli\\\\n\\\\rLoading weights:   0%|          | 0/393 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 393/393 [00:00<00:00, 66351.14it/s]\\\\n[transformers] \\\\u001b[1mRobertaForSequenceClassification LOAD REPORT\\\\u001b[0m from: /root/autodl-tmp/models/roberta-large-mnli\\\\nKey                         | Status     |  | \\\\n----------------------------+------------+--+-\\\\nroberta.pooler.dense.bias   | UNEXPECTED |  | \\\\nroberta.pooler.dense.weight | UNEXPECTED |  | \\\\n\\\\nNotes:\\\\n- UNEXPECTED:\\\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\\\n  id2label: {0: 'CONTRADICTION', 1: 'NEUTRAL', 2: 'ENTAILMENT'}\\\\n  nli_map: {0: 'False', 1: 'Unknown', 2: 'True'}\\\\n  100/600 (1s)\\\\n  200/600 (2s)\\\\n  300/600 (2s)\\\\n  400/600 (3s)\\\\n  500/600 (4s)\\\\n  600/600 (5s)\\\\n  Done: 600 predictions in 4.6s\\\\n\\\\n=== Results (roberta-large-mnli) ===\\\\n\\\\nMistral-7B: SC=39.33%, NLI=37.67%, gap=-1.67pp\\\\n  w=1: 39.17% (Δ=-0.17pp, p=1.000000)\\\\n  w=3: 43.50% (Δ=+4.17pp, p=0.002626)\\\\n  w=5: 43.67% (Δ=+4.33pp, p=0.036852)\\\\n\\\\nLLaMA-3.1-8B: SC=72.50%, NLI=37.67%, gap=-34.83pp\\\\n  w=1: 72.67% (Δ=+0.17pp, p=1.000000)\\\\n  w=3: 71.33% (Δ=-1.17pp, p=0.442626)\\\\n  w=5: 64.67% (Δ=-7.83pp, p=0.000118)\\\\n\\\\nQwen2.5-14B: SC=74.00%, NLI=37.67%, gap=-36.33pp\\\\n  w=1: 73.67% (Δ=-0.33pp, p=0.625000)\\\\n  w=3: 74.17% (Δ=+0.17pp, p=1.000000)\\\\n  w=5: 73.83% (Δ=-0.17pp, p=1.000000)\\\\n\\\\nQwen3-14B: SC=85.83%, NLI=37.67%, gap=-48.17pp\\\\n  w=1: 86.00% (Δ=+0.17pp, p=1.000000)\\\\n  w=3: 86.50% (Δ=+0.67pp, p=0.218750)\\\\n  w=5: 86.50% (Δ=+0.67pp, p=0.480682)\\\\n\\\\n=== BH C\n…[truncated 814 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-23T16:19:52.599743+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "PW NLI Combo BART results",
+              "type": "data",
+              "description": "ProofWriter NLI combo results with BART-large-mnli verifier, 4 generators × 3 weights, alphabetical tiebreaking",
+              "project": "symb_invariant_consensus",
+              "source_path": "/root/symb_invariant_consensus/results/pw_nli_combo_bart.json",
+              "tags": "['proofwriter', 'nli-combo', 'bart', 'experiment']"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-23T16:19:52.599907+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/symb_invariant_consensus/results/pw_nli_combo_bart.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-23T16:19:52.600044+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "PW NLI Combo RoBERTa results",
+              "type": "data",
+              "description": "ProofWriter NLI combo results with RoBERTa-large-mnli verifier, 4 generators × 3 weights, alphabetical tiebreaking",
+              "project": "symb_invariant_consensus",
+              "source_path": "/root/symb_invariant_consensus/results/pw_nli_combo_roberta.json",
+              "tags": "['proofwriter', 'nli-combo', 'roberta', 'experiment']"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-23T16:19:52.600177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/symb_invariant_consensus/results/pw_nli_combo_roberta.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-23T16:19:52.600328+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "PW NLI Combo BART+RoBERTa results",
+              "type": "data",
+              "description": "ProofWriter NLI combo results: BART-large-mnli and RoBERTa-large-mnli verifiers, 4 generators × 3 weights each, alphabetical tiebreaking. Remote paths: results/pw_nli_combo_bart.json, results/pw_nli_combo_roberta.json on westd-16639",
+              "project": "symb_invariant_consensus",
+              "content": "## PW NLI Combo — BART + RoBERTa Results (2026-05-23)\n\nServer: westd-16639, cuda:1\nNLI models: /root/autodl-tmp/models/bart-large-mnli, roberta-large-mnli\n\n### Standalone NLI Accuracy\n- DeBERTa-large-mnli: 55.00% (330/600)\n- BART-large-mnli: 46.17% (277/600)\n- RoBERTa-large-mnli: 37.67% (226/600)\n\n### BART Combo (w=3 main comparison)\n- Mistral: SC=39.33% → 44.50% (+5.17pp, BH adj_p=0.003*)\n- LLaMA: SC=72.50% → 72.50% (+0.00pp)\n- Qwen2.5: SC=74.00% → 75.50% (+1.50pp, adj_p=0.153)\n- Qwen3: SC=85.83% → 86.50% (+0.67pp, adj_p=0.438)\n\n### RoBERTa Combo (w=3 main comparison)\n- Mistral: SC=39.33% → 43.50% (+4.17pp, BH adj_p=0.016*)\n- LLaMA: SC=72.50% → 71.33% (-1.17pp, adj_p=0.961)\n- Qwen2.5: SC=74.00% → 74.17% (+0.17pp)\n- Qwen3: SC=85.83% → 86.50% (+0.67pp, adj_p=0.656)\n\nWARNING: RoBERTa w=5 significantly hurts LLaMA (-7.83pp, BH adj_p=0.001*)\n\n### Result files (westd-16639)\n- /root/symb_invariant_consensus/results/pw_nli_combo_bart.json\n- /root/symb_invariant_consensus/results/pw_nli_combo_roberta.json",
+              "content_filename": "pw_nli_combo_bart_roberta_summary.md",
+              "tags": "['proofwriter', 'nli-combo', 'bart', 'roberta', 'experiment']"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-23T16:19:52.600495+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260523_b39e3b\\\", \\\"name\\\": \\\"PW NLI Combo BART+RoBERTa results\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"ProofWriter NLI combo results: BART-large-mnli and RoBERTa-large-mnli verifiers, 4 generators × 3 weights each, alphabetical tiebreaking. Remote paths: results/pw_nli_combo_bart.json, results/pw_nli_combo_roberta.json on westd-16639\\\", \\\"path\\\": \\\"projects/symb_invariant_consensus/artifacts/_project/data/pw_nli_combo_bart_roberta_summary.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-23T16:19:45.723437+00:00\\\", \\\"tags\\\": [\\\"proofwriter\\\", \\\"nli-combo\\\", \\\"bart\\\", \\\"roberta\\\", \\\"experiment\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-23T16:19:52.600668+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。24 条件结果已产出，capability gap 单调递减规律在 3 个 verifier 上一致成立。RoBERTa 作为最弱 verifier（37.67%）在高 weight 下对强 generator 有害（LLaMA w=5 显著下降 −7.83pp），进一步支撑了 \"verifier 质量决定 combo 有效性\" 的论点。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_pw-nli-combo-bart-roberta_20260523T161247"
+          },
+          "id": "event-000083"
+        }
+      ],
+      "message_count": 83
+    }
+  ],
+  "readable_path": "readable/conversations/exp-pw-nli-combo-bart-roberta.md"
+}

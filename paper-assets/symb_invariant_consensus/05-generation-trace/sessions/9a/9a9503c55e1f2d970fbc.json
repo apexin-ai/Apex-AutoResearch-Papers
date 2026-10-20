@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a9503c55e1f2d970fbc",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra exp 051 k sensitivity deploy",
+  "task_key": "worker_infra_exp-051-k-sensitivity-deploy_20260518T225859",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_exp-051-k-sensitivity-deploy_20260518T225859_result.json",
+    "occurrence": 1,
+    "bytes": 439,
+    "sha256": "155994c01bb70e34c20f56401ae0f987dfeb60cfa4f3580d362c76223559d680"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`exp051` session 运行中。脚本设计为先等 120s 加载 vLLM，之后串行跑 K=4/8/16/20。\n\n**部署总结：**\n- GPU 0 已清空，Mistral-7B vLLM 正在启动（port 8000）\n- tmux session: `exp051`\n- 串行 4 组 K 值（4→8→16→20），每组 204 题 FOLIO\n- 输出: `results/exp051_mistral_k_sensitivity/k{4,8,16,20}/`\n- Registry: `exp-051-mistral-k-sensitivity` → RUNNING\n- 预估总时长 ~3h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp-051-k-sensitivity-deploy.md"
+}

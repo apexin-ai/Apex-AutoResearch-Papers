@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29dca0bbf9a192bf637b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper research condorcet voting theory",
+  "task_key": "worker_paper_research_condorcet_voting_theory_20260519T033450",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_research_condorcet_voting_theory_20260519T033450_result.json",
+    "occurrence": 1,
+    "bytes": 1328,
+    "sha256": "141f2ab957aca27a5407cf2c458a45f2e5e2b403610b4bed00ecd86ae8e2a8bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Added 5 papers under `condorcet_voting_theory` dimension:\n\n**Must-cite (3):**\n1. **Condorcet 1785** — Original Jury Theorem. Standard citation: *Essai sur l'application de l'analyse à la probabilité des décisions rendues à la pluralité des voix*.\n2. **Austen-Smith & Banks 1996** — Modern formalization in *American Political Science Review* 90(1):34-45. Explicitly introduces the independence requirement.\n3. **Lefort et al. 2024 (arXiv:2409.00094)** — \"Examining Independence in Ensemble Sentiment Analysis: A Study on the Limits of Large Language Models Using the Condorcet Jury Theorem.\" Tests **cross-model** LLM ensembles via majority voting for sentiment analysis; finds marginal gains due to lack of independence among advanced LLMs. Your novelty positioning: they do cross-model ensembles, you do **within-model** trace independence with Fleiss' κ + Effective-K.\n\n**Should-cite (2):**\n4. **Ladha 1992** — \"The Condorcet Jury Theorem, Free Speech, and Correlated Votes.\" *AJPS* 36(3):617-634. Generalizes CJT to correlated voters; directly supports the Effective-K concept.\n5. **Fleiss 1971** — \"Measuring Nominal Scale Agreement among Many Raters.\" *Psychological Bulletin* 76(5):378-382. The original Fleiss' κ definition.\n\nAll 5 verified. Literature map updated."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-condorcet-voting-theory.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22d22b2830bc1e9ab3d8",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "agent / loop_9_1779191835.md",
+  "task_key": "loop_9_1779191835",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_9_1779191835.md",
+    "occurrence": 1,
+    "bytes": 4352,
+    "sha256": "00262e571a4918c18ef592565842f8ba37f2b85fccb34ac9b82e23620c47c58f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-19T11:54:00+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-25068 GPU 白名单需确认——`get_project_resource_usage` 返回 `allocated_gpus=[]`，但实际有 exp-044 在 cuda:0 跑。在 Director 明确分配前，不要假设 cuda:0-3 全可用\n- westd-16639 四卡（cuda:0-3）已有 4 个实验在跑（exp-038/039/040/041），不要在上面再提交\n- exp-045 刚完成在 cuda:3@westd-25068，GPU 已释放但尚未被 Director 重新分配\n- 论文 framing 正处于 D052 升级中（universal trap → regime-dependent trap），Paper Agent 已被通知暂停旧 framing 写作，**不要用旧 framing 写任何 paper 内容**\n- EMNLP 2026 ARR May 25 截稿（~7 天），时间紧迫但禁止 fallback 思维\n\n### 2. 🖥️ 基础设施快照\n- **westd-25068**: 4× RTX PRO 6000 Blackwell，工作目录 `/root/symb_invariant_consensus/`，Python: `/root/miniconda3/bin/python`，conda env: base\n- **westd-16639**: 4× RTX PRO 6000 Blackwell，同样路径结构\n- 日志目录: `~/runs/symb_invariant_consensus/`\n- 脚本目录: `/root/symb_invariant_consensus/scripts/`\n- 活跃进程:\n  - exp-044-icl-oracle: PID 83086, westd-25068:cuda:0, cron 监控中\n  - exp-038-14b-logiqa200-16639: tmux=exp038, westd-16639\n  - exp-039-14b-pw600-16639: tmux=exp032, westd-16639\n  - exp-040-qwen3-pw600-16639: tmux=exp033, westd-16639\n  - exp-041-14b-folio204-16639: tmux=exp036, westd-16639\n\n### 3. 📊 当前状态\n**刚做完**: 收到 exp-045-backward-verification CRON 完成回调，完成 session-start 初始化（registry + reconcile + ROADMAP），派出 Worker `worker_analysis_exp-045-backward-verification_20260518T194233` 分析结果（SSH 读日志 + W&B metrics + 判断 conclusion）。Worker 尚未回调。\n\n**Worker 池** (2 个 running):\n1. `worker_analysis_exp-045-backward-verification` — 分析 exp-045 结果\n2. `worker_code_exp-047-qwen3-thinking-prep` — 准备 exp-047 Qwen3 thinking 实验代码\n\n**RUNNING 实验**:\n- exp-044-icl-oracle (westd-25068:cuda:0) — ICL with 5 gold FOL examples，验证 oracle-guided extraction 是否打破 capability trap\n- exp-038 (westd-16639) — Qwen2.5-14B on LogiQA-200，跨数据集验证 capability trap\n- exp-039 (westd-16639) — Qwen2.5-14B on PW-600\n- exp-040 (westd-16639) — Qwen3 on PW-600\n- exp-041 (westd-16639) — Qwen2.5-14B on FOLIO-204 独立重跑\n\n**等待中**: exp-045 分析 Worker 回调 → 需要更新 registry + report.md + 汇报 Director\n\n### 4. 📋 待办\n- exp-045 Worker 回调到达 → 读 conclusion：success → on-experiment-done success 流程（更新 registry/report，汇报 Director 含资源行+文献联动）；negative → hypothesis 推导链分析 + 汇报 Director（禁止默默跑下一个）；failed → on-experiment-failed 流程\n- exp-044-icl-oracle cron 回调 → 同上分析流程，这个实验极关键（直接验证 oracle-guided extraction 能否打破 trap）\n- westd-16639 四个实验（038/039/040/041）任一完成 → 分析 + 汇报，这些是跨数据集/跨服务器验证\n- exp-047 代码准备 Worker 完成 → 检查代码质量，等 GPU 分配后提交\n- **Qwen-7B SC 准确率仍待确认**（ROADMAP 标注 critical，决定 regime boundary 是否 Mistral-specific）\n\n### 5. 🎯 战略上下文\n- **核心发现 (D052)**: Capability trap 是 regime-dependent 的。高 SC 模型 (≥70%) trap active（confirmation bias），低 SC 模型 (≤55%) SICA 可显著提升（Mistral +4.90pp, p=0.013）。Oracle +14.22pp 证明聚合机制本身有效，bottleneck 在 extraction quality\n- **6 次 remediation 全部失败**: contrastive prompting / cross-model / generational / Z3 feedback / consistency filtering / cross-trace UNSAT——高 SC regime 下的 trap 极其顽固\n- **当前实验矩阵在填两个方向**: (1) 跨数据集验证 trap（LogiQA, ProofWriter, FOLIO 重跑）(2) constructive 方法突破 trap（ICL oracle, backward verification, premise formalization）\n- **易错点**: exp-035 Qwen-7B 的 SC 准确率还没确认——如果 SC < 55% 但 SICA delta 也是 negative，会动摇 regime-dependent framing。汇报时不要假设 Qwen-7B 一定在 low-SC regime\n- **易错点**: exp-042b premise-formalization 已两次 failed（vLLM 问题），不要再盲目重试，需要先诊断 vLLM 环境\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1779191835.md"
+}

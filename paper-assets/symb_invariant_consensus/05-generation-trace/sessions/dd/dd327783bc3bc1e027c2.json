@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "dd327783bc3bc1e027c2",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment folio 2x2 crossmodel",
+  "task_key": "worker_experiment_folio-2x2-crossmodel_20260521T230444",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_folio-2x2-crossmodel_20260521T230444.log",
+    "occurrence": 1,
+    "bytes": 1102488,
+    "sha256": "eada60e5a2502a826d80cf881e2a5f8f549d1a69b85ebd7ec7c11c098a7e59d7"
+  },
+  "statistics": {
+    "messages": 666,
+    "user_turns": 1,
+    "tool_calls": 269,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 120,
+      "tool_call": 269,
+      "tool_result": 269,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 632,
+      "chunks": [
+        {
+          "path": "dd327783bc3bc1e027c2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "dd327783bc3bc1e027c2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "dd327783bc3bc1e027c2-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "dd327783bc3bc1e027c2-part-0004.json",
+          "message_count": 92
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 34,
+      "chunks": [
+        {
+          "path": "dd327783bc3bc1e027c2-part-0004.json",
+          "message_count": 34
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-folio-2x2-crossmodel.md"
+}

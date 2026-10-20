@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21c88d6680b75979ec61",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "eval exp 029 contrastive folio204",
+  "task_key": "worker_eval_exp-029-contrastive-folio204_20260518T142258",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_exp-029-contrastive-folio204_20260518T142258_result.json",
+    "occurrence": 1,
+    "bytes": 209,
+    "sha256": "654e646b4ae04778efd2d3c8ee04474e6d965733a88ca180004aa662897d85cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "14 题完成，checkpoint 滞后显示 n=7 时 contrastive 100% vs SC 85.7%，delta +14.3pp。Extractor 84/84 零失败。\n\n实验正常推进，约 ~45 分钟后完成剩余。无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-029-contrastive-folio204.md"
+}

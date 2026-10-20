@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af4fdfb7e8a90cdffb84",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code p0 p1 p2 fixes",
+  "task_key": "worker_code_p0-p1-p2-fixes_20260515T091706",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_p0-p1-p2-fixes_20260515T091706_result.json",
+    "occurrence": 1,
+    "bytes": 1542,
+    "sha256": "21df66605785085289ed5e69111701ef0f346200d3ce31f40e28cca765b33356"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。汇报结果：\n\n---\n\n## 修复完成\n\n### 1. 修改的文件\n\n| 文件 | 改动 |\n|------|------|\n| `sica/constraint_extractor.py` | 新增 `VLLMBackend` 类（sync + async + batch_call）；替换 EXTRACTION_PROMPT（变量规范化指令 + 2 组 few-shot）；抽取 `_parse_response` 复用；新增 `extract_batch` 批量提取方法 |\n| `sica/trace_generator.py` | `VLLMGenerator` 改为 async 并发生成（`AsyncOpenAI` + `asyncio.gather`）；新增 `_build_prompt`、`_generate_single` 方法 |\n| `sica/pipeline.py` | 约束提取阶段改用 `extract_batch` 替代串行 for 循环 |\n| `run_mvp.py` | 导入 `VLLMBackend`；`build_extractor` 的 vllm 模式使用 `VLLMBackend` |\n| `data/prepare_proofwriter.py` | 新增：从 CRDD 项目读取 ProofWriter-OWA-D5 数据，生成 10 题 SICA 格式子集 |\n\n### 2. VLLMBackend import 测试 — **通过**\n\n### 3. Mock 端到端测试 — **通过**\n- 50 题跑完，Extraction rate 100%，SICA/SC 均 2%（mock traces 固定答案\"7\"，符合预期）\n\n### 4. 真实 vLLM 测试 — **通过**\n- 模型: `Qwen3-32B-AWQ`\n- 2 条 trace 并发生成耗时 **22.2s**（串行需 ~44s）\n- 答案正确：`2` = ground truth\n- 约束提取成功：4 条约束 `2**3 * 3**x == 72, 8 * 3**x == 72, 3**x == 9`\n- Extraction stats: success=1, 0 failures\n\n### 5. ProofWriter 数据 — **已就绪**\n- 10 题子集生成到 `/root/symb_invariant_consensus/data/proofwriter_subset.json`\n- 分布：True=3, False=4, Unknown=3"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-p0-p1-p2-fixes.md"
+}

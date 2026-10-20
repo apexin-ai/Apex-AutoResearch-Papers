@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf6b8eaecee4cf871654",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper qwen3 multi seed text update",
+  "task_key": "worker_paper_qwen3-multi-seed-text-update_20260524T115709",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_qwen3-multi-seed-text-update_20260524T115709_result.json",
+    "occurrence": 1,
+    "bytes": 1177,
+    "sha256": "4bbbcf7d3124c89ec0094dd41ef40388e40e3034d55e73724d5678f3591f313e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits are verified. Let me confirm the remaining `−0.17` references are intentionally kept:\n\n- **`experiments.tex:37`** (Table 1 row): Correct — single-seed (seed42) value, consistent with other PW rows; footnote `$^\\dagger$` now points to multi-seed appendix\n- **`diagnosis.tex:69`** (κ table): Correct — shows single-seed metrics for the seed42 experiment\n- **`figures/gen_f2_regime_scatter_v2.py`**: Not modified per task instructions (Fig 2 handled separately)\n- **`analysis.tex:133`**: States \"$\\Delta \\leq +1.47$\\,pp, n.s.\" which encompasses both FOLIO (+1.47) and PW (−0.17 or mean +0.92) — still valid\n\nSummary of changes:\n\n| File | Change |\n|------|--------|\n| `experiments.tex` caption | Added `$^\\dagger$\\,4-seed replication in Table~\\ref{tab:multi-seed}` |\n| `experiments.tex` Table 1 | Added `$^\\dagger$` to Qwen3-14B PW row |\n| `experiments.tex` results prose | Added \"four Qwen3-14B seeds yield mean Δ = +0.92 ± 1.14 pp (n.s.)\" |\n| `discussion.tex` | Replaced \"negligible Δ (−0.17 pp, n.s.)\" with 4-seed framing tied to K_eff prediction |\n| `appendix.tex` | No changes needed — already complete |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-qwen3-multi-seed-text-update.md"
+}

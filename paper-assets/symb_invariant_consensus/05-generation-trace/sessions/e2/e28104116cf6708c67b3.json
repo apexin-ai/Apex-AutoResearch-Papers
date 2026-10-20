@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e28104116cf6708c67b3",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "analysis alpha ablation mf3",
+  "task_key": "worker_analysis_alpha-ablation-mf3_20260522T080634",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_alpha-ablation-mf3_20260522T080634.log",
+    "occurrence": 1,
+    "bytes": 780133,
+    "sha256": "605e033666f79349b135061befb68aed7eb2de93dbbd26a8d8b91dbddcfb6fe4"
+  },
+  "statistics": {
+    "messages": 330,
+    "user_turns": 0,
+    "tool_calls": 133,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 60,
+      "tool_call": 133,
+      "tool_result": 133,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 330,
+      "chunks": [
+        {
+          "path": "e28104116cf6708c67b3-part-0001.json",
+          "message_count": 164
+        },
+        {
+          "path": "e28104116cf6708c67b3-part-0002.json",
+          "message_count": 166
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-alpha-ablation-mf3.md"
+}

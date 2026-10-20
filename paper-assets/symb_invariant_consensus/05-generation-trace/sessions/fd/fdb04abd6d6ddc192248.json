@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fdb04abd6d6ddc192248",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis mf3 unify n166 direction",
+  "task_key": "worker_analysis_mf3-unify-n166-direction_20260525T000714",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_mf3-unify-n166-direction_20260525T000714_result.json",
+    "occurrence": 1,
+    "bytes": 1422,
+    "sha256": "d61ba739b6819374f5bd7926655d73d6eb39fe594076970803f51e1b87229855"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "non_unanimous_problems = 166，确认修复成功。新旧对比：\n\n| 指标 | 旧值 (n=148) | 新值 (n=166) | 变化 |\n|------|-------------|-------------|------|\n| non_unanimous_problems | 148 | **166** | +18 |\n| total_minority_unique_constraints | 2169 | **2603** | +434 |\n| minority_exclusive_count | 1596 | **1912** | +316 |\n| **minority_exclusive_pct** | **73.58%** | **73.5%** | -0.08pp |\n| shared_count | 573 | **691** | +118 |\n| shared_pct | 26.42% | **26.5%** | +0.08pp |\n| per_problem_exclusive_ratio mean | 0.687 | **0.6688** | -0.018 |\n| per_problem_exclusive_ratio std | 0.2357 | **0.2496** | +0.014 |\n| per_problem_exclusive_ratio median | 0.7222 | **0.7222** | 不变 |\n| variable_overlap_ratio mean | 0.6621 | **0.6611** | -0.001 |\n| variable_overlap_ratio n | 146 | **161** | +15 |\n\n**修改内容**：`scripts/minority_constraint_direction.py` 第64-73行。原逻辑在 `normalize_answer` 返回 `None` 时丢弃 trace；新逻辑保留原始答案字符串，这些自由文本 trace 的答案必然 ≠ majority（majority 总是 True/False/Unknown），自动归入 minority 组参与 constraint 方向性分析。\n\n**关键发现**：minority-exclusive ratio 几乎不变（73.58% → 73.5%），说明这 18 个新增问题中的自由文本 trace 与其他 minority trace 表现一致，验证了 Director 的判断——纳入它们不会扭曲分析结论。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mf3-unify-n166-direction.md"
+}

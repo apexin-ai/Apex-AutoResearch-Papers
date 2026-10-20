@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2aa65f0eb105d770314",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "exp alpha ablation 0 1",
+  "task_key": "worker_exp_alpha-ablation-0-1_20260523T193634",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_alpha-ablation-0-1_20260523T193634_result.json",
+    "occurrence": 1,
+    "bytes": 2962,
+    "sha256": "6a3e262fecaf2a42bd23f520f55981a1df49fcf822386e6c6b472d36ad489fb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## α 端点消融结果\n\n### ⚠️ 数据限制说明\n\n两个条件都存在数据源偏差：\n\n1. **FOLIO**：唯一有 constraint_cache 的 Mistral FOLIO 数据是 exp033（SC=53.92%），而非预期的 seed42 数据（SC=55.88%，来自 exp053/seed456）。FOLIO 结果使用的是 **scorer's alpha**（真正的 α 消融）。\n\n2. **ProofWriter**：Mistral PW seed42 的 constraint_cache 从未保存，无法重跑 scorer's alpha。下表使用的是 **mixing alpha**（`α·constraint_dist + (1-α)·vote_dist`），不是 scorer 内部的 source-attribution α。\n\n---\n\n### Condition 1: Mistral-7B ProofWriter depth-5（n=600, mixing α）\n\n| α | SICA (%) | SC (%) | Δ (pp) | McNemar p | SICA=SC |\n|---|----------|--------|--------|-----------|---------|\n| 0.0 | 39.83 | 39.83 | +0.00 | 1.000000 | 100.0% |\n| 0.1 | 38.00 | 39.83 | −1.83 | 0.019211 | 96.2% |\n| 0.3 | 38.17 | 39.83 | −1.67 | 0.041389 | 96.0% |\n| 0.5 | 37.83 | 39.83 | −2.00 | 0.022656 | 95.3% |\n| 0.7 | 37.00 | 39.83 | −2.83 | 0.003327 | 93.3% |\n| 0.9 | 36.67 | 39.83 | −3.17 | 0.002563 | 91.8% |\n| 1.0 | 36.17 | 39.83 | −3.67 | 0.000941 | 90.3% |\n\n**趋势**：mixing α 从 0→1 单调递减（39.83→36.17），说明在 PW 上纯 constraint distribution 劣于纯 vote distribution，constraint 信号引入了噪声。α≥0.5 时 McNemar p<0.05 显著。\n\n---\n\n### Condition 2: Mistral-7B FOLIO（n=204, scorer's α, exp033）\n\n| α | SICA (%) | SC (%) | Δ (pp) | McNemar p | SICA=SC |\n|---|----------|--------|--------|-----------|---------|\n| 0.0 | 53.92 | 53.92 | +0.00 | 1.000000 | 93.6% |\n| 0.1 | 53.92 | 53.92 | +0.00 | 1.000000 | 93.6% |\n| 0.3 | 53.92 | 53.92 | +0.00 | 1.000000 | 93.6% |\n| 0.5 | 54.41 | 53.92 | +0.49 | 1.000000 | 94.1% |\n| 0.7 | 54.41 | 53.92 | +0.49 | 1.000000 | 94.1% |\n| 0.9 | 54.41 | 53.92 | +0.49 | 1.000000 | 94.1% |\n| 1.0 | 53.43 | 53.92 | −0.49 | 1.000000 | 95.1% |\n\n**趋势**：scorer's α 对 FOLIO 几乎无影响——全范围波动仅 ±0.49 pp，McNemar p 全部为 1.0（不显著）。说明 source-attribution 惩罚项在 FOLIO 上的 excluded constraints 权重很小，α 的取值基本不改变排序。\n\n---\n\n### 关键发现\n\n| | PW (mixing α) | FOLIO (scorer's α) |\n|---|---|---|\n| α=0 vs α=1 差异 | −3.67 pp (p=0.001) | −0.49 pp (p=1.0) |\n| α 敏感性 | 高，单调递减 | 极低，几乎不变 |\n| 最优 α | 0.0（纯投票） | 0.5–0.7（微弱优势） |\n| SC baseline | 39.83% (≠预期39.33%) | 53.92% (≠预期55.88%) |\n\n**SC baseline 偏差原因**：PW 的 39.83% vs 39.33% 来自答案标准化差异（239 vs 236 correct）；FOLIO 的 53.92% vs 55.88% 是因为 exp033 不是 seed42 实验，55.88% 来自 exp053（seed456）。\n\n如果需要精确匹配预期 SC 值，需要：(1) 为 PW seed42 重新保存 constraint_cache；(2) 找到 seed42 的 FOLIO constraint_cache 或用 exp053 的数据重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-alpha-ablation-0-1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6e957408681996b8926",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "gpu exp 062 gemma27b folio204",
+  "task_key": "worker_gpu_exp-062-gemma27b-folio204_20260519T065426",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp-062-gemma27b-folio204_20260519T065426_result.json",
+    "occurrence": 1,
+    "bytes": 848,
+    "sha256": "2f122f3c8ab5769b41a3193d3ba16a32f31b45dae1614c96b73d5ad49d831e81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**阻塞问题**：`/root/autodl-tmp` 满了（250G/250G）。Gemma-3-27B-IT 缺 7 个 shard（~31GB），需要腾出空间。\n\n当前磁盘占用：\n| 模型 | 大小 | 状态 |\n|------|------|------|\n| Qwen2.5-72B-Instruct | 100G | 未使用 |\n| gemma-3-27b-it (含16G缓存) | 35G | 不完整 |\n| Qwen3-14B | 28G | exp-059 使用中 |\n| Qwen2.5-14B-Instruct | 28G | exp-060 使用中 |\n| phi-4-reasoning | 19G | 未使用 |\n| Mistral-7B-Instruct-v0.3 | 16G | 未使用 |\n| Qwen2.5-7B-Instruct | 15G | 未使用 |\n| deepseek-r1-0528-qwen3-8b | 8.7G | 未使用 |\n| DeepSeek-R1-Distill-Llama-8B | 4.3G | 未使用 |\n\n需释放 ~31GB。我的方案：\n1. 清理 gemma 下载缓存（+16G）\n2. 删除 `phi-4-reasoning`（+19G）\n\n总计释放 ~35G，足够。是否可以执行？或你希望删除其他模型？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-062-gemma27b-folio204.md"
+}

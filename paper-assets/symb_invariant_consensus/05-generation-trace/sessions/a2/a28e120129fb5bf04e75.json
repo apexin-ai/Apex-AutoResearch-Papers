@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a28e120129fb5bf04e75",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 084 completion check",
+  "task_key": "worker_analysis_exp-084-completion-check_20260519T223943",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-084-completion-check_20260519T223943_result.json",
+    "occurrence": 1,
+    "bytes": 575,
+    "sha256": "f570d2a61241659ef328bdd74437771e3997e5374cd308763f06ff5b44941606"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**误报。exp-084 仍在正常运行。**\n\n- **进程状态**: `run_debate.py` 活跃（PID 295377），managed wrapper 正常\n- **进度**: 3/200（刚开始，已完成 2 个样本）\n- **当前 results.json** (中间状态，2 样本):\n  - Debate accuracy: 1.0 (2/2)\n  - SC accuracy: 0.5 (1/2)\n  - Delta: +0.5\n- **每样本耗时**: ~75-88s，预计总运行时间 ~4.4h\n- **TMUX**: session 不存在（wrapper 不依赖 tmux，进程在 managed bash 中运行）\n- **无错误**: 日志中全是正常的 HTTP 200 响应\n\n不做任何操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-084-completion-check.md"
+}

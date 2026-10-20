@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80b63dc292f2ec9ececf",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "audit anonymization check",
+  "task_key": "worker_audit_anonymization-check_20260524T045739",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_anonymization-check_20260524T045739_result.json",
+    "occurrence": 1,
+    "bytes": 566,
+    "sha256": "d877d5f32c464dc9be1532486ac4c53ae5199fe209370dfb06c5bb11403c0f84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "匿名化检查完成，6 项全部 PASS：\n\n| # | 检查项 | 结果 |\n|---|--------|------|\n| 1 | 硬编码路径 | **PASS** (已修复 85 个文件，替换 `/root/`, `/home/ubuntu/`, `westd-` 引用) |\n| 2 | Git author | PASS — 全部 `Anonymous <anonymous@example.com>` |\n| 3 | 项目管理文件 | PASS — 无 CLAUDE.md/ROADMAP.md 等 |\n| 4 | API keys/tokens | PASS — 无泄露 |\n| 5 | LaTeX 匿名性 | PASS — `\\author{Anonymous}`, `\\usepackage[review]{acl}` |\n| 6 | 敏感文件 | PASS — 无 .env/credentials/密钥文件 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-anonymization-check.md"
+}

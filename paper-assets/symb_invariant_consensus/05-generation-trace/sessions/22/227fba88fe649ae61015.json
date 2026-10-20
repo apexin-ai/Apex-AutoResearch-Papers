@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "id": "227fba88fe649ae61015",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "code d016 model pivot",
+  "task_key": "worker_code_d016_model_pivot_20260516T025547",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_d016_model_pivot_20260516T025547.log",
+    "occurrence": 1,
+    "bytes": 1695100,
+    "sha256": "22b0e92a350016520df5f7833e8788bf1a215f1cb6c900286a7a8c6fd24ad405"
+  },
+  "statistics": {
+    "messages": 1280,
+    "user_turns": 1,
+    "tool_calls": 544,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 179,
+      "tool_call": 544,
+      "tool_result": 544,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 903,
+      "chunks": [
+        {
+          "path": "227fba88fe649ae61015-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "227fba88fe649ae61015-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "227fba88fe649ae61015-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "227fba88fe649ae61015-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "227fba88fe649ae61015-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "227fba88fe649ae61015-part-0006.json",
+          "message_count": 3
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 377,
+      "chunks": [
+        {
+          "path": "227fba88fe649ae61015-part-0006.json",
+          "message_count": 177
+        },
+        {
+          "path": "227fba88fe649ae61015-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "227fba88fe649ae61015-part-0008.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-d016-model-pivot.md"
+}

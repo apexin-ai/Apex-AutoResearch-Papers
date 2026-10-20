@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a57c4d1de2361baf9f54",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp020 final results",
+  "task_key": "worker_analysis_exp020-final-results_20260517T093126",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp020-final-results_20260517T093126_result.json",
+    "occurrence": 1,
+    "bytes": 911,
+    "sha256": "53656fffe95e93fffd722fca383651444079c8acddcd6677a2f3496510f19bc6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-020-llama8b-folio-204 状态报告\n\n**状态：运行中** — 33/204 完成，ETA ~105 min\n\n### 当前中间统计 (n=32, 结果文件写入)\n\n| 指标 | 值 |\n|------|------|\n| SICA accuracy | 65.62% (21/32) |\n| SC accuracy | **71.88% (23/32)** |\n| **Delta** | **-6.25pp (SC领先)** |\n| McNemar p | 0.5000 |\n| Bootstrap 95% CI | [-15.62, 0.00] |\n| Discordant pairs | 0 SICA wins, 2 SC wins |\n| Avg time/problem | 36.8s |\n| Wall time elapsed | ~20 min |\n\n### 日志实时 (33题已启动)\n\nSICA 判定：21 correct (V), 11 incorrect (X) → 约 65.6%\n\n### 关键信号\n\n**SC 目前领先 SICA 6.25pp**。仅完成 15.7%，样本量太小（仅 2 个 discordant pairs），统计上无法下结论。但方向令人警惕。\n\n需要等待全部 204 题完成（约 105 分钟后，~19:15 UTC）才能得到可靠结论。是否需要我到时候再检查一次？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp020-final-results.md"
+}

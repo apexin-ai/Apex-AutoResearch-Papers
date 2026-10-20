@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e37d3beceeda14f5d4c7",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag exp058 completion",
+  "task_key": "worker_diag_exp058-completion_20260519T043723",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_exp058-completion_20260519T043723_result.json",
+    "occurrence": 1,
+    "bytes": 825,
+    "sha256": "9214cffd5e5549b7f87d0f3152a55a3070deb22c48071819d2d752903350253a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-058 处理完毕。\n\n**exp-058 T=0.5 结果：**\n| 指标 | 值 |\n|---|---|\n| SC accuracy | 57.84% (118/204) |\n| SICA accuracy | 57.35% (117/204) |\n| delta | **-0.49pp** |\n| McNemar | b=3, c=2, p=1.0000 (不显著) |\n| 完成度 | 204/204 |\n\n**完整 T sensitivity 曲线 (Mistral-7B, FOLIO-204, k=12)：**\n\n| T | delta (pp) | 方向 |\n|---|---|---|\n| 0.3 | -0.49 | 微负 |\n| **0.5** | **-0.49** | **微负** |\n| 0.7 | +4.90 | 正（最佳） |\n| 1.0 | +0.49 | 微正 |\n\nT=0.5 和 T=0.3 的 delta 完全相同（-0.49pp），discordant pairs 极少（b=3, c=2），说明低温下 SC 和 SICA 行为几乎一致。SICA 的优势集中在 T=0.7，符合「需要足够多样性才能让约束聚合发挥作用」的预期。\n\nRegistry 已更新为 DONE (negative)，cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp058-completion.md"
+}

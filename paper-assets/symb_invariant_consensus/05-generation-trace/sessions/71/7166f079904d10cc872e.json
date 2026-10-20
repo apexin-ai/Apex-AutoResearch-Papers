@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7166f079904d10cc872e",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code hf token config 25068",
+  "task_key": "worker_code_hf-token-config-25068_20260518T070624",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_hf-token-config-25068_20260518T070624_result.json",
+    "occurrence": 1,
+    "bytes": 752,
+    "sha256": "3966be5eeff0a73c7678c7cb116c505053df320fb4ede5cc9b33f32dcca68cb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n| 项目 | 状态 |\n|------|------|\n| **HF_TOKEN 配置** | token 已写入 `~/.bashrc` 和 `~/.cache/huggingface/token`，但 **无法验证 whoami**（网络不通） |\n| **Qwen-72B 下载** | **失败** — `Network is unreachable` (`OSError: [Errno 101]`)，huggingface.co 完全不可达。当前仅 23MB（只有 config/README 等小文件）。已 kill 挂起的下载进程 |\n| **磁盘** | `/root/autodl-tmp` 共 250GB，已用 28MB，**剩余 ~250GB**（空间充足） |\n\n**核心阻塞**：westd-25068 的外网访问被阻断，无法连接 huggingface.co。这台机器可能需要开启网络/代理，或者通过 autodl 的学术加速通道下载。需要你确认这台机器的网络配置方式。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-hf-token-config-25068.md"
+}

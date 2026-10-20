@@ -1,0 +1,643 @@
+{
+  "schema_version": "1.0",
+  "id": "28629abe40143d02dbf1",
+  "project": "symb_invariant_consensus",
+  "kind": "conversation",
+  "title": "analysis exp 046 results",
+  "task_key": "worker_analysis_exp-046-results_20260519T011307",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analysis_exp-046-results_20260519T011307.jsonl",
+    "occurrence": 1,
+    "bytes": 23585,
+    "sha256": "1ddbd163eb391eea73fc8e327da0a15672f43b409e4f2086ccbbb02c37ad0eb8"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 15,
+    "roles": {
+      "tool_call": 15,
+      "tool_result": 15,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T01:15:05.050815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T01:15:05.051593+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T01:15:05.051834+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "cat /root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/exp046_results.json"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T01:15:05.052057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "tail -100 /root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/exp046.log"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T01:15:05.052432+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 600,\\\\n    \\\\\\\"sica_accuracy\\\\\\\": 0.365,\\\\n    \\\\\\\"sc_accuracy\\\\\\\": 0.3933333333333333,\\\\n    \\\\\\\"sica_correct\\\\\\\": 219,\\\\n    \\\\\\\"sc_correct\\\\\\\": 236,\\\\n    \\\\\\\"extraction_rate\\\\\\\": 0.9148611111111111,\\\\n    \\\\\\\"total_constraints_extracted\\\\\\\": 53972,\\\\n    \\\\\\\"total_unique_constraints\\\\\\\": 27335,\\\\n    \\\\\\\"contradiction_rate\\\\\\\": 0.053484543625388695,\\\\n    \\\\\\\"problems_with_contradictions\\\\\\\": 482,\\\\n    \\\\\\\"per_level_accuracy\\\\\\\": {\\\\n      \\\\\\\"OWA-D5\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.365,\\\\n        \\\\\\\"sc\\\\\\\": 0.3933333333333333,\\\\n        \\\\\\\"n\\\\\\\": 600\\\\n      }\\\\n    },\\\\n    \\\\\\\"per_dataset_accuracy\\\\\\\": {\\\\n      \\\\\\\"proofwriter\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.365,\\\\n        \\\\\\\"sc\\\\\\\": 0.3933333333333333,\\\\n        \\\\\\\"n\\\\\\\": 600\\\\n      }\\\\n    },\\\\n    \\\\\\\"k\\\\\\\": 12,\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"vllm\\\\\\\",\\\\n    \\\\\\\"total_wall_time_s\\\\\\\": 17511.2\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"problem_idx\\\\\\\": 0,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"ProofWriter_AttNoneg-OWA-D5-1041_Q1\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Bob is cold. Bob is quiet. Bob is red. Bob is smart. Charlie is kind. Charlie is quiet. Charlie is red. Charlie is rough. Dave is cold. Dave is kind. Dave is smart. Fiona is quiet. If something is quiet and cold then it is smart. Red, cold things are round. If something is kind and rough then it is red. All quiet things are rough. Cold, smart things are red. If something is rough then it is cold. All red things are rough. If Dave is smart and Dave is kind then Dave is quiet.\\\\\\\\n\\\\\\\\nDetermine whether the following statement is true, false, or unknown:\\\\\\\\nCharlie is kind.\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"proofwriter\\\\\\\",\\\\n      \\\\\\\"level\\\\\\\": \\\\\\\"OWA-D5\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sica_scores\\\\\\\": {\\\\n        \\\\\\\"False\\\\\\\": 70.0,\\\\n        \\\\\\\"Unknown\\\\\\\": 101.5\\\n…[truncated 8000 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T01:15:05.052688+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Constraints: 104 extracted -> 43 unique\\\\n  MaxSAT: 40 sat, 3 excl, solve=1.2411726638674736ms\\\\n  Timing: trace=7.8s extract=22.1s total=30.8s\\\\nSC:   Unknown (X) -- votes: 7/12\\\\nTime: 30.8s\\\\nETA: 1.0 min (2 remaining, avg 29.2s/prob)\\\\n\\\\n--- [599/600] (overall 599/600) ---\\\\nID: ProofWriter_AttNeg-OWA-D5-1066_Q21 | Dataset: proofwriter | Level: OWA-D5\\\\nQ: Bob is big. Charlie is furry. Charlie is kind. Charlie is smart. Fiona is furry. Fiona is young. Gary is smart. Big, sma...\\\\nGT: Unknown\\\\n2026-05-19 09:10:40,164 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 09:10:40,707 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 09:10:41,039 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 09:10:41,371 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 09:10:41,523 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 09:10:41,904 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 09:10:42,463 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 09:10:42,533 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 09:10:42,616 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 09:10:42,865 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 09:10:43,125 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 09:10:43,632 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 09:10:48,443 INFO HTTP Request: POS\n…[truncated 5910 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T01:15:05.052938+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "ls -la /root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T01:15:05.053128+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 3704\\\\ndrwxr-xr-x  4 root root     121 May 19 04:20 .\\\\ndrwxr-xr-x 24 root root    4096 May 19 09:09 ..\\\\n-rw-r--r--  1 root root 1940293 May 19 09:11 exp046.log\\\\n-rw-r--r--  1 root root 1051555 May 19 09:11 exp046_results.json\\\\ndrwxr-xr-x  2 root root   36864 May 19 09:11 intermediates\\\\ndrwxr-xr-x  2 root root   36864 May 19 09:11 per_trace_constraints\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T01:15:05.053529+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "grep -i \"mcnemar\\|p.value\\|wandb\\|run_id\" /root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/exp046.log"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T01:15:05.053706+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T01:15:05.054008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "grep -i \"mcnemar\" /root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/exp046.log"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T01:15:05.054342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "grep -i \"wandb\" /root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/exp046.log"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T01:15:05.055294+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T01:15:05.055537+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T01:15:05.055824+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/exp046_results.json')); r=d['results']; a=sum(1 for x in r if x['sica_correct'] and x['sc_correct']); b=sum(1 for x in r if x['sica_correct'] and not x['sc_correct']); c=sum(1 for x in r if not x['sica_correct'] and x['sc_correct']); dd=sum(1 for x in r if not x['sica_correct'] and not x['sc_correct']); print(f'a(both)={a} b(sica_only)={b} c(sc_only)={c} d(neither)={dd}'); from scipy.stats import chi2; n_disc=b+c; chi2_val=((b-c)**2)/(b+c) if b+c>0 else 0; pval=1-chi2.cdf(chi2_val,1); print(f'McNemar chi2={chi2_val:.4f} p={pval:.6f}')\""
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T01:15:05.056086+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T01:15:05.056239+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T01:15:05.056377+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T01:15:05.056503+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "python3 -c \"\nimport json\nfrom scipy.stats import chi2\n\nd = json.load(open('/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/exp046_results.json'))\nr = d['results']\n\na = sum(1 for x in r if x['sica_correct'] and x['sc_correct'])\nb = sum(1 for x in r if x['sica_correct'] and not x['sc_correct'])\nc = sum(1 for x in r if not x['sica_correct'] and x['sc_correct'])\ndd = sum(1 for x in r if not x['sica_correct'] and not x['sc_correct'])\n\nprint(f'Contingency table:')\nprint(f'  Both correct (a):     {a}')\nprint(f'  SICA only (b):        {b}')\nprint(f'  SC only (c):          {c}')\nprint(f'  Neither (d):          {dd}')\nprint(f'  Total:                {a+b+c+dd}')\n\nchi2_val = ((b - c) ** 2) / (b + c) if (b + c) > 0 else 0\npval = 1 - chi2.cdf(chi2_val, 1)\nprint(f'McNemar chi2 = {chi2_val:.4f}, p = {pval:.6f}')\n\"\n"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T01:15:05.056674+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\nfrom scipy.stats import chi2\\\\\\\\n\\\\\\\\nd = json.load(open(\\\\\\\\'/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/exp046_results.json\\\\\\\\'))\\\\\\\\nr = d[\\\\\\\\'results\\\\\\\\']\\\\\\\\n\\\\\\\\na = sum(1 for x in r if x[\\\\\\\\'sica_correct\\\\\\\\'] and x[\\\\\\\\'sc_correct\\\\\\\\'])\\\\\\\\nb = sum(1 for x in r if x[\\\\\\\\'sica_correct\\\\\\\\'] and not x[\\\\\\\\'sc_correct\\\\\\\\'])\\\\\\\\nc = sum(1 for x in r if not x[\\\\\\\\'sica_correct\\\\\\\\'] and x[\\\\\\\\'sc_correct\\\\\\\\'])\\\\\\\\ndd = sum(1 for x in r if not x[\\\\\\\\'sica_correct\\\\\\\\'] and not x[\\\\\\\\'sc_correct\\\\\\\\'])\\\\\\\\n\\\\\\\\nprint(f\\\\\\\\'Contingency table:\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'  Both correct (a):     {a}\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'  SICA only (b):        {b}\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'  SC only (c):          {c}\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'  Neither (d):          {dd}\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'  Total:                {a+b+c+dd}\\\\\\\\')\\\\\\\\n\\\\\\\\nchi2_val = ((b - c) ** 2) / (b + c) if (b + c) > 0 else 0\\\\\\\\npval = 1 - chi2.cdf(chi2_val, 1)\\\\\\\\nprint(f\\\\\\\\'McNemar chi2 = {chi2_val:.4f}, p = {pval:.6f}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T01:15:05.056812+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "which python"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T01:15:05.057258+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/usr/local/bin/python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T01:15:05.057563+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "python -c \"\nimport json\nfrom scipy.stats import chi2\n\nd = json.load(open('/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/exp046_results.json'))\nr = d['results']\n\na = sum(1 for x in r if x['sica_correct'] and x['sc_correct'])\nb = sum(1 for x in r if x['sica_correct'] and not x['sc_correct'])\nc = sum(1 for x in r if not x['sica_correct'] and x['sc_correct'])\ndd = sum(1 for x in r if not x['sica_correct'] and not x['sc_correct'])\n\nprint(f'Contingency table:')\nprint(f'  Both correct (a):     {a}')\nprint(f'  SICA only (b):        {b}')\nprint(f'  SC only (c):          {c}')\nprint(f'  Neither (d):          {dd}')\nprint(f'  Total:                {a+b+c+dd}')\n\nchi2_val = ((b - c) ** 2) / (b + c) if (b + c) > 0 else 0\npval = 1 - chi2.cdf(chi2_val, 1)\nprint(f'McNemar chi2 = {chi2_val:.4f}, p = {pval:.6f}')\n\"\n"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T01:15:05.058092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Contingency table:\\\\n  Both correct (a):     206\\\\n  SICA only (b):        13\\\\n  SC only (c):          30\\\\n  Neither (d):          351\\\\n  Total:                600\\\\nMcNemar chi2 = 6.7209, p = 0.009529\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T01:15:05.058455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T01:15:05.058746+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T01:15:05.058956+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/exp046_analysis.md",
+              "content": "# exp-046: Mistral-7B-Instruct-v0.3 on ProofWriter-600 (SICA vs SC)\n\n## Experiment Config\n\n| Parameter | Value |\n|-----------|-------|\n| Model | Mistral-7B-Instruct-v0.3 |\n| Dataset | ProofWriter-600 (OWA-D5) |\n| K (samples) | 12 |\n| Temperature | 0.7 |\n| Seed | 42 |\n| Inference | vLLM |\n| Wall time | 291.9 min (17511.2s) |\n\n## Main Results\n\n| Metric | Value |\n|--------|-------|\n| **SC accuracy** | **39.33%** (236/600) |\n| **SICA accuracy** | **36.50%** (219/600) |\n| **delta (SICA - SC)** | **-2.83pp** |\n| McNemar chi2 | 6.7209 |\n| McNemar p-value | 0.0095 |\n| Extraction rate | 91.49% |\n| Contradiction rate | 5.35% |\n| Problems with contradictions | 482/600 (80.33%) |\n| Total constraints extracted | 53,972 |\n| Unique constraints | 27,335 |\n\n## McNemar Contingency Table\n\n|  | SC correct | SC wrong |\n|--|-----------|----------|\n| **SICA correct** | 206 | 13 |\n| **SICA wrong** | 30 | 351 |\n\nDiscordant pairs: b=13, c=30. SC wins on 30 problems where SICA fails; SICA wins on only 13 where SC fails. The difference is statistically significant (p=0.0095).\n\n## Per-Level Breakdown\n\n| Level | SICA (%) | SC (%) | n |\n|-------|----------|--------|---|\n| OWA-D5 | 36.50 | 39.33 | 600 |\n\nNote: All 600 problems are D5 (depth-5). No D0-D4 depth stratification available in this dataset split.\n\n## Comparison with exp-033 (Mistral-7B on FOLIO-204)\n\n| | exp-033 (FOLIO-204) | exp-046 (PW-600) | Difference |\n|--|---------------------|-------------------|------------|\n| SC accuracy | 54.41% | 39.33% | -15.08pp |\n| SICA accuracy | 59.31% | 36.50% | -22.81pp |\n| delta (SICA-SC) | **+4.90pp** | **-2.83pp** | direction flipped |\n| McNemar p | (not recorded) | 0.0095 | |\n| Contradiction rate | (not recorded) | 5.35% | |\n\n## Key Observations\n\n1. **SICA hurts on ProofWriter-D5.** Unlike FOLIO where SICA improved over SC by +4.90pp, on ProofWriter-D5 SICA is significantly worse (-2.83pp, p<0.01). The effect direction is flipped.\n\n2. **Overall accuracy is low.** Both methods achieve under 40% on PW-D5, indicating Mistral-7B struggles heavily with depth-5 logical reasoning chains. The base model capability may be insufficient for constraint extraction to add value.\n\n3. **High contradiction rate (80.33% of problems).** 482/600 problems had at least some contradictory constraints detected, yet the overall contradiction_rate per constraint is only 5.35%. This suggests the constraint extraction is noisy on ProofWriter's formal rule-based problems.\n\n4. **Extraction rate is decent (91.49%).** The pipeline successfully extracts constraints from most traces, so the issue is not extraction failure but constraint quality.\n\n5. **Hypothesis: task structure mismatch.** ProofWriter has deterministic, rule-following reasoning where the correct chain is unique. SICA's constraint-based reweighting may amplify noise when the model cannot reliably identify the correct reasoning path, whereas SC's simple majority vote is more robust to uniform noise across traces.\n\n## W&B\n\nNo W&B run was logged for this experiment.\n"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T01:15:05.059318+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/exp046_analysis.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T01:15:05.059744+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "exp046_analysis",
+              "type": "report",
+              "description": "exp-046 results analysis: Mistral-7B on ProofWriter-600 (OWA-D5), SICA vs SC. SICA underperforms SC by -2.83pp (p=0.0095).",
+              "project": "symb_invariant_consensus",
+              "exp_id": "exp-046",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/exp046_analysis.md",
+              "tags": "['exp-046', 'mistral-7b', 'proofwriter', 'sica', 'negative-result']"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T01:15:05.059950+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260519_203d02\\\", \\\"name\\\": \\\"exp046_analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"exp-046 results analysis: Mistral-7B on ProofWriter-600 (OWA-D5), SICA vs SC. SICA underperforms SC by -2.83pp (p=0.0095).\\\", \\\"path\\\": \\\"projects/symb_invariant_consensus/artifacts/exp-046/report/exp046_analysis.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"exp_id\\\": \\\"exp-046\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-19T01:14:56.918685+00:00\\\", \\\"tags\\\": [\\\"exp-046\\\", \\\"mistral-7b\\\", \\\"proofwriter\\\", \\\"sica\\\", \\\"negative-result\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T01:15:05.060149+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-046 分析完成。核心结论：\n\n**SICA 在 ProofWriter-D5 上显著劣于 SC**：\n\n| | SC | SICA | delta |\n|--|-----|------|-------|\n| Accuracy | 39.33% | 36.50% | **-2.83pp** (p=0.0095) |\n\nMcNemar 不对称：SC 在 30 个问题上赢 SICA，SICA 只在 13 个问题上赢 SC。\n\n与 exp-033 (FOLIO) 对比，效果方向完全翻转：FOLIO 上 SICA +4.90pp，ProofWriter-D5 上 SICA -2.83pp。可能原因：ProofWriter-D5 的确定性规则推理链对 Mistral-7B 太难（两种方法都不到 40%），模型无法提取有效约束，SICA 的约束重加权反而放大了噪声。\n\n报告已写入 `artifacts/exp046_analysis.md` 并注册 (`art_20260519_203d02`)。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-046-results_20260519T011307"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-exp-046-results.md"
+}

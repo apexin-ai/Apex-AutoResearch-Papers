@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3842748de73a11c129b8",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra exp055 deploy",
+  "task_key": "worker_infra_exp055-deploy_20260519T021752",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_exp055-deploy_20260519T021752_result.json",
+    "occurrence": 1,
+    "bytes": 646,
+    "sha256": "2f32f0d82074c667719a91f5a2b912425baf9688b0501508ebeab144fc5935c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。汇报：\n\n**exp-055 Multi-Temperature Mistral-7B FOLIO-204 状态：**\n\n| 项目 | 状态 |\n|------|------|\n| vLLM server | 运行中 (tmux: `exp055_vllm`, port 8002) |\n| 实验进程 | 运行中 (tmux: `exp055_run`) |\n| GPU cuda:2 | 87965/97887 MiB (90% utilization) |\n| 模型 | Mistral-7B-Instruct-v0.3 |\n| 配置 | T=0.3x4 + T=0.7x4 + T=1.2x4 = 12 traces/problem |\n| 数据 | FOLIO 204 problems |\n| Registry | RUNNING |\n\n注意：因 `math500_subset.json` 和 `proofwriter_subset.json` 不存在，实际命令加了 `--math-data data/empty.json --pw-data data/empty.json`，仅跑 FOLIO 数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp055-deploy.md"
+}

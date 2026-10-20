@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed1f5f1935aa47628a13",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code prep exp 020 folio",
+  "task_key": "worker_code_prep-exp-020-folio_20260517T083230",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_prep-exp-020-folio_20260517T083230_result.json",
+    "occurrence": 1,
+    "bytes": 690,
+    "sha256": "5b8c5d1f89ac475727bdc740b5c08cef67dc804e22c86668bd4e7e7f97c7c07d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本就绪。汇总：\n\n**脚本**: `/root/symb_invariant_consensus/scripts/run_exp020_llama8b_folio204.sh` (已创建, +x)\n- 语法检查通过\n\n**模型**: `/root/autodl-tmp/models/Llama-3.1-8B-Instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct/` \n- 4 个 safetensors 分片完整 ✓\n\n**数据**: `data/folio_full.json`\n- 204 题 ✓\n\n**参数**: K=12, T=0.7, max-tokens=4096, seed=42（与 exp-011 一致）\n\n**输出**: `results/exp020_llama8b_folio204/exp020_results.json`\n\n**预估运行时间**: LLaMA-8B + 204题 × K=12 采样，约 1.5-2.5 小时（参考 exp-011 的 60 题约 40min 外推）。\n\n可随时通过 `submit_training_job` 提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-exp-020-folio.md"
+}

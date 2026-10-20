@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ddf166f369592527b37f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment direction b deepconf",
+  "task_key": "worker_experiment_direction-b-deepconf_20260520T074306",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_direction-b-deepconf_20260520T074306_result.json",
+    "occurrence": 1,
+    "bytes": 1170,
+    "sha256": "8bde0f340b76f4c4ee4c43f15dacccc9fec1feb0d613140b8faa8b4a103e851c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## Direction B 结果汇总\n\n**方法**：用 vLLM completions API 获取每条 trace 最终答案 token 的 logprob 作为置信度，按置信度过滤 traces 后重新运行 SC 和 SICA。\n\n### 结果表\n\n| Method | K_eff | Accuracy | Δ vs exp-033 SC |\n|--------|-------|----------|-----------------|\n| exp-033 Full SC (K=12) | 12 | 54.4% | — |\n| exp-033 Full SICA (K=12) | 12 | 59.3% | +4.9pp |\n| Filtered SC (top 75%) | 8.2 | 52.9% | -1.5pp |\n| Filtered SICA (top 75%) | 8.2 | 54.4% | +0.0pp |\n| Filtered SC (top 50%) | 5.5 | 52.9% | -1.5pp |\n| Filtered SICA (top 50%) | 5.5 | 52.9% | -1.5pp |\n\n### 核心发现：**负面结果**\n\nLogprob 与正确性**无相关性**：\n- 正确 trace 平均 logprob: **-0.135**；错误 trace: **-0.141**（几乎一样）\n- Q4 (最高置信度) 正确率 **48.9%** 反而低于 Q1 (最低置信度) 的 **53.0%**\n- Logprob 分布极度压缩 (median=-0.06)，模型对正确和错误答案同样过度自信\n\n**结论**：DeepConf 假设（低置信 trace 产生低质量约束）在 Mistral-7B / FOLIO 上不成立。过滤只是随机丢弃 trace，损害而非提升准确率。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-direction-b-deepconf.md"
+}

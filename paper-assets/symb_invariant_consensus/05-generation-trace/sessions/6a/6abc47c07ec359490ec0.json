@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6abc47c07ec359490ec0",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis adaptive sica validation",
+  "task_key": "worker_analysis_adaptive-sica-validation_20260519T011448",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_adaptive-sica-validation_20260519T011448_result.json",
+    "occurrence": 1,
+    "bytes": 3259,
+    "sha256": "aaabf291dd90df956bcc7da08d09a55edc05374abb0ea9884b0b91291c8fc80a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果出来了。合并两台服务器的数据：\n\n## 合并结果（19 个实验）\n\n### 主表\n\n| Server | Experiment | Model | Dataset | n | n_low | n_high | SC% | SICA% | Adaptive% | D(A-SC) |\n|--------|-----------|-------|---------|---|-------|--------|-----|-------|-----------|---------|\n| 25068 | exp-033 | Mistral-7B | FOLIO-204 | 204 | 131 | 73 | 54.41 | 59.31 | 57.84 | **+3.43** |\n| 25068 | exp-001/026 | Qwen2.5-14B | FOLIO-204 | 204 | 183 | 21 | 75.00 | 74.51 | 75.49 | **+0.49** |\n| 25068 | exp-027 | Qwen3-14B-NT | FOLIO-204 | 204 | 190 | 14 | 83.82 | 84.31 | 85.29 | **+1.47** |\n| 25068 | exp-035 | Qwen2.5-7B | FOLIO-204 | 204 | 171 | 33 | 76.96 | 76.47 | 76.47 | **-0.49** |\n| 25068 | exp-044b | Qwen2.5-14B | FOLIO-199-ICL | 199 | 175 | 24 | 74.37 | 74.87 | 73.87 | **-0.50** |\n| 25068 | exp-046 | Mistral-7B | PW-600 | 600 | 326 | 274 | 39.33 | 36.50 | 37.50 | **-1.83** |\n| 25068 | exp-034-pw | Qwen2.5-14B | PW-600 | 393 | 320 | 73 | 72.52 | 74.30 | 73.54 | **+1.02** |\n| 25068 | exp-028b | Qwen3-14B-T | FOLIO-204 | 122 | 121 | 1 | 83.61 | 85.25 | 83.61 | 0.00 |\n| 25068 | exp-051-k4 | Mistral-7B | FOLIO-204-k4 | 204 | 160 | 44 | 54.41 | 52.94 | 53.92 | **-0.49** |\n| 25068 | exp-051-k8 | Mistral-7B | FOLIO-204-k8 | 204 | 136 | 68 | 57.35 | 56.37 | 56.86 | **-0.49** |\n| 25068 | exp-051-k16 | Mistral-7B | FOLIO-204-k16 | 73 | 49 | 24 | 61.64 | 63.01 | 64.38 | **+2.74** |\n| 16639 | exp-052 | Mistral-7B | FOLIO-204-s123 | 204 | 134 | 70 | 53.92 | 57.35 | 56.37 | **+2.45** |\n| 16639 | exp-053 | Mistral-7B | FOLIO-204-s456 | 204 | 125 | 79 | 56.37 | 55.88 | 56.37 | 0.00 |\n| 16639 | exp-038 | Qwen2.5-14B | LogiQA-200 | 200 | 184 | 16 | 78.50 | 78.00 | 78.50 | 0.00 |\n| 16639 | exp-049b | Mistral-7B | LogiQA-200 | 200 | 75 | 125 | 51.00 | 51.50 | 51.00 | 0.00 |\n| 16639 | exp-050b | Mistral-7B | FOLIO-199-ICL | 199 | 120 | 79 | 57.79 | 54.27 | 55.28 | **-2.51** |\n| 16639 | exp-041 | Qwen2.5-14B | FOLIO-204 | 204 | 178 | 26 | 77.45 | 75.49 | 75.98 | **-1.47** |\n| 16639 | exp-032 | Qwen2.5-14B | PW-600 | 412 | 335 | 77 | 74.76 | 73.30 | 74.03 | **-0.73** |\n| 16639 | exp-033-pw | Qwen3-14B-NT | PW-600 | 263 | 240 | 23 | 85.55 | 85.17 | 85.55 | 0.00 |\n\n### 汇总\n\n| | Count |\n|---|---|\n| Adaptive SICA > SC | **6/19** |\n| Adaptive SICA = SC | **5/19** |\n| Adaptive SICA < SC | **8/19** |\n\n### 阈值敏感性（合并）\n\n两台服务器的阈值扫描都显示：**没有任何阈值能让 Adaptive SICA 在所有实验上 >= SC**。即使提高到 1.5 bit（几乎所有问题都用 SC），仍有实验出现退化。\n\n### 根因\n\n高 entropy 子集中，SICA 也不总是优于 SC：\n- exp-035 (Qwen2.5-7B): 高 entropy 组 SICA 54.55% vs SC 57.58% (-3.03)\n- exp-044b (ICL Oracle): 高 entropy 组 SICA 45.83% vs SC 50.00% (-4.17)\n- exp-046 (Mistral-7B PW): 高 entropy 组 SICA 29.56% vs SC 33.58% (-4.02)\n- exp-050b (Mistral ICL): 高 entropy 组 SICA 45.57% vs SC 51.90% (-6.33)\n- exp-041 (Qwen2.5-14B): 高 entropy 组 SICA 42.31% vs SC 53.85% (-11.54)\n\n**结论：Entropy-Gated Adaptive SICA 不 work。** 核心假设\"高 entropy 时 SICA 优于 SC\"在数据上不成立。8/19 实验中 Adaptive SICA 劣于 SC，无法作为 method contribution。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-adaptive-sica-validation.md"
+}

@@ -1,0 +1,1443 @@
+{
+  "schema_version": "1.0",
+  "session_id": "6ea67a267ec003c35f62",
+  "rounds": [
+    {
+      "number": 2,
+      "messages": [
+        {
+          "source_line": 541,
+          "timestamp": "2026-05-21T12:25:31.770Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011upuCtFQfWsLpm46ZYH16G",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[transformers] \\\\u001b[1mRobertaForSequenceClassification LOAD REPORT\\\\u001b[0m from: /root/autodl-tmp/models/roberta-large-mnli\\\\nKey                         | Status     |  | \\\\n----------------------------+------------+--+-\\\\nroberta.pooler.dense.bias   | UNEXPECTED |  | \\\\nroberta.pooler.dense.weight | UNEXPECTED |  | \\\\n\\\\nNotes:\\\\n- UNEXPECTED:\\\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\\\n  id2label: {0: 'CONTRADICTION', 1: 'NEUTRAL', 2: 'ENTAILMENT'}, nli_map: {0: 'False', 1: 'Unknown', 2: 'True'}\\\\n  100/600 (2s)\\\\n  200/600 (4s)\\\\n  300/600 (6s)\\\\n  400/600 (8s)\\\\n  500/600 (10s)\\\\n  600/600 (12s)\\\\n  Done: 11.9s\\\\n  roberta standalone: 226/600 = 37.67%\\\\n\\\\nLoading bart: /root/autodl-tmp/models/bart-large-mnli\\\\n\\\\rLoading weights:   0%|          | 0/517 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 517/517 [00:00<00:00, 65541.94it/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "d331a41e-48e6-4f80-a756-1469d1c5eb3e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[transformers] \\\\u001b[1mRobertaForSequenceClassification LOAD REPORT\\\\u001b[0m from: /root/autodl-tmp/models/roberta-large-mnli\\\\nKey                         | Status     |  | \\\\n----------------------------+------------+--+-\\\\nroberta.pooler.dense.bias   | UNEXPECTED |  | \\\\nroberta.pooler.dense.weight | UNEXPECTED |  | \\\\n\\\\nNotes:\\\\n- UNEXPECTED:\\\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\\\n  id2label: {0: 'CONTRADICTION', 1: 'NEUTRAL', 2: 'ENTAILMENT'}, nli_map: {0: 'False', 1: 'Unknown', 2: 'True'}\\\\n  100/600 (2s)\\\\n  200/600 (4s)\\\\n  300/600 (6s)\\\\n  400/600 (8s)\\\\n  500/600 (10s)\\\\n  600/600 (12s)\\\\n  Done: 11.9s\\\\n  roberta standalone: 226/600 = 37.67%\\\\n\\\\nLoading bart: /root/autodl-tmp/models/bart-large-mnli\\\\n\\\\rLoading weights:   0%|          | 0/517 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 517/517 [00:00<00:00, 65541.94it/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[transformers] \\u001b[1mRobertaForSequenceClassification LOAD REPORT\\u001b[0m from: /root/autodl-tmp/models/roberta-large-mnli\\nKey                         | Status     |  | \\n----------------------------+------------+--+-\\nroberta.pooler.dense.bias   | UNEXPECTED |  | \\nroberta.pooler.dense.weight | UNEXPECTED |  | \\n\\nNotes:\\n- UNEXPECTED:\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\n  id2label: {0: 'CONTRADICTION', 1: 'NEUTRAL', 2: 'ENTAILMENT'}, nli_map: {0: 'False', 1: 'Unknown', 2: 'True'}\\n  100/600 (2s)\\n  200/600 (4s)\\n  300/600 (6s)\\n  400/600 (8s)\\n  500/600 (10s)\\n  600/600 (12s)\\n  Done: 11.9s\\n  roberta standalone: 226/600 = 37.67%\\n\\nLoading bart: /root/autodl-tmp/models/bart-large-mnli\\n\\rLoading weights:   0%|          | 0/517 [00:00<?, ?it/s]\\rLoading weights: 100%|██████████| 517/517 [00:00<00:00, 65541.94it/s]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+              }
+            }
+          },
+          "id": "event-000541"
+        },
+        {
+          "source_line": 542,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RWvHRbfYucdB3nvHcNjtz7",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16639",
+                "command": "tail -30 /tmp/r11_run.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "e605b810-3445-410f-b225-5648d8a19d79",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F3nw9NgV9ZHwVMzC4ewPRR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 558,
+                "cache_read_input_tokens": 87804,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 558
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000542"
+        },
+        {
+          "source_line": 543,
+          "timestamp": "2026-05-21T12:25:34.912Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RWvHRbfYucdB3nvHcNjtz7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Device: cuda\\\\nSC baseline: 236/600 = 39.33%\\\\nDeBERTa standalone: 330/600 = 55.00%\\\\n\\\\nLoading roberta: /root/autodl-tmp/models/roberta-large-mnli\\\\n\\\\rLoading weights:   0%|          | 0/393 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 393/393 [00:00<00:00, 66584.32it/s]\\\\n[transformers] \\\\u001b[1mRobertaForSequenceClassification LOAD REPORT\\\\u001b[0m from: /root/autodl-tmp/models/roberta-large-mnli\\\\nKey                         | Status     |  | \\\\n----------------------------+------------+--+-\\\\nroberta.pooler.dense.bias   | UNEXPECTED |  | \\\\nroberta.pooler.dense.weight | UNEXPECTED |  | \\\\n\\\\nNotes:\\\\n- UNEXPECTED:\\\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\\\n  id2label: {0: 'CONTRADICTION', 1: 'NEUTRAL', 2: 'ENTAILMENT'}, nli_map: {0: 'False', 1: 'Unknown', 2: 'True'}\\\\n  100/600 (2s)\\\\n  200/600 (4s)\\\\n  300/600 (6s)\\\\n  400/600 (8s)\\\\n  500/600 (10s)\\\\n  600/600 (12s)\\\\n  Done: 11.9s\\\\n  roberta standalone: 226/600 = 37.67%\\\\n\\\\nLoading bart: /root/autodl-tmp/models/bart-large-mnli\\\\n\\\\rLoading weights:   0%|          | 0/517 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 517/517 [00:00<00:00, 65541.94it/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "44f6ad52-5349-4e12-b068-01ddaf026792",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Device: cuda\\\\nSC baseline: 236/600 = 39.33%\\\\nDeBERTa standalone: 330/600 = 55.00%\\\\n\\\\nLoading roberta: /root/autodl-tmp/models/roberta-large-mnli\\\\n\\\\rLoading weights:   0%|          | 0/393 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 393/393 [00:00<00:00, 66584.32it/s]\\\\n[transformers] \\\\u001b[1mRobertaForSequenceClassification LOAD REPORT\\\\u001b[0m from: /root/autodl-tmp/models/roberta-large-mnli\\\\nKey                         | Status     |  | \\\\n----------------------------+------------+--+-\\\\nroberta.pooler.dense.bias   | UNEXPECTED |  | \\\\nroberta.pooler.dense.weight | UNEXPECTED |  | \\\\n\\\\nNotes:\\\\n- UNEXPECTED:\\\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\\\n  id2label: {0: 'CONTRADICTION', 1: 'NEUTRAL', 2: 'ENTAILMENT'}, nli_map: {0: 'False', 1: 'Unknown', 2: 'True'}\\\\n  100/600 (2s)\\\\n  200/600 (4s)\\\\n  300/600 (6s)\\\\n  400/600 (8s)\\\\n  500/600 (10s)\\\\n  600/600 (12s)\\\\n  Done: 11.9s\\\\n  roberta standalone: 226/600 = 37.67%\\\\n\\\\nLoading bart: /root/autodl-tmp/models/bart-large-mnli\\\\n\\\\rLoading weights:   0%|          | 0/517 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 517/517 [00:00<00:00, 65541.94it/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Device: cuda\\nSC baseline: 236/600 = 39.33%\\nDeBERTa standalone: 330/600 = 55.00%\\n\\nLoading roberta: /root/autodl-tmp/models/roberta-large-mnli\\n\\rLoading weights:   0%|          | 0/393 [00:00<?, ?it/s]\\rLoading weights: 100%|██████████| 393/393 [00:00<00:00, 66584.32it/s]\\n[transformers] \\u001b[1mRobertaForSequenceClassification LOAD REPORT\\u001b[0m from: /root/autodl-tmp/models/roberta-large-mnli\\nKey                         | Status     |  | \\n----------------------------+------------+--+-\\nroberta.pooler.dense.bias   | UNEXPECTED |  | \\nroberta.pooler.dense.weight | UNEXPECTED |  | \\n\\nNotes:\\n- UNEXPECTED:\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\n  id2label: {0: 'CONTRADICTION', 1: 'NEUTRAL', 2: 'ENTAILMENT'}, nli_map: {0: 'False', 1: 'Unknown', 2: 'True'}\\n  100/600 (2s)\\n  200/600 (4s)\\n  300/600 (6s)\\n  400/600 (8s)\\n  500/600 (10s)\\n  600/600 (12s)\\n  Done: 11.9s\\n  roberta standalone: 226/600 = 37.67%\\n\\nLoading bart: /root/autodl-tmp/models/bart-large-mnli\\n\\rLoading weights:   0%|          | 0/517 [00:00<?, ?it/s]\\rLoading weights: 100%|██████████| 517/517 [00:00<00:00, 65541.94it/s]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000543"
+        },
+        {
+          "source_line": 544,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Still running BART inference. Let me wait a bit."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "594b3aa7-19a4-4b21-85bb-06af7815e30f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XHhejBnJkYDwRsbQVTte5a",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 916,
+                "cache_read_input_tokens": 88362,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 916
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000544"
+        },
+        {
+          "source_line": 545,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XSgQutRjtvZQ4WE2m2rPdv",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16639",
+                "command": "tail -10 /tmp/r11_run.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "a8314045-8143-42fd-9d6f-8fd19dfe4b3b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XHhejBnJkYDwRsbQVTte5a",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 916,
+                "cache_read_input_tokens": 88362,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 916
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000545"
+        },
+        {
+          "source_line": 546,
+          "timestamp": "2026-05-21T12:25:38.373Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XSgQutRjtvZQ4WE2m2rPdv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  200/600 (4s)\\\\n  300/600 (6s)\\\\n  400/600 (8s)\\\\n  500/600 (10s)\\\\n  600/600 (12s)\\\\n  Done: 11.9s\\\\n  roberta standalone: 226/600 = 37.67%\\\\n\\\\nLoading bart: /root/autodl-tmp/models/bart-large-mnli\\\\n\\\\rLoading weights:   0%|          | 0/517 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 517/517 [00:00<00:00, 65541.94it/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "06a1cafd-7bc9-4107-a70e-41ac94537419",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  200/600 (4s)\\\\n  300/600 (6s)\\\\n  400/600 (8s)\\\\n  500/600 (10s)\\\\n  600/600 (12s)\\\\n  Done: 11.9s\\\\n  roberta standalone: 226/600 = 37.67%\\\\n\\\\nLoading bart: /root/autodl-tmp/models/bart-large-mnli\\\\n\\\\rLoading weights:   0%|          | 0/517 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 517/517 [00:00<00:00, 65541.94it/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  200/600 (4s)\\n  300/600 (6s)\\n  400/600 (8s)\\n  500/600 (10s)\\n  600/600 (12s)\\n  Done: 11.9s\\n  roberta standalone: 226/600 = 37.67%\\n\\nLoading bart: /root/autodl-tmp/models/bart-large-mnli\\n\\rLoading weights:   0%|          | 0/517 [00:00<?, ?it/s]\\rLoading weights: 100%|██████████| 517/517 [00:00<00:00, 65541.94it/s]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000546"
+        },
+        {
+          "source_line": 547,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017cRdVSJqR8uTKLU4uSPEgc",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16639",
+                "command": "wc -l /tmp/r11_run.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "d269e016-9b9a-46ba-8fad-a1c703e92d2c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XZJWuARDgApGafGpinTngv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 357,
+                "cache_read_input_tokens": 89278,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 357
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000547"
+        },
+        {
+          "source_line": 548,
+          "timestamp": "2026-05-21T12:25:40.873Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017cRdVSJqR8uTKLU4uSPEgc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"84 /tmp/r11_run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "5b961b9a-c95a-4b6e-840f-04d2fe4ad416",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"84 /tmp/r11_run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"84 /tmp/r11_run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000548"
+        },
+        {
+          "source_line": 549,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TRABw7LyaoJ2Dihn5judBy",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16639",
+                "command": "tail -30 /tmp/r11_run.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "06af24e7-2b65-4301-9aaf-48002adfd5aa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0177ZHDrQh99YWMwq7Q9gcYE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 183,
+                "cache_read_input_tokens": 89635,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 183
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000549"
+        },
+        {
+          "source_line": 550,
+          "timestamp": "2026-05-21T12:25:43.402Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TRABw7LyaoJ2Dihn5judBy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  additive w=1: 268/600 = 44.67%, delta=+5.33pp, b=18, c=50, p=0.000131\\\\n  additive w=3: 308/600 = 51.33%, delta=+12.00pp, b=109, c=181, p=0.000028\\\\n  additive w=5: 295/600 = 49.17%, delta=+9.83pp, b=171, c=230, p=0.003721\\\\n\\\\n=== BH Correction ===\\\\n  deberta_w1: raw=0.359283, adj=0.449104 \\\\n  deberta_w3: raw=0.000011, adj=0.000085 *\\\\n  deberta_w5: raw=0.000001, adj=0.000009 *\\\\n  roberta_w1: raw=1.000000, adj=1.000000 \\\\n  roberta_w3: raw=0.002626, adj=0.004581 *\\\\n  roberta_w5: raw=0.036852, adj=0.050253 \\\\n  bart_w1: raw=1.000000, adj=1.000000 \\\\n  bart_w3: raw=0.000244, adj=0.000524 *\\\\n  bart_w5: raw=0.002749, adj=0.004581 *\\\\n  ensemble_w1: raw=0.814529, adj=0.939842 \\\\n  ensemble_w3: raw=0.000065, adj=0.000244 *\\\\n  ensemble_w5: raw=0.000241, adj=0.000524 *\\\\n  additive_w1: raw=0.000131, adj=0.000393 *\\\\n  additive_w3: raw=0.000028, adj=0.000140 *\\\\n  additive_w5: raw=0.003721, adj=0.005582 *\\\\n\\\\n  10/15 significant after BH correction (alpha=0.05)\\\\n\\\\n=== Inter-verifier Agreement ===\\\\n  All 3 agree: 312/600 = 52.0%\\\\n  DeBERTa-RoBERTa: 419/600 = 69.8%\\\\n  DeBERTa-BART: 412/600 = 68.7%\\\\n  RoBERTa-BART: 391/600 = 65.2%\\\\n\\\\nSaved: /root/symb_invariant_consensus/results/r11_3verifier_canonical.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "3c4768ab-a47f-4890-8d4d-2fa7a641a3da",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  additive w=1: 268/600 = 44.67%, delta=+5.33pp, b=18, c=50, p=0.000131\\\\n  additive w=3: 308/600 = 51.33%, delta=+12.00pp, b=109, c=181, p=0.000028\\\\n  additive w=5: 295/600 = 49.17%, delta=+9.83pp, b=171, c=230, p=0.003721\\\\n\\\\n=== BH Correction ===\\\\n  deberta_w1: raw=0.359283, adj=0.449104 \\\\n  deberta_w3: raw=0.000011, adj=0.000085 *\\\\n  deberta_w5: raw=0.000001, adj=0.000009 *\\\\n  roberta_w1: raw=1.000000, adj=1.000000 \\\\n  roberta_w3: raw=0.002626, adj=0.004581 *\\\\n  roberta_w5: raw=0.036852, adj=0.050253 \\\\n  bart_w1: raw=1.000000, adj=1.000000 \\\\n  bart_w3: raw=0.000244, adj=0.000524 *\\\\n  bart_w5: raw=0.002749, adj=0.004581 *\\\\n  ensemble_w1: raw=0.814529, adj=0.939842 \\\\n  ensemble_w3: raw=0.000065, adj=0.000244 *\\\\n  ensemble_w5: raw=0.000241, adj=0.000524 *\\\\n  additive_w1: raw=0.000131, adj=0.000393 *\\\\n  additive_w3: raw=0.000028, adj=0.000140 *\\\\n  additive_w5: raw=0.003721, adj=0.005582 *\\\\n\\\\n  10/15 significant after BH correction (alpha=0.05)\\\\n\\\\n=== Inter-verifier Agreement ===\\\\n  All 3 agree: 312/600 = 52.0%\\\\n  DeBERTa-RoBERTa: 419/600 = 69.8%\\\\n  DeBERTa-BART: 412/600 = 68.7%\\\\n  RoBERTa-BART: 391/600 = 65.2%\\\\n\\\\nSaved: /root/symb_invariant_consensus/results/r11_3verifier_canonical.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  additive w=1: 268/600 = 44.67%, delta=+5.33pp, b=18, c=50, p=0.000131\\n  additive w=3: 308/600 = 51.33%, delta=+12.00pp, b=109, c=181, p=0.000028\\n  additive w=5: 295/600 = 49.17%, delta=+9.83pp, b=171, c=230, p=0.003721\\n\\n=== BH Correction ===\\n  deberta_w1: raw=0.359283, adj=0.449104 \\n  deberta_w3: raw=0.000011, adj=0.000085 *\\n  deberta_w5: raw=0.000001, adj=0.000009 *\\n  roberta_w1: raw=1.000000, adj=1.000000 \\n  roberta_w3: raw=0.002626, adj=0.004581 *\\n  roberta_w5: raw=0.036852, adj=0.050253 \\n  bart_w1: raw=1.000000, adj=1.000000 \\n  bart_w3: raw=0.000244, adj=0.000524 *\\n  bart_w5: raw=0.002749, adj=0.004581 *\\n  ensemble_w1: raw=0.814529, adj=0.939842 \\n  ensemble_w3: raw=0.000065, adj=0.000244 *\\n  ensemble_w5: raw=0.000241, adj=0.000524 *\\n  additive_w1: raw=0.000131, adj=0.000393 *\\n  additive_w3: raw=0.000028, adj=0.000140 *\\n  additive_w5: raw=0.003721, adj=0.005582 *\\n\\n  10/15 significant after BH correction (alpha=0.05)\\n\\n=== Inter-verifier Agreement ===\\n  All 3 agree: 312/600 = 52.0%\\n  DeBERTa-RoBERTa: 419/600 = 69.8%\\n  DeBERTa-BART: 412/600 = 68.7%\\n  RoBERTa-BART: 391/600 = 65.2%\\n\\nSaved: /root/symb_invariant_consensus/results/r11_3verifier_canonical.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000550"
+        },
+        {
+          "source_line": 551,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script completed successfully. All results match canonical. Let me verify the saved JSON and download it."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "2ec5bff3-196a-48e3-8ce7-54dbc54a4a19",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012wiBLx88YwNtuERDu6X3Jm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 818,
+                "cache_read_input_tokens": 89818,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 818
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000551"
+        },
+        {
+          "source_line": 552,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0111h9NrHPaNpqect51AJUX6",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16639",
+                "command": "cd /root/symb_invariant_consensus && python3 -c \"\nimport json\nwith open('results/r11_3verifier_canonical.json') as f:\n    d = json.load(f)\n# Verify key results\niv = d['individual_verifiers']\nprint('=== Canonical Verification ===')\nprint(f'DeBERTa standalone: {iv[\\\"deberta\\\"][\\\"standalone_correct\\\"]}/600 = {iv[\\\"deberta\\\"][\\\"standalone_acc\\\"]}%')\nprint(f'DeBERTa w3: {iv[\\\"deberta\\\"][\\\"combos\\\"][\\\"w3\\\"][\\\"correct\\\"]}/600, delta={iv[\\\"deberta\\\"][\\\"combos\\\"][\\\"w3\\\"][\\\"delta_pp\\\"]}pp, p={iv[\\\"deberta\\\"][\\\"combos\\\"][\\\"w3\\\"][\\\"mcnemar_p\\\"]:.2e}')\nprint(f'RoBERTa standalone: {iv[\\\"roberta\\\"][\\\"standalone_correct\\\"]}/600 = {iv[\\\"roberta\\\"][\\\"standalone_acc\\\"]}%')\nprint(f'RoBERTa w3: {iv[\\\"roberta\\\"][\\\"combos\\\"][\\\"w3\\\"][\\\"correct\\\"]}/600, delta={iv[\\\"roberta\\\"][\\\"combos\\\"][\\\"w3\\\"][\\\"delta_pp\\\"]}pp')\nprint(f'BART standalone: {iv[\\\"bart\\\"][\\\"standalone_correct\\\"]}/600 = {iv[\\\"bart\\\"][\\\"standalone_acc\\\"]}%')\nprint(f'BART w3: {iv[\\\"bart\\\"][\\\"combos\\\"][\\\"w3\\\"][\\\"correct\\\"]}/600, delta={iv[\\\"bart\\\"][\\\"combos\\\"][\\\"w3\\\"][\\\"delta_pp\\\"]}pp')\nprint(f'Ensemble w3: {d[\\\"ensemble_majority\\\"][\\\"combos\\\"][\\\"w3\\\"][\\\"correct\\\"]}/600, delta={d[\\\"ensemble_majority\\\"][\\\"combos\\\"][\\\"w3\\\"][\\\"delta_pp\\\"]}pp')\nprint(f'Additive w3: {d[\\\"additive_3verifier\\\"][\\\"combos\\\"][\\\"w3\\\"][\\\"correct\\\"]}/600, delta={d[\\\"additive_3verifier\\\"][\\\"combos\\\"][\\\"w3\\\"][\\\"delta_pp\\\"]}pp')\nprint(f'BH significant: {d[\\\"bh_correction\\\"][\\\"n_significant\\\"]}/{d[\\\"bh_correction\\\"][\\\"n_tests\\\"]}')\nprint(f'Per-question count: {len(d[\\\"per_question_preds\\\"])}')\n# Check file size\nimport os\nsz = os.path.getsize('results/r11_3verifier_canonical.json')\nprint(f'File size: {sz/1024:.1f} KB')\n\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "dc923d95-b867-4b43-8370-997973e05271",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012wiBLx88YwNtuERDu6X3Jm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 818,
+                "cache_read_input_tokens": 89818,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 818
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000552"
+        },
+        {
+          "source_line": 553,
+          "timestamp": "2026-05-21T12:25:56.581Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0111h9NrHPaNpqect51AJUX6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Canonical Verification ===\\\\nDeBERTa standalone: 330/600 = 55.0%\\\\nDeBERTa w3: 276/600, delta=6.67pp, p=1.13e-05\\\\nRoBERTa standalone: 226/600 = 37.67%\\\\nRoBERTa w3: 261/600, delta=4.17pp\\\\nBART standalone: 277/600 = 46.17%\\\\nBART w3: 267/600, delta=5.17pp\\\\nEnsemble w3: 271/600, delta=5.83pp\\\\nAdditive w3: 308/600, delta=12.0pp\\\\nBH significant: 10/15\\\\nPer-question count: 600\\\\nFile size: 125.5 KB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "fcfae857-2c42-449c-af50-f1b052bd32a0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Canonical Verification ===\\\\nDeBERTa standalone: 330/600 = 55.0%\\\\nDeBERTa w3: 276/600, delta=6.67pp, p=1.13e-05\\\\nRoBERTa standalone: 226/600 = 37.67%\\\\nRoBERTa w3: 261/600, delta=4.17pp\\\\nBART standalone: 277/600 = 46.17%\\\\nBART w3: 267/600, delta=5.17pp\\\\nEnsemble w3: 271/600, delta=5.83pp\\\\nAdditive w3: 308/600, delta=12.0pp\\\\nBH significant: 10/15\\\\nPer-question count: 600\\\\nFile size: 125.5 KB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"=== Canonical Verification ===\\nDeBERTa standalone: 330/600 = 55.0%\\nDeBERTa w3: 276/600, delta=6.67pp, p=1.13e-05\\nRoBERTa standalone: 226/600 = 37.67%\\nRoBERTa w3: 261/600, delta=4.17pp\\nBART standalone: 277/600 = 46.17%\\nBART w3: 267/600, delta=5.17pp\\nEnsemble w3: 271/600, delta=5.83pp\\nAdditive w3: 308/600, delta=12.0pp\\nBH significant: 10/15\\nPer-question count: 600\\nFile size: 125.5 KB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000553"
+        },
+        {
+          "source_line": 554,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All canonical results verified. Now let me download the JSON to local artifacts and also copy the script."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "8c05bb4a-5cc5-4241-81df-925ec91c157f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014tN9gJ7kX5q7vvqnMQrZ8X",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1069,
+                "cache_read_input_tokens": 90636,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1069
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000554"
+        },
+        {
+          "source_line": 555,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Gfvs1Tp99KnDa1spJ8URX9",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16639",
+                "command": "cat /root/symb_invariant_consensus/results/r11_3verifier_canonical.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "04837afc-3545-47b9-bca5-e96673132a38",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014tN9gJ7kX5q7vvqnMQrZ8X",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1069,
+                "cache_read_input_tokens": 90636,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1069
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000555"
+        },
+        {
+          "source_line": 556,
+          "timestamp": "2026-05-21T12:26:01.640Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Gfvs1Tp99KnDa1spJ8URX9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"r11_3verifier_canonical\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"ProofWriter-D5-OWA\\\\\\\",\\\\n  \\\\\\\"n\\\\\\\": 600,\\\\n  \\\\\\\"sc_baseline\\\\\\\": {\\\\n    \\\\\\\"acc\\\\\\\": 39.33,\\\\n    \\\\\\\"correct\\\\\\\": 236\\\\n  },\\\\n  \\\\\\\"combo_method\\\\\\\": \\\\\\\"hard-vote (add w to NLI predicted class) + alphabetical tiebreaking\\\\\\\",\\\\n  \\\\\\\"individual_verifiers\\\\\\\": {\\\\n    \\\\\\\"deberta\\\\\\\": {\\\\n      \\\\\\\"standalone_acc\\\\\\\": 55.0,\\\\n      \\\\\\\"standalone_correct\\\\\\\": 330,\\\\n      \\\\\\\"combos\\\\\\\": {\\\\n        \\\\\\\"w1\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 40.17,\\\\n          \\\\\\\"correct\\\\\\\": 241,\\\\n          \\\\\\\"delta_pp\\\\\\\": 0.83,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 7,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 12,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 0.359283447265625\\\\n        },\\\\n        \\\\\\\"w3\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 46.0,\\\\n          \\\\\\\"correct\\\\\\\": 276,\\\\n          \\\\\\\"delta_pp\\\\\\\": 6.67,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 21,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 61,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 1.1296023055413025e-05\\\\n        },\\\\n        \\\\\\\"w5\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 50.33,\\\\n          \\\\\\\"correct\\\\\\\": 302,\\\\n          \\\\\\\"delta_pp\\\\\\\": 11.0,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 54,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 120,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 6.178035816936483e-07\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"roberta\\\\\\\": {\\\\n      \\\\\\\"standalone_acc\\\\\\\": 37.67,\\\\n      \\\\\\\"standalone_correct\\\\\\\": 226,\\\\n      \\\\\\\"combos\\\\\\\": {\\\\n        \\\\\\\"w1\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 39.17,\\\\n          \\\\\\\"correct\\\\\\\": 235,\\\\n          \\\\\\\"delta_pp\\\\\\\": -0.17,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 8,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 7,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 1.0\\\\n        },\\\\n        \\\\\\\"w3\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 43.5,\\\\n          \\\\\\\"correct\\\\\\\": 261,\\\\n          \\\\\\\"delta_pp\\\\\\\": 4.17,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 20,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 45,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 0.0026263768106840374\\\\n        },\\\\n        \\\\\\\"w5\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 43.67,\\\\n          \\\\\\\"correct\\\\\\\": 262,\\\\n          \\\\\\\"delta_pp\\\\\\\": 4.33,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 59,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 85,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 0.03685226452283732\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"bart\\\\\\\": {\\\\n      \\\\\\\"standalone_acc\\\\\\\": 46.17,\\\\n      \\\\\\\"standalone_correct\\\\\\\": 277,\\\\n      \\\\\\\"combos\\\\\\\": {\\\\n        \\\\\\\"w1\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 39.33,\\\\n          \\\\\\\"correct\\\\\\\": 236,\\\\n          \\\\\\\"delta_pp\\\\\\\": 0.0,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 9,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 9,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 1.0\\\\n        },\\\\n        \\\\\\\"w3\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 44.5,\\\\n          \\\\\\\"correct\\\\\\\": 267,\\\\n          \\\\\\\"delta_pp\\\\\\\": 5.17,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 19,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 50,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 0.00024439701657757496\\\\n        },\\\\n        \\\\\\\"w5\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 45.67,\\\\n          \\\\\\\"correct\\\\\\\": 274,\\\\n          \\\\\\\"delta_pp\\\\\\\": 6.33,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 58,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 96,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 0.0027485762232244988\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"ensemble_majority\\\\\\\": {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"majority vote of 3 NLI predictions (alpha tiebreak), then hard-vote combo with SC\\\\\\\",\\\\n    \\\\\\\"standalone_acc\\\\\\\": 48.33,\\\\n    \\\\\\\"standalone_correct\\\\\\\": 290,\\\\n    \\\\\\\"combos\\\\\\\": {\\\\n      \\\\\\\"w1\\\\\\\": {\\\\n        \\\\\\\"acc\\\\\\\": 39.67,\\\\n        \\\\\\\"correct\\\\\\\": 238,\\\\n        \\\\\\\"delta_pp\\\\\\\": 0.33,\\\\n        \\\\\\\"mcnemar_b\\\\\\\": 8,\\\\n        \\\\\\\"mcnemar_c\\\\\\\": 10,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": 0.8145294189453125\\\\n      },\\\\n      \\\\\\\"w3\\\\\\\": {\\\\n        \\\\\\\"acc\\\\\\\": 45.17,\\\\n        \\\\\\\"correct\\\\\\\": 271,\\\\n        \\\\\\\"delta_pp\\\\\\\": 5.83,\\\\n        \\\\\\\"mcnemar_b\\\\\\\": 20,\\\\n        \\\\\\\"mcnemar_c\\\\\\\": 55,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": 6.494900196551852e-05\\\\n      },\\\\n      \\\\\\\"w5\\\\\\\": {\\\\n        \\\\\\\"acc\\\\\\\": 47.33,\\\\n        \\\\\\\"correct\\\\\\\": 284,\\\\n        \\\\\\\"delta_pp\\\\\\\": 8.0,\\\\n        \\\\\\\"mcnemar_b\\\\\\\": 59,\\\\n        \\\\\\\"mcnemar_c\\\\\\\": 107,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": 0.00024148706257992638\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"additive_3verifier\\\\\\\": {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"each of 3 verifiers adds w votes to their predicted class\\\\\\\",\\\\n    \\\\\\\"combos\\\\\\\": {\\\\n      \\\\\\\"w1\\\\\\\": {\\\\n        \\\\\\\"acc\\\\\\\": 44.67,\\\\n        \\\\\\\"correct\\\\\\\": 268,\\\\n        \\\\\\\"delta_pp\\\\\\\": 5.33,\\\\n        \\\\\\\"mcnemar_b\\\\\\\": 18,\\\\n        \\\\\\\"mcnemar_c\\\\\\\": 50,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": 0.00013083876154198454\\\\n      },\\\\n      \\\\\\\"w3\\\\\\\": {\\\\n        \\\\\\\"acc\\\\\\\": 51.33,\\\\n        \\\\\\\"correct\\\\\\\": 308,\\\\n        \\\\\\\"delta_pp\\\\\\\": 12.0,\\\\n        \\\\\\\"mcnemar_b\\\\\\\": 109,\\\\n        \\\\\\\"mcnemar_c\\\\\\\": 181,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": 2.7978021177332246e-05\\\\n      },\\\\n      \\\\\\\"w5\\\\\\\": {\\\\n        \\\\\\\"acc\\\\\\\": 49.17,\\\\n        \\\\\\\"correct\\\\\\\": 295,\\\\n        \\\\\\\"delta_pp\\\\\\\": 9.83,\\\\n        \\\\\\\"mcnemar_b\\\\\\\": 171,\\\\n        \\\\\\\"mcnemar_c\\\\\\\": 230,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": 0.0037213723991509243\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"bh_correction\\\\\\\": {\\\\n    \\\\\\\"n_tests\\\\\\\": 15,\\\\n    \\\\\\\"alpha\\\\\\\": 0.05,\\\\n    \\\\\\\"n_significant\\\\\\\": 10,\\\\n    \\\\\\\"tests\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"deberta_w\\\\n\\\\n... [截断: 输出过长，省略 120523 字符] ...\\\\n\\\\n_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_RelNoneg-OWA-D5-428_Q12\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_AttNeg-OWA-D5-347_Q11\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_RelNeg-OWA-D5-856_Q19\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_RelNoneg-OWA-D5-410_Q24\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"Unknown\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_RelNeg-OWA-D5-77_Q12\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_AttNeg-OWA-D5-904_Q14\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_RelNeg-OWA-D5-437_Q1\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_RelNeg-OWA-D5-902_Q5\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"True\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_AttNoneg-OWA-D5-1421_Q1\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"True\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_AttNeg-OWA-D5-414_Q22\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_AttNoneg-OWA-D5-412_Q4\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_RelNoneg-OWA-D5-775_Q9\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_AttNoneg-OWA-D5-1_Q5\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"True\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_RelNeg-OWA-D5-406_Q4\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_RelNoneg-OWA-D5-127_Q4\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_RelNoneg-OWA-D5-581_Q1\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"True\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_AttNeg-OWA-D5-572_Q4\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_AttNeg-OWA-D5-1066_Q21\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_AttNoneg-OWA-D5-1032_Q6\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "16c35e2b-2bef-4141-9f19-50a5692246d2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"r11_3verifier_canonical\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"ProofWriter-D5-OWA\\\\\\\",\\\\n  \\\\\\\"n\\\\\\\": 600,\\\\n  \\\\\\\"sc_baseline\\\\\\\": {\\\\n    \\\\\\\"acc\\\\\\\": 39.33,\\\\n    \\\\\\\"correct\\\\\\\": 236\\\\n  },\\\\n  \\\\\\\"combo_method\\\\\\\": \\\\\\\"hard-vote (add w to NLI predicted class) + alphabetical tiebreaking\\\\\\\",\\\\n  \\\\\\\"individual_verifiers\\\\\\\": {\\\\n    \\\\\\\"deberta\\\\\\\": {\\\\n      \\\\\\\"standalone_acc\\\\\\\": 55.0,\\\\n      \\\\\\\"standalone_correct\\\\\\\": 330,\\\\n      \\\\\\\"combos\\\\\\\": {\\\\n        \\\\\\\"w1\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 40.17,\\\\n          \\\\\\\"correct\\\\\\\": 241,\\\\n          \\\\\\\"delta_pp\\\\\\\": 0.83,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 7,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 12,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 0.359283447265625\\\\n        },\\\\n        \\\\\\\"w3\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 46.0,\\\\n          \\\\\\\"correct\\\\\\\": 276,\\\\n          \\\\\\\"delta_pp\\\\\\\": 6.67,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 21,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 61,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 1.1296023055413025e-05\\\\n        },\\\\n        \\\\\\\"w5\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 50.33,\\\\n          \\\\\\\"correct\\\\\\\": 302,\\\\n          \\\\\\\"delta_pp\\\\\\\": 11.0,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 54,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 120,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 6.178035816936483e-07\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"roberta\\\\\\\": {\\\\n      \\\\\\\"standalone_acc\\\\\\\": 37.67,\\\\n      \\\\\\\"standalone_correct\\\\\\\": 226,\\\\n      \\\\\\\"combos\\\\\\\": {\\\\n        \\\\\\\"w1\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 39.17,\\\\n          \\\\\\\"correct\\\\\\\": 235,\\\\n          \\\\\\\"delta_pp\\\\\\\": -0.17,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 8,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 7,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 1.0\\\\n        },\\\\n        \\\\\\\"w3\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 43.5,\\\\n          \\\\\\\"correct\\\\\\\": 261,\\\\n          \\\\\\\"delta_pp\\\\\\\": 4.17,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 20,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 45,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 0.0026263768106840374\\\\n        },\\\\n        \\\\\\\"w5\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 43.67,\\\\n          \\\\\\\"correct\\\\\\\": 262,\\\\n          \\\\\\\"delta_pp\\\\\\\": 4.33,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 59,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 85,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 0.03685226452283732\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"bart\\\\\\\": {\\\\n      \\\\\\\"standalone_acc\\\\\\\": 46.17,\\\\n      \\\\\\\"standalone_correct\\\\\\\": 277,\\\\n      \\\\\\\"combos\\\\\\\": {\\\\n        \\\\\\\"w1\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 39.33,\\\\n          \\\\\\\"correct\\\\\\\": 236,\\\\n          \\\\\\\"delta_pp\\\\\\\": 0.0,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 9,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 9,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 1.0\\\\n        },\\\\n        \\\\\\\"w3\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 44.5,\\\\n          \\\\\\\"correct\\\\\\\": 267,\\\\n          \\\\\\\"delta_pp\\\\\\\": 5.17,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 19,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 50,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 0.00024439701657757496\\\\n        },\\\\n        \\\\\\\"w5\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 45.67,\\\\n          \\\\\\\"correct\\\\\\\": 274,\\\\n          \\\\\\\"delta_pp\\\\\\\": 6.33,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 58,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 96,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 0.0027485762232244988\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"ensemble_majority\\\\\\\": {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"majority vote of 3 NLI predictions (alpha tiebreak), then hard-vote combo with SC\\\\\\\",\\\\n    \\\\\\\"standalone_acc\\\\\\\": 48.33,\\\\n    \\\\\\\"standalone_correct\\\\\\\": 290,\\\\n    \\\\\\\"combos\\\\\\\": {\\\\n      \\\\\\\"w1\\\\\\\": {\\\\n        \\\\\\\"acc\\\\\\\": 39.67,\\\\n        \\\\\\\"correct\\\\\\\": 238,\\\\n        \\\\\\\"delta_pp\\\\\\\": 0.33,\\\\n        \\\\\\\"mcnemar_b\\\\\\\": 8,\\\\n        \\\\\\\"mcnemar_c\\\\\\\": 10,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": 0.8145294189453125\\\\n      },\\\\n      \\\\\\\"w3\\\\\\\": {\\\\n        \\\\\\\"acc\\\\\\\": 45.17,\\\\n        \\\\\\\"correct\\\\\\\": 271,\\\\n        \\\\\\\"delta_pp\\\\\\\": 5.83,\\\\n        \\\\\\\"mcnemar_b\\\\\\\": 20,\\\\n        \\\\\\\"mcnemar_c\\\\\\\": 55,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": 6.494900196551852e-05\\\\n      },\\\\n      \\\\\\\"w5\\\\\\\": {\\\\n        \\\\\\\"acc\\\\\\\": 47.33,\\\\n        \\\\\\\"correct\\\\\\\": 284,\\\\n        \\\\\\\"delta_pp\\\\\\\": 8.0,\\\\n        \\\\\\\"mcnemar_b\\\\\\\": 59,\\\\n        \\\\\\\"mcnemar_c\\\\\\\": 107,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": 0.00024148706257992638\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"additive_3verifier\\\\\\\": {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"each of 3 verifiers adds w votes to their predicted class\\\\\\\",\\\\n    \\\\\\\"combos\\\\\\\": {\\\\n      \\\\\\\"w1\\\\\\\": {\\\\n        \\\\\\\"acc\\\\\\\": 44.67,\\\\n        \\\\\\\"correct\\\\\\\": 268,\\\\n        \\\\\\\"delta_pp\\\\\\\": 5.33,\\\\n        \\\\\\\"mcnemar_b\\\\\\\": 18,\\\\n        \\\\\\\"mcnemar_c\\\\\\\": 50,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": 0.00013083876154198454\\\\n      },\\\\n      \\\\\\\"w3\\\\\\\": {\\\\n        \\\\\\\"acc\\\\\\\": 51.33,\\\\n        \\\\\\\"correct\\\\\\\": 308,\\\\n        \\\\\\\"delta_pp\\\\\\\": 12.0,\\\\n        \\\\\\\"mcnemar_b\\\\\\\": 109,\\\\n        \\\\\\\"mcnemar_c\\\\\\\": 181,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": 2.7978021177332246e-05\\\\n      },\\\\n      \\\\\\\"w5\\\\\\\": {\\\\n        \\\\\\\"acc\\\\\\\": 49.17,\\\\n        \\\\\\\"correct\\\\\\\": 295,\\\\n        \\\\\\\"delta_pp\\\\\\\": 9.83,\\\\n        \\\\\\\"mcnemar_b\\\\\\\": 171,\\\\n        \\\\\\\"mcnemar_c\\\\\\\": 230,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": 0.0037213723991509243\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"bh_correction\\\\\\\": {\\\\n    \\\\\\\"n_tests\\\\\\\": 15,\\\\n    \\\\\\\"alpha\\\\\\\": 0.05,\\\\n    \\\\\\\"n_significant\\\\\\\": 10,\\\\n    \\\\\\\"tests\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"deberta_w\\\\n\\\\n... [截断: 输出过长，省略 120523 字符] ...\\\\n\\\\n_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_RelNoneg-OWA-D5-428_Q12\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_AttNeg-OWA-D5-347_Q11\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_RelNeg-OWA-D5-856_Q19\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_RelNoneg-OWA-D5-410_Q24\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"Unknown\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_RelNeg-OWA-D5-77_Q12\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_AttNeg-OWA-D5-904_Q14\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_RelNeg-OWA-D5-437_Q1\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_RelNeg-OWA-D5-902_Q5\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"True\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_AttNoneg-OWA-D5-1421_Q1\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"True\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_AttNeg-OWA-D5-414_Q22\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_AttNoneg-OWA-D5-412_Q4\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_RelNoneg-OWA-D5-775_Q9\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_AttNoneg-OWA-D5-1_Q5\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"True\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_RelNeg-OWA-D5-406_Q4\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_RelNoneg-OWA-D5-127_Q4\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_RelNoneg-OWA-D5-581_Q1\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"True\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_AttNeg-OWA-D5-572_Q4\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_AttNeg-OWA-D5-1066_Q21\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ProofWriter_AttNoneg-OWA-D5-1032_Q6\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"roberta\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"bart\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"ensemble\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"r11_3verifier_canonical\\\",\\n  \\\"dataset\\\": \\\"ProofWriter-D5-OWA\\\",\\n  \\\"n\\\": 600,\\n  \\\"sc_baseline\\\": {\\n    \\\"acc\\\": 39.33,\\n    \\\"correct\\\": 236\\n  },\\n  \\\"combo_method\\\": \\\"hard-vote (add w to NLI predicted class) + alphabetical tiebreaking\\\",\\n  \\\"individual_verifiers\\\": {\\n    \\\"deberta\\\": {\\n      \\\"standalone_acc\\\": 55.0,\\n      \\\"standalone_correct\\\": 330,\\n      \\\"combos\\\": {\\n        \\\"w1\\\": {\\n          \\\"acc\\\": 40.17,\\n          \\\"correct\\\": 241,\\n          \\\"delta_pp\\\": 0.83,\\n          \\\"mcnemar_b\\\": 7,\\n          \\\"mcnemar_c\\\": 12,\\n          \\\"mcnemar_p\\\": 0.359283447265625\\n        },\\n        \\\"w3\\\": {\\n          \\\"acc\\\": 46.0,\\n          \\\"correct\\\": 276,\\n          \\\"delta_pp\\\": 6.67,\\n          \\\"mcnemar_b\\\": 21,\\n          \\\"mcnemar_c\\\": 61,\\n          \\\"mcnemar_p\\\": 1.1296023055413025e-05\\n        },\\n        \\\"w5\\\": {\\n          \\\"acc\\\": 50.33,\\n          \\\"correct\\\": 302,\\n          \\\"delta_pp\\\": 11.0,\\n          \\\"mcnemar_b\\\": 54,\\n          \\\"mcnemar_c\\\": 120,\\n          \\\"mcnemar_p\\\": 6.178035816936483e-07\\n        }\\n      }\\n    },\\n    \\\"roberta\\\": {\\n      \\\"standalone_acc\\\": 37.67,\\n      \\\"standalone_correct\\\": 226,\\n      \\\"combos\\\": {\\n        \\\"w1\\\": {\\n          \\\"acc\\\": 39.17,\\n          \\\"correct\\\": 235,\\n          \\\"delta_pp\\\": -0.17,\\n          \\\"mcnemar_b\\\": 8,\\n          \\\"mcnemar_c\\\": 7,\\n          \\\"mcnemar_p\\\": 1.0\\n        },\\n        \\\"w3\\\": {\\n          \\\"acc\\\": 43.5,\\n          \\\"correct\\\": 261,\\n          \\\"delta_pp\\\": 4.17,\\n          \\\"mcnemar_b\\\": 20,\\n          \\\"mcnemar_c\\\": 45,\\n          \\\"mcnemar_p\\\": 0.0026263768106840374\\n        },\\n        \\\"w5\\\": {\\n          \\\"acc\\\": 43.67,\\n          \\\"correct\\\": 262,\\n          \\\"delta_pp\\\": 4.33,\\n          \\\"mcnemar_b\\\": 59,\\n          \\\"mcnemar_c\\\": 85,\\n          \\\"mcnemar_p\\\": 0.03685226452283732\\n        }\\n      }\\n    },\\n    \\\"bart\\\": {\\n      \\\"standalone_acc\\\": 46.17,\\n      \\\"standalone_correct\\\": 277,\\n      \\\"combos\\\": {\\n        \\\"w1\\\": {\\n          \\\"acc\\\": 39.33,\\n          \\\"correct\\\": 236,\\n          \\\"delta_pp\\\": 0.0,\\n          \\\"mcnemar_b\\\": 9,\\n          \\\"mcnemar_c\\\": 9,\\n          \\\"mcnemar_p\\\": 1.0\\n        },\\n        \\\"w3\\\": {\\n          \\\"acc\\\": 44.5,\\n          \\\"correct\\\": 267,\\n          \\\"delta_pp\\\": 5.17,\\n          \\\"mcnemar_b\\\": 19,\\n          \\\"mcnemar_c\\\": 50,\\n          \\\"mcnemar_p\\\": 0.00024439701657757496\\n        },\\n        \\\"w5\\\": {\\n          \\\"acc\\\": 45.67,\\n          \\\"correct\\\": 274,\\n          \\\"delta_pp\\\": 6.33,\\n          \\\"mcnemar_b\\\": 58,\\n          \\\"mcnemar_c\\\": 96,\\n          \\\"mcnemar_p\\\": 0.0027485762232244988\\n        }\\n      }\\n    }\\n  },\\n  \\\"ensemble_majority\\\": {\\n    \\\"method\\\": \\\"majority vote of 3 NLI predictions (alpha tiebreak), then hard-vote combo with SC\\\",\\n    \\\"standalone_acc\\\": 48.33,\\n    \\\"standalone_correct\\\": 290,\\n    \\\"combos\\\": {\\n      \\\"w1\\\": {\\n        \\\"acc\\\": 39.67,\\n        \\\"correct\\\": 238,\\n        \\\"delta_pp\\\": 0.33,\\n        \\\"mcnemar_b\\\": 8,\\n        \\\"mcnemar_c\\\": 10,\\n        \\\"mcnemar_p\\\": 0.8145294189453125\\n      },\\n      \\\"w3\\\": {\\n        \\\"acc\\\": 45.17,\\n        \\\"correct\\\": 271,\\n        \\\"delta_pp\\\": 5.83,\\n        \\\"mcnemar_b\\\": 20,\\n        \\\"mcnemar_c\\\": 55,\\n        \\\"mcnemar_p\\\": 6.494900196551852e-05\\n      },\\n      \\\"w5\\\": {\\n        \\\"acc\\\": 47.33,\\n        \\\"correct\\\": 284,\\n        \\\"delta_pp\\\": 8.0,\\n        \\\"mcnemar_b\\\": 59,\\n        \\\"mcnemar_c\\\": 107,\\n        \\\"mcnemar_p\\\": 0.00024148706257992638\\n      }\\n    }\\n  },\\n  \\\"additive_3verifier\\\": {\\n    \\\"method\\\": \\\"each of 3 verifiers adds w votes to their predicted class\\\",\\n    \\\"combos\\\": {\\n      \\\"w1\\\": {\\n        \\\"acc\\\": 44.67,\\n        \\\"correct\\\": 268,\\n        \\\"delta_pp\\\": 5.33,\\n        \\\"mcnemar_b\\\": 18,\\n        \\\"mcnemar_c\\\": 50,\\n        \\\"mcnemar_p\\\": 0.00013083876154198454\\n      },\\n      \\\"w3\\\": {\\n        \\\"acc\\\": 51.33,\\n        \\\"correct\\\": 308,\\n        \\\"delta_pp\\\": 12.0,\\n        \\\"mcnemar_b\\\": 109,\\n        \\\"mcnemar_c\\\": 181,\\n        \\\"mcnemar_p\\\": 2.7978021177332246e-05\\n      },\\n      \\\"w5\\\": {\\n        \\\"acc\\\": 49.17,\\n        \\\"correct\\\": 295,\\n        \\\"delta_pp\\\": 9.83,\\n        \\\"mcnemar_b\\\": 171,\\n        \\\"mcnemar_c\\\": 230,\\n        \\\"mcnemar_p\\\": 0.0037213723991509243\\n      }\\n    }\\n  },\\n  \\\"bh_correction\\\": {\\n    \\\"n_tests\\\": 15,\\n    \\\"alpha\\\": 0.05,\\n    \\\"n_significant\\\": 10,\\n    \\\"tests\\\": [\\n      {\\n        \\\"label\\\": \\\"deberta_w\\n\\n... [截断: 输出过长，省略 120523 字符] ...\\n\\n_answer\\\": \\\"False\\\",\\n      \\\"deberta\\\": \\\"False\\\",\\n      \\\"roberta\\\": \\\"False\\\",\\n      \\\"bart\\\": \\\"True\\\",\\n      \\\"ensemble\\\": \\\"False\\\"\\n    },\\n    \\\"ProofWriter_RelNoneg-OWA-D5-428_Q12\\\": {\\n      \\\"gold\\\": \\\"False\\\",\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"deberta\\\": \\\"False\\\",\\n      \\\"roberta\\\": \\\"False\\\",\\n      \\\"bart\\\": \\\"False\\\",\\n      \\\"ensemble\\\": \\\"False\\\"\\n    },\\n    \\\"ProofWriter_AttNeg-OWA-D5-347_Q11\\\": {\\n      \\\"gold\\\": \\\"True\\\",\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"deberta\\\": \\\"False\\\",\\n      \\\"roberta\\\": \\\"False\\\",\\n      \\\"bart\\\": \\\"False\\\",\\n      \\\"ensemble\\\": \\\"False\\\"\\n    },\\n    \\\"ProofWriter_RelNeg-OWA-D5-856_Q19\\\": {\\n      \\\"gold\\\": \\\"Unknown\\\",\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"deberta\\\": \\\"False\\\",\\n      \\\"roberta\\\": \\\"False\\\",\\n      \\\"bart\\\": \\\"False\\\",\\n      \\\"ensemble\\\": \\\"False\\\"\\n    },\\n    \\\"ProofWriter_RelNoneg-OWA-D5-410_Q24\\\": {\\n      \\\"gold\\\": \\\"Unknown\\\",\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"deberta\\\": \\\"Unknown\\\",\\n      \\\"roberta\\\": \\\"Unknown\\\",\\n      \\\"bart\\\": \\\"Unknown\\\",\\n      \\\"ensemble\\\": \\\"Unknown\\\"\\n    },\\n    \\\"ProofWriter_RelNeg-OWA-D5-77_Q12\\\": {\\n      \\\"gold\\\": \\\"False\\\",\\n      \\\"sc_answer\\\": \\\"True\\\",\\n      \\\"deberta\\\": \\\"False\\\",\\n      \\\"roberta\\\": \\\"False\\\",\\n      \\\"bart\\\": \\\"False\\\",\\n      \\\"ensemble\\\": \\\"False\\\"\\n    },\\n    \\\"ProofWriter_AttNeg-OWA-D5-904_Q14\\\": {\\n      \\\"gold\\\": \\\"Unknown\\\",\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"deberta\\\": \\\"False\\\",\\n      \\\"roberta\\\": \\\"False\\\",\\n      \\\"bart\\\": \\\"True\\\",\\n      \\\"ensemble\\\": \\\"False\\\"\\n    },\\n    \\\"ProofWriter_RelNeg-OWA-D5-437_Q1\\\": {\\n      \\\"gold\\\": \\\"True\\\",\\n      \\\"sc_answer\\\": \\\"False\\\",\\n      \\\"deberta\\\": \\\"False\\\",\\n      \\\"roberta\\\": \\\"False\\\",\\n      \\\"bart\\\": \\\"True\\\",\\n      \\\"ensemble\\\": \\\"False\\\"\\n    },\\n    \\\"ProofWriter_RelNeg-OWA-D5-902_Q5\\\": {\\n      \\\"gold\\\": \\\"True\\\",\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"deberta\\\": \\\"True\\\",\\n      \\\"roberta\\\": \\\"False\\\",\\n      \\\"bart\\\": \\\"True\\\",\\n      \\\"ensemble\\\": \\\"True\\\"\\n    },\\n    \\\"ProofWriter_AttNoneg-OWA-D5-1421_Q1\\\": {\\n      \\\"gold\\\": \\\"True\\\",\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"deberta\\\": \\\"True\\\",\\n      \\\"roberta\\\": \\\"True\\\",\\n      \\\"bart\\\": \\\"True\\\",\\n      \\\"ensemble\\\": \\\"True\\\"\\n    },\\n    \\\"ProofWriter_AttNeg-OWA-D5-414_Q22\\\": {\\n      \\\"gold\\\": \\\"Unknown\\\",\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"deberta\\\": \\\"Unknown\\\",\\n      \\\"roberta\\\": \\\"False\\\",\\n      \\\"bart\\\": \\\"False\\\",\\n      \\\"ensemble\\\": \\\"False\\\"\\n    },\\n    \\\"ProofWriter_AttNoneg-OWA-D5-412_Q4\\\": {\\n      \\\"gold\\\": \\\"False\\\",\\n      \\\"sc_answer\\\": \\\"False\\\",\\n      \\\"deberta\\\": \\\"False\\\",\\n      \\\"roberta\\\": \\\"False\\\",\\n      \\\"bart\\\": \\\"False\\\",\\n      \\\"ensemble\\\": \\\"False\\\"\\n    },\\n    \\\"ProofWriter_RelNoneg-OWA-D5-775_Q9\\\": {\\n      \\\"gold\\\": \\\"True\\\",\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"deberta\\\": \\\"True\\\",\\n      \\\"roberta\\\": \\\"False\\\",\\n      \\\"bart\\\": \\\"False\\\",\\n      \\\"ensemble\\\": \\\"False\\\"\\n    },\\n    \\\"ProofWriter_AttNoneg-OWA-D5-1_Q5\\\": {\\n      \\\"gold\\\": \\\"True\\\",\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"deberta\\\": \\\"True\\\",\\n      \\\"roberta\\\": \\\"True\\\",\\n      \\\"bart\\\": \\\"True\\\",\\n      \\\"ensemble\\\": \\\"True\\\"\\n    },\\n    \\\"ProofWriter_RelNeg-OWA-D5-406_Q4\\\": {\\n      \\\"gold\\\": \\\"False\\\",\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"deberta\\\": \\\"False\\\",\\n      \\\"roberta\\\": \\\"False\\\",\\n      \\\"bart\\\": \\\"False\\\",\\n      \\\"ensemble\\\": \\\"False\\\"\\n    },\\n    \\\"ProofWriter_RelNoneg-OWA-D5-127_Q4\\\": {\\n      \\\"gold\\\": \\\"False\\\",\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"deberta\\\": \\\"False\\\",\\n      \\\"roberta\\\": \\\"False\\\",\\n      \\\"bart\\\": \\\"False\\\",\\n      \\\"ensemble\\\": \\\"False\\\"\\n    },\\n    \\\"ProofWriter_RelNoneg-OWA-D5-581_Q1\\\": {\\n      \\\"gold\\\": \\\"True\\\",\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"deberta\\\": \\\"True\\\",\\n      \\\"roberta\\\": \\\"True\\\",\\n      \\\"bart\\\": \\\"True\\\",\\n      \\\"ensemble\\\": \\\"True\\\"\\n    },\\n    \\\"ProofWriter_AttNeg-OWA-D5-572_Q4\\\": {\\n      \\\"gold\\\": \\\"False\\\",\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"deberta\\\": \\\"False\\\",\\n      \\\"roberta\\\": \\\"False\\\",\\n      \\\"bart\\\": \\\"False\\\",\\n      \\\"ensemble\\\": \\\"False\\\"\\n    },\\n    \\\"ProofWriter_AttNeg-OWA-D5-1066_Q21\\\": {\\n      \\\"gold\\\": \\\"Unknown\\\",\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"deberta\\\": \\\"False\\\",\\n      \\\"roberta\\\": \\\"False\\\",\\n      \\\"bart\\\": \\\"True\\\",\\n      \\\"ensemble\\\": \\\"False\\\"\\n    },\\n    \\\"ProofWriter_AttNoneg-OWA-D5-1032_Q6\\\": {\\n      \\\"gold\\\": \\\"False\\\",\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"deberta\\\": \\\"False\\\",\\n      \\\"roberta\\\": \\\"False\\\",\\n      \\\"bart\\\": \\\"False\\\",\\n      \\\"ensemble\\\": \\\"False\\\"\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"
+              }
+            }
+          },
+          "id": "event-000556"
+        },
+        {
+          "source_line": 557,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, the file is saved on the server. Now I need to:\n1. Extract the JSON without the per-question data (it's too large for local storage) — actually wait, it's only 125 KB, that's fine\n2. Save it to the local artifacts directory\n3. Register the artifact\n\nLet me extract just the aggregate results (without per_question_preds) for the local artifact, and separately save the full version on the server.\n\nActually, the user asked to save to `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/r11_3verifier_canonical.json`. \n\nI'll write the full JSON with all the aggregate data to that location since the user specified the exact path and the file size is manageable.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "213eab12-f1b2-4127-9268-cf9204fdb1eb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U3FvVFxgA2VAWJgXv8UoU5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5345,
+                "cache_read_input_tokens": 91705,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5345
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000557"
+        },
+        {
+          "source_line": 558,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me save the artifact locally. I'll extract just the aggregate data (per-question preds stay on the server for reference)."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "c1b0e33c-2f24-42da-aa99-5a60291b99ed",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U3FvVFxgA2VAWJgXv8UoU5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5345,
+                "cache_read_input_tokens": 91705,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5345
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000558"
+        },
+        {
+          "source_line": 559,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Wc1g8qvY5FfBofP9UfQ9FA",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16639",
+                "command": "cd /root/symb_invariant_consensus && python3 -c \"\nimport json\nwith open('results/r11_3verifier_canonical.json') as f:\n    d = json.load(f)\n# Remove per_question_preds for the artifact version\nd.pop('per_question_preds', None)\nd['full_data_location'] = 'westd-16639:/root/symb_invariant_consensus/results/r11_3verifier_canonical.json'\nprint(json.dumps(d, indent=2))\n\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "4611b1b3-2f67-40fc-95b4-dd5bebc0010c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U3FvVFxgA2VAWJgXv8UoU5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5345,
+                "cache_read_input_tokens": 91705,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5345
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000559"
+        },
+        {
+          "source_line": 560,
+          "timestamp": "2026-05-21T12:26:20.724Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Wc1g8qvY5FfBofP9UfQ9FA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"r11_3verifier_canonical\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"ProofWriter-D5-OWA\\\\\\\",\\\\n  \\\\\\\"n\\\\\\\": 600,\\\\n  \\\\\\\"sc_baseline\\\\\\\": {\\\\n    \\\\\\\"acc\\\\\\\": 39.33,\\\\n    \\\\\\\"correct\\\\\\\": 236\\\\n  },\\\\n  \\\\\\\"combo_method\\\\\\\": \\\\\\\"hard-vote (add w to NLI predicted class) + alphabetical tiebreaking\\\\\\\",\\\\n  \\\\\\\"individual_verifiers\\\\\\\": {\\\\n    \\\\\\\"deberta\\\\\\\": {\\\\n      \\\\\\\"standalone_acc\\\\\\\": 55.0,\\\\n      \\\\\\\"standalone_correct\\\\\\\": 330,\\\\n      \\\\\\\"combos\\\\\\\": {\\\\n        \\\\\\\"w1\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 40.17,\\\\n          \\\\\\\"correct\\\\\\\": 241,\\\\n          \\\\\\\"delta_pp\\\\\\\": 0.83,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 7,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 12,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 0.359283447265625\\\\n        },\\\\n        \\\\\\\"w3\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 46.0,\\\\n          \\\\\\\"correct\\\\\\\": 276,\\\\n          \\\\\\\"delta_pp\\\\\\\": 6.67,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 21,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 61,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 1.1296023055413025e-05\\\\n        },\\\\n        \\\\\\\"w5\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 50.33,\\\\n          \\\\\\\"correct\\\\\\\": 302,\\\\n          \\\\\\\"delta_pp\\\\\\\": 11.0,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 54,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 120,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 6.178035816936483e-07\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"roberta\\\\\\\": {\\\\n      \\\\\\\"standalone_acc\\\\\\\": 37.67,\\\\n      \\\\\\\"standalone_correct\\\\\\\": 226,\\\\n      \\\\\\\"combos\\\\\\\": {\\\\n        \\\\\\\"w1\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 39.17,\\\\n          \\\\\\\"correct\\\\\\\": 235,\\\\n          \\\\\\\"delta_pp\\\\\\\": -0.17,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 8,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 7,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 1.0\\\\n        },\\\\n        \\\\\\\"w3\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 43.5,\\\\n          \\\\\\\"correct\\\\\\\": 261,\\\\n          \\\\\\\"delta_pp\\\\\\\": 4.17,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 20,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 45,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 0.0026263768106840374\\\\n        },\\\\n        \\\\\\\"w5\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 43.67,\\\\n          \\\\\\\"correct\\\\\\\": 262,\\\\n          \\\\\\\"delta_pp\\\\\\\": 4.33,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 59,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 85,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 0.03685226452283732\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"bart\\\\\\\": {\\\\n      \\\\\\\"standalone_acc\\\\\\\": 46.17,\\\\n      \\\\\\\"standalone_correct\\\\\\\": 277,\\\\n      \\\\\\\"combos\\\\\\\": {\\\\n        \\\\\\\"w1\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 39.33,\\\\n          \\\\\\\"correct\\\\\\\": 236,\\\\n          \\\\\\\"delta_pp\\\\\\\": 0.0,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 9,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 9,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 1.0\\\\n        },\\\\n        \\\\\\\"w3\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 44.5,\\\\n          \\\\\\\"correct\\\\\\\": 267,\\\\n          \\\\\\\"delta_pp\\\\\\\": 5.17,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 19,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 50,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 0.00024439701657757496\\\\n        },\\\\n        \\\\\\\"w5\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 45.67,\\\\n          \\\\\\\"correct\\\\\\\": 274,\\\\n          \\\\\\\"delta_pp\\\\\\\": 6.33,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 58,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 96,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 0.0027485762232244988\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"ensemble_majority\\\\\\\": {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"majority vote of 3 NLI predictions (alpha tiebreak), then hard-vote combo with SC\\\\\\\",\\\\n    \\\\\\\"standalone_acc\\\\\\\": 48.33,\\\\n    \\\\\\\"standalone_correct\\\\\\\": 290,\\\\n    \\\\\\\"combos\\\\\\\": {\\\\n      \\\\\\\"w1\\\\\\\": {\\\\n        \\\\\\\"acc\\\\\\\": 39.67,\\\\n        \\\\\\\"correct\\\\\\\": 238,\\\\n        \\\\\\\"delta_pp\\\\\\\": 0.33,\\\\n        \\\\\\\"mcnemar_b\\\\\\\": 8,\\\\n        \\\\\\\"mcnemar_c\\\\\\\": 10,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": 0.8145294189453125\\\\n      },\\\\n      \\\\\\\"w3\\\\\\\": {\\\\n        \\\\\\\"acc\\\\\\\": 45.17,\\\\n        \\\\\\\"correct\\\\\\\": 271,\\\\n        \\\\\\\"delta_pp\\\\\\\": 5.83,\\\\n        \\\\\\\"mcnemar_b\\\\\\\": 20,\\\\n        \\\\\\\"mcnemar_c\\\\\\\": 55,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": 6.494900196551852e-05\\\\n      },\\\\n      \\\\\\\"w5\\\\\\\": {\\\\n        \\\\\\\"acc\\\\\\\": 47.33,\\\\n        \\\\\\\"correct\\\\\\\": 284,\\\\n        \\\\\\\"delta_pp\\\\\\\": 8.0,\\\\n        \\\\\\\"mcnemar_b\\\\\\\": 59,\\\\n        \\\\\\\"mcnemar_c\\\\\\\": 107,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": 0.00024148706257992638\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"additive_3verifier\\\\\\\": {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"each of 3 verifiers adds w votes to their predicted class\\\\\\\",\\\\n    \\\\\\\"combos\\\\\\\": {\\\\n      \\\\\\\"w1\\\\\\\": {\\\\n        \\\\\\\"acc\\\\\\\": 44.67,\\\\n        \\\\\\\"correct\\\\\\\": 268,\\\\n        \\\\\\\"delta_pp\\\\\\\": 5.33,\\\\n        \\\\\\\"mcnemar_b\\\\\\\": 18,\\\\n        \\\\\\\"mcnemar_c\\\\\\\": 50,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": 0.00013083876154198454\\\\n      },\\\\n      \\\\\\\"w3\\\\\\\": {\\\\n        \\\\\\\"acc\\\\\\\": 51.33,\\\\n        \\\\\\\"correct\\\\\\\": 308,\\\\n        \\\\\\\"delta_pp\\\\\\\": 12.0,\\\\n        \\\\\\\"mcnemar_b\\\\\\\": 109,\\\\n        \\\\\\\"mcnemar_c\\\\\\\": 181,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": 2.7978021177332246e-05\\\\n      },\\\\n      \\\\\\\"w5\\\\\\\": {\\\\n        \\\\\\\"acc\\\\\\\": 49.17,\\\\n        \\\\\\\"correct\\\\\\\": 295,\\\\n        \\\\\\\"delta_pp\\\\\\\": 9.83,\\\\n        \\\\\\\"mcnemar_b\\\\\\\": 171,\\\\n        \\\\\\\"mcnemar_c\\\\\\\": 230,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": 0.0037213723991509243\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"bh_correction\\\\\\\": {\\\\n    \\\\\\\"n_tests\\\\\\\": 15,\\\\n    \\\\\\\"alpha\\\\\\\": 0.05,\\\\n    \\\\\\\"n_significant\\\\\\\": 10,\\\\n    \\\\\\\"tests\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"deberta_w1\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 0.359283447265625,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 0.44910430908203125,\\\\n        \\\\\\\"significant\\\\\\\": false\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"deberta_w3\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 1.1296023055413025e-05,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 8.47201729155977e-05,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"deberta_w5\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 6.178035816936483e-07,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 9.267053725404725e-06,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"roberta_w1\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 1.0,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 1.0,\\\\n        \\\\\\\"significant\\\\\\\": false\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"roberta_w3\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 0.0026263768106840374,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 0.0045809603720408315,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"roberta_w5\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 0.03685226452283732,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 0.050253087985687256,\\\\n        \\\\\\\"significant\\\\\\\": false\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"bart_w1\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 1.0,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 1.0,\\\\n        \\\\\\\"significant\\\\\\\": false\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"bart_w3\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 0.00024439701657757496,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 0.000523707892666232,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"bart_w5\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 0.0027485762232244988,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 0.0045809603720408315,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"ensemble_w1\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 0.8145294189453125,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 0.9398416372445914,\\\\n        \\\\\\\"significant\\\\\\\": false\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"ensemble_w3\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 6.494900196551852e-05,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 0.00024355875737069445,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"ensemble_w5\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 0.00024148706257992638,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 0.000523707892666232,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"additive_w1\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 0.00013083876154198454,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 0.0003925162846259536,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"additive_w3\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 2.7978021177332246e-05,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 0.00013989010588666122,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"additive_w5\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 0.0037213723991509243,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 0.005582058598726387,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      }\\\\n    ]\\\\n  },\\\\n  \\\\\\\"agreement\\\\\\\": {\\\\n    \\\\\\\"all_3\\\\\\\": 312,\\\\n    \\\\\\\"deberta_roberta\\\\\\\": 419,\\\\n    \\\\\\\"deberta_bart\\\\\\\": 412,\\\\n    \\\\\\\"roberta_bart\\\\\\\": 391\\\\n  },\\\\n  \\\\\\\"full_data_location\\\\\\\": \\\\\\\"westd-16639:/root/symb_invariant_consensus/results/r11_3verifier_canonical.json\\\\\\\"\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "d9228153-b0d5-4a29-8558-dadec4d9f396",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"r11_3verifier_canonical\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"ProofWriter-D5-OWA\\\\\\\",\\\\n  \\\\\\\"n\\\\\\\": 600,\\\\n  \\\\\\\"sc_baseline\\\\\\\": {\\\\n    \\\\\\\"acc\\\\\\\": 39.33,\\\\n    \\\\\\\"correct\\\\\\\": 236\\\\n  },\\\\n  \\\\\\\"combo_method\\\\\\\": \\\\\\\"hard-vote (add w to NLI predicted class) + alphabetical tiebreaking\\\\\\\",\\\\n  \\\\\\\"individual_verifiers\\\\\\\": {\\\\n    \\\\\\\"deberta\\\\\\\": {\\\\n      \\\\\\\"standalone_acc\\\\\\\": 55.0,\\\\n      \\\\\\\"standalone_correct\\\\\\\": 330,\\\\n      \\\\\\\"combos\\\\\\\": {\\\\n        \\\\\\\"w1\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 40.17,\\\\n          \\\\\\\"correct\\\\\\\": 241,\\\\n          \\\\\\\"delta_pp\\\\\\\": 0.83,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 7,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 12,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 0.359283447265625\\\\n        },\\\\n        \\\\\\\"w3\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 46.0,\\\\n          \\\\\\\"correct\\\\\\\": 276,\\\\n          \\\\\\\"delta_pp\\\\\\\": 6.67,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 21,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 61,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 1.1296023055413025e-05\\\\n        },\\\\n        \\\\\\\"w5\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 50.33,\\\\n          \\\\\\\"correct\\\\\\\": 302,\\\\n          \\\\\\\"delta_pp\\\\\\\": 11.0,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 54,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 120,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 6.178035816936483e-07\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"roberta\\\\\\\": {\\\\n      \\\\\\\"standalone_acc\\\\\\\": 37.67,\\\\n      \\\\\\\"standalone_correct\\\\\\\": 226,\\\\n      \\\\\\\"combos\\\\\\\": {\\\\n        \\\\\\\"w1\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 39.17,\\\\n          \\\\\\\"correct\\\\\\\": 235,\\\\n          \\\\\\\"delta_pp\\\\\\\": -0.17,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 8,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 7,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 1.0\\\\n        },\\\\n        \\\\\\\"w3\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 43.5,\\\\n          \\\\\\\"correct\\\\\\\": 261,\\\\n          \\\\\\\"delta_pp\\\\\\\": 4.17,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 20,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 45,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 0.0026263768106840374\\\\n        },\\\\n        \\\\\\\"w5\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 43.67,\\\\n          \\\\\\\"correct\\\\\\\": 262,\\\\n          \\\\\\\"delta_pp\\\\\\\": 4.33,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 59,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 85,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 0.03685226452283732\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"bart\\\\\\\": {\\\\n      \\\\\\\"standalone_acc\\\\\\\": 46.17,\\\\n      \\\\\\\"standalone_correct\\\\\\\": 277,\\\\n      \\\\\\\"combos\\\\\\\": {\\\\n        \\\\\\\"w1\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 39.33,\\\\n          \\\\\\\"correct\\\\\\\": 236,\\\\n          \\\\\\\"delta_pp\\\\\\\": 0.0,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 9,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 9,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 1.0\\\\n        },\\\\n        \\\\\\\"w3\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 44.5,\\\\n          \\\\\\\"correct\\\\\\\": 267,\\\\n          \\\\\\\"delta_pp\\\\\\\": 5.17,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 19,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 50,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 0.00024439701657757496\\\\n        },\\\\n        \\\\\\\"w5\\\\\\\": {\\\\n          \\\\\\\"acc\\\\\\\": 45.67,\\\\n          \\\\\\\"correct\\\\\\\": 274,\\\\n          \\\\\\\"delta_pp\\\\\\\": 6.33,\\\\n          \\\\\\\"mcnemar_b\\\\\\\": 58,\\\\n          \\\\\\\"mcnemar_c\\\\\\\": 96,\\\\n          \\\\\\\"mcnemar_p\\\\\\\": 0.0027485762232244988\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"ensemble_majority\\\\\\\": {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"majority vote of 3 NLI predictions (alpha tiebreak), then hard-vote combo with SC\\\\\\\",\\\\n    \\\\\\\"standalone_acc\\\\\\\": 48.33,\\\\n    \\\\\\\"standalone_correct\\\\\\\": 290,\\\\n    \\\\\\\"combos\\\\\\\": {\\\\n      \\\\\\\"w1\\\\\\\": {\\\\n        \\\\\\\"acc\\\\\\\": 39.67,\\\\n        \\\\\\\"correct\\\\\\\": 238,\\\\n        \\\\\\\"delta_pp\\\\\\\": 0.33,\\\\n        \\\\\\\"mcnemar_b\\\\\\\": 8,\\\\n        \\\\\\\"mcnemar_c\\\\\\\": 10,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": 0.8145294189453125\\\\n      },\\\\n      \\\\\\\"w3\\\\\\\": {\\\\n        \\\\\\\"acc\\\\\\\": 45.17,\\\\n        \\\\\\\"correct\\\\\\\": 271,\\\\n        \\\\\\\"delta_pp\\\\\\\": 5.83,\\\\n        \\\\\\\"mcnemar_b\\\\\\\": 20,\\\\n        \\\\\\\"mcnemar_c\\\\\\\": 55,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": 6.494900196551852e-05\\\\n      },\\\\n      \\\\\\\"w5\\\\\\\": {\\\\n        \\\\\\\"acc\\\\\\\": 47.33,\\\\n        \\\\\\\"correct\\\\\\\": 284,\\\\n        \\\\\\\"delta_pp\\\\\\\": 8.0,\\\\n        \\\\\\\"mcnemar_b\\\\\\\": 59,\\\\n        \\\\\\\"mcnemar_c\\\\\\\": 107,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": 0.00024148706257992638\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"additive_3verifier\\\\\\\": {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"each of 3 verifiers adds w votes to their predicted class\\\\\\\",\\\\n    \\\\\\\"combos\\\\\\\": {\\\\n      \\\\\\\"w1\\\\\\\": {\\\\n        \\\\\\\"acc\\\\\\\": 44.67,\\\\n        \\\\\\\"correct\\\\\\\": 268,\\\\n        \\\\\\\"delta_pp\\\\\\\": 5.33,\\\\n        \\\\\\\"mcnemar_b\\\\\\\": 18,\\\\n        \\\\\\\"mcnemar_c\\\\\\\": 50,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": 0.00013083876154198454\\\\n      },\\\\n      \\\\\\\"w3\\\\\\\": {\\\\n        \\\\\\\"acc\\\\\\\": 51.33,\\\\n        \\\\\\\"correct\\\\\\\": 308,\\\\n        \\\\\\\"delta_pp\\\\\\\": 12.0,\\\\n        \\\\\\\"mcnemar_b\\\\\\\": 109,\\\\n        \\\\\\\"mcnemar_c\\\\\\\": 181,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": 2.7978021177332246e-05\\\\n      },\\\\n      \\\\\\\"w5\\\\\\\": {\\\\n        \\\\\\\"acc\\\\\\\": 49.17,\\\\n        \\\\\\\"correct\\\\\\\": 295,\\\\n        \\\\\\\"delta_pp\\\\\\\": 9.83,\\\\n        \\\\\\\"mcnemar_b\\\\\\\": 171,\\\\n        \\\\\\\"mcnemar_c\\\\\\\": 230,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": 0.0037213723991509243\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"bh_correction\\\\\\\": {\\\\n    \\\\\\\"n_tests\\\\\\\": 15,\\\\n    \\\\\\\"alpha\\\\\\\": 0.05,\\\\n    \\\\\\\"n_significant\\\\\\\": 10,\\\\n    \\\\\\\"tests\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"deberta_w1\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 0.359283447265625,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 0.44910430908203125,\\\\n        \\\\\\\"significant\\\\\\\": false\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"deberta_w3\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 1.1296023055413025e-05,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 8.47201729155977e-05,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"deberta_w5\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 6.178035816936483e-07,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 9.267053725404725e-06,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"roberta_w1\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 1.0,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 1.0,\\\\n        \\\\\\\"significant\\\\\\\": false\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"roberta_w3\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 0.0026263768106840374,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 0.0045809603720408315,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"roberta_w5\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 0.03685226452283732,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 0.050253087985687256,\\\\n        \\\\\\\"significant\\\\\\\": false\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"bart_w1\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 1.0,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 1.0,\\\\n        \\\\\\\"significant\\\\\\\": false\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"bart_w3\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 0.00024439701657757496,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 0.000523707892666232,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"bart_w5\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 0.0027485762232244988,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 0.0045809603720408315,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"ensemble_w1\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 0.8145294189453125,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 0.9398416372445914,\\\\n        \\\\\\\"significant\\\\\\\": false\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"ensemble_w3\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 6.494900196551852e-05,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 0.00024355875737069445,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"ensemble_w5\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 0.00024148706257992638,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 0.000523707892666232,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"additive_w1\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 0.00013083876154198454,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 0.0003925162846259536,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"additive_w3\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 2.7978021177332246e-05,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 0.00013989010588666122,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"additive_w5\\\\\\\",\\\\n        \\\\\\\"raw_p\\\\\\\": 0.0037213723991509243,\\\\n        \\\\\\\"bh_adjusted_p\\\\\\\": 0.005582058598726387,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      }\\\\n    ]\\\\n  },\\\\n  \\\\\\\"agreement\\\\\\\": {\\\\n    \\\\\\\"all_3\\\\\\\": 312,\\\\n    \\\\\\\"deberta_roberta\\\\\\\": 419,\\\\n    \\\\\\\"deberta_bart\\\\\\\": 412,\\\\n    \\\\\\\"roberta_bart\\\\\\\": 391\\\\n  },\\\\n  \\\\\\\"full_data_location\\\\\\\": \\\\\\\"westd-16639:/root/symb_invariant_consensus/results/r11_3verifier_canonical.json\\\\\\\"\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"r11_3verifier_canonical\\\",\\n  \\\"dataset\\\": \\\"ProofWriter-D5-OWA\\\",\\n  \\\"n\\\": 600,\\n  \\\"sc_baseline\\\": {\\n    \\\"acc\\\": 39.33,\\n    \\\"correct\\\": 236\\n  },\\n  \\\"combo_method\\\": \\\"hard-vote (add w to NLI predicted class) + alphabetical tiebreaking\\\",\\n  \\\"individual_verifiers\\\": {\\n    \\\"deberta\\\": {\\n      \\\"standalone_acc\\\": 55.0,\\n      \\\"standalone_correct\\\": 330,\\n      \\\"combos\\\": {\\n        \\\"w1\\\": {\\n          \\\"acc\\\": 40.17,\\n          \\\"correct\\\": 241,\\n          \\\"delta_pp\\\": 0.83,\\n          \\\"mcnemar_b\\\": 7,\\n          \\\"mcnemar_c\\\": 12,\\n          \\\"mcnemar_p\\\": 0.359283447265625\\n        },\\n        \\\"w3\\\": {\\n          \\\"acc\\\": 46.0,\\n          \\\"correct\\\": 276,\\n          \\\"delta_pp\\\": 6.67,\\n          \\\"mcnemar_b\\\": 21,\\n          \\\"mcnemar_c\\\": 61,\\n          \\\"mcnemar_p\\\": 1.1296023055413025e-05\\n        },\\n        \\\"w5\\\": {\\n          \\\"acc\\\": 50.33,\\n          \\\"correct\\\": 302,\\n          \\\"delta_pp\\\": 11.0,\\n          \\\"mcnemar_b\\\": 54,\\n          \\\"mcnemar_c\\\": 120,\\n          \\\"mcnemar_p\\\": 6.178035816936483e-07\\n        }\\n      }\\n    },\\n    \\\"roberta\\\": {\\n      \\\"standalone_acc\\\": 37.67,\\n      \\\"standalone_correct\\\": 226,\\n      \\\"combos\\\": {\\n        \\\"w1\\\": {\\n          \\\"acc\\\": 39.17,\\n          \\\"correct\\\": 235,\\n          \\\"delta_pp\\\": -0.17,\\n          \\\"mcnemar_b\\\": 8,\\n          \\\"mcnemar_c\\\": 7,\\n          \\\"mcnemar_p\\\": 1.0\\n        },\\n        \\\"w3\\\": {\\n          \\\"acc\\\": 43.5,\\n          \\\"correct\\\": 261,\\n          \\\"delta_pp\\\": 4.17,\\n          \\\"mcnemar_b\\\": 20,\\n          \\\"mcnemar_c\\\": 45,\\n          \\\"mcnemar_p\\\": 0.0026263768106840374\\n        },\\n        \\\"w5\\\": {\\n          \\\"acc\\\": 43.67,\\n          \\\"correct\\\": 262,\\n          \\\"delta_pp\\\": 4.33,\\n          \\\"mcnemar_b\\\": 59,\\n          \\\"mcnemar_c\\\": 85,\\n          \\\"mcnemar_p\\\": 0.03685226452283732\\n        }\\n      }\\n    },\\n    \\\"bart\\\": {\\n      \\\"standalone_acc\\\": 46.17,\\n      \\\"standalone_correct\\\": 277,\\n      \\\"combos\\\": {\\n        \\\"w1\\\": {\\n          \\\"acc\\\": 39.33,\\n          \\\"correct\\\": 236,\\n          \\\"delta_pp\\\": 0.0,\\n          \\\"mcnemar_b\\\": 9,\\n          \\\"mcnemar_c\\\": 9,\\n          \\\"mcnemar_p\\\": 1.0\\n        },\\n        \\\"w3\\\": {\\n          \\\"acc\\\": 44.5,\\n          \\\"correct\\\": 267,\\n          \\\"delta_pp\\\": 5.17,\\n          \\\"mcnemar_b\\\": 19,\\n          \\\"mcnemar_c\\\": 50,\\n          \\\"mcnemar_p\\\": 0.00024439701657757496\\n        },\\n        \\\"w5\\\": {\\n          \\\"acc\\\": 45.67,\\n          \\\"correct\\\": 274,\\n          \\\"delta_pp\\\": 6.33,\\n          \\\"mcnemar_b\\\": 58,\\n          \\\"mcnemar_c\\\": 96,\\n          \\\"mcnemar_p\\\": 0.0027485762232244988\\n        }\\n      }\\n    }\\n  },\\n  \\\"ensemble_majority\\\": {\\n    \\\"method\\\": \\\"majority vote of 3 NLI predictions (alpha tiebreak), then hard-vote combo with SC\\\",\\n    \\\"standalone_acc\\\": 48.33,\\n    \\\"standalone_correct\\\": 290,\\n    \\\"combos\\\": {\\n      \\\"w1\\\": {\\n        \\\"acc\\\": 39.67,\\n        \\\"correct\\\": 238,\\n        \\\"delta_pp\\\": 0.33,\\n        \\\"mcnemar_b\\\": 8,\\n        \\\"mcnemar_c\\\": 10,\\n        \\\"mcnemar_p\\\": 0.8145294189453125\\n      },\\n      \\\"w3\\\": {\\n        \\\"acc\\\": 45.17,\\n        \\\"correct\\\": 271,\\n        \\\"delta_pp\\\": 5.83,\\n        \\\"mcnemar_b\\\": 20,\\n        \\\"mcnemar_c\\\": 55,\\n        \\\"mcnemar_p\\\": 6.494900196551852e-05\\n      },\\n      \\\"w5\\\": {\\n        \\\"acc\\\": 47.33,\\n        \\\"correct\\\": 284,\\n        \\\"delta_pp\\\": 8.0,\\n        \\\"mcnemar_b\\\": 59,\\n        \\\"mcnemar_c\\\": 107,\\n        \\\"mcnemar_p\\\": 0.00024148706257992638\\n      }\\n    }\\n  },\\n  \\\"additive_3verifier\\\": {\\n    \\\"method\\\": \\\"each of 3 verifiers adds w votes to their predicted class\\\",\\n    \\\"combos\\\": {\\n      \\\"w1\\\": {\\n        \\\"acc\\\": 44.67,\\n        \\\"correct\\\": 268,\\n        \\\"delta_pp\\\": 5.33,\\n        \\\"mcnemar_b\\\": 18,\\n        \\\"mcnemar_c\\\": 50,\\n        \\\"mcnemar_p\\\": 0.00013083876154198454\\n      },\\n      \\\"w3\\\": {\\n        \\\"acc\\\": 51.33,\\n        \\\"correct\\\": 308,\\n        \\\"delta_pp\\\": 12.0,\\n        \\\"mcnemar_b\\\": 109,\\n        \\\"mcnemar_c\\\": 181,\\n        \\\"mcnemar_p\\\": 2.7978021177332246e-05\\n      },\\n      \\\"w5\\\": {\\n        \\\"acc\\\": 49.17,\\n        \\\"correct\\\": 295,\\n        \\\"delta_pp\\\": 9.83,\\n        \\\"mcnemar_b\\\": 171,\\n        \\\"mcnemar_c\\\": 230,\\n        \\\"mcnemar_p\\\": 0.0037213723991509243\\n      }\\n    }\\n  },\\n  \\\"bh_correction\\\": {\\n    \\\"n_tests\\\": 15,\\n    \\\"alpha\\\": 0.05,\\n    \\\"n_significant\\\": 10,\\n    \\\"tests\\\": [\\n      {\\n        \\\"label\\\": \\\"deberta_w1\\\",\\n        \\\"raw_p\\\": 0.359283447265625,\\n        \\\"bh_adjusted_p\\\": 0.44910430908203125,\\n        \\\"significant\\\": false\\n      },\\n      {\\n        \\\"label\\\": \\\"deberta_w3\\\",\\n        \\\"raw_p\\\": 1.1296023055413025e-05,\\n        \\\"bh_adjusted_p\\\": 8.47201729155977e-05,\\n        \\\"significant\\\": true\\n      },\\n      {\\n        \\\"label\\\": \\\"deberta_w5\\\",\\n        \\\"raw_p\\\": 6.178035816936483e-07,\\n        \\\"bh_adjusted_p\\\": 9.267053725404725e-06,\\n        \\\"significant\\\": true\\n      },\\n      {\\n        \\\"label\\\": \\\"roberta_w1\\\",\\n        \\\"raw_p\\\": 1.0,\\n        \\\"bh_adjusted_p\\\": 1.0,\\n        \\\"significant\\\": false\\n      },\\n      {\\n        \\\"label\\\": \\\"roberta_w3\\\",\\n        \\\"raw_p\\\": 0.0026263768106840374,\\n        \\\"bh_adjusted_p\\\": 0.0045809603720408315,\\n        \\\"significant\\\": true\\n      },\\n      {\\n        \\\"label\\\": \\\"roberta_w5\\\",\\n        \\\"raw_p\\\": 0.03685226452283732,\\n        \\\"bh_adjusted_p\\\": 0.050253087985687256,\\n        \\\"significant\\\": false\\n      },\\n      {\\n        \\\"label\\\": \\\"bart_w1\\\",\\n        \\\"raw_p\\\": 1.0,\\n        \\\"bh_adjusted_p\\\": 1.0,\\n        \\\"significant\\\": false\\n      },\\n      {\\n        \\\"label\\\": \\\"bart_w3\\\",\\n        \\\"raw_p\\\": 0.00024439701657757496,\\n        \\\"bh_adjusted_p\\\": 0.000523707892666232,\\n        \\\"significant\\\": true\\n      },\\n      {\\n        \\\"label\\\": \\\"bart_w5\\\",\\n        \\\"raw_p\\\": 0.0027485762232244988,\\n        \\\"bh_adjusted_p\\\": 0.0045809603720408315,\\n        \\\"significant\\\": true\\n      },\\n      {\\n        \\\"label\\\": \\\"ensemble_w1\\\",\\n        \\\"raw_p\\\": 0.8145294189453125,\\n        \\\"bh_adjusted_p\\\": 0.9398416372445914,\\n        \\\"significant\\\": false\\n      },\\n      {\\n        \\\"label\\\": \\\"ensemble_w3\\\",\\n        \\\"raw_p\\\": 6.494900196551852e-05,\\n        \\\"bh_adjusted_p\\\": 0.00024355875737069445,\\n        \\\"significant\\\": true\\n      },\\n      {\\n        \\\"label\\\": \\\"ensemble_w5\\\",\\n        \\\"raw_p\\\": 0.00024148706257992638,\\n        \\\"bh_adjusted_p\\\": 0.000523707892666232,\\n        \\\"significant\\\": true\\n      },\\n      {\\n        \\\"label\\\": \\\"additive_w1\\\",\\n        \\\"raw_p\\\": 0.00013083876154198454,\\n        \\\"bh_adjusted_p\\\": 0.0003925162846259536,\\n        \\\"significant\\\": true\\n      },\\n      {\\n        \\\"label\\\": \\\"additive_w3\\\",\\n        \\\"raw_p\\\": 2.7978021177332246e-05,\\n        \\\"bh_adjusted_p\\\": 0.00013989010588666122,\\n        \\\"significant\\\": true\\n      },\\n      {\\n        \\\"label\\\": \\\"additive_w5\\\",\\n        \\\"raw_p\\\": 0.0037213723991509243,\\n        \\\"bh_adjusted_p\\\": 0.005582058598726387,\\n        \\\"significant\\\": true\\n      }\\n    ]\\n  },\\n  \\\"agreement\\\": {\\n    \\\"all_3\\\": 312,\\n    \\\"deberta_roberta\\\": 419,\\n    \\\"deberta_bart\\\": 412,\\n    \\\"roberta_bart\\\": 391\\n  },\\n  \\\"full_data_location\\\": \\\"westd-16639:/root/symb_invariant_consensus/results/r11_3verifier_canonical.json\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000560"
+        },
+        {
+          "source_line": 561,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011a7VW7oGYKU3doen5PQjzX",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/r11_3verifier_canonical.json",
+                "content": "{\n  \"experiment\": \"r11_3verifier_canonical\",\n  \"dataset\": \"ProofWriter-D5-OWA\",\n  \"n\": 600,\n  \"sc_baseline\": {\n    \"acc\": 39.33,\n    \"correct\": 236\n  },\n  \"combo_method\": \"hard-vote (add w to NLI predicted class) + alphabetical tiebreaking\",\n  \"individual_verifiers\": {\n    \"deberta\": {\n      \"standalone_acc\": 55.0,\n      \"standalone_correct\": 330,\n      \"combos\": {\n        \"w1\": {\n          \"acc\": 40.17,\n          \"correct\": 241,\n          \"delta_pp\": 0.83,\n          \"mcnemar_b\": 7,\n          \"mcnemar_c\": 12,\n          \"mcnemar_p\": 0.359283447265625\n        },\n        \"w3\": {\n          \"acc\": 46.0,\n          \"correct\": 276,\n          \"delta_pp\": 6.67,\n          \"mcnemar_b\": 21,\n          \"mcnemar_c\": 61,\n          \"mcnemar_p\": 1.1296023055413025e-05\n        },\n        \"w5\": {\n          \"acc\": 50.33,\n          \"correct\": 302,\n          \"delta_pp\": 11.0,\n          \"mcnemar_b\": 54,\n          \"mcnemar_c\": 120,\n          \"mcnemar_p\": 6.178035816936483e-07\n        }\n      }\n    },\n    \"roberta\": {\n      \"standalone_acc\": 37.67,\n      \"standalone_correct\": 226,\n      \"combos\": {\n        \"w1\": {\n          \"acc\": 39.17,\n          \"correct\": 235,\n          \"delta_pp\": -0.17,\n          \"mcnemar_b\": 8,\n          \"mcnemar_c\": 7,\n          \"mcnemar_p\": 1.0\n        },\n        \"w3\": {\n          \"acc\": 43.5,\n          \"correct\": 261,\n          \"delta_pp\": 4.17,\n          \"mcnemar_b\": 20,\n          \"mcnemar_c\": 45,\n          \"mcnemar_p\": 0.0026263768106840374\n        },\n        \"w5\": {\n          \"acc\": 43.67,\n          \"correct\": 262,\n          \"delta_pp\": 4.33,\n          \"mcnemar_b\": 59,\n          \"mcnemar_c\": 85,\n          \"mcnemar_p\": 0.03685226452283732\n        }\n      }\n    },\n    \"bart\": {\n      \"standalone_acc\": 46.17,\n      \"standalone_correct\": 277,\n      \"combos\": {\n        \"w1\": {\n          \"acc\": 39.33,\n          \"correct\": 236,\n          \"delta_pp\": 0.0,\n          \"mcnemar_b\": 9,\n          \"mcnemar_c\": 9,\n          \"mcnemar_p\": 1.0\n        },\n        \"w3\": {\n          \"acc\": 44.5,\n          \"correct\": 267,\n          \"delta_pp\": 5.17,\n          \"mcnemar_b\": 19,\n          \"mcnemar_c\": 50,\n          \"mcnemar_p\": 0.00024439701657757496\n        },\n        \"w5\": {\n          \"acc\": 45.67,\n          \"correct\": 274,\n          \"delta_pp\": 6.33,\n          \"mcnemar_b\": 58,\n          \"mcnemar_c\": 96,\n          \"mcnemar_p\": 0.0027485762232244988\n        }\n      }\n    }\n  },\n  \"ensemble_majority\": {\n    \"method\": \"majority vote of 3 NLI predictions (alpha tiebreak), then hard-vote combo with SC\",\n    \"standalone_acc\": 48.33,\n    \"standalone_correct\": 290,\n    \"combos\": {\n      \"w1\": {\n        \"acc\": 39.67,\n        \"correct\": 238,\n        \"delta_pp\": 0.33,\n        \"mcnemar_b\": 8,\n        \"mcnemar_c\": 10,\n        \"mcnemar_p\": 0.8145294189453125\n      },\n      \"w3\": {\n        \"acc\": 45.17,\n        \"correct\": 271,\n        \"delta_pp\": 5.83,\n        \"mcnemar_b\": 20,\n        \"mcnemar_c\": 55,\n        \"mcnemar_p\": 6.494900196551852e-05\n      },\n      \"w5\": {\n        \"acc\": 47.33,\n        \"correct\": 284,\n        \"delta_pp\": 8.0,\n        \"mcnemar_b\": 59,\n        \"mcnemar_c\": 107,\n        \"mcnemar_p\": 0.00024148706257992638\n      }\n    }\n  },\n  \"additive_3verifier\": {\n    \"method\": \"each of 3 verifiers adds w votes to their predicted class\",\n    \"combos\": {\n      \"w1\": {\n        \"acc\": 44.67,\n        \"correct\": 268,\n        \"delta_pp\": 5.33,\n        \"mcnemar_b\": 18,\n        \"mcnemar_c\": 50,\n        \"mcnemar_p\": 0.00013083876154198454\n      },\n      \"w3\": {\n        \"acc\": 51.33,\n        \"correct\": 308,\n        \"delta_pp\": 12.0,\n        \"mcnemar_b\": 109,\n        \"mcnemar_c\": 181,\n        \"mcnemar_p\": 2.7978021177332246e-05\n      },\n      \"w5\": {\n        \"acc\": 49.17,\n        \"correct\": 295,\n        \"delta_pp\": 9.83,\n        \"mcnemar_b\": 171,\n        \"mcnemar_c\": 230,\n        \"mcnemar_p\": 0.0037213723991509243\n      }\n    }\n  },\n  \"bh_correction\": {\n    \"n_tests\": 15,\n    \"alpha\": 0.05,\n    \"n_significant\": 10,\n    \"tests\": [\n      {\n        \"label\": \"deberta_w1\",\n        \"raw_p\": 0.359283447265625,\n        \"bh_adjusted_p\": 0.44910430908203125,\n        \"significant\": false\n      },\n      {\n        \"label\": \"deberta_w3\",\n        \"raw_p\": 1.1296023055413025e-05,\n        \"bh_adjusted_p\": 8.47201729155977e-05,\n        \"significant\": true\n      },\n      {\n        \"label\": \"deberta_w5\",\n        \"raw_p\": 6.178035816936483e-07,\n        \"bh_adjusted_p\": 9.267053725404725e-06,\n        \"significant\": true\n      },\n      {\n        \"label\": \"roberta_w1\",\n        \"raw_p\": 1.0,\n        \"bh_adjusted_p\": 1.0,\n        \"significant\": false\n      },\n      {\n        \"label\": \"roberta_w3\",\n        \"raw_p\": 0.0026263768106840374,\n        \"bh_adjusted_p\": 0.0045809603720408315,\n        \"significant\": true\n      },\n      {\n        \"label\": \"roberta_w5\",\n        \"raw_p\": 0.03685226452283732,\n        \"bh_adjusted_p\": 0.050253087985687256,\n        \"significant\": false\n      },\n      {\n        \"label\": \"bart_w1\",\n        \"raw_p\": 1.0,\n        \"bh_adjusted_p\": 1.0,\n        \"significant\": false\n      },\n      {\n        \"label\": \"bart_w3\",\n        \"raw_p\": 0.00024439701657757496,\n        \"bh_adjusted_p\": 0.000523707892666232,\n        \"significant\": true\n      },\n      {\n        \"label\": \"bart_w5\",\n        \"raw_p\": 0.0027485762232244988,\n        \"bh_adjusted_p\": 0.0045809603720408315,\n        \"significant\": true\n      },\n      {\n        \"label\": \"ensemble_w1\",\n        \"raw_p\": 0.8145294189453125,\n        \"bh_adjusted_p\": 0.9398416372445914,\n        \"significant\": false\n      },\n      {\n        \"label\": \"ensemble_w3\",\n        \"raw_p\": 6.494900196551852e-05,\n        \"bh_adjusted_p\": 0.00024355875737069445,\n        \"significant\": true\n      },\n      {\n        \"label\": \"ensemble_w5\",\n        \"raw_p\": 0.00024148706257992638,\n        \"bh_adjusted_p\": 0.000523707892666232,\n        \"significant\": true\n      },\n      {\n        \"label\": \"additive_w1\",\n        \"raw_p\": 0.00013083876154198454,\n        \"bh_adjusted_p\": 0.0003925162846259536,\n        \"significant\": true\n      },\n      {\n        \"label\": \"additive_w3\",\n        \"raw_p\": 2.7978021177332246e-05,\n        \"bh_adjusted_p\": 0.00013989010588666122,\n        \"significant\": true\n      },\n      {\n        \"label\": \"additive_w5\",\n        \"raw_p\": 0.0037213723991509243,\n        \"bh_adjusted_p\": 0.005582058598726387,\n        \"significant\": true\n      }\n    ]\n  },\n  \"agreement\": {\n    \"all_3\": 312,\n    \"deberta_roberta\": 419,\n    \"deberta_bart\": 412,\n    \"roberta_bart\": 391\n  },\n  \"full_data_location\": \"westd-16639:/root/symb_invariant_consensus/results/r11_3verifier_canonical.json\",\n  \"script_location\": \"westd-16639:/root/symb_invariant_consensus/scripts/r11_3verifier_final.py\"\n}\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "a3ba3e21-336b-4dbe-b9f6-832151572eb9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014RPyH3783DHT9HEZbMnfUQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4779,
+                "cache_read_input_tokens": 97050,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4779
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000561"
+        },
+        {
+          "source_line": 562,
+          "timestamp": "2026-05-21T12:26:55.957Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011a7VW7oGYKU3doen5PQjzX",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/r11_3verifier_canonical.json"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "a1b1ab54-3663-43a6-8ec7-8ffb8d5c4825",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/r11_3verifier_canonical.json",
+              "content": "{\n  \"experiment\": \"r11_3verifier_canonical\",\n  \"dataset\": \"ProofWriter-D5-OWA\",\n  \"n\": 600,\n  \"sc_baseline\": {\n    \"acc\": 39.33,\n    \"correct\": 236\n  },\n  \"combo_method\": \"hard-vote (add w to NLI predicted class) + alphabetical tiebreaking\",\n  \"individual_verifiers\": {\n    \"deberta\": {\n      \"standalone_acc\": 55.0,\n      \"standalone_correct\": 330,\n      \"combos\": {\n        \"w1\": {\n          \"acc\": 40.17,\n          \"correct\": 241,\n          \"delta_pp\": 0.83,\n          \"mcnemar_b\": 7,\n          \"mcnemar_c\": 12,\n          \"mcnemar_p\": 0.359283447265625\n        },\n        \"w3\": {\n          \"acc\": 46.0,\n          \"correct\": 276,\n          \"delta_pp\": 6.67,\n          \"mcnemar_b\": 21,\n          \"mcnemar_c\": 61,\n          \"mcnemar_p\": 1.1296023055413025e-05\n        },\n        \"w5\": {\n          \"acc\": 50.33,\n          \"correct\": 302,\n          \"delta_pp\": 11.0,\n          \"mcnemar_b\": 54,\n          \"mcnemar_c\": 120,\n          \"mcnemar_p\": 6.178035816936483e-07\n        }\n      }\n    },\n    \"roberta\": {\n      \"standalone_acc\": 37.67,\n      \"standalone_correct\": 226,\n      \"combos\": {\n        \"w1\": {\n          \"acc\": 39.17,\n          \"correct\": 235,\n          \"delta_pp\": -0.17,\n          \"mcnemar_b\": 8,\n          \"mcnemar_c\": 7,\n          \"mcnemar_p\": 1.0\n        },\n        \"w3\": {\n          \"acc\": 43.5,\n          \"correct\": 261,\n          \"delta_pp\": 4.17,\n          \"mcnemar_b\": 20,\n          \"mcnemar_c\": 45,\n          \"mcnemar_p\": 0.0026263768106840374\n        },\n        \"w5\": {\n          \"acc\": 43.67,\n          \"correct\": 262,\n          \"delta_pp\": 4.33,\n          \"mcnemar_b\": 59,\n          \"mcnemar_c\": 85,\n          \"mcnemar_p\": 0.03685226452283732\n        }\n      }\n    },\n    \"bart\": {\n      \"standalone_acc\": 46.17,\n      \"standalone_correct\": 277,\n      \"combos\": {\n        \"w1\": {\n          \"acc\": 39.33,\n          \"correct\": 236,\n          \"delta_pp\": 0.0,\n          \"mcnemar_b\": 9,\n          \"mcnemar_c\": 9,\n          \"mcnemar_p\": 1.0\n        },\n        \"w3\": {\n          \"acc\": 44.5,\n          \"correct\": 267,\n          \"delta_pp\": 5.17,\n          \"mcnemar_b\": 19,\n          \"mcnemar_c\": 50,\n          \"mcnemar_p\": 0.00024439701657757496\n        },\n        \"w5\": {\n          \"acc\": 45.67,\n          \"correct\": 274,\n          \"delta_pp\": 6.33,\n          \"mcnemar_b\": 58,\n          \"mcnemar_c\": 96,\n          \"mcnemar_p\": 0.0027485762232244988\n        }\n      }\n    }\n  },\n  \"ensemble_majority\": {\n    \"method\": \"majority vote of 3 NLI predictions (alpha tiebreak), then hard-vote combo with SC\",\n    \"standalone_acc\": 48.33,\n    \"standalone_correct\": 290,\n    \"combos\": {\n      \"w1\": {\n        \"acc\": 39.67,\n        \"correct\": 238,\n        \"delta_pp\": 0.33,\n        \"mcnemar_b\": 8,\n        \"mcnemar_c\": 10,\n        \"mcnemar_p\": 0.8145294189453125\n      },\n      \"w3\": {\n        \"acc\": 45.17,\n        \"correct\": 271,\n        \"delta_pp\": 5.83,\n        \"mcnemar_b\": 20,\n        \"mcnemar_c\": 55,\n        \"mcnemar_p\": 6.494900196551852e-05\n      },\n      \"w5\": {\n        \"acc\": 47.33,\n        \"correct\": 284,\n        \"delta_pp\": 8.0,\n        \"mcnemar_b\": 59,\n        \"mcnemar_c\": 107,\n        \"mcnemar_p\": 0.00024148706257992638\n      }\n    }\n  },\n  \"additive_3verifier\": {\n    \"method\": \"each of 3 verifiers adds w votes to their predicted class\",\n    \"combos\": {\n      \"w1\": {\n        \"acc\": 44.67,\n        \"correct\": 268,\n        \"delta_pp\": 5.33,\n        \"mcnemar_b\": 18,\n        \"mcnemar_c\": 50,\n        \"mcnemar_p\": 0.00013083876154198454\n      },\n      \"w3\": {\n        \"acc\": 51.33,\n        \"correct\": 308,\n        \"delta_pp\": 12.0,\n        \"mcnemar_b\": 109,\n        \"mcnemar_c\": 181,\n        \"mcnemar_p\": 2.7978021177332246e-05\n      },\n      \"w5\": {\n        \"acc\": 49.17,\n        \"correct\": 295,\n        \"delta_pp\": 9.83,\n        \"mcnemar_b\": 171,\n        \"mcnemar_c\": 230,\n        \"mcnemar_p\": 0.0037213723991509243\n      }\n    }\n  },\n  \"bh_correction\": {\n    \"n_tests\": 15,\n    \"alpha\": 0.05,\n    \"n_significant\": 10,\n    \"tests\": [\n      {\n        \"label\": \"deberta_w1\",\n        \"raw_p\": 0.359283447265625,\n        \"bh_adjusted_p\": 0.44910430908203125,\n        \"significant\": false\n      },\n      {\n        \"label\": \"deberta_w3\",\n        \"raw_p\": 1.1296023055413025e-05,\n        \"bh_adjusted_p\": 8.47201729155977e-05,\n        \"significant\": true\n      },\n      {\n        \"label\": \"deberta_w5\",\n        \"raw_p\": 6.178035816936483e-07,\n        \"bh_adjusted_p\": 9.267053725404725e-06,\n        \"significant\": true\n      },\n      {\n        \"label\": \"roberta_w1\",\n        \"raw_p\": 1.0,\n        \"bh_adjusted_p\": 1.0,\n        \"significant\": false\n      },\n      {\n        \"label\": \"roberta_w3\",\n        \"raw_p\": 0.0026263768106840374,\n        \"bh_adjusted_p\": 0.0045809603720408315,\n        \"significant\": true\n      },\n      {\n        \"label\": \"roberta_w5\",\n        \"raw_p\": 0.03685226452283732,\n        \"bh_adjusted_p\": 0.050253087985687256,\n        \"significant\": false\n      },\n      {\n        \"label\": \"bart_w1\",\n        \"raw_p\": 1.0,\n        \"bh_adjusted_p\": 1.0,\n        \"significant\": false\n      },\n      {\n        \"label\": \"bart_w3\",\n        \"raw_p\": 0.00024439701657757496,\n        \"bh_adjusted_p\": 0.000523707892666232,\n        \"significant\": true\n      },\n      {\n        \"label\": \"bart_w5\",\n        \"raw_p\": 0.0027485762232244988,\n        \"bh_adjusted_p\": 0.0045809603720408315,\n        \"significant\": true\n      },\n      {\n        \"label\": \"ensemble_w1\",\n        \"raw_p\": 0.8145294189453125,\n        \"bh_adjusted_p\": 0.9398416372445914,\n        \"significant\": false\n      },\n      {\n        \"label\": \"ensemble_w3\",\n        \"raw_p\": 6.494900196551852e-05,\n        \"bh_adjusted_p\": 0.00024355875737069445,\n        \"significant\": true\n      },\n      {\n        \"label\": \"ensemble_w5\",\n        \"raw_p\": 0.00024148706257992638,\n        \"bh_adjusted_p\": 0.000523707892666232,\n        \"significant\": true\n      },\n      {\n        \"label\": \"additive_w1\",\n        \"raw_p\": 0.00013083876154198454,\n        \"bh_adjusted_p\": 0.0003925162846259536,\n        \"significant\": true\n      },\n      {\n        \"label\": \"additive_w3\",\n        \"raw_p\": 2.7978021177332246e-05,\n        \"bh_adjusted_p\": 0.00013989010588666122,\n        \"significant\": true\n      },\n      {\n        \"label\": \"additive_w5\",\n        \"raw_p\": 0.0037213723991509243,\n        \"bh_adjusted_p\": 0.005582058598726387,\n        \"significant\": true\n      }\n    ]\n  },\n  \"agreement\": {\n    \"all_3\": 312,\n    \"deberta_roberta\": 419,\n    \"deberta_bart\": 412,\n    \"roberta_bart\": 391\n  },\n  \"full_data_location\": \"westd-16639:/root/symb_invariant_consensus/results/r11_3verifier_canonical.json\",\n  \"script_location\": \"westd-16639:/root/symb_invariant_consensus/scripts/r11_3verifier_final.py\"\n}\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000562"
+        },
+        {
+          "source_line": 563,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also save the script locally and register the artifact."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "09bfc5c5-0287-44d9-81fd-cafa65b13b2a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ty61WtK2B4oy9QeTKWkZvj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2852,
+                "cache_read_input_tokens": 101829,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2852
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000563"
+        },
+        {
+          "source_line": 564,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012J1buDKcj9eDa3Qqbrr8dT",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16639",
+                "command": "cat /root/symb_invariant_consensus/scripts/r11_3verifier_final.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "345860cd-3668-49b8-bb37-56b70c4625b2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ty61WtK2B4oy9QeTKWkZvj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2852,
+                "cache_read_input_tokens": 101829,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2852
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000564"
+        },
+        {
+          "source_line": 565,
+          "timestamp": "2026-05-21T12:26:59.824Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012J1buDKcj9eDa3Qqbrr8dT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"R11 Q3: 3-verifier canonical analysis.\\\\nHard-vote combo + alphabetical tiebreaking.\\\\nDeBERTa from D116. RoBERTa/BART inferred here. SC from mistral_pw600_sc_votes.json (ID-fixed).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, time, torch\\\\nfrom collections import Counter\\\\nfrom scipy.stats import binomtest\\\\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\\\\n\\\\nPW_PATH = \\\\\\\"/root/symb_invariant_consensus/data/proofwriter_full.json\\\\\\\"\\\\nSC_PATH = \\\\\\\"/root/symb_invariant_consensus/data/mistral_pw600_sc_votes.json\\\\\\\"\\\\nD116_PATH = \\\\\\\"/root/symb_invariant_consensus/results/d116_qwen3_pw_deberta_large/results.json\\\\\\\"\\\\nCLASSES = [\\\\\\\"True\\\\\\\", \\\\\\\"False\\\\\\\", \\\\\\\"Unknown\\\\\\\"]\\\\nWEIGHTS = [1, 3, 5]\\\\n\\\\nID_FIX = {\\\\n    \\\\\\\"ProofWriter_AttNeg-OWA-D5-1176_Q4\\\\\\\": \\\\\\\"ProofWriter_AttNeg-OWA-D5-1176_Q8\\\\\\\",\\\\n    \\\\\\\"ProofWriter_AttNoneg-OWA-D5-1284_Q4\\\\\\\": \\\\\\\"ProofWriter_AttNoneg-OWA-D5-1284_Q8\\\\\\\",\\\\n}\\\\n\\\\nNLI_MODELS = {\\\\n    \\\\\\\"roberta\\\\\\\": \\\\\\\"/root/autodl-tmp/models/roberta-large-mnli\\\\\\\",\\\\n    \\\\\\\"bart\\\\\\\": \\\\\\\"/root/autodl-tmp/models/bart-large-mnli\\\\\\\",\\\\n}\\\\n\\\\ndef parse_problem(text):\\\\n    marker = \\\\\\\"\\\\\\\\n\\\\\\\\nDetermine whether the following statement is true, false, or unknown:\\\\\\\\n\\\\\\\"\\\\n    if marker in text:\\\\n        parts = text.split(marker, 1)\\\\n        return parts[0].strip(), parts[1].strip()\\\\n    return text, \\\\\\\"\\\\\\\"\\\\n\\\\ndef map_nli(label):\\\\n    lu = label.upper()\\\\n    if \\\\\\\"ENTAIL\\\\\\\" in lu: return \\\\\\\"True\\\\\\\"\\\\n    if \\\\\\\"CONTRA\\\\\\\" in lu: return \\\\\\\"False\\\\\\\"\\\\n    return \\\\\\\"Unknown\\\\\\\"\\\\n\\\\ndef alpha_winner(score_dict):\\\\n    mx = max(score_dict.values())\\\\n    tied = sorted(c for c in CLASSES if score_dict.get(c, 0) == mx)\\\\n    return tied[0]\\\\n\\\\ndef run_nli_inference(model_name, hf_path, pw_data, device):\\\\n    print(f\\\\\\\"\\\\\\\\nLoading {model_name}: {hf_path}\\\\\\\")\\\\n    tok = AutoTokenizer.from_pretrained(hf_path)\\\\n    mdl = AutoModelForSequenceClassification.from_pretrained(hf_path).to(device).eval()\\\\n    id2label = mdl.config.id2label\\\\n    nli_map = {idx: map_nli(lbl) for idx, lbl in id2label.items()}\\\\n    print(f\\\\\\\"  id2label: {id2label}, nli_map: {nli_map}\\\\\\\")\\\\n\\\\n    preds = {}\\\\n    t0 = time.time()\\\\n    for i, q in enumerate(pw_data):\\\\n        qid = q[\\\\\\\"id\\\\\\\"]\\\\n        premises, conclusion = parse_problem(q[\\\\\\\"problem\\\\\\\"])\\\\n        if not conclusion:\\\\n            preds[qid] = \\\\\\\"Unknown\\\\\\\"\\\\n            continue\\\\n        inp = tok(premises, conclusion, return_tensors=\\\\\\\"pt\\\\\\\", truncation=True, max_length=512).to(device)\\\\n        with torch.no_grad():\\\\n            logits = mdl(**inp).logits\\\\n        pred_idx = logits.argmax(dim=-1).item()\\\\n        preds[qid] = nli_map[pred_idx]\\\\n        if (i+1) % 100 == 0:\\\\n            print(f\\\\\\\"  {i+1}/{len(pw_data)} ({time.time()-t0:.0f}s)\\\\\\\")\\\\n    \\\\n    print(f\\\\\\\"  Done: {time.time()-t0:.1f}s\\\\\\\")\\\\n    del mdl\\\\n    torch.cuda.empty_cache()\\\\n    return preds\\\\n\\\\ndef main():\\\\n    device = \\\\\\\"cuda\\\\\\\" if torch.cuda.is_available() else \\\\\\\"cpu\\\\\\\"\\\\n    print(f\\\\\\\"Device: {device}\\\\\\\")\\\\n\\\\n    with open(PW_PATH) as f: pw_data = json.load(f)\\\\n    with open(SC_PATH) as f: sc_raw = json.load(f)\\\\n    with open(D116_PATH) as f: d116 = json.load(f)\\\\n\\\\n    gt = {q[\\\\\\\"id\\\\\\\"]: q[\\\\\\\"answer\\\\\\\"] for q in pw_data}\\\\n    sc_votes = {ID_FIX.get(k, k): v for k, v in sc_raw.items()}\\\\n    per_q = d116[\\\\\\\"per_question\\\\\\\"]\\\\n    N = len(gt)\\\\n    assert len(set(gt.keys()) & set(sc_votes.keys())) == 600, \\\\\\\"ID mismatch\\\\\\\"\\\\n\\\\n    # SC baseline\\\\n    sc_answers = {}\\\\n    for qid in gt:\\\\n        v = sc_votes[qid]\\\\n        vd = dict(zip(CLASSES, v))\\\\n        sc_answers[qid] = alpha_winner(vd)\\\\n    sc_n = sum(1 for qid in gt if sc_answers[qid] == gt[qid])\\\\n    print(f\\\\\\\"SC baseline: {sc_n}/{N} = {sc_n/N*100:.2f}%\\\\\\\")\\\\n    assert sc_n == 236, f\\\\\\\"SC baseline mismatch: {sc_n} != 236\\\\\\\"\\\\n\\\\n    # DeBERTa predictions from D116\\\\n    deberta_preds = {qid: per_q[qid][\\\\\\\"deberta_pred\\\\\\\"] for qid in gt}\\\\n    deb_n = sum(1 for qid in gt if deberta_preds[qid] == gt[qid])\\\\n    print(f\\\\\\\"DeBERTa standalone: {deb_n}/{N} = {deb_n/N*100:.2f}%\\\\\\\")\\\\n    assert deb_n == 330, f\\\\\\\"DeBERTa standalone mismatch: {deb_n} != 330\\\\\\\"\\\\n\\\\n    # Run RoBERTa and BART\\\\n    all_preds = {\\\\\\\"deberta\\\\\\\": deberta_preds}\\\\n    for name, path in NLI_MODELS.items():\\\\n        preds = run_nli_inference(name, path, pw_data, device)\\\\n        n_correct = sum(1 for qid in gt \\\\n\\\\n... [截断: 输出过长，省略 5156 字符] ...\\\\n\\\\n \\\\\\\"bart\\\\\\\"]:\\\\n        for w in WEIGHTS:\\\\n            key = f\\\\\\\"{vname}_w{w}\\\\\\\"\\\\n            p = individual_results[vname][\\\\\\\"combos\\\\\\\"][f\\\\\\\"w{w}\\\\\\\"][\\\\\\\"mcnemar_p\\\\\\\"]\\\\n            all_tests.append((key, p))\\\\n    for w in WEIGHTS:\\\\n        all_tests.append((f\\\\\\\"ensemble_w{w}\\\\\\\", ensemble_combos[f\\\\\\\"w{w}\\\\\\\"][\\\\\\\"mcnemar_p\\\\\\\"]))\\\\n    for w in WEIGHTS:\\\\n        all_tests.append((f\\\\\\\"additive_w{w}\\\\\\\", additive_combos[f\\\\\\\"w{w}\\\\\\\"][\\\\\\\"mcnemar_p\\\\\\\"]))\\\\n\\\\n    m = len(all_tests)\\\\n    sorted_tests = sorted(enumerate(all_tests), key=lambda x: x[1][1])\\\\n    adjusted = [0.0] * m\\\\n    for rank_idx, (orig_idx, (label, p)) in enumerate(sorted_tests):\\\\n        rank = rank_idx + 1\\\\n        adj = min(p * m / rank, 1.0)\\\\n        adjusted[orig_idx] = adj\\\\n    # Step-up: ensure monotonicity\\\\n    for rank_idx in range(len(sorted_tests) - 2, -1, -1):\\\\n        orig_idx = sorted_tests[rank_idx][0]\\\\n        next_orig_idx = sorted_tests[rank_idx + 1][0]\\\\n        adjusted[orig_idx] = min(adjusted[orig_idx], adjusted[next_orig_idx])\\\\n\\\\n    bh_results = []\\\\n    for i, (label, raw_p) in enumerate(all_tests):\\\\n        sig = bool(adjusted[i] < 0.05)\\\\n        bh_results.append({\\\\\\\"label\\\\\\\": label, \\\\\\\"raw_p\\\\\\\": raw_p, \\\\\\\"bh_adjusted_p\\\\\\\": adjusted[i], \\\\\\\"significant\\\\\\\": sig})\\\\n        star = \\\\\\\"*\\\\\\\" if sig else \\\\\\\"\\\\\\\"\\\\n        print(f\\\\\\\"  {label}: raw={raw_p:.6f}, adj={adjusted[i]:.6f} {star}\\\\\\\")\\\\n    \\\\n    n_sig = sum(1 for r in bh_results if r[\\\\\\\"significant\\\\\\\"])\\\\n    print(f\\\\\\\"\\\\\\\\n  {n_sig}/{m} significant after BH correction (alpha=0.05)\\\\\\\")\\\\n\\\\n    # Agreement analysis\\\\n    print(\\\\\\\"\\\\\\\\n=== Inter-verifier Agreement ===\\\\\\\")\\\\n    agree_all = sum(1 for qid in gt if all_preds[\\\\\\\"deberta\\\\\\\"][qid] == all_preds[\\\\\\\"roberta\\\\\\\"][qid] == all_preds[\\\\\\\"bart\\\\\\\"][qid])\\\\n    agree_db_rb = sum(1 for qid in gt if all_preds[\\\\\\\"deberta\\\\\\\"][qid] == all_preds[\\\\\\\"roberta\\\\\\\"][qid])\\\\n    agree_db_bt = sum(1 for qid in gt if all_preds[\\\\\\\"deberta\\\\\\\"][qid] == all_preds[\\\\\\\"bart\\\\\\\"][qid])\\\\n    agree_rb_bt = sum(1 for qid in gt if all_preds[\\\\\\\"roberta\\\\\\\"][qid] == all_preds[\\\\\\\"bart\\\\\\\"][qid])\\\\n    print(f\\\\\\\"  All 3 agree: {agree_all}/{N} = {agree_all/N*100:.1f}%\\\\\\\")\\\\n    print(f\\\\\\\"  DeBERTa-RoBERTa: {agree_db_rb}/{N} = {agree_db_rb/N*100:.1f}%\\\\\\\")\\\\n    print(f\\\\\\\"  DeBERTa-BART: {agree_db_bt}/{N} = {agree_db_bt/N*100:.1f}%\\\\\\\")\\\\n    print(f\\\\\\\"  RoBERTa-BART: {agree_rb_bt}/{N} = {agree_rb_bt/N*100:.1f}%\\\\\\\")\\\\n\\\\n    # Build output\\\\n    output = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"r11_3verifier_canonical\\\\\\\",\\\\n        \\\\\\\"dataset\\\\\\\": \\\\\\\"ProofWriter-D5-OWA\\\\\\\",\\\\n        \\\\\\\"n\\\\\\\": N,\\\\n        \\\\\\\"sc_baseline\\\\\\\": {\\\\\\\"acc\\\\\\\": round(sc_n/N*100, 2), \\\\\\\"correct\\\\\\\": sc_n},\\\\n        \\\\\\\"combo_method\\\\\\\": \\\\\\\"hard-vote (add w to NLI predicted class) + alphabetical tiebreaking\\\\\\\",\\\\n        \\\\\\\"individual_verifiers\\\\\\\": individual_results,\\\\n        \\\\\\\"ensemble_majority\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"majority vote of 3 NLI predictions (alpha tiebreak), then hard-vote combo with SC\\\\\\\",\\\\n            \\\\\\\"standalone_acc\\\\\\\": round(ens_standalone/N*100, 2),\\\\n            \\\\\\\"standalone_correct\\\\\\\": ens_standalone,\\\\n            \\\\\\\"combos\\\\\\\": ensemble_combos,\\\\n        },\\\\n        \\\\\\\"additive_3verifier\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"each of 3 verifiers adds w votes to their predicted class\\\\\\\",\\\\n            \\\\\\\"combos\\\\\\\": additive_combos,\\\\n        },\\\\n        \\\\\\\"bh_correction\\\\\\\": {\\\\n            \\\\\\\"n_tests\\\\\\\": m,\\\\n            \\\\\\\"alpha\\\\\\\": 0.05,\\\\n            \\\\\\\"n_significant\\\\\\\": n_sig,\\\\n            \\\\\\\"tests\\\\\\\": bh_results,\\\\n        },\\\\n        \\\\\\\"agreement\\\\\\\": {\\\\n            \\\\\\\"all_3\\\\\\\": agree_all,\\\\n            \\\\\\\"deberta_roberta\\\\\\\": agree_db_rb,\\\\n            \\\\\\\"deberta_bart\\\\\\\": agree_db_bt,\\\\n            \\\\\\\"roberta_bart\\\\\\\": agree_rb_bt,\\\\n        },\\\\n        \\\\\\\"per_question_preds\\\\\\\": {\\\\n            qid: {\\\\n                \\\\\\\"gold\\\\\\\": gt[qid],\\\\n                \\\\\\\"sc_answer\\\\\\\": sc_answers[qid],\\\\n                \\\\\\\"deberta\\\\\\\": all_preds[\\\\\\\"deberta\\\\\\\"][qid],\\\\n                \\\\\\\"roberta\\\\\\\": all_preds[\\\\\\\"roberta\\\\\\\"][qid],\\\\n                \\\\\\\"bart\\\\\\\": all_preds[\\\\\\\"bart\\\\\\\"][qid],\\\\n                \\\\\\\"ensemble\\\\\\\": ensemble_preds[qid],\\\\n            }\\\\n            for qid in gt\\\\n        },\\\\n    }\\\\n\\\\n    out_path = \\\\\\\"/root/symb_invariant_consensus/results/r11_3verifier_canonical.json\\\\\\\"\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {out_path}\\\\\\\")\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "f6f6fa06-b52a-402d-b088-a16b39df2d9a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"R11 Q3: 3-verifier canonical analysis.\\\\nHard-vote combo + alphabetical tiebreaking.\\\\nDeBERTa from D116. RoBERTa/BART inferred here. SC from mistral_pw600_sc_votes.json (ID-fixed).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, time, torch\\\\nfrom collections import Counter\\\\nfrom scipy.stats import binomtest\\\\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\\\\n\\\\nPW_PATH = \\\\\\\"/root/symb_invariant_consensus/data/proofwriter_full.json\\\\\\\"\\\\nSC_PATH = \\\\\\\"/root/symb_invariant_consensus/data/mistral_pw600_sc_votes.json\\\\\\\"\\\\nD116_PATH = \\\\\\\"/root/symb_invariant_consensus/results/d116_qwen3_pw_deberta_large/results.json\\\\\\\"\\\\nCLASSES = [\\\\\\\"True\\\\\\\", \\\\\\\"False\\\\\\\", \\\\\\\"Unknown\\\\\\\"]\\\\nWEIGHTS = [1, 3, 5]\\\\n\\\\nID_FIX = {\\\\n    \\\\\\\"ProofWriter_AttNeg-OWA-D5-1176_Q4\\\\\\\": \\\\\\\"ProofWriter_AttNeg-OWA-D5-1176_Q8\\\\\\\",\\\\n    \\\\\\\"ProofWriter_AttNoneg-OWA-D5-1284_Q4\\\\\\\": \\\\\\\"ProofWriter_AttNoneg-OWA-D5-1284_Q8\\\\\\\",\\\\n}\\\\n\\\\nNLI_MODELS = {\\\\n    \\\\\\\"roberta\\\\\\\": \\\\\\\"/root/autodl-tmp/models/roberta-large-mnli\\\\\\\",\\\\n    \\\\\\\"bart\\\\\\\": \\\\\\\"/root/autodl-tmp/models/bart-large-mnli\\\\\\\",\\\\n}\\\\n\\\\ndef parse_problem(text):\\\\n    marker = \\\\\\\"\\\\\\\\n\\\\\\\\nDetermine whether the following statement is true, false, or unknown:\\\\\\\\n\\\\\\\"\\\\n    if marker in text:\\\\n        parts = text.split(marker, 1)\\\\n        return parts[0].strip(), parts[1].strip()\\\\n    return text, \\\\\\\"\\\\\\\"\\\\n\\\\ndef map_nli(label):\\\\n    lu = label.upper()\\\\n    if \\\\\\\"ENTAIL\\\\\\\" in lu: return \\\\\\\"True\\\\\\\"\\\\n    if \\\\\\\"CONTRA\\\\\\\" in lu: return \\\\\\\"False\\\\\\\"\\\\n    return \\\\\\\"Unknown\\\\\\\"\\\\n\\\\ndef alpha_winner(score_dict):\\\\n    mx = max(score_dict.values())\\\\n    tied = sorted(c for c in CLASSES if score_dict.get(c, 0) == mx)\\\\n    return tied[0]\\\\n\\\\ndef run_nli_inference(model_name, hf_path, pw_data, device):\\\\n    print(f\\\\\\\"\\\\\\\\nLoading {model_name}: {hf_path}\\\\\\\")\\\\n    tok = AutoTokenizer.from_pretrained(hf_path)\\\\n    mdl = AutoModelForSequenceClassification.from_pretrained(hf_path).to(device).eval()\\\\n    id2label = mdl.config.id2label\\\\n    nli_map = {idx: map_nli(lbl) for idx, lbl in id2label.items()}\\\\n    print(f\\\\\\\"  id2label: {id2label}, nli_map: {nli_map}\\\\\\\")\\\\n\\\\n    preds = {}\\\\n    t0 = time.time()\\\\n    for i, q in enumerate(pw_data):\\\\n        qid = q[\\\\\\\"id\\\\\\\"]\\\\n        premises, conclusion = parse_problem(q[\\\\\\\"problem\\\\\\\"])\\\\n        if not conclusion:\\\\n            preds[qid] = \\\\\\\"Unknown\\\\\\\"\\\\n            continue\\\\n        inp = tok(premises, conclusion, return_tensors=\\\\\\\"pt\\\\\\\", truncation=True, max_length=512).to(device)\\\\n        with torch.no_grad():\\\\n            logits = mdl(**inp).logits\\\\n        pred_idx = logits.argmax(dim=-1).item()\\\\n        preds[qid] = nli_map[pred_idx]\\\\n        if (i+1) % 100 == 0:\\\\n            print(f\\\\\\\"  {i+1}/{len(pw_data)} ({time.time()-t0:.0f}s)\\\\\\\")\\\\n    \\\\n    print(f\\\\\\\"  Done: {time.time()-t0:.1f}s\\\\\\\")\\\\n    del mdl\\\\n    torch.cuda.empty_cache()\\\\n    return preds\\\\n\\\\ndef main():\\\\n    device = \\\\\\\"cuda\\\\\\\" if torch.cuda.is_available() else \\\\\\\"cpu\\\\\\\"\\\\n    print(f\\\\\\\"Device: {device}\\\\\\\")\\\\n\\\\n    with open(PW_PATH) as f: pw_data = json.load(f)\\\\n    with open(SC_PATH) as f: sc_raw = json.load(f)\\\\n    with open(D116_PATH) as f: d116 = json.load(f)\\\\n\\\\n    gt = {q[\\\\\\\"id\\\\\\\"]: q[\\\\\\\"answer\\\\\\\"] for q in pw_data}\\\\n    sc_votes = {ID_FIX.get(k, k): v for k, v in sc_raw.items()}\\\\n    per_q = d116[\\\\\\\"per_question\\\\\\\"]\\\\n    N = len(gt)\\\\n    assert len(set(gt.keys()) & set(sc_votes.keys())) == 600, \\\\\\\"ID mismatch\\\\\\\"\\\\n\\\\n    # SC baseline\\\\n    sc_answers = {}\\\\n    for qid in gt:\\\\n        v = sc_votes[qid]\\\\n        vd = dict(zip(CLASSES, v))\\\\n        sc_answers[qid] = alpha_winner(vd)\\\\n    sc_n = sum(1 for qid in gt if sc_answers[qid] == gt[qid])\\\\n    print(f\\\\\\\"SC baseline: {sc_n}/{N} = {sc_n/N*100:.2f}%\\\\\\\")\\\\n    assert sc_n == 236, f\\\\\\\"SC baseline mismatch: {sc_n} != 236\\\\\\\"\\\\n\\\\n    # DeBERTa predictions from D116\\\\n    deberta_preds = {qid: per_q[qid][\\\\\\\"deberta_pred\\\\\\\"] for qid in gt}\\\\n    deb_n = sum(1 for qid in gt if deberta_preds[qid] == gt[qid])\\\\n    print(f\\\\\\\"DeBERTa standalone: {deb_n}/{N} = {deb_n/N*100:.2f}%\\\\\\\")\\\\n    assert deb_n == 330, f\\\\\\\"DeBERTa standalone mismatch: {deb_n} != 330\\\\\\\"\\\\n\\\\n    # Run RoBERTa and BART\\\\n    all_preds = {\\\\\\\"deberta\\\\\\\": deberta_preds}\\\\n    for name, path in NLI_MODELS.items():\\\\n        preds = run_nli_inference(name, path, pw_data, device)\\\\n        n_correct = sum(1 for qid in gt \\\\n\\\\n... [截断: 输出过长，省略 5156 字符] ...\\\\n\\\\n \\\\\\\"bart\\\\\\\"]:\\\\n        for w in WEIGHTS:\\\\n            key = f\\\\\\\"{vname}_w{w}\\\\\\\"\\\\n            p = individual_results[vname][\\\\\\\"combos\\\\\\\"][f\\\\\\\"w{w}\\\\\\\"][\\\\\\\"mcnemar_p\\\\\\\"]\\\\n            all_tests.append((key, p))\\\\n    for w in WEIGHTS:\\\\n        all_tests.append((f\\\\\\\"ensemble_w{w}\\\\\\\", ensemble_combos[f\\\\\\\"w{w}\\\\\\\"][\\\\\\\"mcnemar_p\\\\\\\"]))\\\\n    for w in WEIGHTS:\\\\n        all_tests.append((f\\\\\\\"additive_w{w}\\\\\\\", additive_combos[f\\\\\\\"w{w}\\\\\\\"][\\\\\\\"mcnemar_p\\\\\\\"]))\\\\n\\\\n    m = len(all_tests)\\\\n    sorted_tests = sorted(enumerate(all_tests), key=lambda x: x[1][1])\\\\n    adjusted = [0.0] * m\\\\n    for rank_idx, (orig_idx, (label, p)) in enumerate(sorted_tests):\\\\n        rank = rank_idx + 1\\\\n        adj = min(p * m / rank, 1.0)\\\\n        adjusted[orig_idx] = adj\\\\n    # Step-up: ensure monotonicity\\\\n    for rank_idx in range(len(sorted_tests) - 2, -1, -1):\\\\n        orig_idx = sorted_tests[rank_idx][0]\\\\n        next_orig_idx = sorted_tests[rank_idx + 1][0]\\\\n        adjusted[orig_idx] = min(adjusted[orig_idx], adjusted[next_orig_idx])\\\\n\\\\n    bh_results = []\\\\n    for i, (label, raw_p) in enumerate(all_tests):\\\\n        sig = bool(adjusted[i] < 0.05)\\\\n        bh_results.append({\\\\\\\"label\\\\\\\": label, \\\\\\\"raw_p\\\\\\\": raw_p, \\\\\\\"bh_adjusted_p\\\\\\\": adjusted[i], \\\\\\\"significant\\\\\\\": sig})\\\\n        star = \\\\\\\"*\\\\\\\" if sig else \\\\\\\"\\\\\\\"\\\\n        print(f\\\\\\\"  {label}: raw={raw_p:.6f}, adj={adjusted[i]:.6f} {star}\\\\\\\")\\\\n    \\\\n    n_sig = sum(1 for r in bh_results if r[\\\\\\\"significant\\\\\\\"])\\\\n    print(f\\\\\\\"\\\\\\\\n  {n_sig}/{m} significant after BH correction (alpha=0.05)\\\\\\\")\\\\n\\\\n    # Agreement analysis\\\\n    print(\\\\\\\"\\\\\\\\n=== Inter-verifier Agreement ===\\\\\\\")\\\\n    agree_all = sum(1 for qid in gt if all_preds[\\\\\\\"deberta\\\\\\\"][qid] == all_preds[\\\\\\\"roberta\\\\\\\"][qid] == all_preds[\\\\\\\"bart\\\\\\\"][qid])\\\\n    agree_db_rb = sum(1 for qid in gt if all_preds[\\\\\\\"deberta\\\\\\\"][qid] == all_preds[\\\\\\\"roberta\\\\\\\"][qid])\\\\n    agree_db_bt = sum(1 for qid in gt if all_preds[\\\\\\\"deberta\\\\\\\"][qid] == all_preds[\\\\\\\"bart\\\\\\\"][qid])\\\\n    agree_rb_bt = sum(1 for qid in gt if all_preds[\\\\\\\"roberta\\\\\\\"][qid] == all_preds[\\\\\\\"bart\\\\\\\"][qid])\\\\n    print(f\\\\\\\"  All 3 agree: {agree_all}/{N} = {agree_all/N*100:.1f}%\\\\\\\")\\\\n    print(f\\\\\\\"  DeBERTa-RoBERTa: {agree_db_rb}/{N} = {agree_db_rb/N*100:.1f}%\\\\\\\")\\\\n    print(f\\\\\\\"  DeBERTa-BART: {agree_db_bt}/{N} = {agree_db_bt/N*100:.1f}%\\\\\\\")\\\\n    print(f\\\\\\\"  RoBERTa-BART: {agree_rb_bt}/{N} = {agree_rb_bt/N*100:.1f}%\\\\\\\")\\\\n\\\\n    # Build output\\\\n    output = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"r11_3verifier_canonical\\\\\\\",\\\\n        \\\\\\\"dataset\\\\\\\": \\\\\\\"ProofWriter-D5-OWA\\\\\\\",\\\\n        \\\\\\\"n\\\\\\\": N,\\\\n        \\\\\\\"sc_baseline\\\\\\\": {\\\\\\\"acc\\\\\\\": round(sc_n/N*100, 2), \\\\\\\"correct\\\\\\\": sc_n},\\\\n        \\\\\\\"combo_method\\\\\\\": \\\\\\\"hard-vote (add w to NLI predicted class) + alphabetical tiebreaking\\\\\\\",\\\\n        \\\\\\\"individual_verifiers\\\\\\\": individual_results,\\\\n        \\\\\\\"ensemble_majority\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"majority vote of 3 NLI predictions (alpha tiebreak), then hard-vote combo with SC\\\\\\\",\\\\n            \\\\\\\"standalone_acc\\\\\\\": round(ens_standalone/N*100, 2),\\\\n            \\\\\\\"standalone_correct\\\\\\\": ens_standalone,\\\\n            \\\\\\\"combos\\\\\\\": ensemble_combos,\\\\n        },\\\\n        \\\\\\\"additive_3verifier\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"each of 3 verifiers adds w votes to their predicted class\\\\\\\",\\\\n            \\\\\\\"combos\\\\\\\": additive_combos,\\\\n        },\\\\n        \\\\\\\"bh_correction\\\\\\\": {\\\\n            \\\\\\\"n_tests\\\\\\\": m,\\\\n            \\\\\\\"alpha\\\\\\\": 0.05,\\\\n            \\\\\\\"n_significant\\\\\\\": n_sig,\\\\n            \\\\\\\"tests\\\\\\\": bh_results,\\\\n        },\\\\n        \\\\\\\"agreement\\\\\\\": {\\\\n            \\\\\\\"all_3\\\\\\\": agree_all,\\\\n            \\\\\\\"deberta_roberta\\\\\\\": agree_db_rb,\\\\n            \\\\\\\"deberta_bart\\\\\\\": agree_db_bt,\\\\n            \\\\\\\"roberta_bart\\\\\\\": agree_rb_bt,\\\\n        },\\\\n        \\\\\\\"per_question_preds\\\\\\\": {\\\\n            qid: {\\\\n                \\\\\\\"gold\\\\\\\": gt[qid],\\\\n                \\\\\\\"sc_answer\\\\\\\": sc_answers[qid],\\\\n                \\\\\\\"deberta\\\\\\\": all_preds[\\\\\\\"deberta\\\\\\\"][qid],\\\\n                \\\\\\\"roberta\\\\\\\": all_preds[\\\\\\\"roberta\\\\\\\"][qid],\\\\n                \\\\\\\"bart\\\\\\\": all_preds[\\\\\\\"bart\\\\\\\"][qid],\\\\n                \\\\\\\"ensemble\\\\\\\": ensemble_preds[qid],\\\\n            }\\\\n            for qid in gt\\\\n        },\\\\n    }\\\\n\\\\n    out_path = \\\\\\\"/root/symb_invariant_consensus/results/r11_3verifier_canonical.json\\\\\\\"\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {out_path}\\\\\\\")\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"R11 Q3: 3-verifier canonical analysis.\\nHard-vote combo + alphabetical tiebreaking.\\nDeBERTa from D116. RoBERTa/BART inferred here. SC from mistral_pw600_sc_votes.json (ID-fixed).\\n\\\"\\\"\\\"\\nimport json, time, torch\\nfrom collections import Counter\\nfrom scipy.stats import binomtest\\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\\n\\nPW_PATH = \\\"/root/symb_invariant_consensus/data/proofwriter_full.json\\\"\\nSC_PATH = \\\"/root/symb_invariant_consensus/data/mistral_pw600_sc_votes.json\\\"\\nD116_PATH = \\\"/root/symb_invariant_consensus/results/d116_qwen3_pw_deberta_large/results.json\\\"\\nCLASSES = [\\\"True\\\", \\\"False\\\", \\\"Unknown\\\"]\\nWEIGHTS = [1, 3, 5]\\n\\nID_FIX = {\\n    \\\"ProofWriter_AttNeg-OWA-D5-1176_Q4\\\": \\\"ProofWriter_AttNeg-OWA-D5-1176_Q8\\\",\\n    \\\"ProofWriter_AttNoneg-OWA-D5-1284_Q4\\\": \\\"ProofWriter_AttNoneg-OWA-D5-1284_Q8\\\",\\n}\\n\\nNLI_MODELS = {\\n    \\\"roberta\\\": \\\"/root/autodl-tmp/models/roberta-large-mnli\\\",\\n    \\\"bart\\\": \\\"/root/autodl-tmp/models/bart-large-mnli\\\",\\n}\\n\\ndef parse_problem(text):\\n    marker = \\\"\\\\n\\\\nDetermine whether the following statement is true, false, or unknown:\\\\n\\\"\\n    if marker in text:\\n        parts = text.split(marker, 1)\\n        return parts[0].strip(), parts[1].strip()\\n    return text, \\\"\\\"\\n\\ndef map_nli(label):\\n    lu = label.upper()\\n    if \\\"ENTAIL\\\" in lu: return \\\"True\\\"\\n    if \\\"CONTRA\\\" in lu: return \\\"False\\\"\\n    return \\\"Unknown\\\"\\n\\ndef alpha_winner(score_dict):\\n    mx = max(score_dict.values())\\n    tied = sorted(c for c in CLASSES if score_dict.get(c, 0) == mx)\\n    return tied[0]\\n\\ndef run_nli_inference(model_name, hf_path, pw_data, device):\\n    print(f\\\"\\\\nLoading {model_name}: {hf_path}\\\")\\n    tok = AutoTokenizer.from_pretrained(hf_path)\\n    mdl = AutoModelForSequenceClassification.from_pretrained(hf_path).to(device).eval()\\n    id2label = mdl.config.id2label\\n    nli_map = {idx: map_nli(lbl) for idx, lbl in id2label.items()}\\n    print(f\\\"  id2label: {id2label}, nli_map: {nli_map}\\\")\\n\\n    preds = {}\\n    t0 = time.time()\\n    for i, q in enumerate(pw_data):\\n        qid = q[\\\"id\\\"]\\n        premises, conclusion = parse_problem(q[\\\"problem\\\"])\\n        if not conclusion:\\n            preds[qid] = \\\"Unknown\\\"\\n            continue\\n        inp = tok(premises, conclusion, return_tensors=\\\"pt\\\", truncation=True, max_length=512).to(device)\\n        with torch.no_grad():\\n            logits = mdl(**inp).logits\\n        pred_idx = logits.argmax(dim=-1).item()\\n        preds[qid] = nli_map[pred_idx]\\n        if (i+1) % 100 == 0:\\n            print(f\\\"  {i+1}/{len(pw_data)} ({time.time()-t0:.0f}s)\\\")\\n    \\n    print(f\\\"  Done: {time.time()-t0:.1f}s\\\")\\n    del mdl\\n    torch.cuda.empty_cache()\\n    return preds\\n\\ndef main():\\n    device = \\\"cuda\\\" if torch.cuda.is_available() else \\\"cpu\\\"\\n    print(f\\\"Device: {device}\\\")\\n\\n    with open(PW_PATH) as f: pw_data = json.load(f)\\n    with open(SC_PATH) as f: sc_raw = json.load(f)\\n    with open(D116_PATH) as f: d116 = json.load(f)\\n\\n    gt = {q[\\\"id\\\"]: q[\\\"answer\\\"] for q in pw_data}\\n    sc_votes = {ID_FIX.get(k, k): v for k, v in sc_raw.items()}\\n    per_q = d116[\\\"per_question\\\"]\\n    N = len(gt)\\n    assert len(set(gt.keys()) & set(sc_votes.keys())) == 600, \\\"ID mismatch\\\"\\n\\n    # SC baseline\\n    sc_answers = {}\\n    for qid in gt:\\n        v = sc_votes[qid]\\n        vd = dict(zip(CLASSES, v))\\n        sc_answers[qid] = alpha_winner(vd)\\n    sc_n = sum(1 for qid in gt if sc_answers[qid] == gt[qid])\\n    print(f\\\"SC baseline: {sc_n}/{N} = {sc_n/N*100:.2f}%\\\")\\n    assert sc_n == 236, f\\\"SC baseline mismatch: {sc_n} != 236\\\"\\n\\n    # DeBERTa predictions from D116\\n    deberta_preds = {qid: per_q[qid][\\\"deberta_pred\\\"] for qid in gt}\\n    deb_n = sum(1 for qid in gt if deberta_preds[qid] == gt[qid])\\n    print(f\\\"DeBERTa standalone: {deb_n}/{N} = {deb_n/N*100:.2f}%\\\")\\n    assert deb_n == 330, f\\\"DeBERTa standalone mismatch: {deb_n} != 330\\\"\\n\\n    # Run RoBERTa and BART\\n    all_preds = {\\\"deberta\\\": deberta_preds}\\n    for name, path in NLI_MODELS.items():\\n        preds = run_nli_inference(name, path, pw_data, device)\\n        n_correct = sum(1 for qid in gt \\n\\n... [截断: 输出过长，省略 5156 字符] ...\\n\\n \\\"bart\\\"]:\\n        for w in WEIGHTS:\\n            key = f\\\"{vname}_w{w}\\\"\\n            p = individual_results[vname][\\\"combos\\\"][f\\\"w{w}\\\"][\\\"mcnemar_p\\\"]\\n            all_tests.append((key, p))\\n    for w in WEIGHTS:\\n        all_tests.append((f\\\"ensemble_w{w}\\\", ensemble_combos[f\\\"w{w}\\\"][\\\"mcnemar_p\\\"]))\\n    for w in WEIGHTS:\\n        all_tests.append((f\\\"additive_w{w}\\\", additive_combos[f\\\"w{w}\\\"][\\\"mcnemar_p\\\"]))\\n\\n    m = len(all_tests)\\n    sorted_tests = sorted(enumerate(all_tests), key=lambda x: x[1][1])\\n    adjusted = [0.0] * m\\n    for rank_idx, (orig_idx, (label, p)) in enumerate(sorted_tests):\\n        rank = rank_idx + 1\\n        adj = min(p * m / rank, 1.0)\\n        adjusted[orig_idx] = adj\\n    # Step-up: ensure monotonicity\\n    for rank_idx in range(len(sorted_tests) - 2, -1, -1):\\n        orig_idx = sorted_tests[rank_idx][0]\\n        next_orig_idx = sorted_tests[rank_idx + 1][0]\\n        adjusted[orig_idx] = min(adjusted[orig_idx], adjusted[next_orig_idx])\\n\\n    bh_results = []\\n    for i, (label, raw_p) in enumerate(all_tests):\\n        sig = bool(adjusted[i] < 0.05)\\n        bh_results.append({\\\"label\\\": label, \\\"raw_p\\\": raw_p, \\\"bh_adjusted_p\\\": adjusted[i], \\\"significant\\\": sig})\\n        star = \\\"*\\\" if sig else \\\"\\\"\\n        print(f\\\"  {label}: raw={raw_p:.6f}, adj={adjusted[i]:.6f} {star}\\\")\\n    \\n    n_sig = sum(1 for r in bh_results if r[\\\"significant\\\"])\\n    print(f\\\"\\\\n  {n_sig}/{m} significant after BH correction (alpha=0.05)\\\")\\n\\n    # Agreement analysis\\n    print(\\\"\\\\n=== Inter-verifier Agreement ===\\\")\\n    agree_all = sum(1 for qid in gt if all_preds[\\\"deberta\\\"][qid] == all_preds[\\\"roberta\\\"][qid] == all_preds[\\\"bart\\\"][qid])\\n    agree_db_rb = sum(1 for qid in gt if all_preds[\\\"deberta\\\"][qid] == all_preds[\\\"roberta\\\"][qid])\\n    agree_db_bt = sum(1 for qid in gt if all_preds[\\\"deberta\\\"][qid] == all_preds[\\\"bart\\\"][qid])\\n    agree_rb_bt = sum(1 for qid in gt if all_preds[\\\"roberta\\\"][qid] == all_preds[\\\"bart\\\"][qid])\\n    print(f\\\"  All 3 agree: {agree_all}/{N} = {agree_all/N*100:.1f}%\\\")\\n    print(f\\\"  DeBERTa-RoBERTa: {agree_db_rb}/{N} = {agree_db_rb/N*100:.1f}%\\\")\\n    print(f\\\"  DeBERTa-BART: {agree_db_bt}/{N} = {agree_db_bt/N*100:.1f}%\\\")\\n    print(f\\\"  RoBERTa-BART: {agree_rb_bt}/{N} = {agree_rb_bt/N*100:.1f}%\\\")\\n\\n    # Build output\\n    output = {\\n        \\\"experiment\\\": \\\"r11_3verifier_canonical\\\",\\n        \\\"dataset\\\": \\\"ProofWriter-D5-OWA\\\",\\n        \\\"n\\\": N,\\n        \\\"sc_baseline\\\": {\\\"acc\\\": round(sc_n/N*100, 2), \\\"correct\\\": sc_n},\\n        \\\"combo_method\\\": \\\"hard-vote (add w to NLI predicted class) + alphabetical tiebreaking\\\",\\n        \\\"individual_verifiers\\\": individual_results,\\n        \\\"ensemble_majority\\\": {\\n            \\\"method\\\": \\\"majority vote of 3 NLI predictions (alpha tiebreak), then hard-vote combo with SC\\\",\\n            \\\"standalone_acc\\\": round(ens_standalone/N*100, 2),\\n            \\\"standalone_correct\\\": ens_standalone,\\n            \\\"combos\\\": ensemble_combos,\\n        },\\n        \\\"additive_3verifier\\\": {\\n            \\\"method\\\": \\\"each of 3 verifiers adds w votes to their predicted class\\\",\\n            \\\"combos\\\": additive_combos,\\n        },\\n        \\\"bh_correction\\\": {\\n            \\\"n_tests\\\": m,\\n            \\\"alpha\\\": 0.05,\\n            \\\"n_significant\\\": n_sig,\\n            \\\"tests\\\": bh_results,\\n        },\\n        \\\"agreement\\\": {\\n            \\\"all_3\\\": agree_all,\\n            \\\"deberta_roberta\\\": agree_db_rb,\\n            \\\"deberta_bart\\\": agree_db_bt,\\n            \\\"roberta_bart\\\": agree_rb_bt,\\n        },\\n        \\\"per_question_preds\\\": {\\n            qid: {\\n                \\\"gold\\\": gt[qid],\\n                \\\"sc_answer\\\": sc_answers[qid],\\n                \\\"deberta\\\": all_preds[\\\"deberta\\\"][qid],\\n                \\\"roberta\\\": all_preds[\\\"roberta\\\"][qid],\\n                \\\"bart\\\": all_preds[\\\"bart\\\"][qid],\\n                \\\"ensemble\\\": ensemble_preds[qid],\\n            }\\n            for qid in gt\\n        },\\n    }\\n\\n    out_path = \\\"/root/symb_invariant_consensus/results/r11_3verifier_canonical.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+              }
+            }
+          },
+          "id": "event-000565"
+        },
+        {
+          "source_line": 566,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me register the artifact."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "257a10ba-891a-4057-877f-78b6437ba1d9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012ecdUpeWbLtLNtVJMAw7Nv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3952,
+                "cache_read_input_tokens": 104681,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3952
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000566"
+        },
+        {
+          "source_line": 567,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L1FqCQMtJGtBWKrEcEq7cG",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "89cfb463-048b-489b-9a85-6b6ca0e7513b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012ecdUpeWbLtLNtVJMAw7Nv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3952,
+                "cache_read_input_tokens": 104681,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3952
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000567"
+        },
+        {
+          "source_line": 568,
+          "timestamp": "2026-05-21T12:27:03.027Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01L1FqCQMtJGtBWKrEcEq7cG",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "2feb7baa-b56f-4dbc-a8fd-86802a494dc5",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000568"
+        },
+        {
+          "source_line": 569,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013dc2ezoErvkYg5KUCNSjWx",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "r11_3verifier_canonical",
+                "type": "data",
+                "description": "R11 Q3: 3-verifier (DeBERTa/RoBERTa/BART) canonical analysis on ProofWriter-D5 × Mistral-7B SC. Hard-vote combo + alphabetical tiebreaking. Individual combos, ensemble majority, additive 3-verifier, McNemar tests, BH correction (10/15 significant). DeBERTa w3 = +6.67pp (p=1.13e-05) matches paper canonical.",
+                "project": "symb_invariant_consensus",
+                "exp_id": "r11",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/r11_3verifier_canonical.json",
+                "tags": [
+                  "r11",
+                  "nli-verifier",
+                  "3-verifier",
+                  "bh-correction",
+                  "mcnemar",
+                  "proofwriter",
+                  "canonical"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "43b9b3f0-6e8d-4be2-b5ab-4b38ce387b6b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NcW5VifyGR3GFsDLJpKAYR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 720,
+                "cache_read_input_tokens": 108633,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 720
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000569"
+        },
+        {
+          "source_line": 570,
+          "timestamp": "2026-05-21T12:27:12.196Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013dc2ezoErvkYg5KUCNSjWx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_0c36fe\\\", \\\"name\\\": \\\"r11_3verifier_canonical\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"R11 Q3: 3-verifier (DeBERTa/RoBERTa/BART) canonical analysis on ProofWriter-D5 × Mistral-7B SC. Hard-vote combo + alphabetical tiebreaking. Individual combos, ensemble majority, additive 3-verifier, McNemar tests, BH correction (10/15 significant). DeBERTa w3 = +6.67pp (p=1.13e-05) matches paper canonical.\\\", \\\"path\\\": \\\"projects/symb_invariant_consensus/artifacts/r11/data/r11_3verifier_canonical.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"exp_id\\\": \\\"r11\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T12:27:11.937251+00:00\\\", \\\"tags\\\": [\\\"r11\\\", \\\"nli-verifier\\\", \\\"3-verifier\\\", \\\"bh-correction\\\", \\\"mcnemar\\\", \\\"proofwriter\\\", \\\"canonical\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "c6bd6748-3813-419f-a108-8c9a245870e0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_0c36fe\\\", \\\"name\\\": \\\"r11_3verifier_canonical\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"R11 Q3: 3-verifier (DeBERTa/RoBERTa/BART) canonical analysis on ProofWriter-D5 × Mistral-7B SC. Hard-vote combo + alphabetical tiebreaking. Individual combos, ensemble majority, additive 3-verifier, McNemar tests, BH correction (10/15 significant). DeBERTa w3 = +6.67pp (p=1.13e-05) matches paper canonical.\\\", \\\"path\\\": \\\"projects/symb_invariant_consensus/artifacts/r11/data/r11_3verifier_canonical.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"exp_id\\\": \\\"r11\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T12:27:11.937251+00:00\\\", \\\"tags\\\": [\\\"r11\\\", \\\"nli-verifier\\\", \\\"3-verifier\\\", \\\"bh-correction\\\", \\\"mcnemar\\\", \\\"proofwriter\\\", \\\"canonical\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_0c36fe\", \"name\": \"r11_3verifier_canonical\", \"type\": \"data\", \"description\": \"R11 Q3: 3-verifier (DeBERTa/RoBERTa/BART) canonical analysis on ProofWriter-D5 × Mistral-7B SC. Hard-vote combo + alphabetical tiebreaking. Individual combos, ensemble majority, additive 3-verifier, McNemar tests, BH correction (10/15 significant). DeBERTa w3 = +6.67pp (p=1.13e-05) matches paper canonical.\", \"path\": \"projects/symb_invariant_consensus/artifacts/r11/data/r11_3verifier_canonical.json\", \"url\": null, \"project\": \"symb_invariant_consensus\", \"exp_id\": \"r11\", \"skill\": \"\", \"created_at\": \"2026-05-21T12:27:11.937251+00:00\", \"tags\": [\"r11\", \"nli-verifier\", \"3-verifier\", \"bh-correction\", \"mcnemar\", \"proofwriter\", \"canonical\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000570"
+        },
+        {
+          "source_line": 571,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YNwBi7jASGkBi6HBnEogCf",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Verify DeBERTa hard-vote combo matches canonical (276/600 w3)",
+                    "status": "completed",
+                    "activeForm": "Verified DeBERTa hard-vote combo matches canonical"
+                  },
+                  {
+                    "content": "Run RoBERTa & BART inference on server, verify standalone accuracy against canonical",
+                    "status": "completed",
+                    "activeForm": "Running RoBERTa & BART NLI inference on server"
+                  },
+                  {
+                    "content": "Compute all individual + ensemble combos with hard-vote + alpha tiebreaking",
+                    "status": "completed",
+                    "activeForm": "Computing individual and ensemble combos"
+                  },
+                  {
+                    "content": "McNemar tests + BH correction across all p-values",
+                    "status": "completed",
+                    "activeForm": "Computing McNemar tests and BH correction"
+                  },
+                  {
+                    "content": "Save JSON artifact and register",
+                    "status": "completed",
+                    "activeForm": "Saving and registering artifact"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "65a02842-a205-40c7-914a-7328685d379f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0135kLog1WhSxkEv7zJsgubv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 772,
+                "cache_read_input_tokens": 109353,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 772
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000571"
+        },
+        {
+          "source_line": 572,
+          "timestamp": "2026-05-21T12:27:19.876Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YNwBi7jASGkBi6HBnEogCf",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "75b37a10-f463-4a70-870b-989a6b431801",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "Verify DeBERTa hard-vote combo matches canonical (276/600 w3)",
+                  "status": "completed",
+                  "activeForm": "Verified DeBERTa hard-vote combo matches canonical"
+                },
+                {
+                  "content": "Run RoBERTa & BART inference on server, verify standalone accuracy against canonical",
+                  "status": "in_progress",
+                  "activeForm": "Running RoBERTa & BART NLI inference on server"
+                },
+                {
+                  "content": "Compute all individual + ensemble combos with hard-vote + alpha tiebreaking",
+                  "status": "pending",
+                  "activeForm": "Computing individual and ensemble combos"
+                },
+                {
+                  "content": "McNemar tests + BH correction across all p-values",
+                  "status": "pending",
+                  "activeForm": "Computing McNemar tests and BH correction"
+                },
+                {
+                  "content": "Save JSON artifact and register",
+                  "status": "pending",
+                  "activeForm": "Saving and registering artifact"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Verify DeBERTa hard-vote combo matches canonical (276/600 w3)",
+                  "status": "completed",
+                  "activeForm": "Verified DeBERTa hard-vote combo matches canonical"
+                },
+                {
+                  "content": "Run RoBERTa & BART inference on server, verify standalone accuracy against canonical",
+                  "status": "completed",
+                  "activeForm": "Running RoBERTa & BART NLI inference on server"
+                },
+                {
+                  "content": "Compute all individual + ensemble combos with hard-vote + alpha tiebreaking",
+                  "status": "completed",
+                  "activeForm": "Computing individual and ensemble combos"
+                },
+                {
+                  "content": "McNemar tests + BH correction across all p-values",
+                  "status": "completed",
+                  "activeForm": "Computing McNemar tests and BH correction"
+                },
+                {
+                  "content": "Save JSON artifact and register",
+                  "status": "completed",
+                  "activeForm": "Saving and registering artifact"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000572"
+        },
+        {
+          "source_line": 573,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Results saved to `artifacts/r11_3verifier_canonical.json` and registered as `art_20260521_0c36fe`.\n\n**Key results summary:**\n\n| Verifier | Standalone | w=1 | w=3 | w=5 |\n|----------|-----------|-----|-----|-----|\n| DeBERTa-L | 55.00% | +0.83pp | **+6.67pp** (p=1.1e-5) | **+11.00pp** (p=6.2e-7) |\n| RoBERTa-L | 37.67% | -0.17pp | **+4.17pp** (p=0.003) | +4.33pp (p=0.037) |\n| BART-L | 46.17% | 0.00pp | **+5.17pp** (p=2.4e-4) | **+6.33pp** (p=0.003) |\n| Ensemble (maj) | 48.33% | +0.33pp | **+5.83pp** (p=6.5e-5) | **+8.00pp** (p=2.4e-4) |\n| Additive (3×w) | — | **+5.33pp** (p=1.3e-4) | **+12.00pp** (p=2.8e-5) | **+9.83pp** (p=0.004) |\n\n**BH correction:** 10/15 tests significant at α=0.05. Only w=1 tests for all verifiers and roberta_w5 (adj_p=0.0503, borderline) are non-significant.\n\n**Canonical verification:** DeBERTa w3 = 276/600, +6.67pp, b=21, c=61, p=1.13e-05 — matches paper exactly.\n\n**Root cause of previous failures:** The combo method must be hard-vote (add w integer votes to NLI-predicted class), not probability-weighted. The `mistral_pw600_sc_votes.json` also required fixing 2 mismatched question IDs (Q4→Q8)."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "uuid": "98823477-a47e-45cc-a3df-a3290f6569d3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014mLTr4xoE15N3cmWBziRaz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 307,
+                "cache_read_input_tokens": 110125,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 307
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000573"
+        },
+        {
+          "source_line": 574,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Results saved to `artifacts/r11_3verifier_canonical.json` and registered as `art_20260521_0c36fe`.\n\n**Key results summary:**\n\n| Verifier | Standalone | w=1 | w=3 | w=5 |\n|----------|-----------|-----|-----|-----|\n| DeBERTa-L | 55.00% | +0.83pp | **+6.67pp** (p=1.1e-5) | **+11.00pp** (p=6.2e-7) |\n| RoBERTa-L | 37.67% | -0.17pp | **+4.17pp** (p=0.003) | +4.33pp (p=0.037) |\n| BART-L | 46.17% | 0.00pp | **+5.17pp** (p=2.4e-4) | **+6.33pp** (p=0.003) |\n| Ensemble (maj) | 48.33% | +0.33pp | **+5.83pp** (p=6.5e-5) | **+8.00pp** (p=2.4e-4) |\n| Additive (3×w) | — | **+5.33pp** (p=1.3e-4) | **+12.00pp** (p=2.8e-5) | **+9.83pp** (p=0.004) |\n\n**BH correction:** 10/15 tests significant at α=0.05. Only w=1 tests for all verifiers and roberta_w5 (adj_p=0.0503, borderline) are non-significant.\n\n**Canonical verification:** DeBERTa w3 = 276/600, +6.67pp, b=21, c=61, p=1.13e-05 — matches paper exactly.\n\n**Root cause of previous failures:** The combo method must be hard-vote (add w integer votes to NLI-predicted class), not probability-weighted. The `mistral_pw600_sc_votes.json` also required fixing 2 mismatched question IDs (Q4→Q8)."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 2337872,
+            "duration_api_ms": 2220922,
+            "num_turns": 168,
+            "stop_reason": "end_turn",
+            "session_id": "0ed71629-43fa-4d12-9cde-5e27b052247d",
+            "total_cost_usd": 9.213721799999998,
+            "usage": {
+              "input_tokens": 133,
+              "cache_creation_input_tokens": 252189,
+              "cache_read_input_tokens": 9611839,
+              "output_tokens": 95068,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 252189,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 530,
+                  "cache_read_input_tokens": 110125,
+                  "cache_creation_input_tokens": 307,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 307
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2665,
+                "outputTokens": 6056,
+                "cacheReadInputTokens": 1071028,
+                "cacheCreationInputTokens": 65987,
+                "webSearchRequests": 0,
+                "costUSD": 0.22253155000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 1629,
+                "outputTokens": 100011,
+                "cacheReadInputTokens": 9777278,
+                "cacheCreationInputTokens": 255061,
+                "webSearchRequests": 0,
+                "costUSD": 8.991190249999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "73488c6e-0210-4fbd-9132-c267f1bcfe0f"
+          },
+          "id": "event-000574"
+        }
+      ]
+    }
+  ]
+}

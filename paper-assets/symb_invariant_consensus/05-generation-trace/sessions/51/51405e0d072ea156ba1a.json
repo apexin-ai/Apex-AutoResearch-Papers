@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "51405e0d072ea156ba1a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper final compile check",
+  "task_key": "worker_paper_final-compile-check_20260524T132747",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_final-compile-check_20260524T132747_result.json",
+    "occurrence": 1,
+    "bytes": 2105705,
+    "sha256": "395fb65bc2432e07cd58bd43ec2b88676c01854a00d6c3eabb11d7128c0bbffc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2105725,
+                "serialized_sha256": "375fe72b241097e9e712a09cc5a6813e796b4d34a39f723ac78aba377ce82d33",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-final-compile-check.md"
+}

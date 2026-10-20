@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "283f07ec1943888f646d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 083 icg mistral logiqa seed123",
+  "task_key": "worker_analysis_exp-083-icg-mistral-logiqa-seed123_20260519T221941",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-083-icg-mistral-logiqa-seed123_20260519T221941_result.json",
+    "occurrence": 1,
+    "bytes": 1622,
+    "sha256": "4f01c54589ee92ffb16bae8a3216fa9f534bcc64b49720d11ed8bc2b3dae11da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-083 分析报告\n\n### 原始指标\n来源: `/root/symb_invariant_consensus/results/exp083_icg_mistral_logiqa_seed123/results.json`\n\n| 指标 | 值 |\n|---|---|\n| n | 200 |\n| SC accuracy | **36.5%** (73/200) |\n| ICG accuracy | **33.0%** (66/200) |\n| Δ | **-3.5pp** |\n| K=12, K_ICG=10, T=0.7, seed=123 | |\n| Wall time | 3653s (~61 min), 18.3s/question |\n| Constraints | mean 31.4 generated, 27.9 unique |\n| MaxSAT | mean 27.7 satisfied, 0.2 excluded |\n\n### 交叉验证\nPer-question count: sc_correct=73, icg_correct=66 → 73/200=0.365, 66/200=0.33 — **与 summary 一致 ✓**\n\nConfusion matrix: both=62, sc_only=11, icg_only=4, neither=123. ICG 净翻转 -7（rescued 4, degraded 11）。\n\n### 2-seed 汇总\n\n| seed | SC% | ICG% | Δpp | exp_id |\n|---|---|---|---|---|\n| 42 | 47.5 | 47.0 | -0.5 | exp-079 |\n| 123 | 36.5 | 33.0 | -3.5 | exp-083 |\n| **mean** | **42.0** | **40.0** | **-2.0±2.12** | |\n\nSC baseline 跨 seed 方差极大（47.5% vs 36.5%, gap=11pp），ICG delta 两个 seed 均为负。\n\n### Conclusion: **negative**\n\n理由：两个 seed 的 Δ 均 ≤ 0（-0.5pp, -3.5pp），mean=-2.0pp。seed=123 的 ICG 比 SC 差 3.5pp，confusion matrix 显示 ICG 净损失 7 题。ICG 在 LogiQA 上无改善作用，与 FOLIO 上的 3-seed 结论一致（mean Δ=-0.49pp）——独立约束生成无法绕过 model bias。\n\n### Registry 更新确认\n- status: ANALYZING → **DONE** ✓\n- conclusion: **negative** ✓\n- metrics: 全量写入 ✓\n- checkpoint_path: 已设置 ✓\n- log_path: 已设置 ✓\n- memory.md: 已追加 exp-083 段落 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-083-icg-mistral-logiqa-seed123.md"
+}

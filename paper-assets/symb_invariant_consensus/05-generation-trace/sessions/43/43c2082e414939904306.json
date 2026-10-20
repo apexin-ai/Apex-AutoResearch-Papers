@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43c2082e414939904306",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diagnosis qwen3 pw seed123",
+  "task_key": "worker_diagnosis_qwen3-pw-seed123_20260524T112558",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnosis_qwen3-pw-seed123_20260524T112558_result.json",
+    "occurrence": 1,
+    "bytes": 490,
+    "sha256": "a34d1da838f498a22badc782e5466887ffbbca852509488b632b7babe58bde16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论：success**\n\n| 指标 | 值 |\n|------|-----|\n| N | 600 |\n| SICA accuracy | 86.50% |\n| SC accuracy | 85.17% |\n| Δ(SICA−SC) | +1.33% |\n| extraction_rate | 99.67% |\n| contradiction_rate | 0.37% |\n\n注意：SC 值使用 `Counter.most_common()` tiebreaking（原始值），待 post-hoc 修正。\n\n假设\"Δ(SICA-SC)≤0\"被否定——seed123 上 SICA 仍优于 SC +1.33pp。\n\nRegistry 已更新为 DONE/success，cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-qwen3-pw-seed123.md"
+}

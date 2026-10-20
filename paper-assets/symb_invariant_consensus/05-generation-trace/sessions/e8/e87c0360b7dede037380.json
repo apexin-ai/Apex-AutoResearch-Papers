@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e87c0360b7dede037380",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "check qwen3 n problems investigation",
+  "task_key": "worker_check_qwen3-n-problems-investigation_20260524T040958",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_qwen3-n-problems-investigation_20260524T040958_result.json",
+    "occurrence": 1,
+    "bytes": 1143,
+    "sha256": "bb0084a39ee731ac11341ab9a9cc12b855948e88949605ee6083f6ebc8966545"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 调查结论：results.json 是中间 checkpoint，实验仍在正常运行\n\n### 核心事实\n\n| 项目 | 值 |\n|------|-----|\n| `proofwriter_full.json` 实际问题数 | **600** |\n| 脚本 `--n-questions` 限制 | `0`（无限制，处理全部 600 题） |\n| results.json 性质 | **中间 checkpoint**，每处理完一题就 `_save_checkpoint` 更新 |\n\n### 当前进度（实时）\n\n| Seed | 已完成 | 进度 |\n|------|--------|------|\n| 123 | 347/600 | 57.8% |\n| 456 | 348/600 | 58.0% |\n| 789 | 350/600 | 58.3% |\n\n### 进程状态\n\n- 三个 PID 均 CPU ~1.6%，已运行 ~10 小时\n- 中间文件持续产生（最新文件 12:10，几分钟前）\n- **进程正常运行中，不是 idle**\n\n### 预估剩余时间\n\n- 平均每题 ~1.7 分钟\n- 剩余 ~252 题 × 1.7 min ≈ **7 小时**\n- 预计完成时间：今天 ~19:00-20:00（+8 时区）\n\n### 结论\n\n**不需要干预。** n_problems 低于 600 是因为实验还在跑，不是因为数据或脚本有问题。results.json 的 `n_problems` 字段只反映已处理完的题目数，会随进程推进持续增长直到 600。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-qwen3-n-problems-investigation.md"
+}

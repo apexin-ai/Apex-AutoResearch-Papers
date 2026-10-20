@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa9c30fce1717057ebc3",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "research sf2 proofwriter nli prep",
+  "task_key": "worker_research_sf2-proofwriter-nli-prep_20260520T133703",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_sf2-proofwriter-nli-prep_20260520T133703_result.json",
+    "occurrence": 1,
+    "bytes": 3154,
+    "sha256": "10ae6d842b4288218220c05ec5119ae74f80f19a06914a9ceb74d7e8a293f59c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息收集完毕。以下是完整实验方案。\n\n---\n\n## SF-2: DeBERTa NLI on ProofWriter 实验方案\n\n### 1. 现有资源盘点\n\n| 资源 | 路径 | 状态 |\n|------|------|------|\n| ProofWriter 数据 | `data/proofwriter_full.json` | 600题, OWA-D5, True/False/Unknown |\n| SC traces (Mistral-7B) | `results/exp046_mistral_7b_pw600/` | 600题, k=12, SC=39.33%, SICA=36.5% |\n| SC traces (Qwen2.5-7B) | `results/exp065_qwen7b_pw600/` | 600题, 可做跨模型 |\n| DeBERTa-large-mnli | `/root/models/deberta-large-mnli` | 已下载 |\n| FOLIO R 脚本 | `direction_r_deberta.py` | 需适配 |\n| sc_answer_matrix.json | **不存在** (PW实验未生成) | 需从intermediates提取 |\n\n### 2. 数据格式差异\n\n| | FOLIO | ProofWriter |\n|---|---|---|\n| 分隔标记 | `\"Determine whether the following conclusion is true, false, or uncertain:\"` | `\"Determine whether the following statement is true, false, or unknown:\"` |\n| 前缀 | `\"Given the following premises:\\n\"` | 无前缀，直接是 context |\n| Answer | True/False/Unknown | True/False/Unknown (一致) |\n| NLI mapping | entailment→True, contradiction→False, neutral→Unknown | 同上 (无需改) |\n\n### 3. 需要的修改\n\n**Step A — 生成 `sc_answer_matrix.json`**：从 exp046 intermediates (600个JSON文件) 提取每题的 trace-level answer 列表。每个 intermediate 文件的 `sica_result.traces[i].answer` 即原始答案。输出格式与 FOLIO 的 sc_answer_matrix.json 一致：\n```json\n{\"problem_id\": {\"answers\": [\"True\", \"Unknown\", ...], \"ground_truth\": \"True\"}}\n```\n\n**Step B — 新建 `direction_r_deberta_proofwriter.py`**（基于 `direction_r_deberta.py`）：\n- `parse_problem()`: 用 `\"Determine whether the following statement is true, false, or unknown:\\n\"` 作为分隔标记（替换 FOLIO 的 `\"conclusion is true, false, or uncertain\"`）\n- 路径改为 ProofWriter: `proofwriter_full.json`, `exp046_results.json`, 生成的 `sc_answer_matrix.json`\n- 输出目录: `results/direction_r_nli_pw600/`\n- 其他逻辑不变（R1 standalone, R2 verifier, R3 combo）\n\n### 4. 运行参数\n\n| 参数 | 值 |\n|------|-----|\n| 服务器 | westd-25068 |\n| GPU | 需要 (DeBERTa-large 406M 推理) |\n| 模型路径 | `/root/models/deberta-large-mnli` |\n| 数据量 | 600 题 |\n| SC baseline | exp046, Mistral-7B, k=12 |\n| 预计耗时 | ~2-3 分钟 (600题 × ~0.3s/题 on GPU) |\n\n### 5. 预期产出\n\n与 FOLIO R 实验对应的完整指标：\n- **R1**: DeBERTa standalone accuracy on PW600\n- **R2**: DeBERTa-as-verifier (agree/disagree with SC, correction analysis)\n- **R3**: Combo (DeBERTa vote weight=1,3 加入 SC 投票)\n- Per-label breakdown (True/False/Unknown)\n- Baselines: SC=39.33%, SICA=36.5%\n\n### 6. 注意事项\n\n- exp046 intermediates 有 600 个文件，全覆盖，无缺失\n- 部分 trace 的 answer 为空字符串（提取失败），需过滤处理（与 FOLIO sc_answer_matrix 行为一致）\n- 如果还需要跨模型验证，exp065 (Qwen2.5-7B) 也有完整 PW600 traces，可后续复制同样流程\n\n是否开始写脚本并执行？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-sf2-proofwriter-nli-prep.md"
+}

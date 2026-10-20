@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e9320857b9bac512f32",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "eval exp 028 qwen3 thinking restart",
+  "task_key": "worker_eval_exp-028-qwen3-thinking-restart_20260518T141956",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_exp-028-qwen3-thinking-restart_20260518T141956_result.json",
+    "occurrence": 1,
+    "bytes": 145,
+    "sha256": "3eec60f2efb3720ef50de3bbed53f22af0dac7a0a5b466104c5897c0692194fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台等待任务已完成，但 vLLM 早已就绪并开始跑 pipeline 了，无需额外操作。实验正在正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-028-qwen3-thinking-restart.md"
+}

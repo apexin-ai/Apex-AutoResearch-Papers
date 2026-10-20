@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "d71cbb2dd5cbace9d87f",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "audit table3 stats figures",
+  "task_key": "worker_audit_table3-stats-figures_20260523T104426",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_table3-stats-figures_20260523T104426.log",
+    "occurrence": 1,
+    "bytes": 763082,
+    "sha256": "127c041c0ec498f96d3f1cebf76d37b908eabc3f23937b85b45769de26e07d29"
+  },
+  "statistics": {
+    "messages": 201,
+    "user_turns": 0,
+    "tool_calls": 82,
+    "roles": {
+      "system": 1,
+      "record": 2,
+      "assistant": 33,
+      "tool_call": 82,
+      "tool_result": 82,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 201,
+      "chunks": [
+        {
+          "path": "d71cbb2dd5cbace9d87f-part-0001.json",
+          "message_count": 158
+        },
+        {
+          "path": "d71cbb2dd5cbace9d87f-part-0002.json",
+          "message_count": 43
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-table3-stats-figures.md"
+}

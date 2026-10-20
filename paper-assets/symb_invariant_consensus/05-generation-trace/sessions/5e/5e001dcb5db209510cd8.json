@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e001dcb5db209510cd8",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "gpu exp 068 qwen3 logiqa200",
+  "task_key": "worker_gpu_exp-068-qwen3-logiqa200_20260519T110514",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp-068-qwen3-logiqa200_20260519T110514_result.json",
+    "occurrence": 1,
+    "bytes": 599,
+    "sha256": "59f431a8ef0632f70a8aee6f8864db52a32b90d1263ab013ec10216b1e83c374"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全量运行正常进行中。\n\n**exp-068 部署完成：**\n\n| 项目 | 详情 |\n|------|------|\n| 服务器 | westd-16639, cuda:1, port 8001 |\n| 模型 | Qwen3-14B (non-thinking, `--default-chat-template-kwargs`) |\n| 脚本 | `run_logiqa.py`（非 `run_full_mvp.py`，后者无 `--logiqa-data` 参数） |\n| 数据 | `logiqa_200.json`, 200 题 |\n| Dry-run | 3/3 全对, SICA=SC=100%, ~50s/题，无 thinking tokens |\n| tmux | `exp068_vllm` (vLLM), `exp068_run` (实验) |\n| 预计时间 | ~200×50s ≈ 2.8 小时 |\n| Registry | exp-068-qwen3-logiqa200, status=RUNNING |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-068-qwen3-logiqa200.md"
+}

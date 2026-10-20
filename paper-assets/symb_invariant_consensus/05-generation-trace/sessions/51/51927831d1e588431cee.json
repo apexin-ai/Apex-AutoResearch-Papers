@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51927831d1e588431cee",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ops check 25068 full status",
+  "task_key": "worker_ops_check-25068-full-status_20260519T202850",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-25068-full-status_20260519T202850_result.json",
+    "occurrence": 1,
+    "bytes": 1445,
+    "sha256": "923534f237fdb332741fe32076e2f0d34d41cd444da495a09152cd74a605036e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-25068 实验状态汇总\n\n### GPU 状态（4× H800 96GB）\n| GPU | 显存占用 | 利用率 | 用途 |\n|-----|---------|--------|------|\n| 0 | 89889/97887 MiB | 96% | vLLM (port 8000) → exp-080 |\n| 1 | 89889/97887 MiB | 97% | vLLM (port 8001) → exp-074c |\n| 2 | 89733/97887 MiB | 100% | vLLM (port 8002) → exp-075b |\n| 3 | 90571/97887 MiB | 96% | vLLM (port 8003) → exp-076 |\n\n4 卡全部满载运行。\n\n### 各实验进度\n\n| 实验 | 方法 | 数据集 | 进度 | ETA | 状态 |\n|------|------|--------|------|-----|------|\n| **exp-074c** | ICG (seed=123) | FOLIO | **82/204** (40%) | ~34 min | 运行中，启动于 04:06 |\n| **exp-075b** | Contrastive | FOLIO | **161/204** (79%) | ~43 min | 运行中，启动于 01:50 |\n| **exp-076** | Debate | FOLIO | **195/204** (96%) | ~9 min | 即将完成，启动于 01:31 |\n| **exp-080** | Contrastive×LogiQA | LogiQA-200 | **22/200** (11%) | ~123 min | 运行中，启动于 04:15 |\n\n### 预计完成顺序\n1. **exp-076** (Debate×FOLIO) — ~9 分钟内完成\n2. **exp-074c** (ICG seed=123) — ~34 分钟\n3. **exp-075b** (Contrastive×FOLIO) — ~43 分钟\n4. **exp-080** (Contrastive×LogiQA) — ~2 小时\n\n### tmux sessions（8 个）\n`exp074_vllm`, `exp074c_vllm`, `exp074c_run`, `exp075_vllm`, `exp075b_run`, `exp076_vllm`, `exp076_run`, `model_dl_25068`\n\n所有实验正常运行，无报错，结果文件持续写入中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-25068-full-status.md"
+}

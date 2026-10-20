@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c86b3c7601eea5695af7",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "check qwen3 progress post restart",
+  "task_key": "worker_check_qwen3-progress-post-restart_20260524T061127",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_qwen3-progress-post-restart_20260524T061127_result.json",
+    "occurrence": 1,
+    "bytes": 452,
+    "sha256": "9e1c5f544ce1251f3c98478a5e3b2f3202593c43d8c7527528be0cde08336662"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nseed123: n=418/600 (69.7%) | SC=0.8544 | SICA=0.8663\nseed456: n=418/600 (69.7%) | SC=0.8421 | SICA=0.8684\nseed789: n=421/600 (70.2%) | SC=0.8602 | SICA=0.8602\n进程状态: 全部 running（已运行 12h04m，PID 804112/804114/804116）\n预估完成时间: 约 5h 后（~19:15 UTC / ~03:15 北京时间）\n```\n\n速率约 34.7 问题/小时，三组进度基本同步。SC 在 84.2-86.0% 之间，SICA 在 86.0-86.8% 之间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-qwen3-progress-post-restart.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "c405716f31f9e34c00e5",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "infra p0 westd25068 awq fix",
+  "task_key": "worker_infra_p0-westd25068-awq-fix_20260521T180738",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_p0-westd25068-awq-fix_20260521T180738.log",
+    "occurrence": 1,
+    "bytes": 249459500,
+    "sha256": "14ac7939a3dfc4c41cca1e57d6634f620dda5e029cfb8fd5a3564dc220de46a2"
+  },
+  "statistics": {
+    "messages": 484,
+    "user_turns": 0,
+    "tool_calls": 180,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 120,
+      "tool_call": 180,
+      "tool_result": 180,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 484,
+      "chunks": [
+        {
+          "path": "c405716f31f9e34c00e5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c405716f31f9e34c00e5-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c405716f31f9e34c00e5-part-0003.json",
+          "message_count": 124
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-p0-westd25068-awq-fix.md"
+}

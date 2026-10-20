@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1e4a76c7b437ba036e6",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis sica d012 14b",
+  "task_key": "worker_analysis_sica_d012_14b_20260516T050551",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_sica_d012_14b_20260516T050551_result.json",
+    "occurrence": 1,
+    "bytes": 765,
+    "sha256": "9a7c273deeebebe6d58957fc79211c77eb3fc16e9c9419bc311bde694ee32635"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。实验 registry 已更新为 DONE/success。\n\n---\n\n## 结果摘要\n\n**D012 判定: ALL PASS** ✓\n\n| 指标 | 值 | 阈值 | 判定 |\n|------|-----|------|------|\n| C0 多候选率 | 53.3% (32/60) | ≥20% | PASS |\n| C1 约束提取率 | 100.0% (720/720) | ≥50% | PASS |\n| C2 矛盾检出 | 34 题 | ≥5 | PASS |\n| C3 SICA-SC gap | +3.3pp (73.3% vs 70.0%) | ≥+2pp | PASS |\n\n**分域**: FOLIO 贡献全部优势 (SICA 80.0% vs SC 73.3%, +6.7pp)，ProofWriter 持平 (66.7% vs 66.7%)。\n\n**机制**: 4 题差异全部来自 6:6 投票平局，SICA 通过约束加权 3/4 次正确打破平局。Bootstrap p=0.226 未达统计显著性，但 +2pp 的数值阈值已满足。\n\n报告已注册: `art_20260516_951d6a`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sica-d012-14b.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "787b0f30566d66d2d5c1",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix audit d1 d2 d3",
+  "task_key": "worker_fix_audit-d1-d2-d3_20260524T044736",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_audit-d1-d2-d3_20260524T044736_result.json",
+    "occurrence": 1,
+    "bytes": 1643,
+    "sha256": "8ebe6a67bb4ba598cb2270b22f899e471a8727fb53567b95349cfedc3d54a9a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过，无错误。ALG@line 警告是既有问题（多个 algorithm 环境共享行号），不影响输出。\n\n## 修改汇总\n\n### D1: BH correction p-value 修正\n\n**根因**：BH 实现缺少单调性强制步骤。`0.011 × 6/1 = 0.066` 是 rank-1 的初始值，但标准 BH 要求 `min(0.066, rank-2 的 0.042) = 0.042`。`statsmodels.multipletests(method='fdr_bh')` 验证两个条件均 adj p = 0.042 < 0.05，显著。\n\n**5 处修改：**\n\n| 文件 | 行 | 旧值 | 新值 |\n|---|---|---|---|\n| `experiments.tex` | 5 | \"No condition shows a significant SICA effect after FDR control...both reach adjusted p = 0.066\" | \"Two confirmatory conditions show significant degradation after BH FDR control...adj. p = 0.042...No condition shows a significant positive effect\" |\n| `experiments.tex` | 10 | \"No condition shows a significant gain after BH correction\" | \"Two conditions show significant degradation after BH correction...no condition shows a significant gain\" |\n| `experiments.tex` | 10 | \"{*} uncorrected p < 0.05 (BH adj. p = 0.066)\" | \"{*} BH adj. p = 0.042\" |\n| `experiments.tex` | 46 | \"BH adj. p = 0.066\" | \"BH adj. p = 0.042\" |\n| `appendix.tex` | 596 | \"BH adj. p = 0.066\" | \"BH adj. p = 0.042\" |\n| `appendix.tex` | 697 | \"BH adj. p = 0.066, m=6\" | \"BH adj. p = 0.042, m=6\" |\n\n### D2: Abstract 词数\n\n191 词，已在 200 限制内，无需修改。\n\n### D3: \"14× over zero-shot\" 修正\n\n| 文件 | 行 | 旧值 | 新值 |\n|---|---|---|---|\n| `solutions.tex` | 35 | `$14\\times$ over zero-shot` | `up to $14\\times$ over zero-shot (LLaMA-8B)` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-audit-d1-d2-d3.md"
+}

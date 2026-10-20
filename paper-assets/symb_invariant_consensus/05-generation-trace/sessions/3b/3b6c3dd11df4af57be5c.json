@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b6c3dd11df4af57be5c",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "research verify citations r14",
+  "task_key": "worker_research_verify-citations-r14_20260522T134400",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_verify-citations-r14_20260522T134400_result.json",
+    "occurrence": 1,
+    "bytes": 2855,
+    "sha256": "276e34de42e6a3599095d7e895a39f7afd248fdc7508628ba6c5ec6d310027d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三篇全部验证完毕，结果如下：\n\n---\n\n### 论文 1: SETS\n\n```\n标题: SETS: Leveraging Self-Verification and Self-Correction for Improved Test-Time Scaling\n作者: Jiefeng Chen, Jie Ren, Xinyun Chen, Chengrun Yang, Ruoxi Sun, Jinsung Yoon, Sercan Ö. Arık\n发表: arXiv:2501.19306 (2025年1月)\n摘要要点: 提出 Self-Enhanced Test-Time Scaling (SETS)，策略性结合 parallel sampling 和 sequential self-correction，利用 LLM 内在的 self-verification 和 self-correction 能力提升 test-time scaling 效率。解决了 parallel 方法快速饱和、sequential 方法几轮后停滞的问题。\n与我们的关系: 直接相关——self-verification 在 test-time scaling 中的正面效果\narXiv ID 是否正确: 是\n```\n\n### 论文 2: MAV\n\n```\n标题: Multi-Agent Verification: Scaling Test-Time Compute with Multiple Verifiers\n作者: Shalev Lifshitz, Sheila A. McIlraith, Yilun Du\n发表: arXiv:2502.20379 (2025年2月)\n摘要要点: 提出 Multi-Agent Verification (MAV) 范式，引入\"扩展 verifier 数量\"作为 test-time compute 的新维度。使用 Aspect Verifiers（不同 LLM 验证输出的不同方面）无需额外训练，BoN-MAV 算法展现出比 self-consistency 和 reward model verification 更强的 scaling 模式，且能实现 weak-to-strong generalization。\n与我们的关系: 直接相关——multi-agent verification 扩展 test-time compute\narXiv ID 是否正确: 是\n```\n\n### 论文 3: Reflexion\n\n```\n标题: Reflexion: Language Agents with Verbal Reinforcement Learning\n作者: Noah Shinn, Federico Cassano, Edward Berman, Ashwin Gopinath, Karthik Narasimhan, Shunyu Yao\n发表: arXiv:2303.11366 / NeurIPS 2023\n摘要要点: 提出通过语言反馈（而非权重更新）强化 language agents 的框架。Agent 对 task feedback 进行 verbal self-reflection，将反思文本存入 episodic memory 以改进后续决策。在 HumanEval 上达到 91% pass@1（超过 GPT-4 的 80%）。\n与我们的关系: 直接相关——self-correction via natural language feedback 的开创性工作\narXiv ID 是否正确: 是（2303.11366，非用户提供的 ID——用户未给出具体 ID，确认正确 ID 为 2303.11366）\n```\n\n---\n\n三篇论文全部真实存在，arXiv ID 均正确，内容与据称描述一致。\n\nSources:\n- [SETS - arXiv](https://arxiv.org/abs/2501.19306)\n- [SETS - HuggingFace Papers](https://huggingface.co/papers/2501.19306)\n- [MAV - arXiv](https://arxiv.org/abs/2502.20379)\n- [MAV - OpenReview](https://openreview.net/pdf?id=LriQ3NY9uL)\n- [Reflexion - arXiv](https://arxiv.org/abs/2303.11366)\n- [Reflexion - NeurIPS 2023](https://proceedings.neurips.cc/paper_files/paper/2023/file/1b44b878bb782e6954cd888628510e90-Paper-Conference.pdf)\n- [Reflexion - GitHub](https://github.com/noahshinn/reflexion)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-verify-citations-r14.md"
+}

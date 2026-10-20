@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9764ada1b88d16ff1998",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "deploy exp 074d icg seed456 25068",
+  "task_key": "worker_deploy_exp-074d-icg-seed456-25068_20260519T204235",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_exp-074d-icg-seed456-25068_20260519T204235_result.json",
+    "occurrence": 1,
+    "bytes": 591,
+    "sha256": "e9b19acf7c5e5a50757b87eaf88c1e66aa5274c5003ba61fc64679c288db8086"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全量任务已正常启动，正在处理第 1 个问题。\n\n**汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| vLLM (port 8003, cuda:3) | 复用已有实例，健康 |\n| Dry-run | 通过（问题 1 正常完成，22.7s/题，ETA ~77min） |\n| 全量部署 | PID 283283，tmux session `exp-074d-icg-mistral-folio-seed456` |\n| 实验注册 | `exp-074d-icg-mistral-folio-seed456`，parent=`exp-074-icg-mistral-folio` |\n| 日志 | `~/runs/symb_invariant_consensus/exp-074d-icg-mistral-folio-seed456.log` |\n| 预计完成 | ~77 分钟后（约 UTC 05:55–06:00） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-exp-074d-icg-seed456-25068.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23f93cd9a42974fb741d",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "director / loop_8.md",
+  "task_key": "loop_8",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/director/loop_8.md",
+    "occurrence": 1,
+    "bytes": 4540,
+    "sha256": "7a2be45f4dd0299272f357c93e3efaa52a1cac9ed06f3990286bf0d85afb0db9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_messages\nupdated: '2026-05-17T17:10:25+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 cuda:0（AutoDL 单卡 RTX PRO 6000，项目白名单内唯一卡）\n- exp-011 (LLaMA-8B D012, n=30, Δ=+6.67pp) 是噪声，**禁止引用为正面信号**（被 exp-020 n=204 Δ=-2.45pp supersede）\n- 论文标题/Claims 范围必须限定在 \"self-extracted FOL constraints\" / \"SICA pipeline\"，**不能泛化到 \"symbolic consensus\" 整个范式**（D037 Dream 审稿三档一致要求）\n- n=60 条件只能说 \"suggestive/consistent with\"，**不能说 \"confirm\"**（Claim Scoping Rules, D037）\n- Paper Agent 已在写作中（queue depth=3），不要重复派相同任务\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-32608 (AutoDL)，工作目录 /root/autodl-tmp/symb_invariant_consensus\n- Python：vLLM serving for inference（Qwen2.5 系列）\n- 模型路径：/root/autodl-tmp/models/Qwen2.5-14B-Instruct, /root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct（有 symlink /root/autodl-tmp/models/Qwen2.5-7B-Instruct 指向）\n- 数据：/root/autodl-tmp/symb_invariant_consensus/data/（folio_full.json, gsm8k_test.json, D012 等）\n- 结果：/root/autodl-tmp/symb_invariant_consensus/results/（各 exp 子目录）\n- 活跃进程：exp-012 GSM8K 已完成（GPU 当前空闲），exp-004 Qwen-7B 已派给 Agent 启动\n- Cron：无活跃 cron。Re-dream dream_20260517T165032 在后台运行中（full review mode）\n\n### 3. 📊 当前状态\n**刚完成**：\n- D037 Dream 审稿分析（三档 3/6 Weak Reject → 纯结构性问题）→ 已修正 paper_framing.md（标题缩窄、Required Citations 30+、Claim Scoping Rules、oracle 实验计划）\n- D038 Oracle exp-021：**关键正面结果** — Gold FOL + Z3 + MAX-SAT = 88.24% vs SC = 79.41% (+8.82pp, p=6.15e-05)。证明聚合机制有效，瓶颈在自提取质量\n- 温度消融 T=0.3/0.5/1.0 全部完成：C0 从 30%→43%，Δ 始终 =0.00pp（registry 已更新 DONE）\n- exp-012 GSM8K pilot 完成：C0=13.3%, Δ=0.0pp, extraction rate 仅 14.7%（不同失败模式）\n- F2/F4 图表已生成并通过 Reviewer 审查（F4 修复版 8 点全部验证通过）\n- F1 pipeline 图已生成但字号需修复（figsize 16→8 缩放）\n- Paper Agent Phase 1 启动（Method + Related Work + Experiments），Method section 已写完并有 Reviewer 反馈（3 warnings：σ(c,a) 定义、FOL 术语、prompt 示例）\n\n**等待中**：\n- Agent 启动 exp-004 Qwen-7B（刚派出指令）\n- Re-dream dream_20260517T165032 结果（验证修正后 framing 是否提分）\n- Paper Agent 写作进展（queue depth=3: oracle patch, method fix, GSM8K info）\n- Agent 处理 oracle minor fixes（trace 来源文档 + \\text{True} 解析检查）+ Fig 1 字号修复\n\n### 4. 📋 待办（条件触发式）\n- Re-dream 完成 → 按 dream-report-action 协议处理；如 best ≥ weak accept 且 median ≥ borderline → 批准 Paper Agent 写 Abstract/Intro/Conclusion（Phase 2）\n- exp-004 Qwen-7B 完成 → 更新 registry；C0 值决定 Claim 3 gradient（如 C0 在 14B 和 7B 之间有梯度 → 保留 \"within-family scaling\" story）；之后启动 Mistral-7B StrategyQA\n- Paper Agent Method 修复完成 → Reviewer 复查；Related Work + Experiments 完成 → 审查引用数量是否 ≥30\n- Mistral-7B StrategyQA 完成 → 最后一个 cross-family 数据点，更新 Table 1\n- 所有实验 + re-dream 完成后 → 提交论文给 Review Director（submit_paper_to_review）\n\n### 5. 🎯 战略上下文\n- **核心 narrative (D025→D037→D038)**：SICA ≈ SC everywhere（5 models, N>1300），但 Oracle 证明聚合机制本身有效 (+8.82pp)——瓶颈完全在 LLM 自提取约束缺乏判别力。论文从纯 negative result 升级为 \"诊断+定位+量化\" 三位一体。\n- **Oracle 是论文最大加分项**：D038 是本轮最重要的决策。Oracle result 直接回答了 Dream 审稿最严重的 confound 质疑。下一个 re-dream 应该能看到提分。\n- **易踩坑**：\n  - Paper Agent queue depth 已 3，不要再堆消息，等它消化完\n  - GSM8K 失败模式 ≠ FOLIO 失败模式（提取缺失 vs 提取无判别力），论文中要区分\n  - Agent 经常 idle 死（M004 pattern，240-316min 后死亡），如果 Agent 长时间无回复需要 reset\n  - Qwen-7B 模型路径有 symlink 依赖，之前已修复但如果 Agent reset 可能忘记\n- **DDL**：EMNLP 2026 ARR May 25，还剩 ~8 天。Paper Agent 24h 可交付初稿，时间够但不能再有大方向变化。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8.md"
+}

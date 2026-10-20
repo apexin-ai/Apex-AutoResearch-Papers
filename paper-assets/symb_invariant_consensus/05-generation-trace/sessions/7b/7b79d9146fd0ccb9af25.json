@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b79d9146fd0ccb9af25",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "figure fig1 pipeline",
+  "task_key": "worker_figure_fig1_pipeline_20260517T165452",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_figure_fig1_pipeline_20260517T165452_result.json",
+    "occurrence": 1,
+    "bytes": 723,
+    "sha256": "66dad9d2ada97e86c08729b081cbe997111efd8600143ee3a4dae7c81b7ba25f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**输出文件**：\n- PDF: `/root/symb_invariant_consensus/artifacts/figures/paper/fig1_pipeline.pdf` (45 KB)\n- PNG: `/root/symb_invariant_consensus/artifacts/figures/paper/fig1_pipeline.png` (221 KB)\n\n**脚本**：`/root/symb_invariant_consensus/scripts/fig1_pipeline.py`（本地和服务器各一份）\n\n图中展示了 SICA 与 SC 的对比：共享左侧 Question → LLM Sampling → K Traces，然后分叉为 SICA 上路径（FOL Constraint Extraction → Dedup + Weighting → Partial MAX-SAT → Cross-Answer Scoring → Best Answer）和 SC 下路径（Majority Vote → Most Frequent Answer），用背景色带、颜色编码和虚线框区分两条路径的复杂度差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig1-pipeline.md"
+}

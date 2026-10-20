@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "83a8e1468bb23be60395",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "code exp 076 debate pipeline",
+  "task_key": "worker_code_exp-076-debate-pipeline_20260519T170119",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp-076-debate-pipeline_20260519T170119.log",
+    "occurrence": 1,
+    "bytes": 1001796,
+    "sha256": "6072d758c9d4e0e1845403d89abd7efc332a2e160e459f5f81ac2e062f1e44ed"
+  },
+  "statistics": {
+    "messages": 317,
+    "user_turns": 1,
+    "tool_calls": 123,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 63,
+      "tool_call": 123,
+      "tool_result": 123,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 201,
+      "chunks": [
+        {
+          "path": "83a8e1468bb23be60395-part-0001.json",
+          "message_count": 113
+        },
+        {
+          "path": "83a8e1468bb23be60395-part-0002.json",
+          "message_count": 88
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 116,
+      "chunks": [
+        {
+          "path": "83a8e1468bb23be60395-part-0002.json",
+          "message_count": 92
+        },
+        {
+          "path": "83a8e1468bb23be60395-part-0003.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-076-debate-pipeline.md"
+}

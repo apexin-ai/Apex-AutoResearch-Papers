@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "3dd3ae02e44b029c795b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper appendix fixes",
+  "task_key": "worker_paper_appendix-fixes_20260524T152031",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_appendix-fixes_20260524T152031_result.json",
+    "occurrence": 1,
+    "bytes": 2253256,
+    "sha256": "4c906533cbfc7db70ec1705cbddb4e67552feda145c94afa64f3319891f25ce7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2253276,
+                "serialized_sha256": "510f47748dd90faab9cb788b4f63aea7966c4269875275eede334cd02666d89a",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-appendix-fixes.md"
+}

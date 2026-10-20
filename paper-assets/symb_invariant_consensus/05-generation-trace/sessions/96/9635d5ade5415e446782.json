@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9635d5ade5415e446782",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "git push anon repo",
+  "task_key": "worker_git_push-anon-repo_20260524T045458",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_git_push-anon-repo_20260524T045458_result.json",
+    "occurrence": 1,
+    "bytes": 163,
+    "sha256": "a91f1578c2f46c512f562dcbd402caee7bb68ce8eddd05214bc3510f338d1e47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Push 完成。commit `3a49493` 已推送到 `main`，包含 31 个文件（论文 tex/bib/pdf + figures）。匿名检查通过，无身份泄露。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/git-push-anon-repo.md"
+}

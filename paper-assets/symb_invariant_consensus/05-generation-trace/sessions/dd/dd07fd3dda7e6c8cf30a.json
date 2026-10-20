@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd07fd3dda7e6c8cf30a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "audit data integrity critical",
+  "task_key": "worker_audit_data-integrity-critical_20260522T202743",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_data-integrity-critical_20260522T202743_result.json",
+    "occurrence": 1,
+    "bytes": 3268,
+    "sha256": "3e6e3d9d4120699a00a27cebcd30c7d5da30a590e9336e656dbd7e0304de457d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部审计完成。以下是三个问题的完整追溯报告。\n\n---\n\n## 问题 1: Qwen2.5-14B × FOLIO — 三个不同的 SC 值\n\n### 原始数据 (exp036_qwen25_14b_folio204, N=204)\n\n| 指标 | 正确数 | 百分比 |\n|------|--------|--------|\n| SC (stored, 原始 tie-breaking) | 158 | **77.45%** |\n| SC (D061, alphabetical tie-breaking) | 155 | **75.98%** |\n| SICA | 154 | **75.49%** |\n\n4 个 tie-diff 样本 (6:6 平票)：\n- `folio_16`, `folio_49`, `folio_95`, `folio_117`\n\n### 4-seed 结果 (表中标注 `4s`)\n\n| Seed | SC_stored | SC_D061 | SICA |\n|------|-----------|---------|------|\n| exp036 | 77.45% | 75.98% | 75.49% |\n| seed123 | 74.51% | 74.51% | 73.04% |\n| seed456 | 74.02% | 74.02% | 74.02% |\n| seed789 | 74.02% | 74.02% | 72.55% |\n| **4-seed 均值** | **75.00%** | **74.63%** | **73.77%** |\n\n### Table 1 当前值 vs 正确值\n\n| 列 | Table 1 当前 | 实际来源 | 正确值 (D061, 4-seed avg) |\n|----|-------------|---------|--------------------------|\n| SC | 75.49% | **exp036 的 SICA**（填反了） | **74.63%** |\n| SICA | 74.51% | **seed123 的 SC_stored**（来源错误） | **73.77%** |\n| Δ | -0.98 | 两个错值相减 | **-0.86** |\n\n**根因**: 表格编译脚本读取了 `sica_accuracy` 字段填入 SC 列，且不同 seed 之间的值被混用。\n\n---\n\n## 问题 2: Qwen3-14B × FOLIO — SC/SICA 列填反\n\n### 原始数据 (exp_folio_2x2_qwen3, N=204)\n\n| 指标 | 正确数 | 百分比 |\n|------|--------|--------|\n| SC (stored = D061, 无 tie 差异) | 170 | **83.33%** |\n| SICA | 173 | **84.80%** |\n\n2x2 metrics 交叉验证 (cell_d = Qwen3→Qwen3): `sc_acc=83.33, sica_acc=84.80` — 完全吻合。\n\n### Table 1 当前值 vs 正确值\n\n| 列 | Table 1 当前 | 实际来源 | 正确值 |\n|----|-------------|---------|--------|\n| SC | 84.80% | **SICA**（填反了） | **83.33%** |\n| SICA | 84.31% (172/204) | **不匹配任何原始指标** | **84.80%** |\n| Δ | -0.49 | — | **+1.47** |\n\n**确认填反**。84.31% (172/204) 既不是 SC(170) 也不是 SICA(173)，来源不明（可能是脚本将错误的 SC 值减去某个 delta 反算得出）。\n\n**注意**: 修正后 Δ 从 **-0.49** 变为 **+1.47pp**，SICA 对 Qwen3 FOLIO 实际上是正向提升（虽然仍不显著）。\n\n---\n\n## 问题 3: Mistral PW PID 对齐\n\n### 结果: **0 个 PID 不匹配**\n\n| 对比 | 不匹配数 |\n|------|---------|\n| mistral_pw_seed42 vs proofwriter_full.json | **0** |\n| mistral_pw_seed123 vs proofwriter_full.json | **0** |\n| mistral_pw_seed456 vs proofwriter_full.json | **0** |\n| r11_3verifier_canonical vs proofwriter_full.json | **0** |\n\n所有 600 个 PID 完全对齐，不存在 Q4/Q8 变体问题。\n\n**但注意另一个差异**: r11_canonical (SC=39.33%, 236/600) 和 seed42 (SC=40.00%, 240/600) 的 SC 预测在 **90 个样本**上不同——这是因为它们是不同实验 run 的结果，不是 PID 对齐问题。seed789 仅完成 259/600（未跑完）。\n\n---\n\n### 修正优先级\n\n1. **Qwen3-14B × FOLIO** (line 50): SC=83.33, SICA=84.80, Δ=+1.47 — **Δ 方向翻转**\n2. **Qwen2.5-14B × FOLIO** (line 46): SC=74.63, SICA=73.77, Δ=-0.86 (4-seed D061 avg)\n3. **Mistral PW PID**: 无需修复"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-data-integrity-critical.md"
+}

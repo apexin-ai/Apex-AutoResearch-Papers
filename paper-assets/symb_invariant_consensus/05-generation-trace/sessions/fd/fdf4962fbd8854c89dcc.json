@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fdf4962fbd8854c89dcc",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra 25068 gpu cleanup status",
+  "task_key": "worker_infra_25068-gpu-cleanup-status_20260519T084512",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_25068-gpu-cleanup-status_20260519T084512_result.json",
+    "occurrence": 1,
+    "bytes": 1070,
+    "sha256": "a55270e627d4afc8486ad69c0ca62af5d23ac9211428d86055fbfae9bbcd0718"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n```\nGPU 状态:\n  cuda:0: 空闲 ✓ (killed PID 171421, exp-059 Qwen3-14B vLLM)\n  cuda:1: 空闲 ✓ (原本就空闲)\n  cuda:2: 空闲 ✓ (killed PID 175167, exp-061 Qwen2.5-7B vLLM)\n  cuda:3: exp-062 Gemma-3-27B vLLM 运行中 (PID 187802, 88146MiB)\n          vLLM 服务正常，已响应 /v1/models 请求\n          exp062_run 尚未启动（无此 tmux session）\n\n可用模型:\n  - Qwen2.5-72B-Instruct     (100G)\n  - gemma-3-27b-it            (51G)\n  - Qwen2.5-14B-Instruct      (28G)\n  - Qwen3-14B                 (28G)\n  - Mistral-7B-Instruct-v0.3  (16G)\n  - Qwen2.5-7B-Instruct       (15G)\n  - deepseek-r1-0528-qwen3-8b (8.7G)\n  - DeepSeek-R1-Distill-Llama-8B (4.3G)\n  - llama-4-scout             (60K, 可能下载不完整)\n\n磁盘: /root/autodl-tmp 250G 已用 247G，仅剩 3.3G (99%)\n```\n\n**注意**: 磁盘几乎满了（仅 3.3G 可用）。如果需要跑新实验或下载新模型，可能需要清理不再使用的模型（如 llama-4-scout 残留目录、或已完成实验的模型）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-25068-gpu-cleanup-status.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "2f7b9492d60932ecb0a3",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "audit table1 folio d061",
+  "task_key": "worker_audit_table1-folio-d061_20260522T200639",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_table1-folio-d061_20260522T200639.log",
+    "occurrence": 1,
+    "bytes": 633120,
+    "sha256": "a800637ff40a1b844195247d6ad9ebf2c30da4e65d0dd9c9df4dd426b41062e2"
+  },
+  "statistics": {
+    "messages": 208,
+    "user_turns": 0,
+    "tool_calls": 79,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 79,
+      "tool_result": 79,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 208,
+      "chunks": [
+        {
+          "path": "2f7b9492d60932ecb0a3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2f7b9492d60932ecb0a3-part-0002.json",
+          "message_count": 28
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-table1-folio-d061.md"
+}

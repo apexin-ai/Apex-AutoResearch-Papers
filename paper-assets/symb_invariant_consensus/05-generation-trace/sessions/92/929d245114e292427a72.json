@@ -1,0 +1,1000 @@
+{
+  "schema_version": "1.0",
+  "id": "929d245114e292427a72",
+  "project": "symb_invariant_consensus",
+  "kind": "conversation",
+  "title": "paper writing discussion",
+  "task_key": "worker_paper_writing_discussion_20260517T183115",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_paper_writing_discussion_20260517T183115.jsonl",
+    "occurrence": 1,
+    "bytes": 35102,
+    "sha256": "971560895df6f18212b6bedab027f9c7dee570add9b5f9171da91800bf5a7f88"
+  },
+  "statistics": {
+    "messages": 49,
+    "user_turns": 0,
+    "tool_calls": 24,
+    "roles": {
+      "tool_call": 24,
+      "tool_result": 24,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T18:33:50.370843+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T18:33:50.371492+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 4866 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T18:33:50.371695+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Agent",
+            "tool_args": {
+              "subagent_type": "Explore",
+              "description": "Check existing paper files",
+              "prompt": "Look at the paper directory at /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/. List all .tex files there. Also read main.tex to understand how sections are included and where \\section*{Limitations} appears. Read any existing discussion.tex if it exists. Also check experiments.tex for the specific result numbers mentioned (SICA, oracle, C0, etc.) so we can ensure consistency. Report file list, main.tex structure, and key numbers from experiments."
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T18:33:50.371869+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper -name \"*.tex\" -type f"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T18:33:50.372032+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T18:33:50.372167+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T18:33:50.372294+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review]{acl}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage[T1]{fontenc}\n6\t\\usepackage[utf8]{inputenc}\n7\t\\usepackage{microtype}\n8\t\\usepackage{inconsolata}\n9\t\\usepackage{graphicx}\n10\t\\usepackage{amsmath}\n11\t\\usepackage{amssymb}\n12\t\\usepackage{booktabs}\n13\t\\usepackage{multirow}\n14\t\\usepackage{xcolor}\n15\t\\usepackage{subcaption}\n16\t\\usepackage{hyperref}\n17\t\\usepackage{cleveref}\n18\t\n19\t\\graphicspath{{../figures/paper/}{figures/}}\n20\t\n21\t\\title{The Capability Trap: Why Self-Extracted Constraints\\\\Cannot Improve LLM Majority Voting}\n22\t\n23\t\\author{Anonymous}\n24\t\n25\t\\begin{document}\n26\t\\maketitle\n27\t\n28\t\\begin{abstract}\n29\t% Phase 2: to be written after re-dream results\n30\t\\textbf{[PLACEHOLDER -- Abstract deferred to Phase 2]}\n31\t\\end{abstract}\n32\t\n33\t\\input{introduction}\n34\t\n35\t\\input{related_work}\n36\t\n37\t\\input{method}\n38\t\n39\t\\input{experiments}\n40\t\n41\t\\input{discussion}\n42\t\n43\t\\input{conclusion}\n44\t\n45\t\\section*{Limitations}\n46\t% Required by EMNLP\n47\t\\textbf{[PLACEHOLDER -- to be written in Phase 2]}\n48\t\n49\t\\bibliography{references}\n50\t\\bibliographystyle{acl_natbib}\n51\t\n52\t\\appendix\n53\t\\input{appendix}\n54\t\n55\t\\end{document}\n56\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T18:33:50.372661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T18:33:50.372940+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t% Phase 2: To be written after experiments are finalized.\n5\t% Structure (from writing_plan.yaml):\n6\t% 1. Oracle experiment as causal intervention\n7\t% 2. Why DyLoS/Aristotle/FoVer work: bypass same-model self-extraction\n8\t% 3. Constructive direction: trained extractors, external provers\n9\t% 4. C0 as deployment diagnostic\n10\t% 5. Limitations\n11\t% 6. GSM8K as extreme capability trap: extraction_rate=14.7%, constraints absent entirely\n12\t%    Distinguish from FOLIO/PW regime (constraints present but non-discriminative)\n13\t\n14\t\\textbf{[PLACEHOLDER -- Discussion deferred to Phase 2]}\n15\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T18:33:50.373112+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T18:33:50.373288+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:exp-setup}\n6\t\n7\tWe evaluate SICA against Self-Consistency (SC) across five instruction-tuned models and four reasoning benchmarks.\n8\t\n9\t\\paragraph{Models.} We test Qwen2.5-14B-Instruct~\\cite{yang2024qwen25}, Mistral-7B-Instruct-v0.3~\\cite{jiang2023mistral}, LLaMA-3.1-8B-Instruct~\\cite{dubey2024llama3}, DeepSeek-R1-Distill-Qwen-7B~\\cite{guo2025deepseekr1}, and QwQ-32B~\\cite{qwen2024qwq}. This selection spans 7B to 32B parameters and includes one reasoning-specialized model (QwQ-32B) and one distilled reasoning model (DeepSeek-R1-Distill-Qwen-7B) that, as our results show, behaves as an instruction-scale model rather than a reasoning model.\n10\t\n11\t\\paragraph{Datasets.} FOLIO~\\cite{han2022folio} provides formal logic problems with gold first-order logic (FOL) annotations ($n=204$), which enable the oracle control experiment (\\S\\ref{sec:oracle}). ProofWriter~\\cite{tafjord2021proofwriter} tests multi-step deductive reasoning ($n=600$). StrategyQA~\\cite{geva2021strategyqa} evaluates commonsense reasoning ($n=200$ for LLaMA-3.1-8B; $n=60$ for other models). ARC-Challenge~\\cite{clark2018arc} covers science questions ($n=60$).\n12\t\n13\t\\paragraph{Parameters.} Unless otherwise noted, we sample $K=12$ reasoning traces per question at temperature $T=0.7$. Z3~\\cite{demoura2008z3} solves each MAX-SAT instance with a 10-second timeout. Temperature ablation experiments vary $T \\in \\{0.3, 0.5, 0.7, 1.0\\}$.\n14\t\n15\t\\paragraph{Metrics.} We report accuracy (\\%), the multi-candidate rate $C_0$ (\\S\\ref{sec:c0}), and the accuracy gap $\\Delta = \\text{SICA} - \\text{SC}$ in percentage points (pp). Statistical significance is assessed with the McNemar test for paired binary outcomes at $\\alpha = 0.05$. For adequately powered conditions ($n \\geq 200$), we also compute 95\\% bootstrap confidence intervals with 1{,}000 resamples.\n16\t\n17\t\n18\t\\subsection{Main Results: SICA Provides No Significant Gain}\n\n…[truncated 13438 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T18:33:50.373498+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I have all the information needed. Let me compile the report:\n\n## Paper Directory Structure & Analysis\n\n### .tex Files in the Paper Directory\n\nThe paper directory contains **8 .tex files**:\n\n1. `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex`\n2. `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex`\n3. `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex`\n4. `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex`\n5. `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex`\n6. `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex`\n7. `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/conclusion.tex`\n8. `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex`\n\n### Main.tex Structure\n\nThe document is structured as:\n- Title: \"The Capability Trap: Why Self-Extracted Constraints Cannot Improve LLM Majority Voting\"\n- Document class: ACL article (11pt)\n- Section inclusions in order:\n  1. introduction\n  2. related_work\n  3. method\n  4. experiments\n  5. discussion\n  6. conclusion\n  7. **\\section*{Limitations}** (line 45) — currently a PLACEHOLDER\n  8. appendix\n\nThe Limitations section is declared at line 45 of main.tex as a starred section with a placeholder marked for Phase 2.\n\n### Discussion.tex Status\n\nThe discussion.tex file exists but is currently a **placeholder**. It contains a Phase 2 structure comment outlining the intended coverage:\n1. Oracle experiment as causal intervention\n2. Why DyLoS/Aristotle/FoVer work: bypass same-model self-extraction\n3. Constructive direction: trained extractors, external provers\n4. C0 as deployment diagnostic\n5. Lim\n…[truncated 1595 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Agent",
+            "elapsed_ms": 1
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T18:33:50.373687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T18:33:50.373821+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t% Phase 2: To be written after experiments are finalized.\n5\t% Structure (from writing_plan.yaml):\n6\t% 1. Oracle experiment as causal intervention\n7\t% 2. Why DyLoS/Aristotle/FoVer work: bypass same-model self-extraction\n8\t% 3. Constructive direction: trained extractors, external provers\n9\t% 4. C0 as deployment diagnostic\n10\t% 5. Limitations\n11\t% 6. GSM8K as extreme capability trap: extraction_rate=14.7%, constraints absent entirely\n12\t%    Distinguish from FOLIO/PW regime (constraints present but non-discriminative)\n13\t\n14\t\\textbf{[PLACEHOLDER -- Discussion deferred to Phase 2]}\n15\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T18:33:50.373979+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex",
+              "offset": "40",
+              "limit": "15"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T18:33:50.374108+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "40\t\n41\t\\input{discussion}\n42\t\n43\t\\input{conclusion}\n44\t\n45\t\\section*{Limitations}\n46\t% Required by EMNLP\n47\t\\textbf{[PLACEHOLDER -- to be written in Phase 2]}\n48\t\n49\t\\bibliography{references}\n50\t\\bibliographystyle{acl_natbib}\n51\t\n52\t\\appendix\n53\t\\input{appendix}\n54\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T18:33:50.374298+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex",
+              "content": "\\section{Discussion}\n\\label{sec:discussion}\n\nThe oracle experiment (Table~\\ref{tab:main_results}, bottom) is not merely an upper bound on SICA performance; it constitutes a causal intervention that isolates the source of failure. By replacing only the constraint source (from self-extracted to gold FOL annotations) while holding all other pipeline components fixed, we establish that the MAX-SAT aggregation mechanism is effective when supplied with discriminative constraints. The +8.82pp improvement ($p < 0.001$) confirms that aggregation is not the bottleneck. This oracle design follows established methodology in compositional reasoning research: \\citet{press2023compositionality} use oracle sub-question decompositions to isolate compositionality gaps, \\citet{trivedi2023ircot} employ oracle retrieval to separate retrieval from reasoning errors, and \\citet{saparov2023greedy} supply gold FOL proofs to test reasoning capacity independent of formalization skill. Our oracle applies the same logic to constraint extraction, pinpointing same-model self-extraction as the single point of failure.\n\nSeveral recent systems report positive results on overlapping benchmarks using symbolic constraints. DyLoS \\citep{xu2026dylos} achieves gains through multi-paradigm solver selection that routes problems to appropriate formal systems. Aristotle \\citep{li2025aristotle} applies logic-complete decomposition, breaking complex premises into independently verifiable units. FoVer \\citep{wang2025fover} trains a dedicated FOL verifier on supervised data, bypassing the need for the reasoning model to extract its own constraints. LogicAgent \\citep{luo2025logicagent} employs multi-perspective grounding to construct constraints from diverse viewpoints. The common thread is that none of these methods rely on same-model self-extraction. Their success is complementary to our negative finding, not contradictory. The oracle result confirms that the gap these methods bridge (up to +8.82pp) is real and recoverable through external means.\n\nThe +8.82pp oracle ceiling quantifies the potential that remains locked behind the capability trap. Three concrete paths can unlock this potential. First, trained FOL extractors, supervised on datasets with gold annotations such as FOLIO, can learn extraction patterns that exceed same-model capabilities. Second, external provers that verify constraints independently of the reasoning model eliminate the circular dependency between generation and verification. Third, cross-model extraction, where a separate model extracts constraints from another model's reasoning traces, breaks the self-reference loop that produces non-discriminative constraints. Each approach targets the extraction bottleneck identified by our ablation: since MAX-SAT, count-only, and random-weight all produce identical predictions on 802 of 804 instances (Table~\\ref{tab:ablation}), improving the aggregation mechanism offers no path forward.\n\nOur analysis also reveals $C_0$ (the multi-candidate rate) as a zero-cost diagnostic for practitioners considering constraint-based voting. $C_0$ is computable directly from the trace sampling stage, before any constraint extraction occurs. When $C_0$ falls below 5\\%, as with QwQ-32B ($C_0 = 2.6\\%$), SICA degenerates to SC by construction because nearly all questions receive unanimous answers. High $C_0$ is necessary but not sufficient for SICA to outperform SC, since the capability trap can render extracted constraints non-discriminative even when candidate disagreement is abundant (e.g., LLaMA-3.1-8B on FOLIO, $C_0 = 61.8\\%$, $\\Delta = 0$). Practitioners should compute $C_0$ from the sampling stage before investing in constraint extraction: low $C_0$ rules out any possible gain, while high $C_0$ warrants further investigation of constraint quality before deployment.\n"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T18:33:50.374484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T18:33:50.374611+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/limitations_content.tex",
+              "content": "Several limitations bound the scope of our conclusions. First, the oracle experiment is restricted to FOLIO ($n = 204$), the only benchmark in our study with gold FOL annotations; extending this analysis to other domains requires constructing comparable gold constraint sets. Second, five of our nine model-domain conditions have $n \\leq 60$, providing insufficient statistical power for confirmatory claims; these conditions serve as regime characterization rather than definitive tests. Third, we do not compare against trained FOL extractors or cross-model extraction pipelines; our findings characterize the limitations of same-model self-extraction specifically. Fourth, all models tested range from 7B to 32B parameters; whether the capability trap persists at larger scales (70B+) remains an open question. Fifth, the GSM8K pilot ($n = 30$) is included to illustrate the constraint-absent failure regime and should not be interpreted as confirmatory evidence.\n"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T18:33:50.374746+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/limitations_content.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T18:33:50.375018+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "—",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T18:33:50.375293+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T18:33:50.375516+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": " – ",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T18:33:50.375647+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T18:33:50.375766+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "—",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/limitations_content.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T18:33:50.375919+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T18:33:50.376045+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": " – ",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/limitations_content.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-17T18:33:50.376164+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-17T18:33:50.376277+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ing,",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-17T18:33:50.376388+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-17T18:33:50.376548+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ing,",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-17T18:33:50.376663+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-17T18:33:50.376771+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex",
+              "offset": "5",
+              "limit": "3"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-17T18:33:50.376905+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5\t\n6\tSeveral recent systems report positive results on overlapping benchmarks using symbolic constraints. DyLoS \\citep{xu2026dylos} achieves gains through multi-paradigm solver selection that routes problems to appropriate formal systems. Aristotle \\citep{li2025aristotle} applies logic-complete decomposition, breaking complex premises into independently verifiable units. FoVer \\citep{wang2025fover} trains a dedicated FOL verifier on supervised data, bypassing the need for the reasoning model to extract its own constraints. LogicAgent \\citep{luo2025logicagent} employs multi-perspective grounding to construct constraints from diverse viewpoints. The common thread is that none of these methods rely on same-model self-extraction. Their success is complementary to our negative finding, not contradictory. The oracle result confirms that the gap these methods bridge (up to +8.82pp) is real and recoverable through external means.\n7\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-17T18:33:50.377089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex",
+              "old_string": "Aristotle \\citep{li2025aristotle} applies logic-complete decomposition, breaking complex premises into independently verifiable units. FoVer \\citep{wang2025fover} trains a dedicated FOL verifier on supervised data, bypassing the need for the reasoning model to extract its own constraints.",
+              "new_string": "Aristotle \\citep{li2025aristotle} applies logic-complete decomposition that breaks complex premises into independently verifiable units. FoVer \\citep{wang2025fover} trains a dedicated FOL verifier on supervised data, so the reasoning model need not extract its own constraints."
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-17T18:33:50.377238+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-17T18:33:50.377352+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ing,",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-17T18:33:50.377464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-17T18:33:50.377573+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex",
+              "offset": "5",
+              "limit": "2"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-17T18:33:50.377699+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5\t\n6\tSeveral recent systems report positive results on overlapping benchmarks using symbolic constraints. DyLoS \\citep{xu2026dylos} achieves gains through multi-paradigm solver selection that routes problems to appropriate formal systems. Aristotle \\citep{li2025aristotle} applies logic-complete decomposition that breaks complex premises into independently verifiable units. FoVer \\citep{wang2025fover} trains a dedicated FOL verifier on supervised data, so the reasoning model need not extract its own constraints. LogicAgent \\citep{luo2025logicagent} employs multi-perspective grounding to construct constraints from diverse viewpoints. The common thread is that none of these methods rely on same-model self-extraction. Their success is complementary to our negative finding, not contradictory. The oracle result confirms that the gap these methods bridge (up to +8.82pp) is real and recoverable through external means."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-17T18:33:50.377843+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Furthermore|Moreover|Additionally|delve|leverage|utilize|paradigm shift",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex",
+              "output_mode": "content",
+              "-i": "True"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-17T18:33:50.378044+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-17T18:33:50.378159+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Furthermore|Moreover|Additionally|delve|leverage|utilize",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/limitations_content.tex",
+              "output_mode": "content",
+              "-i": "True"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-17T18:33:50.378270+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-17T18:33:50.378386+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-17T18:33:50.378519+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\tThe oracle experiment (Table~\\ref{tab:main_results}, bottom) is not merely an upper bound on SICA performance; it constitutes a causal intervention that isolates the source of failure. By replacing only the constraint source (from self-extracted to gold FOL annotations) while holding all other pipeline components fixed, we establish that the MAX-SAT aggregation mechanism is effective when supplied with discriminative constraints. The +8.82pp improvement ($p < 0.001$) confirms that aggregation is not the bottleneck. This oracle design follows established methodology in compositional reasoning research: \\citet{press2023compositionality} use oracle sub-question decompositions to isolate compositionality gaps, \\citet{trivedi2023ircot} employ oracle retrieval to separate retrieval from reasoning errors, and \\citet{saparov2023greedy} supply gold FOL proofs to test reasoning capacity independent of formalization skill. Our oracle applies the same logic to constraint extraction, pinpointing same-model self-extraction as the single point of failure.\n5\t\n6\tSeveral recent systems report positive results on overlapping benchmarks using symbolic constraints. DyLoS \\citep{xu2026dylos} achieves gains through multi-paradigm solver selection that routes problems to appropriate formal systems. Aristotle \\citep{li2025aristotle} applies logic-complete decomposition that breaks complex premises into independently verifiable units. FoVer \\citep{wang2025fover} trains a dedicated FOL verifier on supervised data, so the reasoning model need not extract its own constraints. LogicAgent \\citep{luo2025logicagent} employs multi-perspective grounding to construct constraints from diverse viewpoints. The common thread is that none of these methods rely on same-model self-extraction. Their success is complementary to our negative finding, not contradictory. The oracle result confirms that the gap these methods bridge (up to +8.82pp) is real and re\n…[truncated 1850 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-17T18:33:50.378659+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/limitations_content.tex"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-17T18:33:50.378777+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tSeveral limitations bound the scope of our conclusions. First, the oracle experiment is restricted to FOLIO ($n = 204$), the only benchmark in our study with gold FOL annotations; extending this analysis to other domains requires constructing comparable gold constraint sets. Second, five of our nine model-domain conditions have $n \\leq 60$, providing insufficient statistical power for confirmatory claims; these conditions serve as regime characterization rather than definitive tests. Third, we do not compare against trained FOL extractors or cross-model extraction pipelines; our findings characterize the limitations of same-model self-extraction specifically. Fourth, all models tested range from 7B to 32B parameters; whether the capability trap persists at larger scales (70B+) remains an open question. Fifth, the GSM8K pilot ($n = 30$) is included to illustrate the constraint-absent failure regime and should not be interpreted as confirmatory evidence.\n2\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-17T18:33:50.378945+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both files written and verified clean.\n\n**`discussion.tex`**: 4 paragraphs (~460 words), covering oracle as causal intervention, why published methods succeed, constructive directions, and C0 as deployment diagnostic. All 7 required citations included.\n\n**`limitations_content.tex`**: 5 limitations (~130 words) as a single paragraph. Ready to paste into the `\\section*{Limitations}` block in `main.tex`."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T183115"
+          },
+          "id": "event-000049"
+        }
+      ],
+      "message_count": 49
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-discussion.md"
+}

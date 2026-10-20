@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9538f8ea48f78c379c40",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "exp qwen3 multiseed deploy",
+  "task_key": "worker_exp_qwen3-multiseed-deploy_20260523T180238",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_qwen3-multiseed-deploy_20260523T180238_result.json",
+    "occurrence": 1,
+    "bytes": 1009,
+    "sha256": "96c02b18aa6b87d0bba14ce532db797ea278467337199db6ea178818dd5f7b46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个种子都在正常运行且产生正确结果。\n\n## 部署完成总结\n\n| Seed | GPU | Port | vLLM PID | 实验 PID | 状态 |\n|------|-----|------|----------|---------|------|\n| 123 | cuda:0 | 8020 | 801558 | 804112 | 运行中 |\n| 456 | cuda:2 | 8021 | 801559 | 804114 | 运行中 |\n| 789 | cuda:3 | 8022 | 801560 | 804116 | 运行中 |\n\n**配置**（完全匹配 exp033）：\n- 模型：`/root/autodl-tmp/models/Qwen3-14B`\n- 非思考模式：`--default-chat-template-kwargs '{\"enable_thinking\": false}'`\n- K=12, T=0.7, max_tokens=4096, max_model_len=8192\n- 数据：`data/proofwriter_full.json` (600 problems)\n- Tiebreaking：alphabetical（代码内置）\n\n**输出路径**：\n- `results/multi_seed/qwen3_pw_seed{123,456,789}/results.json`\n\n**预计完成时间**：~90s/problem × 600 = ~15 小时（约今晚 17:00 CST）\n\n**监控命令**：\n```\ntail -f /tmp/qwen3_pw_seed123.log\ntail -f /tmp/qwen3_pw_seed456.log\ntail -f /tmp/qwen3_pw_seed789.log\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-qwen3-multiseed-deploy.md"
+}

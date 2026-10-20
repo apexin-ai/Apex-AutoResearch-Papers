@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd3b1b217f66e2360498",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code cross dataset replication scripts",
+  "task_key": "worker_code_cross-dataset-replication-scripts_20260520T103447",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_cross-dataset-replication-scripts_20260520T103447_result.json",
+    "occurrence": 1,
+    "bytes": 1494,
+    "sha256": "dc3dfe845365c7778185b9b5f779463d4d5f5c66cf863e0c4728df406c9f8dfa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 数据集准备\n\n| 数据集 | 文件 | 数量 | Label 分布 | Seed |\n|--------|------|------|------------|------|\n| ProofWriter | `data/proofwriter_30.json` | 30 | T=10, F=10, U=10 | 42 |\n| LogiQA | `data/logiqa_30.json` | 30 | A=8, B=8, C=7, D=7 | 42 |\n\n两个数据集均从已有全量数据采样，格式与现有 pipeline 兼容。\n\n### Dry-run 结果\n\nProofWriter 3 题 K=4，端口 8020 (Mistral-7B)：**通过**。\n- SC、SICA、Selective Abstention 三个方法均正常执行\n- McNemar test 正常计算\n- Checkpoint/resume 功能正常\n- 单题耗时 ~14-18s (K=4)\n- 结果输出到 `results/cross_dataset/proofwriter/pilot.json`\n\n### 脚本清单\n\n| 脚本 | 用途 |\n|------|------|\n| `prepare_proofwriter_30.py` | 采样 30 题 ProofWriter |\n| `prepare_logiqa_30.py` | 采样 30 题 LogiQA |\n| `run_cross_dataset_replication.py` | 统一跨数据集实验脚本 |\n\n### 全量运行命令（等 Director 决定）\n\n```bash\n# ProofWriter 30题\npython -u run_cross_dataset_replication.py \\\n  --dataset proofwriter --data-path data/proofwriter_30.json \\\n  --k 12 --vllm-port 8020 \\\n  --output results/cross_dataset/proofwriter/results.json\n\n# LogiQA 30题\npython -u run_cross_dataset_replication.py \\\n  --dataset logiqa --data-path data/logiqa_30.json \\\n  --k 12 --vllm-port 8020 \\\n  --output results/cross_dataset/logiqa/results.json\n```\n\n脚本就绪，等 Director 决定用哪种方法跑全量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cross-dataset-replication-scripts.md"
+}

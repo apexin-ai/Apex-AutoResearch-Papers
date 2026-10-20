@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53a6c9a6b6b3dd90b980",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment 70b awq download",
+  "task_key": "worker_experiment_70b-awq-download_20260521T092507",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_70b-awq-download_20260521T092507_result.json",
+    "occurrence": 1,
+    "bytes": 309,
+    "sha256": "42252961849df1010b618cdb266fbd4e4551522d5475fe8f7f3659759935d7b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载正在进行中，约 34GB/41GB，速度 ~1.2MB/s。4.5 分钟后自动检查进度。\n\n**当前部署计划**：\n- 模型路径: `/root/autodl-tmp/models/Qwen2.5-72B-Instruct-AWQ`\n- GPU: cuda:2 (98GB，空闲)\n- Port: 8002\n- tensor-parallel-size: 1（AWQ 41GB 单卡 98GB 够用）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-70b-awq-download.md"
+}

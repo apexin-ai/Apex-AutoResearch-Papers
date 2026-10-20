@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d18ff3aff014b9e3fdfb",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag exp057 exit check",
+  "task_key": "worker_diag_exp057-exit-check_20260519T041402",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_exp057-exit-check_20260519T041402_result.json",
+    "occurrence": 1,
+    "bytes": 516,
+    "sha256": "9ec9a868279597dd5894eb516a575ace8cfcc1eae06441c9e6b6404d12683f4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:2 已释放（0 MiB used）。\n\n## 汇总\n\n| 指标 | 值 |\n|---|---|\n| 状态 | **正常完成** (204/204) |\n| SICA accuracy | 56.86% (116/204) |\n| SC accuracy | 57.35% (117/204) |\n| Delta (SICA - SC) | **-0.49pp** |\n| Discordant pairs | b=5, c=6 (total=11) |\n| McNemar p | **1.0000** (不显著) |\n| cuda:2 | **已释放** |\n\n结论：**Negative**。Mistral-7B T=0.3 上 SICA 与 SC 无显著差异，符合 capability trap 预期。Registry 已更新，tmux sessions 已清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp057-exit-check.md"
+}

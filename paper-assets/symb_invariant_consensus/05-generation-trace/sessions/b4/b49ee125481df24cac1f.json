@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "b49ee125481df24cac1f",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "research temp diversity",
+  "task_key": "worker_research_temp-diversity_20260515T111724",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_temp-diversity_20260515T111724.log",
+    "occurrence": 1,
+    "bytes": 1047110,
+    "sha256": "9c2e11abca955defedebae2813f0abd9ecb08760c03053377a05b5b36b7dbdb8"
+  },
+  "statistics": {
+    "messages": 1036,
+    "user_turns": 0,
+    "tool_calls": 482,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 68,
+      "tool_call": 482,
+      "tool_result": 482,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1036,
+      "chunks": [
+        {
+          "path": "b49ee125481df24cac1f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b49ee125481df24cac1f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b49ee125481df24cac1f-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "b49ee125481df24cac1f-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "b49ee125481df24cac1f-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "b49ee125481df24cac1f-part-0006.json",
+          "message_count": 136
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-temp-diversity.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5bc8516a74b8d94d9ac",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "deploy exp 074c icg seed123 25068",
+  "task_key": "worker_deploy_exp-074c-icg-seed123-25068_20260519T200415",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_exp-074c-icg-seed123-25068_20260519T200415_result.json",
+    "occurrence": 1,
+    "bytes": 459,
+    "sha256": "7e612a0e1740bf8ab434cc9cc90badaefcd0be3336f9269fa4e9cb03f6344646"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n**总结：**\n- 杀掉 cuda:1 上已完成的 exp-073b Qwen vLLM（port 8001）\n- 在 cuda:1 启动 Mistral-7B-Instruct-v0.3 vLLM（port 8001，tmux: `exp074c_vllm`）\n- Dry-run 通过（204 items, 所有依赖 OK）\n- 实验已启动（tmux: `exp074c_run`），正在处理中（1/204 开始）\n- Registry: `exp-074c-icg-mistral-folio-seed123` → RUNNING，parent: exp-074\n- 监控 cron 每 8 分钟检查一次进度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-exp-074c-icg-seed123-25068.md"
+}

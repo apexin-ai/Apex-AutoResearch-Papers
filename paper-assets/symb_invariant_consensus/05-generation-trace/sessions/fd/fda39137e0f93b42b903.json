@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fda39137e0f93b42b903",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 019 results",
+  "task_key": "worker_analysis_exp-019-results_20260517T091119",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-019-results_20260517T091119_result.json",
+    "occurrence": 1,
+    "bytes": 1028,
+    "sha256": "da137d93c93fcc8016b617ef15bac923ad9b1ccef5a1ba1a78be7e6bc3ea21e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。报告已写入 `artifacts/exp019_analysis.md`。\n\n## 结论：NEGATIVE\n\n| | Value |\n|--|-------|\n| SICA | 74.00% (148/200) |\n| SC | 72.00% (144/200) |\n| Delta | **+2.00pp** |\n| McNemar p (exact) | **0.424** |\n| Bootstrap 95% CI | **[-1.50pp, +5.50pp]** (跨零) |\n\n### 关键发现\n\n1. **统计不显著**：p=0.424 远超 0.05 和 0.10 阈值，CI 跨零。D031 判定为 negative。\n\n2. **效应缩水**：exp-011 (n=60) 的 +6.67pp 在扩大到 200 题后缩到 +2.00pp，缩水 70%。exp-011 的增益是小样本噪声。\n\n3. **极少 discordant pairs**：200 题中只有 14 题 (7%) 两种方法不同。93% 的问题 SICA 和 SC 给出相同答案。\n\n4. **SICA 仅充当 tiebreaker**：9 个 SICA wins 中 6 个发生在 SC 平票（3:3 或 6:6），且 5 个 SC wins 中 3 个也是平票但 SICA 选错了方向。\n\n5. **54.5% 的问题 SC 全票一致**，SICA 无法改变结果。\n\n**D031 决策：p >> 0.10，维持 Capability Trap analysis paper 方向。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-019-results.md"
+}

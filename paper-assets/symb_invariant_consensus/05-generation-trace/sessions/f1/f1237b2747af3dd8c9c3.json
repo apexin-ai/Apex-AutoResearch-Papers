@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "f1237b2747af3dd8c9c3",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "code fix vllm install 25068",
+  "task_key": "worker_code_fix-vllm-install-25068_20260518T085007",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix-vllm-install-25068_20260518T085007.log",
+    "occurrence": 1,
+    "bytes": 633864,
+    "sha256": "fd66284bf0b60f7ecbdfaeaabba6d0050c97ab90bde2cf035a8ac662c26b4d94"
+  },
+  "statistics": {
+    "messages": 406,
+    "user_turns": 0,
+    "tool_calls": 143,
+    "roles": {
+      "system": 1,
+      "record": 1,
+      "assistant": 117,
+      "tool_call": 143,
+      "tool_result": 143,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 406,
+      "chunks": [
+        {
+          "path": "f1237b2747af3dd8c9c3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f1237b2747af3dd8c9c3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f1237b2747af3dd8c9c3-part-0003.json",
+          "message_count": 46
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-vllm-install-25068.md"
+}

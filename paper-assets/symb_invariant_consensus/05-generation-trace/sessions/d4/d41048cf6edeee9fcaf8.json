@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d41048cf6edeee9fcaf8",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "agent / loop_9_1779386186.md",
+  "task_key": "loop_9_1779386186",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_9_1779386186.md",
+    "occurrence": 1,
+    "bytes": 4054,
+    "sha256": "60a65da0975ca83d42516f5084c38bdd3ffd1e49b0413342d95b365f6a08f50d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-19T12:12:07+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westd-25068:cuda:0-3, westd-16639:cuda:0-3（共 8 卡）。白名单外的 GPU 必须 push back Director\n- westd-16639 上 exp-039/040 正在跑，不要 kill 它们的进程或 tmux session\n- 项目路径固定 `/root/symb_invariant_consensus`，两台服务器相同\n- EMNLP 2026 ARR May 25 deadline（~7 天），framing 已升级为 \"regime-dependent capability trap\"（D052），旧 framing \"universal trap\" 已废弃，Paper Agent 已被通知暂停旧 framing 写作\n\n### 2. 🖥️ 基础设施快照\n- 服务器: westd-25068（4× RTX PRO 6000 Blackwell）、westd-16639（4× RTX PRO 6000 Blackwell）\n- 工作目录: `/root/symb_invariant_consensus`（两台服务器）\n- Python/conda: **未在本 session 探查**，需 SSH 确认（上次 session 用的 miniconda3，但不确定）\n- 磁盘: westd-16639 约 502GB 可用(40%)，westd-25068 约 427GB 可用(49%)\n- 活跃 cron: exp-039-14b-pw600-16639（running）、exp-040-qwen3-pw600-16639（running）、exp-041-14b-folio204-16639（miss 2/5，可能正在失败）\n- 模型/数据/W&B config: 未在本 session 探查，需让 Worker SSH 确认\n\n### 3. 📊 当前状态\n**刚做完**: session-start 初始化（reconcile crons + 读 registry/report/roadmap）。收到 exp-038-14b-logiqa200-16639 失败回调。\n\n**已派 Worker**: `worker_diag_exp-038-041-16639_20260518T200944`（正在 SSH 到 westd-16639 诊断 exp-038 失败原因 + exp-041 异常）。**尚未收到回调**。\n\n**Registry 状态**:\n- 67 个实验: RUNNING 3, ANALYZING 2, PREPARING 1, DONE 61\n- RUNNING: exp-039（14B PW-600 SICA vs SC）、exp-040（Qwen3-14B PW-600）、exp-041（14B FOLIO-204 重跑，但进程可能已死）\n- 刚 failed: exp-038（14B LogiQA-200，process dead 5×）、exp-044-icl-oracle（EXIT_CODE=129）、exp-042b-premise-formal（EXIT_CODE=1）\n\n**未汇报 Director**: 本 session 还没来得及汇报，等诊断 Worker 回调后一并汇报。\n\n### 4. 📋 待办\n- Worker `diag_exp-038-041-16639` 回调到达 → 读取诊断结果 → update_registry 写入 exp-038 失败原因和 log_path → 判断 exp-041 是否可救（可救则重启，不可救则标 failed）→ 汇报 Director（带 [资源] 行）\n- exp-041 确认死亡 → 需要重跑（westd-16639 上复现 FOLIO-204 SICA vs SC 是 regime boundary 验证的关键数据点）\n- exp-039/040 cron 回调到达 → 按 on-experiment-done 流程处理（这两个是 PW-600 全量验证 capability trap）\n- westd-16639 有空闲 GPU（exp-038 死后至少释放了 1 卡）→ 诊断完成后安排新实验或重跑\n- smoke-test-5q 在 PREPARING 状态 → 需要推进或清理\n\n### 5. 🎯 战略上下文\n- **核心发现 (D052)**: Capability trap 是 regime-dependent。高 SC 模型（Qwen2.5-14B SC=75.49%）trap active（SICA ≈ SC）；低 SC 模型（Mistral-7B SC=54.41%）SICA 显著提升 +4.90pp (p=0.013)。Oracle +14.22pp 证明聚合机制有效，bottleneck 在 extraction quality。\n- **6 个 remediation 全部失败**: contrastive prompting、cross-model、generational、Z3 feedback、consistency filtering、cross-trace UNSAT——都没能打破高 SC regime 的 trap。\n- **当前急需的数据点**: (1) Qwen2.5-7B 的 SC 准确率（exp-035 negative 但 SC 未记录，决定 regime boundary 是否 Mistral-specific）；(2) PW-600 全量上 capability trap 是否持续（exp-039/040 正在跑）；(3) FOLIO-204 在 westd-16639 的复现（exp-041，但可能已死）\n- **易错点**: 不要混淆 \"universal trap\" 和 \"regime-dependent trap\" framing——D052 已经决定转向后者。Paper Agent 的旧草稿可能还是 universal trap 叙事，任何写作必须基于新 framing。\n- **exp-038 LogiQA 是新数据集拓展**，跨数据集验证是重要的，但 LogiQA 是多选题（非二元分类），需要适配 constraint extraction 和 Z3 formalization，技术难度比 FOLIO/PW 高。失败可能是适配问题而非根本问题。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1779386186.md"
+}

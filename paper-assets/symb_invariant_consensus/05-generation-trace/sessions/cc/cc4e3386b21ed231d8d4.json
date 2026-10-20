@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc4e3386b21ed231d8d4",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "deploy exp 079 icg logiqa 16639",
+  "task_key": "worker_deploy_exp-079-icg-logiqa-16639_20260519T185540",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_exp-079-icg-logiqa-16639_20260519T185540_result.json",
+    "occurrence": 1,
+    "bytes": 476,
+    "sha256": "548b7b3e4894a967b543fc662aee051e5383226b78cafb89b1d4f426dca933b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-079 已部署并运行中。\n\n**部署摘要:**\n- **服务器**: westd-16639, cuda:0, port 8010\n- **tmux sessions**: `exp079_vllm` (vLLM), `exp079_run` (实验)\n- **代码适配**: `run_icg.py` 新增 `--dataset logiqa` 支持（ICG_PROMPT_LOGIQA、multichoice domain、A/B/C/D 候选集）\n- **Dry-run**: 3 题通过，SC=0.33, ICG=0.67, 无 crash\n- **ETA**: ~110 min (200 problems)\n- **输出**: `results/exp079_icg_mistral_logiqa200/results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-exp-079-icg-logiqa-16639.md"
+}

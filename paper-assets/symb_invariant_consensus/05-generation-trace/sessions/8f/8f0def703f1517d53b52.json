@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f0def703f1517d53b52",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "deploy exp 073 qwen7b logiqa200 seed456",
+  "task_key": "worker_deploy_exp-073-qwen7b-logiqa200-seed456_20260519T154156",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_exp-073-qwen7b-logiqa200-seed456_20260519T154156_result.json",
+    "occurrence": 1,
+    "bytes": 660,
+    "sha256": "663b7b7f1bbcd9e1657bea90d3b7151d3d16816a2c56a182a727f2af0bc2c189"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。汇报：\n\n**exp-073-qwen7b-logiqa200-seed456 已在 westd-25068 cuda:0 上运行**\n\n| 项目 | 状态 |\n|------|------|\n| vLLM | 端口 8000 运行中（tmux: `exp073_vllm`），需 `VLLM_USE_FLASHINFER_SAMPLER=0 --enforce-eager`（Blackwell GPU FlashInfer 兼容性问题） |\n| 实验 | tmux: `exp073_run`，正常推理中 |\n| 输出 | `results/exp073_qwen7b_logiqa200_seed456/exp073_results.json` |\n| 日志 | `results/exp073_qwen7b_logiqa200_seed456/exp073_run.log` |\n| Registry | RUNNING，provenance 已更新 |\n\nDry-run 1 题验证通过（SICA=D ✓, SC=D ✓, 耗时 19s/题），200 题预估 ~60 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-exp-073-qwen7b-logiqa200-seed456.md"
+}

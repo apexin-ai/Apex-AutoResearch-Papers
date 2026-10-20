@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5b0458dbb050c31eaae",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "exp aime30 launch",
+  "task_key": "worker_exp_aime30-launch_20260515T123853",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_aime30-launch_20260515T123853_result.json",
+    "occurrence": 1,
+    "bytes": 1069,
+    "sha256": "eb817ce6700d2a0385b1c824633ba0af77482a5ba7744d65d68a8cde47363af3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 总结\n\n### 代码一致性验证\n**constraint_extractor.py** — VLLMBackend 包含两个 Worker 的所有修复：\n- `max_tokens=512` ✅\n- `response_format={\"type\": \"json_object\"}` ✅\n- `max_workers=12` ✅\n- 正确的 regex `\\s` ✅\n- fallback JSON 提取 + `<think>` 剥离 + JSON repair ✅\n- `parse_retries=1` ✅\n\n### 发现并修复的问题\n1. **trace 截断 bug**：VLLMGenerator 的 `max_tokens=4096` 对 QwQ-32B 太短，12/12 trace 都无法生成 `\\boxed{}` 答案。修复：增加到 `10240`\n2. **run_full_mvp.py 缺参数**：添加了 `--temperature`、`--max-tokens`、`--no-proofwriter` 参数\n\n### Smoke test 结果（1 题 AIME）\n- SICA answer: **73** ✅（ground truth: 73）\n- Trace answers: **12/12** non-empty\n- Constraints: 66 total, 30 unique\n- MaxSAT: 26 sat, 4 excl\n- Time: 470.7s\n\n### AIME 30 题实验\n- **exp_id**: `sica_aime30_t07`\n- **状态**: RUNNING\n- **PID**: 119338（tmux session: `sica_aime30_t07`）\n- **日志**: `/tmp/sica_aime30_t07.log`\n- **预计耗时**: 3-5 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-aime30-launch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8fb126015fa08d5fe068",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ops check exp084 status",
+  "task_key": "worker_ops_check-exp084-status_20260520T024612",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-exp084-status_20260520T024612_result.json",
+    "occurrence": 1,
+    "bytes": 726,
+    "sha256": "0223673629f4685474cf1b64d28e2a6fb715273be331c78b405badd911f7293c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-084 已完成。**\n\n| 指标 | 值 |\n|---|---|\n| 进度 | **200/200** (全部完成) |\n| Debate accuracy | **0.2900** (58/200) |\n| SC accuracy | **0.5050** (101/200) |\n| Delta (debate - SC) | **-0.2150** |\n| Fallbacks | 14/200 |\n| Constraints | 3220 total |\n| Wall time | 226.3 min (~3.8h) |\n| 状态 | `EXIT_CODE=0`, 正常退出 |\n\nGPU 1/2 仍有 ~90GB 显存占用但 utilization 0% — 可能是模型仍加载在显存中（进程未退出或 vLLM server 仍在运行），但实验本身已跑完。\n\nDebate accuracy (0.29) 大幅低于 SC baseline (0.505)，delta = -0.215，说明在 LogiQA seed123 上 debate 机制对 Mistral 没有带来增益，反而显著降低了准确率。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-exp084-status.md"
+}

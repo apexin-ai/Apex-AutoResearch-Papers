@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80a255f950221dd7b644",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis nli combo recompute pw",
+  "task_key": "worker_analysis_nli-combo-recompute-pw_20260521T052024",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_nli-combo-recompute-pw_20260521T052024_result.json",
+    "occurrence": 1,
+    "bytes": 1543,
+    "sha256": "c5393c0b81c941c9b8804898e2a65ffe52833e52bd802ec00ca2698200717c59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## 重算结果\n\n### PW600 (alphabetical tiebreaking)\n\n| Generator | SC (alpha) | w1 | w3 | w5 |\n|---|---|---|---|---|\n| **Mistral-7B** | 39.33% (236) | 40.17% (+0.83pp, p=.36) | **46.00% (+6.67pp, p=1.1e-5)\\*** | **50.33% (+11.0pp, p=6.2e-7)\\*** |\n| LLaMA-3.1-8B | **72.50%** (435) | 73.33% (+0.83pp, p=.36) | 73.33% (+0.83pp, p=.66) | 72.00% (−0.50pp, p=.87) |\n| Qwen2.5-14B | **74.00%** (444) | 74.17% (+0.17pp, p=1.0) | 74.67% (+0.67pp, p=.50) | 75.17% (+1.17pp, p=.36) |\n| Qwen3-14B | **85.83%** (515) | 86.00% (+0.17pp, p=1.0) | 86.33% (+0.50pp, p=.45) | 87.00% (+1.17pp, p=.21) |\n\n\\* = significant after BH correction (m=12)\n\n### 关键变化\n\n1. **SC baseline 上移**：alphabetical + filtering invalid answers 使 LLaMA SC 从 420→435 (+15), Qwen2.5 441→444 (+3), Qwen3 510→515 (+5)。Mistral 不变。\n\n2. **Combo gain 大幅变化**：\n   - Mistral w3: +3.50pp → **+6.67pp**（gain 增大，因为 combo 本身从 257→276）\n   - LLaMA w3: +4.17pp → **+0.83pp**（gain 缩小，SC 上移更多）\n   - 其余类似缩小\n\n3. **BH significant: 4 → 2**（仅 Mistral w3、w5 存活）\n\n4. **Spearman ρ = 1.0**（n=4, exact permutation p = 0.083）: capability gap 与 combo gain 完全单调\n\n5. **FOLIO (Mistral)**: SC=55.88%(114/204), w1=56.37%(+0.49pp), w3=58.82%(+2.94pp, p=.21)\n\n### 代码修复\n9 处 `Counter.most_common()` / `max(dict, key=dict.get)` 已替换为 alphabetical tiebreaking（westd-16639: 4处, westd-25068: 5处）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-nli-combo-recompute-pw.md"
+}

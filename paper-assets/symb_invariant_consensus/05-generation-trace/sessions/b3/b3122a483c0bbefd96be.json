@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3122a483c0bbefd96be",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "gpu exp 059 cross qwen3 extractor",
+  "task_key": "worker_gpu_exp-059-cross-qwen3-extractor_20260519T063728",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp-059-cross-qwen3-extractor_20260519T063728_result.json",
+    "occurrence": 1,
+    "bytes": 988,
+    "sha256": "2382b9f65ff8cb8d9f2ac99b551e62ab59bb545f6d87d01bd68577f9ce90aba1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全量运行正在进行中，API 调用正常。\n\n**当前状态总结：**\n\n| 项目 | 状态 |\n|------|------|\n| vLLM Qwen3-14B | 运行中，端口 8000，cuda:0 |\n| 代码修改 | `APIBasedLLM` 添加 `extra_body` 支持；`cross_model_extract.py` 添加 `--qwen3-nothink` flag |\n| Dry-run (n=3) | 通过：3 题全部正常，extraction + scoring pipeline OK |\n| 全量运行 (n=204) | 已启动，tmux session `exp059_run`，预计 ~2.3h |\n| 实验注册 | exp-059-cross-qwen3-extractor, status=RUNNING |\n| exp-033 baseline | SICA=59.31%, SC=54.41%, n=204 |\n\n**监控命令：**\n- 进度: `grep -c \"Cross-model:\" /root/symb_invariant_consensus/logs/exp059_run.log`\n- 尾部: `tail -5 /root/symb_invariant_consensus/logs/exp059_run.log`\n- 完成标志: `grep \"EXP059_FINISHED\" /root/symb_invariant_consensus/logs/exp059_run.log`\n\n实验完成后需要：读取 summary 中的 SC%, SICA%, Δ(pp)，与 exp-033 对比，更新 registry 为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-059-cross-qwen3-extractor.md"
+}

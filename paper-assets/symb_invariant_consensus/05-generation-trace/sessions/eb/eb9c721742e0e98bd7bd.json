@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb9c721742e0e98bd7bd",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code exp4 consistency filtering",
+  "task_key": "worker_code_exp4-consistency-filtering_20260518T180814",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp4-consistency-filtering_20260518T180814_result.json",
+    "occurrence": 1,
+    "bytes": 1616,
+    "sha256": "3f219a611cb9124378c13d4285cf0b816f628c844a58fad210576ae2019f2c97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果：\n\n```\nMethod                     Correct   Accuracy\n-----------------------------------------------------------------\nSC (baseline)                  153     0.7500\nSICA (T=1, all)                159     0.7794\nSICA (T=4, >=4/12)             153     0.7500\nSICA (T=6, >=6/12)             154     0.7549\nSICA (T=8, >=8/12)             154     0.7549\n\nDiagnostics (averages per problem):\nThreshold      Unique   Filtered   Filter%  Satisfied   Excluded\n-----------------------------------------------------------------\nT=1             13.2       13.2    100.0%       13.0        0.2\nT=4             13.2        1.8     13.4%        1.8        0.0\nT=6             13.2        0.8      6.1%        0.8        0.0\nT=8             13.2        0.3      2.2%        0.3        0.0\n```\n\n**关键发现**：\n\n1. **SICA T=1（全约束）= 77.94%**，比原始 exp-001 报告的 74.51% 高出 3.4pp。这说明重新跑 dedup 与原始 pipeline 存在微小差异（可能是约束解析的边界情况）。\n\n2. **过滤反而降低了准确率**：T=4/6/8 全部低于 T=1，且接近或等于 SC baseline。原因很清楚：平均每题只有 13.2 个 unique 约束，过滤到 T>=4 后只剩 1.8 个，T>=8 只剩 0.3 个。约束太少导致 MaxSAT 无法有效区分答案，退化为 SC。\n\n3. **假设不成立**：在 FOLIO 逻辑域中，约束的跨 trace 一致性很低（大部分约束只出现在 1-2 条 trace 中），aggressive filtering 会丢掉几乎所有信号。\n\n结果已保存到 `results/exp4_consistency_filtering/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp4-consistency-filtering.md"
+}

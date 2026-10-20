@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9cd0099007773d2607b4",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment oracle mistral 7b",
+  "task_key": "worker_experiment_oracle-mistral-7b_20260520T133051",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_oracle-mistral-7b_20260520T133051_result.json",
+    "occurrence": 1,
+    "bytes": 1208,
+    "sha256": "39c34c669fe05a00c56c75c0b85d52a9597c0fc1365d3a1ce26f989a2a31dbe2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果：\n\n| 指标 | Mistral-7B |\n|------|-----------|\n| **SC accuracy** | 55.88% (114/204) |\n| **Oracle SICA accuracy** | 85.78% (175/204) |\n| **Δ (Oracle − SC)** | **+29.90pp** |\n| SICA(self) accuracy | 59.31% (121/204) |\n| Z3-gold agreement | 95.10% (194/204) |\n| FOL parse success | 100% (204/204) |\n| McNemar p (oracle vs SC) | 9.99e-14 (b=63, c=2) |\n| McNemar p (oracle vs SICA) | 7.84e-12 (b=57, c=3) |\n\n**Per-label breakdown:**\n\n| Label | n | Oracle | SC | SICA | Z3-agree |\n|-------|---|--------|-----|------|----------|\n| True | 72 | 87.5% | 56.9% | 62.5% | 95.8% |\n| False | 63 | 77.8% | 42.9% | 42.9% | 92.1% |\n| Unknown | 69 | 91.3% | 66.7% | 71.0% | 97.1% |\n\n**Error analysis:** 29 oracle failures — 22 cases where Z3 got the right answer but no trace supported it, 10 cases where Z3 itself was wrong.\n\n对比 Qwen2.5-14B 的 Δ=+14.22pp，Mistral-7B 的 oracle ceiling gap 是 **+29.90pp** — 更弱的模型有更大的提升空间，这强化了 \"weaker models benefit more from symbolic verification\" 的叙事。SC baseline 是 55.88%（与预期的 54.41% 接近但不完全一致，可能是 answer normalization 差异）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-oracle-mistral-7b.md"
+}

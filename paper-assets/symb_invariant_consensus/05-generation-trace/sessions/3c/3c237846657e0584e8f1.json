@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c237846657e0584e8f1",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis pilot constraint filtering",
+  "task_key": "worker_analysis_pilot-constraint-filtering_20260517T052909",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_pilot-constraint-filtering_20260517T052909_result.json",
+    "occurrence": 1,
+    "bytes": 760,
+    "sha256": "7683804c241af1252a4597b7acca477fa24f524dbd779955fabe96a3ce8f965a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## pilot-constraint-filtering 结果\n\n| T | avg constraints | SICA | SC | gap |\n|---|---|---|---|---|\n| 1 (no filter) | 22.3 | 76.74% | 74.42% | +2.33pp |\n| 2 | 18.5 | 76.74% | 74.42% | +2.33pp |\n| 3 | 16.3 | 76.74% | 74.42% | +2.33pp |\n| 5 | 13.7 | 74.42% | 74.42% | 0.00pp |\n| 7 | 9.7 | 74.42% | 74.42% | 0.00pp |\n\n**Conclusion: NEGATIVE**\n\n- n=43, 无显著性检验。+2.33pp = 1题翻转，无统计意义。\n- T=1,2,3 结果完全一致：温和过滤不改变任何判定，说明\"噪声约束\"本身就不影响 MaxSAT 输出。\n- T≥5 过度过滤，SICA 退化为 SC。\n- 问题不在约束质量，而在 SICA 机制本身对聚合决策无增量贡献。Constraint filtering 不是 rescue path。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-pilot-constraint-filtering.md"
+}

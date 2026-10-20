@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23ae310a263c1e8927c0",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis sc consistency check",
+  "task_key": "worker_analysis_sc-consistency-check_20260518T171756",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_sc-consistency-check_20260518T171756_result.json",
+    "occurrence": 1,
+    "bytes": 1280,
+    "sha256": "e4b8c6f57c10b0c0d1b3f7f642d4b59beb5fd653d10bb7ed3d0f8ae601118e56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认完毕。\n\n---\n\n## SC 一致性检查结果\n\n### 1. Tie-breaking 逻辑差异\n\n唯一差异在 **folio_123**，vote 分布 `Unknown: 6, False: 6`（K=12 完美 tie），gold = `False`。\n\n| | Oracle 脚本 | 主 pipeline (SelfConsistency) |\n|---|---|---|\n| 实现 | `max(sorted(keys), key=count)` | `max(groups_dict, key=len)` |\n| tie-break | `sorted()` → `['False','Unknown']`，`max()` 保留首个 → **False** | dict 按插入序迭代，trace 中 `Unknown` 先出现 → **Unknown** |\n| SC 正确? | ✓ (False == gold) | ✗ (Unknown ≠ gold) |\n\n**根因**：Python `max()` 遇到相等 key 时返回**第一个**遇到的元素。Oracle 脚本先 `sorted()` 使字母序确定性，`False` < `Unknown` 所以 `False` 胜出。主 pipeline 用 dict 插入序（即 trace 出现顺序），`Unknown` 先出现所以 `Unknown` 胜出。\n\n### 2. Divergent 题目\n\n**folio_123**，仅此 1 题。\n\n### 3. 影响\n\n**不影响论文结论。** 这是一个 tie（6:6 完美平票）的非确定性 tie-breaking 差异，不是算法逻辑 bug。两个 SC 数字（75.00% vs 75.49%）差 0.49pp，在论文中报哪个都合理。建议统一 tie-breaking 策略（如都用 `sorted` 后取首个），然后用统一后的数字。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sc-consistency-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "921491f70eda9e659b14",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra mvp monitor",
+  "task_key": "worker_infra_mvp-monitor_20260515T121350",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_mvp-monitor_20260515T121350_result.json",
+    "occurrence": 1,
+    "bytes": 41,
+    "sha256": "359e98140f5a3273723ee9e44d64931b7fc5efeb7be42d1a48062778f0b9843b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 分钟后再次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-mvp-monitor.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2a4a73174be324c644a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra gpu cleanup and status",
+  "task_key": "worker_infra_gpu-cleanup-and-status_20260523T105353",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_gpu-cleanup-and-status_20260523T105353_result.json",
+    "occurrence": 1,
+    "bytes": 2918,
+    "sha256": "ebfb9b168a0a24fa3c49d72698131a3a7b8a8df0ea220dadc962e23d0cc0645f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据齐全。汇总如下：\n\n---\n\n## GPU 清理\n\n- PID 681007 (vLLM EngineCore, cuda:3): **已 kill**\n- cuda:3 显存释放: 88239 MiB → **0 MiB**（释放 ~86 GB）\n\n## 重复实验状态\n\n| 实验 | 16639 进度 | 30973 进度 | 14391 进度 | 备注 |\n|------|-----------|-----------|-----------|------|\n| qwen25_pw_seed789 | **n=358** (running) | n=251 (running, \\_v3) | — | 16639 领先 |\n| llama8b_pw_seed789 | **n=303** (running) | n=238 (running, \\_v2) | — | 16639 领先 |\n| llama8b_pw_seed456 | n=98 (running) | **n=242** (running, \\_v2) | — | 30973 领先 |\n| llama8b_pw_seed123 | **n=600 ✅** | — | n=359 (running) | 16639 已完成，14391 冗余 |\n| qwen25_pw_seed456 | n=478 ⚠️ | — | — | **无活跃进程**，疑似 crash（原 vLLM port 8005 在 cuda:3，已被 kill） |\n| llama8b_pw_seed42 | n=223 | — | **n=600 ✅** | 14391 已完成 |\n\n**当前 GPU 占用：**\n- westd-16639: cuda:0/1/2 活跃（97%），cuda:3 **已空闲**\n- westd-30973: cuda:0/1/2 活跃（96-97%）\n- westd-14391: cuda:0 活跃（100%）\n\n## 已完成实验结果 (n=600, ProofWriter)\n\n| 实验 | n | SC% | SICA% | Δ(pp) | p (McNemar) | disc: SC→ | disc: SICA→ | 来源 |\n|------|---|-----|-------|-------|-------------|-----------|------------|------|\n| llama8b_pw_seed42 | 600 | 72.33 | 66.67 | **-5.67** | 0.0001 | 52 | 18 | 14391 |\n| llama8b_pw_seed123 | 600 | 71.33 | 64.17 | **-7.17** | 0.0000 | 67 | 24 | 16639 |\n| qwen25_pw_seed123 | 600 | 72.33 | 71.17 | -1.17 | 0.3105 | 21 | 14 | 16639 |\n| mistral_pw_seed42 | 600 | 40.00 | 36.67 | **-3.33** | 0.0022 | 30 | 10 | 16639 |\n| mistral_pw_seed123 | 600 | 40.83 | 37.50 | **-3.33** | 0.0091 | 37 | 17 | 16639 |\n| mistral_pw_seed456 | 600 | 39.83 | 38.67 | -1.17 | 0.3817 | 27 | 20 | 16639 |\n| mistral_pw_seed789 | 600 | 38.83 | 37.17 | -1.67 | 0.1742 | 27 | 17 | 16639 |\n\n## 已完成实验结果 (n=204, FOLIO)\n\n| 实验 | n | SC% | SICA% | Δ(pp) | p | 来源 |\n|------|---|-----|-------|-------|---|------|\n| llama8b_folio_s123 | 204 | 67.16 | 63.73 | -3.43 | 0.0654 | 16639 |\n| llama8b_folio_s456 | 204 | 61.76 | 61.27 | -0.49 | 1.0000 | 16639 |\n| llama8b_folio_s789 | 204 | 67.16 | 68.14 | **+0.98** | 0.7266 | 16639 |\n| mistral_folio_s123 | 204 | 57.84 | 57.84 | 0.00 | 1.0000 | 16639 |\n| mistral_folio_s456 | 204 | 28.92 | 27.94 | -0.98 | 0.6250 | 16639 |\n| mistral_folio_s789 | 204 | 59.31 | 56.86 | -2.45 | 0.2668 | 16639 |\n| qwen25_folio_s123 | 204 | 74.51 | 73.04 | -1.47 | 0.3750 | 16639 |\n| qwen25_folio_s456 | 204 | 74.02 | 74.02 | 0.00 | 1.0000 | 16639 |\n| qwen25_folio_s789 | 204 | 74.02 | 72.55 | -1.47 | 0.3750 | 16639 |\n\n**关键发现：SICA 在所有模型/数据集上一致 ≤ SC，LLaMA 上差距最大且显著（p<0.001）。** qwen25_pw_seed456 实验疑似因 cuda:3 vLLM 问题中断（n=478），需决定是否在 cuda:3 上重启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-cleanup-and-status.md"
+}

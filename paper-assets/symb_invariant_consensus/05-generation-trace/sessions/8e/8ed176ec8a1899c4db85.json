@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ed176ec8a1899c4db85",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra fill cuda2",
+  "task_key": "worker_infra_fill-cuda2_20260522T233023",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_fill-cuda2_20260522T233023_result.json",
+    "occurrence": 1,
+    "bytes": 976,
+    "sha256": "346f41281ab48f8add2ca1d2f3c858373a2cc393a2fdac1cff65d87448156ac3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 全部通过。\n\n**产出汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| **cuda:2 状态** | 已清理旧 Mistral vLLM 残留，空闲→重新部署 |\n| **选择的实验** | Qwen2.5-14B PW seed789（优先级 1，无已有结果） |\n| **vLLM** | 已启动，PID 711315，port 8007，`--enforce-eager` + `VLLM_USE_FLASHINFER_SAMPLER=0`（Blackwell GPU 需要） |\n| **脚本路径** | `/root/symb_invariant_consensus/scripts/run_qwen25_pw_seed789_cuda2.sh` |\n| **Dry-run** | vLLM 端点可达、`run_full_mvp` 可导入、数据文件存在 |\n\n**启动命令**（供 Agent 用 `submit_training_job` 提交）：\n```\ncommand: bash /root/symb_invariant_consensus/scripts/run_qwen25_pw_seed789_cuda2.sh\nserver: westd-16639\ngpu: cuda:2\n```\n\n**注意**：首次启动失败是因为 Blackwell GPU (sm_120) 不被 FlashInfer 支持，通过参照 cuda:0 的启动参数（`VLLM_USE_FLASHINFER_SAMPLER=0` + `--enforce-eager`）解决。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fill-cuda2.md"
+}

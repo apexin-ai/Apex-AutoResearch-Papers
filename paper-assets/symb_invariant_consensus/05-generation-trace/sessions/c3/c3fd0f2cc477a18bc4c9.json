@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3fd0f2cc477a18bc4c9",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra disk cleanup and deberta check",
+  "task_key": "worker_infra_disk-cleanup-and-deberta-check_20260522T171957",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_disk-cleanup-and-deberta-check_20260522T171957_result.json",
+    "occurrence": 1,
+    "bytes": 778,
+    "sha256": "a583c102cb274ef28afeda30be602a744ca1d9aaf44a12c7aa9b865cd2c84326"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n| 项目 | 状态 |\n|------|------|\n| **DeBERTa 训练** | 原进程 643576 已死（磁盘满时保存 checkpoint 崩溃）。已重启为 PID 650581，正常训练中（61/21820 步，~3.5 it/s，预计 ~1h45m 完成）。output-dir 已改到数据盘 `/root/autodl-tmp/` |\n| **根分区清理** | 清理前 20G/30G (67%) → 清理后 11G/30G (34%)，释放 ~9G。删除了：dry-run 产物 6.1G、损坏 checkpoint 2.2G、HF cache 1.6G |\n| **LLaMA FOLIO seed=789** | 189/204 intermediates 已保存在根分区，差 15 个。结果可恢复（需补跑剩余 15 条） |\n| **崩溃实验恢复** | LLaMA PW 只有 seed42，缺 seed456/seed789。FOLIO seed=789 差 15 条。这些需要在 DeBERTa 训练完成后、有 GPU 空闲时补跑 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-disk-cleanup-and-deberta-check.md"
+}

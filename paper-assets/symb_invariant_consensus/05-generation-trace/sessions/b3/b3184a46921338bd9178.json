@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3184a46921338bd9178",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra disk gpu check",
+  "task_key": "worker_infra_disk-gpu-check_20260522T210748",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_disk-gpu-check_20260522T210748_result.json",
+    "occurrence": 1,
+    "bytes": 2644,
+    "sha256": "ce2ae18e176fffaaf95f67a73ef91e38a5bad2a7148a1fba1c9f3250c93a0c6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### westd-16639\n\n**磁盘：**\n| 分区 | 容量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| 根分区 `/` | 30G | 11G | 20G | 35% |\n| 数据盘 `/root/autodl-tmp` | 350G | 230G | 121G | 66% |\n\n- multi_seed 结果仅占 **142M**，不是磁盘问题根源\n- 模型占大头（~170G）：Qwen2.5-72B-AWQ 39G, Qwen2.5-14B 28G, Mistral-7B 28G, Qwen3-14B 28G, phi-4-reasoning 25G, deepseek-r1-qwen3-8b 16G, LLaMA-8B 15G, deepseek-ai 15G 等\n\n**GPU（4× RTX PRO 6000 Blackwell 96GB）— 全部在用：**\n| GPU | 显存占用 | 利用率 | 运行内容 |\n|-----|----------|--------|----------|\n| 0 | 88/97 GB | 97% | vLLM Qwen2.5-14B (port 8001) → qwen25_pw_seed456 |\n| 1 | 88/97 GB | 96% | vLLM LLaMA-8B (port 8006) → llama8b_pw_seed123 |\n| 2 | 90/97 GB | 96% | vLLM Mistral-7B (port 8003) → mistral_pw_seed789 |\n| 3 | 88/97 GB | 97% | vLLM Qwen2.5-14B (port 8005) → qwen25_pw_seed123 |\n\n**关键进程状态：**\n- PID 510987（Mistral PW multi-seed runner）— **存活**，seed789 正在跑\n- PID 552333（Qwen PW multi-seed）— **已死**，但已被新进程替代（GPU0 跑 seed456，GPU3 跑 seed123 rerun）\n- **与预期不符：cuda:1 和 cuda:3 并非空闲，已被重新部署了 LLaMA-8B 和 Qwen2.5-14B 实验**\n\n---\n\n### westd-14391\n\n**磁盘：**\n| 分区 | 容量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| 根分区 `/` | 30G | 13G | 18G | 41% |\n| 数据盘 `/root/autodl-tmp` | 250G | 26G | 225G | 11% |\n\n**GPU（1× RTX PRO 6000 Blackwell 96GB）— 在用：**\n| GPU | 显存占用 | 利用率 | 运行内容 |\n|-----|----------|--------|----------|\n| 0 | 88/97 GB | 100% | vLLM LLaMA-8B (port 8000) → llama8b_pw_seed42 + run_after_folio.sh |\n\n- 项目目录已存在，代码完整\n- 有 3 个 ModelScope 下载进程在后台（下载 LLaMA-3.1-8B，可能是重复的）\n- 磁盘非常充裕（225G 可用）\n\n---\n\n### 建议\n\n1. **westd-16639 磁盘暂时没问题**（根分区 35%，数据盘 66%），之前的磁盘满可能是临时文件或日志导致的，已恢复。4 张 GPU 全部在跑多种子实验，不需要干预。\n\n2. **westd-14391 不适合转移**——只有 1 张 GPU 且已在用。如果要在这台跑更多实验，需要等当前任务完成。\n\n3. **当前最优策略：不动**。westd-16639 的 4 张 GPU 都在跑 PW 多种子实验，等它们自然完成即可。如果需要清理磁盘腾空间，可以考虑删除不再需要的模型（如 Qwen2.5-72B-AWQ 39G、phi-4-reasoning 25G、Qwen3-14B 28G），能释放 ~92G。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-disk-gpu-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c5f9df1b840fa897a555",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra exp 028b deploy cuda3",
+  "task_key": "worker_infra_exp-028b-deploy-cuda3_20260518T203209",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_exp-028b-deploy-cuda3_20260518T203209_result.json",
+    "occurrence": 1,
+    "bytes": 403,
+    "sha256": "3da66749a557f1fd70bb2df12bfbf090c8a4828c0be08f4ad930845f9465a8d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n**状态总结：**\n- **exp-028b** 已在 westd-25068 cuda:3 启动（tmux session: `exp028b`）\n- vLLM 正在加载 Qwen3-14B，180s 后自动启动 run_full_mvp.py\n- FOLIO-204 全量，k=12，thinking mode，seed=42\n- 日志：`/tmp/vllm_exp028b.log`（vLLM）、`results/exp028b_qwen3_thinking_folio204/exp028b.log`（pipeline）\n- Registry 已更新为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp-028b-deploy-cuda3.md"
+}

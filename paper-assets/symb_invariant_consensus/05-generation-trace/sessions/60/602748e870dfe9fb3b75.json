@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "602748e870dfe9fb3b75",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment dir c counterfactual",
+  "task_key": "worker_experiment_dir-c-counterfactual_20260520T152704",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_dir-c-counterfactual_20260520T152704_result.json",
+    "occurrence": 1,
+    "bytes": 1309,
+    "sha256": "6b96716e89ad1b813b64e28b352209fdd8115e99057e0cfb08cdfb97bea2a98e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果出来了。\n\n**Direction C Pilot — 20 题 (exp033 Mistral-7B)**\n\n| 策略 | Accuracy | vs Full |\n|------|----------|---------|\n| **full** (SICA baseline) | 13/20 = 65.0% | — |\n| **signal** (仅 conclusion-referencing) | 13/20 = 65.0% | net 0 |\n| **premise** (去掉 conclusion-referencing) | **14/20 = 70.0%** | **net +1** |\n| **rules_only** (去掉 fact 类型) | 12/20 = 60.0% | net -1 |\n| SC | 13/20 = 65.0% | — |\n\n**关键发现：**\n\n1. **premise 策略是唯一有正向信号的**：保留 40.2% 的 constraints（去掉了引用 conclusion 的），accuracy +5pp (65%→70%)。在 folio_8 上修正了 full SICA 的错误，没有引入新错误。\n\n2. **signal 策略（纯 counterfactual）中性**：保留 59.8% 的 constraints，精度持平。在 folio_14 上翻对了一题，但 folio_17 翻错了一题，net=0。\n\n3. **rules_only 策略负面**：过于激进（只保留 35.6%），丢掉了 folio_10 和 folio_17。\n\n4. **folio_8 是 premise 策略的一个干净 gain**：去掉 conclusion-referencing constraints 后，SICA 从 False→Unknown（正确答案），说明那些引用 conclusion 的 constraints 确实引入了偏差。\n\n20 题样本偏小，但 **premise-only 方向有微弱正信号**，值得扩到全 204 题验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-dir-c-counterfactual.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cace3aeb9025b70d6f45",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code fix temperature unified",
+  "task_key": "worker_code_fix-temperature-unified_20260518T113315",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix-temperature-unified_20260518T113315_result.json",
+    "occurrence": 1,
+    "bytes": 1004,
+    "sha256": "de2678013c873da35b4f9ebeabcfe10f89d220c21cf770b35c4402236172adcf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修复完成，验证通过。\n\n## 修改汇总\n\n| 文件 | 行号 | 修改 |\n|------|------|------|\n| `sica/constraint_extractor.py` | L120 | `__init__` 新增 `temperature: float = 0.3` 参数 |\n| `sica/constraint_extractor.py` | L125 | 新增 `self.temperature = temperature` |\n| `sica/constraint_extractor.py` | L136 | `temperature=0.3` → `temperature=self.temperature` |\n| `run_full_mvp.py` | L201 | `--temperature` default `0.7` → `0.3` |\n| `scripts/run_case_study_extract.sh` | L64 | `--temperature 0.7` → `0.3` |\n| `scripts/run_folio_trace_regen.sh` | L65 | `--temperature 0.7` → `0.3` |\n| `scripts/run_cross_model_mistral.sh` | L72 | `--temperature 0.1` → `0.3` |\n| `scripts/cross_model_extract.py` | L33 | `--temperature` default `0.1` → `0.3` |\n\n## 验证结果\n\n- `VLLMBackend.__init__` 现在接受 `temperature` 参数，默认 0.3\n- `call()` 使用 `self.temperature` 而非硬编码值\n- 所有脚本和 CLI 默认值统一为 T_ext=0.3"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-temperature-unified.md"
+}

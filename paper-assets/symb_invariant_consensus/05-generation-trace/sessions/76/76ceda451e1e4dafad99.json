@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76ceda451e1e4dafad99",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "audit citation verify byerly dupo",
+  "task_key": "worker_audit_citation-verify-byerly-dupo_20260523T141445",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_citation-verify-byerly-dupo_20260523T141445_result.json",
+    "occurrence": 1,
+    "bytes": 3250,
+    "sha256": "05b962b74478bbee9b888516857c470b3e975a39a6c8f9d1c7379a1170d20955"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两条引用均已确认。以下是结果：\n\n---\n\n## 引用 1: byerly2026selfconsistency\n\n**存在性**: 真实存在。arXiv:2411.01101。\n\n**当前 bib 的错误**:\n- 作者名错：**Nicholas** Byerly → 应为 **Adam** Byerly\n- 年份错：2026 → 初稿 **2024**（arXiv v1: 2024-11-02），但已被 TACL 接收（2026 年发表），所以 year=2026 配合 TACL venue 也可接受\n- 标题错：缺少副标题，且主题不是 \"Mathematical Reasoning\"，而是 **positional bias in long-context problems**\n\n**与我们引用上下文的相关性**: 如果我们引用它是为了说明 self-consistency 在 mathematical reasoning 上的局限性，那**引用上下文需要修正**——这篇论文讨论的是 long-context 场景下 positional bias 导致 SC 失效，不是 mathematical reasoning 的局限性。\n\n**建议**: 保留并修正 bib + 检查正文引用上下文是否准确。\n\n**正确 bibtex**:\n```bibtex\n@article{byerly2024selfconsistency,\n  title={Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems},\n  author={Byerly, Adam and Khashabi, Daniel},\n  journal={Transactions of the Association for Computational Linguistics},\n  year={2025},\n  note={arXiv:2411.01101}\n}\n```\n（注：arXiv v1 为 2024，TACL 正式发表页面显示 2025/2026，建议以 TACL 页面标注的年份为准，可用 `year={2025}` 或查 TACL 官方页确认。）\n\n---\n\n## 引用 2: dupo2025\n\n**存在性**: 真实存在。arXiv:2508.14460。\n\n**当前 bib 的错误**:\n- 标题错：**Dual Process Optimization** → 应为 **Dual Preference Optimization**\n- 副标题错：**Scalable Self-Correction** → 应为 **Enabling Reliable LLM Self-Verification**\n- 第一作者错：**Yang, Chenxu** → 应为 **She, Shuaijie**\n\n**与我们引用上下文的相关性**: 论文主题是 LLM self-verification via dual preference optimization，涵盖 translation 和 mathematical reasoning。如果我们引用它是为了说 self-correction/self-verification，主题相关，可保留。\n\n**建议**: 保留并修正。\n\n**正确 bibtex**:\n```bibtex\n@article{dupo2025,\n  title={{DuPO}: Enabling Reliable {LLM} Self-Verification via Dual Preference Optimization},\n  author={She, Shuaijie and Bao, Yu and Lu, Yu and Xu, Lu and Li, Tao and Zhu, Wenhao and Huang, Shujian and Cheng, Shanbo and Lu, Lu and Wang, Yuxuan},\n  journal={arXiv preprint arXiv:2508.14460},\n  year={2025}\n}\n```\n\n---\n\n**总结**: 两条引用均为真实论文但元数据严重错误（作者名、标题、全称），是典型的 LLM 幻觉式引用错误。已给出修正后的 bibtex。请额外检查正文中引用 byerly 的上下文——该论文讨论的是 long-context positional bias，不是 mathematical reasoning 局限性。\n\nSources:\n- [Self-Consistency Falls Short! (arXiv)](https://arxiv.org/abs/2411.01101)\n- [Self-Consistency Falls Short! (TACL)](https://direct.mit.edu/tacl/article/doi/10.1162/TACL.a.625/136156/Self-Consistency-Falls-Short-The-Adverse-Effects)\n- [DuPO (arXiv)](https://arxiv.org/abs/2508.14460)\n- [DuPO (aimodels.fyi)](https://www.aimodels.fyi/papers/arxiv/dupo-enabling-reliable-llm-self-verification-via)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-citation-verify-byerly-dupo.md"
+}

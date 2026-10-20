@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3ab75bb9a2e0043767e",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code gsm8k pilot script",
+  "task_key": "worker_code_gsm8k-pilot-script_20260516T080120",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_gsm8k-pilot-script_20260516T080120_result.json",
+    "occurrence": 1,
+    "bytes": 526,
+    "sha256": "04b6e96dc67875dc71e8aaa8f961f03d4216752452971785e8a6b78279b631fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`--help` 正常。脚本已部署到 `/root/symb_invariant_consensus/scripts/run_gsm8k_pilot.py`。\n\n与 `eval_gsm8k.py` 的区别：\n- 默认 k=6（非12）、n_problems=30（非200）\n- 新增 **C0 指标**（第一条 trace 的准确率，作为 single-pass baseline）\n- 使用 `pipeline.run_single(prob)`（正确 API，eval_gsm8k.py 用的 `pipeline.run()` 实际不存在）\n- pilot 专用报告格式：表格化 per-problem 详情 + C0/SC/SICA 三方对比\n- 输出到 `results/gsm8k_pilot.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gsm8k-pilot-script.md"
+}

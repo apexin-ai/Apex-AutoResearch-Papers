@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "3b2ed465b8a6fea4784d",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "code fix timeout restart aime",
+  "task_key": "worker_code_fix-timeout-restart-aime_20260515T131209",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix-timeout-restart-aime_20260515T131209.log",
+    "occurrence": 1,
+    "bytes": 736064,
+    "sha256": "0009ea0ad61c2c8484fd9f873c2e4004ae371fcfcf418909ddad31e39e42a0e4"
+  },
+  "statistics": {
+    "messages": 311,
+    "user_turns": 0,
+    "tool_calls": 110,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 87,
+      "tool_call": 110,
+      "tool_result": 110,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 311,
+      "chunks": [
+        {
+          "path": "3b2ed465b8a6fea4784d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3b2ed465b8a6fea4784d-part-0002.json",
+          "message_count": 131
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-timeout-restart-aime.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f8f7f32ef1dc2362213",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment d135 frontier adjust",
+  "task_key": "worker_experiment_d135-frontier-adjust_20260521T142812",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_d135-frontier-adjust_20260521T142812_result.json",
+    "occurrence": 1,
+    "bytes": 1543,
+    "sha256": "126686826d8bd8f0d260624edcdf66dd457af00ee478d4afb52edfd7df126ef8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "o3 恢复了，刚完成 folio_10 (12/12)。综合报告如下：\n\n---\n\n## D135 Frontier SCB 当前状态\n\n### gpt-4.1 — 52/204, ETA ~52min\n- **SC Accuracy: 74.0%** (37/50)\n- Fleiss' κ = **0.813** (strong agreement)\n- Full agreement (12/12 unanimous): 64%\n- Per-label: True=77.8%, False=83.3%, **Unknown=65.0%**（最弱）\n- 错误模式：主要是 Unknown↔False 混淆（folio_25, 29, 43, 45 都是 gold=Unknown 被判 False）和 True→Unknown（folio_18, 19, 28, 40）\n- 偶尔 502 但恢复正常，运行稳定\n\n### gpt-5.5 — 12/204, ETA ~253min\n- SC Accuracy: 9/10 = 90.0%（样本太少）\n- 每题耗时 ~60-140s，非常慢（conc=4）\n- folio_5 只拿到 3/12 answers（502 导致）\n\n### o3 — 11/204, ETA ~265min\n- SC Accuracy: 7/10 = 70.0%\n- **Answer yield: 60%**（72/120 成功）\n- 3 个问题完全空答案（folio_1, 2, 5 全部 500 error）\n- 刚从连续 502 中恢复，folio_10 拿到 12/12\n- 数据质量差：空答案题的 SC 结果不可信\n\n## o3 评估\n\nAnswer completion rate = 60%，技术上 > 50% 阈值。但实际问题：\n1. **3/10 题完全无数据**（不是部分缺失，是全部 12 次调用都失败）\n2. 速度极慢，0.7 q/min，预计 4.4 小时\n3. 服务不稳定，刚经历连续 502\n\n**建议**：o3 继续跑，但同时启动 gemini-2.5-pro 作为补充/备选。如果 o3 后续稳定下来，两个结果都能用；如果继续崩，gemini 数据可替代。需要你确认是否这样做，还是直接 kill o3 换 gemini。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-d135-frontier-adjust.md"
+}

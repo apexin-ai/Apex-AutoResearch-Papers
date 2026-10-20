@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4692030b86bfa7ba815c",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis drc tau sensitivity",
+  "task_key": "worker_analysis_drc-tau-sensitivity_20260522T012940",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_drc-tau-sensitivity_20260522T012940_result.json",
+    "occurrence": 1,
+    "bytes": 2341,
+    "sha256": "491124f20a67f47f36e4cea6bfa5eb1722bce14997ec3506d62e54fed503e033"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已出。\n\n## DRC τ Sensitivity 分析结果\n\n### 数据源\n- **exp033**: Mistral-7B / FOLIO-204 (204 problems, 12 traces each)\n- **exp036**: Qwen2.5-14B / FOLIO-204 (204 problems)\n- **exp032**: Qwen2.5-14B / ProofWriter-600 (600 problems)\n- **Verifier 替代**: 无独立 NLI verifier 的 per-problem 预测数据，用 **SICA answer** 作为 verifier proxy\n\n### Mistral-7B / FOLIO-204\n| τ | Accuracy | Routed→V | SC Coverage | Δ vs SC |\n|---|----------|----------|-------------|---------|\n| 0.50 | 56.86% | 7.8% | 92.2% | +0.98pp |\n| 0.60 | 58.82% | 27.0% | 73.0% | +2.94pp |\n| **0.70** | **59.31%** | **38.2%** | **61.8%** | **+3.43pp** |\n| 0.80 | 59.31% | 50.5% | 49.5% | +3.43pp |\n| 0.90 | 59.31% | 68.1% | 31.9% | +3.43pp |\n| 1.00 | 59.31% | 81.4% | 18.6% | +3.43pp |\n\nSC baseline: 55.88% | SICA: 59.31%\n\n### Qwen2.5-14B / FOLIO-204\n| τ | Accuracy | Routed→V | SC Coverage | Δ vs SC |\n|---|----------|----------|-------------|---------|\n| 0.50 | 75.98% | 1.5% | 98.5% | -0.00pp |\n| 0.60–0.80 | 75.98% | 10.8–23.0% | 77–89% | -0.00pp |\n| 0.90–1.00 | 75.49% | 30.9–41.7% | 58–69% | -0.49pp |\n\nSC baseline: 75.98% | SICA: 75.49%\n\n### Qwen2.5-14B / ProofWriter-600\n| τ | Accuracy | Routed→V | SC Coverage | Δ vs SC |\n|---|----------|----------|-------------|---------|\n| 0.50 | 73.50% | 1.5% | 98.5% | -0.50pp |\n| 0.60 | 72.00% | 16.5% | 83.5% | -2.00pp |\n| 1.00 | 71.50% | 63.2% | 36.8% | -2.50pp |\n\nSC baseline: 74.00% | SICA: 71.50%\n\n### Pareto 观察\n\n1. **Mistral FOLIO 存在 sweet spot**: **τ=0.7** 是最优 Pareto 点——达到 SICA 满分 accuracy (+3.43pp vs SC)，仅 38.2% 被路由到 verifier。τ 更高不再提升 accuracy，只增加 routing cost。\n\n2. **Qwen2.5 上 DRC 无效**: SC 本身已经接近/超过 SICA accuracy。Routing 到 SICA verifier 反而掉分。原因是 Qwen2.5 agreement 分布高度集中在 =1.0（FOLIO 58.3%，PW 36.8%），低 agreement 的 case 少，且 SICA 在这些 case 上并不比 SC 更准。\n\n3. **结论**: DRC 在弱模型（Mistral-7B）上有效——高 disagreement 信号可靠地识别出 SC 错误的 case。强模型（Qwen2.5-14B）本身 agreement 就高，DRC 没有空间发挥。\n\n结果已保存到 `/root/symb_invariant_consensus/results/drc_tau_sensitivity.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-drc-tau-sensitivity.md"
+}

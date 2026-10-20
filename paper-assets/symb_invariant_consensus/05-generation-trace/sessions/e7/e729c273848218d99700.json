@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e729c273848218d99700",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment crossmodel sica recheck",
+  "task_key": "worker_experiment_crossmodel-sica-recheck_20260521T092448",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_crossmodel-sica-recheck_20260521T092448_result.json",
+    "occurrence": 1,
+    "bytes": 670,
+    "sha256": "3ff54a347496fabd0f860ff21b84d6b0719381264eabc4f5468c4acee83b4eef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进程存活** — PID 414515，已运行 44 分钟。\n\n**当前进度: 11/204 (5.4%)**\n- checkpoint 记录 11 个已完成样本\n- 第 12 个样本正在处理中（已完成 3/4 extraction 阶段）\n- 每个样本包含 4 个 extraction 阶段：Mistral same → Mistral→Qwen3 cross → Qwen3 same → Qwen3→Mistral cross\n- VLLM 双端口（8000/8001）均正常响应\n\n**速度估算**: ~4 分钟/样本，剩余 193 个样本 ≈ **12.9 小时**，预计 **5月22日 ~06:20** 完成。\n\n**注意**: Qwen3→Mistral cross-extraction 频繁产出 0 constraints（11 个样本中有 6 个为 0），可能影响最终实验结论质量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-crossmodel-sica-recheck.md"
+}

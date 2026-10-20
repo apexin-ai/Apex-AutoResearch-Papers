@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd8c11c0971598418bdc",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 074c completion check",
+  "task_key": "worker_analysis_exp-074c-completion-check_20260519T210435",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-074c-completion-check_20260519T210435_result.json",
+    "occurrence": 1,
+    "bytes": 613,
+    "sha256": "0788cb34d57c1b7a0d69dd0cde737da1afeb8fef715f7bc0c9e2e76aa8006f5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/negative。\n\n**exp-074c 结果汇报：**\n\n| 指标 | 值 |\n|------|-----|\n| SC accuracy | 57.35% (117/204) |\n| ICG accuracy | 58.82% (120/204) |\n| **Delta** | **+1.47pp** |\n| n_samples | 204 |\n| Wall time | 56.5 min |\n\nConclusion: **negative**。Δ=+1.47pp 虽然方向为正，但幅度极小，与 exp-074 (seed=42, Δ=-2.0pp) 综合看，ICG 在 FOLIO 上的效果在零附近波动，无统计显著性。两个 seed 一正一负，进一步确认 ICG 方法对 Mistral-7B×FOLIO 无实质改进。等 exp-074d (seed=456) 完成后可做 3-seed 汇总。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-074c-completion-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "634220e3e39e8b74849c",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra exp048 deploy",
+  "task_key": "worker_infra_exp048-deploy_20260519T014553",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_exp048-deploy_20260519T014553_result.json",
+    "occurrence": 1,
+    "bytes": 445,
+    "sha256": "001b79af2ff76804fee09a51ca9258a8d5a606d6aef38d1f777b84f87148f5ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。汇报：\n\n- **vLLM**: 端口 8003 运行正常，模型 Meta-Llama-3.1-8B-Instruct 已加载\n- **GPU**: cuda:3 占用 88261 MiB / 97887 MiB（90% utilization 配置）\n- **实验**: 已开始处理，600 题 ProofWriter，第 1 题正在运行中（k=12 轮 API 调用）\n- **tmux sessions**: `exp048_vllm`（vLLM 服务）, `exp048_run`（实验进程）\n- **Registry**: exp-048-llama8b-pw600 状态 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp048-deploy.md"
+}

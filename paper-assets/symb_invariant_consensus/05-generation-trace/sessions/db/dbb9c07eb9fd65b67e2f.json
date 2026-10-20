@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbb9c07eb9fd65b67e2f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis entropy exp019 llama strategyqa",
+  "task_key": "worker_analysis_entropy-exp019-llama-strategyqa_20260518T211018",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_entropy-exp019-llama-strategyqa_20260518T211018_result.json",
+    "occurrence": 1,
+    "bytes": 354,
+    "sha256": "1a587adb2b366b649918117bc13af2fc518d080b8449f0ec2627fd8d46b3c8e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-019 (LLaMA-3.1-8B StrategyQA-200) 数据在 westd-25068 上不存在。** 搜索了 `/root/symb_invariant_consensus/` 全目录，没有任何 strategyqa 或 exp-019 相关文件。\n\n该实验数据应存放在已退役的 westd-32608 上，未迁移到当前服务器。数据不可用，无法进行 entropy-conditioned 分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-entropy-exp019-llama-strategyqa.md"
+}

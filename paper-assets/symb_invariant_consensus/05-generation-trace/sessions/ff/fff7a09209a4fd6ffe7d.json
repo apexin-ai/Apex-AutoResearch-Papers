@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fff7a09209a4fd6ffe7d",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "agent / loop_7_1779008249.md",
+  "task_key": "loop_7_1779008249",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_7_1779008249.md",
+    "occurrence": 1,
+    "bytes": 3908,
+    "sha256": "ee4734fe67c0bb162514fa56a698ec80ed8c742694d6d18c90fe338c01e04875"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-17T08:41:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-32608:cuda:0（gpu_ids 白名单仅此一张）\n- LLaMA-3.1-8B-Instruct 已两次 EXIT_CODE=1 失败（exp-011-llama8b, exp-011-llama8b-v2），不要盲目第三次重跑——必须先拿到 Worker 诊断结果再决定\n- sica_expanded_14b / sica_k_sensitivity_14b 的 EXIT_CODE=129 是 SIGHUP 假失败，conclusion 已手动改为 success，不要重新标记为 failed\n- Mistral-7B 模型下载历史上 3 次 ModelScope 截断失败（81.3%），改用 HF 直下但 DDL 已过（May 17 12:00 UTC）——需确认模型是否就绪再提交 exp-010\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-32608，account: root\n- 工作目录：/root/symb_invariant_consensus/\n- GPU：RTX PRO 6000 Blackwell 98GB × 1（cuda:0）\n- Python/conda：source /root/miniconda3/bin/activate（base env）\n- 模型路径：Qwen2.5-14B-Instruct → /root/autodl-tmp/models/Qwen2.5-14B-Instruct；LLaMA-3.1-8B-Instruct → 需确认（可能在 /root/autodl-tmp/models/ 或 HF cache）；Mistral-7B → 待确认完整性\n- 数据：data/proofwriter_30.json (30), data/folio_30.json (30), data/proofwriter_full.json (600 D5), data/folio_full.json (204)\n- 启动脚本：/root/symb_invariant_consensus/scripts/run_exp011_llama8b.sh\n- 活跃进程：无 RUNNING 实验，GPU 当前空闲\n- Cron：reconcile 返回 0 个活跃 cron\n\n### 3. 📊 当前状态\n刚收到 exp-011-llama8b-v2 失败 cron 回调，已完成 session-start 初始化并 spawn 了诊断 Worker（worker_diagnose_exp-011-llama8b-v2_20260517T032306），**Worker 尚未返回结果**。\n\nRegistry 关键状态：\n- DONE(success): sica_d012_14b, sica_expanded_14b, sica_k_sensitivity_14b, exp-016-weighted-sc, sica_constraint_ablation_013, exp-005, sica_d016_c0_precheck, sica_smoke_5q (+crd_folio_main)\n- DONE(failed): exp-011-llama8b, exp-011-llama8b-v2, sica_proofwriter30\n- QUEUED: exp-018-arc, exp-017-strategyqa, exp-010-mistral\n- GPU 空闲（cuda:0 分配了没跑 = 失职状态）\n\n尚未向 Director 汇报本次失败——等诊断 Worker 回调后再汇报。\n\n### 4. 📋 待办\n- Worker 诊断回调到达 → 读取失败根因 → update_registry 写 failure_reason → 向 Director 汇报（带修复方案）\n- 诊断结果如果是 OOM/vLLM 配置问题 → 修复脚本 → 提交 exp-011-llama8b-v3\n- 诊断结果如果是模型文件损坏 → 重新下载 LLaMA-3.1-8B-Instruct → 再提交\n- GPU 空闲期间：如果 LLaMA 短期无法修复 → 先跑 exp-017-strategyqa 或 exp-018-arc（Qwen2.5-14B-Instruct，无模型风险）填 GPU 空窗\n- exp-010-mistral：确认 Mistral-7B 模型完整性 → 准备启动脚本 → 排队\n- Director 未收到本次失败汇报——下一个 session 必须在处理完诊断后立即 main_agent_post_to_director\n\n### 5. 🎯 战略上下文\n- 核心方向：Capability Trap Analysis Paper（D025 pivot）——系统揭示 SICA 不能 beat SC 的原因\n- 核心数据锚：SICA 76.49% vs SC 76.24% = +0.25pp (N=804, n.s.)，FOLIO sub-claim dead (0pp)\n- 三个 Claim 待验证状态：\n  - C1 (mechanism vacuous)：exp-013 ✅ + exp-016 ✅ + K-ablation ✅ → 充分支撑\n  - C2 (operating regime boundary)：exp-005 ✅ (QwQ-32B)，但 cross-family (LLaMA/Mistral) 还没跑通 → 这正是 exp-011 要做的\n  - C3 (C0 predictor)：需要多模型数据 → 依赖 cross-family 实验完成\n- 易错点：cross-family 实验（exp-010/011）是 C2 的关键证据，不能因为两次失败就放弃——必须诊断修复。但也不要无脑重试，根因不明时先填其他格子（exp-017/018 用已验证的 Qwen 模型，零风险）\n- K-ablation 结论：SICA ≤ SC for all K，K 越大 SICA 越差（-3~5pp at K=16/20），直接强化 C1\n- 决策链：D020→D021→D022→D023→D025(pivot)→D026→D027→D028→D029\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1779008249.md"
+}

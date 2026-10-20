@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fb53ac96940e6321553e",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "analysis correlation alpha rejection",
+  "task_key": "worker_analysis_correlation-alpha-rejection_20260520T152445",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_correlation-alpha-rejection_20260520T152445.log",
+    "occurrence": 1,
+    "bytes": 588033,
+    "sha256": "f3f779dff3ba5ff692c3984ec22c71889646ce3b9cf87fc9f90983a75e9f9758"
+  },
+  "statistics": {
+    "messages": 174,
+    "user_turns": 0,
+    "tool_calls": 65,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 40,
+      "tool_call": 65,
+      "tool_result": 65,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 174,
+      "chunks": [
+        {
+          "path": "fb53ac96940e6321553e-part-0001.json",
+          "message_count": 174
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-correlation-alpha-rejection.md"
+}

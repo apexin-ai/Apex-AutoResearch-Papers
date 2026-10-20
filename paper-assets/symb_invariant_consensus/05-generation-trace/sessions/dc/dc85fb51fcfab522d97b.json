@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc85fb51fcfab522d97b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper fig3 causal dag paperbanana",
+  "task_key": "worker_paper_fig3-causal-dag-paperbanana_20260525T052912",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_fig3-causal-dag-paperbanana_20260525T052912_result.json",
+    "occurrence": 1,
+    "bytes": 352,
+    "sha256": "454ad04a450bfb130a0a1a6109f4aa6e5bbf157801f6cfee8ead0c5c97b48624"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- `fig3_causal_dag_v10.png` (3.6MB, 2752x1536) 和 `fig3_causal_dag_v10.pdf` (196KB) 已生成\n- analysis.tex 第22行已引用 `fig3_causal_dag_v10.pdf`，无需修改\n- 图片比 v8 更紧凑，所有元素（节点链、Y节点、公式框、分区配色、bottleneck标注）均正确，serif字体，publication-ready"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig3-causal-dag-paperbanana.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6417a10b0083d7f5c425",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis qwen25 folio 789 final",
+  "task_key": "worker_analysis_qwen25-folio-789-final_20260522T105335",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_qwen25-folio-789-final_20260522T105335_result.json",
+    "occurrence": 1,
+    "bytes": 465,
+    "sha256": "732176285ee84616ff2fa5519722b8d18a081d7b21ee361f898cdd66c22cef3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个进程都还活着：\n- PID 510872（vLLM）— ALIVE\n- PID 555317（Guard）— ALIVE  \n- PID 576920（收割脚本）— ALIVE\n\n收割脚本还在跑，但 seed=789 的 `results.json` 已经生成了（201 题）。收割脚本可能在等其他 seed 或执行后续汇总。\n\n**总结：** SICA 在 4 个 seeds 上平均比 SC 低 1.24 pp（73.80 vs 75.04），没有一个 seed 上 SICA 胜出。seed=789 少了 3 题（201/204）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen25-folio-789-final.md"
+}

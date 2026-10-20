@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff5078078d585215fb6f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra anonymous repo push",
+  "task_key": "worker_infra_anonymous-repo-push_20260523T130230",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_anonymous-repo-push_20260523T130230_result.json",
+    "occurrence": 1,
+    "bytes": 59,
+    "sha256": "0cfa17c2c6e79cd102046b2ae2d828893bdca0e1e21489dd3ee11098d589652a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5:30pm (UTC)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-anonymous-repo-push.md"
+}

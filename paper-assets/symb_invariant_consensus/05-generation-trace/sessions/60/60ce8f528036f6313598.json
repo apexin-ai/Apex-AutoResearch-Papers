@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60ce8f528036f6313598",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code prep d030 contrastive pilot",
+  "task_key": "worker_code_prep-d030-contrastive-pilot_20260517T061757",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_prep-d030-contrastive-pilot_20260517T061757_result.json",
+    "occurrence": 1,
+    "bytes": 1058,
+    "sha256": "c268813f8c4ce25e426804d1805a6404d3ff83faa280c7ca9d43cfa9af17cfbe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 完全通过，pipeline 逻辑无报错。\n\n## 产出\n\n**脚本**: `/root/symb_invariant_consensus/scripts/pilot_contrastive_constraints.py`\n\n- `--help` 正常\n- `--dry-run` 完整跑通（mock 数据显示 discriminative ratio 76.0% vs baseline 11.5%）\n- 真实运行需 vLLM 加载 Qwen2.5-14B 后执行（不带 `--dry-run`）\n\n## Contrastive Prompt 设计思路\n\n核心变化：将约束提取从 **answer-agnostic**（\"从 trace 提取所有逻辑约束\"）改为 **answer-conditioned**（\"提取支持/反对特定答案的约束\"）。\n\nPrompt 接收三个额外输入：trace 的结论答案、问题全文、所有候选答案列表。输出每条约束标记 `category`：\n- `supports`: 支持该 trace 答案的证据\n- `contradicts`: 反对某个替代答案的证据  \n- `neutral`: 与答案无关的领域事实\n\n评分策略两种：\n- V1: 直接累加 supports (+1) 和 contradicts (-0.5) 的 raw count\n- V2: 按 trace 级频率加权（多少条 trace 产生了相同方向的支持/反对）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-d030-contrastive-pilot.md"
+}

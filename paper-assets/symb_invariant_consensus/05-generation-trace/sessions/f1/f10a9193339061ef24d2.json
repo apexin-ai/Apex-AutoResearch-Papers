@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "f10a9193339061ef24d2",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "exp mvp math50",
+  "task_key": "worker_exp_mvp-math50_20260515T114040",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_mvp-math50_20260515T114040.log",
+    "occurrence": 1,
+    "bytes": 1547728,
+    "sha256": "603e9c17ab76f245bb173ac8098f5b0fe300c771fc722c4616faf442975ca297"
+  },
+  "statistics": {
+    "messages": 996,
+    "user_turns": 1,
+    "tool_calls": 407,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 1,
+      "assistant": 174,
+      "tool_call": 407,
+      "tool_result": 407,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 720,
+      "chunks": [
+        {
+          "path": "f10a9193339061ef24d2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f10a9193339061ef24d2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f10a9193339061ef24d2-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "f10a9193339061ef24d2-part-0004.json",
+          "message_count": 180
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 276,
+      "chunks": [
+        {
+          "path": "f10a9193339061ef24d2-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "f10a9193339061ef24d2-part-0006.json",
+          "message_count": 96
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-mvp-math50.md"
+}

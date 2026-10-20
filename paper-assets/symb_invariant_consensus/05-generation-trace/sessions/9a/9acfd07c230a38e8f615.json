@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "9acfd07c230a38e8f615",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment d126 crossmodel sica",
+  "task_key": "worker_experiment_d126-crossmodel-sica_20260521T082140",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_d126-crossmodel-sica_20260521T082140.log",
+    "occurrence": 1,
+    "bytes": 1104897,
+    "sha256": "73cfa0cff9650375263a2a027d194a2eea6f4cf6fb19d670f76c94327cbed398"
+  },
+  "statistics": {
+    "messages": 373,
+    "user_turns": 1,
+    "tool_calls": 140,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 85,
+      "tool_call": 140,
+      "tool_result": 140,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 319,
+      "chunks": [
+        {
+          "path": "9acfd07c230a38e8f615-part-0001.json",
+          "message_count": 166
+        },
+        {
+          "path": "9acfd07c230a38e8f615-part-0002.json",
+          "message_count": 153
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 54,
+      "chunks": [
+        {
+          "path": "9acfd07c230a38e8f615-part-0002.json",
+          "message_count": 27
+        },
+        {
+          "path": "9acfd07c230a38e8f615-part-0003.json",
+          "message_count": 27
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-d126-crossmodel-sica.md"
+}

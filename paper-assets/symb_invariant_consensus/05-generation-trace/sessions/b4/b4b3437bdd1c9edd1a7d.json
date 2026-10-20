@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4b3437bdd1c9edd1a7d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis table1 bh correction",
+  "task_key": "worker_analysis_table1-bh-correction_20260521T021023",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_table1-bh-correction_20260521T021023_result.json",
+    "occurrence": 1,
+    "bytes": 591,
+    "sha256": "4bbb8cb08355c481ded631e6292985e3981227b65772a83da6544fc4ea307c8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n- **raw 显著**: 2 条（Mistral-7B PW-D5 p=0.014, Qwen2.5-14B PW-D5 p=0.011）\n- **BH 校正后显著**: 0 条\n- 两条均调整为 adj p=0.112（Qwen2.5-14B 的未校正 BH 值为 0.176，经单调性约束降至 0.112）\n\n与 reviewer 预期一致：Mistral PW adj p≈0.112，Qwen2.5 PW 的 p\\*m/i=0.176 但最终 adj=0.112。关键结论不变——BH 校正后无任何条件显著。\n\n产出文件：\n- `artifacts/table1_bh_correction.json` — 完整 16 条件数据\n- `artifacts/table1_bh_draft.tex` — 可插入论文的 LaTeX 段落"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-table1-bh-correction.md"
+}

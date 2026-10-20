@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b7bc74ec7b382b8ce27",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis error categorization discordant",
+  "task_key": "worker_analysis_error-categorization-discordant_20260520T002049",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_error-categorization-discordant_20260520T002049_result.json",
+    "occurrence": 1,
+    "bytes": 1915,
+    "sha256": "62c69b4a3cdb716cc41d88a92aca2578ac4fc20096d993acc257dc754cb8c3e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n### 1. Debate Discordant (60题 SC→Wrong)\n\n- **答案类型偏斜严重**：False 类被翻转 82.8%（29个SC对的里24个被Debate翻错），True 类 63.9%，Unknown 仅 25.5%。Debate 对有确定答案（True/False）的题破坏力远大于 Unknown 题。\n- **Fallback 为 0**：这 60 题全部没有触发 fallback 机制——Debate 过程\"成功\"完成但得出了错误结论，说明问题不在 debate 失败，而在 debate 产出的 constraints 本身质量有问题。\n- **Mean valid debates 反而更高** (2.93 vs baseline 2.52)：更多的有效 debate 反而导致更多错误，符合\"debate 引入 confident but wrong constraints\"的假说。\n\n### 2. Contrastive Discordant (34题)\n\n- **Degenerate 率为 0%**（baseline 20.1%）：全部 34 题都是非退化的——Contrastive 产出了 constraints 但方向错误，非 constraint 缺失问题。\n- **Pro/con 数量更高** (8.32 pro + 7.32 con vs baseline 4.97 + 4.28)，imbalance 也更大 (1.0 vs 0.68)：这些题 constraint 数量充足但 pro 偏多，pro-biased scoring 可能导致了错误。\n- **Unknown 过度翻转**：Unknown 类占 41%（14/34），而 baseline 仅 34%，Unknown 题更容易被 Contrastive 翻错。\n- **语言复杂度更高**：negation 97.1% (vs 76.5%), conditional 82.4% (vs 61.8%), quantifier 79.4% (vs 70.6%)。\n\n### 3. 跨方法重叠\n\n- **重叠仅 15 题**，Jaccard=0.19，两种方法的失败模式高度不同。\n- **Debate 独有 45 题**偏向 True/False（17+19=36, 80%），且语言复杂度接近 baseline。\n- **Contrastive 独有 19 题**偏向 Unknown（10/19=53%），且语言复杂度极高（negation 94.7%, conditional 84.2%）。\n- **两者都翻转的 15 题** 100% 含否定词，答案类型均匀分布——这些是对两种 constraint 提取方法都具有挑战性的\"universally hard\"题目。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-error-categorization-discordant.md"
+}

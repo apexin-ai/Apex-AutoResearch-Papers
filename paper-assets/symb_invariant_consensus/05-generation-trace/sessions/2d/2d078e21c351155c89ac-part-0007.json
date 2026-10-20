@@ -1,0 +1,3577 @@
+{
+  "schema_version": "1.0",
+  "session_id": "2d078e21c351155c89ac",
+  "rounds": [
+    {
+      "number": 108,
+      "messages": [
+        {
+          "source_line": 1081,
+          "timestamp": "2026-05-17T11:51:46.946020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-009-overhead-analysis",
+              "field": "conclusion",
+              "value": "success",
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-001081"
+        },
+        {
+          "source_line": 1082,
+          "timestamp": "2026-05-17T11:51:51.016887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-009-overhead-analysis\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:51:43.293Z\\\", \\\"updated_at\\\": \\\"2026-05-17T11:51:47.098Z\\\", \\\"hypothesis\\\": \\\"SICA pipeline 的 wall-time overhead breakdown: trace generation vs constraint extraction vs MaxSAT solving 各占多少——量化 SICA 相对 SC 的额外计算成本\\\", \\\"metrics\\\": {\\\"n\\\": 804, \\\"mean_total_wall_s\\\": 61.6, \\\"mean_trace_gen_s\\\": 31.6, \\\"trace_gen_pct\\\": 51.3, \\\"mean_extract_s\\\": 29, \\\"extract_pct\\\": 47, \\\"mean_dedup_s\\\": 1, \\\"dedup_pct\\\": 1.6, \\\"mean_maxsat_s\\\": 0.003, \\\"maxsat_pct\\\": 0.005, \\\"sica_overhead_s\\\": 30, \\\"sica_overhead_pct\\\": 48.7, \\\"pw_overhead_pct\\\": 51.3, \\\"folio_overhead_pct\\\": 38.6, \\\"p50_overhead_pct\\\": 48.9, \\\"p90_overhead_pct\\\": 57.6}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2738}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 4070
+          },
+          "id": "event-001082"
+        },
+        {
+          "source_line": 1083,
+          "timestamp": "2026-05-17T11:51:51.067654+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-009-overhead-analysis",
+              "field": "notes",
+              "value": "SICA overhead 分析 (804题)：总时间 61.6s/题，其中 trace 生成 31.6s (51.3%)，约束提取 29.0s (47.0%)，去重 1.0s (1.6%)，MaxSAT 0.003s (≈0%)。SICA vs SC 多花 30.0s/题 (+48.7%)，开销几乎全部来自 constraint extraction LLM 调用。MaxSAT 求解可忽略。论文 insight：SICA 的计算瓶颈不在 formal reasoning (SAT) 而在 LLM extraction，且 extraction 产出的约束缺乏判别力——高成本低回报。",
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-001083"
+        },
+        {
+          "source_line": 1084,
+          "timestamp": "2026-05-17T11:51:51.319410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-009-overhead-analysis\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:51:43.293Z\\\", \\\"updated_at\\\": \\\"2026-05-17T11:51:51.175Z\\\", \\\"hypothesis\\\": \\\"SICA pipeline 的 wall-time overhead breakdown: trace generation vs constraint extraction vs MaxSAT solving 各占多少——量化 SICA 相对 SC 的额外计算成本\\\", \\\"metrics\\\": {\\\"n\\\": 804, \\\"mean_total_wall_s\\\": 61.6, \\\"mean_trace_gen_s\\\": 31.6, \\\"trace_gen_pct\\\": 51.3, \\\"mean_extract_s\\\": 29, \\\"extract_pct\\\": 47, \\\"mean_dedup_s\\\": 1, \\\"dedup_pct\\\": 1.6, \\\"mean_maxsat_s\\\": 0.003, \\\"maxsat_pct\\\": 0.005, \\\"sica_overhead_s\\\": 30, \\\"sica_overhead_pct\\\": 48.7, \\\"pw_overhead_pct\\\": 51.3, \\\"folio_overhead_pct\\\": 38.6, \\\"p50_overhead_pct\\\": 48.9, \\\"p90_overhead_pct\\\": 57.6}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"SICA overhead 分析 (804题)：总时间 61.6s/题，其中 trace 生成 31.6s (51.3%)，约束提取 29.0s (47.0%)，去重 1.0s (1.6%)，MaxSAT 0.003s (≈0%)。SICA vs SC 多花 30.0s/题 (+48.7%)，开销几乎全部来自 constraint extraction LLM 调用。MaxSAT 求解可忽略。论文 insight：SICA 的计算瓶颈不在 formal reasoning (SAT) 而在 LLM extraction，且 extraction 产出的约束缺乏判别力——高成本低回报。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.241}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 251
+          },
+          "id": "event-001084"
+        },
+        {
+          "source_line": 1085,
+          "timestamp": "2026-05-17T11:51:55.974744+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 状态转换限制，exp-009 留在 PREPARING 但 metrics/conclusion/notes 已录入。等待其余 3 个 Worker 回调 (exp-015 Logic-LM / constraint correlation / exp-014 prep)。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-001085"
+        }
+      ]
+    },
+    {
+      "number": 109,
+      "messages": [
+        {
+          "source_line": 1086,
+          "timestamp": "2026-05-17T11:51:56.536596+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_code_prep-exp014-deepseek-r1_20260517T113200 已完成（status=done）。用 `get_worker_status('worker_code_prep-exp014-deepseek-r1_20260517T113200')` 读取结果，然后处理。\n\n- worker_id: worker_code_prep-exp014-deepseek-r1_20260517T113200\n- project: symb_invariant_consensus\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "worker:done"
+          },
+          "id": "event-001086"
+        },
+        {
+          "source_line": 1087,
+          "timestamp": "2026-05-17T11:52:01.902227+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_prep-exp014-deepseek-r1_20260517T113200"
+            }
+          },
+          "id": "event-001087"
+        },
+        {
+          "source_line": 1088,
+          "timestamp": "2026-05-17T11:52:01.953039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_prep-exp014-deepseek-r1_20260517T113200\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"code:prep-exp014-deepseek-r1\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"started_at\\\": \\\"2026-05-17T11:32:00.813069+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T11:33:37.887791+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"脚本就绪。验证报告：\\\\n\\\\n**模型验证**\\\\n- 实际路径：`/root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B`（嵌套 modelscope 目录结构）\\\\n- 文件完整：`config.json` + `tokenizer.json` + 2 个 safetensors 分片\\\\n- 架构：`Qwen2ForCausalLM`，vLLM 原生支持，无需 `--trust-remote-code`\\\\n\\\\n**数据验证**\\\\n- `data/proofwriter_30.json` ✓（注意：不是 `proofwriter_d5_30.json`）\\\\n- `data/folio_30.json` ✓（已是 30 题，无需 `--folio-limit`）\\\\n- `data/empty.json` ✓（用于跳过 MATH 数据，`--math-data` 是必填项）\\\\n\\\\n**脚本与用户模板的差异**（按实际 argparse 修正）\\\\n- `--model-url` → `--api-base`\\\\n- `--model-name` → 不需要（mode=vllm 时 model 默认 auto，自动检测）\\\\n- `--proofwriter-data` → `--pw-data`\\\\n- `--output-dir` + `--output-file` → `--output`（单个路径）\\\\n- 无 `--folio-limit` 参数（直接用 `folio_30.json`）\\\\n- PORT 用 8000（与默认 `--api-base` 一致）\\\\n\\\\n**语法检查**：通过\\\\n\\\\n脚本路径：`/root/symb_invariant_consensus/scripts/run_exp014_deepseek_r1_7b.sh`\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-001088"
+        },
+        {
+          "source_line": 1089,
+          "timestamp": "2026-05-17T11:52:10.621707+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-014-deepseek-r1-7b",
+              "field": "hypothesis",
+              "value": "DeepSeek-R1-Distill-Qwen-7B（reasoning distill 模型）在 D012 上 SICA vs SC——预期 C0<5%（类似 QwQ-32B，reasoning model 的确定性链消灭多样性），作为第二个 reasoning model 数据点验证 capability trap",
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-001089"
+        },
+        {
+          "source_line": 1090,
+          "timestamp": "2026-05-17T11:52:11.026086+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-014-deepseek-r1-7b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:52:10.748Z\\\", \\\"updated_at\\\": \\\"2026-05-17T11:52:10.748Z\\\", \\\"hypothesis\\\": \\\"DeepSeek-R1-Distill-Qwen-7B（reasoning distill 模型）在 D012 上 SICA vs SC——预期 C0<5%（类似 QwQ-32B，reasoning model 的确定性链消灭多样性），作为第二个 reasoning model 数据点验证 capability trap\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2579}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 404
+          },
+          "id": "event-001090"
+        },
+        {
+          "source_line": 1091,
+          "timestamp": "2026-05-17T11:52:11.980141+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-014-deepseek-r1-7b",
+              "field": "parent",
+              "value": "sica_expanded_14b",
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-001091"
+        },
+        {
+          "source_line": 1092,
+          "timestamp": "2026-05-17T11:52:12.483382+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-014-deepseek-r1-7b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:52:10.748Z\\\", \\\"updated_at\\\": \\\"2026-05-17T11:52:12.093Z\\\", \\\"hypothesis\\\": \\\"DeepSeek-R1-Distill-Qwen-7B（reasoning distill 模型）在 D012 上 SICA vs SC——预期 C0<5%（类似 QwQ-32B，reasoning model 的确定性链消灭多样性），作为第二个 reasoning model 数据点验证 capability trap\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2035}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 503
+          },
+          "id": "event-001092"
+        },
+        {
+          "source_line": 1093,
+          "timestamp": "2026-05-17T11:52:14.092400+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "westd-32608",
+              "gpu_ids": "['cuda:0']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp014_deepseek_r1_7b.sh\"",
+              "exp_id": "exp-014-deepseek-r1-7b",
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-001093"
+        },
+        {
+          "source_line": 1094,
+          "timestamp": "2026-05-17T11:52:19.317526+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"324400\\\", \\\"log_file\\\": \\\"~/runs/symb_invariant_consensus/exp-014-deepseek-r1-7b.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"westd-32608\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"exp-014-deepseek-r1-7b\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.22}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 5225
+          },
+          "id": "event-001094"
+        },
+        {
+          "source_line": 1095,
+          "timestamp": "2026-05-17T11:52:23.988585+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "exp-014-deepseek-r1-7b",
+              "server": "westd-32608",
+              "pid": "324400",
+              "log_path": "~/runs/symb_invariant_consensus/exp-014-deepseek-r1-7b.log",
+              "project": "symb_invariant_consensus",
+              "interval_seconds": "120"
+            }
+          },
+          "id": "event-001095"
+        },
+        {
+          "source_line": 1096,
+          "timestamp": "2026-05-17T11:52:24.039680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"exp-014-deepseek-r1-7b\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"pid\\\": \\\"324400\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-014-deepseek-r1-7b.log\\\", \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-17T11:52:23.978Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 51
+          },
+          "id": "event-001096"
+        },
+        {
+          "source_line": 1097,
+          "timestamp": "2026-05-17T11:52:34.055771+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 1/1 (exp-014 RUNNING, PID 324400) | Worker 2 (CPU: exp-015 Logic-LM / constraint correlation)\n\n**已完成**：\n- ✅ exp-020 结果录入 registry (DONE/negative, -2.45pp)\n- ✅ exp-009 overhead 分析完成并录入 (SICA +48.7% overhead，几乎全部来自 constraint extraction)\n- ✅ exp-014 DeepSeek-R1-Distill-Qwen-7B 已提交 (PID 324400, D012 60题, cron 已注册)\n- ✅ exp-016 weighted SC 已有历史结果（无需重跑）\n\n**进行中**：\n- exp-015 Logic-LM baseline — Worker running\n- constraint quality correlation — Worker running\n- exp-014 DeepSeek-R1-7B — GPU running (~1h ETA)\n\nGPU 零空闲。",
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-001097"
+        },
+        {
+          "source_line": 1098,
+          "timestamp": "2026-05-17T11:52:37.900715+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3844
+          },
+          "id": "event-001098"
+        },
+        {
+          "source_line": 1099,
+          "timestamp": "2026-05-17T11:52:45.112133+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-014 已提交 (PID 324400)。注册 cron 监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-001099"
+        }
+      ]
+    },
+    {
+      "number": 110,
+      "messages": [
+        {
+          "source_line": 1100,
+          "timestamp": "2026-05-17T11:52:45.663787+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_analysis_constraint-quality-correlation_20260517T113142 已完成（status=done）。用 `get_worker_status('worker_analysis_constraint-quality-correlation_20260517T113142')` 读取结果，然后处理。\n\n- worker_id: worker_analysis_constraint-quality-correlation_20260517T113142\n- project: symb_invariant_consensus\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "worker:done"
+          },
+          "id": "event-001100"
+        },
+        {
+          "source_line": 1101,
+          "timestamp": "2026-05-17T11:55:23.913769+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons",
+              "max_results": "3"
+            }
+          },
+          "id": "event-001101"
+        },
+        {
+          "source_line": 1102,
+          "timestamp": "2026-05-17T11:55:24.014634+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-001102"
+        },
+        {
+          "source_line": 1103,
+          "timestamp": "2026-05-17T11:55:26.625939+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_analysis_constraint-quality-correlation_20260517T113142"
+            }
+          },
+          "id": "event-001103"
+        },
+        {
+          "source_line": 1104,
+          "timestamp": "2026-05-17T11:55:27.028195+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_constraint-quality-correlation_20260517T113142\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"analysis:constraint-quality-correlation\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"started_at\\\": \\\"2026-05-17T11:31:43.172312+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T11:35:16.159966+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"CSV 已保存到服务器 `/root/symb_invariant_consensus/results/constraint_quality_correlation/quality_metrics.csv` 和本地 `artifacts/quality_metrics.csv`。\\\\n\\\\n**汇总表：**\\\\n\\\\n| Model | Domain | N | SC | SICA | Δpp | C0 | Unique | Density | SatR | SICA>SC | SC>SICA |\\\\n|---|---|---|---|---|---|---|---|---|---|---|---|\\\\n| Qwen2.5-14B | PW+FOLIO | 804 | 76.24 | 76.49 | +0.25 | 3.9% | 21.5 | 9.17 | 0.977 | 16 | 14 |\\\\n| Mistral-7B | PW+FOLIO | 60 | 48.33 | 48.33 | 0.0 | 6.7% | 20.5 | 5.47 | 0.948 | 2 | 2 |\\\\n| LLaMA-8B | PW+FOLIO | 60 | 60.0 | 66.67 | **+6.67** | 11.7% | 30.1 | 8.73 | 0.950 | 5 | 1 |\\\\n| Qwen2.5-14B | StrategyQA | 60 | 53.33 | 56.67 | +3.33 | 3.3% | 1.0 | 1.02 | 0.954 | 2 | 0 |\\\\n| Qwen2.5-14B | ARC | 60 | 96.67 | 95.0 | -1.67 | 1.7% | 1.1 | 1.02 | 0.975 | 0 | 1 |\\\\n| LLaMA-8B | StrategyQA | 200 | 72.0 | 74.0 | +2.0 | 7.0% | 6.2 | 1.94 | 0.853 | 9 | 5 |\\\\n| LLaMA-8B | FOLIO | 204 | 63.24 | 60.78 | -2.45 | 6.4% | 33.3 | 8.05 | 0.938 | 4 | 9 |\\\\n\\\\n**F2 相关观察：**\\\\n- 逻辑推理域（PW+FOLIO, FOLIO）的约束密度高（5~9 constraints/trace），去重后 unique 多（20~33）\\\\n- 常识推理域（StrategyQA, ARC）约束密度极低（~1），几乎无法提取有意义的符号约束\\\\n- SICA 在高约束密度 + 中等 C0 时增益最大（LLaMA-8B PW+FOLIO: +6.67pp）；约束稀疏时增益有限或为负（ARC: -1.67pp, FOLIO-only: -2.45pp）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 402
+          },
+          "id": "event-001104"
+        },
+        {
+          "source_line": 1105,
+          "timestamp": "2026-05-17T11:55:27.028770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}"
+            }
+          },
+          "id": "event-001105"
+        },
+        {
+          "source_line": 1106,
+          "timestamp": "2026-05-17T11:55:27.080091+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-001106"
+        },
+        {
+          "source_line": 1107,
+          "timestamp": "2026-05-17T11:55:27.130797+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0048}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 102
+          },
+          "id": "event-001107"
+        },
+        {
+          "source_line": 1108,
+          "timestamp": "2026-05-17T11:55:32.404180+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"exp-014-deepseek-r1-7b\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=324400)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 5324
+          },
+          "id": "event-001108"
+        },
+        {
+          "source_line": 1109,
+          "timestamp": "2026-05-17T11:55:45.905080+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__main_agent_post_to_director",
+              "max_results": "4"
+            }
+          },
+          "id": "event-001109"
+        },
+        {
+          "source_line": 1110,
+          "timestamp": "2026-05-17T11:55:45.955871+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001110"
+        },
+        {
+          "source_line": 1111,
+          "timestamp": "2026-05-17T11:55:50.077655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'experiment_id': 'exp-014-deepseek-r1-7b'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-001111"
+        },
+        {
+          "source_line": 1112,
+          "timestamp": "2026-05-17T11:55:50.630291+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0035}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 552
+          },
+          "id": "event-001112"
+        },
+        {
+          "source_line": 1113,
+          "timestamp": "2026-05-17T11:55:50.781377+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "file": "report.md"
+            }
+          },
+          "id": "event-001113"
+        },
+        {
+          "source_line": 1114,
+          "timestamp": "2026-05-17T11:55:51.786549+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-17\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- smoke-test-5q（准备中）\\\\n\\\\n## 近期结论\\\\n- **exp-020-llama8b-folio-204** (negative): Powered FOLIO test: SICA 在弱模型（LLaMA-3.1-8B）上 FOLIO 全量 204 题是否达到统计显著——FOLIO 在 exp-011 中信号最强（+10pp, bootstrap p≈0.04），n=204 几乎必然显著。保险实验：若 StrategyQA discordant rate 低导致 underpowered。 ← 基于 exp-011-llama8b-v3\\\\n- **exp-019-llama8b-strategyqa-200** (negative): Powered test: SICA 在弱模型（LLaMA-3.1-8B）上的增益在 n=200 StrategyQA 题时达到统计显著（p<0.05）——验证 operating regime 假设（D031 + exp-011 directionally positive +6.67pp） ← 基于 exp-011-llama8b-v3\\\\n- **exp-010-mistral-v3** (negative): Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v3: 脚本内含 vLLM 清理+conda 环境，解决 v2 SIGTERM 问题） ← 基于 sica_expanded_14b\\\\n\\\\n## 趋势\\\\n成功 11 / 负向 6 / 失败 9 / 共 32\\\\ndelta_pp: 6.67 ↑（近 3 次 success）\\\\ndiscordant_sc_wins: 1 ↑（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-32608: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- mvp_math50_t07: 已被终止 — unknown\\\\n- sica_aime30_t07: 已被终止 — unknown\\\\n- sica_aime30_v2: 已被终止 — unknown\\\\n- sica_aime30_v3: 已被终止 — unknown\\\\n- sica_proofwriter30: 训练失败 — unknown\\\\n- sica_folio30: 已被终止 — unknown\\\\n- sica_proofwriter30_v2: 已被终止 — unknown\\\\n- exp-011-llama8b: 训练失败 — unknown\\\\n- exp-010-mistral: 训练失败 — unknown\\\\n- exp-011-llama8b-v2: 训练失败 — unknown\\\\n- exp-017-strategyqa: 训练失败 — unknown\\\\n- exp-018-arc: 训练失败 — unknown\\\\n- exp-010-mistral-v2: 训练失败 — unknown\\\\n- exp-017-strategyqa-v2: 训练失败 — unknown\\\\n- pilot-contrastive-prompt: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 1519, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 1005
+          },
+          "id": "event-001114"
+        },
+        {
+          "source_line": 1115,
+          "timestamp": "2026-05-17T11:55:51.787241+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_exp015-logic-lm-baseline_20260517T113200"
+            }
+          },
+          "id": "event-001115"
+        },
+        {
+          "source_line": 1116,
+          "timestamp": "2026-05-17T11:55:51.837796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Worker 'worker_code_exp015-logic-lm-baseline_20260517T113200' not found.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-001116"
+        },
+        {
+          "source_line": 1117,
+          "timestamp": "2026-05-17T11:55:59.621464+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "limit": "10",
+              "fields": "['experiment_id', 'status', 'conclusion', 'metrics']"
+            }
+          },
+          "id": "event-001117"
+        },
+        {
+          "source_line": 1118,
+          "timestamp": "2026-05-17T11:56:00.074088+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-010-mistral-v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"sc_accuracy\\\": 0.4833, \\\"sica_accuracy\\\": 0.4833, \\\"delta_pp\\\": 0, \\\"n\\\": 60, \\\"k\\\": 12, \\\"discordant_pairs\\\": 4, \\\"sica_wins\\\": 2, \\\"sc_wins\\\": 2, \\\"pw_sica\\\": 0.4, \\\"pw_sc\\\": 0.4, \\\"folio_sica\\\": 0.567, \\\"folio_sc\\\": 0.567, \\\"extraction_rate\\\": 0.882, \\\"contradiction_rate\\\": 0.056, \\\"avg_unique_constraints\\\": 20.5, \\\"maxsat_mean_sat_ratio\\\": 0.948, \\\"low_conf_sc_problems\\\": 12, \\\"wall_time_min\\\": 19.3}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0035}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-001118"
+        },
+        {
+          "source_line": 1119,
+          "timestamp": "2026-05-17T11:56:00.074502+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001119"
+        },
+        {
+          "source_line": 1120,
+          "timestamp": "2026-05-17T11:56:00.125075+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001120"
+        },
+        {
+          "source_line": 1121,
+          "timestamp": "2026-05-17T11:56:07.890845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "limit": "0",
+              "fields": "['experiment_id', 'status', 'conclusion']"
+            }
+          },
+          "id": "event-001121"
+        },
+        {
+          "source_line": 1122,
+          "timestamp": "2026-05-17T11:56:08.096242+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-010-mistral-v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0033}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 205
+          },
+          "id": "event-001122"
+        },
+        {
+          "source_line": 1123,
+          "timestamp": "2026-05-17T11:56:08.096706+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "status": "running"
+            }
+          },
+          "id": "event-001123"
+        },
+        {
+          "source_line": 1124,
+          "timestamp": "2026-05-17T11:56:08.147332+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 50
+          },
+          "id": "event-001124"
+        },
+        {
+          "source_line": 1125,
+          "timestamp": "2026-05-17T11:56:28.552022+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "constraint_quality_correlation_csv",
+              "type": "data",
+              "description": "Constraint quality metrics across all experiments (model, domain, N, SC, SICA, delta, C0, unique constraints, density, sat ratio) for paper hero figure F2",
+              "project": "symb_invariant_consensus",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/quality_metrics.csv",
+              "tags": "['D035', 'F2', 'constraint-quality', 'paper']"
+            }
+          },
+          "id": "event-001125"
+        },
+        {
+          "source_line": 1126,
+          "timestamp": "2026-05-17T11:56:29.054479+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260517_f32441\\\", \\\"name\\\": \\\"constraint_quality_correlation_csv\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Constraint quality metrics across all experiments (model, domain, N, SC, SICA, delta, C0, unique constraints, density, sat ratio) for paper hero figure F2\\\", \\\"path\\\": \\\"projects/symb_invariant_consensus/artifacts/_project/data/quality_metrics.csv\\\", \\\"url\\\": null, \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-17T11:56:28.550697+00:00\\\", \\\"tags\\\": [\\\"D035\\\", \\\"F2\\\", \\\"constraint-quality\\\", \\\"paper\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 502
+          },
+          "id": "event-001126"
+        },
+        {
+          "source_line": 1127,
+          "timestamp": "2026-05-17T11:56:29.506581+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "file": "ROADMAP.md",
+              "max_chars": "6000"
+            }
+          },
+          "id": "event-001127"
+        },
+        {
+          "source_line": 1128,
+          "timestamp": "2026-05-17T11:56:29.959312+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md\\\", \\\"content\\\": \\\"# symb_invariant_consensus — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-17 11:29 UTC | 更新原因: D035: exp-020 确认 SICA≤SC，Operating Regime 死亡，进入写作阶段\\\\n\\\\n## 核心方向\\\\n**D025 Capability Trap Analysis Paper (FINAL)**：SICA ≈ SC everywhere。Symbolic consensus 因 diversity-quality 反向相关而失效。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research → Writing transition（D035 确认最终方向）+ 审稿进行中\\\\n- **关键结论 (D035)**:\\\\n  - 四个 powered test 全部 negative: exp-001 +0.25pp n.s., exp-010 0.0pp, exp-019 +2.0pp p=0.424, exp-020 -2.4pp\\\\n  - exp-013: MaxSAT ≈ count-only（mechanism vacuous）\\\\n  - exp-002: SICA ≤ SC all K including odd K=11（tiebreak-only）\\\\n  - exp-011 +10pp 是 n=30 噪声（exp-020 同任务 n=204 反转为 -2.4pp）\\\\n- **已完成实验**: exp-001/002/010/011/013/017/018/019/020 (9 个核心实验)\\\\n- **Plan 覆盖**: 19 实验中 9 个 done，剩余多为 CPU ablation\\\\n\\\\n## 近期任务（按优先级排序）\\\\n- [ ] exp-009: overhead analysis（CPU，P1，论文必需）\\\\n- [ ] exp-015: Logic-LM baseline（CPU，P1，Reviewer concern #9）\\\\n- [ ] exp-016: weighted SC baseline（CPU，P1，Reviewer concern #10）\\\\n- [ ] exp-014: DeepSeek-R1-Distill-7B（GPU ~2h，第二个 reasoning model）\\\\n- [ ] exp-019 plan: constraint quality correlation 分析（CPU，hero figure F2 数据）\\\\n- [ ] dream_simulate(review_mode=\\\\\\\"full\\\\\\\") 验证 framing\\\\n- [ ] 启动 Paper Agent 写作\\\\n\\\\n## GPU 预算\\\\n- 分配: 1× RTX PRO 6000 Blackwell 98GB (cuda:0) on westd-32608\\\\n- 当前: **空闲**（exp-020 已完成）\\\\n- 剩余 GPU 实验: exp-014 (~2h), exp-004 (~2h), exp-007 (~4h) — 按优先级排\\\\n- 累计已用: ~24h\\\\n\\\\n## 阻塞项\\\\n- 无硬阻塞。CPU ablations 可立即并行启动。ARR May 25 还剩 8 天。\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D036 | 2026-05-17 | D036: Manager 要求实验覆盖自查——补 temperature ablation (T= | temperature-ablation, exp-012, exp-004, mistral-strategyqa |\\\\n| D035 | 2026-05-17 | D035: exp-020 FOLIO 204 确认 SICA≤SC (-2.4pp)，Operat | exp-020-llama8b-folio-204, exp-019-llama8b-strategyqa-200, exp-\n…[truncated 1062 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 452
+          },
+          "id": "event-001128"
+        },
+        {
+          "source_line": 1129,
+          "timestamp": "2026-05-17T11:56:29.959899+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/registry.yaml",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus"
+            }
+          },
+          "id": "event-001129"
+        },
+        {
+          "source_line": 1130,
+          "timestamp": "2026-05-17T11:56:30.060611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Glob",
+            "elapsed_ms": 100
+          },
+          "id": "event-001130"
+        },
+        {
+          "source_line": 1131,
+          "timestamp": "2026-05-17T11:56:36.874322+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml"
+            }
+          },
+          "id": "event-001131"
+        },
+        {
+          "source_line": 1132,
+          "timestamp": "2026-05-17T11:56:37.126088+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (26183 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 251
+          },
+          "id": "event-001132"
+        },
+        {
+          "source_line": 1133,
+          "timestamp": "2026-05-17T11:56:39.587260+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml",
+              "limit": "50"
+            }
+          },
+          "id": "event-001133"
+        },
+        {
+          "source_line": 1134,
+          "timestamp": "2026-05-17T11:56:39.690059+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tbaseline: null\n2\texperiments:\n3\t  crd_folio_main:\n4\t    status: DONE\n5\t    retry_count: 0\n6\t    created_at: '2026-05-15T09:35:42.037Z'\n7\t    updated_at: '2026-05-15T09:36:24.832Z'\n8\t    spec:\n9\t      command: python run_pipeline.py (CRD dual-representation pipeline)\n10\t      server: westd-32608\n11\t      data_path: /root/autodl-tmp/crdd/results/mvp_v4_full.jsonl\n12\t      data_count: 204\n13\t      model_name: Qwen3-32B-AWQ\n14\t      seed: 42\n15\t      method: CRD\n16\t      checkpoint_path: N/A\n17\t      log_path: /root/autodl-tmp/crdd/results/\n18\t    conclusion: success\n19\t    completed_at: '2026-05-15T09:36:03.793Z'\n20\t    hypothesis: 'CRD: 双表征(FOL+SymPy)分歧检测+定向修复能提升逻辑推理准确率（非SICA方法）'\n21\t    metrics:\n22\t      divergence_rate: 0.422\n23\t      diagnosis_rate: 0.872\n24\t      error_types: 4\n25\t      directed_advantage_pp: 4.7\n26\t      directed_p_value: 0.63\n27\t      localization_accuracy: 0.946\n28\t      fol_accuracy: 0.789\n29\t      code_accuracy: 0.598\n30\t      oracle_accuracy: 0.878\n31\t      pipeline_accuracy: 0.814\n32\t      baseline_accuracy: 0.74\n33\t      cost_multiplier: 5.76\n34\t      dataset: FOLIO\n35\t      n: 204\n36\t  smoke-test-5q:\n37\t    status: PREPARING\n38\t    retry_count: 0\n39\t    created_at: '2026-05-15T11:22:09.665Z'\n40\t    updated_at: '2026-05-15T11:22:09.666Z'\n41\t    conclusion: failed\n42\t  sica_smoke_5q:\n43\t    status: DONE\n44\t    retry_count: 0\n45\t    created_at: '2026-05-15T11:38:43.996Z'\n46\t    updated_at: '2026-05-15T11:39:13.456Z'\n47\t    spec:\n48\t      command: python3 smoke_test_5q.py (nohup)\n49\t      server: westd-32608\n50\t      data_path: /root/symb_invariant_consensus/data/math500_subset.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 102
+          },
+          "id": "event-001134"
+        },
+        {
+          "source_line": 1135,
+          "timestamp": "2026-05-17T11:56:44.811619+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp-014|exp-019|exp-020",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml",
+              "output_mode": "content",
+              "head_limit": "30"
+            }
+          },
+          "id": "event-001135"
+        },
+        {
+          "source_line": 1136,
+          "timestamp": "2026-05-17T11:56:44.862719+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1486:  exp-019-llama8b-strategyqa-200:\n1513:      log_path: ~/runs/symb_invariant_consensus/exp-019-llama8b-strategyqa-200.log\n1522:    log_path: ~/runs/symb_invariant_consensus/exp-019-llama8b-strategyqa-200.log\n1552:      regime sweet spot 内。exp-020 FOLIO (SC≈60%) 是真正的 definitive test。'\n1554:  exp-020-llama8b-folio-204:\n1570:      log_path: ~/runs/symb_invariant_consensus/exp-020-llama8b-folio-204.log\n1649:  exp-014-deepseek-r1-7b:\n1665:      log_path: ~/runs/symb_invariant_consensus/exp-014-deepseek-r1-7b.log"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Grep",
+            "elapsed_ms": 51
+          },
+          "id": "event-001136"
+        },
+        {
+          "source_line": 1137,
+          "timestamp": "2026-05-17T11:56:51.337445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml",
+              "offset": "1486",
+              "limit": "100"
+            }
+          },
+          "id": "event-001137"
+        },
+        {
+          "source_line": 1138,
+          "timestamp": "2026-05-17T11:56:51.840412+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1486\t  exp-019-llama8b-strategyqa-200:\n1487\t    status: DONE\n1488\t    retry_count: 0\n1489\t    created_at: '2026-05-17T08:07:01.919Z'\n1490\t    updated_at: '2026-05-17T09:15:53.996Z'\n1491\t    hypothesis: 'Powered test: SICA 在弱模型（LLaMA-3.1-8B）上的增益在 n=200 StrategyQA 题时达到统计显著（p<0.05）——验证\n1492\t      operating regime 假设（D031 + exp-011 directionally positive +6.67pp）'\n1493\t    parent: exp-011-llama8b-v3\n1494\t    server: westd-32608\n1495\t    gpu: cuda:0\n1496\t    account: root\n1497\t    reproduce:\n1498\t      server: westd-32608\n1499\t      gpu: cuda:0\n1500\t      started_at: '2026-05-17T08:18:21.546Z'\n1501\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n1502\t        base && cd /root/symb_invariant_consensus && bash scripts/run_exp019_strategyqa_200.sh\"\n1503\t      code_commit: 97aeaa572a6b6571b4bfea9c6ec6bcf915780425\n1504\t      finished_at: '2026-05-17T09:10:18.592Z'\n1505\t      training_hours: 0.87\n1506\t    spec:\n1507\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n1508\t        base && cd /root/symb_invariant_consensus && bash scripts/run_exp019_strategyqa_200.sh\"\n1509\t      server: westd-32608\n1510\t      gpu:\n1511\t      - cuda:0\n1512\t      pid: '302372'\n1513\t      log_path: ~/runs/symb_invariant_consensus/exp-019-llama8b-strategyqa-200.log\n1514\t      submitted_at: '2026-05-17T08:18:24.001Z'\n1515\t      submitted_via: submit_training_job\n1516\t      backend: tmux\n1517\t      account: root\n1518\t      checkpoint_path: /root/symb_invariant_consensus/results/exp019_strategyqa_200/\n1519\t      wall_clock_seconds: 3450.0\n1520\t      gpu_hours: 0.96\n1521\t    pid: '302372'\n1522\t    log_path: ~/runs/symb_invariant_consensus/exp-019-llama8b-strategyqa-200.log\n1523\t    extra:\n1524\t      hook_events:\n1525\t      - event: on_complete\n1526\t        action: agent\n1527\t        ts: '2026-05-17T09:10:21.404482+00:00'\n1528\t    metrics:\n1529\t      n: 200\n1530\t      k: 12\n1531\t      sica_accuracy: 0.74\n1532\t      sc_accuracy: \n…[truncated 2444 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-001138"
+        },
+        {
+          "source_line": 1139,
+          "timestamp": "2026-05-17T11:56:51.891145+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml",
+              "offset": "1554",
+              "limit": "120"
+            }
+          },
+          "id": "event-001139"
+        },
+        {
+          "source_line": 1140,
+          "timestamp": "2026-05-17T11:56:51.941830+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1554\t  exp-020-llama8b-folio-204:\n1555\t    status: DONE\n1556\t    retry_count: 0\n1557\t    created_at: '2026-05-17T08:12:49.897Z'\n1558\t    updated_at: '2026-05-17T11:50:57.467Z'\n1559\t    hypothesis: 'Powered FOLIO test: SICA 在弱模型（LLaMA-3.1-8B）上 FOLIO 全量 204 题是否达到统计显著——FOLIO\n1560\t      在 exp-011 中信号最强（+10pp, bootstrap p≈0.04），n=204 几乎必然显著。保险实验：若 StrategyQA discordant\n1561\t      rate 低导致 underpowered。'\n1562\t    parent: exp-011-llama8b-v3\n1563\t    spec:\n1564\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n1565\t        base && cd /root/symb_invariant_consensus && bash scripts/run_exp020_folio_200.sh\"\n1566\t      server: westd-32608\n1567\t      gpu:\n1568\t      - cuda:0\n1569\t      pid: '309318'\n1570\t      log_path: ~/runs/symb_invariant_consensus/exp-020-llama8b-folio-204.log\n1571\t      submitted_at: '2026-05-17T09:12:58.789Z'\n1572\t      submitted_via: submit_training_job\n1573\t      backend: tmux\n1574\t      account: root\n1575\t      data_path: /root/symb_invariant_consensus/data/folio_204.jsonl\n1576\t      data_count: 204\n1577\t      model_name: meta-llama/Llama-3.1-8B-Instruct\n1578\t      seed: 42\n1579\t      checkpoint_source: N/A (inference-only, no checkpoint)\n1580\t      eval_data: FOLIO full dataset 204 problems\n1581\t      checkpoint_path: /root/symb_invariant_consensus/results/exp020_folio_200/\n1582\t      wall_clock_seconds: 9478.7\n1583\t      gpu_hours: 2.63\n1584\t    reproduce:\n1585\t      finished_at: '2026-05-17T11:27:04.546Z'\n1586\t    extra:\n1587\t      hook_events:\n1588\t      - event: on_complete\n1589\t        action: agent\n1590\t        ts: '2026-05-17T11:27:06.717657+00:00'\n1591\t    metrics:\n1592\t      n: 204\n1593\t      k: 12\n1594\t      sica_accuracy: 0.608\n1595\t      sc_accuracy: 0.632\n1596\t      delta_pp: -2.45\n1597\t      mcnemar_p: 0.2668\n1598\t      bootstrap_ci_95:\n1599\t      - -5.88\n1600\t      - 0.98\n1601\t      bootstrap_p_sica_ge_sc: 0.1\n1602\t      discordant_sica_wins: 4\n1603\t      discordant_sc_wins: 9\n1604\t      discordant_\n…[truncated 2963 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001140"
+        },
+        {
+          "source_line": 1141,
+          "timestamp": "2026-05-17T11:57:05.160952+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__save_project_file",
+              "max_results": "3"
+            }
+          },
+          "id": "event-001141"
+        },
+        {
+          "source_line": 1142,
+          "timestamp": "2026-05-17T11:57:05.211672+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001142"
+        },
+        {
+          "source_line": 1143,
+          "timestamp": "2026-05-17T11:57:15.624056+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-014-deepseek-r1-7b",
+              "field": "status",
+              "value": "RUNNING",
+              "spec": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp014_deepseek_r1_7b.sh\"', 'server': 'westd-32608', 'data_path': '/root/symb_invariant_consensus/data/proofwriter_30.json + folio_30.json', 'data_count': 60, 'model_name': 'DeepSeek-R1-Distill-Qwen-7B', 'seed': 42}"
+            }
+          },
+          "id": "event-001143"
+        },
+        {
+          "source_line": 1144,
+          "timestamp": "2026-05-17T11:57:15.624408+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "limit": "10"
+            }
+          },
+          "id": "event-001144"
+        },
+        {
+          "source_line": 1145,
+          "timestamp": "2026-05-17T11:57:15.675358+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0048}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 51
+          },
+          "id": "event-001145"
+        },
+        {
+          "source_line": 1146,
+          "timestamp": "2026-05-17T11:57:15.726231+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_analysis_exp020-definitive-check_20260517T095239\\\", \\\"task_type\\\": \\\"analysis:exp020-definitive-check\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T09:52:39.450006+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T09:55:05.990562+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_exp020-truncation-and-overlap_20260517T095938\\\", \\\"task_type\\\": \\\"analysis:exp020-truncation-and-overlap\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T09:59:38.388931+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T10:02:36.723982+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_truncation-bias-exp011_20260517T104437\\\", \\\"task_type\\\": \\\"analysis:truncation-bias-exp011\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T10:44:37.633263+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T10:47:35.948820+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_evidence-table-consolidation_20260517T104458\\\", \\\"task_type\\\": \\\"analysis:evidence-table-consolidation\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T10:44:59.006068+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T10:48:05.529634+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_exp011-truncation-bias_20260517T105204\\\", \\\"task_type\\\": \\\"analysis:exp011-truncation-bias\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T10:52:04.728511+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T10:53:43.885610+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_exp-020-llama8b-folio-204_20260517T112831\\\", \\\"task_type\\\": \\\"analysis:exp-020-llama8b-folio-204\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T11:28:31.898988+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T11:31:01.295530+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_exp009-overhead_20260517T113105\\\", \\\"task_type\\\": \\\"analysis:exp009-overhead\n…[truncated 1143 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 101
+          },
+          "id": "event-001146"
+        },
+        {
+          "source_line": 1147,
+          "timestamp": "2026-05-17T11:57:22.959909+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_analysis_exp015-logic-lm-baseline_20260517T113121"
+            }
+          },
+          "id": "event-001147"
+        },
+        {
+          "source_line": 1148,
+          "timestamp": "2026-05-17T11:57:23.362458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_exp015-logic-lm-baseline_20260517T113121\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"analysis:exp015-logic-lm-baseline\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"started_at\\\": \\\"2026-05-17T11:31:21.710522+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T11:36:54.096595+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"Results:\\\\n\\\\n```\\\\n============================================================\\\\nLOGIC-LM BASELINE (n=204, FOLIO)\\\\n============================================================\\\\nSICA:          60.8% (124/204)\\\\nLogic-LM vote: 62.7% (128/204)\\\\nSC:            63.2% (129/204)\\\\n============================================================\\\\nMcNemar SICA vs Logic-LM:  p=0.4240\\\\nMcNemar Logic-LM vs SC:    p=1.0000\\\\nMcNemar SICA vs SC:        p=0.2668\\\\n============================================================\\\\nLogic-LM stats:\\\\n  Fallback to SC: 0/204 problems\\\\n  Total verified traces: 2109\\\\n  Total failed traces: 219\\\\n  Verification rate: 90.6%\\\\n  Elapsed: 2.3s\\\\n```\\\\n\\\\n关键发现：\\\\n- **Logic-LM ≈ SC**（p=1.0），单 trace 自洽验证几乎不提供额外判别力\\\\n- 90.6% 的 traces 通过自洽检查，因为单条 trace 的约束很少自相矛盾\\\\n- 矛盾主要发生在**跨 trace** 之间，这正是 SICA 的 MaxSAT 聚合所捕获的\\\\n- Soft weighting（weight_fail=0.5）也只把 Logic-LM 提到和 SC 持平\\\\n\\\\n数据说明：使用 exp020（FOLIO 204 题），因为只有 exp020 保存了 `raw_constraints` 含 `source_traces` 映射，能做真正的 per-trace Z3 验证。exp-001 的 `raw_constraints` 字段为空。\\\\n\\\\n结果已保存到 `/root/symb_invariant_consensus/results/exp015_logic_lm/exp015_results.json`。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 402
+          },
+          "id": "event-001148"
+        },
+        {
+          "source_line": 1149,
+          "timestamp": "2026-05-17T11:57:23.664054+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-014-deepseek-r1-7b",
+              "field": "status",
+              "value": "PENDING"
+            }
+          },
+          "id": "event-001149"
+        },
+        {
+          "source_line": 1150,
+          "timestamp": "2026-05-17T11:57:23.764921+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-014-deepseek-r1-7b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:57:23.633Z\\\", \\\"updated_at\\\": \\\"2026-05-17T11:57:23.633Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.049}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 100
+          },
+          "id": "event-001150"
+        },
+        {
+          "source_line": 1151,
+          "timestamp": "2026-05-17T11:57:32.400437+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-014-deepseek-r1-7b",
+              "field": "status",
+              "value": "QUEUED"
+            }
+          },
+          "id": "event-001151"
+        },
+        {
+          "source_line": 1152,
+          "timestamp": "2026-05-17T11:57:32.651899+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-014-deepseek-r1-7b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:57:23.633Z\\\", \\\"updated_at\\\": \\\"2026-05-17T11:57:32.370Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0286}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 251
+          },
+          "id": "event-001152"
+        },
+        {
+          "source_line": 1153,
+          "timestamp": "2026-05-17T11:57:32.652324+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-015-logic-lm-baseline",
+              "field": "status",
+              "value": "PREPARING"
+            }
+          },
+          "id": "event-001153"
+        },
+        {
+          "source_line": 1154,
+          "timestamp": "2026-05-17T11:57:32.704129+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-015-logic-lm-baseline\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:57:32.629Z\\\", \\\"updated_at\\\": \\\"2026-05-17T11:57:32.629Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0262}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 51
+          },
+          "id": "event-001154"
+        },
+        {
+          "source_line": 1155,
+          "timestamp": "2026-05-17T11:57:35.708445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-014-deepseek-r1-7b",
+              "field": "status",
+              "value": "ALLOCATED"
+            }
+          },
+          "id": "event-001155"
+        },
+        {
+          "source_line": 1156,
+          "timestamp": "2026-05-17T11:57:36.214458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-014-deepseek-r1-7b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:57:23.633Z\\\", \\\"updated_at\\\": \\\"2026-05-17T11:57:35.702Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0304}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 506
+          },
+          "id": "event-001156"
+        },
+        {
+          "source_line": 1157,
+          "timestamp": "2026-05-17T11:57:37.672038+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-015-logic-lm-baseline",
+              "field": "hypothesis",
+              "value": "Logic-LM per-trace Z3 自洽验证是否优于 SC majority voting——如果单 trace 验证就够用，则 SICA 的跨 trace MaxSAT 聚合是不必要的复杂度"
+            }
+          },
+          "id": "event-001157"
+        },
+        {
+          "source_line": 1158,
+          "timestamp": "2026-05-17T11:57:37.722690+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-015-logic-lm-baseline\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:57:32.629Z\\\", \\\"updated_at\\\": \\\"2026-05-17T11:57:37.680Z\\\", \\\"hypothesis\\\": \\\"Logic-LM per-trace Z3 自洽验证是否优于 SC majority voting——如果单 trace 验证就够用，则 SICA 的跨 trace MaxSAT 聚合是不必要的复杂度\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0131}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 50
+          },
+          "id": "event-001158"
+        },
+        {
+          "source_line": 1159,
+          "timestamp": "2026-05-17T11:57:43.862013+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-014-deepseek-r1-7b",
+              "field": "status",
+              "value": "RUNNING",
+              "spec": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp014_deepseek_r1_7b.sh\"', 'server': 'westd-32608', 'data_path': '/root/symb_invariant_consensus/data/proofwriter_30.json + folio_30.json', 'data_count': 60, 'model_name': 'DeepSeek-R1-Distill-Qwen-7B', 'seed': 42, 'gpu': ['cuda:0'], 'pid': '324400'}"
+            }
+          },
+          "id": "event-001159"
+        },
+        {
+          "source_line": 1160,
+          "timestamp": "2026-05-17T11:57:44.264284+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-014-deepseek-r1-7b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:57:23.633Z\\\", \\\"updated_at\\\": \\\"2026-05-17T11:57:43.837Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp014_deepseek_r1_7b.sh\\\\\\\"\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/data/proofwriter_30.json + folio_30.json\\\", \\\"data_count\\\": 60, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"324400\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.039}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 402
+          },
+          "id": "event-001160"
+        },
+        {
+          "source_line": 1161,
+          "timestamp": "2026-05-17T11:57:45.673176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-015-logic-lm-baseline",
+              "field": "status",
+              "value": "DONE",
+              "spec": "{'checkpoint_path': '/root/symb_invariant_consensus/results/exp015_logic_lm/', 'log_path': 'N/A (CPU analysis, no training log)'}"
+            }
+          },
+          "id": "event-001161"
+        },
+        {
+          "source_line": 1162,
+          "timestamp": "2026-05-17T11:57:45.724293+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0048}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 51
+          },
+          "id": "event-001162"
+        },
+        {
+          "source_line": 1163,
+          "timestamp": "2026-05-17T11:57:48.586216+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-015-logic-lm-baseline",
+              "field": "status",
+              "value": "PENDING"
+            }
+          },
+          "id": "event-001163"
+        },
+        {
+          "source_line": 1164,
+          "timestamp": "2026-05-17T11:57:48.687152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-015-logic-lm-baseline\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:57:32.629Z\\\", \\\"updated_at\\\": \\\"2026-05-17T11:57:48.589Z\\\", \\\"hypothesis\\\": \\\"Logic-LM per-trace Z3 自洽验证是否优于 SC majority voting——如果单 trace 验证就够用，则 SICA 的跨 trace MaxSAT 聚合是不必要的复杂度\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0294}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 100
+          },
+          "id": "event-001164"
+        },
+        {
+          "source_line": 1165,
+          "timestamp": "2026-05-17T11:57:50.895697+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-015-logic-lm-baseline",
+              "field": "status",
+              "value": "QUEUED"
+            }
+          },
+          "id": "event-001165"
+        },
+        {
+          "source_line": 1166,
+          "timestamp": "2026-05-17T11:57:50.946475+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-015-logic-lm-baseline\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:57:32.629Z\\\", \\\"updated_at\\\": \\\"2026-05-17T11:57:50.889Z\\\", \\\"hypothesis\\\": \\\"Logic-LM per-trace Z3 自洽验证是否优于 SC majority voting——如果单 trace 验证就够用，则 SICA 的跨 trace MaxSAT 聚合是不必要的复杂度\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0291}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 50
+          },
+          "id": "event-001166"
+        },
+        {
+          "source_line": 1167,
+          "timestamp": "2026-05-17T11:57:57.573624+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-015-logic-lm-baseline",
+              "field": "status",
+              "value": "ALLOCATED"
+            }
+          },
+          "id": "event-001167"
+        },
+        {
+          "source_line": 1168,
+          "timestamp": "2026-05-17T11:57:57.626052+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-015-logic-lm-baseline\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:57:32.629Z\\\", \\\"updated_at\\\": \\\"2026-05-17T11:57:57.563Z\\\", \\\"hypothesis\\\": \\\"Logic-LM per-trace Z3 自洽验证是否优于 SC majority voting——如果单 trace 验证就够用，则 SICA 的跨 trace MaxSAT 聚合是不必要的复杂度\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0301}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 52
+          },
+          "id": "event-001168"
+        },
+        {
+          "source_line": 1169,
+          "timestamp": "2026-05-17T11:58:04.432058+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-015-logic-lm-baseline",
+              "field": "status",
+              "value": "RUNNING",
+              "spec": "{'command': 'CPU analysis: Z3 per-trace verification on exp-020 FOLIO 204 results', 'server': 'westd-32608', 'data_path': '/root/symb_invariant_consensus/results/exp020_folio_200/exp020_results.json', 'data_count': 204, 'model_name': 'LLaMA-3.1-8B-Instruct (inference data from exp-020)', 'seed': 42, 'checkpoint_path': '/root/symb_invariant_consensus/results/exp015_logic_lm/', 'log_path': 'N/A (CPU analysis)'}"
+            }
+          },
+          "id": "event-001169"
+        },
+        {
+          "source_line": 1170,
+          "timestamp": "2026-05-17T11:58:04.533015+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-015-logic-lm-baseline\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:57:32.629Z\\\", \\\"updated_at\\\": \\\"2026-05-17T11:58:04.439Z\\\", \\\"hypothesis\\\": \\\"Logic-LM per-trace Z3 自洽验证是否优于 SC majority voting——如果单 trace 验证就够用，则 SICA 的跨 trace MaxSAT 聚合是不必要的复杂度\\\", \\\"spec\\\": {\\\"command\\\": \\\"CPU analysis: Z3 per-trace verification on exp-020 FOLIO 204 results\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/results/exp020_folio_200/exp020_results.json\\\", \\\"data_count\\\": 204, \\\"model_name\\\": \\\"LLaMA-3.1-8B-Instruct (inference data from exp-020)\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/symb_invariant_consensus/results/exp015_logic_lm/\\\", \\\"log_path\\\": \\\"N/A (CPU analysis)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0403}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 100
+          },
+          "id": "event-001170"
+        },
+        {
+          "source_line": 1171,
+          "timestamp": "2026-05-17T11:58:07.394568+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-015-logic-lm-baseline",
+              "field": "status",
+              "value": "DONE"
+            }
+          },
+          "id": "event-001171"
+        },
+        {
+          "source_line": 1172,
+          "timestamp": "2026-05-17T11:58:07.445336+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0083}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 50
+          },
+          "id": "event-001172"
+        },
+        {
+          "source_line": 1173,
+          "timestamp": "2026-05-17T11:58:09.859046+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-015-logic-lm-baseline",
+              "field": "conclusion",
+              "value": "success"
+            }
+          },
+          "id": "event-001173"
+        },
+        {
+          "source_line": 1174,
+          "timestamp": "2026-05-17T11:58:09.960095+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-015-logic-lm-baseline\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:57:32.629Z\\\", \\\"updated_at\\\": \\\"2026-05-17T11:58:09.892Z\\\", \\\"hypothesis\\\": \\\"Logic-LM per-trace Z3 自洽验证是否优于 SC majority voting——如果单 trace 验证就够用，则 SICA 的跨 trace MaxSAT 聚合是不必要的复杂度\\\", \\\"spec\\\": {\\\"command\\\": \\\"CPU analysis: Z3 per-trace verification on exp-020 FOLIO 204 results\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/results/exp020_folio_200/exp020_results.json\\\", \\\"data_count\\\": 204, \\\"model_name\\\": \\\"LLaMA-3.1-8B-Instruct (inference data from exp-020)\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/symb_invariant_consensus/results/exp015_logic_lm/\\\", \\\"log_path\\\": \\\"N/A (CPU analysis)\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.037}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 101
+          },
+          "id": "event-001174"
+        },
+        {
+          "source_line": 1175,
+          "timestamp": "2026-05-17T11:58:14.992248+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-015-logic-lm-baseline",
+              "field": "metrics",
+              "value": "{'n': 204, 'dataset': 'FOLIO-204', 'model': 'LLaMA-3.1-8B-Instruct', 'sica_accuracy': 0.608, 'logic_lm_accuracy': 0.627, 'sc_accuracy': 0.632, 'mcnemar_sica_vs_logiclm': 0.424, 'mcnemar_logiclm_vs_sc': 1, 'mcnemar_sica_vs_sc': 0.2668, 'verification_rate': 0.906, 'fallback_to_sc': 0, 'total_verified_traces': 2109, 'total_failed_traces': 219}"
+            }
+          },
+          "id": "event-001175"
+        },
+        {
+          "source_line": 1176,
+          "timestamp": "2026-05-17T11:58:14.992855+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-015-logic-lm-baseline\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:57:32.629Z\\\", \\\"updated_at\\\": \\\"2026-05-17T11:58:14.957Z\\\", \\\"hypothesis\\\": \\\"Logic-LM per-trace Z3 自洽验证是否优于 SC majority voting——如果单 trace 验证就够用，则 SICA 的跨 trace MaxSAT 聚合是不必要的复杂度\\\", \\\"spec\\\": {\\\"command\\\": \\\"CPU analysis: Z3 per-trace verification on exp-020 FOLIO 204 results\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/results/exp020_folio_200/exp020_results.json\\\", \\\"data_count\\\": 204, \\\"model_name\\\": \\\"LLaMA-3.1-8B-Instruct (inference data from exp-020)\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/symb_invariant_consensus/results/exp015_logic_lm/\\\", \\\"log_path\\\": \\\"N/A (CPU analysis)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n\\\": 204, \\\"dataset\\\": \\\"FOLIO-204\\\", \\\"model\\\": \\\"LLaMA-3.1-8B-Instruct\\\", \\\"sica_accuracy\\\": 0.608, \\\"logic_lm_accuracy\\\": 0.627, \\\"sc_accuracy\\\": 0.632, \\\"mcnemar_sica_vs_logiclm\\\": 0.424, \\\"mcnemar_logiclm_vs_sc\\\": 1, \\\"mcnemar_sica_vs_sc\\\": 0.2668, \\\"verification_rate\\\": 0.906, \\\"fallback_to_sc\\\": 0, \\\"total_verified_traces\\\": 2109, \\\"total_failed_traces\\\": 219}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0182}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-001176"
+        },
+        {
+          "source_line": 1177,
+          "timestamp": "2026-05-17T11:58:17.420336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-015-logic-lm-baseline",
+              "field": "status",
+              "value": "DONE"
+            }
+          },
+          "id": "event-001177"
+        },
+        {
+          "source_line": 1178,
+          "timestamp": "2026-05-17T11:58:17.728398+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-015-logic-lm-baseline\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:57:32.629Z\\\", \\\"updated_at\\\": \\\"2026-05-17T11:58:17.407Z\\\", \\\"hypothesis\\\": \\\"Logic-LM per-trace Z3 自洽验证是否优于 SC majority voting——如果单 trace 验证就够用，则 SICA 的跨 trace MaxSAT 聚合是不必要的复杂度\\\", \\\"spec\\\": {\\\"command\\\": \\\"CPU analysis: Z3 per-trace verification on exp-020 FOLIO 204 results\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/results/exp020_folio_200/exp020_results.json\\\", \\\"data_count\\\": 204, \\\"model_name\\\": \\\"LLaMA-3.1-8B-Instruct (inference data from exp-020)\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/symb_invariant_consensus/results/exp015_logic_lm/\\\", \\\"log_path\\\": \\\"N/A (CPU analysis)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n\\\": 204, \\\"dataset\\\": \\\"FOLIO-204\\\", \\\"model\\\": \\\"LLaMA-3.1-8B-Instruct\\\", \\\"sica_accuracy\\\": 0.608, \\\"logic_lm_accuracy\\\": 0.627, \\\"sc_accuracy\\\": 0.632, \\\"mcnemar_sica_vs_logiclm\\\": 0.424, \\\"mcnemar_logiclm_vs_sc\\\": 1, \\\"mcnemar_sica_vs_sc\\\": 0.2668, \\\"verification_rate\\\": 0.906, \\\"fallback_to_sc\\\": 0, \\\"total_verified_traces\\\": 2109, \\\"total_failed_traces\\\": 219}, \\\"completed_at\\\": \\\"2026-05-17T11:58:17.407Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0738}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 308
+          },
+          "id": "event-001178"
+        },
+        {
+          "source_line": 1179,
+          "timestamp": "2026-05-17T11:58:21.644271+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-015-logic-lm-baseline",
+              "field": "notes",
+              "value": "Logic-LM per-trace Z3 验证 ≈ SC (62.7% vs 63.2%, p=1.0)。90.6% traces 通过自洽检查——单 trace 约束几乎不自相矛盾，验证无判别力。矛盾主要在跨 trace 间（SICA 的 MaxSAT 所捕获），但即使跨 trace 聚合也不优于 SC。结论：无论单 trace (Logic-LM) 还是跨 trace (SICA) 的约束验证，都不优于简单投票。"
+            }
+          },
+          "id": "event-001179"
+        },
+        {
+          "source_line": 1180,
+          "timestamp": "2026-05-17T11:58:21.695155+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-015-logic-lm-baseline\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:57:32.629Z\\\", \\\"updated_at\\\": \\\"2026-05-17T11:58:21.645Z\\\", \\\"hypothesis\\\": \\\"Logic-LM per-trace Z3 自洽验证是否优于 SC majority voting——如果单 trace 验证就够用，则 SICA 的跨 trace MaxSAT 聚合是不必要的复杂度\\\", \\\"spec\\\": {\\\"command\\\": \\\"CPU analysis: Z3 per-trace verification on exp-020 FOLIO 204 results\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/results/exp020_folio_200/exp020_results.json\\\", \\\"data_count\\\": 204, \\\"model_name\\\": \\\"LLaMA-3.1-8B-Instruct (inference data from exp-020)\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/symb_invariant_consensus/results/exp015_logic_lm/\\\", \\\"log_path\\\": \\\"N/A (CPU analysis)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n\\\": 204, \\\"dataset\\\": \\\"FOLIO-204\\\", \\\"model\\\": \\\"LLaMA-3.1-8B-Instruct\\\", \\\"sica_accuracy\\\": 0.608, \\\"logic_lm_accuracy\\\": 0.627, \\\"sc_accuracy\\\": 0.632, \\\"mcnemar_sica_vs_logiclm\\\": 0.424, \\\"mcnemar_logiclm_vs_sc\\\": 1, \\\"mcnemar_sica_vs_sc\\\": 0.2668, \\\"verification_rate\\\": 0.906, \\\"fallback_to_sc\\\": 0, \\\"total_verified_traces\\\": 2109, \\\"total_failed_traces\\\": 219}, \\\"completed_at\\\": \\\"2026-05-17T11:58:17.407Z\\\", \\\"notes\\\": \\\"Logic-LM per-trace Z3 验证 ≈ SC (62.7% vs 63.2%, p=1.0)。90.6% traces 通过自洽检查——单 trace 约束几乎不自相矛盾，验证无判别力。矛盾主要在跨 trace 间（SICA 的 MaxSAT 所捕获），但即使跨 trace 聚合也不优于 SC。结论：无论单 trace (Logic-LM) 还是跨 trace (SICA) 的约束验证，都不优于简单投票。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.018}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 50
+          },
+          "id": "event-001180"
+        },
+        {
+          "source_line": 1181,
+          "timestamp": "2026-05-17T11:58:28.375611+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__check_job_status",
+              "max_results": "2"
+            }
+          },
+          "id": "event-001181"
+        },
+        {
+          "source_line": 1182,
+          "timestamp": "2026-05-17T11:58:28.426377+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001182"
+        },
+        {
+          "source_line": 1183,
+          "timestamp": "2026-05-17T11:58:31.440754+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-001183"
+        },
+        {
+          "source_line": 1184,
+          "timestamp": "2026-05-17T11:58:31.943273+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [{\\\"server\\\": \\\"westd-32608\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}], \\\"actually_running_gpus\\\": [], \\\"allocated_but_idle\\\": [{\\\"server\\\": \\\"westd-32608\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}], \\\"registered_but_hw_idle\\\": [], \\\"unregistered_but_hw_active\\\": [], \\\"running_experiments\\\": [], \\\"worker_pool\\\": {\\\"total\\\": 0, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 0, \\\"details\\\": []}, \\\"summary\\\": \\\"分配 1 张, 实际跑 0 张 ⚠️ | Worker 0 (GPU 0 / CPU 0)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 502
+          },
+          "id": "event-001184"
+        },
+        {
+          "source_line": 1185,
+          "timestamp": "2026-05-17T11:58:31.943692+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__check_job_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "tool_args": {
+              "server": "westd-32608",
+              "pid": "324400"
+            }
+          },
+          "id": "event-001185"
+        },
+        {
+          "source_line": 1186,
+          "timestamp": "2026-05-17T11:58:35.309106+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"running\\\", \\\"running\\\": true, \\\"pid\\\": \\\"324400\\\", \\\"detection\\\": \\\"ps\\\", \\\"process_state\\\": \\\"Ss+\\\", \\\"elapsed_time\\\": \\\"06:17\\\", \\\"tmux_session_alive\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "elapsed_ms": 3365
+          },
+          "id": "event-001186"
+        },
+        {
+          "source_line": 1187,
+          "timestamp": "2026-05-17T11:59:14.578089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 1/1 (cuda:0 exp-014 RUNNING 6min/~2h) | Worker 0 (GPU 0 / CPU 0) | 磁盘: 未检查\n\n## D035 批次进展\n\n**全部 4 个 CPU 任务完成，1 个 GPU 任务进行中：**\n\n### 1. ✅ exp-009 Overhead Analysis\n- SICA 总时间 61.6s/题，SC 仅需 31.6s/题\n- 约束提取占 47% (29s)，MaxSAT 求解 ≈ 0% (0.003s)\n- SICA 相对 SC 额外 +48.7% wall time，全部来自 LLM extraction 调用\n- **论文 insight**: 计算瓶颈不在 formal reasoning (SAT) 而在 LLM extraction，且 extraction 产出的约束缺乏判别力——高成本低回报\n\n### 2. ✅ exp-015 Logic-LM Baseline (NEW)\n- Logic-LM (per-trace Z3 verification): 62.7% vs SC: 63.2%, **McNemar p=1.0**\n- 90.6% traces 通过自洽检查——单 trace 约束几乎不自相矛盾，验证无判别力\n- SICA 60.8% < Logic-LM 62.7% < SC 63.2%\n- **论文 insight**: 无论单 trace (Logic-LM) 还是跨 trace (SICA) 的约束验证，都不优于简单投票。单 trace 验证近乎 vacuous (90.6% pass)\n\n### 3. ✅ exp-016 Weighted SC (prior session)\n- 已完成\n\n### 4. ✅ Constraint Quality Correlation (F2 数据)\nCSV 已生成并注册 (art_20260517_f32441)。关键发现：\n\n| Model | Domain | N | SC | SICA | Δpp | C0 | Density |\n|---|---|---|---|---|---|---|---|\n| Qwen-14B | PW+FOLIO | 804 | 76.2 | 76.5 | +0.25 | 3.9% | 9.17 |\n| LLaMA-8B | PW+FOLIO | 60 | 60.0 | 66.7 | +6.67 | 11.7% | 8.73 |\n| LLaMA-8B | StrategyQA | 200 | 72.0 | 74.0 | +2.0 | 7.0% | 1.94 |\n| LLaMA-8B | FOLIO | 204 | 63.2 | 60.8 | -2.45 | 6.4% | 8.05 |\n| Mistral-7B | PW+FOLIO | 60 | 48.3 | 48.3 | 0.0 | 6.7% | 5.47 |\n\n- 逻辑域约束密度高 (5-9)，常识域极低 (~1)\n- 高密度 ≠ 高增益：LLaMA FOLIO-204 密度 8.05 但 delta=-2.45pp\n- LLaMA PW+FOLIO +6.67pp 是 n=60 噪声（同模型 FOLIO n=204 反转）\n\n### 5. 🔄 exp-014 DeepSeek-R1-7B — RUNNING\n- PID 324400，已运行 6min，预计 ~2h\n- 验证 reasoning model 的 capability trap（预期 C0<5%，类似 QwQ-32B）\n\n**D035 写作准备就绪度**: evidence table + overhead + Logic-LM baseline + constraint correlation CSV 全部到位，等 exp-014 完成后即可启动 Paper Agent。",
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-001187"
+        },
+        {
+          "source_line": 1188,
+          "timestamp": "2026-05-17T11:59:18.799384+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 4221
+          },
+          "id": "event-001188"
+        },
+        {
+          "source_line": 1189,
+          "timestamp": "2026-05-17T11:59:23.788365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "file": "memory.md",
+              "max_chars": "4000"
+            }
+          },
+          "id": "event-001189"
+        },
+        {
+          "source_line": 1190,
+          "timestamp": "2026-05-17T11:59:23.889595+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/memory.md\\\", \\\"content\\\": \\\"# 文献调研：Answer-Conditioned Constraint Extraction from LLM Reasoning Traces\\\\n\\\\n**日期**: 2025-05-17  \\\\n**目标**: 为 D030 methods paper 寻找从 reasoning traces 提取 answer-discriminative 约束的技术参考\\\\n\\\\n---\\\\n\\\\n## 核心问题\\\\n\\\\n当前 SICA 提取的约束是 domain facts（无论答案如何都成立），导致 MaxSAT 聚合退化为 weighted majority vote。需要提取\\\\\\\"answer=A → X 成立; answer=B → Y 成立\\\\\\\"形式的判别性约束。\\\\n\\\\n## 最相关论文\\\\n\\\\n### 1. Math-Shepherd (ACL 2024)\\\\n- **核心思路**: 对每个推理步骤，从该步续写多条路径检查能否到达正确答案。步骤标签本质上是 outcome-conditioned 的——步骤\\\\\\\"正确\\\\\\\"当且仅当存在从该步到正确答案的延续路径。\\\\n- **适配价值**: 可直接借鉴其思路——对每条约束，检查它与哪些最终答案兼容。兼容答案集合不同的约束即为 discriminative constraints。\\\\n\\\\n### 2. GRACE: Discriminator-Guided Chain-of-Thought Reasoning (EMNLP 2023 Findings)\\\\n- **核心思路**: 训练 step-level discriminator（对比学习，正样本=正确步骤，负样本=错误步骤），解码时用 discriminator 评分引导生成正确推理步骤。\\\\n- **适配价值**: 其对比训练框架可直接用于训练\\\\\\\"约束判别器\\\\\\\"——给定约束+答案对，判断该约束是否支持该答案。\\\\n\\\\n### 3. DiVeRSe: Diverse Verifier on Reasoning Steps (ACL 2023)\\\\n- **核心思路**: 多 prompt 生成多样推理路径 + step-aware verifier 逐步验证 + 加权投票选答案。\\\\n- **适配价值**: 多样路径生成策略可用于增加约束多样性；step-level verification 思路可用于标注哪些步骤/约束是 answer-specific 的。\\\\n\\\\n### 4. Multi-Agent Debate / D3 Framework (2024)\\\\n- **核心发现**: 研究表明 debate 的性能增益主要来自 output aggregation 而非真正的论证交互——与 SICA 退化为 majority vote 的问题完全一致。\\\\n- **警示**: 简单的多 agent 对抗不足以产生 discriminative 信号，需要结构化的 answer-conditioned 论证。\\\\n\\\\n### 5. Atomic-SNLI / NLI Decomposition (2025)\\\\n- **核心思路**: 将假设分解为 atomic facts，逐个检查与前提的蕴含/矛盾关系，组合得到最终判断。\\\\n- **适配价值**: 可将每条约束视为 atomic fact，用 NLI 检查\\\\\\\"约束 C 蕴含 answer=A\\\\\\\"还是\\\\\\\"约束 C 与 answer=A 矛盾\\\\\\\"，从而标注约束的 answer-discriminative 属性。\\\\n\\\\n## 可行适配方案\\\\n\\\\n| 方案 | 改动量 | 需要训练 | 推理成本 |\\\\n|------|--------|----------|----------|\\\\n| **A. Outcome-conditioned labeling (Math-Shepherd 式)**: 对每条约束，用 LLM 续写检查与各候选答案的兼容性 | 中等（需修改约束提取 pipeline） | 否 | 高（每条约束需多次续写） |\\\\n| **B. NLI-based filtering**: 用 NLI 模型判断\\\\\\\"约束 C → answer A\\\\\\\"的蕴含关系，只保\n…[truncated 2043 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 101
+          },
+          "id": "event-001190"
+        },
+        {
+          "source_line": 1191,
+          "timestamp": "2026-05-17T12:00:08.828603+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "file": "memory.md",
+              "content": "# 文献调研：Answer-Conditioned Constraint Extraction from LLM Reasoning Traces\n\n**日期**: 2025-05-17  \n**目标**: 为 D030 methods paper 寻找从 reasoning traces 提取 answer-discriminative 约束的技术参考\n\n---\n\n## 核心问题\n\n当前 SICA 提取的约束是 domain facts（无论答案如何都成立），导致 MaxSAT 聚合退化为 weighted majority vote。需要提取\"answer=A → X 成立; answer=B → Y 成立\"形式的判别性约束。\n\n## 最相关论文\n\n### 1. Math-Shepherd (ACL 2024)\n- **核心思路**: 对每个推理步骤，从该步续写多条路径检查能否到达正确答案。步骤标签本质上是 outcome-conditioned 的。\n- **适配价值**: 可借鉴其思路——对每条约束，检查它与哪些最终答案兼容。\n\n### 2. GRACE (EMNLP 2023 Findings)\n- 训练 step-level discriminator（对比学习），解码时引导生成正确推理步骤。\n\n### 3. DiVeRSe (ACL 2023)\n- 多 prompt 生成多样推理路径 + step-aware verifier 逐步验证 + 加权投票。\n\n### 4. Multi-Agent Debate / D3 Framework (2024)\n- debate 性能增益主要来自 output aggregation 而非真正的论证交互——与 SICA 退化为 majority vote 一致。\n\n### 5. Atomic-SNLI / NLI Decomposition (2025)\n- 将假设分解为 atomic facts，逐个检查与前提的蕴含/矛盾关系。\n\n---\n\n## 失败模式记录\n\n- [失败模式] infrastructure/ENV_ACTIVATION：submit_training_job 提交直接 `python xxx.py` 命令时，tmux session 中 PATH 不含 conda，导致 EXIT_CODE=127。修复方案：所有命令必须加 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀。(2026-05-17, pilot-contrastive-prompt)\n\n---\n\n## Operating Regime 倒 U 型假说 — ❌ 已证伪 (2026-05-17)\n\n### 原始假说\nSICA 增益在 SC accuracy ~55-65% 时存在 sweet spot（倒 U 型），由 model capability × trace diversity × constraint quality 三因素决定。基于 exp-011 LLaMA-8B +6.67pp (n=30) 的方向性正面信号。\n\n### 证伪证据\n1. **exp-019** (n=200, StrategyQA): SICA 74% vs SC 72%, +2pp, McNemar p=0.424 — NOT significant\n2. **exp-020** (n=204, FOLIO): SICA 60.8% vs SC 63.2%, -2.45pp — SC WINS (在假说预测的 sweet spot 内)\n3. **exp-011 复现失败**: 同 30 题在 exp-020 中仅 56.7% agreement，+10pp 反转为 -3.3pp — Type I error (n=30 noise)\n4. **所有 powered tests (n≥200) 均 non-significant**: 无任何 operating regime 存在 SICA > SC\n\n### 最终结论\n**SICA ≤ SC everywhere.** 约束提取产出 domain facts 而非 answer-discriminative constraints，导致 MaxSAT 聚合退化为 noise injection。\n\n---\n\n## 关键实验发现 (2026-05-17)\n\n### exp-015 Logic-LM Baseline\n- Logic-LM (per-trace Z3 verification) 62.7% ≈ SC 63.2%, McNemar p=1.0\n- 90.6% traces 通过自洽检查——单 trace 约束几乎不自相矛盾\n- 结论：无论单 trace (Logic-LM) 还是跨 trace (SICA) 的约束验证，都不优于简单投票\n\n### exp-009 Overhead Analysis\n- SICA +48.7% wall time over SC (30s/题)\n- 几乎全部开销来自 LLM constraint extraction (47%)，MaxSAT 求解 ≈ 0%\n- 高成本低回报：extraction 产出无判别力的 domain facts\n\n### Constraint Quality Correlation (F2 数据)\n- 逻辑域 (PW+FOLIO, FOLIO) 约束密度高 (5-9/trace)，但高密度 ≠ 高增益\n- 常识域 (StrategyQA, ARC) 约束密度极低 (~1)，几乎无法提取有意义的符号约束\n- LLaMA-8B PW+FOLIO +6.67pp 是 n=60 噪声，同模型 FOLIO n=204 反转为 -2.45pp\n"
+            }
+          },
+          "id": "event-001191"
+        },
+        {
+          "source_line": 1192,
+          "timestamp": "2026-05-17T12:00:08.829473+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-001192"
+        },
+        {
+          "source_line": 1193,
+          "timestamp": "2026-05-17T12:00:11.494204+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__send_progress",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001193"
+        },
+        {
+          "source_line": 1194,
+          "timestamp": "2026-05-17T12:00:11.544803+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001194"
+        },
+        {
+          "source_line": 1195,
+          "timestamp": "2026-05-17T12:00:55.593302+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "file": "memory.md",
+              "content": "# 文献调研：Answer-Conditioned Constraint Extraction from LLM Reasoning Traces\n\n**日期**: 2025-05-17  \n**目标**: 为 D030 methods paper 寻找从 reasoning traces 提取 answer-discriminative 约束的技术参考\n\n---\n\n## 核心问题\n\n当前 SICA 提取的约束是 domain facts（无论答案如何都成立），导致 MaxSAT 聚合退化为 weighted majority vote。需要提取\"answer=A → X 成立; answer=B → Y 成立\"形式的判别性约束。\n\n## 最相关论文\n\n### 1. Math-Shepherd (ACL 2024)\n- **核心思路**: 对每个推理步骤，从该步续写多条路径检查能否到达正确答案。步骤标签本质上是 outcome-conditioned 的。\n- **适配价值**: 可借鉴其思路——对每条约束，检查它与哪些最终答案兼容。\n\n### 2. GRACE (EMNLP 2023 Findings)\n- 训练 step-level discriminator（对比学习），解码时引导生成正确推理步骤。\n\n### 3. DiVeRSe (ACL 2023)\n- 多 prompt 生成多样推理路径 + step-aware verifier 逐步验证 + 加权投票。\n\n### 4. Multi-Agent Debate / D3 Framework (2024)\n- debate 性能增益主要来自 output aggregation 而非真正的论证交互——与 SICA 退化为 majority vote 一致。\n\n### 5. Atomic-SNLI / NLI Decomposition (2025)\n- 将假设分解为 atomic facts，逐个检查与前提的蕴含/矛盾关系。\n\n---\n\n## 失败模式记录\n\n- [失败模式] infrastructure/ENV_ACTIVATION：submit_training_job 提交直接 `python xxx.py` 命令时，tmux session 中 PATH 不含 conda，导致 EXIT_CODE=127。修复方案：所有命令必须加 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀。(2026-05-17, pilot-contrastive-prompt)\n\n---\n\n## Operating Regime 倒 U 型假说 — 已证伪 (2026-05-17)\n\n### 原始假说\nSICA 增益在 SC accuracy ~55-65% 时存在 sweet spot（倒 U 型），由 model capability x trace diversity x constraint quality 三因素决定。基于 exp-011 LLaMA-8B +6.67pp (n=30) 的方向性正面信号。\n\n### 证伪证据\n1. **exp-019** (n=200, StrategyQA): SICA 74% vs SC 72%, +2pp, McNemar p=0.424 — NOT significant\n2. **exp-020** (n=204, FOLIO): SICA 60.8% vs SC 63.2%, -2.45pp — SC WINS (在假说预测的 sweet spot 内)\n3. **exp-011 复现失败**: 同 30 题在 exp-020 中仅 56.7% agreement，+10pp 反转为 -3.3pp — Type I error (n=30 noise)\n4. **所有 powered tests (n>=200) 均 non-significant**: 无任何 operating regime 存在 SICA > SC\n\n### 最终结论\n**SICA <= SC everywhere.** 约束提取产出 domain facts 而非 answer-discriminative constraints，导致 MaxSAT 聚合退化为 noise injection。\n\n---\n\n## 关键实验发现 (2026-05-17)\n\n### exp-015 Logic-LM Baseline\n- Logic-LM (per-trace Z3 verification) 62.7% = SC 63.2%, McNemar p=1.0\n- 90.6% traces 通过自洽检查——单 trace 约束几乎不自相矛盾\n- 结论：无论单 trace (Logic-LM) 还是跨 trace (SICA) 的约束验证，都不优于简单投票\n\n### exp-009 Overhead Analysis\n- SICA +48.7% wall time over SC (30s/题)\n- 几乎全部开销来自 LLM constraint extraction (47%)，MaxSAT 求解 = 0%\n- 高成本低回报：extraction 产出无判别力的 domain facts\n\n### Constraint Quality Correlation (F2 数据)\n- 逻辑域 (PW+FOLIO, FOLIO) 约束密度高 (5-9/trace)，但高密度 != 高增益\n- 常识域 (StrategyQA, ARC) 约束密度极低 (~1)，几乎无法提取有意义的符号约束\n- LLaMA-8B PW+FOLIO +6.67pp 是 n=60 噪声，同模型 FOLIO n=204 反转为 -2.45pp\n"
+            }
+          },
+          "id": "event-001195"
+        },
+        {
+          "source_line": 1196,
+          "timestamp": "2026-05-17T12:00:55.593851+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-001196"
+        },
+        {
+          "source_line": 1197,
+          "timestamp": "2026-05-17T12:01:07.438486+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Session 初始化完成。状态汇总：\n\n- **exp-014-deepseek-r1-7b**: RUNNING on GPU (PID 324400, ~6min elapsed, ~2h expected)，cron 监控中\n- **D035 CPU 任务全部完成**: exp-009 overhead, exp-015 Logic-LM, exp-016 weighted SC, constraint quality CSV\n- **已向 Director 汇报** D035 批次进展\n- **memory.md 已更新**: Operating Regime 假说标记为已证伪，新增 exp-015/exp-009/constraint correlation 发现\n- **等待**: exp-014 cron 完成回调"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-001197"
+        }
+      ]
+    },
+    {
+      "number": 111,
+      "messages": [
+        {
+          "source_line": 1198,
+          "timestamp": "2026-05-17T12:01:08.003227+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_analysis_exp015-logic-lm-baseline_20260517T113121 已完成（status=done）。用 `get_worker_status('worker_analysis_exp015-logic-lm-baseline_20260517T113121')` 读取结果，然后处理。\n\n- worker_id: worker_analysis_exp015-logic-lm-baseline_20260517T113121\n- project: symb_invariant_consensus\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "worker:done"
+          },
+          "id": "event-001198"
+        },
+        {
+          "source_line": 1199,
+          "timestamp": "2026-05-17T12:01:17.495457+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已在上轮处理完毕。exp-015 结果已录入 registry (DONE/success) 并向 Director 汇报。无需重复操作。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-001199"
+        }
+      ]
+    },
+    {
+      "number": 112,
+      "messages": [
+        {
+          "source_line": 1200,
+          "timestamp": "2026-05-17T12:01:18.073503+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] Manager 要求实验覆盖自查，发现两个 Critical 缺口。在之前批次（exp-009/014/015/016/correlation）基础上，追加以下高优先级实验：\n\n**追加批次 A（GPU，exp-014 完成后依次执行）**：\n\n1. **Temperature ablation（新实验，论文核心机制验证）**：\n   - 模型：Qwen2.5-14B-Instruct\n   - 数据：D012 60 题（PW 30 + FOLIO 30）\n   - 设置：K=12，分别跑 T=0.3, T=0.5, T=1.0（T=0.7 已有 exp-001 数据）\n   - 目的：验证\"提高 temperature 增加 diversity 是否改善 SICA\"——如果 T=1.0 diversity 更高但 SICA 仍≈SC，直接证明 capability trap（diversity 无用因为 quality 同时下降）\n   - 每个 T 约 1h，总计 ~3h\n   - 录入 registry，分析 C0 × T 趋势 + SICA-SC gap × T\n   - 提交审批时 claim: \"验证 Claim 1 (Capability Trap) 核心机制\"\n\n2. **exp-012 GSM8K pilot**：\n   - 模型：Qwen2.5-14B-Instruct\n   - 数据：GSM8K 30 题（从 test set 按难度分层抽样）\n   - 设置：K=12, T=0.7\n   - 目的：数学推理域 C0 + SICA vs SC。填补论文最大域覆盖缺口。\n   - ~1h GPU\n   - 需先下载 GSM8K 数据集（HuggingFace gsm8k test split）\n\n3. **exp-004 Qwen-7B scaling**：\n   - 模型：Qwen2.5-7B-Instruct（需下载，~15GB）\n   - 数据：D012 60 题\n   - 设置：K=12, T=0.7\n   - 目的：within-family scaling，7B 预期 C0 最高。完成 7B→14B 曲线。\n   - ~2h GPU\n\n4. **Mistral-7B StrategyQA 60 题**：\n   - 复用已有 Mistral-7B-Instruct-v0.3 模型\n   - 填充 model×domain 矩阵\n   - ~1.5h GPU\n\n执行顺序：exp-014（已在跑）→ Temperature ablation（3个T串行）→ GSM8K → Qwen-7B → Mistral StrategyQA\n\n所有实验开始前提交审批。每个完成后独立汇报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "director"
+          },
+          "id": "event-001200"
+        },
+        {
+          "source_line": 1201,
+          "timestamp": "2026-05-17T12:01:34.876127+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__load_project_config",
+              "max_results": "3"
+            }
+          },
+          "id": "event-001201"
+        },
+        {
+          "source_line": 1202,
+          "timestamp": "2026-05-17T12:01:34.928140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "elapsed_ms": 52
+          },
+          "id": "event-001202"
+        },
+        {
+          "source_line": 1203,
+          "timestamp": "2026-05-17T12:01:51.527401+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-021-temp-ablation-t03",
+              "field": "status",
+              "value": "PREPARING"
+            }
+          },
+          "id": "event-001203"
+        },
+        {
+          "source_line": 1204,
+          "timestamp": "2026-05-17T12:01:51.979675+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-021-temp-ablation-t03\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T12:01:51.522Z\\\", \\\"updated_at\\\": \\\"2026-05-17T12:01:51.522Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0392}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-001204"
+        },
+        {
+          "source_line": 1205,
+          "timestamp": "2026-05-17T12:01:52.482566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-022-temp-ablation-t05",
+              "field": "status",
+              "value": "PREPARING"
+            }
+          },
+          "id": "event-001205"
+        },
+        {
+          "source_line": 1206,
+          "timestamp": "2026-05-17T12:01:52.633611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-022-temp-ablation-t05\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T12:01:52.471Z\\\", \\\"updated_at\\\": \\\"2026-05-17T12:01:52.471Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0343}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 151
+          },
+          "id": "event-001206"
+        },
+        {
+          "source_line": 1207,
+          "timestamp": "2026-05-17T12:01:52.935301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-023-temp-ablation-t10",
+              "field": "status",
+              "value": "PREPARING"
+            }
+          },
+          "id": "event-001207"
+        },
+        {
+          "source_line": 1208,
+          "timestamp": "2026-05-17T12:01:53.488665+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-023-temp-ablation-t10\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T12:01:52.925Z\\\", \\\"updated_at\\\": \\\"2026-05-17T12:01:52.925Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0332}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 553
+          },
+          "id": "event-001208"
+        },
+        {
+          "source_line": 1209,
+          "timestamp": "2026-05-17T12:01:53.940930+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-012-gsm8k-pilot",
+              "field": "status",
+              "value": "PREPARING"
+            }
+          },
+          "id": "event-001209"
+        },
+        {
+          "source_line": 1210,
+          "timestamp": "2026-05-17T12:01:54.393211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-012-gsm8k-pilot\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T12:01:53.927Z\\\", \\\"updated_at\\\": \\\"2026-05-17T12:01:53.927Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0332}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-001210"
+        },
+        {
+          "source_line": 1211,
+          "timestamp": "2026-05-17T12:01:54.896045+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-004-qwen7b-scaling",
+              "field": "status",
+              "value": "PREPARING"
+            }
+          },
+          "id": "event-001211"
+        },
+        {
+          "source_line": 1212,
+          "timestamp": "2026-05-17T12:01:55.297974+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-004-qwen7b-scaling\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T12:01:54.870Z\\\", \\\"updated_at\\\": \\\"2026-05-17T12:01:54.870Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0366}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 401
+          },
+          "id": "event-001212"
+        },
+        {
+          "source_line": 1213,
+          "timestamp": "2026-05-17T12:01:55.298448+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-024-mistral-strategyqa",
+              "field": "status",
+              "value": "PREPARING"
+            }
+          },
+          "id": "event-001213"
+        },
+        {
+          "source_line": 1214,
+          "timestamp": "2026-05-17T12:01:55.348963+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-024-mistral-strategyqa\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T12:01:55.292Z\\\", \\\"updated_at\\\": \\\"2026-05-17T12:01:55.292Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0378}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 50
+          },
+          "id": "event-001214"
+        },
+        {
+          "source_line": 1215,
+          "timestamp": "2026-05-17T12:02:20.576243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-021-temp-ablation-t03",
+              "field": "hypothesis",
+              "value": "T=0.3 低温度下 trace diversity (C0) 极低，SICA 无操作空间，SICA≈SC——验证 capability trap 机制：diversity 是 SICA 的必要条件但非充分条件"
+            }
+          },
+          "id": "event-001215"
+        },
+        {
+          "source_line": 1216,
+          "timestamp": "2026-05-17T12:02:20.979637+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-021-temp-ablation-t03\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T12:01:51.522Z\\\", \\\"updated_at\\\": \\\"2026-05-17T12:02:20.582Z\\\", \\\"hypothesis\\\": \\\"T=0.3 低温度下 trace diversity (C0) 极低，SICA 无操作空间，SICA≈SC——验证 capability trap 机制：diversity 是 SICA 的必要条件但非充分条件\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0309}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 403
+          },
+          "id": "event-001216"
+        },
+        {
+          "source_line": 1217,
+          "timestamp": "2026-05-17T12:02:22.586458+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-022-temp-ablation-t05",
+              "field": "hypothesis",
+              "value": "T=0.5 中温度下 C0 中等，SICA 增益仍≈0——验证即使 diversity 增加，constraint quality 不足仍导致 SICA 无法超越 SC"
+            }
+          },
+          "id": "event-001217"
+        },
+        {
+          "source_line": 1218,
+          "timestamp": "2026-05-17T12:02:22.989126+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-022-temp-ablation-t05\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T12:01:52.471Z\\\", \\\"updated_at\\\": \\\"2026-05-17T12:02:22.566Z\\\", \\\"hypothesis\\\": \\\"T=0.5 中温度下 C0 中等，SICA 增益仍≈0——验证即使 diversity 增加，constraint quality 不足仍导致 SICA 无法超越 SC\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0207}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 402
+          },
+          "id": "event-001218"
+        },
+        {
+          "source_line": 1219,
+          "timestamp": "2026-05-17T12:02:24.947554+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-023-temp-ablation-t10",
+              "field": "hypothesis",
+              "value": "T=1.0 高温度下 diversity (C0) 最高但 trace quality 下降，SICA 仍≈SC 或更差——直接证明 capability trap：diversity↑ + quality↓ 互相抵消"
+            }
+          },
+          "id": "event-001219"
+        },
+        {
+          "source_line": 1220,
+          "timestamp": "2026-05-17T12:02:27.357589+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-023-temp-ablation-t10\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T12:01:52.925Z\\\", \\\"updated_at\\\": \\\"2026-05-17T12:02:24.930Z\\\", \\\"hypothesis\\\": \\\"T=1.0 高温度下 diversity (C0) 最高但 trace quality 下降，SICA 仍≈SC 或更差——直接证明 capability trap：diversity↑ + quality↓ 互相抵消\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0205}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2410
+          },
+          "id": "event-001220"
+        },
+        {
+          "source_line": 1221,
+          "timestamp": "2026-05-17T12:02:27.408274+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-012-gsm8k-pilot",
+              "field": "hypothesis",
+              "value": "Qwen2.5-14B 在数学推理域 (GSM8K) 上 SICA≈SC——预期 C0 极低（数学问题答案确定性高），扩展 capability trap 到新推理域"
+            }
+          },
+          "id": "event-001221"
+        },
+        {
+          "source_line": 1222,
+          "timestamp": "2026-05-17T12:02:27.860651+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-012-gsm8k-pilot\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T12:01:53.927Z\\\", \\\"updated_at\\\": \\\"2026-05-17T12:02:27.403Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-14B 在数学推理域 (GSM8K) 上 SICA≈SC——预期 C0 极低（数学问题答案确定性高），扩展 capability trap 到新推理域\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.019}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-001222"
+        },
+        {
+          "source_line": 1223,
+          "timestamp": "2026-05-17T12:02:29.870085+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-004-qwen7b-scaling",
+              "field": "hypothesis",
+              "value": "Qwen2.5-7B 在 D012 上 C0 高于 14B（模型更弱 → traces 更分散），但 SICA 仍≈SC——within-family scaling 验证 capability trap：弱模型的高 diversity 被低 constraint quality 抵消"
+            }
+          },
+          "id": "event-001223"
+        },
+        {
+          "source_line": 1224,
+          "timestamp": "2026-05-17T12:02:30.322710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-004-qwen7b-scaling\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T12:01:54.870Z\\\", \\\"updated_at\\\": \\\"2026-05-17T12:02:29.892Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-7B 在 D012 上 C0 高于 14B（模型更弱 → traces 更分散），但 SICA 仍≈SC——within-family scaling 验证 capability trap：弱模型的高 diversity 被低 constraint quality 抵消\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0281}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-001224"
+        },
+        {
+          "source_line": 1225,
+          "timestamp": "2026-05-17T12:02:31.378815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-024-mistral-strategyqa",
+              "field": "hypothesis",
+              "value": "Mistral-7B 在 StrategyQA 上 SICA≈SC——填充 model×domain 矩阵，验证弱模型+常识推理域组合下 SICA 无增益"
+            }
+          },
+          "id": "event-001225"
+        },
+        {
+          "source_line": 1226,
+          "timestamp": "2026-05-17T12:02:31.429677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-024-mistral-strategyqa\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T12:01:55.292Z\\\", \\\"updated_at\\\": \\\"2026-05-17T12:02:31.403Z\\\", \\\"hypothesis\\\": \\\"Mistral-7B 在 StrategyQA 上 SICA≈SC——填充 model×domain 矩阵，验证弱模型+常识推理域组合下 SICA 无增益\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0363}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 50
+          },
+          "id": "event-001226"
+        },
+        {
+          "source_line": 1227,
+          "timestamp": "2026-05-17T12:02:50.836243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:prep-temp-ablation",
+              "project": "symb_invariant_consensus",
+              "task_prompt": "## 任务：准备 Temperature Ablation 实验脚本\n\n在服务器 westd-32608 上为 Qwen2.5-14B-Instruct 准备 3 个 temperature ablation 脚本。\n\n### 背景\nexp-001 已用 T=0.7 在 D012 (PW 30 + FOLIO 30) 上跑过 Qwen2.5-14B。现在需要补 T=0.3, T=0.5, T=1.0 三个温度点。\n\n### 步骤\n1. SSH 到 westd-32608 (root)\n2. 查看现有 exp-001 的运行命令。检查 `/root/symb_invariant_consensus/scripts/` 下的脚本，找到 exp-001 使用的参数（特别是 model path, data path, K, port 等）。也检查 `run_pipeline.py` 的参数列表 (`python run_pipeline.py --help`)\n3. 基于 exp-001 的命令，创建 3 个脚本：\n   - `scripts/run_exp021_temp_t03.sh` — T=0.3\n   - `scripts/run_exp022_temp_t05.sh` — T=0.5\n   - `scripts/run_exp023_temp_t10.sh` — T=1.0\n4. 每个脚本必须：\n   - 包含 vLLM server cleanup（kill 已有 vLLM 进程）\n   - 包含 conda 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n   - 使用与 exp-001 完全相同的 model, data, K=12, seed=42\n   - 只改 temperature 参数\n   - 输出目录分别为 `results/exp021_temp_t03/`, `results/exp022_temp_t05/`, `results/exp023_temp_t10/`\n   - 脚本顶部注释说明实验目的\n5. 验证脚本可执行：`chmod +x` 并检查路径正确\n\n### 注意\n- 不要启动实验，只准备脚本\n- 确保 vLLM 模型路径正确（查看现有脚本中 Qwen2.5-14B 的路径）\n- 注意 API 参数名可能是 --api-base 或 --model-url，以现有脚本为准\n- temperature 参数可能是 --temperature 或 -T，查 help 确认",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-001227"
+        },
+        {
+          "source_line": 1228,
+          "timestamp": "2026-05-17T12:03:03.702616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_prep-temp-ablation_20260517T120251\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_code_prep-temp-ablation_20260517T120251.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_prep-temp-ablation_20260517T120251 started. Use get_worker_status('worker_code_prep-temp-ablation_20260517T120251') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 12866
+          },
+          "id": "event-001228"
+        },
+        {
+          "source_line": 1229,
+          "timestamp": "2026-05-17T12:03:04.157558+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:prep-gsm8k-data",
+              "project": "symb_invariant_consensus",
+              "task_prompt": "## 任务：下载 GSM8K 数据并准备 exp-012 脚本\n\n在服务器 westd-32608 上下载 GSM8K 数据集并准备实验脚本。\n\n### 步骤\n1. SSH 到 westd-32608 (root)\n2. 下载 GSM8K test split：\n   ```\n   cd /root/symb_invariant_consensus\n   python -c \"from datasets import load_dataset; ds = load_dataset('openai/gsm8k', 'main', split='test'); print(len(ds))\"\n   ```\n   如果 datasets 库不可用，尝试 `pip install datasets` 或用 `huggingface-cli download`\n3. 从 test split 中按难度分层抽样 30 题：\n   - 难度代理指标：solution 中的步骤数（行数）\n   - 分为 easy (≤3步), medium (4-5步), hard (≥6步)，各 10 题\n   - 输出为 JSON，格式参考现有数据文件（检查 `/root/symb_invariant_consensus/data/proofwriter_30.json` 的格式）\n   - 保存到 `data/gsm8k_30.json`\n   - GSM8K 的字段通常是 question + answer，需要适配成 pipeline 期望的格式\n4. 查看现有脚本结构（`ls scripts/`），特别是 exp-001 或 exp-019 的脚本，了解参数格式\n5. 检查 `run_pipeline.py --help` 看是否支持 GSM8K 数据类型，或需要用通用数据输入方式\n6. 创建 `scripts/run_exp012_gsm8k_30.sh`：\n   - Qwen2.5-14B-Instruct, K=12, T=0.7, seed=42\n   - 输出到 `results/exp012_gsm8k/`\n   - 包含 vLLM cleanup + conda 激活\n   - 数据路径指向 `data/gsm8k_30.json`\n7. 检查脚本可执行\n\n### 注意\n- GSM8K 是数学推理，答案是数字。检查 pipeline 是否支持数值答案比较\n- 如果 pipeline 不直接支持 GSM8K，记录需要什么适配并汇报\n- 不要启动实验",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-001229"
+        },
+        {
+          "source_line": 1230,
+          "timestamp": "2026-05-17T12:03:14.768085+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:prep-qwen7b-download",
+              "project": "symb_invariant_consensus",
+              "task_prompt": "## 任务：下载 Qwen2.5-7B-Instruct 模型并准备 exp-004 脚本\n\n在服务器 westd-32608 上下载 Qwen2.5-7B-Instruct 并准备实验脚本。\n\n### 步骤\n1. SSH 到 westd-32608 (root)\n2. 检查磁盘空间：`df -h /root` 和 `du -sh /root/autodl-tmp/models/` — 需要 ~15GB 空间\n3. 检查是否已有 Qwen2.5-7B 模型：`ls /root/autodl-tmp/models/ | grep -i qwen`\n4. 如果没有，下载 Qwen2.5-7B-Instruct：\n   ```\n   # 优先用 modelscope（国内更快）\n   pip install modelscope 2>/dev/null\n   python -c \"from modelscope import snapshot_download; snapshot_download('Qwen/Qwen2.5-7B-Instruct', cache_dir='/root/autodl-tmp/models/')\"\n   ```\n   如果 modelscope 不行，用 huggingface-cli：\n   ```\n   huggingface-cli download Qwen/Qwen2.5-7B-Instruct --local-dir /root/autodl-tmp/models/Qwen2.5-7B-Instruct\n   ```\n5. 记录最终的模型路径（可能有嵌套目录，参考 DeepSeek-R1 的路径格式：`/root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B`）\n6. 查看现有 exp-001 或 exp-010 脚本了解参数结构\n7. 创建 `scripts/run_exp004_qwen7b.sh`：\n   - Qwen2.5-7B-Instruct, D012 (PW 30 + FOLIO 30), K=12, T=0.7, seed=42\n   - 模型路径用实际下载路径\n   - 输出到 `results/exp004_qwen7b/`\n   - 包含 vLLM cleanup + conda 激活\n   - 如果 7B 模型需要不同的 max-model-len 或其他 vLLM 参数，适当调整\n8. 检查脚本可执行\n\n### 注意\n- 下载可能需要 10-20 分钟，耐心等\n- 确认 Qwen2.5-7B-Instruct 的 architecture（应该是 Qwen2ForCausalLM），不需要 --trust-remote-code\n- 不要启动实验",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-001230"
+        },
+        {
+          "source_line": 1231,
+          "timestamp": "2026-05-17T12:03:25.855797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:prep-mistral-strategyqa",
+              "project": "symb_invariant_consensus",
+              "task_prompt": "## 任务：准备 Mistral-7B StrategyQA 60 题实验脚本\n\n在服务器 westd-32608 上准备 Mistral-7B StrategyQA 实验。\n\n### 步骤\n1. SSH 到 westd-32608 (root)\n2. 确认 Mistral-7B-Instruct-v0.3 模型路径：\n   - 检查 `ls /root/autodl-tmp/models/ | grep -i mistral`\n   - 也检查现有 exp-010 脚本 `cat scripts/run_exp010*` 获取模型路径\n3. 检查 StrategyQA 数据：\n   - exp-019 用了 200 题 StrategyQA，数据应在 `data/` 目录\n   - `ls data/ | grep -i strat`\n   - 从现有数据中抽取 60 题（如果 200 题数据存在，取前 60 题或随机采样 60 题，seed=42）\n   - 保存为 `data/strategyqa_60.json`\n   - 格式对齐现有 StrategyQA 数据格式\n4. 查看 exp-019 脚本 (`cat scripts/run_exp019*`) 了解 StrategyQA 的参数：\n   - 特别注意数据输入参数名（可能是 --strategyqa-data 或类似）\n   - 以及 StrategyQA 不需要 --folio-data 或 --pw-data 的 non-empty 值\n5. 创建 `scripts/run_exp024_mistral_strategyqa60.sh`：\n   - Mistral-7B-Instruct-v0.3, StrategyQA 60 题, K=12, T=0.7, seed=42\n   - 复用 exp-010 的 Mistral 模型路径和 vLLM 参数\n   - 复用 exp-019 的 StrategyQA 数据输入方式\n   - 输出到 `results/exp024_mistral_strategyqa/`\n   - 包含 vLLM cleanup + conda 激活\n6. 检查脚本可执行\n\n### 注意\n- Mistral 模型路径可能有嵌套目录（modelscope 格式）\n- exp-010 使用 max-model-len=8192，exp-019 也用 8192，保持一致\n- 不要启动实验",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-001231"
+        },
+        {
+          "source_line": 1232,
+          "timestamp": "2026-05-17T12:09:38.826350+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MCP error -32000: Connection closed"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 394668
+          },
+          "id": "event-001232"
+        },
+        {
+          "source_line": 1233,
+          "timestamp": "2026-05-17T12:09:39.260499+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在并行派 4 个 Worker 准备所有脚本和数据。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-001233"
+        }
+      ]
+    },
+    {
+      "number": 113,
+      "messages": [
+        {
+          "source_line": 1234,
+          "timestamp": "2026-05-17T12:57:39.926589+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] 【综合指令 — 替换之前所有队列消息】\n\n你有多个 Worker 已完成但回调未处理，exp-014 可能已完成。按以下顺序执行：\n\n**Step 1：收割已完成 Worker 结果**\n- `get_worker_status('worker_code_prep-temp-ablation_20260517T120251')` �� 读取 temperature ablation 代码准备结果\n- `get_worker_status('worker_code_d036-gpu-experiment-prep_20260517T120242')` → 读取 D036 GPU 实验准备结果\n- `get_worker_status('worker_analysis_exp-019-constraint-quality_20260517T120215')` → 读取 constraint quality 分析结果\n\n**Step 2：检查 exp-014 DeepSeek-R1 状态**\n- SSH westd-32608 → `ps aux | grep 324400` 确认进程\n- 如已完成：读取结果，提取统计（SICA/SC/C0/McNemar p），录入 registry\n- nvidia-smi 确认 GPU 空闲\n\n**Step 3：启动 D036 扩展实验（GPU 空闲后）**\n优先级排序：\n1. **Temperature ablation**（最高优先级）：Qwen-14B on D012 60 题，分别跑 T=0.3, T=0.5, T=1.0（K=12）。Worker 已准备好代码，直接用。每个 T 约 1h。\n2. **exp-012 GSM8K pilot**：Qwen-14B, 30 题, K=12, T=0.7\n3. **exp-004 Qwen-7B**：需下载模型，D012 60 题\n4. **Mistral-7B StrategyQA 60 题**\n\n提交前 conda 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n每个实验提交审批，完成后独立汇报。\n\n**硬约束**：只用 westd-32608 cuda:0。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "director"
+          },
+          "id": "event-001234"
+        },
+        {
+          "source_line": 1235,
+          "timestamp": "2026-05-17T12:57:52.823674+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__get_project_resource_usage",
+              "max_results": "10"
+            }
+          },
+          "id": "event-001235"
+        },
+        {
+          "source_line": 1236,
+          "timestamp": "2026-05-17T12:57:52.824118+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-001236"
+        },
+        {
+          "source_line": 1237,
+          "timestamp": "2026-05-17T12:58:01.961040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-001237"
+        },
+        {
+          "source_line": 1238,
+          "timestamp": "2026-05-17T12:58:02.414128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-001238"
+        },
+        {
+          "source_line": 1239,
+          "timestamp": "2026-05-17T12:58:02.465988+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (63,204 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus--claude-sessions-agent-47e5a40d/49c50399-dc81-410d-8518-989804e9d2d4/tool-results/mcp-agent-ml-research-read_registry-1779022682381.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus--claude-sessions-agent-47e5a40d/49c50399-dc81-410d-8518-989804e9d2d4/tool-results/mcp-agent-ml-research-read_registry-1779022682381.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 504
+          },
+          "id": "event-001239"
+        },
+        {
+          "source_line": 1240,
+          "timestamp": "2026-05-17T12:58:02.968427+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "file": "report.md"
+            }
+          },
+          "id": "event-001240"
+        },
+        {
+          "source_line": 1241,
+          "timestamp": "2026-05-17T12:58:03.471347+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-001241"
+        },
+        {
+          "source_line": 1242,
+          "timestamp": "2026-05-17T12:58:04.929144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"exp-014-deepseek-r1-7b\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=324400)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 2515
+          },
+          "id": "event-001242"
+        },
+        {
+          "source_line": 1243,
+          "timestamp": "2026-05-17T12:58:04.929651+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-17\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp-014-deepseek-r1-7b | DeepSeek-R1-Distill-Qwen-7B（reasoning distill 模型）在 D012 上 SICA vs SC——预期 C0<5%（类似 QwQ-32B，reasoning model 的确定性链消灭多样性），作为第二个 reasoning model 数据点验证 capability trap | — | — | — |\\\\n\\\\n## 待处理\\\\n- smoke-test-5q（准备中）\\\\n\\\\n## 近期结论\\\\n- **exp-009-overhead-analysis** (success): SICA pipeline 的 wall-time overhead breakdown: trace generation vs constraint extraction vs MaxSAT solving 各占多少——量化 SICA 相对 SC 的额外计算成本\\\\n- **exp-020-llama8b-folio-204** (negative): Powered FOLIO test: SICA 在弱模型（LLaMA-3.1-8B）上 FOLIO 全量 204 题是否达到统计显著——FOLIO 在 exp-011 中信号最强（+10pp, bootstrap p≈0.04），n=204 几乎必然显著。保险实验：若 StrategyQA discordant rate 低导致 underpowered。 ← 基于 exp-011-llama8b-v3\\\\n- **exp-019-llama8b-strategyqa-200** (negative): Powered test: SICA 在弱模型（LLaMA-3.1-8B）上的增益在 n=200 StrategyQA 题时达到统计显著（p<0.05）——验证 operating regime 假设（D031 + exp-011 directionally positive +6.67pp） ← 基于 exp-011-llama8b-v3\\\\n\\\\n## 趋势\\\\n成功 12 / 负向 6 / 失败 9 / 共 33\\\\nn: 804 ↑（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-32608: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- mvp_math50_t07: 已被终止 — unknown\\\\n- sica_aime30_t07: 已被终止 — unknown\\\\n- sica_aime30_v2: 已被终止 — unknown\\\\n- sica_aime30_v3: 已被终止 — unknown\\\\n- sica_proofwriter30: 训练失败 — unknown\\\\n- sica_folio30: 已被终止 — unknown\\\\n- sica_proofwriter30_v2: 已被终止 — unknown\\\\n- exp-011-llama8b: 训练失败 — unknown\\\\n- exp-010-mistral: 训练失败 — unknown\\\\n- exp-011-llama8b-v2: 训练失败 — unknown\\\\n- exp-017-strategyqa: 训练失败 — unknown\\\\n- exp-018-arc: 训练失败 — unknown\\\\n- exp-010-mistral-v2: 训练失败 — unknown\\\\n- exp-017-strategyqa-v2: 训练失败 — unknown\\\\n- pilot-contrastive-prompt: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 1695, \\\"truncated\\\": false}, \\\"err\n…[truncated 31 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 1961
+          },
+          "id": "event-001243"
+        },
+        {
+          "source_line": 1244,
+          "timestamp": "2026-05-17T12:58:04.930102+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md\\\", \\\"content\\\": \\\"# symb_invariant_consensus — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-17 11:29 UTC | 更新原因: D035: exp-020 确认 SICA≤SC，Operating Regime 死亡，进入写作阶段\\\\n\\\\n## 核心方向\\\\n**D025 Capability Trap Analysis Paper (FINAL)**：SICA ≈ SC everywhere。Symbolic consensus 因 diversity-quality 反向相关而失效。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research → Writing transition（D035 确认最终方向）+ 审稿进行中\\\\n- **关键结论 (D035)**:\\\\n  - 四个 powered test 全部 negative: exp-001 +0.25pp n.s., exp-010 0.0pp, exp-019 +2.0pp p=0.424, exp-020 -2.4pp\\\\n  - exp-013: MaxSAT ≈ count-only（mechanism vacuous）\\\\n  - exp-002: SICA ≤ SC all K including odd K=11（tiebreak-only）\\\\n  - exp-011 +10pp 是 n=30 噪声（exp-020 同任务 n=204 反转为 -2.4pp）\\\\n- **已完成实验**: exp-001/002/010/011/013/017/018/019/020 (9 个核心实验)\\\\n- **Plan 覆盖**: 19 实验中 9 个 done，剩余多为 CPU ablation\\\\n\\\\n## 近期任务（按优先级排序）\\\\n- [ ] exp-009: overhead analysis（CPU，P1，论文必需）\\\\n- [ ] exp-015: Logic-LM baseline（CPU，P1，Reviewer concern #9）\\\\n- [ ] exp-016: weighted SC baseline（CPU，P1，Reviewer concern #10）\\\\n- [ ] exp-014: DeepSeek-R1-Distill-7B（GPU ~2h，第二个 reasoning model）\\\\n- [ ] exp-019 plan: constraint quality correlation 分析（CPU，hero figure F2 数据）\\\\n- [ ] dream_simulate(review_mode=\\\\\\\"full\\\\\\\") 验证 framing\\\\n- [ ] 启动 Paper Agent 写作\\\\n\\\\n## GPU 预算\\\\n- 分配: 1× RTX PRO 6000 Blackwell 98GB (cuda:0) on westd-32608\\\\n- 当前: **空闲**（exp-020 已完成）\\\\n- 剩余 GPU 实验: exp-014 (~2h), exp-004 (~2h), exp-007 (~4h) — 按优先级排\\\\n- 累计已用: ~24h\\\\n\\\\n## 阻塞项\\\\n- 无硬阻塞。CPU ablations 可立即并行启动。ARR May 25 还剩 8 天。\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D036 | 2026-05-17 | D036: Manager 要求实验覆盖自查——补 temperature ablation (T= | temperature-ablation, exp-012, exp-004, mistral-strategyqa |\\\\n| D035 | 2026-05-17 | D035: exp-020 FOLIO 204 确认 SICA≤SC (-2.4pp)，Operat | exp-020-llama8b-folio-204, exp-019-llama8b-strategyqa-200, exp-\n…[truncated 1032 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 1458
+          },
+          "id": "event-001244"
+        },
+        {
+          "source_line": 1245,
+          "timestamp": "2026-05-17T12:58:04.935087+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_prep-temp-ablation_20260517T120251"
+            }
+          },
+          "id": "event-001245"
+        },
+        {
+          "source_line": 1246,
+          "timestamp": "2026-05-17T12:58:05.688831+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_prep-temp-ablation_20260517T120251\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"code:prep-temp-ablation\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"started_at\\\": \\\"2026-05-17T12:02:51.588280+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T12:05:39.571412+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"3 个脚本已创建并验证完毕。\\\\n\\\\n| 脚本 | 温度 | 输出目录 |\\\\n|------|------|----------|\\\\n| `scripts/run_exp021_temp_t03.sh` | T=0.3 | `results/exp021_temp_t03/` |\\\\n| `scripts/run_exp022_temp_t05.sh` | T=0.5 | `results/exp022_temp_t05/` |\\\\n| `scripts/run_exp023_temp_t10.sh` | T=1.0 | `results/exp023_temp_t10/` |\\\\n\\\\n所有脚本共享参数：\\\\n- 模型：`/root/autodl-tmp/models/Qwen2.5-14B-Instruct`（路径已确认存在）\\\\n- 数据：`proofwriter_30.json` + `folio_30.json`（60 problems，路径已确认）\\\\n- K=12, seed=42, max-tokens=4096\\\\n- 包含 vLLM cleanup、conda 激活、vLLM 启动等待、运行后清理\\\\n\\\\n脚本已 `chmod +x`，未启动实验。三个脚本需顺序执行（共用 GPU port 8000）。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 753
+          },
+          "id": "event-001246"
+        },
+        {
+          "source_line": 1247,
+          "timestamp": "2026-05-17T12:58:05.789696+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_d036-gpu-experiment-prep_20260517T120242"
+            }
+          },
+          "id": "event-001247"
+        },
+        {
+          "source_line": 1248,
+          "timestamp": "2026-05-17T12:58:06.342440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_d036-gpu-experiment-prep_20260517T120242\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"code:d036-gpu-experiment-prep\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"started_at\\\": \\\"2026-05-17T12:02:42.305254+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T12:05:48.075620+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"4 个脚本全部通过语法检查。总结：\\\\n\\\\n| 脚本 | 模型 | 数据 | 预计时间 |\\\\n|------|------|------|---------|\\\\n| `run_temperature_ablation.sh` | Qwen2.5-14B | D012 (60题) × 3温度 | ~3h |\\\\n| `run_exp012_gsm8k.sh` | Qwen2.5-14B | GSM8K 30题 | ~1h |\\\\n| `run_exp004_qwen7b.sh` | Qwen2.5-7B* | D012 (60题) | ~2h |\\\\n| `run_mistral_strategyqa.sh` | Mistral-7B | StrategyQA 60题 | ~1.5h |\\\\n\\\\n**注意事项：**\\\\n- Qwen2.5-7B-Instruct 当前不在服务器上，`run_exp004_qwen7b.sh` 包含了自动通过 modelscope 下载的逻辑（首次运行会多花 10-15 分钟下载）\\\\n- 所有脚本已改用端口检测替代 `pkill`——如果端口被占用会报错退出而非强杀进程\\\\n- GSM8K 数据 (`data/gsm8k_200.json`) 和 StrategyQA 数据 (`data/strategyqa_200.json`) 均已就绪\\\\n- 建议执行顺序：temperature_ablation → gsm8k → mistral_strategyqa → qwen7b（下载耗时放最后）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 552
+          },
+          "id": "event-001248"
+        },
+        {
+          "source_line": 1249,
+          "timestamp": "2026-05-17T12:58:06.393070+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_analysis_exp-019-constraint-quality_20260517T120215"
+            }
+          },
+          "id": "event-001249"
+        },
+        {
+          "source_line": 1250,
+          "timestamp": "2026-05-17T12:58:06.493977+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_exp-019-constraint-quality_20260517T120215\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"analysis:exp-019-constraint-quality\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"started_at\\\": \\\"2026-05-17T12:02:15.567239+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T12:09:06.784380+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"分析完成。结果总结：\\\\n\\\\n## 结果\\\\n\\\\n**产出文件（服务器 westd-32608）：**\\\\n- `/root/symb_invariant_consensus/results/exp019_constraint_quality_analysis.json`\\\\n- `/root/symb_invariant_consensus/results/exp019_constraint_quality_summary.csv`\\\\n\\\\n**核心数据表（7 个 model×domain 组合）：**\\\\n\\\\n| Model | Domain | n | C0 | Δpp | Excl Rate | Sat Ratio |\\\\n|-------|--------|---|----|-----|-----------|-----------|\\\\n| Qwen-14B | PW+FOLIO | 804 | 0.382 | +0.25 | 0.023 | 0.977 |\\\\n| Mistral-7B | PW+FOLIO | 60 | 0.500 | 0.00 | 0.052 | 0.948 |\\\\n| LLaMA-8B | PW+FOLIO | 60 | 0.617 | **+6.67** | 0.050 | 0.950 |\\\\n| Qwen-14B | StrategyQA | 60 | 0.100 | +3.33 | 0.046 | 0.954 |\\\\n| Qwen-14B | ARC | 60 | 0.050 | -1.67 | 0.025 | 0.975 |\\\\n| LLaMA-8B | StrategyQA | 200 | 0.410 | +2.00 | **0.147** | **0.853** |\\\\n| LLaMA-8B | FOLIO | 204 | 0.618 | -2.45 | 0.062 | 0.938 |\\\\n\\\\n**相关性分析：**\\\\n- **C0 vs satisfied_ratio**: Spearman ρ = **-0.64** (p=0.13) — 方向支持 capability trap\\\\n- **C0 vs exclusion_rate**: Spearman ρ = **+0.64** (p=0.13) — 方向支持 capability trap\\\\n- **C0 vs constraint_density**: Pearson r = **+0.79** (p=0.04) — 高 C0 问题产生更多约束但质量更差\\\\n- **C0 vs SICA-SC gap**: 近乎零相关 (r=0.15) — 单纯的 C0 不能预测 SICA 收益\\\\n\\\\n**数据局限：**\\\\n- 结果 JSON 不包含 per-constraint 详情（没有每条约束来自哪个 trace 的映射），无法计算真正的 constraint precision（discriminative constraints / total）\\\\n- 只有 exp001 和 exp020 保存了 `sica_scores`（per-answer 分数），其余只有聚合统计\\\\n- 使用 exclusion_rate（MaxSAT 排除比例）和 satisfied_ratio 作为质量代理指标\\\\n\\\\n**关键发现：**\\\\ncapability trap 方向成立但 n=7 统计功效不足。反例是 LLaMA-8B/PW+FOLIO（高 C0=0.62 + 低 exclusion=0.05 → SICA 大幅赢 +6.67pp），说明 \\\\\\\"formal lo\n…[truncated 89 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 100
+          },
+          "id": "event-001250"
+        },
+        {
+          "source_line": 1251,
+          "timestamp": "2026-05-17T12:58:06.544680+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-001251"
+        },
+        {
+          "source_line": 1252,
+          "timestamp": "2026-05-17T12:58:06.746541+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [{\\\"server\\\": \\\"westd-32608\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}], \\\"actually_running_gpus\\\": [{\\\"server\\\": \\\"westd-32608\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"exp-014-deepseek-r1-7b\\\"}], \\\"allocated_but_idle\\\": [], \\\"registered_but_hw_idle\\\": [], \\\"unregistered_but_hw_active\\\": [], \\\"running_experiments\\\": [{\\\"exp_id\\\": \\\"exp-014-deepseek-r1-7b\\\", \\\"gpus\\\": [\\\"cuda:0\\\"], \\\"util_avg\\\": null}], \\\"worker_pool\\\": {\\\"total\\\": 0, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 0, \\\"details\\\": []}, \\\"summary\\\": \\\"分配 1 张, 实际跑 1 张 | Worker 0 (GPU 0 / CPU 0)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 201
+          },
+          "id": "event-001252"
+        },
+        {
+          "source_line": 1253,
+          "timestamp": "2026-05-17T12:58:35.509765+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__submit_training_job",
+              "max_results": "3"
+            }
+          },
+          "id": "event-001253"
+        },
+        {
+          "source_line": 1254,
+          "timestamp": "2026-05-17T12:58:35.510284+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-001254"
+        },
+        {
+          "source_line": 1255,
+          "timestamp": "2026-05-17T12:58:49.173020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ssh:check-exp-014",
+              "project": "symb_invariant_consensus",
+              "task_prompt": "检查 westd-32608 上 exp-014-deepseek-r1-7b 的状态。\n\n**任务：**\n1. `ps aux | grep 324400` 确认进程是否还在运行\n2. `nvidia-smi` 确认 GPU 使用情况\n3. 如果进程已结束：\n   - 读取结果文件。实验目录在 `/root/symb_invariant_consensus/results/` 下，找 deepseek 或 exp014 相关的目录/文件\n   - 提取关键统计：SICA accuracy, SC accuracy, C0 rate, McNemar p-value（如果有的话）\n   - 读取日志尾部确认正常结束还是报错\n4. 如果进程还在运行：\n   - 报告运行时间（ps 的 TIME 或 ELAPSED 列）\n   - 检查日志尾部看进度\n\n**服务器信息：** westd-32608, 用 root 账户\n\n**产出格式：** 简洁报告，包含：进程状态（running/completed/failed）、GPU 状态（busy/idle）、如果完成则包含核心指标。",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-001255"
+        },
+        {
+          "source_line": 1256,
+          "timestamp": "2026-05-17T12:59:06.988235+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_check-exp-014_20260517T125849\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_ssh_check-exp-014_20260517T125849.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ssh_check-exp-014_20260517T125849 started. Use get_worker_status('worker_ssh_check-exp-014_20260517T125849') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 17815
+          },
+          "id": "event-001256"
+        },
+        {
+          "source_line": 1257,
+          "timestamp": "2026-05-17T12:59:07.440870+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "constraint-quality-analysis-7models",
+              "type": "data",
+              "description": "Constraint quality analysis across 7 model×domain combinations. C0 vs satisfied_ratio ρ=-0.64, C0 vs exclusion_rate ρ=+0.64 (capability trap direction supported, n=7 underpowered). C0 vs constraint_density r=+0.79 (p=0.04). Key finding: formal logic domain constraints reliable even under high uncertainty.",
+              "project": "symb_invariant_consensus",
+              "content": "{\n  \"analysis\": \"constraint quality correlation across 7 model×domain combos\",\n  \"source_files\": [\n    \"/root/symb_invariant_consensus/results/exp019_constraint_quality_analysis.json\",\n    \"/root/symb_invariant_consensus/results/exp019_constraint_quality_summary.csv\"\n  ],\n  \"data_table\": [\n    {\"model\": \"Qwen-14B\", \"domain\": \"PW+FOLIO\", \"n\": 804, \"C0\": 0.382, \"delta_pp\": 0.25, \"excl_rate\": 0.023, \"sat_ratio\": 0.977},\n    {\"model\": \"Mistral-7B\", \"domain\": \"PW+FOLIO\", \"n\": 60, \"C0\": 0.500, \"delta_pp\": 0.00, \"excl_rate\": 0.052, \"sat_ratio\": 0.948},\n    {\"model\": \"LLaMA-8B\", \"domain\": \"PW+FOLIO\", \"n\": 60, \"C0\": 0.617, \"delta_pp\": 6.67, \"excl_rate\": 0.050, \"sat_ratio\": 0.950},\n    {\"model\": \"Qwen-14B\", \"domain\": \"StrategyQA\", \"n\": 60, \"C0\": 0.100, \"delta_pp\": 3.33, \"excl_rate\": 0.046, \"sat_ratio\": 0.954},\n    {\"model\": \"Qwen-14B\", \"domain\": \"ARC\", \"n\": 60, \"C0\": 0.050, \"delta_pp\": -1.67, \"excl_rate\": 0.025, \"sat_ratio\": 0.975},\n    {\"model\": \"LLaMA-8B\", \"domain\": \"StrategyQA\", \"n\": 200, \"C0\": 0.410, \"delta_pp\": 2.00, \"excl_rate\": 0.147, \"sat_ratio\": 0.853},\n    {\"model\": \"LLaMA-8B\", \"domain\": \"FOLIO\", \"n\": 204, \"C0\": 0.618, \"delta_pp\": -2.45, \"excl_rate\": 0.062, \"sat_ratio\": 0.938}\n  ],\n  \"correlations\": {\n    \"C0_vs_satisfied_ratio\": {\"spearman_rho\": -0.64, \"p\": 0.13},\n    \"C0_vs_exclusion_rate\": {\"spearman_rho\": 0.64, \"p\": 0.13},\n    \"C0_vs_constraint_density\": {\"pearson_r\": 0.79, \"p\": 0.04},\n    \"C0_vs_SICA_SC_gap\": {\"r\": 0.15, \"note\": \"near zero\"}\n  },\n  \"key_findings\": [\n    \"Capability trap direction supported (high C0 → low constraint quality) but n=7 underpowered\",\n    \"C0 vs constraint_density r=+0.79 p=0.04 is significant: uncertain models generate more but worse constraints\",\n    \"LLaMA-8B/PW+FOLIO outlier: high C0=0.62 + low exclusion=0.05 → SICA wins +6.67pp, suggesting formal logic constraints are reliable even under uncertainty\",\n    \"Single C0 cannot predict SICA benefit (r=0.15) — domain/constraint quality mediates\"\n  ]\n}",
+              "content_filename": "constraint_quality_analysis_7models.json",
+              "tags": "['capability-trap', 'constraint-quality', 'figure-F2', 'paper-data']"
+            }
+          },
+          "id": "event-001257"
+        },
+        {
+          "source_line": 1258,
+          "timestamp": "2026-05-17T13:17:40.269946+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "派 Worker 检查 exp-014，同时注册分析产出。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-001258"
+        }
+      ]
+    },
+    {
+      "number": 114,
+      "messages": [
+        {
+          "source_line": 1259,
+          "timestamp": "2026-05-17T13:17:40.279784+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_ssh_check-exp-014_20260517T125849 已完成（status=done）。用 `get_worker_status('worker_ssh_check-exp-014_20260517T125849')` 读取结果，然后处理。\n\n- worker_id: worker_ssh_check-exp-014_20260517T125849\n- project: symb_invariant_consensus\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "worker:done"
+          },
+          "id": "event-001259"
+        },
+        {
+          "source_line": 1260,
+          "timestamp": "2026-05-17T13:17:48.923805+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "5"
+            }
+          },
+          "id": "event-001260"
+        }
+      ]
+    }
+  ]
+}

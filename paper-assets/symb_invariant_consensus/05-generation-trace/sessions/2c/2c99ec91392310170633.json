@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c99ec91392310170633",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 011 truncation bias",
+  "task_key": "worker_analysis_exp-011-truncation-bias_20260517T083218",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-011-truncation-bias_20260517T083218_result.json",
+    "occurrence": 1,
+    "bytes": 759,
+    "sha256": "32c65e80e33257349e425873fb6e6039b9d2c750586de0aedc2dd8b1c44e16ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Truncation bias 不成立。** 核心发现:\n\n- \"44 truncated traces\" 是 44 条个体 trace（720 条中的 6.1%），影响 16/60 题\n- 5 个 SICA 胜出的 discordant pairs 中，**4 个完全没有 truncation**\n- 唯一有 truncation 的 discordant pair（problem 24）的 3 条截断 trace 均未提取出答案，对 SC 投票和 SICA 约束均无贡献\n- Discordant pairs 截断率 (16.7%) 反而**低于** concordant pairs (27.8%)，Fisher exact test p=1.0\n- 84.1% 的截断 trace 无法提取答案，对两种方法都不可见\n\n**结论: +6.67pp 的 SICA 优势由无截断问题驱动，是真实信号，不是 truncation artifact。无需增大 max-tokens 重跑来验证。**\n\n报告已注册: `art_20260517_8ac5e3`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-011-truncation-bias.md"
+}

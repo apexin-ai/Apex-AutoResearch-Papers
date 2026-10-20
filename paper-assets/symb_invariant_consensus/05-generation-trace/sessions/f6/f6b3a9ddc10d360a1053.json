@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6b3a9ddc10d360a1053",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "launch 30973 llama seed789 cuda1",
+  "task_key": "worker_launch_30973-llama-seed789-cuda1_20260523T060724",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_launch_30973-llama-seed789-cuda1_20260523T060724_result.json",
+    "occurrence": 1,
+    "bytes": 483,
+    "sha256": "65eb69df680b7fd35a5a25905a9a78254cc504b6cc6e73e640ee7d31957ebf07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正常运行中，已加载 600 条 proofwriter 数据并开始处理。\n\n**产出汇总：**\n\n| 项目 | 值 |\n|------|-----|\n| vLLM PID | 3653 |\n| 实验 PID | 6018 |\n| 脚本 | `run_cross_dataset_replication.py` |\n| vLLM 端口 | 8001 |\n| tmux session | `exp-multi-seed-llama-pw-seed789-v2` |\n| 日志 | `~/runs/symb_invariant_consensus/exp-multi-seed-llama-pw-seed789-v2.log` |\n| 输出 | `results/multi_seed/llama8b_pw_seed789_v2/results.json` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-30973-llama-seed789-cuda1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3928e5c01b19cbb78647",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper writing prop1 integration",
+  "task_key": "worker_paper_writing_prop1_integration_20260523T034856",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_prop1_integration_20260523T034856_result.json",
+    "occurrence": 1,
+    "bytes": 822,
+    "sha256": "7e45728ddde33491e66b0761d2496bece6cd5358d049114056070500d1e50de4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "§5.2, §5.3, and all tables are intact. Verification against all criteria:\n\n1. **Proposition after SCB quantitative, before shuffle control** — lines 7–8 (empirical observation + transition), lines 10–45 (Proposition+Proof+Remark), line 47 (BR_correct + shuffle control) ✓\n2. **Notation aligned with method.tex** — `\\ldots` (not `\\dots`), Part (i) references `Eq.~\\ref{eq:score}` instead of redefining σ ✓\n3. **BR_correct follows Proposition** — line 47 ✓\n4. **No tcolorbox, no theorem environment** — uses `\\textbf{Proposition 1} \\textit{(...)}` ✓\n5. **No AUTHOR NOTE comments, no deduplication caveat** — all removed ✓\n6. **Em-dashes in new text eliminated** — replaced with commas, parentheses, semicolons, or periods ✓\n7. **§5.2, §5.3, tables untouched** ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-prop1-integration.md"
+}

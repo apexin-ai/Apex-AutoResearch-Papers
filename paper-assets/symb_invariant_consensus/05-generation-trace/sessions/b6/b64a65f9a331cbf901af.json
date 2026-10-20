@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b64a65f9a331cbf901af",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix tiebreaking combo rerun",
+  "task_key": "worker_fix_tiebreaking-combo-rerun_20260522T191654",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_tiebreaking-combo-rerun_20260522T191654_result.json",
+    "occurrence": 1,
+    "bytes": 2021,
+    "sha256": "52f3a4faecb9c0e328d80afb09a38762481686e1e7a4bbbe8438b6b811efcebf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总 JSON 已保存到 `artifacts/deberta_ft_combo_all.json`。\n\n---\n\n## 产出汇总\n\n### 1. 代码修复\n\n**无需修改。** `eval_finetuned_nli.py` 已经实现了正确的 D061 tiebreaking：\n- `CLASSES = sorted([\"True\", \"False\", \"Unknown\"])` → `[\"False\", \"True\", \"Unknown\"]`\n- `sc_answer()`: `sorted(tied)[0]` ✓\n- combo voting: `sorted(tied_c)[0]` ✓\n\n### 2. SC Baseline 验证 — 与论文不一致（原因已查明）\n\n| Generator | D061 正确值 | 论文旧值 | 差异原因 |\n|-----------|-----------|---------|---------|\n| Mistral-7B | **39.17%** (235/600) | 39.33% | 来源不明（1题差异，可能不同数据源） |\n| LLaMA-8B | **72.50%** (435/600) | 70.00% | traces 预计算 sc_answer 用了 Unknown-first tiebreaking（18题差异） |\n| Qwen2.5-14B | **74.00%** (444/600) | 73.50% | 同上（12题差异） |\n| Qwen3-14B | **85.83%** (515/600) | 85.83% | ✓ 匹配 |\n\n**根因**：traces 文件中的 `sc_answer` 字段是用 `max(dict_keys)` 计算的，dict insertion order 导致平票时默认选 \"Unknown\"。D061 标准 (`sorted()[0]`) 优先选 \"False\"，多数平票变为正确，SC baseline 上升。**论文中 LLaMA/Qwen2.5 的 SC 值需要更新为 D061 值。**\n\n### 3. 完整 Combo 结果表（D061 tiebreaking）\n\nDeBERTa-large-FT standalone: **99.67%** (598/600)\n\n| Generator | SC | w=1 | Δ | w=3 | Δ | w=5 | Δ |\n|-----------|-----|------|------|------|------|------|------|\n| Mistral-7B | 39.17 | 42.33 | +3.17*** | 52.17 | +13.00*** | 65.50 | +26.33*** |\n| LLaMA-8B | 72.50 | 76.00 | +3.50*** | 84.17 | +11.67*** | 91.67 | +19.17*** |\n| Qwen2.5-14B | 74.00 | 75.00 | +1.00* | 78.50 | +4.50*** | 83.00 | +9.00*** |\n| Qwen3-14B | 85.83 | 86.50 | +0.67 | 88.00 | +2.17*** | 90.00 | +4.17*** |\n\n### 4. 汇总 JSON\n`/root/symb_invariant_consensus/artifacts/deberta_ft_combo_all.json`\n\n### 5. GPU 状态\nGPU 0: 0 MiB used, 0% util（vLLM 已 kill）\nGPU 2: 90451 MiB, 96% util（其他任务占用）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-tiebreaking-combo-rerun.md"
+}

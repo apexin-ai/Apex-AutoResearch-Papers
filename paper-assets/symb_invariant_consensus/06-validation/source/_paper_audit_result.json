@@ -1,0 +1,887 @@
+{
+  "phase1": {
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'f3_k_sensitivity' which does not exist",
+          "location": "appendix.tex:513"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'f2_regime_scatter' which does not exist",
+          "location": "diagnosis.tex:123"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'f2_regime_scatter_v2' which does not exist",
+          "location": "experiments.tex:7"
+        },
+        {
+          "kind": "placeholder",
+          "message": "Possible PLACEHOLDER text",
+          "location": "appendix.tex:14"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:failure-modes} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:t-sensitivity} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:constraint-extraction} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:scb-evaluation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:diagnosis} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:logiqa-nli-bart} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:introduction} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:maxsat} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:bart-combo-full} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:frontier-scb} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:text-sensitivity} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:future-directions} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:kappa-scatter} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:nli-combo-full} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:folio-nli-roberta} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:ai-assistants} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:capability-gap} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:roberta-combo-full} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:single-trace-stats} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:interventions} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:diagnostics} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:logiqa-nli-deberta} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:extraction-taxonomy} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:folio-nli-bart} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:exp-setup} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:limitations-extended} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:subpop-answer-type} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:folio-nli-deberta} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:cross-model-bias} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:main-results} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:relative_tost} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:related-work} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:multi-seed} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:mirage} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:constraint-quality} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:cross-model-process} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:additional-interventions} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:cil_main} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:semantic-remark} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:cil} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:text-sensitivity} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:subpop-constraint} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:3verifier-bh} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:trace-independence} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:multi-nli} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:conclusion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:diagnostics} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:process-sim} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:ablation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:process-gradient} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:finetuned-nli} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:cil-data} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:drc} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:logiqa-nli-roberta} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:k-sensitivity} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:results} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "analysis.tex:9"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "analysis.tex:63"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:173"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:200"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:231"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:256"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:303"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:334"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:408"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:433"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:635"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:662"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:723"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:748"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:847"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:928"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:962"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:980"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:1201"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:1294"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:1338"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:1405"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:1430"
+        },
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "4 critical, 81 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+      "sections": [
+        {
+          "file": "abstract.tex",
+          "role": "headline",
+          "num_numbers": 2,
+          "num_cites": 0
+        },
+        {
+          "file": "analysis.tex",
+          "role": "result",
+          "num_numbers": 96,
+          "num_cites": 3
+        },
+        {
+          "file": "conclusion.tex",
+          "role": "headline",
+          "num_numbers": 5,
+          "num_cites": 0
+        },
+        {
+          "file": "diagnosis.tex",
+          "role": "other",
+          "num_numbers": 245,
+          "num_cites": 0
+        },
+        {
+          "file": "discussion.tex",
+          "role": "other",
+          "num_numbers": 3,
+          "num_cites": 5
+        },
+        {
+          "file": "experiments.tex",
+          "role": "result",
+          "num_numbers": 45,
+          "num_cites": 9
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 1,
+          "num_cites": 17
+        },
+        {
+          "file": "limitations_content.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 79,
+          "num_cites": 4
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 60
+        },
+        {
+          "file": "solutions.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        }
+      ],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 2.5, 'experiments' reports 2.50.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 2.5, 'experiments' reports 2.51.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 4.17, 'experiments' reports 4.1.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.0083, 'experiments' reports 0.00.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.50, 'experiments' reports 0.5.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 2.65, 'experiments' reports 2.6.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 1.0, 'experiments' reports 1.00.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.453, 'experiments' reports 0.45.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.001, 'experiments' reports 0.00.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.51, 'experiments' reports 0.5.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.36, 'experiments' reports 0.3.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.503, 'experiments' reports 0.5.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.00, 'experiments' reports 0.001.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.003, 'experiments' reports 0.00.",
+          "location": "analysis,experiments"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "abstract": [
+              "\\times"
+            ],
+            "analysis": [
+              "\\Delta",
+              "\\approx",
+              "\\arg",
+              "\\cdot",
+              "\\dagger",
+              "\\geq",
+              "\\kappa",
+              "\\ldots",
+              "\\leq",
+              "\\max",
+              "\\mid",
+              "\\operatorname",
+              "\\overset",
+              "\\rho",
+              "\\setminus",
+              "\\sigma",
+              "\\sim",
+              "\\times",
+              "\\to"
+            ],
+            "conclusion": [
+              "\\leq",
+              "\\times"
+            ],
+            "diagnosis": [
+              "\\Delta",
+              "\\approx",
+              "\\dag",
+              "\\dagger",
+              "\\geq",
+              "\\in",
+              "\\kappa",
+              "\\leq",
+              "\\pm",
+              "\\sim",
+              "\\times"
+            ],
+            "discussion": [
+              "\\log",
+              "\\mid",
+              "\\rho",
+              "\\to"
+            ],
+            "experiments": [
+              "\\Delta",
+              "\\alpha",
+              "\\blacksquare",
+              "\\blacktriangle",
+              "\\bullet",
+              "\\geq",
+              "\\in",
+              "\\kappa",
+              "\\leq",
+              "\\pm",
+              "\\sigma",
+              "\\sim",
+              "\\times"
+            ],
+            "introduction": [
+              "\\to"
+            ],
+            "method": [
+              "\\Delta",
+              "\\alpha",
+              "\\approx",
+              "\\arg",
+              "\\dagger",
+              "\\ddagger",
+              "\\geq",
+              "\\in",
+              "\\kappa",
+              "\\ldots",
+              "\\leq",
+              "\\max",
+              "\\pm",
+              "\\setminus",
+              "\\sigma",
+              "\\sim",
+              "\\texttt"
+            ],
+            "related_work": [
+              "\\kappa",
+              "\\to"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "warning": 14,
+        "info": 1
+      }
+    },
+    "compile_result": {
+      "success": true,
+      "passed": true,
+      "compiled": {
+        "success": true,
+        "pdf_path": "<compiled-in-isolated-tmpdir>",
+        "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/_audit_compile_hfprw6wl",
+        "main_tex": "main.tex",
+        "log_tail": "\nUnderfull \\vbox (badness 2529) has occurred while \\output is active []\n\n [28]\nUnderfull \\hbox (badness 3492) in paragraph at lines 1502--1503\n[]\\T1/ptm/m/n/10.95 (+20) For each prob-lem $\\OML/cmm/m/it/10.95 p$ \\T1/ptm/m/n\n/10.95 (+20) with ex-tracted con-\n []\n\n\nUnderfull \\hbox (badness 3942) in paragraph at lines 1502--1503\n\\T1/ptm/m/n/10.95 (+20) straints $\\OMS/cmsy/m/n/10.95 f\\OML/cmm/m/it/10.95 c[];\n [] ; c[]\\OMS/cmsy/m/n/10.95 g$ \\T1/ptm/m/n/10.95 (+20) and source an-swers\n []\n\n\nUnderfull \\hbox (badness 3965) in paragraph at lines 1506--1507\n[]\\T1/ptm/m/n/10.95 (+20) Compute $\\OML/cmm/m/it/10.95 p$\\T1/ptm/m/n/10.95 (+20\n) -value $\\OT1/cmr/m/n/10.95 = \\OMS/cmsy/m/n/10.95 jf\\OML/cmm/m/it/10.95 r \\OT1\n/cmr/m/n/10.95 : [][] \\OMS/cmsy/m/n/10.95 ^^U\n []\n\n[29]\nLaTeX Font Info:    Trying to load font information for TS1+ptm on input line 1\n532.\n (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd\nFile: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.\n)\nUnderfull \\hbox (badness 1092) in paragraph at lines 1532--1534\n[]\\T1/ptm/b/n/10.95 (+20) Code: \\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\n scripts, data-\n []\n\n) [30\n\n] (./main.aux)\n ***********\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n ***********\nPackage rerunfilecheck Info: File `main.out' has not changed.\n(rerunfilecheck)             Checksum: 7DAF149738A18CF210F9D66E0D397AAD;7112.\n ) \nHere is how much of TeX's memory you used:\n 30365 strings out of 469438\n 544691 string characters out of 5468411\n 1471681 words of memory out of 5000000\n 57618 multiletter control sequences out of 15000+600000\n 732238 words of font info for 480 fonts, out of 8000000 for 9000\n 59 hyphenation exceptions out of 8191\n 84i,18n,94p,1959b,2003s stack positions out of 10000i,1000n,20000p,200000b,200000s\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share\n/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texli\nve/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/tex\nmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist\n/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/\ntype1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/p\nublic/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a\nmsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts\n/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7\n.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></u\nsr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share\n/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texli\nve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texm\nf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/\nfonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/t\nype1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu\nblic/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw\n/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhv\nb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/s\nhare/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/te\nxmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (30 pages, 7182725 bytes).\nPDF statistics:\n 1426 PDF objects out of 1440 (max. 8388607)\n 1172 compressed objects within 12 object streams\n 357 named destinations out of 1000 (max. 500000)\n 90498 words of extra memory for PDF output out of 106986 (max. 10000000)\n",
+        "error": "",
+        "pages": 30,
+        "warnings": [
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "Text page 28 contains only floats."
+        ]
+      },
+      "pages": 30,
+      "page_status": "ok",
+      "max_pages": null,
+      "min_pages": null,
+      "critical_warnings": [],
+      "minor_warnings": [
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "Text page 28 contains only floats.",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 2--2",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 2--2",
+        "Underfull \\hbox (badness 1348) in paragraph at lines 14--15",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 2253) in paragraph at lines 20--21",
+        "Underfull \\hbox (badness 3815) in paragraph at lines 20--21",
+        "Underfull \\hbox (badness 1389) in paragraph at lines 24--25",
+        "Underfull \\hbox (badness 1596) in paragraph at lines 28--29",
+        "Underfull \\hbox (badness 2334) in paragraph at lines 14--15",
+        "Underfull \\hbox (badness 1412) in paragraph at lines 16--17",
+        "Underfull \\hbox (badness 1377) in paragraph at lines 16--17",
+        "Underfull \\hbox (badness 2065) in paragraph at lines 18--19",
+        "Underfull \\hbox (badness 1163) in paragraph at lines 24--25",
+        "Underfull \\hbox (badness 6348) in paragraph at lines 24--25",
+        "Underfull \\hbox (badness 4181) in paragraph at lines 24--25",
+        "Underfull \\hbox (badness 1701) in paragraph at lines 33--34",
+        "Underfull \\hbox (badness 1454) in paragraph at lines 33--34",
+        "Underfull \\hbox (badness 1742) in paragraph at lines 35--36",
+        "Underfull \\vbox (badness 3525) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 2165) in paragraph at lines 7--8",
+        "Underfull \\hbox (badness 1803) in paragraph at lines 7--8",
+        "Underfull \\hbox (badness 1681) in paragraph at lines 32--33",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 34--38",
+        "Underfull \\hbox (badness 1596) in paragraph at lines 34--38",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 53--54",
+        "Underfull \\hbox (badness 3386) in paragraph at lines 53--54",
+        "Underfull \\hbox (badness 5203) in paragraph at lines 59--60",
+        "Underfull \\hbox (badness 3612) in paragraph at lines 59--60",
+        "Underfull \\hbox (badness 4995) in paragraph at lines 59--60",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 59--60",
+        "Underfull \\hbox (badness 8132) in paragraph at lines 59--60",
+        "Underfull \\hbox (badness 4229) in paragraph at lines 59--60",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1173) in paragraph at lines 61--62",
+        "Underfull \\hbox (badness 1642) in paragraph at lines 61--62",
+        "Underfull \\hbox (badness 2903) in paragraph at lines 86--87",
+        "Underfull \\hbox (badness 1975) in paragraph at lines 93--94",
+        "Underfull \\hbox (badness 2173) in paragraph at lines 95--96",
+        "Underfull \\hbox (badness 2012) in paragraph at lines 95--96",
+        "Underfull \\hbox (badness 2318) in paragraph at lines 95--96",
+        "Underfull \\hbox (badness 1400) in paragraph at lines 95--96",
+        "Underfull \\hbox (badness 2547) in paragraph at lines 104--105",
+        "Underfull \\hbox (badness 2435) in paragraph at lines 104--105",
+        "Underfull \\hbox (badness 4765) in paragraph at lines 6--7",
+        "Underfull \\hbox (badness 2253) in paragraph at lines 9--10",
+        "Underfull \\hbox (badness 2165) in paragraph at lines 22--75",
+        "Underfull \\hbox (badness 1308) in paragraph at lines 22--75",
+        "Underfull \\hbox (badness 1371) in paragraph at lines 1--78",
+        "Underfull \\hbox (badness 2469) in paragraph at lines 47--51",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 170--174",
+        "Underfull \\hbox (badness 1365) in paragraph at lines 170--174",
+        "Underfull \\hbox (badness 1521) in paragraph at lines 260--264",
+        "Underfull \\hbox (badness 1377) in paragraph at lines 300--304",
+        "Underfull \\hbox (badness 1668) in paragraph at lines 323--327",
+        "Underfull \\hbox (badness 4647) in paragraph at lines 323--327",
+        "Underfull \\hbox (badness 3281) in paragraph at lines 350--354",
+        "Underfull \\hbox (badness 3872) in paragraph at lines 350--354",
+        "Underfull \\hbox (badness 2717) in paragraph at lines 487--493",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 43--44",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 43--44",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 100--101",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 100--101",
+        "Underfull \\hbox (badness 3098) in paragraph at lines 119--120",
+        "Underfull \\hbox (badness 1454) in paragraph at lines 119--120",
+        "Underfull \\hbox (badness 5460) in paragraph at lines 125--126",
+        "Underfull \\hbox (badness 1817) in paragraph at lines 167--169",
+        "Underfull \\hbox (badness 6445) in paragraph at lines 254--255",
+        "Underfull \\hbox (badness 1231) in paragraph at lines 269--269",
+        "Underfull \\vbox (badness 7759) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 2726) in paragraph at lines 283--284",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 289--290",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 289--290",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 289--290",
+        "Underfull \\hbox (badness 1590) in paragraph at lines 289--290",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 295--296",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 295--296",
+        "Underfull \\hbox (badness 2617) in paragraph at lines 295--296",
+        "Underfull \\hbox (badness 1803) in paragraph at lines 297--298",
+        "Underfull \\hbox (badness 7362) in paragraph at lines 297--298",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 297--298",
+        "Underfull \\hbox (badness 1515) in paragraph at lines 297--298",
+        "Underfull \\hbox (badness 1448) in paragraph at lines 297--298",
+        "Underfull \\hbox (badness 1509) in paragraph at lines 328--329",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1603) in paragraph at lines 566--567",
+        "Underfull \\hbox (badness 1533) in paragraph at lines 741--742",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1097) in paragraph at lines 899--900",
+        "Underfull \\hbox (badness 1152) in paragraph at lines 1001--1001",
+        "Underfull \\hbox (badness 1152) in paragraph at lines 1059--1059",
+        "Underfull \\hbox (badness 2293) in paragraph at lines 1059--1059",
+        "Underfull \\hbox (badness 1655) in paragraph at lines 1178--1178",
+        "Underfull \\hbox (badness 1675) in paragraph at lines 1204--1204",
+        "Underfull \\hbox (badness 1728) in paragraph at lines 1400--1401",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1902) in paragraph at lines 1460--1461",
+        "Underfull \\vbox (badness 4899) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 2529) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 3492) in paragraph at lines 1502--1503",
+        "Underfull \\hbox (badness 3942) in paragraph at lines 1502--1503",
+        "Underfull \\hbox (badness 3965) in paragraph at lines 1506--1507",
+        "Underfull \\hbox (badness 1092) in paragraph at lines 1532--1534"
+      ],
+      "issues": [],
+      "summary": "PASS"
+    },
+    "refs_result": null,
+    "internal_leak": {
+      "passed": true,
+      "critical": [],
+      "warning": [],
+      "info": [],
+      "summary": "0 critical, 0 warning, 0 info"
+    }
+  },
+  "content_findings": [
+    {
+      "severity": "info",
+      "dimension": "agent_error",
+      "message": "[ERROR] Agent exited 1: You've hit your limit · resets May 26, 6pm (UTC)"
+    }
+  ],
+  "visual_findings": [
+    {
+      "severity": "info",
+      "dimension": "agent_error",
+      "message": "[ERROR] Agent exited 1: You've hit your limit · resets May 26, 6pm (UTC)"
+    }
+  ],
+  "counts": {
+    "critical": 4,
+    "warning": 222,
+    "info": 2
+  },
+  "error": "",
+  "timestamp": "2026-05-25T17:47:54.451043+00:00"
+}

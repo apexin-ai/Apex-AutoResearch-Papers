@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "id": "f1a6e6ca59c46bca0fdd",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "gpu exp 064 deepseek r1 qwen3 8b folio204",
+  "task_key": "worker_gpu_exp-064-deepseek-r1-qwen3-8b-folio204_20260519T074017",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp-064-deepseek-r1-qwen3-8b-folio204_20260519T074017.log",
+    "occurrence": 1,
+    "bytes": 2067713,
+    "sha256": "0d6a1506835cb049bd684d7fd7dccf0370e1794607218807e127b07e5ffec0a6"
+  },
+  "statistics": {
+    "messages": 1327,
+    "user_turns": 1,
+    "tool_calls": 371,
+    "roles": {
+      "log": 1,
+      "system": 117,
+      "record": 4,
+      "assistant": 374,
+      "tool_call": 371,
+      "tool_result": 371,
+      "user": 1,
+      "result": 88
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 717,
+      "chunks": [
+        {
+          "path": "f1a6e6ca59c46bca0fdd-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f1a6e6ca59c46bca0fdd-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f1a6e6ca59c46bca0fdd-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "f1a6e6ca59c46bca0fdd-part-0004.json",
+          "message_count": 177
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 610,
+      "chunks": [
+        {
+          "path": "f1a6e6ca59c46bca0fdd-part-0004.json",
+          "message_count": 3
+        },
+        {
+          "path": "f1a6e6ca59c46bca0fdd-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "f1a6e6ca59c46bca0fdd-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "f1a6e6ca59c46bca0fdd-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "f1a6e6ca59c46bca0fdd-part-0008.json",
+          "message_count": 67
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gpu-exp-064-deepseek-r1-qwen3-8b-folio204.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8afec3c58668643b33d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diagnose temperature ablation t07",
+  "task_key": "worker_diagnose_temperature-ablation-t07_20260517T190813",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_temperature-ablation-t07_20260517T190813_result.json",
+    "occurrence": 1,
+    "bytes": 489,
+    "sha256": "7dbc8ee9df2a42aee6a4b14d7d73978940b826259edcd6947eba79208033edfb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**temperature-ablation-t07** → **DONE (negative)**\n\n| 指标 | 值 |\n|------|------|\n| SC accuracy | 75.00% |\n| SICA accuracy | 71.67% |\n| Δ (SICA-SC) | -3.33pp |\n| C0 | 40.0% |\n| Discordant | 0 SICA wins, 2 SC wins |\n\nC0 修正后四温度点呈单调递增：T=0.3(30%) → T=0.5(38.3%) → T=0.7(40.0%) → T=1.0(43.3%)，消除了旧数据混淆。结论不变：diversity 随温度增加，但 delta 始终≈0。\n\ncron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-temperature-ablation-t07.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3b46fe38e9071bb30ab",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 076 final v2",
+  "task_key": "worker_analysis_exp-076-final-v2_20260519T203752",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-076-final-v2_20260519T203752_result.json",
+    "occurrence": 1,
+    "bytes": 508,
+    "sha256": "80348993671251066b5d855a4b84e893997f72b7371b059c9964eb62b6f7106a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-076 已完成，全部 204 个样本处理完毕。\n\n| 指标 | 值 |\n|------|-----|\n| n_samples | **204/204** |\n| SC accuracy | **0.5686 (56.86%)** |\n| Debate accuracy | **0.3824 (38.24%)** |\n| Delta (Debate − SC) | **−0.1863** |\n| Wall time | 186.4 min |\n| Fallbacks | 10/204 |\n| Total debate constraints | 3,677 |\n\nDebate 在 FOLIO 上显著低于 SC baseline（−18.6 个百分点），Mistral 在这个形式逻辑数据集上 debate 框架反而损害了准确率。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-076-final-v2.md"
+}

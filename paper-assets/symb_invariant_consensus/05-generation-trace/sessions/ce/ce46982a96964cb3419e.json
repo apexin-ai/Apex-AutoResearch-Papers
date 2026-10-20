@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce46982a96964cb3419e",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code exp scripts prep",
+  "task_key": "worker_code_exp_scripts_prep_20260516T052628",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_scripts_prep_20260516T052628_result.json",
+    "occurrence": 1,
+    "bytes": 1644,
+    "sha256": "c4e36946d9df55ed3f3615c23bde36ac2bbfde95b512424234d02aaf50d19697"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部脚本已部署。汇总：\n\n### 产出文件\n\n| 文件 | 用途 |\n|------|------|\n| `scripts/run_k_ablation.py` (329行) | K sensitivity 主脚本，CachedGenerator 复用 pipeline |\n| `scripts/start_vllm_7b.sh` | 启动 7B vLLM (含 AutoDL 环境配置) |\n| `scripts/start_vllm_72b_awq.sh` | 启动 72B-AWQ vLLM (含 `--quantization awq`) |\n| `scripts/README_experiments.md` | 每个实验的运行步骤 |\n| `data/empty.json` | 空 JSON `[]`，用于跳过 MATH 数据 |\n\n### run_k_ablation.py 设计要点\n\n- **CachedGenerator** 继承 `TraceGenerator`，从缓存中返回前 K 条 traces，直接接入 `SICAPipeline`，复用全部 pipeline 逻辑（answer assertion injection、mutual exclusion hard constraints、scoring），无需重新实现\n- 两阶段：Phase 1 生成 K_max=20 traces 并持久化（带 checkpoint），Phase 2 对每个 K 子采样+评估\n- `--resume` 跳过 trace 生成直接评估\n\n### 发现的潜在问题\n\n1. **`run_full_mvp.py` 的 `--math-data` 是必需的**：`load_all_problems` 在文件不存在时 `sys.exit(1)`，即使只跑 logic 任务也不能省略。已创建 `data/empty.json` 解决。\n2. **D012 未保存 trace 原文**：`--save-intermediates` 只保存 `per_trace` 元数据（trace_len, answer），不含 trace text。因此 K=6,8 无法从已有结果 subsample，必须重新生成 traces。K ablation 脚本统一生成 K=20 traces 再子采样，保证一致性。\n3. **72B-AWQ 内存**：AWQ 4-bit weights ~36GB + KV cache (8192 tokens)，98GB 卡够用，但如果生成长 traces (>4096 tokens) 可能需要降低 `--max-model-len`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-scripts-prep.md"
+}

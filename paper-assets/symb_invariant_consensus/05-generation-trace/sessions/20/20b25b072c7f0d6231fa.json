@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20b25b072c7f0d6231fa",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "eval sica expanded 14b urgent",
+  "task_key": "worker_eval_sica_expanded_14b_urgent_20260516T051805",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_sica_expanded_14b_urgent_20260516T051805_result.json",
+    "occurrence": 1,
+    "bytes": 378,
+    "sha256": "2f523f4c043d29ebed356e5af68d66432bc6bc3df1e856cd53194aa71a7dd86e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 `sica_expanded_14b` 已成功启动：\n\n- **PID**: 181992\n- **tmux session**: `sica_expanded_14b`\n- **总题数**: 140 (70 ProofWriter + 70 FOLIO)\n- **模型**: Qwen2.5-14B-Instruct (vLLM, port 8000)\n- **第 1 题已开始推理** (ProofWriter_AttNoneg-OWA-D5-1041_Q1)，vLLM 连接正常，trace generation 进行中\n\n预计 ~2-2.5 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-sica-expanded-14b-urgent.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b68c5640b4b4b5ce9abf",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diagnose exp 039 14b pw600 16639",
+  "task_key": "worker_diagnose_exp-039-14b-pw600-16639_20260519T045511",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp-039-14b-pw600-16639_20260519T045511_result.json",
+    "occurrence": 1,
+    "bytes": 649,
+    "sha256": "d0ee81c037c63d8362269d7ee950c89ac9b25225cd6b72a0aac69e989831adae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。核心发现：\n\n**exp-039 不是失败，是 cron 监控误报。** 实验已成功跑完 600/600，结果完整。\n\n- **根因**: 推理脚本正常完成后进程退出，cron 检测到 process dead 但未检查完成标记，误判为失败\n- **无 OOM/无脚本错误/无 vLLM 崩溃**（dmesg 空，log 零错误）\n- **结果完整可用**: results.json 含全部 600 条结果 + summary，intermediates/ 有 600 个 JSON\n- **最终指标**: SICA 71.5% (429/600), SC 73.5% (441/600), extraction rate 99.2%\n- **GPU 0 已释放**，可分配给新实验\n\n报告已写入 `artifacts/diagnose_exp039.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-039-14b-pw600-16639.md"
+}

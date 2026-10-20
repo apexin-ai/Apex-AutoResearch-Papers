@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d667efbf59dc98cdd41c",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 064 completion check",
+  "task_key": "worker_analysis_exp-064-completion-check_20260519T181317",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-064-completion-check_20260519T181317_result.json",
+    "occurrence": 1,
+    "bytes": 842,
+    "sha256": "b23923dfcb846224f8280aa606e1ad821336bab7661ba1e838865d3cefd4df70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能在之前的 session 中创建，当前 session 无残留）。\n\n**诊断结果：exp-064 成功完成。**\n\n| 指标 | 值 |\n|---|---|\n| SC accuracy | 83.8% (171/204) |\n| SICA accuracy | 83.8% (171/204) |\n| Delta (SICA - SC) | 0.0% |\n| Extraction rate | 38.2% |\n| Contradiction rate | 1.7% |\n| Wall time | 355.6 min |\n| n_samples | 204/204 |\n\nRegistry 已更新：status=DONE, conclusion=success, metrics/checkpoint_path/log_path 均已设置。Cron 在当前 session 中不存在，无需清除。\n\n注意：如任务说明所述，此实验用 legacy 代码，SC 数据可用但 SICA/delta 不入 Table 1（sica_not_comparable）。delta=0 本身也说明 SICA 未对 SC 产生增益，与 extraction_rate 仅 38.2% 一致——约束提取率过低导致 SICA 几乎退化为 SC。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-064-completion-check.md"
+}

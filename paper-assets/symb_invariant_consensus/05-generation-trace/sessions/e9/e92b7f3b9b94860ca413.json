@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e92b7f3b9b94860ca413",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "reviewer / loop_13.md",
+  "task_key": "loop_13",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/reviewer/loop_13.md",
+    "occurrence": 1,
+    "bytes": 3964,
+    "sha256": "a1613d3c362db95a534ee7c885fd734d9227f96a3b3abc3aa47d2eebc1e9b794"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: max_wall_time\nupdated: '2026-05-25T05:26:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目无 GPU 训练任务，不涉及 GPU 设备号约束。所有实验已完成（176 条 registry 全部 DONE/killed）\n- 论文 tex 源在**本地** `projects/symb_invariant_consensus/docs/paper/`，不在远程服务器。审查\"是否已改\"前先读本地，不要只读远程残留旧版\n- Abstract 硬限 200 words（EMNLP 2026），当前恰好 200——任何编辑必须重新计数\n- analysis.tex 中 73.5%/26.5% 数据已统一到 n=166 口径（之前 148 vs 166 差异已查明为 answer 归一化问题，已修复）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`westd-16639` + `westd-30973`，代码根目录 `/root/symb_invariant_consensus`\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/`\n- 论文 tex：`docs/paper/` 下（main.tex, abstract.tex, introduction.tex, experiments.tex, analysis.tex, solutions.tex, discussion.tex, limitations_content.tex, appendix.tex）\n- 关键数据文件：\n  - `artifacts/_project/data/minority_constraint_direction.json`（MF3 方向分析，n=166 统一版）\n  - `artifacts/_project/data/per_problem_cv_values.json`（CV 分布，N=204）\n  - `artifacts/review_issues.yaml`（跨轮 issue tracker）\n  - `artifacts/review_reports/round_19.md`（= R22 fresh review，3.0→3.5 Borderline Conference）\n- 活跃进程：**无**。所有实验已完成，无 RUNNING 任务\n\n### 3. 📊 当前状态\n刚完成 R22 最终报告的全面修复审查。Paper Agent 已落地 MF1-3 + 部分 SF。我审查了：\n- MF1（标题/Abstract）✅ 标题改为 \"Reduce to Majority Voting under Zero-Shot Extraction\"\n- MF2（SCB vs CoT 分离）✅ analysis.tex L31-35 重构为 3-test + \"transparency property\" 结论\n- MF3（TOST ±2pp）✅ experiments.tex L52 四点先验论证\n- 148 vs 166 差异 ✅ 已查明（answer 归一化）并统一到 166\n- CV histogram ✅ 已生成（`fig_cv_distribution.pdf`），高 CV 子集 18/18=100% agreement\n- Fig 1 v9 ❌ SC 分支 \"Majority Vote\" 重复，建议保留 v8\n\n**等待中**：Director 对 SF2-SF8 方案的调度决策（Discussion 扩展 PRM/ORM 段、§5 密度、\"Symbolic Mirage\" 注释等）\n\n### 4. 📋 待办\n- SF2 Discussion PRM/ORM 段落 worker 完成 → 审查是否正确连接 DPI bound 与 learned verification，确认 Math-Shepherd/GRACE 引用准确\n- CV histogram 嵌入 appendix worker 完成 → 检查 L826 附近插入位置 + caption + 高 CV 子集描述（18/18=100%）\n- analysis.tex 73.6%→73.5% 更新 worker 完成 → 核对与 n=166 数据文件一致\n- Fig 1 v9 重试 worker 完成 → 检查 SC 分支是否只有 2 节点\n- **任何论文章节写作审查请求** → 必须先加载 `skills/global/paper-quality-lessons.skill.md`，按 §5.1 审查维度 + §7 论文写作审计逐项检查\n- **全文编译后** → 用 `check_figures_and_layout` 做视觉审查，特别关注 page 30 空页问题和 Figure 3 位置\n\n### 5. 🎯 战略上下文\n- **核心结论**：SICA 在零样本自提取下退化为多数投票。SCB 是 transparency property（source-attribution 忠实传递 CoT 分布），不是新 bias。跨架构 NLI verifier 是初步逃逸路径（exploratory, n=6）\n- **R22 评分 3.5 Borderline Conference**。MF1-3 已修复，主要提分点在：Discussion 扩展（太短）、§5 密度改善、visual layout 优化\n- **易错点**：\n  1. Abstract 恰好 200 words，改一个词就可能超限\n  2. \"preliminary\" 在 Intro L27 出现两次同一句（\"Preliminary evidence... preliminary capability-gap\"），应改第二个\n  3. Table 1 caption 很长但 GSM8K/AIME 已不在表中（SF3 已解决，不要重复修）\n  4. Discussion 只有 1 段 ~70 words，是 R9-VL4 的老问题，SF2 PRM/ORM 段可同时解决\n  5. `fig_cv_distribution` 和高 CV 分析数据就绪但未嵌入 appendix，需 worker 插入\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13.md"
+}

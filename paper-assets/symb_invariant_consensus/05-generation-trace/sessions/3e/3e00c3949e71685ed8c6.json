@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e00c3949e71685ed8c6",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment q premise mutation",
+  "task_key": "worker_experiment_q-premise-mutation_20260520T103427",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_q-premise-mutation_20260520T103427_result.json",
+    "occurrence": 1,
+    "bytes": 1535,
+    "sha256": "d2b097cbcd13bbb475bebbf7bf1ee25d675ca6d0784d0fa0ecdf2e68785984a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pilot report:\n\n## Direction Q: Premise Mutation Pilot Results (N=10, K=12, FOLIO)\n\n| Mutation | SC Acc | SICA Acc | SC Flip% | SICA Flip% |\n|----------|--------|----------|----------|------------|\n| original | 60.0% | 60.0% | — | — |\n| synonym | 80.0% | 60.0% | 20.0% | 20.0% |\n| reorder | 70.0% | 70.0% | 30.0% | 30.0% |\n| inject | 80.0% | 80.0% | 20.0% | **30.0%** |\n| combined | 50.0% | 40.0% | 30.0% | **40.0%** |\n\n**Key observations (pilot, N=10 — treat with caution):**\n\n1. **Baseline parity**: SC and SICA have identical accuracy (60%) on original problems.\n2. **Synonym mutation**: Both flip at 20%. SC accuracy rises to 80% (likely noise), SICA stays at 60%. No differential.\n3. **Reorder mutation**: Both flip at 30%. No differential.\n4. **Inject mutation**: SICA flips more (30%) than SC (20%). SICA's constraint extraction may be sensitive to irrelevant premises generating spurious constraints.\n5. **Combined mutation**: SICA is more unstable (40% flip) vs SC (30% flip). SICA accuracy drops to 40% vs SC's 50%.\n6. **Overall pattern**: SICA shows slightly higher instability than SC under inject and combined mutations, suggesting the symbolic pipeline amplifies perturbations rather than filtering them. The full 204-question run will determine if this holds at scale.\n\n**Full 204-question run**: launched as PID 314817 on `westd-16639`, ETA ~5-6 hours. Output: `/root/symb_invariant_consensus/results/direction_q_premise_mutation/results.json`, log: `/tmp/direction_q_full.log`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-q-premise-mutation.md"
+}

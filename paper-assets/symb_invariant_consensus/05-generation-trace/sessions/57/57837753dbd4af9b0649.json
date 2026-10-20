@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57837753dbd4af9b0649",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment folio 2x2 crossmodel",
+  "task_key": "worker_experiment_folio-2x2-crossmodel_20260521T230444",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_folio-2x2-crossmodel_20260521T230444_result.json",
+    "occurrence": 1,
+    "bytes": 186,
+    "sha256": "6461d6dde6c8e976e48e6e1fca2532a5ac65f5c268bbd7e356f5bcbc62b3f763"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Status:\n- **Cell A** (Mistral→Mistral): 84/204, ETA ~37 min\n- **Qwen3 traces**: 57/204, ETA ~55 min\n\nBoth processes running normally. Will check again in ~4 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-folio-2x2-crossmodel.md"
+}

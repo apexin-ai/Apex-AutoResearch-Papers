@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c15978b52298631e38d9",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code download qwen3 14b check status",
+  "task_key": "worker_code_download-qwen3-14b-check-status_20260518T124411",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_download-qwen3-14b-check-status_20260518T124411_result.json",
+    "occurrence": 1,
+    "bytes": 1588,
+    "sha256": "6a00590e5db8f91642f7e09942cd202b0d802a208c64020c4786070c9962e569"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据充足，汇总报告。\n\n---\n\n## 报告\n\n### 1. exp-026 进度\n- **PID 27245**: 运行中，正常\n- **已完成**: 53/204 题（~26%）\n- **速率**: ~40-45 秒/题\n- **预计剩余**: ~105 分钟（约 1 小时 45 分钟）\n\n### 2. 磁盘空间\n| 分区 | 总量 | 已用 | 可用 |\n|------|------|------|------|\n| /root (overlay) | 30G | 12G | 19G |\n| /root/autodl-tmp | 250G | 144G | 107G |\n\n### 3. 72B 下载状态\n- **无活跃下载进程**（不是\"还在下载\"的状态）\n- 已有 75G 文件（config.json + 28 个 safetensors），看起来是完整下载\n- **未执行 kill/删除**，因为条件\"还在下载\"不成立\n\n**需要确认：是否仍要删除已完成的 72B 模型（释放 75G）？**\n\n### 4. Mistral 下载状态\n- **已完成**（16G，config.json + 3 safetensors），无活跃下载进程\n- 已保留\n\n### 5. Qwen3-14B 下载\n- **正确模型名**: `Qwen/Qwen3-14B`（Qwen3 系列不带 `-Instruct` 后缀，统一模型支持指令模式）\n- **下载方式**: ModelScope（PID 29779），HF Mirror 已 kill（更慢）\n- **当前速度**: ~2-2.5 MB/s/线程，8 个文件并行下载\n- **模型总大小**: ~27.6G（7×3.69G + 1×1.78G safetensors）\n- **预计完成**: ~1 小时\n- **下载目录**: `/root/autodl-tmp/models/Qwen3-14B`\n\n### 6. 额外发现\n- **Llama-3.1-8B 下载**（PID 17783）仍在运行（已跑 2.5 小时），正在与 Qwen3 抢带宽。Llama 目录已 24G 但只有 1 个 safetensors 文件——可能在重下或卡住。是否 kill 以加速 Qwen3 下载？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-download-qwen3-14b-check-status.md"
+}

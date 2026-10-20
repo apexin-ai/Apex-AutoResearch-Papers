@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "29caa2f393ef20c9a0db",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "download qwen25 14b westd16639",
+  "task_key": "worker_download_qwen25-14b-westd16639_20260518T140551",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_download_qwen25-14b-westd16639_20260518T140551.log",
+    "occurrence": 1,
+    "bytes": 1113835,
+    "sha256": "b1fe7075d456f69e0b218661dafa5a9451252e1efcf728a9d9c20d012035a3de"
+  },
+  "statistics": {
+    "messages": 860,
+    "user_turns": 1,
+    "tool_calls": 222,
+    "roles": {
+      "log": 1,
+      "system": 24,
+      "record": 1,
+      "assistant": 387,
+      "tool_call": 222,
+      "tool_result": 222,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 821,
+      "chunks": [
+        {
+          "path": "29caa2f393ef20c9a0db-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "29caa2f393ef20c9a0db-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "29caa2f393ef20c9a0db-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "29caa2f393ef20c9a0db-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "29caa2f393ef20c9a0db-part-0005.json",
+          "message_count": 101
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 39,
+      "chunks": [
+        {
+          "path": "29caa2f393ef20c9a0db-part-0005.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/download-qwen25-14b-westd16639.md"
+}

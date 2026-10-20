@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c558128f484dfde98fe9",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis sub population folio corrected",
+  "task_key": "worker_analysis_sub-population-folio-corrected_20260521T012039",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_sub-population-folio-corrected_20260521T012039_result.json",
+    "occurrence": 1,
+    "bytes": 871,
+    "sha256": "d815b300953ac0ff16027c487d25bb3973f8674af01699497a354c877494dcfc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both files updated. Verification checklist:\n\n| Check | Result |\n|-------|--------|\n| Corrected SC overall FOLIO accuracy | 114/204 = 55.88% ✓ |\n| SICA accuracy unchanged | 121/204 = 59.31% ✓ |\n| Overall Δ | +3.43pp (not +4.9pp) ✓ |\n| McNemar p-value increased | 0.092 (was 0.013) ✓ |\n| PW-600 data unchanged | ✓ |\n\nKey changes from the correction:\n- 7 SC answers changed (alphabetical tiebreaking resolves ties differently from the old rule)\n- Net +3 correct for SC (111→114), shrinking the SICA advantage\n- Overall FOLIO McNemar p goes from 0.013 to 0.092 — **no longer significant at α=0.05**\n- **False** subgroup: SC now matches SICA exactly (42.9% vs 42.9%, Δ=0.0)\n- **Mid-constraint tertile** becomes the strongest signal: +9.4pp, p=0.031 (significant)\n- **High-constraint tertile**: Δ collapses to 0.0pp (was +4.5pp)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sub-population-folio-corrected.md"
+}

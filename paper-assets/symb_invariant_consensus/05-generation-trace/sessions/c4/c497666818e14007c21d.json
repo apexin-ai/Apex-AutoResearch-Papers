@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c497666818e14007c21d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix scatter regen final2",
+  "task_key": "worker_fix_scatter-regen-final2_20260522T231518",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_scatter-regen-final2_20260522T231518_result.json",
+    "occurrence": 1,
+    "bytes": 448,
+    "sha256": "e12084510b16790fedc2da5d7bb18263ca87e84cb7b197becd4d13b7cba975af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Scatter plot 重新生成完毕：\n\n- **Spearman ρ = 0.986** (DeBERTa-only, n=6, p=0.0003)；含 LLaMA 时 **ρ = 0.955** (n=7, p=0.0008)\n- Linear R²=0.919, Sigmoid R²=0.909\n- 产出：`capability_gap_scatter.pdf` (33K)、`capability_gap_scatter.png` (121K)\n\nLaTeX 编译部分：项目里没有 `docs/paper/` 目录，也没有任何 `.tex` 文件。论文 LaTeX 源码不在这台服务器上，需要确认编译位置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-scatter-regen-final2.md"
+}

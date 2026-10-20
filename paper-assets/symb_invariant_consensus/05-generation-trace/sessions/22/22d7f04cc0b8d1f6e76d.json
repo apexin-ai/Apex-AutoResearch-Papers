@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22d7f04cc0b8d1f6e76d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment dir i2 single model baselines",
+  "task_key": "worker_experiment_dir-i2-single-model-baselines_20260520T172102",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_dir-i2-single-model-baselines_20260520T172102_result.json",
+    "occurrence": 1,
+    "bytes": 768,
+    "sha256": "57b5ffbd374a35d116d5b628c3a6c6e5af62d6293f56c30553d99d560a1a63b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存。关键发现：\n\n| 模型 | SC@all | SC@5 (mean±std) |\n|------|--------|-----------------|\n| mistral-7b | 111/204 = **54.41%** | 56.03% ± 2.13% |\n| qwen2.5-7b | 157/204 = **76.96%** | 74.41% ± 1.29% |\n| qwen2.5-14b | 153/204 = **75.00%** | 75.64% ± 0.76% |\n| qwen3-14b | 171/204 = **83.82%** | 82.64% ± 0.91% |\n\n**结论：HGE-(b) 82.01% 存在 confound。**\n\nQwen3-14B 单模型 SC@all 已达 83.82%，**高于** HGE-(b) 的 82.01%（差值 -1.81 pp）。这意味着 HGE 的跨模型 ensemble 不仅没有带来增益，反而因为混入了较弱模型（Mistral 54%、Qwen2.5-7B 77%）而**拉低**了最强单模型的表现。HGE gain 并非来自 ensemble diversity，而是被最强模型 Qwen3-14B 所主导。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-dir-i2-single-model-baselines.md"
+}

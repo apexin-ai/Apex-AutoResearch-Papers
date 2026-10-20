@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "45469df70ae9ca518a26",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment d126 70b sica",
+  "task_key": "worker_experiment_d126-70b-sica_20260521T080236",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_d126-70b-sica_20260521T080236.log",
+    "occurrence": 1,
+    "bytes": 1059008,
+    "sha256": "10c47a4da7f9f201f23a902ea966352db19a5052e79c38f11a8ad25c24a068e6"
+  },
+  "statistics": {
+    "messages": 448,
+    "user_turns": 2,
+    "tool_calls": 161,
+    "roles": {
+      "log": 1,
+      "system": 39,
+      "record": 1,
+      "assistant": 82,
+      "tool_call": 161,
+      "tool_result": 161,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 28,
+      "chunks": [
+        {
+          "path": "45469df70ae9ca518a26-part-0001.json",
+          "message_count": 28
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 386,
+      "chunks": [
+        {
+          "path": "45469df70ae9ca518a26-part-0001.json",
+          "message_count": 152
+        },
+        {
+          "path": "45469df70ae9ca518a26-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "45469df70ae9ca518a26-part-0003.json",
+          "message_count": 54
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 34,
+      "chunks": [
+        {
+          "path": "45469df70ae9ca518a26-part-0003.json",
+          "message_count": 34
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-d126-70b-sica.md"
+}

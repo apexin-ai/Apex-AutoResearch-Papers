@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56734ee82026eea81f3f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "figure fig1 fig3 paperbanana v2",
+  "task_key": "worker_figure_fig1-fig3-paperbanana-v2_20260524T130438",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_figure_fig1-fig3-paperbanana-v2_20260524T130438_result.json",
+    "occurrence": 1,
+    "bytes": 93,
+    "sha256": "09ee02949a61a88be625887fb20ddd360499b0ac739268ebe8b5656601fb8822"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已完成，两张图的 PNG + PDF 已保存到 `docs/paper/figures/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig1-fig3-paperbanana-v2.md"
+}

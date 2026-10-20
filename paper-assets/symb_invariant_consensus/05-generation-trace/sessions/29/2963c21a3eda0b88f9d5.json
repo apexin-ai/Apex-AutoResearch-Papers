@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2963c21a3eda0b88f9d5",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag exp054 exit check",
+  "task_key": "worker_diag_exp054-exit-check_20260519T024240",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_exp054-exit-check_20260519T024240_result.json",
+    "occurrence": 1,
+    "bytes": 697,
+    "sha256": "bdb249542b68d3f2bc822e28e0f3e1bed168e18fc10e996845d172919a3fba56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:2 已释放（0MiB, 49W idle）。\n\n## exp-054 结果总结\n\n| 指标 | 值 |\n|---|---|\n| 状态 | **完成 (204/204)** |\n| 结论 | **negative** |\n| SICA accuracy | 55.4% (113/204) |\n| SC accuracy | 54.9% (112/204) |\n| delta | **+0.49pp** (统计不显著) |\n| discordant_b (SICA only) | 5 |\n| discordant_c (SC only) | 4 |\n| McNemar chi2 | 0.1111 |\n| McNemar p | **0.7389** |\n| extraction rate | 97.3% |\n| contradiction rate | 3.0% |\n| wall time | 83 min |\n\nT=1.0 相比 parent exp-033 (T=0.7, delta=+4.9pp)，delta 大幅缩小至 +0.49pp 且 p=0.74 完全不显著。提高温度未能增大 SICA 优势，反而基本抹平了差异。cuda:2 已释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp054-exit-check.md"
+}

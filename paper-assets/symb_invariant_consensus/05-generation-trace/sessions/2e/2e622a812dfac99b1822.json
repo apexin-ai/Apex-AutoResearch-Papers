@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e622a812dfac99b1822",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code exp5 backward verification",
+  "task_key": "worker_code_exp5-backward-verification_20260518T180900",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp5-backward-verification_20260518T180900_result.json",
+    "occurrence": 1,
+    "bytes": 1285,
+    "sha256": "174ffa90e1a69feb276a86d275cf79fc3fe705b7b7a51c7a691f6a37189490f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dry-run 验证报告\n\n### 检查项全部通过\n\n| 检查项 | 结果 |\n|--------|------|\n| python3 + z3 import | z3 v4.15.4 |\n| openai import | OK |\n| 数据文件 `folio_full.json` | 204 problems |\n| 模型路径 `Qwen2.5-14B-Instruct` | 存在 |\n| 已有 traces 目录 | 204 files |\n| FOL 解析 (4 条 premise) | 4/4 parsed |\n| Z3 SAT 检查 (premises satisfiable) | sat |\n| Z3 UNSAT 检查 (Inactive(x)∧Students(x) 与 premises 矛盾) | unsat |\n| Z3 entailment | Unknown (正确) |\n| `parse_problem_text` | OK |\n| `_parse_response` (含 code block) | OK |\n| `normalize_logic_answer` | OK |\n| SC baseline 计算 | 0.75 |\n| 1-problem K=1 端到端 pipeline (Mistral-7B) | 3.5s, 得到 True=2/False=1/Unknown=-1 的区分性打分 |\n\n### 产出文件\n\n- **主脚本**: `/root/symb_invariant_consensus/backward_verification.py` (634 行)\n- **启动脚本**: `/root/symb_invariant_consensus/scripts/run_backward_verification.sh`\n- **输出目录**: `results/exp05_backward_verification/` (已创建)\n\n### 运行命令\n\n```bash\nbash scripts/run_backward_verification.sh 0 8000\n```\n\n当前 port 8000 运行的是 Mistral-7B, 启动脚本会自动检测并启动 Qwen2.5-14B (如果端口被占用需先停掉 Mistral 或换端口)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp5-backward-verification.md"
+}

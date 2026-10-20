@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3becf7172a8ccb7220e2",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "data logic domain prep",
+  "task_key": "worker_data_logic_domain_prep_20260515T220240",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_data_logic_domain_prep_20260515T220240_result.json",
+    "occurrence": 1,
+    "bytes": 2342,
+    "sha256": "de59c54e7a56962aac44649118da25400ade5949cd0550fd398ea8cfe89ca617"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个数据文件已就位。以下是完整报告。\n\n---\n\n## 产出文件\n\n| 文件 | 数量 | 答案分布 | 说明 |\n|------|------|----------|------|\n| `data/proofwriter_30.json` | 30 | T:10 F:10 U:10 | 全 D5（D3 数据 HF Hub 不可用，本地仅有 D5） |\n| `data/folio_30.json` | 30 | T:10 F:10 U:10 | 含 FOL 标注（premises_fol, conclusion_fol） |\n\n格式均兼容 `run_full_mvp.py`：`{id, problem, solution, answer, level, dataset}`。\n\n## 代码适配需求清单\n\n### 已有支持（无需改动）\n- **Pipeline 域检测**：`sica/pipeline.py:59` 从 `dataset` 字段自动识别 folio/proofwriter/math\n- **独立 Prompt 模板**：`trace_generator.py` 有 `LOGIC_PROMPT`、`FOLIO_PROMPT`，都要求 `\\boxed{True/False/Unknown}`\n- **答案规范化**：`normalize_logic_answer()` 映射 \"yes\"→True, \"uncertain\"→Unknown 等变体\n- **逻辑答案分组**：`_group_logic_answers()` 用大小写无关精确匹配（不走 math 等价判断）\n- **约束提取**：`LOGIC_EXTRACTION_PROMPT` 使用布尔断言格式（`kind_anne == True`）\n- **数据 Loader**：`proofwriter_loader.py` / `folio_loader.py` 都有 pipeline 格式函数\n\n### 需要修改（4 处）\n\n1. **`run_full_mvp.py` — 缺 FOLIO 加载入口**\n   - `load_all_problems()` (L32) 只接收 math_path + pw_path，无 folio_path\n   - 需新增 `--folio-data` 参数 + FOLIO 加载逻辑\n\n2. **`run_full_mvp.py` — 正确率判定用 `is_equiv()`**\n   - L~250: `sica_correct = is_equiv(sica_answer, prob[\"answer\"])`\n   - `is_equiv()` (`utils/math_equiv.py`) 是纯数学比较器（LaTeX normalize → sympy → numeric）\n   - 逻辑域碰巧能工作（\"True\"==\"True\"），但若模型输出 \"true\"（小写）就会判错\n   - 需加逻辑域分支：对 proofwriter/folio 先调 `normalize_logic_answer()` 再比较\n\n3. **`baselines/self_consistency.py` — 分组用 math 等价**\n   - `group_equivalent_answers()` 做数学等价检查\n   - 逻辑域应该用 `_group_logic_answers()`（大小写无关精确匹配）\n   - 当前因答案已规范化而碰巧正确，但不健壮\n\n4. **`--no-proofwriter` 语义需调整**\n   - L229: `pw_path = None if args.no_proofwriter else args.pw_data`\n   - 如果同时跑 FOLIO + ProofWriter，需要独立的 `--no-folio` 开关"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-logic-domain-prep.md"
+}

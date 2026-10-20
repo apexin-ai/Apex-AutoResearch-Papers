@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e92330a0c828b3dd01d7",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "computation fleiss kappa",
+  "task_key": "worker_computation_fleiss_kappa_20260519T025427",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_computation_fleiss_kappa_20260519T025427_result.json",
+    "occurrence": 1,
+    "bytes": 1255,
+    "sha256": "b14c7433390922967494622418d6fd77df6782a29de636cb99ec59ba514f350d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results saved to `artifacts/_project/data/fleiss_kappa_results.yaml`.\n\n**Summary of computed results:**\n\n| Experiment | Model | Dataset | κ (Fleiss) | Eff-K | Unanimous |\n|---|---|---|---|---|---|\n| exp-026/041 | Qwen2.5-14B | FOLIO-204 | 0.7442 | 1.306 | 58.3% |\n| exp-038 | Qwen2.5-14B | LogiQA-200 | 0.8210 | 1.196 | 63.0% |\n| exp-052 | Mistral-7B | FOLIO-204 (seed123) | 0.4122 | 2.168 | 14.2% |\n| exp-053 | Mistral-7B | FOLIO-204 (seed456) | 0.4013 | 2.216 | 14.2% |\n\n**Validation:** exp-026 computed κ=0.7442 vs reference κ≈0.739 (delta +0.005). Match confirmed.\n\n**5 experiments unavailable:**\n- **exp-033, exp-046**: on westd-25068, SSH key auth failed (no config entry existed; added one but key not authorized)\n- **exp-020**: likely on decommissioned westd-32608\n- **exp-035, exp-027**: data not found on westd-16639 or locally\n\n**Note on exp-026 vs exp-041:** Both map to the same directory (`exp036_qwen25_14b_folio204` on westd-16639). The registry names it `exp-041-14b-folio204-16639`. If these are truly separate runs, the second one's data wasn't found.\n\nTo compute the remaining 5 experiments, westd-25068 SSH access needs to be restored, and exp-020/035/027 data needs to be located or re-synced."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/computation-fleiss-kappa.md"
+}

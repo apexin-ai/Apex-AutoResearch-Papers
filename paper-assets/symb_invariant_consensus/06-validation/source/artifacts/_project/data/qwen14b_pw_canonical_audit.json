@@ -1,0 +1,118 @@
+{
+  "canonical_sc": {
+    "value": 74.0,
+    "correct": 444,
+    "n": 600,
+    "tiebreaking": "alphabetical",
+    "source_experiment": "exp032_qwen25_14b_pw600 (westd-16639)",
+    "ties_count": 21,
+    "ties_where_tiebreak_matters": 12,
+    "k": 12,
+    "sica_accuracy": 71.5,
+    "sica_correct": 429
+  },
+  "other_sc_values": {
+    "75.17": {
+      "source": "sica_expanded_14b (westd-25068, offline)",
+      "correct": 451,
+      "reason_different": "Different trace generation run (earlier experiment, different random seeds/sampling). Server offline, cannot reverify."
+    },
+    "74.00": {
+      "source": "exp032_qwen25_14b_pw600 (westd-16639) — THIS IS CANONICAL",
+      "correct": 444,
+      "reason_different": "Alphabetical tiebreaking on exp032 K=12 traces. 21 ties (mostly 6:6), 12 affected by tiebreaking method."
+    },
+    "73.50": {
+      "source": "exp032_qwen25_14b_pw600 with first-seen tiebreaking",
+      "correct": 441,
+      "reason_different": "Same traces as 74.00%, but Python dict-order (first-seen) tiebreaking instead of alphabetical."
+    },
+    "70.33": {
+      "source": "exp034_qwen25_14b_proofwriter intermediates (westd-25068, offline)",
+      "correct": 422,
+      "reason_different": "Third distinct trace generation run. exp034 crashed at 93/600 in registry but intermediates may contain prior run data. Server offline."
+    }
+  },
+  "downstream_impact": {
+    "mcnemar_sc_vs_sica": {
+      "a_both_correct": 421,
+      "b_sc_correct_sica_wrong": 23,
+      "c_sc_wrong_sica_correct": 8,
+      "d_both_wrong": 148,
+      "p_value": 0.010674,
+      "significant": true,
+      "note": "SC significantly better than SICA (McNemar exact, two-sided)"
+    },
+    "tost": {
+      "delta_pp": 2.5,
+      "se_pp": 0.928,
+      "margin_pp": 2.0,
+      "p_value": 0.704993,
+      "old_classification": "NOT_EQUIVALENT",
+      "new_classification": "NOT_EQUIVALENT",
+      "note": "Delta (2.5pp) exceeds ±2pp margin; SC and SICA are NOT equivalent. Classification unchanged."
+    },
+    "cil_qwen14b_deberta": {
+      "old_cil": -0.0827,
+      "new_cil": -0.2072,
+      "old_gain": 0.33,
+      "new_gain": 0.33,
+      "new_complementarity": {
+        "a_both_right": 253,
+        "b_sc_right_deberta_wrong": 191,
+        "c_sc_wrong_deberta_right": 77,
+        "d_both_wrong": 79
+      },
+      "old_complementarity_source": "exp034 (70.33% SC base, incorrect)",
+      "new_complementarity_source": "exp032 with alphabetical tiebreaking (74.0% SC base)",
+      "p_v_correct_given_g_wrong": 0.4936,
+      "p_v_correct_given_g_correct": 0.5698,
+      "combo_w3_accuracy": 0.7433,
+      "note": "combo_gain_w3 unchanged at 0.33pp because combo_w3 acc (74.33%) and SC baseline (74.0%) were already correct in prior fix"
+    },
+    "cil_qwen14b_sica": {
+      "old_cil": -3.5272,
+      "new_cil": -4.2087,
+      "old_gain": 0.5,
+      "new_gain": -2.5,
+      "new_complementarity": {
+        "a_both_right": 421,
+        "b_sc_right_sica_wrong": 23,
+        "c_sc_wrong_sica_right": 8,
+        "d_both_wrong": 148
+      },
+      "old_complementarity_source": "exp034 (SICA=70.83%, SC=70.33%, both from crashed run)",
+      "new_complementarity_source": "exp032 (SICA=71.50%, SC=74.00%)",
+      "p_v_correct_given_g_wrong": 0.0513,
+      "p_v_correct_given_g_correct": 0.9482,
+      "note": "Major change: gain flips from +0.50pp to -2.50pp because canonical SC (74.0%) > SICA (71.5%)"
+    },
+    "cil_correlation": {
+      "n_pairs": 8,
+      "old_spearman_rho": 0.8095,
+      "old_spearman_p": 0.0149,
+      "new_spearman_rho": 0.881,
+      "new_spearman_p": 0.0039,
+      "old_pearson_r": 0.7994,
+      "old_pearson_p": 0.0173,
+      "new_pearson_r": 0.8481,
+      "new_pearson_p": 0.0078,
+      "note": "Correlation IMPROVED after fixing Qwen14B pairs. Both Spearman and Pearson stronger and more significant."
+    }
+  },
+  "needs_gpu_rerun": false,
+  "reason": "exp032 on westd-16639 has complete K=12 traces (600 intermediates), full SICA extraction/MaxSAT pipeline results, and NLI combo per-question data. All downstream metrics recomputed from this single consistent data source. No need to re-run anything on GPU.",
+  "paper_impact": {
+    "main_table": "Qwen2.5-14B PW-D5 row: SC must change from 75.17% to 74.00%. SICA should change from 72.67% to 71.50%. Delta stays -2.50pp. p-value stays ~0.011.",
+    "solutions_table": "Qwen2.5-14B row already uses 74.00% — consistent.",
+    "cil_table": "Update Qwen14B+DeBERTa CIL from -0.08 to -0.21. Update Qwen14B+SICA CIL from -3.53 to -4.21. Update Qwen14B+SICA gain from +0.50 to -2.50.",
+    "correlation_claim": "CIL-gain correlation improves: Spearman 0.81→0.88 (p=0.004), Pearson 0.80→0.85 (p=0.008). Strengthens the paper's claim.",
+    "k_sensitivity_appendix": "Baseline SC 74.00% already used — consistent."
+  },
+  "audit_metadata": {
+    "date": "2026-05-21",
+    "server_used": "westd-16639",
+    "data_source": "exp032_qwen25_14b_pw600/results.json + qwen14b_pw_nli_combo/results.json",
+    "scipy_version_used": true
+  }
+}

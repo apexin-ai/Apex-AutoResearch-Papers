@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f97e0d6f55c31cf1404a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis gemini interim metrics",
+  "task_key": "worker_analysis_gemini-interim-metrics_20260521T200957",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_gemini-interim-metrics_20260521T200957_result.json",
+    "occurrence": 1,
+    "bytes": 114,
+    "sha256": "c0743fd0e75bf65648917c976f77837e7d7295f574358eaa0f150257e5285de3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Extraction at 76/95 (~80%). Will check back in 3 minutes and run metrics computation once complete."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gemini-interim-metrics.md"
+}

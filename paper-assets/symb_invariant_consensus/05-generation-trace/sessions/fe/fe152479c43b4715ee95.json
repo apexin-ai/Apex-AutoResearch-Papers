@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe152479c43b4715ee95",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper writing abstract",
+  "task_key": "worker_paper_writing_abstract_20260517T184642",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_abstract_20260517T184642_result.json",
+    "occurrence": 1,
+    "bytes": 385,
+    "sha256": "4b7e722662d3321208b7135766d3bf7814a7733e39942c12d524266912b42eb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Abstract 已写入 `docs/paper/abstract.tex`。224 words，零 dash，零 -ing 句尾。结构：问题（SC 的局限）→ 方法（SICA）→ 负面结果（无显著提升）→ 因果解释（capability trap，803/804 退化）→ oracle 对照（+8.82pp）→ 实用诊断（$C_0$）。所有缩写首次出现均有定义，关键数字限于 3 个核心 claim。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-abstract-copy-3.md"
+}

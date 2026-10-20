@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "445ad32e0bd7665f797d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis aime bias ratio",
+  "task_key": "worker_analysis_aime-bias-ratio_20260520T134142",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_aime-bias-ratio_20260520T134142_result.json",
+    "occurrence": 1,
+    "bytes": 1201,
+    "sha256": "210b075b60e81a193bdaaab4359979390938529856bafff3208d0d5cd80f7360"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**AIME bias ratio 是结构性不可计算的**，原因是 QwQ-32B 在 22 道 AIME 题上的 answer diversity = 0%（每题只有 1 个候选答案，所有 traces 收敛到同一数值），FOLIO 风格的 bias ratio 公式退化为 1.0/0.0 = undefined。\n\n核心发现：\n\n| 指标 | FOLIO (Mistral-7B, N=204) | AIME (QwQ-32B, N=22) |\n|------|---------------------------|----------------------|\n| Bias ratio (wrong) | **4.97×** | **undefined** |\n| Multi-candidate rate | 高 (3-category) | **0%** |\n| SICA ≡ SC | 否 (SICA +4.9pp) | **是 (gap=0)** |\n| 错误题的失败模式 | 约束偏向多数错答 | 约束提取完全失败 (6/22=27%) |\n\n**关键交叉因子**：FOLIO 用 Mistral-7B（弱模型），AIME 用 QwQ-32B（强推理模型）。QwQ-32B 在 ProofWriter（逻辑域，同 FOLIO 答案空间）上也几乎无 diversity（effective C0=2.6%）。因此零 diversity 是**模型效应**（强推理模型→确定性输出），而非任务效应。\n\n**结论**：AIME 跨任务泛化 **inconclusive**。需要用弱模型（如 14B/7B）跑 AIME 才能解耦模型和任务的影响。\n\n产出已保存: `art_20260520_33967c` (JSON)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-aime-bias-ratio.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9dd4069d8783a53a6050",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "figure fig1 pipeline",
+  "task_key": "worker_figure_fig1_pipeline_20260517T172412",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_figure_fig1_pipeline_20260517T172412_result.json",
+    "occurrence": 1,
+    "bytes": 374,
+    "sha256": "64eef2047112470de6280b710ccd3c4600d1f5cad7fcc1b56717c823adacd4e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。PDF 已生成并注册：\n\n- 本地路径: `artifacts/figures/paper/fig1_pipeline.pdf` (37.8 KB)\n- Artifact ID: `art_20260517_6a54d2`\n\n图中包含三条路径：SICA pipeline（蓝色，4 个 stage）、SC baseline（灰色，majority vote）、Oracle 分支（橙色虚线）。未同步到远程服务器（当前 session 无 SSH 权限）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig1-pipeline-copy-2.md"
+}

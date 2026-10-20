@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf7f2fa705a43bb99d5c",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "research paper prep d012",
+  "task_key": "worker_research_paper-prep-d012_20260516T044413",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_paper-prep-d012_20260516T044413_result.json",
+    "occurrence": 1,
+    "bytes": 706,
+    "sha256": "5bec8d7051c4caab08fef4649b4cb88075d44262a91864dd934f6febca3d060c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审查报告已保存为 `art_20260516_351c89`。\n\n核心结论：**论文准备严重不足。** paper_framing.md、writing_plan.yaml、literature_map.yaml 三个关键文件全部不存在。\n\n关键发现：\n- **实验侧相对就绪**：sica_d012_14b 正在运行，C0 预检已 PASS (46%)，QwQ-32B 负面结果充分\n- **论文侧几乎空白**：无叙事框架、无写作计划、无文献地图、无 LaTeX 模板、无图表\n- **消融缺口**：D012 是单点结果，缺 K/T 消融和额外 baseline (USC/CRAFT)\n- **时间风险**：May 19 → May 25 ARR 只有 6 天，若冲 EMNLP 需要 D012 PASS 后立即全速启动写作；否则退守 AAAI 2027 (Aug 1) 更现实"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-prep-d012.md"
+}

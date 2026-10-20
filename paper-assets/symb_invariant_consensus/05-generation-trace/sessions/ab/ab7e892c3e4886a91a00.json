@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab7e892c3e4886a91a00",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "computation sc tiebreak revalidation",
+  "task_key": "worker_computation_sc-tiebreak-revalidation_20260519T055156",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_computation_sc-tiebreak-revalidation_20260519T055156_result.json",
+    "occurrence": 1,
+    "bytes": 4151,
+    "sha256": "97d0da3bf23d8e37da0ee1735045f648aea4376ce21ecf11df15f5f0ffc6db01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## SC Tiebreaking 全面重验结果\n\n### 完整对比表\n\n| Exp | Model | Dataset | N | OldSC% | NewSC% | Change | SICA% | OldΔ | NewΔ | #Affected |\n|-----|-------|---------|---|--------|--------|--------|-------|------|------|-----------|\n| **exp-033** | Mistral-7B | FOLIO-204 | 204 | 54.41 | **55.88** | **+1.47** | 59.31 | +4.90 | +3.43 | 7 |\n| exp-052 | Mistral-7B | FOLIO-204 | 204 | 53.92 | **54.41** | **+0.49** | 57.35 | +3.43 | +2.94 | 2 |\n| exp-053 | Mistral-7B | FOLIO-204 | 204 | 56.37 | **55.88** | **-0.49** | 55.88 | -0.49 | 0.00 | 1 |\n| exp-057 | Mistral-7B | FOLIO-204 | 204 | 57.35 | **58.33** | **+0.98** | 56.86 | -0.49 | -1.47 | 6 |\n| exp-058 | Mistral-7B | FOLIO-204 | 204 | 57.84 | **58.33** | **+0.49** | 57.35 | -0.49 | -0.98 | 3 |\n| exp-054 | Mistral-7B | FOLIO-204 | 204 | 54.90 | **55.39** | **+0.49** | 55.39 | +0.49 | 0.00 | 6 |\n| exp-051-k4 | Mistral-7B | FOLIO-204 | 204 | 54.41 | 54.41 | 0.00 | 52.94 | -1.47 | -1.47 | 18 |\n| exp-051-k8 | Mistral-7B | FOLIO-204 | 204 | 57.35 | **58.33** | **+0.98** | 56.37 | -0.98 | -1.96 | 5 |\n| exp-051-k16 | Mistral-7B | FOLIO-204 | 204 | 55.88 | 55.88 | 0.00 | 57.35 | +1.47 | +1.47 | 5 |\n| exp-051-k20 | Mistral-7B | FOLIO-204 | 204 | 57.35 | 57.35 | 0.00 | 59.31 | +1.96 | +1.96 | 2 |\n| exp-026 | Qwen2.5-14B | FOLIO-204 | 204 | 75.00 | **75.49** | **+0.49** | 74.51 | -0.49 | -0.98 | 4 |\n| exp-027 | Qwen3-14B | FOLIO-204 | 204 | 83.82 | **84.80** | **+0.98** | 84.31 | +0.49 | -0.49 | 2 |\n| exp-046 | Mistral-7B | PW-600 | 600 | 39.33 | 39.33 | 0.00 | 36.50 | -2.83 | -2.83 | 11 |\n| exp-034 | Qwen2.5-14B | PW-600 | 600 | 70.33 | **71.33** | **+1.00** | 70.83 | +0.50 | -0.50 | 8 |\n| exp-039 | Qwen2.5-14B | PW-600 | 600 | 73.50 | **74.00** | **+0.50** | 71.50 | -2.00 | -2.50 | 12 |\n| exp-020 | LLaMA-8B | FOLIO-204 | — | — | — | — | — | — | — | **N/A** |\n\nΔ = SICA% - SC% (正值 = SICA 优于 SC)\n\n### 关键发现\n\n**11/15 个实验 SC 发生变化**，其中 10 个上升、1 个下降（exp-053 -0.49%）。变化范围 -0.49pp 到 +1.47pp。\n\n**对论文核心论点 (SICA > SC) 的影响：**\n- **exp-033（主实验）**：delta 从 +4.90pp 降至 +3.43pp，仍显著为正\n- exp-057 (T=0.3)：delta 从 -0.49pp 恶化至 -1.47pp（SC 反超 SICA 加剧）\n- exp-058 (T=0.5)：delta 从 -0.49pp 恶化至 -0.98pp\n- exp-051-k8：delta 从 -0.98pp 恶化至 -1.96pp\n- exp-053：delta 从 -0.49pp 变为 0.00pp（改善）\n- exp-054：delta 从 +0.49pp 变为 0.00pp\n\n**4 个实验净变化为 0**（exp-051-k4/k16/k20, exp-046）：虽然有 ties 被重新判定，但正确与错误的翻转刚好抵消。\n\n### 受影响题目明细（仅列出影响 SC 正确率的题目）\n\n**exp-033** (+1.47%, 5 gained / 2 lost):\n| 题目ID | Old→New | GT | 结果 | 票数分布 |\n|--------|---------|-----|------|---------|\n| folio_42 | Unknown→True | True | GAINED | {Unknown:5, True:5} |\n| folio_65 | True→False | True | LOST | {True:5, False:5, Unknown:2} |\n| folio_83 | Unknown→False | False | GAINED | {Unknown:5, False:5, ...} |\n| folio_99 | Unknown→True | Unknown | LOST | {Unknown:5, True:5, ...} |\n| folio_100 | Unknown→True | True | GAINED | {Unknown:4, True:4, ...} |\n| folio_157 | Unknown→False | False | GAINED | {Unknown:5, False:5} |\n| folio_163 | Unknown→False | False | GAINED | {Unknown:5, False:5} |\n\n**exp-053** (-0.49%, 0 gained / 1 lost):\n| folio_16 | Unknown→False | Unknown | LOST | {Unknown:6, False:6} |\n\n### 注意事项\n\n1. **exp-020（LLaMA-8B FOLIO-204）**：数据在 westd-32608，不可达，无法重验\n2. **exp-027 registry 值有误**：task 中列的 80.39% 实际应为 83.82%（文件和 registry 一致）\n3. **exp-034**：registry 标注 n=93 crashed，但结果文件含 600 条完整数据\n4. **Alphabetical tie-breaking 的系统性偏置**：FOLIO 答案空间 {False, True, Unknown} 中，\"False\" 字母序最靠前，多数 tie 将 \"Unknown\" 翻转为具体答案（False/True），整体倾向提升 SC\n\nJSON 结果已分别保存至两台服务器的 `results/sc_tiebreak_revalidation_{25068,16639}.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/computation-sc-tiebreak-revalidation.md"
+}

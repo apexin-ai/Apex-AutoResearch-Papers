@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc3a52ec8a1ffc377d26",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment r1 distill extract final",
+  "task_key": "worker_experiment_r1-distill-extract-final_20260521T171123",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_r1-distill-extract-final_20260521T171123_result.json",
+    "occurrence": 1,
+    "bytes": 769,
+    "sha256": "d5bace3f92ff4273cdd15cd21197f246aabd802cf50e65119ca918857ad820d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All metrics computed. Here's the 93-题 vs 204-题 comparison table:\n\n| Metric | 93 题 | 204 题 | Δ |\n|---|---|---|---|\n| **SC Accuracy** | 0.7527 | 0.7451 | −0.76 pp |\n| **SICA Accuracy** | 0.7849 | 0.7647 | −2.02 pp |\n| **Δ(SICA−SC)** | +3.22 pp | +1.96 pp | −1.26 pp |\n| **Mean BR** | 2.97 | 2.85 | −0.12 |\n| **Median BR** | 2.00 | 2.00 | 0.00 |\n| **Process-κ (TF-IDF)** | 0.2386 | 0.2477 | +0.009 |\n| **Answer Fleiss' κ** | 0.7030 | 0.6944 | −0.009 |\n\n要点：\n- 从 93→204 题，SICA 依然优于 SC，但 Δ 从 +3.22pp 缩到 +1.96pp\n- 两个 accuracy 都略降，说明新增 111 题整体偏难\n- BR、Process-κ、Fleiss' κ 基本稳定\n- Extraction rate 93.3%，14602 total constraints（去重后 8653）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-r1-distill-extract-final.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f78b7cf5e38fcb60d24",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "check qwen3 progress count",
+  "task_key": "worker_check_qwen3-progress-count_20260524T093456",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_qwen3-progress-count_20260524T093456_result.json",
+    "occurrence": 1,
+    "bytes": 299,
+    "sha256": "bbecd526ac9881f748f56b5a998e18c01694985bdf2aae77eb90a27d830703cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 seed 的进度：\n\n| Seed | 完成数 | 百分比 |\n|------|--------|--------|\n| 123 | 538/600 | 89.7% |\n| 456 | 536/600 | 89.3% |\n| 789 | 539/600 | 89.8% |\n\n三个 seed 进度接近，都在 ~90%，尚未有任何一个完成。剩余约 60-64 个 problem 待处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-qwen3-progress-count.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78e7cf1b3a99e4bcefc9",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code exp036b cross trace unsat",
+  "task_key": "worker_code_exp036b-cross-trace-unsat_20260518T185714",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp036b-cross-trace-unsat_20260518T185714_result.json",
+    "occurrence": 1,
+    "bytes": 1856,
+    "sha256": "a5f8c888a380db2cefefb681212a03aafaceb90598d5834cea4072c9f2372344"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-036b 结果\n\n### 核心数据\n\n| 指标 | 值 |\n|---|---|\n| 总问题数 | 204 |\n| 单答案(跳过) | 120 (58.8%) |\n| 多答案(检查) | 84 |\n| 有 cross-UNSAT 的问题 | 9/84 (10.7%) |\n| Pair-level cross-UNSAT rate | **8.7%** (11/126 pairs) |\n| Within-trace UNSAT baseline | 0.9% |\n\nCross-trace UNSAT rate (8.7%) 约为 within-trace baseline 的 **~10x**。\n\n### Pair 结果分布\n\n| 结果 | 数量 | 占比 |\n|---|---|---|\n| UNSAT | 11 | 8.7% |\n| SAT | 46 | 36.5% |\n| Empty (一侧无公式) | 69 | 54.8% |\n\n### 按答案对类型\n\n- **False-True**: unsat=7, sat=8, empty=23 → UNSAT rate 最高 (7/15 non-empty = 46.7%)\n- **False-Unknown**: unsat=3, sat=22, empty=21\n- **True-Unknown**: unsat=1, sat=16, empty=23\n\n### 变量共享瓶颈\n\n- 平均共享变量: 2.7 个\n- **71/126 pairs (56.4%) 共享零变量** → Z3 无法检测矛盾\n- 这是 cross-trace UNSAT 率不更高的主要原因：不同 trace 的符号化用不同变量名\n\n### 准确率影响\n\n| 方法 | 准确率 |\n|---|---|\n| SC baseline | 75.0% |\n| SICA | 74.5% |\n| SICA+CrossUT (bonus=5) | 74.5% |\n\n只产生 1 个 flip (folio_125: True→False, gt=Unknown)，neutral。因为只有 9 个问题有 UNSAT 信号，调整覆盖面太小。\n\n### 关键发现\n\n1. **Cross-trace UNSAT rate ~10x 高于 within-trace**，验证了核心假设：不同答案的约束确实更容易矛盾\n2. **主要瓶颈是变量命名不一致**：56% 的 answer pairs 共享零变量，Z3 无法跨 trace 比较\n3. **False-True 对最具辨别力**：non-empty pairs 中 46.7% 是 UNSAT\n4. **对准确率无直接提升**：UNSAT 信号太稀疏（仅覆盖 9/204 问题）\n\n### 产出文件\n- `/root/symb_invariant_consensus/cross_trace_unsat.py`\n- `/root/symb_invariant_consensus/results/exp036b_cross_trace_unsat.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp036b-cross-trace-unsat.md"
+}

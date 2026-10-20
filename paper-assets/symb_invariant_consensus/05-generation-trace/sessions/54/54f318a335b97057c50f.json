@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54f318a335b97057c50f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper fig1 v9 paperbanana run",
+  "task_key": "worker_paper_fig1-v9-paperbanana-run_20260525T014221",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_fig1-v9-paperbanana-run_20260525T014221_result.json",
+    "occurrence": 1,
+    "bytes": 182,
+    "sha256": "8e8674108efd89d64a68e980ed0ae5b757c5adec6305256a5783c92578da4cb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor 已超时自动关闭，PaperBanana 任务早已完成，无需重新启动。\n\n等你确认是否需要修复 SC 分支的重复 \"Majority Vote\" 问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig1-v9-paperbanana-run.md"
+}

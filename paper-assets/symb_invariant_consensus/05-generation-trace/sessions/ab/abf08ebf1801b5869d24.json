@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "abf08ebf1801b5869d24",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 035 results",
+  "task_key": "worker_analysis_exp-035-results_20260518T190358",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-035-results_20260518T190358_result.json",
+    "occurrence": 1,
+    "bytes": 2029,
+    "sha256": "0e25b695569391d8e841b62e9e9bf68905d739a993703afed009ea228d213e75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。以下是完整分析报告。\n\n---\n\n## exp-035 分析报告：Qwen2.5-7B-Instruct FOLIO-204 SICA vs SC\n\n### 实验状态\n- **EXIT_CODE=0**，正常完成\n- 0 ERROR / 0 Traceback\n- 203/204 题有结果（1 题缺失），JSON summary 是 stale 的（n=195 时计算），以下所有数字从 results 数组 203 条逐题计算\n\n### 核心指标\n\n| 指标 | 值 |\n|---|---|\n| **SC accuracy** | **77.34%** (157/203) |\n| **SICA accuracy** | **76.85%** (156/203) |\n| **Delta (SICA - SC)** | **-0.49pp** (-1 problem) |\n| McNemar p-value | **1.000** (完全不显著) |\n| Discordant pairs | b=1 (SICA-only), c=2 (SC-only) |\n| C0 (non-unanimous rate) | **0.5517** (112/203) |\n| Extraction rate | 98.19% |\n| Contradiction rate | 1.58% (60/203 problems) |\n| Constraints | 12,950 total / 6,515 unique (dedup 50.3%) |\n| Wall time | 78.2 min (avg 23.1s/problem) |\n\n### Baseline 对比\n\n| 实验 | 模型 | SC | SICA | Delta | C0 |\n|---|---|---|---|---|---|\n| exp-001/026 | Qwen2.5-14B | 75.49% | 74.51% | -0.98pp | — |\n| exp-004 | Qwen2.5-7B (D012 pilot) | — | — | 0 | — |\n| **exp-035** | **Qwen2.5-7B** | **77.34%** | **76.85%** | **-0.49pp** | **0.55** |\n\n### 结论：**Negative**（假设验证通过）\n\n1. **SICA 无法 outperform SC on 7B**：delta=-0.49pp，p=1.0，仅 3 个 discordant pairs。SICA 和 SC 在 203 题中有 200 题给出相同正误结果，差异极小。\n\n2. **C0 确实更高**（0.55 vs 14B 通常更低），说明 7B 模型的 trace 多样性更大，但这没有转化为 SICA 优势——符合假设中\"constraint quality 更差\"的预期。\n\n3. **意外发现**：7B SC (77.34%) 高于 14B SC (75.49%)。这可能因为：(a) 203 vs 204 题的微小差异；(b) FOLIO 数据集特性使 7B 不劣于 14B（可能 14B 在某些题上过度推理）。\n\n4. **Capability trap 进一步确认**：无论 7B 还是 14B，SICA 在 FOLIO 上都无法超过 SC，constraint extraction 的质量不足以提供额外信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-035-results.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "634ebade7d7d4ab869e2",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra kill vllm 16639 cuda2",
+  "task_key": "worker_infra_kill-vllm-16639-cuda2_20260519T061935",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_kill-vllm-16639-cuda2_20260519T061935_result.json",
+    "occurrence": 1,
+    "bytes": 247,
+    "sha256": "d77a34d51e689e78def68d22cfb60c222d5a0526628ccd46ece55e3fb6b31cb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:2 已完全释放**，显存 0MiB / 97887MiB，无进程占用。\n\n当前 GPU 状态：\n- GPU 0: 空闲 (0MiB)\n- GPU 1: 占用 ~88GB (PID 7589, vLLM)\n- **GPU 2: 已释放 (0MiB)**\n- GPU 3: 占用 ~88GB (PID 76474, vLLM)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-vllm-16639-cuda2.md"
+}

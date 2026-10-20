@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1bb062f75505bc1dd6a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper writing introduction",
+  "task_key": "worker_paper_writing_introduction_20260517T185728",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_introduction_20260517T185728_result.json",
+    "occurrence": 1,
+    "bytes": 852,
+    "sha256": "a1f9fef13e94e122ab6952bc90a3bc02aa03c0d6dd27b28419905c0a5ec03939"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction written to `docs/paper/introduction.tex`. ~1164 words, 5 paragraphs + 3-item contribution list.\n\nVerification summary:\n- 0 em-dashes, 0 en-dashes\n- 0 forbidden -ing participial phrase endings in running text\n- 0 banned words\n- All abbreviations expanded on first use (LLM, FOL, SC, SICA, MAX-SAT)\n- All citation keys verified against `references.bib`\n- Label changed from `sec:intro` to `sec:introduction` (no cross-references broken)\n- Oracle-led narrative: oracle +8.82pp presented as the positive story, self-extraction failure as the localized bottleneck\n- \"Capability trap\" introduced modestly in Para 4 as a characterization, not as a headline\n- C0 demoted to third contribution item\n- Key numbers included: +8.82pp, p=6.15e-5, 803/804 agreement, 48.7% overhead, 11.5% discriminative constraints, N>1,300"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-introduction-copy-3.md"
+}

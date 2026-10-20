@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8b41ecb9230072f314b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra exp054 deploy",
+  "task_key": "worker_infra_exp054-deploy_20260519T011823",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_exp054-deploy_20260519T011823_result.json",
+    "occurrence": 1,
+    "bytes": 263,
+    "sha256": "d4729ac56d5297329e8791b0277f0e9a0040927bc313a3442f67c242aa5d514a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nexp-054 (Mistral-7B, FOLIO-204, T=1.0):\n  vLLM: 复用 port 8002\n  GPU: cuda:2, 88277MiB/97887MiB loaded, 0% idle (等待请求中)\n  log: Processing folio_1 (2/204), ETA 120.9 min, avg 35.7s/prob\n  状态: SUCCESS\n  tmux: exp054_run\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp054-deploy.md"
+}

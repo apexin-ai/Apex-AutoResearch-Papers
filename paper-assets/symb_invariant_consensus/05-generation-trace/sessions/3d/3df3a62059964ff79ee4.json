@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3df3a62059964ff79ee4",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis mcnemar method experiments",
+  "task_key": "worker_analysis_mcnemar-method-experiments_20260520T001141",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_mcnemar-method-experiments_20260520T001141_result.json",
+    "occurrence": 1,
+    "bytes": 1420,
+    "sha256": "4e792c1e95bc87dbf6d0751a115e1e9903e0f677a12ed9fd6a883f10e60f3056"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## McNemar's Test 结果\n\n```\n=== McNemar's Paired Test: Method vs SC ===\n\nexp-076  Debate × FOLIO-204     (n=204, Δ=-18.63pp):\n  a=56  b=60  c=22  d=66\n  χ²=17.61, p=2.71e-05  [*** p<0.001]\n\nexp-078  Debate × LogiQA-200    (n=200, Δ=-23.0pp):\n  a=36  b=64  c=18  d=82\n  χ²=25.80, p=3.79e-07  [*** p<0.001]\n\nexp-075b Contrastive × FOLIO-204 (n=204, Δ=-9.31pp):\n  a=82  b=34  c=15  d=73\n  χ²=7.37,  p=0.0066    [**  p<0.01]\n\nexp-080  Contrastive × LogiQA-200 (n=200, Δ=-4.50pp):\n  a=75  b=25  c=16  d=84\n  χ²=1.98,  p=0.160     [n.s.]\n\nexp-074  ICG × FOLIO-204        (n=204, Δ=-1.96pp):\n  a=103 b=7   c=3   d=91\n  χ²=1.60,  p=0.206     [n.s.]\n```\n\n**关键发现**：\n\n| 方法 | 显著性 | 解读 |\n|------|--------|------|\n| Debate | **两个数据集都极显著 (p<0.001)** | 硬证据：Debate 显著伤害准确率 |\n| Contrastive | FOLIO 显著 (p<0.01)，LogiQA 不显著 (p=0.16) | 在 FOLIO 上有显著退化，LogiQA 上差异不够大 |\n| ICG | 不显著 (p=0.21) | Δ=-1.96pp 太小，discordant pairs 仅 10 个 (b=7,c=3)，检验力不足 |\n\nDebate 的 discordant pair 严重不对称（exp-076: b=60 vs c=22; exp-078: b=64 vs c=18），说明 Debate 大量翻转了 SC 原本答对的题目，同时很少纠正 SC 答错的题。\n\n结果已保存到 `artifacts/mcnemar_method_experiments.json` 并注册 (`art_20260520_087dc0`)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mcnemar-method-experiments.md"
+}

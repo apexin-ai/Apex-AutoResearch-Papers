@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "56a1ae8011d06ec0d1fc",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "exp alpha ablation 0 1",
+  "task_key": "worker_exp_alpha-ablation-0-1_20260523T193634",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_alpha-ablation-0-1_20260523T193634.log",
+    "occurrence": 1,
+    "bytes": 1050428,
+    "sha256": "27fee85f6439a0a4bcca5f2f9352dcb50f6dd336096fd4714cf73c800f23e456"
+  },
+  "statistics": {
+    "messages": 365,
+    "user_turns": 1,
+    "tool_calls": 140,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 3,
+      "assistant": 75,
+      "tool_call": 140,
+      "tool_result": 140,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 346,
+      "chunks": [
+        {
+          "path": "56a1ae8011d06ec0d1fc-part-0001.json",
+          "message_count": 169
+        },
+        {
+          "path": "56a1ae8011d06ec0d1fc-part-0002.json",
+          "message_count": 177
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "56a1ae8011d06ec0d1fc-part-0002.json",
+          "message_count": 3
+        },
+        {
+          "path": "56a1ae8011d06ec0d1fc-part-0003.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-alpha-ablation-0-1.md"
+}

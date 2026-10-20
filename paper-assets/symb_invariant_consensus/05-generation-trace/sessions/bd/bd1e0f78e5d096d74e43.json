@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd1e0f78e5d096d74e43",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra 70b westd25068 verify",
+  "task_key": "worker_infra_70b-westd25068-verify_20260521T170349",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_70b-westd25068-verify_20260521T170349_result.json",
+    "occurrence": 1,
+    "bytes": 919,
+    "sha256": "b133cc74467818738d5547d5bf3e8dee09b3cf0977302fb2e1b7234c9fe3a89f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**vLLM：已崩溃，未运行。** 根因是 `safetensors_rust.SafetensorError: Error while deserializing header: incomplete metadata, file not fully covered` — Qwen2.5-72B 的模型文件损坏（下载不完整），Worker_TP1 和 TP3 在加载权重时失败，引擎初始化崩溃。\n\n**Pipeline：未运行。** 无 pipeline 进程，`/tmp/70b_sica_pipeline.log` 不存在。`exp_70b_sica_bf16/exp_70b_results.json` 只有占位数据（12 个 SKIPPED 条目，标注 \"completed on westd-16639\"），没有实际 70B 推理结果。\n\n**GPU：4×H800 全空闲（0 MiB / 97887 MiB）。**\n\n**磁盘：** `/root/autodl-tmp` 122G used / 250G total（49%），模型文件在 `/root/autodl-tmp/models/Qwen2.5-72B-Instruct`。\n\n**结论：** 之前 Worker 的 72B BF16 部署失败了——模型权重文件损坏。需要重新下载 Qwen2.5-72B-Instruct 后再部署 vLLM。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-70b-westd25068-verify.md"
+}

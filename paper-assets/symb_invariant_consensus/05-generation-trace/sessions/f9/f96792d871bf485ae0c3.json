@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f96792d871bf485ae0c3",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra exp028b resume",
+  "task_key": "worker_infra_exp028b-resume_20260519T035853",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_exp028b-resume_20260519T035853_result.json",
+    "occurrence": 1,
+    "bytes": 987,
+    "sha256": "6644f3078f36e4a2d2a35ba4a39a53c3680a4f7a2f31d04381ccc04e7627ee18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n**exp-028b resume 已部署到 westd-16639**\n\n| 项目 | 详情 |\n|------|------|\n| 服务器 | westd-16639, cuda:2 |\n| vLLM tmux | `exp028b_vllm` (port 8002) |\n| 实验 tmux | `exp028b_run` |\n| 模型 | Qwen3-14B (thinking mode, 内置) |\n| 参数 | K=12, temp=0.7, max_tokens=16384, seed=42, max-model-len=32768 |\n| 数据 | 38 题 (folio_166~folio_203) |\n| 输出 | `results/exp028b_qwen3_thinking_folio204/exp028b_remaining38_results.json` |\n| 日志 | `results/exp028b_qwen3_thinking_folio204/exp028b_resume.log` |\n| 预计耗时 | ~38 × 120s ≈ 76 分钟 |\n\n**Dry-run 结果**: 3/3 正确 (sica=1.0, sc=1.0)，无 OOM，单题 83-183 秒。\n\n**注意事项**:\n- 由于两台服务器无法直传文件，采用了只跑剩余 38 题的策略（而非 --resume）\n- 完成后需将此结果与 westd-25068 上的 166 题结果合并为完整的 204 题结果\n- Registry 中无 exp-028b 条目（0 条匹配），如需创建请告知"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp028b-resume.md"
+}

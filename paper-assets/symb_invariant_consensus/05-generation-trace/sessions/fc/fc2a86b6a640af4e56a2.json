@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "fc2a86b6a640af4e56a2",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code prep proofwriter",
+  "task_key": "worker_code_prep-proofwriter_20260515T130529",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_prep-proofwriter_20260515T130529_result.json",
+    "occurrence": 1,
+    "bytes": 820,
+    "sha256": "d046bc091a89c6d6151e72d638ce95d6c0248fa36532f647eb90ebe112b9202b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**数据验证** — `proofwriter_subset.json` 10 题，answer 字段为 True/False/Unknown，格式正确。\n\n**Domain 检测** — `pipeline.py:59` 通过 `problem.get(\"dataset\") == \"proofwriter\"` 自动识别为 `domain=\"logic\"`。ProofWriter 数据自带 `\"dataset\": \"proofwriter\"`，`setdefault(\"dataset\", \"math\")` 不会覆盖。\n\n**response_format** — `VLLMBackend.call`（constraint_extractor.py:136）已有 `response_format={\"type\": \"json_object\"}`，logic/math 共用同一 backend，**无需修复**。（`APIBasedLLM` 缺此参数，但 ProofWriter 跑 vllm 模式不受影响。）\n\n**脚本** — `/root/symb_invariant_consensus/run_proofwriter.sh` 已创建（755），AIME 完成后执行即可。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "json_object"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-proofwriter.md"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "dfafd0c6621625fe6b77",
+  "project": "symb_invariant_consensus",
+  "kind": "conversation",
+  "title": "paper fig3 causal dag paperbanana",
+  "task_key": "worker_paper_fig3-causal-dag-paperbanana_20260525T052912",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_paper_fig3-causal-dag-paperbanana_20260525T052912.jsonl",
+    "occurrence": 1,
+    "bytes": 189,
+    "sha256": "e59174a9c93b0458e0f2fef508307f64610b4ec1187677b4d950b2e3b2baa6ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T05:29:22.361089+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 26, 6am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fig3-causal-dag-paperbanana_20260525T052912"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/paper-fig3-causal-dag-paperbanana.md"
+}

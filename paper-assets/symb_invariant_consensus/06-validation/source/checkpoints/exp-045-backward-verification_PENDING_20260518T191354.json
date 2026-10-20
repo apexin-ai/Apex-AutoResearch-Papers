@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-045-backward-verification",
+  "project": "symb_invariant_consensus",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:01:40.541Z",
+    "updated_at": "2026-05-18T19:13:54.548Z",
+    "hypothesis": "Backward Verification: 翻转验证方向，对每个候选答案反向推理需要哪些 premises 成立/矛盾，用 Z3 检查哪个答案与 premises 最一致（矛盾最少）。如果 forward extraction 质量是瓶颈，backward verification 绕过 extraction 直接用 solver 判断一致性，可能打破 capability trap。"
+  },
+  "timestamp": "2026-05-18T19:13:54.684901+00:00",
+  "trigger": "update_registry"
+}

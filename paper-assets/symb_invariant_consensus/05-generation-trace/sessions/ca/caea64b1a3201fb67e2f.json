@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "caea64b1a3201fb67e2f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis evidence table consolidation",
+  "task_key": "worker_analysis_evidence-table-consolidation_20260517T104458",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_evidence-table-consolidation_20260517T104458_result.json",
+    "occurrence": 1,
+    "bytes": 617,
+    "sha256": "e42bdd86a2ee6c1d69a01a6f1efc062246d35d93f3a608bf3a5a6f8e7c1709e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。证据表写入 `artifacts/_project/report/evidence_summary.md` 并注册为 `art_20260517_6f8c0b`。\n\n内容包含：\n- **Table 1**: Operating Regime（9 行，按 SC baseline 排序，展示倒 U 型 + sweet spot 极窄）\n- **Table 2**: Mechanism Vacuousness（4 个子表：聚合消融、加权对比、K 敏感性、约束过滤天花板）\n- **Table 3**: Cross-domain（4 域 × 3 模型，仅 LLaMA-8B×FOLIO 边缘显著）\n- **Claims 映射表**: 三条核心 claim 各自的证据来源\n\nexp-020 已标记 RUNNING/pending，结果出来后需更新 Table 1 和 Table 3。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-evidence-table-consolidation.md"
+}

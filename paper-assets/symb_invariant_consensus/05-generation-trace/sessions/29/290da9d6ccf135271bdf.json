@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "290da9d6ccf135271bdf",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "exp smoke test 5q",
+  "task_key": "worker_exp_smoke-test-5q_20260515T100255",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_smoke-test-5q_20260515T100255_result.json",
+    "occurrence": 1,
+    "bytes": 2401219,
+    "sha256": "45a1beb7ca91975ac308a20063c6838e890dafa041763537ec66d964ae570ba2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 3008083,
+                "serialized_sha256": "f3d1aa1529cfaef10ea32ae169ce0121e41d8af3fc0a725981d491c1740ebd6f",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-smoke-test-5q.md"
+}

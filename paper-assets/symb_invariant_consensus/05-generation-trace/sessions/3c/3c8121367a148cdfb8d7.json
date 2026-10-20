@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c8121367a148cdfb8d7",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code exp 071 seed replication",
+  "task_key": "worker_code_exp-071-seed-replication_20260519T143720",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp-071-seed-replication_20260519T143720_result.json",
+    "occurrence": 1,
+    "bytes": 432,
+    "sha256": "68f23d29762c743274f040b475d059c91c991a6979334e7a2502513a603ce0ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n**exp-071-qwen7b-logiqa200-seed123** 已在 westd-25068 cuda:1 上运行：\n- vLLM: tmux `exp071_vllm`, port 8001, `--enforce-eager` + `VLLM_USE_FLASHINFER_SAMPLER=0`（Blackwell GPU FlashInfer 兼容性问题）\n- 实验: tmux `exp-071-qwen7b-logiqa200-seed123`, seed=123, k=12, temperature=0.7\n- 输出: `results/exp071_qwen7b_logiqa200_seed123/exp071_results.json`\n- Registry 状态: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-071-seed-replication.md"
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "bdb19e1a696eab57eba5",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diagnose exp 085 contrastive mistral logiqa seed123",
+  "task_key": "worker_diagnose_exp-085-contrastive-mistral-logiqa-seed123_20260519T224929",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp-085-contrastive-mistral-logiqa-seed123_20260519T224929_result.json",
+    "occurrence": 1,
+    "bytes": 1534,
+    "sha256": "3899c65527ef570b86197058abd4678705254162b487cc59e6e50148fb7c5e46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**实验正常运行中**，当前 21/200（~10%），ETA 约 102 分钟。每个样本约 30-40 秒。\n\n```json\n{\n  \"status\": \"still_running\",\n  \"actual_log_path\": \"/root/runs/symb_invariant_consensus/exp-085-contrastive-mistral-logiqa-seed123.log\",\n  \"progress\": \"21/200 (10.5%), ETA ~102 min\",\n  \"root_cause_of_cron_alert\": \"CRON 在 results/exp085_.../run.log 找日志（不存在），实际日志在 ~/runs/ 下；且实验未注册 registry、不上报 W&B metrics，CRON 因无 W&B 数据误判失败。与 exp-070 同类误报。\",\n  \"gpu_usage\": \"GPU 2 (via vLLM on port 8002) ~90GB VRAM, CUDA_VISIBLE_DEVICES=2\",\n  \"action_needed\": \"none — 实验正常推进，CRON 告警可忽略。如需消除告警可将实验注册到 registry 并修正日志路径。\"\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "status": "still_running",
+              "actual_log_path": "/root/runs/symb_invariant_consensus/exp-085-contrastive-mistral-logiqa-seed123.log",
+              "progress": "21/200 (10.5%), ETA ~102 min",
+              "root_cause_of_cron_alert": "CRON 在 results/exp085_.../run.log 找日志（不存在），实际日志在 ~/runs/ 下；且实验未注册 registry、不上报 W&B metrics，CRON 因无 W&B 数据误判失败。与 exp-070 同类误报。",
+              "gpu_usage": "GPU 2 (via vLLM on port 8002) ~90GB VRAM, CUDA_VISIBLE_DEVICES=2",
+              "action_needed": "none — 实验正常推进，CRON 告警可忽略。如需消除告警可将实验注册到 registry 并修正日志路径。"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-085-contrastive-mistral-logiqa-seed123.md"
+}

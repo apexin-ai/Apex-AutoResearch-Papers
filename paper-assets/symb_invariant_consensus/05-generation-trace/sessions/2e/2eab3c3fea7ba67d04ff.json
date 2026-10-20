@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "2eab3c3fea7ba67d04ff",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "analysis pipeline nondeterminism fix",
+  "task_key": "worker_analysis_pipeline-nondeterminism-fix_20260518T185409",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_pipeline-nondeterminism-fix_20260518T185409.log",
+    "occurrence": 1,
+    "bytes": 609589,
+    "sha256": "44eebf93f29aeacc1aca8ecf0705ca2d892c95d9d6ff8910e99fd03a9e722d56"
+  },
+  "statistics": {
+    "messages": 181,
+    "user_turns": 0,
+    "tool_calls": 66,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 45,
+      "tool_call": 66,
+      "tool_result": 66,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 181,
+      "chunks": [
+        {
+          "path": "2eab3c3fea7ba67d04ff-part-0001.json",
+          "message_count": 169
+        },
+        {
+          "path": "2eab3c3fea7ba67d04ff-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-pipeline-nondeterminism-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a42a7e92721ba13356b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis p0 bootstrap ci",
+  "task_key": "worker_analysis_p0_bootstrap_ci_20260516T051544",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_p0_bootstrap_ci_20260516T051544_result.json",
+    "occurrence": 1,
+    "bytes": 994,
+    "sha256": "82ae59735e30378ed1714a6ca45526b7b9a2f6ac748374ffb114beccd761e535"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n```\nRandom Tiebreak Baseline:\n- Tied problems: 5/60\n- SC (current tiebreak): 42/60 = 70.0%\n- SC (random tiebreak, expected): 42.5/60 = 70.8%\n- SICA: 44/60 = 73.3%\n- SICA vs SC_random gap: +2.5 pp\n\nPaired Bootstrap 95% CI:\n- Paired diff breakdown: SICA_only_correct=3, SC_only_correct=1, both_same=56\n- Mean accuracy difference (SICA - SC): +3.3pp\n- 95% CI: [-3.3, 10.0] pp\n- p-value (proportion of bootstrap samples <= 0): 0.2261\n```\n\n关键发现：\n\n1. **5 个平票题**，全部 gt 都在 tied candidates 中，random tiebreak 期望正确 2.5 题（SC 实际答对了 2 题）。SC_random = 70.8%，SICA 仍领先 **+2.5pp**。\n\n2. **Bootstrap CI 跨零**：[-3.3, 10.0]pp，p=0.23。60 题样本量下，3.3pp 的差距统计上不显著——只有 4 题 discordant（3 题 SICA 赢、1 题 SC 赢），信号太稀疏。这在论文里需要诚实报告，同时可以用更大数据集（D012 扩展到 200+ 题）来增强统计效力。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-p0-bootstrap-ci.md"
+}

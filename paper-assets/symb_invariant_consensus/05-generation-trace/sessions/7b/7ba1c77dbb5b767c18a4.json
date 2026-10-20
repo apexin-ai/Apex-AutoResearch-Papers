@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "7ba1c77dbb5b767c18a4",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "deploy exp 074 icg mistral folio",
+  "task_key": "worker_deploy_exp-074-icg-mistral-folio_20260519T172751",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_exp-074-icg-mistral-folio_20260519T172751.log",
+    "occurrence": 1,
+    "bytes": 603644,
+    "sha256": "6eb77004dbefcaab84b3618d3b99ec5023ce1df64ee820dca1b643b0675247ce"
+  },
+  "statistics": {
+    "messages": 309,
+    "user_turns": 0,
+    "tool_calls": 114,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 78,
+      "tool_call": 114,
+      "tool_result": 114
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 309,
+      "chunks": [
+        {
+          "path": "7ba1c77dbb5b767c18a4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7ba1c77dbb5b767c18a4-part-0002.json",
+          "message_count": 129
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/deploy-exp-074-icg-mistral-folio.md"
+}

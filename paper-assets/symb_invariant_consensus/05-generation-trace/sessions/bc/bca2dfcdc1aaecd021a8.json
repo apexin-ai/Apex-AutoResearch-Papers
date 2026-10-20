@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bca2dfcdc1aaecd021a8",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis mistral folio d064 reeval",
+  "task_key": "worker_analysis_mistral-folio-d064-reeval_20260522T125612",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_mistral-folio-d064-reeval_20260522T125612_result.json",
+    "occurrence": 1,
+    "bytes": 1401,
+    "sha256": "191a59222e5f7f172f907fcd1ac86da17efe55b5073d465b50440a3657be855a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results are in. Tiebreaking verification on the changed cases:\n\n**Seed 123** — 2 SC ties resolved, 2 SICA ties resolved:\n- SC `folio_2`: Unknown:4 vs False:4 → \"False\" wins alphabetically → gained 1 correct (gt=False)\n- SC `folio_145`: 3-way tie (True:3, False:3, Unknown:3) → \"False\" wins → no accuracy change (gt=Unknown)\n- SICA `folio_62`: False:30 vs Unknown:30 → \"False\" wins → lost 1 (gt=Unknown)\n- SICA `folio_165`: False:35 vs Unknown:35 → \"False\" wins → gained 1 (gt=False)\n\n**Seed 456** — 1 SC tie resolved, 0 SICA:\n- SC `folio_16`: Unknown:6 vs False:6 → \"False\" wins → lost 1 (gt=Unknown)\n\nAll tiebreaks correctly use `sorted(tied_candidates)[0]`.\n\n```\n| Seed    | SC (%)      | SICA (%)    | Δ (pp)      | n   |\n|---------|-------------|-------------|-------------|-----|\n| 123     | 54.41       | 57.35       | +2.94       | 204 |\n| 456     | 55.88       | 55.88       | +0.00       | 204 |\n| 789     | 59.31       | 56.86       | -2.45       | 204 |\n| Mean±SD | 56.53±2.51  | 56.70±0.75  | +0.16±2.70  | —   |\n```\n\nVerification checklist:\n- [x] Tiebreaking = `sorted(tied_candidates)[0]` (alphabetical)\n- [x] exp052 has 204 intermediates\n- [x] exp053 has 204 intermediates\n- [x] SC and SICA both use same tiebreaking logic\n- [x] Mean = (seed123 + seed456 + seed789) / 3\n- [x] SD = sample stdev (ddof=1)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mistral-folio-d064-reeval.md"
+}

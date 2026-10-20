@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d3a996f9918f9847bee",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment wave3 dir k minority 16639",
+  "task_key": "worker_experiment_wave3-dir-k-minority-16639_20260520T100637",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_wave3-dir-k-minority-16639_20260520T100637_result.json",
+    "occurrence": 1,
+    "bytes": 784,
+    "sha256": "6677b00c666b6b540a0694db7242a12b4d4d92a1ef13bac12f1be3de561ff8e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。Direction K Minority Report 结果：\n\n| Variant | Accuracy | Delta vs SC | Flips (correct/wrong) |\n|---------|----------|-------------|----------------------|\n| SC baseline | 54.41% | — | — |\n| strict | 54.41% | +0.00 | 0 (0/0) |\n| moderate | 49.51% | -4.90 | 76 (27/49) |\n| combined | 54.41% | +0.00 | 12 (6/6) |\n\n关键发现：minority traces 的 consistency precision 只有 35.53%（76 次 minority 更 consistent，但仅 27 次是对的）。少数派更 consistent 并不意味着更正确——这个 direction 不 work。Minority 只有 33.73% 是 ground truth，而 majority 是 48.80%。\n\n- PID: 307412（已运行完毕，2.1s）\n- 结果文件: `/root/symb_invariant_consensus/results/direction_k_minority_report/results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-wave3-dir-k-minority-16639.md"
+}

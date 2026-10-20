@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c2549e34bae21695beae",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment dir f2 mistral self verify",
+  "task_key": "worker_experiment_dir-f2-mistral-self-verify_20260520T162059",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_dir-f2-mistral-self-verify_20260520T162059_result.json",
+    "occurrence": 1,
+    "bytes": 735,
+    "sha256": "af123197bbcd0d688ae0ffe45304bf4bda5b3634f08444e320f819cb7aeed85c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已写入。总结：\n\n**Dir-F2 Self-Verification 结果 (30 题 pilot)**\n\n| 指标 | 值 |\n|------|-----|\n| SC accuracy | 16/30 (53.3%) |\n| Original SICA accuracy | 16/30 (53.3%) |\n| **Self-filtered SICA accuracy** | **16/30 (53.3%)** |\n| Constraint keep rate | 63.2% (750/1187) |\n| McNemar p (filt vs SC) | 1.0 |\n| McNemar p (filt vs orig) | 1.0 |\n| Gains / Losses vs original | +0 / -0 |\n\nMistral-7B 自验证滤掉了 36.8% 的 constraints，但对 accuracy 零影响——0 gains, 0 losses。与此前 CoT prompt 版本（keep rate 42.4%，accuracy 下降 1 题）对比，无论 prompt 风格如何，同模型无法逃逸自身 bias。这是 Method Exhaustion Table 的一个清晰数据点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-dir-f2-mistral-self-verify.md"
+}

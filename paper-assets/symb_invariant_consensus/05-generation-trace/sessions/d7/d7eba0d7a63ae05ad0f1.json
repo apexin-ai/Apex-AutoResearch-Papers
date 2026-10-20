@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7eba0d7a63ae05ad0f1",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis table3 deberta verification",
+  "task_key": "worker_analysis_table3-deberta-verification_20260520T203356",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_table3-deberta-verification_20260520T203356_result.json",
+    "occurrence": 1,
+    "bytes": 1729,
+    "sha256": "7c256ddfc20630e2060d6fd858833d9147f98339ce723d6ea4e4f762735c837a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认完毕。以下是调查结果：\n\n```\nMistral-7B combo experiment (Dir J3 / Direction R):\n  - Script: westd-16639:/root/symb_invariant_consensus/ 下的 dir_j3 系列\n    (本地: artifacts/dir_j3_nli_multi_verifier.py, artifacts/direction_r_deberta_proofwriter.py)\n  - DeBERTa model ID: /root/models/deberta-large-mnli (= microsoft/deberta-large-mnli)\n  - Standalone accuracy on PW600: 55.00%\n\nQwen3-14B combo experiment (Dir K):\n  - Script: westd-16639:/root/symb_invariant_consensus/dir_k_nli_qwen3_pw600.py\n  - DeBERTa model ID: /root/autodl-tmp/models/deberta-base-mnli (= microsoft/deberta-base-mnli)\n  - Standalone accuracy on PW600: 36.17%\n\nPush B experiment:\n  - Script: artifacts/push_b_stronger_nli.py\n  - DeBERTa model ID: /root/autodl-tmp/models/deberta-v3-large-mnli-fever-anli-ling-wanli\n    (= MoritzLaurer/DeBERTa-v3-large-mnli-fever-anli-ling-wanli)\n  - Standalone accuracy on PW600: 45.17%\n\n结论: 两个实验用了不同的 DeBERTa 模型。\n  - Mistral-7B combo 用的是 deberta-LARGE-mnli（55.00%）\n  - Qwen3-14B combo 用的是 deberta-BASE-mnli（36.17%）\n  论文 Table 3 将 Mistral-7B combo 的 NLI verifier 标注为 \"DeBERTa-base\" 是错误的，\n  实际应为 \"DeBERTa-large\"。\n```\n\nWorker 日志也明确记录了这一点（`worker_experiment_dir-k-nli-qwen3-proofwriter_20260520T180214_result.json`）：\n\n> \"used `deberta-base-mnli` (not `deberta-large-mnli` from the Mistral experiment). The large model had 55% standalone on this data vs 36.17% for base\"\n\n**需要修正**：Table 3 中 Mistral-7B combo 行的 NLI verifier 应改为 \"DeBERTa-large\" 而非 \"DeBERTa-base\"，或者统一用同一个模型重新跑实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-table3-deberta-verification.md"
+}

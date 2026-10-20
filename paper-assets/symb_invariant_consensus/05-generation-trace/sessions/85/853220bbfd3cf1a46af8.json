@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "853220bbfd3cf1a46af8",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra p0 z3feedback deploy",
+  "task_key": "worker_infra_p0-z3feedback-deploy_20260518T181046",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_p0-z3feedback-deploy_20260518T181046_result.json",
+    "occurrence": 1,
+    "bytes": 990,
+    "sha256": "e3bf09a8642911af86c2de2367270c1aa6c7ba5d022c7243834ba5fe7f80fe76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果汇总：\n\n**exp-036 Z3 Feedback 最终结果：**\n\n| 方法 | 准确率 | 正确数/总数 |\n|------|--------|------------|\n| **Z3-Feedback SICA** | **0.775** | 158/204 |\n| Vanilla SICA | 0.745 | 152/204 |\n| Self-Consistency | 0.750 | 153/204 |\n\n- Z3FB vs Vanilla: **+9 -3 (net +6)**\n- UNSAT traces: 22/2448 (0.9%)\n- UNSAT→SAT resolve rate: 86.4% (19/22)\n- 总耗时 ~10 分钟\n\n**产出清单：**\n1. exp-028 进程已彻底 kill，GPU 2 已释放并重新使用 ✅\n2. Z3 Feedback dry-run 通过（所有依赖可导入，数据完整）✅\n3. Z3 Feedback 正式实验完成，日志确认是 UNSAT core refinement（非标准 SICA）✅\n4. tmux sessions: `z3fb_vllm`（vLLM server，port 8002，PID 74518），`z3fb_runner`（已完成退出）\n5. 结果文件: `results/exp036_z3_feedback/z3_feedback_results.json`\n\nZ3 Feedback 比 Vanilla SICA 提升 **+3.0pp**（74.5%→77.5%），比 Self-Consistency 提升 **+2.5pp**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-p0-z3feedback-deploy.md"
+}

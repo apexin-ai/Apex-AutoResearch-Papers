@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "84d30bcbe548dbd8398b",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "analysis r1 distill br gpt41 check",
+  "task_key": "worker_analysis_r1-distill-br-gpt41-check_20260521T152210",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_r1-distill-br-gpt41-check_20260521T152210.log",
+    "occurrence": 1,
+    "bytes": 893955,
+    "sha256": "0fb1c09efbdfee074c29027b5dbf31d62fbb678fff7fde417edac76e3fce0c22"
+  },
+  "statistics": {
+    "messages": 501,
+    "user_turns": 0,
+    "tool_calls": 221,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 55,
+      "tool_call": 221,
+      "tool_result": 221,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 501,
+      "chunks": [
+        {
+          "path": "84d30bcbe548dbd8398b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "84d30bcbe548dbd8398b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "84d30bcbe548dbd8398b-part-0003.json",
+          "message_count": 141
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-r1-distill-br-gpt41-check.md"
+}

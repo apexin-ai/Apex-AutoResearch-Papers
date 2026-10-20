@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e40b5bf0fdc1809a4a2d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra mistral folio 789 status v2",
+  "task_key": "worker_infra_mistral-folio-789-status-v2_20260522T111402",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_mistral-folio-789-status-v2_20260522T111402_result.json",
+    "occurrence": 1,
+    "bytes": 433,
+    "sha256": "3746d12af089b5effc5958dd614f227ce9b993bdb190dd4fe856c6e881d95299"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Mistral FOLIO seed=789 状态：**\n\n| 指标 | 值 |\n|------|-----|\n| PID 576938 | ALIVE (elapsed 25min) |\n| 进度 | **67/204** (~33%) |\n| 上次检查 | 41/204 (~20%) |\n| 最新日志 | 19:14:26 活跃请求中 |\n| SENTINEL | 未出现（未完成） |\n| No sentinel | ✓ |\n\n仍在运行，从 20% 推进到 33%，速率约 ~26 samples / 25min ≈ 1 sample/min。预计还需 ~137 min (~2.3h) 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-mistral-folio-789-status-v2.md"
+}

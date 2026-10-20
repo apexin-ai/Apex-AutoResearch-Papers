@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e7819c01038286c7120e",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "analysis cross model kappa phase1",
+  "task_key": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_cross-model-kappa-phase1_20260520T060602.log",
+    "occurrence": 1,
+    "bytes": 636190,
+    "sha256": "f39169dcc7601a9bda40a35722714035f4723dc3c2e61018c7a35dbb3930ad87"
+  },
+  "statistics": {
+    "messages": 150,
+    "user_turns": 0,
+    "tool_calls": 47,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 52,
+      "tool_call": 47,
+      "tool_result": 47,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 150,
+      "chunks": [
+        {
+          "path": "e7819c01038286c7120e-part-0001.json",
+          "message_count": 134
+        },
+        {
+          "path": "e7819c01038286c7120e-part-0002.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-cross-model-kappa-phase1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "503a2a4d69a8c16700db",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis r mcnemar seed verify",
+  "task_key": "worker_analysis_r-mcnemar-seed-verify_20260520T105518",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_r-mcnemar-seed-verify_20260520T105518_result.json",
+    "occurrence": 1,
+    "bytes": 2439,
+    "sha256": "be3d4ac8f06e55fe3299e7aecd718f79d2e44e7141d50e6e967080a9296823de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部分析完成。以下是完整报告。\n\n---\n\n## Direction R: McNemar Exact Test 报告\n\n### 1. Seed 一致性\n\n**确认：SC traces 一致。** R脚本直接从 `results/exp033_mistral_7b_folio204/sc_answer_matrix.json` 加载已有的12条SC traces，不重新生成。combo策略是将NLI预测作为第13票加入。\n\n- R结果中SC baseline = 111/204 = 54.41%，与exp033完全吻合\n- **修正**：exp033未使用显式seed（`run_full_mvp.py --seed`默认`None`，日志无seed记录）。用户所述\"seed=42\"未在代码/日志中找到证据。但这不影响一致性——R直接复用exp033的traces文件。\n\n### 2. 模型注意\n\n结果JSON记录的实际模型是 **`/root/models/deberta-large-mnli`**（`microsoft/deberta-large-mnli`），非任务描述中的 `cross-encoder/nli-deberta-v3-base`。请确认论文中引用正确的模型名。\n\n### 3. 核心数字\n\n| 指标 | 值 |\n|------|-----|\n| SC baseline | 111/204 = **54.41%** |\n| NLI-SICA-combo | 118/204 = **57.84%** |\n| Delta | **+3.43pp** (+7 problems) |\n\n### 4. McNemar 2x2 Contingency Table\n\n|  | Combo Correct | Combo Wrong |\n|--|:---:|:---:|\n| **SC Correct** | 110 | 1 |\n| **SC Wrong** | 8 | 85 |\n\n- b (SC correct, combo wrong) = **1**\n- c (SC wrong, combo correct) = **8**\n- Discordant pairs = **9**\n\n### 5. McNemar Exact p-value\n\n**p = 0.0391** (two-sided binomial test, min(1,8) out of 9 trials)\n\n- **Significant at α=0.05**: Yes\n- **Significant at α=0.01**: No\n\n### 6. Per-label McNemar\n\n| Label | n | b | c | discordant | p |\n|-------|---|---|---|------------|---|\n| True | 72 | 1 | 3 | 4 | 0.625 |\n| False | 63 | 0 | 4 | 4 | 0.125 |\n| Unknown | 69 | 0 | 1 | 1 | 1.000 |\n\nper-label均不显著（样本太小，discordant pairs仅1-4对）。\n\n### 7. 95% CI for Accuracy Difference\n\n| 方法 | 95% CI |\n|------|--------|\n| Normal approximation | [0.59pp, 6.28pp] |\n| Bootstrap (10000 resamples) | [0.98pp, 6.37pp] |\n\n两种方法CI均不包含0，与p<0.05一致。\n\n### 结论\n\nNLI-SICA-combo相比SC baseline的+3.43pp提升**统计显著**（McNemar exact p=0.039, α=0.05），但效应量较小——9对discordant pairs中combo赢8对、输1对。CI上界约6pp，说明真实效应可能在0.6-6.4pp之间。如果论文需要report，建议同时给出p值和discordant pair counts，因为n=9的discordant pairs使得结果对单题翻转非常敏感。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r-mcnemar-seed-verify.md"
+}

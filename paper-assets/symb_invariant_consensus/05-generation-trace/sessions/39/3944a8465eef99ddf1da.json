@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "3944a8465eef99ddf1da",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "analysis qwen14b pw sc audit",
+  "task_key": "worker_analysis_qwen14b-pw-sc-audit_20260521T095214",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_qwen14b-pw-sc-audit_20260521T095214.log",
+    "occurrence": 1,
+    "bytes": 679279,
+    "sha256": "edff5ee15a7a42445f2a4380b2ad2ef42ef6c466957d0c761ed538a85f774eb8"
+  },
+  "statistics": {
+    "messages": 96,
+    "user_turns": 0,
+    "tool_calls": 35,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 22,
+      "tool_call": 35,
+      "tool_result": 35,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 96,
+      "chunks": [
+        {
+          "path": "3944a8465eef99ddf1da-part-0001.json",
+          "message_count": 85
+        },
+        {
+          "path": "3944a8465eef99ddf1da-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-qwen14b-pw-sc-audit.md"
+}

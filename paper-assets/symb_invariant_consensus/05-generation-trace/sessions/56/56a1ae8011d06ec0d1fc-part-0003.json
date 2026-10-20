@@ -1,0 +1,641 @@
+{
+  "schema_version": "1.0",
+  "session_id": "56a1ae8011d06ec0d1fc",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 350,
+          "timestamp": "2026-05-23T20:00:28.811Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_012RPVdhjPr5YeQ3QUZw4PbN",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "53837c87-6e80-47e2-bafe-e22c87d2bd00",
+            "uuid": "58983f7f-a29a-4ce6-bd54-fc76ba8e1ed9",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000350"
+        },
+        {
+          "source_line": 351,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1779890400,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.78,
+                  "isUsingOverage": false,
+                  "surpassedThreshold": 0.75
+                },
+                "uuid": "8e47cbf9-b3ca-42db-b48f-8d5d7f817c83",
+                "session_id": "53837c87-6e80-47e2-bafe-e22c87d2bd00"
+              }
+            }
+          ],
+          "id": "event-000351"
+        },
+        {
+          "source_line": 352,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LRDGhWeHsp2kFSKjvuj5er",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "53837c87-6e80-47e2-bafe-e22c87d2bd00",
+            "uuid": "82569a7d-d623-4679-b521-85ddcf2c30d7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CLWh6bDuZHGsRn1L4nxzoW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 512,
+                "cache_read_input_tokens": 25723,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 512
+                },
+                "output_tokens": 49,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000352"
+        },
+        {
+          "source_line": 353,
+          "timestamp": "2026-05-23T20:00:31.004Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "EISDIR: illegal operation on a directory, read '/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts'",
+              "is_error": true,
+              "tool_use_id": "toolu_01LRDGhWeHsp2kFSKjvuj5er"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "53837c87-6e80-47e2-bafe-e22c87d2bd00",
+            "uuid": "de7ebf2d-4c4e-4e08-90a6-63246cc7cfac",
+            "tool_use_result": "Error: EISDIR: illegal operation on a directory, read '/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts'"
+          },
+          "id": "event-000353"
+        },
+        {
+          "source_line": 354,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the saved result files to confirm the data before presenting."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "53837c87-6e80-47e2-bafe-e22c87d2bd00",
+            "uuid": "5cd10282-5962-4694-8da8-fd9f84d3e427",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MzrMoo4YUnXQqPTzNu76rt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 149,
+                "cache_read_input_tokens": 26235,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 149
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000354"
+        },
+        {
+          "source_line": 355,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HxQL4qtcBd7QV91g48aYB1",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "A6000",
+                "command": "cat /root/symb_invariant_consensus/results/alpha_endpoint_ablation.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "53837c87-6e80-47e2-bafe-e22c87d2bd00",
+            "uuid": "60ecb24d-4b89-4d3f-a55d-743b35d080a2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MzrMoo4YUnXQqPTzNu76rt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 149,
+                "cache_read_input_tokens": 26235,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 149
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000355"
+        },
+        {
+          "source_line": 356,
+          "timestamp": "2026-05-23T20:00:33.950Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HxQL4qtcBd7QV91g48aYB1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Unknown server 'A6000'. Available: ['westd-14391', 'westd-16639', 'westd-30973']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.01}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "53837c87-6e80-47e2-bafe-e22c87d2bd00",
+            "uuid": "5770e654-04a4-4212-bea4-6f2a47da40ec",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Unknown server 'A6000'. Available: ['westd-14391', 'westd-16639', 'westd-30973']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.01}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Unknown server 'A6000'. Available: ['westd-14391', 'westd-16639', 'westd-30973']\", \"metadata\": {\"elapsed_seconds\": 0.01}}"
+              }
+            }
+          },
+          "id": "event-000356"
+        },
+        {
+          "source_line": 357,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Kz1sARtvPsW6hZrrQKywYx",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "A6000",
+                "command": "cat /root/symb_invariant_consensus/results/alpha_endpoint_pw_mixing.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "53837c87-6e80-47e2-bafe-e22c87d2bd00",
+            "uuid": "7c74413d-bcdc-4df6-91b7-5572e52cd922",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MzrMoo4YUnXQqPTzNu76rt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 149,
+                "cache_read_input_tokens": 26235,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 149
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000357"
+        },
+        {
+          "source_line": 358,
+          "timestamp": "2026-05-23T20:00:34.581Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Kz1sARtvPsW6hZrrQKywYx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Unknown server 'A6000'. Available: ['westd-14391', 'westd-16639', 'westd-30973']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.01}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "53837c87-6e80-47e2-bafe-e22c87d2bd00",
+            "uuid": "3303edc2-fd59-4d20-b677-50cc6b9446be",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Unknown server 'A6000'. Available: ['westd-14391', 'westd-16639', 'westd-30973']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.01}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Unknown server 'A6000'. Available: ['westd-14391', 'westd-16639', 'westd-30973']\", \"metadata\": {\"elapsed_seconds\": 0.01}}"
+              }
+            }
+          },
+          "id": "event-000358"
+        },
+        {
+          "source_line": 359,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JpbvFugS3xP3h7AYx7uuPZ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16639",
+                "command": "cat /root/symb_invariant_consensus/results/alpha_endpoint_ablation.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "53837c87-6e80-47e2-bafe-e22c87d2bd00",
+            "uuid": "606c1e92-2a5d-4d82-b6e1-83c269ce8f90",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014s4JXENstzzzMmUJbqTTJv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 438,
+                "cache_read_input_tokens": 26384,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 438
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000359"
+        },
+        {
+          "source_line": 360,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FHz5eQpkxcN75sH3uWGpJ1",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16639",
+                "command": "cat /root/symb_invariant_consensus/results/alpha_endpoint_pw_mixing.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "53837c87-6e80-47e2-bafe-e22c87d2bd00",
+            "uuid": "0afe2df8-ced9-444a-a9d9-abe60ccfc563",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014s4JXENstzzzMmUJbqTTJv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 438,
+                "cache_read_input_tokens": 26384,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 438
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000360"
+        },
+        {
+          "source_line": 361,
+          "timestamp": "2026-05-23T20:00:37.250Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JpbvFugS3xP3h7AYx7uuPZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"folio\\\\\\\": {\\\\n    \\\\\\\"0.0\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 0.0,\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"sica_acc\\\\\\\": 53.92,\\\\n      \\\\\\\"sc_acc\\\\\\\": 53.92,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.0,\\\\n      \\\\\\\"agree_pct\\\\\\\": 93.6,\\\\n      \\\\\\\"mcnemar_p\\\\\\\": 1.0,\\\\n      \\\\\\\"b_sc_only\\\\\\\": 6,\\\\n      \\\\\\\"c_sica_only\\\\\\\": 6\\\\n    },\\\\n    \\\\\\\"0.1\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 0.1,\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"sica_acc\\\\\\\": 53.92,\\\\n      \\\\\\\"sc_acc\\\\\\\": 53.92,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.0,\\\\n      \\\\\\\"agree_pct\\\\\\\": 93.6,\\\\n      \\\\\\\"mcnemar_p\\\\\\\": 1.0,\\\\n      \\\\\\\"b_sc_only\\\\\\\": 6,\\\\n      \\\\\\\"c_sica_only\\\\\\\": 6\\\\n    },\\\\n    \\\\\\\"0.3\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 0.3,\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"sica_acc\\\\\\\": 53.92,\\\\n      \\\\\\\"sc_acc\\\\\\\": 53.92,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.0,\\\\n      \\\\\\\"agree_pct\\\\\\\": 93.6,\\\\n      \\\\\\\"mcnemar_p\\\\\\\": 1.0,\\\\n      \\\\\\\"b_sc_only\\\\\\\": 6,\\\\n      \\\\\\\"c_sica_only\\\\\\\": 6\\\\n    },\\\\n    \\\\\\\"0.5\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 0.5,\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"sica_acc\\\\\\\": 54.41,\\\\n      \\\\\\\"sc_acc\\\\\\\": 53.92,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.49,\\\\n      \\\\\\\"agree_pct\\\\\\\": 94.1,\\\\n      \\\\\\\"mcnemar_p\\\\\\\": 1.0,\\\\n      \\\\\\\"b_sc_only\\\\\\\": 5,\\\\n      \\\\\\\"c_sica_only\\\\\\\": 6\\\\n    },\\\\n    \\\\\\\"0.7\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 0.7,\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"sica_acc\\\\\\\": 54.41,\\\\n      \\\\\\\"sc_acc\\\\\\\": 53.92,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.49,\\\\n      \\\\\\\"agree_pct\\\\\\\": 94.1,\\\\n      \\\\\\\"mcnemar_p\\\\\\\": 1.0,\\\\n      \\\\\\\"b_sc_only\\\\\\\": 5,\\\\n      \\\\\\\"c_sica_only\\\\\\\": 6\\\\n    },\\\\n    \\\\\\\"0.9\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 0.9,\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"sica_acc\\\\\\\": 54.41,\\\\n      \\\\\\\"sc_acc\\\\\\\": 53.92,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.49,\\\\n      \\\\\\\"agree_pct\\\\\\\": 94.1,\\\\n      \\\\\\\"mcnemar_p\\\\\\\": 1.0,\\\\n      \\\\\\\"b_sc_only\\\\\\\": 5,\\\\n      \\\\\\\"c_sica_only\\\\\\\": 6\\\\n    },\\\\n    \\\\\\\"1.0\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 1.0,\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"sica_acc\\\\\\\": 53.43,\\\\n      \\\\\\\"sc_acc\\\\\\\": 53.92,\\\\n      \\\\\\\"delta_pp\\\\\\\": -0.49,\\\\n      \\\\\\\"agree_pct\\\\\\\": 95.1,\\\\n      \\\\\\\"mcnemar_p\\\\\\\": 1.0,\\\\n      \\\\\\\"b_sc_only\\\\\\\": 5,\\\\n      \\\\\\\"c_sica_only\\\\\\\": 4\\\\n    }\\\\n  },\\\\n  \\\\\\\"pw_analysis\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 600,\\\\n    \\\\\\\"n_excluded_0\\\\\\\": 122,\\\\n    \\\\\\\"n_excluded_gt0\\\\\\\": 478,\\\\n    \\\\\\\"sc_acc\\\\\\\": 39.83,\\\\n    \\\\\\\"sica_acc_05\\\\\\\": 36.67,\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"Cannot compute alpha=0/1 without per-trace constraint data\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "53837c87-6e80-47e2-bafe-e22c87d2bd00",
+            "uuid": "ee416790-f365-4c99-9499-4fd68baafab0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"folio\\\\\\\": {\\\\n    \\\\\\\"0.0\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 0.0,\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"sica_acc\\\\\\\": 53.92,\\\\n      \\\\\\\"sc_acc\\\\\\\": 53.92,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.0,\\\\n      \\\\\\\"agree_pct\\\\\\\": 93.6,\\\\n      \\\\\\\"mcnemar_p\\\\\\\": 1.0,\\\\n      \\\\\\\"b_sc_only\\\\\\\": 6,\\\\n      \\\\\\\"c_sica_only\\\\\\\": 6\\\\n    },\\\\n    \\\\\\\"0.1\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 0.1,\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"sica_acc\\\\\\\": 53.92,\\\\n      \\\\\\\"sc_acc\\\\\\\": 53.92,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.0,\\\\n      \\\\\\\"agree_pct\\\\\\\": 93.6,\\\\n      \\\\\\\"mcnemar_p\\\\\\\": 1.0,\\\\n      \\\\\\\"b_sc_only\\\\\\\": 6,\\\\n      \\\\\\\"c_sica_only\\\\\\\": 6\\\\n    },\\\\n    \\\\\\\"0.3\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 0.3,\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"sica_acc\\\\\\\": 53.92,\\\\n      \\\\\\\"sc_acc\\\\\\\": 53.92,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.0,\\\\n      \\\\\\\"agree_pct\\\\\\\": 93.6,\\\\n      \\\\\\\"mcnemar_p\\\\\\\": 1.0,\\\\n      \\\\\\\"b_sc_only\\\\\\\": 6,\\\\n      \\\\\\\"c_sica_only\\\\\\\": 6\\\\n    },\\\\n    \\\\\\\"0.5\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 0.5,\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"sica_acc\\\\\\\": 54.41,\\\\n      \\\\\\\"sc_acc\\\\\\\": 53.92,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.49,\\\\n      \\\\\\\"agree_pct\\\\\\\": 94.1,\\\\n      \\\\\\\"mcnemar_p\\\\\\\": 1.0,\\\\n      \\\\\\\"b_sc_only\\\\\\\": 5,\\\\n      \\\\\\\"c_sica_only\\\\\\\": 6\\\\n    },\\\\n    \\\\\\\"0.7\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 0.7,\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"sica_acc\\\\\\\": 54.41,\\\\n      \\\\\\\"sc_acc\\\\\\\": 53.92,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.49,\\\\n      \\\\\\\"agree_pct\\\\\\\": 94.1,\\\\n      \\\\\\\"mcnemar_p\\\\\\\": 1.0,\\\\n      \\\\\\\"b_sc_only\\\\\\\": 5,\\\\n      \\\\\\\"c_sica_only\\\\\\\": 6\\\\n    },\\\\n    \\\\\\\"0.9\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 0.9,\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"sica_acc\\\\\\\": 54.41,\\\\n      \\\\\\\"sc_acc\\\\\\\": 53.92,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.49,\\\\n      \\\\\\\"agree_pct\\\\\\\": 94.1,\\\\n      \\\\\\\"mcnemar_p\\\\\\\": 1.0,\\\\n      \\\\\\\"b_sc_only\\\\\\\": 5,\\\\n      \\\\\\\"c_sica_only\\\\\\\": 6\\\\n    },\\\\n    \\\\\\\"1.0\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 1.0,\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"sica_acc\\\\\\\": 53.43,\\\\n      \\\\\\\"sc_acc\\\\\\\": 53.92,\\\\n      \\\\\\\"delta_pp\\\\\\\": -0.49,\\\\n      \\\\\\\"agree_pct\\\\\\\": 95.1,\\\\n      \\\\\\\"mcnemar_p\\\\\\\": 1.0,\\\\n      \\\\\\\"b_sc_only\\\\\\\": 5,\\\\n      \\\\\\\"c_sica_only\\\\\\\": 4\\\\n    }\\\\n  },\\\\n  \\\\\\\"pw_analysis\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 600,\\\\n    \\\\\\\"n_excluded_0\\\\\\\": 122,\\\\n    \\\\\\\"n_excluded_gt0\\\\\\\": 478,\\\\n    \\\\\\\"sc_acc\\\\\\\": 39.83,\\\\n    \\\\\\\"sica_acc_05\\\\\\\": 36.67,\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"Cannot compute alpha=0/1 without per-trace constraint data\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"folio\\\": {\\n    \\\"0.0\\\": {\\n      \\\"alpha\\\": 0.0,\\n      \\\"n\\\": 204,\\n      \\\"sica_acc\\\": 53.92,\\n      \\\"sc_acc\\\": 53.92,\\n      \\\"delta_pp\\\": 0.0,\\n      \\\"agree_pct\\\": 93.6,\\n      \\\"mcnemar_p\\\": 1.0,\\n      \\\"b_sc_only\\\": 6,\\n      \\\"c_sica_only\\\": 6\\n    },\\n    \\\"0.1\\\": {\\n      \\\"alpha\\\": 0.1,\\n      \\\"n\\\": 204,\\n      \\\"sica_acc\\\": 53.92,\\n      \\\"sc_acc\\\": 53.92,\\n      \\\"delta_pp\\\": 0.0,\\n      \\\"agree_pct\\\": 93.6,\\n      \\\"mcnemar_p\\\": 1.0,\\n      \\\"b_sc_only\\\": 6,\\n      \\\"c_sica_only\\\": 6\\n    },\\n    \\\"0.3\\\": {\\n      \\\"alpha\\\": 0.3,\\n      \\\"n\\\": 204,\\n      \\\"sica_acc\\\": 53.92,\\n      \\\"sc_acc\\\": 53.92,\\n      \\\"delta_pp\\\": 0.0,\\n      \\\"agree_pct\\\": 93.6,\\n      \\\"mcnemar_p\\\": 1.0,\\n      \\\"b_sc_only\\\": 6,\\n      \\\"c_sica_only\\\": 6\\n    },\\n    \\\"0.5\\\": {\\n      \\\"alpha\\\": 0.5,\\n      \\\"n\\\": 204,\\n      \\\"sica_acc\\\": 54.41,\\n      \\\"sc_acc\\\": 53.92,\\n      \\\"delta_pp\\\": 0.49,\\n      \\\"agree_pct\\\": 94.1,\\n      \\\"mcnemar_p\\\": 1.0,\\n      \\\"b_sc_only\\\": 5,\\n      \\\"c_sica_only\\\": 6\\n    },\\n    \\\"0.7\\\": {\\n      \\\"alpha\\\": 0.7,\\n      \\\"n\\\": 204,\\n      \\\"sica_acc\\\": 54.41,\\n      \\\"sc_acc\\\": 53.92,\\n      \\\"delta_pp\\\": 0.49,\\n      \\\"agree_pct\\\": 94.1,\\n      \\\"mcnemar_p\\\": 1.0,\\n      \\\"b_sc_only\\\": 5,\\n      \\\"c_sica_only\\\": 6\\n    },\\n    \\\"0.9\\\": {\\n      \\\"alpha\\\": 0.9,\\n      \\\"n\\\": 204,\\n      \\\"sica_acc\\\": 54.41,\\n      \\\"sc_acc\\\": 53.92,\\n      \\\"delta_pp\\\": 0.49,\\n      \\\"agree_pct\\\": 94.1,\\n      \\\"mcnemar_p\\\": 1.0,\\n      \\\"b_sc_only\\\": 5,\\n      \\\"c_sica_only\\\": 6\\n    },\\n    \\\"1.0\\\": {\\n      \\\"alpha\\\": 1.0,\\n      \\\"n\\\": 204,\\n      \\\"sica_acc\\\": 53.43,\\n      \\\"sc_acc\\\": 53.92,\\n      \\\"delta_pp\\\": -0.49,\\n      \\\"agree_pct\\\": 95.1,\\n      \\\"mcnemar_p\\\": 1.0,\\n      \\\"b_sc_only\\\": 5,\\n      \\\"c_sica_only\\\": 4\\n    }\\n  },\\n  \\\"pw_analysis\\\": {\\n    \\\"n\\\": 600,\\n    \\\"n_excluded_0\\\": 122,\\n    \\\"n_excluded_gt0\\\": 478,\\n    \\\"sc_acc\\\": 39.83,\\n    \\\"sica_acc_05\\\": 36.67,\\n    \\\"note\\\": \\\"Cannot compute alpha=0/1 without per-trace constraint data\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000361"
+        },
+        {
+          "source_line": 362,
+          "timestamp": "2026-05-23T20:00:37.786Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FHz5eQpkxcN75sH3uWGpJ1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"0.0\\\\\\\": {\\\\n    \\\\\\\"alpha\\\\\\\": 0.0,\\\\n    \\\\\\\"n\\\\\\\": 600,\\\\n    \\\\\\\"sica_acc\\\\\\\": 39.83,\\\\n    \\\\\\\"sc_acc\\\\\\\": 39.83,\\\\n    \\\\\\\"delta_pp\\\\\\\": 0.0,\\\\n    \\\\\\\"agree_pct\\\\\\\": 100.0,\\\\n    \\\\\\\"mcnemar_p\\\\\\\": 1.0\\\\n  },\\\\n  \\\\\\\"0.1\\\\\\\": {\\\\n    \\\\\\\"alpha\\\\\\\": 0.1,\\\\n    \\\\\\\"n\\\\\\\": 600,\\\\n    \\\\\\\"sica_acc\\\\\\\": 38.0,\\\\n    \\\\\\\"sc_acc\\\\\\\": 39.83,\\\\n    \\\\\\\"delta_pp\\\\\\\": -1.83,\\\\n    \\\\\\\"agree_pct\\\\\\\": 96.2,\\\\n    \\\\\\\"mcnemar_p\\\\\\\": 0.019211\\\\n  },\\\\n  \\\\\\\"0.3\\\\\\\": {\\\\n    \\\\\\\"alpha\\\\\\\": 0.3,\\\\n    \\\\\\\"n\\\\\\\": 600,\\\\n    \\\\\\\"sica_acc\\\\\\\": 38.17,\\\\n    \\\\\\\"sc_acc\\\\\\\": 39.83,\\\\n    \\\\\\\"delta_pp\\\\\\\": -1.67,\\\\n    \\\\\\\"agree_pct\\\\\\\": 96.0,\\\\n    \\\\\\\"mcnemar_p\\\\\\\": 0.041389\\\\n  },\\\\n  \\\\\\\"0.5\\\\\\\": {\\\\n    \\\\\\\"alpha\\\\\\\": 0.5,\\\\n    \\\\\\\"n\\\\\\\": 600,\\\\n    \\\\\\\"sica_acc\\\\\\\": 37.83,\\\\n    \\\\\\\"sc_acc\\\\\\\": 39.83,\\\\n    \\\\\\\"delta_pp\\\\\\\": -2.0,\\\\n    \\\\\\\"agree_pct\\\\\\\": 95.3,\\\\n    \\\\\\\"mcnemar_p\\\\\\\": 0.022656\\\\n  },\\\\n  \\\\\\\"0.7\\\\\\\": {\\\\n    \\\\\\\"alpha\\\\\\\": 0.7,\\\\n    \\\\\\\"n\\\\\\\": 600,\\\\n    \\\\\\\"sica_acc\\\\\\\": 37.0,\\\\n    \\\\\\\"sc_acc\\\\\\\": 39.83,\\\\n    \\\\\\\"delta_pp\\\\\\\": -2.83,\\\\n    \\\\\\\"agree_pct\\\\\\\": 93.3,\\\\n    \\\\\\\"mcnemar_p\\\\\\\": 0.003327\\\\n  },\\\\n  \\\\\\\"0.9\\\\\\\": {\\\\n    \\\\\\\"alpha\\\\\\\": 0.9,\\\\n    \\\\\\\"n\\\\\\\": 600,\\\\n    \\\\\\\"sica_acc\\\\\\\": 36.67,\\\\n    \\\\\\\"sc_acc\\\\\\\": 39.83,\\\\n    \\\\\\\"delta_pp\\\\\\\": -3.17,\\\\n    \\\\\\\"agree_pct\\\\\\\": 91.8,\\\\n    \\\\\\\"mcnemar_p\\\\\\\": 0.002563\\\\n  },\\\\n  \\\\\\\"1.0\\\\\\\": {\\\\n    \\\\\\\"alpha\\\\\\\": 1.0,\\\\n    \\\\\\\"n\\\\\\\": 600,\\\\n    \\\\\\\"sica_acc\\\\\\\": 36.17,\\\\n    \\\\\\\"sc_acc\\\\\\\": 39.83,\\\\n    \\\\\\\"delta_pp\\\\\\\": -3.67,\\\\n    \\\\\\\"agree_pct\\\\\\\": 90.3,\\\\n    \\\\\\\"mcnemar_p\\\\\\\": 0.000941\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "53837c87-6e80-47e2-bafe-e22c87d2bd00",
+            "uuid": "1f1e902a-bbd4-49dd-a6f5-37cac229e762",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"0.0\\\\\\\": {\\\\n    \\\\\\\"alpha\\\\\\\": 0.0,\\\\n    \\\\\\\"n\\\\\\\": 600,\\\\n    \\\\\\\"sica_acc\\\\\\\": 39.83,\\\\n    \\\\\\\"sc_acc\\\\\\\": 39.83,\\\\n    \\\\\\\"delta_pp\\\\\\\": 0.0,\\\\n    \\\\\\\"agree_pct\\\\\\\": 100.0,\\\\n    \\\\\\\"mcnemar_p\\\\\\\": 1.0\\\\n  },\\\\n  \\\\\\\"0.1\\\\\\\": {\\\\n    \\\\\\\"alpha\\\\\\\": 0.1,\\\\n    \\\\\\\"n\\\\\\\": 600,\\\\n    \\\\\\\"sica_acc\\\\\\\": 38.0,\\\\n    \\\\\\\"sc_acc\\\\\\\": 39.83,\\\\n    \\\\\\\"delta_pp\\\\\\\": -1.83,\\\\n    \\\\\\\"agree_pct\\\\\\\": 96.2,\\\\n    \\\\\\\"mcnemar_p\\\\\\\": 0.019211\\\\n  },\\\\n  \\\\\\\"0.3\\\\\\\": {\\\\n    \\\\\\\"alpha\\\\\\\": 0.3,\\\\n    \\\\\\\"n\\\\\\\": 600,\\\\n    \\\\\\\"sica_acc\\\\\\\": 38.17,\\\\n    \\\\\\\"sc_acc\\\\\\\": 39.83,\\\\n    \\\\\\\"delta_pp\\\\\\\": -1.67,\\\\n    \\\\\\\"agree_pct\\\\\\\": 96.0,\\\\n    \\\\\\\"mcnemar_p\\\\\\\": 0.041389\\\\n  },\\\\n  \\\\\\\"0.5\\\\\\\": {\\\\n    \\\\\\\"alpha\\\\\\\": 0.5,\\\\n    \\\\\\\"n\\\\\\\": 600,\\\\n    \\\\\\\"sica_acc\\\\\\\": 37.83,\\\\n    \\\\\\\"sc_acc\\\\\\\": 39.83,\\\\n    \\\\\\\"delta_pp\\\\\\\": -2.0,\\\\n    \\\\\\\"agree_pct\\\\\\\": 95.3,\\\\n    \\\\\\\"mcnemar_p\\\\\\\": 0.022656\\\\n  },\\\\n  \\\\\\\"0.7\\\\\\\": {\\\\n    \\\\\\\"alpha\\\\\\\": 0.7,\\\\n    \\\\\\\"n\\\\\\\": 600,\\\\n    \\\\\\\"sica_acc\\\\\\\": 37.0,\\\\n    \\\\\\\"sc_acc\\\\\\\": 39.83,\\\\n    \\\\\\\"delta_pp\\\\\\\": -2.83,\\\\n    \\\\\\\"agree_pct\\\\\\\": 93.3,\\\\n    \\\\\\\"mcnemar_p\\\\\\\": 0.003327\\\\n  },\\\\n  \\\\\\\"0.9\\\\\\\": {\\\\n    \\\\\\\"alpha\\\\\\\": 0.9,\\\\n    \\\\\\\"n\\\\\\\": 600,\\\\n    \\\\\\\"sica_acc\\\\\\\": 36.67,\\\\n    \\\\\\\"sc_acc\\\\\\\": 39.83,\\\\n    \\\\\\\"delta_pp\\\\\\\": -3.17,\\\\n    \\\\\\\"agree_pct\\\\\\\": 91.8,\\\\n    \\\\\\\"mcnemar_p\\\\\\\": 0.002563\\\\n  },\\\\n  \\\\\\\"1.0\\\\\\\": {\\\\n    \\\\\\\"alpha\\\\\\\": 1.0,\\\\n    \\\\\\\"n\\\\\\\": 600,\\\\n    \\\\\\\"sica_acc\\\\\\\": 36.17,\\\\n    \\\\\\\"sc_acc\\\\\\\": 39.83,\\\\n    \\\\\\\"delta_pp\\\\\\\": -3.67,\\\\n    \\\\\\\"agree_pct\\\\\\\": 90.3,\\\\n    \\\\\\\"mcnemar_p\\\\\\\": 0.000941\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"0.0\\\": {\\n    \\\"alpha\\\": 0.0,\\n    \\\"n\\\": 600,\\n    \\\"sica_acc\\\": 39.83,\\n    \\\"sc_acc\\\": 39.83,\\n    \\\"delta_pp\\\": 0.0,\\n    \\\"agree_pct\\\": 100.0,\\n    \\\"mcnemar_p\\\": 1.0\\n  },\\n  \\\"0.1\\\": {\\n    \\\"alpha\\\": 0.1,\\n    \\\"n\\\": 600,\\n    \\\"sica_acc\\\": 38.0,\\n    \\\"sc_acc\\\": 39.83,\\n    \\\"delta_pp\\\": -1.83,\\n    \\\"agree_pct\\\": 96.2,\\n    \\\"mcnemar_p\\\": 0.019211\\n  },\\n  \\\"0.3\\\": {\\n    \\\"alpha\\\": 0.3,\\n    \\\"n\\\": 600,\\n    \\\"sica_acc\\\": 38.17,\\n    \\\"sc_acc\\\": 39.83,\\n    \\\"delta_pp\\\": -1.67,\\n    \\\"agree_pct\\\": 96.0,\\n    \\\"mcnemar_p\\\": 0.041389\\n  },\\n  \\\"0.5\\\": {\\n    \\\"alpha\\\": 0.5,\\n    \\\"n\\\": 600,\\n    \\\"sica_acc\\\": 37.83,\\n    \\\"sc_acc\\\": 39.83,\\n    \\\"delta_pp\\\": -2.0,\\n    \\\"agree_pct\\\": 95.3,\\n    \\\"mcnemar_p\\\": 0.022656\\n  },\\n  \\\"0.7\\\": {\\n    \\\"alpha\\\": 0.7,\\n    \\\"n\\\": 600,\\n    \\\"sica_acc\\\": 37.0,\\n    \\\"sc_acc\\\": 39.83,\\n    \\\"delta_pp\\\": -2.83,\\n    \\\"agree_pct\\\": 93.3,\\n    \\\"mcnemar_p\\\": 0.003327\\n  },\\n  \\\"0.9\\\": {\\n    \\\"alpha\\\": 0.9,\\n    \\\"n\\\": 600,\\n    \\\"sica_acc\\\": 36.67,\\n    \\\"sc_acc\\\": 39.83,\\n    \\\"delta_pp\\\": -3.17,\\n    \\\"agree_pct\\\": 91.8,\\n    \\\"mcnemar_p\\\": 0.002563\\n  },\\n  \\\"1.0\\\": {\\n    \\\"alpha\\\": 1.0,\\n    \\\"n\\\": 600,\\n    \\\"sica_acc\\\": 36.17,\\n    \\\"sc_acc\\\": 39.83,\\n    \\\"delta_pp\\\": -3.67,\\n    \\\"agree_pct\\\": 90.3,\\n    \\\"mcnemar_p\\\": 0.000941\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+              }
+            }
+          },
+          "id": "event-000362"
+        },
+        {
+          "source_line": 363,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, I have both result files. Let me now present the final formatted results to the user, with the caveats about data availability.\n\nKey issues to address:\n1. FOLIO uses exp033 constraint_cache (SC=53.92%), not the expected seed42 data with SC=55.88%. The 55.88% comes from exp053 (seed456).\n2. PW: Cannot compute scorer's alpha ablation because constraint_cache was never saved. Only mixing alpha is available.\n3. PW SC=39.83% vs expected 39.33%.\n\nLet me present the results clearly.\n\nFor FOLIO scorer alpha (the real thing):\n\n\nNow I'm looking at the ablation results across different alpha values, showing how the scorer's confidence parameter affects performance metrics like SICA, SC, and agreement rates. Now I'm looking at the performance metrics for the PW mixing alpha parameter across different values, and there's a clear trend where increasing alpha leads to worse performance—the SICA scores drop progressively while the p-values become more significant, indicating the differences are statistically meaningful.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "53837c87-6e80-47e2-bafe-e22c87d2bd00",
+            "uuid": "63a881fb-cd4f-443c-ae61-441c38cce50f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0194AWsjEogqZJgGRj4BLxHn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2669,
+                "cache_read_input_tokens": 26822,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2669
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000363"
+        },
+        {
+          "source_line": 364,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## α 端点消融结果\n\n### ⚠️ 数据限制说明\n\n两个条件都存在数据源偏差：\n\n1. **FOLIO**：唯一有 constraint_cache 的 Mistral FOLIO 数据是 exp033（SC=53.92%），而非预期的 seed42 数据（SC=55.88%，来自 exp053/seed456）。FOLIO 结果使用的是 **scorer's alpha**（真正的 α 消融）。\n\n2. **ProofWriter**：Mistral PW seed42 的 constraint_cache 从未保存，无法重跑 scorer's alpha。下表使用的是 **mixing alpha**（`α·constraint_dist + (1-α)·vote_dist`），不是 scorer 内部的 source-attribution α。\n\n---\n\n### Condition 1: Mistral-7B ProofWriter depth-5（n=600, mixing α）\n\n| α | SICA (%) | SC (%) | Δ (pp) | McNemar p | SICA=SC |\n|---|----------|--------|--------|-----------|---------|\n| 0.0 | 39.83 | 39.83 | +0.00 | 1.000000 | 100.0% |\n| 0.1 | 38.00 | 39.83 | −1.83 | 0.019211 | 96.2% |\n| 0.3 | 38.17 | 39.83 | −1.67 | 0.041389 | 96.0% |\n| 0.5 | 37.83 | 39.83 | −2.00 | 0.022656 | 95.3% |\n| 0.7 | 37.00 | 39.83 | −2.83 | 0.003327 | 93.3% |\n| 0.9 | 36.67 | 39.83 | −3.17 | 0.002563 | 91.8% |\n| 1.0 | 36.17 | 39.83 | −3.67 | 0.000941 | 90.3% |\n\n**趋势**：mixing α 从 0→1 单调递减（39.83→36.17），说明在 PW 上纯 constraint distribution 劣于纯 vote distribution，constraint 信号引入了噪声。α≥0.5 时 McNemar p<0.05 显著。\n\n---\n\n### Condition 2: Mistral-7B FOLIO（n=204, scorer's α, exp033）\n\n| α | SICA (%) | SC (%) | Δ (pp) | McNemar p | SICA=SC |\n|---|----------|--------|--------|-----------|---------|\n| 0.0 | 53.92 | 53.92 | +0.00 | 1.000000 | 93.6% |\n| 0.1 | 53.92 | 53.92 | +0.00 | 1.000000 | 93.6% |\n| 0.3 | 53.92 | 53.92 | +0.00 | 1.000000 | 93.6% |\n| 0.5 | 54.41 | 53.92 | +0.49 | 1.000000 | 94.1% |\n| 0.7 | 54.41 | 53.92 | +0.49 | 1.000000 | 94.1% |\n| 0.9 | 54.41 | 53.92 | +0.49 | 1.000000 | 94.1% |\n| 1.0 | 53.43 | 53.92 | −0.49 | 1.000000 | 95.1% |\n\n**趋势**：scorer's α 对 FOLIO 几乎无影响——全范围波动仅 ±0.49 pp，McNemar p 全部为 1.0（不显著）。说明 source-attribution 惩罚项在 FOLIO 上的 excluded constraints 权重很小，α 的取值基本不改变排序。\n\n---\n\n### 关键发现\n\n| | PW (mixing α) | FOLIO (scorer's α) |\n|---|---|---|\n| α=0 vs α=1 差异 | −3.67 pp (p=0.001) | −0.49 pp (p=1.0) |\n| α 敏感性 | 高，单调递减 | 极低，几乎不变 |\n| 最优 α | 0.0（纯投票） | 0.5–0.7（微弱优势） |\n| SC baseline | 39.83% (≠预期39.33%) | 53.92% (≠预期55.88%) |\n\n**SC baseline 偏差原因**：PW 的 39.83% vs 39.33% 来自答案标准化差异（239 vs 236 correct）；FOLIO 的 53.92% vs 55.88% 是因为 exp033 不是 seed42 实验，55.88% 来自 exp053（seed456）。\n\n如果需要精确匹配预期 SC 值，需要：(1) 为 PW seed42 重新保存 constraint_cache；(2) 找到 seed42 的 FOLIO constraint_cache 或用 exp053 的数据重跑。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "53837c87-6e80-47e2-bafe-e22c87d2bd00",
+            "uuid": "833a11d4-90b5-48f0-ab1a-5786f9165d3e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0194AWsjEogqZJgGRj4BLxHn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2669,
+                "cache_read_input_tokens": 26822,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2669
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000364"
+        },
+        {
+          "source_line": 365,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## α 端点消融结果\n\n### ⚠️ 数据限制说明\n\n两个条件都存在数据源偏差：\n\n1. **FOLIO**：唯一有 constraint_cache 的 Mistral FOLIO 数据是 exp033（SC=53.92%），而非预期的 seed42 数据（SC=55.88%，来自 exp053/seed456）。FOLIO 结果使用的是 **scorer's alpha**（真正的 α 消融）。\n\n2. **ProofWriter**：Mistral PW seed42 的 constraint_cache 从未保存，无法重跑 scorer's alpha。下表使用的是 **mixing alpha**（`α·constraint_dist + (1-α)·vote_dist`），不是 scorer 内部的 source-attribution α。\n\n---\n\n### Condition 1: Mistral-7B ProofWriter depth-5（n=600, mixing α）\n\n| α | SICA (%) | SC (%) | Δ (pp) | McNemar p | SICA=SC |\n|---|----------|--------|--------|-----------|---------|\n| 0.0 | 39.83 | 39.83 | +0.00 | 1.000000 | 100.0% |\n| 0.1 | 38.00 | 39.83 | −1.83 | 0.019211 | 96.2% |\n| 0.3 | 38.17 | 39.83 | −1.67 | 0.041389 | 96.0% |\n| 0.5 | 37.83 | 39.83 | −2.00 | 0.022656 | 95.3% |\n| 0.7 | 37.00 | 39.83 | −2.83 | 0.003327 | 93.3% |\n| 0.9 | 36.67 | 39.83 | −3.17 | 0.002563 | 91.8% |\n| 1.0 | 36.17 | 39.83 | −3.67 | 0.000941 | 90.3% |\n\n**趋势**：mixing α 从 0→1 单调递减（39.83→36.17），说明在 PW 上纯 constraint distribution 劣于纯 vote distribution，constraint 信号引入了噪声。α≥0.5 时 McNemar p<0.05 显著。\n\n---\n\n### Condition 2: Mistral-7B FOLIO（n=204, scorer's α, exp033）\n\n| α | SICA (%) | SC (%) | Δ (pp) | McNemar p | SICA=SC |\n|---|----------|--------|--------|-----------|---------|\n| 0.0 | 53.92 | 53.92 | +0.00 | 1.000000 | 93.6% |\n| 0.1 | 53.92 | 53.92 | +0.00 | 1.000000 | 93.6% |\n| 0.3 | 53.92 | 53.92 | +0.00 | 1.000000 | 93.6% |\n| 0.5 | 54.41 | 53.92 | +0.49 | 1.000000 | 94.1% |\n| 0.7 | 54.41 | 53.92 | +0.49 | 1.000000 | 94.1% |\n| 0.9 | 54.41 | 53.92 | +0.49 | 1.000000 | 94.1% |\n| 1.0 | 53.43 | 53.92 | −0.49 | 1.000000 | 95.1% |\n\n**趋势**：scorer's α 对 FOLIO 几乎无影响——全范围波动仅 ±0.49 pp，McNemar p 全部为 1.0（不显著）。说明 source-attribution 惩罚项在 FOLIO 上的 excluded constraints 权重很小，α 的取值基本不改变排序。\n\n---\n\n### 关键发现\n\n| | PW (mixing α) | FOLIO (scorer's α) |\n|---|---|---|\n| α=0 vs α=1 差异 | −3.67 pp (p=0.001) | −0.49 pp (p=1.0) |\n| α 敏感性 | 高，单调递减 | 极低，几乎不变 |\n| 最优 α | 0.0（纯投票） | 0.5–0.7（微弱优势） |\n| SC baseline | 39.83% (≠预期39.33%) | 53.92% (≠预期55.88%) |\n\n**SC baseline 偏差原因**：PW 的 39.83% vs 39.33% 来自答案标准化差异（239 vs 236 correct）；FOLIO 的 53.92% vs 55.88% 是因为 exp033 不是 seed42 实验，55.88% 来自 exp053（seed456）。\n\n如果需要精确匹配预期 SC 值，需要：(1) 为 PW seed42 重新保存 constraint_cache；(2) 找到 seed42 的 FOLIO constraint_cache 或用 exp053 的数据重跑。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1470798,
+            "duration_api_ms": 1343798,
+            "num_turns": 142,
+            "stop_reason": "end_turn",
+            "session_id": "53837c87-6e80-47e2-bafe-e22c87d2bd00",
+            "total_cost_usd": 7.378639750000003,
+            "usage": {
+              "input_tokens": 94,
+              "cache_creation_input_tokens": 170310,
+              "cache_read_input_tokens": 9462427,
+              "output_tokens": 54319,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 170310,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 2216,
+                  "cache_read_input_tokens": 26822,
+                  "cache_creation_input_tokens": 2669,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2669
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2177,
+                "outputTokens": 26,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002307,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 1815,
+                "outputTokens": 58674,
+                "cacheReadInputTokens": 9626928,
+                "cacheCreationInputTokens": 173911,
+                "webSearchRequests": 0,
+                "costUSD": 7.376332750000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "e021cbd2-72e7-4507-bb84-1fb8d3d6e444"
+          },
+          "id": "event-000365"
+        }
+      ]
+    }
+  ]
+}

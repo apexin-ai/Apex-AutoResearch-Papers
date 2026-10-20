@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4307c1d37861779a1d6e",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code interim analysis scripts",
+  "task_key": "worker_code_interim-analysis-scripts_20260519T004513",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_interim-analysis-scripts_20260519T004513_result.json",
+    "occurrence": 1,
+    "bytes": 1224,
+    "sha256": "ad7ee8a47404d871868b056f25822f5b32255239c8d8b3ce1d5d28b516f6eda7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个脚本全部 dry-run 成功，输出正确。汇总：\n\n### 脚本 1: `analyze_seed_replication.py` (westd-16639)\n- **路径**: `/root/symb_invariant_consensus/scripts/analyze_seed_replication.py`\n- **数据**: exp-052 (seed=123) 204条 ✓, exp-053 (seed=456) 204条 ✓, exp-033 (seed=42) 用 hardcoded reference\n- **结果**: seed=42 delta=+4.90 (p=0.013), seed=123 delta=+3.43 (p=0.039), seed=456 delta=-0.49 (p=1.0)\n- **输出**: `results/seed_replication_summary.json` ✓\n\n### 脚本 2: `track_discordant_pairs.py` (westd-25068)\n- **路径**: `/root/symb_invariant_consensus/scripts/track_discordant_pairs.py`\n- **数据**: exp-028b 118/204 条 (仍在运行)\n- **结果**: SC=84.75%, SICA=86.44%, delta=+1.69pp, b=2, c=0, override precision=1.0\n- **输出**: `results/exp028b_discordant_tracking.json` ✓\n\n### 脚本 3: `summarize_k_sensitivity.py` (westd-25068)\n- **路径**: `/root/symb_invariant_consensus/scripts/summarize_k_sensitivity.py`\n- **数据**: k4=204 done, k8=204 done, k12=204 (exp-033 reference), k16=49/204 running, k20=pending\n- **结果**: K=12 是 delta 最高点 (+4.90, p=0.013)，K=4/8 delta 为负\n- **输出**: `results/k_sensitivity_summary.json` ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-interim-analysis-scripts.md"
+}

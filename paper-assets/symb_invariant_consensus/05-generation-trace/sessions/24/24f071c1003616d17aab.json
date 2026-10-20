@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "24f071c1003616d17aab",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "analysis cil computation",
+  "task_key": "worker_analysis_cil-computation_20260523T010151",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_cil-computation_20260523T010151.log",
+    "occurrence": 1,
+    "bytes": 743134,
+    "sha256": "819bf775dc99e7838d85193b6f765cb6deed5e2a48ee634e3e4064d05dae75df"
+  },
+  "statistics": {
+    "messages": 211,
+    "user_turns": 0,
+    "tool_calls": 85,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 85,
+      "tool_result": 85,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 211,
+      "chunks": [
+        {
+          "path": "24f071c1003616d17aab-part-0001.json",
+          "message_count": 163
+        },
+        {
+          "path": "24f071c1003616d17aab-part-0002.json",
+          "message_count": 48
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-cil-computation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41df646755a37153d533",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code folio data prep",
+  "task_key": "worker_code_folio-data-prep_20260515T194855",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_folio-data-prep_20260515T194855_result.json",
+    "occurrence": 1,
+    "bytes": 2308,
+    "sha256": "c478982c732e8087ac7df0398c3787a45977551ea1e6fdc07a5016116e0af108"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n## 产出汇报\n\n### 1. FOLIO 数据\n- **来源**: `/root/autodl-tmp/crdd/data/folio-validation.jsonl` (CRD 项目，204 条)\n- **子集**: 30 题，保存到 `data/folio_subset.json`\n- **标签分布**: True=10, False=10, Unknown=10（均衡）\n- 原始 label \"Uncertain\" 已映射为 \"Unknown\"\n\n### 2. ProofWriter 扩展\n- **来源**: D5 validation set (600 条)\n- **扩展后**: 30 题 (原 10 → 30)，True/False/Unknown 各 10\n- 默认 `--n-problems` 已从 10 更新为 30\n\n### 3. Prompt 适配决策\n- **新建 `FOLIO_PROMPT` template**（不复用 `LOGIC_PROMPT`）\n  - ProofWriter 的 LOGIC_PROMPT: \"given facts and rules\" + \"statement true/false/unknown\"\n  - FOLIO 的 FOLIO_PROMPT: \"given premises\" + \"conclusion logically follows/contradicted/undetermined\"\n  - 措辞更贴合 FOLIO 的自然语言前提→结论判断范式\n- **Constraint extraction**: 复用 `LOGIC_EXTRACTION_PROMPT`，FOLIO 和 ProofWriter 同属逻辑域，约束结构一致\n- Pipeline domain dispatch: `dataset=\"folio\"` → `task_type=\"folio\"`（trace生成用 FOLIO_PROMPT），constraint extraction 仍走 `domain=\"logic\"`\n\n### 4. Dry-run 结果\n- `eval_folio.py --dry-run`: 30/30 prompt assembly OK，6/6 answer extraction OK\n- `eval_proofwriter.py --dry-run`: 30/30 OK，answer extraction OK\n- FOLIO loader 验证: 30 problems loaded, 分布正确\n- `normalize_logic_answer` 正确处理 Uncertain→Unknown 映射\n\n### 5. 新增/修改文件\n| 文件 | 操作 |\n|------|------|\n| `data/folio_subset.json` | 新增，30 题 |\n| `data/folio_loader.py` | 新增 |\n| `data/prepare_folio.py` | 新增 |\n| `data/proofwriter_subset.json` | 重建为 30 题 |\n| `data/proofwriter_loader.py` | default n=30 |\n| `eval_folio.py` | 新增 |\n| `eval_proofwriter.py` | default n=30 |\n| `sica/trace_generator.py` | 新增 FOLIO_PROMPT，folio task_type 支持 |\n| `sica/pipeline.py` | folio domain dispatch |\n\n### 6. 后续步骤\n- v3 实验完成后，运行 `python eval_folio.py --k 12 --temperature 0.7 --max-tokens 16384 --save-intermediates`\n- 运行 `python eval_proofwriter.py --k 12 --temperature 0.7 --save-intermediates`（30 题版本）\n- 可选：将 FOLIO 整合到 `run_full_mvp.py` 的 `load_all_problems` 中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-folio-data-prep.md"
+}

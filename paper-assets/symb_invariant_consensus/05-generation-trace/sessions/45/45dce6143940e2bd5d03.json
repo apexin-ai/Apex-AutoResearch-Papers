@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45dce6143940e2bd5d03",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code download mistral 25068",
+  "task_key": "worker_code_download-mistral-25068_20260518T102231",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_download-mistral-25068_20260518T102231_result.json",
+    "occurrence": 1,
+    "bytes": 620,
+    "sha256": "96bdb1e1a943250851d40ae4d8970695b9504fe8212ef1588091ed7604470de8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态汇总：\n\n**Mistral-7B-Instruct-v0.3**\n- 状态：后台下载中 (PID: 18676)\n- 下载方式：HF mirror (`hf download`，`HF_HUB_DISABLE_XET=1`)\n- 速度：~3.5 MB/s\n- 当前 I/O：rchar 336M，稳步增长\n- 预计完成：~60 分钟\n\n**Qwen2.5-14B-Instruct** (关键路径)\n- 状态：后台下载中 (PID: 16416，modelscope)\n- 进度：17GB / ~28GB（7/8 safetensor 分片在 `._____temp/`）\n- 预估还剩 ~11GB\n\n另外发现 **LLaMA-3.1-8B-Instruct** (PID 17783) 也在通过 modelscope 下载中。\n\n三个模型同时后台下载。Mistral 预计 ~1 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-download-mistral-25068.md"
+}

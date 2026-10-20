@@ -1,0 +1,328 @@
+{
+  "schema_version": "1.0",
+  "id": "25b33770566010915705",
+  "project": "symb_invariant_consensus",
+  "kind": "conversation",
+  "title": "paper discussion prm orm paragraph",
+  "task_key": "worker_paper_discussion-prm-orm-paragraph_20260525T053441",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_paper_discussion-prm-orm-paragraph_20260525T053441.jsonl",
+    "occurrence": 1,
+    "bytes": 17455,
+    "sha256": "ef058bb5af9c0092e8760d58bc7f6df473df9e142d9261ac02c05d39e356464a"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T05:36:21.557348+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_discussion-prm-orm-paragraph_20260525T053441",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-25T05:36:21.557846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\n2\t\\label{sec:discussion}\n3\t\\label{sec:conclusion}\n4\t\\enlargethispage{\\baselineskip}\n5\t\n6\t\\looseness=-1\n7\tOur central finding is that formal verification's value depends on the \\emph{independence} of its inputs, not the soundness of its logic. SICA reduces to majority vote under source-attribution scoring (Observation~1), and 27 training-free variants fail to escape; symbolic confirmation bias holds across nine models (7B to frontier). Three zero-cost diagnostics predict failure from a $K{=}12$ pilot (\\S\\ref{sec:diagnostic-framework}); cross-architecture verification escapes the bottleneck only when the verifier exceeds generator accuracy (\\S\\ref{sec:cross-arch}), suggesting \\emph{architectural diversity} over scale. Our DPI bound $I(C;Y) \\leq I(T;Y)$ further explains why trained verifiers \\citep{lightman2024prm,wang2024mathshepherd} succeed (they break the $M{\\to}T{\\to}A{\\to}C$ chain with external signal) and why same-model scaling saturates at $K_\\text{eff}$.\n8\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_discussion-prm-orm-paragraph_20260525T053441",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-25T05:36:21.558136+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_discussion-prm-orm-paragraph_20260525T053441",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "cobbe|math.shepherd|grace|verifier.*math|khalifa",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib",
+              "output_mode": "content",
+              "-i": "True",
+              "-C": "3"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-25T05:36:21.558319+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "173-\n174-%%% Verification and Reranking %%%\n175-\n176:@article{cobbe2021gsm8k,\n177:  title={Training Verifiers to Solve Math Word Problems},\n178:  author={Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},\n179-  journal={arXiv preprint arXiv:2110.14168},\n180-  year={2021}\n181-}\n182-\n183-@inproceedings{lightman2024prm,\n184-  title={Let's Verify Step by Step},\n185:  author={Lightman, Hunter and Kosaraju, Vineet and Burda, Yura and Edwards, Harri and Baker, Bowen and Lee, Teddy and Leike, Jan and Schulman, John and Sutskever, Ilya and Cobbe, Karl},\n186-  booktitle={ICLR},\n187-  year={2024}\n188-}\n189-\n190-@inproceedings{wang2024mathshepherd,\n191:  title={Math-Shepherd: Verify and Reinforce {LLM}s Step-by-step without Human Annotations},\n192-  author={Wang, Peiyi and Li, Lei and Shao, Zhihong and Xu, R.X. and Dai, Damai and Li, Yifei and Chen, Deli and Wu, Y. and Sui, Zhifang},\n193-  booktitle={ACL},\n194-  year={2024}\n195-}\n196-\n197:@inproceedings{khalifa2023grace,\n198:  title={{GRACE}: Discriminator-Guided Chain-of-Thought Reasoning},\n199:  author={Khalifa, Muhammad and Logeswaran, Lajanugen and Lee, Moontae and Lee, Honglak and Wang, Lu},\n200-  booktitle={Findings of EMNLP},\n201-  year={2023}\n202-}\n--\n474-%%% Programs-as-Verifiers %%%\n475-\n476-@article{toh2024notallvotes,\n477:  title={Not All Votes Count! Programs as Verifiers Improve Self-Consistency of Language Models for Math Reasoning},\n478-  author={Toh, Vernon Y.H. and Ghosal, Deepanway and Poria, Soujanya},\n479-  journal={arXiv preprint arXiv:2410.12608},\n480-  year={2024}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_discussion-prm-orm-paragraph_20260525T053441",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-25T05:36:21.558470+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_discussion-prm-orm-paragraph_20260525T053441",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-25T05:36:21.558701+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{The Symbolic Mirage}\n2\t\\label{sec:analysis}\n3\t\n4\t\\subsection{Symbolic Confirmation Bias}\n5\t\\label{sec:confirmation-bias}\n6\t\n7\t\\looseness=-1 Self-extracted constraints systematically align with the model's majority answer, a persistent empirical property of zero-shot self-extraction pipelines, not a cognitive bias analogy. On Mistral-7B FOLIO, when SICA errs, 83.3\\% of constraints support the incorrect answer (bias ratio $4.97\\times$; Table~\\ref{tab:cross-model-bias}), and 94\\% of errors overlap with SC. Z3 rejects only 3.4\\% of constraints, and MAX-SAT produces answers identical to count-only aggregation on ${\\geq}99\\%$ of problems across all weight settings $\\alpha$ (Table~\\ref{tab:alpha-ablation}), confirming that the formal verification layer is vacuous (Eq.~\\ref{eq:degenerate}): 99\\% of constraints pass Z3 validation yet add no information beyond majority voting.\n8\t\n9\t\\looseness=-1 Crucially, BR $> 1$ is not an independent finding but a corollary of the degeneration identified in Observation~1: under source-attribution scoring, constraint weight is proportional to trace count, so the majority answer necessarily receives more support. A permutation null model, randomizing constraint--answer associations while preserving per-trace counts (1{,}000 permutations), confirms this: $\\text{BR}_\\text{null} \\approx \\text{BR}_\\text{obs}$ ($\\text{BR}_\\text{excess} \\approx 0$; $p > 0.7$) across all tested conditions. As a zero-cost diagnostic, BR quantifies the degree of extraction degeneration (how completely constraints collapse to majority-vote equivalents), not an independent theoretical contribution. On problems where SC is correct, constraints still track the majority ($\\text{BR}_\\text{correct}$ $1.29$--$3.64\\times$), confirming that self-extracted constraints reflect distributional frequency rather than logical validity.\n10\t\n11\t\\looseness=-1 The pattern generalizes across nine models from 7B to frontier (BR $1.66$--$4.97\\times$; Table~\\ref{tab:frontier-scb} \n…[truncated 9954 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_discussion-prm-orm-paragraph_20260525T053441",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-25T05:36:21.558870+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_discussion-prm-orm-paragraph_20260525T053441",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-25T05:36:21.559125+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Escaping the Bottleneck}\n2\t\\label{sec:solutions}\n3\t\\label{sec:cross-arch}\n4\t\n5\t\\paragraph{Motivation.}\n6\t\\looseness=-1 No training-free self-extraction method achieves independence from the model's distributional prior (\\S\\ref{sec:remediation}). We test whether a structurally independent verifier, sharing neither architecture nor training data with the generator, can escape the DPI bound $I(C;Y) \\leq I(T;Y)$.\n7\t\n8\t\\paragraph{Method.}\n9\t\\looseness=-1 We use DeBERTa-large \\citep{he2021deberta} (406M, encoder-only), fine-tuned on MultiNLI \\citep{williams2018mnli} for Natural Language Inference (NLI), to classify (premise, conclusion) pairs as entailment, contradiction, or neutral. In combo mode, each NLI-supporting vote counts $w$ times alongside SC's $K$ votes. We evaluate on Mistral-7B FOLIO ($n = 204$) and ProofWriter depth-5 ($n = 600$).\n10\t\n11\t\\paragraph{Zero-shot results.}\n12\t\\looseness=-1 DeBERTa NLI alone achieves 49.51\\% on FOLIO and 55.00\\% on ProofWriter. Combo $w{=}3$ yields $+6.67$\\,pp on ProofWriter for Mistral-7B ($p < 0.001$, significant after BH correction) and $+2.94$\\,pp on FOLIO (n.s.); all generators with SC $\\geq 72\\%$ show no significant improvement ($\\Delta \\leq +1.47$\\,pp). Same-model SICA \\emph{degrades} ProofWriter ($-2.83$\\,pp; Table~\\ref{tab:main_results}), illustrating that corrective signal must originate outside the model's distribution.\n13\t\n14\t\\paragraph{Capability gap.}\n15\t\\looseness=-1 Across 108 conditions (three NLI architectures, four generators, three domains), gain decreases monotonically with generator accuracy, a preliminary \\emph{capability-gap pattern} ($\\rho = 1.0$, $p = 0.003$; exploratory, $n{=}6$ limits statistical confidence; Figure~\\ref{fig:capability-gap}). Based on six data points, this pattern requires validation on larger generator pools. All significant gains concentrate below the verifier's standalone accuracy; on ProofWriter ($n{=}600$; Table~\\ref{tab:cross_generator_nli}), only Mistral-7B (SC below De\n…[truncated 1241 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_discussion-prm-orm-paragraph_20260525T053441",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-25T05:36:21.559443+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_discussion-prm-orm-paragraph_20260525T053441",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-25T05:36:21.560142+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 5709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_discussion-prm-orm-paragraph_20260525T053441",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-25T05:36:21.560511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_discussion-prm-orm-paragraph_20260525T053441",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex",
+              "old_string": "Our DPI bound $I(C;Y) \\leq I(T;Y)$ further explains why trained verifiers \\citep{lightman2024prm,wang2024mathshepherd} succeed (they break the $M{\\to}T{\\to}A{\\to}C$ chain with external signal) and why same-model scaling saturates at $K_\\text{eff}$.",
+              "new_string": "Our DPI bound $I(C;Y) \\leq I(T;Y)$ further explains why trained verifiers \\citep{lightman2024prm,wang2024mathshepherd} succeed (they break the $M{\\to}T{\\to}A{\\to}C$ chain with external signal) and why same-model scaling saturates at $K_\\text{eff}$.\n\n\\looseness=-1\nThe connection to learned verification merits elaboration. Outcome reward models \\citep{cobbe2021gsm8k} and process reward models \\citep{lightman2024prm,wang2024mathshepherd} overcome the DPI bottleneck because training on annotated correctness labels introduces a verification signal conditionally independent of the generator's trace distribution. A trained verifier $V$ satisfies $V \\not\\perp Y \\mid T$ through its training objective, not through the chain $M{\\to}T{\\to}A{\\to}C$; its mutual information $I(V(T); Y)$ can therefore exceed $I(A; Y)$. Discriminator-guided decoding \\citep{khalifa2023grace} achieves a similar effect by training a separate model to score reasoning paths. Our cross-architecture NLI escape (\\S\\ref{sec:cross-arch}) instantiates this principle without task-specific training: DeBERTa's NLI capability, acquired from a structurally independent distribution, provides the requisite independence zero-shot, yielding $+6.67$\\,pp where same-model extraction degrades.\n\n\\looseness=-1\nThese observations suggest a spectrum ordered by strength of external signal. Self-extraction injects none and is bounded by $I(T;Y)$; PRM with dense step-level supervision can approach oracle verification. Our diagnostic framework and NLI escape occupy an intermediate position, requiring no task-specific annotation yet providing corrective signal when a capability gap exists. A natural next step is lightweight trained verification: a small model fine-tuned on modest annotation could combine the accessibility of zero-shot methods with the information-theoretic advantages of learned verifiers, extending the escape region beyond the capability-gap constraint of \\S\\ref{sec:cross-arch}."
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-25T05:36:21.560755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_discussion-prm-orm-paragraph_20260525T053441",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-25T05:36:21.561122+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_discussion-prm-orm-paragraph_20260525T053441",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"^!|error|Output written\"",
+              "description": "Compile LaTeX to check for errors",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-25T05:36:21.561286+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output written on main.pdf (30 pages, 3944672 bytes)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_discussion-prm-orm-paragraph_20260525T053441",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-25T05:36:21.561455+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，无错误。\n\n最终 discussion.tex 新增两段（~195 words）：\n1. **PRM/ORM 机制段**：解释 trained verifier 通过训练目标引入条件独立的验证信号，打破 M→T→A→C chain，使 $I(V(T);Y)$ 突破 $I(A;Y)$ 上界。引用了 `cobbe2021gsm8k`（ORM 开创工作）和 `khalifa2023grace`（discriminator-guided decoding）。将本文 cross-arch NLI escape 定位为同一原理的 zero-shot 实例。\n2. **验证策略谱段**：从 self-extraction（无外部信号）到 PRM（密集监督）的连续谱，本文方法居中间。指向 lightweight trained verification 作为未来方向。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_discussion-prm-orm-paragraph_20260525T053441"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/paper-discussion-prm-orm-paragraph.md"
+}

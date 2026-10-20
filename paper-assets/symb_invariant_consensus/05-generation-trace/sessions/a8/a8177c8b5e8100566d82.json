@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "a8177c8b5e8100566d82",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "code interim analysis scripts",
+  "task_key": "worker_code_interim-analysis-scripts_20260519T004513",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_interim-analysis-scripts_20260519T004513.log",
+    "occurrence": 1,
+    "bytes": 618485,
+    "sha256": "f22833321da094716b79ca660e4cbbd5d0de5065c925f5074eece508a85a05f0"
+  },
+  "statistics": {
+    "messages": 162,
+    "user_turns": 1,
+    "tool_calls": 64,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 26,
+      "tool_call": 64,
+      "tool_result": 64,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 142,
+      "chunks": [
+        {
+          "path": "a8177c8b5e8100566d82-part-0001.json",
+          "message_count": 142
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 20,
+      "chunks": [
+        {
+          "path": "a8177c8b5e8100566d82-part-0001.json",
+          "message_count": 12
+        },
+        {
+          "path": "a8177c8b5e8100566d82-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-interim-analysis-scripts.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c897cad4a564a6ffe32",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diagnosis qwen3 pw seed789",
+  "task_key": "worker_diagnosis_qwen3-pw-seed789_20260524T112701",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnosis_qwen3-pw-seed789_20260524T112701_result.json",
+    "occurrence": 1,
+    "bytes": 580,
+    "sha256": "ecd6685868d6ae0e85c6569eaa6aa264adc7bb51dc952f17d85ab68b166bccfc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n## 结论：**SUCCESS**\n\n| 指标 | 值 |\n|------|-----|\n| SC accuracy | 85.50% (513/600) |\n| SICA accuracy | 85.67% (514/600) |\n| Δ(SICA-SC) | **+0.17%** |\n| n_problems | 600 |\n| wall_time | 17.2h |\n| extraction_rate | 99.76% |\n| contradiction_rate | 0.34% |\n\n注意：假设 Δ(SICA-SC)≤0 **未被验证**——seed789 显示 SICA 微高于 SC（+0.17pp，1题之差）。结合 Counter.most_common() tiebreaking 问题，这个差异可能在噪声范围内。\n\n- Registry 已更新为 DONE/success + metrics\n- Cron 已删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-qwen3-pw-seed789.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d81d94b2c9a11d53c5af",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code exp 013 constraint cache",
+  "task_key": "worker_code_exp-013-constraint-cache_20260516T080137",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp-013-constraint-cache_20260516T080137_result.json",
+    "occurrence": 1,
+    "bytes": 1698,
+    "sha256": "49e4ae10f398fcf623ac0e273e47c942758f7ef44157a001475de3691e1c6a91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**情况 B**：exp-001 不保存原始约束（pipeline 未返回 `raw_constraints`）。\n\n### 已完成修改\n\n**1. `sica/pipeline.py`** — 在 `run_single()` 返回值中添加 `raw_constraints` 序列化：\n```python\n\"raw_constraints\": [\n    {\n        \"expression\": uc.expression,\n        \"z3_formula_str\": str(uc.z3_formula),\n        \"weight\": uc.weight,\n        \"source_traces\": uc.source_traces,\n    }\n    for uc in unique_constraints\n],\n```\n\n**2. `scripts/constraint_ablation.py`** — 支持从 results 文件内联 `raw_constraints` 自动构建 cache（无需单独 `--constraint-cache` 文件）：\n```python\nif not cache:\n    inline_cache = {}\n    for p in problems:\n        rc = p.get(\"raw_constraints\", [])\n        if rc:\n            inline_cache[str(p[\"problem_idx\"])] = rc\n    if inline_cache:\n        cache = inline_cache\n```\n\n### 验证结果\n- Pipeline dry-run：返回 3 个约束，格式 `{expression, z3_formula_str, weight, source_traces}` ✓\n- constraint_ablation.py `--help` 正常 ✓\n- 不改变现有逻辑，只增加输出 ✓\n\n### exp-001 状态\n- 正在运行（158/804 完成），使用 `--save-intermediates`\n- **但**：运行中进程已加载旧 pipeline.py，`raw_constraints` 将全部为空\n- exp-001 数据无法回溯提取约束（per_trace 只存了 metadata，trace 文本未保存）\n\n### 后续使用\n从 exp-002 起，只要加 `--save-intermediates`，constraint_ablation.py 即可直接用精确模式：\n```bash\npython scripts/constraint_ablation.py --data-dir results/exp002_results.json\n# 自动从 inline raw_constraints 构建 cache，跑 exact mode\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-013-constraint-cache.md"
+}

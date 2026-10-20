@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f4586cab9d0867c53f7",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "reviewer / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/reviewer/loop_3.md",
+    "occurrence": 1,
+    "bytes": 3849,
+    "sha256": "9e7946efc89190cc386eaa7b58c9240ff91ce74bb3ccccf37a411aa29b7cbc16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_messages\nupdated: '2026-05-16T01:19:50+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:0（westd-32608 单卡服务器，无其他 GPU）\n- vLLM max_model_len=16384，实验 max_tokens 必须 ≤12288（16384 会 400 全灭，proofwriter30 v1 已验证）\n- sica_folio30 registry spec.command 仍写着 `--max-tokens 16384`，**启动前必须改为 12288**。我已报 critical + warning 给 Director，但截至 handoff 时 spec.command 未修正\n- 模型固定 QwQ-32B，不可替换（D003）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-32608(root)，工作目录 `/root/symb_invariant_consensus`\n- Python：`/root/miniconda3/bin/python`，conda base 环境\n- vLLM：PID 129131（EngineCore PID 129399），端口 8000，模型 `/root/autodl-tmp/models/QwQ-32B/Qwen/QwQ-32B`，max_model_len=16384，gpu_mem_util=0.90\n- 数据：`data/proofwriter_subset.json`（30题 T:10/F:10/U:10），`data/folio_subset.json`（30题 T:10/F:10/U:10）\n- 活跃进程：sica_proofwriter30_v2（PID 155077，tmux=sica_proofwriter30_v2，cuda:0）\n- GPU：NVIDIA RTX PRO 6000 Blackwell 98GB，约 89GB 已用，100% util\n- 无 W&B 配置\n\n### 3. 📊 当前状态\nsica_proofwriter30_v2 正在运行，P2/30（约 06:30 UTC 进入 traces 5-8/12）。预估总运行 ~2.5-3h。P1 完成结果：SICA=SC=True，SC 12/12 unanimous（单候选），8/12 traces 提取失败（No JSON），390s。\n\nRegistry 状态：\n- sica_proofwriter30_v2: RUNNING — 逻辑域 ProofWriter 30题，max_tokens=12288 修复版\n- sica_folio30: QUEUED — 等 proofwriter 完成后启动，**command 中 max_tokens 仍为 16384 需修**\n\n已发给 Director 的未关闭 issue：\n1. [critical→已确认] folio30 max_tokens=16384 回退 bug，Worker 只在 notes 备注未改 command\n2. [warning] proofwriter30_v2 P1 单候选 + 高提取失败率（仅 1 题数据，待跟踪）\n3. [info] D012 逻辑域 MVP 标准审查通过\n\n### 4. 📋 待办（条件触发式）\n- sica_proofwriter30_v2 完成（cron on_complete 或 worker_done）→ 全量审查：C0 多候选率、C1 提取率、SC vote diversity 分布、GPU 合规、结果与 log 一致性。特别关注：逻辑域是否真的产生多候选（整个 pivot 的核心假设）\n- sica_folio30 启动前 → 验证实际启动命令是否用了 12288（不要信 spec.command，看 tmux/ps 实际参数）\n- sica_folio30 完成 → 同上全量审查 + 合并 60 题按 D012 标准判定 PASS/INCONCLUSIVE/FAIL\n- 如果 proofwriter30_v2 的多候选率 = 0%（同 AIME/MATH）→ 立即报 critical 给 Director，逻辑域 pivot 假设不成立，C0 FAIL 确定\n\n### 5. 🎯 战略上下文\n**决策链**：D001(MVP) → D002(拒CRD) → D003(标准v2) → D006(kill MATH) → D010(AIME 0pp结构性) → D011(逻辑域pivot) → D012(逻辑域MVP标准)\n\n**核心结论**：QwQ-32B 在数学域（AIME 22题 + MATH 10题 + temp_diversity 5题）答案一致性是模型级特征，所有题目零多候选，SICA≡SC 是结构性的。逻辑域 True/False/Unknown 3-way 答案是最后希望。\n\n**最容易判断错的事**：\n1. P1 单候选（12/12 True）可能让你急于下\"逻辑域也失败\"的结论——但 P1 是 gold=True 的简单推理链题，QwQ-32B 做对了且 unanimous 是正常的。关键看 gold=Unknown 的题（模型不确定性最高）和模型做错的题。等至少 10 题数据再评估 C0。\n2. \"No JSON found\" 的 8/12 提取失败不等于约束提取率低——这是 constraint extraction 阶段的 JSON parse 失败，不是 answer extraction。SC votes 12/12 说明 answer 提取是好的。C1 要看的是 constraint 提取率，但定义上需要看 D012 怎么算。\n3. folio30 的 live_test_passed=true 不代表 16384 安全——live test 很可能用了脚本默认值 12288，不是 spec 中的命令行参数。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-copy-3.md"
+}

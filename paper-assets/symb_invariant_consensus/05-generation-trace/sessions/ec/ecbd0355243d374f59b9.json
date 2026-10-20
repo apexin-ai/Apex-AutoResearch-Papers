@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ecbd0355243d374f59b9",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "theory causal dag tikz",
+  "task_key": "worker_theory_causal-dag-tikz_20260523T010527",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_theory_causal-dag-tikz_20260523T010527_result.json",
+    "occurrence": 1,
+    "bytes": 437,
+    "sha256": "17a98d293834428af38d1d8ca969a94e4dbad7e33713d784fc8c3159998cfb2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/causal_dag_tikz.tex`。\n\n结构：\n- **M → T → A → C → S** 水平主链，T→C 弯曲绕行\n- **A** 红色高亮（bottleneck），T→A 和 A→C 红色粗箭头\n- **Y** 虚线框浮于 A 上方，Y--A 虚线表示隐式目标关系\n- **C ⊥ Y | A** 标注在 Y 右侧小框中\n- 文件顶部可直接 `pdflatex` 编译预览，底部注释块含完整 `figure` 环境供论文粘贴"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/theory-causal-dag-tikz.md"
+}

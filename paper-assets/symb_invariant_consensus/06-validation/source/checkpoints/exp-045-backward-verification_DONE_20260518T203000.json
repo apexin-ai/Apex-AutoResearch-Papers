@@ -1,0 +1,54 @@
+{
+  "exp_id": "exp-045-backward-verification",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:01:40.541Z",
+    "updated_at": "2026-05-18T20:30:00.573Z",
+    "hypothesis": "Backward Verification: 翻转验证方向，对每个候选答案反向推理需要哪些 premises 成立/矛盾，用 Z3 检查哪个答案与 premises 最一致（矛盾最少）。如果 forward extraction 质量是瓶颈，backward verification 绕过 extraction 直接用 solver 判断一致性，可能打破 capability trap。",
+    "server": "westd-25068",
+    "gpu": "cuda:3",
+    "reproduce": {
+      "server": "westd-25068",
+      "gpu": "cuda:3",
+      "started_at": "2026-05-18T19:16:32.740Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_backward_verification.sh 3 8003\"",
+      "finished_at": "2026-05-18T19:41:02.660Z",
+      "training_hours": 0.41
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_backward_verification.sh 3 8003\"",
+      "server": "westd-25068",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "83115",
+      "log_path": "~/runs/symb_invariant_consensus/exp-045-backward-verification.log",
+      "submitted_at": "2026-05-18T19:16:34.043Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 4146.5,
+      "gpu_hours": 1.15
+    },
+    "pid": "83115",
+    "log_path": "~/runs/symb_invariant_consensus/exp-045-backward-verification.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T19:41:05.769423+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "notes": "v1: 可能使用了 Qwen-7B 残留 vLLM (exp-035 遗留 port 8003)。BV=53.92% vs SC=75.00%, delta=-21.08pp。Z3 SAT rate 95.3%=无判别力。True bias 72.5% vs gold 35.3%。根因：backward FOL generation 质量同样差，验证方向不解决 capability trap。即使换正确模型 (-21pp 幅度过大) 可能仍 negative。建议 Director 决策是否用 Qwen2.5-14B 重跑 v2。",
+    "completed_at": "2026-05-18T20:25:40.512Z"
+  },
+  "timestamp": "2026-05-18T20:30:00.754068+00:00",
+  "trigger": "update_registry"
+}

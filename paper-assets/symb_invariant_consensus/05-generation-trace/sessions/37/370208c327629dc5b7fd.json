@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "370208c327629dc5b7fd",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diagnose pilot contrastive prompt",
+  "task_key": "worker_diagnose_pilot-contrastive-prompt_20260517T064455",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_pilot-contrastive-prompt_20260517T064455_result.json",
+    "occurrence": 1,
+    "bytes": 793,
+    "sha256": "0761bb297f1794fdad1b1d0264a7cea48daf70739ba844a04c76a0e070e79030"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过。诊断结果：\n\n| 项目 | 结果 |\n|------|------|\n| **日志中的确切错误** | `bash: line 1: python: command not found` → EXIT_CODE=127 |\n| **脚本是否存在** | 存在，22650 bytes，路径 `/root/symb_invariant_consensus/scripts/pilot_contrastive_constraints.py` |\n| **正确的启动命令** | `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python scripts/pilot_contrastive_constraints.py` |\n| **dry-run 是否通过** | 通过，Python 3.12.3 at `/root/miniconda3/bin/python` |\n\n根因：原始命令未激活 conda 环境，裸 shell 中 `python` 不在 PATH。修复方式是在命令前加 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-pilot-contrastive-prompt.md"
+}

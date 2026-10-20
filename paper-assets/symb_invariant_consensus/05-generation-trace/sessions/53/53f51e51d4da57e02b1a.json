@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53f51e51d4da57e02b1a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis mistral folio 789 final harvest",
+  "task_key": "worker_analysis_mistral-folio-789-final-harvest_20260522T111627",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_mistral-folio-789-final-harvest_20260522T111627_result.json",
+    "occurrence": 1,
+    "bytes": 912,
+    "sha256": "49d6565c92967988b3a01ea1dd128269bd57ca6e8dfd824fb9da11747ed0fd5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Mistral FOLIO seed=789 — 未完成，仍在运行中**\n\n| 指标 | 状态 |\n|------|------|\n| PID 576938 | **ALIVE** |\n| 进度 | **76/204** (37%) |\n| 已完成文件 | 76 个 (folio_0 ~ folio_75) |\n| ETA | **~48 分钟** (129 remaining, avg 22.2s/prob) |\n| 预计完成时间 | ~20:05 UTC (2026-05-22) |\n\n### GPU 状态\n\n| GPU | Util | VRAM Used |\n|-----|------|-----------|\n| 0 | 97% | 90,159 MiB |\n| 1 | 96% | 88,263 MiB |\n| 2 | 96% | 90,213 MiB |\n| 3 | 100% | 90,201 MiB |\n\n4 卡全部满载运行。\n\n### 已有 Mistral FOLIO 数据（待 seed=789 完成后合并）\n\n| Run | SC | SICA | Δ |\n|-----|-----|------|---|\n| exp052 (seed=123) | 53.92% | 57.35% | +3.43pp |\n| exp053 (seed=456) | 56.37% | 55.88% | -0.49pp |\n| seed=789 | *running* | *running* | — |\n\nseed=789 预计约 48 分钟后完成，届时可收割完整三种子结果并计算 mean±SD。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mistral-folio-789-final-harvest.md"
+}

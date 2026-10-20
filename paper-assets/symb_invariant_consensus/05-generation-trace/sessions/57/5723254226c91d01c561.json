@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5723254226c91d01c561",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code gr combo script prep",
+  "task_key": "worker_code_gr-combo-script-prep_20260520T115919",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_gr-combo-script-prep_20260520T115919_result.json",
+    "occurrence": 1,
+    "bytes": 1881,
+    "sha256": "6988988770100f5d80100adbcf7f58b174cf66025eea988c50e7c006b01c0252"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "scipy 可用。现在需要确认运行前的数据准备步骤。\n\n**脚本就绪。汇总如下：**\n\n## `direction_gr_combo.py`\n\n**位置**: `artifacts/direction_gr_combo.py`（本地），需部署到 westd-16639\n\n### 数据格式\n\n| 数据源 | 文件 | 格式 | 位置 |\n|--------|------|------|------|\n| G conservative | `per_problem_conservative.json` | 数组, `pid`/`sica_answer`/`gt`/`scores` | westd-16639 (运行中, 100/204, ETA ~105min) |\n| R NLI | `direction_r_nli_large/results.json` | 字典, `per_question.folio_X.deberta_pred/deberta_probs` | westd-25068 |\n| Baseline | `exp033_results.json` | 数组, `problem_id`/`sc_answer`/`sica_answer` | westd-16639 |\n\n### 10 种 Combo 策略\n1. **gr_vote** — SICA-G + NLI 各1票, SC tiebreak\n2. **gr_intersection_sc/sica** — 一致→采用, 不一致→SC/SICA fallback\n3. **gr_cascade_nli_first** (0.7/0.8/0.9) — NLI 高置信→NLI, 否则→SICA-G\n4. **nli_override** (0.85/0.90) — 默认 SICA-G, NLI 高置信不同意→override\n5. **majority_3way** — SICA-G + NLI + SC 三票\n6. **majority_4way** — SICA-G + NLI + SC + original SICA 四票\n\n每种策略都带 McNemar vs SC / vs SICA / vs SICA-G 统计检验。\n\n### 运行前需要\n1. G conservative 跑完 → `per_problem_conservative.json` 就绪\n2. 把 R 结果 scp 到 westd-16639：\n   ```bash\n   scp westd-25068:/root/symb_invariant_consensus/results/direction_r_nli_large/results.json \\\n       /root/symb_invariant_consensus/results/direction_r_nli_large/results.json\n   ```\n3. 部署脚本到 westd-16639\n4. 运行：\n   ```bash\n   python direction_gr_combo.py \\\n     --g-results results/direction_g_decoupling/per_problem_conservative.json \\\n     --r-results results/direction_r_nli_large/results.json \\\n     --baseline results/exp033_mistral_7b_folio204/exp033_results.json\n   ```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gr-combo-script-prep.md"
+}

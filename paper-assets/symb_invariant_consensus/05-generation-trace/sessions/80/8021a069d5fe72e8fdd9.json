@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8021a069d5fe72e8fdd9",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code z3 timeout fix",
+  "task_key": "worker_code_z3_timeout_fix_20260515T220336",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_z3_timeout_fix_20260515T220336_result.json",
+    "occurrence": 1,
+    "bytes": 649,
+    "sha256": "36477e0402fb323a42e1984745b0e630b179b7c6af5e24414180b2373b4dad33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "正常求解和超时机制都验证通过。\n\n**修改总结：**\n\n| 项目 | 内容 |\n|------|------|\n| **文件** | `/root/symb_invariant_consensus/sica/z3_maxsat.py` |\n| **函数** | `MaxSATSolver.solve()` |\n| **实现** | `threading.Timer` + `z3.main_ctx().interrupt()` — Z3 原生中断机制，能打断 C 层计算（`signal.SIGALRM` 不行） |\n| **参数** | 新增 `hard_timeout_s: int = 60`，默认 60 秒 |\n| **超时行为** | 返回 `satisfied=[], excluded=all`，记 warning log，实验继续下一题 |\n| **验证** | 非线性问题 435 约束，3s 超时精确触发；正常问题 1ms 正确求解 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-z3-timeout-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ad921337afe7fbe0b30",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag exp 064 extraction check",
+  "task_key": "worker_diag_exp-064-extraction-check_20260519T113500",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_exp-064-extraction-check_20260519T113500_result.json",
+    "occurrence": 1,
+    "bytes": 2092,
+    "sha256": "860d48a88e53cc5c6f0cc342de629fcc75fac8aa85c1978e64f3b010228f7cd0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n### 当前状态\n- **进度**: 60/204 (29.4%)，已跑 164 min，ETA ~394 min (~6.5h)\n- **SICA**: 80.0%, **SC**: 80.0% (两者一致)\n- **extraction_rate**: 40.3% (290/720 traces)\n\n### 根因：`<think>` 标签污染 extraction 输入\n\n通过实际测试验证：\n\n1. **当 extraction prompt 的输入 trace 含 `<think>` 标签时**，DeepSeek-R1-Qwen3-8B 行为完全崩坏，输出不相关内容（测试中输出了 Tower of Hanoi 解答）。这是因为 `<think>` 是该模型的特殊控制 token，出现在输入中时会破坏 chat template 的解析。\n\n2. **当输入不含 `<think>` 标签时**，模型能进入正常的 thinking + JSON 输出流程，`_strip_thinking` 可以正确处理。\n\n3. **代码中 `_strip_thinking` 只处理 extraction 模型的输出**（line 330），**不处理输入 trace**。pipeline 把 DeepSeek-R1 的原始 trace（含 `<think>...</think>` 占 trace 80-95% 长度）原样塞进 extraction prompt。\n\n4. 40% 的成功率来自模型偶尔在混乱输入下仍产出可解析 JSON 的随机性。\n\n### 能否修复到 >80%？\n\n**可以**，修改方案：\n\n**方案 A（推荐）**：在 `_build_prompt` 中 strip 输入 trace 的 `<think>...</think>` 标签（保留 thinking 内容，只去标签），或只保留 `</think>` 后的 summary 部分。两种方式都能消除 `<think>` 标签对模型的干扰。\n\n**方案 B**：用 port 8001 的 Qwen3-14B（已禁用 thinking）或 port 8003 的 Llama-3.1-8B 做 extraction。但这需要改 pipeline 支持 trace 和 extraction 用不同 endpoint。\n\n### 建议\n\n**不建议 kill**。当前 SICA/SC = 80% 是有价值的数据点。但 extraction_rate 40% 意味着 SICA 没有充分利用 constraint 信号，accuracy 有提升空间。\n\n- 可以让当前 run 跑完（ETA ~6.5h），之后用修复后的 extraction pipeline **re-extract**（代码中已有 `reextract_v3.py`），无需重跑 trace generation\n- 或者 kill 后修复代码再重跑，但考虑到 trace generation 是大头耗时，re-extract 更高效"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp-064-extraction-check.md"
+}

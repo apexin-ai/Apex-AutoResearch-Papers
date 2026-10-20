@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a95f964b38318771b9ef",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 041 folio204 results",
+  "task_key": "worker_analysis_exp-041-folio204-results_20260518T202043",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-041-folio204-results_20260518T202043_result.json",
+    "occurrence": 1,
+    "bytes": 881,
+    "sha256": "be43ee14cf0739076f2623ef31f56e096da6217039b9563c0d3a64f05a3a9700"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated, cron already cleared.\n\n## exp-041 结果\n\n实验实际完成，结果存于 `exp036_qwen25_14b_folio204/` 目录（之前被 auto-monitor 误判为 failed）。\n\n| 指标 | exp-041 (westd-16639) | exp-026 (westd-25068) |\n|---|---|---|\n| SICA | 75.49% (154/204) | 74.51% |\n| SC | 77.45% (158/204) | 75.00% |\n| delta | **-1.96pp** | -0.49pp |\n| McNemar p | **0.0455** (显著) | — |\n| extraction_rate | 0.9800 | — |\n| contradiction_rate | 0.0097 | — |\n| discordant | sica_only=0, sc_only=4 | — |\n\n**结论：negative。** Capability trap 方向一致（SC > SICA），且在 westd-16639 上 delta 更大、McNemar 达到显著（p=0.0455）。SC baseline 更高 (+2.45pp)，说明不同服务器环境存在 variance，但 SICA 始终未能超越 SC。不支持可复现性中的\"数值一致\"，但支持\"结论一致\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-041-folio204-results.md"
+}

@@ -1,0 +1,83 @@
+{
+  "investigation": {
+    "affected_scripts": [
+      "direction_r_deberta_proofwriter.py",
+      "dir_j3_nli_multi_verifier.py",
+      "dir_k_nli_qwen3_pw600.py",
+      "direction_rg_combo.py",
+      "direction_r_nli_verifier.py (FOLIO)"
+    ],
+    "tiebreaking_method": "Counter.most_common(1)[0][0] — insertion-order tiebreaking under ties",
+    "correct_method": "sorted(tied_candidates)[0] — alphabetical (consistent with SC baseline standard)",
+    "drc_cascade_pilot_method": "alphabetical (correct, in scripts/drc_cascade_pilot.py)",
+    "code_snippet": "combo_answer = votes.most_common(1)[0][0]  # BUG: non-alphabetical tiebreaking"
+  },
+  "experiments": {
+    "exp-090 (Mistral-7B PW)": {
+      "n": 600,
+      "sc_baseline_alpha": "39.33% (236/600)",
+      "sc_baseline_counter": "39.33% (236/600)",
+      "sc_tiebreak_diffs": 11,
+      "combo_w1": {
+        "current_counter": "40.17% (241/600)",
+        "corrected_alpha": "40.17% (241/600)",
+        "delta": "0.00pp",
+        "changed_questions": 17,
+        "mcnemar_alpha_vs_sc": {"p": 0.359283, "b": 7, "c": 12},
+        "mcnemar_counter_vs_sc": {"p": 0.266846, "b": 4, "c": 9}
+      },
+      "combo_w3": {
+        "current_counter": "42.83% (257/600)",
+        "corrected_alpha": "46.00% (276/600)",
+        "delta": "+3.17pp",
+        "changed_questions": 30,
+        "mcnemar_alpha_vs_sc": {"p": 1.1e-05, "b": 21, "c": 61},
+        "mcnemar_counter_vs_sc": {"p": 0.012503, "b": 22, "c": 43}
+      },
+      "combo_w5": {
+        "current_counter": "50.00% (300/600)",
+        "corrected_alpha": "50.33% (302/600)",
+        "delta": "+0.33pp",
+        "changed_questions": 53,
+        "mcnemar_alpha_vs_sc": {"p": 1e-06, "b": 54, "c": 120},
+        "mcnemar_counter_vs_sc": {"p": 0.0, "b": 35, "c": 99}
+      }
+    },
+    "exp-091 (Qwen3 PW)": {
+      "status": "NEEDS_RECOMPUTATION",
+      "data_location": "westd-16639:d116_qwen3_pw_deberta_large",
+      "paper_reported_sc": "85.0%",
+      "paper_reported_combo_w3": "86.0%",
+      "expected_impact": "Small — high SC accuracy means few ties"
+    },
+    "exp-092 (LLaMA PW)": {
+      "status": "NEEDS_RECOMPUTATION",
+      "data_location": "westd-16639:exp092_llama8b_pw_nli_combo",
+      "paper_reported_sc": "70.0%",
+      "paper_reported_combo_w3": "74.17%",
+      "expected_impact": "Moderate — some ties possible"
+    },
+    "exp-093 (Qwen2.5 PW)": {
+      "status": "NEEDS_RECOMPUTATION",
+      "data_location": "westd-16639:qwen14b_pw_nli_combo",
+      "paper_reported_sc": "73.5%",
+      "paper_reported_combo_w3": "74.33%",
+      "expected_impact": "Moderate — some ties possible"
+    }
+  },
+  "folio_combo": {
+    "n_questions": 204,
+    "n_changed_by_tiebreak": 8,
+    "alpha_accuracy": "56.37% (115/204)",
+    "counter_accuracy": "57.84% (118/204)",
+    "delta": "-1.47pp (alphabetical is WORSE for FOLIO)",
+    "note": "FOLIO NLI combo uses w=1 (direction_r_nli_verifier.py), different from PW weighted combo"
+  },
+  "drc_cascade_pilot_crosscheck": {
+    "drc_pilot_combo_w3": "46.0% (276/600) — alphabetical tiebreaking",
+    "our_recomputed_alpha_w3": "46.0% (276/600)",
+    "match": true
+  },
+  "impact_summary": "BUG CONFIRMED: All NLI combo scripts use Counter.most_common() (insertion-order tiebreaking) while the paper's SC baselines use alphabetical. The biggest impact is Mistral-7B combo_w3: paper reports 42.83% but alphabetical gives 46.00% (+3.17pp, 30 questions affected). This changes McNemar p from 0.0125 to 1.1e-05 (much more significant). DRC cascade pilot already uses alphabetical and gives 46.0%, confirming the discrepancy source. w=1 and w=5 are minimally affected. Other 3 models (exp-091 to 093) need recomputation from westd-16639 data but expected impact is smaller. FOLIO combo (w=1) has 8 questions affected with -1.47pp delta (alpha worse).",
+  "recommended_action": "1) Recompute all 4 PW models' NLI combo with alphabetical tiebreaking. 2) For Mistral w=3: update paper from 42.83% to 46.00%, update McNemar p-value. 3) Rerun BH correction table with new numbers. 4) FOLIO combo numbers also need checking if reported in paper. 5) Fix all combo scripts to use alphabetical tiebreaking."
+}

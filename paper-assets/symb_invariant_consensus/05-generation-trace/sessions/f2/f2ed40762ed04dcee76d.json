@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2ed40762ed04dcee76d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "eval exp 007 qwen72b awq",
+  "task_key": "worker_eval_exp-007-qwen72b-awq_20260518T161741",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_exp-007-qwen72b-awq_20260518T161741_result.json",
+    "occurrence": 1,
+    "bytes": 676,
+    "sha256": "61de44d4f6d0b07bcdbbb421daf8a54d5ea7edc7f5ecb540d1e2e46eac013b53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-007-qwen72b-awq 已提交，当前状态：**\n\n| 项目 | 值 |\n|---|---|\n| exp_id | `exp-007-qwen72b-awq` |\n| 服务器 | westd-25068 |\n| GPU | cuda:0 (RTX PRO 6000, 98GB) |\n| 模型 | Qwen2.5-72B-Instruct-AWQ (4-bit, ~40GB) |\n| 数据 | D012: 30 ProofWriter + 30 FOLIO = 60 题 |\n| 参数 | K=12, T=0.7, T_ext=0.3, seed=42 |\n| PID | 56225 |\n| tmux | `exp-007-qwen72b-awq` |\n| 日志 | `~/runs/symb_invariant_consensus/exp-007-qwen72b-awq.log` |\n\n**进度：** 模型下载中 (~40GB，预计 30-60 分钟)。下载完成后自动启动 vLLM → 运行 SICA pipeline。60 题 K=12 预计 pipeline 运行 1-2h。总预计完成时间 2-3h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-007-qwen72b-awq.md"
+}

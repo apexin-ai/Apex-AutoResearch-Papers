@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2cabc33b8f073200e8cb",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "computation entropy breakdown crossmodel",
+  "task_key": "worker_computation_entropy-breakdown-crossmodel_20260519T055418",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_computation_entropy-breakdown-crossmodel_20260519T055418_result.json",
+    "occurrence": 1,
+    "bytes": 1734,
+    "sha256": "88904fae3265df532a802e200053a0cc57425d550843d1f4361ff21ea7b21952"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。合并结果表：\n\n| Exp | Model | Dataset | Group | n | SC% | SICA% | Δpp |\n|-----|-------|---------|-------|--:|----:|------:|----:|\n| **exp033** | Mistral-7B | FOLIO (s42) | high_entropy | 78 | 35.9 | 48.7 | **+12.8** |\n| | | | low_entropy | 126 | 65.9 | 65.9 | +0.0 |\n| **exp052** | Mistral-7B | FOLIO (s123) | high_entropy | 77 | 37.7 | 46.8 | **+9.1** |\n| | | | low_entropy | 127 | 63.8 | 63.8 | +0.0 |\n| **exp053** | Mistral-7B | FOLIO (s456) | high_entropy | 75 | 41.3 | 40.0 | -1.3 |\n| | | | low_entropy | 129 | 65.1 | 65.1 | +0.0 |\n| **exp046** | Mistral-7B | PW-600 | high_entropy | 267 | 33.7 | 28.8 | -4.9 |\n| | | | low_entropy | 333 | 43.8 | 42.6 | -1.2 |\n| **exp036** | Qwen2.5-14B | FOLIO | high_entropy | 37 | 56.8 | 48.6 | -8.2 |\n| | | | low_entropy | 167 | 82.0 | 81.4 | -0.6 |\n| **exp038** | Qwen2.5-14B | LogiQA | high_entropy | 23 | 65.2 | 60.9 | -4.3 |\n| | | | low_entropy | 177 | 80.2 | 80.2 | +0.0 |\n| **exp035** | Qwen2.5-7B | FOLIO | high_entropy | 47 | 55.3 | 53.2 | -2.1 |\n| | | | low_entropy | 157 | 83.4 | 83.4 | +0.0 |\n| **exp048** | LLaMA-8B | PW-600 (partial) | high_entropy | 76 | 61.8 | 57.9 | -3.9 |\n| | | | low_entropy | 104 | 77.9 | 76.0 | -1.9 |\n\n**关键发现**：\n- SICA 的 high-entropy 优势**仅在 Mistral-7B + FOLIO 的 2/3 seed 上成立**（s42: +12.8pp, s123: +9.1pp），s456 已不显著 (-1.3pp)\n- 所有其他模型/数据集组合中，SICA 在 high-entropy 组**均为负** (-2.1 到 -8.2pp)\n- low-entropy 组几乎全部 Δ≈0，符合预期（高一致性时 SICA 无额外信息）\n- LLaMA-8B FOLIO (exp020/034) 缺失结果 JSON，exp048 (PW-600) 仅有 180/600 条\n\nJSON 已保存并注册为 `art_20260519_3bbd83`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/computation-entropy-breakdown-crossmodel.md"
+}

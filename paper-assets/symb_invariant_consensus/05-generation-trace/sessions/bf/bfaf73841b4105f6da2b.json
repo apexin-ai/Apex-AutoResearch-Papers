@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bfaf73841b4105f6da2b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment deepseek r1 distill sica",
+  "task_key": "worker_experiment_deepseek-r1-distill-sica_20260521T131900",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_deepseek-r1-distill-sica_20260521T131900_result.json",
+    "occurrence": 1,
+    "bytes": 1155,
+    "sha256": "9b55dc625f507975258f9a5b37f7115ca64abe29079763c7c80f4c714dd103c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "问题 1 完成，已进入问题 2。Pipeline 运行正常。\n\n## 报告\n\n| 项目 | 详情 |\n|------|------|\n| **模型路径** | `/root/autodl-tmp/models/deepseek-ai/DeepSeek-R1-Distill-Llama-8B/` |\n| **vLLM PID** | 441147 |\n| **端口** | 8003 (cuda:3) |\n| **显存占用** | 83,361 / 97,887 MiB (85%) |\n| **Wrapper PID** | 440997 |\n| **启动命令** | `bash scripts/run_exp_r1_distill_8b_sica.sh` |\n| **结果目录** | `results/exp_r1_distill_8b_sica/` |\n| **Pipeline 参数** | K=12, T=0.7, seed=42, FOLIO-204, max_tokens=4096 |\n| **日志文件** | wrapper: `/tmp/sica_r1_distill_wrapper.log`, vLLM: `/tmp/vllm_r1_distill.log`, pipeline: `results/exp_r1_distill_8b_sica/pipeline.log` |\n\n**注意事项**：\n- 首次启动因 FlashInfer 不兼容 Blackwell GPU (sm100) 失败，已加 `VLLM_USE_FLASHINFER_SAMPLER=0` 修复\n- R1-Distill 的 `<think>` 块导致部分 extraction 因 context length 超 8192 而 400 报错，pipeline 会跳过失败的 extraction 继续运行\n- `_strip_thinking()` 已内置于 pipeline 中，无需额外适配\n- 问题 1 耗时约 1.5 分钟，204 题预计 **5-6 小时**完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-deepseek-r1-distill-sica.md"
+}

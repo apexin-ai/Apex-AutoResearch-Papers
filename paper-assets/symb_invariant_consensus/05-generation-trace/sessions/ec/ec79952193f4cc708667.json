@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "ec79952193f4cc708667",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "code maxsat l3 l1 fix",
+  "task_key": "worker_code_maxsat_l3_l1_fix_20260516T014043",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_maxsat_l3_l1_fix_20260516T014043.log",
+    "occurrence": 1,
+    "bytes": 1138482,
+    "sha256": "9192c15ec7e9b24b1221098c24daddcf8ffed7bff7f1b29dbbfa66ac70a8e3c4"
+  },
+  "statistics": {
+    "messages": 550,
+    "user_turns": 1,
+    "tool_calls": 238,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 66,
+      "tool_call": 238,
+      "tool_result": 238,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 531,
+      "chunks": [
+        {
+          "path": "ec79952193f4cc708667-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ec79952193f4cc708667-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ec79952193f4cc708667-part-0003.json",
+          "message_count": 171
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "ec79952193f4cc708667-part-0003.json",
+          "message_count": 9
+        },
+        {
+          "path": "ec79952193f4cc708667-part-0004.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-maxsat-l3-l1-fix.md"
+}

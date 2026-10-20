@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee444c7554fb2fbb2da3",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag westd25068 exp status",
+  "task_key": "worker_diag_westd25068-exp-status_20260518T180459",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_westd25068-exp-status_20260518T180459_result.json",
+    "occurrence": 1,
+    "bytes": 1914,
+    "sha256": "c19e28535f5584aa25bb6c8b8487b2d32dca14de4d1b000c77d498f1882c21d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集。以下是诊断结果：\n\n---\n\n## 实验状态\n\n**所有 4 个实验的原始 PID 均已消失，但实验仍在 tmux 中正常运行。** PID 变化可能是因为进程被重启或由 wrapper 脚本衍生了新子进程。\n\n| 实验 | 模型 | 数据集 | 进度 | ETA | 状态 |\n|------|------|--------|------|-----|------|\n| **exp-033** | Mistral-7B | FOLIO-204 | **42/204** (21%) | ~66 min | **running** (cuda:0, port 8000) |\n| **exp-034** | Qwen2.5-14B | PW-600 | **16/600** (3%) | ~650 min (~10.8h) | **running** (cuda:1, port 8001) |\n| **exp-035** | Qwen2.5-7B | FOLIO-204 | **43/204** (21%) | ~64 min | **running** (cuda:3, port 8003) |\n| **exp-028** | Qwen3-14B thinking | FOLIO-204 | **40/204** (20%) | ~922 min (~15.4h) | **running** (cuda:2, port 8002) |\n\nexp-028 因 thinking 模式每题 ~335s，远慢于其他实验（~24s/题）。有 WARNING: 多次 \"Empty after stripping thinking\" 和 \"No JSON found in response\"，可能影响结果质量。\n\n## GPU 状态\n\n**4 卡全部占满，无空闲 GPU。**\n\n| GPU | 显存占用 | 利用率 | 占用者 |\n|-----|---------|--------|--------|\n| cuda:0 | 88.0/97.9 GB | 96% | exp-033 vLLM |\n| cuda:1 | 88.2/97.9 GB | 97% | exp-034 vLLM |\n| cuda:2 | 88.3/97.9 GB | 97% | exp-028 vLLM |\n| cuda:3 | 88.3/97.9 GB | 96% | exp-035 vLLM |\n\n## 模型下载状态\n\n5 个下载进程中 4 个仍在运行，1 个失败：\n\n| 模型 | 大小 | 状态 |\n|------|------|------|\n| deepseek-r1-0528-qwen3-8b | 8.3G | 下载中 (PID 62008) |\n| DeepSeek-R1-Distill-Llama-8B | — | 下载中 (PID 62020) |\n| phi-4-reasoning | 19G | 下载中，有超时重试 (PID 62033) |\n| gemma-3-27b-it | 35G | 下载中 (PID 62050) |\n| **llama-4-scout** | **60K** | **失败 — Access denied, requires approval** |\n\nllama-4-scout 需要在 HuggingFace 上申请模型访问权限后才能下载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-westd25068-exp-status.md"
+}

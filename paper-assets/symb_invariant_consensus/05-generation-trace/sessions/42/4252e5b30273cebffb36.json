@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4252e5b30273cebffb36",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis k sensitivity salvage",
+  "task_key": "worker_analysis_k-sensitivity-salvage_20260517T025706",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_k-sensitivity-salvage_20260517T025706_result.json",
+    "occurrence": 1,
+    "bytes": 1448,
+    "sha256": "469b6eace803b27a4f53346ebc9f5eb835f000f07ca512cd5850ae9b310664a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存。以下是汇总结果：\n\n## K-Sensitivity 实验结果 (sica_k_sensitivity_14b)\n\n**状态**: 实验完整完成。日志末尾有 `K_ABLATION_DONE` 标记，SIGHUP 在完成后才到达。\n\n**结果文件**: `/root/symb_invariant_consensus/results/k_ablation/k{6,8,11,12,16,20}_results.json`（全部 6 个文件完整）\n\n### 汇总表\n\n| K | SICA acc | SC acc | Gap (pp) | Unique constraints | Wall time |\n|---|---------|--------|----------|-------------------|-----------|\n| 6 | 73.3% | 73.3% | **0.0** | 1127 | 35 min |\n| 8 | 73.3% | 75.0% | **-1.7** | 1193 | 42 min |\n| 11 | 73.3% | 73.3% | **0.0** | 1312 | 57 min |\n| 12 | 70.0% | 75.0% | **-5.0** | 1319 | 59 min |\n| 16 | 71.7% | 75.0% | **-3.3** | 1353 | 77 min |\n| 20 | 70.0% | 73.3% | **-3.3** | 1415 | 97 min |\n\n### 结论\n\n**Negative result，与 D029 记录一致。** SICA 在所有 K 值下均 <= SC，gap 在 0 到 -5pp 之间。\n\n关键发现：\n1. **SICA 不随 K 增大而提升**，反而略微下降（73.3% → 70.0%）\n2. **约束饱和**：unique constraints 从 1127 增长到 1415（仅 +25%），尽管 total constraints 增长了 3.5x。更多 traces 产出的主要是冗余约束\n3. **成本线性增长**：wall time 从 35min 到 97min，但准确率没有回报\n4. **Conclusion**: 增加 K 不能帮助 SICA 超越 SC。假设\"更多推理路径 → 更丰富约束集 → MaxSAT 聚合更强\"被证伪"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-k-sensitivity-salvage.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d21ab297fe4bd0482d8",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment d116 qwen3 pw deberta large",
+  "task_key": "worker_experiment_d116-qwen3-pw-deberta-large_20260520T204022",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_d116-qwen3-pw-deberta-large_20260520T204022_result.json",
+    "occurrence": 1,
+    "bytes": 794,
+    "sha256": "5c6cd52be05416550b4664167c7bf9d605e2f5a89210de74e9fd542a6a159989"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果完整写入。总结：\n\n**D116 Qwen3-14B ProofWriter DeBERTa-large Combo 结果**\n\n| 指标 | 值 |\n|------|-----|\n| DeBERTa-large standalone | **55.00%** (330/600) ✓ 与 Dir-J3 一致 |\n| SC baseline | 85.00% (510/600) |\n| Combo w=1 | 85.83% (+0.83pp, p=0.125) |\n| Combo w=3 | 86.00% (+1.00pp, p=0.146) |\n| Combo w=5 | **86.83% (+1.83pp, p=0.052)** |\n\n与 Dir-K (deberta-base) 对比：\n- deberta-base standalone: 36.17% → deberta-large: **55.00%** (+18.83pp)\n- deberta-base combo w=5: 85.50% (+0.50pp) → deberta-large combo w=5: **86.83% (+1.83pp)**\n- 互补性更强：NLI_right_SC_wrong 从 40 升到 **61**\n- w=5 时 p=0.052 接近显著\n\n结果已保存至 `/root/symb_invariant_consensus/results/d116_qwen3_pw_deberta_large/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-d116-qwen3-pw-deberta-large.md"
+}

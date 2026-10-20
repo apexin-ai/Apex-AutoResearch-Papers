@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "a6ee1c40dee955cd97cc",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "code prep 70b experiment",
+  "task_key": "worker_code_prep-70b-experiment_20260518T063344",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_prep-70b-experiment_20260518T063344.log",
+    "occurrence": 1,
+    "bytes": 762193,
+    "sha256": "86b417ab3ad8a285f0d1ab63e051c75d3154b3de87722032b95c3e0baa8b723c"
+  },
+  "statistics": {
+    "messages": 365,
+    "user_turns": 1,
+    "tool_calls": 130,
+    "roles": {
+      "log": 1,
+      "system": 60,
+      "record": 1,
+      "assistant": 41,
+      "tool_call": 130,
+      "tool_result": 130,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 55,
+      "chunks": [
+        {
+          "path": "a6ee1c40dee955cd97cc-part-0001.json",
+          "message_count": 55
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 310,
+      "chunks": [
+        {
+          "path": "a6ee1c40dee955cd97cc-part-0001.json",
+          "message_count": 125
+        },
+        {
+          "path": "a6ee1c40dee955cd97cc-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a6ee1c40dee955cd97cc-part-0003.json",
+          "message_count": 5
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-prep-70b-experiment.md"
+}

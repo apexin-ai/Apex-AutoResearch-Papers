@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbf9bf5e32960ccd5e5c",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ops batch status 25068 v2",
+  "task_key": "worker_ops_batch-status-25068-v2_20260519T224607",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_batch-status-25068-v2_20260519T224607_result.json",
+    "occurrence": 1,
+    "bytes": 1456,
+    "sha256": "40199936f01a9e87ba4ef714712c2e8a467120cbe8012da8162614348d8d7517"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修复完成。汇总：\n\n---\n\n## 实验状态汇总 (westd-25068)\n\n### GPU\n| GPU | 显存占用 | 利用率 | 用途 |\n|-----|---------|--------|------|\n| 0 | 89889 MiB | 0% | 空闲 (exp-080 已完成) |\n| 1 | 90677 MiB | 96% | exp-084 运行中 |\n| 2 | 89733 MiB | 100% | exp-085 运行中 |\n| 3 | 90571 MiB | 0% | 空闲 |\n\n### exp-080 Contrastive×LogiQA s42 — **DONE (negative)**\n- 进程已退出，200/200 全部完成\n- **contrastive_accuracy: 45.5%** vs **sc_accuracy: 50.0%** → **Δ = -4.5pp**\n- wall_time: 6645.9s (~111min)\n- degenerate_count: 42/200 (21%)\n- Registry 已修复：原被 CRON 误标为 `failed`（\"process dead 5×\"），实际完整跑完。已更新 conclusion=negative + metrics\n\n### exp-084 Debate×LogiQA s123 — **RUNNING (~8/200)**\n- cuda:1, port 8001, 最近日志时间 06:46:27\n- 刚启动 ~12min，进度约 4%\n- Registry 修复：PREPARING → RUNNING（经过 QUEUED 中转）\n\n### exp-085 Contrastive×LogiQA s123 — **RUNNING (~14/200)**\n- cuda:2, port 8002, 最近日志时间 06:46:27\n- 刚启动 ~10min，进度约 7%\n- Registry 修复：PREPARING → RUNNING（同上）\n\n### CRON 误报原因\nexp-084/085 一直卡在 `PREPARING` 状态（未正确转为 RUNNING），CRON 检测进程存活时触发了 \"process dead 5×\" 自动 failed 逻辑。根源是提交 job 后没有走完 PREPARING → QUEUED → RUNNING 状态机。已手动修复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-batch-status-25068-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91e04c253888c077f781",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment p1 qwen3 mistral extraction fix",
+  "task_key": "worker_experiment_p1-qwen3-mistral-extraction-fix_20260521T180804",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_p1-qwen3-mistral-extraction-fix_20260521T180804_result.json",
+    "occurrence": 1,
+    "bytes": 156,
+    "sha256": "76ba48d47f6df6c498248c0055b0f8afb843a7612188aa582c83344e564f31e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 个文件完成，稳定推进。\n\n进程还需约 2 小时。你想要我定期轮询进度，还是等完成后再汇报最终统计？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-p1-qwen3-mistral-extraction-fix.md"
+}

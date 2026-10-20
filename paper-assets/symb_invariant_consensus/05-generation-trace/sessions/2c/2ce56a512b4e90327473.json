@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ce56a512b4e90327473",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra westd 30973 env setup",
+  "task_key": "worker_infra_westd-30973-env-setup_20260523T055553",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_westd-30973-env-setup_20260523T055553_result.json",
+    "occurrence": 1,
+    "bytes": 1134,
+    "sha256": "f7ff5abf4ea3936eea93abeff996f330df5200146550efe273cf7829d8aba3df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-30973 环境搭建报告\n\n### 1. 环境状态\n| 项目 | 版本 |\n|------|------|\n| Python | 3.12.3 (Miniconda) |\n| PyTorch | 2.11.0+cu130 |\n| CUDA Driver | 580.82.09 (CUDA 13.0) |\n| vLLM | 0.21.0 |\n| transformers | 5.9.0 |\n| accelerate | 1.13.0 |\n| z3-solver | 4.15.4.0 |\n\n### 2. 模型状态\n- Qwen2.5-14B-Instruct: **就绪** (`/root/autodl-tmp/models/Qwen2.5-14B-Instruct/`)\n- Meta-Llama-3.1-8B-Instruct: **就绪** (`/root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct/`)\n\n### 3. 代码和数据\n- 15 个 run_*.py 脚本已同步\n- ProofWriter 数据: 600 条\n\n### 4. GPU 状态\n| GPU | 型号 | VRAM |\n|-----|------|------|\n| cuda:0 | NVIDIA RTX PRO 6000 Blackwell Server Edition | 94GB |\n| cuda:1 | NVIDIA RTX PRO 6000 Blackwell Server Edition | 94GB |\n| cuda:2 | NVIDIA RTX PRO 6000 Blackwell Server Edition | 94GB |\n\n**注意**: 实际每卡 94GB VRAM，不是任务描述中的 48GB。\n\n### 5. 磁盘\n- 根分区: 18GB 可用 / 30GB\n- 数据盘: 207GB 可用 / 250GB\n\n### 6. env_activate 命令\n`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd-30973-env-setup.md"
+}

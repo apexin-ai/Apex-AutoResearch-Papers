@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e97bc133b54dab1839f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra westd16639 ssh fix",
+  "task_key": "worker_infra_westd16639-ssh-fix_20260518T153046",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_westd16639-ssh-fix_20260518T153046_result.json",
+    "occurrence": 1,
+    "bytes": 1156,
+    "sha256": "35aa64456081b24d2416587ebabb3258409faf39aa496808b1ea46f8715e341a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. SSH key 直连\n**已修复成功。** westd-25068 → westd-16639 无密码 SSH key 认证正常工作。\n\n### 2. 模型下载状态\n\n| 模型 | 大小 | safetensors 文件数 | 状态 |\n|------|------|-------------------|------|\n| Qwen2.5-14B-Instruct | 28G | 8 | **已完成** |\n| Qwen3-14B | 28G | 8 | **已完成** |\n| Mistral-7B-Instruct-v0.3 | 6.6G | 3 | **下载中** (3个 wget 进程仍在运行) |\n\nMistral 模型 3 个 safetensors 分片正在并行下载，当前 6.6G（完整约 ~15G），预计还需一段时间。\n\n### 3. Python 环境\n**全部缺失。** vllm、z3、transformers、torch 均未安装。需要搭建完整环境。\n\n### 4. GPU 信息\n**4 × NVIDIA RTX PRO 6000 Blackwell Server Edition**，每卡 ~96GB 显存，共 ~384GB。非常强大的配置。\n\n### 5. 代码和数据\n- **代码**: `/root/autodl-tmp/sica_project/` 已到位，包含 `symb_invariant_consensus/` 目录\n- **数据**: 已到位，包含 `folio_full.json`、`proofwriter_full.json`、`case_study_3problems.json` 等\n\n### 6. 磁盘\n350G 总量，已用 62G，剩余 289G (18%)，空间充足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd16639-ssh-fix.md"
+}

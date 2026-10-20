@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "25779d8b2b5e7f898608",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "recovery multiseed 14391",
+  "task_key": "worker_recovery_multiseed-14391_20260522T174557",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_recovery_multiseed-14391_20260522T174557.log",
+    "occurrence": 1,
+    "bytes": 1123956,
+    "sha256": "7f9302f268ee063fa6be674be182b0e302478cc8f65c0a5085ff9871d3b6e34b"
+  },
+  "statistics": {
+    "messages": 825,
+    "user_turns": 0,
+    "tool_calls": 290,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 1,
+      "assistant": 229,
+      "tool_call": 290,
+      "tool_result": 290,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 825,
+      "chunks": [
+        {
+          "path": "25779d8b2b5e7f898608-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "25779d8b2b5e7f898608-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "25779d8b2b5e7f898608-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "25779d8b2b5e7f898608-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "25779d8b2b5e7f898608-part-0005.json",
+          "message_count": 105
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/recovery-multiseed-14391.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c521e282b9c0ef8a073c",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment dir f3 cross model qwen",
+  "task_key": "worker_experiment_dir-f3-cross-model-qwen_20260520T164047",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_dir-f3-cross-model-qwen_20260520T164047_result.json",
+    "occurrence": 1,
+    "bytes": 771,
+    "sha256": "9f2e8059d563d700e5dea61aa564e1988c31c5d3fc196b694cd88b95ed88dbfb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果：\n\n| 指标 | 值 |\n|------|-----|\n| **Original SICA acc** | 0.533 (16/30) |\n| **Cross-model filtered SICA acc** | 0.533 (16/30) |\n| **SC acc** | 0.533 (16/30) |\n| **Constraint keep rate** | 67.6% |\n| **McNemar p-value** | 1.0 |\n| **Discordant pairs** | 0 |\n| **Prediction flips** | 1 (folio_18: orig=False→filt=Unknown, but both wrong; gold=True) |\n\n三种方法在 30 题 pilot 上准确率完全相同。Cross-model 过滤掉约 32.4% 的 constraints，但几乎没有改变预测结果——仅 folio_18 从 False 翻转到 Unknown（均错误），总准确率不变。\n\n结果写入 `/root/symb_invariant_consensus/results/dir_f3_cross_model_verification/results.json`，verifier_model = Qwen2.5-14B-Instruct。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-dir-f3-cross-model-qwen.md"
+}

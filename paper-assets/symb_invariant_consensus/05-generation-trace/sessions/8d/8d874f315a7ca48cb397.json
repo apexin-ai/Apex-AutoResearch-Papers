@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d874f315a7ca48cb397",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis gpu status check",
+  "task_key": "worker_analysis_gpu-status-check_20260522T145445",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_gpu-status-check_20260522T145445_result.json",
+    "occurrence": 1,
+    "bytes": 1575,
+    "sha256": "ac326c390d33398cc3913dabbd4a381cc257962164ca6e6c8fce6120041b4169"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-16639 GPU 状态汇总\n\n### GPU 0 — Qwen2.5-14B × ProofWriter (port 8005)\n| 项目 | 值 |\n|------|-----|\n| vLLM PID | 551459, 90GB VRAM, 97% util |\n| 状态 | **全部完成** |\n| 进度 | seed 123 ✅ / seed 456 ✅ / seed 789 ✅ (3/3) |\n| GPU 空闲 | vLLM 服务仍在运行，无活跃实验 |\n\n### GPU 1 — LLaMA-3.1-8B × FOLIO (port 8002)\n| 项目 | 值 |\n|------|-----|\n| vLLM PID | 595559, 88GB VRAM, 96% util |\n| 当前任务 | seed 456: **184/204** (20 remaining) |\n| ETA | **~12 min** |\n| 已完成 | seed 123 ✅ |\n| 待运行 | seed 789 |\n\n### GPU 2 — Mistral-7B × ProofWriter (port 8003)\n| 项目 | 值 |\n|------|-----|\n| vLLM PID | 510289, 90GB VRAM, 96% util |\n| 当前任务 | seed 456: **184/600** (416 remaining) |\n| ETA | **~206 min (~3.4h)** |\n| 已完成 | seed 42 ✅ / seed 123 ✅ |\n\n### GPU 3 — LLaMA-3.1-8B × ProofWriter (port 8004)\n| 项目 | 值 |\n|------|-----|\n| vLLM PID | 613436, 88GB VRAM, 96% util |\n| 当前任务 | seed 42: **95/600** (505 remaining) |\n| ETA | **~493 min (~8.2h)** |\n| 待运行 | seed 123, seed 456 |\n\n### PID 存活检查\n- **510987**: ✅ 存活\n- **596151**: ✅ 存活 (LLaMA FOLIO 主脚本)\n- **614142**: ✅ 存活 (LLaMA PW tmux session)\n\n### 总体进度\n- **Qwen2.5 PW**: 3/3 seeds 完成，GPU 0 可释放或复用\n- **LLaMA FOLIO**: ~12 min 后 seed 456 完成，还剩 seed 789（预计再 ~2h）\n- **Mistral PW**: seed 456 进行中，~3.4h 后全部完成\n- **LLaMA PW**: 刚开始 seed 42，3 个 seed 全跑完预计 ~24h+"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gpu-status-check.md"
+}

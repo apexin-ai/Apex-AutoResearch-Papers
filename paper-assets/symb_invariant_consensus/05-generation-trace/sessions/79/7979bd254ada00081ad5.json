@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "7979bd254ada00081ad5",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "diagnose exp070 metrics bug",
+  "task_key": "worker_diagnose_exp070-metrics-bug_20260519T135521",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp070-metrics-bug_20260519T135521.log",
+    "occurrence": 1,
+    "bytes": 647049,
+    "sha256": "efc3a13f26ce86586069821e5b713899c997c61fc66f68aefbb9959b6646df0e"
+  },
+  "statistics": {
+    "messages": 303,
+    "user_turns": 1,
+    "tool_calls": 103,
+    "roles": {
+      "log": 1,
+      "system": 63,
+      "record": 1,
+      "assistant": 30,
+      "tool_call": 103,
+      "tool_result": 103,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 34,
+      "chunks": [
+        {
+          "path": "7979bd254ada00081ad5-part-0001.json",
+          "message_count": 34
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 269,
+      "chunks": [
+        {
+          "path": "7979bd254ada00081ad5-part-0001.json",
+          "message_count": 146
+        },
+        {
+          "path": "7979bd254ada00081ad5-part-0002.json",
+          "message_count": 123
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-exp070-metrics-bug.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de7c080504121831e7d5",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag exp001 status check",
+  "task_key": "worker_diag_exp001-status-check_20260516T184614",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_exp001-status-check_20260516T184614_result.json",
+    "occurrence": 1,
+    "bytes": 1014,
+    "sha256": "48a80a0eed48d0aff6ba69826b5984320ffa3b2524a42cfe408079b7f2c95891"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### exp-001：仍在运行 (PID 181491)\n\n结果文件 `sica_expanded_14b.json` 持续更新中（最后修改 0.3 分钟前）。\n\n**当前进度**：\n| 指标 | 值 |\n|------|-----|\n| 已完成问题数 | **785** |\n| SICA 准确率 | **76.31%** |\n| SC (Self-Consistency) 准确率 | 76.05% |\n| SICA 提升 | +0.26% (599 vs 597 correct) |\n| 约束提取率 | 88.78% |\n| 矛盾检出率 | 2.25% (327/785 problems) |\n| 总约束提取数 | 86,957 (unique: 16,853) |\n\n结果目录为单文件 `results/sica_expanded_14b.json`（3.1MB），非 per-question 子目录。\n\n---\n\n### 模型下载状态\n\n| 模型 | 状态 |\n|------|------|\n| **Mistral-7B-Instruct-v0.3** | 完成 (3 shards) |\n| **Llama-3.1-8B-Instruct** | 完成 (4 shards) |\n| **DeepSeek-R1-Distill-Llama-8B** | 完成 (2 shards, 15GB) |\n| Qwen2.5-14B-Instruct | 已存在 |\n| QwQ-32B | 已存在 |\n| Qwen3-32B-AWQ | 已存在 |\n\n所有模型下载均已完成，safetensors 文件齐全。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp001-status-check.md"
+}

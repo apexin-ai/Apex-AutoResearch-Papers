@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29e19d2aa34342bf3b1b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis nli roberta bart recompute",
+  "task_key": "worker_analysis_nli-roberta-bart-recompute_20260521T055056",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_nli-roberta-bart-recompute_20260521T055056_result.json",
+    "occurrence": 1,
+    "bytes": 1112,
+    "sha256": "6f1cc84ea1b4f4f61eca8e5d87fb4d23f539ddf15781259d6a805e80f619f53c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n### 验证通过\n- SC baseline (alpha) = **236/600 (39.33%)** ✓\n- DeBERTa w=3 combo = **276/600 (46.00%)** ✓ 与之前重算匹配\n\n### RoBERTa-MNLI (standalone 37.67%, 226/600)\n| w | Combo | Correct | Gain | McNemar p |\n|---|-------|---------|------|-----------|\n| 1 | 39.17% | 235 | -0.17pp | 1.000 |\n| 3 | 43.50% | 261 | **+4.17pp** | **0.0026** |\n| 5 | 43.67% | 262 | +4.33pp | 0.037 |\n\n### BART-MNLI (standalone 46.17%, 277/600)\n| w | Combo | Correct | Gain | McNemar p |\n|---|-------|---------|------|-----------|\n| 1 | 39.33% | 236 | 0.0pp | 1.000 |\n| 3 | 44.50% | 267 | **+5.17pp** | **0.0002** |\n| 5 | 45.67% | 274 | +6.33pp | 0.003 |\n\n### Exact Permutation Spearman (gap vs gain)\n\n**PW 6-point** (all w=3):\n- rho = **1.000** (perfect), exact p_two = **0.00278** (2/720), p_one = **0.00139** (1/720)\n\n**All 9-point** (6 PW + 3 FOLIO):\n- rho = **0.836**, exact p_two = **0.00703**, p_one = **0.00354**\n\n两个 Spearman 在 alpha=0.01 下均显著。PW6 达到完美秩相关——更大的 capability gap 严格对应更大的 combo gain。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-nli-roberta-bart-recompute.md"
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "bcc4b446b64439536419",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment deepseek r1 distill sica",
+  "task_key": "worker_experiment_deepseek-r1-distill-sica_20260521T131900",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_deepseek-r1-distill-sica_20260521T131900.log",
+    "occurrence": 1,
+    "bytes": 953131,
+    "sha256": "fd094411370da34449d7c2ef24e307527e346c63eea372ce7e3117317cc320b7"
+  },
+  "statistics": {
+    "messages": 720,
+    "user_turns": 0,
+    "tool_calls": 300,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 116,
+      "tool_call": 300,
+      "tool_result": 300,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 720,
+      "chunks": [
+        {
+          "path": "bcc4b446b64439536419-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bcc4b446b64439536419-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "bcc4b446b64439536419-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "bcc4b446b64439536419-part-0004.json",
+          "message_count": 180
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-deepseek-r1-distill-sica.md"
+}

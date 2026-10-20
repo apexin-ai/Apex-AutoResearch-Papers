@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80c3d68bdc4f70ab95bd",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis sf1 overclaim search",
+  "task_key": "worker_analysis_sf1-overclaim-search_20260520T133104",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_sf1-overclaim-search_20260520T133104_result.json",
+    "occurrence": 1,
+    "bytes": 2088,
+    "sha256": "21287dc79a072a5546d9ee09a77f3df3f445f84574f361455de3bc94bdbc82d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 执行总结\n\n### 已修改（可写文件，6 处）\n\n| 文件 | 行 | 原文 | 改后 |\n|------|----|------|------|\n| limitations_content.tex | 8 | `bottleneck is fundamental` | `bottleneck is structural` |\n| appendix.tex | 645 | `fundamental rather than prompt-specific` | `structural rather than prompt-specific` |\n| analysis.tex | 85 | `same-model Pareto frontier:` | `same-model trade-off ceiling at the 7B--32B scale tested:` |\n| diagnosis.tex | 138 | `same-model Pareto frontier:` | `same-model trade-off ceiling at the 7B--32B scale tested:` |\n| diagnosis.tex | 138 | `shift the Pareto frontier remains open` | `shift the observed trade-off boundary remains open` |\n| discussion.tex | 4 | `shift the Pareto frontier is open` | `shift the observed trade-off boundary is open` |\n\n### 待修改（只读文件，需手动处理，8 处）\n\n| 文件 | 行 | 原文 | 建议改为 |\n|------|----|------|----------|\n| **abstract.tex** | 6 | `fundamental independence-accuracy trade-off` | `persistent independence-accuracy trade-off` |\n| **introduction.tex** | 28 | `fundamental independence-accuracy trade-off` | `persistent independence-accuracy trade-off` |\n| **introduction.tex** | 33 | `same-model Pareto frontier` | `same-model trade-off ceiling` |\n| **introduction.tex** | 29 | `demonstrates that this gap is recoverable` | `shows that this gap is recoverable` |\n| **introduction.tex** | 33 | `demonstrates the frontier is escapable` | `shows the ceiling is escapable` |\n| **solutions.tex** | 9 | `demonstrates that the MAX-SAT...is sound` | `shows that the MAX-SAT...is sound` |\n| **conclusion.tex** | 3 | `demonstrates the gap is recoverable` | `shows the gap is recoverable` |\n\n### 无需修改\n\n- 所有 \"significantly\" 均有 p-value 支撑 ✅\n- \"prove\" 是引用 Ladha (1992) 的已证数学结论 ✅\n- introduction.tex:6 \"demonstrate\" 是引用 Loo et al. ✅\n- appendix.tex:524 \"demonstrates\" 有 p=0.014 ✅\n- Scope qualifiers 在 abstract/intro/limitations 已有，analysis 和 diagnosis 已补加 ✅"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sf1-overclaim-search.md"
+}

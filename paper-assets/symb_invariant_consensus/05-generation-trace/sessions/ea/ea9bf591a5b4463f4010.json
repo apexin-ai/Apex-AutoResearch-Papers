@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea9bf591a5b4463f4010",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "figure f2 f4 hero",
+  "task_key": "worker_figure_f2-f4-hero_20260517T162912",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_figure_f2-f4-hero_20260517T162912_result.json",
+    "occurrence": 1,
+    "bytes": 823,
+    "sha256": "068aee68e33cb516fbabed8444ddb9c3cf336be4d81ac595dd50abc997da2754"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两张图已生成并注册。\n\n**F2 (Per-problem Scatter)**:\n- 307 个数据点（235 ProofWriter + 72 FOLIO）\n- 4 类 marker：no-flip (276), correct flip (16), wrong flip (15), neutral flip (0)\n- Flip rate 随 vote entropy 递增：Q1=0%, Q2=2.2%, Q3=10%, Q4=35.4%\n- Correct vs wrong flip 几乎对半，符合预期叙事\n\n**F4 (C0 vs Gap)**:\n- 10 个 model x domain 条件，5 色区分 model，4 种 marker 区分 domain\n- y=0 虚线参考线，每个点带标签\n- Delta 在 [-3.33, +6.67] 波动，无明显 C0 相关趋势\n\n**输出文件**:\n- `/root/symb_invariant_consensus/artifacts/figures/f2_per_problem_scatter.{pdf,png}`\n- `/root/symb_invariant_consensus/artifacts/figures/f4_c0_vs_gap.{pdf,png}`\n- 绘图脚本：`/root/symb_invariant_consensus/scripts/plot_hero_figures.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-f2-f4-hero.md"
+}

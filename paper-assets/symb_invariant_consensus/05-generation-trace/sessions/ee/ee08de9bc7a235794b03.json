@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee08de9bc7a235794b03",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code fix contradiction metric",
+  "task_key": "worker_code_fix-contradiction-metric_20260515T094127",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix-contradiction-metric_20260515T094127_result.json",
+    "occurrence": 1,
+    "bytes": 522,
+    "sha256": "ed437fd236f0ccc948a687a6c392db7ea7f2893a65b53910ebf6834309c7ec57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。修改内容：\n\n1. **新增计算**：`problems_with_contradictions = sum(1 for r in all_results if r.get(\"maxsat_stats\", {}).get(\"excluded\", 0) > 0)` — 统计有矛盾排除的题目数\n2. **summary dict 新增字段**：`problems_with_contradictions` 和 `total_problems`\n3. **日志新增行**：`Problems with contradictions: 0/50`\n\n原有的 `contradiction_rate`（全局比例）保留不变。mock 模式下矛盾数为 0/50 符合预期（mock 不产生真实矛盾）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-contradiction-metric.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7da10bbad871cd02243f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment push b stronger nli",
+  "task_key": "worker_experiment_push-b-stronger-nli_20260520T185557",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_push-b-stronger-nli_20260520T185557_result.json",
+    "occurrence": 1,
+    "bytes": 1747,
+    "sha256": "3874cb9abb1ef860bd54e47dbe4290aff65ae362abc55e997300db9259cfdb50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Push B experiment completed successfully. Here are the results:\n\n## Push B Results: DeBERTa-v3-large NLI Verifier\n\n**Model**: `MoritzLaurer/DeBERTa-v3-large-mnli-fever-anli-ling-wanli`  \n**Inference**: 600 problems in 2.7s on cuda:0\n\n### Standalone NLI Accuracy\n| Class | Correct/Total | Accuracy | Precision | Recall |\n|-------|--------------|----------|-----------|--------|\n| True | 85/200 | 42.50% | 51.20% | 42.50% |\n| False | 123/200 | 61.50% | 43.31% | 61.50% |\n| Unknown | 63/200 | 31.50% | 42.00% | 31.50% |\n| **Overall** | **271/600** | **45.17%** | — | — |\n\nvs. deberta-base-mnli: 36.17% → **+9.00pp improvement** from scaling up the NLI model.\n\nPred distribution skews toward False (284 vs 200 ground truth).\n\n### Combo with Mistral-7B SC (baseline 39.00%)\n| Weight | Accuracy | Delta | McNemar p |\n|--------|----------|-------|-----------|\n| w=1 | 39.17% | +0.17pp | 1.0000 |\n| w=3 | 40.67% | +1.67pp | 0.6058 |\n| w=5 | 43.83% | +4.83pp | 0.1087 |\n\nTrending positive but none statistically significant.\n\n### Combo with Qwen3-14B SC (baseline 85.83%)\n| Weight | Accuracy | Delta | McNemar p |\n|--------|----------|-------|-----------|\n| w=1 | 85.17% | -0.67pp | 0.8013 |\n| w=3 | 85.33% | -0.50pp | 0.8672 |\n| w=5 | 85.17% | -0.67pp | 0.8040 |\n\nNLI combo slightly hurts Qwen3, though not significantly. The strong Qwen3 SC baseline leaves no room for a 45% standalone verifier to help.\n\n**Key takeaway**: Even with a much stronger NLI model (45.17% vs 36.17%), standalone NLI accuracy on ProofWriter remains well below the LLM SC baselines, and combo gains are not statistically significant. The NLI verifier signal is too weak to meaningfully improve already-decent generators."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-push-b-stronger-nli.md"
+}

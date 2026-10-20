@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b09b326e11a60be6863d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment direction d cegis",
+  "task_key": "worker_experiment_direction-d-cegis_20260520T074247",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_direction-d-cegis_20260520T074247_result.json",
+    "occurrence": 1,
+    "bytes": 80,
+    "sha256": "bc4d96973ce17bc34a1f49bc00a8b12a5bf6bd50d85553967c21b740ab59883d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment at 90/204, ~20 min remaining. Will check back shortly."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-direction-d-cegis.md"
+}

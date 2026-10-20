@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "bdb6ec64a2cd82d52813",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment r1 distill extract final",
+  "task_key": "worker_experiment_r1-distill-extract-final_20260521T171123",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_r1-distill-extract-final_20260521T171123.log",
+    "occurrence": 1,
+    "bytes": 1270097,
+    "sha256": "84e307dd9fef90250273e2acfffdcf5ae0fd884d8897c83d7ad85524bb78b4bb"
+  },
+  "statistics": {
+    "messages": 1021,
+    "user_turns": 1,
+    "tool_calls": 454,
+    "roles": {
+      "system": 4,
+      "record": 1,
+      "assistant": 106,
+      "tool_call": 454,
+      "tool_result": 454,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 959,
+      "chunks": [
+        {
+          "path": "bdb6ec64a2cd82d52813-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bdb6ec64a2cd82d52813-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "bdb6ec64a2cd82d52813-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "bdb6ec64a2cd82d52813-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "bdb6ec64a2cd82d52813-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "bdb6ec64a2cd82d52813-part-0006.json",
+          "message_count": 59
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 62,
+      "chunks": [
+        {
+          "path": "bdb6ec64a2cd82d52813-part-0006.json",
+          "message_count": 62
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-r1-distill-extract-final.md"
+}

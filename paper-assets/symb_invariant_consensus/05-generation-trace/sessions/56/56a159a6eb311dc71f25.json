@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56a159a6eb311dc71f25",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "director / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/director/loop_2.md",
+    "occurrence": 1,
+    "bytes": 2779,
+    "sha256": "d2de33fab8eddaddddeedf9e8a314d4f0a0066644ee3790c409aab83b0d8b4aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_messages\nupdated: '2026-05-15T18:55:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只有 1 张（westd-32608），所有实验串行，不能并行跑 GPU 任务\n- MVP 阶段未完成，禁止启动完整研究规划、paper_framing、experiment_plan\n- Reviewer 进程已死，已与 Manager 约定 v3 完成后重启 agent-ml server（sync_ec2_code restart=true），届时通知 Manager 执行\n- Agent 此前误实现 CRD（非 SICA），已纠正（D002），不要回退到 CRD 方向\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-32608 (connect.westd.seetacloud.com)，用户 root\n- 工作目录：/root/symb_invariant_consensus\n- Python 环境：需 SSH 探查确认（conda vs venv）\n- 数据：data/proofwriter_subset.json (10题)、data/math500_subset.json (50题)\n- 活跃进程：sica_aime30_v3 PID 129992，约 20/30 题完成，ETA ~111min（从 Reviewer 报告时算）\n- W&B / HF cache：未配置\n\n### 3. 📊 当前状态\n- sica_aime30_v3 RUNNING：AIME 2024 30题，v3 修复了 timeout/hang bug，从 v2 P5 恢复继续，约 20/30 完成\n- ProofWriter prompt 适配已完成（trace_generator.py + pipeline.py 支持 logic domain）\n- MATH-500 数据+加载器+评估脚本就绪\n- v4 所有 5 项代码修复（z3 parser、A+C scorer、answer extraction fallback、Int/Real sort、timeout）已在磁盘上就绪\n- Agent 和我自己都在 RESET，新 session 启动后需要先确认 v3 是否已完成\n\n### 4. 📋 待办\n- v3 完成 → 分析结果（SICA vs SC@K=12 在 AIME 30 题上的对比）→ 判断 MVP 假设是否成立\n- v3 完成 → 通知 Manager 执行 sync_ec2_code restart=true 重启 Reviewer\n- v3 结果正面 → 启动 v4（合并 5 项修复重跑 AIME）+ 并行跑 MATH-500 50 题（如果 GPU 允许串行排）\n- v3 结果负面 → 分析 P20 等低共识题的 SICA 行为，决定是否 pivot 或调整 pipeline 参数\n- MVP 通过 → complete_mvp() → post-mvp-kickoff skill → paper_framing + experiment_plan + dream_simulate\n\n### 5. 🎯 战略上下文\n- 核心假设：SICA（Symbolic Invariant Consensus Aggregation）通过提取符号约束并检测跨路径矛盾，在数学推理任务上超越 SC@K\n- 关键决策链：D001 立项 → D002 纠正 CRD 误实现 → D003 加固 MVP 标准 → smoke test 通过 → v1/v2 遇 timeout bug → v3 修复后重跑\n- sica_smoke_5q 成功（5题小规模验证通过），但 30 题规模验证（v3）尚未出最终结果\n- P20 是关键观察点：SC 仅 4/12 votes（最分散），SICA 和 SC 都答对——这类低共识题是 SICA 最可能超越 SC 的场景，v4 的 A+C scorer 可能在此类题上产生差异\n- 易错：不要把 smoke test 的成功当作 MVP 通过——必须看 v3 全 30 题结果再判断\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2.md"
+}

@@ -1,0 +1,28 @@
+{
+  "issue": "M1: Qwen2.5-14B BR=3.85 has no artifact support; only appeared in Reviewer notes",
+  "date": "2026-05-25",
+  "old_value": {
+    "BR": 3.85,
+    "source": "No JSON artifact. Value found only in Reviewer notes.",
+    "likely_origin": "Possibly computed on SC-wrong questions (n=49) instead of SICA-wrong (n=52)"
+  },
+  "new_value": {
+    "BR": 3.93,
+    "source": "br_bootstrap_ci.json Qwen2.5-14B br=3.93",
+    "method": "mean of per-question gold_frac, then BR = (1-mean)/mean",
+    "n_questions": 52,
+    "ci_95": [2.44, 7.11],
+    "bootstrap_resamples": 10000,
+    "seed": 42
+  },
+  "rationale": "br_bootstrap_ci.json is the canonical artifact for raw BR values, used consistently for Mistral (4.97, n=83). Same method applied to Qwen gives 3.93 (n=52 SICA-wrong questions). The n_questions difference (52 SICA-wrong vs 49 SC-wrong) explains the value discrepancy: 3.85 was likely an ad-hoc computation on a different question set.",
+  "files_modified": [
+    "docs/paper/analysis.tex (line 20: BR 3.85→3.93)",
+    "docs/paper/diagnosis.tex (line 55: 3.85→3.93; line 139: 3.85→3.93)",
+    "docs/paper/appendix.tex (line 378: caption 3.85→3.93; line 576: 3.85→3.93)"
+  ],
+  "cross_check": {
+    "n_err_in_table": 49,
+    "note": "n_err=49 is SC errors (204*0.2402=49). BR is computed on n=52 SICA-wrong questions. These are different metrics in different columns — no inconsistency."
+  }
+}

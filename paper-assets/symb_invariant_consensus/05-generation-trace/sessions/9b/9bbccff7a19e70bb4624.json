@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9bbccff7a19e70bb4624",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code v4 launch prep",
+  "task_key": "worker_code_v4-launch-prep_20260515T185737",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_v4-launch-prep_20260515T185737_result.json",
+    "occurrence": 1,
+    "bytes": 3041,
+    "sha256": "b8c9e21692cf58268f31409fc5d4d5685d8797611d2ed43f8f75e15350373f1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集。汇总如下：\n\n---\n\n## 代码就绪状态\n\n| 修复项 | 状态 | 位置 |\n|--------|------|------|\n| extract_answer + fallback | ✅ 已合入 | `sica/trace_generator.py:69,91` |\n| max_tokens=16384 默认值 | ✅ 已合入 | `run_full_mvp.py:214` |\n| --save-intermediates | ✅ 已合入 | `run_full_mvp.py:216` |\n| _unify_sorts_for_equiv (sort统一) | ✅ 已合入 | `sica/z3_maxsat.py:334` |\n| --resume (断点续跑) | ✅ 已合入 | `run_full_mvp.py:211` |\n| --retry-failed (选择性重跑) | ❌ 不存在 | — |\n\n## 缺失项\n\n1. **`--retry-failed` 不支持** — `--resume` 按 `problem_id` 跳过所有已完成题目，无法区分 truncated/0-vote。v4 需要在 v3 完成后写脚本从结果中提取需重跑题目，生成过滤数据文件。\n\n2. **v3 结果尚未产出** — `results/` 下无 v3 文件，v4 启动依赖 v3 结果。\n\n3. **eval_proofwriter.py 的 max_tokens 默认 4096**（非 16384）。ProofWriter 逻辑推理任务可能够用，但如需一致可加 `--max-tokens 16384`。\n\n## 启动命令\n\n### 1. v4 AIME re-run（需 v3 完成后执行）\n\n**前置步骤**：从 v3 结果提取 truncated/0-vote 题目生成 `data/aime2024_v4_retry.json`：\n```python\n# 在服务器上运行一次性脚本\nimport json\nwith open(\"results/aime30_v3.json\") as f:  # v3 结果文件名需确认\n    v3 = json.load(f)\nwith open(\"data/aime2024_subset.json\") as f:\n    all_problems = {p[\"id\"]: p for p in json.load(f)}\n\nretry_ids = set()\nfor r in v3[\"results\"]:\n    if r.get(\"truncated_traces\", 0) > 0 or r.get(\"sc_vote_count\", 0) == 0:\n        retry_ids.add(r[\"problem_id\"])\n\nretry_data = [all_problems[pid] for pid in retry_ids if pid in all_problems]\nwith open(\"data/aime2024_v4_retry.json\", \"w\") as f:\n    json.dump(retry_data, f, indent=2)\nprint(f\"v4 retry: {len(retry_data)} problems\")\n```\n\n**启动命令**：\n```bash\ncd /root/symb_invariant_consensus\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\npython run_full_mvp.py \\\n  --mode vllm --k 12 \\\n  --max-tokens 16384 \\\n  --math-data data/aime2024_v4_retry.json \\\n  --no-proofwriter \\\n  --save-intermediates \\\n  --output results/aime30_v4.json \\\n  2>&1 | tee /tmp/aime30_v4.log\n```\n\n### 2. MATH-50 完整 MVP\n\n```bash\ncd /root/symb_invariant_consensus\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\npython eval_math500.py \\\n  --mode vllm --k 12 \\\n  --max-tokens 16384 \\\n  --temperature 0.7 \\\n  --save-intermediates \\\n  --output results/math50_full.json \\\n  2>&1 | tee /tmp/math50.log\n```\n\n### 3. ProofWriter-10 sanity check\n\n```bash\ncd /root/symb_invariant_consensus\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\npython eval_proofwriter.py \\\n  --n-problems 10 --k 12 \\\n  --max-tokens 16384 \\\n  --temperature 0.7 \\\n  --save-intermediates \\\n  --output results/proofwriter10.json \\\n  2>&1 | tee /tmp/proofwriter10.log\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-v4-launch-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ae9dd56ed34da2acc08",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis d134 process br",
+  "task_key": "worker_analysis_d134-process-br_20260521T082251",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_d134-process-br_20260521T082251_result.json",
+    "occurrence": 1,
+    "bytes": 1016,
+    "sha256": "6a9f1748a69b6e7b2aa5478fccf226bf6cbcf8b3f11555799cd2a741528d678a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已保存到服务器 (`results/exp_d134_process_br/results.json`) 和本地 artifacts，已注册。\n\n**关键发现：**\n\n| 维度 | 结果 | 预测是否成立 |\n|------|------|-------------|\n| **Position** (early/mid/late) | BR 均匀 ~5.2-5.4，Fisher p=0.71 | **否** — 偏差不集中在 late-step，而是均匀渗透整个推理链 |\n| **Difficulty** (easy vs hard) | BR_easy=18.8 >> BR_hard=2.7，p≈0 | **反向** — 高 SC 一致性问题中 SICA-wrong 的偏差远更极端 |\n| **Type** (conditional vs other) | conditional BR=5.69 vs other BR=4.91，p=0.06 | **边际** — conditional 约束略偏更高，但不显著 |\n\nPosition 的结果是最有意义的 negative finding：SCB 不是 answer-adjacent 的局部现象，而是从推理链开始就系统性地存在。Difficulty 方向逆转的解释：当 LLM 高度一致（SC≥10/12）时，如果这个一致意见恰好是错的，FOL 提取几乎完全被 LLM 的错误推理带偏（BR≈19）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d134-process-br.md"
+}

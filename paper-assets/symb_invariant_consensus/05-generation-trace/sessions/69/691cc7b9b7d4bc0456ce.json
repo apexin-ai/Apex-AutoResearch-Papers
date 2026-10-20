@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "691cc7b9b7d4bc0456ce",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "verify exp 075b code check",
+  "task_key": "worker_verify_exp-075b-code-check_20260519T180735",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_exp-075b-code-check_20260519T180735_result.json",
+    "occurrence": 1,
+    "bytes": 590,
+    "sha256": "63e369ce25020f0d8171dc9525de2f591fad6b044a37d5471897b1ad08a28038"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证结果：**一切正常，无需干预。**\n\n| 检查项 | 状态 |\n|--------|------|\n| 磁盘代码 `pro_n_unique` | 不存在 ✓ |\n| 归一化逻辑 `max(n_pro, 1)` | 第 214 行存在 ✓ |\n| 进程 PID 265705 | 运行中，已 17 分钟 ✓ |\n| 日志报错 | 无 `KeyError`，无异常 ✓ |\n| 处理进度 | 20/204（正在处理 folio_19），ETA ~162 min |\n| 中间文件 | folio_0 ~ folio_18 已保存（19 个） |\n| API 调用 | 正常返回 HTTP 200，有偶发 retry 但成功恢复 |\n\n进程使用的是修复后的代码，正常推进中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-exp-075b-code-check.md"
+}

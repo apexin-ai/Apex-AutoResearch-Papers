@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ab1918fe8ebf22af6f0",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag exp 068 status check",
+  "task_key": "worker_diag_exp-068-status-check_20260519T120102",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_exp-068-status-check_20260519T120102_result.json",
+    "occurrence": 1,
+    "bytes": 832,
+    "sha256": "615b71d53988f33763622196316571d29f2091583943d819ea7ac73d0f0fb057"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**exp-068-qwen3-logiqa200 正在正常运行。**\n\n| 项目 | 状态 |\n|---|---|\n| tmux sessions | `exp068_vllm` (19:08创建) + `exp068_run` (19:13创建) |\n| vLLM | port 8001, CUDA_VISIBLE_DEVICES=1, PID 142896 |\n| 进度 | **88/200 (44%)**, ETA ~62 min |\n| 结果文件 | exp068_results.json (155KB), 88 intermediates |\n| GPU 1 利用率 | 97% |\n\n**westd-16639 GPU 占用情况（全部占满）：**\n| GPU | 利用率 | vLLM PID | 显存 |\n|---|---|---|---|\n| cuda:0 | 0% (idle but loaded) | 149111 | 88254MiB/97887MiB |\n| cuda:1 | 97% (**exp-068**) | 142896 | 88278MiB/97887MiB |\n| cuda:2 | 96% | 125544 | 88246MiB/97887MiB |\n| cuda:3 | 97% | 76474 | 88254MiB/97887MiB |\n\nRegistry 已更新：补充了 gpu/pid/tmux_session/port 字段，写入诊断 notes。无空闲 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp-068-status-check.md"
+}

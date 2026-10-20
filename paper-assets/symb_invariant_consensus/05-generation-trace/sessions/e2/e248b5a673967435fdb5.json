@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e248b5a673967435fdb5",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix exp 010 max tokens",
+  "task_key": "worker_fix_exp-010-max-tokens_20260517T030052",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_exp-010-max-tokens_20260517T030052_result.json",
+    "occurrence": 1,
+    "bytes": 139,
+    "sha256": "faa782e49fa0e476d7c8f52d67c0ac64b22884e64b681fdd64279c4128ef6be3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。三处 8192 均已改为 4096（注释行、`--max-model-len 4096`、`--max-tokens 4096`），语法检查通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp-010-max-tokens.md"
+}

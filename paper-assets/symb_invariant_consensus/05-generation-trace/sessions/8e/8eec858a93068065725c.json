@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8eec858a93068065725c",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis mf3 148vs166 discrepancy",
+  "task_key": "worker_analysis_mf3-148vs166-discrepancy_20260524T234415",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_mf3-148vs166-discrepancy_20260524T234415_result.json",
+    "occurrence": 1,
+    "bytes": 1880,
+    "sha256": "8b43fada653106e51d49168b6b6d23fccf75be5f061828e34b5918c66cdcb608"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已经完全清楚。最后一行有个小 bug 但不影响关键输出。\n\n## 结论\n\n**差异原因：answer 归一化**\n\n- **r21 脚本** (`n_disagree=166`)：用原始字符串比较 answer。任何 answer ≠ majority 的 trace 都算 minority。\n- **minority_constraint_direction 脚本** (`non_unanimous=148`)：先把 answer 归一化到 `{True, False, Unknown}`。无法归一化的 answer（如自由文本）被丢弃。归一化后全票一致的问题被标为 unanimous。\n\n**18 个差异问题**全部是这种情况：某些 trace 的 answer 不是标准的 True/False/Unknown，而是自由文本（如 `\"Marvin is an alien.\"`, `\"koalas love to sleep\"`, `\"Probably true, but uncertain\"` 等）。\n\n| 效果 | r21 | mcd |\n|------|-----|-----|\n| 自由文本 answer | 算作 minority（≠majority） | 归一化失败，丢弃该 trace |\n| 丢弃后剩余全票一致 | — | 标为 unanimous，跳过 |\n\n具体的 18 个 problem：`folio_9, 11, 27, 54, 61, 70, 75, 85, 89, 91, 96, 112, 120, 134, 138, 140, 170, 176`\n\n每个问题的共同特征：**绝大多数 trace (8-11/12) 给出正确格式的一致答案，只有 1-2 条 trace 输出了自由文本而非 True/False/Unknown。**\n\n## 建议\n\n1. **论文应引用 166/204 (81.4%)**，因为这 18 个问题确实存在 trace 间分歧（LLM 输出了不同内容），只是分歧的形式是格式错误而非答案标签不同。\n2. **73.6% 的 minority-exclusive ratio 基于 n=148**。如果论文同时引用 81% 和 73.6%，需要注明两者的分母不同，并解释原因（方向性分析要求 minority trace 有可归一化的答案标签）。\n3. 或者，可以统一口径：在 minority_constraint_direction 分析中也把自由文本 trace 视为 minority（它们的 constraint 仍然可以分析方向性），这样两边都是 166。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mf3-148vs166-discrepancy.md"
+}

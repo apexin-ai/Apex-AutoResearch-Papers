@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "4dce569e6ef8d5856635",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diagnose exp 041 14b folio204 16639",
+  "task_key": "worker_diagnose_exp-041-14b-folio204-16639_20260518T201706",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp-041-14b-folio204-16639_20260518T201706_result.json",
+    "occurrence": 1,
+    "bytes": 1786,
+    "sha256": "8f37d2aa2e6df8fa39af9c2d47e4a0e29b6c82ac72eb477e28a4175ebfea13c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。结论：\n\n**exp-041 从未被提交到服务器。** 服务器上没有任何 exp-041 相关的文件、脚本、tmux session 或进程。Registry 中缺少 pid/log_path/gpu/submitted_at 进一步确认这一点。\n\n服务器现状：\n- GPU 0: vLLM (port 8000) 跑 exp032 (Qwen2.5-14B, ProofWriter)\n- GPU 1: vLLM (port 8001) 跑 exp033 (Qwen3-14B, ProofWriter)\n- GPU 2-3: 空闲\n- exp038 实际通过正常流程跑完了（有 results.json + log + intermediates，完成于 03:57），所以 **exp038 与 exp-041 不是同一失败模式**\n\n```json\n{\"root_cause\":\"exp-041 was registered in tracking system but never submitted to server — no script, no tmux session, no process, no logs, no results directory exist on westd-16639. submit_training_job was never called.\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"Create run script scripts/run_exp041.sh with vLLM on port 8002 (GPU 2) + run_full_mvp.py targeting FOLIO-204\",\"Deploy and launch via submit_training_job on westd-16639 GPU 2\",\"Verify tmux session and vLLM startup before marking submitted\"],\"can_auto_fix\":true,\"exp038_same_issue\":false}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "exp-041 was registered in tracking system but never submitted to server — no script, no tmux session, no process, no logs, no results directory exist on westd-16639. submit_training_job was never called.",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "Create run script scripts/run_exp041.sh with vLLM on port 8002 (GPU 2) + run_full_mvp.py targeting FOLIO-204",
+                "Deploy and launch via submit_training_job on westd-16639 GPU 2",
+                "Verify tmux session and vLLM startup before marking submitted"
+              ],
+              "can_auto_fix": true,
+              "exp038_same_issue": false
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-041-14b-folio204-16639.md"
+}

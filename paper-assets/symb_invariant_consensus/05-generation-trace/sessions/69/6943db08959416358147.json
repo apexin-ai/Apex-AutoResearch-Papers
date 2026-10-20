@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6943db08959416358147",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra gpt41 extraction cron check",
+  "task_key": "worker_infra_gpt41-extraction-cron-check_20260521T164753",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_gpt41-extraction-cron-check_20260521T164753_result.json",
+    "occurrence": 1,
+    "bytes": 993,
+    "sha256": "e862bd27e5f40190985879e155aa222810ec56bb9489684455d7690006f9ac12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. gpt-4.1 Mistral cross-extraction: **已完成（成功）**\n\n- PID 456759 已退出，日志末尾输出 `CROSS_MODEL_DONE`\n- **Cross-model SICA: 166/204 = 0.8137**\n- Original SICA: 169/204 = 0.8284\n- SC@K baseline: 169/204 = 0.8284\n- Wall time: 60.2 min\n\n### 2. 输出文件\n\n| 文件 | 大小 |\n|------|------|\n| `cross_model_mistral.json` | 267KB, 6449 行 |\n| `results.json` | 17802 行 |\n| `intermediates/` | 204 个 folio JSON (folio_0 ~ folio_203) |\n| `extraction.log` | 327KB |\n\n### 3. 其他 frontier 进程\n\n- **gpt-5.5** (PID 444813): 仍在运行 — `run_frontier_scb.py --models gpt-5.5`\n- **o3** (PID 444814): 仍在运行 — `run_frontier_scb.py --models o3`\n\n另外该服务器上还有多个其他实验在跑：exp_d126_crossmodel_sica (PID 414515)、exp_d126_70b_sica (PID 436084)、exp_r1_distill_8b_sica (PID 451580)，以及 4 个 vLLM 服务（Mistral:8000, Qwen3-14B:8001, 70B(?):8002, R1-Distill-8B:8003）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpt41-extraction-cron-check.md"
+}

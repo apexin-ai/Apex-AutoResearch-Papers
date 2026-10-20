@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ef3f26a886fadc41921c",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "analysis exp 013 constraint ablation",
+  "task_key": "worker_analysis_exp-013-constraint-ablation_20260519T235109",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-013-constraint-ablation_20260519T235109.log",
+    "occurrence": 1,
+    "bytes": 866375,
+    "sha256": "821950cef422fdf280bf68b45ca28122e3c86d5fd4a09572ba0defff45edd3b7"
+  },
+  "statistics": {
+    "messages": 330,
+    "user_turns": 0,
+    "tool_calls": 126,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 74,
+      "tool_call": 126,
+      "tool_result": 126,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 330,
+      "chunks": [
+        {
+          "path": "ef3f26a886fadc41921c-part-0001.json",
+          "message_count": 163
+        },
+        {
+          "path": "ef3f26a886fadc41921c-part-0002.json",
+          "message_count": 167
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-exp-013-constraint-ablation.md"
+}

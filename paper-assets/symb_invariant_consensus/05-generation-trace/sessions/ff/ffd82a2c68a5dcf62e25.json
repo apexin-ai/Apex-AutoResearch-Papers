@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffd82a2c68a5dcf62e25",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code multi seed prep debate logiqa",
+  "task_key": "worker_code_multi-seed-prep-debate-logiqa_20260519T181220",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_multi-seed-prep-debate-logiqa_20260519T181220_result.json",
+    "occurrence": 1,
+    "bytes": 1014,
+    "sha256": "a245cc0e40ca113b63d33112c2eb33a7190846b3bf371054d02eea3a209cb15b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All tasks complete. Summary:\n\n**Part A** — 3 seed=123 replication scripts on westd-25068:\n- `scripts/run_icg_seed123.sh` (exp-074c)\n- `scripts/run_contrastive_seed123.sh` (exp-075c)\n- `scripts/run_debate_seed123.sh` (exp-076c)\n\n**Part B** — exp-078-debate-mistral-logiqa200 deployed on westd-16639:\n- Patched `run_debate.py` with 10 changes for LogiQA multichoice (A/B/C/D) support\n- Synced code via base64 chunked transfer (25068→16639)\n- vLLM Mistral-7B running on cuda:3 port 8013 (tmux: `vllm_logiqa`), FlashInfer sampler disabled for Blackwell compat\n- C001 dry-run passed: `--limit 1` on logiqa_000 completed end-to-end (75s, answer extraction functional)\n- Full 200-problem run active as PID 194538, processing problem 2/200 at ~75s/problem (ETA ~4.2 hours)\n- Registered in registry as RUNNING with hypothesis, parent=exp-076, artifact logged\n\nMonitor with: `tail -f /tmp/exp078_debate_logiqa.log` or `grep -c \"Processing\" /tmp/exp078_debate_logiqa.log` on westd-16639."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-multi-seed-prep-debate-logiqa.md"
+}

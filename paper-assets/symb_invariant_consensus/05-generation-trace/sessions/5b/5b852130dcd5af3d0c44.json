@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b852130dcd5af3d0c44",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix llama seed456 v2 resume",
+  "task_key": "worker_fix_llama-seed456-v2-resume_20260523T184051",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_llama-seed456-v2-resume_20260523T184051_result.json",
+    "occurrence": 1,
+    "bytes": 360,
+    "sha256": "9780b6185ddecd6ba1d952ef8863cabe9856a31d4fb3cf2cb4666408a9e6d278"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功恢复：\n\n- **PID**: 52597\n- **进度**: 从 533/600 恢复，运行剩余 67 题\n- **日志**: 已开始处理第 534/600 题（ProofWriter_AttNoneg-OWA-D5-327_Q1）\n- **vLLM**: port 8002, cuda:2, LLaMA-3.1-8B-Instruct\n\n每题约 30 秒，67 题预计约 30-35 分钟完成。实验完成后需 kill vLLM 释放 cuda:2。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-llama-seed456-v2-resume.md"
+}

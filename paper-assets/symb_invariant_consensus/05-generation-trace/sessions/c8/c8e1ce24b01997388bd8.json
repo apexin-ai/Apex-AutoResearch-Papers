@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8e1ce24b01997388bd8",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment dir e z3 strict verify",
+  "task_key": "worker_experiment_dir-e-z3-strict-verify_20260520T161411",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_dir-e-z3-strict-verify_20260520T161411_result.json",
+    "occurrence": 1,
+    "bytes": 1409,
+    "sha256": "38db742323f872f98506a8179e8e1d80b8ec72e5d5091801f86442d720f0eb32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dir-E Strict Verification 结果 (30题 Pilot)\n\n| 指标 | 值 |\n|------|-----|\n| Original SICA acc | 53.33% (16/30) |\n| **Strict-filtered acc** | **53.33% (16/30)** |\n| SC acc | 53.33% (16/30) |\n| UNSAT rate | **63.33% (19/30)** |\n| Avg MUS size | 5.68 constraints |\n| Total MUS removed | 108 constraints |\n| McNemar p-value | 1.0 (b=1, c=1) |\n\n**关键发现：**\n\n1. **UNSAT 率很高 (63%)**：19/30 题的 constraint set 存在逻辑矛盾，说明 LLM 生成的 constraints 内部冲突普遍。\n\n2. **Accuracy 无变化**：strict-filtered 和原始 SICA 准确率完全相同 (53.33%)。McNemar 显示只有 1 题翻转（b=1 SICA→wrong, c=1 wrong→SICA），净效果为零。\n\n3. **MUS 移除的 constraints 看起来合理**：例如 folio_25 移除了 `Not(located_in_southern_china(beijing))` 和 `located_in_southern_china(beijing)` 这对直接矛盾；folio_28 移除了 `from_mars(marvin)` 和 `~from_mars(marvin)`。\n\n4. **原因分析**：MUS 移除的 constraints 数量相对总量较少（平均 5.68/总量 ~40），且被移除的 constraints 来源分散在多个 trace 中，不足以翻转多数投票的格局。Strict-mode filtering 本质上是一种比 MAX-SAT 更保守的去噪方式，但 MAX-SAT 已经有效处理了这些矛盾。\n\n结果保存在：`/root/symb_invariant_consensus/results/dir_e_strict_verification/results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-dir-e-z3-strict-verify.md"
+}

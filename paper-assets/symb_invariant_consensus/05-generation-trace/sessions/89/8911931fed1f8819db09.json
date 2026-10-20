@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8911931fed1f8819db09",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis g decoupling cron cleanup",
+  "task_key": "worker_analysis_g-decoupling-cron-cleanup_20260520T205454",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_g-decoupling-cron-cleanup_20260520T205454_result.json",
+    "occurrence": 1,
+    "bytes": 406,
+    "sha256": "ddd02976365c17aa01dda0b86eea5bf2cfd41280cb752344cc7eaea70df9b546"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有活跃的 cron job（可能是在之前的 session 中创建的，已随 session 结束自动清除）。\n\n**总结：**\n- 实验已完成，3 种 decoupling 策略均为 negative：conservative 53.92%、standard 54.41%（= SC baseline）、aggressive 53.92%\n- Registry 已更新为 DONE，metrics 包含全部 3 种策略结果\n- 无需清理 cron（本 session 无活跃 cron）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-g-decoupling-cron-cleanup.md"
+}

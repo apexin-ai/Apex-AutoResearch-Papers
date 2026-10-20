@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "21d7eab9d83cd6edcfe1",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment dir j3 nli multi verifier",
+  "task_key": "worker_experiment_dir-j3-nli-multi-verifier_20260520T175123",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_dir-j3-nli-multi-verifier_20260520T175123.log",
+    "occurrence": 1,
+    "bytes": 797166,
+    "sha256": "26b3678947f6f96bd5a0e8d9ff539c52f0c42836f56533d3fa34f086fb3147fb"
+  },
+  "statistics": {
+    "messages": 469,
+    "user_turns": 0,
+    "tool_calls": 190,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 85,
+      "tool_call": 190,
+      "tool_result": 190,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 469,
+      "chunks": [
+        {
+          "path": "21d7eab9d83cd6edcfe1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "21d7eab9d83cd6edcfe1-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "21d7eab9d83cd6edcfe1-part-0003.json",
+          "message_count": 109
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-dir-j3-nli-multi-verifier.md"
+}

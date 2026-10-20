@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69d9d57517a64dbbb080",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diagnose sica k sensitivity 14b",
+  "task_key": "worker_diagnose_sica_k_sensitivity_14b_20260517T021118",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_sica_k_sensitivity_14b_20260517T021118_result.json",
+    "occurrence": 1,
+    "bytes": 767,
+    "sha256": "986ed5f3b7e5a78ee5c2137d8d948816a071b5976e2eac3222b0f23312f4fc12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**实验实际完成，EXIT_CODE=129 为假失败**（与 sica_expanded_14b 相同模式）。\n\n### 各 K 值结果\n\n| K | SICA | SC | Δ |\n|---|------|-----|---|\n| 6 | 73.3% | 73.3% | 0.0 |\n| 8 | 73.3% | 75.0% | -1.7 |\n| 11 | 73.3% | 73.3% | 0.0 |\n| 12 | 70.0% | 75.0% | -5.0 |\n| 16 | 71.7% | 75.0% | -3.3 |\n| 20 | 70.0% | 73.3% | -3.3 |\n\n### 判断\n\n- SICA 在所有 K 值上 ≤ SC，增大 K 反而使 SICA 退化（SC 保持稳定）\n- 应将 cron conclusion 从 `failed` 改为 `negative`（实验完成，结果为负面）\n- 这进一步确认 constraint-based weighting 机制 vacuous，与 exp-013 constraint ablation 结论一致\n\n已保存诊断报告到 memory.md 和 artifact `art_20260517_2c1577`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-sica-k-sensitivity-14b.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ca424cb9b39c5308ac5",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diagnose exp 017 strategyqa",
+  "task_key": "worker_diagnose_exp-017-strategyqa_20260517T034803",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp-017-strategyqa_20260517T034803_result.json",
+    "occurrence": 1,
+    "bytes": 738,
+    "sha256": "b358a64182811c8aa751b38ee5ed551b413a9a639285bc246ff6b093151daaa3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**失败根因：外部调度器 SIGTERM，非实验本身问题。**\n\n- 进程存活 <1 秒，处理 0 题，vLLM 从未启动\n- 日志仅 \"Terminated\\nEXIT_CODE=143\"，脚本第一个 echo 都没执行到\n- 排除 OOM（SIGKILL=137，此处是 SIGTERM=143）、排除脚本 bug（未执行）、排除模型加载失败（未到那步）\n- GPU 97GB 空闲，模型文件完整，端口无占用\n- 前序实验 exp-010-mistral 在 11:27 异常结束（连接重试），exp-017 在 11:46 被 launcher 启动后立即 kill\n\n**可直接重跑**，脚本逻辑无误，资源充足。问题出在 job launcher 的调度逻辑（可能误判前序实验仍在运行或存在 cooldown 冲突）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-017-strategyqa.md"
+}

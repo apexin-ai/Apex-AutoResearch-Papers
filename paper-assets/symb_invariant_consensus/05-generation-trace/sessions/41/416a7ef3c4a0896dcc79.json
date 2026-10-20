@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "416a7ef3c4a0896dcc79",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 077 completion check",
+  "task_key": "worker_analysis_exp-077-completion-check_20260519T213554",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-077-completion-check_20260519T213554_result.json",
+    "occurrence": 1,
+    "bytes": 906,
+    "sha256": "7e8cbac6a884310f0bcec573d56630857530799ed6c3ac19d3294979915385a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n## exp-077 结果汇总\n\n**状态**: 完成 (204/204)，conclusion = **negative**\n\n| 方法 | Fleiss' κ | Effective K | 名义 K |\n|------|----------|-------------|--------|\n| Self-Consistency | **0.4384** | **2.02** | 10 |\n| LLM-Debate | **0.1549** | **4.44** | 12 |\n| Diverse-Prompt | **0.4030** | **2.21** | 12 |\n\n**关键发现**:\n- SC 和 Diverse-Prompt 表现相似：κ~0.4（moderate agreement），Eff-K~2，确认 independence bottleneck — 名义上 10-12 个 rater 实际只等价于 2 个独立 rater\n- **Debate 是异类**：κ=0.15（slight agreement），Eff-K=4.44。但这不代表 Debate 的独立性更好——低 κ 反映的是 debate 过程中的 disagreement amplification，而非真正的独立推理\n- 假设\"三种方式均 κ>0.4\"被 **falsified**，independence bottleneck 不是跨所有聚合方式的统一通病"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-077-completion-check.md"
+}

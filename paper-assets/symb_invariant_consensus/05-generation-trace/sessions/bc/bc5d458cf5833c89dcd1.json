@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc5d458cf5833c89dcd1",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code exp 074 icg pipeline",
+  "task_key": "worker_code_exp-074-icg-pipeline_20260519T164121",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp-074-icg-pipeline_20260519T164121_result.json",
+    "occurrence": 1,
+    "bytes": 934,
+    "sha256": "47c7d9bea9814a250b891ef6cfb100cd088a3c4d63252aa3ec9b0f342e418674"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`run_icg.py` 实现完成，dry-run 5 题验证通过。\n\n**总结**:\n- 新建 `/root/symb_invariant_consensus/run_icg.py`，实现三阶段 ICG pipeline\n- Phase 1: 复用 `VLLMGenerator` + `SelfConsistency` 生成 K=12 traces 做 SC 投票\n- Phase 2: `ICGGenerator` 用独立 prompt（明确说\"Do NOT solve\"）从 premises 直接生成 FOL 约束，K_icg=6 次不同采样\n- Phase 3: 复用 `ConstraintDeduplicator` + `MaxSATSolver` + `InvariantScorer` 对候选答案评分\n- 输出 JSON 包含 `sc_answer`, `icg_answer`, `ground_truth`, `constraints_count`, 汇总 `sc_accuracy`/`icg_accuracy`/`delta`\n- 支持 `--resume`, `--save-intermediates`, `--dry-run` 等 CLI 参数\n- Dry-run 5 题无 crash，中间产物正常保存，边界情况（0 约束）正确处理\n- 未额外启动 vLLM，复用了 GPU 0 上已有的 Qwen2.5-7B 服务；临时 vLLM（PID 248016）已自行崩溃退出，无需 kill"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-074-icg-pipeline.md"
+}

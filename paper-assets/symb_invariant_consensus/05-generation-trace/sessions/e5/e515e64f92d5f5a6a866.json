@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e515e64f92d5f5a6a866",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "eval sica d012 14b",
+  "task_key": "worker_eval_sica_d012_14b_20260516T040318",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_sica_d012_14b_20260516T040318_result.json",
+    "occurrence": 1,
+    "bytes": 436,
+    "sha256": "4bdb19aadeabc98e1aa7c45b12a4e7e1487c79da167ceb7b080804509deacc93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交并运行中。状态摘要：\n\n- **实验 ID**: `sica_d012_14b`\n- **PID**: 177178 / tmux session: `sica_d012_14b`\n- **配置**: K=12, temp=0.7, max_tokens=4096, 60 题 (30 PW + 30 FOLIO)\n- **模型**: Qwen2.5-14B-Instruct via vLLM (localhost:8000)\n- **输出**: `results/sica_d012_14b.json`\n- **日志**: `~/runs/symb_invariant_consensus/sica_d012_14b.log`\n\n约 4.5 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-sica-d012-14b.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a88a195cd363839b4b0c",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra cleanup 16639 vllm",
+  "task_key": "worker_infra_cleanup-16639-vllm_20260519T010955",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_cleanup-16639-vllm_20260519T010955_result.json",
+    "occurrence": 1,
+    "bytes": 203,
+    "sha256": "c0c06de6f81f4cc6b8b5876b71244ea6fa579444dd2650dee8338372f4a020fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:2/3 已完全释放（0MiB，0% util）。cuda:0/1 仍有 vLLM 进程在跑（各占 ~88GB）。\n\n剩余 tmux sessions：\n- `exp032` — created 01:44\n- `exp033` — created 01:45"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-cleanup-16639-vllm.md"
+}

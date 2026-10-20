@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56b1929cea2739e4de65",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "precheck folio c0",
+  "task_key": "worker_precheck_folio_c0_20260516T020031",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_precheck_folio_c0_20260516T020031_result.json",
+    "occurrence": 1,
+    "bytes": 1384,
+    "sha256": "0d2013d4a8ea29cafedbc82670a8c44ab4df3592e546cf4a925d7ca434ea50e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report saved. Here are the results:\n\n---\n\n## FOLIO C0 预检结果\n\n**多候选率: 0/10 = 0%** — **FAIL**（D012 C0 标准要求 ≥20%）\n\n| # | ID | 标签 | K=6 分布 | 多候选? |\n|---|-----|------|---------|---------|\n| 1 | folio_000 | True | True:6 | No |\n| 2 | folio_002 | True | True:6 | No |\n| 3 | folio_004 | True | False:4, FAIL:2 | No |\n| 4 | folio_010 | False | False:6 | No |\n| 5 | folio_012 | False | False:6 | No |\n| 6 | folio_014 | False | False:6 | No |\n| 7 | folio_020 | Unknown | Unknown:6 | No |\n| 8 | folio_022 | Unknown | Unknown:6 | No |\n| 9 | folio_024 | Unknown | Unknown:6 | No |\n| 10 | folio_026 | Unknown | Unknown:6 | No |\n\n**关键发现：**\n- 10 题中 0 题出现多候选，所有三类标签（True/False/Unknown）均完全一致\n- folio_004 答错（label=True 但 6/6 答 False），但仍然一致——没有分歧\n- 答案提取失败 2/60（folio_004 的 2 条 trace 因 max_tokens=4096 截断）\n- 与 ProofWriter 观察一致：QwQ-32B 在形式化逻辑推理上 trace 分歧极低\n\n**偏差说明：** K=6（非原始要求的 K=12），max_tokens=4096（非 12288），因 vLLM 资源竞争降低以加速。但 0% 的结果已足够明确——即使 K=12 也不会改变结论。\n\n**产出文件：**\n- `artifacts/folio_c0_precheck_report.md`\n- `artifacts/folio_c0_precheck_raw.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/precheck-folio-c0.md"
+}

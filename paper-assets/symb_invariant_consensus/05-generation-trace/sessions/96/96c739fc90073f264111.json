@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96c739fc90073f264111",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment dir f prm verifier",
+  "task_key": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_dir-f-prm-verifier_20260520T155425_result.json",
+    "occurrence": 1,
+    "bytes": 810,
+    "sha256": "059f5de249fb3054dc8aa9e62e674a815905e13ef5d940674d9d881bae21f2b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| 方法 | 准确率 | 正确数/总数 |\n|------|--------|-----------|\n| Standard SC | 53.33% | 16/30 |\n| **Filtered SC** | **56.67%** | **17/30** |\n| Weighted SC | 53.33% | 16/30 |\n| Min-Filtered SC | 53.33% | 16/30 |\n\n**Filtered SC 比 Standard SC 提升 +3.33% (+1题)**，具体是 folio_6 和 folio_21 被 Filtered SC 纠正（从 Unknown→True），但 folio_1 被 Filtered SC 搞错（从 True→Unknown）。净增 1 题。\n\n局限性：使用同一 Mistral-7B 做生成+评估（self-eval），评分区分度有限。用独立 reward model（如 DeBERTa-NLI 或专用 PRM）预期能获得更好的区分效果，但本次因 AutoDL 网络问题无法下载。\n\n结果已写入 `/root/symb_invariant_consensus/results/dir_f_prm_verifier_pilot/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-dir-f-prm-verifier.md"
+}

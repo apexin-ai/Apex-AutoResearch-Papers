@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5065ad5608a1fb26d3bb",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "monitor deberta eval check",
+  "task_key": "worker_monitor_deberta-eval-check_20260522T174750",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_monitor_deberta-eval-check_20260522T174750_result.json",
+    "occurrence": 1,
+    "bytes": 747,
+    "sha256": "aa6fcd816fed35d9002390067bc7b11a4e18869d2328db6a68ba8035449d36bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**情况更新：旧进程已死，新训练已启动。**\n\n| 项目 | 详情 |\n|------|------|\n| **旧进程 (PID 650586)** | 已死亡，停在 step 4341/21820，无 eval 结果 |\n| **新进程 (PID 653342)** | 01:47 启动，输出到 `/tmp/deberta_final.log` |\n| **新运行参数** | epochs=2, batch-size=16, 本地 JSONL 数据 |\n| **当前进度** | step 172/8728（2%），epoch 1 结束于 step 4364 |\n| **速度** | ~3.5 it/s |\n| **预计 epoch 1 完成** | 约 20 分钟后 |\n| **Loss 趋势** | step 50: 0.7526 → step 150: 0.7242（在下降） |\n| **Checkpoint** | 目录为空（刚开始，符合预期） |\n\nEpoch 1 eval 还远未触发（差约 4200 步）。要等 ~20 分钟后再查 eval 结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-deberta-eval-check.md"
+}

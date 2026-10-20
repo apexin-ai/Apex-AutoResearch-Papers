@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "edc2f0b143e0fb135e13",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "check llama seed456 progress",
+  "task_key": "worker_check_llama-seed456-progress_20260523T185106",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_llama-seed456-progress_20260523T185106_result.json",
+    "occurrence": 1,
+    "bytes": 228,
+    "sha256": "b979eae8ffd797f09231d6fef115be7828715103665f30f30064cac56de01217"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**LLaMA seed456-v2 状态：仍在运行，未完成。**\n\n- 进度：**542/600**（59 remaining）\n- 平均速度：~69.3s/problem\n- ETA：**~68 分钟**（约 1 小时后完成）\n\n不 kill 任何进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-llama-seed456-progress.md"
+}

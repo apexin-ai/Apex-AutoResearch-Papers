@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6f54b3fc890257f9964",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis llama bias ratio scp",
+  "task_key": "worker_analysis_llama-bias-ratio-scp_20260520T115825",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_llama-bias-ratio-scp_20260520T115825_result.json",
+    "occurrence": 1,
+    "bytes": 579,
+    "sha256": "a1cdb6ff6fe0d6ee01cf189904c5fc24fd5fa6de00d7345f72c615c4433b326d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "直接在 westd-16639 上计算完成，无需 scp。结果：\n\n| Model | N | Errors | BR_err | Wrong% | BR_cor | Gold% | SICA | SC | Delta |\n|-------|---|--------|--------|--------|--------|-------|------|------|-------|\n| LLaMA-3.1-8B | 204 | 78 | 2.66 | 72.7% | 2.86 | 74.1% | 0.6176 | 0.6618 | -0.0441 |\n\n细节：\n- **Incorrect 组** (n=78): gold 权重占比 27.3%，non-gold 占 72.7%，BR_err=2.66\n- **Correct 组** (n=126): gold 权重占比 74.1%，non-gold 占 25.9%，BR_cor=2.86\n- SICA 比 SC 低 4.4 个点 (0.6176 vs 0.6618)，Delta=-0.0441"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-llama-bias-ratio-scp.md"
+}

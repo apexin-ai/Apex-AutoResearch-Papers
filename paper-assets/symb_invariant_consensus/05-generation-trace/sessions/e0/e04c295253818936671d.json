@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e04c295253818936671d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "check cleanup status report",
+  "task_key": "worker_check_cleanup-status-report_20260518T135908",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_cleanup-status-report_20260518T135908_result.json",
+    "occurrence": 1,
+    "bytes": 2853,
+    "sha256": "938c03823de77dbd129440bc0159f5de0a36dcc05d0e4f31b900b3be058cdce2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-25068 服务器状态报告\n\n### 1. GPU 进程\n\n| GPU | 显存占用 | 温度 | 利用率 | 进程 |\n|-----|---------|------|--------|------|\n| cuda:0 | 88,241 / 97,887 MiB | 55°C | 98% | `VLLM::EngineCore` (PID 23449) |\n| cuda:1 | 3 / 97,887 MiB | 26°C | 0% | 空闲 |\n| cuda:2 | 3 / 97,887 MiB | 26°C | 0% | 空闲 |\n| cuda:3 | 3 / 97,887 MiB | 32°C | 100% | 无显存占用但 GPU-Util 100%（异常，可能是残留状态） |\n\nGPU 型号: NVIDIA RTX PRO 6000 Blackwell (4x, 每张 ~96GB)\n\n### 2. vLLM 残留\n\n**有活跃 vLLM 服务**（非残留，正在服务 exp-026）:\n- PID **23182**: `vllm.entrypoints.openai.api_server` 主进程，加载模型 `Qwen2.5-14B-Instruct`，端口 8000，占用 cuda:0\n- PID **23449**: `VLLM::EngineCore` 推理引擎，占用 88,232 MiB 显存\n\n### 3. 模型就绪状态\n\n模型实际存储在 `/root/autodl-tmp/models/`，HF cache 目录仅有 refs 指针。\n\n| 模型 | 路径 | 大小 | 状态 |\n|------|------|------|------|\n| Qwen2.5-14B-Instruct | `/root/autodl-tmp/models/Qwen2.5-14B-Instruct/` | 28G | 就绪（vLLM 正在使用） |\n| Qwen3-14B | `/root/autodl-tmp/models/Qwen3-14B/` | 28G | 已下载 |\n| Mistral-7B-Instruct-v0.3 | `/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3/` | 16G | 已下载 |\n| Qwen2.5-72B-Instruct | `/root/autodl-tmp/models/Qwen2.5-72B-Instruct/` | 84G | 已下载 |\n| Llama-3.1-8B-Instruct | `/root/autodl-tmp/models/Llama-3.1-8B-Instruct/` | 19G | 已下载 |\n\n另有下载进程 PID 5399 (`parallel_download_v2.py`) 仍在运行。\n\n### 4. exp-026 结果 (FOLIO 204)\n\n- 结果目录: `results/folio_204_14b/`\n- 中间文件: **147 个** (`folio_0.json` ~ `folio_146.json`)\n- 进度: **147 / 204** 完成 (**72.1%**)\n- 汇总文件: `folio_204_results.json` (213 KB)，持续更新中\n- 日志: `folio_204_14b.log` (476 KB)\n\n### 5. exp-026 进程\n\n**正在运行**:\n- PID **27245**: `python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --model auto --folio-data data/folio_full.json --output results/folio_204_14b/folio_204_results.json --save-intermediates --resume`\n- PID **27235**: 父 shell `bash scripts/run_folio_trace_regen.sh`\n- 日志最后更新: 21:59:45（刚刚），持续收到 vLLM 200 OK 响应，运行正常\n\n### 6. 磁盘状态\n\n| 挂载点 | 总容量 | 已用 | 可用 | 使用率 |\n|--------|-------|------|------|--------|\n| `/` (系统盘) | 30G | 12G | 19G | 38% |\n| `/root/autodl-tmp` (数据盘) | 250G | 173G | 78G | 70% |\n\n### 总结\n\n- exp-026 FOLIO 实验正常运行中，已完成 147/204 (72.1%)，剩余 57 题\n- vLLM 服务 Qwen2.5-14B-Instruct 运行在 cuda:0，正常响应\n- cuda:1/2/3 空闲可用（cuda:3 GPU-Util 100% 但无显存占用，需留意）\n- 5 个模型均已下载就绪\n- 磁盘空间充足"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-cleanup-status-report.md"
+}

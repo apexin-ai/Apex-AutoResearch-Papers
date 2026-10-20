@@ -1,0 +1,1089 @@
+{
+  "schema_version": "1.0",
+  "id": "65f3b5b5c956ec43445e",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "analysis c0 domain split",
+  "task_key": "worker_analysis_c0-domain-split_20260517T172311",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_c0-domain-split_20260517T172311.log",
+    "occurrence": 1,
+    "bytes": 45336,
+    "sha256": "bf10b3265565ddfa5225e8a5b98661bec1feae8cb31d5e59fc67b626169abf3c"
+  },
+  "statistics": {
+    "messages": 25,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 8,
+      "tool_result": 8,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+                "session_id": "f4ad7684-d7fe-43dc-b51b-3cb805759d85",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "042b3c73-3ba6-4a5e-b57e-be09827f81ec",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779042000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "41a40482-8bda-4551-8c38-3a6aef020b46",
+                "session_id": "f4ad7684-d7fe-43dc-b51b-3cb805759d85"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me SSH to the server and analyze the exp-001 results to split C0 by domain (FOLIO vs ProofWriter).",
+              "signature": "EqECClkIDRgCKkDfNo4T0Bc5O4odMSLVyoRDQ4GAhZbyHNvkFjgGPO4xTThdOKitK7vhfdFIAn9pVZsSJNH0p3NkTdgWV2N9Uds8Mg9jbGF1ZGUtb3B1cy00LTY4ABIM1Y4dff8/Y+mHOUVpGgxUiFEkge62DwvnPrYiMNV/xhhCTvgmr7+djpFb/rEPZszb8v/1E5z6QaVVSgGM2kZ1HrEotifO4Nnt1TllJSp2Oh3P3EUfIKjgqLP0sSP9DstpNaR70iA8TguFXbqNNYxd7/II8J1ufdpX8it5j/MHqlynx8UQ852Jv05/h2l9fiJr08ufPTdPM8IMfGinLuUfgB0+wf5F+BekUUPCQLG4SKB07AB1Zw4h1Iam0d/Sk2RQI2RzYRgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f4ad7684-d7fe-43dc-b51b-3cb805759d85",
+            "uuid": "ff09e0a1-1710-415e-b4c1-1994234c5c9f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014vWZEfWkWjtFyytUWzLpDg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12639,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12639
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WgfRZevwPqXYJ3nSZuMKHW",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f4ad7684-d7fe-43dc-b51b-3cb805759d85",
+            "uuid": "77164302-b779-423b-afb5-4431a82e7eca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014vWZEfWkWjtFyytUWzLpDg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12639,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12639
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T17:23:25.333Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01WgfRZevwPqXYJ3nSZuMKHW",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f4ad7684-d7fe-43dc-b51b-3cb805759d85",
+            "uuid": "d19ba2b3-0f1a-4dd4-b678-69690de3aa66",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me first check what's in the results directory on the server.",
+              "signature": "EvwBClkIDRgCKkByC2RBs/GGIXm8Wyrl+dK37fy728LwhcQgyxTACciJW8uWtMPkXIbeGKij2p6O4dG7OCD1iNmeZjsGBJhia/MFMg9jbGF1ZGUtb3B1cy00LTY4ABIMlXIMLVzepXQuI/BbGgyB2IcArG/krkcnT4oiMD4xjeW19oNQl+DQBwGr24ujgEJ7cNm/fxQ/iUjCPVj4fxlRz1r5fJZKuB/aGgng1ypRm3n84cO8pln0FJmA4/4C3gj9/wGa6zAVSv1WwZSDW99VRrNgECIMtG0nGHqQRKsvxho8hcBmpe36DnML/TEgtz3uuHeFHoYctP03eHYjN4DbGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f4ad7684-d7fe-43dc-b51b-3cb805759d85",
+            "uuid": "d44335b4-70af-4497-ad65-ec93e94f4948",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Tp7u7GBRwRJrpLw8M2SSKb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 391,
+                "cache_read_input_tokens": 24480,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 391
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LCmzsKCon1ienWLDCWUdUV",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-32608",
+                "command": "ls /root/symb_invariant_consensus/results/ | head -30",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f4ad7684-d7fe-43dc-b51b-3cb805759d85",
+            "uuid": "ec0536f6-2cc8-4da5-bf34-3607a4b05a9e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Tp7u7GBRwRJrpLw8M2SSKb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 391,
+                "cache_read_input_tokens": 24480,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 391
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T17:23:36.065Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LCmzsKCon1ienWLDCWUdUV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"aime30_t07.json\\\\naime30_v2.json\\\\naime30_v2_partial_backup.json\\\\naime30_v2_rescore_analysis.json\\\\nanalysis_expanded.json\\\\nc0_precheck_qwen14b.json\\\\ncompute_quality_metrics.py\\\\nconstraint_ablation.json\\\\nconstraint_cache\\\\nconstraint_cache_consolidated.json\\\\nconstraint_quality_correlation\\\\nd016_smoke_test.json\\\\ndiversity_diagnosis.json\\\\nexp001_analysis.md\\\\nexp004_qwen7b\\\\nexp009_overhead\\\\nexp010_mistral\\\\nexp011_llama8b\\\\nexp012_gsm8k\\\\nexp014_deepseek_r1_7b\\\\nexp015_logic_lm\\\\nexp017_strategyqa\\\\nexp018_arc\\\\nexp019_constraint_quality_analysis.json\\\\nexp019_constraint_quality_summary.csv\\\\nexp019_strategyqa_200\\\\nexp020_folio_200\\\\nexp021_oracle_folio\\\\nfolio_livetest.json\\\\nk_ablation\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f4ad7684-d7fe-43dc-b51b-3cb805759d85",
+            "uuid": "b2d6849f-8900-4c5d-ab15-5ce54b300422",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"aime30_t07.json\\\\naime30_v2.json\\\\naime30_v2_partial_backup.json\\\\naime30_v2_rescore_analysis.json\\\\nanalysis_expanded.json\\\\nc0_precheck_qwen14b.json\\\\ncompute_quality_metrics.py\\\\nconstraint_ablation.json\\\\nconstraint_cache\\\\nconstraint_cache_consolidated.json\\\\nconstraint_quality_correlation\\\\nd016_smoke_test.json\\\\ndiversity_diagnosis.json\\\\nexp001_analysis.md\\\\nexp004_qwen7b\\\\nexp009_overhead\\\\nexp010_mistral\\\\nexp011_llama8b\\\\nexp012_gsm8k\\\\nexp014_deepseek_r1_7b\\\\nexp015_logic_lm\\\\nexp017_strategyqa\\\\nexp018_arc\\\\nexp019_constraint_quality_analysis.json\\\\nexp019_constraint_quality_summary.csv\\\\nexp019_strategyqa_200\\\\nexp020_folio_200\\\\nexp021_oracle_folio\\\\nfolio_livetest.json\\\\nk_ablation\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.6}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"aime30_t07.json\\naime30_v2.json\\naime30_v2_partial_backup.json\\naime30_v2_rescore_analysis.json\\nanalysis_expanded.json\\nc0_precheck_qwen14b.json\\ncompute_quality_metrics.py\\nconstraint_ablation.json\\nconstraint_cache\\nconstraint_cache_consolidated.json\\nconstraint_quality_correlation\\nd016_smoke_test.json\\ndiversity_diagnosis.json\\nexp001_analysis.md\\nexp004_qwen7b\\nexp009_overhead\\nexp010_mistral\\nexp011_llama8b\\nexp012_gsm8k\\nexp014_deepseek_r1_7b\\nexp015_logic_lm\\nexp017_strategyqa\\nexp018_arc\\nexp019_constraint_quality_analysis.json\\nexp019_constraint_quality_summary.csv\\nexp019_strategyqa_200\\nexp020_folio_200\\nexp021_oracle_folio\\nfolio_livetest.json\\nk_ablation\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.6}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Hhz5tspV3bw74VtFud6s4B",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-32608",
+                "command": "ls /root/symb_invariant_consensus/results/ | grep -i \"sica_expanded\\|full_mvp\\|exp001\\|expanded_14b\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f4ad7684-d7fe-43dc-b51b-3cb805759d85",
+            "uuid": "ebd97fb8-71b8-47c9-990a-70cabc96dcb6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XGE4iSu4rg3TMQknpc9LvD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 504,
+                "cache_read_input_tokens": 24871,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 504
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T17:23:41.695Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Hhz5tspV3bw74VtFud6s4B",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp001_analysis.md\\\\nsica_expanded_14b.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f4ad7684-d7fe-43dc-b51b-3cb805759d85",
+            "uuid": "ce7cbeae-2bd4-4638-a3e5-ebbba7e8c560",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp001_analysis.md\\\\nsica_expanded_14b.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"exp001_analysis.md\\nsica_expanded_14b.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LLuue3zWnWDhJ1LNeiwKgW",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-32608",
+                "command": "python3 -c \"\nimport json\nwith open('/root/symb_invariant_consensus/results/sica_expanded_14b.json') as f:\n    data = json.load(f)\n# Check structure\nif isinstance(data, list):\n    print(f'List of {len(data)} items')\n    print('Keys in first item:', list(data[0].keys()) if data else 'empty')\n    # Check for dataset field\n    if data:\n        print('Sample item:', json.dumps(data[0], indent=2)[:1000])\nelif isinstance(data, dict):\n    print('Dict with keys:', list(data.keys())[:20])\n    # Check nested structure\n    for k in list(data.keys())[:3]:\n        v = data[k]\n        if isinstance(v, dict):\n            print(f'  {k} keys:', list(v.keys())[:10])\n        else:\n            print(f'  {k}: {type(v).__name__} = {str(v)[:200]}')\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f4ad7684-d7fe-43dc-b51b-3cb805759d85",
+            "uuid": "9481d340-dabb-4107-907b-3ef7d606ce70",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015exmgmNcLh1fV73rvySLwU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 230,
+                "cache_read_input_tokens": 25375,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 230
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T17:23:50.513Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LLuue3zWnWDhJ1LNeiwKgW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\nwith open(\\\\\\\\'/root/symb_invariant_consensus/results/sica_expanded_14b.json\\\\\\\\') as f:\\\\\\\\n    data = json.load(f)\\\\\\\\n# Check structure\\\\\\\\nif isinstance(data, list):\\\\\\\\n    print(f\\\\\\\\'List of {len(data)} items\\\\\\\\')\\\\\\\\n    print(\\\\\\\\'Keys in first item:\\\\\\\\', list(data[0].keys()) if data else \\\\\\\\'empty\\\\\\\\')\\\\\\\\n    # Check for dataset field\\\\\\\\n    if data:\\\\\\\\n        print(\\\\\\\\'Sample item:\\\\\\\\', json.dumps(data[0], indent=2)[:1000])\\\\\\\\nelif isinstance(data, dict):\\\\\\\\n    print(\\\\\\\\'Dict with keys:\\\\\\\\', list(data.keys())[:20])\\\\\\\\n    # Check nested structure\\\\\\\\n    for k in list(data.keys())[:3]:\\\\\\\\n        v = data[k]\\\\\\\\n        if isinstance(v, dict):\\\\\\\\n            print(f\\\\\\\\'  {k} keys:\\\\\\\\', list(v.keys())[:10])\\\\\\\\n        else:\\\\\\\\n            print(f\\\\\\\\'  {k}: {type(v).__name__} = {str(v)[:200]}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f4ad7684-d7fe-43dc-b51b-3cb805759d85",
+            "uuid": "10d20f59-c631-453b-a148-60e91c15ed95",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\nwith open(\\\\\\\\'/root/symb_invariant_consensus/results/sica_expanded_14b.json\\\\\\\\') as f:\\\\\\\\n    data = json.load(f)\\\\\\\\n# Check structure\\\\\\\\nif isinstance(data, list):\\\\\\\\n    print(f\\\\\\\\'List of {len(data)} items\\\\\\\\')\\\\\\\\n    print(\\\\\\\\'Keys in first item:\\\\\\\\', list(data[0].keys()) if data else \\\\\\\\'empty\\\\\\\\')\\\\\\\\n    # Check for dataset field\\\\\\\\n    if data:\\\\\\\\n        print(\\\\\\\\'Sample item:\\\\\\\\', json.dumps(data[0], indent=2)[:1000])\\\\\\\\nelif isinstance(data, dict):\\\\\\\\n    print(\\\\\\\\'Dict with keys:\\\\\\\\', list(data.keys())[:20])\\\\\\\\n    # Check nested structure\\\\\\\\n    for k in list(data.keys())[:3]:\\\\\\\\n        v = data[k]\\\\\\\\n        if isinstance(v, dict):\\\\\\\\n            print(f\\\\\\\\'  {k} keys:\\\\\\\\', list(v.keys())[:10])\\\\\\\\n        else:\\\\\\\\n            print(f\\\\\\\\'  {k}: {type(v).__name__} = {str(v)[:200]}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\nimport json\\\\nwith open(\\\\'/root/symb_invariant_consensus/results/sica_expanded_14b.json\\\\') as f:\\\\n    data = json.load(f)\\\\n# Check structure\\\\nif isinstance(data, list):\\\\n    print(f\\\\'List of {len(data)} items\\\\')\\\\n    print(\\\\'Keys in first item:\\\\', list(data[0].keys()) if data else \\\\'empty\\\\')\\\\n    # Check for dataset field\\\\n    if data:\\\\n        print(\\\\'Sample item:\\\\', json.dumps(data[0], indent=2)[:1000])\\\\nelif isinstance(data, dict):\\\\n    print(\\\\'Dict with keys:\\\\', list(data.keys())[:20])\\\\n    # Check nested structure\\\\n    for k in list(data.keys())[:3]:\\\\n        v = data[k]\\\\n        if isinstance(v, dict):\\\\n            print(f\\\\'  {k} keys:\\\\', list(v.keys())[:10])\\\\n        else:\\\\n            print(f\\\\'  {k}: {type(v).__name__} = {str(v)[:200]}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.78}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Kgn6HKw8GASMG4bXZwzXyd",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-32608",
+                "command": "source /root/miniconda3/bin/activate && python3 -c \"\nimport json\nwith open('/root/symb_invariant_consensus/results/sica_expanded_14b.json') as f:\n    data = json.load(f)\nif isinstance(data, list):\n    print(f'List of {len(data)} items')\n    print('Keys in first item:', list(data[0].keys()) if data else 'empty')\n    if data:\n        print('Sample item:', json.dumps(data[0], indent=2)[:1500])\nelif isinstance(data, dict):\n    print('Dict with keys:', list(data.keys())[:20])\n    for k in list(data.keys())[:3]:\n        v = data[k]\n        if isinstance(v, dict):\n            print(f'  {k} keys:', list(v.keys())[:10])\n        else:\n            print(f'  {k}: {type(v).__name__} = {str(v)[:200]}')\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f4ad7684-d7fe-43dc-b51b-3cb805759d85",
+            "uuid": "8edf31d6-42a2-4386-8203-296f9ece6088",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XHiQhQ3ePa9yNfsPxvcJCK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 794,
+                "cache_read_input_tokens": 25605,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 794
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T17:23:58.984Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Kgn6HKw8GASMG4bXZwzXyd",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Dict with keys: ['summary', 'results']\\\\n  summary keys: ['n_problems', 'sica_accuracy', 'sc_accuracy', 'sica_correct', 'sc_correct', 'extraction_rate', 'answer_extraction_rate', 'answer_extraction_counts', 'truncated_traces', 'total_constraints_extracted']\\\\n  results: list = [{'problem_idx': 0, 'problem_id': 'ProofWriter_AttNoneg-OWA-D5-1041_Q1', 'problem': 'Given the following facts and rules:\\\\\\\\nBob is cold. Bob is quiet. Bob is red. Bob is smart. Charlie is kind. Charlie\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f4ad7684-d7fe-43dc-b51b-3cb805759d85",
+            "uuid": "8258d384-1764-47a1-930d-78d7d7d582e5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Dict with keys: ['summary', 'results']\\\\n  summary keys: ['n_problems', 'sica_accuracy', 'sc_accuracy', 'sica_correct', 'sc_correct', 'extraction_rate', 'answer_extraction_rate', 'answer_extraction_counts', 'truncated_traces', 'total_constraints_extracted']\\\\n  results: list = [{'problem_idx': 0, 'problem_id': 'ProofWriter_AttNoneg-OWA-D5-1041_Q1', 'problem': 'Given the following facts and rules:\\\\\\\\nBob is cold. Bob is quiet. Bob is red. Bob is smart. Charlie is kind. Charlie\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Dict with keys: ['summary', 'results']\\n  summary keys: ['n_problems', 'sica_accuracy', 'sc_accuracy', 'sica_correct', 'sc_correct', 'extraction_rate', 'answer_extraction_rate', 'answer_extraction_counts', 'truncated_traces', 'total_constraints_extracted']\\n  results: list = [{'problem_idx': 0, 'problem_id': 'ProofWriter_AttNoneg-OWA-D5-1041_Q1', 'problem': 'Given the following facts and rules:\\\\nBob is cold. Bob is quiet. Bob is red. Bob is smart. Charlie is kind. Charlie\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.4}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A34WBxpRE3LdCdbYk8FZco",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-32608",
+                "command": "source /root/miniconda3/bin/activate && python3 -c \"\nimport json\nwith open('/root/symb_invariant_consensus/results/sica_expanded_14b.json') as f:\n    data = json.load(f)\n\n# Check summary\nprint('Summary:', json.dumps(data['summary'], indent=2))\nprint()\n\n# Check first result item keys\nr0 = data['results'][0]\nprint('Result item keys:', list(r0.keys()))\nprint()\nprint('Sample problem_id:', r0['problem_id'])\nprint('Sample votes:', r0.get('votes', 'N/A'))\nprint('Sample gold:', r0.get('gold_answer', r0.get('gold', 'N/A')))\nprint('Sample sc_answer:', r0.get('sc_answer', 'N/A'))\nprint('Sample sica_answer:', r0.get('sica_answer', 'N/A'))\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f4ad7684-d7fe-43dc-b51b-3cb805759d85",
+            "uuid": "94e8919d-4caa-43f1-ad8a-d89af44f89a9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EMv8zWfVZTiqhvV9aPd5Nw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 590,
+                "cache_read_input_tokens": 26399,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 590
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T17:24:06.044Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A34WBxpRE3LdCdbYk8FZco",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Summary: {\\\\n  \\\\\\\"n_problems\\\\\\\": 804,\\\\n  \\\\\\\"sica_accuracy\\\\\\\": 0.7649253731343284,\\\\n  \\\\\\\"sc_accuracy\\\\\\\": 0.7624378109452736,\\\\n  \\\\\\\"sica_correct\\\\\\\": 615,\\\\n  \\\\\\\"sc_correct\\\\\\\": 613,\\\\n  \\\\\\\"extraction_rate\\\\\\\": 0.8904436152570481,\\\\n  \\\\\\\"answer_extraction_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"answer_extraction_counts\\\\\\\": {\\\\n    \\\\\\\"boxed\\\\\\\": 9648,\\\\n    \\\\\\\"fallback\\\\\\\": 0,\\\\n    \\\\\\\"none\\\\\\\": 0\\\\n  },\\\\n  \\\\\\\"truncated_traces\\\\\\\": 0,\\\\n  \\\\\\\"total_constraints_extracted\\\\\\\": 88428,\\\\n  \\\\\\\"total_unique_constraints\\\\\\\": 17273,\\\\n  \\\\\\\"contradiction_rate\\\\\\\": 0.022347015573438316,\\\\n  \\\\\\\"problems_with_contradictions\\\\\\\": 331,\\\\n  \\\\\\\"per_level_accuracy\\\\\\\": {\\\\n    \\\\\\\"D5\\\\\\\": {\\\\n      \\\\\\\"sica\\\\\\\": 0.755,\\\\n      \\\\\\\"sc\\\\\\\": 0.7516666666666667,\\\\n      \\\\\\\"n\\\\\\\": 600\\\\n    },\\\\n    \\\\\\\"folio\\\\\\\": {\\\\n      \\\\\\\"sica\\\\\\\": 0.7941176470588235,\\\\n      \\\\\\\"sc\\\\\\\": 0.7941176470588235,\\\\n      \\\\\\\"n\\\\\\\": 204\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_dataset_accuracy\\\\\\\": {\\\\n    \\\\\\\"proofwriter\\\\\\\": {\\\\n      \\\\\\\"sica\\\\\\\": 0.755,\\\\n      \\\\\\\"sc\\\\\\\": 0.7516666666666667,\\\\n      \\\\\\\"n\\\\\\\": 600\\\\n    },\\\\n    \\\\\\\"folio\\\\\\\": {\\\\n      \\\\\\\"sica\\\\\\\": 0.7941176470588235,\\\\n      \\\\\\\"sc\\\\\\\": 0.7941176470588235,\\\\n      \\\\\\\"n\\\\\\\": 204\\\\n    }\\\\n  },\\\\n  \\\\\\\"k\\\\\\\": 12,\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"vllm\\\\\\\",\\\\n  \\\\\\\"total_wall_time_s\\\\\\\": 49558.9\\\\n}\\\\n\\\\nResult item keys: ['problem_idx', 'problem_id', 'problem', 'dataset', 'level', 'ground_truth', 'sica_answer', 'sica_scores', 'sica_correct', 'sc_answer', 'sc_vote_count', 'sc_vote_distribution', 'sc_correct', 'constraints_stats', 'maxsat_stats', 'timing', 'wall_time_s', 'trace_extraction_stats', 'truncated_traces', 'raw_constraints', 'per_trace']\\\\n\\\\nSample problem_id: ProofWriter_AttNoneg-OWA-D5-1041_Q1\\\\nSample votes: N/A\\\\nSample gold: N/A\\\\nSample sc_answer: True\\\\nSample sica_answer: True\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f4ad7684-d7fe-43dc-b51b-3cb805759d85",
+            "uuid": "93c3adae-30ca-49cf-978e-125e9056502d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Summary: {\\\\n  \\\\\\\"n_problems\\\\\\\": 804,\\\\n  \\\\\\\"sica_accuracy\\\\\\\": 0.7649253731343284,\\\\n  \\\\\\\"sc_accuracy\\\\\\\": 0.7624378109452736,\\\\n  \\\\\\\"sica_correct\\\\\\\": 615,\\\\n  \\\\\\\"sc_correct\\\\\\\": 613,\\\\n  \\\\\\\"extraction_rate\\\\\\\": 0.8904436152570481,\\\\n  \\\\\\\"answer_extraction_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"answer_extraction_counts\\\\\\\": {\\\\n    \\\\\\\"boxed\\\\\\\": 9648,\\\\n    \\\\\\\"fallback\\\\\\\": 0,\\\\n    \\\\\\\"none\\\\\\\": 0\\\\n  },\\\\n  \\\\\\\"truncated_traces\\\\\\\": 0,\\\\n  \\\\\\\"total_constraints_extracted\\\\\\\": 88428,\\\\n  \\\\\\\"total_unique_constraints\\\\\\\": 17273,\\\\n  \\\\\\\"contradiction_rate\\\\\\\": 0.022347015573438316,\\\\n  \\\\\\\"problems_with_contradictions\\\\\\\": 331,\\\\n  \\\\\\\"per_level_accuracy\\\\\\\": {\\\\n    \\\\\\\"D5\\\\\\\": {\\\\n      \\\\\\\"sica\\\\\\\": 0.755,\\\\n      \\\\\\\"sc\\\\\\\": 0.7516666666666667,\\\\n      \\\\\\\"n\\\\\\\": 600\\\\n    },\\\\n    \\\\\\\"folio\\\\\\\": {\\\\n      \\\\\\\"sica\\\\\\\": 0.7941176470588235,\\\\n      \\\\\\\"sc\\\\\\\": 0.7941176470588235,\\\\n      \\\\\\\"n\\\\\\\": 204\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_dataset_accuracy\\\\\\\": {\\\\n    \\\\\\\"proofwriter\\\\\\\": {\\\\n      \\\\\\\"sica\\\\\\\": 0.755,\\\\n      \\\\\\\"sc\\\\\\\": 0.7516666666666667,\\\\n      \\\\\\\"n\\\\\\\": 600\\\\n    },\\\\n    \\\\\\\"folio\\\\\\\": {\\\\n      \\\\\\\"sica\\\\\\\": 0.7941176470588235,\\\\n      \\\\\\\"sc\\\\\\\": 0.7941176470588235,\\\\n      \\\\\\\"n\\\\\\\": 204\\\\n    }\\\\n  },\\\\n  \\\\\\\"k\\\\\\\": 12,\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"vllm\\\\\\\",\\\\n  \\\\\\\"total_wall_time_s\\\\\\\": 49558.9\\\\n}\\\\n\\\\nResult item keys: ['problem_idx', 'problem_id', 'problem', 'dataset', 'level', 'ground_truth', 'sica_answer', 'sica_scores', 'sica_correct', 'sc_answer', 'sc_vote_count', 'sc_vote_distribution', 'sc_correct', 'constraints_stats', 'maxsat_stats', 'timing', 'wall_time_s', 'trace_extraction_stats', 'truncated_traces', 'raw_constraints', 'per_trace']\\\\n\\\\nSample problem_id: ProofWriter_AttNoneg-OWA-D5-1041_Q1\\\\nSample votes: N/A\\\\nSample gold: N/A\\\\nSample sc_answer: True\\\\nSample sica_answer: True\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Summary: {\\n  \\\"n_problems\\\": 804,\\n  \\\"sica_accuracy\\\": 0.7649253731343284,\\n  \\\"sc_accuracy\\\": 0.7624378109452736,\\n  \\\"sica_correct\\\": 615,\\n  \\\"sc_correct\\\": 613,\\n  \\\"extraction_rate\\\": 0.8904436152570481,\\n  \\\"answer_extraction_rate\\\": 1.0,\\n  \\\"answer_extraction_counts\\\": {\\n    \\\"boxed\\\": 9648,\\n    \\\"fallback\\\": 0,\\n    \\\"none\\\": 0\\n  },\\n  \\\"truncated_traces\\\": 0,\\n  \\\"total_constraints_extracted\\\": 88428,\\n  \\\"total_unique_constraints\\\": 17273,\\n  \\\"contradiction_rate\\\": 0.022347015573438316,\\n  \\\"problems_with_contradictions\\\": 331,\\n  \\\"per_level_accuracy\\\": {\\n    \\\"D5\\\": {\\n      \\\"sica\\\": 0.755,\\n      \\\"sc\\\": 0.7516666666666667,\\n      \\\"n\\\": 600\\n    },\\n    \\\"folio\\\": {\\n      \\\"sica\\\": 0.7941176470588235,\\n      \\\"sc\\\": 0.7941176470588235,\\n      \\\"n\\\": 204\\n    }\\n  },\\n  \\\"per_dataset_accuracy\\\": {\\n    \\\"proofwriter\\\": {\\n      \\\"sica\\\": 0.755,\\n      \\\"sc\\\": 0.7516666666666667,\\n      \\\"n\\\": 600\\n    },\\n    \\\"folio\\\": {\\n      \\\"sica\\\": 0.7941176470588235,\\n      \\\"sc\\\": 0.7941176470588235,\\n      \\\"n\\\": 204\\n    }\\n  },\\n  \\\"k\\\": 12,\\n  \\\"mode\\\": \\\"vllm\\\",\\n  \\\"total_wall_time_s\\\": 49558.9\\n}\\n\\nResult item keys: ['problem_idx', 'problem_id', 'problem', 'dataset', 'level', 'ground_truth', 'sica_answer', 'sica_scores', 'sica_correct', 'sc_answer', 'sc_vote_count', 'sc_vote_distribution', 'sc_correct', 'constraints_stats', 'maxsat_stats', 'timing', 'wall_time_s', 'trace_extraction_stats', 'truncated_traces', 'raw_constraints', 'per_trace']\\n\\nSample problem_id: ProofWriter_AttNoneg-OWA-D5-1041_Q1\\nSample votes: N/A\\nSample gold: N/A\\nSample sc_answer: True\\nSample sica_answer: True\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, I can see the data structure. The summary already has `per_dataset_accuracy` which gives SICA and SC accuracy per domain. Now I need to compute C0 per domain. C0 = proportion of problems where len(set(votes)) > 1, i.e., there are multiple different candidate answers.\n\nLooking at the result item keys, there's no direct \"votes\" field, but there's `sc_vote_distribution` which should contain the vote counts. Let me check that field to understand how to compute C0.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f4ad7684-d7fe-43dc-b51b-3cb805759d85",
+            "uuid": "1db35bf2-a173-4d10-8acc-502189adb80c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ERRGLXBPzkP2aCYGGvJBoG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1262,
+                "cache_read_input_tokens": 26989,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1262
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VBxAteYUcaEVvi2EUBYWxm",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-32608",
+                "command": "source /root/miniconda3/bin/activate && python3 -c \"\nimport json\nwith open('/root/symb_invariant_consensus/results/sica_expanded_14b.json') as f:\n    data = json.load(f)\n\nr0 = data['results'][0]\nprint('sc_vote_distribution:', r0['sc_vote_distribution'])\nprint('sc_vote_count:', r0['sc_vote_count'])\nprint('dataset:', r0['dataset'])\nprint('ground_truth:', r0['ground_truth'])\n\n# Check a few more\nfor i in [0, 1, 100, 600, 700]:\n    r = data['results'][i]\n    print(f'  [{i}] dataset={r[\\\"dataset\\\"]}, sc_vote_dist={r[\\\"sc_vote_distribution\\\"]}, n_unique={len(r[\\\"sc_vote_distribution\\\"])}')\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f4ad7684-d7fe-43dc-b51b-3cb805759d85",
+            "uuid": "b01aac05-6da8-4759-bca8-802b6c277827",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ERRGLXBPzkP2aCYGGvJBoG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1262,
+                "cache_read_input_tokens": 26989,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1262
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T17:24:16.515Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VBxAteYUcaEVvi2EUBYWxm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"sc_vote_distribution: {'True': 12}\\\\nsc_vote_count: 12\\\\ndataset: proofwriter\\\\nground_truth: True\\\\n  [0] dataset=proofwriter, sc_vote_dist={'True': 12}, n_unique=1\\\\n  [1] dataset=proofwriter, sc_vote_dist={'Unknown': 9, 'True': 3}, n_unique=2\\\\n  [100] dataset=proofwriter, sc_vote_dist={'Unknown': 9, 'True': 3}, n_unique=2\\\\n  [600] dataset=folio, sc_vote_dist={'True': 3, 'Unknown': 8, 'False': 1}, n_unique=3\\\\n  [700] dataset=folio, sc_vote_dist={'True': 12}, n_unique=1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f4ad7684-d7fe-43dc-b51b-3cb805759d85",
+            "uuid": "2d19cb72-f179-40be-bc48-bfd7a106ac5d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"sc_vote_distribution: {'True': 12}\\\\nsc_vote_count: 12\\\\ndataset: proofwriter\\\\nground_truth: True\\\\n  [0] dataset=proofwriter, sc_vote_dist={'True': 12}, n_unique=1\\\\n  [1] dataset=proofwriter, sc_vote_dist={'Unknown': 9, 'True': 3}, n_unique=2\\\\n  [100] dataset=proofwriter, sc_vote_dist={'Unknown': 9, 'True': 3}, n_unique=2\\\\n  [600] dataset=folio, sc_vote_dist={'True': 3, 'Unknown': 8, 'False': 1}, n_unique=3\\\\n  [700] dataset=folio, sc_vote_dist={'True': 12}, n_unique=1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"sc_vote_distribution: {'True': 12}\\nsc_vote_count: 12\\ndataset: proofwriter\\nground_truth: True\\n  [0] dataset=proofwriter, sc_vote_dist={'True': 12}, n_unique=1\\n  [1] dataset=proofwriter, sc_vote_dist={'Unknown': 9, 'True': 3}, n_unique=2\\n  [100] dataset=proofwriter, sc_vote_dist={'Unknown': 9, 'True': 3}, n_unique=2\\n  [600] dataset=folio, sc_vote_dist={'True': 3, 'Unknown': 8, 'False': 1}, n_unique=3\\n  [700] dataset=folio, sc_vote_dist={'True': 12}, n_unique=1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have everything needed. C0 = proportion where `len(sc_vote_distribution) > 1`. Let me compute the full analysis."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f4ad7684-d7fe-43dc-b51b-3cb805759d85",
+            "uuid": "16fe0453-7940-4182-9867-9eb77fac6f7e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01THQey619ieAuzydxQeir8A",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 735,
+                "cache_read_input_tokens": 28251,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 735
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MgAFSAyvu4qVbHxjsUxnWP",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-32608",
+                "command": "source /root/miniconda3/bin/activate && python3 << 'EOF'\nimport json, os\n\nwith open('/root/symb_invariant_consensus/results/sica_expanded_14b.json') as f:\n    data = json.load(f)\n\nresults = data['results']\n\n# Split by dataset\nfolio = [r for r in results if r['dataset'] == 'folio']\npw = [r for r in results if r['dataset'] == 'proofwriter']\n\ndef compute_metrics(subset):\n    n = len(subset)\n    c0_count = sum(1 for r in subset if len(r['sc_vote_distribution']) > 1)\n    sc_correct = sum(1 for r in subset if r['sc_correct'])\n    sica_correct = sum(1 for r in subset if r['sica_correct'])\n    return {\n        \"n\": n,\n        \"c0\": round(c0_count / n, 4),\n        \"c0_count\": c0_count,\n        \"sc_acc\": round(sc_correct / n, 4),\n        \"sc_correct\": sc_correct,\n        \"sica_acc\": round(sica_correct / n, 4),\n        \"sica_correct\": sica_correct\n    }\n\nfolio_m = compute_metrics(folio)\npw_m = compute_metrics(pw)\ncombined_m = compute_metrics(results)\n\noutput = {\n    \"experiment\": \"exp-001 (sica_expanded_14b)\",\n    \"model\": \"Qwen2.5-14B-Instruct\",\n    \"k\": 12,\n    \"folio\": folio_m,\n    \"proofwriter\": pw_m,\n    \"combined\": combined_m\n}\n\n# Write to analysis dir\nos.makedirs('/root/symb_invariant_consensus/analysis', exist_ok=True)\nwith open('/root/symb_invariant_consensus/analysis/c0_domain_split.json', 'w') as f:\n    json.dump(output, f, indent=2)\n\n# Print summary\nprint(\"=\" * 50)\nprint(\"exp-001 C0 Domain Split Analysis\")\nprint(\"=\" * 50)\nprint(f\"{'Domain':<14} {'n':>4} {'C0':>8} {'SC Acc':>8} {'SICA Acc':>9}\")\nprint(\"-\" * 50)\nprint(f\"{'FOLIO':<14} {folio_m['n']:>4} {folio_m['c0']:>7.1%} {folio_m['sc_acc']:>7.1%} {folio_m['sica_acc']:>8.1%}\")\nprint(f\"{'ProofWriter':<14} {pw_m['n']:>4} {pw_m['c0']:>7.1%} {pw_m['sc_acc']:>7.1%} {pw_m['sica_acc']:>8.1%}\")\nprint(f\"{'Combined':<14} {combined_m['n']:>4} {combined_m['c0']:>7.1%} {combined_m['sc_acc']:>7.1%} {combined_m['sica_acc']:>8.1%}\")\nprint(\"-\" * 50)\nprint(f\"\\nVerification vs registry:\")\nprint(f\"  Combined C0:  {combined_m['c0']:.3f} (expected ~0.382)\")\nprint(f\"  Combined SC:  {combined_m['sc_acc']:.3f} (expected ~0.762)\")\nprint(f\"  Combined SICA:{combined_m['sica_acc']:.3f} (expected ~0.765)\")\nprint(f\"\\nWritten to: /root/symb_invariant_consensus/analysis/c0_domain_split.json\")\nEOF\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f4ad7684-d7fe-43dc-b51b-3cb805759d85",
+            "uuid": "ab05f60d-7fe2-4177-b824-8ea37a9faae3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01THQey619ieAuzydxQeir8A",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 735,
+                "cache_read_input_tokens": 28251,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 735
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T17:24:34.393Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MgAFSAyvu4qVbHxjsUxnWP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"==================================================\\\\nexp-001 C0 Domain Split Analysis\\\\n==================================================\\\\nDomain            n       C0   SC Acc  SICA Acc\\\\n--------------------------------------------------\\\\nFOLIO           204   35.3%   79.4%    79.4%\\\\nProofWriter     600   39.2%   75.2%    75.5%\\\\nCombined        804   38.2%   76.2%    76.5%\\\\n--------------------------------------------------\\\\n\\\\nVerification vs registry:\\\\n  Combined C0:  0.382 (expected ~0.382)\\\\n  Combined SC:  0.762 (expected ~0.762)\\\\n  Combined SICA:0.765 (expected ~0.765)\\\\n\\\\nWritten to: /root/symb_invariant_consensus/analysis/c0_domain_split.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f4ad7684-d7fe-43dc-b51b-3cb805759d85",
+            "uuid": "a8621656-1da6-470d-af86-08a56e97a679",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"==================================================\\\\nexp-001 C0 Domain Split Analysis\\\\n==================================================\\\\nDomain            n       C0   SC Acc  SICA Acc\\\\n--------------------------------------------------\\\\nFOLIO           204   35.3%   79.4%    79.4%\\\\nProofWriter     600   39.2%   75.2%    75.5%\\\\nCombined        804   38.2%   76.2%    76.5%\\\\n--------------------------------------------------\\\\n\\\\nVerification vs registry:\\\\n  Combined C0:  0.382 (expected ~0.382)\\\\n  Combined SC:  0.762 (expected ~0.762)\\\\n  Combined SICA:0.765 (expected ~0.765)\\\\n\\\\nWritten to: /root/symb_invariant_consensus/analysis/c0_domain_split.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.57}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"==================================================\\nexp-001 C0 Domain Split Analysis\\n==================================================\\nDomain            n       C0   SC Acc  SICA Acc\\n--------------------------------------------------\\nFOLIO           204   35.3%   79.4%    79.4%\\nProofWriter     600   39.2%   75.2%    75.5%\\nCombined        804   38.2%   76.2%    76.5%\\n--------------------------------------------------\\n\\nVerification vs registry:\\n  Combined C0:  0.382 (expected ~0.382)\\n  Combined SC:  0.762 (expected ~0.762)\\n  Combined SICA:0.765 (expected ~0.765)\\n\\nWritten to: /root/symb_invariant_consensus/analysis/c0_domain_split.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.57}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已写入 `analysis/c0_domain_split.json`。\n\n**域内 C0 拆分：**\n\n| Domain | n | C0 | SC Acc | SICA Acc |\n|--------|---:|-----:|-------:|---------:|\n| FOLIO | 204 | 35.3% | 79.4% | 79.4% |\n| ProofWriter | 600 | 39.2% | 75.2% | 75.5% |\n| Combined | 804 | 38.2% | 76.2% | 76.5% |\n\nCombined 数字与 registry 完全一致。ProofWriter 的 C0 (39.2%) 高于 FOLIO (35.3%)，说明 PW 的 D5 难度下模型回答分歧更大。FOLIO 上 SC 和 SICA 表现相同（79.4%），SICA 的增益主要来自 ProofWriter（75.2% → 75.5%）。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f4ad7684-d7fe-43dc-b51b-3cb805759d85",
+            "uuid": "d6216451-421e-40fc-99d2-234a17cf54ca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AfGQSFmYfexzXbxnJGXbiU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1356,
+                "cache_read_input_tokens": 28986,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1356
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已写入 `analysis/c0_domain_split.json`。\n\n**域内 C0 拆分：**\n\n| Domain | n | C0 | SC Acc | SICA Acc |\n|--------|---:|-----:|-------:|---------:|\n| FOLIO | 204 | 35.3% | 79.4% | 79.4% |\n| ProofWriter | 600 | 39.2% | 75.2% | 75.5% |\n| Combined | 804 | 38.2% | 76.2% | 76.5% |\n\nCombined 数字与 registry 完全一致。ProofWriter 的 C0 (39.2%) 高于 FOLIO (35.3%)，说明 PW 的 D5 难度下模型回答分歧更大。FOLIO 上 SC 和 SICA 表现相同（79.4%），SICA 的增益主要来自 ProofWriter（75.2% → 75.5%）。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 81558,
+            "duration_api_ms": 66897,
+            "num_turns": 9,
+            "stop_reason": "end_turn",
+            "session_id": "f4ad7684-d7fe-43dc-b51b-3cb805759d85",
+            "total_cost_usd": 0.30964575,
+            "usage": {
+              "input_tokens": 13,
+              "cache_creation_input_tokens": 18501,
+              "cache_read_input_tokens": 222797,
+              "output_tokens": 3249,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 18501,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 270,
+                  "cache_read_input_tokens": 28986,
+                  "cache_creation_input_tokens": 1356,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1356
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1231,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0013260000000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 13,
+                "outputTokens": 3249,
+                "cacheReadInputTokens": 222797,
+                "cacheCreationInputTokens": 18501,
+                "webSearchRequests": 0,
+                "costUSD": 0.30831975,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "d6969415-f800-404d-813e-7d106ad632c4"
+          },
+          "id": "event-000025"
+        }
+      ],
+      "message_count": 25
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-c0-domain-split.md"
+}

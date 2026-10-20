@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c74c2e506b9918ad5889",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "research literature readiness check",
+  "task_key": "worker_research_literature-readiness-check_20260516T044343",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_literature-readiness-check_20260516T044343_result.json",
+    "occurrence": 1,
+    "bytes": 1123,
+    "sha256": "f924cc33b08a5810598b27cac7875cebb4cd626e489e71b291dcd0a4fb1a5656"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 文献就绪度评估\n\n**已补全 6 个维度、23 篇论文：**\n\n| 维度 | 状态 | 关键补充 |\n|------|------|----------|\n| SC 及变体 | ✅ 完备 | Loo 2025 (SC diminishing returns)、CISC、USC、ReASC |\n| 符号推理+LLM | ✅ 完备 | Logic-LM、DyLoS (EACL 2026)、FoVer |\n| MAX-SAT/约束+NLP | ⚠️ 可用但薄 | LLM Meets CP (IJCAI 2025)、SATBench — SICA 的 WPMS formulation 无直接先例，属新颖贡献 |\n| FOLIO/ProofWriter SOTA | ✅ 完备 | LogicAgent、Aristotle (ACL 2025)、Symbolic Provers (ICLR 2025) |\n| Reasoning model trace 多样性 | ✅ 关键支撑 | Loo 2025 + Diversity-Aware TTS + DeepSeek-R1 定义 reasoning model 范式 |\n| Multi-path aggregation | ✅ 补充 | RC method、CREST |\n\n**仍需注意：**\n1. QwQ-32B 3.6% 多候选率是原创实证发现，无直接文献复现——需在论文中清晰 frame 为 empirical observation，引 Loo 2025 作间接支撑\n2. WPMS 作为 multi-path consensus 机制在 NLI 中无先例——Related Work 需明确说明 novelty\n3. 确认 \"CRAFT\" 是否为已发表方法还是内部缩写"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-readiness-check.md"
+}

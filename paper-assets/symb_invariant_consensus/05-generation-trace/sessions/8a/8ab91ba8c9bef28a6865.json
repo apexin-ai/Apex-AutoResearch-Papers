@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ab91ba8c9bef28a6865",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ops kill zombie gpu1 25068",
+  "task_key": "worker_ops_kill-zombie-gpu1-25068_20260519T160107",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill-zombie-gpu1-25068_20260519T160107_result.json",
+    "occurrence": 1,
+    "bytes": 392,
+    "sha256": "0636fb3498ba2d94ce012220c86e89bd8cd6e24f9cd44bc70b2d61a66a44baf6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 1 完全释放。\n\n**汇报：**\n- Kill 进程：PID 236050（`VLLM::EngineCore`），GPU 1\n- 释放显存：90232 MiB → 0 MiB\n- tmux：无 exp071 相关 session 残留（现存 session 均为 exp073/model_dl）\n- GPU 1 最终状态：0 进程、0 MiB 占用、0% util、30°C、47W idle\n\nGPU 0 上 PID 242845 的 vLLM 进程仍在运行（97% util），未动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-zombie-gpu1-25068.md"
+}

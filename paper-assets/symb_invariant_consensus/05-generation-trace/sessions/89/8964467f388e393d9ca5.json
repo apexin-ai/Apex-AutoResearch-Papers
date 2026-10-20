@@ -1,0 +1,1368 @@
+{
+  "schema_version": "1.0",
+  "id": "8964467f388e393d9ca5",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "analysis exp020 final results",
+  "task_key": "worker_analysis_exp020-final-results_20260517T093126",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp020-final-results_20260517T093126.log",
+    "occurrence": 1,
+    "bytes": 74822,
+    "sha256": "ee6ddbf2a57a3c7bfc6f57ad2ba40566c75efbb6cc5e62fb2f843f20ca190210"
+  },
+  "statistics": {
+    "messages": 32,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 10,
+      "tool_result": 10,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+                "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "a7d10c46-6305-4e77-8145-ead8f73cefdd",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779022800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "7007bfda-b15c-4c5a-9c01-1f4c9b2fbb17",
+                "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to check the status of experiment exp-020-llama8b-folio-204 on the remote server. Let me execute the commands via SSH.",
+              "signature": "EsQCClkIDRgCKkCfRcFphOYDvKnCpjMPX4Aa1/upOKj+zd6PH1Bs2s5LMa+HTSm2Gbm1cXblSGMa54c9ROm9BLcSCy6Qc+1PdJpVMg9jbGF1ZGUtb3B1cy00LTY4ABIMxPDvVrxazlm8BgdcGgzpW5CSbWTYOOHrGnwiMCfPDPwbJNe3An0v/35b8UXPNApJt9JrUnvlmHHeICx2G0Ii6z46kXuyUbAXFdDhsCqYAbzNI7sA83sxznbgiQ4wGQRU5MyyPF18ZTYIv0LYqAfTqFpWHkxP6j0DW4UQJtFrzVG1vN+9K25LhG7OQ4ZGahVskvAd82a+JwDuJ6coUrbomi/R3yPiLKs+g285GFUa53AZnjnJTNivLIeXB4OFx/gAR9oTmGVA5q0klH6AOzxb5qDjl9zKkZBivAhzSobp10JqbqUINC2OGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "f3ffedd0-fc74-4824-a421-758ab8951ccf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ntu7xgw7xxzL13C6NKe75T",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14038,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14038
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011L74pw9YUJ3NPwsW7tJuT6",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "4eba99a0-7758-4f22-9a15-404fd8e51ef2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ntu7xgw7xxzL13C6NKe75T",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14038,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14038
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T09:31:40.798Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_011L74pw9YUJ3NPwsW7tJuT6",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "7a07a72e-eeec-416e-b790-cae23706c4fb",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me execute the commands on the server. I'll start with checking the experiment status.",
+              "signature": "EpkCClkIDRgCKkBV4Y21Q3VjgrNgPYBgr5ABD9KNT8hQpPiXUbCEsziy3NZZ7xMHQhaZKukn+UoZsu0VQiePq5+gGXKX3xKWk8t8Mg9jbGF1ZGUtb3B1cy00LTY4ABIMlD6NN77WYwilD26fGgxaldWDuTZL8vw2nDAiMCfQMoEWx/uNktUYg/akhFjfyUfVLr4P8+l6z+QnXOIFW+joSgS4HYVpvhqg+K27fipuRHgqOYX+En29wH9bm1AG0zcE71eqm7zvzt6uM7a+8EmEJeX+pKxvB0zijRC2EiaR12pL1fq910Z0RN6bEXOaSuXS0lg++oeSnsy7TrVkqpRC2v9D60IoO0kdZcUWHiNwCrgOWVx4k7XsUJfvv58YAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "78ffa333-6e48-4a5a-84f8-dd9e56ca0867",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WZAEU4BjnpRB8LVEbV8DPE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 398,
+                "cache_read_input_tokens": 25879,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 398
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查实验状态。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "fd81a823-c4e5-474c-aea6-0b6529407dea",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WZAEU4BjnpRB8LVEbV8DPE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 398,
+                "cache_read_input_tokens": 25879,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 398
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RrZMNfR51rfkXMQGMh2EhY",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-32608",
+                "command": "ps aux | grep -E \"run_exp020|pipeline\" | grep -v grep; echo \"---TMUX---\"; tmux ls 2>/dev/null || echo \"no tmux\"; echo \"---GPU---\"; nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total --format=csv,noheader 2>/dev/null || echo \"no gpu\"; echo \"---RESULTS---\"; ls -la /root/symb_invariant_consensus/results/exp020_llama8b_folio204/ 2>/dev/null || echo \"NO DIR\"",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "f4767f09-d8dd-4cab-915c-21b0ea7c1a9d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WZAEU4BjnpRB8LVEbV8DPE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 398,
+                "cache_read_input_tokens": 25879,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 398
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T09:31:47.432Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RrZMNfR51rfkXMQGMh2EhY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     309317  0.0  0.0   6084  3808 ?        Ss   17:12   0:00 tmux new-session -d -s exp-020-llama8b-folio-204 rm -f /tmp/agent-ml-exit/exp-020-llama8b-folio-204.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/symb_invariant_consensus/exp-020-llama8b-folio-204.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp-020-llama8b-folio-204.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/symb_invariant_consensus && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp020_folio_200.sh\\\\\\\"'; } > ~/runs/symb_invariant_consensus/exp-020-llama8b-folio-204.log 2>&1\\\\nroot     309318  0.0  0.0   4496  3660 pts/0    Ss+  17:12   0:00 bash -c rm -f /tmp/agent-ml-exit/exp-020-llama8b-folio-204.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/symb_invariant_consensus/exp-020-llama8b-folio-204.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp-020-llama8b-folio-204.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/symb_invariant_consensus && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp020_folio_200.sh\\\\\\\"'; } > ~/runs/symb_invariant_consensus/exp-020-llama8b-folio-204.log 2>&1\\\\nroot     309322  0.0  0.0   2800  1096 pts/0    S    17:12   0:00 timeout 86400 env bash -c bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp020_folio_200.sh\\\\\\\"\\\\nroot     309323  0.0  0.0   4496  3208 pts/0    S    17:12   0:00 bash scripts/run_exp020_folio_200.sh\\\\n---TMUX---\\\\nexp-020-llama8b-folio-204: 1 windows (created Sun May 17 17:12:57 2026)\\\\n---GPU---\\\\n100 %, 88309 MiB, 97887 MiB\\\\n---RESULTS---\\\\nNO DIR\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "cff3e6d7-6618-4bca-9845-8ac493948a92",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     309317  0.0  0.0   6084  3808 ?        Ss   17:12   0:00 tmux new-session -d -s exp-020-llama8b-folio-204 rm -f /tmp/agent-ml-exit/exp-020-llama8b-folio-204.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/symb_invariant_consensus/exp-020-llama8b-folio-204.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp-020-llama8b-folio-204.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/symb_invariant_consensus && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp020_folio_200.sh\\\\\\\"'; } > ~/runs/symb_invariant_consensus/exp-020-llama8b-folio-204.log 2>&1\\\\nroot     309318  0.0  0.0   4496  3660 pts/0    Ss+  17:12   0:00 bash -c rm -f /tmp/agent-ml-exit/exp-020-llama8b-folio-204.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/symb_invariant_consensus/exp-020-llama8b-folio-204.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp-020-llama8b-folio-204.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/symb_invariant_consensus && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp020_folio_200.sh\\\\\\\"'; } > ~/runs/symb_invariant_consensus/exp-020-llama8b-folio-204.log 2>&1\\\\nroot     309322  0.0  0.0   2800  1096 pts/0    S    17:12   0:00 timeout 86400 env bash -c bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp020_folio_200.sh\\\\\\\"\\\\nroot     309323  0.0  0.0   4496  3208 pts/0    S    17:12   0:00 bash scripts/run_exp020_folio_200.sh\\\\n---TMUX---\\\\nexp-020-llama8b-folio-204: 1 windows (created Sun May 17 17:12:57 2026)\\\\n---GPU---\\\\n100 %, 88309 MiB, 97887 MiB\\\\n---RESULTS---\\\\nNO DIR\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"root     309317  0.0  0.0   6084  3808 ?        Ss   17:12   0:00 tmux new-session -d -s exp-020-llama8b-folio-204 rm -f /tmp/agent-ml-exit/exp-020-llama8b-folio-204.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/symb_invariant_consensus/exp-020-llama8b-folio-204.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp-020-llama8b-folio-204.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/symb_invariant_consensus && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp020_folio_200.sh\\\"'; } > ~/runs/symb_invariant_consensus/exp-020-llama8b-folio-204.log 2>&1\\nroot     309318  0.0  0.0   4496  3660 pts/0    Ss+  17:12   0:00 bash -c rm -f /tmp/agent-ml-exit/exp-020-llama8b-folio-204.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/symb_invariant_consensus/exp-020-llama8b-folio-204.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp-020-llama8b-folio-204.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/symb_invariant_consensus && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp020_folio_200.sh\\\"'; } > ~/runs/symb_invariant_consensus/exp-020-llama8b-folio-204.log 2>&1\\nroot     309322  0.0  0.0   2800  1096 pts/0    S    17:12   0:00 timeout 86400 env bash -c bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp020_folio_200.sh\\\"\\nroot     309323  0.0  0.0   4496  3208 pts/0    S    17:12   0:00 bash scripts/run_exp020_folio_200.sh\\n---TMUX---\\nexp-020-llama8b-folio-204: 1 windows (created Sun May 17 17:12:57 2026)\\n---GPU---\\n100 %, 88309 MiB, 97887 MiB\\n---RESULTS---\\nNO DIR\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.46}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正在运行中（GPU 100%，PID 309318 活跃），但结果目录尚未创建。检查日志进度。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "0452c5b7-99b2-4e18-ab53-bf0bf0323b02",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0152VGZxbAF7bDobaA8hPsg5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1332,
+                "cache_read_input_tokens": 26277,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1332
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WVMtJAkyt2QoQomrq1bPcG",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-32608",
+                "command": "tail -50 ~/runs/symb_invariant_consensus/exp-020-llama8b-folio-204.log 2>/dev/null",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "3ce68b37-1a54-47e1-b838-0cab38d49848",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0152VGZxbAF7bDobaA8hPsg5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1332,
+                "cache_read_input_tokens": 26277,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1332
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T09:31:52.319Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WVMtJAkyt2QoQomrq1bPcG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-17 17:31:01,890 INFO Generating traces 9-12 of 12\\\\n2026-05-17 17:31:08,185 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:08,188 WARNING Trace 10: extraction_method=none, finish_reason=stop, answer=NONE\\\\n2026-05-17 17:31:12,352 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:12,364 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:12,443 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:12,713 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:13,348 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:13,360 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:16,405 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:16,550 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:17,248 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:17,379 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:17,730 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:18,994 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:19,457 INFO Scorer mode=NORMAL  satisfied_ratio=0.850 (17/20)  alpha=0.50  threshold=0.20\\\\nSICA: True (V)\\\\n  Constraints: 88 extracted -> 20 unique\\\\n  MaxSAT: 17 sat, 3 excl, solve=1.1370040010660887ms\\\\n  Timing: trace=18.9s extract=10.8s total=30.2s\\\\n  Answers: boxed=9 fallback=0 none=3 truncated=0\\\\nSC:   True (V) -- votes: 6/12\\\\nTime: 30.2s\\\\nETA: 106.6 min (175 remaining, avg 36.5s/prob)\\\\n\\\\n--- [30/204] (overall 30/204) ---\\\\nID: folio_029 | Dataset: folio | Level: folio\\\\nQ: Given the following premises:\\\\n- All aliens are extraterrestrial.\\\\n- If someone is from Mars, then they are aliens.\\\\n- No e...\\\\nGT: Unknown\\\\n2026-05-17 17:31:19,469 INFO Generating traces 1-4 of 12\\\\n2026-05-17 17:31:25,460 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:25,462 WARNING Trace 3: extraction_method=none, finish_reason=stop, answer=NONE\\\\n2026-05-17 17:31:25,462 INFO Generating traces 5-8 of 12\\\\n2026-05-17 17:31:33,380 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:33,381 INFO Generating traces 9-12 of 12\\\\n2026-05-17 17:31:41,299 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:45,605 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:46,131 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:46,226 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:46,730 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:47,183 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:47,612 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:50,314 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:50,398 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:50,831 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:51,744 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:51,840 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "2bcf6083-12e9-4dd3-ba02-a1408a934e1a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-17 17:31:01,890 INFO Generating traces 9-12 of 12\\\\n2026-05-17 17:31:08,185 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:08,188 WARNING Trace 10: extraction_method=none, finish_reason=stop, answer=NONE\\\\n2026-05-17 17:31:12,352 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:12,364 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:12,443 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:12,713 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:13,348 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:13,360 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:16,405 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:16,550 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:17,248 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:17,379 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:17,730 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:18,994 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:19,457 INFO Scorer mode=NORMAL  satisfied_ratio=0.850 (17/20)  alpha=0.50  threshold=0.20\\\\nSICA: True (V)\\\\n  Constraints: 88 extracted -> 20 unique\\\\n  MaxSAT: 17 sat, 3 excl, solve=1.1370040010660887ms\\\\n  Timing: trace=18.9s extract=10.8s total=30.2s\\\\n  Answers: boxed=9 fallback=0 none=3 truncated=0\\\\nSC:   True (V) -- votes: 6/12\\\\nTime: 30.2s\\\\nETA: 106.6 min (175 remaining, avg 36.5s/prob)\\\\n\\\\n--- [30/204] (overall 30/204) ---\\\\nID: folio_029 | Dataset: folio | Level: folio\\\\nQ: Given the following premises:\\\\n- All aliens are extraterrestrial.\\\\n- If someone is from Mars, then they are aliens.\\\\n- No e...\\\\nGT: Unknown\\\\n2026-05-17 17:31:19,469 INFO Generating traces 1-4 of 12\\\\n2026-05-17 17:31:25,460 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:25,462 WARNING Trace 3: extraction_method=none, finish_reason=stop, answer=NONE\\\\n2026-05-17 17:31:25,462 INFO Generating traces 5-8 of 12\\\\n2026-05-17 17:31:33,380 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:33,381 INFO Generating traces 9-12 of 12\\\\n2026-05-17 17:31:41,299 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:45,605 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:46,131 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:46,226 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:46,730 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:47,183 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:47,612 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:50,314 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:50,398 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:50,831 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:51,744 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-17 17:31:51,840 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-17 17:31:01,890 INFO Generating traces 9-12 of 12\\n2026-05-17 17:31:08,185 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:08,188 WARNING Trace 10: extraction_method=none, finish_reason=stop, answer=NONE\\n2026-05-17 17:31:12,352 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:12,364 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:12,443 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:12,713 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:13,348 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:13,360 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:16,405 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:16,550 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:17,248 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:17,379 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:17,730 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:18,994 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:19,457 INFO Scorer mode=NORMAL  satisfied_ratio=0.850 (17/20)  alpha=0.50  threshold=0.20\\nSICA: True (V)\\n  Constraints: 88 extracted -> 20 unique\\n  MaxSAT: 17 sat, 3 excl, solve=1.1370040010660887ms\\n  Timing: trace=18.9s extract=10.8s total=30.2s\\n  Answers: boxed=9 fallback=0 none=3 truncated=0\\nSC:   True (V) -- votes: 6/12\\nTime: 30.2s\\nETA: 106.6 min (175 remaining, avg 36.5s/prob)\\n\\n--- [30/204] (overall 30/204) ---\\nID: folio_029 | Dataset: folio | Level: folio\\nQ: Given the following premises:\\n- All aliens are extraterrestrial.\\n- If someone is from Mars, then they are aliens.\\n- No e...\\nGT: Unknown\\n2026-05-17 17:31:19,469 INFO Generating traces 1-4 of 12\\n2026-05-17 17:31:25,460 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:25,462 WARNING Trace 3: extraction_method=none, finish_reason=stop, answer=NONE\\n2026-05-17 17:31:25,462 INFO Generating traces 5-8 of 12\\n2026-05-17 17:31:33,380 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:33,381 INFO Generating traces 9-12 of 12\\n2026-05-17 17:31:41,299 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:45,605 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:46,131 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:46,226 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:46,730 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:47,183 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:47,612 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:50,314 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:50,398 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:50,831 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:51,744 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-17 17:31:51,840 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "再看下是否有中间结果文件可以读取。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "903e9ca1-b9eb-429b-9859-2119c50a4db5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011SxMFfgn1H8A3i2oXAjsNs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2097,
+                "cache_read_input_tokens": 27609,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2097
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UBvz5oC63KLNsvWV878H6U",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-32608",
+                "command": "find /root/symb_invariant_consensus/results/ -name \"*.json\" -newer /proc/309318 2>/dev/null; find /root/symb_invariant_consensus/ -name \"exp020*\" -o -name \"*partial*\" -o -name \"*checkpoint*\" 2>/dev/null | head -20; echo \"---GREP-PROGRESS---\"; grep -c \"^---\" ~/runs/symb_invariant_consensus/exp-020-llama8b-folio-204.log 2>/dev/null; grep \"SICA:\" ~/runs/symb_invariant_consensus/exp-020-llama8b-folio-204.log 2>/dev/null | tail -5",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "4fa33c57-c13c-442e-9854-f420b6893cf2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011SxMFfgn1H8A3i2oXAjsNs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2097,
+                "cache_read_input_tokens": 27609,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2097
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T09:31:58.674Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UBvz5oC63KLNsvWV878H6U",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/results/exp020_folio_200/exp020_results.json\\\\n/root/symb_invariant_consensus/results/aime30_v2_partial_backup.json\\\\n/root/symb_invariant_consensus/results/exp020_folio_200\\\\n/root/symb_invariant_consensus/results/exp020_folio_200/exp020_results.json\\\\n---GREP-PROGRESS---\\\\n31\\\\nSICA: False (X)\\\\nSICA: Unknown (V)\\\\nSICA: True (X)\\\\nSICA: True (V)\\\\nSICA: False (X)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "e7622abd-8ecb-44cf-878e-87296866a6c6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/results/exp020_folio_200/exp020_results.json\\\\n/root/symb_invariant_consensus/results/aime30_v2_partial_backup.json\\\\n/root/symb_invariant_consensus/results/exp020_folio_200\\\\n/root/symb_invariant_consensus/results/exp020_folio_200/exp020_results.json\\\\n---GREP-PROGRESS---\\\\n31\\\\nSICA: False (X)\\\\nSICA: Unknown (V)\\\\nSICA: True (X)\\\\nSICA: True (V)\\\\nSICA: False (X)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/exp020_folio_200/exp020_results.json\\n/root/symb_invariant_consensus/results/aime30_v2_partial_backup.json\\n/root/symb_invariant_consensus/results/exp020_folio_200\\n/root/symb_invariant_consensus/results/exp020_folio_200/exp020_results.json\\n---GREP-PROGRESS---\\n31\\nSICA: False (X)\\nSICA: Unknown (V)\\nSICA: True (X)\\nSICA: True (V)\\nSICA: False (X)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到中间结果文件 `/root/symb_invariant_consensus/results/exp020_folio_200/exp020_results.json`。计算统计。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "c10c8bba-6943-40d8-8d79-a3a1312efa76",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013mHSBpUFEnRgLgg7Bc2xtV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 548,
+                "cache_read_input_tokens": 29706,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 548
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B8D3XGgkbnTGAms3eB7667",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-32608",
+                "command": "cd /root/symb_invariant_consensus && python3 -c \"\nimport json, numpy as np\n\npath = '/root/symb_invariant_consensus/results/exp020_folio_200/exp020_results.json'\nd = json.load(open(path))\nn = len(d)\nprint(f'Total problems in file: {n}')\nprint(f'Expected: 204')\nprint(f'Complete: {\\\"YES\\\" if n >= 204 else \\\"NO - STILL RUNNING\\\"}')\nprint(f'Keys: {list(d[0].keys()) if d else \\\"EMPTY\\\"}')\nprint()\n\nsica_arr = np.array([x.get('sica_correct', False) for x in d])\nsc_arr = np.array([x.get('sc_correct', False) for x in d])\n\nsica_acc = sica_arr.mean()\nsc_acc = sc_arr.mean()\ndelta = sica_acc - sc_acc\n\nprint(f'Progress: {n}/204')\nprint(f'SICA accuracy: {100*sica_acc:.2f}% ({int(sica_arr.sum())}/{n})')\nprint(f'SC accuracy:   {100*sc_acc:.2f}% ({int(sc_arr.sum())}/{n})')\nprint(f'Delta:         {100*delta:+.2f}pp')\n\n# Discordant pairs\nsica_wins = int(((sica_arr == True) & (sc_arr == False)).sum())\nsc_wins = int(((sc_arr == True) & (sica_arr == False)).sum())\ntotal_disc = sica_wins + sc_wins\nprint(f'Discordant: {sica_wins} SICA wins, {sc_wins} SC wins ({total_disc} total)')\n\n# McNemar\nfrom scipy.stats import binom_test\np_mcnemar = binom_test(sica_wins, total_disc, 0.5) if total_disc > 0 else 1.0\nprint(f'McNemar p-value: {p_mcnemar:.4f}')\n\n# Bootstrap CI\nnp.random.seed(42)\nboot_deltas = []\nfor _ in range(10000):\n    idx = np.random.choice(n, n, replace=True)\n    boot_deltas.append(sica_arr[idx].mean() - sc_arr[idx].mean())\nboot_deltas = np.array(boot_deltas)\nci = np.percentile(boot_deltas, [2.5, 97.5])\nboot_p = np.mean(boot_deltas <= 0)\nprint(f'Bootstrap 95% CI: [{100*ci[0]:.2f}, {100*ci[1]:.2f}]')\nprint(f'Bootstrap P(delta<=0): {boot_p:.4f}')\n\n# Sub-analysis if sc_margin exists\nkeys = list(d[0].keys())\nif 'sc_margin' in keys:\n    margins = np.array([x.get('sc_margin', 1.0) for x in d])\n    print()\n    print('Low-confidence subset analysis:')\n    for thresh in [0.20, 0.34, 0.50]:\n        mask = margins <= thresh\n        sub_n = mask.sum()\n        if sub_n > 0:\n            sub_sica = sica_arr[mask].mean()\n            sub_sc = sc_arr[mask].mean()\n            print(f'  SC margin <= {thresh}: n={sub_n}, SICA={100*sub_sica:.1f}%, SC={100*sub_sc:.1f}%, delta={100*(sub_sica-sub_sc):+.1f}pp')\n\n# Multi-candidate\nif 'num_candidates' in keys:\n    multi = sum(1 for x in d if x.get('num_candidates', 0) > 1)\n    print(f'Multi-candidate: {multi}/{n} ({100*multi/n:.1f}%)')\n\n# SC unanimous\nif 'sc_margin' in keys:\n    unan = sum(1 for x in d if x.get('sc_margin', 0) == 1.0)\n    print(f'SC unanimous: {unan}/{n} ({100*unan/n:.1f}%)')\n\n# Truncation\nif 'truncated_traces' in keys:\n    trunc = sum(1 for x in d if x.get('truncated_traces', 0) > 0)\n    print(f'Truncated: {trunc}/{n}')\n\n# Wall time\nif 'wall_time_s' in keys:\n    total_time = sum(x.get('wall_time_s', 0) for x in d)\n    print(f'Wall time so far: {total_time/60:.1f} min (avg {total_time/n:.1f}s/prob)')\n\nprint()\nprint(f'SIGNIFICANT (p<0.05): {\\\"YES\\\" if p_mcnemar < 0.05 else \\\"NO\\\"}')\nprint(f'CI excludes zero: {\\\"YES\\\" if ci[0] > 0 else \\\"NO\\\"}')\n\"\n",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "d2ab387b-676a-4729-869f-64ed0926dcc4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013mHSBpUFEnRgLgg7Bc2xtV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 548,
+                "cache_read_input_tokens": 29706,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 548
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T09:32:22.533Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B8D3XGgkbnTGAms3eB7667",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"bash: line 1: python3: command not found\\\\n\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "7ce69c94-cd2c-4fc5-8ad0-544084f520a8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"bash: line 1: python3: command not found\\\\n\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PLasq7iyTEzKw9g98294X1",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-32608",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport json, numpy as np\n\npath = '/root/symb_invariant_consensus/results/exp020_folio_200/exp020_results.json'\nd = json.load(open(path))\nn = len(d)\nprint(f'Total problems in file: {n}')\nprint(f'Expected: 204')\nprint(f'Complete: {\\\"YES\\\" if n >= 204 else \\\"NO - STILL RUNNING\\\"}')\nprint(f'Keys: {list(d[0].keys()) if d else \\\"EMPTY\\\"}')\nprint()\n\nsica_arr = np.array([x.get('sica_correct', False) for x in d])\nsc_arr = np.array([x.get('sc_correct', False) for x in d])\n\nsica_acc = sica_arr.mean()\nsc_acc = sc_arr.mean()\ndelta = sica_acc - sc_acc\n\nprint(f'Progress: {n}/204')\nprint(f'SICA accuracy: {100*sica_acc:.2f}% ({int(sica_arr.sum())}/{n})')\nprint(f'SC accuracy:   {100*sc_acc:.2f}% ({int(sc_arr.sum())}/{n})')\nprint(f'Delta:         {100*delta:+.2f}pp')\n\n# Discordant pairs\nsica_wins = int(((sica_arr == True) & (sc_arr == False)).sum())\nsc_wins = int(((sc_arr == True) & (sica_arr == False)).sum())\ntotal_disc = sica_wins + sc_wins\nprint(f'Discordant: {sica_wins} SICA wins, {sc_wins} SC wins ({total_disc} total)')\n\n# McNemar\nfrom scipy.stats import binom_test\np_mcnemar = binom_test(sica_wins, total_disc, 0.5) if total_disc > 0 else 1.0\nprint(f'McNemar p-value: {p_mcnemar:.4f}')\n\n# Bootstrap CI\nnp.random.seed(42)\nboot_deltas = []\nfor _ in range(10000):\n    idx = np.random.choice(n, n, replace=True)\n    boot_deltas.append(sica_arr[idx].mean() - sc_arr[idx].mean())\nboot_deltas = np.array(boot_deltas)\nci = np.percentile(boot_deltas, [2.5, 97.5])\nboot_p = np.mean(boot_deltas <= 0)\nprint(f'Bootstrap 95% CI: [{100*ci[0]:.2f}, {100*ci[1]:.2f}]')\nprint(f'Bootstrap P(delta<=0): {boot_p:.4f}')\n\n# Sub-analysis if sc_margin exists\nkeys = list(d[0].keys())\nif 'sc_margin' in keys:\n    margins = np.array([x.get('sc_margin', 1.0) for x in d])\n    print()\n    print('Low-confidence subset analysis:')\n    for thresh in [0.20, 0.34, 0.50]:\n        mask = margins <= thresh\n        sub_n = int(mask.sum())\n        if sub_n > 0:\n            sub_sica = sica_arr[mask].mean()\n            sub_sc = sc_arr[mask].mean()\n            print(f'  SC margin <= {thresh}: n={sub_n}, SICA={100*sub_sica:.1f}%, SC={100*sub_sc:.1f}%, delta={100*(sub_sica-sub_sc):+.1f}pp')\n\n# Multi-candidate\nif 'num_candidates' in keys:\n    multi = sum(1 for x in d if x.get('num_candidates', 0) > 1)\n    print(f'Multi-candidate: {multi}/{n} ({100*multi/n:.1f}%)')\n\n# SC unanimous\nif 'sc_margin' in keys:\n    unan = sum(1 for x in d if x.get('sc_margin', 0) == 1.0)\n    print(f'SC unanimous: {unan}/{n} ({100*unan/n:.1f}%)')\n\n# Truncation\nif 'truncated_traces' in keys:\n    trunc = sum(1 for x in d if x.get('truncated_traces', 0) > 0)\n    print(f'Truncated: {trunc}/{n}')\n\n# Wall time\nif 'wall_time_s' in keys:\n    total_time = sum(x.get('wall_time_s', 0) for x in d)\n    print(f'Wall time so far: {total_time/60:.1f} min (avg {total_time/n:.1f}s/prob)')\n\nprint()\nprint(f'SIGNIFICANT (p<0.05): {\\\"YES\\\" if p_mcnemar < 0.05 else \\\"NO\\\"}')\nprint(f'CI excludes zero: {\\\"YES\\\" if ci[0] > 0 else \\\"NO\\\"}')\n\"\n",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "5e71ec19-b812-4a6b-b95f-d455ab6ff54c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015VX3hwLz5wCfz1QhgqzT3y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1537,
+                "cache_read_input_tokens": 30254,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1537
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T09:32:36.179Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PLasq7iyTEzKw9g98294X1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"Total problems in file: 2\\\\nExpected: 204\\\\nComplete: NO - STILL RUNNING\\\\n\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 10, in <module>\\\\nKeyError: 0\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "c8b3e0a3-727a-461d-be37-3da05537c249",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"Total problems in file: 2\\\\nExpected: 204\\\\nComplete: NO - STILL RUNNING\\\\n\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 10, in <module>\\\\nKeyError: 0\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"Total problems in file: 2\\nExpected: 204\\nComplete: NO - STILL RUNNING\\n\", \"stderr\": \"Traceback (most recent call last):\\n  File \\\"<string>\\\", line 10, in <module>\\nKeyError: 0\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.78}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果文件只有2条记录，格式可能是 dict 而非 list。让我检查其结构。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "04530071-0b3a-45d7-95da-bdf65c7063f6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HGm4b6Qo9zjVJe71FkrmAy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1657,
+                "cache_read_input_tokens": 31791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1657
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GKHfg2wsYRBLpGdtQZ8qqz",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-32608",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport json\npath = '/root/symb_invariant_consensus/results/exp020_folio_200/exp020_results.json'\nd = json.load(open(path))\nprint(f'Type: {type(d)}')\nif isinstance(d, dict):\n    print(f'Keys: {list(d.keys())[:20]}')\n    # Check if it's {id: result} format\n    first_key = list(d.keys())[0]\n    print(f'First key: {first_key}')\n    print(f'First value type: {type(d[first_key])}')\n    print(f'First value: {json.dumps(d[first_key], indent=2)[:500]}')\n    print(f'Total entries: {len(d)}')\nelif isinstance(d, list):\n    print(f'Length: {len(d)}')\n    print(f'First item: {json.dumps(d[0], indent=2)[:500]}')\n\"\n",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "35680974-cf39-4d18-b5b0-a04447b287d5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HGm4b6Qo9zjVJe71FkrmAy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1657,
+                "cache_read_input_tokens": 31791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1657
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T09:32:43.885Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GKHfg2wsYRBLpGdtQZ8qqz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Type: <class 'dict'>\\\\nKeys: ['summary', 'results']\\\\nFirst key: summary\\\\nFirst value type: <class 'dict'>\\\\nFirst value: {\\\\n  \\\\\\\"n_problems\\\\\\\": 31,\\\\n  \\\\\\\"sica_accuracy\\\\\\\": 0.6451612903225806,\\\\n  \\\\\\\"sc_accuracy\\\\\\\": 0.7096774193548387,\\\\n  \\\\\\\"sica_correct\\\\\\\": 20,\\\\n  \\\\\\\"sc_correct\\\\\\\": 22,\\\\n  \\\\\\\"extraction_rate\\\\\\\": 0.9193548387096774,\\\\n  \\\\\\\"answer_extraction_rate\\\\\\\": 0.9301075268817204,\\\\n  \\\\\\\"answer_extraction_counts\\\\\\\": {\\\\n    \\\\\\\"boxed\\\\\\\": 343,\\\\n    \\\\\\\"fallback\\\\\\\": 3,\\\\n    \\\\\\\"none\\\\\\\": 26\\\\n  },\\\\n  \\\\\\\"truncated_traces\\\\\\\": 1,\\\\n  \\\\\\\"total_constraints_extracted\\\\\\\": 3010,\\\\n  \\\\\\\"total_unique_constraints\\\\\\\": 986,\\\\n  \\\\\\\"contradiction_rate\\\\\\\": 0.04462474645030426,\\\\n  \\\\\\\"problems_with_contradictions\\\\\\\": 26,\\\\n\\\\nTotal entries: 2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "52703151-5ac0-404d-8f2b-1b9e90f3251c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Type: <class 'dict'>\\\\nKeys: ['summary', 'results']\\\\nFirst key: summary\\\\nFirst value type: <class 'dict'>\\\\nFirst value: {\\\\n  \\\\\\\"n_problems\\\\\\\": 31,\\\\n  \\\\\\\"sica_accuracy\\\\\\\": 0.6451612903225806,\\\\n  \\\\\\\"sc_accuracy\\\\\\\": 0.7096774193548387,\\\\n  \\\\\\\"sica_correct\\\\\\\": 20,\\\\n  \\\\\\\"sc_correct\\\\\\\": 22,\\\\n  \\\\\\\"extraction_rate\\\\\\\": 0.9193548387096774,\\\\n  \\\\\\\"answer_extraction_rate\\\\\\\": 0.9301075268817204,\\\\n  \\\\\\\"answer_extraction_counts\\\\\\\": {\\\\n    \\\\\\\"boxed\\\\\\\": 343,\\\\n    \\\\\\\"fallback\\\\\\\": 3,\\\\n    \\\\\\\"none\\\\\\\": 26\\\\n  },\\\\n  \\\\\\\"truncated_traces\\\\\\\": 1,\\\\n  \\\\\\\"total_constraints_extracted\\\\\\\": 3010,\\\\n  \\\\\\\"total_unique_constraints\\\\\\\": 986,\\\\n  \\\\\\\"contradiction_rate\\\\\\\": 0.04462474645030426,\\\\n  \\\\\\\"problems_with_contradictions\\\\\\\": 26,\\\\n\\\\nTotal entries: 2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Type: <class 'dict'>\\nKeys: ['summary', 'results']\\nFirst key: summary\\nFirst value type: <class 'dict'>\\nFirst value: {\\n  \\\"n_problems\\\": 31,\\n  \\\"sica_accuracy\\\": 0.6451612903225806,\\n  \\\"sc_accuracy\\\": 0.7096774193548387,\\n  \\\"sica_correct\\\": 20,\\n  \\\"sc_correct\\\": 22,\\n  \\\"extraction_rate\\\": 0.9193548387096774,\\n  \\\"answer_extraction_rate\\\": 0.9301075268817204,\\n  \\\"answer_extraction_counts\\\": {\\n    \\\"boxed\\\": 343,\\n    \\\"fallback\\\": 3,\\n    \\\"none\\\": 26\\n  },\\n  \\\"truncated_traces\\\": 1,\\n  \\\"total_constraints_extracted\\\": 3010,\\n  \\\"total_unique_constraints\\\": 986,\\n  \\\"contradiction_rate\\\": 0.04462474645030426,\\n  \\\"problems_with_contradictions\\\": 26,\\n\\nTotal entries: 2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SZ21CdhHAAJ1SK4rnZwZ1M",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-32608",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport json, numpy as np\n\npath = '/root/symb_invariant_consensus/results/exp020_folio_200/exp020_results.json'\nd = json.load(open(path))\nsummary = d['summary']\nresults = d['results']\n\nn = len(results)\nprint(f'Problems completed: {n}/204')\nprint(f'Status: {\\\"COMPLETE\\\" if n >= 204 else \\\"STILL RUNNING\\\"}')\nprint()\nprint('=== SUMMARY FROM FILE ===')\nfor k, v in summary.items():\n    if isinstance(v, float):\n        print(f'  {k}: {v:.4f}')\n    else:\n        print(f'  {k}: {v}')\nprint()\n\n# Detailed analysis on results list\nsica_arr = np.array([x.get('sica_correct', False) for x in results])\nsc_arr = np.array([x.get('sc_correct', False) for x in results])\n\nsica_acc = sica_arr.mean()\nsc_acc = sc_arr.mean()\ndelta = sica_acc - sc_acc\n\nprint(f'=== INTERIM STATS (n={n}) ===')\nprint(f'SICA accuracy: {100*sica_acc:.2f}% ({int(sica_arr.sum())}/{n})')\nprint(f'SC accuracy:   {100*sc_acc:.2f}% ({int(sc_arr.sum())}/{n})')\nprint(f'Delta:         {100*delta:+.2f}pp')\n\n# Discordant pairs\nsica_wins = int(((sica_arr == True) & (sc_arr == False)).sum())\nsc_wins = int(((sc_arr == True) & (sica_arr == False)).sum())\ntotal_disc = sica_wins + sc_wins\nprint(f'Discordant: {sica_wins} SICA wins, {sc_wins} SC wins ({total_disc} total)')\n\nfrom scipy.stats import binom_test\np_mcnemar = binom_test(sica_wins, total_disc, 0.5) if total_disc > 0 else 1.0\nprint(f'McNemar p-value: {p_mcnemar:.4f}')\n\n# Bootstrap CI\nnp.random.seed(42)\nboot_deltas = []\nfor _ in range(10000):\n    idx = np.random.choice(n, n, replace=True)\n    boot_deltas.append(sica_arr[idx].mean() - sc_arr[idx].mean())\nboot_deltas = np.array(boot_deltas)\nci = np.percentile(boot_deltas, [2.5, 97.5])\nboot_p = np.mean(boot_deltas <= 0)\nprint(f'Bootstrap 95% CI: [{100*ci[0]:.2f}, {100*ci[1]:.2f}]')\nprint(f'Bootstrap P(delta<=0): {boot_p:.4f}')\n\n# Check available keys in results\nkeys = list(results[0].keys())\nprint(f'\\\\nResult keys: {keys}')\n\n# SC margin analysis\nif 'sc_margin' in keys:\n    margins = np.array([x.get('sc_margin', 1.0) for x in results])\n    print('\\\\nLow-confidence subset:')\n    for thresh in [0.20, 0.34, 0.50]:\n        mask = margins <= thresh\n        sub_n = int(mask.sum())\n        if sub_n > 0:\n            sub_sica = sica_arr[mask].mean()\n            sub_sc = sc_arr[mask].mean()\n            print(f'  SC margin <= {thresh}: n={sub_n}, SICA={100*sub_sica:.1f}%, SC={100*sub_sc:.1f}%, delta={100*(sub_sica-sub_sc):+.1f}pp')\n\n# Multi-candidate\nif 'num_candidates' in keys:\n    multi = sum(1 for x in results if x.get('num_candidates', 0) > 1)\n    print(f'\\\\nMulti-candidate: {multi}/{n} ({100*multi/n:.1f}%)')\n\n# SC unanimous\nif 'sc_margin' in keys:\n    unan = sum(1 for x in results if abs(x.get('sc_margin', 0) - 1.0) < 0.01)\n    print(f'SC unanimous: {unan}/{n} ({100*unan/n:.1f}%)')\n\n# Wall time\nif 'wall_time_s' in keys:\n    total_time = sum(x.get('wall_time_s', 0) for x in results)\n    avg_time = total_time / n\n    remaining = 204 - n\n    eta_min = (remaining * avg_time) / 60\n    print(f'\\\\nWall time so far: {total_time/60:.1f} min (avg {avg_time:.1f}s/prob)')\n    print(f'ETA for remaining {remaining} problems: ~{eta_min:.0f} min')\n\nprint(f'\\\\n=== VERDICT ===')\nprint(f'SIGNIFICANT (p<0.05): {\\\"YES\\\" if p_mcnemar < 0.05 else \\\"NO\\\"}')\nprint(f'CI excludes zero: {\\\"YES\\\" if ci[0] > 0 else \\\"NO\\\"}')\nif delta < 0:\n    print(f'WARNING: SC is currently AHEAD of SICA by {-100*delta:.2f}pp')\n\"\n",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "84e52947-cad4-4fb1-b764-953eda3fc94a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Nboax5zFZf7hBjZCmVjdi3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 833,
+                "cache_read_input_tokens": 33448,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 833
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T09:33:08.967Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SZ21CdhHAAJ1SK4rnZwZ1M",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"Problems completed: 31/204\\\\nStatus: STILL RUNNING\\\\n\\\\n=== SUMMARY FROM FILE ===\\\\n  n_problems: 31\\\\n  sica_accuracy: 0.6452\\\\n  sc_accuracy: 0.7097\\\\n  sica_correct: 20\\\\n  sc_correct: 22\\\\n  extraction_rate: 0.9194\\\\n  answer_extraction_rate: 0.9301\\\\n  answer_extraction_counts: {'boxed': 343, 'fallback': 3, 'none': 26}\\\\n  truncated_traces: 1\\\\n  total_constraints_extracted: 3010\\\\n  total_unique_constraints: 986\\\\n  contradiction_rate: 0.0446\\\\n  problems_with_contradictions: 26\\\\n  per_level_accuracy: {'folio': {'sica': 0.6451612903225806, 'sc': 0.7096774193548387, 'n': 31}}\\\\n  per_dataset_accuracy: {'folio': {'sica': 0.6451612903225806, 'sc': 0.7096774193548387, 'n': 31}}\\\\n  k: 12\\\\n  mode: vllm\\\\n  total_wall_time_s: 1141.1000\\\\n\\\\n=== INTERIM STATS (n=31) ===\\\\nSICA accuracy: 64.52% (20/31)\\\\nSC accuracy:   70.97% (22/31)\\\\nDelta:         -6.45pp\\\\nDiscordant: 0 SICA wins, 2 SC wins (2 total)\\\\n\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 40, in <module>\\\\nImportError: cannot import name 'binom_test' from 'scipy.stats' (/root/miniconda3/lib/python3.12/site-packages/scipy/stats/__init__.py). Did you mean: 'binomtest'?\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "70be78f5-e5fa-4254-a67f-c5da994f88b2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"Problems completed: 31/204\\\\nStatus: STILL RUNNING\\\\n\\\\n=== SUMMARY FROM FILE ===\\\\n  n_problems: 31\\\\n  sica_accuracy: 0.6452\\\\n  sc_accuracy: 0.7097\\\\n  sica_correct: 20\\\\n  sc_correct: 22\\\\n  extraction_rate: 0.9194\\\\n  answer_extraction_rate: 0.9301\\\\n  answer_extraction_counts: {'boxed': 343, 'fallback': 3, 'none': 26}\\\\n  truncated_traces: 1\\\\n  total_constraints_extracted: 3010\\\\n  total_unique_constraints: 986\\\\n  contradiction_rate: 0.0446\\\\n  problems_with_contradictions: 26\\\\n  per_level_accuracy: {'folio': {'sica': 0.6451612903225806, 'sc': 0.7096774193548387, 'n': 31}}\\\\n  per_dataset_accuracy: {'folio': {'sica': 0.6451612903225806, 'sc': 0.7096774193548387, 'n': 31}}\\\\n  k: 12\\\\n  mode: vllm\\\\n  total_wall_time_s: 1141.1000\\\\n\\\\n=== INTERIM STATS (n=31) ===\\\\nSICA accuracy: 64.52% (20/31)\\\\nSC accuracy:   70.97% (22/31)\\\\nDelta:         -6.45pp\\\\nDiscordant: 0 SICA wins, 2 SC wins (2 total)\\\\n\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 40, in <module>\\\\nImportError: cannot import name 'binom_test' from 'scipy.stats' (/root/miniconda3/lib/python3.12/site-packages/scipy/stats/__init__.py). Did you mean: 'binomtest'?\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.47}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"Problems completed: 31/204\\nStatus: STILL RUNNING\\n\\n=== SUMMARY FROM FILE ===\\n  n_problems: 31\\n  sica_accuracy: 0.6452\\n  sc_accuracy: 0.7097\\n  sica_correct: 20\\n  sc_correct: 22\\n  extraction_rate: 0.9194\\n  answer_extraction_rate: 0.9301\\n  answer_extraction_counts: {'boxed': 343, 'fallback': 3, 'none': 26}\\n  truncated_traces: 1\\n  total_constraints_extracted: 3010\\n  total_unique_constraints: 986\\n  contradiction_rate: 0.0446\\n  problems_with_contradictions: 26\\n  per_level_accuracy: {'folio': {'sica': 0.6451612903225806, 'sc': 0.7096774193548387, 'n': 31}}\\n  per_dataset_accuracy: {'folio': {'sica': 0.6451612903225806, 'sc': 0.7096774193548387, 'n': 31}}\\n  k: 12\\n  mode: vllm\\n  total_wall_time_s: 1141.1000\\n\\n=== INTERIM STATS (n=31) ===\\nSICA accuracy: 64.52% (20/31)\\nSC accuracy:   70.97% (22/31)\\nDelta:         -6.45pp\\nDiscordant: 0 SICA wins, 2 SC wins (2 total)\\n\", \"stderr\": \"Traceback (most recent call last):\\n  File \\\"<string>\\\", line 40, in <module>\\nImportError: cannot import name 'binom_test' from 'scipy.stats' (/root/miniconda3/lib/python3.12/site-packages/scipy/stats/__init__.py). Did you mean: 'binomtest'?\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.47}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PrZqMjt7f9BC7MHBnfECGi",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-32608",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport json, numpy as np\nfrom scipy.stats import binomtest\n\npath = '/root/symb_invariant_consensus/results/exp020_folio_200/exp020_results.json'\nd = json.load(open(path))\nresults = d['results']\nn = len(results)\n\nsica_arr = np.array([x.get('sica_correct', False) for x in results])\nsc_arr = np.array([x.get('sc_correct', False) for x in results])\n\nsica_acc = sica_arr.mean()\nsc_acc = sc_arr.mean()\ndelta = sica_acc - sc_acc\n\n# Discordant pairs\nsica_wins = int(((sica_arr == True) & (sc_arr == False)).sum())\nsc_wins = int(((sc_arr == True) & (sica_arr == False)).sum())\ntotal_disc = sica_wins + sc_wins\n\np_mcnemar = binomtest(sica_wins, total_disc, 0.5).pvalue if total_disc > 0 else 1.0\n\n# Bootstrap CI\nnp.random.seed(42)\nboot_deltas = []\nfor _ in range(10000):\n    idx = np.random.choice(n, n, replace=True)\n    boot_deltas.append(sica_arr[idx].mean() - sc_arr[idx].mean())\nboot_deltas = np.array(boot_deltas)\nci = np.percentile(boot_deltas, [2.5, 97.5])\nboot_p = np.mean(boot_deltas <= 0)\n\n# Result keys\nkeys = list(results[0].keys())\n\n# SC margin analysis\nif 'sc_margin' in keys:\n    margins = np.array([x.get('sc_margin', 1.0) for x in results])\n    print('Low-confidence subset:')\n    for thresh in [0.34, 0.50, 0.67]:\n        mask = margins <= thresh\n        sub_n = int(mask.sum())\n        if sub_n > 0:\n            sub_sica = sica_arr[mask].mean()\n            sub_sc = sc_arr[mask].mean()\n            print(f'  SC margin <= {thresh}: n={sub_n}, SICA={100*sub_sica:.1f}%, SC={100*sub_sc:.1f}%, delta={100*(sub_sica-sub_sc):+.1f}pp')\n\n# Multi-candidate\nif 'num_candidates' in keys:\n    multi = sum(1 for x in results if x.get('num_candidates', 0) > 1)\n    print(f'Multi-candidate: {multi}/{n} ({100*multi/n:.1f}%)')\n\n# SC unanimous\nif 'sc_margin' in keys:\n    unan = sum(1 for x in results if abs(x.get('sc_margin', 0) - 1.0) < 0.01)\n    print(f'SC unanimous: {unan}/{n} ({100*unan/n:.1f}%)')\n\n# Wall time & ETA\ntotal_time = d['summary'].get('total_wall_time_s', 0)\navg_time = total_time / n if n > 0 else 0\nremaining = 204 - n\neta_min = (remaining * avg_time) / 60\n\nprint(f'''\n========================================\nexp-020 INTERIM STATS (n={n}/204)\n========================================\nSICA accuracy:     {100*sica_acc:.2f}% ({int(sica_arr.sum())}/{n})\nSC accuracy:       {100*sc_acc:.2f}% ({int(sc_arr.sum())}/{n})\nDelta:             {100*delta:+.2f}pp\n\nMcNemar p-value:   {p_mcnemar:.4f}\n  Discordant:      {sica_wins} SICA wins, {sc_wins} SC wins ({total_disc} total)\n  \nBootstrap 95% CI:  [{100*ci[0]:.2f}, {100*ci[1]:.2f}]\nBootstrap P(delta<=0): {boot_p:.4f}\n\nWall time so far:  {total_time/60:.1f} min (avg {avg_time:.1f}s/prob)\nETA remaining:     ~{eta_min:.0f} min ({remaining} problems left)\n\nSIGNIFICANT (p<0.05): {\\\"YES\\\" if p_mcnemar < 0.05 else \\\"NO\\\"}\nCI excludes zero:     {\\\"YES\\\" if ci[0] > 0 else \\\"NO\\\"}\n========================================\n''')\n\nif delta < 0:\n    print(f'WARNING: SC is AHEAD of SICA by {-100*delta:.2f}pp at this interim point')\n    print(f'Only {n}/204 complete -- too early for conclusions')\n\"\n",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "018f76aa-230e-4c8e-ae0e-003219be2c53",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018jA6ewnezSkNXuuTL1FYQp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2119,
+                "cache_read_input_tokens": 34281,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2119
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-17T09:33:25.504Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PrZqMjt7f9BC7MHBnfECGi",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n========================================\\\\nexp-020 INTERIM STATS (n=32/204)\\\\n========================================\\\\nSICA accuracy:     65.62% (21/32)\\\\nSC accuracy:       71.88% (23/32)\\\\nDelta:             -6.25pp\\\\n\\\\nMcNemar p-value:   0.5000\\\\n  Discordant:      0 SICA wins, 2 SC wins (2 total)\\\\n  \\\\nBootstrap 95% CI:  [-15.62, 0.00]\\\\nBootstrap P(delta<=0): 1.0000\\\\n\\\\nWall time so far:  19.6 min (avg 36.8s/prob)\\\\nETA remaining:     ~105 min (172 problems left)\\\\n\\\\nSIGNIFICANT (p<0.05): NO\\\\nCI excludes zero:     NO\\\\n========================================\\\\n\\\\nWARNING: SC is AHEAD of SICA by 6.25pp at this interim point\\\\nOnly 32/204 complete -- too early for conclusions\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "c2bc93f6-d485-4a40-bda7-738c53553ab7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n========================================\\\\nexp-020 INTERIM STATS (n=32/204)\\\\n========================================\\\\nSICA accuracy:     65.62% (21/32)\\\\nSC accuracy:       71.88% (23/32)\\\\nDelta:             -6.25pp\\\\n\\\\nMcNemar p-value:   0.5000\\\\n  Discordant:      0 SICA wins, 2 SC wins (2 total)\\\\n  \\\\nBootstrap 95% CI:  [-15.62, 0.00]\\\\nBootstrap P(delta<=0): 1.0000\\\\n\\\\nWall time so far:  19.6 min (avg 36.8s/prob)\\\\nETA remaining:     ~105 min (172 problems left)\\\\n\\\\nSIGNIFICANT (p<0.05): NO\\\\nCI excludes zero:     NO\\\\n========================================\\\\n\\\\nWARNING: SC is AHEAD of SICA by 6.25pp at this interim point\\\\nOnly 32/204 complete -- too early for conclusions\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n========================================\\nexp-020 INTERIM STATS (n=32/204)\\n========================================\\nSICA accuracy:     65.62% (21/32)\\nSC accuracy:       71.88% (23/32)\\nDelta:             -6.25pp\\n\\nMcNemar p-value:   0.5000\\n  Discordant:      0 SICA wins, 2 SC wins (2 total)\\n  \\nBootstrap 95% CI:  [-15.62, 0.00]\\nBootstrap P(delta<=0): 1.0000\\n\\nWall time so far:  19.6 min (avg 36.8s/prob)\\nETA remaining:     ~105 min (172 problems left)\\n\\nSIGNIFICANT (p<0.05): NO\\nCI excludes zero:     NO\\n========================================\\n\\nWARNING: SC is AHEAD of SICA by 6.25pp at this interim point\\nOnly 32/204 complete -- too early for conclusions\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VENfEtwDZ5riZQ3yDrXDNi",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-32608",
+                "command": "grep -c \"^--- \\[\" ~/runs/symb_invariant_consensus/exp-020-llama8b-folio-204.log 2>/dev/null; echo \"---\"; grep \"^SICA:\" ~/runs/symb_invariant_consensus/exp-020-llama8b-folio-204.log 2>/dev/null | awk -F'[()]' '{print $2}' | sort | uniq -c | sort -rn",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "8f599a98-f2fd-4f86-a21d-73e1d64c5003",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NQcBv5h9QBXGDdZamFDuSH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1702,
+                "cache_read_input_tokens": 36400,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1702
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-17T09:33:30.742Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VENfEtwDZ5riZQ3yDrXDNi",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33\\\\n---\\\\n     21 V\\\\n     11 X\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "6d58d470-de07-4e58-b4b1-ed6f88afa391",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33\\\\n---\\\\n     21 V\\\\n     11 X\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"33\\n---\\n     21 V\\n     11 X\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-020-llama8b-folio-204 状态报告\n\n**状态：运行中** — 33/204 完成，ETA ~105 min\n\n### 当前中间统计 (n=32, 结果文件写入)\n\n| 指标 | 值 |\n|------|------|\n| SICA accuracy | 65.62% (21/32) |\n| SC accuracy | **71.88% (23/32)** |\n| **Delta** | **-6.25pp (SC领先)** |\n| McNemar p | 0.5000 |\n| Bootstrap 95% CI | [-15.62, 0.00] |\n| Discordant pairs | 0 SICA wins, 2 SC wins |\n| Avg time/problem | 36.8s |\n| Wall time elapsed | ~20 min |\n\n### 日志实时 (33题已启动)\n\nSICA 判定：21 correct (V), 11 incorrect (X) → 约 65.6%\n\n### 关键信号\n\n**SC 目前领先 SICA 6.25pp**。仅完成 15.7%，样本量太小（仅 2 个 discordant pairs），统计上无法下结论。但方向令人警惕。\n\n需要等待全部 204 题完成（约 105 分钟后，~19:15 UTC）才能得到可靠结论。是否需要我到时候再检查一次？"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "uuid": "febf152e-e404-4dd4-b179-eaf4d801731a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CUu9K5MjqQewZTqx5pKijE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 319,
+                "cache_read_input_tokens": 38102,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 319
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-020-llama8b-folio-204 状态报告\n\n**状态：运行中** — 33/204 完成，ETA ~105 min\n\n### 当前中间统计 (n=32, 结果文件写入)\n\n| 指标 | 值 |\n|------|------|\n| SICA accuracy | 65.62% (21/32) |\n| SC accuracy | **71.88% (23/32)** |\n| **Delta** | **-6.25pp (SC领先)** |\n| McNemar p | 0.5000 |\n| Bootstrap 95% CI | [-15.62, 0.00] |\n| Discordant pairs | 0 SICA wins, 2 SC wins |\n| Avg time/problem | 36.8s |\n| Wall time elapsed | ~20 min |\n\n### 日志实时 (33题已启动)\n\nSICA 判定：21 correct (V), 11 incorrect (X) → 约 65.6%\n\n### 关键信号\n\n**SC 目前领先 SICA 6.25pp**。仅完成 15.7%，样本量太小（仅 2 个 discordant pairs），统计上无法下结论。但方向令人警惕。\n\n需要等待全部 204 题完成（约 105 分钟后，~19:15 UTC）才能得到可靠结论。是否需要我到时候再检查一次？"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 135308,
+            "duration_api_ms": 128513,
+            "num_turns": 11,
+            "stop_reason": "end_turn",
+            "session_id": "f2b6a7ea-a912-4fe7-8523-a077e0be3371",
+            "total_cost_usd": 0.524784,
+            "usage": {
+              "input_tokens": 15,
+              "cache_creation_input_tokens": 26580,
+              "cache_read_input_tokens": 325588,
+              "output_tokens": 7723,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 26580,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 390,
+                  "cache_read_input_tokens": 38102,
+                  "cache_creation_input_tokens": 319,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 319
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2630,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002715,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 15,
+                "outputTokens": 7723,
+                "cacheReadInputTokens": 325588,
+                "cacheCreationInputTokens": 26580,
+                "webSearchRequests": 0,
+                "costUSD": 0.5220690000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "4ab1f523-6df4-4a95-b719-85d8030cb308"
+          },
+          "id": "event-000032"
+        }
+      ],
+      "message_count": 32
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-exp020-final-results.md"
+}

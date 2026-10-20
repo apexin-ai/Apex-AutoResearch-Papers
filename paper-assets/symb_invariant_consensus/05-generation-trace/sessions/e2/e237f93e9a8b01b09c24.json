@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e237f93e9a8b01b09c24",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ops kill zombie gpu3 25068",
+  "task_key": "worker_ops_kill-zombie-gpu3-25068_20260519T151619",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill-zombie-gpu3-25068_20260519T151619_result.json",
+    "occurrence": 1,
+    "bytes": 418,
+    "sha256": "3de19733ac46e8379035e68cf53149759d7e701ddc937b1fda02263909075b86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| GPU 3 PID 192666 (`VLLM::EngineCore`) | 已 kill，88106MiB 显存已释放 |\n| tmux `exp062_vllm` | 已 kill |\n| tmux `exp062_run` | 不存在（已自行退出） |\n| GPU 3 最终状态 | **0MiB / 97887MiB，0% util，完全空闲** |\n\nGPU 1 上有另一个 vLLM 进程 (PID 236050, 90232MiB, 96% util) 正在活跃运行，未动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-zombie-gpu3-25068.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4674bba6e22fff5ddf5",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "eval exp 004 qwen7b rerun",
+  "task_key": "worker_eval_exp-004-qwen7b-rerun_20260518T161756",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_exp-004-qwen7b-rerun_20260518T161756_result.json",
+    "occurrence": 1,
+    "bytes": 522,
+    "sha256": "2980afe3f9236642402fc6ed2c739aee80868668b3c951fc5395b210f77de272"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 RUNNING。\n\n任务提交完成：\n\n- **exp_id**: `exp-004-qwen7b-rerun`\n- **服务器**: westd-25068, GPU cuda:3\n- **PID**: 58035, tmux session: `exp-004-qwen7b-rerun`\n- **当前**: 模型下载中（modelscope, ~2 MB/s, 15GB 预计 ~1.5h）\n- **下载后**: vLLM 启动 → SICA pipeline D012 60题 → 预计再 ~1-2h\n- **日志**: `~/runs/symb_invariant_consensus/exp-004-qwen7b-rerun.log`\n- **注意**: 之前有 modelscope lock 文件导致下载阻塞，已手动清除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-004-qwen7b-rerun.md"
+}

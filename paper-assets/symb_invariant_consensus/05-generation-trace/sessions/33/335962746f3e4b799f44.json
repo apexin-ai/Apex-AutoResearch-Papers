@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "335962746f3e4b799f44",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix exp017 answer extraction",
+  "task_key": "worker_fix_exp017-answer-extraction_20260517T040347",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_exp017-answer-extraction_20260517T040347_result.json",
+    "occurrence": 1,
+    "bytes": 902,
+    "sha256": "e20ae5a005c747aefca7a6b59f8931a113501fb897c7de790c376ea01db4b4df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**提取率 100%（5/5）**。修复有效。\n\n总结：\n\n**修改的文件和改动**：\n\n1. **`scripts/eval_strategyqa.py`** - `extract_yesno_answer` 函数：\n   - 新增 `text_lower == \"true\"` → \"Yes\", `text_lower == \"false\"` → \"No\" 的直接映射\n   - regex 模式中增加 `true|false` 匹配\n   - 新增 `\"true\" in text_lower` / `\"false\" in text_lower` 的 fallback\n   - SC 答案提取增加 trace 文本 fallback：`t.get(\"answer\", \"\") or t.get(\"trace\", \"\")`\n   - SICA 答案增加 trace 文本 fallback\n\n2. **`sica/trace_generator.py`** - `extract_answer_fallback` 函数：\n   - regex 模式中增加 `Yes|No` 匹配\n   - 末尾增加 bare response 检测：当整个 trace 文本只是 \"yes\"/\"no\"/\"true\"/\"false\" 时直接返回\n\n**Smoke test 结果**：5 题全部成功提取答案，提取率 100%。可以重跑 exp-017。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp017-answer-extraction.md"
+}

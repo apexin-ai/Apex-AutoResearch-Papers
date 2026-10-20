@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "eb606fc5e482edc10c01",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment 70b sica westd25068",
+  "task_key": "worker_experiment_70b-sica-westd25068_20260521T163730",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_70b-sica-westd25068_20260521T163730.log",
+    "occurrence": 1,
+    "bytes": 1037478,
+    "sha256": "84b71aa6baaf79654befd9e28d250edd16829e86c83a67c57849ebaddd20af5a"
+  },
+  "statistics": {
+    "messages": 629,
+    "user_turns": 1,
+    "tool_calls": 240,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 140,
+      "tool_call": 240,
+      "tool_result": 240,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 608,
+      "chunks": [
+        {
+          "path": "eb606fc5e482edc10c01-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "eb606fc5e482edc10c01-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "eb606fc5e482edc10c01-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "eb606fc5e482edc10c01-part-0004.json",
+          "message_count": 68
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "eb606fc5e482edc10c01-part-0004.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-70b-sica-westd25068.md"
+}

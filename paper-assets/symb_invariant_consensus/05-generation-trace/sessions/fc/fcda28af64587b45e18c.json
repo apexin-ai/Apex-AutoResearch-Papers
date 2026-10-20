@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fcda28af64587b45e18c",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra westd 40623 env setup",
+  "task_key": "worker_infra_westd-40623-env-setup_20260522T142841",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_westd-40623-env-setup_20260522T142841_result.json",
+    "occurrence": 1,
+    "bytes": 302,
+    "sha256": "cf1d71e9733da5e6b83463a948669a4d6149d0a5a42559c62c4f09a8cb63d36f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SSH 连接失败：无法连接到 westd-40623 的端口 40623（`Unable to connect to port 40623 on 36.103.198.204`）。\n\nAutoDL 实例重启后端口会变。请去 AutoDL 控制台确认该实例的当前 SSH 端口，然后更新 `~/.ssh/config` 中 westd-40623 的端口配置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd-40623-env-setup.md"
+}

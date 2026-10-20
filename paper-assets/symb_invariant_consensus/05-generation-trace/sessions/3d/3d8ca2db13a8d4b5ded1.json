@@ -1,0 +1,615 @@
+{
+  "schema_version": "1.0",
+  "id": "3d8ca2db13a8d4b5ded1",
+  "project": "symb_invariant_consensus",
+  "kind": "conversation",
+  "title": "analysis sica proofwriter30",
+  "task_key": "worker_analysis_sica_proofwriter30_20260515T221704",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analysis_sica_proofwriter30_20260515T221704.jsonl",
+    "occurrence": 1,
+    "bytes": 31914,
+    "sha256": "ee659cf2b26deb7e8888862f432c45845296d48f82ede1fd4e8684cb9b69a759"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "tool_call": 14,
+      "tool_result": 14,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T22:18:28.368295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T22:18:28.368664+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T22:18:28.368859+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "tail -200 /root/runs/symb_invariant_consensus/proofwriter30.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T22:18:28.369071+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "cat /root/symb_invariant_consensus/results/proofwriter_30_eval.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T22:18:28.369320+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 06:14:48,870 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 400 Bad Request\\\\\\\"\\\\n2026-05-16 06:14:48,871 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 400 Bad Request\\\\\\\"\\\\n2026-05-16 06:14:48,872 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 400 Bad Request\\\\\\\"\\\\n2026-05-16 06:14:48,873 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 400 Bad Request\\\\\\\"\\\\n2026-05-16 06:14:48,879 ERROR SICA pipeline failed: Error code: 400 - {'error': {'message': \\\\\\\"This model's maximum context length is 16384 tokens. However, you requested 16384 output tokens and your prompt contains 1307 characters (more than 0 characters, which is the upper bound for 0 input tokens). Please reduce the length of the input prompt or the number of requested output tokens. (parameter=input_text, value=1307)\\\\\\\", 'type': 'BadRequestError', 'param': 'input_text', 'code': 400}}\\\\nSICA:  (X)\\\\nSC:    (X) -- votes: 0/0\\\\nTime: 7.7s\\\\n\\\\n============================================================\\\\n[24/30] ProofWriter_AttNeg-OWA-D5-276_Q18  (gold=Unknown)\\\\n2026-05-16 06:14:48,883 INFO Generating traces 1-4 of 12\\\\n2026-05-16 06:14:48,892 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 400 Bad Request\\\\\\\"\\\\n2026-05-16 06:14:48,893 WARNING Retry 1/3 after 1.0s: Error code: 400 - {'error': {'message': \\\\\\\"This model's maximum context length is 16384 tokens. However, you requested 16384 output tokens and your prompt contains 914 characters (more than 0 characters, which is the upper bound for 0 input tokens). Please reduce the length of the input prompt or the number of requested output tokens. (parameter=input_text, value=914)\\\\\\\", 'type': 'BadRequestError', 'param': 'input_text', 'code': 400}}\\\\n2026-05-16 06:14:49,953 INFO HTTP Request: POST http://localhost:8000/v1/chat/completio\n…[truncated 6516 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T22:18:28.369492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "ls /root/symb_invariant_consensus/results/intermediates/",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T22:18:28.369930+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"proofwriter\\\\\\\",\\\\n    \\\\\\\"n_problems\\\\\\\": 30,\\\\n    \\\\\\\"depth\\\\\\\": 5,\\\\n    \\\\\\\"k\\\\\\\": 12,\\\\n    \\\\\\\"temperature\\\\\\\": 0.7,\\\\n    \\\\\\\"sica_accuracy\\\\\\\": 0.0,\\\\n    \\\\\\\"sica_correct\\\\\\\": 0,\\\\n    \\\\\\\"sc_accuracy\\\\\\\": 0.0,\\\\n    \\\\\\\"sc_correct\\\\\\\": 0,\\\\n    \\\\\\\"total_wall_time_s\\\\\\\": 238.9\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"ProofWriter_AttNeg-OWA-D5-979_Q9\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"proofwriter\\\\\\\",\\\\n      \\\\\\\"depth\\\\\\\": \\\\\\\"D5\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"sica_correct\\\\\\\": false,\\\\n      \\\\\\\"sica_scores\\\\\\\": {},\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"sc_correct\\\\\\\": false,\\\\n      \\\\\\\"sc_vote_distribution\\\\\\\": {},\\\\n      \\\\\\\"constraints_stats\\\\\\\": {\\\\n        \\\\\\\"total_extracted\\\\\\\": 0,\\\\n        \\\\\\\"traces_with_constraints\\\\\\\": 0,\\\\n        \\\\\\\"unique_after_dedup\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"maxsat_stats\\\\\\\": {\\\\n        \\\\\\\"satisfied\\\\\\\": 0,\\\\n        \\\\\\\"excluded\\\\\\\": 0,\\\\n        \\\\\\\"total_weight\\\\\\\": 0,\\\\n        \\\\\\\"solve_time_ms\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"timing\\\\\\\": {\\\\n        \\\\\\\"total_s\\\\\\\": 8.174\\\\n      },\\\\n      \\\\\\\"wall_time_s\\\\\\\": 8.17,\\\\n      \\\\\\\"per_trace\\\\\\\": []\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"ProofWriter_RelNoneg-OWA-D5-1036_Q11\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"proofwriter\\\\\\\",\\\\n      \\\\\\\"depth\\\\\\\": \\\\\\\"D5\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"sica_correct\\\\\\\": false,\\\\n      \\\\\\\"sica_scores\\\\\\\": {},\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"sc_correct\\\\\\\": false,\\\\n      \\\\\\\"sc_vote_distribution\\\\\\\": {},\\\\n      \\\\\\\"constraints_stats\\\\\\\": {\\\\n        \\\\\\\"total_extracted\\\\\\\": 0,\\\\n        \\\\\\\"traces_with_constraints\\\\\\\": 0,\\\\n        \\\\\\\"unique_after_dedup\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"maxsat_stats\\\\\\\": {\\\\n        \\\\\\\"satisfi\n…[truncated 8891 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T22:18:28.370140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/symb_invariant_consensus/results/intermediates/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T22:18:28.370316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "head -100 /root/runs/symb_invariant_consensus/proofwriter30.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T22:18:28.370531+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 06:11:44,833 INFO Loaded 30 ProofWriter problems (depth=5)\\\\n2026-05-16 06:11:44,833 INFO Answer distribution: {'True': 10, 'False': 10, 'Unknown': 10}\\\\n2026-05-16 06:11:45,449 INFO HTTP Request: GET http://localhost:8000/v1/models \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-16 06:11:45,450 INFO Auto-detected model: /root/autodl-tmp/models/QwQ-32B/Qwen/QwQ-32B\\\\n2026-05-16 06:11:45,468 INFO HTTP Request: GET http://localhost:8000/v1/models \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n\\\\n============================================================\\\\n[1/30] ProofWriter_AttNeg-OWA-D5-979_Q9  (gold=True)\\\\n2026-05-16 06:11:45,468 INFO Generating traces 1-4 of 12\\\\n2026-05-16 06:11:45,495 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 400 Bad Request\\\\\\\"\\\\n2026-05-16 06:11:45,496 WARNING Retry 1/3 after 1.4s: Error code: 400 - {'error': {'message': \\\\\\\"This model's maximum context length is 16384 tokens. However, you requested 16384 output tokens and your prompt contains 1053 characters (more than 0 characters, which is the upper bound for 0 input tokens). Please reduce the length of the input prompt or the number of requested output tokens. (parameter=input_text, value=1053)\\\\\\\", 'type': 'BadRequestError', 'param': 'input_text', 'code': 400}}\\\\n2026-05-16 06:11:46,936 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 400 Bad Request\\\\\\\"\\\\n2026-05-16 06:11:46,936 WARNING Retry 2/3 after 2.4s: Error code: 400 - {'error': {'message': \\\\\\\"This model's maximum context length is 16384 tokens. However, you requested 16384 output tokens and your prompt contains 1053 characters (more than 0 characters, which is the upper bound for 0 input tokens). Please reduce the length of the input prompt or the number of requested output tokens. (parameter=input_text, value=1053)\\\\\\\", 'type': 'BadRequestError', 'param': 'input_text', 'code': 400}}\\\\n2026-05-16 06:11:49,396 INFO HTTP Request: P\n…[truncated 6528 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T22:18:28.370727+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32608",
+              "command": "grep -i \"max.model.len\\|max_model_len\\|gpu_memory\" /root/runs/symb_invariant_consensus/proofwriter30.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T22:18:28.370863+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T22:18:28.371071+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T22:18:28.371204+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T22:18:28.371324+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'sica_proofwriter30'}",
+              "project": "symb_invariant_consensus",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T22:18:28.371450+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0274}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T22:18:28.371581+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T22:18:28.371926+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"sica_proofwriter30\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T22:08:42.831Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:17:44.472Z\\\", \\\"hypothesis\\\": \\\"逻辑域（ProofWriter D5）上 SICA 能否检测跨路径 FOL 约束矛盾并超越 SC@K=12——验证 SICA 在逻辑推理域的有效性\\\", \\\"parent\\\": \\\"sica_aime30_v3\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_proofwriter.py --n-problems 30 --k 12 --max-tokens 16384 --seed 42 --save-intermediates --output results/proofwriter_30_eval.json\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"153924\\\", \\\"log_path\\\": \\\"/root/runs/symb_invariant_consensus/proofwriter30.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T22:11:44.644Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"method\\\": \\\"SICA\\\", \\\"model_name\\\": \\\"QwQ-32B\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/data/proofwriter_subset.json\\\", \\\"data_count\\\": 30, \\\"seed\\\": 42, \\\"k\\\": 12, \\\"temperature\\\": 0.7, \\\"max_tokens\\\": 16384, \\\"domain\\\": \\\"logic\\\", \\\"extraction_prompt\\\": \\\"LOGIC_EXTRACTION_PROMPT\\\", \\\"z3_timeout_s\\\": 60, \\\"checkpoint_source\\\": \\\"N/A (not eval - new SICA logic domain experiment)\\\", \\\"eval_data\\\": \\\"ProofWriter D5 30 problems (T:10 F:10 U:10)\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T22:15:57.895Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T22:15:58.664228+00:00\\\"}]}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"sica_folio30\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T22:08:43.460Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:08:51.802Z\\\", \\\"hypothesis\\\": \\\"逻辑域（FOLIO）上 SICA 能否利用 FOL 标注检测跨路径矛盾并超越 SC@K=12——FOLIO 有天然 FOL 标注，是 SICA 约束提取的理想场景\\\", \\\"parent\\\": \\\"sica_aime30_v3\\\"}, \\\"sica_aime30_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:13:04.296Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:07:55.967Z\\\", \\\"hypothesis\\\": \\\"AIME 2024 上 SICA 能否检测跨路径矛盾并超越 SC@K=12（v3: \n…[truncated 10455 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T22:18:28.372146+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "sica_proofwriter30",
+              "field": "status",
+              "value": "DONE",
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T22:18:28.372336+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sica_proofwriter30\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T22:08:42.831Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:18:02.631Z\\\", \\\"hypothesis\\\": \\\"逻辑域（ProofWriter D5）上 SICA 能否检测跨路径 FOL 约束矛盾并超越 SC@K=12——验证 SICA 在逻辑推理域的有效性\\\", \\\"parent\\\": \\\"sica_aime30_v3\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_proofwriter.py --n-problems 30 --k 12 --max-tokens 16384 --seed 42 --save-intermediates --output results/proofwriter_30_eval.json\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"153924\\\", \\\"log_path\\\": \\\"/root/runs/symb_invariant_consensus/proofwriter30.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T22:11:44.644Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"method\\\": \\\"SICA\\\", \\\"model_name\\\": \\\"QwQ-32B\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/data/proofwriter_subset.json\\\", \\\"data_count\\\": 30, \\\"seed\\\": 42, \\\"k\\\": 12, \\\"temperature\\\": 0.7, \\\"max_tokens\\\": 16384, \\\"domain\\\": \\\"logic\\\", \\\"extraction_prompt\\\": \\\"LOGIC_EXTRACTION_PROMPT\\\", \\\"z3_timeout_s\\\": 60, \\\"checkpoint_source\\\": \\\"N/A (not eval - new SICA logic domain experiment)\\\", \\\"eval_data\\\": \\\"ProofWriter D5 30 problems (T:10 F:10 U:10)\\\", \\\"wall_clock_seconds\\\": 378.0, \\\"gpu_hours\\\": 0.1}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T22:15:57.895Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T22:15:58.664228+00:00\\\"}]}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-15T22:18:02.631Z\\\"}, \\\"hint\\\": \\\"💡 建议将故障原因写入 memory.md（如何避免再犯）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2411}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T22:18:28.372510+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "sica_proofwriter30",
+              "field": "metrics",
+              "value": "{'sica_accuracy': '0/30 (0.0%)', 'sc_accuracy': '0/30 (0.0%)', 'sica_sc_gap_pp': 0, 'total_wall_time_s': 238.9, 'total_wall_time_min': 4, 'avg_time_per_problem_s': 8, 'traces_generated': 0, 'constraints_extracted': 0, 'traces_with_constraints': 0, 'unique_constraints': 0, 'maxsat_satisfied': 0, 'maxsat_excluded': 0, 'multi_candidate_rate': 'N/A (no traces generated)', 'vote_diversity': 'N/A', 'z3_errors': 0, 'z3_timeouts': 0, 'problems_with_contradiction': 0, 'problems_with_votes': 0, 'failure_mode': 'ALL_400_BAD_REQUEST', 'failure_count': '30/30', 'root_cause': 'max_tokens=16384 equals max_model_len=16384, leaving 0 tokens for prompt input. Every API call returns 400.'}",
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T22:18:28.372717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sica_proofwriter30\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T22:08:42.831Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:18:10.679Z\\\", \\\"hypothesis\\\": \\\"逻辑域（ProofWriter D5）上 SICA 能否检测跨路径 FOL 约束矛盾并超越 SC@K=12——验证 SICA 在逻辑推理域的有效性\\\", \\\"parent\\\": \\\"sica_aime30_v3\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_proofwriter.py --n-problems 30 --k 12 --max-tokens 16384 --seed 42 --save-intermediates --output results/proofwriter_30_eval.json\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"153924\\\", \\\"log_path\\\": \\\"/root/runs/symb_invariant_consensus/proofwriter30.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T22:11:44.644Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"method\\\": \\\"SICA\\\", \\\"model_name\\\": \\\"QwQ-32B\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/data/proofwriter_subset.json\\\", \\\"data_count\\\": 30, \\\"seed\\\": 42, \\\"k\\\": 12, \\\"temperature\\\": 0.7, \\\"max_tokens\\\": 16384, \\\"domain\\\": \\\"logic\\\", \\\"extraction_prompt\\\": \\\"LOGIC_EXTRACTION_PROMPT\\\", \\\"z3_timeout_s\\\": 60, \\\"checkpoint_source\\\": \\\"N/A (not eval - new SICA logic domain experiment)\\\", \\\"eval_data\\\": \\\"ProofWriter D5 30 problems (T:10 F:10 U:10)\\\", \\\"wall_clock_seconds\\\": 378.0, \\\"gpu_hours\\\": 0.1}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T22:15:57.895Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T22:15:58.664228+00:00\\\"}]}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-15T22:18:02.631Z\\\", \\\"notes\\\": \\\"max_tokens=16384 == max_model_len=16384, prompt占位后vLLM 400错误。所有请求失败。将以 sica_proofwriter30_v2 重跑 (max_tokens=12288)。\\\", \\\"metrics\\\": {\\\"sica_accuracy\\\": \\\"0/30 (0.0%)\\\", \\\"sc_accuracy\\\": \\\"0/30 (0.0%)\\\", \\\"sica_sc_gap_pp\\\": 0, \\\"total_wall_time_s\\\": 238.9, \\\"total_wall_time_min\\\": 4, \\\"avg_time_per_problem_s\\\": 8, \\\"traces_generated\\\": 0, \\\"constraints_extracted\\\": 0, \\\"traces_with_constrain\n…[truncated 541 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T22:18:28.372894+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "sica_proofwriter30",
+              "field": "checkpoint_path",
+              "value": "/root/symb_invariant_consensus/results/proofwriter_30_eval.json",
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T22:18:28.373100+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sica_proofwriter30\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T22:08:42.831Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:18:11.688Z\\\", \\\"hypothesis\\\": \\\"逻辑域（ProofWriter D5）上 SICA 能否检测跨路径 FOL 约束矛盾并超越 SC@K=12——验证 SICA 在逻辑推理域的有效性\\\", \\\"parent\\\": \\\"sica_aime30_v3\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_proofwriter.py --n-problems 30 --k 12 --max-tokens 16384 --seed 42 --save-intermediates --output results/proofwriter_30_eval.json\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"153924\\\", \\\"log_path\\\": \\\"/root/runs/symb_invariant_consensus/proofwriter30.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T22:11:44.644Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"method\\\": \\\"SICA\\\", \\\"model_name\\\": \\\"QwQ-32B\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/data/proofwriter_subset.json\\\", \\\"data_count\\\": 30, \\\"seed\\\": 42, \\\"k\\\": 12, \\\"temperature\\\": 0.7, \\\"max_tokens\\\": 16384, \\\"domain\\\": \\\"logic\\\", \\\"extraction_prompt\\\": \\\"LOGIC_EXTRACTION_PROMPT\\\", \\\"z3_timeout_s\\\": 60, \\\"checkpoint_source\\\": \\\"N/A (not eval - new SICA logic domain experiment)\\\", \\\"eval_data\\\": \\\"ProofWriter D5 30 problems (T:10 F:10 U:10)\\\", \\\"wall_clock_seconds\\\": 378.0, \\\"gpu_hours\\\": 0.1}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T22:15:57.895Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T22:15:58.664228+00:00\\\"}]}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-15T22:18:02.631Z\\\", \\\"notes\\\": \\\"max_tokens=16384 == max_model_len=16384, prompt占位后vLLM 400错误。所有请求失败。将以 sica_proofwriter30_v2 重跑 (max_tokens=12288)。\\\", \\\"metrics\\\": {\\\"sica_accuracy\\\": \\\"0/30 (0.0%)\\\", \\\"sc_accuracy\\\": \\\"0/30 (0.0%)\\\", \\\"sica_sc_gap_pp\\\": 0, \\\"total_wall_time_s\\\": 238.9, \\\"total_wall_time_min\\\": 4, \\\"avg_time_per_problem_s\\\": 8, \\\"traces_generated\\\": 0, \\\"constraints_extracted\\\": 0, \\\"traces_with_constrain\n…[truncated 631 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T22:18:28.373257+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "sica_proofwriter30",
+              "field": "log_path",
+              "value": "/root/runs/symb_invariant_consensus/proofwriter30.log",
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T22:18:28.373437+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sica_proofwriter30\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T22:08:42.831Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:18:12.522Z\\\", \\\"hypothesis\\\": \\\"逻辑域（ProofWriter D5）上 SICA 能否检测跨路径 FOL 约束矛盾并超越 SC@K=12——验证 SICA 在逻辑推理域的有效性\\\", \\\"parent\\\": \\\"sica_aime30_v3\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_proofwriter.py --n-problems 30 --k 12 --max-tokens 16384 --seed 42 --save-intermediates --output results/proofwriter_30_eval.json\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"153924\\\", \\\"log_path\\\": \\\"/root/runs/symb_invariant_consensus/proofwriter30.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T22:11:44.644Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"method\\\": \\\"SICA\\\", \\\"model_name\\\": \\\"QwQ-32B\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/data/proofwriter_subset.json\\\", \\\"data_count\\\": 30, \\\"seed\\\": 42, \\\"k\\\": 12, \\\"temperature\\\": 0.7, \\\"max_tokens\\\": 16384, \\\"domain\\\": \\\"logic\\\", \\\"extraction_prompt\\\": \\\"LOGIC_EXTRACTION_PROMPT\\\", \\\"z3_timeout_s\\\": 60, \\\"checkpoint_source\\\": \\\"N/A (not eval - new SICA logic domain experiment)\\\", \\\"eval_data\\\": \\\"ProofWriter D5 30 problems (T:10 F:10 U:10)\\\", \\\"wall_clock_seconds\\\": 378.0, \\\"gpu_hours\\\": 0.1}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T22:15:57.895Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T22:15:58.664228+00:00\\\"}]}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-15T22:18:02.631Z\\\", \\\"notes\\\": \\\"max_tokens=16384 == max_model_len=16384, prompt占位后vLLM 400错误。所有请求失败。将以 sica_proofwriter30_v2 重跑 (max_tokens=12288)。\\\", \\\"metrics\\\": {\\\"sica_accuracy\\\": \\\"0/30 (0.0%)\\\", \\\"sc_accuracy\\\": \\\"0/30 (0.0%)\\\", \\\"sica_sc_gap_pp\\\": 0, \\\"total_wall_time_s\\\": 238.9, \\\"total_wall_time_min\\\": 4, \\\"avg_time_per_problem_s\\\": 8, \\\"traces_generated\\\": 0, \\\"constraints_extracted\\\": 0, \\\"traces_with_constrain\n…[truncated 704 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T22:18:28.373638+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "sica_proofwriter30",
+              "field": "notes",
+              "value": "配置错误导致完全失败。--max-tokens 16384 等于 vLLM 的 --max-model-len 16384，prompt 输入空间为 0，所有 30 题从第 1 题起全部 400 Bad Request。没有生成任何 trace，没有提取约束，没有投票。4 分钟内跑完（全是 retry 耗时）。无法评估 sanity check 标准。需要用 --max-tokens 12288 或更小值重跑（AIME 实验用的 10240 正常工作）。",
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T22:18:28.373835+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sica_proofwriter30\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T22:08:42.831Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:18:19.326Z\\\", \\\"hypothesis\\\": \\\"逻辑域（ProofWriter D5）上 SICA 能否检测跨路径 FOL 约束矛盾并超越 SC@K=12——验证 SICA 在逻辑推理域的有效性\\\", \\\"parent\\\": \\\"sica_aime30_v3\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_proofwriter.py --n-problems 30 --k 12 --max-tokens 16384 --seed 42 --save-intermediates --output results/proofwriter_30_eval.json\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"153924\\\", \\\"log_path\\\": \\\"/root/runs/symb_invariant_consensus/proofwriter30.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T22:11:44.644Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"method\\\": \\\"SICA\\\", \\\"model_name\\\": \\\"QwQ-32B\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/data/proofwriter_subset.json\\\", \\\"data_count\\\": 30, \\\"seed\\\": 42, \\\"k\\\": 12, \\\"temperature\\\": 0.7, \\\"max_tokens\\\": 16384, \\\"domain\\\": \\\"logic\\\", \\\"extraction_prompt\\\": \\\"LOGIC_EXTRACTION_PROMPT\\\", \\\"z3_timeout_s\\\": 60, \\\"checkpoint_source\\\": \\\"N/A (not eval - new SICA logic domain experiment)\\\", \\\"eval_data\\\": \\\"ProofWriter D5 30 problems (T:10 F:10 U:10)\\\", \\\"wall_clock_seconds\\\": 378.0, \\\"gpu_hours\\\": 0.1}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T22:15:57.895Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T22:15:58.664228+00:00\\\"}]}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-15T22:18:02.631Z\\\", \\\"notes\\\": \\\"配置错误导致完全失败。--max-tokens 16384 等于 vLLM 的 --max-model-len 16384，prompt 输入空间为 0，所有 30 题从第 1 题起全部 400 Bad Request。没有生成任何 trace，没有提取约束，没有投票。4 分钟内跑完（全是 retry 耗时）。无法评估 sanity check 标准。需要用 --max-tokens 12288 或更小值重跑（AIME 实验用的 10240 正常工作）。\\\", \\\"metrics\\\": {\\\"sica_accuracy\\\": \\\"0/30 (0.0%)\\\", \\\"sc_accuracy\\\": \\\"0/30 (0.0%)\\\", \\\"sica_sc_gap_pp\\\": 0, \\\"total_wall_time_s\\\": 238.9, \\\"total_wall_time_min\\\"\n…[truncated 818 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T22:18:28.374051+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n## sica_proofwriter30 分析结果：配置错误，完全失败\n\n**根因**：`--max-tokens 16384` = vLLM `--max-model-len 16384`，留给 prompt 的空间为 0 tokens。所有 API 请求立即返回 400 Bad Request。\n\n**结果**：\n- 30/30 题全部失败，SICA = SC = 0%\n- 0 条 trace 生成，0 条约束提取，0 次投票\n- 4 分钟跑完（全是 retry 开销）\n- 无 intermediates 产出\n\n**无法评估 sanity check 标准**（提取率、矛盾检出等），因为没有任何推理发生。\n\n**修复**：重跑时将 `--max-tokens` 降至 10240（AIME 实验验证可用）或 12288。ProofWriter 题目 prompt 约 900-1500 characters，10240 output tokens 绰绰有余。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sica_proofwriter30_20260515T221704"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-sica-proofwriter30.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c89fb63a290ee7c0dc70",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "eval deberta combo",
+  "task_key": "worker_eval_deberta-combo_20260522T185051",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_deberta-combo_20260522T185051_result.json",
+    "occurrence": 1,
+    "bytes": 1911,
+    "sha256": "202323db4e1a3dae82bb0f781fff414bdad628cb417a5a052dba5a322a6c033b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部结果如下：\n\n---\n\n## 1. Standalone Eval\n\n| Metric | Value |\n|--------|-------|\n| **Overall accuracy** | **99.67% (598/600)** |\n| False | 200/200 = 100.00% (P=0.9901, F1=0.9950) |\n| True | 200/200 = 100.00% (P=1.0000, F1=1.0000) |\n| Unknown | 198/200 = 99.00% (P=1.0000, F1=0.9950) |\n| Pred distribution | True=200, False=202, Unknown=198 |\n\n2 个错误均为 Unknown 被预测为 False。\n\n## 2. Combo with LLaMA-3.1-8B (SC baseline=72.50%)\n\n| Weight | Accuracy | Δ(combo−SC) | McNemar p |\n|--------|----------|-------------|-----------|\n| w=1 | 76.00% | +3.50pp | <0.0001 *** |\n| w=3 | 84.17% | +11.67pp | <0.0001 *** |\n| w=5 | 91.67% | +19.17pp | <0.0001 *** |\n\n互补性：NLI↑SC↓=164, SC↑NLI↓=1, 同意率=72.50%, 同意时准确率=99.77%\n\n## 3. Combo with Mistral-7B (SC baseline=39.17%)\n\n| Weight | Accuracy | Δ(combo−SC) | McNemar p |\n|--------|----------|-------------|-----------|\n| w=1 | 42.33% | +3.17pp | <0.0001 *** |\n| w=3 | 52.17% | +13.00pp | <0.0001 *** |\n| w=5 | 65.50% | +26.33pp | <0.0001 *** |\n\n互补性：NLI↑SC↓=365, SC↑NLI↓=2, 同意率=38.83%, 同意时准确率=100%\n\n## 4. 最佳 Combo 配置推荐\n\n**LLaMA-8B + DeBERTa w=5** 是最佳配置：91.67% accuracy，比 SC baseline 提升 +19.17pp，所有提升 p<0.0001。Mistral SC baseline 太弱（39.17%），即使 w=5 也只到 65.50%，实用价值有限。\n\n## 5. GPU 状态\n\n| GPU | 显存占用 | 利用率 | 进程 |\n|-----|---------|--------|------|\n| cuda:0 | 0 MiB | 0% | 空闲（DeBERTa eval 已完成） |\n| cuda:1 | 88,263 MiB / 97,887 MiB | **0%** | vLLM (PID 595559) |\n| cuda:2 | 90,213 MiB / 97,887 MiB | **96%** | vLLM (PID 510289) — 活跃 |\n| cuda:3 | 88,263 MiB / 97,887 MiB | **0%** | vLLM (PID 613436) |\n\n**cuda:1 和 cuda:3 有 vLLM 进程占用 ~88GB 显存但 GPU 利用率为 0%**，属于空闲占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-deberta-combo.md"
+}

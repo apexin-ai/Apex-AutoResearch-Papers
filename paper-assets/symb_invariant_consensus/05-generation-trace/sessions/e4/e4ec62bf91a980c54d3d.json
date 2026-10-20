@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4ec62bf91a980c54d3d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis p7 dedup investigation",
+  "task_key": "worker_analysis_p7-dedup-investigation_20260515T173157",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_p7-dedup-investigation_20260515T173157_result.json",
+    "occurrence": 1,
+    "bytes": 1283,
+    "sha256": "272128ab2cf94aa442b26ec0e1affe295182f96354ee16d93f569a405dfca3f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### P7 (aime2024_II_07) 去重异常：72 raw → 1 unique\n\n**Root Cause: parse 失败率 97.2%，不是 dedup 逻辑 bug。**\n\n| 假说 | 结论 |\n|------|------|\n| solver timeout 误判 UNSAT | **排除** — timeout 返回 `unknown`，代码正确只在 `unsat` 时判等价 |\n| 变量名冲突导致 trivial equivalence | **排除** — 同名同 sort 的 Z3 变量共享是正确行为 |\n| Int/Real 类型不匹配 | **次要问题** — `N%7==0` 用 `Int('N')`，`N>=1000` 用 `Real('N')`，不会 false-merge 但阻止 MAX-SAT 关联 |\n| LLM 输出不可 parse 的 z3_formula | **主因** — 72 个中仅 2 个成功 parse，其余含数组索引/字符串操作/Python 推导式等 |\n\n**数据**：\n- 实际 P7: 72 extracted → 2 parsed (2.8%) → 2 等价 → 1 unique (weight=2)\n- 合成测试: 规范 Z3 公式 parse rate 79%，说明 parser 本身尚可\n- dedup 仅耗时 0.022s，与只处理 2 个约束一致\n\n**修复方向**：\n1. extraction prompt 强化对模运算/数位题的引导\n2. parser 增加 `mod` 关键字 → `%` 转换\n3. 统一 Int/Real sort（检测到模运算时全用 Int）\n\n诊断脚本在服务器 `/root/symb_invariant_consensus/diagnose_p7_dedup.py`，报告已追加到 memory.md。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-p7-dedup-investigation.md"
+}

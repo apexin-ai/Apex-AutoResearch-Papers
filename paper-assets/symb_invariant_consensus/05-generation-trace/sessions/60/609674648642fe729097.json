@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "609674648642fe729097",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code launch script b folio204",
+  "task_key": "worker_code_launch-script-b-folio204_20260518T113833",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_launch-script-b-folio204_20260518T113833_result.json",
+    "occurrence": 1,
+    "bytes": 681,
+    "sha256": "ec94c27b524986bd75f1721dfa3139f8f724f16620c083fc9ffd7fe0129ccaa0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script B 已成功启动并正在运行。\n\n**状态汇总：**\n- **PID**: 25172 (`run_full_mvp.py`)，父进程 25162 (`run_folio_trace_regen.sh`)\n- **vLLM**: Qwen2.5-14B-Instruct 运行中 (PID 23182, port 8000) — 复用已有实例\n- **温度**: `--temperature 0.3` ✓\n- **归一化**: `_LATEX_TEXT_RE` + `normalize_logic_answer` 已在 pipeline.py 中就绪 ✓\n- **进度**: 已开始处理 Problem 1/204 (`folio_0`)，K=12 traces，204 问题全量\n- **日志**: `/root/symb_invariant_consensus/logs/folio_regen_20260518_193948.log`\n- **输出**: `results/folio_204_14b/folio_204_results.json`\n\n预计运行 2-4 小时（204 × ~40s/problem）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-launch-script-b-folio204.md"
+}

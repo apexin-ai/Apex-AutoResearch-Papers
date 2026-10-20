@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4bde3b515097ef2ed95",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ops v3 kill and diversity",
+  "task_key": "worker_ops_v3_kill_and_diversity_20260515T220317",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_v3_kill_and_diversity_20260515T220317_result.json",
+    "occurrence": 1,
+    "bytes": 2146,
+    "sha256": "7fc0b84f988813a6715d5235413e7b724a85f00e2690873d886a373656ec32f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. v3 处理结果\n**已 kill**（PID 129992）。进程运行 6h11m，卡在 22/30，无进展。\n\n### 2. 每题 unique candidates 数量\n\n| 问题 | SC unique | SICA candidates | sica | sc | gold | 正确 |\n|------|-----------|-----------------|------|----|------|------|\n| II_01 | 1 | 1 | 73 | 73 | 73 | OK |\n| II_02 | 0 | 0 | (空) | (空) | 236 | WRONG |\n| II_03 | 1 | 1 | 45 | 45 | 45 | OK |\n| II_04 | 1 | 1 | 33 | 33 | 33 | OK |\n| II_05 | 1 | 1 | 80 | 80 | 80 | OK |\n| II_06 | 1 | 1 | 55 | 55 | 55 | OK |\n| II_07 | 1 | 1 | 699 | 699 | 699 | OK |\n| II_08 | 0 | 0 | (空) | (空) | 127 | WRONG |\n| II_09 | 0 | 0 | (空) | (空) | 902 | WRONG |\n| II_10 | 1 | 1 | 468 | 468 | 468 | OK |\n| II_11 | 0 | 0 | (空) | (空) | 601 | WRONG |\n| II_12 | 1 | 1 | 23 | 23 | 23 | OK |\n| II_13 | 1 | 1 | 321 | 321 | 321 | OK |\n| II_14 | 0 | 0 | (空) | (空) | 211 | WRONG |\n| II_15 | 0 | 0 | (空) | (空) | 315 | WRONG |\n| I_01 | 1 | 1 | 204 | 204 | 204 | OK |\n| I_02 | 1 | 1 | 25 | 25 | 25 | OK |\n| I_03 | 1 | 1 | 809 | 809 | 809 | OK |\n| I_04 | 1 | 1 | 116 | 116 | 116 | OK |\n| I_05 | 1 | 1 | 104 | 104 | 104 | OK |\n| I_06 | 1 | 1 | 294 | 294 | 294 | OK |\n| I_07 | 1 | 1 | 540 | 540 | 540 | OK |\n\n### 3. Divergent 题目\n**0/22** — 没有任何题目存在多个候选答案。所有成功提取答案的题目都是 unanimous vote。\n\n### 4. SICA vs SC 不一致\n**0 个** — SICA 和 SC 在所有 22 题上完全一致。\n\n### 5. 总结\n\n| 指标 | 值 |\n|------|-----|\n| 完成题数 | 22/30 (8题卡住未完成) |\n| SICA 准确率 | 16/22 (72.7%) |\n| SC 准确率 | 16/22 (72.7%) |\n| Vote diversity 比率 | **0%** — 无任何 divergence |\n| SICA/SC 分歧 | 0 |\n| 约束提取总数 | 902, 去重后 315 |\n| MaxSAT 排除数 | 122 |\n| 平均耗时 | 630s/题 |\n\n关键发现：在这组数据上 vote diversity 为零。6 个错题全是 extraction 完全失败（0 constraints, 0 votes），不是因为候选答案冲突导致选错，而是模型根本没能产出有效 trace。SICA 相对 SC 没有提供任何额外价值——二者答案完全相同。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-v3-kill-and-diversity.md"
+}

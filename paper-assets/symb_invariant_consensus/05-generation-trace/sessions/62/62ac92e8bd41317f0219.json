@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62ac92e8bd41317f0219",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix kill vllm resume seed456",
+  "task_key": "worker_fix_kill-vllm-resume-seed456_20260523T175316",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_kill-vllm-resume-seed456_20260523T175316_result.json",
+    "occurrence": 1,
+    "bytes": 684,
+    "sha256": "3b46d6c758930edffccbb243638f1a971cde7cee5b90859d3fc4b190745e82d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 GPUs now free (0 MiB each).\n\n**Summary:**\n\n**Part 1 — Kill idle vLLM:** Killed 3 vLLM servers, all confirmed idle (no experiment clients):\n| GPU | Model | Port | PIDs killed |\n|-----|-------|------|-------------|\n| 0 | Llama-3.1-8B | 8009 | 744822, 745095 |\n| 2 | Qwen2.5-14B | 8007 | 739631, 739913 |\n| 3 | Qwen2.5-14B | 8005 | 776704, 776995 |\n\n**Part 2 — Qwen2.5 seed456:** No resume needed — the experiment already completed 600/600 problems. Results at `/root/symb_invariant_consensus/results/multi_seed/qwen25_pw_seed456/results.json`:\n- SICA accuracy: **72.17%** (433/600)\n- SC accuracy: **73.0%** (438/600)\n- Wall time: 8407.8s (~2.3h)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-vllm-resume-seed456.md"
+}

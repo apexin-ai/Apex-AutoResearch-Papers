@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0ad7a6e0b6e46d450b3",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 075b completion check",
+  "task_key": "worker_analysis_exp-075b-completion-check_20260519T210608",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-075b-completion-check_20260519T210608_result.json",
+    "occurrence": 1,
+    "bytes": 521,
+    "sha256": "7b5b09aaea07e051502727a663dec0dc880d8fc75a7b0dcf33d24000fd17947a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE (negative)。\n\n**exp-075b 结果（Contrastive × Mistral × FOLIO-204, seed=42, normalization 修复后）：**\n\n| 指标 | 值 |\n|------|-----|\n| SC accuracy | 0.5686 (116/204) |\n| Contrastive accuracy | 0.4755 (97/204) |\n| **Delta** | **-0.0931** |\n| n_samples | 204 |\n| Degenerate | 41/204 (20.1%) |\n| Wall time | 193.6 min |\n\nNegative result — normalization 修复后 contrastive 方法仍然比 SC baseline 低 ~9.3 个百分点。无错误，干净完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-075b-completion-check.md"
+}

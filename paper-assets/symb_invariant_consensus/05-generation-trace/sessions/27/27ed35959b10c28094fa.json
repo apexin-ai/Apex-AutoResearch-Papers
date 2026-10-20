@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27ed35959b10c28094fa",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 063 mcnemar",
+  "task_key": "worker_analysis_exp-063-mcnemar_20260519T120101",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-063-mcnemar_20260519T120101_result.json",
+    "occurrence": 1,
+    "bytes": 639,
+    "sha256": "5e7c03a3dcc3f5fd79775c3ebc2561fb23f9f8996fd21ca35d0644656e6b8463"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**2x2 Contingency Table (exp-063, LLaMA-3.1-8B, FOLIO-204)**\n\n|  | SICA correct | SICA wrong |\n|--|--|--|\n| **SC correct** | a = 119 | b = 16 |\n| **SC wrong** | c = 7 | d = 62 |\n\n- **Discordant pairs**: b=16, c=7 (total=23)\n- **SC accuracy**: 66.18% (135/204) ✓\n- **SICA accuracy**: 61.76% (126/204) ✓\n- **Δ**: -4.41pp ✓\n- **McNemar exact test p-value**: **0.0931**\n- **Significant (p<0.05)**: **No**\n\nSC 比 SICA 高 4.41pp，但差异不显著 (p=0.0931)。在 23 个 discordant pairs 中，16 个 SC 对而 SICA 错，7 个反过来，比例偏向 SC 但未达到 0.05 显著性门槛。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-063-mcnemar.md"
+}

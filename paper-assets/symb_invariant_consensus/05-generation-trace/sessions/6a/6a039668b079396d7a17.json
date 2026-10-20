@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a039668b079396d7a17",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis tiebreak baseline",
+  "task_key": "worker_analysis_tiebreak_baseline_20260516T051248",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_tiebreak_baseline_20260516T051248_result.json",
+    "occurrence": 1,
+    "bytes": 1758,
+    "sha256": "360a2a6e417924ec30d47eae20b173ff71d42a22e1fe8c55f4cb942c3c96869a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果如下：\n\n## Tiebreak 分析结果\n\n**60 题中有 5 题出现平局（top-2 候选票数相同）。**\n\n### 策略对比\n\n| Method | Accuracy | 95% CI | Correct/Total |\n|--------|----------|--------|---------------|\n| **SICA (constraint-weighted)** | **80.0%** | — | **4/5** |\n| Random (bootstrap 10k) | 50.0% | [0.0, 100.0] | — |\n| Alphabetical | 60.0% | — | 3/5 |\n| First-seen | 40.0% | — | 2/5 |\n| Majority-of-first-6 | 60.0% | — | 3/5 |\n\nSICA tiebreak 80% 准确率，显著优于随机的 50%。\n\n### SICA Wins（4题）\n\n- **P11**: False vs Unknown 各5票，SICA 分数 145.5 vs 127.0，margin=18.5 → 选 False ✓\n- **P29**: False vs Unknown 各6票，SICA 分数 3.0 vs 33.0，margin=30.0 → 选 Unknown ✓\n- **P42**: Unknown vs False 各6票，SICA 分数 45.0 vs 46.0，margin=1.0 → 选 False ✓\n- **P59**: False vs Unknown 各6票，SICA 分数 61.0 vs 64.0，margin=3.0 → 选 Unknown ✓\n\n### SICA Loss（1题）\n\n- **P03**: True vs Unknown 各6票，SICA 分数 102.0 vs 105.0，delta=3.0 → 选了 Unknown，实际答案 True。分数差距很小（3分），约束加权在此题上轻微偏向了错误答案。\n\n### 关键发现\n\n- SICA 的 4 个 wins 中，P29 的 margin 最大（30.0），约束信号非常明确；P42 margin 最小（1.0），险胜\n- 唯一的 loss（P03）margin 仅 3.0，属于边界情况\n- 近平局（margin=1）只有 P10 一题，但 SICA 和 SC 都答错了（GT=False，但 12 条 trace 中只有 1 条给了 False）\n- SICA 比 SC 多对 2 题（44 vs 42），全部来自 tiebreak 翻转（P29, P42, P59 三题 SC 错→SICA 对，P03 SC 对→SICA 错）\n\n结果已保存至 `results/tiebreak_analysis.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-tiebreak-baseline.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e8972a5d47f14b48833",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 085 cron check",
+  "task_key": "worker_analysis_exp-085-cron-check_20260519T224005",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-085-cron-check_20260519T224005_result.json",
+    "occurrence": 1,
+    "bytes": 394,
+    "sha256": "5c865c4970344cd16bf8bb5a8221c15849fb49d30107b4568e2529976e087050"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**误报。** exp-085 仍在正常运行：\n\n- 4 个进程匹配 `run_contrastive`（PID 295425/295533/295537/295739）\n- managed wrapper 日志显示持续 HTTP 200 请求，最近一条 06:40:17\n- `results.json` 正在实时写入，已有中间结果输出\n- 结果目录无 `run.log`（日志走的 managed wrapper），无任何 error/traceback\n\n不做任何操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-085-cron-check.md"
+}

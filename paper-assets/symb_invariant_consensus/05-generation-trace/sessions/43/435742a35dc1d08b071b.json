@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "435742a35dc1d08b071b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "audit crd experiments",
+  "task_key": "worker_audit_crd-experiments_20260515T091419",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_crd-experiments_20260515T091419_result.json",
+    "occurrence": 1,
+    "bytes": 1810,
+    "sha256": "85acf1e29db215e1c2de34e6a5f6308dc63e561fa32084a83f32f11e86cd86de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已写入 `artifacts/crd_audit_report.md`。以下是汇报摘要：\n\n---\n\n## CRD 实验审计结果\n\n### 代码结构\n`/root/autodl-tmp/crdd/` 下 19 个 Python 文件，实现完整的\"跨表征分歧诊断\"pipeline：\n- **双表征生成**: 同一题目独立生成 FOL/Z3 代码 和 Python constraint 代码\n- **分歧检测**: 比较两路执行结果，rule-based 分类 9 种错误类型\n- **定向修复**: 带诊断信息修复 vs 盲修（对照组）\n- **评估体系**: C1-C5 五个 MVP gate + bootstrap CI + Fisher exact test\n\n### 主实验（FOLIO, N=204, Qwen3-32B-AWQ）\n\n| 指标 | 值 | 阈值 | 结果 |\n|------|-----|------|------|\n| C1 分歧率 | 42.2% [35.3–49.0] | ≥10% | PASS |\n| C2 诊断率 | 87.2% [79.7–93.9] | ≥40% | PASS |\n| C3 错误类型 | 4 种 | ≥2 | PASS |\n| C4 定向优势 | +4.7pp (p=0.63) | >5pp | PASS (但不显著) |\n| C5 定位(committed) | 94.6% | ≥60% | PASS |\n\n**准确率**: FOL=78.9%, Code=59.8%, Oracle=87.8%, Pipeline(修复后)=81.4%\n\n**成本**: 5.76x 单表征，换取 +21.6% 准确率提升\n\n### 已知弱点\n1. C4 定向修复优势 Fisher p=0.63，统计不显著\n2. 排除 GT=Unknown 后 C4 为 -1.9pp（定向反而略差）\n3. GT=True 子集定向修复效果差（-13.6pp）\n\n### 额外实验\n- **Baseline**: 74.0% (50题直接回答)\n- **ProofWriter 试点**: 28/30 条已完成（进行中）\n- **Self-consistency baseline**: 代码已写好，尚未运行完\n\n### 值得保留的文件\n- `results/mvp_v4_full.jsonl` — 204 条主实验原始数据\n- `results/eval_unified_folio_d012.json` — 含 bootstrap CI 的统一评估\n- `results/exp001_deep_analysis.*` — 错误分布和 GT 子集分析\n- `results/exp001_supplement_ef.*` — phi 系数和成本效益分析"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-crd-experiments.md"
+}

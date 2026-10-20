@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd8a12b5e9abcada7dde",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis r11 relative tost",
+  "task_key": "worker_analysis_r11-relative-tost_20260521T114139",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_r11-relative-tost_20260521T114139_result.json",
+    "occurrence": 1,
+    "bytes": 875,
+    "sha256": "5c510d8ff10cc84f8ad6e13124c1f10ea819eac2304a245f19b37f5da2070c2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**Absolute ±2pp → Relative ±5% SC：4/16 条件分类变化，全部从 underpowered 翻转为 equivalent。**\n\n| 指标 | Abs ±2pp | Rel ±5% SC |\n|------|----------|------------|\n| Equivalent | 4 | **8** |\n| Different | 2 | 2 |\n| Underpowered | 10 | **6** |\n\n变化的 4 个条件（都是高 SC 模型，margin 从 2pp 放大到 ~3-4pp）：\n- Qwen2.5-14B FOLIO (ICL): margin 2→3.72pp\n- Qwen2.5-14B FOLIO: margin 2→3.65pp\n- Qwen2.5-7B FOLIO: margin 2→2.97pp\n- Qwen3-14B FOLIO: margin 2→3.48pp\n\n2 个 different（Mistral-7B PW-D5、Qwen2.5-14B PW-D5）不变——它们的 margin 变化不足以改变显著性方向。\n\n核心发现：relative margin 对强模型更宽容（SC 高→margin 大→更容易判定等价），强化了论文\"SICA 与 SC 等价\"的结论。已注册 artifact `r11_relative_tost`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r11-relative-tost.md"
+}

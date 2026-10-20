@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f4ae152ed21ec9bcddab",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "code fix trace batch",
+  "task_key": "worker_code_fix-trace-batch_20260515T122210",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix-trace-batch_20260515T122210.log",
+    "occurrence": 1,
+    "bytes": 690610,
+    "sha256": "5ec241c1a8582e5143b005afce108c45239f99baf9ad0ad213bb1d883ac94b75"
+  },
+  "statistics": {
+    "messages": 252,
+    "user_turns": 0,
+    "tool_calls": 83,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 82,
+      "tool_call": 83,
+      "tool_result": 83,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 252,
+      "chunks": [
+        {
+          "path": "f4ae152ed21ec9bcddab-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f4ae152ed21ec9bcddab-part-0002.json",
+          "message_count": 72
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-trace-batch.md"
+}

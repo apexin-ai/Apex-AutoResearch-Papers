@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "beba17fd5eaf07fc61ea",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment 70b sica deploy",
+  "task_key": "worker_experiment_70b-sica-deploy_20260521T122922",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_70b-sica-deploy_20260521T122922.log",
+    "occurrence": 1,
+    "bytes": 589379,
+    "sha256": "26b71a03751ab49843609a3a21ee3a4095db47b0e01a50519e55efa4d907e44a"
+  },
+  "statistics": {
+    "messages": 318,
+    "user_turns": 0,
+    "tool_calls": 117,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 79,
+      "tool_call": 117,
+      "tool_result": 117,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 318,
+      "chunks": [
+        {
+          "path": "beba17fd5eaf07fc61ea-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "beba17fd5eaf07fc61ea-part-0002.json",
+          "message_count": 138
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-70b-sica-deploy.md"
+}

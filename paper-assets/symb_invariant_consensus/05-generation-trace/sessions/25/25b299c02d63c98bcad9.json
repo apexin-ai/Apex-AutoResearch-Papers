@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25b299c02d63c98bcad9",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "check server status all",
+  "task_key": "worker_check_server-status-all_20260523T201122",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_server-status-all_20260523T201122_result.json",
+    "occurrence": 1,
+    "bytes": 1525,
+    "sha256": "233a7c8ab1ec25d994e2c086cba6e5d4033e3f102b95c8bbde89b9dda8b2e919"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度汇总\n\n### westd-30973 (3× RTX PRO 6000 Blackwell)\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 0 / 98 GB | 0% |\n| 1 | 0 / 98 GB | 0% |\n| 2 | 88 / 98 GB | 97% |\n\n| 实验 | 状态 | 进度 | 备注 |\n|------|------|------|------|\n| LLaMA seed456-v2 | **running** | **597/600** | cuda:2, 即将完成（几分钟内） |\n| LLaMA seed789-v2 | **killed** | 378/600 | exit code 129, 05-23 18:23 被杀，从 326 推进到 378 后停止。vLLM 已关闭，**需要恢复** |\n| Qwen2.5 seed789-v3 | **killed** | 339/600 | 如预期，无需恢复 |\n\n---\n\n### westd-16639 (4× RTX PRO 6000 Blackwell)\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 88 / 98 GB | 100% |\n| 1 | 0 / 98 GB | 0% |\n| 2 | 88 / 98 GB | 100% |\n| 3 | 88 / 98 GB | 100% |\n\n| 实验 | 状态 | 进度 | 备注 |\n|------|------|------|------|\n| Qwen3-14B seed123 | **running** | 71/600 | cuda:0, port 8020 |\n| Qwen3-14B seed456 | **running** | 71/600 | cuda:2, port 8021 |\n| Qwen3-14B seed789 | **running** | 72/600 | cuda:3, port 8022 |\n\nQwen3 三个种子 02:07 启动，2h 完成 ~71 个，速率 ~35/h，预计还需 **~15h**，约今天 **19:00** 完成。\n\n---\n\n**需要关注的问题：**\n1. **LLaMA seed789-v2 被意外杀死**，停在 378/600，cuda:1 和 vLLM 都已空闲。需要重新启动 vLLM + resume 才能继续。\n2. **LLaMA seed456-v2 即将完成**（597/600），完成后 cuda:2 上的 vLLM 可以复用给 seed789-v2。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-server-status-all.md"
+}

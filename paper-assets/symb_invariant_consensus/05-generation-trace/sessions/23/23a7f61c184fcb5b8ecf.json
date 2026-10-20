@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23a7f61c184fcb5b8ecf",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 018 arc v2",
+  "task_key": "worker_analysis_exp-018-arc-v2_20260517T064035",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-018-arc-v2_20260517T064035_result.json",
+    "occurrence": 1,
+    "bytes": 1228,
+    "sha256": "ff043dcb3f0960aacaa2c522943ef22f4a535402a8b983bedeecc37099d2ec3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the analysis:\n\n**Discordant pairs:**\n- `arc_challenge_034`: SICA wrong (B), SC right → **SC wins**\n- `arc_challenge_049`: both wrong (C, gt=D) → concordant\n- `arc_challenge_052`: both wrong (D, gt=B) → concordant\n\n**Multi-candidate rate:** `unique_after_dedup > 1` in 5/60 problems (values: 4, 3, 2, 2, 2) → 8.33%\n\n**Extraction rate:** all 60 problems have `traces_with_constraints=12` out of `total_extracted=12` → 100%\n\n**Contradictions (excluded > 0):** 3 problems\n\n---\n\n```\nMETRICS:\n- n: 60\n- k: 12\n- sica_accuracy: 95.00% (57/60)\n- sc_accuracy: 96.67% (58/60)\n- delta_pp: -1.67pp\n- multi_candidate_rate: 8.33% (5/60)\n- extraction_rate: 100% (60/60)\n- contradiction_detected: 3\n- bootstrap_p: N/A (not computed in output)\n- discordant_sica_wins: 0\n- discordant_sc_wins: 1\n\nCONCLUSION: success\nREASON: SICA ≈ SC (gap -1.67pp, only 1 discordant pair favoring SC), supports capability trap claim that symbolic constraints do not improve over majority voting on ARC-Challenge; very high model accuracy (96.67%) leaves minimal room for differentiation.\nCHECKPOINT_PATH: /root/symb_invariant_consensus/results/exp018_arc/exp018_results.json\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-018-arc-v2.md"
+}

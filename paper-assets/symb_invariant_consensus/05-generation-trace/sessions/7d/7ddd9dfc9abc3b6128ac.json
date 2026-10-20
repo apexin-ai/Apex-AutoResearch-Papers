@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ddd9dfc9abc3b6128ac",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "research oracle design doc",
+  "task_key": "worker_research_oracle-design-doc_20260517T163042",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_oracle-design-doc_20260517T163042_result.json",
+    "occurrence": 1,
+    "bytes": 411,
+    "sha256": "61fb7ae9ee08ea6dd1db3aa92d873ff8b8ea18a18e7cbe527ff098015d6fd6a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "设计文档已写入 `artifacts/oracle_experiment_design.md`。\n\n核心结论：推荐方案 (a) Per-trace FOL Verification + MAX-SAT Aggregation。它是唯一能在控制提取质量的同时保留 SICA 聚合机制的设计，直接回答\"完美提取下 MAX-SAT 是否优于投票\"这一核心问题。方案 (b) 绕过了聚合、方案 (c) 测的是过滤而非聚合，均不适合。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-oracle-design-doc.md"
+}

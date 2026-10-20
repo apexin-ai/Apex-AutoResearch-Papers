@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e20f5c51fc6de909361d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 067 fleiss kappa",
+  "task_key": "worker_analysis_exp-067-fleiss-kappa_20260519T115457",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-067-fleiss-kappa_20260519T115457_result.json",
+    "occurrence": 1,
+    "bytes": 880,
+    "sha256": "ac7cf2dfafda5bc69a0c24417c463e34cb1dbae81b6b14f1a15182bc6a8e55fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| 指标 | 值 |\n|---|---|\n| **Fleiss' κ (raw-answer)** | **0.4124** |\n| **Eff-K** | **2.17** |\n| P_bar (mean agreement) | 0.6049 |\n| P_e (chance agreement) | 0.3277 |\n| Unique answer categories | 117 |\n\n**Per-problem P_i 分布**: mean=0.6049, std=0.2478, min=0.1071, max=1.0000\n\n**类别分布**: 93.8% 的回答集中在 True/False/Unknown 三个标准类别，但有 117 个 unique 类别（Mistral 产生了大量非标准答案如 \"Tom is an Ocellated wild turkey.\"、\"Djokovic lives in a tax haven\" 等）。\n\n**对比之前 seed 的参考值**（κ≈0.71-0.76），这次 raw-answer κ=0.41 显著低很多。主要原因是 raw-answer 不做 T/F/U 归一化，117 个杂乱类别极大地降低了 inter-rater agreement。只有 49/204 个问题的全部 12 个 trace 都产生了有效答案（mean=10.4 raters/problem）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-067-fleiss-kappa.md"
+}

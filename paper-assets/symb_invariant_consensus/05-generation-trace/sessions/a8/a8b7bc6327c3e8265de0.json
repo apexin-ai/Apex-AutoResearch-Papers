@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8b7bc6327c3e8265de0",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra exp 070 cleanup and submit",
+  "task_key": "worker_infra_exp-070-cleanup-and-submit_20260519T115656",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_exp-070-cleanup-and-submit_20260519T115656_result.json",
+    "occurrence": 1,
+    "bytes": 143,
+    "sha256": "c61c36dd39a7af4452a1736df032c60452f891e8af00ebf98b434788d25883a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全量运行已启动成功。tmux session `exp-070-qwen7b-logiqa200` 正在正常执行，vLLM API 请求持续返回 200 OK。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp-070-cleanup-and-submit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2465a1f8cd00f802ca3a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 076 collect results",
+  "task_key": "worker_analysis_exp-076-collect-results_20260519T203237",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-076-collect-results_20260519T203237_result.json",
+    "occurrence": 1,
+    "bytes": 625,
+    "sha256": "6799ac8d634b416ca9936148e56af3c2345c3e3461d4186e6454161a1b1636b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-076 仍在运行**，当前服务器时间 04:33 CST。\n\n进度：**198/204**（97%），最后处理 folio_197（04:32:17）。剩余 6 个样本，按 ~1 min/sample 估算约 **6 分钟**后完成。\n\n当前 results.json 中间结果（n=197）：\n\n| 指标 | 值 |\n|------|-----|\n| SC accuracy | **0.5685** |\n| Debate accuracy | **0.3756** |\n| Delta | **-0.1929** |\n| N samples | 197/204 |\n| Fallback count | 10 |\n| Wall time | ~3h |\n\nDebate 大幅低于 SC（-19.3pp），最终 204 样本结果不会有大变化。需要等完成后再看最终数字，还是现在就可以讨论？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-076-collect-results.md"
+}

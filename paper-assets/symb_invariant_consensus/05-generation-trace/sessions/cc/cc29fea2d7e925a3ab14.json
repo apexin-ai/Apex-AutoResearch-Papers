@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc29fea2d7e925a3ab14",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis discriminative rate full",
+  "task_key": "worker_analysis_discriminative-rate-full_20260518T035020",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_discriminative-rate-full_20260518T035020_result.json",
+    "occurrence": 1,
+    "bytes": 1462,
+    "sha256": "2a84e2ab2edbbd3e80ae45d3457362b3d76994cdd9e3454ef8bac084ace05849"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结果：\n\n**Full dataset: 804 problems (307 multi-candidate)**\n\n| Metric | Overall | ProofWriter | FOLIO |\n|--------|---------|-------------|-------|\n| Source-trace disc (domain, weight) | 38.6% [38.0, 39.1] | 35.8% | 53.1% |\n| Z3 semantic disc | 8.2% [7.6, 8.8] | 8.3% | 7.8% |\n| Problems with disc weight | 284/307 (92.5%) | 217/235 | 67/72 |\n\n**Pilot validation**\n- Pilot k=20 exact weight rate: 37.2% (matches original report)\n- Pilot subset k=12 algebraic: 37.0%\n- Full 804 algebraic: 38.6%\n\nPilot 37.2% → full 38.6%，高度一致。\n\n**关键数字解读**\n- **Source-trace disc (38.6%)**: ~61% 的 constraint 权重是跨答案共享的 domain facts，只有 38.6% 绑定到单一答案\n- **Z3 semantic disc (8.2%)**: 只有 answer assertion constraints（642/7844）含 answer-dependent 变量；92% 的约束对任何候选答案语义等价 → 直接回应 W1 confound\n- FOLIO disc rate 显著高于 ProofWriter (53.1% vs 35.8%)\n\n**方法说明**\n- Full dataset 的 per-trace constraint 文本未持久化（`raw_constraints` 为空），weight-based rate 通过 `D_w = 2*TW - Σ(sica_scores)` 从 scorer 输出代数推导\n- Pilot 43 题作为 ground truth 验证代数方法（差距仅 0.2pp）\n\n结果 JSON 已保存到 `/root/symb_invariant_consensus/results/discriminative_rate_analysis.json`，脚本在 `/root/symb_invariant_consensus/scripts/analyze_discriminative_rate.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-discriminative-rate-full.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fae98467b08432964b54",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "download mistral 7b hf fix",
+  "task_key": "worker_download_mistral-7b-hf-fix_20260516T194106",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_download_mistral-7b-hf-fix_20260516T194106_result.json",
+    "occurrence": 1,
+    "bytes": 840,
+    "sha256": "c8b080fb76ec487750e6125fd90f6a23b567a4846540fd1117ecb3c1aea3e09e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载状态确认：\n\n**状态**：正常下载中\n- **PID**: 236801 (运行中)\n- **当前速度**: ~1 MB/s（2 个并行流各 ~0.5 MB/s）\n- **已下载**: ~325 MB / ~14.5 GB\n- **预计完成**: ~4 小时后（约 UTC 07:50，DDL 前 4 小时）\n- **无认证错误**: Mistral 模型不需要 token，只是速度受限速影响\n\n**已完成**:\n- 截断的 ModelScope 文件已清理\n- vLLM 启动脚本已创建：`/root/symb_invariant_consensus/scripts/start_vllm_mistral_7b.sh`\n\n**5 个文件在下载**（3 个 safetensors + tokenizer.json + 1 其他），hf_transfer 并行下载中。\n\n下载将在后台持续运行，无需干预。如果需要后续检查进度：\n```bash\ndu -sh /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3/.cache/\ntail -5 /tmp/dl_mistral_hf.log\nps -p 236801 -o pid=\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/download-mistral-7b-hf-fix.md"
+}

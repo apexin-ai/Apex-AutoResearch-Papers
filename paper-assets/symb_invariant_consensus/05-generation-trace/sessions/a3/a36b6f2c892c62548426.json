@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a36b6f2c892c62548426",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis wave3 dir g decoupling",
+  "task_key": "worker_analysis_wave3-dir-g-decoupling_20260520T094554",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_wave3-dir-g-decoupling_20260520T094554_result.json",
+    "occurrence": 1,
+    "bytes": 110,
+    "sha256": "9da53aaadf4799225c986da5609b7928fb620770f75c28563a2db3f3139a58e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment running at 90/204 for conservative strategy. I'll check back in ~4 min for progress."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-wave3-dir-g-decoupling.md"
+}

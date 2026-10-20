@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cac335f99fe08c1026ad",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code fix fallback fields",
+  "task_key": "worker_code_fix-fallback-fields_20260515T141820",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix-fallback-fields_20260515T141820_result.json",
+    "occurrence": 1,
+    "bytes": 1087,
+    "sha256": "e8451bcb9074211af5ecc40920b68355d197740e5388706d5372e6815f8ee451"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处修复完成，验证全部通过。\n\n### 修复总结\n\n**pipeline.py** (L139-169) — except 分支的 `result` dict 从只有 `error`+`domain` 扩展为包含所有正常路径的 key：\n- 新增 `answer`(空串)、`scores`({})、`answer_counts`({})、`traces`([])\n- 新增 `constraints_stats`（三个字段全部为 0）\n- 新增 `maxsat_stats`（四个字段：satisfied/excluded/total_weight/solve_time_ms 全部为 0）\n- 有 `cached_traces` 时仍覆盖 answer/answer_counts/traces\n\n**run_full_mvp.py** (L112-114) — `compute_summary` 中三行直接下标访问改为 `.get()` 链式安全访问：\n- `r[\"constraints_stats\"][\"total_extracted\"]` → `r.get(\"constraints_stats\", {}).get(\"total_extracted\", 0)`\n- `r[\"maxsat_stats\"][\"excluded\"]` → 同上\n- `r[\"constraints_stats\"][\"unique_after_dedup\"]` → 同上\n\n### 验证结果\n- 两个文件 import 无语法错误 ✓\n- fallback result 包含所有 required keys ✓\n- compute_summary 对空 dict / 完全缺失字段 / 正常+fallback 混合数据均正确计算 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-fallback-fields.md"
+}

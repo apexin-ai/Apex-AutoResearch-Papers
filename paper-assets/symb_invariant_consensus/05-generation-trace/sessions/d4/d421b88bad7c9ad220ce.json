@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "d421b88bad7c9ad220ce",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment direction a prove",
+  "task_key": "worker_experiment_direction-a-prove_20260520T074330",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_direction-a-prove_20260520T074330.log",
+    "occurrence": 1,
+    "bytes": 1030130,
+    "sha256": "17f9836bab6050c14645837ff50181a7f7af0a68bc48c2643b940f9402e5c7fc"
+  },
+  "statistics": {
+    "messages": 499,
+    "user_turns": 1,
+    "tool_calls": 179,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "record": 4,
+      "assistant": 125,
+      "tool_call": 179,
+      "tool_result": 179,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 344,
+      "chunks": [
+        {
+          "path": "d421b88bad7c9ad220ce-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d421b88bad7c9ad220ce-part-0002.json",
+          "message_count": 164
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 155,
+      "chunks": [
+        {
+          "path": "d421b88bad7c9ad220ce-part-0002.json",
+          "message_count": 16
+        },
+        {
+          "path": "d421b88bad7c9ad220ce-part-0003.json",
+          "message_count": 139
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-direction-a-prove.md"
+}

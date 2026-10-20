@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "7866859b2f2e4f8e5d83",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "fix recompute all kappa",
+  "task_key": "worker_fix_recompute-all-kappa_20260524T065118",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_recompute-all-kappa_20260524T065118.log",
+    "occurrence": 1,
+    "bytes": 1498208,
+    "sha256": "5bc10e8bd9380569c63c33525321d1dde156a32d55cdac4628546c0e53606a8d"
+  },
+  "statistics": {
+    "messages": 511,
+    "user_turns": 2,
+    "tool_calls": 176,
+    "roles": {
+      "log": 1,
+      "system": 66,
+      "record": 2,
+      "assistant": 87,
+      "tool_call": 176,
+      "tool_result": 176,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 218,
+      "chunks": [
+        {
+          "path": "7866859b2f2e4f8e5d83-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7866859b2f2e4f8e5d83-part-0002.json",
+          "message_count": 38
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 236,
+      "chunks": [
+        {
+          "path": "7866859b2f2e4f8e5d83-part-0002.json",
+          "message_count": 142
+        },
+        {
+          "path": "7866859b2f2e4f8e5d83-part-0003.json",
+          "message_count": 94
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 57,
+      "chunks": [
+        {
+          "path": "7866859b2f2e4f8e5d83-part-0003.json",
+          "message_count": 54
+        },
+        {
+          "path": "7866859b2f2e4f8e5d83-part-0004.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-recompute-all-kappa.md"
+}

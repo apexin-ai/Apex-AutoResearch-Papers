@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e139d49beb3eded39a72",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "exp mvp math50 restart",
+  "task_key": "worker_exp_mvp-math50-restart_20260515T115404",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_mvp-math50-restart_20260515T115404_result.json",
+    "occurrence": 1,
+    "bytes": 361,
+    "sha256": "c93569069daf3de470723c8a715659d3afe09980685bcc209dfb8d241c1327ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前状态汇总：**\n\n| 步骤 | 状态 |\n|------|------|\n| Kill 旧进程 (PID 112252) | 已完成 |\n| 清理旧结果 | 已完成 |\n| 数据集验证 | 50题，无 [asy]，Level 均匀 (10×5) |\n| vLLM 状态 | QwQ-32B 正常，max_model_len=16384 |\n| 新进程启动 | PID 113992 运行中 |\n\n3 分钟后检查前几题进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-mvp-math50-restart.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c97b22c21785315ad91",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper formula check",
+  "task_key": "worker_paper_formula-check_20260524T152044",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_formula-check_20260524T152044_result.json",
+    "occurrence": 1,
+    "bytes": 963,
+    "sha256": "08049ec22870e5ecb2682abd42386eab2d569da10d0c9cb002ce9ced29e39ca8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，无错误。修复了 10 处公式格式问题：\n\n| 文件 | 修复 |\n|------|------|\n| analysis.tex | `$\\geq$99\\%` → `${\\geq}99\\%$`（math/text 边界不一致） |\n| analysis.tex | 裸数字 `0.69` → `$0.69$` |\n| experiments.tex | `${\\sim}$12\\%` → `${\\sim}12\\%$` |\n| experiments.tex | 裸数字范围 `1.86--4.84` → `$1.86$--$4.84$` |\n| solutions.tex | `$+$12.67/$+$11.67` → `$+12.67$/$+11.67$`（与 `$+6.67$` 模式一致） |\n| solutions.tex | `${\\sim}$72\\%` → `${\\sim}72\\%$` |\n| solutions.tex | 裸数字范围 `83--90\\%` → `$83$--$90$\\%` |\n| solutions.tex | `${\\sim}$35\\%` → `${\\sim}35\\%$` |\n| limitations_content.tex | `${\\sim}$2\\,pp` → `${\\sim}2$\\,pp` + 裸范围 `1.86--4.84` → `$1.86$--$4.84$` |\n| limitations_content.tex | 裸范围 `3--4` → `$3$--$4$` |\n\nintroduction.tex、method.tex、discussion.tex 无问题。appendix.tex 和 related_work.tex 未触碰。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-formula-check.md"
+}

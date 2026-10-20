@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91df69940b7caa64d82a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag full status check v2",
+  "task_key": "worker_diag_full-status-check-v2_20260519T124946",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_full-status-check-v2_20260519T124946_result.json",
+    "occurrence": 1,
+    "bytes": 1801,
+    "sha256": "fb3d5c25d9c6a553d021119a9d97bae49d0e47e1226ff8cc26f2fed8f612c5cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有实验均在运行中，无已完成实验。汇总如下（当前时间 ≈ 20:52 UTC）：\n\n## westd-25068（4 GPU 全满，96-98% util）\n\n| 实验 | 状态 | 进度 | 速率 | ETA |\n|------|------|------|------|-----|\n| exp-065 Qwen2.5-7B PW-600 | 运行中 | 419/600 | ~1.75/min | ~22:35 |\n| exp-062 Gemma-27B FOLIO-204 | 运行中 | 128/204 | ~0.56/min | ~23:08 |\n| exp-069 Mistral-7B LogiQA-200 | 运行中 | 151/200 | ~2.44/min | ~21:12 |\n| exp-070 Qwen2.5-7B LogiQA-200 | 运行中 | 178/200 | ~3.24/min | ~20:59 |\n\n## westd-16639（4 GPU 全满，96-97% util）\n\n| 实验 | 状态 | 进度 | 速率 | ETA |\n|------|------|------|------|-----|\n| exp-048 LLaMA-8B PW-600 | 运行中 | 484/600 | ~0.77/min | ~23:23 |\n| exp-068 Qwen3-14B LogiQA-200 | 运行中 | 180/200 | ~1.82/min | ~21:03 |\n| exp-069 LLaMA-8B LogiQA-200 | 运行中 | 67/200 | ~1.43/min | ~22:25 |\n| exp-064 DeepSeek-R1-Qwen3-8B FOLIO-204 | 运行中 | 87/204 (resumed) | ~0.37/min | ~02:08 |\n\n## 需要注意的问题\n\n**1. exp-070 双 runner 冲突（westd-25068）**\n同时运行了 `run_logiqa.py`（PID 213761）和 `run_full_mvp.py`（PID 214184），两者都写入同一输出文件 `exp070_results.json`，共享同一 vLLM server（port 8002）。这会导致数据竞争和结果不可靠。建议 kill 其中一个。\n\n**2. exp-064 并未被 kill（westd-16639）**\nexp-064 有活跃的 tmux session（`exp064_vllm` + `exp064_run`，创建于 20:05-20:06），vLLM 在 cuda:0 port 8002 运行 `deepseek-r1-0528-qwen3-8b`，runner 正在以 `--resume` 模式执行。当前进度 87/204。\n\n**3. 无已完成实验**\n所有 8 个实验均在运行中，暂无可提取 metrics 的已完成实验。最先完成的将是 exp-070（~7min）和 exp-068（~11min）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-full-status-check-v2.md"
+}

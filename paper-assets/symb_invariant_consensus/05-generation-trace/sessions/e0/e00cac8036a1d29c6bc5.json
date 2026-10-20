@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e00cac8036a1d29c6bc5",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra read smoke results",
+  "task_key": "worker_infra_read-smoke-results_20260515T113651",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_read-smoke-results_20260515T113651_result.json",
+    "occurrence": 1,
+    "bytes": 1600,
+    "sha256": "347bbda46047d5a474b93eec18b8ecfa0a3dfeeca20f5f328ec2ef6aaf0ff4e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Smoke test 已完成，5 题全部跑完。\n\n## Smoke Test 结果\n\n| # | ID | Level | GT | SICA | SC | 约束提取 | 唯一约束 | 满足 | 排除 | 耗时 |\n|---|---|---|---|---|---|---|---|---|---|---|\n| 1 | algebra/2470 | L1 | 137½ | 137½ ✓ | 137½ ✓ | 27 | 9 | 9 | 0 | 318s |\n| 2 | prealgebra/65 | L2 | 6 | 6 ✓ | 6 ✓ | 26 | 2 | 2 | 0 | 340s |\n| 3 | number_theory/847 | L3 | 4210₅ | 4210 ✓ | 4210 ✓ | 21 | 11 | 11 | 0 | 1693s |\n| 4 | precalculus/1199 | L4 | π | (空) ✗ | (空) ✗ | 35 | 6 | 6 | 0 | 482s |\n| 5 | algebra/2277 | L5 | 0 | 0 ✓ | 0 ✓ | 60 | 6 | 3 | 3 | 671s |\n\n## 汇总\n\n| 指标 | 值 |\n|------|-----|\n| **SICA accuracy** | **80% (4/5)** |\n| **SC accuracy** | **80% (4/5)** |\n| **Extraction rate** | 100% (5/5) |\n| **Problems with contradictions** | 1/5 (algebra/2277, 3 excluded) |\n| **Total time** | 3505s (~58 min) |\n\n## 关键观察\n\n- **SICA 和 SC 结果完全一致**，4 道简单/中等/困难题全部正确，两种方法没有差异。\n- **唯一失败题 precalculus/1199 (L4)**：这是一道需要读图的三角函数题（graph of y = a sin(bx+c)+d），模型无法处理图像信息，SICA 和 SC 均产出空答案，vote dist 为空。\n- **number_theory/847 耗时异常长**（1693s，占总时间 48%）：constraint extraction 花了 1504s，且有大量 JSON parse failed（14 次），说明该题的 trace 格式解析有问题，但最终结果正确。\n- **algebra/2277 (L5)** 是唯一出现矛盾的题（3 satisfied / 3 excluded），SC 投票 7/12，但 SICA 和 SC 都答对了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-read-smoke-results.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fdbc1f3ce73050c5d992",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment dir j3 nli multi verifier",
+  "task_key": "worker_experiment_dir-j3-nli-multi-verifier_20260520T175123",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_dir-j3-nli-multi-verifier_20260520T175123_result.json",
+    "occurrence": 1,
+    "bytes": 1761,
+    "sha256": "8d2a543215b60333fa5d2b95a4b65dfdb8ca5e1d629e5e7e7547d20e500a7968"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果：\n\n### Summary Table\n\n| Verifier | w | Combo Acc | SC Acc | Δ (pp) | McNemar p |\n|---|---|---|---|---|---|\n| DeBERTa-MNLI | 1 | 0.4017 | 0.3933 | +0.83 | 0.2668 |\n| DeBERTa-MNLI | 3 | 0.4283 | 0.3933 | +3.50 | 0.0125* |\n| **DeBERTa-MNLI** | **5** | **0.5000** | **0.3933** | **+10.67** | **<0.0001*** |\n| RoBERTa-MNLI | 1 | 0.3933 | 0.3933 | +0.00 | 1.0000 |\n| RoBERTa-MNLI | 3 | 0.4133 | 0.3933 | +2.00 | 0.1337 |\n| RoBERTa-MNLI | 5 | 0.4583 | 0.3933 | +6.50 | 0.0002* |\n| BART-MNLI | 1 | 0.3933 | 0.3933 | +0.00 | 1.0000 |\n| BART-MNLI | 3 | 0.4233 | 0.3933 | +3.00 | 0.0222* |\n| BART-MNLI | 5 | 0.4650 | 0.3933 | +7.17 | 0.0001* |\n\n### Standalone NLI Accuracy\n\n| Model | Overall | True | False | Unknown |\n|---|---|---|---|---|\n| DeBERTa-MNLI | **55.0%** | 64.0% | 97.5% | 3.5% |\n| BART-MNLI | 46.2% | 62.0% | 74.5% | 2.0% |\n| RoBERTa-MNLI | 37.7% | 23.5% | 89.0% | 0.5% |\n\n### 关键发现\n\n**NLI gain 是 NLI-general 而非 DeBERTa-specific**——三个架构在 w≥3 时都显著提升 SC，但幅度不同：\n- DeBERTa 最强（w5: +10.67pp），因为 standalone accuracy 最高 (55%)\n- BART 次之（w5: +7.17pp），standalone 46.2%\n- RoBERTa 最弱（w5: +6.50pp），standalone 仅 37.7%\n\n所有模型都有严重的 **Unknown 盲区**（3 个模型 recall 分别 3.5%/2.0%/0.5%），这是 NLI 在 ProofWriter OWA 任务上的系统性弱点——NLI 模型倾向于判 entailment/contradiction，几乎不判 neutral。\n\nw=1 时三个模型都无显著效果（NLI 作为 1 票 vs SC 的 ~12 票太弱）；w=3 时 DeBERTa 和 BART 显著；w=5 时三个模型均显著。\n\n结果已写入 `/root/symb_invariant_consensus/results/dir_j3_nli_multi_verifier/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-dir-j3-nli-multi-verifier.md"
+}

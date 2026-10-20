@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5db7cce2eb0ace1eb5d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper writing abstract",
+  "task_key": "worker_paper_writing_abstract_20260517T191146",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_abstract_20260517T191146_result.json",
+    "occurrence": 1,
+    "bytes": 617,
+    "sha256": "b5da1f9bfacffdfccf9abfe3b5cda74767feb763b1382d1319a1e892161704b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\"voting.\" is part of \"majority voting.\" which is a noun phrase (the object of the preposition), not a participial phrase ending. No issues.\n\nAbstract written (~216 words). Key design choices:\n- Opens with the research question (can self-extraction work?) rather than leading with the negative result\n- Oracle-positive framing: proves aggregation is sound, localizes failure to extraction quality\n- Three key numbers only: +8.82pp, p<0.001, 11.5% discriminative rate\n- All abbreviations defined inline (FOL, LLM, SICA, MAX-SAT, SC)\n- No em-dashes, no -ing phrase endings, no blacklisted words"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-abstract-copy-2.md"
+}

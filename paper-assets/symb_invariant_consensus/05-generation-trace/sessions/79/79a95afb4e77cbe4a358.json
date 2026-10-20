@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79a95afb4e77cbe4a358",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper fill qwen3 multi seed",
+  "task_key": "worker_paper_fill-qwen3-multi-seed_20260524T113159",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_fill-qwen3-multi-seed_20260524T113159_result.json",
+    "occurrence": 1,
+    "bytes": 454,
+    "sha256": "f0a0994059eb45e9ceee184dd73c290d6f2d1846bdf5ec77f16b5009c6675ad3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改内容：\n\n1. **TBD 数据已填入** — seed 123/456/789 和 Mean±SD 行已替换为实际数值，格式与其他行一致\n2. **叙述段已更新** — 加入 Qwen3-14B 为唯一正 Δ 条件的表述，以及 capability-dependent gradient（LLaMA → Mistral → Qwen2.5 → Qwen3）\n3. **Caption 已修正** — 从 \"all ProofWriter conditions show consistently negative Δ\" 改为准确描述（三负一正）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fill-qwen3-multi-seed.md"
+}

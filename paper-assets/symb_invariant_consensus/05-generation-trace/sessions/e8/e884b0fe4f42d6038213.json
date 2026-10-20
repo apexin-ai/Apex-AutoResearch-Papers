@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e884b0fe4f42d6038213",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "recovery multiseed 14391",
+  "task_key": "worker_recovery_multiseed-14391_20260522T174557",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_recovery_multiseed-14391_20260522T174557_result.json",
+    "occurrence": 1,
+    "bytes": 1092,
+    "sha256": "4e4de1d9fb8ee4e21476a04e82651c699a4b9dfc23f999ee718ff79329ca90e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "24/204 at 02:16 (~12%)。稳定 ~2.2 问题/min。\n\n**实验状态总结：**\n\n实验在 westd-14391 上稳定运行中。所有自动化已就绪：\n\n1. **FOLIO seed=789**: 24/204 (12%), ~2.2 问题/min, 预计 ~03:40 完成\n2. **PW seeds 42/123/456**: 监控脚本 (PID 11073) 会在 FOLIO 完成后自动链式启动 3 个 PW seed 实验\n3. **vLLM**: 健康运行中 (port 8000, llama-8b, ~400 tokens/s generation)\n\n**预计时间线：**\n- FOLIO seed=789 完成: ~03:40 (UTC+8)\n- PW seed=42 完成: ~08:00\n- PW seed=123 完成: ~12:20\n- PW seed=456 完成: ~16:40\n\n**查看进度命令：**\n- `tail -20 /tmp/monitor_chain.log` — 总体进度\n- `grep -c \"overall\" /tmp/llama8b_folio_seed789.log` — FOLIO 详细进度\n- `tail -20 /tmp/llama8b_pw_all.log` — PW 实验进度（FOLIO 完成后）\n\n**已完成的验证：**\n- Tiebreaking: SC 和 SICA 均使用 D061 alphabetical sorted ✅\n- 数据: FOLIO 204 条, PW 600 条 ✅\n- 模型: 从 westd-16639 中转到 14391 (~20MB/s, 5 分钟) ✅\n- vLLM: 正常运行, Triton JIT 编译完成 ✅"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/recovery-multiseed-14391.md"
+}

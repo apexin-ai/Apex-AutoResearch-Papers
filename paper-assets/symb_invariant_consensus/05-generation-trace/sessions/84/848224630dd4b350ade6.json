@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "848224630dd4b350ade6",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis alpha ablation mf3",
+  "task_key": "worker_analysis_alpha-ablation-mf3_20260522T080634",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_alpha-ablation-mf3_20260522T080634_result.json",
+    "occurrence": 1,
+    "bytes": 1744,
+    "sha256": "d3eadad08d14e37cff66e0da5f9ce9ecf8b29ee2eb167e73ec238413d93891fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Here are the results:\n\n---\n\n**Condition: Mistral-7B × FOLIO (BR=4.97)**\n\n| α   | SICA_acc | Count-only_acc | Agreement% | Δ(SICA-SC) |\n|-----|---------|----------------|------------|------------|\n| 0.1 | 54.90%  | 54.90%         | 100.0%     | +0.98pp    |\n| 0.3 | 54.90%  | 54.90%         | 100.0%     | +0.98pp    |\n| 0.5 | 54.90%  | 54.90%         | 100.0%     | +0.98pp    |\n| 0.7 | 53.92%  | 54.41%         | 99.0%      | +0.00pp    |\n| 0.9 | 54.90%  | 55.39%         | 99.0%      | +0.98pp    |\n\n**Condition: Qwen2.5-14B × FOLIO (seed123)**\n\n| α   | SICA_acc | Count-only_acc | Agreement% | Δ(SICA-SC) |\n|-----|---------|----------------|------------|------------|\n| 0.1 | 75.00%  | 75.00%         | 100.0%     | +0.49pp    |\n| 0.3 | 75.00%  | 75.00%         | 100.0%     | +0.49pp    |\n| 0.5 | 75.00%  | 75.00%         | 100.0%     | +0.49pp    |\n| 0.7 | 74.51%  | 74.51%         | 100.0%     | +0.00pp    |\n| 0.9 | 74.02%  | 74.02%         | 100.0%     | -0.49pp    |\n\n---\n\n**核心发现**：MAX-SAT ≡ count-only 退化对 α **不敏感**。\n\n- Agreement ≥ 99.0% across all α for both conditions (Mistral 最低 99.0%, Qwen 全程 100%)\n- 仅 Mistral 在 α ≥ 0.7 时出现 2 例分歧（folio_83, folio_129, folio_159），占 204 的 ~1%\n- 两个条件一致：Z3 MAX-SAT solver 几乎不影响最终答案，无论 α 如何设置\n\n**注意**：Qwen2.5-14B 使用 seed123 数据（exp036 无 constraint cache，multi_seed 有 per-trace constraints）。SC accuracy 采用 alphabetical tiebreak，与原始实验略有差异（Mistral 53.92% vs 原始 54.41%）。\n\n结果已保存至 `/root/symb_invariant_consensus/results/alpha_ablation/`（JSON + txt）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-ablation-mf3.md"
+}

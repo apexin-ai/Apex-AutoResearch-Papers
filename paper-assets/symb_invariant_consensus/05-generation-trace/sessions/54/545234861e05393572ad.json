@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "545234861e05393572ad",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "analysis case study extraction",
+  "task_key": "worker_analysis_case-study-extraction_20260518T092754",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_case-study-extraction_20260518T092754.log",
+    "occurrence": 1,
+    "bytes": 551646,
+    "sha256": "3d8fae2927a8a52627743e8b02f4966ecea1adb01551a6fc60fc9c1e2f4b8fe6"
+  },
+  "statistics": {
+    "messages": 266,
+    "user_turns": 1,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 34,
+      "assistant": 46,
+      "record": 1,
+      "tool_call": 91,
+      "user": 1,
+      "tool_result": 91,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "545234861e05393572ad-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 260,
+      "chunks": [
+        {
+          "path": "545234861e05393572ad-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "545234861e05393572ad-part-0002.json",
+          "message_count": 86
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-case-study-extraction.md"
+}

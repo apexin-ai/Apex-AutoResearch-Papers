@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2768724a9b7dbfc1cc45",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis deberta status and figure7",
+  "task_key": "worker_analysis_deberta-status-and-figure7_20260522T161516",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_deberta-status-and-figure7_20260522T161516_result.json",
+    "occurrence": 1,
+    "bytes": 1058,
+    "sha256": "b6bfc5c7228696a9ac62d57235eed87ce48d6c79e01e8c3089c842446448a962"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Task 1: DeBERTa 训练状态\n\n- **进程**: 运行中，PID 640389 + 4 个 DataLoader worker\n- **进度**: Step 3,480 / 182,985 (**2%**)，已跑 ~15 分钟\n- **速度**: ~3.8–4.0 it/s\n- **ETA**: 总计 ~12.7 小时\n- **GPU**: 8,295 MiB，利用率 95%\n- **Loss**: 日志中尚无 loss 输出（可能在 eval 间隔才打印）\n- **错误**: 无\n\n**数据量问题确认**：用了 585,552 全量数据。OWA 过滤失败——代码逻辑是 `if \"OWA\" in config`，但 ProofWriter 的 config 名称是 `NatLang`, `depth-0`, `depth-1`, ..., `depth-5`, `depth-3ext`, `depth-3ext-NatLang`，**没有任何 config 包含 \"OWA\" 字符串**，所以过滤器没起作用，回退到了全量数据。\n\n如果要只训练 OWA 子集，需要修改过滤逻辑（ProofWriter OWA 子集不是通过 config 名称区分的，而是通过数据集 split 或其他字段）。\n\n## Task 2: Figure 7 Scatter Plot\n\n`scripts/gen_capability_gap_scatter.py` **不存在**。服务器上也没有任何 scatter/fig7/gap 相关脚本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deberta-status-and-figure7.md"
+}

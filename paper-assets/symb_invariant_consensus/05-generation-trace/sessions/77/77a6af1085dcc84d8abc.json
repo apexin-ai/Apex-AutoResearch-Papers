@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77a6af1085dcc84d8abc",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 081 results",
+  "task_key": "worker_analysis_exp-081-results_20260520T002811",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-081-results_20260520T002811_result.json",
+    "occurrence": 1,
+    "bytes": 2134,
+    "sha256": "5a608f42b96954e5d8ea6cd3ccf0d26791600ed1c3bc11d0facc6dbf0fab8949"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I have all the data needed. Let me compute the per-question distribution from that output.\n\nFrom the grep output, among 83 debate-correct questions: 27 had sc_correct=false (debate improved), 56 had sc_correct=true (both correct).\n\nThis gives the full 2×2 distribution:\n- both_correct: 56, debate_improved: 27, debate_degraded: 114−56=58, both_wrong: 204−56−27−58=63\n\n## exp-081 Results\n- n_samples: 204/204\n- sc_accuracy: 0.5588 (114/204)\n- debate_accuracy: 0.4069 (83/204)\n- delta: -15.20pp\n- wall_time: 177.6min\n- fallbacks: 18/204\n\n### Per-question debate effect\n| Category | Count | % |\n|---|---|---|\n| Both correct | 56 | 27.5% |\n| Debate improved (debate ✓, sc ✗) | 27 | 13.2% |\n| Debate degraded (debate ✗, sc ✓) | 58 | 28.4% |\n| Both wrong | 63 | 30.9% |\n\nNet: 27 improved − 58 degraded = **−31 questions** flipped by debate\n\n## Comparison with exp-076 (seed=42)\n| Metric | seed=42 (exp-076) | seed=123 (exp-081) |\n|---|---|---|\n| sc_accuracy | 0.5686 | 0.5588 |\n| debate_accuracy | 0.3824 | 0.4069 |\n| delta | -18.63pp | -15.20pp |\n\n- Difference in delta: |−15.20 − (−18.63)| = **3.43pp**\n- Cross-seed consistency: **unstable** (>2pp threshold), but both seeds show the same direction — debate consistently degrades accuracy\n\n## Conclusion\n- conclusion: **negative**\n- Rationale: Debate pipeline reduces accuracy by 15.20pp on seed=123, consistent with the 18.63pp degradation on seed=42. While the magnitude differs by 3.43pp (exceeding the ±2pp stability criterion), the qualitative finding is robust: debate-augmented constraint extraction hurts Mistral-7B on FOLIO across both seeds. The degradation pattern is asymmetric — debate flips 58 correct→wrong vs. only 27 wrong→correct — indicating the MaxSAT aggregation over debate-extracted constraints systematically overrides correct SC majority votes.\n\n## Checkpoint/Log Paths\n- checkpoint_path: `/root/symb_invariant_consensus/results/exp081_debate_mistral_folio_seed123/results.json`\n- log_path: `/root/runs/symb_invariant_consensus/exp-081-debate-mistral-folio-seed123.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-081-results.md"
+}

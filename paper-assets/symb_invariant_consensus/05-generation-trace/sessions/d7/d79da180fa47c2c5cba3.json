@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d79da180fa47c2c5cba3",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment r1 distill remaining extract v3",
+  "task_key": "worker_experiment_r1-distill-remaining-extract-v3_20260521T160010",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_r1-distill-remaining-extract-v3_20260521T160010_result.json",
+    "occurrence": 1,
+    "bytes": 247,
+    "sha256": "c800b57d5b44aaa2e69794bcebcb9b082fb9eacd94089fe2bc3dd1d798d4c0bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline at 141/204. Polling again in ~2 min. The scripts are ready:\n- `reextract_bpe_fix.py` with `--api-base http://localhost:8000/v1` for the Mistral cross-extraction\n- `score_r1_distill_crossmodel.py` for computing all metrics"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-r1-distill-remaining-extract-v3.md"
+}

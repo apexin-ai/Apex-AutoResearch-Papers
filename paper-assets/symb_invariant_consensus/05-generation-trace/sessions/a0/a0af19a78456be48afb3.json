@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0af19a78456be48afb3",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment dir j1 nli logiqa",
+  "task_key": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_dir-j1-nli-logiqa_20260520T173020_result.json",
+    "occurrence": 1,
+    "bytes": 1001,
+    "sha256": "81b0fa5389f158a9d45a038baf842fad88393fd4d58bcc4ca073741b1801c1ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果写入 `/root/symb_invariant_consensus/results/dir_j1_nli_logiqa/results.json`。\n\n**结果摘要：**\n\n| 指标 | 值 |\n|------|-----|\n| SC accuracy (baseline) | 0.5300 (106/200) |\n| NLI-only accuracy | 0.2900 (58/200) |\n| **w=1**: combo acc | 0.5400, Δ=+1.00pp, p=0.500, disc=(2,0) |\n| **w=3**: combo acc | 0.5300, Δ=+0.00pp, p=1.000, disc=(3,3) |\n| **w=5**: combo acc | 0.5350, Δ=+0.50pp, p=1.000, disc=(5,4) |\n\n**关键发现：**\n- NLI-only 准确率仅 29%（低于随机 25% 不多），DeBERTa-MNLI verifier 在 LogiQA 上几乎无用——因为 LogiQA 需要逻辑推理而非表面文本蕴含\n- SC+NLI 组合在所有权重下无统计显著提升（最高 Δ=+1pp, p=0.5）\n- NLI escape 现象**不跨数据集泛化**到 LogiQA：DeBERTa-MNLI 在 FOLIO/ProofWriter 上可能有效是因为那些任务的正确答案与前提有直接蕴含关系，而 LogiQA 多选题的正确答案需要多步推理推导，NLI 模型无法捕捉"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-dir-j1-nli-logiqa.md"
+}

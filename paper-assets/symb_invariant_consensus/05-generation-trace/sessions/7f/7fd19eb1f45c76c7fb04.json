@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fd19eb1f45c76c7fb04",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis entropy exp020 llama folio",
+  "task_key": "worker_analysis_entropy-exp020-llama-folio_20260518T211010",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_entropy-exp020-llama-folio_20260518T211010_result.json",
+    "occurrence": 1,
+    "bytes": 1107,
+    "sha256": "477f46134440962c05e83368a21c233094ca3a44a4d148d98db1ad1cc9c00b5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**数据不可用，westd-32608 已退役。**\n\n具体情况：\n\n- exp-020 (LLaMA-3.1-8B FOLIO-204) 在 westd-32608 上运行完成，结果 JSON 路径为 `/root/symb_invariant_consensus/results/exp020_folio_200/exp020_results.json`（~2.6M 字符）\n- westd-32608 已退役，原始数据丢失\n- westd-25068 上无 exp-020 数据副本\n- exp-034（在 westd-25068 上的重跑尝试）因 `python: command not found` 失败\n- 分析 log 中 SSH 工具截断了完整 JSON，仅保留了聚合指标，per-problem vote 数据未幸存\n\n**幸存的聚合指标**（来自 checkpoint）：\n\n| 指标 | 值 |\n|------|------|\n| SC accuracy | 63.2% (129/204) |\n| SICA accuracy | 60.8% (124/204) |\n| Delta | -2.45pp |\n| Discordant pairs | 13 (SICA wins: 4, SC wins: 9) |\n| Multi-candidate rate (C0) | 61.8% |\n| Extraction rate | 94.2% |\n| Contradiction rate | 6.2% |\n| Both wrong | 71/204 (34.8%) |\n\n无法计算 per-problem SC vote entropy 分桶分析，因为需要每个 problem 的 k=12 条 vote 原始数据。如需此分析，需在 westd-25068 上重跑 exp-020。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-entropy-exp020-llama-folio.md"
+}

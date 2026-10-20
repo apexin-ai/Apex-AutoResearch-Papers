@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "877505ef244645f342be",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ssh download qwen7b",
+  "task_key": "worker_ssh_download-qwen7b_20260517T135446",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_download-qwen7b_20260517T135446_result.json",
+    "occurrence": 1,
+    "bytes": 356,
+    "sha256": "032894c1964f8f29c12a9464d024368a65a193811275d817dac850c84e821ba4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载完成，模型文件完整。\n\n**结果汇总：**\n- 模型路径：`/root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/`\n- 总大小：**15GB**\n- 4 个 safetensors 权重文件（3.4G-3.7G each）\n- config.json, generation_config.json, tokenizer.json, tokenizer_config.json, vocab.json, merges.txt 均已就位\n- 未占用 GPU"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-download-qwen7b.md"
+}

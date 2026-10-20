@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4a5c6a3688a76db17be",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ops v3 exit investigation",
+  "task_key": "worker_ops_v3_exit_investigation_20260515T220606",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_v3_exit_investigation_20260515T220606_result.json",
+    "occurrence": 1,
+    "bytes": 2724,
+    "sha256": "caa4f4f0f7e45848a55caab4e41a40d9bb5a9a915b11115135142b92f7225358"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐了。整理报告。\n\n---\n\n## sica_aime30_v3 调查报告\n\n### 1. 退出原因：**静默崩溃（疑似 signal kill）**\n\n- 进程 129992 已 DEAD\n- 日志无任何 error / exception / traceback\n- 日志在 P23 (aime2024_I_08) 的 trace 生成阶段（HTTP 200 OK）突然停止于 `2026-05-16 03:19:27`\n- 无 core dump，dmesg 无法确认 OOM\n- 原始 v2 运行曾因 SIGHUP 被终止（EXIT_CODE=129），resume 运行无退出消息——可能同样被信号杀死（OOM killer 或 Z3 segfault）\n- vLLM 服务（PID 129131）仍然存活，排除推理服务崩溃\n\n### 2. 最终进度：**22/30**\n\n8 题未完成（aime2024_I_08 到 I_15）。\n\n### 3. 最终准确率\n\n| 方法 | 正确 | 准确率 |\n|------|------|--------|\n| SICA | 16/22 | 72.7% |\n| SC   | 16/22 | 72.7% |\n| **Gap** | — | **0.0pp** |\n\n每题详细：\n\n| 题目 | SICA | SC | Gold | 对错 |\n|------|------|----|------|------|\n| II_01 | 73 | 73 | 73 | Y |\n| II_02 | (空) | (空) | 236 | N |\n| II_03 | 45 | 45 | 45 | Y |\n| II_04 | 33 | 33 | 33 | Y |\n| II_05 | 80 | 80 | 80 | Y |\n| II_06 | 55 | 55 | 55 | Y |\n| II_07 | 699 | 699 | 699 | Y |\n| II_08 | (空) | (空) | 127 | N |\n| II_09 | (空) | (空) | 902 | N |\n| II_10 | 468 | 468 | 468 | Y |\n| II_11 | (空) | (空) | 601 | N |\n| II_12 | 23 | 23 | 23 | Y |\n| II_13 | 321 | 321 | 321 | Y |\n| II_14 | (空) | (空) | 211 | N |\n| II_15 | (空) | (空) | 315 | N |\n| I_01 | 204 | 204 | 204 | Y |\n| I_02 | 25 | 25 | 25 | Y |\n| I_03 | 809 | 809 | 809 | Y |\n| I_04 | 116 | 116 | 116 | Y |\n| I_05 | 104 | 104 | 104 | Y |\n| I_06 | 294 | 294 | 294 | Y |\n| I_07 | 540 | 540 | 540 | Y |\n\n**0 题 SICA vs SC 正确性不一致。**\n\n### 4. Vote Diversity\n\n**0/22 题有 >1 unique candidate。Vote diversity = 0.0%。**\n\nSICA multi-candidate 也是 0/22。\n\n关键观察：\n- 6 道错题 (II_02, II_08, II_09, II_11, II_14, II_15) 全部是 SICA 和 SC 都给出空答案\n- 一些题有大量 constraint 被 exclude（II_05: 40/42, II_11: 12/12, II_13: 16/16, II_12: 8/8）\n- 即便有大量 exclusion，最终答案也没变\n\n### 5. 结论\n\n**标记为：negative result（partial）**\n\n- 进度只完成 22/30（73%），因静默崩溃未跑完\n- SICA 在已完成的 22 题上与 SC **完全一致**，零差异\n- Vote diversity 为 0%——constraint filtering 没有改变任何投票结果\n- 约束提取和 MaxSAT 增加了计算开销（每题 ~40s extraction），但没有带来任何准确率提升\n- 需要：(a) 在更有 vote diversity 的 benchmark 上测试，或 (b) 增大 k 让 trace 之间产生更多分歧，或 (c) 检查为什么 12 条 trace 几乎总是给出完全相同的答案"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-v3-exit-investigation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9078019d7705815f6861",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra cuda1 folio guard",
+  "task_key": "worker_infra_cuda1-folio-guard_20260522T075016",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_cuda1-folio-guard_20260522T075016_result.json",
+    "occurrence": 1,
+    "bytes": 787,
+    "sha256": "2d6968411d3a1a799745dddc7b28ddcde3bd9e312742b11d9966c2b5e2068d98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Guard 运行正常。汇报：\n\n| 项目 | 值 |\n|------|-----|\n| Guard PID | **555317** |\n| Guard 日志 | `/tmp/cuda1_folio_guard.log` |\n| Guard 脚本 | `/root/symb_invariant_consensus/scripts/kill_cuda1_after_folio.sh` |\n\n**cuda:1 当前进度：**\n- FOLIO seed=123: 已完成 (204/204)\n- FOLIO seed=456: 进行中 (146/204)，ETA ~43 min（日志时间 15:50）\n- FOLIO seed=789: 未开始\n\n**预计 FOLIO 全部完成时间：**\n- seed=456 剩余 58 题，按 ~44s/题 ≈ 43 min → ~16:33 完成\n- seed=789 全部 204 题，按 ~44s/题 ≈ 150 min → ~19:03 完成\n- **预计 FOLIO 三个 seed 全部完成：约 19:00-19:10 CST**\n\nGuard 会在 seed=789 intermediates 达到 204 个文件时自动 kill PID 510872，阻止其进入 PW 阶段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-cuda1-folio-guard.md"
+}

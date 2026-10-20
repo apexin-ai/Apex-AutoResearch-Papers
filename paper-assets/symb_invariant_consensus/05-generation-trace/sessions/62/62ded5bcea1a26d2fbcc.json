@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62ded5bcea1a26d2fbcc",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis k sensitivity diversity",
+  "task_key": "worker_analysis_k-sensitivity-diversity_20260519T010940",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_k-sensitivity-diversity_20260519T010940_result.json",
+    "occurrence": 1,
+    "bytes": 2128,
+    "sha256": "62b6f1c2fad0dcedfae51570dada393386c7b5365ea19c9cee2092be7ed34c4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results saved. Here's the analysis:\n\n## K vs Diversity Metrics (FOLIO-204, Mistral-7B, T=0.7)\n\n| K | n | SC% | SICA% | delta | Entropy | Uniq Constr | Jaccard | Eff Div | Contr% | Status |\n|---|---|-----|-------|-------|---------|-------------|---------|---------|--------|--------|\n| 4 | 204 | 54.41 | 52.94 | -1.47 | 0.6315 | 19.4 | 0.1169 | 0.2328 | 2.16 | complete |\n| 8 | 204 | 57.35 | 56.37 | -0.98 | 0.7875 | 32.2 | 0.1348 | 0.2460 | 2.70 | complete |\n| 12 | 204 | 54.41 | 59.31 | +4.90 | 0.8150 | 39.3 | N/A | 0.2485 | 3.50 | complete |\n| 16 | 61 | 65.57 | 65.57 | +0.00 | 0.8021 | 53.9 | 0.1560 | 0.2311 | 3.64 | in-progress |\n\n### Constraint Scaling (diminishing unique ratio)\n| K | Total | Unique | Unique% | Per-problem total | Per-problem unique |\n|---|-------|--------|---------|-------------------|-------------------|\n| 4 | 4,813 | 3,565 | 74.1% | 23.6 | 17.5 |\n| 8 | 9,287 | 5,811 | 62.6% | 45.5 | 28.5 |\n| 12 | 14,042 | 8,021 | 57.1% | 68.8 | 39.3 |\n| 16* | 5,585 | 2,856 | 51.1% | 91.6 | 46.8 |\n\n### Why K=12 is the sweet spot\n\nThree converging signals:\n\n1. **SICA delta peaks at K=12 (+4.90pp)**. At K=4/8, SICA actually underperforms SC (negative delta). Only at K=12 does constraint-based consensus overtake majority vote. K=16 partial data shows delta=0.\n\n2. **Diversity saturates around K=12**. Answer entropy rises 0.63→0.79→0.82, then plateaus at 0.80 for K=16. Effective diversity peaks at K=12 (0.249) and drops at K=16 (0.231). The incremental diversity from more traces has diminishing returns.\n\n3. **Noise grows linearly while unique info decays**. Unique constraint ratio drops from 74%→63%→57%→51%. Contradiction rate rises 2.2%→2.7%→3.5%→3.6%. More traces = more redundant and conflicting constraints, diluting the MaxSAT signal.\n\n### Exp-051 progress\n- K=4: done\n- K=8: done\n- K=16: 61/204 (actively running, ~30% done)\n- K=20: not started\n\nNote: K=12 Jaccard is N/A because exp033 didn't store per-trace constraint breakdowns (only aggregate `constraints_stats`). K=16 metrics are preliminary (61 samples may be order-biased)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-k-sensitivity-diversity.md"
+}

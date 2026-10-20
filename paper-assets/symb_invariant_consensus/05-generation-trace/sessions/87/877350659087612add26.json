@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "877350659087612add26",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code logic domain adapt",
+  "task_key": "worker_code_logic_domain_adapt_20260515T220820",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_logic_domain_adapt_20260515T220820_result.json",
+    "occurrence": 1,
+    "bytes": 809,
+    "sha256": "cec698ba0cf3934e5eabfab1e3491e8f04e113347fb5768df276ef72d6ac214f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "代码适配完成，ProofWriter-30 就绪。\n\n**修改总结：**\n\n| 修改 | 文件 | 内容 |\n|------|------|------|\n| 1 | `run_full_mvp.py` | 新增 `folio_path` 参数到 `load_all_problems()`，加载 FOLIO 数据 |\n| 2 | `run_full_mvp.py` | SICA/SC 正确率判定：proofwriter/folio 用 `normalize_logic_answer()` 比较，math 用 `is_equiv()` |\n| 3 | `baselines/self_consistency.py` | 逻辑域分组使用 `_group_logic_answers()`（大小写无关精确匹配） |\n| 4 | `run_full_mvp.py` | 新增 `--folio-data` 和 `--no-folio` 参数 |\n\n**验证结果：**\n- vLLM 正常运行（QwQ-32B, max_model_len=16384）\n- 1 题 ProofWriter K=2 smoke test 通过（SICA=True V, SC=True V）\n- 数学域逻辑未受影响（分支仅在 dataset=proofwriter/folio 时触发）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-logic-domain-adapt.md"
+}

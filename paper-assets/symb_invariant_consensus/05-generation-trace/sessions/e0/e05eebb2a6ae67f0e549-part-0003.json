@@ -1,0 +1,1415 @@
+{
+  "schema_version": "1.0",
+  "session_id": "e05eebb2a6ae67f0e549",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 361,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a00bd0d153439bb4b",
+                "tool_use_id": "toolu_01W8fnTMxjAonKwDHqHurMEA",
+                "description": "Reading memory.md",
+                "usage": {
+                  "total_tokens": 20383,
+                  "tool_uses": 6,
+                  "duration_ms": 11964
+                },
+                "last_tool_name": "Read",
+                "uuid": "bf044335-9437-45ee-af55-594817497f18",
+                "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316"
+              }
+            }
+          ],
+          "id": "event-000361"
+        },
+        {
+          "source_line": 362,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Eb8oFnXqaBQswB84TUEqZz",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/memory.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01W8fnTMxjAonKwDHqHurMEA",
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "c3d7595b-f144-4624-95a6-8efab6384b8f",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019ubdzHBCeTW9BmUFnyetB8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 211,
+                "cache_read_input_tokens": 20142,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 211,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000362"
+        },
+        {
+          "source_line": 363,
+          "timestamp": "2026-05-21T09:36:53.680Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Eb8oFnXqaBQswB84TUEqZz",
+              "type": "tool_result",
+              "content": "1\t# Memory — symb_invariant_consensus\n2\t\n3\t## 项目核心发现\n4\t\n5\t### Regime-Dependent Capability Trap\n6\t- SICA 在 SC 准确率 50-60% 区间（Mistral-7B）可能有效，但不稳定\n7\t- SC > 75%（Qwen2.5-14B, Qwen3-14B）时 SICA 几乎无效或负向\n8\t- Oracle FOL (exp-031) delta=+14.22pp 证明上限存在，但 LLM extraction 质量是瓶颈\n9\t\n10\t### D080 全方向探索（2026-05-20 完成，12方向 8 negative / 3 positive-informational）\n11\t\n12\t**攻击 independence bottleneck 的全部路径均失败：**\n13\t\n14\t| 方向 | 类别 | 结果 | 核心发现 |\n15\t|------|------|------|----------|\n16\t| Wild1 MAX-UNSAT | 聚合规则 | ❌ | 排除约束太少(1.3/题), MIN-UNSAT Δ=-6.5pp |\n17\t| Wild6 κ-aware SC | 投票加权 | ❌ | accuracy与agreement单调递增, SC已最优 |\n18\t| Wild2 ASCII pad | 表面扰动 | ❌ | κ不变, 模型偏差非表面驱动 |\n19\t| Wild3 Perturbation | 语义扰动 | ❌ | κ反而上升, 变量重命名无效 |\n20\t| Wild4 Process-κ | 过程分析 | ❌ | 过程cos=0.69, 与答案不相关(r=-0.06, p=0.36) |\n21\t| DirA PROVE | 代码验证 | ❌ | 代码生成率15.2%, 结论性准确率50%(随机) |\n22\t| DirB DeepConf | 置信过滤 | ❌ | logprob与正确性无关(-0.135 vs -0.141) |\n23\t| DirD CEGIS | 迭代约束 | ❌ | R1 +2.4pp后饱和, 无迭代改善 |\n24\t| DirE Abstention | 选择性弃权 | ⚡ | AUROC=0.673, 80%cov +4.4pp |\n25\t| Cross-model κ | κ降低 | ✅ | κ_cross=0.422<κ_within=0.532, 但无accuracy增益 |\n26\t| Confirmation Bias | 因果分析 | ✅ | bias ratio 4.97x, 83.3%约束指向错误答案 |\n27\t\n28\t**关键教训：**\n29\t- **Logprob 不是质量信号**: Mistral-7B 对正确/错误答案同样过度自信, logprob 分布极度压缩(median=-0.06)\n30\t- **PROVE 需要强模型**: 7B 级模型无法为自然语言逻辑问题生成有效 verify() 函数, 这是能力门槛问题\n31\t- **CEGIS 单轮就饱和**: counterexample 引导的迭代优化在第一轮后即无新信息, 因为模型在 R1 就倾向于生成最容易的修补\n32\t- **Process similarity ≠ answer agreement**: 推理文本 cosine=0.69 高度相似但与答案一致性无统计相关, 说明 traces 在\"表面\"雷同但在推理关键步骤上分歧\n33\t- **Confirmation Bias 是因果解释**: 4.97x bias ratio 量化了为什么 self-extracted constraints 无法纠正多数票——它们本身就是多数票的产物\n34\t\n35\t### Wave 3 补充结果（2026-05-20）\n36\t\n37\t| 方向 | 结果 | 核心发现 |\n38\t|------|------|----------|\n39\t| I (Z3 Filter) | ❌ | filter precision 49.12%，Z3 SAT/UNSAT 无判别力 |\n40\t| J (Bootstrap Gold) | ❌ | R1 +2.45pp 后振荡，迭代无改善 |\n41\t| K (Minority Report) | ❌ | consistency precision 35.53%，少数派更 consistent ≠ 更正确 |\n42\t| F (Blind FOL) | 运行中 | 53/204, acc 39.6%, 75% 偏向 Unknown |\n43\t| G (Decoupling) | 运行中 | 60/204 conservative, 63.3% |\n44\t| H (Adversarial) | 丢失 | 服务器重启后无痕迹 |\n45\t| R (NLI Verifier) | ✅ | combo w=1 +3.43pp, w=3 +4.41pp |\n46\t\n47\t### R (DeBERTa NLI External Verifier) 结果详情\n48\t- 模型: cross-encoder/nli-deberta-v3-base (同 deberta-large-mnli 结果一致)\n49\t- NLI standalone: 49.51% (-4.90pp vs SC)\n50\t- NLI-SICA-combo w=1: 57.84% (+3.43pp)\n51\t- NLI-SICA-combo w=3: 58.82% (+4.41pp)\n52\t- Intersection (NLI+SC agree): 68.48% (92/204 agree)\n53\t- **互补性**: NLI False 71.4% vs SC 38.1% (+33pp); SC Unknown 68.1% vs NLI 18.8% (+49pp)\n54\t- D088: Case A 确认, 论文切 V2 framing (cross-architecture verification)\n55\t\n56\t### 方法线完整矩阵（2026-05-20 全部完成，12/12 cells ALL negative）\n57\t\n58\t| Method | FOLIO s42 | FOLIO s123 | LogiQA s42 | LogiQA s123 | mean Δ |\n59\t|--------|-----------|------------|------------|-------------|--------|\n60\t| ICG | -1.96pp | +1.47pp | -0.5pp | -3.5pp | -1.1pp |\n61\t| Contrastive | -9.31pp | -5.39pp | -4.5pp | -2.5pp | -5.4pp |\n62\t| Debate | -18.63pp | -15.20pp | -23.0pp | -21.5pp | -19.6pp |\n63\t\n64\t**战略结论**：prompt-level 9 种 + method-level 3 种 + D080 8方向全败 = independence bottleneck 不可通过同模型方案解决。方法失败本身是论文贡献。\n65\t\n66\t**方法线严重度排序**：Debate >> Contrastive >> ICG ≈ neutral。Debate 在所有条件下 catastrophic negative（可能 debate 退化推理链而非增强独立性），Contrastive 中度 negative（~1/4 题 degenerate 为 SC），ICG 接近零（模型偏差从问题理解阶段就存在）。\n67\t\n68\t### 分析产出汇总（2026-05-19~20）\n69\t- **McNemar 统计检验**: 6/6 method×dataset pairs, 5/6 n.s., exp-076 FOLIO p=0.013 (Debate significantly worse)\n70\t- **约束消融 (exp-013)**: MaxSAT ≈ count-only ≈ random-weight → SAT solver 无贡献，约束质量太低\n71\t- **Error categorization**: Debate vs Contrastive discordant Jaccard=0.19（不同失败模式）\n72\t- **Constraint quality**: SICA redundancy 42.9%, Contrastive trivially_sat 62.7%\n73\t- **κ 测量**: ICG κ=0.465 (Plan B), Diverse-Prompt κ=0.403, SC κ=0.438 → same-model ceiling κ≈0.40-0.47\n74\t- **Scatter plot (f6)**: κ-accuracy 4点图，展示 Debate 低κ高代价、其余三方法 same-model ceiling\n75\t\n76\t### ICG 3-seed 结论（2026-05-19）\n77\t- ICG (Independent Constraint Generation) 绕过 trace-sourced 约束，直接从 premises 独立提取\n78\t- 3-seed Mistral-7B FOLIO-204: Δ=-1.96/+1.47/-0.98pp, mean=-0.49pp±1.77pp\n79\t- **机制洞察**: bottleneck 不仅是\"约束来自 traces\"——模型推理偏差从问题理解阶段就存在，独立生成的约束继承相同的 model bias\n80\t\n81\t### Fleiss' κ / Effective K 完整数据（2026-05-19）\n82\t\n83\t**公式：Eff-K = K / (1 + (K-1) × κ)**\n84\t\n85\t| Exp | Model | Dataset | κ | Eff-K | SICA Δpp | p |\n86\t|-----|-------|---------|---|-------|----------|---|\n87\t| exp-033 | Mistral-7B | FOLIO-204 s42 | 0.5006 | **1.84** | +4.90 | 0.013 |\n88\t| exp-052 | Mistral-7B | FOLIO-204 s123 | 0.4122 | **2.17** | +3.43 | 0.039 |\n89\t| exp-053 | Mistral-7B | FOLIO-204 s456 | 0.4013 | **2.22** | -0.49 | 1.0 |\n90\t| exp-046 | Mistral-7B | PW-600 | 0.2102 | **3.62** | -2.83 | 0.010 |\n91\t| exp-026/041 | Qwen-14B | FOLIO-204 | 0.7440 | **1.31** | +0.25 | n.s. |\n92\t| exp-038 | Qwen-14B | LogiQA-200 | 0.8210 | **1.20** | -0.50 | n.s. |\n93\t\n94\t### Same-model κ ceiling（2026-05-20）\n95\t- ICG κ=0.465 (Plan B per-constraint-set independent MAX-SAT raters)\n96\t- Diverse-Prompt κ=0.403 (exp-077)\n97\t- SC κ=0.438 (exp-077)\n98\t- Debate κ=0.155 (exp-077, 但 accuracy 38.24% → trade independence for accuracy)\n99\t- **结论**: 除 Debate 外，所有 same-model 方法收敛到 κ≈0.40-0.47，无论如何设计独立性策略\n100\t\n101\t### Seed Replication 结论（2026-05-19）\n102\t- exp-033 (seed=42): delta=+4.90pp, p=0.013 ✅\n103\t- exp-052 (seed=123): delta=+3.43pp, p=0.039 ✅\n104\t- exp-053 (seed=456): delta=-0.49pp, p=1.0 ❌\n105\t- 3 seeds 中 2 positive 1 negative，Pearson r(SC%, delta)=-0.8973\n106\t\n107\t### exp033 Seed 审计（2026-05-20）\n108\t- **exp033 实际 seed=None**（代码 default=None, 日志无 seed 记录）\n109\t- `random.seed()` 仅控制 Python 内部随机（问题排序），**不影响 vLLM 采样**\n110\t- SC=54.41% 与 seed=789 (exp067) 精确匹配（均 111/204），可能巧合\n111\t- seed=42 对应 SC=53.92% (exp074), seed=123→57.35%, seed=456→55.88%\n112\t\n113\t### 计算成本数据（2026-05-20）\n114\t- SICA 总开销 = SC 的 **4.5x**（81.4 min vs ~17.7 min, 204题 K=12）\n115\t- 分阶段: trace generation 5.2s/q (22%) | constraint extraction 17.8s/q (76%) | dedup 0.5s (2%) | MaxSAT 3ms (<0.1%)\n116\t- 方法间: SC 1.0x → ICG 3.2x → SICA 4.5x → Debate 10.5x → Contrastive 10.9x\n117\t\n118\t## Table 1 数据汇总（2026-05-19 整理）\n119\t\n120\t### FOLIO-204\n121\t\n122\t| Model | N | SC% | SICA% | Δpp | p-value | Regime | exp_id | seed |\n123\t|---|---|---|---|---|---|---|---|---|\n124\t| Mistral-7B | 204 | 54.41 | 59.31 | +4.90 | 0.0129 | positive | exp-033 | None(≈42) |\n125\t| Mistral-7B | 204 | 53.90 | 57.40 | +3.43 | 0.0391 | positive | exp-052 | 123 |\n126\t| Mistral-7B | 204 | 56.37 | 55.88 | -0.49 | 1.0000 | cap-trap | exp-053 | 456 |\n127\t| LLaMA-8B | 204 | 66.18 | 61.76 | -4.41 | N/A | negative | exp-063 | 42 |\n128\t| Qwen2.5-7B | 204 | 75.98 | 76.47 | +0.49 | N/A | cap-trap | exp-061 | 42 |\n129\t| Qwen2.5-14B | 204 | 77.45 | 75.49 | -1.96 | 0.1250 | cap-trap | exp-041 | 42 |\n130\t| Qwen3-14B | 204 | 83.82 | 84.31 | +0.49 | N/A | cap-trap | exp-027 | 42 |\n131\t\n132\t### ProofWriter-600\n133\t\n134\t| Model | N | SC% | SICA% | Δpp | p-value | Regime | exp_id | seed |\n135\t|---|---|---|---|---|---|---|---|---|\n136\t| Mistral-7B | 600 | 39.33 | 36.50 | -2.83 | 0.0095 | negative | exp-046 | 42 |\n137\t| Qwen2.5-14B | 600 | 73.50 | 71.50 | -2.00 | N/A | cap-trap | exp-039 | 42 |\n138\t| Qwen3-14B | 600 | 85.00 | 85.67 | +0.67 | N/A | cap-trap | exp-040 | 42 |\n139\t\n140\t### LogiQA-200\n141\t\n142\t| Model | N | SC% | SICA% | Δpp | p-value | Regime | exp_id | seed |\n143\t|---|---|---|---|---|---|---|---|---|\n144\t| Mistral-7B | 200 | 49.50 | 46.50 | -3.00 | TBD | negative | exp-069 | 42 |\n145\t| Qwen2.5-7B | 200 | 68.50 | 71.00 | +2.50 | 0.125 | **Goldilocks** | exp-070 | 42 |\n146\t| Qwen2.5-14B | 200 | 78.50 | 78.00 | -0.50 | 1.0000 | cap-trap | exp-038 | 42 |\n147\t| Qwen3-14B | 200 | 81.00 | 81.00 | 0.00 | N/A | cap-trap | exp-068 | 42 |\n148\t\n149\t## 诊断记录\n150\t\n151\t### exp-070 诊断（2026-05-19）\n152\t- EXIT_CODE=129 (SIGHUP)，但日志显示 200/200 题全部完成\n153\t- Cron 误报失败，实际结果：SICA=71.00%, SC=68.50%, Δ=+2.50pp\n154\t\n155\t### 代码版本分歧（2026-05-19）\n156\t- westd-16639 和 westd-25068 的 SICA 核心代码不同步：5/7 模块 md5 不一致\n157\t- **规则：跨服务器对比实验前必须确认代码版本一致**\n158\t\n159\t## 硬规则\n160\t\n161\t### 部署 dry-run 硬规则（2026-05-19 Director 指令）\n162\t- 所有新实验部署前必须先 dry-run（n=3 或 n=5）\n163\t- dry-run 通过后再启动全量\n164\t\n165\t## 服务器环境\n166\t\n167\t### westd-25068\n168\t- 4× RTX PRO 6000 Blackwell, conda base, /root/miniconda3\n169\t- 项目目录: /root/symb_invariant_consensus\n170\t- vLLM 需要: VLLM_USE_FLASHINFER_SAMPLER=0, --enforce-eager\n171\t\n172\t### westd-16639\n173\t- 4× RTX PRO 6000 Blackwell, 同上环境配置\n174\t\n175\t## 已验证的模型版本\n176\t- Mistral-7B-Instruct-v0.3: /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\n177\t- Qwen2.5-14B-Instruct: /root/autodl-tmp/models/Qwen2.5-14B-Instruct\n178\t- Meta-Llama-3.1-8B-Instruct: /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct\n179\t\n180\t## 经验教训\n181\t\n182\t### 部署\n183\t- vLLM 启动和实验必须分两步\n184\t- Registry 状态机不允许回退，DEPLOYED 是死胡同\n185\t- 部署前确认 GPU/端口无冲突\n186\t- managed wrapper SIGHUP trap 会误报失败，以日志 DONE 标记为准\n187\t\n188\t### 实验设计\n189\t- McNemar exact test 在 discordant pairs < 20 时必须用 binomial test\n190\t- Pipeline determinism: list(set(...))→sorted(set(...)), Z3 seed fixed\n191\t- K=12 最优，T=0.7 标准配置\n192\t\n193\t### 数据质量\n194\t- Diagnostic worker 可能幻觉 metrics（exp-070 教训），必须交叉验证\n195\t- 跨服务器实验前用 md5sum 校验代码版本\n196\t- Bootstrap κ 会因 overlap 虚高，用 Plan B 独立 raters\n197\t- 派 Worker 做数值计算必须在指令中写出公式"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01W8fnTMxjAonKwDHqHurMEA",
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "819e0697-7c7c-4f67-82b6-7084697ef1c7"
+          },
+          "id": "event-000363"
+        },
+        {
+          "source_line": 364,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a00bd0d153439bb4b",
+                "tool_use_id": "toolu_01W8fnTMxjAonKwDHqHurMEA",
+                "description": "Reading paper_framing.md",
+                "usage": {
+                  "total_tokens": 20387,
+                  "tool_uses": 7,
+                  "duration_ms": 12257
+                },
+                "last_tool_name": "Read",
+                "uuid": "a54a07cd-4658-4e93-bb70-4c472545b702",
+                "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316"
+              }
+            }
+          ],
+          "id": "event-000364"
+        },
+        {
+          "source_line": 365,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015uSgbAoAL77QFKq8arV2PG",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/paper_framing.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01W8fnTMxjAonKwDHqHurMEA",
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "cbe3c2cf-6765-4921-a1e4-17e866bb4bfe",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019ubdzHBCeTW9BmUFnyetB8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 211,
+                "cache_read_input_tokens": 20142,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 211,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000365"
+        },
+        {
+          "source_line": 366,
+          "timestamp": "2026-05-21T09:36:54.345Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015uSgbAoAL77QFKq8arV2PG",
+              "type": "tool_result",
+              "content": "1\t# Paper Framing — symb_invariant_consensus\n2\t\n3\t## Target Venue\n4\t- Primary: EMNLP 2026 Main (ARR May 25)\n5\t- Deadline: May 25, 2026 (ARR submission)\n6\t\n7\t## D063 Direction: Entropy Decomposition + Quality Ladder — 目标 4.0\n8\t\n9\t**从 D060 \"Pure Analysis / negative result\" 升级为 \"Regime-Dependent Mechanism Analysis with Entropy Decomposition\"。** 用户决定冲 4.0。\n10\t\n11\t### Entropy Breakdown 验证结果 (2026-05-19 completed)\n12\t\n13\t**跨模型 entropy mechanism 一致性: 不成立。Selective SICA 非 universal 方案。**\n14\t\n15\t但 entropy decomposition 揭示了更有价值的 regime mechanism：\n16\t\n17\t| Experiment | Model | Dataset | High-E n | High-E Δpp | Low-E n | Low-E Δpp |\n18\t|-----------|-------|---------|----------|-----------|---------|----------|\n19\t| exp-033 s42 | Mistral-7B | FOLIO | 78 | **+12.8** | 126 | 0.0 |\n20\t| exp-052 s123 | Mistral-7B | FOLIO | 77 | **+9.1** | 127 | 0.0 |\n21\t| exp-053 s456 | Mistral-7B | FOLIO | 75 | -1.3 | 129 | 0.0 |\n22\t| exp-046 | Mistral-7B | PW-600 | 267 | -4.9 | 333 | -1.2 |\n23\t| exp-036 | Qwen2.5-14B | FOLIO | 37 | **-8.2** | 167 | -0.6 |\n24\t| exp-038 | Qwen2.5-14B | LogiQA | 23 | -4.3 | 177 | 0.0 |\n25\t| exp-035 | Qwen2.5-7B | FOLIO | 47 | -2.1 | 157 | 0.0 |\n26\t| exp-048 | LLaMA-8B | PW-600 | 76 | -3.9 | 104 | -1.9 |\n27\t\n28\t(注: SC/Δ 使用 pre-tiebreaking 值，entropy grouping 不受 tiebreaking 影响。D064 修正后 deltas 会略有变化但 pattern 不变。)\n29\t\n30\t**三个核心发现：**\n31\t1. **Low-entropy: SICA≈SC 跨模型一致** (8/8 experiments Δ≈0) → traces 一致时 constraints 无新信息\n32\t2. **High-entropy 方向因 regime 而异**：Goldilocks +12.8pp vs Type A -8.2pp vs Type C -4.9pp\n33\t3. **Mechanism 解释**：\n34\t   - Goldilocks (SC~55%, κ~0.46): 真实不确定性 → constraints 打破平局正确方向\n35\t   - Type A (SC>75%, κ>0.65): 偶发错误 → constraints 放大 confirmation bias\n36\t   - Type C (SC<40%, κ~0.20): 系统性错误 → constraints 是噪声\n37\t\n38\t### 调整后核心转变\n39\t\n40\t论文以 \"entropy decomposition 揭示 regime-dependent mechanism\" 为核心分析贡献（不是 universal diagnostic）：\n41\t- **Entropy decomposition 作为分析工具**：分离 SICA 作用点（high-entropy）vs 不作用点（low-entropy）\n42\t- **Regime mechanism 量化**：同样是 high-entropy 问题，direction depends on SC+κ → 完美支持 dual bottleneck\n43\t- **Abandoned**: Selective SICA 作为 universal practical contribution（只在 Goldilocks zone 有效）\n44\t- **Upgraded**: 核心图 = high-entropy Δ vs SC scatter（8 points, 3 regimes 清晰分离）\n45\t- **Quality Ladder** (D067: L1 NULL CONFIRMED)\n46\t  - L0: Self-extraction (Mistral→Mistral): 59.31%, Δ=+3.43pp ns\n47\t  - L1a: Qwen3-14B→Mistral traces: 60.29%, Δ=+4.41pp (+0.98pp vs self = 2题/204 = noise)\n48\t  - L1b: Qwen2.5-14B→Mistral traces: 58.33%, Δ=+2.45pp (-0.98pp vs self = 2题/204 = noise)\n49\t  - L3: Oracle 100% disc, Δ=+14.22pp p<0.001\n50\t  - **结论**: L1 ≈ L0 << L3。Bottleneck 在 traces（同源输入），不在 extractor（换模型无效）\n51\t  - **Paper contribution**: \"bottleneck is fundamental to extraction, not just model capability\" — 强化 structural limitation 论点\n52\t- **CJT/Eff-K 保留**：解释 why high-entropy behavior differs across regimes\n53\t\n54\tD060 要素全部保留：\n55\t- Condorcet independence 框架 → 理论基础\n56\t- 9 种修复全部失败 → structural limitation 证据\n57\t- 2/3 seeds positive trend but **0/3 significant** (D066: p=0.092/0.070/1.0) → Goldilocks zone 作为 directional trend, not confirmed effect\n58\t- K/T sensitivity non-monotonic → SC confound insight\n59\t- 用户指示: 投 May 25 不变，冲 4.0\n60\t\n61\t## Core Claims (5 条) — D060 纯 Analysis Framing\n62\t\n63\t### Analysis Claims (已验证)\n64\t\n65\t1. **Independence Bottleneck**: Self-consistency 隐含 Condorcet Jury Theorem 的独立性假设，但同模型采样的 traces 高度相关。Worker 验证的 κ 值：\n66\t   - Qwen-14B FOLIO: κ=0.744, Eff-K=1.31 (SC=75.49%, Δ=+0.25pp n.s.)\n67\t   - Qwen-14B LogiQA: κ=0.821, Eff-K=1.20 (SC=78.5%, Δ=+0.50pp n.s.)\n68\t   - Mistral-7B FOLIO s42 (exp-033): κ=0.501, Eff-K=1.84 (SC=55.88%, Δ=+3.43pp **p=0.092 ns**) ← primary seed [D064+D066]\n69\t   - Mistral-7B FOLIO s123: κ=0.491, Eff-K=1.88 (SC=54.41%, Δ=+2.94pp **p=0.070 ns**)\n70\t   - Mistral-7B FOLIO s456: κ=0.507, Eff-K=1.82 (SC=55.88%, Δ=0.00pp p=1.0 ns)\n71\t   - Mistral-7B PW-600 (exp-046): κ=0.210, Eff-K=3.63 (Δ=-2.83pp p=0.010, SC=39%)\n72\t   规律：跨模型对比清晰（Qwen Eff-K≈1.2-1.3 → 0 gain; Mistral Eff-K≈1.85-2.22 → variable gain）。但 Mistral seeds 内部，Eff-K 与 delta 非单调（exp-033 Eff-K 最低 1.85 却 delta 最高 +3.43pp）→ Eff-K 是跨模型必要条件，seed 内 variance 仍主导。exp-046 Eff-K 最高(3.63) 但 SC 太低(39%) 导致 delta 为负 → 需同时满足 sufficient Eff-K AND sufficient SC。\n73\t\n74\t2. **Oracle Gap Localizes Extraction Bottleneck**: Gold FOL + MAX-SAT = +14.22pp (p=2.0e-7)，自提取仅 +3.43pp (best seed, D064 corrected) = 24% utilization。聚合机制本身有效，瓶颈在自提取质量。Two-layer analysis:\n75\t   - **Constraint taxonomy**: 43% trivially_satisfied（被所有候选答案满足的约束，不排除任何答案）\n76\t   - **Discriminative filtering**: 仅 ~8% 约束在 MAX-SAT scoring 中完全 non-discriminative（移除后 0 gains）\n77\t   - **关键区分**: 43% 和 8% 度量不同。trivially_satisfied 约束在 MAX-SAT 中仍可有不同满足程度（partial vs full），所以不全是 non-discriminative。但即使 constraints 是 discriminative 的，它们的\"区分方向\"与模型自身偏差一致（confirmation bias）。both_wrong 组 score_range=29.4。九种修复全部失败。\n78\t\n79\t3. **Regime-Dependent Capability Trap**: SICA 有效性取决于提取模型的基线准确率，存在双边界：\n80\t   - Type A (SC ≥ ~60%): 确认偏差，constraints 镜像模型自身答案。**exp-034 vs exp-039 同配置 delta 翻转**: exp-034 Δ=+0.51pp (n=589), exp-039 Δ=-2.00pp (n=600)。SC baseline 方差 (3.38pp) >> SICA 效应 → Type A delta 是 trace sampling noise。SICA 比 SC 更稳定 (跨运行方差 0.87pp vs 3.38pp，仅 2 点，需更多 seed 验证)\n81\t   - Type C (SC ≤ ~40%): traces 主要错误，constraints 是噪声 (exp-046: Δ=-2.83pp, p=0.0095)\n82\t   - Goldilocks zone (~50-56% SC): 部分独立性 + 部分正确性 (exp-033: Δ=+3.43pp, p=0.092 ns; mean of 3 seeds: +2.12pp) ⚠️ D076 Reviewer: 0/3 seeds significant, 不应作为核心叙事支柱。作为 directional observation 保留，不做强 claim。\n83\t   - Type B: 领域不可形式化 (LogiQA: contradiction rate 0.8%)\n84\t\n85\t4. **C0+SC Two-Dimensional Diagnostic**: C0 (multi-candidate rate) + SC accuracy 形成零成本部署诊断。C0<5% → degenerate; high C0 + high SC → trap; high C0 + low SC → potential gains。\n86\t\n87\t### Remediation Evidence (D060: 全部失败 — 强化 analysis narrative)\n88\t\n89\t5. **Nine Remediation Attempts All Failed**: 原 6 种 + 3 种靶向修复全部无效，证明 independence bottleneck 是结构性的：\n90\t   - D059 三路 method improvement 全部失败：\n91\t     - Discriminative Filtering: 119/204 处理后 0 gains 1 loss，~92% 约束本身就是 discriminative，过滤是 near-no-op\n92\t     - T=1.0 (exp-054): delta 从 +3.43pp 崩塌到 0.00pp（D064 corrected），温度敏感性极端\n93\t     - Multi-Temp (exp-055): ✅ 完成，delta=+0.00pp (b=5,c=5 完美对称), SC=57.84%. 混合 T=0.3/0.7/1.2 各 4 traces 未改善 SICA。附带发现：multi-temp 提升 SC baseline (+3.4pp vs 单温度 54.41%)，说明混合温度对 majority voting 有帮助，但 SICA constraint extraction 无法利用这种 diversity → bottleneck 在 extraction 而非 trace diversity\n94\t   - 原 6 种：contrastive prompting, cross-model extraction, generational scaling, solver-guided refinement, consistency filtering, cross-trace UNSAT\n95\t   - 9 种修复涵盖 prompting / architecture / capability / verification / diversity / filtering 全维度，全部失败 → trap is fundamental\n96\t\n97\t## D070/D074 Update: Method-Level Interventions Also Fail — \"Fundamental Limitation\" Confirmed\n98\t\n99\t### Three Method Lines × Two Datasets = All Negative (D074)\n100\t\n101\tD070 从纯 analysis 升级为 analysis + method paper，但三条方法线全面失败（D074 确认），反而强化了原始 analysis 结论。\n102\t\n103\t**方法×数据集完整结果**：\n104\t| Method | FOLIO-204 | LogiQA-200 | Failure Mode |\n105\t|--------|-----------|------------|--------------|\n106\t| ICG (Independent Constraint Gen.) | Δ=-2.0pp (3-seed: -2.0/+1.5/-1.0, mean=-0.5pp±1.8pp, 噪声) | Δ=-0.5pp | Neutral — 独立约束质量≈trace-sourced约束 |\n107\t| Contrastive (Pro/Con Scoring) | Δ≈-16pp | Δ≈-7pp (interim) | Harmful — 26% degenerate scoring, pro/con 不平衡 |\n108\t| Debate (Proposer/Critic) | Δ=-18.6pp | Δ≈-28pp (interim) | Catastrophic — 7B 模型角色扮演严重退化推理 |\n109\t\n110\t**三种失败模式的分析价值**（论文 \"Why Methods Fail\" section）：\n111\t1. **ICG (neutral)**: 独立于 traces 生成的约束不比 trace-sourced 约束更好。说明 bottleneck 不仅是 \"约束来自 traces\"，而是模型的推理偏差从问题理解阶段就存在——独立约束和 trace-sourced 约束继承相同的 model bias。\n112\t2. **Contrastive (harmful)**: 强制 pro/con 评估引入 degenerate scoring（26% 问题无法有效区分）。7B 模型无法可靠生成平衡的对立约束——pro 约束系统性多于 con（94 pro vs 65 con），confirmation bias 从约束提取转移到了约束生成。\n113\t3. **Debate (catastrophic)**: Proposer/Critic/Defense 多角色链在 7B 模型上导致答案质量严重退化。辩论不仅未增加多样性，反而引入了角色扮演的额外认知负担。同模型辩论 = 同源性 + 角色扮演退化，双重损失。\n114\t\n115\t**Scale limitation caveat**: 所有方法测试在 7B 模型上。7B 模型生成 Z3 格式 FOL 约束的能力不足（ICG 多题 \"0/N constraints parsed\"）。14B+ 模型可能有不同结果——这既是 limitation 也是 future work 入口。\n116\t\n117\t### κ Generalization — Independence-Accuracy Trade-off (D075, CAPSTONE FINDING)\n118\t\n119\texp-077 测量三种聚合方式在 Mistral-7B FOLIO-204 上的 κ 和 Eff-K：\n120\t| 聚合方式 | Fleiss' κ | Eff-K | 名义 K |\n121\t|----------|----------|-------|--------|\n122\t| Self-Consistency | 0.4384 | 2.02 | 10 |\n123\t| Diverse-Prompt | 0.4030 | 2.21 | 12 |\n124\t| LLM-Debate | 0.1549 | 4.44 | 12 |\n125\t\n126\t结合 exp-076 Debate Δ=-18.6pp 的准确率数据，揭示**同模型框架下的 fundamental independence-accuracy trade-off**：\n127\t- **SC/Diverse-Prompt**: κ~0.4，traces 高度相关但准确率正常。换 prompt 策略不改善独立性（Δκ=0.04）。\n128\t- **Debate**: κ=0.15，成功打破 trace 相关性（Eff-K 从 2.0 跃升到 4.4），但准确率崩溃 -18.6pp。低 κ 不代表\"更独立的推理\"——是 disagreement amplification（系统性噪声）。\n129\t- **Trade-off 本质**: 同一模型的推理能力是固定的。要么输出一致（高 κ, 正确但不独立），要么输出分歧（低 κ, 独立但不正确）。Condorcet Jury Theorem 要求 both independent AND accurate，同模型框架下无法同时满足。\n130\t\n131\t**论文叙事升级**: 从 \"methods fail\" → \"independence-accuracy trade-off is fundamental to same-model reasoning\"。突破瓶颈需要跨模型方案（不同模型天然更独立），Oracle 实验（gold FOL 来自外部知识源）已间接验证了这一点。\n132\t\n133\t### New Claim 6 (D070/D074)\n134\t\n135\t6. **Method-Level Interventions Cannot Break the Bottleneck**: 三种针对 independence bottleneck 不同环节的方法（ICG→循环依赖, Contrastive→confirmation bias, Debate→trace 同质性）在 2 个数据集上全部失败。加上之前 9 种 prompt-level 修复，共 12 种修复尝试全败。这证明 independence bottleneck 不是单一环节的问题，而是 same-model self-extraction 的根本性限制。\n136\t\n137\t### New Claim 7: Symbolic Confirmation Bias (D082 — CORE FINDING)\n138\t\n139\t7. **Symbolic Confirmation Bias**: LLM 从 CoT traces 提取的 FOL 约束系统性确认 trace 自身（可能错误的）答案，而非独立验证 ground truth。\n140\t   - SICA 判对题：gold constraint 78.1%，bias ratio = 0.28\n141\t   - SICA 判错题：错误 constraint 83.3%，bias ratio = **4.97×**\n142\t   - 97.6% SICA 错误与 SC 错误完全重合\n143\t   - SICA 翻盘的 12 例来自 minority trace diversity（43% gold support），不是 symbolic reasoning\n144\t   - **因果链**：模型推理→答案→从含答案 trace 提取 FOL→约束确认答案→聚合≈SC\n145\t   - **CEGIS 验证**：迭代精炼 R1 +3.43pp < 原始 SICA +4.9pp → 约束一致性不是瓶颈，偏向性才是\n146\t   - **Quality Ladder 验证**：L1 ≈ L0 << L3 → bottleneck 在 traces（同源输入），不在 extractor\n147\t\n148\t### New Claim 8: Process-κ (D082 — NEW METRIC)\n149\t\n150\t8. **Process-Level Independence (Process-κ)**: answer-κ 低估真实独立性瓶颈。CoT 推理过程相似性远高于答案一致性。\n151\t   - Mistral-7B FOLIO-204：CoT cosine similarity **0.69** >> answer-κ **0.41**\n152\t   - 两者几乎无相关性：r = -0.06, p = 0.36\n153\t   - 仅 **9.3%** trace 对是\"殊途同归\"（同答案不同路径）\n154\t   - answer-κ 是 true independence bottleneck 的 lower bound\n155\t   - 适用于所有 LLM trace aggregation 方法，不限于 SICA\n156\t\n157\t## D082/D085: Comprehensive Method Exhaustion — 25+ ALL Fail\n158\t\n159\tD080 启动全方向并行探索（Wave 1-3），在 D074 的 12 种修复基础上又测试 13+ 新干预：\n160\t\n161\t| 方法 | 类型 | 结果 | 关键数据 |\n162\t|------|------|------|----------|\n163\t| PROVE 代码验证 | paradigm shift | ❌ | Code gen 15.2%, accuracy=random |\n164\t| CEGIS 迭代精炼 | multi-round | ❌ | R1 +3.43pp < SICA +4.9pp |\n165\t| DeepConf 置信度 | filtering | ❌ | logprob 与正确性零相关 |\n166\t| Cross-model SICA | cross-model | ❌ | Δ=-0.49pp despite lower κ |\n167\t| Problem Perturbation | input diversity | ❌ | κ 升至 0.696 (反效果) |\n168\t| MIN-UNSAT | solver objective | ❌ | 49.5% < SC 54.4% |\n169\t| κ-aware SC | voting rule | ❌ | 11/11 Δ=0 |\n170\t| Z3 Trace Filter | trace filtering | ❌ | negative |\n171\t| Bootstrapped Gold | iterative | ❌ | negative |\n172\t| Selective Abstention | diagnostic | ⚡ | AUROC=0.673, +4.4pp@80%cov |\n173\t\n174\t**D085 总结**: 9 prompt-level + 3 method-level + 13 新方向 = **25+ 干预全部 negative**。Independence bottleneck 在 same-model self-extraction 框架下无解，所有维度（diversity/architecture/capability/verification/filtering/voting/solver/paradigm）已穷尽。\n175\t\n176\t## D090: Cross-Architecture External Verification — POSITIVE BREAKTHROUGH\n177\t\n178\t### New Claim 9: Cross-Architecture NLI Verification Breaks the Bottleneck\n179\t\n180\t9. **Cross-Architecture External Verification**: A lightweight encoder-only NLI model (microsoft/deberta-large-mnli) provides structurally complementary signal to decoder-only LLMs.\n181\t   - DeBERTa standalone: 49.51% (101/204) — not competitive alone, expected\n182\t   - **NLI+SC combo w=1 (NLI as 13th voter): 57.84% (118/204), +3.43pp vs SC** ← PRIMARY (has McNemar)\n183\t   - NLI+SC combo w=3: 58.82% (120/204), +4.41pp vs SC — McNemar p=0.078 NOT significant (b=6, c=15). Higher weight amplifies NLI weakness on Unknown.\n184\t   - NLI+SC combo w=5: 60.29% (+5.88pp) — Reviewer: w=5 overfitting risk, NOT main result\n185\t   - NLI∩SC agreement subset: 68.48% accuracy on 45% coverage — selective verification evidence\n186\t   - NLI-as-verifier (trust NLI on disagreement): 49.51% — FAILED (NLI only 34% correct when disagreeing)\n187\t   - SC baseline: 54.41% (111/204, primary Mistral-7B FOLIO eval, seed=None)\n188\t   - **McNemar (w=1 ONLY)**: p=0.039, significant at α=0.05. 9 discordant pairs (b=1, c=8). 95% CI [0.59pp, 6.28pp]. ⚠️ w=3 and w=5 McNemar NOT YET COMPUTED — do NOT attribute this p-value to other weights\n189\t   - **Model**: microsoft/deberta-large-mnli, **406M** parameters (not 350M, not 44M)\n190\t   - **Per-label complementarity (key insight)**:\n191\t     - False (contradiction): NLI **71.43%** vs SC 38.10% → NLI dominates (+33pp)\n192\t     - Unknown: NLI 18.84% vs SC **68.12%** → SC dominates (+49pp)\n193\t     - True: NLI 59.72% vs SC 55.56% → NLI slightly better\n194\t   - **Why it works**: DeBERTa is encoder-only + NLI fine-tuned → strong at contradiction detection (its training task). LLM is strong at uncertainty reasoning. Structurally complementary error profiles.\n195\t   - **Oracle connection**: Oracle (+14.22pp) proved aggregation works with quality constraints; DeBERTa provides partial external signal → partial oracle effect\n196\t   - **Narrative**: \"25+ same-model interventions fail, but even a simple cross-architecture voter provides modest positive signal — proof-of-concept for external architectural complementarity\"\n197\t\n198\t### New Claim 10: Constraint-Answer Decoupling — CONDITIONAL on full results (D092)\n199\t\n200\t10. **Constraint-Answer Decoupling (G)**: Removing conclusion sentences from reasoning traces before FOL extraction causally breaks Symbolic Confirmation Bias.\n201\t   - **⚠️ INTERMEDIATE results only (70/204 = 34%)**: 65.7% accuracy (+11.3pp vs SC 54.41%, +6.4pp vs SICA 59.31%)\n202\t   - Avg truncation ratio: **4.1%** — removing ~4% of trace text yields +11pp improvement\n203\t   - **Causal mechanism**: trace contains conclusion → FOL extractor reads conclusion → extracted constraints confirm conclusion → aggregation ≈ SC. G cuts this chain by removing the conclusion before extraction.\n204\t   - **Potential strengths**: (a) largest positive effect in the project, (b) minimal intervention (4.1% text removal), (c) directly tests the confirmed mechanism (confirmation bias)\n205\t   - **Risk (Reviewer critical)**: FOLIO 难度分布不均匀，前 70 题可能偏简单。历史先例：Direction F 42%→39.6%，Direction H 56.1%→微降。中间值可能虚高。\n206\t   - **Residual bias risk**: 即使截断显式结论，推理步骤仍可能暗示答案方向（\"the premises suggest...\"），extraction 模型仍可能产生 biased constraints。\n207\t   - **Full results pending**: PID 384984 on westd-16639, running to 204/204\n208\t   - **McNemar**: pending full results\n209\t   - **Narrative (if confirmed)**: \"25+ methods fail because they don't break the answer→constraint coupling. G directly severs this coupling via conclusion truncation — the diagnosis drives the fix.\"\n210\t\n211\t### Framing Decision Threshold (Reviewer-approved)\n212\t- G ≥+5pp AND p<0.05 → **commit V3** (G+R dual method, G as core)\n213\t- G +3-5pp AND p<0.10 → **V3 weak** (G as \"encouraging pilot\", not core method)\n214\t- G <+3pp OR n.s. → **fall back to V2** (R proof-of-concept) or **V1** (pure negative)\n215\t\n216\t### Updated Headline Result (D092 — V3 CONDITIONAL, awaiting G full results)\n217\t\n218\t\"Across 6+ models and 4 domains, symbolic consensus aggregation shows no statistically significant positive effect under same-model self-extraction. 25+ interventions fail. Root cause: Symbolic Confirmation Bias (4.97×). Two independent cures both succeed: (1) Constraint-Answer Decoupling removes conclusion sentences before FOL extraction, cutting the causal chain — +11.3pp (70/204 intermediate, PENDING FULL); (2) Cross-architecture NLI verification (DeBERTa) provides structurally complementary signal — +4.41pp (p=0.039). Both validate the diagnosis from orthogonal angles: G attacks the information flow, R attacks the architectural homogeneity.\"\n219\t\n220\t### Updated Headline Result (D090 — V2 FALLBACK, if G full results weaker than intermediate)\n221\t\n222\t\"Across 6+ models and 4 domains, symbolic consensus aggregation shows no statistically significant positive effect under same-model self-extraction. 25+ interventions fail. Root cause: Symbolic Confirmation Bias (4.97×). A cross-architecture proof-of-concept (DeBERTa NLI w=3) achieves +4.41pp (p=0.039) — the only positive result across 25+ attempts. Per-label analysis reveals structural complementarity: NLI dominates contradiction detection (71% vs SC 38%), while LLMs dominate uncertainty reasoning (68% vs NLI 19%).\"\n223\t\n224\t### Updated Story Spine (D092 — V3, G+R dual method)\n225\t\n226\t- **Problem**: [unchanged]\n227\t- **Theoretical lens**: [unchanged]\n228\t- **Systematic evaluation**: [unchanged]\n229\t- **Regime characterization**: [unchanged]\n230\t- **Remediation failures strengthen thesis (D085 FINAL)**: 9 prompt-level + 3 method-level + 13 new directions = **25+ interventions** across ALL dimensions (diversity/architecture/capability/verification/filtering/voting/solver/paradigm), all fail → bottleneck is fundamental and exhaustively proven\n231\t- **Method failure analysis**: Three methods targeting different bottleneck aspects show three distinct failure modes (neutral/harmful/catastrophic), revealing that the bottleneck operates at multiple levels simultaneously\n232\t- **Independence-accuracy trade-off (HERO FINDING, D075)**: Debate breaks trace correlation (κ 0.44→0.15, Eff-K 2.0→4.4) but accuracy collapses (-18.6pp/-23.0pp). Same-model traces can be independent OR accurate, not both.\n233\t- **Symbolic Confirmation Bias (CORE FINDING, D082)**: Root cause identified — self-extracted FOL constraints systematically confirm the trace's own answer (bias ratio 4.97× on incorrect problems). Causal chain: model reasons → answer → FOL extraction confirms answer → aggregation ≈ SC. This is WHY 25+ methods fail.\n234\t- **Process-κ (NEW METRIC, D082)**: CoT reasoning similarity (0.69) >> answer-κ (0.41), r=-0.06. Only 9.3% of trace pairs are \"convergent reasoning.\" answer-κ underestimates the true bottleneck. Novel metric applicable to all LLM trace aggregation.\n235\t- **NEW — Constraint-Answer Decoupling (CORE METHOD, D092)**: Having diagnosed the causal chain (conclusion→FOL→bias), we sever it: remove conclusion sentences before extraction. 4.1% text removal → +11.3pp (70/204). Minimal intervention, maximal effect. Directly proves the mechanism IS the cause.\n236\t- **NEW — Cross-Architecture Verification (COMPLEMENTARY METHOD, D092)**: DeBERTa NLI (406M) w=1 **+3.43pp (p=0.039, McNemar exact)** PRIMARY; w=3 +4.41pp (p=0.078 n.s.); NLI∩SC 68.48%@45%. Orthogonal fix: instead of fixing the extraction pipeline, add an architecturally independent voter. Per-label complementarity (NLI: False 71% vs SC 38%; SC: Unknown 68% vs NLI 19%).\n237\t- **Dual cure narrative**: G attacks information flow (removes biased input to extractor), R attacks architectural homogeneity (adds independent voter). Both work independently. Validates diagnosis from two angles.\n238\t- **Actionable contribution**: C0+SC diagnostic + κ-based Eff-K estimation + Decoupling method + NLI combo = complete toolkit from diagnosis to fix.\n239\t- **Universal across architectures (D078)**: Three families: Mistral-7B κ=0.438, LLaMA-8B κ=0.412, Qwen2.5-7B κ=0.658, Qwen2.5-14B κ=0.738. Family effect (Δκ=0.22) >> scale effect (Δκ=0.08).\n240\t- **Headline (D092)**: Independence bottleneck is structural to same-model extraction, universal across architectures, rooted in Symbolic Confirmation Bias. 25+ same-model interventions fail. Two independent cures succeed: Decoupling (+11.3pp, CONDITIONAL on full 204) attacks the causal chain, Cross-Architecture NLI (+3.43pp, p=0.039) provides external diversity. Both prove the diagnosis and provide practical solutions.\n241\t\n242\t## Core Insight (D060 Updated — Dual Bottleneck)\n243\t\n244\t**Dual Requirement Framework**: SICA 效应需要同时满足两个条件，缺一不可：\n245\t1. **Sufficient Independence** (Eff-K > threshold): traces 需要提供足够多的独立视角\n246\t2. **Sufficient Quality** (SC > ~50%): traces 需要有足够的正确率，否则约束是噪声\n247\t\n248\tCondorcet Jury Theorem 要求投票者独立且 p>0.5。同模型采样的 reasoning traces 严重违反独立性假设（Fleiss' κ = 0.21–0.82，Eff-K 仅 1.20–3.63），解释了为什么简单增加 K 或添加符号约束不能突破 SC 的天花板。\n249\t\n250\t实验数据完美支持 dual requirement（κ 使用统一脚本 compute_fleiss_kappa_unified.py，SC/Δpp 使用 registry 原始值）：\n251\t- **Qwen family**: κ=0.66-0.82, Eff-K≈1.20-1.46（独立性不足）→ all near-zero delta，无论 SC 多高\n252\t- **Mistral-7B FOLIO**: κ≈0.46, Eff-K≈2.0（中等独立性）+ SC≈55%（中等质量）→ +3.43pp best seed, mean +2.12pp (2/3 seeds positive, 1 null)\n253\t- **Mistral-7B PW-600**: κ=0.20, Eff-K=3.76（最高独立性）但 SC=39%（质量不足）→ -2.83pp\n254\t- 只有 Goldilocks zone（中等 Eff-K + 中等 SC）出现正向 delta\n255\t- **Dual bottleneck 直接验证 (exp-055)**：Multi-temp κ=0.427 Eff-K=2.11（比单温度 κ≈0.46 Eff-K≈2.0 更独立）但 delta=0.00pp → 提高 independence 不够，还需要 extraction quality\n256\t- **T sensitivity 孤立尖峰 (4/4 complete, D064 corrected)**：T=0.3(Δ=-1.47), T=0.5(Δ=-0.98), T=0.7(Δ=+3.43, κ=0.460, Eff-K=1.98), T=1.0(Δ=0.00, κ=0.394, Eff-K=2.25)。T=0.7 孤立尖峰更突出。T=0.7 SC=55.88%（最低）→ entropy 最高 → SICA 操作空间最大。温度效应与 SC 效应互为 confound，论文需讨论\n257\t- **Thinking mode κ=0.913, Eff-K=1.09 (exp-028b)**：近乎确定性。思维模式让 traces 更一致 → 独立性更差。\"更好的推理\"反而加剧 independence bottleneck。\n258\t\n259\t**κ 是 model-level 稳定属性**：统一处理后 Mistral 三 seed κ 收敛至 0.457-0.460（之前 0.41-0.50 差异是非标准 answer 处理的 artifact）。κ 跨 seed 几乎相同，但 delta 差异大（+3.43 vs +2.94 vs 0.00）→ seed-level constraint quality variance 主导，非 κ。\n260\t\n261\t完整 κ 表（⚠️ D062: κ 将用 raw answers 重算，当前 unified 值为临时值。Qwen 无变化，Mistral 条件将更新）：\n262\t| Exp | Model | κ(unified→raw pending) | Eff-K | SC%(registry) | Δpp(registry) |\n263\t|-----|-------|------------|-------|---------------|---------------|\n264\t| exp-028b | Qwen3-14B thinking | 0.913 | 1.09 | ~84% | ~0 |\n265\t| exp-038 | Qwen-14B LogiQA | 0.821 | 1.20 | 78.50 | -0.50 |\n266\t| exp-027 | Qwen3-14B | 0.773 | 1.26 | 84.31 | +0.49 |\n267\t| exp-036 | Qwen2.5-14B | 0.744 | 1.31 | 75.49 | +0.25 |\n268\t| exp-035 | Qwen2.5-7B | 0.658 | 1.46 | 76.47 | -0.49 |\n269\t| exp-049b | Mistral-7B LogiQA | 0.512 | 1.81 | 51.00 | +0.50 |\n270\t| exp-057 | Mistral-7B T=0.3 | 0.502 | 1.84 | 58.33 | -1.47 |\n271\t| exp-058 | Mistral-7B T=0.5 | 0.516 | 1.80 | 58.33 | -0.98 |\n272\t| exp-033 | Mistral-7B s42 | 0.460 | 1.98 | 55.88 | +3.43 |\n273\t| exp-052 | Mistral-7B s123 | 0.457 | 1.99 | 54.41 | +2.94 |\n274\t| exp-053 | Mistral-7B s456 | 0.457 | 1.99 | 55.88 | 0.00 |\n275\t| exp-055 | Mistral-7B multi-T | 0.427 | 2.11 | 57.84 | 0.00 |\n276\t| exp-054 | Mistral-7B T=1.0 | 0.394 | 2.25 | 55.39 | 0.00 |\n277\t| exp-046 | Mistral-7B PW-600 | 0.200 | 3.76 | 39.33 | -2.83 |\n278\t注：κ 基于 T/F/U 三类归一化，Mistral-7B 约 12-16% traces 被归一化（Qwen 100% valid）。Mistral SC/Δpp 已更新为 D064 tiebreaking 修正值；Qwen 不受影响。\n279\t\n280\tOracle control (+14.22pp) 证明 MAX-SAT 聚合机制本身有效，但自提取约束仅利用了 24% 的理论上限。Discriminative filtering 实验揭示关键机制：~92% 约束 ARE discriminative，但过滤掉 ~8% non-discriminative 约束后 delta 不变（0 gains）。问题不在约束缺乏判别力，而在于 discriminative constraints 的区分方向与模型偏差一致（confirmation bias）。\n281\t\n282\t**Remediation insight (D060)**: 9 种修复尝试全部失败，包括直接靶向 independence（multi-temp diversity, exp-055: Eff-K 从 2.0→2.11 但 delta 仍为 0）和 constraint quality（discriminative filtering）。这证明 bottleneck 不是简单的 diversity 或 quality 问题，而是 same-model self-extraction 的根本性限制。\n283\t\n284\t**Key evidence**:\n285\t- **Condorcet independence quantification (统一脚本, 公式: Eff-K=K/(1+(K-1)κ))**: Mistral-7B FOLIO κ≈0.46 (Eff-K≈2.0, 三 seed 高度稳定), Mistral-7B PW-600 κ=0.200 (Eff-K=3.76), Qwen2.5-14B FOLIO κ=0.744 (Eff-K=1.31), Qwen2.5-14B LogiQA κ=0.821 (Eff-K=1.20), Qwen3-14B κ=0.773 (Eff-K=1.26), Qwen2.5-7B κ=0.658 (Eff-K=1.46). 跨模型清晰: Qwen Eff-K≈1.2-1.5→0 gain, Mistral FOLIO Eff-K≈2.0→variable gain, Mistral PW Eff-K=3.76 but SC too low→negative. κ stable across seeds (0.457-0.460), delta varies → seed-level constraint quality dominates.\n286\t- **Oracle control (exp-031)**: Gold FOL + MAX-SAT = 89.71% vs SC 75.49% (+14.22pp, p=2.0e-7). Unknown-type +31.9pp.\n287\t- **Two-layer constraint analysis**: 43% trivially_satisfied (taxonomy: satisfied by ALL answers) vs ~8% non-discriminative (filtering: same MAX-SAT score). Difference: trivially_satisfied constraints can still have different satisfaction DEGREES. Removing the 8% yields 0 gains → problem is not quality but confirmation bias direction.\n288\t- **K sensitivity (non-monotonic peak at K=12, 5/5 complete, D064+D066)**: K=4(-1.47pp), K=8(-1.96pp), K=12(+3.43pp p=0.092 ns), K=16(+1.47pp), K=20(+1.96pp). Peak at K=12, drops at K=16 but partially recovers at K=20. NOT clean inverted-U. K=12 SC=55.88% (post-fix). SC-confound with T sensitivity still holds. SICA at K=4 vs K=12 differs by ~4.9pp despite similar SC — proves SICA extracts different information than SC.\n289\t- **SC-confound (cross-cutting insight)**: K=12 和 T=0.7 都是 SC 最低 (54.41%) 的配置 → SICA \"最佳超参\"可能反映 entropy/operating-window 效应而非 K 或 T 的因果贡献。论文需要讨论这个 confound，但也可以正面利用：SC level 是更基本的预测变量，K 和 T 通过影响 SC 来间接影响 SICA delta。\n290\t- **T sensitivity (isolated peak, 4/4 complete, D064 corrected)**: T=0.3(Δ=-1.47pp), T=0.5(Δ=-0.98pp), T=0.7(Δ=+3.43pp p=0.092 ns), T=1.0(Δ=0.00pp). NOT smooth inverted-U — T=0.7 is an isolated spike. T=0.7 has lowest SC (55.88%) → highest entropy → largest SICA operating window. Temperature and SC effects confounded. Strengthens fragility narrative.\n291\t- **Regime boundary**: Qwen-14B (SC=75.49%) Δ=-0.98pp vs Mistral-7B (SC=55.88%) Δ=+3.43pp p=0.092 ns\n292\t- **Type C failure (exp-046)**: Mistral PW-D5 SC=39.33%, Δ=-2.83pp, p=0.010, κ=0.210, Eff-K=3.63, contradiction rate 5.5%. Highest Eff-K yet worst delta → independence alone insufficient when SC too low.\n293\t- **Seed replication (D064+D066)**: 2/3 seeds positive but **0/3 significant** after tiebreaking correction: s42 Δ=+3.43pp p=0.092, s123 Δ=+2.94pp p=0.070, s456 Δ=0.00pp p=1.0. Mean +2.12pp. Only significant McNemar effects are NEGATIVE: exp-046 Δ=-2.83pp p=0.014, exp-039 Δ=-2.50pp p=0.011. Paper must frame as \"positive directional trend\" not \"significant positive effect\".\n294\t- **Nine remediation failures (ALL CONFIRMED)**: contrastive prompting, cross-model, generational scaling, solver-guided, consistency filtering, cross-trace UNSAT, discriminative filtering (0 gains), T=1.0 (delta collapse +3.43→0.00pp, D064 corrected), multi-temp (delta=+0.00pp, b=5 c=5). All 9 failed → trap is fundamental, bottleneck is structural.\n295\t- **Entropy decomposition (VERIFIED 2026-05-19)**: High-entropy proportion: Mistral FOLIO 38% (78/204) vs Qwen FOLIO 18% (37/204) vs Qwen LogiQA 12% (23/200). SICA on high-entropy: Mistral FOLIO s42 +12.8pp, s123 +9.1pp, s456 -1.3pp; Qwen FOLIO -8.2pp; all others negative. Low-entropy: SICA≈SC across all 8 experiments (Δ≈0). Entropy decomposition reveals regime-dependent mechanism, NOT universal diagnostic.\n296\t- **Confirmation bias quantification**: ⚠️ \"62.3%\" and \"28.6%\" confirmed NOT present in any .tex file — likely hallucinated in earlier draft. DO NOT USE. Replace with verified metrics from experiment outputs only.\n297\t\n298\t## Story Spine (D059 Updated)\n299\t\n300\t- **Problem**: LLMs' reasoning can be improved by sampling multiple chains-of-thought and aggregating via majority voting (self-consistency). Recent work proposes symbolic augmentation: extract formal constraints from traces and use SAT solvers for answer selection. But does symbolic aggregation actually outperform simple voting?\n301\t- **Theoretical lens**: Condorcet Jury Theorem requires voter independence. We quantify trace independence via Fleiss' κ and show Effective-K << nominal K. This explains the fundamental limitation of same-model trace aggregation.\n302\t- **Systematic evaluation**: SICA (MAX-SAT over FOL constraints) across 3 domains × 5 model families. Oracle control separates extraction vs aggregation failure. Discriminative filtering reveals ~92% constraints are discriminative, yet SICA gains are fragile — confirmation bias, not constraint quality, is the bottleneck.\n303\t- **Regime characterization**: Three failure modes (Type A/B/C) + narrow Goldilocks zone. C0+SC as deployment diagnostic.\n304\t- **Remediation failures strengthen thesis**: 9 targeted interventions (prompting, architecture, capability, verification, diversity, filtering) all fail to close the oracle gap, proving the bottleneck is fundamental to same-model self-extraction.\n305\t- **Headline result (D066 McNemar corrected)**: \"Across 6 models and 4 domains, symbolic consensus aggregation shows no statistically significant positive effect under corrected tiebreaking (best seed +3.43pp, p=0.092). The only significant effects are negative (PW-600: -2.83pp p=0.014, -2.50pp p=0.011). However, entropy decomposition reveals a striking regime-dependent pattern: SICA's entire effect concentrates on high-entropy questions, with +12.8pp in the Goldilocks zone but -2 to -8pp elsewhere. Oracle constraints prove the aggregation mechanism works (+14.22pp, p<0.001), localizing the bottleneck to extraction quality (24% utilization). Condorcet analysis (Eff-K=1.2-2.0 for nominal K=12) explains trace non-independence. Nine remediation strategies all fail, confirming the bottleneck is structural to same-model self-extraction.\"\n306\t\n307\t## Anticipated Reviewer Concerns & Defensive Experiments\n308\t\n309\t1. **\"Gains not statistically significant\"** → Correct: no positive effect reaches significance (best p=0.092). This IS the finding. Oracle p=2.0e-7 proves the mechanism works; the insignificance of self-extraction gains demonstrates the extraction bottleneck. Regime pattern (8 entropy conditions) provides systematic evidence beyond any single p-value.\n310\t2. **\"Only one positive result (exp-033)\"** → Seed replication: 2/3 positive (s42 +3.43pp, s123 +2.94pp), 1/3 null (s456 0.00pp). Mean +2.12pp. Effect IS real but fragile — the fragility itself IS the finding.\n311\t3. **\"Condorcet framework is trivial\"** → Fleiss' κ quantification is novel in SC/SICA context. Eff-K is actionable: tells practitioners how many truly independent traces they get.\n312\t4. **\"Multi-temp / filtering should work\"** → We tried both. Multi-temp (exp-055): negative. Disc. filtering: 0 gains. T=1.0: delta collapse. These failures STRENGTHEN the structural bottleneck thesis.\n313\t5. **\"Only Qwen models\"** → 5 families: Qwen-14B, Mistral-7B, LLaMA-8B, DeepSeek-R1-7B, QwQ-32B.\n314\t6. **\"Only logic domain\"** → FOLIO + ProofWriter + LogiQA + StrategyQA + ARC-Challenge. Type B (domain formalizability) is itself a finding.\n315\t7. **\"Oracle is unfair comparison\"** → Diagnostic tool, not competing method. Separates extraction from aggregation.\n316\t8. **\"MAX-SAT is over-engineering\"** → exp-013: MaxSAT ≈ count-only. This IS the independence bottleneck evidence.\n317\t9. **\"Self-extraction confound\"** → Oracle control resolves completely.\n318\t10. **\"Published methods achieve gains (DyLoS, Aristotle, FoVer)\"** → Different paradigm (external verifiers/trained extractors). We characterize same-model self-extraction.\n319\t11. **\"C0 is trivially derived\"** → Zero-cost early stopping. Practical value.\n320\t12. **\"Why not just use a reasoning model?\"** → QwQ-32B: C0<5%, SICA≡SC.\n321\t13. **\"Random tiebreak baseline\"** → exp-003: SICA tiebreak 80% vs random 50%.\n322\t14. **\"Method improvement is incremental\"** → Grounded in diagnosis (independence + taxonomy), not ad-hoc.\n323\t15. **\"Weighted SC is simpler\"** → exp-016 planned. Weighted SC doesn't address independence.\n324\t16. **\"Within-model ICL transition contradicts regime theory\"** → exp-050b (SC=57.79%, Δ=-3.52pp): ICL changes trace generation characteristics, not just SC level. Paper must distinguish \"same model, different prompt\" from \"same model, same prompt, different accuracy.\"\n325\t\n326\t## Working Title (D092 V3 — G+R dual method)\n327\t**\"Breaking Symbolic Confirmation Bias: Constraint-Answer Decoupling and Cross-Architecture Verification for LLM Logical Reasoning\"**\n328\t(Alternatives:\n329\t- \"Two Cures for One Disease: Decoupling and Architectural Diversity Against Symbolic Confirmation Bias in LLM Reasoning\"\n330\t- \"The Independence Bottleneck in Symbolic LLM Reasoning: Diagnosis, 25+ Failed Interventions, and Two Independent Solutions\"\n331\t- V2 fallback (R only): \"Breaking the Self-Consistency Ceiling: How Cross-Architecture Verification Overcomes Symbolic Confirmation Bias in LLM Reasoning\"\n332\t- V1 fallback (pure negative): \"Beyond Self-Consistency: How Trace Independence Limits Symbolic Consensus in LLM Reasoning\")\n333\t\n334\tNOTE (Dream D037): Title MUST be scoped to \"self-extracted constraints\" / \"SICA\". Published methods (DyLoS, Aristotle, FoVer) use different approaches.\n335\t\n336\t## Paper Structure (D092 V3 — EMNLP 8pp + appendix)\n337\t\n338\t### Sections\n339\t- §1 Introduction: 25+ same-model interventions all fail → independence bottleneck → two independent cures\n340\t- §2 Related Work: SC, neuro-symbolic, Condorcet/voting, verification\n341\t- §3 Diagnostic Framework: Independence Bottleneck (Eff-K, process-κ), Oracle Gap\n342\t- §4 Symbolic Confirmation Bias: bias ratio 4.97×, overlap 94%, causal chain\n343\t- §5 Method 1: Constraint-Answer Decoupling (G) — core method, detailed\n344\t- §6 Method 2: Cross-Architecture NLI Verification (R) — complementary method\n345\t- §7 Combined Analysis: G+R combo, ablation, cross-dataset if available\n346\t- §8 Discussion + Conclusion\n347\t\n348\t### Main Tables\n349\t- T1: Main Results — models × domains, SC% / SICA% / Δpp / p-value, regime boundary\n350\t- T2: Oracle Control — Gold-FOL+MAX-SAT vs SC vs SICA-self, causal separation\n351\t- T3: Independence Quantification — Fleiss' κ / Eff-K / trace agreement per model\n352\t- T4: Confirmation Bias — bias ratio per condition, overlap rate, per-label breakdown\n353\t- T5: Decoupling Results (G) — SC / SICA / G-Decoupled, Δpp, McNemar, per-label\n354\t- T6: NLI Verification Results (R) — SC / NLI standalone / combo w=1,3 / intersection, Δpp, McNemar\n355\t- T7: 25+ Intervention Summary — method / type / dataset / result / failure mode (compact)\n356\t\n357\t### Main Tables (continued)\n358\t- T6: Method-Level Intervention Results — 3 methods × 2 datasets, SC% / Method% / Δpp, failure mode classification\n359\t- T7: κ Generalization — SC / Debate / Diverse-Prompt κ and Eff-K (from exp-077, pending)\n360\t\n361\t### Main Figures\n362\t- F1: Method Pipeline (SICA + oracle control design)\n363\t- F2: SC Accuracy vs SICA Δ scatter (hero figure, regime boundary)\n364\t- F3: K Sensitivity with diversity metrics (K vs Δ, K vs Eff-K)\n365\t- F4: Extraction error breakdown (stacked bar)\n366\t- F5: Method intervention failure modes (grouped bar: ICG/Contrastive/Debate × FOLIO/LogiQA)\n367\t\n368\t### Appendix\n369\t- K ablation details, temperature sensitivity, per-domain results, overhead analysis\n370\t- Entropy-conditioned analysis (continuous scatter + bin sensitivity)\n371\t- Six remediation strategy details\n372\t- Confirmation bias quantification\n373\t- Seed replication analysis\n374\t- QwQ-32B / DeepSeek-R1 negative control\n375\t\n376\t## Claim Risk Notes (D059)\n377\t- **Seed replication**: 0/3 significant after D066 correction (p=0.092, 0.070, 1.0). 2/3 positive trend, 1/3 null. Mean +2.12pp. Frame as \"directional trend, not significant effect\" — fragility IS the finding.\n378\t- **Method claims DEAD (D060)**: All three method improvements failed. Paper is pure analysis. 9 remediation failures are EVIDENCE, not limitation.\n379\t- **Condorcet novelty**: ✅ VERIFIED. arXiv:2409.00094 applies CJT to cross-model LLM ensembles (different angle). No prior work applies Fleiss' κ or Eff-K to within-model SC traces. Our framing is novel.\n380\t- **exp-050b complication**: ICL transition Δ=-3.52pp at SC=57.79% complicates simple \"SC determines SICA.\" Explain via trace generation characteristic change.\n381\t- **Variable naming inconsistency**: 56.4% cross-trace pairs share zero Z3 variables. Key mechanism evidence.\n382\t\n383\t## Required Citations (minimum 30 references)\n384\t\n385\t- **SC & extensions**: Wang et al. 2023 (SC), Chen et al. 2023 (USC), Loo et al. 2025 (SC scaling plateaus), Taubenfeld et al. 2025 (weighted SC), DiVeRSe (Li et al. 2023)\n386\t- **Neuro-symbolic reasoning**: DyLoS (EACL 2026), Aristotle (ACL 2025), FoVer (TACL 2025), LogicAgent (2025), Logic-LM (Pan et al. 2023), LINC (Olausson et al. 2023)\n387\t- **Condorcet/voting theory**: Condorcet 1785, Austen-Smith & Banks 1996, **arXiv:2409.00094 (Examining Independence in Ensemble Sentiment Analysis, Sept 2024)** — closest prior work, applies CJT to cross-model LLM ensembles, finds independence violation. Our novelty: within-model trace independence + Fleiss' κ quantification + Eff-K + connection to symbolic aggregation\n388\t- **Test-time compute**: Snell et al. 2025, DeepSeek-R1, Diversity-Aware Training\n389\t- **Verification & reranking**: ORM (Cobbe et al. 2021), PRM (Lightman et al. 2023), Math-Shepherd\n390\t- **Constraint satisfaction**: SATBench (EMNLP 2025), LLM Meets Constraint Propagation (IJCAI 2025)\n391\t- **Debate & multi-agent**: Liang et al. 2023, Du et al. 2023\n392\t\n393\t## Additional Reviewer Concerns (D070/D074 Methods)\n394\t\n395\t17. **\"Why not use a larger model for constraint generation?\"** → Valid. All methods tested at 7B scale. ICG constraint parsing failures + Debate role-play degradation may be scale-dependent. This is explicitly noted as limitation and future work. The contribution is diagnosing the bottleneck and showing it's not trivially fixable, not claiming no fix exists at any scale.\n396\t18. **\"Only tested one model (Mistral-7B) for methods\"** → Methods are interventions on the extraction pipeline, not the base model. Testing on the same model that showed the clearest Goldilocks signal (Mistral-7B FOLIO) is the strongest test — if methods can't improve the best-case scenario, they won't help elsewhere.\n397\t19. **\"ICG multi-seed shows 1/3 positive\"** → Magnitudes (-2.0, +1.5, -1.0) are within SC baseline noise (3.5pp cross-seed). Mean ≈-0.5pp, std=1.8pp. No statistical significance. Properly framed as \"noise-level, neither improving nor degrading.\"\n398\t20. **\"Debate working in other papers\"** → Multi-agent debate literature uses diverse models or much larger models. Same-model 7B debate is a different regime. Our finding is specifically about same-model self-extraction limitations.\n399\t\n400\t## Claim Scoping Rules\n401\t- n=60 conditions: \"suggestive/consistent with\" NOT \"confirming\"\n402\t- n≥200 conditions: can \"confirm\"\n403\t- Combined N>1,300: acceptable if breakdown clearly stated\n404\t- Method claims: must show statistically significant improvement OR clear directional improvement with analysis\n405\t- \"Independence bottleneck\" framing: systematic quantification + theoretical grounding\n406\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01W8fnTMxjAonKwDHqHurMEA",
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "715f0279-83d0-484a-9345-e4b4c27d0945"
+          },
+          "id": "event-000366"
+        },
+        {
+          "source_line": 367,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a00bd0d153439bb4b",
+                "tool_use_id": "toolu_01W8fnTMxjAonKwDHqHurMEA",
+                "description": "Searching for bias ratio|\\\\bBR\\\\b",
+                "usage": {
+                  "total_tokens": 48396,
+                  "tool_uses": 8,
+                  "duration_ms": 16020
+                },
+                "last_tool_name": "Grep",
+                "uuid": "d60c4df8-675b-499b-a4d4-5a228685a9fc",
+                "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316"
+              }
+            }
+          ],
+          "id": "event-000367"
+        },
+        {
+          "source_line": 368,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012Mtyg5RHkohozs1k6xBQWJ",
+              "name": "Grep",
+              "input": {
+                "pattern": "bias ratio|\\\\bBR\\\\b",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_reports/round_7.md",
+                "output_mode": "content",
+                "context": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01W8fnTMxjAonKwDHqHurMEA",
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "736de044-145b-46ca-9f96-4cc7db7f11e0",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016Z4tBMuFbNQUjaCv9S3anH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 28006,
+                "cache_read_input_tokens": 20353,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 28006,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000368"
+        },
+        {
+          "source_line": 369,
+          "timestamp": "2026-05-21T09:36:57.743Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012Mtyg5RHkohozs1k6xBQWJ",
+              "type": "tool_result",
+              "content": "26-\n27-1. **穷举式负面结果令人信服**：27 种补救策略横跨 15 个方法族（prompt-level, method-level, solver-level, diversity-level），系统性地关闭了\"也许换策略就行\"的反驳空间。这是该领域对 self-extraction 最全面的实验评估。\n28-\n29-2. **Oracle 控制实验设计精良**：用 FOLIO gold FOL 和 ProofWriter DSL 替换自提取约束，在相同 MAX-SAT 管道下获得 +29.90/+14.22/+11.50pp 增益（p < 10⁻⁷），干净地隔离了\"约束质量\"这一瓶颈变量。这是论文方法论上最强的部分。\n30-\n31:3. **多层次诊断体系**：answer-level κ、process-level cosine similarity、confirmation bias ratio、C₀ diagnostic、entropy decomposition 从不同角度三角验证同一结论。统计处理（McNemar + BH FDR + TOST + Bootstrap CI + Power Analysis）在 NLP 论文中罕见地严谨。\n32-\n33-4. **CJT 理论框架有启发性**：用 Condorcet Jury Theorem 的独立性条件分析 SC 的失败模式，为理解 LLM 采样局限性提供了清晰的理论透镜。\n34-\n35-5. **建设性方案缓解纯负面问题**：DeBERTa NLI escape + DRC 展示了\"怎样才行得通\"，DRC 以 39% cost 恢复 90% gain 有实用价值。\n36-"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01W8fnTMxjAonKwDHqHurMEA",
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "4b06cd62-df95-4faa-b122-4635bc2034fb"
+          },
+          "id": "event-000369"
+        },
+        {
+          "source_line": 370,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a00bd0d153439bb4b",
+                "tool_use_id": "toolu_01W8fnTMxjAonKwDHqHurMEA",
+                "description": "Searching for bias ratio",
+                "usage": {
+                  "total_tokens": 48397,
+                  "tool_uses": 9,
+                  "duration_ms": 16710
+                },
+                "last_tool_name": "Grep",
+                "uuid": "2ebabc13-f280-4e8f-87aa-77bfeba4c74b",
+                "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316"
+              }
+            }
+          ],
+          "id": "event-000370"
+        },
+        {
+          "source_line": 371,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012ZwwPPg8wV1vfqBvSKSdAx",
+              "name": "Grep",
+              "input": {
+                "pattern": "bias ratio",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper_prep_outline_and_data.md",
+                "output_mode": "content",
+                "context": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01W8fnTMxjAonKwDHqHurMEA",
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "1b971e64-0ddf-4290-a13a-2a2adc61ae3f",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016Z4tBMuFbNQUjaCv9S3anH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 28006,
+                "cache_read_input_tokens": 20353,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 28006,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000371"
+        },
+        {
+          "source_line": 372,
+          "timestamp": "2026-05-21T09:36:58.439Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012ZwwPPg8wV1vfqBvSKSdAx",
+              "type": "tool_result",
+              "content": "22-**¶3 — Insight: CJT + Confirmation Bias** [MAJOR UPDATE]\n23-- CJT requires voter independence; same-model traces violate this\n24-- Eff-K = 1.20–3.62 for nominal K=12 → traces beyond 12 add negligible info\n25:- [NEW] Self-extracted constraints don't just inherit correlation — they exhibit Symbolic Confirmation Bias (4.97× bias ratio on incorrect problems)\n26-- [NEW] Process-level analysis: CoT cosine similarity 0.69 >> answer-κ 0.41 → reasoning paths more homogeneous than answers suggest\n27-\n28-**¶4 — Evaluation scope**\n--\n37-\n38-**Contributions (4):**\n39-1. **C1 (PRIMARY): Independence-Accuracy Trade-off** — Pareto frontier across 4 methods + 3 families; 25+ interventions all fail\n40:2. **C2 (CORE): Symbolic Confirmation Bias** — 4.97× bias ratio; 94% error overlap with SC; oracle gap 24%; causal chain identified\n41-3. **C3 (NEW): Process-κ + Independence Quantification** — cosine 0.69 >> answer-κ 0.41; κ=0.21–0.82; universal across 3 families\n42-4. **C4: Regime-Dependent Pattern + Diagnostics** — 3 failure modes; C0+SC diagnostic; entropy decomposition\n43-\n--\n100-\n101-**§5.2 Symbolic Confirmation Bias (250w)** — NEW\n102-- Key metrics from exp-confirmation-bias:\n103:  - SICA-correct: gold constraint rate 78.1%, bias ratio 0.28\n104:  - SICA-incorrect: wrong constraint rate 83.3%, bias ratio 4.97×\n105-  - 94% SICA errors overlap SC errors\n106-  - 12 correct flips from minority trace diversity (43% gold support)\n107-- Causal chain: model→answer→FOL confirms answer→aggregation≈SC"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01W8fnTMxjAonKwDHqHurMEA",
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "68af5eb8-1d88-4014-a7bf-2b807a66960e"
+          },
+          "id": "event-000372"
+        },
+        {
+          "source_line": 373,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a00bd0d153439bb4b",
+                "tool_use_id": "toolu_01W8fnTMxjAonKwDHqHurMEA",
+                "description": "Running find /home/ubuntu/.agent-ml-research-idea_gen_051…",
+                "usage": {
+                  "total_tokens": 49762,
+                  "tool_uses": 10,
+                  "duration_ms": 19548
+                },
+                "last_tool_name": "Bash",
+                "uuid": "c6bce2f6-a9b5-41e1-a194-92ecec507b5b",
+                "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316"
+              }
+            }
+          ],
+          "id": "event-000373"
+        },
+        {
+          "source_line": 374,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XCEeFVuZeh5cShA71mY7wD",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts -type f -name \"*bias*\" -o -name \"*confirmation*\" 2>/dev/null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01W8fnTMxjAonKwDHqHurMEA",
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "60e94fd2-2fcd-46bd-a0eb-7cb5e42bd869",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ME9LY7xr2Wgo2Ko7XnNrUu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 1363,
+                "cache_read_input_tokens": 48359,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1363,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000374"
+        },
+        {
+          "source_line": 375,
+          "timestamp": "2026-05-21T09:37:01.332Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XCEeFVuZeh5cShA71mY7wD",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/data/aime_bias_ratio_results.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/data/confirmation_bias_results.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/aime_bias_ratio_results.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/exp011_truncation_bias_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/exp-011/report/exp011_truncation_bias_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/confirmation_bias_results.json",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01W8fnTMxjAonKwDHqHurMEA",
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "57be1d03-a932-45cb-abb5-cc8117103929"
+          },
+          "id": "event-000375"
+        },
+        {
+          "source_line": 376,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a00bd0d153439bb4b",
+                "tool_use_id": "toolu_01W8fnTMxjAonKwDHqHurMEA",
+                "description": "Reading artifacts/confirmation_bias_results.json",
+                "usage": {
+                  "total_tokens": 50183,
+                  "tool_uses": 11,
+                  "duration_ms": 21423
+                },
+                "last_tool_name": "Read",
+                "uuid": "3eccf8a7-494f-4015-8bbe-8023d41f16bf",
+                "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316"
+              }
+            }
+          ],
+          "id": "event-000376"
+        },
+        {
+          "source_line": 377,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018BtKaTA7PCDaeadbqD1gQR",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/confirmation_bias_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01W8fnTMxjAonKwDHqHurMEA",
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "c7429168-d3fc-4dbe-9131-65c11f1a2faf",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019kyjeB4WckxgnwwXEMgPg7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 410,
+                "cache_read_input_tokens": 49722,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 410,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000377"
+        },
+        {
+          "source_line": 378,
+          "timestamp": "2026-05-21T09:37:03.140Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018BtKaTA7PCDaeadbqD1gQR",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"experiment\": \"Confirmation Bias Analysis\",\n3\t  \"source\": \"exp-033 (Mistral-7B, FOLIO-204, SICA)\",\n4\t  \"total_problems\": 204,\n5\t  \"summary\": {\n6\t    \"sica_accuracy\": 0.5931,\n7\t    \"sc_accuracy\": 0.5441,\n8\t    \"sica_wrong_count\": 83,\n9\t    \"sica_wrong_follows_sc_count\": 78,\n10\t    \"sica_wrong_follows_sc_rate\": 0.9398\n11\t  },\n12\t  \"category_stats\": [\n13\t    {\n14\t      \"category\": \"SICA correct\",\n15\t      \"n_problems\": 121,\n16\t      \"constraints_gold_frac\": 0.7808,\n17\t      \"constraints_wrong_frac\": 0.2192,\n18\t      \"weight_gold_frac\": 0.7184,\n19\t      \"bias_ratio\": 0.2808\n20\t    },\n21\t    {\n22\t      \"category\": \"SICA wrong\",\n23\t      \"n_problems\": 83,\n24\t      \"constraints_gold_frac\": 0.1674,\n25\t      \"constraints_wrong_frac\": 0.8326,\n26\t      \"weight_gold_frac\": 0.1909,\n27\t      \"bias_ratio\": 4.9746\n28\t    },\n29\t    {\n30\t      \"category\": \"SC wrong, SICA correct\",\n31\t      \"n_problems\": 12,\n32\t      \"constraints_gold_frac\": 0.4303,\n33\t      \"constraints_wrong_frac\": 0.5697,\n34\t      \"weight_gold_frac\": 0.4832,\n35\t      \"bias_ratio\": 1.324\n36\t    },\n37\t    {\n38\t      \"category\": \"SC correct, SICA wrong\",\n39\t      \"n_problems\": 2,\n40\t      \"constraints_gold_frac\": 0.4548,\n41\t      \"constraints_wrong_frac\": 0.5452,\n42\t      \"weight_gold_frac\": 0.3504,\n43\t      \"bias_ratio\": 1.1987\n44\t    },\n45\t    {\n46\t      \"category\": \"Both wrong\",\n47\t      \"n_problems\": 81,\n48\t      \"constraints_gold_frac\": 0.1603,\n49\t      \"constraints_wrong_frac\": 0.8397,\n50\t      \"weight_gold_frac\": 0.187,\n51\t      \"bias_ratio\": 5.2391\n52\t    },\n53\t    {\n54\t      \"category\": \"Both correct\",\n55\t      \"n_problems\": 109,\n56\t      \"constraints_gold_frac\": 0.8193,\n57\t      \"constraints_wrong_frac\": 0.1807,\n58\t      \"weight_gold_frac\": 0.7443,\n59\t      \"bias_ratio\": 0.2205\n60\t    }\n61\t  ],\n62\t  \"key_findings\": {\n63\t    \"confirmation_bias_confirmed\": true,\n64\t    \"mechanism\": \"When SICA is wrong, 94% of the time it follows the SC majority-vote answer. FOL constraints from LLM traces systematically support the trace's own answer, so when most traces answer incorrectly, the constraints overwhelmingly point to the wrong answer (83.3% wrong vs 16.7% gold).\",\n65\t    \"bias_ratio_wrong_vs_correct\": \"4.97x more constraint weight toward wrong answers vs gold in SICA-wrong cases\",\n66\t    \"sica_adds_value_when\": \"SC wrong but SICA correct (12 cases): constraints still lean wrong (57%) but gold support (43%) is enough to flip the answer — suggests constraint diversity from minority traces can sometimes overcome majority bias\",\n67\t    \"sica_rarely_hurts\": \"Only 2 cases where SC correct but SICA wrong — SICA almost never overrides a correct SC answer\"\n68\t  },\n69\t  \"timestamp\": \"2026-05-20T16:35:00+08:00\"\n70\t}\n71\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01W8fnTMxjAonKwDHqHurMEA",
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "0ea01e02-d6cc-4b82-8efb-30b6659f6a86"
+          },
+          "id": "event-000378"
+        },
+        {
+          "source_line": 379,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a00bd0d153439bb4b",
+                "tool_use_id": "toolu_01W8fnTMxjAonKwDHqHurMEA",
+                "description": "Reading artifacts/exp011_truncation_bias_analysis.md",
+                "usage": {
+                  "total_tokens": 50189,
+                  "tool_uses": 12,
+                  "duration_ms": 21549
+                },
+                "last_tool_name": "Read",
+                "uuid": "37a08dcc-c846-409a-8ff9-8eb5dffdaeda",
+                "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316"
+              }
+            }
+          ],
+          "id": "event-000379"
+        },
+        {
+          "source_line": 380,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016X3tfQnUkwHaSYD8F4uNdq",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/exp011_truncation_bias_analysis.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01W8fnTMxjAonKwDHqHurMEA",
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "41973cde-1072-4143-899e-a3e63f0ddd7a",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019kyjeB4WckxgnwwXEMgPg7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 410,
+                "cache_read_input_tokens": 49722,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 410,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000380"
+        },
+        {
+          "source_line": 381,
+          "timestamp": "2026-05-21T09:37:03.265Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016X3tfQnUkwHaSYD8F4uNdq",
+              "type": "tool_result",
+              "content": "1\t# exp-011 Truncation Bias Analysis\n2\t\n3\t**Experiment:** exp-011-llama8b-v3 (LLaMA-3.1-8B-Instruct, D012, K=12)\n4\t**Date:** 2026-05-17\n5\t\n6\t## 1. Clarification: \"44 Truncated Traces\"\n7\t\n8\tThe 44 refers to **individual traces** (out of 720 total = 60 problems x 12 traces), not problems. Actual counts:\n9\t\n10\t| Metric | Count | Rate |\n11\t|--------|-------|------|\n12\t| Truncated individual traces | 44/720 | 6.1% |\n13\t| Problems with >= 1 truncated trace | 16/60 | 26.7% |\n14\t\n15\t## 2. Discordant vs Concordant Truncation Rates\n16\t\n17\t|  | Truncated | Not Truncated | Truncation Rate |\n18\t|--|-----------|---------------|-----------------|\n19\t| Discordant (all 6) | 1 | 5 | 16.7% |\n20\t| -- SICA wins (5) | 1 | 4 | 20.0% |\n21\t| -- SC wins (1) | 0 | 1 | 0.0% |\n22\t| Concordant (all 54) | 15 | 39 | 27.8% |\n23\t| -- Both correct (35) | 10 | 25 | 28.6% |\n24\t| -- Both wrong (19) | 5 | 14 | 26.3% |\n25\t\n26\tDiscordant pairs have **lower** truncation rate (16.7%) than concordant pairs (27.8%).\n27\t\n28\t## 3. Fisher Exact Tests\n29\t\n30\t**Test 1: Truncation x Discordant (all)**\n31\t\n32\t|  | Truncated | Not Truncated |\n33\t|--|-----------|---------------|\n34\t| Discordant | 1 | 5 |\n35\t| Concordant | 15 | 39 |\n36\t\n37\t- Odds ratio: 0.52\n38\t- **p = 1.000** (not significant)\n39\t\n40\t**Test 2: Truncation x SICA-wins-discordant vs Concordant**\n41\t\n42\t|  | Truncated | Not Truncated |\n43\t|--|-----------|---------------|\n44\t| SICA wins | 1 | 4 |\n45\t| Concordant | 15 | 39 |\n46\t\n47\t- Odds ratio: 0.65\n48\t- **p = 1.000** (not significant)\n49\t\n50\t## 4. Discordant Pairs Detail\n51\t\n52\t### SICA wins (5 problems, SICA correct / SC wrong)\n53\t\n54\t| Idx | Problem ID | Trunc | Trunc w/ answer | GT | SICA | SC | Dataset |\n55\t|-----|-----------|-------|-----------------|-----|------|-----|---------|\n56\t| 1 | ProofWriter_RelNoneg-OWA-D5-1036_Q11 | 0/12 | -- | True | True | Unknown | PW |\n57\t| 24 | ProofWriter_RelNeg-OWA-D5-856_Q19 | 3/12 | 0 (none extracted) | Unknown | Unknown | False | PW |\n58\t| 32 | folio_002 | 0/12 | -- | True | True | False | FOLIO |\n59\t| 44 | folio_014 | 0/12 | -- | False | False | Unknown | FOLIO |\n60\t| 57 | folio_027 | 0/12 | -- | Unknown | Unknown | True | FOLIO |\n61\t\n62\t### SC wins (1 problem, SC correct / SICA wrong)\n63\t\n64\t| Idx | Problem ID | Trunc | GT | SICA | SC | Dataset |\n65\t|-----|-----------|-------|----|------|----|---------|\n66\t| 19 | ProofWriter_RelNoneg-OWA-D5-709_Q12 | 0/12 | False | Unknown | False | PW |\n67\t\n68\t**4 out of 5 SICA-wins discordant pairs have zero truncated traces.** The one exception (problem 24) had 3 truncated traces, but none produced extractable answers, so they contributed neither to SC voting nor to SICA answer selection.\n69\t\n70\t## 5. Truncated Traces Influence\n71\t\n72\t| Metric | Value |\n73\t|--------|-------|\n74\t| Truncated traces with extractable answer | 7/44 (15.9%) |\n75\t| Truncated traces without answer | 37/44 (84.1%) |\n76\t| Answer extraction rate (non-truncated) | 638/676 (94.4%) |\n77\t\n78\tOf the 7 truncated traces that produced answers: 5 matched SICA's answer, 5 matched SC's answer (overlap because SICA and SC often agree). **No directional bias toward either method.**\n79\t\n80\t## 6. Constraint Contribution\n81\t\n82\t9 out of 16 truncation-affected problems had constraints extracted from truncated traces. However, **all 9 are concordant pairs** (both SICA and SC agree). The only discordant+truncated problem (idx 24) had 0 constraints from truncated traces.\n83\t\n84\t## 7. Conclusion\n85\t\n86\t**Truncation bias does NOT threaten the validity of exp-011 results.** Evidence:\n87\t\n88\t1. Discordant pairs have lower truncation than concordant pairs (16.7% vs 27.8%, p=1.0)\n89\t2. 4/5 SICA-wins discordant pairs have zero truncation\n90\t3. The 1 discordant pair with truncation (problem 24) had no extractable answers from truncated traces\n91\t4. 84.1% of truncated traces produce no answer, making them effectively invisible to both SC and SICA\n92\t5. No directional bias in the few truncated answers that were extracted\n93\t\n94\tThe +6.67pp SICA advantage (66.7% vs 60.0%) is driven by problems without truncation artifacts. The signal is real, not a truncation artifact.\n95\t\n96\t**No rerun with increased max-tokens is needed** to validate the exp-011 comparison, though increasing max-tokens would improve overall answer extraction rate (currently 89.6%) and could improve absolute accuracy for both methods.\n97\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01W8fnTMxjAonKwDHqHurMEA",
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "cbddf83b-4730-41e4-9c44-63be1088b00e"
+          },
+          "id": "event-000381"
+        },
+        {
+          "source_line": 382,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "a00bd0d153439bb4b",
+                "tool_use_id": "toolu_01W8fnTMxjAonKwDHqHurMEA",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Search for BR definition",
+                "usage": {
+                  "total_tokens": 53201,
+                  "tool_uses": 12,
+                  "duration_ms": 33394
+                },
+                "uuid": "1b29bbf5-94e1-416b-8c52-72eebf0af9dc",
+                "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316"
+              }
+            }
+          ],
+          "id": "event-000382"
+        },
+        {
+          "source_line": 383,
+          "timestamp": "2026-05-21T09:37:15.107Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01W8fnTMxjAonKwDHqHurMEA",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Perfect! Now I have comprehensive information. Let me compile the findings about the BR (bias ratio) metric.\n\n## Findings on Bias Ratio (BR) Definition\n\nBased on my comprehensive search of the directory, I found **detailed definitions and usage of the \"Bias Ratio\" (BR) metric** across multiple files:\n\n### **Definition & Formula**\n\nThe **Bias Ratio (BR)** quantifies how strongly extracted FOL constraints favor one answer over another. It is defined as:\n\n```\nBias Ratio = P(constraints support non-gold/minority answer) / P(constraints support gold answer)\n```\n\nMore specifically, in the context of analyzing SICA (Symbolic Inference with Constraint Aggregation):\n\n**BR = constraints_supporting_wrong_frac / constraints_supporting_gold_frac**\n\n### **Key Files**\n\n1. **Main Script**: `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/scripts/aime_bias_ratio_analysis.py`\n   - Contains complete implementation with detailed comments\n   - Compares FOLIO (logic) and AIME (math) datasets\n   - Includes cross-task analysis\n\n2. **Results Data**: `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/confirmation_bias_results.json`\n   - Contains empirical bias ratio measurements from exp-033 (Mistral-7B, FOLIO-204, SICA)\n\n3. **Documentation**: \n   - `memory.md` - Research memory/progress notes\n   - `paper_framing.md` - Paper conceptualization and claims\n   - `docs/paper_prep_outline_and_data.md` - Data preparation outline\n\n### **Core Findings about BR**\n\nFrom the **confirmation_bias_results.json**, the FOLIO-204 (Mistral-7B) analysis shows:\n\n| Condition | Bias Ratio | Interpretation |\n|-----------|-----------|-----------------|\n| **SICA correct** (121 problems) | **0.28** | Constraints correctly favor gold answer by 3.6x |\n| **SICA wrong** (83 problems) | **4.97×** | Constraints wrongly favor incorrect answer by 5x |\n| **Both correct** (109 problems) | 0.22 | Strong correct bias |\n| **Both wrong** (81 problems) | 5.24 | Strong confirmation of shared error |\n\n### **Key Insights**\n\n1. **Interpretation**: When SICA is wrong, the extracted FOL constraints systematically support the **wrong answer by 4.97× over the gold answer**. Only 16.7% of constraints support the correct answer when SICA fails, while 83.3% support the incorrect answer.\n\n2. **Root Cause (Symbolic Confirmation Bias)**: The constraints don't independently verify answers—they confirm whatever answer the **trace itself already contained**. The causal chain is: model reasons → produces answer → FOL extractor reads the trace containing that answer → extracted constraints systematically confirm that trace's answer.\n\n3. **Cross-Task Comparison**: \n   - FOLIO (Mistral-7B): BR = 4.97× (computable, high answer diversity)\n   - AIME (QwQ-32B): BR = undefined/degenerate (all problems have exactly 1 candidate answer, multi_candidate_rate = 0%)\n\n4. **Overlap with SC Majority**: When SICA is wrong, **94% of the time it follows the SC (Self-Consistency) majority-vote answer** (78/83 cases), confirming the shared bias mechanism.\n\n### **Artifact Files with BR Results**\n\n- `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/confirmation_bias_results.json` - Main empirical results\n- `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/aime_bias_ratio_results.json` - AIME cross-task analysis (shows BR undefined due to zero diversity)"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "a6a97bbc-bd36-4350-b8e1-c5994c6259ce",
+            "tool_use_result": {
+              "status": "completed",
+              "prompt": "In the directory /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus, search for how \"bias ratio\" or \"BR\" is defined. Check:\n1. Any .md files (ROADMAP.md, ideas.md, report.md, memory.md) that might reference this metric\n2. Any Python scripts that compute it\n3. The artifacts directory for any prior result files\n\nReport what you find about the BR metric definition.",
+              "agentId": "a00bd0d153439bb4b",
+              "agentType": "Explore",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Perfect! Now I have comprehensive information. Let me compile the findings about the BR (bias ratio) metric.\n\n## Findings on Bias Ratio (BR) Definition\n\nBased on my comprehensive search of the directory, I found **detailed definitions and usage of the \"Bias Ratio\" (BR) metric** across multiple files:\n\n### **Definition & Formula**\n\nThe **Bias Ratio (BR)** quantifies how strongly extracted FOL constraints favor one answer over another. It is defined as:\n\n```\nBias Ratio = P(constraints support non-gold/minority answer) / P(constraints support gold answer)\n```\n\nMore specifically, in the context of analyzing SICA (Symbolic Inference with Constraint Aggregation):\n\n**BR = constraints_supporting_wrong_frac / constraints_supporting_gold_frac**\n\n### **Key Files**\n\n1. **Main Script**: `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/scripts/aime_bias_ratio_analysis.py`\n   - Contains complete implementation with detailed comments\n   - Compares FOLIO (logic) and AIME (math) datasets\n   - Includes cross-task analysis\n\n2. **Results Data**: `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/confirmation_bias_results.json`\n   - Contains empirical bias ratio measurements from exp-033 (Mistral-7B, FOLIO-204, SICA)\n\n3. **Documentation**: \n   - `memory.md` - Research memory/progress notes\n   - `paper_framing.md` - Paper conceptualization and claims\n   - `docs/paper_prep_outline_and_data.md` - Data preparation outline\n\n### **Core Findings about BR**\n\nFrom the **confirmation_bias_results.json**, the FOLIO-204 (Mistral-7B) analysis shows:\n\n| Condition | Bias Ratio | Interpretation |\n|-----------|-----------|-----------------|\n| **SICA correct** (121 problems) | **0.28** | Constraints correctly favor gold answer by 3.6x |\n| **SICA wrong** (83 problems) | **4.97×** | Constraints wrongly favor incorrect answer by 5x |\n| **Both correct** (109 problems) | 0.22 | Strong correct bias |\n| **Both wrong** (81 problems) | 5.24 | Strong confirmation of shared error |\n\n### **Key Insights**\n\n1. **Interpretation**: When SICA is wrong, the extracted FOL constraints systematically support the **wrong answer by 4.97× over the gold answer**. Only 16.7% of constraints support the correct answer when SICA fails, while 83.3% support the incorrect answer.\n\n2. **Root Cause (Symbolic Confirmation Bias)**: The constraints don't independently verify answers—they confirm whatever answer the **trace itself already contained**. The causal chain is: model reasons → produces answer → FOL extractor reads the trace containing that answer → extracted constraints systematically confirm that trace's answer.\n\n3. **Cross-Task Comparison**: \n   - FOLIO (Mistral-7B): BR = 4.97× (computable, high answer diversity)\n   - AIME (QwQ-32B): BR = undefined/degenerate (all problems have exactly 1 candidate answer, multi_candidate_rate = 0%)\n\n4. **Overlap with SC Majority**: When SICA is wrong, **94% of the time it follows the SC (Self-Consistency) majority-vote answer** (78/83 cases), confirming the shared bias mechanism.\n\n### **Artifact Files with BR Results**\n\n- `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/confirmation_bias_results.json` - Main empirical results\n- `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/aime_bias_ratio_results.json` - AIME cross-task analysis (shows BR undefined due to zero diversity)"
+                }
+              ],
+              "totalDurationMs": 33416,
+              "totalTokens": 54134,
+              "totalToolUseCount": 12,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 3010,
+                "cache_read_input_tokens": 50132,
+                "output_tokens": 986,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3010
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 986,
+                    "cache_read_input_tokens": 50132,
+                    "cache_creation_input_tokens": 3010,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3010,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 5,
+                "searchCount": 4,
+                "bashCount": 3,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 0
+              }
+            }
+          },
+          "id": "event-000383"
+        },
+        {
+          "source_line": 384,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a clear understanding of the BR metric:\n\nBR = constraints_supporting_wrong_frac / constraints_supporting_gold_frac\n\nThis is the bias ratio measuring how strongly the extracted constraints favor the wrong answer vs the gold answer. A BR close to 0 means constraints correctly favor the gold answer; BR > 1 means constraints are biased toward wrong answers.\n\nBut for this experiment, since we need BR from the intermediates data, I need to look at how it's computed in the script. Let me look at the `aime_bias_ratio_analysis.py` script for the exact implementation.\n\n\nI need to gather four key metrics: SC accuracy and SICA accuracy from the results summary, Process-κ using the unified kappa script on the intermediates, and BR by analyzing constraint support. Since the full run will take about six hours, I'll monitor progress periodically and prepare the post-processing script to run once it completes.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "b0db624f-b1e4-4faa-b9f1-e60ca0fe4946",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EWbCnHdEp9JTfDg7aqadhN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1280,
+                "cache_read_input_tokens": 127651,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1280
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000384"
+        },
+        {
+          "source_line": 385,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "BR 定义清楚了: `BR = constraints_supporting_wrong / constraints_supporting_gold`。\n\n现在实验在后台跑。让我检查进度，并准备好后处理脚本。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "2f7c17a6-33f9-4f49-973c-e0dbde021421",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EWbCnHdEp9JTfDg7aqadhN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1280,
+                "cache_read_input_tokens": 127651,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1280
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000385"
+        },
+        {
+          "source_line": 386,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GHzXobXDqR8CJMDPZjjioM",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16639",
+                "command": "tail -5 /tmp/e6_full.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "712f4e91-3c02-448c-bf15-cb7b7e4bec1d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EWbCnHdEp9JTfDg7aqadhN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1280,
+                "cache_read_input_tokens": 127651,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1280
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000386"
+        },
+        {
+          "source_line": 387,
+          "timestamp": "2026-05-21T09:37:27.685Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GHzXobXDqR8CJMDPZjjioM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-21 17:36:47,898 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-21 17:36:56,459 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-21 17:37:04,360 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-21 17:37:15,449 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-21 17:37:26,142 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "424599eb-1d4f-4304-a258-9d1900cf70a2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-21 17:36:47,898 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-21 17:36:56,459 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-21 17:37:04,360 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-21 17:37:15,449 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-21 17:37:26,142 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-21 17:36:47,898 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-21 17:36:56,459 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-21 17:37:04,360 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-21 17:37:15,449 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-21 17:37:26,142 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000387"
+        },
+        {
+          "source_line": 388,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正常运行中。让我看下现有的 BR 分析脚本以便后续使用。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "3dfc2b7e-5f96-4a99-8e6d-129f2e7291a3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0139AACUvhea6of5Pi5zKtwo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 925,
+                "cache_read_input_tokens": 128931,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 925
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000388"
+        },
+        {
+          "source_line": 389,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VP6VopEx68cygY8XcLS2gL",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/scripts/aime_bias_ratio_analysis.py",
+                "limit": 80
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "2288235d-b2fc-4294-a2ad-52d9ebcfd58b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0139AACUvhea6of5Pi5zKtwo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 925,
+                "cache_read_input_tokens": 128931,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 925
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000389"
+        },
+        {
+          "source_line": 390,
+          "timestamp": "2026-05-21T09:37:31.729Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VP6VopEx68cygY8XcLS2gL",
+              "type": "tool_result",
+              "content": "1\t\"\"\"AIME Cross-Task Bias Ratio Analysis (Direction 3A).\n2\t\n3\tComputes and compares Symbolic Confirmation Bias between FOLIO (logic) and AIME (math).\n4\tFOLIO data: from exp-033 confirmation_bias results on westd-25068.\n5\tAIME data: from sica_aime30_v3 metadata (raw traces on dead westd-32608, using archived metrics).\n6\t\"\"\"\n7\t\n8\timport json\n9\timport statistics\n10\tfrom pathlib import Path\n11\t\n12\t# ============================================================\n13\t# FOLIO bias ratio (from confirmation_bias/results.json)\n14\t# ============================================================\n15\tFOLIO_RESULTS = {\n16\t    \"model\": \"Mistral-7B-Instruct-v0.3\",\n17\t    \"dataset\": \"FOLIO-204\",\n18\t    \"domain\": \"logic\",\n19\t    \"n_problems\": 204,\n20\t    \"answer_space\": [\"True\", \"False\", \"Unknown\"],\n21\t    \"K\": 12,\n22\t    \"T\": 0.7,\n23\t    \"sica_accuracy\": 0.5931,\n24\t    \"sc_accuracy\": 0.5441,\n25\t    \"category_stats\": {\n26\t        \"sica_correct\": {\n27\t            \"n\": 121,\n28\t            \"constraints_gold_frac\": 0.7808,\n29\t            \"constraints_wrong_frac\": 0.2192,\n30\t            \"bias_ratio\": 0.2808,\n31\t        },\n32\t        \"sica_wrong\": {\n33\t            \"n\": 83,\n34\t            \"constraints_gold_frac\": 0.1674,\n35\t            \"constraints_wrong_frac\": 0.8326,\n36\t            \"bias_ratio\": 4.9746,\n37\t        },\n38\t        \"both_wrong\": {\n39\t            \"n\": 81,\n40\t            \"constraints_gold_frac\": 0.1603,\n41\t            \"constraints_wrong_frac\": 0.8397,\n42\t            \"bias_ratio\": 5.2391,\n43\t        },\n44\t        \"both_correct\": {\n45\t            \"n\": 109,\n46\t            \"constraints_gold_frac\": 0.8193,\n47\t            \"constraints_wrong_frac\": 0.1807,\n48\t            \"bias_ratio\": 0.2205,\n49\t        },\n50\t    },\n51\t    \"sica_wrong_follows_sc_rate\": 0.9398,\n52\t}\n53\t\n54\t# ============================================================\n55\t# AIME data (from sica_aime30_v3 checkpoint + partial analysis)\n56\t# ============================================================\n57\tAIME_PARTIAL_PROBLEMS = [\n58\t    {\n59\t        \"problem_id\": \"AIME_II_01\",\n60\t        \"gold_answer\": 73,\n61\t        \"sica_answer\": 73,\n62\t        \"sc_answer\": 73,\n63\t        \"sica_correct\": True,\n64\t        \"sc_correct\": True,\n65\t        \"total_constraints\": 56,\n66\t        \"unique_constraints\": 33,\n67\t        \"satisfied\": 28,\n68\t        \"excluded\": 5,\n69\t        \"exclusion_rate\": 0.152,\n70\t        \"sc_distribution\": {\"73\": 12},\n71\t        \"n_candidates\": 1,\n72\t        \"traces_with_constraints\": 9,\n73\t    },\n74\t    {\n75\t        \"problem_id\": \"AIME_II_02\",\n76\t        \"gold_answer\": 236,\n77\t        \"sica_answer\": None,\n78\t        \"sc_answer\": None,\n79\t        \"sica_correct\": False,\n80\t        \"sc_correct\": False,"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "83451439-8da8-484d-b2fe-439b540b6390",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/scripts/aime_bias_ratio_analysis.py",
+                "content": "\"\"\"AIME Cross-Task Bias Ratio Analysis (Direction 3A).\n\nComputes and compares Symbolic Confirmation Bias between FOLIO (logic) and AIME (math).\nFOLIO data: from exp-033 confirmation_bias results on westd-25068.\nAIME data: from sica_aime30_v3 metadata (raw traces on dead westd-32608, using archived metrics).\n\"\"\"\n\nimport json\nimport statistics\nfrom pathlib import Path\n\n# ============================================================\n# FOLIO bias ratio (from confirmation_bias/results.json)\n# ============================================================\nFOLIO_RESULTS = {\n    \"model\": \"Mistral-7B-Instruct-v0.3\",\n    \"dataset\": \"FOLIO-204\",\n    \"domain\": \"logic\",\n    \"n_problems\": 204,\n    \"answer_space\": [\"True\", \"False\", \"Unknown\"],\n    \"K\": 12,\n    \"T\": 0.7,\n    \"sica_accuracy\": 0.5931,\n    \"sc_accuracy\": 0.5441,\n    \"category_stats\": {\n        \"sica_correct\": {\n            \"n\": 121,\n            \"constraints_gold_frac\": 0.7808,\n            \"constraints_wrong_frac\": 0.2192,\n            \"bias_ratio\": 0.2808,\n        },\n        \"sica_wrong\": {\n            \"n\": 83,\n            \"constraints_gold_frac\": 0.1674,\n            \"constraints_wrong_frac\": 0.8326,\n            \"bias_ratio\": 4.9746,\n        },\n        \"both_wrong\": {\n            \"n\": 81,\n            \"constraints_gold_frac\": 0.1603,\n            \"constraints_wrong_frac\": 0.8397,\n            \"bias_ratio\": 5.2391,\n        },\n        \"both_correct\": {\n            \"n\": 109,\n            \"constraints_gold_frac\": 0.8193,\n            \"constraints_wrong_frac\": 0.1807,\n            \"bias_ratio\": 0.2205,\n        },\n    },\n    \"sica_wrong_follows_sc_rate\": 0.9398,\n}\n\n# ============================================================\n# AIME data (from sica_aime30_v3 checkpoint + partial analysis)\n# ============================================================\nAIME_PARTIAL_PROBLEMS = [\n    {\n        \"problem_id\": \"AIME_II_01\",\n        \"gold_answer\": 73,\n        \"sica_answer\": 73,\n        \"sc_answer\": 73,\n        \"sica_correct\": True,\n        \"sc_correct\": True,\n        \"total_constraints\": 56,\n        \"unique_constraints\": 33,\n        \"satisfied\": 28,\n        \"excluded\": 5,\n        \"exclusion_rate\": 0.152,\n        \"sc_distribution\": {\"73\": 12},\n        \"n_candidates\": 1,\n        \"traces_with_constraints\": 9,\n    },\n    {\n        \"problem_id\": \"AIME_II_02\",\n        \"gold_answer\": 236,\n        \"sica_answer\": None,\n        \"sc_answer\": None,\n        \"sica_correct\": False,\n        \"sc_correct\": False,",
+                "numLines": 80,
+                "startLine": 1,
+                "totalLines": 419
+              }
+            }
+          },
+          "id": "event-000390"
+        },
+        {
+          "source_line": 391,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I see. The BR computation requires knowing which constraints support which answer. This is computed from the per_trace_constraints and the maxsat_result. It's a more detailed analysis than what the standard pipeline outputs.\n\nLet me look at the confirmation_bias_results.json to understand the format better.\n\nActually, for the task at hand, I think a simpler approach works: I'll compute BR at the problem level as the overall average. Looking at the existing data:\n\nFor the basic metrics requested:\n1. **SC accuracy** - directly from results.json\n\n\n2. **SICA accuracy** - directly from results.json\n3. **Process-κ** - I'll use the Fleiss kappa computation script on the intermediate data\n4. **BR** - I need to extract this from the per-trace constraints, counting which ones support the gold answer versus non-gold answers, then averaging across problems where SICA fails\n\nThis constraint analysis is intricate and depends on having the full experiment data available, so I'll proceed with what I can access now and revisit the BR calculation once I have more information.\n\nSince the experiment will run for about 6 hours, I should give the user a status update on how many problems have completed so far and what they can expect during the wait.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "c648a03c-a4a6-4cc7-a725-65e9ff0fbb45",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NnrfSpqm1fLG46ma9bRCWt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1140,
+                "cache_read_input_tokens": 129856,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1140
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000391"
+        },
+        {
+          "source_line": 392,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BZPh2irwG4MeSv7EnkQRbc",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16639",
+                "command": "grep -c \"SICA:\" /tmp/e6_full.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "7955bfba-b795-4d89-a3ba-6cc78e422810",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NnrfSpqm1fLG46ma9bRCWt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1140,
+                "cache_read_input_tokens": 129856,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1140
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000392"
+        },
+        {
+          "source_line": 393,
+          "timestamp": "2026-05-21T09:37:46.842Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BZPh2irwG4MeSv7EnkQRbc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "2fe2fcd3-a137-4261-b6a1-2a74c225a711",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000393"
+        },
+        {
+          "source_line": 394,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Still no completed problems in the full run (0 SICA results). Problem 1 is still generating traces. Let me check how many API calls have been made.",
+              "signature": "EtkCCmMIDRgCKkBj1Ah06lR5HbiffPqb9WPaqtUpspSFSDOFu1E5AkQrTTcvkrCJIEnhmY70KBX126ohgLh4rfEWrij3jmf3fbZMMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDHPKtut/q6EgnYhcBBoMwh64gUWhwctKJJusIjB2Kf9vJAerypEhA/BL7uOPrnpxJlZkWkuDuzQi5CqnlzLqUxSYPc3n0zoKUwIPUOoqowHTprwTI5bkxP6fywAHDoNkzBeGs2L2nkMYM90BaQG17o6rSFIQTcW5hvelI4ZsnjZiVNyQzX4xkFP7bohnkrUjJwDRQOKH5uApETCi5ZXnQTYhEOtcSgeKB4UgmtUOq5Tpn8Go7UYmU7V3RRBKBLC1TXz+OCJrsbcRWaREyaBy9fMdWidzCmjOtzUduTxlVmqppyauTFe8xxlgiCDQq2D78e6fGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "e2892dcb-de92-4872-95d9-4463330a9659",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017sYgxiSBXo3jn6ZXCy78LE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 892,
+                "cache_read_input_tokens": 130996,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 892
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000394"
+        },
+        {
+          "source_line": 395,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LajiVMWEw3AJCjYeuf7oQZ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16639",
+                "command": "grep -c \"HTTP Request\" /tmp/e6_full.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "90ae8c86-05cd-4a16-ad5f-e313f46993ff",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017sYgxiSBXo3jn6ZXCy78LE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 892,
+                "cache_read_input_tokens": 130996,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 892
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000395"
+        },
+        {
+          "source_line": 396,
+          "timestamp": "2026-05-21T09:37:51.540Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LajiVMWEw3AJCjYeuf7oQZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"11\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "7c2d04ff-388b-4a00-a39a-59d5ff0f970e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"11\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"11\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000396"
+        },
+        {
+          "source_line": 397,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "11 API calls, still on problem 1 trace generation. 实验正常运行。\n\n**当前状态总结:**\n\n| 项目 | 状态 |\n|------|------|\n| **API 连通性** | ✅ gpt-4o via `http://47.94.22.126/v1` 工作正常 |\n| **westd-25068** | ❌ SSH 连不上（端口不可达） |\n| **Dry-run (3问题)** | ✅ 3/3 正确, ~110s/问题 |\n| **全量 FOLIO-204** | 🔄 PID 418902 在 westd-16639 上运行中 |\n| **预计完成时间** | ~6小时（约 23:30 UTC） |\n\n实验参数:\n- 模型: `gpt-4o` (via closed-source API)\n- 数据: FOLIO-204 (204 problems)\n- K=12, temperature=0.7\n- 含 `--save-intermediates` 和 `--resume`（可断点续跑）\n\n实验完成后需要:\n1. 从 `results.json` 读取 SC accuracy 和 SICA accuracy\n2. 在 intermediates 上跑 `compute_fleiss_kappa_unified.py` 得到 Process-κ\n3. 从 `per_trace_constraints` 计算 BR\n4. 保存结果到 artifacts 并 register\n\n要现在定期检查进度，还是等实验完成后再处理？"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "uuid": "2aa0989d-d5f8-425a-b175-906910f1a324",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P3CpxaJHTusyPrfjSqmxHH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 227,
+                "cache_read_input_tokens": 131888,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 227
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000397"
+        },
+        {
+          "source_line": 398,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "11 API calls, still on problem 1 trace generation. 实验正常运行。\n\n**当前状态总结:**\n\n| 项目 | 状态 |\n|------|------|\n| **API 连通性** | ✅ gpt-4o via `http://47.94.22.126/v1` 工作正常 |\n| **westd-25068** | ❌ SSH 连不上（端口不可达） |\n| **Dry-run (3问题)** | ✅ 3/3 正确, ~110s/问题 |\n| **全量 FOLIO-204** | 🔄 PID 418902 在 westd-16639 上运行中 |\n| **预计完成时间** | ~6小时（约 23:30 UTC） |\n\n实验参数:\n- 模型: `gpt-4o` (via closed-source API)\n- 数据: FOLIO-204 (204 problems)\n- K=12, temperature=0.7\n- 含 `--save-intermediates` 和 `--resume`（可断点续跑）\n\n实验完成后需要:\n1. 从 `results.json` 读取 SC accuracy 和 SICA accuracy\n2. 在 intermediates 上跑 `compute_fleiss_kappa_unified.py` 得到 Process-κ\n3. 从 `per_trace_constraints` 计算 BR\n4. 保存结果到 artifacts 并 register\n\n要现在定期检查进度，还是等实验完成后再处理？"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 753422,
+            "duration_api_ms": 601788,
+            "num_turns": 137,
+            "stop_reason": "end_turn",
+            "session_id": "7f5e31c6-3132-448e-86ea-ba27d686b316",
+            "total_cost_usd": 6.764920399999999,
+            "usage": {
+              "input_tokens": 116,
+              "cache_creation_input_tokens": 120274,
+              "cache_read_input_tokens": 10645199,
+              "output_tokens": 23488,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 120274,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 421,
+                  "cache_read_input_tokens": 131888,
+                  "cache_creation_input_tokens": 227,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 227
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1692,
+                "outputTokens": 2448,
+                "cacheReadInputTokens": 224689,
+                "cacheCreationInputTokens": 53142,
+                "webSearchRequests": 0,
+                "costUSD": 0.10282839999999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 116,
+                "outputTokens": 23488,
+                "cacheReadInputTokens": 10645199,
+                "cacheCreationInputTokens": 120274,
+                "webSearchRequests": 0,
+                "costUSD": 6.662092,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "777847b8-ea29-4a23-9796-cb59475f4d4a"
+          },
+          "id": "event-000398"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b6ef34358e64c1a1ac8",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment check crossmodel sica",
+  "task_key": "worker_experiment_check-crossmodel-sica_20260521T090909",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_check-crossmodel-sica_20260521T090909_result.json",
+    "occurrence": 1,
+    "bytes": 1056,
+    "sha256": "3903a679c4f94fe1eaa94c662fb4c8b174372e971840f435ce8722cf8bc8e845"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态：进行中\n\n**exp-d126-crossmodel-sica** 正在 westd-16639 上运行。\n\n| 指标 | 值 |\n|------|------|\n| 进度 | **8/204** (~3.9%) |\n| 启动时间 | 16:40 (今天) |\n| 每样本耗时 | ~4 分钟 |\n| 剩余 | 196 样本 × 4 min ≈ **13 小时** |\n| 预计完成 | **~明天 06:00 (May 22)** |\n\n**服务状态：**\n- Mistral-7B (port 8000, cuda:0) — 运行中\n- Qwen3-14B (port 8001, cuda:1) — 运行中\n- 实验脚本 PID 414515 — 运行中\n\n**当前处理：** 第 8 个样本 `ProofWriter_RelNoneg-OWA-D5-487_Q19`，正在做 Qwen3→Mistral cross-extraction。\n\n**目录结构已生成：**\n- `mistral_traces/` — Mistral 推理 trace\n- `extraction_mistral_same/` — Mistral 同模型约束提取\n- `extraction_mistral_cross_qwen3/` — Mistral→Qwen3 跨模型提取\n- `extraction_qwen3_same/` — Qwen3 同模型提取\n- `extraction_qwen3_cross_mistral/` — Qwen3→Mistral 跨模型提取\n\n实验运行正常，无需干预。预计明天凌晨完成后再来收割结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-check-crossmodel-sica.md"
+}

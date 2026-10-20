@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54a2a0a188d26b64d715",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag full experiment status check",
+  "task_key": "worker_diag_full-experiment-status-check_20260519T115730",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_full-experiment-status-check_20260519T115730_result.json",
+    "occurrence": 1,
+    "bytes": 1970,
+    "sha256": "99e399cbb31a6441e5d680af9f90da709194912238b04e6edd0ca76c987e6957"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集。汇总如下：\n\n---\n\n## 实验状态汇总（2026-05-19 20:00 UTC）\n\n### westd-25068\n\n| Exp | Model / Dataset | 进度 | SC% | SICA% | Δ(pp) | ETA | 状态 |\n|-----|----------------|------|-----|-------|-------|-----|------|\n| exp-062 | Gemma-27B / FOLIO-204 | 100/204 | 82.0% | 82.0% | +0.0 | ~185 min (~3.1h) | 运行中 |\n| exp-065 | Qwen2.5-7B / PW-600 | 331/600 | 72.8% | 66.2% | -6.6 | ~154 min (~2.6h) | 运行中 |\n| exp-069 | Mistral-7B / LogiQA-200 | 24/200 | 45.8% | 45.8% | +0.0 | ~76 min (~1.3h) | 运行中 |\n| exp-070 | Qwen2.5-7B / LogiQA-200 | 12/200 | 58.3% | 58.3% | +0.0 | ~54 min (~0.9h) | 运行中 |\n\nGPU: 0=96% / 1=0%* / 2=97% / 3=96%\n*GPU1 显存占满(87969 MiB)但 utilization 0%，exp-069 vllm 已加载模型，推理进程在跑，可能是采样间隙。\n\n### westd-16639\n\n| Exp | Model / Dataset | 进度 | SC% | SICA% | Δ(pp) | ETA | 状态 |\n|-----|----------------|------|-----|-------|-------|-----|------|\n| exp-048 | LLaMA-8B / PW-600 | 447/600 | 70.9% | 65.3% | -5.6 | ~198 min (~3.3h) | 运行中 |\n| exp-064 | DeepSeek-R1-8B / FOLIO-204 | 67/204 | 82.1% | 82.1% | +0.0 | ~372 min (~6.2h) | 运行中 |\n| exp-068 | Qwen3-14B / LogiQA-200 | 83/200 | 81.9% | 83.1% | +1.2 | ~63 min (~1.1h) | 运行中 |\n\nGPU: 全部 4 卡 96-97%，满载运行。\n\n### 关键发现\n\n1. **exp-064 extraction rate 仍然很低：40.7%**（67 个问题中提取了 1790 constraints，但只有 1392 unique）。SICA=SC=82.1%（Δ=0），低 extraction rate 导致 SICA 退化为接近 SC 的行为。\n\n2. **exp-065 和 exp-048（PW-600）都出现 SICA < SC**：exp-065 Δ=-6.6pp，exp-048 Δ=-5.6pp。PW-600 上 SICA 在多个模型上都表现负增益。\n\n3. **exp-069/070（LogiQA）样本量还太小**（24/12），指标不稳定，需等待更多数据。\n\n4. **exp-068 Qwen3-14B LogiQA 是目前唯一 SICA > SC 的实验**（+1.2pp），83.1% SICA vs 81.9% SC。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-full-experiment-status-check.md"
+}

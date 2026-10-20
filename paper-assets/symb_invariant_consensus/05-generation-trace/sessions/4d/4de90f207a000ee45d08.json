@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4de90f207a000ee45d08",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra mistral folio cron check",
+  "task_key": "worker_infra_mistral-folio-cron-check_20260522T110431",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_mistral-folio-cron-check_20260522T110431_result.json",
+    "occurrence": 1,
+    "bytes": 498,
+    "sha256": "6d5f94404b2022fd9e1a5aefd96843858375f46d61dd823453af30a8a223c626"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态总结\n\n| 项目 | 状态 |\n|------|------|\n| PID 575732 (旧) | DEAD ✓ |\n| PID 576938 (seed=789) | **仍在运行** |\n| 进度 | **41/204** (~20%) — 正在处理 folio_41 |\n| SENTINEL | 未出现 |\n| Cron | 当前 session 无 cron job |\n\n**时间估算**: 18:49 启动，16 分钟完成 41 个，约 2.5 个/分钟 → 剩余 ~163 个 → 预计还需 **~65 分钟**（约 20:10 完成）。\n\ncuda:3 正常工作中，持续对 `localhost:8004` 发请求。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-mistral-folio-cron-check.md"
+}

@@ -1,0 +1,30 @@
+{
+  "issue": "C2: LLaMA-3.1-8B BR=2.88 used different methodology (4-trace SICA-wrong subset) vs other models (pipeline-wrong from br_bootstrap_ci)",
+  "date": "2026-05-25",
+  "old_value": {
+    "BR": 2.88,
+    "source": "llama_weighted_br.json raw_br_from_4t_with_sica_wrong=2.8841",
+    "method": "4-trace raw constraint-count, filtered to 12-trace SICA-wrong questions only",
+    "n_questions": "unknown subset"
+  },
+  "new_value": {
+    "BR": 3.87,
+    "source": "br_bootstrap_ci.json LLaMA-3.1-8B br=3.87",
+    "method": "mean of per-question gold_frac, then BR = (1-mean)/mean",
+    "n_questions": 86,
+    "ci_95": [3.11, 4.98],
+    "note": "4 traces from cross-model experiment (extraction failures on remaining 8)"
+  },
+  "methodology_alignment": {
+    "Mistral-7B": {"BR": 4.97, "n": 83, "source": "br_bootstrap_ci.json", "data": "12-trace full pipeline"},
+    "Qwen2.5-14B": {"BR": 3.93, "n": 52, "source": "br_bootstrap_ci.json", "data": "12-trace full pipeline"},
+    "LLaMA-3.1-8B": {"BR": 3.87, "n": 86, "source": "br_bootstrap_ci.json", "data": "4-trace cross-model (extraction failures)"}
+  },
+  "rationale": "br_bootstrap_ci.json applies identical statistical method across all models: 'mean of per-question gold_frac, then BR = (1-mean)/mean'. Using this artifact consistently for all three models ensures methodological uniformity. The 4-trace limitation for LLaMA is noted with existing dagger footnote.",
+  "files_modified": [
+    "docs/paper/analysis.tex (line 19: BR 2.88→3.87)",
+    "docs/paper/diagnosis.tex (line 55: 2.88→3.87; line 139: 2.88→3.87)",
+    "docs/paper/appendix.tex (line 576: 2.88→3.87, CI updated)"
+  ],
+  "narrative_impact": "Removed 'ordering does not follow strict capability gradient' claim from diagnosis.tex as new values (4.97 > 3.93 ≈ 3.87) are within CI overlap and the ordering claim is no longer defensible."
+}

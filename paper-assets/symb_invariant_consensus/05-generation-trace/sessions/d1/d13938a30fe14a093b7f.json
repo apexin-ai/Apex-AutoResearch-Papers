@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d13938a30fe14a093b7f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment d135 frontier scb",
+  "task_key": "worker_experiment_d135-frontier-scb_20260521T135204",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_d135-frontier-scb_20260521T135204_result.json",
+    "occurrence": 1,
+    "bytes": 896,
+    "sha256": "758eaf105daecb03b6c0b3f3ddf56bb7fde947e5082eb0a8ce423cc26521509b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**20 题汇总出来了！**\n\n## gpt-4.1 FOLIO SC@12 — 20 题中间结果\n\n| 指标 | 值 |\n|------|-----|\n| **SC accuracy** | **85.0% (17/20)** |\n| 速率 | 2.9 q/min |\n| ETA | ~63 min |\n\n错误分析：\n- folio_7: gold=Unknown, SC=False (7:5)\n- folio_18: gold=True, SC=Unknown (11:1) \n- folio_19: gold=True, SC=Unknown (9:3)\n\n**对比开源模型 baseline (FOLIO-204 全集)：**\n\n| Model | SC@12 Accuracy |\n|-------|---------------|\n| Mistral-7B | 54% |\n| Qwen3-32B | 70% |\n| Qwen2.5-14B | 74% |\n| **gpt-4.1 (前20题)** | **85.0%** |\n\ngpt-4.1 显著超过所有开源模型。趋势：Unknown→True 方向的错误居多（gpt-4.1 倾向保守判断 Unknown）。\n\n3 个进程都在跑。gpt-5.5 约 2/204, o3 遇 500 较多（~1/204）。预计 gpt-4.1 全部完成约 23:15 (CST)。gpt-5.5 和 o3 因 reasoning model 更慢，可能 2-3 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-d135-frontier-scb.md"
+}

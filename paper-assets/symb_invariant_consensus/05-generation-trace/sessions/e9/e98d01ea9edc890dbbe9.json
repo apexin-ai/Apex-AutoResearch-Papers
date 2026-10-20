@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e98d01ea9edc890dbbe9",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ops cleanup tarball",
+  "task_key": "worker_ops_cleanup-tarball_20260525T210606",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_cleanup-tarball_20260525T210606_result.json",
+    "occurrence": 1,
+    "bytes": 206,
+    "sha256": "c056babd3ad4b7c09c0756b2fdc6d23aa96366dd6acb41c7e0e533fd7b128d9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已确认删除。磁盘变化：\n\n| | Used | Avail | Use% |\n|---|---|---|---|\n| 删除前 | 245G | 106G | 70% |\n| 删除后 | 230G | 121G | 66% |\n\n释放了约 **15G** 空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-tarball.md"
+}

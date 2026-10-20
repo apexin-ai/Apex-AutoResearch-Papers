@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4292ff530abb62aaf64a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "write qwen25 pw multiseed appendix",
+  "task_key": "worker_write_qwen25-pw-multiseed-appendix_20260524T062045",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_write_qwen25-pw-multiseed-appendix_20260524T062045_result.json",
+    "occurrence": 1,
+    "bytes": 668,
+    "sha256": "d5d90b600e6357600e60257944620ea460a6b65dd99eba3a42dbecf1d0e43af9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。修改清单：\n\n**数据来源**：\n- seed42: Table 1 canonical (SC=74.00, SICA=71.50)\n- seed123: results.json SC=72.33, SICA 修正为 70.83 (原 71.17)\n- seed456: results.json SC=73.00, SICA=72.17\n- seed789: results.json SC=73.50, SICA=71.50\n\n**appendix.tex 修改**：\n1. **L1376 caption**: \"four\" → \"five\", 删除 \"Qwen3-14B results pending.\"\n2. **L1413–1420 新增行**: Qwen2.5-14B × PW 4 seeds + Mean±SD (SC 73.21±0.71, SICA 71.50±0.55, Δ -1.71±0.71)\n3. **L1427 summary**: \"eight\" → \"twelve\", 范围下界 -1.33 → -0.83, 新增 Qwen2.5-14B 描述句\n\n编译通过，无 undefined references。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-qwen25-pw-multiseed-appendix.md"
+}

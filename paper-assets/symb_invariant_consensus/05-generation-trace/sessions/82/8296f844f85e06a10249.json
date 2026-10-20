@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8296f844f85e06a10249",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper writing experiments",
+  "task_key": "worker_paper_writing_experiments_20260519T035923",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_experiments_20260519T035923_result.json",
+    "occurrence": 1,
+    "bytes": 843,
+    "sha256": "4a5d61b6cf96682d35654b695cfa47dd858b7dd38fab429e5e74b55a05186937"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All numbers verified against the task spec. File written to `docs/paper/experiments.tex` with:\n\n- **5 subsections**: Setup, Main Results, Oracle Control, Three-Seed Replication, Failure Mode Analysis\n- **Table 1** (`table*`): 16 rows grouped by regime (Type C, Goldilocks, Type A, Degenerate, Oracle) with bold best SICA per group and bold significant $\\Delta$ values\n- **Figure 2**: single-column scatter plot with self-contained caption\n- **Style**: zero em/en-dashes, zero -ing phrase endings, zero forbidden transition words\n- All 14 key data points match exactly; degenerate probes (QwQ AIME, GSM8K) included from existing data\n- Cross-references preserved: `sec:oracle`, `tab:main_results`, `sec:experiments`, `sec:exp-setup`, `sec:main-results`; forward references to `sec:entropy`, `sec:ablation` in analysis.tex"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "916fe2f5a84a3dfe5e0c",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix model downloads lock",
+  "task_key": "worker_fix_model-downloads-lock_20260516T082128",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_model-downloads-lock_20260516T082128_result.json",
+    "occurrence": 1,
+    "bytes": 956,
+    "sha256": "d0af5fc27473b0434ac396f92777227bbb31e61d90cb694c54667ce83cab320d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-001 (PID 181491) 正常运行，未受影响。\n\n---\n\n**完成。结果汇总：**\n\n| 模型 | 最终路径 | 大小 | 验证 |\n|------|----------|------|------|\n| Mistral-7B-Instruct-v0.3 | `/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3/mistralai/Mistral-7B-Instruct-v0___3/` | 5.75 GB (3 shards) | vocab=32768, hidden=4096, 32 layers |\n| LLaMA-3.1-8B-Instruct | `/root/autodl-tmp/models/Llama-3.1-8B-Instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct/` | 5.83 GB (4 shards) | vocab=128000, hidden=4096, 32 layers |\n\n**操作：**\n- 进程已死，safetensors 完整但卡在 `._____temp` → 直接移到最终目录\n- 清除 `.lock` 目录和 `._____temp` 残留\n- Tokenizer + config 加载验证通过\n- 创建 `scripts/start_vllm_mistral_7b.sh` (port 8001)\n- `scripts/start_vllm_llama_8b.sh` (port 8002) 路径已正确，无需修改\n- exp-001 (PID 181491) 未受影响\n\nexp-010 和 exp-011 可以启动了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-model-downloads-lock.md"
+}

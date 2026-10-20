@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f80bb11728bb036eab0",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis entropy exp038 logiqa",
+  "task_key": "worker_analysis_entropy-exp038-logiqa_20260518T211000",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_entropy-exp038-logiqa_20260518T211000_result.json",
+    "occurrence": 1,
+    "bytes": 1102,
+    "sha256": "9a53542cf3c5dab79b7eaaf0f9513e43c435a4b90d8358920489a439852df702"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已注册。核心结果：\n\n| Entropy Bin | n (%) | SC Acc | SICA Acc | Delta (pp) | Override n | Override Prec |\n|---|---|---|---|---|---|---|\n| Low [0, 0.5) | 150 (75.0%) | 84.0% | 84.0% | +0.0 | 0 | N/A |\n| Med [0.5, 1.0) | 34 (17.0%) | 67.6% | 64.7% | -2.9 | 1 | 0/1 |\n| High [1.0, +inf) | 16 (8.0%) | 50.0% | 50.0% | +0.0 | 2 | 1/2 |\n\n**关键发现**：\n\n1. **Low entropy = 无差异**：与 FOLIO 一致，SC 高度一致时 SICA 无增益。\n2. **High entropy 无收益**：与 FOLIO 不同（FOLIO 上 Mistral +9.6pp, Qwen +4.8pp），LogiQA 上高 entropy 区间 SICA delta = 0。仅 2 次 override，1 好 1 坏互相抵消。\n3. **Override 极少**：全部 200 题仅 3 次 override (1.5%)，说明 LogiQA 上 constraint extraction 产生的区分性信号太弱。\n4. **Unanimous rate 63%**，平均 majority fraction 0.913，dedup ratio 0.781。\n5. **整体 -0.5pp**：中 entropy 区间 1 次坏 override 导致净负收益。\n\n结论：SICA 在 LogiQA 上的 constraint signal 不足以有效纠正 SC，与 FOLIO 上的正向收益形成对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-entropy-exp038-logiqa.md"
+}

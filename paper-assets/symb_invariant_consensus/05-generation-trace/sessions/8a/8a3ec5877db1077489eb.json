@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a3ec5877db1077489eb",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag westd25068 integrity check",
+  "task_key": "worker_diag_westd25068-integrity-check_20260518T234707",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_westd25068-integrity-check_20260518T234707_result.json",
+    "occurrence": 1,
+    "bytes": 772,
+    "sha256": "814630ca74b0029af42110dea489e87b2ec75214408dde405657dade77377139"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**westd-25068 所有实验完好无损。** 汇总：\n\n| 实验 | GPU | 状态 | 详情 |\n|------|-----|------|------|\n| **exp-028b** | cuda:3 (97%, 88GB) | **运行中** | folio 82/204，ETA ~288 min |\n| **exp-051** | cuda:0 (96%, 88GB) | **运行中** | folio 14/204 (K sensitivity)，ETA ~65 min |\n| **exp-034** | cuda:1 (98%, 88GB) | **运行中** | HTTP 200 请求持续活跃 |\n| **exp-046** | cuda:2 (96%, 88GB) | **运行中** | Mistral PW600，HTTP 200 请求持续活跃（tmux pane 为空但日志正常写入） |\n| exp-033 | — | **已完成** | SICA=59.3%, SC=54.4% |\n| exp-035 | — | **已完成** | SICA=76.5%, SC=77.0% |\n\n4 张 GPU 全部满载运行，4 个活跃实验进程正常，无任何受损迹象。exp-028b 安全。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-westd25068-integrity-check.md"
+}

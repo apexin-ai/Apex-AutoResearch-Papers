@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f7872475658ca350679",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "deploy exp 076 debate mistral folio",
+  "task_key": "worker_deploy_exp-076-debate-mistral-folio_20260519T172805",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_exp-076-debate-mistral-folio_20260519T172805_result.json",
+    "occurrence": 1,
+    "bytes": 658,
+    "sha256": "4459fa1f291924a2c43872608addc06ad70bc40102d0fa36a662ab7ae363643e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n**汇报：**\n\n- **vLLM**：在 cuda:3 port 8003 启动成功（加了 `--enforce-eager` + `VLLM_USE_FLASHINFER_SAMPLER=0` 绕过 Blackwell 架构下 FlashInfer 不兼容问题）\n- **实验**：tmux session `exp076_run` 已启动，正在处理 204 条 FOLIO 数据（日志确认 [1/204] 开始推理）\n- **Registry**：`exp-076-debate-mistral-folio` 状态 RUNNING\n- **参数修正**：任务描述的 `--k-debate 4 --n-rounds 3` 实际对应 `--n-debates 4`（脚本内置 3 轮辩论，无 `--n-rounds` 参数）\n- **监控**：`tail -f /root/symb_invariant_consensus/results/exp076_debate_mistral_folio/run.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-exp-076-debate-mistral-folio.md"
+}

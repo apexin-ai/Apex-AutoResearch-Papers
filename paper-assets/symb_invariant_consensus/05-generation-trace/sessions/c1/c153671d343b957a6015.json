@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c153671d343b957a6015",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code data prep 25068",
+  "task_key": "worker_code_data-prep-25068_20260518T074950",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_data-prep-25068_20260518T074950_result.json",
+    "occurrence": 1,
+    "bytes": 812,
+    "sha256": "16d62d511304c384c5e5f9d04b3eaa8011b95420a716f7fab3310b148b134cb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。数据文件总结：\n\n| 文件 | 条目数 | 大小 | 说明 |\n|------|--------|------|------|\n| `folio_full.json` | 204 | 210 KB | FOLIO validation set, 含 FOL 标注 (True:72/False:63/Unknown:69) |\n| `proofwriter_full.json` | 600 | 1.5 MB | ProofWriter OWA-D5, 含 `raw_logic_programs` (True/False/Unknown 各 200) |\n| `proofwriter-OWA-D5-validation.jsonl` | 600 | 1.5 MB | 原始 JSONL 格式（兼容 exp-022 脚本） |\n| `empty.json` | 0 | 0 KB | 空列表 |\n\n数据源：\n- FOLIO: [Yale-LILY/FOLIO GitHub](https://github.com/Yale-LILY/FOLIO) `data/v0.0/folio-validation.jsonl`\n- ProofWriter: [Logic-LLM GitHub](https://github.com/teacherpeterpan/Logic-LLM) `outputs/logic_programs/ProofWriter_dev_gpt-4.json`（GPT-4 生成的 DSL 标注，600 题均衡分布）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-data-prep-25068.md"
+}

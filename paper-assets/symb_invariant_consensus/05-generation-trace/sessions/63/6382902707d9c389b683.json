@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6382902707d9c389b683",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper cross model ablation and nli update",
+  "task_key": "worker_paper_cross-model-ablation-and-nli-update_20260523T163830",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_cross-model-ablation-and-nli-update_20260523T163830_result.json",
+    "occurrence": 1,
+    "bytes": 1291,
+    "sha256": "0d704b5e0bf4193cd16a396a290e2ed1e49a84661a60295f9c4e4804c5be0191"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有编辑已完成，验证通过。\n\n**总结：**\n\n1. **solutions.tex — capability-gap paragraph**: 添加了 BART/RoBERTa full cross-generator 表格引用（Tables ref）\n2. **solutions.tex — new paragraph**: 在 domain-adapted verifier 之后添加了 \"Cross-model voting vs. cross-architecture NLI\" 段落，包含 Mistral-7B 弱 voter 降低强 generator 的数据（-9.33, -2.33, -2.67pp）、Qwen2.5-14B 强 voter 在 w=5 也降低 Qwen3（-2.50pp, p=0.006）、DeBERTa NLI 从不降低任何 generator 的对比\n3. **appendix.tex — BART table** (`tab:bart-combo-full`): 4 generators × BART-large-mnli，仅 Mistral 显著\n4. **appendix.tex — RoBERTa table** (`tab:roberta-combo-full`): 4 generators × RoBERTa-large-mnli，仅 Mistral 显著\n5. **appendix.tex — cross-model ablation table** (`tab:cross-model-ablation`): ProofWriter + FOLIO，含 Qwen2.5-14B voter、Mistral-7B voter、DeBERTa NLI 三组对比，共 19 行\n\n**关于 \"60 tested conditions\" 计数**：不需要更新。60 = 16 main + 27 remediation + 17 analytical，全部在 self-extraction paradigm 内。Cross-model SC ablation 使用外部模型的投票（非 self-extracted constraints），属于 §6 escape mechanism 的控制实验，不在此计数范围内。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-cross-model-ablation-and-nli-update.md"
+}

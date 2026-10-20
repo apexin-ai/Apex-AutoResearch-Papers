@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "450ee6dd4fdf2ec0d730",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis llama weighted br",
+  "task_key": "worker_analysis_llama-weighted-br_20260521T072708",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_llama-weighted-br_20260521T072708_result.json",
+    "occurrence": 1,
+    "bytes": 1105,
+    "sha256": "c34cd218df4fdd7e5c7648b9f6c6bdade2be3d8265344ca8258d527532e3127c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**LLaMA weighted BR = 2.66x — 旧值是对的。** Mistral cross-check 也验证通过 (4.24x ✓)。\n\n核心发现：raw BR=3.87 和 weighted BR=2.66 之间的大差距**不是因为 weighted BR 算错了**，而是因为两个数来自不同数据源：\n\n| 指标 | 数据来源 | 轨迹数 | \"错误\"定义 | 错误数 | 值 |\n|------|---------|--------|-----------|-------|-----|\n| raw BR=3.87 | `llama_constraints_t0t3.json` | 4 traces | constraint-count majority ≠ gold | 86 | 3.87x |\n| weighted BR=2.66 | `exp-063 results.json` | 12 traces (full SICA) | MaxSAT answer ≠ gold | 78 | 2.66x |\n\n验证：用 4-trace 数据但采用 MaxSAT sica_answer 定义\"错误\"（78题），raw BR = 2.88x — 和 weighted BR 2.66x 的差距就很合理了（跟 Mistral 的 4.97 vs 4.24 比例一致）。\n\n**给 Paper Agent 的建议**：如果表里要同时报 raw BR 和 weighted BR，两者必须用同一数据源。目前 raw 3.87 和 weighted 2.66 不可比。应该统一用 12-trace exp-063 的 sica_scores，报 weighted BR=2.66x [95% CI: 2.19, 3.28]。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-llama-weighted-br.md"
+}

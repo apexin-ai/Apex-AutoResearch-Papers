@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90b1bbf5af1424c054bf",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment llama8b pw nli combo",
+  "task_key": "worker_experiment_llama8b-pw-nli-combo_20260520T223535",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_llama8b-pw-nli-combo_20260520T223535_result.json",
+    "occurrence": 1,
+    "bytes": 772,
+    "sha256": "dd74a83555bf84a1e0da35338f111beae943490e2372a02f194c1150b82cdf0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果：\n\n```\nSC baseline:            70.00%\nDeBERTa-large standalone: 55.00%\nCapability gap:         -15.00 pp\nCombo w=1:              72.83% (+2.83pp, p=0.0001)\nCombo w=3:              74.17% (+4.17pp, p=0.0035)\nCombo w=5:              71.67% (+1.67pp, p=0.4335)\n```\n\n结果已保存至 `/root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/results.json`。\n\n关键发现：\n- DeBERTa standalone 确认为 55.00%，与其他 PW combo 实验一致\n- **w=1 和 w=3 均显著提升**（p<0.01），w=3 最优 (+4.17pp)\n- w=5 时 NLI 权重过大反而稀释了 SC 优势，增益不显著\n- 互补性：NLI 能纠正 120 道 SC 错题，但 SC 在 210 道题上优于 NLI，符合 -15pp capability gap 的预期"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-llama8b-pw-nli-combo.md"
+}

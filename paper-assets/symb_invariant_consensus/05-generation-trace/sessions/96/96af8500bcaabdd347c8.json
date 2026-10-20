@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96af8500bcaabdd347c8",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra diagnose vllm aime",
+  "task_key": "worker_infra_diagnose-vllm-aime_20260515T154618",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_diagnose-vllm-aime_20260515T154618_result.json",
+    "occurrence": 1,
+    "bytes": 2451,
+    "sha256": "72081a1726c2c2185e76499fd0e7f7e0f094ce94cbe2424e273aa1cab5460efa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。以下是报告：\n\n---\n\n## AIME v2 实验诊断报告\n\n### 进程状态\n| 组件 | 状态 | PID |\n|------|------|-----|\n| tmux bash shell | **alive** (sleeping) | 121139 |\n| timeout wrapper | **alive** (sleeping) | 121143 |\n| `python -u run_full_mvp.py` | **alive** (sleeping) | 121144 |\n| vLLM EngineCore | **alive** (GPU 100%) | 102970 |\n\n### GPU 状态\n- **GPU**: NVIDIA RTX PRO 6000 Black, 89149MiB / 97887MiB\n- **利用率**: 100%，温度 65°C，功耗 411W/600W\n- **正常**，无硬件问题\n\n### vLLM 状态\n- `/health` → **200 OK**\n- `/v1/models` → 正常返回（QwQ-32B, max_model_len=16384）\n- 测试推理请求 → **<1s 返回**，引擎功能正常\n- **当前 running requests: 12**, waiting: 0\n\n### 卡死原因\n日志明确显示：**第 5 题（aime2024_II_05，凸六边形几何题）的 12 条 trace 生成请求持续超时**。\n\n时间线：\n- `22:01` — 第 4 题完成，开始第 5 题\n- `22:11` — 第一次请求超时（~10min client timeout）\n- 之后每 ~10 分钟重试一次，全部超时\n- `23:41` — 最近一次重试，仍然超时\n- **已卡死 ~1h 47min**\n\n根因：12 条并发 trace（k=12, max_tokens=10240）在单 GPU 上竞争资源，每条 trace 的吞吐极低。客户端 ~600s 超时后重试，但旧请求可能仍在 vLLM 中 running，形成恶性循环——vLLM metrics 显示恰好 12 个 running requests。\n\n### 已完成结果摘要\n4/30 题完成，总耗时 2226.9s（~37min）：\n\n| 题号 | ID | SICA | SC | GT | 耗时 |\n|------|----|------|----|----|------|\n| 1 | aime2024_II_01 | 73 ✓ | 73 ✓ | 73 | 470s |\n| 2 | aime2024_II_02 | ✗ (Z3异常) | ✗ | 236 | 624s |\n| 3 | aime2024_II_03 | 45 ✓ | 45 ✓ | 45 | 631s |\n| 4 | aime2024_II_04 | 33 ✓ | 33 ✓ | 33 | 502s |\n\n准确率：SICA 3/4 = 75%, SC 3/4 = 75%\n\n### 建议\n**需要 kill 实验 + 重启。** 当前状态无法自行恢复——每次重试都会超时。两个选择：\n\n1. **Kill 实验进程（121143），保留 vLLM**：vLLM 本身是好的（test request 秒回），只需 kill 掉 running 中的 stuck requests。然后增大 client timeout 或减小并发 k 值后重启实验。\n2. **Kill 实验 + 重启 vLLM**：更彻底，清除 vLLM 中的残留请求状态。\n\n推荐方案 1，因为 vLLM 引擎没有故障。kill 后可以考虑降低 `--k` 为 8 或增大 HTTP timeout 来避免同类问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-diagnose-vllm-aime.md"
+}

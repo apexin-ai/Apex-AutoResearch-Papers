@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1238d7b1d81f7612efd",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra qwen25 pw status cron cleanup",
+  "task_key": "worker_infra_qwen25-pw-status-cron-cleanup_20260522T110830",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_qwen25-pw-status-cron-cleanup_20260522T110830_result.json",
+    "occurrence": 1,
+    "bytes": 1531,
+    "sha256": "b7e4ce222e0db9777c5c26068312a9982ffe5b278997e90858ce1e2c41978f1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成，全局清晰。\n\n## 诊断结果\n\n### 1. cuda:0 PW 进程状态\n**PID 552333: ALIVE**，GPU 利用率 97%，显存 90159 MiB。\n\n### 2. PW seeds 进度\n| Seed | 状态 | 说明 |\n|------|------|------|\n| 123 | **190/600 运行中** | intermediates 有真实数据（SICA answer 正常、constraints 正常提取） |\n| 456 | 未开始 | intermediates 600 个文件都是 cuda:1 垃圾数据（全空） |\n| 789 | 未开始 | intermediates 600 个文件都是 cuda:1 垃圾数据（全空） |\n\n### 3. \"0% accuracy\" 来源解释\n**来自 cuda:1 master 脚本，不是 cuda:0。** Master 脚本在 cuda:1 上跑了 6 个实验（3 FOLIO + 3 PW）：\n- FOLIO 3 seeds：正常完成（SICA=72.5-74%, SC=74-74.5%）\n- PW 3 seeds：全部失败，`BadRequestError: maximum context length is 4096 tokens`——cuda:1 的 vLLM 配置了 max_model_len=4096，PW 的 prompt 超长导致 400 错误，所有问题 0 分\n\n这些 0% 的 `results.json` 和 intermediates 是 cuda:1 留下的垃圾，cuda:0 正在逐个覆写。\n\n### 4. ETA\n- 平均 68.2s/problem\n- seed=123 剩余：410 × 68.2s ≈ **7.8h**\n- seed=456 + 789：1200 × 68.2s ≈ **22.7h**\n- **总剩余 ≈ 30.5h，预计完成时间：~5月24日 01:40 CST**\n\n### 5. 风险\n三个 seed 目录的 `results.json` 当前都是 0% 垃圾数据。cuda:0 脚本完成每个 seed 后会覆写，不需要手动清理。但如果脚本中途挂了，需要注意区分哪些 intermediates 是真实数据、哪些是垃圾。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-qwen25-pw-status-cron-cleanup.md"
+}

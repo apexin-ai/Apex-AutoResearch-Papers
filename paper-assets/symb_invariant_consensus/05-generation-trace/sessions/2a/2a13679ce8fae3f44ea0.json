@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a13679ce8fae3f44ea0",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "agent / loop_9_1779190612.md",
+  "task_key": "loop_9_1779190612",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_9_1779190612.md",
+    "occurrence": 1,
+    "bytes": 6046,
+    "sha256": "42bc086e26cfba15a145bd04fbf53c9b5fbacb111070377d277febec99cbe80f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-19T11:35:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-25068:cuda:0/1/2/3 + westd-16639:cuda:0/1/2/3，其他设备禁用\n- 所有新实验必须先 dry-run (n=3 或 n=5)，通过后才启全量\n- vLLM 在 Blackwell GPU 上必须设 `VLLM_USE_FLASHINFER_SAMPLER=0` + `--enforce-eager`\n- vLLM 启动和 python 实验必须分两步（先启 vLLM、curl 验证、再启实验），禁止 `&&` 链\n- submit_training_job 不支持 shell builtin（source/conda activate 需用 `bash -c \"source ... && ...\"`）\n- 部署新实验前必须确认目标 GPU 和端口无冲突（exp-028b 被 exp-058 覆盖的教训）\n- tmux session 名必须和 cron 注册的 pid 一致\n- 论文 deadline: **EMNLP 2026 ARR May 25**（~6 天）\n\n### 2. 🖥️ 基础设施快照\n- **westd-25068**: 4× RTX PRO 6000 Blackwell, /root/symb_invariant_consensus, /root/miniconda3 (conda base)\n  - 模型缓存: /root/autodl-tmp/models/ (Mistral-7B-Instruct-v0.3, Qwen2.5-14B-Instruct, Qwen3-14B, Qwen2.5-7B-Instruct)\n  - cuda:0 → exp-065 (Qwen2.5-7B PW-600, vllm port 8010, tmux exp065_vllm/exp065_run)\n  - cuda:1 → 空闲 (exp-059/060 已完成)\n  - cuda:2 → 空闲 (exp-067 已完成)\n  - cuda:3 → exp-062 (Gemma-3-27B FOLIO-204, vllm port 8003, tmux exp062_vllm/exp062_run)\n- **westd-16639**: 4× RTX PRO 6000 Blackwell, 同上目录结构\n  - cuda:0 → exp-068 (Qwen3-14B LogiQA-200, vllm port 8001, RUNNING)\n  - cuda:1 → 空闲 (exp-040 已完成)\n  - cuda:2 → exp-064 (DeepSeek-R1-Qwen3-8B FOLIO-204, Worker 部署中, port 8002)\n  - cuda:3 → exp-048 (LLaMA-8B PW-600, vllm port 8003, tmux exp048_run, cron 活跃)\n- **活跃 cron**: exp-048-llama8b-pw600 (reconcile 确认 still running)\n- **活跃 Worker**: worker_gpu_exp-064-deepseek-r1-qwen3-8b-folio204_20260519T074017 (running，部署 DeepSeek-R1)\n\n### 3. 📊 当前状态\n**刚完成的关键事件**:\n- exp-040 (Qwen3-14B PW-600) DONE negative: SC=85%, delta=+0.67pp → Type A confirmation bias，和 FOLIO 一致\n- exp-063-llama8b-folio204-16639 DONE success: SC=66.18%, SICA=61.76%, delta=-4.41pp → LLaMA-8B 在 FOLIO 上 negative\n- exp-061 (Qwen2.5-7B FOLIO-204) DONE negative: SC=75.98%, delta=+0.49pp → Type A，不是预期的 Goldilocks\n- exp-067 (Mistral seed=789) DONE success: 4-seed replication 完成 (D068)\n- D067 Quality Ladder L1 NULL confirmed: cross-model extraction ≈ self-extraction\n- Paper Agent 已完成 D067 bidirectional cross-model evidence 整合到 analysis/discussion/appendix/limitations/conclusion\n\n**RUNNING 实验 (5)**:\n1. exp-048-llama8b-pw600 (16639 cuda:3): ~245/600, LLaMA-8B PW-600\n2. exp-062-gemma27b-folio204 (25068 cuda:3): Gemma-3-27B FOLIO-204，新模型家族覆盖\n3. exp-064 (16639 cuda:2): DeepSeek-R1-Qwen3-8B FOLIO-204，Worker 正在部署\n4. exp-065-qwen7b-pw600 (25068 cuda:0): Qwen2.5-7B PW-600，跨数据集覆盖\n5. exp-068-qwen3-logiqa200 (16639 cuda:0): Qwen3-14B LogiQA-200，跨数据集 Type A 验证\n\n**PREPARING (无实际进展)**:\n- exp-063-llama8b-folio204: 状态机残留（实际已在 exp-063-llama8b-folio204-16639 完成）\n- smoke-test-5q: 历史残留 (failed)\n\n**等待中**: 无 pending Director 决策。Worker exp-064 部署中会自动回调。\n\n### 4. 📋 待办（条件触发式）\n- exp-048 cron 回调 (LLaMA-8B PW-600 完成) → 分析 SC%/delta → 判断 LLaMA-8B 在 PW 上的 regime → 更新 Table 1 + paper patch\n- exp-062 完成 (Gemma-3-27B FOLIO) → 关键新模型家族数据点 → 判断 regime (27B 能力预计在 Qwen2.5-14B 和 Qwen3-14B 之间，大概率 Type A)\n- exp-064 Worker 回调 → 确认 DeepSeek-R1-Qwen3-8B 部署成功/失败 → 如果 vLLM 启动失败需排查 tokenizer 兼容性\n- exp-065 完成 (Qwen2.5-7B PW-600) → 与 exp-061 (FOLIO negative) 对比 → PW 上 7B 是否表现不同\n- exp-068 完成 (Qwen3-14B LogiQA-200) → 验证跨数据集 Type A 一致性 → 如果 SC>80% delta≈0 则确认\n- 所有新实验完成后 → 更新 Table 1 + regenerate Figure 2/3 → Submit to Review team\n- **25068 cuda:1 和 cuda:2 空闲** → 应立即部署新实验（候选：其他 seed replication、新模型、新数据集）\n- **16639 cuda:1 空闲** → exp-040 完成后释放，应部署新实验\n\n### 5. 🎯 战略上下文\n**项目核心**: SICA (Symbolic Invariant Consensus Aggregation) 是一个 analysis paper，不是 method paper。D060 确认 method improvement 全部失败，D063 将 framing 升级为 \"Regime-Dependent Mechanism Analysis with Entropy Decomposition\"，目标 EMNLP 2026 ARR May 25，冲 4.0 分。\n\n**核心决策链**:\n- D059: Scenario 2 确认，投 May 25 不变\n- D060: Method improvement 三路失败 → 转纯 Analysis paper\n- D063: Framing 升级 — entropy decomposition + regime mechanism\n- D064: 全文数值统一为修正后 tiebreaking SC\n- D065: Entropy 不支持 universal selective SICA\n- D066: McNemar 0/3 seeds 显著 → claims downgraded to directional trend\n- D067: Quality Ladder L1 NULL → bottleneck 在 traces 不在 extractor\n- D068: 4-seed replication 进一步弱化 Goldilocks claim\n\n**易错点**:\n1. **不要把 SICA 当成有效方法 claim** — 论文核心是 \"analysis of why symbolic verification fails under trace dependence\"，不是 \"SICA works\"\n2. **Goldilocks zone 只是 directional trend** — 0/3 seeds 统计显著 (D066)，4 seeds 中 1 个 null (D068)，措辞必须谨慎\n3. **exp-063 有两个 registry 条目** — exp-063-llama8b-folio204 (PREPARING, 残留) 和 exp-063-llama8b-folio204-16639 (DONE, 真实结果)，不要混淆\n4. **3 个 GPU 空闲 (25068 cuda:1/2, 16639 cuda:1)** — deadline 6 天内每张空闲 GPU 都是浪费，接手后应立即规划部署\n5. **Figure 2/3 还没更新** — 等最终数据（所有 RUNNING 实验完成后）再 regenerate，这是 submit 前必做项\n6. **Paper 写作合规**: 所有数字必须追溯到 registry，禁止 cherry-picking，强度词必须有统计检验支撑，SICA 效果只能说 \"directional trend in Goldilocks zone\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1779190612.md"
+}

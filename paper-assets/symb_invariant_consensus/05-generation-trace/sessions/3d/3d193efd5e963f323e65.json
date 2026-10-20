@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d193efd5e963f323e65",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp010 mistral v3 results",
+  "task_key": "worker_analysis_exp010-mistral-v3-results_20260517T081841",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp010-mistral-v3-results_20260517T081841_result.json",
+    "occurrence": 1,
+    "bytes": 1015,
+    "sha256": "da742e0cecfa3da423ed423765229635a34b14679c8eef4bf46d4a6ba7d1241b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "McNemar with 2 vs 2 discordant pairs gives p=1.0 (exact binomial). All metrics collected.\n\n```\nMETRICS:\n- n: 60\n- sica_accuracy: 48.33%\n- sc_accuracy: 48.33%\n- delta_pp: +0.00pp\n- multi_candidate_rate: 6.67% (4/60)\n- extraction_rate: 88.19%\n- discordant_sica_wins: 2\n- discordant_sc_wins: 2\n- proofwriter: sica=40.00%, sc=40.00%, gap=0pp\n- folio: sica=56.67%, sc=56.67%, gap=0pp\n- McNemar p-value: 1.000 (2 vs 2 discordant, trivially non-significant)\n- truncated_traces: 0\n- answer_extraction_rate: 100% (all boxed, 0 fallback, 0 none)\n- contradiction_rate: 5.62%\n- k: 12\n\nCONCLUSION: negative\nNOTE: SC accuracy 48.33% > 40% threshold but SICA provides zero lift (delta=0.00pp). Only 4/60 problems (6.67%) had SICA disagree with SC, and those split evenly 2-2. Model too weak for constraint extraction to be meaningful — non-unanimous SC votes in 30/60 problems but SICA only reranked 4, indicating extracted constraints rarely had enough signal to override majority vote.\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp010-mistral-v3-results.md"
+}

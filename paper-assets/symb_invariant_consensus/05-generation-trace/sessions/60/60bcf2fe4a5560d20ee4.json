@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "60bcf2fe4a5560d20ee4",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment 70b awq westd25068 deploy",
+  "task_key": "worker_experiment_70b-awq-westd25068-deploy_20260521T170659",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_70b-awq-westd25068-deploy_20260521T170659.log",
+    "occurrence": 1,
+    "bytes": 1317193,
+    "sha256": "15616db699db47628e7ad0d8e70af992265663e314d79c57d1f5a4116aa70b99"
+  },
+  "statistics": {
+    "messages": 1019,
+    "user_turns": 1,
+    "tool_calls": 398,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 216,
+      "tool_call": 398,
+      "tool_result": 398,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 818,
+      "chunks": [
+        {
+          "path": "60bcf2fe4a5560d20ee4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "60bcf2fe4a5560d20ee4-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "60bcf2fe4a5560d20ee4-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "60bcf2fe4a5560d20ee4-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "60bcf2fe4a5560d20ee4-part-0005.json",
+          "message_count": 98
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 201,
+      "chunks": [
+        {
+          "path": "60bcf2fe4a5560d20ee4-part-0005.json",
+          "message_count": 82
+        },
+        {
+          "path": "60bcf2fe4a5560d20ee4-part-0006.json",
+          "message_count": 119
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-70b-awq-westd25068-deploy.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a26175036cf314c4739",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra restore qwen3 same backup",
+  "task_key": "worker_infra_restore-qwen3-same-backup_20260521T213320",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_restore-qwen3-same-backup_20260521T213320_result.json",
+    "occurrence": 1,
+    "bytes": 358,
+    "sha256": "f0ed09a092a9ee6d442ca37ed9e1978debabf233983b9c79cb8a9e578010ea6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "恢复完成：\n\n- **恢复前**: `extraction_qwen3_same/` 25 个文件\n- **恢复后**: `extraction_qwen3_same/` **204 个文件**（25 个已有 + 179 个从备份恢复，其中有重叠所以总数 204）\n- **备份目录**: `extraction_qwen3_same_buggy/` 179 个文件，未改动\n- **Pipeline PID 414515**: 存活，已运行 12h53m"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-restore-qwen3-same-backup.md"
+}

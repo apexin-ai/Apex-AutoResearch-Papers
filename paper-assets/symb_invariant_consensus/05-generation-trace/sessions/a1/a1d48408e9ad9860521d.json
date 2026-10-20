@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1d48408e9ad9860521d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis r8 shouldfix data",
+  "task_key": "worker_analysis_r8-shouldfix-data_20260520T201253",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_r8-shouldfix-data_20260520T201253_result.json",
+    "occurrence": 1,
+    "bytes": 776,
+    "sha256": "460c62db15d2014f3089de719a764ade1742de7da1b21dcb7f53b36b72489d99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three files written to `/root/symb_invariant_consensus/results/r8_shouldfix_data/`.\n\n**Results:**\n\n**W6 Seed Annotations**: 31 conditions documented. All primary experiments use seed=42; Z3 solver seeds are hardcoded to 42 globally. 4 multi-seed groups identified (Mistral FOLIO: s42/789, Qwen14B FOLIO: s42/123, Qwen7B LogiQA: s42/123/456, ICG Mistral: s42/123/456).\n\n**W7 Dedup Ablation** (exp033 Mistral-7B FOLIO-204):\n- Avg 69 constraints/problem → 45.4 (string dedup) → 39.3 (Z3 dedup)\n- Z3 dedup catches ~10% more semantic duplicates than string match\n- Accuracy: Z3 dedup **59.31%** > string dedup 55.88% > no dedup 54.41%\n- No-dedup vs Z3-dedup: significant at p=0.013 (McNemar)\n- String vs Z3 dedup: marginally significant at p=0.065"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r8-shouldfix-data.md"
+}

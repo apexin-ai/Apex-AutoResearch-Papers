@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c0e963836544af71ede",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra code verify vllm health",
+  "task_key": "worker_infra_code-verify-vllm-health_20260515T154648",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_code-verify-vllm-health_20260515T154648_result.json",
+    "occurrence": 1,
+    "bytes": 762,
+    "sha256": "33f7ef91ace868e56d484be253ac2a860449c9148a4adc76e3988774560d1e7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。报告已保存到 `artifacts/code_verify_report.md`。\n\n**结果摘要**：\n\n- **7 个 bug fix 全部 PASS** — regex、response_format、max_tokens=1024、max_workers=6+Semaphore(6)、timeout=120s、is_bool 检查、pipeline fallback 均已确认生效\n- **vLLM 正常** — QwQ-32B 在线，health 和 models 端点均正常响应\n- **磁盘充足** — 根分区 50%，数据盘 32%\n- **两个脚本就绪** — run_math50_fixed.sh 和 run_proofwriter.sh 内容正确\n\n**⚠️ 阻塞项**：当前有 `sica_aime30_v2` 实验正在运行（4/30），但问题 5（几何题 aime2024_II_05）从 22:11 起反复超时重试已 1.5 小时+，看起来陷入无限重试循环。需要 kill 这个进程后才能重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-code-verify-vllm-health.md"
+}

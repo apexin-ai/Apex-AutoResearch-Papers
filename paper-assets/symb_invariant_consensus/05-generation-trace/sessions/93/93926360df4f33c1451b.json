@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93926360df4f33c1451b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp011 truncation bias",
+  "task_key": "worker_analysis_exp011-truncation-bias_20260517T105204",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp011-truncation-bias_20260517T105204_result.json",
+    "occurrence": 1,
+    "bytes": 1010,
+    "sha256": "e97ee021656fa46c597bce457971f62d1dda864fb55ff479df434f9897ab2c47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。关键发现：\n\n**Truncation 不解释 SICA 的优势。**\n\n交叉表：\n```\n                Truncated   Not-trunc   Total\n  sica_wins          1          4        5\n    sc_wins          0          1        1\n concordant         15         39       54\n      Total         16         44       60\n```\n\n- 5 个 SICA wins 中只有 1 个涉及 truncation（idx=24, 3/12 traces truncated），其余 4 个完全没有截断\n- 唯一的 SC win 也无截断\n- Fisher exact test p=1.0，无统计显著关联\n\n额外发现：\n- 实际只有 16/60 问题有 any truncated trace（不是任务描述中的 44 条——44 可能是 trace 级别计数，不是 problem 级别）\n- 仅 1/60 问题的 majority traces 被截断\n- 截断问题的 constraint extraction rate (0.865) 低于非截断问题 (1.000)，但 SICA 的 discordant wins 几乎全部来自非截断问题\n\n**结论：SICA +6.67pp 的增益不是 truncation artifact，而是真实的方法效果。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp011-truncation-bias-copy-2.md"
+}

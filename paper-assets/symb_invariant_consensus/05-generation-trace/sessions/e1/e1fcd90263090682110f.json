@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1fcd90263090682110f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra kill 575733 and check download",
+  "task_key": "worker_infra_kill-575733-and-check-download_20260522T121551",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_kill-575733-and-check-download_20260522T121551_result.json",
+    "occurrence": 1,
+    "bytes": 1319,
+    "sha256": "f6470b644fe4e69ad008beded95db778ff1d98339604f9745da0879179376586"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n### 1. PID 575733 — 已杀死\nSIGTERM 成功，无需 SIGKILL。\n\n### 2. cuda:3 — 未释放\ncuda:3 仍被 **vLLM Mistral-7B** 占用（PID 466621，已运行 18h43m，占 90192 MiB）。这不是 575733 的残留，而是一个独立的 vLLM 服务进程。所有 4 张 GPU 都在满载：\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|---------|\n| 0 | 97% | 90159 / 97887 MiB |\n| 1 | 96% | 88263 / 97887 MiB |\n| 2 | 96% | 90213 / 97887 MiB |\n| 3 | 100% | 90201 / 97887 MiB |\n\n### 3. vLLM port 8004 — 仍在运行\nvLLM 在 8004 端口提供 Mistral-7B-Instruct-v0.3 服务，PID 466621（父进程 466338）。需要你确认是否要杀掉它来释放 cuda:3。\n\n### 4. Qwen2.5-7B 下载 — 极慢，进度约 2%\n- 已下载：~530 MB（其中 4 个 safetensors 各 ~128 MB 在 temp 目录）\n- 总大小：~15 GB（4 个 shard 共 ~14.5 GB + 其他文件）\n- 下载速度：**328-373 kB/s**（极慢）\n- 运行时间：4 分钟\n- 预估剩余：**约 3 小时**（按当前速度，日志显示 `3:12:37` / `2:48:37`）\n\n下载走的 ModelScope，速度只有 ~350 KB/s，远低于预期。可能 `network_turbo` 代理对 ModelScope CDN 效果有限。\n\n**需要你决定**：是否杀掉 8004 端口的 vLLM Mistral 服务来释放 cuda:3？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-575733-and-check-download.md"
+}

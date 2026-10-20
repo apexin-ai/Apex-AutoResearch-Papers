@@ -1,0 +1,108 @@
+{
+  "schema_version": "1.0",
+  "id": "e61a97beb562bb61a21a",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "infra model switch qwq",
+  "task_key": "worker_infra_model-switch-qwq_20260515T085440",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_model-switch-qwq_20260515T085440.log",
+    "occurrence": 1,
+    "bytes": 2248028,
+    "sha256": "b19abbf6950214743cefa84a3f0adb7b239747e3ec27d636cb3f42b900f3d0ef"
+  },
+  "statistics": {
+    "messages": 1884,
+    "user_turns": 2,
+    "tool_calls": 784,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 304,
+      "tool_call": 784,
+      "tool_result": 784,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 748,
+      "chunks": [
+        {
+          "path": "e61a97beb562bb61a21a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e61a97beb562bb61a21a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e61a97beb562bb61a21a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "e61a97beb562bb61a21a-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "e61a97beb562bb61a21a-part-0005.json",
+          "message_count": 28
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 902,
+      "chunks": [
+        {
+          "path": "e61a97beb562bb61a21a-part-0005.json",
+          "message_count": 152
+        },
+        {
+          "path": "e61a97beb562bb61a21a-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "e61a97beb562bb61a21a-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "e61a97beb562bb61a21a-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "e61a97beb562bb61a21a-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "e61a97beb562bb61a21a-part-0010.json",
+          "message_count": 30
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 234,
+      "chunks": [
+        {
+          "path": "e61a97beb562bb61a21a-part-0010.json",
+          "message_count": 150
+        },
+        {
+          "path": "e61a97beb562bb61a21a-part-0011.json",
+          "message_count": 84
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-model-switch-qwq.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6bb9c797e873970b855",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag table1 sc inconsistency",
+  "task_key": "worker_diag_table1-sc-inconsistency_20260519T041626",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_table1-sc-inconsistency_20260519T041626_result.json",
+    "occurrence": 1,
+    "bytes": 1937,
+    "sha256": "f1a2e3bd6d56f2467ebf936d2b3e8ca80e1917a348423e41c8cbc26873bab561"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "根因找到了。对比两处 SC tie-breaking 实现：\n\n**exp-026** (`baselines/self_consistency.py:21`):\n```python\nbest_answer = max(groups, key=lambda k: len(groups[k]))\n```\n平局时返回 dict 中**第一个出现的 key**（取决于 traces 中答案出现顺序）。\n\n**exp-031** (`scripts/run_exp031_oracle_folio_regen.py:353-354`):\n```python\ncandidates = sorted(answer_counts.keys())   # 字母序\nsc_answer = max(candidates, key=lambda a: answer_counts[a])\n```\n平局时返回**字母序最小的**（False < True < Unknown）。\n\n验证 4 个平局题：\n\n| 题目 | 票型 | exp-026 (首次出现序) | exp-031 (字母序) | GT |\n|------|------|---------------------|-----------------|-----|\n| folio_0 | 4:4:4 (F/T/U) | True | **False** | Unknown |\n| folio_123 | 6:6 (U/F) | Unknown | **False** | **False** |\n| folio_41 | 6:6 (U/T) | Unknown | **True** | False |\n| folio_84 | 6:6 (T/F) | True | **False** | Unknown |\n\nfolio_123 正是造成差异的题：exp-031 字母序 tie-break 碰巧选中正确答案 False，exp-026 没有。\n\n---\n\n**产出总结：**\n\n1. **exp-026 精确 SC**: 153/204 = 75.00%\n2. **exp-031 精确 SC**: 154/204 = 75.49%\n3. **差异原因**: tie-breaking 实现不同。`self_consistency.py` 按 trace 出现顺序 break tie，`run_exp031_oracle_folio_regen.py` 按字母序 break tie。4 个平局题中 folio_123 (Unknown vs False, gt=False) 导致 1 题之差。\n4. **建议统一值**: 应统一 tie-breaking 为字母序（deterministic、可复现），Table 1 中 Qwen2.5-14B FOLIO-204 SC 报 **75.49% (154/204)** 或 **75.00% (153/204)** 取决于选哪种策略，但两种策略的结果都应一致。推荐修复 `self_consistency.py` 中的 `max(groups, ...)` 为 `max(sorted(groups.keys()), key=...)` 后统一为 **75.49%**，或者更严谨地报 **75.00%**（原始实验跑出的值），并在 exp-031 重跑 SC 以保持一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-table1-sc-inconsistency.md"
+}

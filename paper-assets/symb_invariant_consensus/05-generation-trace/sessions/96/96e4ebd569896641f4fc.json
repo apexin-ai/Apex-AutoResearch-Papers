@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96e4ebd569896641f4fc",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "figure fig2 kappa delta",
+  "task_key": "worker_figure_fig2-kappa-delta_20260524T115214",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_figure_fig2-kappa-delta_20260524T115214_result.json",
+    "occurrence": 1,
+    "bytes": 389,
+    "sha256": "a30392f5f7f8a91aab5e24324c839e35a1cd0d7c2bcfae182c9c4eac3dd6728d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fig 2 完成。PDF（33KB）+ PNG（105KB）已输出到 `artifacts/figures/paper/`。\n\n5 轮迭代修正了：legend 遮挡标注 → 标注溢出边界 → 趋势线误导（r=0.14 不显著，已移除）→ 标注与轴标签重叠 → 最终 polish。散点分布本身清晰传达了 narrative：低 κ 条件 Δ 散布 ±3pp，高 κ 条件 Δ 收敛到 0 附近。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig2-kappa-delta.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65d2d86e56b42390a270",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "research literature independence bottleneck",
+  "task_key": "worker_research_literature-independence-bottleneck_20260519T162224",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_literature-independence-bottleneck_20260519T162224_result.json",
+    "occurrence": 1,
+    "bytes": 789,
+    "sha256": "73f1e1a8ad479f29737b646a8e09e06b04401b6388a4cb8dcf92080e35356b21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文献调研完成。23 篇论文按 5 个主题组织，写入 `artifacts/literature_independence_bottleneck.md`。\n\n各主题覆盖：\n- **Topic 1** (Reasoning Diversity / SC Limitations): 4 篇 — Verbalized Sampling, RASC, Expanding Search Space, Confidence SC\n- **Topic 2** (Debate / Multi-Agent): 6 篇 — MAD, DMAD, Controlled Debate Study, ALIGN, DReaMAD, SDRL\n- **Topic 3** (Contrastive / Constraint Generation): 4 篇 — Thinking by Subtraction, DCD, CRANE, SciDC\n- **Topic 4** (Test-Time Scaling / PRM): 4 篇 — ModC, GenPRM, ADAPT Survey, Compute-Optimal TTS\n- **Topic 5** (Self-Correction Limitations): 5 篇 — Huang et al., Kamoi Survey, ProCo, SCoRe, Accuracy-Correction Paradox\n\n文末附跨主题综合分析表和 5 个潜在突破方向。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-independence-bottleneck.md"
+}

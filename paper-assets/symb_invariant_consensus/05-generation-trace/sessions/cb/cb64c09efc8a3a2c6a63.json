@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb64c09efc8a3a2c6a63",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix llama seed42 tiebreaking",
+  "task_key": "worker_fix_llama-seed42-tiebreaking_20260523T180210",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_llama-seed42-tiebreaking_20260523T180210_result.json",
+    "occurrence": 1,
+    "bytes": 957,
+    "sha256": "52547d3bc78dafa69d6a95039cf55b8cbe5ca4f42cbf8096012fc248f0767bfa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Recomputation complete. Results:\n\n| Metric | Alphabetical | Original (most_common) |\n|--------|-------------|----------------------|\n| SC | **72.50%** (435/600) | 70.00% (420/600) |\n| SICA | **65.00%** (390/600) | 64.83% (389/600) |\n| Δ (SICA−SC) | −7.50 pp | −5.17 pp |\n| McNemar p | < 0.000001 (b=13, c=58) | — |\n\n**Tiebreaking impact**: 18 SC answers changed (16 ✗→✓, 1 ✓→✗, 1 ✗→✗ = net +15), 1 SICA answer changed (✗→✓ = net +1). Alphabetical tiebreaking systematically favors `False`/`True` over `Unknown` in ties, which aligns better with ground truth.\n\n**vs. expected 72.33%**: We got 72.50%, off by 1 problem (435 vs 434). The 72.33% was from a separate run on westd-14391 which may have had slightly different traces. 72.50% is the correct recomputation from exp048's actual data.\n\nSaved to `/root/symb_invariant_consensus/results/multi_seed/llama8b_pw_seed42/results_alphabetical.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-llama-seed42-tiebreaking.md"
+}

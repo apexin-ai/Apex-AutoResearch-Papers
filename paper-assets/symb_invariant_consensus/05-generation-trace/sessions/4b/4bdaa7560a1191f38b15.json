@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4bdaa7560a1191f38b15",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "prep extra benchmarks",
+  "task_key": "worker_prep_extra-benchmarks_20260516T182544",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_prep_extra-benchmarks_20260516T182544_result.json",
+    "occurrence": 1,
+    "bytes": 967,
+    "sha256": "83ebdb96a554a38beea868c4304e6170274151d4a34d4b7198f4e1f4aebcaef5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。所有文件已部署到服务器：\n\n**数据集**（已下载并格式化）：\n- `data/arc_challenge_200.json` — 200 题 ARC-Challenge (A/B/C/D 分布: 51/40/65/44)\n- `data/strategyqa_200.json` — 200 题 StrategyQA (Yes:87 / No:113)\n- `data/math_l45_100.json` — 100 题 MATH L4-5 (各 50 题)\n\n**评估脚本**（`--mode mock` smoke test 全通过）：\n- `scripts/eval_arc.py` — 多选答案提取 + 字母匹配\n- `scripts/eval_strategyqa.py` — Yes/No 提取 + 匹配\n- `scripts/eval_math_l45.py` — 使用 `is_equiv` 数学表达式等价判定，额外输出 Level 4/5 分层指标\n\n**数据准备脚本**（可复现）：\n- `scripts/prepare_arc.py`\n- `scripts/prepare_strategyqa.py`\n- `scripts/prepare_math_l45.py`\n\n所有 eval 脚本支持: `--mode`, `--k`, `--n-problems`, `--temperature`, `--api-base`, `--model`, `--output`, `--resume`。调用 `pipeline.run_single(prob)` 对接现有 SICA pipeline。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-extra-benchmarks.md"
+}

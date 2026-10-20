@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49c009127fb15f32349e",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis r11 sbert process kappa",
+  "task_key": "worker_analysis_r11-sbert-process-kappa_20260521T114112",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_r11-sbert-process-kappa_20260521T114112_result.json",
+    "occurrence": 1,
+    "bytes": 789,
+    "sha256": "5520483145dc773acda1e845245409ae616c495f2d726d66406fb82e6de3a92a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n| Metric | Value |\n|--------|-------|\n| TF-IDF mean cosine sim | **0.7429** ± 0.0803 |\n| SBERT mean cosine sim | **0.9066** ± 0.0265 |\n| Answer Fleiss' κ | **0.5501** |\n\nSBERT similarity (0.91) 比 TF-IDF (0.74) 更高，两者都远超 answer-level κ (0.55)。使用语义 embedding 不仅不削弱结论，反而强化了 process-level consensus 的发现——CoT 推理过程在语义层面的一致性甚至高于词汇层面。\n\n注：TF-IDF 值 (0.74) 略高于论文中的 0.69，可能因为论文数据包含了更多条件/模型的平均值，而此处仅分析了 Mistral-7B FOLIO-204 单个设置。Answer κ (0.55) 也略高于论文的 0.46，同样可能因为子集差异。核心结论不变：SBERT >> Answer κ。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r11-sbert-process-kappa.md"
+}

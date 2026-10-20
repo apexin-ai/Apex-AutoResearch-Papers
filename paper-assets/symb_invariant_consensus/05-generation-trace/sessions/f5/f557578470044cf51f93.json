@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f557578470044cf51f93",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix kill pid 181992",
+  "task_key": "worker_fix_kill_pid_181992_20260516T053014",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_kill_pid_181992_20260516T053014_result.json",
+    "occurrence": 1,
+    "bytes": 576,
+    "sha256": "d09216d5e7c2b5cb04fc8ebf18cc1ddfadee1f8b5f9c1aeb400133c3c74047e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n| 项目 | 结果 |\n|------|------|\n| **Kill PID 181992** | `kill` 无效，`kill -9` 成功终止 |\n| **PID 181491 (804题)** | 存活，运行 16m56s，状态 Sl（正常） |\n| **vLLM** | 健康，模型 Qwen2.5-14B-Instruct 已加载，max_model_len=8192 |\n| **tmux** | 无活跃 session（进程可能是 nohup 启动的） |\n| **804题进度** | 正在正常推理，最新日志 13:32:21 显示 \"Generating traces 9-12 of 12\"，vLLM 请求全部 200 OK |\n\n804 题进程运行正常，vLLM 无报错，可以放心让它继续跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-pid-181992.md"
+}

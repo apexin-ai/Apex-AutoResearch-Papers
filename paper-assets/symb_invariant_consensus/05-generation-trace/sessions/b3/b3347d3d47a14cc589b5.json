@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3347d3d47a14cc589b5",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra exp 048 deploy 16639 cuda2",
+  "task_key": "worker_infra_exp-048-deploy-16639-cuda2_20260518T203225",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_exp-048-deploy-16639-cuda2_20260518T203225_result.json",
+    "occurrence": 1,
+    "bytes": 879,
+    "sha256": "949926a265ebf13eac87f210b6be92a3ee9764f9f690c04af9486a569fee4836"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**LLaMA-3.1-8B-Instruct 不在 westd-16639 上，无法部署 exp-048。**\n\nGPU 状态：cuda:2 空闲（RTX PRO 6000 Black, 98GB, 0% 占用）。\n\n**可用模型列表：**\n| 模型 | 目录名 |\n|---|---|\n| Mistral-7B-Instruct-v0.3 | `Mistral-7B-Instruct-v0.3` |\n| Qwen2.5-14B-Instruct | `Qwen2.5-14B-Instruct` |\n| Qwen3-14B | `Qwen3-14B` |\n| DeepSeek-R1-0528-Qwen3-8B | `deepseek-r1-0528-qwen3-8b` |\n| Gemma-3-27B-IT | `gemma-3-27b-it` |\n| LLaMA-4-Scout | `llama-4-scout` |\n| Phi-4-Reasoning | `phi-4-reasoning` |\n\n**PW-600 数据也不存在。** 现有 ProofWriter 数据：\n- `proofwriter_d012.json`\n- `proofwriter_full.json`\n- `proofwriter-OWA-D5-validation.jsonl`\n\n**建议替代实验：** 用 Qwen2.5-14B-Instruct + 现有 ProofWriter 数据（如 `proofwriter_full.json`），或其他可用模型组合。需要你决定下一步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp-048-deploy-16639-cuda2.md"
+}

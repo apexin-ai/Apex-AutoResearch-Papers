@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff25960a5b6176065a6d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ops kill zombie gpu3 16639",
+  "task_key": "worker_ops_kill-zombie-gpu3-16639_20260519T154137",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill-zombie-gpu3-16639_20260519T154137_result.json",
+    "occurrence": 1,
+    "bytes": 394,
+    "sha256": "e0e9ae268267e378e9b8f31792e4048bc446e8a8cfe8519cb12b5c78e12e9760"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。汇报：\n\n**发现的残留进程：**\n- PID 76474 — `VLLM::EngineCore`，GPU 3 占用 88254MiB，已运行 13h22m\n- tmux session `exp048_vllm` 仍存活\n\n**执行的操作：**\n- `kill -9 76474`\n- `tmux kill-session -t exp048_vllm`\n\n**GPU 3 最终状态：** 0MiB 占用，0% 利用率，34°C，已完全释放。GPU 2 和 3 现在均空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-zombie-gpu3-16639.md"
+}

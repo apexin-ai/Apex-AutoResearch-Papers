@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "882930e184df02345617",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment wave3 dir j bootstrap",
+  "task_key": "worker_experiment_wave3-dir-j-bootstrap_20260520T090123",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_wave3-dir-j-bootstrap_20260520T090123.log",
+    "occurrence": 1,
+    "bytes": 996386,
+    "sha256": "a90a4c769040c30d820e4722d157123f7245c4ac5601c17e549efe8c51a667a6"
+  },
+  "statistics": {
+    "messages": 322,
+    "user_turns": 0,
+    "tool_calls": 121,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 76,
+      "tool_call": 121,
+      "tool_result": 121,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 322,
+      "chunks": [
+        {
+          "path": "882930e184df02345617-part-0001.json",
+          "message_count": 170
+        },
+        {
+          "path": "882930e184df02345617-part-0002.json",
+          "message_count": 152
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-wave3-dir-j-bootstrap.md"
+}

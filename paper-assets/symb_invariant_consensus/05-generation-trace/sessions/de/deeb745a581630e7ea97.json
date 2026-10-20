@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "deeb745a581630e7ea97",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ssh check exp 014",
+  "task_key": "worker_ssh_check-exp-014_20260517T125849",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check-exp-014_20260517T125849_result.json",
+    "occurrence": 1,
+    "bytes": 515,
+    "sha256": "a696004c9bb8739fc4710293bf141c7e4c5ae1d23016cff92b3edbb6cf0f1189"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-014-deepseek-r1-7b 状态报告：**\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | **Running** (PID 324400, 已运行 1h07m) |\n| GPU | RTX PRO 6000 Black, 100% 利用率, 88.3/97.9 GB VRAM (vLLM 引擎) |\n| 进度 | **34/60 问题完成** (57%), 正在处理第 35 题 (folio_004) |\n| ETA | ~50 min 剩余 (avg 116s/problem, 还剩 26 题) |\n| 当前表现 | 最近两题 SICA ✓, SC ✓ (第34题 votes 9/12, 第33题 votes 12/12) |\n\n运行正常，预计约 50 分钟后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-exp-014.md"
+}

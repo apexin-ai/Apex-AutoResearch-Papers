@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "363040848e1cb0752dd4",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ops kill zombies p0",
+  "task_key": "worker_ops_kill-zombies-p0_20260519T145558",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill-zombies-p0_20260519T145558_result.json",
+    "occurrence": 1,
+    "bytes": 783,
+    "sha256": "878855916152dd8cd6787d3c8107f6cdc9bed95fb084b8bebadc09f4ac24ca42"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个僵尸进程已成功清理，GPU 显存已释放。\n\n### westd-16639\n| GPU | 显存使用 | 状态 |\n|-----|---------|------|\n| 0 | 88255 MiB / 97887 MiB | 占用（PID 152729，其他 vLLM） |\n| 1 | 0 MiB | 空闲 |\n| **2** | **0 MiB** | **已释放** ✓（原 88254 MiB，PID 151829 已killed） |\n| 3 | 88263 MiB / 97887 MiB | 占用（PID 76474，其他 vLLM） |\n\n### westd-25068\n| GPU | 显存使用 | 状态 |\n|-----|---------|------|\n| **0** | **0 MiB** | **已释放** ✓（原 88301 MiB，PID 190753 已killed） |\n| 1 | 90241 MiB / 97887 MiB | 占用（PID 236050，其他 vLLM） |\n| 2 | 0 MiB | 空闲 |\n| 3 | 88115 MiB / 97887 MiB | 占用（PID 192666，其他 vLLM） |\n\n两台服务器目标 GPU 显存均已完全释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-zombies-p0.md"
+}

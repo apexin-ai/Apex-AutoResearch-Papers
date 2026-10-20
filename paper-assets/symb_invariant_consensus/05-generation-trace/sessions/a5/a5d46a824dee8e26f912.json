@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5d46a824dee8e26f912",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "verify figure7 regenerate",
+  "task_key": "worker_verify_figure7-regenerate_20260522T212942",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_figure7-regenerate_20260522T212942_result.json",
+    "occurrence": 1,
+    "bytes": 462,
+    "sha256": "6419fdbbaf0096fe8a639c11146deb57dda174bd3c46199dd12b82331a8f023b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 7 重新生成完成。\n\n**输出文件：**\n- `/root/symb_invariant_consensus/artifacts/capability_gap_scatter.pdf` (33 KB)\n- `/root/symb_invariant_consensus/artifacts/capability_gap_scatter.png` (124 KB)\n\n**统计指标（与修正前一致）：**\n- DeBERTa-only (6pt): Spearman ρ = 0.986, p = 0.0003\n- DeBERTa+LLaMA (7pt): Spearman ρ = 0.955, p = 0.0008\n- Linear R² = 0.919\n- Sigmoid (9pt): R² = 0.909, inflection = -8.1pp"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-figure7-regenerate.md"
+}

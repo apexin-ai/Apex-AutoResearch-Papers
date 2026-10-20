@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3844719f4767225d3a22",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra kill vllm 25068 cuda1",
+  "task_key": "worker_infra_kill-vllm-25068-cuda1_20260519T054613",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_kill-vllm-25068-cuda1_20260519T054613_result.json",
+    "occurrence": 1,
+    "bytes": 121,
+    "sha256": "89b04d941f5dda3a6f9bfee4247ab56e702797dc94db672aea487755cc15fa3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程 68846 已终止。cuda:1 (GPU 1) 已释放：0MiB / 97887MiB，0% 利用率。三张卡都空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-vllm-25068-cuda1.md"
+}

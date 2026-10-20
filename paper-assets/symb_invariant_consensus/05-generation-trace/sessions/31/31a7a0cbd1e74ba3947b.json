@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31a7a0cbd1e74ba3947b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "figure fig3 causal dag pb v6",
+  "task_key": "worker_figure_fig3-causal-dag-pb-v6_20260524T170713",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_figure_fig3-causal-dag-pb-v6_20260524T170713_result.json",
+    "occurrence": 1,
+    "bytes": 438,
+    "sha256": "4c64eb0c3b2015400838c74d02c764adb809743d8205f04763d2d8b668cce146"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**Fig 3 v6 (Causal DAG) 生成结果：**\n- 3 轮外部迭代，R3 为最终版本\n- 配色与 Fig 1 统一（蓝 M / 紫 T / 红 A / 橙 C / 青 S / 绿 Y）\n- A→C 红色 bottleneck 箭头醒目，标签正确定位在箭头上方\n- 背景分组（Generation / Verification）微妙可辨\n- C ⊥⊥ Y | A 注释清晰\n- LaTeX 已更新 `analysis.tex:42` → `fig3_causal_dag_pb_v6.pdf`，编译通过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig3-causal-dag-pb-v6.md"
+}

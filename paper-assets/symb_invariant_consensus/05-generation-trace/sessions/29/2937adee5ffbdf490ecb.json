@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "2937adee5ffbdf490ecb",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "infra urgent full gpu status",
+  "task_key": "worker_infra_urgent-full-gpu-status_20260522T141914",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_urgent-full-gpu-status_20260522T141914.log",
+    "occurrence": 1,
+    "bytes": 689071,
+    "sha256": "9be27888e597faa02730c164d346ea715e8092e19839454d12a966aa8c7bcb8f"
+  },
+  "statistics": {
+    "messages": 128,
+    "user_turns": 0,
+    "tool_calls": 56,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 12,
+      "tool_call": 56,
+      "tool_result": 56,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 128,
+      "chunks": [
+        {
+          "path": "2937adee5ffbdf490ecb-part-0001.json",
+          "message_count": 122
+        },
+        {
+          "path": "2937adee5ffbdf490ecb-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-urgent-full-gpu-status.md"
+}

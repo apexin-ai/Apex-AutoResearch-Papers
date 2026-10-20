@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fdc3df7ad9db826a757a",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "agent / loop_7_1779014525.md",
+  "task_key": "loop_7_1779014525",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_7_1779014525.md",
+    "occurrence": 1,
+    "bytes": 3694,
+    "sha256": "4fa1f50c1bc6566324f7a7d15e3c034c689bea95ced1db9acdda8190cfb5d77a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-17T10:14:53+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 **westd-32608:cuda:0**（gpu_ids=[\"cuda:0\"]，唯一一张 RTX PRO 6000 Blackwell 98GB）\n- submit_training_job 命令必须带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀（2026-05-17 pilot-contrastive-prompt EXIT_CODE=127 教训）\n- D034 已证伪 operating regime 假设（exp-020 同题对比）——不要再设计验证 \"sweet spot 显著性\" 的实验\n- exp-019 StrategyQA 200 题 p=0.424 不显著，exp-020 FOLIO 204 是最后挣扎——若也 negative，论文维持 D025 Capability Trap framing，不再 pivot\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-32608**，账号 root\n- 工作目录：`/root/symb_invariant_consensus`\n- Python：`/root/miniconda3/bin/python`（通过 `conda activate base`）\n- 数据路径：`/root/symb_invariant_consensus/data/` （folio_204.jsonl, strategyqa_200.jsonl 等）\n- 模型：通过 vLLM 调 `meta-llama/Llama-3.1-8B-Instruct`（HF 在线加载）\n- 活跃进程：exp-020-llama8b-folio-204 (PID 309318, tmux session, cuda:0)\n- Cron：1 个活跃（监控 exp-020，reconcile 确认仍在 running）\n- 无活跃 Worker\n\n### 3. 📊 当前状态\n**刚完成**：exp-019 StrategyQA 200 题 powered test（negative, +2pp, p=0.424）+ exp-010 Mistral（negative, 0pp）+ D032/D033/D034 决策链\n\n**正在运行**：\n- `exp-020-llama8b-folio-204` (RUNNING)：FOLIO 全量 204 题 powered test，LLaMA-8B，parent=exp-011。FOLIO 在 exp-011 中信号最强（+10pp, bootstrap p≈0.04），这是最后一次尝试确认显著性。提交于 09:12 UTC，已跑约 45min。\n\n**PREPARING**：smoke-test-5q（可忽略）\n\n**等待中**：\n- exp-020 cron 回调（预计 1-2h 内完成）\n- D034 决策已记录：exp-020 是\"同题对比证伪 operating regime\"——意味着 Director 已预判结果可能 negative\n\n### 4. 📋 待办（条件触发式）\n- exp-020 cron 回调到达 + conclusion=success → 更新 registry + report.md + 向 Director 汇报\"FOLIO 显著\"→ 触发 paper_framing 更新讨论\n- exp-020 cron 回调到达 + conclusion=negative → 更新 registry + 向 Director 汇报\"所有 powered test 均失败，operating regime 假设无法验证\" → 维持 D025 Capability Trap analysis paper framing → 准备写论文\n- exp-020 cron 回调到达 + conclusion=failed → spawn worker 查日志诊断，按 on-experiment-failed skill 处理\n\n### 5. 🎯 战略上下文\n**项目核心结论链**：\n- D025: SICA≈SC（+0.26pp, n=804, n.s.）→ pivot to Analysis Paper\n- D027: MaxSAT≈count-only≈random → mechanism vacuous\n- D029: SICA≤SC for all K → tiebreak-only confirmed\n- D031: LLaMA-8B +6.67pp 方向性正面但 p=0.22\n- D032: Mistral 确认倒 U 型（sweet spot 在 ~60% SC accuracy）\n- D033: StrategyQA 200 题 +2pp n.s. → inverted U suggestive but not significant\n- D034: exp-020 同题对比证伪 operating regime\n\n**最容易判断错的事**：\n1. 不要因为 exp-011 的 +6.67pp 和 FOLIO 子集 +10pp 就乐观——exp-019 同模型换数据集只有 +2pp，pattern 不稳定\n2. D034 标题说\"证伪\"但 exp-020 还在跑——这是 Director 的预判/框架命名，不是结果。等实际数据\n3. 论文 target 是 EMNLP 2026 ARR May 25——还有 8 天。如果 exp-020 negative，需要快速转入写作模式（Capability Trap analysis paper 的实验数据已基本齐全）\n4. paper_framing.md 当前写的是 D025 Analysis Paper framing（3 claims: Capability Trap / Operating Regime Empty / C0 Diagnostic）——这个 framing 在大部分实验 negative 的情况下是论文的最终形态\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1779014525.md"
+}

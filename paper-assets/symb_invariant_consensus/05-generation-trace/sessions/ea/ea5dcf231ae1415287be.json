@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea5dcf231ae1415287be",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "deploy exp 072 llama8b logiqa200",
+  "task_key": "worker_deploy_exp-072-llama8b-logiqa200_20260519T152221",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_exp-072-llama8b-logiqa200_20260519T152221_result.json",
+    "occurrence": 1,
+    "bytes": 743,
+    "sha256": "f99ccd92a620e9405a310b46b7c9233d7362714f4650186f1ed87da64c40030a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成，汇报：\n\n**exp-072-llama8b-logiqa200 部署状态**\n\n| 项目 | 状态 |\n|------|------|\n| 服务器 | westd-16639, cuda:1 |\n| vLLM | 启动成功，端口 8011，`VLLM_USE_FLASHINFER_SAMPLER=0`（Blackwell GPU FlashInfer 兼容性修复） |\n| 实验 | 已在 tmux `exp072_run` 中运行，HTTP 请求全部 200 OK |\n| Registry | RUNNING，provenance 已记录 |\n\n**遇到的问题**：vLLM 0.21.0 首次启动因 FlashInfer sampler 不识别 Blackwell (sm_100+) 架构而 crash，设置 `VLLM_USE_FLASHINFER_SAMPLER=0` 后正常启动。\n\n**tmux sessions**：\n- `exp072_vllm` — vLLM 服务\n- `exp072_run` — 实验主进程\n\n日志位置：`results/exp072_llama8b_logiqa200/exp072_run.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-exp-072-llama8b-logiqa200.md"
+}

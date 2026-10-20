@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55e32cd9e3beb63c6621",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "agent / loop_2_1778882418.md",
+  "task_key": "loop_2_1778882418",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_2_1778882418.md",
+    "occurrence": 1,
+    "bytes": 4309,
+    "sha256": "6b5199fa5f5740b7fe02015daa2385cd6b8100f84144a7be91950a4e2d213fec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_wall_time\nupdated: '2026-05-15T21:45:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 只能用 **cuda:0**（westd-32608 唯一分配的 GPU）\n- vLLM 独占：实验运行期间禁止其他进程向 localhost:8000 发请求（v3 教训：并发请求导致 \"Deferred: N reqs\" 恶性循环）\n- **数据诚信**：禁止硬编码\"已知旧值\"后自证翻转（P5 \"120→80 翻转\"虚假声明事故）\n- **memory.md 是制度性记忆**：不能被 Worker 覆写为临时分析报告（已发生过一次，Director CRITICAL）\n- rescore 必须纯 CPU：零网络请求，不重新生成 trace\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-32608, root 用户, 工作目录 `/root/symb_invariant_consensus/`\n- **Python**: `/root/miniconda3/bin/python` (conda base), 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/autodl-tmp/models/QwQ-32B/Qwen/QwQ-32B/` (QwQ-32B FP16)\n- **vLLM**: port 8000, bfloat16, max_model_len=16384, gpu_memory_utilization=0.90, ~61 GiB VRAM\n- **数据集**: `data/aime2024_subset.json` (30题), `data/math500_subset.json` (50题 L1-5各10), `data/proofwriter_subset.json` (30题 D5), `data/folio_subset.json` (30题)\n- **HF cache**: 默认路径（未设 HF_HOME，非 AutoDL）\n- **活跃进程**: v3 PID 129992 (`python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 10240 --math-data data/aime2024_subset.json --output results/aime30_v2.json --no-proofwriter --resume`)\n- **Cron**: sica_aime30_v3 监控 PID 129992（进程存活检测）\n- **结果文件**: `results/aime30_v2.json`（v3 写入此文件，命名是 v2 但 registry 追踪为 v3）\n\n### 3. 📊 当前状态\nv3 运行中，最后检查 22/30 题完成，预估 ~20:30-21:00 UTC 完成。GPU 利用率瞬时 0% 但进程仍在推进（可能是 CPU 密集的 Z3 求解阶段）。\n\n**全部准备工作已完成**，等 v3 完成后按 D011 执行：\n- v4 代码修复 5 项已合入（max_tokens 16384, fallback extraction, finish_reason, --save-intermediates, Int/Real sort 统一）\n- ProofWriter prompt 适配 + FOLIO prompt 适配 + 评估脚本全部 dry-run 通过\n- Worker 池 0（全部 CPU 准备任务已完成）\n\nRegistry: `sica_aime30_v3` RUNNING，其余全 DONE。\n\n### 4. 📋 待办（条件触发式）\n- **v3 cron 回调（PID 129992 退出）→ 按 D011 严格按序执行**：\n  1. Vote diversity 分析（~10min）：统计 30 题 sc_vote_distribution，确认单候选。一次性脚本读 `results/aime30_v2.json`\n  2. MATH-10 trace-only 诊断（~1h）：从 math500_subset.json 筛 L4-5 10题，`python run_full_mvp.py --mode vllm --k 12 --max-tokens 16384 --math-data data/math500_L45_10.json --no-proofwriter --save-intermediates`。多候选率 ≥20% → MATH-50 全量；<20% → 转逻辑域\n  3. 逻辑域主实验：`python eval_proofwriter.py --k 12 --max-tokens 16384 --save-intermediates` + `python eval_folio.py --k 12 --max-tokens 16384 --save-intermediates`\n- **MATH-10 多候选率 ≥20% → 回到 MATH-50 全量**（eval_math500.py 已就绪）\n- **MATH-10 多候选率 <20% → C3 FAIL 确认**，全力推逻辑域实验\n\n### 5. 🎯 战略上下文\n- **核心问题**：SICA（符号不变量共识聚合）在数学域 = SC（自洽性），因为 QwQ-32B 每题只产 1 个候选答案。这是**模型级特征**（temp_diversity 实验在 MATH L4-5 32题零分歧），不是 bug。\n- **D011 策略转向**：放弃 MATH-50 全量（7-8h 不值得），转逻辑域（ProofWriter + FOLIO）作为 SICA 的验证场景。MATH-10 是最后一次确认数学域是否有希望。\n- **v3 结果文件命名陷阱**：实际写入 `results/aime30_v2.json`（因为 `--resume` 续跑 v2），registry 追踪为 `sica_aime30_v3`。不要被文件名误导。\n- **v3 用的是旧代码**（max_tokens=10240），v4 修复还没被 v3 使用。v3 中截断题的数据仍有参考价值（约束提取成功但答案丢失）。\n- **II_14 特殊案例**：100 raw→33 unique→33 satisfied 但 0 答案，可能不是截断而是 candidate 为空，v4 需关注。\n- **易错**：不要混淆 v2/v3 文件名；不要假设 MATH 上会有多候选（大概率没有）；FOLIO prompt 不能复用 ProofWriter 的 LOGIC_PROMPT（已分开为 FOLIO_PROMPT）。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778882418.md"
+}

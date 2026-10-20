@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed5732d48a02d2c819d3",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper check appendix multi seed",
+  "task_key": "worker_paper_check-appendix-multi-seed_20260524T112255",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_check-appendix-multi-seed_20260524T112255_result.json",
+    "occurrence": 1,
+    "bytes": 1281,
+    "sha256": "f385b6440c9d87bd646b8c24518008b7a523cf2b04ffdd22d28afdbb96f480d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### tab:multi-seed 当前状态\n\n**5 个已完成条件全部有数据**：\n| 条件 | Seeds | Δ Range | 状态 |\n|------|-------|---------|------|\n| Mistral-7B × FOLIO | 3 (123/456/789) | −2.45 to +2.94 | ✓ |\n| Qwen2.5-14B × FOLIO | 4 | −2.01 to 0.00 | ✓ |\n| Mistral-7B × PW | 4 | −3.33 to −1.33 | ✓ |\n| LLaMA-8B × PW | 4 | −7.50 to −4.67 | ✓ |\n| Qwen2.5-14B × PW | 4 | −2.50 to −0.83 | ✓ |\n| Qwen3-14B × PW | 1/4 (seed42 only) | −0.17 | TBD 占位 |\n\n### Qwen2.5-14B × PW 数据核验\n\n**已存在且 per-seed 数据内部自洽。** 表中 Mean=73.21/71.50/−1.71 是从 per-seed 值精确计算的。memory.md 记录的 73.25/71.62/−1.63 有微小偏差（约 0.04-0.12pp），但表中数据基于 per-seed 行的算术一致性是对的。seed123 SICA=70.83% 已是 alphabetical 修正后的值。\n\n### 具体改动\n\n1. **添加 Qwen3-14B × PW 占位行**（lines 1421-1428）：seed42 填入已知数据 (SC=85.83, SICA=85.67, Δ=−0.17)，seeds 123/456/789 和 Mean 行标记为 *TBD*\n2. **Caption** \"five\" → \"six\" model×dataset conditions\n3. Qwen3 seeds 123/456/789 实验仍为 RUNNING 状态（自 May 23 20:15 UTC 起），结果出来后需补全 TBD 行并更新叙述段"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-check-appendix-multi-seed.md"
+}

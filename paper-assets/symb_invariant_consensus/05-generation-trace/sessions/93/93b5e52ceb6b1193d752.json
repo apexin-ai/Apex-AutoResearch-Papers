@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93b5e52ceb6b1193d752",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis icg contrastive kappa measurement",
+  "task_key": "worker_analysis_icg-contrastive-kappa-measurement_20260520T013308",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_icg-contrastive-kappa-measurement_20260520T013308_result.json",
+    "occurrence": 1,
+    "bytes": 1202,
+    "sha256": "9cbd838e5d177aadfef626db5d844532f1d1bd7e25a982ae4a18f9ae4a76abcb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下：\n\n| Method | κ | Eff-K | Acc% |\n|---|---|---|---|\n| **Debate** | 0.1549 | 4.44 | 38.24 |\n| **Diverse-Prompt** | 0.4030 | 2.21 | ~57 |\n| **SC** | 0.4384 | 2.02 | 56.86 |\n| **ICG** | 0.7188 | 1.35 | 51.96 |\n| **Contrastive** | 0.9643 | 1.03 | 47.55 |\n\n**方法说明**：\n- **ICG κ**：bootstrap 采样 5/10 个独立约束集 → dedup + MaxSAT + InvariantScorer → 12 个 bootstrap raters。204 题中 91 题(44.6%)在不同 bootstrap 间答案发生变化。\n- **Contrastive κ**：对每个 candidate 的 pro/con 约束各采样 50% → 重跑 MaxSAT 评分 → 12 个 bootstrap raters。163 题（41 题 degenerate 跳过）中仅 8 题(4.9%)发生答案翻转。\n\n**散点图故事**：5 个点呈现清晰的倒 U 形——Debate 过于独立(κ=0.15)但投票质量低 → acc 最低；SC/Diverse 处于甜点区(κ≈0.4)→ acc 最高；ICG/Contrastive 过于确定性(κ>0.7)→ 约束评分太稳定，无法从聚合中获益，acc 反而下降。Contrastive 几乎完全确定性(κ=0.96, Eff-K≈1)，相当于单一投票者。\n\n数据已保存到 `artifacts/kappa_icg_contrastive.json` 和服务器 `results/kappa_icg_contrastive.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-icg-contrastive-kappa-measurement.md"
+}

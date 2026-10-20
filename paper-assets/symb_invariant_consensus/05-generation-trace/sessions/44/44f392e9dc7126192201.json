@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44f392e9dc7126192201",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 017 strategyqa v2",
+  "task_key": "worker_analysis_exp-017-strategyqa-v2_20260517T040206",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-017-strategyqa-v2_20260517T040206_result.json",
+    "occurrence": 1,
+    "bytes": 1183,
+    "sha256": "c047a4d905f7d2a5769f04d546540bef560496a56cff3bff374ac41a3fedd2fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果摘要\n\n```\n## exp-017-strategyqa-v2 Results\n- SICA accuracy: 18.33% (11/60)\n- SC accuracy:   16.67% (10/60)\n- Gap: +1.67pp (SICA > SC)\n- N problems: 60, K=12, T=0.7\n- C0 (multi-candidate rate): 6.7% (4/60)\n- Constraint extraction rate: 28.3% (17/60)\n- Contradiction rate: 6.7% (4/60)\n- SICA-SC agreement: 98.3% (59/60)\n- Wall time: 7.3 min\n- Completion flag: EXP017_DONE, EXIT_CODE=0\n```\n\n## 严重问题：答案提取失败\n\n**73.3% 的问题 (44/60) 答案为空**，SC 和 SICA 均未能提取到有效答案。日志中大量 `extraction_method=none, answer=NONE` 警告证实了这一点。\n\n这意味着实际有效的评估仅覆盖 16/60 个问题，实验数据 **不可靠**。\n\n根因推测：answer extraction regex/parser 针对 Yes/No 格式的适配有问题。模型生成了推理 trace 但 extractor 无法从中解析出 \"Yes\"/\"No\" 答案。\n\n## 结论\n\n**INVALID** — 答案提取管道在 StrategyQA (Yes/No) 格式上严重失效（73% 空答案），accuracy 数字 (18%/17%) 远低于随机基线 (50%)，不能得出任何关于 SICA vs SC 的有效结论。需要修复 answer extraction 后重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-017-strategyqa-v2.md"
+}

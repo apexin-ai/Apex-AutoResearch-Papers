@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76aa438cf30756279e3d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra exp052 053 westd16639",
+  "task_key": "worker_infra_exp052-053-westd16639_20260519T000740",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_exp052-053-westd16639_20260519T000740_result.json",
+    "occurrence": 1,
+    "bytes": 993,
+    "sha256": "57c0ac0cd6f1f0c6c524a785462969cb2af70a57c4185175f2e9d90500e71e9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**无需部署 — exp-052 和 exp-053 已在 westd-16639 上正常运行。**\n\n```\n服务器确认: westd-16639 [是] (hostname: autodl-container-63d6438985-33e7e5f9)\n\nexp-052 (cuda:2, seed=123):\n  vLLM port 8002: OK (Mistral-7B, --enforce-eager)\n  log 最后活动: 2026-05-19 08:08:30, 持续 200 OK 响应\n  intermediates 文件数: 3\n  GPU compute: 96%\n  状态: SUCCESS ✓ — 已在运行\n\nexp-053 (cuda:3, seed=456):\n  vLLM port 8003: OK (Mistral-7B, --enforce-eager)\n  log 最后活动: 2026-05-19 08:08:29, 持续 200 OK 响应\n  intermediates 文件数: 3\n  GPU compute: 96%\n  状态: SUCCESS ✓ — 已在运行\n\ntmux sessions:\n  - exp032 (cuda:0, Qwen2.5-14B, ProofWriter)\n  - exp033 (cuda:1, Qwen3-14B, ProofWriter)\n  - seed-replication (cuda:2+3, 包含 exp052/053 的 vLLM + 实验进程)\n```\n\n`seed-replication` session 于 07:40 启动，已运行约 30 分钟，两个实验都在活跃处理 FOLIO 数据。不需要重复部署。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp052-053-westd16639.md"
+}

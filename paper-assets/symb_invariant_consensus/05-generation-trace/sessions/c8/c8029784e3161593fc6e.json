@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8029784e3161593fc6e",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 080 cron check v2",
+  "task_key": "worker_analysis_exp-080-cron-check-v2_20260519T204012",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-080-cron-check-v2_20260519T204012_result.json",
+    "occurrence": 1,
+    "bytes": 531,
+    "sha256": "ef7ec1c11c81ffb9b4e740801161c5ebfde00cd7a854410ba74474d6e4c3f73b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**误报。** exp-080 进程仍在正常运行（PID 279846），当前进度 **42/200**（从5分钟前的32提升到42），无任何 error/exception/OOM。\n\n状态摘要：\n- 进程：`python -u run_contrastive.py ... --data data/logiqa_200.json` 正常运行中\n- 进度：42/200，ETA ~97 分钟（159 samples remaining）\n- 日志：全部是正常的 HTTP 200 请求，无错误\n- tmux session 已不存在（进程通过 nohup 后台运行，不影响）\n\nCRON 第三次误报，不做任何操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-080-cron-check-v2.md"
+}

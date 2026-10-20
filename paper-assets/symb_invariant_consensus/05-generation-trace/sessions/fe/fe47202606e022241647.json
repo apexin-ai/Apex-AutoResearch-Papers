@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe47202606e022241647",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "agent / loop_8.md",
+  "task_key": "loop_8",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_8.md",
+    "occurrence": 1,
+    "bytes": 3270,
+    "sha256": "48b7c1cad1276d0ab33d7901e116499cd55ca6a67d7213b811c95f415b347688"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-17T17:39:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-32608:cuda:0（唯一分配的 GPU）\n- 实验脚本路径: /root/symb_invariant_consensus，conda env = base\n- ARR May 25 deadline 还剩 8 天——写作阶段，不要启动与论文无关的探索性实验\n- D012 数据集只有 60 题（30PW+30FOLIO），powered test 用扩展数据集（804 题）\n\n### 2. 🖥️ 基础设施快照\n- 服务器: westd-32608, 工作目录 /root/symb_invariant_consensus\n- Python: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n- 模型: HuggingFace 下载（deepseek-ai/DeepSeek-R1-Distill-Qwen-7B, Qwen/Qwen2.5-14B-Instruct 等）\n- 数据: /root/symb_invariant_consensus/data/（D012 = 30PW+30FOLIO）\n- GPU: 1× RTX PRO 6000 Blackwell 98GB (cuda:0)\n- 磁盘: /usr/bin/nvidia-smi 400G/439G 可用（4%已用），充裕\n- 活跃进程: 无（exp-014 刚完成退出）\n- 活跃 Worker: worker_analysis_exp-014-deepseek-r1-7b_20260517T133544（正在分析结果）\n\n### 3. 📊 当前状态\n刚收到 exp-014-deepseek-r1-7b 的完成 cron 回调（ANALYZING 状态）。已派 Worker 去 SSH 读日志 + 分析结果。\n\nRegistry 状态:\n- exp-014-deepseek-r1-7b: ANALYZING（等 Worker 回调带回指标）\n- smoke-test-5q: PREPARING（待处理）\n- 其余 33 个实验全部 DONE（success 12, negative 6, failed 9, killed 6）\n\n等待中:\n- Worker 回调: worker_analysis_exp-014-deepseek-r1-7b（分析日志+指标）\n- 回调到达后: 更新 registry conclusion → 更新 report.md → 汇报 Director\n\n### 4. 📋 待办\n- Worker 分析回调到达 → 根据 C0 和 gap 判断 conclusion（C0<5% = success 验证 capability trap; 否则 negative）→ update_registry → 刷新 report.md → 汇报 Director\n- exp-014 完成后 → GPU 空闲，ROADMAP 列出下一个 GPU 实验是 exp-004（~2h）或 exp-007（~4h），但当前处于写作阶段，需 Director 决定是否继续跑\n- CPU ablations（exp-015 Logic-LM baseline, exp-016 weighted SC baseline, exp-009 overhead analysis）可随时并行派 Worker 执行——这些是论文必需的，不需要 GPU\n- 写作启动: Director 已确认进入写作阶段（D035），Paper Agent 尚未启动\n\n### 5. 🎯 战略上下文\n- **核心结论（D035）**: SICA ≈ SC everywhere。四个 powered test 全部 negative。Symbolic consensus 因 diversity-quality 反向相关而失效。论文方向是 **Capability Trap Analysis Paper**（负面结果论文）。\n- **exp-014 的角色**: 验证 reasoning model 的确定性链消灭多样性（C0→0），是 capability trap 论述的支撑数据点之一。预期 success（与 QwQ-32B 一致）。\n- **决策链**: D025(final framing) → D029(SICA≤SC all K) → D030(转 Methods→Analysis) → D031-D035(逐步证伪 operating regime) → 进入写作\n- **易错点**:\n  - 不要把 exp-011 的 +10pp 当成正面结果——D034 已证明那是 n=30 噪声（exp-020 同任务 n=204 反转为 -2.4pp）\n  - exp-014 的 hypothesis 是\"验证 capability trap\"不是\"验证 SICA 有效\"——即使 SICA=SC（gap≈0），只要 C0<5% 就是 success\n  - 写作阶段的关键 claim 见 paper_framing.md，所有实验必须与 framing 对齐\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-copy-2.md"
+}

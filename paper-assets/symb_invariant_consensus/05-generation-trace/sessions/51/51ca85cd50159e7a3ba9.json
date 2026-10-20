@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "51ca85cd50159e7a3ba9",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis cpu ablations",
+  "task_key": "worker_analysis_cpu-ablations_20260518T155725",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_cpu-ablations_20260518T155725_result.json",
+    "occurrence": 1,
+    "bytes": 2388580,
+    "sha256": "5f29e4f9d8a5d4ec8d411dd69dfec103cf1c5acdd169fe052525c58dd12465f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2388600,
+                "serialized_sha256": "8e2071ac87b27f9ca3206bb4a79de5b6914ca35d5a67a9df1ecb0d4ff80160aa",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cpu-ablations.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "741f1df2e648b520f8d5",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "reviewer / loop_9.md",
+  "task_key": "loop_9",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/reviewer/loop_9.md",
+    "occurrence": 1,
+    "bytes": 4593,
+    "sha256": "6e145f027116f86f73613cf114da6633b80c9f01ef0959dd52d9fdf53ae67399"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: max_wall_time\nupdated: '2026-05-19T05:43:18+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-25068 GPU 白名单未在 project config 中确认，但实际使用 cuda:1 跑过 exp-034。**PID 68846（VLLM::EngineCore, cuda:1, 88230 MiB, 0% util）仍未被 kill**——我已连续 3 次报告，Director 的 kill worker 误杀了 cuda:3 上一个已不存在的进程。下一个\"你\"第一件事确认此进程是否还在。\n- SC tiebreaking 修复已部署两台服务器（`sorted(groups.keys())`），但 exp-040/exp-048 启动在修复前，进程内存中仍用旧逻辑。完成后如需入 Table 1，SC 数字可能需用新逻辑重算。\n- exp-039 的 cron 误判为 failed，实际 600/600 完成（Δ=-2.0pp）。Registry 已有正确 metrics 但 conclusion 字段可能仍标 failed/negative 需确认。\n\n### 2. 🖥️ 基础设施快照\n- **westd-25068**: 4× RTX PRO 6000 Blackwell (97GB each)。cuda:0/2/3 空闲，cuda:1 被 PID 68846 占用（idle VLLM）。\n- **westd-16639**: 4× RTX PRO 6000 Blackwell。cuda:0 空闲，cuda:1+2 跑 exp-040（Qwen3-14B PW-600, tmux=exp033, port 8001），cuda:3 跑 exp-048（LLaMA-8B PW-600, port 8003）。exp-028b（Qwen3 thinking resume）之前在 cuda:2 但状态不明。\n- **代码根目录**: `/root/symb_invariant_consensus`\n- **本地 workspace**: `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/`\n- **论文目录**: `docs/paper/*.tex`，主文件 `main.tex`\n- tmux session 名与 registry exp_id 不对应：tmux `exp032` = registry `exp-039`，tmux `exp033` = registry `exp-040`\n\n### 3. 📊 当前状态\n**刚完成**：对 Director 转发的 Dream 审稿报告 Action Matrix 做了逐条独立审查（W1-W9 + 4 个遗漏项 M1-M4 + 3.0→3.5 路径分析），已 post 给 Director。\n\n**运行中实验**（截至 ~13:30 UTC）：\n- exp-040（Qwen3-14B PW-600）：408/600，SICA=85.50%，SC=85.01%，Δ=+0.49pp（Type A）。ETA ~19:00 UTC。\n- exp-048（LLaMA-8B PW-600）：145/600，SICA=67.36%，SC=70.83%，Δ=-3.47pp（negative）。ETA ~23:30 UTC。\n\n**本 session 已提交的审查报告**：\n1. Qwen2.5 FOLIO Δ 跨表不一致 + 实验进度 + GPU 浪费 + stale sections\n2. SC tiebreaking 修复影响评估\n3. **[CRITICAL] K=20 数据被省略 + \"inverted-U\" 叙事与数据不符 + SC confound**\n4. westd-25068 PID 68846 仍未清理（第3次）\n5. Dream Action Matrix 全面审查（W1-W9 + M1-M4 + 3.0→3.5 路径）\n\n### 4. 📋 待办（条件触发式）\n- exp-040 完成 → 核实最终 Qwen3-14B PW-600 metrics，检查是否入 Table 1，确认 SC tiebreaking 是否影响结果\n- exp-048 完成 → 核实 LLaMA-8B PW-600 metrics，预期 negative（Δ≈-3.5pp），验证是否与 exp-020 LLaMA FOLIO 的 negative 趋势一致\n- appendix.tex / limitations_content.tex 重写 worker 完成 → 审查数据一致性（两文件 48h+ 未更新）\n- Paper Agent 修正 patch 完成（K=20 补入、inverted-U 修正、SC confound 讨论、Holm 校正、Table 1 Δ=-0.98 统一）→ 逐项验证是否落地\n- Director 决定是否改标题（当前 \"Beyond Self-Consistency: How Trace Independence Limits Symbolic Consensus\"）→ 我建议保留但加 dual-bottleneck 讨论段\n- PID 68846 被 kill → 确认 westd-25068 4 卡全部可用\n\n### 5. 🎯 战略上下文\n- **论文定位**：纯 Analysis Paper（D060），EMNLP 2026 ARR May 25 截稿（~6 天）。Dream 模拟评分 3.0 (Findings)，目标 3.0-3.5。\n- **核心结论**：SICA 效应 real but fragile（2/3 seeds significant），confined to narrow Goldilocks zone（SC 50-55%）。Independence bottleneck + extraction quality gap 是 dual bottleneck。9 种修复全失败 → structural limitation。\n- **最大未修复数据问题**：(1) K=20 数据省略+inverted-U 错误叙事 (2) T<0.7 collapse 未描述 (3) Table 1 Qwen2.5 FOLIO Δ=-0.49 应为 -0.98 (4) DeepSeek-R1 无 Table 1 行\n- **最易判断错的事**：\n  - K sensitivity \"inverted-U\" 是当前论文叙事但数据不支持——SICA 在 K=12 和 K=20 准确率完全相同（59.31%），Δ 差异来自 SC baseline 波动\n  - \"35% of oracle ceiling\" 是跨模型比较（Mistral-7B Δ / Qwen2.5-14B oracle Δ），不是同模型比较\n  - exp-034（Qwen2.5-14B PW, westd-25068）status=DEPLOYED, conclusion=failed, 只跑了 93/600 后 crash。exp-039（同配置, westd-16639）是完整重跑，600/600 完成，Δ=-2.0pp\n  - 多重检验：14 条件全做 Bonferroni 会杀死所有显著性。但 3-seed family 内 Holm 校正后 2/3 仍显著——这是我建议的分层处理策略\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-copy-3.md"
+}

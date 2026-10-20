@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "86fc613c38f2b1821009",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "infra gemma disk cleanup",
+  "task_key": "worker_infra_gemma-disk-cleanup_20260519T073526",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_gemma-disk-cleanup_20260519T073526.log",
+    "occurrence": 1,
+    "bytes": 961928,
+    "sha256": "3548619e73214475355f96943c836b81858b553932b4f17ab20b04ff68b0b5fc"
+  },
+  "statistics": {
+    "messages": 674,
+    "user_turns": 0,
+    "tool_calls": 246,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 178,
+      "tool_call": 246,
+      "tool_result": 246,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 674,
+      "chunks": [
+        {
+          "path": "86fc613c38f2b1821009-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "86fc613c38f2b1821009-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "86fc613c38f2b1821009-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "86fc613c38f2b1821009-part-0004.json",
+          "message_count": 134
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-gemma-disk-cleanup.md"
+}

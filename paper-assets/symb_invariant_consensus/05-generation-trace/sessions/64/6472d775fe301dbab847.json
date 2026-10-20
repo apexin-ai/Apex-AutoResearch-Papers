@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6472d775fe301dbab847",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis extraction error taxonomy",
+  "task_key": "worker_analysis_extraction-error-taxonomy_20260519T010920",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_extraction-error-taxonomy_20260519T010920_result.json",
+    "occurrence": 1,
+    "bytes": 1867,
+    "sha256": "40b15abc448f5866e2d29fdb626ce297d1fc4b17993d02df9c3dd4738cecee2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "执行成功。结果总结：\n\n## Extraction Error Taxonomy 结果\n\n### Baselines\n| 方法 | 准确率 |\n|------|--------|\n| exp033 SICA (Mistral-7B, self-extracted) | 59.3% |\n| exp033 SC | 54.4% |\n| exp031 Oracle SICA (Qwen-14B, gold FOL) | 89.7% |\n| **Oracle ceiling gap** | **30.4pp** |\n\n### Outcome Distribution (n=204)\n- both_correct: 109 (53.4%), sica_wins: 12 (5.9%), sc_wins: 2 (1.0%), both_wrong: 81 (39.7%)\n- SICA override precision: **85.7%** (12 correct / 14 decisive overrides)\n\n### Error Taxonomy (按 prevalence 排序)\n| Issue | Prevalence | Harmful Rate |\n|-------|-----------|-------------|\n| **trivially_satisfied** (约束全被满足，无过滤信号) | 43.1% | 34.1% |\n| **high_redundancy** (dedup ratio < 0.5) | 35.3% | 36.1% |\n| **incomplete_extraction** (部分 trace 提取失败) | 15.7% | 28.1% |\n| **low_consensus** (avg weight < 1.15) | 9.3% | **47.4%** |\n| **low_discrimination** (score range < 5) | 5.9% | **41.7%** |\n| **high_contradiction** (excluded > 10%) | 5.4% | 36.4% |\n\n### 关键发现\n\n1. **最有害的错误**: `low_consensus` (47.4% harmful rate) 和 `low_discrimination` (41.7%)——虽然 prevalence 低，但出现时几乎一半导致错误\n2. **最普遍的错误**: `trivially_satisfied` (43.1%)——约束被全部满足意味着 MaxSAT 没有提供过滤信号，但 harmful rate 相对适中 (34.1%)\n3. **Oracle gap = 30.4pp**: 68 个问题 oracle 对但 self-extracted 错，仅 6 个反向。说明约束质量是 SICA 的主要瓶颈\n4. **Per-group 对比**: `both_wrong` 组的 score_range 反而最高 (29.4)，说明错误约束产生的高置信度判断更危险——**约束不是太少而是错误方向**\n5. **FOL 复杂度**: 简单问题 (<=4 premises) SICA 71.4%，复杂问题 (7+) 降至 53.8%；复杂问题 SICA 完全没有超过 SC 的优势"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-extraction-error-taxonomy.md"
+}

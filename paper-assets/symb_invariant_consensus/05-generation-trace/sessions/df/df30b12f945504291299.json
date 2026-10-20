@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df30b12f945504291299",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra cuda2 mistral folio multiseed",
+  "task_key": "worker_infra_cuda2-mistral-folio-multiseed_20260523T000901",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_cuda2-mistral-folio-multiseed_20260523T000901_result.json",
+    "occurrence": 1,
+    "bytes": 197,
+    "sha256": "6dbfcb7df3a390bd9c94e32b2c20a1cf3203b39c21e642daf5b8cd09f7bf03ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:2 已清空 (0 MiB)。\n\n**总结**: Mistral-7B × FOLIO-204 的 seeds 123/456/789 三组实验结果均已完整（每组 204 个问题），无需重跑。cuda:2 已释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-cuda2-mistral-folio-multiseed.md"
+}

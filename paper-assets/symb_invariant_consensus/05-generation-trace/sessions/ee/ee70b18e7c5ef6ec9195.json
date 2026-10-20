@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee70b18e7c5ef6ec9195",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "figure operating regime update",
+  "task_key": "worker_figure_operating-regime-update_20260517T174335",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_figure_operating-regime-update_20260517T174335_result.json",
+    "occurrence": 1,
+    "bytes": 614,
+    "sha256": "2e7e03132a8e1b26621334e29dbc36f4250fc908800375340822a54cbc6341e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script verified: 9 data points including QwQ-32B (star, green) and GSM8K. Markers: Qwen=circle, Mistral=triangle, LLaMA=square, DeepSeek=diamond, QwQ=star. PDF+PNG saved to `artifacts/figures/paper/`.\n\n**任务 2** caption 已经是正确的（line 98 已包含 \"FOLIO and ProofWriter ($n=307$ multi-candidate problems)\"），无需修改。\n\n**完成：**\n- operating_regime 图：已加 QwQ-32B (Combined, C0=2.6%, Δ=0.0, n=39, green star) + GSM8K 已在。marker 按要求分配。输出覆盖 `operating_regime.pdf` + `.png`\n- experiments.tex caption：已是目标文本，无需改动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-operating-regime-update.md"
+}

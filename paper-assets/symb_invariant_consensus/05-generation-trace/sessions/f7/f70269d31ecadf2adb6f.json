@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f70269d31ecadf2adb6f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag exp052 exit check",
+  "task_key": "worker_diag_exp052-exit-check_20260519T010407",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_exp052-exit-check_20260519T010407_result.json",
+    "occurrence": 1,
+    "bytes": 942,
+    "sha256": "019b59c6c64feb16e6600fcf2ab4fe4148ee4d2801312949768fe0ed9b0a19b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已完成。\n\n```\nexp-052: COMPLETED\n  结果文件: 存在 (313KB, May 19 09:03)\n  intermediates: 3 files\n  wall time: 81.9 min\n  SICA = 57.4% (117/204)\n  SC   = 53.9% (110/204)\n  delta = SICA - SC = +3.5pp\n  extraction rate: 97.1%, contradiction rate: 3.4%\n\nexp-053: COMPLETED\n  结果文件: 存在 (317KB, May 19 09:02)\n  intermediates: 3 files\n  wall time: 80.8 min\n  SICA = 55.9% (114/204)\n  SC   = 56.4% (115/204)\n  delta = SICA - SC = -0.5pp\n  extraction rate: 97.0%, contradiction rate: 3.3%\n```\n\nCron 报告正确——进程已退出是因为实验跑完了，不是失败。\n\nvLLM 仍在 8002/8003 端口运行（GPU 0-1 100% util 在服务请求，GPU 2-3 idle）。如果不再需要，可以关掉释放 GPU。\n\n**Seed 间差异**：exp-052 (seed=123) SICA 优于 SC +3.5pp，但 exp-053 (seed=456) SICA 略低于 SC -0.5pp，说明 SICA 的优势在 seed 间不稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp052-exit-check.md"
+}

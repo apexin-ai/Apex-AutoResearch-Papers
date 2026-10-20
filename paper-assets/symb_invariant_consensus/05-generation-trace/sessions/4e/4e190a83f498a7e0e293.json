@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "id": "4e190a83f498a7e0e293",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "code cross model sica phase2",
+  "task_key": "worker_code_cross-model-sica-phase2_20260520T062511",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_cross-model-sica-phase2_20260520T062511.log",
+    "occurrence": 1,
+    "bytes": 2053563,
+    "sha256": "d51b5d93b95c0167cbdfed341476027ac8944e95a570047b182a9bac19499217"
+  },
+  "statistics": {
+    "messages": 723,
+    "user_turns": 2,
+    "tool_calls": 256,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 199,
+      "tool_call": 256,
+      "tool_result": 256,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 370,
+      "chunks": [
+        {
+          "path": "4e190a83f498a7e0e293-part-0001.json",
+          "message_count": 175
+        },
+        {
+          "path": "4e190a83f498a7e0e293-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4e190a83f498a7e0e293-part-0003.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 190,
+      "chunks": [
+        {
+          "path": "4e190a83f498a7e0e293-part-0003.json",
+          "message_count": 165
+        },
+        {
+          "path": "4e190a83f498a7e0e293-part-0004.json",
+          "message_count": 25
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 163,
+      "chunks": [
+        {
+          "path": "4e190a83f498a7e0e293-part-0004.json",
+          "message_count": 151
+        },
+        {
+          "path": "4e190a83f498a7e0e293-part-0005.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-cross-model-sica-phase2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4581c67df9713e2b607",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis nli combo data reconcile",
+  "task_key": "worker_analysis_nli-combo-data-reconcile_20260522T145105",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_nli-combo-data-reconcile_20260522T145105_result.json",
+    "occurrence": 1,
+    "bytes": 2039,
+    "sha256": "7d3b7b6dd3aaa81c98407572352b9e2ecf5f9c5db3be6d86b50d8bfbcc0e3294"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整的证据链已找到。根因是 **tiebreaking bug**。\n\n---\n\n## 排查结果\n\n### 1. +6.67pp 来自哪个实验\n\n来自 `nli_combo_recomputed.json`（tiebreaking 修正后的版本）：\n- **配置**: DeBERTa-large-MNLI × Mistral-7B × ProofWriter-600, w=3, n=600\n- **SC baseline**: 39.33% (236/600)\n- **combo w=3**: 46.00% (276/600), **+6.67pp**, McNemar p=1.13e-05\n- **tiebreaking**: 字母序（alphabetical），与 SC baseline 一致\n\n### 2. exp-090 是什么实验\n\n`exp-090-r-nli-proofwriter`，**同一实验的原始版本**（未修正 tiebreaking）：\n- 完全相同的模型、数据集、配置\n- **combo w=3**: 42.83% (257/600), **+3.50pp**, McNemar p=0.0125\n- **tiebreaking**: `Counter.most_common(1)[0][0]`——插入序（insertion-order），与 SC baseline 不一致\n\n### 3. 数据不一致的根因\n\n**Tiebreaking bug**。详见 `nli_tiebreaking_audit.json`：\n\n| 项目 | exp-090 (buggy) | recomputed (corrected) |\n|------|-----------------|----------------------|\n| tiebreaking | `Counter.most_common()` 插入序 | `sorted(tied)[0]` 字母序 |\n| combo w3 correct | 257/600 | 276/600 |\n| delta | +3.50pp | +6.67pp |\n| McNemar p | 0.0125 | 1.13e-05 |\n| 受影响题数 | — | 30题 |\n\ncombo 脚本用 `votes.most_common(1)[0][0]` 做 tie resolution，而 SC baseline 用字母序。两套 tiebreaking 标准导致 combo 在 30 个平票问题上选了不同答案。DRC cascade pilot 独立使用字母序也得到 46.0%，交叉验证了修正值。\n\n### 4. 论文应引用哪组数据\n\n**+6.67pp (recomputed)**。理由：\n- 字母序 tiebreaking 与 SC baseline convention 一致（同一 comparand 同一标准）\n- DRC cascade pilot 独立确认 46.0%\n- BH 校正后 p=6.78e-05，仍 <0.001\n- tiebreaking audit 明确建议更新到修正值\n\n**需要做的**：将 exp-090 registry 的 metrics 更新为修正后数值，避免未来再次产生混淆。exp-091/092/093 也需要同步 recompute（audit 标记为 `NEEDS_RECOMPUTATION`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-nli-combo-data-reconcile.md"
+}

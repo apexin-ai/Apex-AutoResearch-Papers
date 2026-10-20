@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c36ac7da6953cb10adb2",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment 70b sica deploy",
+  "task_key": "worker_experiment_70b-sica-deploy_20260521T122922",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_70b-sica-deploy_20260521T122922_result.json",
+    "occurrence": 1,
+    "bytes": 968,
+    "sha256": "ac5a846ae95576e84f8d15c66caa31474d45e99e2ebd019096605c94737a639b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "vLLM 正在处理 12 个并发请求（=K=12 traces），生成吞吐约 30 tokens/s。一切正常。\n\n当前状态汇总：\n\n**vLLM 服务**\n- PID: 435076（EngineCore PID: 435354）\n- 端口: 8002\n- GPU: cuda:2，显存 ~88 GB（38.76 GiB 模型 + KV cache）\n- 模型: Qwen2.5-72B-Instruct-AWQ（`--max-model-len 8192`）\n- 吞吐: ~30 tokens/s，12 并发请求\n\n**SICA Pipeline**\n- PID: 436077\n- 配置: FOLIO-204, K=12, T=0.7, seed=42\n- 输出: `results/exp_d126_70b_sica/results.json`\n- 日志: `results/exp_d126_70b_sica/pipeline.log` 和 `/tmp/sica_d126_wrapper.log`\n\n**预计完成时间**\n- 204 个问题，每个问题 K=12 traces @ ~30 tok/s\n- 单问题约 1.5-3 分钟（trace generation + constraint extraction）\n- 预计总时长 ~5-10 小时（204 * ~2min）\n\n注意：最初因 `--max-model-len 4096` 与 `--max-tokens 4096` 冲突导致 400 错误，已修正为 `--max-model-len 8192`。cuda:3 保持空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-70b-sica-deploy.md"
+}

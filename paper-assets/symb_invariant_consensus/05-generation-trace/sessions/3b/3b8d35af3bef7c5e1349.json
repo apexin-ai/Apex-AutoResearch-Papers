@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b8d35af3bef7c5e1349",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis icc and progress check",
+  "task_key": "worker_analysis_icc-and-progress-check_20260522T134428",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_icc-and-progress-check_20260522T134428_result.json",
+    "occurrence": 1,
+    "bytes": 2036,
+    "sha256": "a5d2802603b845294d0dd9b47bbeb25a0d943adec58ac7bf5babde8e404e95d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here are the results.\n\n---\n\n## Part A: ICC(3,1) — Mistral-7B FOLIO (K=12)\n\n| Subset | n | ICC(3,1) | 95% CI |\n|--------|---|----------|--------|\n| **All 204 problems** (col-mean imputed) | 204 | **0.530** | [0.477, 0.586] |\n| ≥8 valid traces (imputed) | 198 | 0.537 | [0.483, 0.593] |\n| ≥10 valid traces (imputed) | 142 | 0.589 | [0.528, 0.653] |\n| All 12 traces valid (no imputation) | 37 | 0.786 | [0.701, 0.864] |\n| exp033 original (all 12 valid) | 47 | 0.704 | [0.613, 0.794] |\n\n**vs Fleiss' κ = 0.46:**\n- ICC(3,1) = **0.53** on full dataset, ~0.07 higher than Fleiss' κ\n- Gap因为 ICC 利用了 ordinal 结构 (True=1, Unknown=0, False=-1)，而 Fleiss' κ 视三类为无序 nominal\n- 两者都落在 \"moderate agreement\" 区间 (0.4–0.6)\n- 当只看所有 12 条 trace 都产出标准答案的子集 (n=37/47) 时，ICC 跳到 0.70–0.79，说明 parse failure 集中在高分歧的难题上\n\n~17% 的 trace (291/2448) 输出了空或非标准答案无法 parse，这些主要落在分歧大的问题上，拉低了全集 ICC。\n\n---\n\n## Part B: 多种子实验进度\n\n所有 4 个 PID 存活，正在运行。\n\n| GPU | 实验 | Seed | 进度 | 状态 |\n|-----|------|------|------|------|\n| **cuda:0** (PID 552333, 6h11m) | Qwen2.5 PW | 123 | 328/600 | 运行中 |\n| | | 456 | 600/600 | ✅ |\n| | | 789 | 600/600 | ✅ |\n| **cuda:1** (PID 596151, 2h38m) | LLaMA FOLIO | 123 | 204/204 | ✅ |\n| | | 456 | 73/204 | 运行中 |\n| | | 789 | — | 排队 |\n| **cuda:2** (PID 510987, 10h14m) | Mistral PW | 42 | 600/600 | ✅ |\n| | | 123 | 600/600 | ✅ **新完成** |\n| | | 456 | 43/600 | 运行中 |\n| | | 789 | — | 排队 |\n| **cuda:3** (PID 614142, 22m) | LLaMA PW | 42 | 28/600 | 运行中 |\n| | | 123 | — | 排队 |\n| | | 456 | — | 排队 |\n\n**新完成:** Mistral PW seed=123（之前 586/600），结果：SICA acc=0.375, SC acc=0.408, delta=-0.033。\n\n**cuda:3** 刚启动 22 分钟，LLaMA PW seed=42 刚开始 (28/600)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-icc-and-progress-check.md"
+}

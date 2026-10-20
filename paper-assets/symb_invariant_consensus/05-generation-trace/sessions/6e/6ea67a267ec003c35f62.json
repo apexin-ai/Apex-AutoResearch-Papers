@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "6ea67a267ec003c35f62",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "analysis r11 3verifier canonical",
+  "task_key": "worker_analysis_r11-3verifier-canonical_20260521T114828",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_r11-3verifier-canonical_20260521T114828.log",
+    "occurrence": 1,
+    "bytes": 1482667,
+    "sha256": "658d7ff123f9a5711a21498c8b88c5e7d19fb60610bbcdf659e00796aa7972a8"
+  },
+  "statistics": {
+    "messages": 574,
+    "user_turns": 2,
+    "tool_calls": 209,
+    "roles": {
+      "log": 1,
+      "system": 49,
+      "record": 1,
+      "assistant": 102,
+      "tool_call": 209,
+      "tool_result": 209,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 279,
+      "chunks": [
+        {
+          "path": "6ea67a267ec003c35f62-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6ea67a267ec003c35f62-part-0002.json",
+          "message_count": 99
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 138,
+      "chunks": [
+        {
+          "path": "6ea67a267ec003c35f62-part-0002.json",
+          "message_count": 81
+        },
+        {
+          "path": "6ea67a267ec003c35f62-part-0003.json",
+          "message_count": 57
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 157,
+      "chunks": [
+        {
+          "path": "6ea67a267ec003c35f62-part-0003.json",
+          "message_count": 123
+        },
+        {
+          "path": "6ea67a267ec003c35f62-part-0004.json",
+          "message_count": 34
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-r11-3verifier-canonical.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a017874fb8ebfa7f6c5e",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "reviewer / loop_10.md",
+  "task_key": "loop_10",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/reviewer/loop_10.md",
+    "occurrence": 1,
+    "bytes": 3980,
+    "sha256": "c257f1f45d683dad177ae6b5def811594cc7735bae13d92c03a7a5905ec61f0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: max_wall_time\nupdated: '2026-05-21T01:30:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- FOLIO SC baseline 必须用 alphabetical tiebreaking 后的 114/204=55.88%，不是旧的 111/204=54.41%。任何分析/论文引用旧值即为错误。\n- Table 3 已移除（DeBERTa model confound D116）。NLI combo 数据现在在 §6 正文 + appendix Table 20。\n- 论文 Table 3 统一用 w=3（Mistral +3.50pp, LLaMA +4.17pp, Qwen2.5 +0.83pp, Qwen3 +1.00pp）。Scatter 用 8-point 含 LLaMA。不要混用 w 值。\n- Process-κ \"ProcessSim > κ\" 只在 Mistral-7B 上成立。论文主文已 scope 到 Mistral，appendix 承认 regime dependence。不要声称 universal。\n- Mistral PW NLI combo 用的是 DeBERTa-**large**-mnli（非 base）。论文标注必须正确。\n\n### 2. 🖥️ 基础设施快照\n- **westd-16639**: 4× RTX PRO 6000 Blackwell (98GB each)，全部空闲。代码 `/root/symb_invariant_consensus/`\n- **westd-25068**: SSH key 当前被拒（AutoDL 端口可能已变），需用户去控制台确认端口\n- 论文 tex 文件在本地 `projects/symb_invariant_consensus/docs/paper/`（diagnosis.tex, solutions.tex, appendix.tex, related_work.tex, limitations_content.tex）\n- 实验结果在 westd-16639:`/root/symb_invariant_consensus/results/` 各子目录\n- 无活跃进程、无 cron、无 tmux session\n\n### 3. 📊 当前状态\n**论文 V11+ 已可提交**，等 R9 审稿结果。所有实验完成。\n\n刚完成的工作：\n- LLaMA-8B PW NLI combo（第 2 个 significant positive family，w=1 p=0.0001, w=3 p=0.004）\n- 8-point capability gap scatter 更新（ρ=0.970, p<0.001）\n- Process-κ 跨模型验证 → CRITICAL→INFO（论文已正确 scope）\n- Sub-population 分析（corrected tiebreaking）→ mid-constraint tertile +9.4pp p=0.031\n- BH m=12 全表（4/12 显著：Mistral w=3/w=5, LLaMA w=1/w=3）\n- Dir-N Oracle Qwen3-T N=204 重算（Oracle Gap 6.0→4.90pp）\n\nRegistry: 无 RUNNING/PREPARING 实验。全部 DONE。\n等待: R9 审稿结果。\n\n### 4. 📋 待办\n- R9 审稿结果到达 → 逐条核实 severity，交叉验证数据 claim，按 §5 审查维度审查\n- 如果 R9 提出新实验需求 → 评估 GPU-hours vs DDL 可行性（8 卡全空，4 天余量）\n- 如果 R9 要求章节重写 → 按 §5/§7 审查维度做对抗审查（先 Read paper-quality-lessons skill）\n- Paper Agent 提交 V12 定稿审查 → 全文 claim-evidence 对齐检查，特别关注：\n  - SC baseline 数字统一（55.88% not 54.41%）\n  - NLI escape 从 \"one model\" 升级为 \"two model families\" 的 contribution bullet\n  - Scatter 图与 Table 3 的 w 值一致性\n  - Qwen3-T Oracle Gap 使用 N=204 版本（4.90pp not 6.0pp）\n\n### 5. 🎯 战略上下文\n**核心结论**：LLM 自提取 symbolic constraints（FOL→Z3 MAX-SAT）不能独立验证推理——约束是 bias projection，不是 independent verification。BR=4.97×, 25+ remediation 全败。唯一 escape：cross-architecture NLI verifier（DeBERTa），但仅在 generator SC ≤ 70% 时有效（sigmoid decay）。\n\n**D116 pivot**：论文从 \"SICA fails\" 重新 framing 为 \"Aggregation Ceiling\"——test-time aggregation gain 随模型能力 sigmoid 衰减。8-point ρ=0.970。\n\n**易踩的坑**：\n1. FOLIO 有两套 SC baseline（pre/post tiebreaking fix）。所有分析必须用 post-fix（55.88%）。Worker 偶尔会从旧数据文件读到 pre-fix 值（54.41%），必须核对。\n2. LLaMA-8B SC=70% > DeBERTa 55%，但 NLI combo 仍然显著——\"threshold = verifier > generator\" 是错的，实际是 sigmoid decay with gap magnitude。\n3. 7-point scatter（ρ=0.955）和 8-point scatter（ρ=0.970）是不同版本。论文用 8-point。\n4. \"九 conditions\" vs \"十五 conditions\" vs \"十六 conditions\" 的计数在论文不同位置可能不一致——需要全文搜索核对。\n5. westd-25068 SSH 断连是 AutoDL 端口变更问题，不是 key 问题。不要反复重试，提示用户查控制台。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10.md"
+}

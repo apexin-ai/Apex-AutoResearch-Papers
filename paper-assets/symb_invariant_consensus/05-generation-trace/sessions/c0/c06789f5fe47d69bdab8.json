@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c06789f5fe47d69bdab8",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "check exp026 and qwen3 status",
+  "task_key": "worker_check_exp026-and-qwen3-status_20260518T125438",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_exp026-and-qwen3-status_20260518T125438_result.json",
+    "occurrence": 1,
+    "bytes": 1027,
+    "sha256": "b8419e4d5b5551b911b97965796d9f6e078431bd7cc17ab54876172c2dbab11c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 任务 1: FOLIO trace 重生成 (PID 27245)\n- **进程**: 运行中 (sleeping)\n- **进度**: **124/204** (~61%)，相比之前的 53/204 有明显推进\n- **结果文件**: 存在，87810 bytes，2406 行，最后修改 20:54\n- **日志**: 仅 42 行（脚本日志极少，进度主要体现在 results JSON 增量写入）\n\n### 任务 2: Qwen3-14B 下载 (PID 29779)\n- **进程**: 运行中 (sleeping)\n- **已下载**: 11G\n- **状态**: 8 个 safetensors 分片全在 `._____temp/` 临时目录中（~7.4G），尚未移出 = 下载/校验进行中\n- config.json、merges.txt 等小文件已就位\n\n### 额外检查\n- **LLaMA-8B 下载 (PID 17783)**: 运行中\n- **磁盘**:\n  - `/root`: 12G/30G (38%)\n  - `/root/autodl-tmp`: 153G/250G (61%)，空间充足\n- **GPU**: 4× RTX PRO 6000 Blackwell (98GB each)\n  - GPU 0: 88GB/98GB, 97% util — vLLM 引擎 (PID 23449) 服务 FOLIO 推理\n  - GPU 1-2: 空闲\n  - GPU 3: 0GB 显存但 100% util（可能是短暂计算任务）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp026-and-qwen3-status.md"
+}

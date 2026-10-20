@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f489be19d50369cb767d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment r1 distill remaining extraction",
+  "task_key": "worker_experiment_r1-distill-remaining-extraction_20260521T155008",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_r1-distill-remaining-extraction_20260521T155008_result.json",
+    "occurrence": 1,
+    "bytes": 1484,
+    "sha256": "50d8e07464c5d5216cf10e04495e1c0f59996ffb5ad1360a9b345165a1772c1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型目录缺少实际权重文件（只有 config/tokenizer，没有 safetensors shards）。\n\n**汇报当前状态——与预期严重不符：**\n\n1. **R1-Distill vLLM**: 已无运行进程，所有 4 GPU 占用 0 MiB，无需 kill\n2. **R1-Distill 模型权重不完整**: `/root/autodl-tmp/models/DeepSeek-R1-Distill-Llama-8B/` 只有 config.json、tokenizer 等元数据，**缺少所有 .safetensors 权重文件**。之前的 vLLM 启动因此失败（`Cannot find any model weights`）\n3. **R1-Distill 中间结果不存在**: `/root/symb_invariant_consensus/results/exp_r1_distill_8b_sica/` 目录**完全不存在**——没有 intermediates，没有 per_trace_constraints_v2。registry 显示此实验标记为 `failed`（\"process dead 5× with no sentinel\"）\n4. **已有的 93 题 cross-extraction 指标**只记录在 registry.yaml 中（metrics 条目），实际文件数据已丢失\n\n**结论**：无法直接\"补提取 111 题\"——R1-Distill SC traces 数据不存在。要完成这个实验需要：\n1. 重新下载 R1-Distill 模型权重（~16GB）\n2. 部署 R1-Distill vLLM，跑 204 题 SC traces 生成\n3. 再部署 Mistral 做 cross-extraction\n\n这比预期的工作量大得多。请确认是否继续，或者有其他优先级更高的任务？\n\n另外注意：任务 Step 1 写的是 \"SSH westd-16639\"，但项目绑定服务器是 **westd-25068**。如果数据可能在 westd-16639 上，我可以去那边查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-r1-distill-remaining-extraction.md"
+}

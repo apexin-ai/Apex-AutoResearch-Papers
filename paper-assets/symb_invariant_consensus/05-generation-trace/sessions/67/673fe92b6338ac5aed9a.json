@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "673fe92b6338ac5aed9a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "computation fleiss kappa exp033",
+  "task_key": "worker_computation_fleiss-kappa-exp033_20260519T033107",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_computation_fleiss-kappa-exp033_20260519T033107_result.json",
+    "occurrence": 1,
+    "bytes": 1129,
+    "sha256": "6b8bcc7df0cbd04c6a4b9c0a3de209223e2ff22511c63f7dc681f4fa217a92fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "计算完成。结果已保存到 `/root/symb_invariant_consensus/results/fleiss_kappa_exp033.json`。\n\n## exp-033 (Mistral-7B FOLIO-204, K=12)\n\n| 指标 | 值 |\n|---|---|\n| **Fleiss' κ** | **0.5006** |\n| **Effective K** | **4.999** |\n| Unanimous rate | 27.5% |\n| Mean max agreement | 78.8% |\n| Mean valid votes/q | 10.01 (部分 trace 未产出有效答案) |\n| Category distribution | True 26.7%, False 23.4%, Unknown 49.9% |\n\n## exp-046 (Mistral-7B PW-600, K=12)\n\n| 指标 | 值 |\n|---|---|\n| **Fleiss' κ** | **0.2102** |\n| **Effective K** | **7.485** |\n| Unanimous rate | 20.0% |\n| Mean max agreement | 76.6% |\n| Category distribution | True 14.4%, False 14.4%, Unknown 71.2% |\n\n**解读**：exp-033 的 κ=0.50 属于 moderate agreement (Landis & Koch 标准)，Effective K ≈ 5，说明 12 条 traces 中约 5 条提供了独立信息。exp-046 在更难的 PW-600 上 κ=0.21 (fair agreement)，traces 间一致性更低，Effective K ≈ 7.5。注意约 16.6% (exp-033) 和 21.0% (exp-046) 的 traces 未产出有效答案（空 answer），计算时已排除这些无效投票。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/computation-fleiss-kappa-exp033.md"
+}

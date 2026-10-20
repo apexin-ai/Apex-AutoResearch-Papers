@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e322b4b7a3c1a25ce47b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diagnose exp 065 qwen7b pw600",
+  "task_key": "worker_diagnose_exp-065-qwen7b-pw600_20260519T144555",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp-065-qwen7b-pw600_20260519T144555_result.json",
+    "occurrence": 1,
+    "bytes": 973,
+    "sha256": "cd6b21df6accfc9c05600cc005cf18d304e84cfe23be9f33dc5ee3478b08ece9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已经从日志 tail 获取了所有需要的信息。\n\n## 诊断结论\n\n**实验 exp-065-qwen7b-pw600 已成功完成。Cron 是误报。**\n\n### 关键数据\n\n| 指标 | 值 |\n|------|-----|\n| **总题数** | 600/600 (ProofWriter OWA-D5) |\n| **SICA accuracy** | **68.0%** (408/600) |\n| **SC accuracy** | **72.0%** (432/600) |\n| **SC - SICA delta** | **+4.0%** (SC 优于 SICA) |\n| Extraction rate | 99.7% |\n| Contradiction rate | 2.3% (288/600 problems) |\n| Wall time | 340.4 min |\n| 完成时间 | 2026-05-19 22:33 |\n\n### 文件路径\n- 结果: `/root/symb_invariant_consensus/results/exp065_qwen7b_pw600/exp065_results.json` (1MB)\n- 日志: `/root/symb_invariant_consensus/results/exp065_qwen7b_pw600/exp065_run.log` (1.9MB)\n\n### 误报原因\n与 exp-070 完全相同的模式：`run_full_mvp.py` 输出 JSON 而非 W&B，cron 找不到 metrics 就判定失败。日志最后一行是 `FULL_MVP_DONE`，无任何 Traceback/Error。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-065-qwen7b-pw600.md"
+}

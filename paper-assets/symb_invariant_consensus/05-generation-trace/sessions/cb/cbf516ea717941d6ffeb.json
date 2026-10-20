@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cbf516ea717941d6ffeb",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp020 progress v2",
+  "task_key": "worker_analysis_exp020-progress-v2_20260517T094515",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp020-progress-v2_20260517T094515_result.json",
+    "occurrence": 1,
+    "bytes": 681,
+    "sha256": "9d995ea465a16b83156c223f8b220c51418db16a7eee1bf5a15de64969fc984c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据汇总：\n\n**PROGRESS: 51/204 (25%)** | SICA: 64.7% | SC: 68.6% | DELTA: -3.9pp | ETA: ~96min\n\n详细：\n- 已处理 51 个问题，开始于 17:13，当前 17:46（33 min elapsed）\n- **SICA: 64.7% (33/51)**, **SC: 68.6% (35/51)**, SICA 落后 SC 3.9pp\n- Extraction rate: 93.5%，但日志显示多个 `finish_reason=length` 的 trace 提取失败（answer=NONE）\n- GPU: 100% 利用率, 88309 MiB 显存占用，运行正常\n- 按当前速率 (~0.65 min/problem)，剩余 153 个问题预计还需 **~96 分钟**\n\n注意：当前 SICA < SC，delta 为负。`finish_reason=length` 导致部分 trace 无法提取答案，可能拖累 SICA 表现。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp020-progress-v2.md"
+}

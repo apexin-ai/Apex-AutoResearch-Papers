@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb1ebac09d4b40e4a2e0",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 009 overhead",
+  "task_key": "worker_analysis_exp-009-overhead_20260516T202925",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-009-overhead_20260516T202925_result.json",
+    "occurrence": 1,
+    "bytes": 693,
+    "sha256": "bcfd6e68a62542107173528c2ca4661baf103177a8896aafc2d49855e25f8657"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结论：\n\n**SICA pipeline overhead = +94.8% wall time over SC baseline**\n\n| 阶段 | 占比 | 特征 |\n|------|------|------|\n| Trace Generation (vLLM) | 51.3% | SC 也需要，不算 overhead |\n| Constraint Extraction (LLM) | 47.0% | **主要 overhead 来源**，相当于又跑了一轮推理 |\n| Dedup (embeddings) | 1.6% | 可忽略 |\n| MaxSAT (Z3) | ~0% | 可忽略 |\n\n以 +0.25pp accuracy gain（76.49% vs 76.24%）换取近 2x wall time，当前 ROI 不高。优化方向：extraction 阶段用更小模型或 pipeline 并行。\n\n两份产出已注册：`overhead_analysis.json`（结构化数据）+ `overhead_report.md`（可读报告）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-009-overhead.md"
+}

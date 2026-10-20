@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "id": "96e4be4d410d61ff01c4",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment direction d cegis",
+  "task_key": "worker_experiment_direction-d-cegis_20260520T074247",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_direction-d-cegis_20260520T074247.log",
+    "occurrence": 1,
+    "bytes": 1828454,
+    "sha256": "2efb55836b307f2f858f99c58bff018c570d3a05c71986aec31c07a50d928e62"
+  },
+  "statistics": {
+    "messages": 964,
+    "user_turns": 2,
+    "tool_calls": 412,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 5,
+      "assistant": 124,
+      "tool_call": 412,
+      "tool_result": 412,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 433,
+      "chunks": [
+        {
+          "path": "96e4be4d410d61ff01c4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "96e4be4d410d61ff01c4-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "96e4be4d410d61ff01c4-part-0003.json",
+          "message_count": 73
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 517,
+      "chunks": [
+        {
+          "path": "96e4be4d410d61ff01c4-part-0003.json",
+          "message_count": 107
+        },
+        {
+          "path": "96e4be4d410d61ff01c4-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "96e4be4d410d61ff01c4-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "96e4be4d410d61ff01c4-part-0006.json",
+          "message_count": 50
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "96e4be4d410d61ff01c4-part-0006.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-direction-d-cegis.md"
+}

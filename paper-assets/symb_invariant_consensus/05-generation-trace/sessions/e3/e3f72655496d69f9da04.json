@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3f72655496d69f9da04",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp019 progress check v2",
+  "task_key": "worker_analysis_exp019-progress-check-v2_20260517T084055",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp019-progress-check-v2_20260517T084055_result.json",
+    "occurrence": 1,
+    "bytes": 626,
+    "sha256": "025f818579e42c5f5a0506d7c05bfed3c51ce16d6d96cdc46da7f5e2d69ce797"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nSTATUS: RUNNING\nPROGRESS: 101/200\nGPU_STATUS: ACTIVE (RTX PRO 6000 Black, 100% util, 88.3/97.9 GiB VRAM)\nETA: ~22 min (avg 13.6s/problem, 99 remaining)\n\nINTERIM METRICS (101 problems):\n- sica_accuracy: 72.3% (73/101)\n- sc_accuracy:   70.3% (71/101)\n- delta_pp:      +2.0pp\n- avg_wall_time: 13.58s/problem\n- constraints:   avg 10 extracted, 4 unique after dedup (example)\n- maxsat:        avg solve ~3ms\n\n实验正常推进，预计约 17:03 CST 完成全部 200 题。结果文件实时更新中。JSON 无 `num_candidates` / `truncated` 字段，需完成后从日志统计或确认 schema。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp019-progress-check-v2.md"
+}

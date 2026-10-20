@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "69d2f06bac3c62ffc056",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment wild2 ascii perturbation",
+  "task_key": "worker_experiment_wild2-ascii-perturbation_20260520T074223",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_wild2-ascii-perturbation_20260520T074223.log",
+    "occurrence": 1,
+    "bytes": 887984,
+    "sha256": "d25a7cf7b964b4f05862be30c85fcb4525fb2c96ebee4da127fdf16b3afdc463"
+  },
+  "statistics": {
+    "messages": 722,
+    "user_turns": 0,
+    "tool_calls": 320,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 4,
+      "assistant": 69,
+      "tool_call": 320,
+      "tool_result": 320,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 722,
+      "chunks": [
+        {
+          "path": "69d2f06bac3c62ffc056-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "69d2f06bac3c62ffc056-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "69d2f06bac3c62ffc056-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "69d2f06bac3c62ffc056-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "69d2f06bac3c62ffc056-part-0005.json",
+          "message_count": 2
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-wild2-ascii-perturbation.md"
+}

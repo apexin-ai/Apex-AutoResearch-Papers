@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "551d5d9c29afcb670897",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "data aime 2024",
+  "task_key": "worker_data_aime-2024_20260515T113732",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_data_aime-2024_20260515T113732_result.json",
+    "occurrence": 1,
+    "bytes": 531,
+    "sha256": "e09126cfaff0d9fc2f4af93bad769e92b5f78de3119ec079cbaa45fa3fd4b7a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n**汇报：**\n\n1. **数据来源**：HuggingFace `Maxwell-Jia/AIME_2024` 数据集（含完整题目文本、解答和答案）\n2. **题目数量**：30 题（AIME I 15 题 + AIME II 15 题）\n3. **验证结果**：\n   - 30 题全部加载，ID 无重复\n   - 所有答案均为合法整数，范围 [0, 999]\n   - 所有题目 level=5，dataset=\"aime2024\"\n   - 格式与 math500_subset.json 一致\n\n文件已保存至 `/root/symb_invariant_consensus/data/aime2024_subset.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-aime-2024.md"
+}

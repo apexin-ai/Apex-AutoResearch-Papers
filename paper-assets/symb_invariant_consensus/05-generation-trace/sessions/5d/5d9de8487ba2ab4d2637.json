@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d9de8487ba2ab4d2637",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis push a v2 capability gap 7point",
+  "task_key": "worker_analysis_push-a-v2-capability-gap-7point_20260520T214934",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_push-a-v2-capability-gap-7point_20260520T214934_result.json",
+    "occurrence": 1,
+    "bytes": 937,
+    "sha256": "add5d47d2cb18206d2d4f7131378f2b2960f3ea0bad290e739fbcde82fcb2f82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。输出在 `/root/symb_invariant_consensus/results/push_a_v2_capability_gap_7point/`。\n\n**统计摘要（7 data points）：**\n\n| Metric | Value |\n|--------|-------|\n| Spearman ρ | **0.955**, p = 0.0008 |\n| Linear R² | 0.822, RMSE = 1.43 pp, p = 0.005 |\n| Linear slope | 0.143 (95% CI: [0.066, 0.219]) |\n| Sigmoid R² | 0.893, RMSE = 1.11 pp |\n| Isotonic R² | 0.983, RMSE = 0.45 pp |\n| Break-even (linear) | Δ* ≈ −43.2 pp |\n\n新增 Qwen2.5-14B 数据点（gap=−18.5, gain=+1.83）落在 sigmoid 曲线上符合预期——强 generator 时 verifier 增益有限但仍为正。相比 Push A 的 5 点，7 点的 Spearman ρ 从 0.90→0.955 且 p 值从 0.037→0.0008，统计显著性大幅增强。\n\n图中新数据点用红色菱形标注，与其他点区分。PDF/PNG 均为 300 DPI 学术风格。`latex_stats.txt` 底部有可直接粘贴到论文的 inline summary 模板。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-push-a-v2-capability-gap-7point.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c4d5fa431cfd36cb2377",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "code sica folio30 prep",
+  "task_key": "worker_code_sica_folio30_prep_20260515T221825",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_sica_folio30_prep_20260515T221825.log",
+    "occurrence": 1,
+    "bytes": 701013,
+    "sha256": "ef80177fa5e68d8fb3bec6532e08f6e96f9e45c4f363fdba6b16cb0e682c6171"
+  },
+  "statistics": {
+    "messages": 325,
+    "user_turns": 0,
+    "tool_calls": 121,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 79,
+      "tool_call": 121,
+      "tool_result": 121,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 325,
+      "chunks": [
+        {
+          "path": "c4d5fa431cfd36cb2377-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c4d5fa431cfd36cb2377-part-0002.json",
+          "message_count": 145
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-sica-folio30-prep.md"
+}

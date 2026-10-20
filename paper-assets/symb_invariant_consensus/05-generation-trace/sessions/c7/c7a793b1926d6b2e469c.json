@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7a793b1926d6b2e469c",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix o3 table2 data",
+  "task_key": "worker_fix_o3-table2-data_20260523T124144",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_o3-table2-data_20260523T124144_result.json",
+    "occurrence": 1,
+    "bytes": 1375,
+    "sha256": "3c255f452166ed254b20d791e60bf79e0a95f9b5b37ca806cbaa295db03e911f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。最终报告：\n\n---\n\n**o3 原始数据来源：**\n- `/root/symb_invariant_consensus/results/exp_d135_frontier_scb/o3/results.json`\n- `/root/symb_invariant_consensus/results/exp_d135_frontier_scb/o3/cross_model/o3_full_metrics.json`\n\n**根本原因：**\no3 有 8 个问题（folio_1, 2, 5, 41, 87, 109, 110, 171）所有 12 条 trace 均返回空字符串（API failure），导致 `n_valid=196`。实验代码以 196 为分母计算 SC=162/196=82.65%，而非 204。\n\n**当前值在 n=196 上是内部一致的：**\n- SC = 162/196 = 82.65% ✓\n- n_err = 196-162 = 34 ✓\n- BR = 1.66（mean_br=1.6565，在 34 个错误实例上计算，其中 28 个 BR=∞，6 个有限）✓\n- Δ = 0.00（SICA=SC）✓\n\n**修改：**\n- `analysis.tex` L31: o3 → o3$^\\dagger$\n- `analysis.tex` L17 caption: 添加 `$^\\dagger$8 API-failure questions excluded ($n = 196$).`\n\n**其他行整数一致性：** 全部通过（Mistral 114/204, Qwen 155/204, R1-Distill 152/204, gpt-4o 157/204, gpt-4.1 169/204, gpt-5.5 172/204, Gemini 83/95）。\n\n**BR 范围引用（$1.66$--$4.97\\times$）：** abstract、analysis L11/59/60 均引用 o3 的 BR=1.66 作为下界，值不变，无需修改。\n\n**建议（非必须）：** 如果投稿前有时间，可以重新跑 o3 的 8 个失败问题以获得完整 n=204 数据，消除脚注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-o3-table2-data.md"
+}

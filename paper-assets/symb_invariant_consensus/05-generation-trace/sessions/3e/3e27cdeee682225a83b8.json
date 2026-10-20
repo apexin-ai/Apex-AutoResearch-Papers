@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e27cdeee682225a83b8",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "check westd25068 027 028 030",
+  "task_key": "worker_check_westd25068-027-028-030_20260518T153616",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_westd25068-027-028-030_20260518T153616_result.json",
+    "occurrence": 1,
+    "bytes": 989,
+    "sha256": "81f0908bdebde68898f9fbcde2e5cbf1cb8fed386760e871c499d1cdf87db11b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个实验全部 ALIVE，GPU 0/1/2 满载运行，vLLM 端口 8000/8001/8002 全部 OK。Registry 状态均为 RUNNING，无需修复。\n\n## 状态报告\n\n| exp_id | 进程 | GPU | 进度 | ETA | 关键信息 |\n|--------|------|-----|------|-----|---------|\n| **exp-027** (Qwen3-14B non-thinking) | PID 38106 ALIVE | cuda:1, 97%, 88GB | **101/204** (49.5%) | ~92 min | avg 52.9s/prob, SICA/SC 正常产出 |\n| **exp-028** (Qwen3-14B thinking) | PID 40990 ALIVE | cuda:2, 97%, 88GB | **17/204** (8.3%) | ~856 min (~14h) | avg 273.3s/prob, thinking mode 慢 5x, 有 \"Empty after stripping thinking\" warnings |\n| **exp-030** (cross-model Mistral) | PID 46525 ALIVE | cuda:0, 96%, 88GB | **149/204** (73.0%) | ~17 min | avg ~19s/prob, satisfied_ratio 0.93-0.97, 即将完成 |\n\nRegistry 状态全部正确 (RUNNING)，无需修复。GPU:3 空闲。exp-030 预计 ~17 分钟内完成，exp-027 约 1.5 小时，exp-028 因 thinking mode 极慢需要约 14 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd25068-027-028-030.md"
+}

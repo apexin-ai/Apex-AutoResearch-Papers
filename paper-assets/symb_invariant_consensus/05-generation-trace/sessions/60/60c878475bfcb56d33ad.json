@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "60c878475bfcb56d33ad",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra model switch qwq",
+  "task_key": "worker_infra_model-switch-qwq_20260515T085440",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_model-switch-qwq_20260515T085440_result.json",
+    "occurrence": 1,
+    "bytes": 2426067,
+    "sha256": "6fe52bfada39bc6bfaf9dec3cfecbaff5397a38734b4d3ce926080ba72fa66b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2426087,
+                "serialized_sha256": "2a7da4f112607c955a1869648f7654893ef7090dde0af0f116fa150e27893b61",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-model-switch-qwq.md"
+}

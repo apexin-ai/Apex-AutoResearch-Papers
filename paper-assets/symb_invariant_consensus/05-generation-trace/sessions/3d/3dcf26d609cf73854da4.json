@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3dcf26d609cf73854da4",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra full inspection westd16639",
+  "task_key": "worker_infra_full-inspection-westd16639_20260521T190435",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_full-inspection-westd16639_20260521T190435_result.json",
+    "occurrence": 1,
+    "bytes": 2501,
+    "sha256": "c013e83ac1538aaa101c748b35880b4c547ac43f77f2892531d26e3fc016c56b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cross-model SICA: 165/204 problems done. Now compiling the full status table.\n\n## westd-16639 巡检结果 (2026-05-22 03:05 UTC)\n\n### GPU 状态\n\n| GPU | 型号 | 显存 (used/total) | 利用率 |\n|-----|------|-------------------|--------|\n| 0 | RTX PRO 6000 Blackwell | 84.2/97.9 GB | **0%** |\n| 1 | RTX PRO 6000 Blackwell | 83.6/97.9 GB | **100%** |\n| 2 | RTX PRO 6000 Blackwell | 88.1/97.9 GB | **100%** |\n| 3 | RTX PRO 6000 Blackwell | 87.9/97.9 GB | **100%** |\n\n### vLLM 服务\n\n| 端口 | 模型 | GPU | 状态 |\n|------|------|-----|------|\n| 8000 | Mistral-7B-v0.3 | cuda:0 | UP |\n| 8001 | Qwen3-14B | cuda:1 | UP |\n| 8002 | Qwen2.5-72B-AWQ | cuda:2 | UP |\n| 8004 | Mistral-7B-v0.3 (第二实例) | cuda:3 | UP |\n\n### 实验状态\n\n| # | 实验 | PID | 状态 | 进度 | ETA |\n|---|------|-----|------|------|-----|\n| 1 | **o3 Mistral extraction** | 473361 | **✅ 完成** | 196/196 (100%) | — |\n| 2 | **Qwen3→Mistral fix** (reextract) | 473120 | 🔄 运行中 | 70/152 files (46%) | ~60 min |\n| 3 | **70B SICA original** (FOLIO) | 436077 | 🔄 运行中 | 25/204 (12%) | **~2709 min (~45h)** |\n| 4 | **Cross-model SICA 2×2** (PW) | 414515 | 🔄 运行中 | 165/204 (81%) | ~4-5h |\n\n### 详情\n\n**1. o3 Mistral extraction** — 已完成。Cross-model SICA = 82.65%, Wall time 46.5min。结果在 `results/exp_d135_frontier_scb/o3/cross_model/cross_model_mistral.json`。\n\n**2. Qwen3→Mistral reextract fix** — 进行中，70/152 files，success rate 99.0%，avg 11 constraints/file。每 10 files ~7min，剩 82 files，ETA ~57min。用 Qwen3(8001) 做 extraction。\n\n**3. 70B SICA (FOLIO)** — 极慢，25/204 problems，avg ~908s/problem。179 remaining × 908s ≈ **45 小时**。瓶颈是 72B-AWQ 在单卡上推理慢（k=12 traces × 4096 tokens）。\n\n**4. Cross-model SICA 2×2 (ProofWriter)** — 165/204 done (81%)，用 Mistral(8000) + Qwen3(8001)。每 problem 有 4 路 extraction，剩 39 problems，ETA ~4-5h。\n\n### 空闲 GPU\n\n**GPU 0 利用率 0%** — Mistral-7B 8000 端口的 vLLM 加载了但当前无活跃推理（cross-model SICA 间歇调用）。实质上没有空闲 GPU，4 张卡都有 vLLM 实例占用显存。\n\n### 关注点\n\n- **70B SICA 还需 ~45h** — 这是最慢的实验，远超其他。如果有时间压力需要考虑是否值得等。\n- **o3 extraction 已完成** — 进程还活着但已输出 `CROSS_MODEL_DONE`，可以释放 cuda:3 上的 Mistral 8004 实例。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-full-inspection-westd16639.md"
+}

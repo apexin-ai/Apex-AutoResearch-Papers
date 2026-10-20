@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ec9b3858ae86759974a",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "agent / loop_7.md",
+  "task_key": "loop_7",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_7.md",
+    "occurrence": 1,
+    "bytes": 3527,
+    "sha256": "d0cad5f31ec48f088e596383da1bb9458aa4218060e0002a577e980d51893fe2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-17T07:59:30+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-32608:cuda:0（gpu_ids=[0]，唯一分配）\n- 多个 cross-family 实验（exp-010-mistral, exp-011-llama8b）反复因模型下载损坏失败，重跑前必须先验证模型完整性（checksum/shard size）\n- vLLM 服务独占 GPU，启动新实验前必须确认无残留 vLLM 进程（之前 exp-011 因旧 vLLM 占显存 OOM）\n- EXIT_CODE=129/143 在本项目常见：129=SIGHUP 伪失败（实际成功），143=SIGTERM 真 kill——必须看日志区分\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-32608，GPU：1× RTX PRO 6000 Blackwell 98GB\n- 工作目录：`/root/symb_invariant_consensus/`（远程）\n- 运行日志：`~/runs/symb_invariant_consensus/`\n- 模型缓存：HuggingFace cache（Qwen2.5-14B-Instruct 已验证可用；LLaMA-3.1-8B 权重 shard 2 损坏 3.7G vs 4.9G；Mistral-7B-v0.3 下载多次截断）\n- vLLM 用于推理服务（单 GPU 部署）\n- 活跃进程：无（GPU 当前空闲）\n- Cron：reconcile 返回 0 active\n\n### 3. 📊 当前状态\n刚收到 exp-017-strategyqa 失败回调（EXIT_CODE=143 SIGTERM），已派 Worker `worker_diagnose_exp-017-strategyqa_20260517T034803` SSH 诊断日志，**尚未收到回调**。\n\nRegistry 状态：\n- DONE: 21 个（success 8, negative 2, failed 5, killed 6）\n- QUEUED: exp-010-mistral-v2, exp-018-arc（等 GPU）\n- PREPARING: smoke-test-5q（遗留，无意义）\n- RUNNING: 无\n\n近期连续 3 个 failed：exp-017-strategyqa (SIGTERM)、exp-010-mistral (进程 5× dead)、exp-011-llama8b-v2 (权重损坏)。全是基础设施问题，非 negative result。\n\n等待中：\n- Worker 诊断回调 → 确认 exp-017 失败根因\n- Director 决策：是否继续投入 GPU 跑 cross-family/cross-domain 验证\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 回调到达 → 根据根因决定：脚本 bug 则修复重跑；OOM 则调参重跑；外部 kill 则查明谁 kill 了\n- exp-017 可重跑 → 用 submit_training_job 重新提交（确认无残留 vLLM）\n- exp-010-mistral-v2 启动条件 → 先验证 Mistral-7B 模型完整性（ls -la shards + 对比预期 size）\n- exp-018-arc 启动条件 → exp-017 成功或确认放弃后，切换到 ARC 数据集\n- 所有 cross-validation 完成 → 汇总 C2 (operating regime) 证据，更新 paper_framing.md\n\n### 5. 🎯 战略上下文\n- **核心结论**：SICA ≈ SC（+0.25pp, n=804, n.s.）。项目已 pivot 到 \"Capability Trap Analysis Paper\"——论证为什么 symbolic consensus 不 work\n- **三个 Claims**：C1(mechanism vacuous, 已有 exp-013+exp-016 支撑)、C2(operating regime boundary, exp-005 QwQ 支撑但缺 cross-family)、C3(C0 predictor, 需 multi-model 数据)\n- **当前瓶颈**：cross-family 验证（Mistral/LLaMA）和 cross-domain 验证（StrategyQA/ARC）全部因基础设施问题失败，没有一个成功。C2 claim 缺乏 non-Qwen 模型数据点\n- **易错点**：\n  - 不要把 failed（基础设施崩溃）和 negative（hypothesis 被证伪）混淆——failed 应该重跑而非推导新 hypothesis\n  - Qwen2.5-14B 的 sica_expanded_14b 是核心成功实验（N=804），所有 cross-validation 都是从它 derive 的\n  - K-ablation 结果（SICA≤SC for all K）强化 C1 但也意味着方法本身无效——这是 feature not bug（分析论文视角）\n  - vLLM 在 98GB 卡上跑 14B 模型没问题，但 LLaMA-8B 和 Mistral-7B 需要重新下载完整权重\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-copy-2.md"
+}

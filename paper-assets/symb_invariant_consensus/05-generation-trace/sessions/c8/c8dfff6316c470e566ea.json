@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8dfff6316c470e566ea",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code exp 002 k ablation",
+  "task_key": "worker_code_exp_002_k_ablation_20260516T192159",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_002_k_ablation_20260516T192159_result.json",
+    "occurrence": 1,
+    "bytes": 916,
+    "sha256": "61e4b958f54604b4e0510aa877db7c729c50bfe539ba09f9837b8115dd46ddbb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-002 启动成功。\n\n**状态**:\n- **tmux session**: `exp002`\n- **PID**: 235733\n- **进度**: Phase 1 进行中 (trace generation), 第 1 题 31.6s → ~32s/problem\n\n**时间预估**:\n- Phase 1 (生成 K=20 traces, 804题): 804 × ~32s ≈ **7.1h**\n- Phase 2 (5 个 K 值的 constraint extraction + scoring): 每个 K 约 573 min (与 exp-001 类似) → 总计 ~**48h**\n- **总计 ≈ 55h**\n\n**产出文件**:\n- traces cache: `results/k_ablation/traces_k20.json` (Phase 1 每题 checkpoint)\n- 每个 K: `results/k_ablation/sica_k{6,8,11,16,20}_14b.json`\n- 汇总: `results/k_ablation/sica_k_ablation_14b.json`\n\n**断点续跑**: 若中断，同一命令重跑即可（Phase 1 从 traces cache 恢复已完成的题目）。Phase 2 的 `--resume` flag 可跳过整个 Phase 1。\n\n**监控**: `tmux capture-pane -t exp002 -p | tail -20` 或查 log `results/k_ablation/exp002.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-002-k-ablation.md"
+}

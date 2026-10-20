@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "e05eebb2a6ae67f0e549",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment e6 closed model api",
+  "task_key": "worker_experiment_e6-closed-model-api_20260521T092521",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_e6-closed-model-api_20260521T092521.log",
+    "occurrence": 1,
+    "bytes": 1003351,
+    "sha256": "357af992adc555b71d420133ea660b863b61325e22d47c243257595a16fe313f"
+  },
+  "statistics": {
+    "messages": 398,
+    "user_turns": 1,
+    "tool_calls": 148,
+    "roles": {
+      "log": 1,
+      "system": 21,
+      "record": 2,
+      "assistant": 76,
+      "tool_call": 148,
+      "tool_result": 148,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 344,
+      "chunks": [
+        {
+          "path": "e05eebb2a6ae67f0e549-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e05eebb2a6ae67f0e549-part-0002.json",
+          "message_count": 164
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 54,
+      "chunks": [
+        {
+          "path": "e05eebb2a6ae67f0e549-part-0002.json",
+          "message_count": 16
+        },
+        {
+          "path": "e05eebb2a6ae67f0e549-part-0003.json",
+          "message_count": 38
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-e6-closed-model-api.md"
+}

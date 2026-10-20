@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8033ffc7323f7d32fd2",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ops consolidate data",
+  "task_key": "worker_ops_consolidate-data_20260525T204351",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_consolidate-data_20260525T204351_result.json",
+    "occurrence": 1,
+    "bytes": 1156,
+    "sha256": "1d5d8e78bb08ebdc08e6a73998239ebe988dcc961f5586775ead404aed55ed58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "### 迁移汇报\n\n**1. 归档路径和总大小**\n- 路径：`/root/symb_invariant_consensus_archive/westd-30973/`（16639 上）\n- 总大小：**5.3M**\n- 本地 symlink：`/root/symb_invariant_consensus_archive/local/` → 16639 自有数据\n\n**2. 文件数对比**\n- 源（30973）：**104 个文件**（results 3 + artifacts 5 + scripts 87 + folio_traces 8 + autodl-tmp/results 3，figures 目录不存在已跳过）\n- 归档（16639）：**104 个文件** — 完全匹配\n\n**3. 传输异常**\n- `/root/symb_invariant_consensus/figures/` 在 30973 上不存在，已自动跳过，无影响\n\n**4. 重复文件（30973 独有但 16639 已有）**\nartifacts/ 目录下 **5 个文件全部重复**（文件名、大小、时间戳完全一致）：\n| 文件 | 大小 |\n|------|------|\n| capability_gap_scatter.pdf | 33K |\n| capability_gap_scatter.png | 124K |\n| deberta_ft_combo_all.json | 2.6K |\n| nli_recompute_exp091_exp092.json | 1.4K |\n| nondeterminism_root_cause.md | 1.8K |\n\n这 5 个文件已在 16639 本地 `/root/symb_invariant_consensus/artifacts/` 中存在相同副本，归档中的是冗余备份。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-consolidate-data.md"
+}

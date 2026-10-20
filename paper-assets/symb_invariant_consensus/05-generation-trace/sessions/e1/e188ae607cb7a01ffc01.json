@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "e188ae607cb7a01ffc01",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "analysis wave3 dir g decoupling",
+  "task_key": "worker_analysis_wave3-dir-g-decoupling_20260520T094554",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_wave3-dir-g-decoupling_20260520T094554.log",
+    "occurrence": 1,
+    "bytes": 1167988,
+    "sha256": "c908cccb8d5b9680c4a0cc4860d80aab0e7c02ad60c25658d715e8852706d977"
+  },
+  "statistics": {
+    "messages": 746,
+    "user_turns": 1,
+    "tool_calls": 311,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 116,
+      "tool_call": 311,
+      "tool_result": 311,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 685,
+      "chunks": [
+        {
+          "path": "e188ae607cb7a01ffc01-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e188ae607cb7a01ffc01-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e188ae607cb7a01ffc01-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "e188ae607cb7a01ffc01-part-0004.json",
+          "message_count": 145
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 61,
+      "chunks": [
+        {
+          "path": "e188ae607cb7a01ffc01-part-0004.json",
+          "message_count": 35
+        },
+        {
+          "path": "e188ae607cb7a01ffc01-part-0005.json",
+          "message_count": 26
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-wave3-dir-g-decoupling-copy-2.md"
+}

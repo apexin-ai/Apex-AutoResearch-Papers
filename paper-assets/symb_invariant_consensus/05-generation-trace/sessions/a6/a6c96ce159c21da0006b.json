@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6c96ce159c21da0006b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diagnose exp 052 053 failure",
+  "task_key": "worker_diagnose_exp-052-053-failure_20260518T233314",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp-052-053-failure_20260518T233314_result.json",
+    "occurrence": 1,
+    "bytes": 1718,
+    "sha256": "85241f1f9a55b5e684705818a101819d7a752c9e4063cd73e8ce6e94e4bee9bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**根本原因：exp-052/053 的实验运行脚本从未被部署到服务器。**\n\n具体证据：\n\n| 检查项 | exp-033（成功） | exp-052/053（失败） |\n|--------|----------------|-------------------|\n| 运行脚本 | `scripts/run_exp033.sh` ✅ | **不存在** ❌ |\n| tmux 会话 | `exp033` 活跃运行中 ✅ | **无** ❌ |\n| 结果目录 | 有 log + 数据 ✅ | **空目录**（仅 mkdir） |\n| vLLM 服务 | GPU1 port 8001 活跃 ✅ | GPU2/3 port 8002/8003 **已死** |\n\n**失败时间线**（CST = UTC+8）：\n\n1. **07:19 CST** — 部署系统在服务器上创建了 `results/exp052_*/` 和 `results/exp053_*/` 目录\n2. **07:19-07:20 CST** — vLLM 服务在 GPU 2 (port 8002) 和 GPU 3 (port 8003) 成功启动，日志正常，响应了 health check (`GET /v1/models` → 200 OK)\n3. **之后** — 没有实验 Python 脚本被启动（无 `run_exp052.sh`/`run_exp053.sh`，无 tmux session，无实验日志）\n4. **~07:30 CST** — cron 连续 5 次探测不到 sentinel 文件和 W&B run，判定 \"process dead\"\n5. vLLM 进程随后被回收，GPU 2/3 现在完全空闲（0MiB）\n\n**不是环境问题**：\n- 磁盘空间充足（overlay 43%, /dev/sda2 40%）\n- conda 环境正常（exp-033 在同一环境中正常运行）\n- GPU 硬件正常（4x RTX PRO 6000，GPU 0/1 正常跑着 vLLM）\n- Mistral-7B 模型路径 `/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3` 存在（vLLM 成功加载）\n\n**问题出在部署侧**：部署流程只完成了\"创建目录 + 启动 vLLM\"这两步，但漏掉了\"部署运行脚本 + 在 tmux 中启动实验\"这一步。需要检查部署代码中 exp-052/053 的 launch 逻辑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-052-053-failure.md"
+}

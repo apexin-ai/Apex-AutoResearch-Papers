@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "dc5109ac1de3cc521bea",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "gpu exp 062 gemma27b run",
+  "task_key": "worker_gpu_exp-062-gemma27b-run_20260519T084441",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp-062-gemma27b-run_20260519T084441.log",
+    "occurrence": 1,
+    "bytes": 1057183,
+    "sha256": "296f98a63d9e2b3e5f133d0a1bbcb5b8a7ba4d70f4ec442dd1eeaae0a306a243"
+  },
+  "statistics": {
+    "messages": 509,
+    "user_turns": 0,
+    "tool_calls": 206,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 93,
+      "tool_call": 206,
+      "tool_result": 206,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 509,
+      "chunks": [
+        {
+          "path": "dc5109ac1de3cc521bea-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "dc5109ac1de3cc521bea-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "dc5109ac1de3cc521bea-part-0003.json",
+          "message_count": 149
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gpu-exp-062-gemma27b-run.md"
+}

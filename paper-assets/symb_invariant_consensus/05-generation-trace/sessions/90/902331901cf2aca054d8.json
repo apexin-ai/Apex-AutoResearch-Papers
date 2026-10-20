@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "902331901cf2aca054d8",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diagnose exp 011 llama8b",
+  "task_key": "worker_diagnose_exp-011-llama8b_20260517T025952",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp-011-llama8b_20260517T025952_result.json",
+    "occurrence": 1,
+    "bytes": 505,
+    "sha256": "c4d3936145b42f6be8adebf30a7cb0ba5e5ff8a72ccb8a65ce4da305bf287405"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**失败根因**: PID 174585 的旧 vLLM 进程占用了 83.5GB 显存，exp-011 启动时只剩 12.83 GiB，远不够所需的 85.47 GiB，触发 `ValueError`。\n\n**模型文件完好**，4 个 safetensors shard 齐全（~14.9GB），路径正确。纯粹是显存被抢占。\n\n**修复**: kill 掉 PID 174585 后重跑即可。建议在启动脚本前加 `pkill -f \"vllm.entrypoints\"` 防止复发。\n\n报告已写入 `artifacts/exp-011-llama8b/diagnosis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-011-llama8b.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fac663be07accff4453",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper figure fig1 pipeline",
+  "task_key": "worker_paper_figure_fig1_pipeline_20260517T165413",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure_fig1_pipeline_20260517T165413_result.json",
+    "occurrence": 1,
+    "bytes": 172,
+    "sha256": "1c0215ce46b16297eea3035a01e8c31c94c382cb6f0827bf0ba9691ce93c2e29"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已启动 (`worker_figure_fig1_pipeline_20260517T165452`)，正在远程服务器上生成 SICA pipeline 概念图。完成后会自动回调通知。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig1-pipeline.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1382ecc9e2314177103",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis g q progress check",
+  "task_key": "worker_analysis_g-q-progress-check_20260520T122052",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_g-q-progress-check_20260520T122052_result.json",
+    "occurrence": 1,
+    "bytes": 1312,
+    "sha256": "cf45f429e89eeea3d759ad5a065d1ab9b80d6f4556b4b0e5e460a1f2fc322a49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据都够了，汇总如下：\n\n---\n\n## 实验进度报告\n\n### 1. G Decoupling (PID 307169)\n| 项目 | 值 |\n|------|-----|\n| 进程状态 | **alive** (运行 2h05m) |\n| 当前策略 | conservative (standard 已完成, 3题, acc=66.7%) |\n| conservative 进度 | **120 / 204** (58.8%) |\n| 当前 accuracy | **57.5%** (69/120) |\n| 处理速度 | 0.02 prob/s (~1.2 问题/分钟) |\n| ETA | **~87 分钟** (日志报 ETA=5250s) |\n\n注：results.json 只记录已完成的 standard 策略 (3题 pilot)，conservative 策略完成后会更新。\n\n### 2. Q Premise Mutation (PID 314817)\n| 项目 | 值 |\n|------|-----|\n| 进程状态 | **alive** (运行 1h05m) |\n| 已完成 | **54 / 204** (26.5%) |\n| 速度 | ~0.82 问题/分钟 |\n| ETA | **~183 分钟 (~3h)** |\n\n中间结果 (54题, 5种变体):\n\n| Mutation | SC Acc | SICA Acc | SC Flip Rate | SICA Flip Rate |\n|----------|--------|----------|-------------|----------------|\n| original | 59.3% | 63.0% | — | — |\n| synonym | 64.8% | 59.3% | 13.0% | 13.0% |\n| reorder | 66.7% | 59.3% | 22.2% | 25.9% |\n| inject | 55.6% | 55.6% | 7.4% | 13.0% |\n| combined | 57.4% | 55.6% | 22.2% | 20.4% |\n\nreorder 和 combined 的 flip rate 最高 (~22-26%)，说明前提顺序变化对模型推理一致性影响较大。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-g-q-progress-check.md"
+}

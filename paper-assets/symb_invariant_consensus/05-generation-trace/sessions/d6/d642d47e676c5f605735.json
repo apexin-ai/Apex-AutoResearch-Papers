@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d642d47e676c5f605735",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "run fill cuda1 cuda3",
+  "task_key": "worker_run_fill-cuda1-cuda3_20260522T195751",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_fill-cuda1-cuda3_20260522T195751_result.json",
+    "occurrence": 1,
+    "bytes": 1305,
+    "sha256": "4f5119c566a765b9ec649e109525b3d61ac049563ae47f0df9774a513e77caf7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 卡全部满载运行。\n\n## 部署总结\n\n### GPU 状态（4/4 满载）\n| GPU | 显存 | 利用率 | 用途 |\n|-----|------|--------|------|\n| cuda:0 | 88239/97887 MiB | 97% | Qwen vLLM port 8001 → seed456 运行中 (不动) |\n| cuda:1 | 88261/97887 MiB | 96% | **LLaMA vLLM port 8006** → PW seed123→456→789 chain |\n| cuda:2 | 90451/97887 MiB | 96% | Mistral vLLM port 8003 → seed789 运行中 (不动) |\n| cuda:3 | 88239/97887 MiB | 97% | **Qwen vLLM port 8005** → PW seed123 重跑 |\n\n### 新启动实验\n\n1. **cuda:3 — Qwen seed123 重跑** (PID 685233)\n   - 独立 vLLM (port 8005)，不与 seed456 竞争 port 8001 吞吐\n   - 600 samples, k=12, temperature=0.7\n   - 日志: `/tmp/qwen25_pw_seed123_rerun.log`\n\n2. **cuda:1 — LLaMA PW chain** (PID 685307)\n   - 独立 vLLM (port 8006)\n   - Chain: seed123 → seed456 → seed789 (各 600 samples)\n   - 日志: `/tmp/multiseed_llama_pw_all.log`\n\n### 清理\n- 杀掉了 GPU 1 上遗留的 Qwen vLLM (port 8004, PID 680929)\n\n### Tiebreaking\n- 已验证 `pipeline.py:73` 和 `self_consistency.py:21` 均使用 `sorted()` — 符合 D061\n\n### 预计完成时间\n- Qwen seed123 (600 samples): ~4-6 小时 → 约 08:00-10:00\n- LLaMA chain (3×600 samples): ~12-18 小时 → 约 16:00-22:00"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-fill-cuda1-cuda3.md"
+}

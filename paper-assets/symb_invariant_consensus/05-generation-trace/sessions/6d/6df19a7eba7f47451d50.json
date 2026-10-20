@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "6df19a7eba7f47451d50",
+  "project": "symb_invariant_consensus",
+  "kind": "conversation",
+  "title": "ops git sync check",
+  "task_key": "worker_ops_git-sync-check_20260526T121336",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_ops_git-sync-check_20260526T121336.jsonl",
+    "occurrence": 1,
+    "bytes": 174,
+    "sha256": "f00bc0e01dd5979917bd33666d1d47f78207061af8cd8c4d887669139871a2bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T12:13:46.925860+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 27, 2pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_git-sync-check_20260526T121336"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-git-sync-check.md"
+}

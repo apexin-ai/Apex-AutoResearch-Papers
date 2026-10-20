@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf3da4520a706a1ba8cb",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment dir i hge pilot",
+  "task_key": "worker_experiment_dir-i-hge-pilot_20260520T171206",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_dir-i-hge-pilot_20260520T171206_result.json",
+    "occurrence": 1,
+    "bytes": 1329,
+    "sha256": "d7962a27c33bbbc709c29a49b6399464b8ecc0d1be303a3de46117def130560e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结果：\n\n| Condition | Acc (%) | Δ vs Baseline (pp) | McNemar p |\n|---|---|---|---|\n| Mistral SC@12 (baseline) | 54.41 | — | — |\n| Mistral SC@5 | 55.29±1.37 | +0.88 | 0.629 |\n| Mistral SC@10 | 54.71±0.80 | +0.29 | 1.000 |\n| Mistral SC@15 | 56.47±1.26 | +2.06 | 0.039* |\n| **HGE-(a) cross-family** | **72.16±2.24** | **+17.75** | **<0.0001*** |\n| **HGE-(b) within-family** | **82.01±0.73** | **+27.60** | **<0.0001*** |\n| **HGE-all** | **82.35±1.28** | **+27.94** | **<0.0001*** |\n\n**关键对比 — HGE-(a) vs Mistral-SC@10（同为 10 traces）：**\n- Cross-model gain Δ = **+17.45 pp**（72.16% vs 54.71%）\n- Flip 分析：50 题翻转，其中 44 题翻转为正确，6 题翻转为错误\n\n信号极强。同模型增加 traces（SC@15 vs SC@12）仅带来 +2.06 pp，而跨模型 ensemble 即使只用一半 traces 也能带来 +17.75 pp。HGE-(b) within-family（纯 Qwen 家族 3 模型）更高达 82%，说明即使同家族的不同规模模型也能提供足够多样性。\n\n注意 Mistral 的 valid traces 偏低（mean=10.0 vs 其他模型 12.0），说明它有更多 parsing failure。这不影响结论——如果 Mistral traces 质量更差，跨模型 gain 的归因更清晰（不是 Mistral 占多数票的效果，而是其他模型纠错）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-dir-i-hge-pilot.md"
+}

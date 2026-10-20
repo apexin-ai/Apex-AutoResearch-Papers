@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f0b477d0eeb63b58457d",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "fix folio nli seed456 recompute 20260523T172925 retry1",
+  "task_key": "worker_fix_folio-nli-seed456-recompute_20260523T172925_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_folio-nli-seed456-recompute_20260523T172925_retry1.log",
+    "occurrence": 1,
+    "bytes": 685613,
+    "sha256": "0973fe0d184c45473c6d4bdf8c7fd98c4c936c5d06414c330a5c9f0e74becd5f"
+  },
+  "statistics": {
+    "messages": 126,
+    "user_turns": 0,
+    "tool_calls": 47,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 28,
+      "tool_call": 47,
+      "tool_result": 47,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 126,
+      "chunks": [
+        {
+          "path": "f0b477d0eeb63b58457d-part-0001.json",
+          "message_count": 112
+        },
+        {
+          "path": "f0b477d0eeb63b58457d-part-0002.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-folio-nli-seed456-recompute-20260523t172925-retry1.md"
+}

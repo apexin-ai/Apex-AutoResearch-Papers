@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52237bf08b8d8e011204",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "deploy exp 080 contrastive logiqa 25068",
+  "task_key": "worker_deploy_exp-080-contrastive-logiqa-25068_20260519T200214",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_exp-080-contrastive-logiqa-25068_20260519T200214_result.json",
+    "occurrence": 1,
+    "bytes": 817,
+    "sha256": "4da3ab46c91282edd24c71aaa1e0dcda4bde3c5220b51cda075d97e61e99eac9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。总结：\n\n**exp-080 已提交运行**\n- 服务器: westd-25068, cuda:0, PID 279841\n- 复用已有 vLLM Mistral-7B (port 8000)\n- 代码改动: `run_contrastive.py` 新增 LogiQA 支持（8处修改）\n  - `CONTRASTIVE_PROMPT_LOGIQA` 多选题 prompt\n  - `--dataset logiqa` / `--limit` 参数\n  - `generator.domain = \"multichoice\"` 多选答案提取\n  - trace 答案归一化为 A/B/C/D 字母（修复了首次 dry-run 发现的候选项混乱问题）\n  - 选项字母映射为完整选项文本传入 prompt\n- Dry-run 3题验证通过: 2/3 correct, 无 crash\n- 备份: `run_contrastive.py.bak_pre080`\n- FOLIO 支持未被破坏（所有改动通过 `--dataset` 参数区分）\n- Cron 每小时 :23 自动检查进度\n- 预计运行 ~3-5 小时（200题 × ~60s/题）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-exp-080-contrastive-logiqa-25068.md"
+}

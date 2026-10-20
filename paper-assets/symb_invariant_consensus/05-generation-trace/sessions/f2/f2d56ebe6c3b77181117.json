@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2d56ebe6c3b77181117",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra westd16639 recovery downloads",
+  "task_key": "worker_infra_westd16639-recovery-downloads_20260518T170047",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_westd16639-recovery-downloads_20260518T170047_result.json",
+    "occurrence": 1,
+    "bytes": 740,
+    "sha256": "13d3b8bff8deefd3c1b4277a2267c900add0af36e8227c904534f9291e9f22ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已生成并注册。总结：\n\n**GPU**: 4 张 Blackwell 全部正常，CUDA 计算和 transformers 推理通过。vLLM 0.21.0 的 CUDA graph 在 Blackwell 上有 bug，需 `--enforce-eager` 绕过。\n\n**磁盘**: autodl-tmp 285GB 可用，充足。\n\n**模型下载**:\n- DeepSeek-R1-0528-Qwen3-8B、Phi-4-reasoning → 正在下载 ✅\n- gemma-3-27b-it、Llama-4-Scout → 需要 HF Token ❌（gated model）\n\n**实验 intermediates**: exp032 有 509 个，qwen3_nonthinking 有 518 个，arc60 仅 18 个，strategyqa200 仅 3 个，folio 155 个。路径在 `/root/autodl-tmp/sica_project/` 下。\n\n**待用户操作**: 接受 gemma-3 和 Llama-4 的 HF license，然后在服务器上 `hf auth login`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd16639-recovery-downloads.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "59ed32ad6b5033b10298",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "code strategyqa logica adaptation",
+  "task_key": "worker_code_strategyqa-logica-adaptation_20260518T171744",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_strategyqa-logica-adaptation_20260518T171744.log",
+    "occurrence": 1,
+    "bytes": 586718,
+    "sha256": "c9c24bc5b4ed56e25db90767af2ecfb1284e9b32896e09ba5da55332e88f90ce"
+  },
+  "statistics": {
+    "messages": 194,
+    "user_turns": 0,
+    "tool_calls": 70,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 50,
+      "tool_call": 70,
+      "tool_result": 70,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 194,
+      "chunks": [
+        {
+          "path": "59ed32ad6b5033b10298-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "59ed32ad6b5033b10298-part-0002.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-strategyqa-logica-adaptation.md"
+}

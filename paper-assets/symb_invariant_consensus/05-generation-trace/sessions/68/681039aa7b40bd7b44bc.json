@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "681039aa7b40bd7b44bc",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code fix network download 25068",
+  "task_key": "worker_code_fix-network-download-25068_20260518T071057",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix-network-download-25068_20260518T071057_result.json",
+    "occurrence": 1,
+    "bytes": 908,
+    "sha256": "0c1e7bbe14fb40fa4ebed89299d3d06d274eee507e08ff018d1928dc99664245"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "568M → 636M（25秒 +68M），速度约 2.7 MB/s。进程稳定运行，无报错。\n\n**汇总**\n\n| 项目 | 状态 |\n|------|------|\n| **网络** | 已通。`source /etc/network_turbo` 启用代理后可达 HF，但代理下载大文件不稳定（频繁 timeout） |\n| **方案** | 改用 `hf-mirror.com` 中国镜像直连，无需代理，延迟低且稳定 |\n| **Xet 问题** | HF 新版 Xet 存储后端 401 Unauthorized，已设 `HF_HUB_DISABLE_XET=1` 回退 LFS |\n| **Qwen-72B 下载** | 已启动，**PID 4283**，当前 636MB，速度 ~3-5 MB/s |\n| **预计时间** | ~8-12 小时完成（145GB） |\n| **磁盘** | `/root/autodl-tmp` 250GB 可用，充足 |\n| **日志** | `/tmp/download_qwen72b.log` |\n\n检查命令：\n```bash\ndu -sh /root/autodl-tmp/models/Qwen2.5-72B-Instruct/\ntail -10 /tmp/download_qwen72b.log\nps aux | grep download_qwen | grep -v grep\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-network-download-25068.md"
+}

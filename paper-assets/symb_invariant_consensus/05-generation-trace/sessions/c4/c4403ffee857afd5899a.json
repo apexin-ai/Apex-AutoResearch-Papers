@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4403ffee857afd5899a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis qwen25 folio final harvest",
+  "task_key": "worker_analysis_qwen25-folio-final-harvest_20260522T104625",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_qwen25-folio-final-harvest_20260522T104625_result.json",
+    "occurrence": 1,
+    "bytes": 186,
+    "sha256": "234eb0c08683be771ad29e8661335afea6443c8f4915abdc9cad0085d1234a5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台收割脚本已在 westd-16639 上运行（PID 576920），等待 seed=789 intermediates 达到 204 后自动计算 accuracy。约 4.5 分钟后回来检查日志。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen25-folio-final-harvest.md"
+}

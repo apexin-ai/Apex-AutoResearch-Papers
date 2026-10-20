@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f4b3e1e156c789d009a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260519T043455",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_related_work_20260519T043455_result.json",
+    "occurrence": 1,
+    "bytes": 549,
+    "sha256": "3a8c24619f906cff24f928901bfd63eca15ffbfb06f4eaf8ccd0ea1511a8b2a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The `ing,`/`ing.` matches are all nouns in titles or noun phrases (\"Reasoning.\", \"Reranking.\", \"grounding.\"), not participial clause endings. No style violations.\n\nWritten `related_work.tex` with 5 clusters (~630 words, well under 800 budget), 25 citations all verified against `references.bib`. Each paragraph ends with clear positioning against SICA. Cross-references to `\\S\\ref{sec:effective-k}`, `\\S\\ref{sec:oracle-design}`, `\\S\\ref{sec:condorcet}`, and `\\S\\ref{sec:remediation}` match the existing section labels."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work.md"
+}

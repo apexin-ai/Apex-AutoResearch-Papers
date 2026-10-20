@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64e221853299055e3f50",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper figure d123 fetch",
+  "task_key": "worker_paper_figure_d123_fetch_20260520T184347",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure_d123_fetch_20260520T184347_result.json",
+    "occurrence": 1,
+    "bytes": 567,
+    "sha256": "28ef8423c9fa68e0f94041c9ef2545038e76f4c644b05bd99d72d9b95152d7c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SSH 密钥认证被拒绝。这是 AutoDL 实例，可能端口已变（实例重启后端口会变）。\n\n根据 AutoDL 专项注意事项：**实例重启后 SSH 端口会变**。当前配置的端口 25068 可能已过期。\n\n请去 AutoDL 控制台确认 `westd-25068` 实例的当前 SSH 端口，并检查公钥是否已添加到实例。如果端口变了，需要更新 `~/.ssh/config` 中的端口号。\n\n另外也可能是实例上的 authorized_keys 没有配置当前的公钥 (`SHA256:79L8occ2olkZ3yPraqZvQLiXu3ov/I2w43oddjKzRw8`)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-d123-fetch.md"
+}

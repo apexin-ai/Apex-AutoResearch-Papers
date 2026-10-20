@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ce44fa586f75b24864d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code prep exp011 llama script",
+  "task_key": "worker_code_prep-exp011-llama-script_20260517T064352",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_prep-exp011-llama-script_20260517T064352_result.json",
+    "occurrence": 1,
+    "bytes": 542,
+    "sha256": "b902b7c443b641c20c6cea49471906e1cd6aaf44b0662d2420c507f907d8194a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改摘要：\n\n1. **vLLM 清理逻辑**：将原来只杀 port 8002 的 `pkill -f \"vllm.entrypoints.*--port 8002\"` 替换为通杀所有 vLLM 进程的 `pkill -9 -f \"vllm.entrypoints\"`，加 `sleep 5` 等待释放，并打印 GPU 显存状态。\n2. **max-tokens**：从 8192 降为 4096（LLaMA-8B 生成不需要那么长）。\n3. **max-model-len**：保持 8192（LLaMA-3.1 原生支持）。\n4. **模型路径**：已确认 4 shards 完整存在。\n5. **`bash -n` dry-run**：通过，无语法错误。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-exp011-llama-script.md"
+}

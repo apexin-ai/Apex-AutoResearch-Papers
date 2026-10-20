@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "920e26fe1925343b08ef",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260517T181042",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_related_work_20260517T181042_result.json",
+    "occurrence": 1,
+    "bytes": 1125,
+    "sha256": "aa833a458e24d947804782c4ad118ab0777f40286f63b6992d18eeacf3abfcbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Zero em-dashes, zero en-dashes, zero trailing -ing phrases. 869 words (including LaTeX commands; pure prose is ~920 words as targeted).\n\nWritten to `docs/paper/related_work.tex` with 6 paragraph clusters:\n\n1. **Self-Consistency and Extensions** — positions SICA as attempting to go beyond voting; our negative result shows the bottleneck is extraction, not aggregation\n2. **Neuro-Symbolic Reasoning** — distinguishes trained/external methods from same-model self-extraction; oracle experiment confirms symbolic reasoning works when constraints are sound\n3. **Test-Time Compute and Reasoning Models** — connects to C0 diagnostic; reasoning models show <5% C0, making any aggregation redundant\n4. **Verification and Reranking** — contrasts trained verifiers with SICA's training-free self-extraction; self-reliance encodes the same biases\n5. **Constraint Satisfaction in NLP** — contextualizes MAX-SAT formulation; complements SATBench finding\n6. **Debate and Multi-Agent Aggregation** — parallels capability trap with self-correction failure; closing sentence summarizes the positioning gap"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39414ce81f36f0bd21e9",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment wild2 ascii perturbation",
+  "task_key": "worker_experiment_wild2-ascii-perturbation_20260520T074223",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_wild2-ascii-perturbation_20260520T074223_result.json",
+    "occurrence": 1,
+    "bytes": 1078,
+    "sha256": "e4910f5e332e9cea9f205ce65ed299563c49208c6c6993e69f5d40df5ff2db3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果：\n\n| Group | Description | K | κ | Eff-K | SC Acc |\n|-------|-------------|---|---|-------|--------|\n| A | Standard prompt | 4 | 0.3906 | 1.84 | 53.92% |\n| B | Fixed ASCII padding | 4 | 0.4006 | 1.82 | 57.84% |\n| C | Variable ASCII padding | 4 | 0.3638 | 1.91 | 53.92% |\n\n**核心发现：**\n- 三组 κ 值几乎无差异（0.36–0.40），ASCII padding 并未显著降低 trace 间一致性\n- Fixed padding (B) 的 κ 反而略高于 baseline (A)，SC Acc 也最高（57.84% vs 53.92%）\n- Variable padding (C) 的 κ 略低（0.3638），但差异很小（Δκ = -0.027）\n- 这支持论文 2603.06612 的结论：inter-trace 相关性主要来自模型架构偏置，而非 prompt 内容驱动\n\n**产出文件：**\n- 服务器：`/root/symb_invariant_consensus/results/wild2_ascii_perturbation/results.json`\n- 本地：`artifacts/wild2_ascii_results.json`（已注册 `art_20260520_5c5dfb`）\n- 脚本：`/root/symb_invariant_consensus/analysis_ascii_perturbation.py`\n- 总耗时：~17分钟（204题 × 12 traces）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-wild2-ascii-perturbation.md"
+}

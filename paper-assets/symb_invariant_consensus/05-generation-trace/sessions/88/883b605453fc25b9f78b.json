@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "883b605453fc25b9f78b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "eval exp 034 strategyqa200 s2",
+  "task_key": "worker_eval_exp-034-strategyqa200-s2_20260518T155648",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_exp-034-strategyqa200-s2_20260518T155648_result.json",
+    "occurrence": 1,
+    "bytes": 1305,
+    "sha256": "ffd8ab9c1cc674ff5b272f9daf5bce26f2dab1d495647ca287069441184b8fdc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment running successfully. First problem completed:\n- **SICA**: No (correct) | **SC**: No (correct, 12/12 unanimous)\n- Constraint extraction: 0 extracted (math prompt not yielding useful constraints for factual questions, as expected)\n- ETA: ~45 min for 200 problems\n- Problem 2/200 already processing\n\nSummary:\n\n| Item | Status |\n|------|--------|\n| **Server** | westd-16639, 4x RTX PRO 6000 Blackwell 98GB |\n| **Environment** | vLLM 0.21.0, miniconda3, z3-solver 4.15.4 |\n| **Model** | Qwen2.5-14B-Instruct (8 safetensors), cuda:2 |\n| **vLLM** | Port 8002, started in 29s |\n| **Data** | strategyqa_200.json (200 questions, 97 Yes / 103 No) |\n| **Pipeline patches** | `--strategyqa-data` arg, Yes/No normalization in pipeline.py |\n| **tmux session** | `exp034` on westd-16639 |\n| **Registry** | exp-034 set to RUNNING |\n| **Output** | `results/qwen25_14b_strategyqa200/exp034_results.json` |\n\nNote: Constraint extraction yields 0 constraints for factual Yes/No questions (math extraction prompt expects equations/inequalities). SICA effectively falls back to frequency-based scoring, making it functionally equivalent to SC@K for this dataset type. This is a valid data point showing SICA behavior on out-of-domain (non-mathematical, non-logical) reasoning tasks."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-034-strategyqa200-s2.md"
+}

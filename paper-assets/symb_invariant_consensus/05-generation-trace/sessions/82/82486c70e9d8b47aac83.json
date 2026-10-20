@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82486c70e9d8b47aac83",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "audit table1 table2 data consistency",
+  "task_key": "worker_audit_table1-table2-data-consistency_20260523T102233",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_table1-table2-data-consistency_20260523T102233_result.json",
+    "occurrence": 1,
+    "bytes": 5056,
+    "sha256": "e3e064ec03013b2b347d9371eb68586aad7cbf68f44580f418d5a3c45acd9dc6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All p-values match perfectly after alpha tiebreaking. I now have the complete picture. Here is the comprehensive report.\n\n---\n\n## Table 1 & Table 2 数据正确性核查报告\n\n### 方法说明\n论文中的 SC 值使用了 **alphabetical tiebreaking**（平票时按字母序选答案）。原始结果文件存储的是旧版 tiebreaking 值，需要重算后比较。已对所有可验证条件进行了重算并比对 McNemar p 值。\n\n---\n\n### Table 1 (`tab:main_results`, experiments.tex)\n\n| 行 | 条件 | 状态 | 说明 |\n|---|------|------|------|\n| T1-01 | Mistral-7B × PW-D5 | ⚠️ 无法核查 | 原始实验文件 exp-046 不在本服务器（来自旧服务器 25068） |\n| T1-02 | Mistral-7B × LogiQA | ✅ 一致 | Alpha tiebreak 后 SC=50.00%, SICA=51.50%, Δ=+1.50, p=0.581 全部吻合 |\n| T1-03 | Mistral-7B × FOLIO(s123) | ✅ 一致 | SC=54.41%(tiebreak), SICA=57.35%, Δ=+2.94, p=0.070 |\n| T1-04 | Mistral-7B(3s) × FOLIO | ✅ 一致 | 3-seed={123,456,789} 均值 SC=56.53%, SICA=56.70%, Δ=+0.16 |\n| T1-05 | Mistral-7B × FOLIO(s456) | ✅ 一致 | SC=55.88%(tiebreak), SICA=55.88%, p=1.000 |\n| T1-06 | Mistral-7B × FOLIO(s789) | ✅ 一致 | SC=59.31%, SICA=56.86%, Δ=-2.45, p=0.267 |\n| T1-07 | LLaMA-8B × FOLIO | ✅ 一致 | SC=66.18%, SICA=61.76%, Δ=-4.41, p=0.093 |\n| T1-08 | LLaMA-8B × StrategyQA | ⚠️ 无法核查 | 服务器上未找到 StrategyQA 结果文件 |\n| T1-09 | Qwen2.5-14B × FOLIO(ICL) | ⚠️ 无法核查 | 未找到对应的 Qwen2.5-14B ICL 结果文件 |\n| T1-10 | Qwen2.5-14B × PW-D5 | ✅ 一致 | SC=74.00%(tiebreak), SICA=71.50%, Δ=-2.50, p=0.011 |\n| T1-11 | Qwen2.5-14B(4s) × FOLIO | ✅ 一致 | 报告默认种子值（^{4s}为确认性标注）。SC=75.98%(tiebreak), SICA=75.49% |\n| T1-12 | Qwen2.5-7B × FOLIO | ⚠️ 无法核查 | 实验目录存在但无 results.json（仅日志） |\n| T1-13 | Qwen2.5-14B × LogiQA | ✅ 一致 | SC=79.00%(tiebreak), SICA=78.00%, Δ=-1.00, p=0.625 |\n| T1-14 | Qwen3-14B × FOLIO | ✅ 一致 | SC=83.33%, SICA=84.80%（来源: exp_folio_2x2_qwen3） |\n| T1-15 | Qwen3-14B × PW-D5 | ✅ 一致 | SC=85.83%(tiebreak), SICA=85.67%, Δ=-0.17, p=1.000 |\n| T1-16 | Qwen3-14B(think) × FOLIO | ⚠️ 无法核查 | 仅存 38/204 问题的部分结果 |\n\n**Table 1 小结**: 11/16 行已验证一致，5 行因源文件缺失无法核查，0 行发现不一致。\n\n---\n\n### Table 2 (`tab:frontier-scb`, analysis.tex)\n\n| 行 | 模型 | 状态 | 说明 |\n|---|------|------|------|\n| T2-01 | Mistral-7B (self) | ✅ 一致 | SC=55.88%, n_err=90 |\n| T2-02 | LLaMA-8B (self) | ⚠️ 无法核查 | SC/Δ 为 \"---\"；BR=2.88 未找到独立源文件 |\n| T2-03 | Qwen-14B (self) | ✅ 一致 | SC=75.98%(tiebreak), n_err=49, Δ=-0.49 |\n| T2-04 | R1-Distill-8B (cross) | ✅ 一致 | SC=74.51%, n_err=52, BR=2.92, Δ=+2.45 全部吻合 |\n| T2-05 | **gpt-4o (self)** | ❌ **不一致** | 详见下方 |\n| T2-06 | gpt-4.1 (cross) | ✅ 一致 | SC=82.84%, n_err=35, BR=2.70, Δ=-1.47 |\n| T2-07 | gpt-5.5 (cross) | ✅ 一致 | SC=84.31%, n_err=32, Δ=+0.49 |\n| T2-08 | o3 (cross) | ❌ 小幅不一致 | n_err=34（数据）vs 35（论文），差 1 |\n| T2-09 | Gemini-2.5-Pro (cross) | ❌ 小幅不一致 | Δ=-1.05（数据）vs -1.10（论文），差 0.05pp |\n\n---\n\n### ❌ 严重问题：T2-05 gpt-4o\n\n| 指标 | 论文声称值 | 实际数据值 | 来源 |\n|------|-----------|-----------|------|\n| SC(%) | 73.91 | **76.96** | e6_gpt4o_folio204/results.json |\n| n_err | 53 | **47** | 204 - 157 |\n| BR | 2.94 | **2.65** | 重算（28个SC错误问题） |\n| Δ(pp) | -1.80 | **-1.96** | 75.00 - 76.96 |\n\n- Alpha tiebreaking 后 SC 仍为 76.96%（6个平票问题分辨结果不变）\n- 论文中 73.91% 不对应任何 n=204 的整数比（151/204=74.02%, 150/204=73.53%）\n- 即使用 n_err=53 倒推，SC 应为 74.02% 而非 73.91%（论文内部也不自洽）\n- 最可能原因：**论文使用了不同的 gpt-4o 运行结果**（API 非确定性），但该运行的结果未保存在本服务器\n\n---\n\n### ❌ 小幅问题\n\n1. **o3 n_err**: 数据 = 196-162 = **34**, 论文写 **35**（差 1）\n2. **Gemini Δ**: 数据 = (82-83)/95×100 = **-1.05**pp, 论文写 **-1.10**pp（差 0.05）\n\n---\n\n### ⚠️ 无法核查的条件（5 条）\n\n| 条件 | 原因 |\n|------|------|\n| Mistral-7B × PW-D5 | 源实验 exp-046 在旧服务器 25068 上 |\n| LLaMA-8B × StrategyQA | 未找到结果文件 |\n| Qwen2.5-14B × FOLIO(ICL) | 未找到对应文件 |\n| Qwen2.5-7B × FOLIO | 实验无 results.json |\n| Qwen3-14B(think) × FOLIO | 仅 38/204 部分结果 |\n\n---\n\n### 需要处理的优先级\n\n1. **[必须修复]** gpt-4o 行：要么找到原始运行数据并确认，要么用当前 e6 数据更新 Table 2（SC=76.96%, n_err=47, BR=2.65, Δ=-1.96）\n2. **[建议修复]** o3 n_err: 35 → 34\n3. **[建议修复]** Gemini Δ: -1.10 → -1.05\n4. **[建议补全]** 将 5 个无法核查条件的源数据上传到本服务器"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-table1-table2-data-consistency.md"
+}

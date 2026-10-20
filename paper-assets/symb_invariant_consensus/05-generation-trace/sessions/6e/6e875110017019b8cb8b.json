@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e875110017019b8cb8b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra urgent inspection 16639",
+  "task_key": "worker_infra_urgent-inspection-16639_20260521T212539",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_urgent-inspection-16639_20260521T212539_result.json",
+    "occurrence": 1,
+    "bytes": 1502,
+    "sha256": "338f55ef185b332cfc5faf74de9599eb79e2ddc9598e3d7cabf0abf8b76b389e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-16639 巡检报告\n\n### GPU 状态\n\n| GPU | 显存占用 | 利用率 | 用途 |\n|-----|---------|--------|------|\n| 0 | 84.2/97.9 GB | 0% | vLLM Mistral (port 8000) - 空闲 |\n| 1 | 83.6/97.9 GB | **100%** | vLLM Qwen3 (port 8001) - 活跃 |\n| **2** | **0/97.9 GB** | **0%** | **完全空闲** |\n| 3 | 89.8/97.9 GB | 0% | vLLM Mistral (port 8004) - 空闲 |\n\n### 实验状态\n\n#### 1. Cross-Model SICA (PID 414515) — 🔄 进行中\n- 运行时长：12h45m\n- 当前阶段：**extraction_qwen3_same**（Qwen3 same-model extraction）\n- 最新日志：05:27 仍在向 port 8001 (Qwen3) 发请求\n\n| 子目录 | 文件数 | 状态 |\n|--------|--------|------|\n| mistral_traces | 203 | ✅ |\n| extraction_mistral_same | 203 | ✅ |\n| extraction_mistral_cross_qwen3 | 203 | ✅ |\n| extraction_qwen3_cross_mistral | 202 | ✅ (修复后) |\n| **extraction_qwen3_same** | **24/203** | **🔄 ~12%** |\n\n#### 2. Qwen3 Fix (PID 473120) — ✅ 已完成\n- 修复后 `extraction_qwen3_cross_mistral`: 202 files\n- 旧 buggy 版本: 151 files (已备份)\n\n#### 3. Gemini Extraction (PID 480272) — ✅ 已完成\n- `cross_model_mistral.json`: 95 items\n- `gemini_interim_95_metrics.json` 也已生成\n\n### 空闲资源\n- **GPU 2** 完全空闲\n- GPU 0 / GPU 3 跑 vLLM Mistral 但无请求，实际空闲（仅占显存）\n\n### 预估\nextraction_qwen3_same 当前 24/203 (~12%)，按当前速度（每次请求~15s）估计还需 **数小时** 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-urgent-inspection-16639.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3fb49fbcd4ac27ac2ca",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "data filter image problems",
+  "task_key": "worker_data_filter-image-problems_20260515T114219",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_data_filter-image-problems_20260515T114219_result.json",
+    "occurrence": 1,
+    "bytes": 1737,
+    "sha256": "3e6cc52dc24dc2797c32dcf922fedbad00af8f7d5ea982e8947870c52f2b24c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "替换完成，所有验证通过。\n\n### 汇报\n\n**1. 找到 6 个图形题**（问题文本含 `[asy]` Asymptote 绘图代码）\n\n另有 4 个误报已排除：[17] \"graph\" 指函数连续性、[46] \"image\" 指矩阵像、[48][49] \"graph\" 指函数图像概念。\n\n**2. 图形题清单**\n\n| 索引 | 原 ID | Level | 原因 |\n|------|-------|-------|------|\n| 13 | test/geometry/248.json | 2 | 圆柱体图，半径仅在图中 |\n| 19 | test/geometry/846.json | 2 | \"In the diagram\" + [asy] |\n| 22 | test/prealgebra/631.json | 3 | 七巧板图 + [asy] |\n| 29 | test/geometry/65.json | 3 | 四圆相切 \"as shown\" + [asy] |\n| 30 | test/precalculus/1199.json | 4 | sin 函数图 + [asy]（已知问题） |\n| 37 | test/geometry/465.json | 4 | 阴影区域图 + [asy] |\n\n**3. 替换结果**\n\n| 索引 | 旧题 → 新题 | Level | 新题摘要 | 答案 |\n|------|------------|-------|---------|------|\n| 13 | geometry/248 → number_theory/46 | 2 | 计算 $58_9 - 18_9$（九进制减法） | $40_9$ |\n| 19 | geometry/846 → precalculus/779 | 2 | 复数 $7+2i$ 绕原点逆时针旋转 90° | $-2+7i$ |\n| 22 | prealgebra/631 → intermediate_algebra/101 | 3 | 解嵌套根号方程 | $10$ |\n| 29 | geometry/65 → algebra/1275 | 3 | 化简嵌套根号并有理化分母 | $\\frac{\\sqrt{3}}{3}$ |\n| 30 | precalculus/1199 → counting_and_probability/430 | 4 | Bob 和 Alice 交换球的概率 | $\\frac{1}{3}$ |\n| 37 | geometry/465 → algebra/246 | 4 | 已知 $f(-3)=2$ 求 $f(3)$ | $8$ |\n\n**4. 最终 Level 分布确认**\n\n`{1: 10, 2: 10, 3: 10, 4: 10, 5: 10}` — 每级 10 题，共 50 题。无 Asymptote 代码残留。备份已保存至 `data/math500_subset_backup.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-filter-image-problems.md"
+}

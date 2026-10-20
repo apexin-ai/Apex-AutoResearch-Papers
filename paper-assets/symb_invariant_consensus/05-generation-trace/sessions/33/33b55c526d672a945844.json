@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33b55c526d672a945844",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 067 metrics extract",
+  "task_key": "worker_analysis_exp-067-metrics-extract_20260519T120836",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-067-metrics-extract_20260519T120836_result.json",
+    "occurrence": 1,
+    "bytes": 430,
+    "sha256": "5706d8313599e0de8f341799c2da102d41c8d1868566611a338b878bcfee43ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-067 结果** (Mistral-7B-Instruct-v0.3, FOLIO-204, seed=789, K=12):\n\n| Metric | Value |\n|---|---|\n| SC | 54.41% (111/204) |\n| SICA | 53.92% (110/204) |\n| Δ (SICA − SC) | −0.49 pp |\n| n | 204 |\n| McNemar b/c | 6 / 5 |\n| McNemar exact p | 1.0000 |\n\nSICA 略低于 SC，差异完全不显著 (p=1.0)。discordant pairs 极少 (b+c=11)，两种方法在绝大多数问题上一致 (a+d=193/204)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-067-metrics-extract.md"
+}

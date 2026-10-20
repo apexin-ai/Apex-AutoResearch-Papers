@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bf6ab3d839573ad3fba",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra setup qwen7b folio cuda2",
+  "task_key": "worker_infra_setup-qwen7b-folio-cuda2_20260522T234615",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_setup-qwen7b-folio-cuda2_20260522T234615_result.json",
+    "occurrence": 1,
+    "bytes": 1306,
+    "sha256": "a6e8e1722a11c263a54b64704970fb385ae513fecfe72e3bb3c9c6774ad30e21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**Qwen2.5-7B-Instruct 不在磁盘上，需要下载。**\n\n磁盘上现有 Qwen 模型：Qwen2.5-14B-Instruct、Qwen2.5-72B-Instruct-AWQ，无 7B。\n\ncuda:2 状态：完全空闲（0 MiB, 0%）。\n\n### 下载信息\n\n- **模型大小估计**：~15 GB（7B 参数，bf16 权重）\n- **目标路径**：`/root/autodl-tmp/models/Qwen2.5-7B-Instruct`\n- **推荐下载命令**（AutoDL 优先用 ModelScope）：\n\n```bash\nsource /etc/network_turbo\npip install modelscope\npython -c \"from modelscope import snapshot_download; snapshot_download('Qwen/Qwen2.5-7B-Instruct', cache_dir='/root/autodl-tmp/models/Qwen2.5-7B-Instruct')\"\n```\n\n或 HuggingFace（AutoDL 上较慢）：\n```bash\nsource /etc/network_turbo\nexport HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_DISABLE_XET=1\nhuggingface-cli download Qwen/Qwen2.5-7B-Instruct --local-dir /root/autodl-tmp/models/Qwen2.5-7B-Instruct\n```\n\n### 其他发现\n\n- `run_cross_dataset_replication.py` 位于项目根目录（不在 scripts/ 下），且是给 ProofWriter/LogiQA 用的，不适用于 FOLIO\n- 已有现成脚本 `scripts/multiseed_qwen25_7b_folio_cuda3.sh`，使用 `run_full_mvp.py`，参数完整可复用（改 CUDA_VISIBLE_DEVICES=2 和端口即可）\n\n**下载完成后可继续后续步骤。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-setup-qwen7b-folio-cuda2.md"
+}

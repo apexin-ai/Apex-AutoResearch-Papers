@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9549cd7043261e02e30f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment wave3 dir j bootstrap",
+  "task_key": "worker_experiment_wave3-dir-j-bootstrap_20260520T090123",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_wave3-dir-j-bootstrap_20260520T090123_result.json",
+    "occurrence": 1,
+    "bytes": 963,
+    "sha256": "177fd7cd440969870350623338261f5d76021f7bc7a94225fd837b004870eaeb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Direction J 实验完成。结果汇总：\n\n| Round | Accuracy | Flips | Improved | Degraded |\n|-------|----------|-------|----------|----------|\n| R0 (SC) | **54.41%** | - | - | - |\n| **R1** | **56.86%** | 32 | 15 | 10 |\n| R2 | 54.41% | 16 | 5 | 10 |\n| R3 | 54.90% | 11 | 5 | 4 |\n| R4 | 54.41% | 10 | 4 | 5 |\n| R5 | 52.45% | 6 | 1 | 5 |\n\n**关键发现：**\n- **R1 峰值 +2.45pp**（56.86%），净改正 5 题（15 improved - 10 degraded）\n- 后续轮次围绕基线振荡，翻转数递减（32→16→11→10→6）但信噪比下降\n- **与 CEGIS 一致：R1 捕获主要信号，迭代不能持续改善**\n- 翻转精度约 47%（R1: 15/32），略好于随机但不够稳健\n- Per-type: True 73.6%, False 34.9%, Unknown 46.4%（False 类最弱）\n\n结论：Bootstrapped Gold Approximation 在 R1 有微弱正信号，但迭代 self-refinement 不收敛到更好的解。结果保存在 `results/direction_j_bootstrap/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-wave3-dir-j-bootstrap.md"
+}

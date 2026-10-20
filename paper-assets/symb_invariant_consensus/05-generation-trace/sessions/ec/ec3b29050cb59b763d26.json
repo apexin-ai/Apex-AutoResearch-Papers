@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec3b29050cb59b763d26",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code exp 047 qwen3 thinking prep",
+  "task_key": "worker_code_exp-047-qwen3-thinking-prep_20260518T193103",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp-047-qwen3-thinking-prep_20260518T193103_result.json",
+    "occurrence": 1,
+    "bytes": 1392,
+    "sha256": "c46948bfe2f589a04f72beadb4e33936a4fde6eba1f9ee3ed514dfac849fe2c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已就绪。C001 Dry-run 全部通过。\n\n---\n\n## exp-047 准备完成\n\n### Dry-run 验证结果\n| 检查项 | 状态 |\n|--------|------|\n| 模型路径 `/root/autodl-tmp/models/Qwen3-14B` (8 shards) | ✅ |\n| 数据文件 `folio_full.json` (204题), `empty.json` | ✅ |\n| Python/vllm imports | ✅ |\n| vLLM 启动 (需 `VLLM_USE_FLASHINFER_SAMPLER=0`) | ✅ |\n| Thinking mode (reasoning 字段分离) | ✅ |\n| SICA pipeline 端到端 (folio_0: SICA=Unknown ✓, SC=Unknown ✓) | ✅ |\n| cuda:2 空闲 | ✅ |\n| port 8002 空闲 | ✅ |\n\n### 关键发现\n- **FlashInfer 兼容性**：这台机器 GPU sm < 75，必须加 `VLLM_USE_FLASHINFER_SAMPLER=0`（exp-028 脚本遗漏了，可能当时 vLLM 版本不同）\n- **Thinking overhead**：K=2 单题 ~173s（trace=80s + extraction=93s），K=12 预估 ~340s/题，全 204 题约 19 小时\n- **\"Empty after stripping thinking\" 警告**：exp-028 出现 143 次（~30% extraction），不影响最终结果因 K=12 冗余\n\n### 部署命令\n\n```bash\nnohup bash /root/symb_invariant_consensus/scripts/run_exp047_qwen3_thinking_folio204.sh > /tmp/exp047_main.log 2>&1 &\n```\n\n脚本位置：`/root/symb_invariant_consensus/scripts/run_exp047_qwen3_thinking_folio204.sh`\n\n配置：cuda:2, port 8002, K=12, T=0.7, max-tokens=8192, seed=42, Qwen3-14B thinking mode, FOLIO 204 题全量 run。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-047-qwen3-thinking-prep.md"
+}

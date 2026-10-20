@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "92924c747ba4edc16652",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "deploy exp 081 082 seed123 16639",
+  "task_key": "worker_deploy_exp-081-082-seed123-16639_20260519T203928",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_exp-081-082-seed123-16639_20260519T203928.log",
+    "occurrence": 1,
+    "bytes": 1103003,
+    "sha256": "c44a2036520375d2c5080744da84fd1cdbc78896fbb894717a8fe479adb638f7"
+  },
+  "statistics": {
+    "messages": 468,
+    "user_turns": 1,
+    "tool_calls": 187,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 86,
+      "tool_call": 187,
+      "tool_result": 187,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 130,
+      "chunks": [
+        {
+          "path": "92924c747ba4edc16652-part-0001.json",
+          "message_count": 130
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 338,
+      "chunks": [
+        {
+          "path": "92924c747ba4edc16652-part-0001.json",
+          "message_count": 12
+        },
+        {
+          "path": "92924c747ba4edc16652-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "92924c747ba4edc16652-part-0003.json",
+          "message_count": 146
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/deploy-exp-081-082-seed123-16639.md"
+}

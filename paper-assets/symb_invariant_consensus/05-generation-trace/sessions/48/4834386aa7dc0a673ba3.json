@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4834386aa7dc0a673ba3",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 033 results",
+  "task_key": "worker_analysis_exp-033-results_20260518T191648",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-033-results_20260518T191648_result.json",
+    "occurrence": 1,
+    "bytes": 2334,
+    "sha256": "c48d76e26387a741cb1a08d0f749e51864ceab680bdbe2a32c94e02967a95863"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n---\n\n## exp-033 分析报告：Mistral-7B-Instruct-v0.3 FOLIO-204\n\n### 核心结果\n\n| 指标 | 值 |\n|------|-----|\n| **SICA accuracy** | **59.31%** (121/204) |\n| **SC accuracy** | **54.41%** (111/204) |\n| **delta (SICA - SC)** | **+4.90pp** |\n| **McNemar p-value** | **0.013** (显著, α=0.05) |\n| n | 204 |\n| k | 12 |\n\n### 诊断指标\n\n| 指标 | 值 |\n|------|-----|\n| extraction_rate | 97.14% |\n| contradiction_rate | 3.50% (128/204 problems) |\n| avg_unique_constraints | 39.3 |\n| maxsat_mean_sat_ratio | 0.9609 |\n| C0 (non-unanimous rate) | **81.37%** |\n| avg_majority_frac | 0.7515 |\n| Discordant: SICA-only wins | **12** |\n| Discordant: SC-only wins | **2** |\n| wall_time | 81.4 min |\n\n### Baseline 对比\n\n| 实验 | 模型 | 数据集 | SICA | SC | Delta | C0 |\n|------|------|--------|------|-----|-------|-----|\n| exp-026 | Qwen2.5-14B | FOLIO-204 | 74.51% | 75.00% | -0.49pp | ~45% |\n| exp-035 | Qwen2.5-7B | FOLIO-204 | 76.85% | 77.34% | -0.49pp | 55.17% |\n| exp-010-v3 | Mistral-7B | D012 (n=60) | 48.33% | 48.33% | 0pp | — |\n| **exp-033** | **Mistral-7B** | **FOLIO-204** | **59.31%** | **54.41%** | **+4.90pp** | **81.37%** |\n\n### 关键发现\n\n1. **首次 SICA 显著超越 SC** — delta=+4.90pp, McNemar p=0.013, discordant pairs 高度不对称 (12:2)。\n\n2. **Capability trap 非普遍现象** — Qwen 家族 (7B/14B) 上 delta≈-0.49pp (capability trap 成立)，但 Mistral-7B 上 SICA 反而大幅胜出。关键区别在于 **diversity**：\n   - Mistral-7B C0=81.37%，Qwen-7B C0=55.17%\n   - 高 diversity 导致 SC majority vote 退化（avg majority fraction 仅 75.15%）\n   - SICA 的 MaxSAT 在 noisy 但 diverse 的 traces 中仍能提取有用信号\n\n3. **绝对性能低** — Mistral-7B 59.31% 远低于 Qwen-7B 77%，说明基础推理能力弱，但 SICA 在这种条件下反而比 SC 更能容忍 noise。\n\n4. **D012 pilot 有误导性** — n=60 的小样本掩盖了 +4.90pp 的效应。\n\n5. **理论解释** — SICA 的优势区间是 \"高 diversity + 中等 quality\"：traces 足够多样使 SC 失效，但 constraint extraction 质量仍足以让 MaxSAT 找到一致解。Qwen 模型 diversity 不够高（SC 的 majority vote 仍然 robust），所以 SICA 无法胜出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-033-results.md"
+}

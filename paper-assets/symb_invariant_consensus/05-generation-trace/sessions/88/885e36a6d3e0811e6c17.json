@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "885e36a6d3e0811e6c17",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "check multiseed progress all",
+  "task_key": "worker_check_multiseed-progress-all_20260523T043503",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_multiseed-progress-all_20260523T043503_result.json",
+    "occurrence": 1,
+    "bytes": 1689,
+    "sha256": "4599fda34beaf8192ba2f4fb6f7a9586e7f8350792ef21e850e1cc081ba57659"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 多种子实验进度汇总\n\n### westd-16639\n\n| 实验 | 进度 | SC% | SICA% | Δ | 状态 |\n|------|------|-----|-------|---|------|\n| **mistral_pw_seed42** | 600/600 | 40.00 | 36.67 | -3.33pp | **完成** |\n| **mistral_pw_seed123** | 600/600 | 40.83 | 37.50 | -3.33pp | **完成** |\n| **mistral_pw_seed456** | 600/600 | 39.83 | 38.67 | -1.17pp | **完成** |\n| **mistral_pw_seed789** | 600/600 | 38.83 | 37.17 | -1.67pp | **完成** |\n| qwen25_pw_seed456 | 463/600 | 73.87 | 72.79 | -1.08pp | 运行中，ETA ~15:00 UTC |\n| qwen25_pw_seed123 | 441/600 | 73.24 | 71.66 | -1.59pp | 运行中，ETA ~15:30 UTC |\n| llama8b_pw_seed123 | 399/600 | 73.18 | 64.91 | -8.27pp | 运行中，ETA ~16:40 UTC |\n| qwen25_pw_seed789 | 24/600 | — | — | — | 运行中，ETA ~22:35 UTC |\n| llama8b_pw_seed42 | 223/600 | — | — | — | **无活跃进程，疑似停止** |\n\n### westd-14391\n\n| 实验 | 进度 | SC% | SICA% | Δ | 状态 |\n|------|------|-----|-------|---|------|\n| llama8b_pw_seed42 | 550/600 | 72.36 | 66.73 | -5.64pp | 运行中，ETA ~13:20 UTC |\n| llama8b_pw_seed123 | 0/600 | — | — | — | **目录空，未启动** |\n| llama8b_pw_seed456 | 0/600 | — | — | — | **目录空，未启动** |\n\n### 关键发现\n\n**所有实验 Δ 均为负值** — SICA 一致低于 SC。已完成的 Mistral 4 个种子平均 Δ = -2.38pp。Qwen 和 LLaMA 的中间结果也呈现相同趋势（Qwen Δ 约 -1~-2pp，LLaMA Δ 约 -5~-8pp）。\n\n### 需要关注\n\n1. westd-16639 的 `llama8b_pw_seed42` (223/600) 无活跃进程，需确认是否需要重启\n2. westd-14391 的 `llama8b_pw_seed123` 和 `llama8b_pw_seed456` 尚未启动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-multiseed-progress-all.md"
+}

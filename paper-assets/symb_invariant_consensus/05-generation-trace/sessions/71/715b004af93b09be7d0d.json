@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "715b004af93b09be7d0d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag exp040 status check",
+  "task_key": "worker_diag_exp040-status-check_20260519T073510",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_exp040-status-check_20260519T073510_result.json",
+    "occurrence": 1,
+    "bytes": 1026,
+    "sha256": "5a1fbd64222ca94b5a83bee3ec023ad502ff842c2fc6f89d2fdde7eb83ebce0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-16639 状态报告\n\n```\ncuda:0 — 空闲 (0MiB, 0% util)\ncuda:1 — exp-040 ALIVE, vLLM Qwen3-14B, 88445MiB, 100% util\ncuda:2 — 空闲 (0MiB, 0% util)\ncuda:3 — exp-048 ALIVE, vLLM LLaMA-8B, 88263MiB, 96% util\n```\n\n### exp-040 (Qwen3-14B PW-600 non-thinking, cuda:1)\n- **状态**: 运行中，活跃推理\n- **进度**: 482/600 (80.3%)\n- **运行时间**: ~14h (自 01:45)\n- **当前 SICA**: 85.48% (412/482), SC: 84.85% (409/482)\n\n### exp-048 (LLaMA-8B PW-600, cuda:3)\n- **状态**: 运行中，活跃推理\n- **进度**: 245/600 (40.8%)\n- **运行时间**: ~5h (自 10:20)\n- **当前 SICA**: 70.20% (172/245), SC: 74.29% (182/245)\n\n### 可用模型 (for EXP-E)\n```\nMeta-Llama-3.1-8B-Instruct  ✓ (已在用)\nMistral-7B-Instruct-v0.3\nQwen2.5-14B-Instruct\nQwen3-14B                   (已在用)\ndeepseek-r1-0528-qwen3-8b\ngemma-3-27b-it\nllama-4-scout\nphi-4-reasoning\n```\n\nexp-040 预计再 ~3-4h 完成，exp-048 预计再 ~7-8h。cuda:0 和 cuda:2 空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp040-status-check.md"
+}

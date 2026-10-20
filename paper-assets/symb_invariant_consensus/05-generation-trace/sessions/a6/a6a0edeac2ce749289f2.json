@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6a0edeac2ce749289f2",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "viz fig1 pb v4",
+  "task_key": "worker_viz_fig1-pb-v4_20260524T104206",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_viz_fig1-pb-v4_20260524T104206_result.json",
+    "occurrence": 1,
+    "bytes": 401,
+    "sha256": "ffda6eb053c7ba433c5d570d5852a53f4f4a0480c0cb4fe1dd350c55340586c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出：\n\n- **PNG**: `docs/paper/figures/fig1_pipeline_pb_v4.png`\n- **PDF**: `docs/paper/figures/fig1_pipeline_pb_v4.pdf`\n- **Artifact**: `art_20260524_fdf31e` 已注册\n\n3D 立体感要点确认：渐变填充清晰可见、阴影实体感强（尤其 LLM M）、顶部高光反射、三层 trace 卡片叠加有深度、Independence Bottleneck 红色虚线框醒目。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig1-pb-v4.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b2a4f7bede20001e7b4",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code check qwen download 25068",
+  "task_key": "worker_code_check-qwen-download-25068_20260518T094459",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_check-qwen-download-25068_20260518T094459_result.json",
+    "occurrence": 1,
+    "bytes": 399,
+    "sha256": "901a6e2e85ca2fc942f9aa4260f769125aefb8a3486e0c368cef4a51e37e69b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- **下载进程**: 运行中, PID 5399 (started 15:34, ~2h10m ago)\n- **已下载**: 37 GB / ~145 GB (~25%)\n- **完成的 shard 文件数**: 19/37 已存在 (log 确认完成 3 个, 其余 16 个由并行 worker 同时下载中)\n- **下载速度**: ~17 GB/h (aggregate)\n- **磁盘剩余**: 214 GB, 充足\n- **预计剩余时间**: ~6h\n- **状态**: 正常运行中, 无需重启"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-qwen-download-25068.md"
+}

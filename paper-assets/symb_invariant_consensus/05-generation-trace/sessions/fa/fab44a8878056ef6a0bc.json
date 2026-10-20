@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fab44a8878056ef6a0bc",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code sica folio30 prep",
+  "task_key": "worker_code_sica_folio30_prep_20260515T221825",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_sica_folio30_prep_20260515T221825_result.json",
+    "occurrence": 1,
+    "bytes": 1542,
+    "sha256": "1e183493a4c8cb3df42fc79786754abdf8b9e66380d1c170356cafd85705dc34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "FOLIO SICA 实验准备完成。\n\n## 总结\n\n### 已就绪的组件\n\n| 组件 | 状态 | 路径 |\n|------|------|------|\n| 评估脚本 | 已有且验证通过 | `/root/symb_invariant_consensus/eval_folio.py` |\n| 数据加载器 | 已有 | `data/folio_loader.py` |\n| 数据集 (30题) | 已有，True/False/Unknown 各10题 | `data/folio_subset.json` |\n| FOLIO prompt模板 | 已有 | `sica/trace_generator.py` (FOLIO_PROMPT) |\n| Pipeline FOLIO支持 | 已有 (domain auto-detect) | `sica/pipeline.py` |\n| vLLM QwQ-32B | 运行中 | `localhost:8000` |\n\n### Dry-run 结果\n- 30/30 题 prompt 组装通过 (premises=Y, conclusion=Y, boxed_instr=Y)\n- 6/6 答案提取测试通过 (boxed + fallback + normalization)\n\n### Live test 结果 (2题, K=4)\n\n| 题目 | SICA | SC | 约束数 | 去重后 | MAX-SAT | 耗时 |\n|------|------|----|--------|--------|---------|------|\n| folio_000 | True (V) | True (V) | 27→25 | 25/25 satisfied | 0.9ms | 288s |\n| folio_001 | True (V) | True (V) | 23→17 | 16/17 satisfied | 0.7ms | 95s |\n\n### 已更新\n- `eval_folio.py` max_tokens 默认值 12288→16384\n- Registry `sica_folio30` 状态更新为 QUEUED，spec 包含完整运行命令\n\n### 正式实验启动命令\n```bash\ncd /root/symb_invariant_consensus && python eval_folio.py --n-problems 30 --k 12 --temperature 0.7 --max-tokens 16384 --seed 42 --save-intermediates --output results/folio_eval.json\n```\n\n预估耗时：30题 × K=12 × ~5min/题 ≈ 2.5h（受 vLLM 并发影响可能更长）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sica-folio30-prep.md"
+}

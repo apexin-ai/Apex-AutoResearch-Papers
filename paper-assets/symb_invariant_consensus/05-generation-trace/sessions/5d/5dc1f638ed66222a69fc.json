@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5dc1f638ed66222a69fc",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix extraction rate bug",
+  "task_key": "worker_fix_extraction-rate-bug_20260517T132009",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_extraction-rate-bug_20260517T132009_result.json",
+    "occurrence": 1,
+    "bytes": 1084,
+    "sha256": "862879cb64785d4a3130bfa320624218bf86d40e82f05342e14085fccbb4084e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n## 结果\n\n**Bug 原因**: `avg_extraction_rate = Mean(traces_with_constraints / n_traces)` 的分母 `n_traces` 错误地使用了 `boxed + fallback`（成功提取 answer 的 trace 数），而非 `k=12`（总 trace 数）。当 trace 的 answer 提取失败但 constraint 提取成功时，分子 > 分母。\n\n**修复前后对比**:\n\n| Experiment | OLD | NEW |\n|---|---|---|\n| exp011_llama8b_pw_folio | **1.1018** | 0.9639 |\n| exp020_llama8b_folio | **1.0591** | 0.9935 |\n| exp019_llama8b_strategyqa | 0.9390 | 0.8008 |\n\n所有实验的 extraction_rate 现在 <= 1.0。\n\n**副作用**: 修正后 c0 与 extraction_rate 的 Pearson 相关从 r=0.675 降至 r=0.116，原来的高相关部分是 bug 造成的伪信号。\n\n**文件变更**:\n- `results/exp019_constraint_quality_analysis.json` — 重新生成\n- `results/exp019_constraint_quality_summary.csv` — 重新生成\n- `scripts/compute_constraint_quality_correlation.py` — 新增可重复运行的分析脚本\n- `artifacts/extraction_rate_bugfix.md` — 修复记录"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-extraction-rate-bug.md"
+}

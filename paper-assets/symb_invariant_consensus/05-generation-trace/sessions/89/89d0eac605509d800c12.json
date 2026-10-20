@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89d0eac605509d800c12",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "computation raw kappa t05",
+  "task_key": "worker_computation_raw-kappa-t05_20260519T054942",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_computation_raw-kappa-t05_20260519T054942_result.json",
+    "occurrence": 1,
+    "bytes": 275,
+    "sha256": "0aa48955559accfe6e084118c2aa996ec7520f949485fe3b320f89e4d046b89c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-058 (T=0.5) raw Fleiss' κ 结果：**\n\n| 指标 | 值 |\n|---|---|\n| raw κ | **0.5159** |\n| Eff-K (K=12) | **1.80** |\n| Valid rate | 0.8562 |\n| N | 204 |\n\n验算 Eff-K：K / (1 + (K-1)×κ) = 12 / (1 + 11×0.5159) = 12 / 6.6749 ≈ **1.80** ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/computation-raw-kappa-t05.md"
+}

@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "77bb852a3441cdc9dbe8",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp070 mcnemar kappa",
+  "task_key": "worker_analysis_exp070-mcnemar-kappa_20260519T135944",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp070-mcnemar-kappa_20260519T135944_result.json",
+    "occurrence": 1,
+    "bytes": 1472,
+    "sha256": "66c4cf44205f9eaaf4f85bc97f01780fee34c035747ba4f48e48b11a21eaf749"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Scipy 验证通过，数值一致。结果：\n\n```json\n{\n  \"contingency_table\": {\"a\": 136, \"b\": 1, \"c\": 6, \"d\": 57},\n  \"n\": 200,\n  \"discordant_b\": \"1 (SC correct, SICA wrong)\",\n  \"discordant_c\": \"6 (SC wrong, SICA correct)\",\n  \"mcnemar_chi2\": 2.2857,\n  \"mcnemar_p\": 0.130570,\n  \"mcnemar_p_exact\": 0.125000,\n  \"significant_005\": false,\n  \"cohens_kappa\": 0.9171,\n  \"kappa_interpretation\": \"almost_perfect\"\n}\n```\n\n**关键发现：**\n\n- **Discordant pairs 极少**：仅 7 对 (b=1, c=6)。SICA 翻转了 6 题从错到对，仅丢失 1 题。\n- **McNemar's test 不显著**：p=0.131 (asymptotic), p=0.125 (exact binomial)，均 >0.05。discordant pairs 太少，统计功效不足。\n- **Cohen's κ=0.917 (almost perfect)**：SC 和 SICA 在 193/200 题上决策一致，两方法高度一致。\n\nΔ=+2.5pp 的改进方向正确（c=6 > b=1），但 n=200 下 discordant pairs 仅 7 对，无法达到统计显著性。需要更大样本量或更多 discordant pairs 才能确认显著性。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "contingency_table": {
+                "a": 136,
+                "b": 1,
+                "c": 6,
+                "d": 57
+              },
+              "n": 200,
+              "discordant_b": "1 (SC correct, SICA wrong)",
+              "discordant_c": "6 (SC wrong, SICA correct)",
+              "mcnemar_chi2": 2.2857,
+              "mcnemar_p": 0.13057,
+              "mcnemar_p_exact": 0.125,
+              "significant_005": false,
+              "cohens_kappa": 0.9171,
+              "kappa_interpretation": "almost_perfect"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp070-mcnemar-kappa.md"
+}

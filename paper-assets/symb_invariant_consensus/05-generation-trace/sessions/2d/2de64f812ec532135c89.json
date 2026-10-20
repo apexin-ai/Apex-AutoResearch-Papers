@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2de64f812ec532135c89",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "gpu exp 066 qwen14b folio seed123",
+  "task_key": "worker_gpu_exp-066-qwen14b-folio-seed123_20260519T084945",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp-066-qwen14b-folio-seed123_20260519T084945_result.json",
+    "occurrence": 1,
+    "bytes": 363,
+    "sha256": "dfc2d182e6da8a6eab01b43606650b19f2b8a9eac7e646faa4b2ea663584cb64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-066 已部署完成。\n\n**总结：**\n- GPU 1 + 端口 8011，vLLM 已就绪\n- Dry-run 3 题通过：SICA=66.7%, SC=66.7%，pipeline 正常\n- 全量 204 题在 tmux `exp066_run` 中运行，seed=123\n- 注册状态：RUNNING，parent=exp-026\n- 预计耗时约 3.5-4 小时\n- 日志：`results/exp066_qwen14b_folio_seed123/exp066_run.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-066-qwen14b-folio-seed123.md"
+}

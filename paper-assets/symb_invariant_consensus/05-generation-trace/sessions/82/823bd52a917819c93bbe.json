@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "823bd52a917819c93bbe",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment mistral folio seed789 only",
+  "task_key": "worker_experiment_mistral-folio-seed789-only_20260522T104840",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_mistral-folio-seed789-only_20260522T104840_result.json",
+    "occurrence": 1,
+    "bytes": 1061,
+    "sha256": "6254116a18393dbd1ce84c954f4c7dcfb15a30dcbb6975b838ec9ab19070d1d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "seed=789 运行正常，已完成 2/204 题。\n\n## 汇报\n\n### 1. PID 575732 — KILLED OK\n\n### 2. seed=789 新进程\n- **PID: 576938**\n- 日志：`/tmp/mistral_folio_seed789_nohup.log`\n- 输出：`results/multi_seed/mistral_folio_seed789/`\n- 当前进度：2/204 题，HTTP 200 正常\n\n### 3. 已有 seeds 数据（Mistral-7B × FOLIO-204, K=12）\n\n| Seed | 来源 | N | SC | SICA | Δ (SICA−SC) |\n|------|------|---:|-----:|------:|------:|\n| 123 | exp052 | 204 | 53.92% (110) | 57.35% (117) | **+3.43pp** |\n| 456 | exp053 | 204 | 56.37% (115) | 55.88% (114) | **−0.49pp** |\n| 789 | 运行中 | — | — | — | — |\n\n**seed=42 FOLIO 数据不存在。** 搜索了所有可能路径（multi_seed、exp010、frontier、d135），均未找到。exp033 是无 seed（`--seed=None`）的早期 baseline，不等价于 seed=42。\n\n### 4. 预计完成时间\n- exp052 (seed=123) 耗时 4914s ≈ 82min\n- exp053 (seed=456) 耗时 4847s ≈ 81min\n- seed=789 启动于 18:49 → 预计 **~20:11 UTC** 完成（约 80 min）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-mistral-folio-seed789-only.md"
+}

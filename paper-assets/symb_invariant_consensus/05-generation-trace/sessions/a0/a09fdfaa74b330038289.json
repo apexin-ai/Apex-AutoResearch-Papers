@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a09fdfaa74b330038289",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "run multiseed 16639 batch",
+  "task_key": "worker_run_multiseed-16639-batch_20260522T194233",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_multiseed-16639-batch_20260522T194233_result.json",
+    "occurrence": 1,
+    "bytes": 1105,
+    "sha256": "03a956ac610476a0370152ed4e16e54f15d556e14eb1cbf7a6df10a78afec305"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。汇总：\n\n## 当前状态\n\n| GPU | 用途 | 状态 |\n|-----|------|------|\n| cuda:0 | Qwen2.5-14B vLLM (port 8001) + PW seed456→789 | **运行中** (PID 663049, 88GB, 97% util) |\n| cuda:1 | 空闲 | — |\n| cuda:2 | Mistral vLLM (port 8003) + PW seed789 | **运行中** (PID 655962, 171/600, 90GB, 96% util) |\n| cuda:3 | 空闲 | — |\n\n## Multi-seed 完成情况\n\n| 模型×数据集 | seed42 | seed123 | seed456 | seed789 |\n|-------------|--------|---------|---------|---------|\n| **Qwen2.5-14B × PW** | (baseline) | sc=0.525, sica=0.523 | **跑ing** | 排队中(456完成后自动跑) |\n| **Mistral × PW** | sc=0.400, sica=0.367 | sc=0.408, sica=0.375 | sc=0.398, sica=0.387 | **跑ing** 171/600 |\n\n## 进程监控\n- Qwen runner: `tail -f /tmp/qwen25_pw_multiseed.log`\n- Mistral 789: 已在 cuda:2 独立跑，不需干预\n- seed123 参考：wall_time ~30334s（~8.4h），两个 seed 预计 ~17h 完成\n\n## 注意\n- cuda:1 和 cuda:3 空闲，如有其他实验可以利用\n- Mistral PW 4 个 seed 全部有数据（789 完成后即齐全）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-multiseed-16639-batch.md"
+}

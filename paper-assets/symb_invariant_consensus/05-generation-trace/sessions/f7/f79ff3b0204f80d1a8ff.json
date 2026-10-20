@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f79ff3b0204f80d1a8ff",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis multiseed progress audit",
+  "task_key": "worker_analysis_multiseed-progress-audit_20260522T165940",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_multiseed-progress-audit_20260522T165940_result.json",
+    "occurrence": 1,
+    "bytes": 1707,
+    "sha256": "b9e7867003ec9b6ddd91ac75ffb20dffe402e071609a8928c088c65e87cef4bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Multi-seed 进度总览\n\n**根分区 100% 满 (30G/30G)**，导致两个实验写文件时崩溃。数据盘 `/root/autodl-tmp` 还有 137GB 空闲。\n\n### cuda:1 LLaMA-8B FOLIO (204 problems/seed) — vLLM port 8002\n| seed | 状态 | 详情 |\n|------|------|------|\n| 123 | **完成** 204/204 | |\n| 456 | **完成** 204/204 | |\n| 789 | **崩溃** 189/204 | `OSError: No space left on device` — 根分区满 |\n\n### cuda:2 Mistral-7B PW (600 problems/seed) — vLLM port 8003\n| seed | 状态 | 详情 |\n|------|------|------|\n| 42 | **完成** 600/600 | |\n| 123 | **完成** 600/600 | |\n| 456 | **在跑** 440/600 | ETA ~79 min (~160 remaining) |\n| 789 | **未开始** | |\n\n### cuda:3 LLaMA-8B PW (600 problems/seed) — vLLM port 8004\n| seed | 状态 | 详情 |\n|------|------|------|\n| 42 | **崩溃** 223/600 | `OSError: No space left on device` — 根分区满 |\n| 123 | **未开始** | 无结果目录 |\n| 456 | **未开始** | 无结果目录 |\n\n### 额外已完成（非用户问的三组，但在 multi_seed 目录下）\n- Qwen2.5 FOLIO: seed 123/456/789 全部 204/204 ✓\n- Qwen2.5 PW: seed 123/456/789 全部 600/600 ✓\n- Mistral FOLIO: seed 123/456/789 全部 204/204 ✓\n\n### 阻塞问题\n**根分区 `/` 已满 (30G used / 30G total)**。cuda:1 和 cuda:3 的实验都因此崩溃。需要清理根分区空间或将结果目录改写到 `/root/autodl-tmp/`，否则恢复运行后仍会崩。\n\n### 可分流到 westd-14391 的任务\n- LLaMA-8B FOLIO seed=789（仅剩 15 problems，但需先解决磁盘问题）\n- LLaMA-8B PW seed=123, seed=456（未开始，各 600 problems）\n- Mistral-7B PW seed=789（未开始，600 problems）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-multiseed-progress-audit.md"
+}

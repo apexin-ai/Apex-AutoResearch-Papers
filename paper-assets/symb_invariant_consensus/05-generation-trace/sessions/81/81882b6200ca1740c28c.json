@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81882b6200ca1740c28c",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra llama folio diagnose",
+  "task_key": "worker_infra_llama-folio-diagnose_20260522T110253",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_llama-folio-diagnose_20260522T110253_result.json",
+    "occurrence": 1,
+    "bytes": 1177,
+    "sha256": "3d51bde7d657bd5271f9c18a1d2c875bc021f35d7b8e24b39b26f54fa70c5761"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**根因确认**：vLLM 启动参数与代码请求冲突。\n\n从 `ps aux` 可见 LLaMA vLLM 进程的启动命令：\n```\npython3 -m vllm.entrypoints.openai.api_server \\\n  --model /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct \\\n  --port 8002 --enforce-eager --max-model-len 4096 --gpu-memory-utilization 0.9\n```\n\n而 `run_full_mvp.py` 默认 `--max-tokens 4096`（第212行）。\n\n**冲突**：`max_model_len=4096` 是 input+output 总上限，代码请求 `max_tokens=4096` 给 output，留给 input 的配额为 0。prompt 有 ~766 字符，必然超出，所以 204 个 FOLIO 问题全部返回 400 错误。\n\n对比：Mistral 和 Qwen2.5 的 vLLM 都用了 `--max-model-len 8192`，所以没出问题。\n\n## 修复建议\n\n**方案 A（推荐）**：重启 LLaMA vLLM，`--max-model-len 8192` 与其他模型一致，然后重跑 multi-seed。\n\n**方案 B**：不改 vLLM，在脚本中加 `--max-tokens 2048`。FOLIO 是逻辑推理题，输出远不需要 4096 tokens，2048 绰绰有余。\n\n**方案 C**：A+B 都做——vLLM 改 8192，max_tokens 降到 2048，留足余量。\n\n需要我执行修复吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-llama-folio-diagnose.md"
+}

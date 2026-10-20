@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e093dfa66b8946f32887",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code case study postprocess",
+  "task_key": "worker_code_case-study-postprocess_20260518T113020",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_case-study-postprocess_20260518T113020_result.json",
+    "occurrence": 1,
+    "bytes": 2804,
+    "sha256": "3cf3d2a8c6cd143697cb43a390101adb4c143901b59b8451ce51e16304d14f4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已完成。以下是报告。\n\n---\n\n## 后处理报告\n\n### 产出文件\n- 脚本: `/root/symb_invariant_consensus/scripts/postprocess_case_study.py`\n- 归一化结果: `/root/symb_invariant_consensus/results/case_study_normalized.json`\n\n### 任务 1：归一化后 SC/SICA 结果\n\n| 问题 | Gold | 归一化 SC | SC 分布 | 归一化 SICA | SICA scores |\n|------|------|-----------|---------|-------------|-------------|\n| folio_134 | Unknown | **True** | True:11, Unknown:1 | **True** | True:55.0, Unknown:0.0 |\n| PW-1066_Q6 | False | **False** ✓ | Unknown:4, True:3, False:5 | **False** ✓ | Unknown:115, True:105.5, False:121 |\n| PW-903_Q6 | False | **True** | True:5, Unknown:4, False:3 | **True** | True:103.5, Unknown:98, False:58.5 |\n\n### 与 exp-001 对比\n\n| 问题 | exp-001 SC | re-extract SC | 匹配 | exp-001 SICA | re-extract SICA | 匹配 |\n|------|-----------|---------------|------|-------------|-----------------|------|\n| folio_134 | True | True | ✓ | Unknown | True | ✗ |\n| PW-1066_Q6 | False | False | ✓ | True | False | ✗ |\n| PW-903_Q6 | False | True | ✗ | False | True | ✗ |\n\n**不一致原因**: re-extraction 是独立的推理采样，12 条 trace 的答案分布与 exp-001 不同。exp-001 三题均为 6:6 平票 (vote_entropy=1.0)，而 re-extraction 的 trace 分布偏向不同方向（folio_134 甚至 11:1）。SICA 的差异是 trace 分布差异的自然结果，不是归一化问题。\n\n归一化本身是正确的：修复前 folio_134 的 SC 票被分裂为 True:5 / `\\text{True}`:5 / `\\text{true}`:1 / `\\text{uncertain}`:1，修复后合并为 True:11 / Unknown:1。\n\n### 任务 2：Constraint count 差异分析\n\n| 问题 | exp-001 | re-extract (Z3 dedup) | weight≥2 | unique expressions |\n|------|---------|----------------------|----------|-------------------|\n| folio_134 | 7 | 22 | 8 | 17 |\n| PW-1066_Q6 | 17 | 31 | 16 | 32 |\n| PW-903_Q6 | 44 | 72 | 32 | 51 |\n\n**根本原因：Z3 变量命名不一致导致去重失败。**\n\n以 folio_134 为例，同一逻辑事实 \"Some mammals have teeth\" 在不同 trace 中被编码为 4 种不同的 Z3 变量：\n- `mammals_have_teeth == True` (traces 1,2,3,6)\n- `some_mammals_have_teeth == True` (traces 4,5,8,9)\n- `some_mammal_has_teeth == True` (trace 11)\n- `Exists(x, And(mammal_x, have_teeth_x))` (trace 0)\n\nZ3 equivalence checker 无法判定不同变量名的布尔表达式等价，因此每个变体都作为独立约束保留。\n\n**weight≥2 过滤**（仅保留出现在 2+ trace 中的约束）后得到 8/16/32，与 exp-001 的 7/17 非常接近，说明 exp-001 的模型命名更一致，大部分约束都能被正确去重合并，而 re-extraction 中大量 weight=1 的约束是命名变体碎片。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-case-study-postprocess.md"
+}

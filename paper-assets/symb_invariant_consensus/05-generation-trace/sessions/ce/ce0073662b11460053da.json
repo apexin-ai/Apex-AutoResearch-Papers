@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce0073662b11460053da",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper writing step6 intro",
+  "task_key": "worker_paper_writing_step6_intro_20260523T025141",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_step6_intro_20260523T025141_result.json",
+    "occurrence": 1,
+    "bytes": 903,
+    "sha256": "a16117e5b95180a57b3d31d6328b0303c37477b34d56299710504f77c24d0c65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Written and verified. Changes from the original:\n\n- **Opening**: Z3 paradox hook leads (replaces generic test-time scaling opener); SC/CJT context compressed to 2 sentences\n- **Removed**: Long CJT paragraph (old lines 14-20), verbose oracle/independence-accuracy details, C3 \"Process-level independence analysis\"\n- **Added**: Power caveat (line 7: \"Four conditions confirmed equivalent; ten underpowered\")\n- **Softened**: Cross-architecture uses \"preliminary evidence\", \"on the weakest generator\" (line 13)\n- **Contributions**: 3 items, each ~3 lines (down from 3 items at 5-8 lines each)\n- **Figure 1**: TikZ block preserved exactly\n- **Style**: No em-dashes, no AI clichés, `\\looseness=-1` on all body paragraphs, BR range `1.66--4.97×`\n- 77 lines → 61 lines; body text from ~4 dense paragraphs + verbose contributions to 4 tight paragraphs + concise contributions"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-step6-intro.md"
+}

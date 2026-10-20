@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25104908f54d2ec70377",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix llama seed789 resume v3",
+  "task_key": "worker_fix_llama-seed789-resume-v3_20260523T201703",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_llama-seed789-resume-v3_20260523T201703_result.json",
+    "occurrence": 1,
+    "bytes": 341,
+    "sha256": "dd57254c8c616524ca1683ca7cb3481b07a4d5bf29e5dc638017742894748dd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "恢复成功。\n\n**seed789 恢复状态**: 从 378/600 恢复，剩余 222 个 problem，复用 port 8002 (cuda:2) 的 vLLM，tmux session `llama-seed789-v3`。\n\n**seed456 结果** (已完成 600/600): SC=71.67%, SICA=66.17%, Δ=-5.50pp\n\n**GPU 使用**: cuda:0 空闲, cuda:1 空闲, cuda:2 运行 vLLM+seed789 实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-llama-seed789-resume-v3.md"
+}

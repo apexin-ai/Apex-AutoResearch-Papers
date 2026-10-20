@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "d1be0797e2be7fed4920",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "audit table1 table2 data consistency",
+  "task_key": "worker_audit_table1-table2-data-consistency_20260523T102233",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_table1-table2-data-consistency_20260523T102233.log",
+    "occurrence": 1,
+    "bytes": 860280,
+    "sha256": "fc66f7e07e183dd5cdb373fc3c1219f9ff2ce6a487b82e86a742bc97e5379595"
+  },
+  "statistics": {
+    "messages": 253,
+    "user_turns": 0,
+    "tool_calls": 97,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 54,
+      "tool_call": 97,
+      "tool_result": 97,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 253,
+      "chunks": [
+        {
+          "path": "d1be0797e2be7fed4920-part-0001.json",
+          "message_count": 169
+        },
+        {
+          "path": "d1be0797e2be7fed4920-part-0002.json",
+          "message_count": 84
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-table1-table2-data-consistency.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65b2d1390f77d5648ba5",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 017 strategyqa v3",
+  "task_key": "worker_analysis_exp-017-strategyqa-v3_20260517T042717",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-017-strategyqa-v3_20260517T042717_result.json",
+    "occurrence": 1,
+    "bytes": 642,
+    "sha256": "b392c970d570c066946b1c5f3e4e2cc8d67681ddca8ad3106564e646de0985f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。Registry 已更新，conclusion = **success**。\n\n**核心结论**: SICA 56.67% vs SC 53.33%，+3.33pp 但不显著 (McNemar p>0.05, bootstrap p=0.13)。与 parent 实验一致，支持 capability trap 跨域（数学→常识推理）泛化假说。\n\n关键发现:\n- v3 修复确认成功：问题级提取率 100%（v2 仅 26.7%）\n- 仅 2 个 discordant pairs，均 SICA 胜出（SICA 通过约束推翻了 SC 多数票的错误答案）\n- 整体准确率偏低（~57% on Yes/No），模型在 StrategyQA 上表现不佳\n- unique constraints 极少（平均 1.0），Yes/No 任务约束多样性不足"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-017-strategyqa-v3.md"
+}

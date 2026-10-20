@@ -1,0 +1,173 @@
+{
+  "schema_version": "1.0",
+  "id": "82b571b6295480a32d90",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "exp folio nli combo fast launch",
+  "task_key": "worker_exp_folio-nli-combo-fast-launch_20260523T142146",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_folio-nli-combo-fast-launch_20260523T142146.log",
+    "occurrence": 1,
+    "bytes": 4589450,
+    "sha256": "14038af9f3bc53bf35539cbf438efb125cf245ebbe53b7a0ddbce2803d2e9199"
+  },
+  "statistics": {
+    "messages": 3865,
+    "user_turns": 4,
+    "tool_calls": 1693,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 9,
+      "assistant": 452,
+      "tool_call": 1693,
+      "tool_result": 1693,
+      "user": 4
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 667,
+      "chunks": [
+        {
+          "path": "82b571b6295480a32d90-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "82b571b6295480a32d90-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "82b571b6295480a32d90-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "82b571b6295480a32d90-part-0004.json",
+          "message_count": 127
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 861,
+      "chunks": [
+        {
+          "path": "82b571b6295480a32d90-part-0004.json",
+          "message_count": 53
+        },
+        {
+          "path": "82b571b6295480a32d90-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "82b571b6295480a32d90-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "82b571b6295480a32d90-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "82b571b6295480a32d90-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "82b571b6295480a32d90-part-0009.json",
+          "message_count": 88
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 908,
+      "chunks": [
+        {
+          "path": "82b571b6295480a32d90-part-0009.json",
+          "message_count": 92
+        },
+        {
+          "path": "82b571b6295480a32d90-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "82b571b6295480a32d90-part-0011.json",
+          "message_count": 180
+        },
+        {
+          "path": "82b571b6295480a32d90-part-0012.json",
+          "message_count": 180
+        },
+        {
+          "path": "82b571b6295480a32d90-part-0013.json",
+          "message_count": 180
+        },
+        {
+          "path": "82b571b6295480a32d90-part-0014.json",
+          "message_count": 96
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 986,
+      "chunks": [
+        {
+          "path": "82b571b6295480a32d90-part-0014.json",
+          "message_count": 84
+        },
+        {
+          "path": "82b571b6295480a32d90-part-0015.json",
+          "message_count": 180
+        },
+        {
+          "path": "82b571b6295480a32d90-part-0016.json",
+          "message_count": 180
+        },
+        {
+          "path": "82b571b6295480a32d90-part-0017.json",
+          "message_count": 180
+        },
+        {
+          "path": "82b571b6295480a32d90-part-0018.json",
+          "message_count": 180
+        },
+        {
+          "path": "82b571b6295480a32d90-part-0019.json",
+          "message_count": 180
+        },
+        {
+          "path": "82b571b6295480a32d90-part-0020.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 443,
+      "chunks": [
+        {
+          "path": "82b571b6295480a32d90-part-0020.json",
+          "message_count": 178
+        },
+        {
+          "path": "82b571b6295480a32d90-part-0021.json",
+          "message_count": 180
+        },
+        {
+          "path": "82b571b6295480a32d90-part-0022.json",
+          "message_count": 85
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-folio-nli-combo-fast-launch.md"
+}

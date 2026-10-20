@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6bce2ad2df92bda257a8",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment multi seed mistral",
+  "task_key": "worker_experiment_multi-seed-mistral_20260522T032530",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_multi-seed-mistral_20260522T032530_result.json",
+    "occurrence": 1,
+    "bytes": 748,
+    "sha256": "ff9baaec50a40d8ab6f7d111e67805733818251853290e868eabb154dafc81a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正常运行中。Seed 42 已处理 1/600，ETA ~272 分钟。4 个 seed 总共约 18-20 小时。\n\n当前状态：\n- vLLM Mistral-7B 在 cuda:2 port 8003 运行中\n- 4-seed 序列实验已启动（PID 510987）：seed 42 → 123 → 456 → 789\n- 每题 ~27s，600 题/seed，预计 seed 42 完成约 4.5 小时后\n- 输出：`results/multi_seed/mistral_pw_seed{42,123,456,789}/results.json`\n- 日志：`/tmp/multiseed_mistral_pw_all.log`\n\n监控命令：\n```bash\n# 查进度\ntail -5 /tmp/multiseed_mistral_pw_all.log\n# 查当前 seed 的 checkpoint\nls -la results/multi_seed/mistral_pw_seed*/results.json\n# 确认进程存活\nps -p 510987 -o pid=\n```\n\ncuda:0 和 cuda:3 的 FOLIO 2×2 实验未受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-multi-seed-mistral.md"
+}

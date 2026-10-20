@@ -1,0 +1,3521 @@
+{
+  "schema_version": "1.0",
+  "session_id": "e98d791da1b2c9d17af4",
+  "rounds": [
+    {
+      "number": 823,
+      "messages": [
+        {
+          "source_line": 8821,
+          "timestamp": "2026-05-20T14:46:16.020131+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ | grep -E \"^d\" | head -20"
+            }
+          },
+          "id": "event-008821"
+        },
+        {
+          "source_line": 8822,
+          "timestamp": "2026-05-20T14:46:16.071067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "drwxr-xr-x 11 ubuntu ubuntu   4096 May 20 14:44 .\ndrwxrwxr-x  6 ubuntu ubuntu   4096 May 15 08:44 ..\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 15 08:44 .claude\ndrwxr-xr-x 45 ubuntu ubuntu  12288 May 20 14:37 artifacts\ndrwxr-xr-x  2 ubuntu ubuntu  73728 May 20 14:29 checkpoints\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 20 05:01 distill_tmp\ndrwxr-xr-x  5 ubuntu ubuntu   4096 May 20 10:12 docs\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 17 17:22 figures\ndrwxr-xr-x  4 ubuntu ubuntu   4096 May 15 08:49 logs\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 20 13:48 scripts\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 19 12:12 task_context"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-008822"
+        },
+        {
+          "source_line": 8823,
+          "timestamp": "2026-05-20T14:46:17.930585+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus -name \"*.yaml\" -type f | xargs grep -l \"project_path\\|remote\\|code.*path\" 2>/dev/null | head -5"
+            }
+          },
+          "id": "event-008823"
+        },
+        {
+          "source_line": 8824,
+          "timestamp": "2026-05-20T14:46:17.981276+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/decisions.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-008824"
+        },
+        {
+          "source_line": 8825,
+          "timestamp": "2026-05-20T14:46:19.588119+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml",
+              "limit": "50"
+            }
+          },
+          "id": "event-008825"
+        },
+        {
+          "source_line": 8826,
+          "timestamp": "2026-05-20T14:46:19.638834+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tbaseline: null\n2\texperiments:\n3\t  crd_folio_main:\n4\t    status: DONE\n5\t    retry_count: 0\n6\t    created_at: '2026-05-15T09:35:42.037Z'\n7\t    updated_at: '2026-05-15T09:36:24.832Z'\n8\t    spec:\n9\t      command: python run_pipeline.py (CRD dual-representation pipeline)\n10\t      server: westd-32608\n11\t      data_path: /root/autodl-tmp/crdd/results/mvp_v4_full.jsonl\n12\t      data_count: 204\n13\t      model_name: Qwen3-32B-AWQ\n14\t      seed: 42\n15\t      method: CRD\n16\t      checkpoint_path: N/A\n17\t      log_path: /root/autodl-tmp/crdd/results/\n18\t    conclusion: success\n19\t    completed_at: '2026-05-15T09:36:03.793Z'\n20\t    hypothesis: 'CRD: 双表征(FOL+SymPy)分歧检测+定向修复能提升逻辑推理准确率（非SICA方法）'\n21\t    metrics:\n22\t      divergence_rate: 0.422\n23\t      diagnosis_rate: 0.872\n24\t      error_types: 4\n25\t      directed_advantage_pp: 4.7\n26\t      directed_p_value: 0.63\n27\t      localization_accuracy: 0.946\n28\t      fol_accuracy: 0.789\n29\t      code_accuracy: 0.598\n30\t      oracle_accuracy: 0.878\n31\t      pipeline_accuracy: 0.814\n32\t      baseline_accuracy: 0.74\n33\t      cost_multiplier: 5.76\n34\t      dataset: FOLIO\n35\t      n: 204\n36\t  smoke-test-5q:\n37\t    status: PREPARING\n38\t    retry_count: 0\n39\t    created_at: '2026-05-15T11:22:09.665Z'\n40\t    updated_at: '2026-05-15T11:22:09.666Z'\n41\t    conclusion: failed\n42\t  sica_smoke_5q:\n43\t    status: DONE\n44\t    retry_count: 0\n45\t    created_at: '2026-05-15T11:38:43.996Z'\n46\t    updated_at: '2026-05-15T11:39:13.456Z'\n47\t    spec:\n48\t      command: python3 smoke_test_5q.py (nohup)\n49\t      server: westd-32608\n50\t      data_path: /root/symb_invariant_consensus/data/math500_subset.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-008826"
+        },
+        {
+          "source_line": 8827,
+          "timestamp": "2026-05-20T14:46:21.067075+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_3 -type f -name \"config.yaml\" 2>/dev/null | head -5"
+            }
+          },
+          "id": "event-008827"
+        },
+        {
+          "source_line": 8828,
+          "timestamp": "2026-05-20T14:46:21.167846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-008828"
+        },
+        {
+          "source_line": 8829,
+          "timestamp": "2026-05-20T14:46:22.824420+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_extracted/self_consistency.py"
+            }
+          },
+          "id": "event-008829"
+        },
+        {
+          "source_line": 8830,
+          "timestamp": "2026-05-20T14:46:22.875045+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Self-Consistency baseline: majority vote over K reasoning traces with math equivalence.\"\"\"\n2\tfrom __future__ import annotations\n3\t\n4\tfrom utils.math_equiv import group_equivalent_answers\n5\tfrom sica.pipeline import _group_logic_answers\n6\t\n7\t\n8\tclass SelfConsistency:\n9\t\n10\t    def run(self, problem: dict, traces: list[str], answers: list[str]) -> dict:\n11\t        \"\"\"Select answer by majority vote with equivalence-aware grouping.\"\"\"\n12\t        valid = [a.strip() for a in answers if a.strip()]\n13\t        if not valid:\n14\t            return {\"answer\": \"\", \"vote_count\": 0, \"total_traces\": len(traces), \"vote_distribution\": {}}\n15\t\n16\t        dataset = problem.get(\"dataset\", \"\")\n17\t        if dataset in (\"proofwriter\", \"folio\"):\n18\t            groups = _group_logic_answers(valid)\n19\t        else:\n20\t            groups = group_equivalent_answers(valid)\n21\t        best_answer = max(groups, key=lambda k: len(groups[k]))\n22\t        best_count = len(groups[best_answer])\n23\t        vote_distribution = {k: len(v) for k, v in groups.items()}\n24\t\n25\t        return {\n26\t            \"answer\": best_answer,\n27\t            \"vote_count\": best_count,\n28\t            \"total_traces\": len(traces),\n29\t            \"vote_distribution\": vote_distribution,\n30\t        }\n31\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-008830"
+        },
+        {
+          "source_line": 8831,
+          "timestamp": "2026-05-20T14:46:24.883579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus -type f -name \"*.py\" -exec grep -l \"_group_logic_answers\" {} \\; 2>/dev/null | head -5"
+            }
+          },
+          "id": "event-008831"
+        },
+        {
+          "source_line": 8832,
+          "timestamp": "2026-05-20T14:46:25.034618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/run_contrastive.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/run_debate.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/run_icg_v2.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_extracted/pipeline_updated.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_extracted/self_consistency.py"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-008832"
+        },
+        {
+          "source_line": 8833,
+          "timestamp": "2026-05-20T14:46:26.892123+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -r \"def _group_logic_answers\" /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus --include=\"*.py\" 2>/dev/null"
+            }
+          },
+          "id": "event-008833"
+        },
+        {
+          "source_line": 8834,
+          "timestamp": "2026-05-20T14:46:26.942777+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_extracted/pipeline_updated.py:def _group_logic_answers(answers: list[str]) -> dict[str, list[int]]:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-008834"
+        },
+        {
+          "source_line": 8835,
+          "timestamp": "2026-05-20T14:46:28.292165+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 15 \"def _group_logic_answers\" /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_extracted/pipeline_updated.py"
+            }
+          },
+          "id": "event-008835"
+        },
+        {
+          "source_line": 8836,
+          "timestamp": "2026-05-20T14:46:28.342758+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "def _group_logic_answers(answers: list[str]) -> dict[str, list[int]]:\n    \"\"\"Group answers by case-insensitive exact match (for logic domain).\"\"\"\n    groups: dict[str, list[int]] = {}\n    canonical_map: dict[str, str] = {}\n    for i, ans in enumerate(answers):\n        if ans is None or str(ans).strip() == \"\":\n            continue\n        key = str(ans).strip().lower()\n        if key not in canonical_map:\n            canonical_map[key] = str(ans).strip()\n            groups[canonical_map[key]] = []\n        groups[canonical_map[key]].append(i)\n    return groups\n\n\nclass SICAPipeline:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-008836"
+        },
+        {
+          "source_line": 8837,
+          "timestamp": "2026-05-20T14:46:30.902830+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_r_deberta_proofwriter.py",
+              "offset": "165",
+              "limit": "30"
+            }
+          },
+          "id": "event-008837"
+        },
+        {
+          "source_line": 8838,
+          "timestamp": "2026-05-20T14:46:30.953504+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "165\t    # === Combo: DeBERTa vote added to SC votes ===\n166\t    print(\"\\n=== Combo (DeBERTa + SC votes) ===\")\n167\t    combo_results = {}\n168\t    for weight in [1, 3]:\n169\t        combo_correct = 0\n170\t        combo_preds = {}\n171\t        # McNemar: b = SC correct & combo wrong, c = SC wrong & combo correct\n172\t        b_count = 0\n173\t        c_count = 0\n174\t        for qid in gt:\n175\t            gold = gt[qid]\n176\t            dist = sc_vote_dists.get(qid, {})\n177\t            votes = Counter()\n178\t            for label, count in dist.items():\n179\t                if label in CLASSES:\n180\t                    votes[label] += count\n181\t\n182\t            dp = deberta_preds.get(qid)\n183\t            if dp in CLASSES:\n184\t                votes[dp] += weight\n185\t\n186\t            combo_answer = votes.most_common(1)[0][0] if votes else \"Unknown\"\n187\t            combo_preds[qid] = combo_answer\n188\t\n189\t            if combo_answer == gold:\n190\t                combo_correct += 1\n191\t\n192\t            sc_is_correct = (sc_answers.get(qid) == gold)\n193\t            combo_is_correct = (combo_answer == gold)\n194\t            if sc_is_correct and not combo_is_correct:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-008838"
+        },
+        {
+          "source_line": 8839,
+          "timestamp": "2026-05-20T14:46:36.977499+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have all the key information. Let me create a comprehensive summary based on my findings:\n\n## Summary\n\nI found the DeBERTa NLI experiment script for ProofWriter and identified the tiebreaking logic.\n\n**File Location:**\n`/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_r_deberta_proofwriter.py`\n\n**Tiebreaking Logic for SC (Self-Consistency) Votes:**\n\nThe tiebreaking behavior is implemented in **TWO locations**:\n\n### 1. Original SC Implementation (in SelfConsistency class)\n**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_extracted/self_consistency.py`\n\n**Code (Line 21):**\n```python\nbest_answer = max(groups, key=lambda k: len(groups[k]))\n```\n\nWhen there is a tie (multiple answers with the same highest vote count), Python's `max()` function **returns the first one encountered in dictionary iteration order**. In Python 3.7+, dictionary order is insertion order. Therefore, SC ties are broken by **dictionary insertion order** — whichever answer was seen first in the grouped vote dictionary becomes the tiebreaker.\n\n### 2. Direction R (Combo Voting) Implementation\n**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_r_deberta_proofwriter.py`\n\n**Code (Line 186):**\n```python\ncombo_answer = votes.most_common(1)[0][0] if votes else \"Unknown\"\n```\n\nThis uses Python's `Counter.most_common()` method. When there are ties, **`Counter.most_common()` returns the first tied element in the order that elements were first added to the Counter** (since Counter internally preserves insertion order in Python 3.7+). Therefore, the tiebreaker is **insertion order** — whichever label was encountered first when building the `votes` Counter wins the tie.\n\n**Key Insight:** Both implementations use insertion order as the tiebreaker, NOT alphabetical ordering. The votes Counter/dictionary is built by iterating through the\n…[truncated 165 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Agent",
+            "elapsed_ms": 46192
+          },
+          "id": "event-008839"
+        },
+        {
+          "source_line": 8840,
+          "timestamp": "2026-05-20T14:47:18.927720+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Check PW tiebreaking impact",
+              "subagent_type": "general-purpose",
+              "prompt": "I need to analyze the ProofWriter DeBERTa NLI experiment results for SC tiebreaking issues. \n\nThe experiment script is at:\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_r_deberta_proofwriter.py\n\nThe experiment results should be somewhere in:\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/\n\nLook for output files from this experiment — they may be JSON, CSV, or pickle files containing per-problem SC vote distributions and combo results. The experiment ID is exp-090-r-nli-proofwriter.\n\nI need to know:\n1. How many ProofWriter problems (out of 600) have exact SC ties (i.e., two or more answers tied for the most votes with K=12 traces)?\n2. For those tied problems, what answers are tied?\n3. If we resolve ties alphabetically instead of by insertion order, does SC accuracy change? And does the McNemar test (combo w=3 vs SC) p-value change?\n\nIf you can find the raw vote data, compute this directly. If not, read the script to understand where results are saved, and check those paths (including on any remote server referenced in the project config).\n\nReport:\n- Number of tie problems\n- SC accuracy with alphabetical tiebreaking\n- McNemar b,c counts for w=3 with alphabetical SC\n- New p-value\n\nIf the data isn't available locally, report what you found and what paths you checked."
+            }
+          },
+          "id": "event-008840"
+        },
+        {
+          "source_line": 8841,
+          "timestamp": "2026-05-20T14:47:23.960001+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_r_deberta_proofwriter.py"
+            }
+          },
+          "id": "event-008841"
+        },
+        {
+          "source_line": 8842,
+          "timestamp": "2026-05-20T14:47:23.960436+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Direction R: DeBERTa NLI Verifier for ProofWriter-D5 (600 questions)\n3\tReplicates FOLIO R experiment on ProofWriter to strengthen statistical evidence.\n4\tSC/SICA baselines from exp046_mistral_7b_pw600.\n5\t\"\"\"\n6\t\n7\timport argparse\n8\timport json\n9\timport os\n10\timport time\n11\tfrom collections import Counter\n12\tfrom scipy.stats import binomtest\n13\tfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\n14\timport torch\n15\t\n16\tPW_DATA_PATH = \"/root/symb_invariant_consensus/data/proofwriter_full.json\"\n17\tEXP046_PATH = \"/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/exp046_results.json\"\n18\tOUTPUT_DIR = \"/root/symb_invariant_consensus/results/direction_r_nli_pw600\"\n19\tMODEL_NAME = \"/root/models/deberta-large-mnli\"\n20\tCLASSES = [\"True\", \"False\", \"Unknown\"]\n21\t\n22\t\n23\tdef parse_problem(problem_text):\n24\t    marker = \"\\n\\nDetermine whether the following statement is true, false, or unknown:\\n\"\n25\t    if marker in problem_text:\n26\t        parts = problem_text.split(marker, 1)\n27\t        premises = parts[0].strip()\n28\t        conclusion = parts[1].strip()\n29\t    else:\n30\t        premises = problem_text\n31\t        conclusion = \"\"\n32\t    return premises, conclusion\n33\t\n34\t\n35\tdef main():\n36\t    parser = argparse.ArgumentParser()\n37\t    parser.add_argument(\"--n\", type=int, default=0, help=\"Limit to first N questions (0=all)\")\n38\t    args = parser.parse_args()\n39\t\n40\t    os.makedirs(OUTPUT_DIR, exist_ok=True)\n41\t\n42\t    with open(PW_DATA_PATH) as f:\n43\t        pw_data = json.load(f)\n44\t    with open(EXP046_PATH) as f:\n45\t        exp046 = json.load(f)\n46\t\n47\t    exp046_by_id = {r[\"problem_id\"]: r for r in exp046[\"results\"]}\n48\t\n49\t    gt = {q[\"id\"]: q[\"answer\"] for q in pw_data}\n50\t    if args.n > 0:\n51\t        pw_data = pw_data[:args.n]\n52\t        gt = {q[\"id\"]: q[\"answer\"] for q in pw_data}\n53\t\n54\t    total = len(gt)\n55\t    print(f\"Dataset: {total} questions\")\n56\t\n57\t    # SC and SICA answers from exp046\n58\t    sc_answe\n…[truncated 11796 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-008842"
+        },
+        {
+          "source_line": 8843,
+          "timestamp": "2026-05-20T14:47:23.960648+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*exp-090*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts"
+            }
+          },
+          "id": "event-008843"
+        },
+        {
+          "source_line": 8844,
+          "timestamp": "2026-05-20T14:47:23.960826+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
+              "old_string": "We report $w{=}3$ on ProofWriter as the primary finding; higher weights risk overfitting. This approach operates outside the same-model scope of SICA (\\S\\ref{sec:pipeline}).",
+              "new_string": "We report $w{=}3$ on ProofWriter as the primary finding; higher weights risk overfitting. A per-label caveat: DeBERTa over-predicts \\textsc{False} on ProofWriter (67.8\\% of predictions) and performs poorly on \\textsc{Unknown} (3.5\\% accuracy), mirroring the FOLIO pattern where NLI's ``neutral'' fails to capture logical unknowability. This approach operates outside the same-model scope of SICA (\\S\\ref{sec:pipeline})."
+            }
+          },
+          "id": "event-008844"
+        },
+        {
+          "source_line": 8845,
+          "timestamp": "2026-05-20T14:47:24.011279+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-008845"
+        },
+        {
+          "source_line": 8846,
+          "timestamp": "2026-05-20T14:47:24.212384+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*proofwriter*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts"
+            }
+          },
+          "id": "event-008846"
+        },
+        {
+          "source_line": 8847,
+          "timestamp": "2026-05-20T14:47:24.363450+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/prepare_proofwriter.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/report_proofwriter30_v2_progress.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/proofwriter30_v2/report/proofwriter30_v2_interim_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/proofwriter30_v2_interim_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/report/maxsat_diagnosis_proofwriter30_v2.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/maxsat_diagnosis_proofwriter30_v2.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/exp-022-oracle-proofwriter/data/exp022_oracle_proofwriter_summary.txt\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/data/proofwriter_30_meta.txt\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_r_deberta_proofwriter.py"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "elapsed_ms": 151
+          },
+          "id": "event-008847"
+        },
+        {
+          "source_line": 8848,
+          "timestamp": "2026-05-20T14:47:30.216387+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*direction_r_nli*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus"
+            }
+          },
+          "id": "event-008848"
+        },
+        {
+          "source_line": 8849,
+          "timestamp": "2026-05-20T14:47:30.668369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/direction_r_nli_verifier.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_r_nli_large/data/direction_r_nli_large_pointer.txt"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "elapsed_ms": 451
+          },
+          "id": "event-008849"
+        },
+        {
+          "source_line": 8850,
+          "timestamp": "2026-05-20T14:47:30.718973+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*exp046*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus"
+            }
+          },
+          "id": "event-008850"
+        },
+        {
+          "source_line": 8851,
+          "timestamp": "2026-05-20T14:47:31.120702+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/exp046_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/exp-046/report/exp046_analysis.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "elapsed_ms": 401
+          },
+          "id": "event-008851"
+        },
+        {
+          "source_line": 8852,
+          "timestamp": "2026-05-20T14:47:31.422234+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/results*.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts"
+            }
+          },
+          "id": "event-008852"
+        },
+        {
+          "source_line": 8853,
+          "timestamp": "2026-05-20T14:47:31.473064+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-008853"
+        },
+        {
+          "source_line": 8854,
+          "timestamp": "2026-05-20T14:47:34.484424+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_r_nli_large/data/direction_r_nli_large_pointer.txt"
+            }
+          },
+          "id": "event-008854"
+        },
+        {
+          "source_line": 8855,
+          "timestamp": "2026-05-20T14:47:34.936472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tResults saved on westd-25068: /root/symb_invariant_consensus/results/direction_r_nli_large/results.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-008855"
+        },
+        {
+          "source_line": 8856,
+          "timestamp": "2026-05-20T14:47:35.137588+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_r_nli_large"
+            }
+          },
+          "id": "event-008856"
+        },
+        {
+          "source_line": 8857,
+          "timestamp": "2026-05-20T14:47:35.188200+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-008857"
+        },
+        {
+          "source_line": 8858,
+          "timestamp": "2026-05-20T14:47:39.053128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:list_ssh_hosts,load_project_config,read_project_file",
+              "max_results": "3"
+            }
+          },
+          "id": "event-008858"
+        },
+        {
+          "source_line": 8859,
+          "timestamp": "2026-05-20T14:47:39.103741+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-008859"
+        },
+        {
+          "source_line": 8860,
+          "timestamp": "2026-05-20T14:47:41.769403+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:list_ssh_hosts",
+              "max_results": "3"
+            }
+          },
+          "id": "event-008860"
+        },
+        {
+          "source_line": 8861,
+          "timestamp": "2026-05-20T14:47:41.820570+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-008861"
+        },
+        {
+          "source_line": 8862,
+          "timestamp": "2026-05-20T14:47:44.480815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "ssh hosts list",
+              "max_results": "5"
+            }
+          },
+          "id": "event-008862"
+        },
+        {
+          "source_line": 8863,
+          "timestamp": "2026-05-20T14:47:44.531451+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-008863"
+        },
+        {
+          "source_line": 8864,
+          "timestamp": "2026-05-20T14:47:46.791072+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_ssh_hosts"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "mcp__agent-ml-research__list_ssh_hosts"
+          },
+          "id": "event-008864"
+        },
+        {
+          "source_line": 8865,
+          "timestamp": "2026-05-20T14:47:46.841742+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"hosts\\\": [{\\\"host_alias\\\": \\\"github.com\\\", \\\"hostname\\\": \\\"github.com\\\", \\\"user\\\": \\\"git\\\", \\\"identity_file\\\": \\\"~/.ssh/github_deploy\\\", \\\"registered\\\": false}, {\\\"host_alias\\\": \\\"autodl-rtx6000pro\\\", \\\"hostname\\\": \\\"connect.westd.seetacloud.com\\\", \\\"port\\\": \\\"32608\\\", \\\"user\\\": \\\"root\\\", \\\"identity_file\\\": \\\"~/.ssh/id_ed25519\\\", \\\"registered\\\": false}, {\\\"host_alias\\\": \\\"westd-25068\\\", \\\"hostname\\\": \\\"connect.westd.seetacloud.com\\\", \\\"port\\\": \\\"25068\\\", \\\"user\\\": \\\"root\\\", \\\"identity_file\\\": \\\"~/.ssh/id_ed25519\\\", \\\"registered\\\": true}, {\\\"host_alias\\\": \\\"westd-16639\\\", \\\"hostname\\\": \\\"connect.westd.seetacloud.com\\\", \\\"port\\\": \\\"16639\\\", \\\"user\\\": \\\"root\\\", \\\"identity_file\\\": \\\"~/.ssh/id_ed25519\\\", \\\"registered\\\": true}], \\\"ssh_config_path\\\": \\\"/home/ubuntu/.ssh/config\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "mcp__agent-ml-research__list_ssh_hosts",
+            "elapsed_ms": 50
+          },
+          "id": "event-008865"
+        },
+        {
+          "source_line": 8866,
+          "timestamp": "2026-05-20T14:47:51.813070+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh -o ConnectTimeout=10 -o StrictHostKeyChecking=no westd-25068 'ls -la /root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/ 2>/dev/null && echo \"---\" && ls -la /root/symb_invariant_consensus/results/direction_r_nli_pw600/ 2>/dev/null' 2>&1",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-008866"
+        },
+        {
+          "source_line": 8867,
+          "timestamp": "2026-05-20T14:47:52.917419+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 255\nWarning: Permanently added '[connect.westd.seetacloud.com]:25068' (ED25519) to the list of known hosts.\r\nssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory\r\nPermission denied, please try again.\r\nssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory\r\nPermission denied, please try again.\r\nssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory\r\nroot@connect.westd.seetacloud.com: Permission denied (publickey,password)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 1104
+          },
+          "id": "event-008867"
+        },
+        {
+          "source_line": 8868,
+          "timestamp": "2026-05-20T14:47:56.582983+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh -i ~/.ssh/id_ed25519 -o ConnectTimeout=10 -o StrictHostKeyChecking=no westd-25068 'echo OK' 2>&1",
+              "timeout": "20000"
+            }
+          },
+          "id": "event-008868"
+        },
+        {
+          "source_line": 8869,
+          "timestamp": "2026-05-20T14:47:57.888242+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 255\nWarning: Permanently added '[connect.westd.seetacloud.com]:25068' (ED25519) to the list of known hosts.\r\nssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory\r\nPermission denied, please try again.\r\nssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory\r\nPermission denied, please try again.\r\nssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory\r\nroot@connect.westd.seetacloud.com: Permission denied (publickey,password)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 1305
+          },
+          "id": "event-008869"
+        },
+        {
+          "source_line": 8870,
+          "timestamp": "2026-05-20T14:48:05.467369+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*exp046*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus"
+            }
+          },
+          "id": "event-008870"
+        },
+        {
+          "source_line": 8871,
+          "timestamp": "2026-05-20T14:48:05.518000+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/exp046_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/exp-046/report/exp046_analysis.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-008871"
+        },
+        {
+          "source_line": 8872,
+          "timestamp": "2026-05-20T14:48:05.819585+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*pw600*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus"
+            }
+          },
+          "id": "event-008872"
+        },
+        {
+          "source_line": 8873,
+          "timestamp": "2026-05-20T14:48:05.870240+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_eval_exp-032-pw600-westd16639_20260518T153636.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/chats/worker_eval_exp-032-pw600-westd16639_20260518T153636.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/chats/worker_eval_exp-032-pw600-westd16639_20260518T153636.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_eval_exp-032-pw600-westd16639_20260518T153636_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/checkpoints/exp-033-qwen3-pw600-nonthinking_QUEUED_20260518T160207.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/checkpoints/exp-033-qwen3-pw600-nonthinking_RUNNING_20260518T160212.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_eval_exp-033-qwen3-pw600-s2_20260518T155634.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/chats/worker_eval_exp-033-qwen3-pw600-s2_20260518T155634.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/chats/worker_eval_exp-033-qwen3-pw600-s2_20260518T155634.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_eval_exp-033-qwen3-pw600-s2_20260518T155634_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/checkpoints/exp-033-qwen3-pw600-nonthinking_RUNNING_20260518T173736.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/checkpoints/exp-033-qwen3-pw600-nonthinking_DONE_20260518T180009.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/checkpoints/exp-039-14b-pw600-16639_PREPARING_20260518T180131.json\n/home/ubuntu/\n…[truncated 8647 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-008873"
+        },
+        {
+          "source_line": 8874,
+          "timestamp": "2026-05-20T14:48:06.523012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*exp-046*/**",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus"
+            }
+          },
+          "id": "event-008874"
+        },
+        {
+          "source_line": 8875,
+          "timestamp": "2026-05-20T14:48:06.724443+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/exp-046/report/exp046_analysis.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "elapsed_ms": 201
+          },
+          "id": "event-008875"
+        },
+        {
+          "source_line": 8876,
+          "timestamp": "2026-05-20T14:48:11.393312+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/exp046_analysis.md"
+            }
+          },
+          "id": "event-008876"
+        },
+        {
+          "source_line": 8877,
+          "timestamp": "2026-05-20T14:48:11.845434+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# exp-046: Mistral-7B-Instruct-v0.3 on ProofWriter-600 (SICA vs SC)\n2\t\n3\t## Experiment Config\n4\t\n5\t| Parameter | Value |\n6\t|-----------|-------|\n7\t| Model | Mistral-7B-Instruct-v0.3 |\n8\t| Dataset | ProofWriter-600 (OWA-D5) |\n9\t| K (samples) | 12 |\n10\t| Temperature | 0.7 |\n11\t| Seed | 42 |\n12\t| Inference | vLLM |\n13\t| Wall time | 291.9 min (17511.2s) |\n14\t\n15\t## Main Results\n16\t\n17\t| Metric | Value |\n18\t|--------|-------|\n19\t| **SC accuracy** | **39.33%** (236/600) |\n20\t| **SICA accuracy** | **36.50%** (219/600) |\n21\t| **delta (SICA - SC)** | **-2.83pp** |\n22\t| McNemar chi2 | 6.7209 |\n23\t| McNemar p-value | 0.0095 |\n24\t| Extraction rate | 91.49% |\n25\t| Contradiction rate | 5.35% |\n26\t| Problems with contradictions | 482/600 (80.33%) |\n27\t| Total constraints extracted | 53,972 |\n28\t| Unique constraints | 27,335 |\n29\t\n30\t## McNemar Contingency Table\n31\t\n32\t|  | SC correct | SC wrong |\n33\t|--|-----------|----------|\n34\t| **SICA correct** | 206 | 13 |\n35\t| **SICA wrong** | 30 | 351 |\n36\t\n37\tDiscordant pairs: b=13, c=30. SC wins on 30 problems where SICA fails; SICA wins on only 13 where SC fails. The difference is statistically significant (p=0.0095).\n38\t\n39\t## Per-Level Breakdown\n40\t\n41\t| Level | SICA (%) | SC (%) | n |\n42\t|-------|----------|--------|---|\n43\t| OWA-D5 | 36.50 | 39.33 | 600 |\n44\t\n45\tNote: All 600 problems are D5 (depth-5). No D0-D4 depth stratification available in this dataset split.\n46\t\n47\t## Comparison with exp-033 (Mistral-7B on FOLIO-204)\n48\t\n49\t| | exp-033 (FOLIO-204) | exp-046 (PW-600) | Difference |\n50\t|--|---------------------|-------------------|------------|\n51\t| SC accuracy | 54.41% | 39.33% | -15.08pp |\n52\t| SICA accuracy | 59.31% | 36.50% | -22.81pp |\n53\t| delta (SICA-SC) | **+4.90pp** | **-2.83pp** | direction flipped |\n54\t| McNemar p | (not recorded) | 0.0095 | |\n55\t| Contradiction rate | (not recorded) | 5.35% | |\n56\t\n57\t## Key Observations\n58\t\n59\t1. **SICA hurts on ProofWriter-D5.** Unlike FOLIO where SICA improved over SC by +4.90pp,\n…[truncated 1224 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-008877"
+        },
+        {
+          "source_line": 8878,
+          "timestamp": "2026-05-20T14:48:12.397974+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/checkpoints/exp-046-mistral-pw600_DONE_20260519T011551.json"
+            }
+          },
+          "id": "event-008878"
+        },
+        {
+          "source_line": 8879,
+          "timestamp": "2026-05-20T14:48:12.448750+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"exp_id\": \"exp-046-mistral-pw600\",\n3\t  \"project\": \"symb_invariant_consensus\",\n4\t  \"state\": \"DONE\",\n5\t  \"previous_state\": \"ANALYZING\",\n6\t  \"experiment_data\": {\n7\t    \"status\": \"DONE\",\n8\t    \"retry_count\": 0,\n9\t    \"created_at\": \"2026-05-18T20:16:46.346Z\",\n10\t    \"updated_at\": \"2026-05-19T01:15:51.422Z\",\n11\t    \"hypothesis\": \"Mistral-7B-Instruct-v0.3 在 ProofWriter-600 上 SICA vs SC：验证 regime boundary 跨域泛化。exp-033 (Mistral FOLIO-204) 显示 +4.90pp (p=0.013)，如果 PW-600 也显示正向 delta，则 regime-dependent capability trap 不是 FOLIO-specific artifact。\",\n12\t    \"server\": \"westd-25068\",\n13\t    \"gpu\": \"cuda:2\",\n14\t    \"reproduce\": {\n15\t      \"server\": \"westd-25068\",\n16\t      \"gpu\": \"cuda:2\",\n17\t      \"started_at\": \"2026-05-18T20:17:41.279Z\",\n18\t      \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && mkdir -p results/exp046_mistral_7b_pw600 && CUDA_VISIBLE_DEVICES=2 VLLM_USE_FLASHINFER_SAMPLER=0 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --max-model-len 8192 --gpu-memory-utilization 0.90 --port 8002 --dtype auto --trust-remote-code --enforce-eager > /tmp/vllm_exp046.log 2>&1 & sleep 120 && python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --api-base http://localhost:8002/v1 --model auto --seed 42 --math-data data/empty.json --pw-data data/proofwriter_full.json --folio-data data/empty.json --output results/exp046_mistral_7b_pw600/exp046_results.json --save-intermediates 2>&1 | tee results/exp046_mistral_7b_pw600/exp046.log\\\"\",\n19\t      \"finished_at\": \"2026-05-19T01:11:58.516Z\",\n20\t      \"training_hours\": 4.9\n21\t    },\n22\t    \"spec\": {\n23\t      \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && mkdir -p results/exp046_mistral_7b_pw600 && CUDA_VISIBLE_DEVICES=2 VLLM_USE_FLASHINFER_SAMPLER=0 python -m vllm.entrypoints.openai.api_server\n…[truncated 1961 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-008879"
+        },
+        {
+          "source_line": 8880,
+          "timestamp": "2026-05-20T14:48:18.924659+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*exp-090*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus"
+            }
+          },
+          "id": "event-008880"
+        },
+        {
+          "source_line": 8881,
+          "timestamp": "2026-05-20T14:48:18.975363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/checkpoints/exp-090-r-nli-proofwriter_PREPARING_20260520T135131.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/checkpoints/exp-090-r-nli-proofwriter_QUEUED_20260520T140909.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/checkpoints/exp-090-r-nli-proofwriter_RUNNING_20260520T140924.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/checkpoints/exp-090-r-nli-proofwriter_RUNNING_20260520T140929.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/checkpoints/exp-090-r-nli-proofwriter_DONE_20260520T140942.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-008881"
+        },
+        {
+          "source_line": 8882,
+          "timestamp": "2026-05-20T14:48:19.226642+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*direction_r*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus"
+            }
+          },
+          "id": "event-008882"
+        },
+        {
+          "source_line": 8883,
+          "timestamp": "2026-05-20T14:48:19.277297+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/direction_r_nli_verifier.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_r_nli_large/data/direction_r_nli_large_pointer.txt\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/direction_rg_combo.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_r_deberta_proofwriter.py"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-008883"
+        },
+        {
+          "source_line": 8884,
+          "timestamp": "2026-05-20T14:48:21.808800+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/checkpoints/exp-090-r-nli-proofwriter_DONE_20260520T140942.json"
+            }
+          },
+          "id": "event-008884"
+        },
+        {
+          "source_line": 8885,
+          "timestamp": "2026-05-20T14:48:21.859566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"exp_id\": \"exp-090-r-nli-proofwriter\",\n3\t  \"project\": \"symb_invariant_consensus\",\n4\t  \"state\": \"DONE\",\n5\t  \"previous_state\": \"RUNNING\",\n6\t  \"experiment_data\": {\n7\t    \"status\": \"DONE\",\n8\t    \"retry_count\": 0,\n9\t    \"created_at\": \"2026-05-20T13:51:31.310Z\",\n10\t    \"updated_at\": \"2026-05-20T14:09:41.762Z\",\n11\t    \"hypothesis\": \"Cross-architecture NLI verification (DeBERTa-large-MNLI) 在 ProofWriter-D5 上也能提升 SC accuracy，验证 FOLIO 上 R 方法的跨数据集泛化能力。来源: R5-N4 审稿修复 + Claim 1 (cross-architecture escape generalization)。\",\n12\t    \"parent\": \"exp-wave3-dir-r-nli-verifier\",\n13\t    \"spec\": {\n14\t      \"command\": \"python3 direction_r_deberta_proofwriter.py\",\n15\t      \"server\": \"westd-25068\",\n16\t      \"data_path\": \"data/proofwriter_full.json\",\n17\t      \"data_count\": 600,\n18\t      \"model_name\": \"microsoft/deberta-large-mnli\",\n19\t      \"seed\": 42,\n20\t      \"checkpoint_path\": \"results/direction_r_nli_pw600/\",\n21\t      \"log_path\": \"/tmp/sf2_proofwriter_nli.log\",\n22\t      \"checkpoint_source\": \"exp046_mistral_7b_pw600\",\n23\t      \"eval_data\": \"data/proofwriter_full.json (ProofWriter-D5 OWA, n=600)\"\n24\t    },\n25\t    \"conclusion\": \"success\",\n26\t    \"metrics\": {\n27\t      \"n\": 600,\n28\t      \"sc_accuracy\": 0.3933,\n29\t      \"sica_accuracy\": 0.365,\n30\t      \"nli_standalone\": 0.55,\n31\t      \"combo_w1\": 0.4017,\n32\t      \"combo_w3\": 0.4283,\n33\t      \"combo_w5\": 0.5,\n34\t      \"delta_w1_pp\": 0.83,\n35\t      \"delta_w3_pp\": 3.5,\n36\t      \"delta_w5_pp\": 10.67,\n37\t      \"mcnemar_w1_p\": 0.2668,\n38\t      \"mcnemar_w1_b\": 4,\n39\t      \"mcnemar_w1_c\": 9,\n40\t      \"mcnemar_w3_p\": 0.0125,\n41\t      \"mcnemar_w3_b\": 22,\n42\t      \"mcnemar_w3_c\": 43,\n43\t      \"mcnemar_w5_p\": 0.0001,\n44\t      \"mcnemar_w5_b\": 35,\n45\t      \"mcnemar_w5_c\": 99,\n46\t      \"nli_true_acc\": 0.64,\n47\t      \"nli_false_acc\": 0.975,\n48\t      \"nli_unknown_acc\": 0.035,\n49\t      \"nli_correct_sc_wrong\": 274,\n50\t      \"sc_correct_nli_wrong\": 180,\n51\t      \"agreement_acc\": 0.808\n52\t    },\n53\t    \"completed_at\": \"2026-05-20T14:09:41.762Z\"\n54\t  },\n55\t \n…[truncated 88 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-008885"
+        },
+        {
+          "source_line": 8886,
+          "timestamp": "2026-05-20T14:48:27.530661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh -i ~/.ssh/id_ed25519 -o ConnectTimeout=10 -o StrictHostKeyChecking=no westd-16639 'echo OK' 2>&1",
+              "timeout": "20000"
+            }
+          },
+          "id": "event-008886"
+        },
+        {
+          "source_line": 8887,
+          "timestamp": "2026-05-20T14:48:28.033002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*exp-090*result*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs"
+            }
+          },
+          "id": "event-008887"
+        },
+        {
+          "source_line": 8888,
+          "timestamp": "2026-05-20T14:48:28.585383+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.westd.seetacloud.com]:16639' (ED25519) to the list of known hosts.\r\nOK"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 1054
+          },
+          "id": "event-008888"
+        },
+        {
+          "source_line": 8889,
+          "timestamp": "2026-05-20T14:48:28.585818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "elapsed_ms": 552
+          },
+          "id": "event-008889"
+        },
+        {
+          "source_line": 8890,
+          "timestamp": "2026-05-20T14:48:32.676330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*exp-090*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs"
+            }
+          },
+          "id": "event-008890"
+        },
+        {
+          "source_line": 8891,
+          "timestamp": "2026-05-20T14:48:33.881214+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "elapsed_ms": 1204
+          },
+          "id": "event-008891"
+        },
+        {
+          "source_line": 8892,
+          "timestamp": "2026-05-20T14:48:33.881643+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh -i ~/.ssh/id_ed25519 -o ConnectTimeout=10 westd-16639 'ls /root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/ 2>/dev/null; echo \"---\"; ls /root/symb_invariant_consensus/results/direction_r_nli_pw600/ 2>/dev/null' 2>&1",
+              "timeout": "20000"
+            }
+          },
+          "id": "event-008892"
+        },
+        {
+          "source_line": 8893,
+          "timestamp": "2026-05-20T14:48:35.337588+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 2\nWarning: Permanently added '[connect.westd.seetacloud.com]:16639' (ED25519) to the list of known hosts.\r\n---"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 1455
+          },
+          "id": "event-008893"
+        },
+        {
+          "source_line": 8894,
+          "timestamp": "2026-05-20T14:48:39.654309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/cron_hook_exp-090*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs"
+            }
+          },
+          "id": "event-008894"
+        },
+        {
+          "source_line": 8895,
+          "timestamp": "2026-05-20T14:48:39.855518+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "elapsed_ms": 201
+          },
+          "id": "event-008895"
+        },
+        {
+          "source_line": 8896,
+          "timestamp": "2026-05-20T14:48:39.855838+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*090*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs"
+            }
+          },
+          "id": "event-008896"
+        },
+        {
+          "source_line": 8897,
+          "timestamp": "2026-05-20T14:48:39.906396+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/chats/archive/cron_hook_exp-017-strategyqa-v2_20260517T080902_168518.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_diagnose_exp-026-folio204-trace-regen_20260518T120909.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_diagnose_exp-026-folio204-trace-regen_20260518T120909_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_code_exp5-backward-verification_20260518T180900.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_code_exp5-backward-verification_20260518T180900_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_analysis_condorcet-independence_20260519T010903.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_analysis_condorcet-independence_20260519T010903_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_gpu_exp-067-mistral-folio-seed789_20260519T090941.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/chats/worker_gpu_exp-067-mistral-folio-seed789_20260519T090941.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/chats/worker_gpu_exp-067-mistral-folio-seed789_20260519T090941.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_gpu_exp-067-mistral-folio-seed789_20260519T090941_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_analysis_wave3-dir-i-z3-filter_20260520T090105.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/chats/w\n…[truncated 1464 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-008897"
+        },
+        {
+          "source_line": 8898,
+          "timestamp": "2026-05-20T14:48:43.570411+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/worker*nli*proofwriter*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs"
+            }
+          },
+          "id": "event-008898"
+        },
+        {
+          "source_line": 8899,
+          "timestamp": "2026-05-20T14:48:44.124081+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "elapsed_ms": 553
+          },
+          "id": "event-008899"
+        },
+        {
+          "source_line": 8900,
+          "timestamp": "2026-05-20T14:48:44.124534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/worker*proofwriter*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs"
+            }
+          },
+          "id": "event-008900"
+        },
+        {
+          "source_line": 8901,
+          "timestamp": "2026-05-20T14:48:44.225252+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_code_proofwriter-prompt_20260515T110657.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_code_proofwriter-prompt_20260515T110657_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_code_prep-proofwriter_20260515T130529.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_code_prep-proofwriter_20260515T130529_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_code_proofwriter-prep_20260515T183539.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_code_proofwriter-prep_20260515T183539_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_code_proofwriter-prompt-adapt_20260515T184126.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/chats/worker_code_proofwriter-prompt-adapt_20260515T184126.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/chats/worker_code_proofwriter-prompt-adapt_20260515T184126.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_code_proofwriter-prompt-adapt_20260515T184126_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_analysis_sica_proofwriter30_20260515T221704.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/chats/worker_analysis_sica_proofwriter30_20260515T221704.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/chats/worker_analysis_sica_proofwriter30_20260515T221704.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_051\n…[truncated 3612 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "elapsed_ms": 100
+          },
+          "id": "event-008901"
+        },
+        {
+          "source_line": 8902,
+          "timestamp": "2026-05-20T14:48:47.939525+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_experiment_sf2-proofwriter-nli-run_20260520T135632_result.json"
+            }
+          },
+          "id": "event-008902"
+        },
+        {
+          "source_line": 8903,
+          "timestamp": "2026-05-20T14:48:47.990127+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"全部结果如下：\\n\\n---\\n\\n## SF-2 DeBERTa NLI on ProofWriter-D5 (600Q) — 完整结果\\n\\n### DeBERTa Standalone (NLI-only)\\n- **Accuracy: 55.00%** (330/600)\\n- Inference time: 597.3s\\n\\n### Baselines\\n| Method | Accuracy |\\n|--------|----------|\\n| SC (Mistral-7B) | 39.33% (236/600) |\\n| SICA | 36.50% (219/600) |\\n\\n### NLI Per-Label Accuracy\\n| Label | N | Correct | Accuracy | Precision | Recall | F1 |\\n|-------|---|---------|----------|-----------|--------|-----|\\n| True | 200 | 128 | 64.0% | 0.696 | 0.640 | 0.667 |\\n| False | 200 | 195 | **97.5%** | 0.479 | 0.975 | 0.643 |\\n| Unknown | 200 | 7 | **3.5%** | 0.778 | 0.035 | 0.067 |\\n\\nDeBERTa 预测分布严重偏向 False（407/600），几乎不预测 Unknown（仅 9/600）。\\n\\n### Complementarity (NLI vs SC)\\n| | Count |\\n|--|-------|\\n| NLI correct & SC wrong | **274** |\\n| SC correct & NLI wrong | 180 |\\n| Both correct | 56 |\\n| Both wrong | 90 |\\n\\n### Combo (DeBERTa + SC votes) vs SC Baseline\\n| Weight | Accuracy | Δ vs SC | McNemar b | McNemar c | p-value | Sig |\\n|--------|----------|---------|-----------|-----------|---------|-----|\\n| w=1 | 40.17% | +0.83pp | 4 | 9 | 0.2668 | |\\n| w=3 | 42.83% | +3.50pp | 22 | 43 | 0.0125 | * |\\n| w=5 | 50.00% | **+10.67pp** | 35 | 99 | <0.0001 | *** |\\n\\n### Combo vs SICA Baseline\\n| Weight | Accuracy | Δ vs SICA | McNemar p |\\n|--------|----------|-----------|-----------|\\n| w=1 | 40.17% | +3.67pp | 0.0021 ** |\\n| w=3 | 42.83% | +6.33pp | 0.000051 *** |\\n\\n### DeBERTa vs SICA Agreement\\n- Agreement: 8.7% (52/600) — 当两者一致时 accuracy 80.8%\\n- Disagree: DeBERTa correct=288, SICA correct=177\\n\\n---\\n\\n**关键发现**: DeBERTa NLI 单独 (55%) 大幅超过 SC baseline (39.3%)。Combo w=5 显著提升 +10.67pp（p<0.0001）。互补性强：NLI 独对 274 例 vs SC 独对 180 例。但 DeBERTa 对 Unknown 类别几乎完全失效（3.5%），False 预测偏重。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-008903"
+        },
+        {
+          "source_line": 8904,
+          "timestamp": "2026-05-20T14:48:53.663775+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh -i ~/.ssh/id_ed25519 -o ConnectTimeout=10 westd-16639 'ls /root/symb_invariant_consensus/results/ 2>/dev/null' 2>&1",
+              "timeout": "20000"
+            }
+          },
+          "id": "event-008904"
+        },
+        {
+          "source_line": 8905,
+          "timestamp": "2026-05-20T14:48:54.668000+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.westd.seetacloud.com]:16639' (ED25519) to the list of known hosts.\r\nadaptive_sica_validation_16639.json\ncross_dataset\ndirection_d_cegis\ndirection_g_decoupling\ndirection_h_adversarial\ndirection_j_bootstrap\ndirection_j_dryrun\ndirection_j_dryrun20\ndirection_k_minority_report\ndirection_q_premise_mutation\nexp-063-llama8b-folio204-16639\nexp028b_dryrun\nexp028b_qwen3_thinking_folio204\nexp032_qwen25_14b_pw600\nexp033_mistral_7b_folio204\nexp033_qwen3_14b_pw600_nonthinking\nexp036_qwen25_14b_folio204\nexp037_mistral7b_folio204\nexp038_qwen25_14b_logiqa200\nexp048_llama8b_pw600\nexp049b_mistral_logiqa200\nexp050_FAILED_overflow\nexp050b_mistral_icl_oracle\nexp052_mistral_folio204_seed123\nexp053_mistral_folio204_seed456\nexp055_multitemp_mistral_folio\nexp064_deepseek_r1_qwen3_8b_folio204\nexp064_dryrun\nexp068_qwen3_logiqa200\nexp069_llama8b_logiqa200\nexp072_llama8b_logiqa200\nexp072b_llama8b_logiqa200\nexp077_kappa_generalization\nexp078_debate_mistral_logiqa200\nexp079_icg_mistral_logiqa200\nexp081_debate_mistral_folio_seed123\nexp082_contrastive_mistral_folio_seed123\nfleiss_kappa_batch2.json\nfleiss_kappa_unified_16639.json\nmcnemar_recomputed_16639.json\noracle_folio_mistral7b\nprocess_kappa_summary_16639.json\nsc_tiebreak_revalidation_16639.json\nseed_replication_analysis.json\nseed_replication_summary.json\nwild2_ascii_perturbation\nwild6_kappa_aware_sc"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 1004
+          },
+          "id": "event-008905"
+        },
+        {
+          "source_line": 8906,
+          "timestamp": "2026-05-20T14:48:59.335652+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh -i ~/.ssh/id_ed25519 -o ConnectTimeout=10 westd-16639 'cat /root/symb_invariant_consensus/results/sc_tiebreak_revalidation_16639.json 2>/dev/null | python3 -c \"import sys,json; d=json.load(sys.stdin); print(json.dumps({k:v for k,v in d.items() if k != \\\"per_question\\\"}, indent=2)[:3000))\"' 2>&1",
+              "timeout": "20000"
+            }
+          },
+          "id": "event-008906"
+        },
+        {
+          "source_line": 8907,
+          "timestamp": "2026-05-20T14:49:00.641022+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nWarning: Permanently added '[connect.westd.seetacloud.com]:16639' (ED25519) to the list of known hosts.\r\n  File \"<string>\", line 1\n    import sys,json; d=json.load(sys.stdin); print(json.dumps({k:v for k,v in d.items() if k != \"per_question\"}, indent=2)[:3000))\n                                                                                                                                ^\nSyntaxError: closing parenthesis ')' does not match opening parenthesis '['"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 1305
+          },
+          "id": "event-008907"
+        },
+        {
+          "source_line": 8908,
+          "timestamp": "2026-05-20T14:49:04.809103+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh -i ~/.ssh/id_ed25519 -o ConnectTimeout=10 westd-16639 'python3 -c \"\nimport json\nd = json.load(open(\\\"/root/symb_invariant_consensus/results/sc_tiebreak_revalidation_16639.json\\\"))\nkeys = list(d.keys())\nprint(\\\"Keys:\\\", keys[:20])\nfor k in keys[:10]:\n    v = d[k]\n    if isinstance(v, dict):\n        print(f\\\"{k}: dict with keys {list(v.keys())[:10]}\\\")\n    elif isinstance(v, list):\n        print(f\\\"{k}: list of len {len(v)}\\\")\n    else:\n        print(f\\\"{k}: {v}\\\")\n\"' 2>&1",
+              "timeout": "20000"
+            }
+          },
+          "id": "event-008908"
+        },
+        {
+          "source_line": 8909,
+          "timestamp": "2026-05-20T14:49:05.913795+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.westd.seetacloud.com]:16639' (ED25519) to the list of known hosts.\r\nKeys: ['summary', 'details']\nsummary: list of len 3\ndetails: dict with keys ['exp-052', 'exp-053', 'exp-039']"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 1104
+          },
+          "id": "event-008909"
+        },
+        {
+          "source_line": 8910,
+          "timestamp": "2026-05-20T14:49:09.176188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh -i ~/.ssh/id_ed25519 -o ConnectTimeout=10 westd-16639 'python3 -c \"\nimport json\nd = json.load(open(\\\"/root/symb_invariant_consensus/results/sc_tiebreak_revalidation_16639.json\\\"))\nprint(json.dumps(d[\\\"summary\\\"], indent=2))\n\"' 2>&1",
+              "timeout": "20000"
+            }
+          },
+          "id": "event-008910"
+        },
+        {
+          "source_line": 8911,
+          "timestamp": "2026-05-20T14:49:10.238185+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.westd.seetacloud.com]:16639' (ED25519) to the list of known hosts.\r\n[\n  {\n    \"exp_id\": \"exp-052\",\n    \"label\": \"Mistral-7B FOLIO-204 seed=123\",\n    \"model\": \"Mistral-7B\",\n    \"dataset\": \"FOLIO-204\",\n    \"n\": 204,\n    \"registry_sc\": 56.37,\n    \"old_sc_pct\": 53.92,\n    \"new_sc_pct\": 54.41,\n    \"change\": 0.49,\n    \"sica_pct\": 57.35,\n    \"old_delta_pp\": 3.43,\n    \"new_delta_pp\": 2.94,\n    \"n_affected\": 2\n  },\n  {\n    \"exp_id\": \"exp-053\",\n    \"label\": \"Mistral-7B FOLIO-204 seed=456\",\n    \"model\": \"Mistral-7B\",\n    \"dataset\": \"FOLIO-204\",\n    \"n\": 204,\n    \"registry_sc\": 56.37,\n    \"old_sc_pct\": 56.37,\n    \"new_sc_pct\": 55.88,\n    \"change\": -0.49,\n    \"sica_pct\": 55.88,\n    \"old_delta_pp\": -0.49,\n    \"new_delta_pp\": 0.0,\n    \"n_affected\": 1\n  },\n  {\n    \"exp_id\": \"exp-039\",\n    \"label\": \"Qwen2.5-14B PW-600 (16639)\",\n    \"model\": \"Qwen2.5-14B\",\n    \"dataset\": \"PW-600\",\n    \"n\": 600,\n    \"registry_sc\": 73.5,\n    \"old_sc_pct\": 73.5,\n    \"new_sc_pct\": 74.0,\n    \"change\": 0.5,\n    \"sica_pct\": 71.5,\n    \"old_delta_pp\": -2.0,\n    \"new_delta_pp\": -2.5,\n    \"n_affected\": 12\n  }\n]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 1061
+          },
+          "id": "event-008911"
+        },
+        {
+          "source_line": 8912,
+          "timestamp": "2026-05-20T14:49:15.358628+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh -i ~/.ssh/id_ed25519 -o ConnectTimeout=10 westd-16639 'ls /root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/ 2>/dev/null && echo \"FOUND\" || echo \"NOT_FOUND\"; ls /root/symb_invariant_consensus/results/direction_r_nli_pw600/ 2>/dev/null && echo \"FOUND_R\" || echo \"NOT_FOUND_R\"' 2>&1",
+              "timeout": "20000"
+            }
+          },
+          "id": "event-008912"
+        },
+        {
+          "source_line": 8913,
+          "timestamp": "2026-05-20T14:49:16.412949+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.westd.seetacloud.com]:16639' (ED25519) to the list of known hosts.\r\nNOT_FOUND\nNOT_FOUND_R"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 1054
+          },
+          "id": "event-008913"
+        },
+        {
+          "source_line": 8914,
+          "timestamp": "2026-05-20T14:49:20.481525+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh -i ~/.ssh/id_ed25519 -o ConnectTimeout=5 -o BatchMode=yes westd-25068 'echo OK' 2>&1",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-008914"
+        },
+        {
+          "source_line": 8915,
+          "timestamp": "2026-05-20T14:49:20.833141+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*exp046_results*",
+              "path": "/home/ubuntu"
+            }
+          },
+          "id": "event-008915"
+        },
+        {
+          "source_line": 8916,
+          "timestamp": "2026-05-20T14:49:21.354033+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 255\nWarning: Permanently added '[connect.westd.seetacloud.com]:25068' (ED25519) to the list of known hosts.\r\nroot@connect.westd.seetacloud.com: Permission denied (publickey,password)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 872
+          },
+          "id": "event-008916"
+        },
+        {
+          "source_line": 8917,
+          "timestamp": "2026-05-20T14:49:21.354530+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(ssh -i ~/.ssh/id_ed25519 -o ConnectTimeo…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Glob",
+            "elapsed_ms": 521
+          },
+          "id": "event-008917"
+        },
+        {
+          "source_line": 8918,
+          "timestamp": "2026-05-20T14:49:27.025570+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls ~/.ssh/ 2>&1",
+              "timeout": "5000"
+            }
+          },
+          "id": "event-008918"
+        },
+        {
+          "source_line": 8919,
+          "timestamp": "2026-05-20T14:49:27.076253+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "agent\nauthorized_keys\nconfig\ngithub_deploy\nid_ed25519\nid_ed25519.pub\nknown_hosts\nknown_hosts.old"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-008919"
+        },
+        {
+          "source_line": 8920,
+          "timestamp": "2026-05-20T14:49:29.643134+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A5 \"westd-25068\" ~/.ssh/config 2>&1",
+              "timeout": "5000"
+            }
+          },
+          "id": "event-008920"
+        },
+        {
+          "source_line": 8921,
+          "timestamp": "2026-05-20T14:49:29.705032+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Host westd-25068\n    HostName connect.westd.seetacloud.com\n    Port 25068\n    User root\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 61
+          },
+          "id": "event-008921"
+        },
+        {
+          "source_line": 8922,
+          "timestamp": "2026-05-20T14:49:37.772226+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh -i ~/.ssh/id_ed25519 -o ConnectTimeout=10 westd-16639 'python3 -c \"\nimport json\nd = json.load(open(\\\"/root/symb_invariant_consensus/results/sc_tiebreak_revalidation_16639.json\\\"))\ndet = d[\\\"details\\\"]\n# Check exp-039 which is PW-600\nexp039 = det.get(\\\"exp-039\\\", {})\nprint(\\\"exp-039 keys:\\\", list(exp039.keys())[:20])\nif \\\"tied_problems\\\" in exp039:\n    print(\\\"tied_problems:\\\", len(exp039[\\\"tied_problems\\\"]))\n    for tp in exp039[\\\"tied_problems\\\"][:3]:\n        print(tp)\nelif \\\"affected\\\" in exp039:\n    print(\\\"affected:\\\", len(exp039[\\\"affected\\\"]))\n    for a in exp039[\\\"affected\\\"][:3]:\n        print(a)\n\"' 2>&1",
+              "timeout": "20000"
+            }
+          },
+          "id": "event-008922"
+        },
+        {
+          "source_line": 8923,
+          "timestamp": "2026-05-20T14:49:38.876625+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nWarning: Permanently added '[connect.westd.seetacloud.com]:16639' (ED25519) to the list of known hosts.\r\nTraceback (most recent call last):\n  File \"<string>\", line 7, in <module>\nAttributeError: 'list' object has no attribute 'keys'"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 1104
+          },
+          "id": "event-008923"
+        },
+        {
+          "source_line": 8924,
+          "timestamp": "2026-05-20T14:49:47.616990+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh -i ~/.ssh/id_ed25519 -o ConnectTimeout=10 westd-16639 'python3 -c \"\nimport json\nd = json.load(open(\\\"/root/symb_invariant_consensus/results/sc_tiebreak_revalidation_16639.json\\\"))\ndet = d[\\\"details\\\"]\nfor k in det:\n    v = det[k]\n    print(f\\\"{k}: type={type(v).__name__}, len={len(v) if hasattr(v, \\\"__len__\\\") else \\\"N/A\\\"}\\\")\n    if isinstance(v, list) and len(v) > 0:\n        print(f\\\"  first item keys: {list(v[0].keys()) if isinstance(v[0], dict) else type(v[0]).__name__}\\\")\n\"' 2>&1",
+              "timeout": "20000"
+            }
+          },
+          "id": "event-008924"
+        },
+        {
+          "source_line": 8925,
+          "timestamp": "2026-05-20T14:49:48.721443+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.westd.seetacloud.com]:16639' (ED25519) to the list of known hosts.\r\nexp-052: type=list, len=2\n  first item keys: ['problem_id', 'old_sc', 'new_sc', 'gt', 'vote_dist', 'old_correct', 'new_correct']\nexp-053: type=list, len=1\n  first item keys: ['problem_id', 'old_sc', 'new_sc', 'gt', 'vote_dist', 'old_correct', 'new_correct']\nexp-039: type=list, len=12\n  first item keys: ['problem_id', 'old_sc', 'new_sc', 'gt', 'vote_dist', 'old_correct', 'new_correct']"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 1104
+          },
+          "id": "event-008925"
+        },
+        {
+          "source_line": 8926,
+          "timestamp": "2026-05-20T14:49:53.059076+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh -i ~/.ssh/id_ed25519 -o ConnectTimeout=10 westd-16639 'python3 -c \"\nimport json\nd = json.load(open(\\\"/root/symb_invariant_consensus/results/sc_tiebreak_revalidation_16639.json\\\"))\n# Show all tied problems from exp-039 (Qwen2.5-14B PW-600)\nfor item in d[\\\"details\\\"][\\\"exp-039\\\"]:\n    print(json.dumps(item))\n\"' 2>&1",
+              "timeout": "20000"
+            }
+          },
+          "id": "event-008926"
+        },
+        {
+          "source_line": 8927,
+          "timestamp": "2026-05-20T14:49:54.113365+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.westd.seetacloud.com]:16639' (ED25519) to the list of known hosts.\r\n{\"problem_id\": \"ProofWriter_AttNoneg-OWA-D5-650_Q11\", \"old_sc\": \"Unknown\", \"new_sc\": \"True\", \"gt\": \"True\", \"vote_dist\": {\"Unknown\": 6, \"True\": 6}, \"old_correct\": false, \"new_correct\": true}\n{\"problem_id\": \"ProofWriter_RelNeg-OWA-D5-922_Q7\", \"old_sc\": \"Unknown\", \"new_sc\": \"False\", \"gt\": \"True\", \"vote_dist\": {\"Unknown\": 6, \"False\": 6}, \"old_correct\": false, \"new_correct\": false}\n{\"problem_id\": \"ProofWriter_RelNoneg-OWA-D5-151_Q4\", \"old_sc\": \"Unknown\", \"new_sc\": \"False\", \"gt\": \"False\", \"vote_dist\": {\"Unknown\": 6, \"False\": 6}, \"old_correct\": false, \"new_correct\": true}\n{\"problem_id\": \"ProofWriter_RelNeg-OWA-D5-604_Q14\", \"old_sc\": \"Unknown\", \"new_sc\": \"False\", \"gt\": \"Unknown\", \"vote_dist\": {\"Unknown\": 6, \"False\": 6}, \"old_correct\": true, \"new_correct\": false}\n{\"problem_id\": \"ProofWriter_RelNeg-OWA-D5-587_Q8\", \"old_sc\": \"True\", \"new_sc\": \"False\", \"gt\": \"False\", \"vote_dist\": {\"True\": 6, \"False\": 6}, \"old_correct\": false, \"new_correct\": true}\n{\"problem_id\": \"ProofWriter_AttNeg-OWA-D5-1233_Q11\", \"old_sc\": \"Unknown\", \"new_sc\": \"True\", \"gt\": \"True\", \"vote_dist\": {\"Unknown\": 6, \"True\": 6}, \"old_correct\": false, \"new_correct\": true}\n{\"problem_id\": \"ProofWriter_RelNoneg-OWA-D5-691_Q3\", \"old_sc\": \"Unknown\", \"new_sc\": \"True\", \"gt\": \"True\", \"vote_dist\": {\"Unknown\": 6, \"True\": 6}, \"old_correct\": false, \"new_correct\": true}\n{\"problem_id\": \"ProofWriter_AttNeg-OWA-D5-664_Q1\", \"old_sc\": \"True\", \"new_sc\": \"False\", \"gt\": \"True\", \"vote_dist\": {\"True\": 4, \"Unknown\": 4, \"False\": 4}, \"old_correct\": true, \"new_correct\": false}\n{\"problem_id\": \"ProofWriter_RelNoneg-OWA-D5-582_Q12\", \"old_sc\": \"Unknown\", \"new_sc\": \"True\", \"gt\": \"False\", \"vote_dist\": {\"Unknown\": 5, \"True\": 5, \"False\": 2}, \"old_correct\": false, \"new_correct\": false}\n{\"problem_id\": \"ProofWriter_RelNoneg-OWA-D5-739_Q12\", \"old_sc\": \"Unknown\", \"new_sc\": \"True\", \"gt\": \"False\", \"vote_dist\": {\"Unknown\": 6, \"True\": 6}, \"old_correct\": fals\n…[truncated 410 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 1054
+          },
+          "id": "event-008927"
+        },
+        {
+          "source_line": 8928,
+          "timestamp": "2026-05-20T14:50:00.587362+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus -name \"*.json\" -newer /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/checkpoints/exp-046-mistral-pw600_RUNNING_20260518T201744.json -exec grep -l \"sc_vote_distribution\" {} \\; 2>/dev/null | head -10",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-008928"
+        },
+        {
+          "source_line": 8929,
+          "timestamp": "2026-05-20T14:50:01.641994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_gpu_exp-062-gemma27b-cleanup-deploy_20260519T073829_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_code_cross-model-sica-phase2_20260520T062511_result.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 1054
+          },
+          "id": "event-008929"
+        },
+        {
+          "source_line": 8930,
+          "timestamp": "2026-05-20T14:50:04.957643+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "sc_vote_distribution",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_code_cross-model-sica-phase2_20260520T062511_result.json",
+              "output_mode": "content",
+              "head_limit": "5"
+            }
+          },
+          "id": "event-008930"
+        },
+        {
+          "source_line": 8931,
+          "timestamp": "2026-05-20T14:50:05.008213+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-008931"
+        },
+        {
+          "source_line": 8932,
+          "timestamp": "2026-05-20T14:50:15.053089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh -i ~/.ssh/id_ed25519 -o ConnectTimeout=10 westd-16639 'find /root/symb_invariant_consensus/ -name \"exp046*\" 2>/dev/null' 2>&1",
+              "timeout": "20000"
+            }
+          },
+          "id": "event-008932"
+        },
+        {
+          "source_line": 8933,
+          "timestamp": "2026-05-20T14:50:16.617221+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.westd.seetacloud.com]:16639' (ED25519) to the list of known hosts."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 1564
+          },
+          "id": "event-008933"
+        },
+        {
+          "source_line": 8934,
+          "timestamp": "2026-05-20T14:50:20.582291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh -i ~/.ssh/id_ed25519 -o ConnectTimeout=10 westd-16639 'find /root/symb_invariant_consensus/ -name \"*mistral*pw*\" -o -name \"*mistral*proofwriter*\" 2>/dev/null | head -20' 2>&1",
+              "timeout": "20000"
+            }
+          },
+          "id": "event-008934"
+        },
+        {
+          "source_line": 8935,
+          "timestamp": "2026-05-20T14:50:21.536758+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.westd.seetacloud.com]:16639' (ED25519) to the list of known hosts."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 954
+          },
+          "id": "event-008935"
+        },
+        {
+          "source_line": 8936,
+          "timestamp": "2026-05-20T14:50:25.552900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_code_cross-model-sica-phase2_20260520T062511_result.json",
+              "limit": "100"
+            }
+          },
+          "id": "event-008936"
+        },
+        {
+          "source_line": 8937,
+          "timestamp": "2026-05-20T14:50:26.205712+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (1201120 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "elapsed_ms": 652
+          },
+          "id": "event-008937"
+        },
+        {
+          "source_line": 8938,
+          "timestamp": "2026-05-20T14:50:28.866341+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_code_cross-model-sica-phase2_20260520T062511_result.json",
+              "limit": "50"
+            }
+          },
+          "id": "event-008938"
+        },
+        {
+          "source_line": 8939,
+          "timestamp": "2026-05-20T14:50:29.418923+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (1201120 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "elapsed_ms": 552
+          },
+          "id": "event-008939"
+        },
+        {
+          "source_line": 8940,
+          "timestamp": "2026-05-20T14:50:34.411739+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -20 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_code_cross-model-sica-phase2_20260520T062511_result.json 2>&1",
+              "timeout": "5000"
+            }
+          },
+          "id": "event-008940"
+        },
+        {
+          "source_line": 8941,
+          "timestamp": "2026-05-20T14:50:34.462555+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (2.2MB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus--claude-sessions-director-909d512a/d08365c0-89a0-49b9-b6fd-c6c2b90cc0a7/tool-results/bhacote4w.txt\n\nPreview (first 2KB):\n{\n  \"raw\": \"Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.\\n{\\\"type\\\":\\\"system\\\",\\\"subtype\\\":\\\"init\\\",\\\"cwd\\\":\\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus\\\",\\\"session_id\\\":\\\"b3effe41-3d3c-4857-bdf6-86a47b7246fa\\\",\\\"tools\\\":[\\\"Task\\\",\\\"AskUserQuestion\\\",\\\"Bash\\\",\\\"CronCreate\\\",\\\"CronDelete\\\",\\\"CronList\\\",\\\"Edit\\\",\\\"EnterPlanMode\\\",\\\"EnterWorktree\\\",\\\"ExitPlanMode\\\",\\\"ExitWorktree\\\",\\\"Glob\\\",\\\"Grep\\\",\\\"ListMcpResourcesTool\\\",\\\"Monitor\\\",\\\"NotebookEdit\\\",\\\"PushNotification\\\",\\\"Read\\\",\\\"ReadMcpResourceTool\\\",\\\"RemoteTrigger\\\",\\\"ScheduleWakeup\\\",\\\"Skill\\\",\\\"TaskOutput\\\",\\\"TaskStop\\\",\\\"TodoWrite\\\",\\\"ToolSearch\\\",\\\"WebFetch\\\",\\\"WebSearch\\\",\\\"Write\\\",\\\"mcp__agent-ml-research__append_idea\\\",\\\"mcp__agent-ml-research__detect_image\\\",\\\"mcp__agent-ml-research__kill_job\\\",\\\"mcp__agent-ml-research__read_project_file\\\",\\\"mcp__agent-ml-research__read_registry\\\",\\\"mcp__agent-ml-research__register_artifact\\\",\\\"mcp__agent-ml-research__save_project_file\\\",\\\"mcp__agent-ml-research__ssh_execute\\\",\\\"mcp__agent-ml-research__ssh_read_only\\\",\\\"mcp__agent-ml-research__update_registry\\\"],\\\"mcp_servers\\\":[{\\\"name\\\":\\\"agent-ml-research\\\",\\\"status\\\":\\\"connected\\\"}],\\\"model\\\":\\\"claude-opus-4-6\\\",\\\"permissionMode\\\":\\\"bypassPermissions\\\",\\\"slash_commands\\\":[\\\"update-config\\\",\\\"debug\\\",\\\"simplify\\\",\\\"batch\\\",\\\"fewer-permission-prompts\\\",\\\"loop\\\",\\\"schedule\\\",\\\"claude-api\\\",\\\"clear\\\",\\\"compact\\\",\\\"context\\\",\\\"heapdump\\\",\\\"init\\\",\\\"review\\\",\\\"security-review\\\",\\\"extra-usage\\\",\\\"usage\\\",\\\"insights\\\",\\\"team-onboarding\\\"],\\\"apiKeySource\\\":\\\"none\\\",\\\"claude\n…[truncated 334 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-008941"
+        },
+        {
+          "source_line": 8942,
+          "timestamp": "2026-05-20T14:50:39.033099+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp046_results\\.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+              "output_mode": "files_with_matches",
+              "head_limit": "20"
+            }
+          },
+          "id": "event-008942"
+        },
+        {
+          "source_line": 8943,
+          "timestamp": "2026-05-20T14:50:39.184200+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 20 files limit: 20\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/chats/feishu_group_oc_970d5ea3f54df81296b97321fcded892_director.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/chats/feishu_group_oc_319977a04ca60b6c4c69a2a8d4141a75_reviewer.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/chats/feishu_group_oc_319977a04ca60b6c4c69a2a8d4141a75.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_experiment_sf2-proofwriter-nli-run_20260520T135632.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_code_sf2-proofwriter-nli-script_20260520T134627.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_r_deberta_proofwriter.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_analysis_aime-bias-ratio_20260520T134142.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_research_sf2-proofwriter-nli-prep_20260520T133703_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_research_sf2-proofwriter-nli-prep_20260520T133703.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/chats/worker_analysis_bias-ratio-table-format_20260520T113129.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_analysis_bias-ratio-table-format_20260520T113129.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/chats/worker_analysis_exp-013-constraint-ablation_20260519T235109.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_05\n…[truncated 1032 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Grep",
+            "elapsed_ms": 151
+          },
+          "id": "event-008943"
+        },
+        {
+          "source_line": 8944,
+          "timestamp": "2026-05-20T14:50:43.455583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_experiment_sf2-proofwriter-nli-run_20260520T135632.log",
+              "limit": "200"
+            }
+          },
+          "id": "event-008944"
+        },
+        {
+          "source_line": 8945,
+          "timestamp": "2026-05-20T14:50:43.757032+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (112835 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "elapsed_ms": 301
+          },
+          "id": "event-008945"
+        },
+        {
+          "source_line": 8946,
+          "timestamp": "2026-05-20T14:50:47.975124+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "w=3.*acc=|McNemar|Combo|DeBERTa.*accuracy|SC baseline|tied|tie",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_experiment_sf2-proofwriter-nli-run_20260520T135632.log",
+              "output_mode": "content",
+              "head_limit": "30"
+            }
+          },
+          "id": "event-008946"
+        },
+        {
+          "source_line": 8947,
+          "timestamp": "2026-05-20T14:50:48.025785+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4:[Omitted long matching line]\n5:[Omitted long matching line]\n6:[Omitted long matching line]\n8:[Omitted long matching line]\n10:[Omitted long matching line]\n11:[Omitted long matching line]\n12:[Omitted long matching line]\n14:[Omitted long matching line]\n16:[Omitted long matching line]\n17:[Omitted long matching line]\n18:[Omitted long matching line]\n20:[Omitted long matching line]\n21:[Omitted long matching line]\n24:[Omitted long matching line]\n25:[Omitted long matching line]\n27:[Omitted long matching line]\n28:[Omitted long matching line]\n29:[Omitted long matching line]\n30:[Omitted long matching line]\n31:[Omitted long matching line]\n33:[Omitted long matching line]\n35:[Omitted long matching line]\n36:[Omitted long matching line]\n37:[Omitted long matching line]\n38:[Omitted long matching line]\n39:[Omitted long matching line]\n40:[Omitted long matching line]\n42:[Omitted long matching line]\n43:[Omitted long matching line]\n44:[Omitted long matching line]\n\n[Showing results with pagination = limit: 30]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-008947"
+        },
+        {
+          "source_line": 8948,
+          "timestamp": "2026-05-20T14:50:52.052391+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"w=3\\|McNemar\\|DeBERTa accuracy\\|SC baseline\\|SICA baseline\\|Combo.*SC\\|delta=\" /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_experiment_sf2-proofwriter-nli-run_20260520T135632.log 2>/dev/null | head -30",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-008948"
+        },
+        {
+          "source_line": 8949,
+          "timestamp": "2026-05-20T14:50:52.103067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (68.7KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus--claude-sessions-director-909d512a/d08365c0-89a0-49b9-b6fd-c6c2b90cc0a7/tool-results/b99xhmpd8.txt\n\nPreview (first 2KB):\n30:{\"type\":\"user\",\"message\":{\"role\":\"user\",\"content\":[{\"tool_use_id\":\"toolu_01WWuv13cV82SQdJbU47ri3y\",\"type\":\"tool_result\",\"content\":\"{\\\"result\\\":\\\"{\\\\\\\"success\\\\\\\": true, \\\\\\\"data\\\\\\\": {\\\\\\\"stdout\\\\\\\": \\\\\\\"#!/usr/bin/env python3\\\\\\\\n\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"Direction R: DeBERTa NLI Verifier for ProofWriter-D5 (600 questions)\\\\\\\\nReplicates FOLIO R experiment on ProofWriter to strengthen statistical evidence.\\\\\\\\nSC/SICA baselines from exp046_mistral_7b_pw600.\\\\\\\\n\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n\\\\\\\\nimport argparse\\\\\\\\nimport json\\\\\\\\nimport os\\\\\\\\nimport time\\\\\\\\nfrom collections import Counter\\\\\\\\nfrom scipy.stats import binomtest\\\\\\\\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\\\\\\\\nimport torch\\\\\\\\n\\\\\\\\nPW_DATA_PATH = \\\\\\\\\\\\\\\"/root/symb_invariant_consensus/data/proofwriter_full.json\\\\\\\\\\\\\\\"\\\\\\\\nEXP046_PATH = \\\\\\\\\\\\\\\"/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/exp046_results.json\\\\\\\\\\\\\\\"\\\\\\\\nOUTPUT_DIR = \\\\\\\\\\\\\\\"/root/symb_invariant_consensus/results/direction_r_nli_pw600\\\\\\\\\\\\\\\"\\\\\\\\nMODEL_NAME = \\\\\\\\\\\\\\\"/root/models/deberta-large-mnli\\\\\\\\\\\\\\\"\\\\\\\\nCLASSES = [\\\\\\\\\\\\\\\"True\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"False\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"Unknown\\\\\\\\\\\\\\\"]\\\\\\\\n\\\\\\\\n\\\\\\\\ndef parse_problem(problem_text):\\\\\\\\n    marker = \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\\n\\\\\\\\\\\\\\\\nDetermine whether the following statement is true, false, or unknown:\\\\\\\\\\\\\\\\n\\\\\\\\\\\\\\\"\\\\\\\\n    if marker in problem_text:\\\\\\\\n        parts = problem_text.split(marker, 1)\\\\\\\\n        premises = parts[0].strip()\\\\\\\\n        conclusion = parts[1].strip()\\\\\\\\n    else:\\\\\\\\n        premises = problem_text\\\\\\\\n        conclusion = \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n    return premises, conclusion\\\\\\\\n\\\\\\\\n\\\\\\\\ndef main()\n…[truncated 335 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-008949"
+        },
+        {
+          "source_line": 8950,
+          "timestamp": "2026-05-20T14:50:56.221135+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -o '\"w=[0-9]*: acc=[0-9.]*[^\"]*' /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_experiment_sf2-proofwriter-nli-run_20260520T135632.log 2>/dev/null | head -20",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-008950"
+        },
+        {
+          "source_line": 8951,
+          "timestamp": "2026-05-20T14:50:56.271802+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\"w=5: acc=0.5000 (300/600), delta=+0.1067 (+10.67pp), McNemar b=35 c=99 p=0.000000 ***\\\\\\\\n\\\\\\\n\"w=5: acc=0.5000 (300/600), delta=+0.1067 (+10.67pp), McNemar b=35 c=99 p=0.000000 ***\\\\\\\\n\\\\\\\n\"w=5: acc=0.5000 (300/600), delta=+0.1067 (+10.67pp), McNemar b=35 c=99 p=0.000000 ***\\\\n\\"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-008951"
+        },
+        {
+          "source_line": 8952,
+          "timestamp": "2026-05-20T14:51:01.649092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts -name \"*.json\" -type f 2>/dev/null | head -30",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-008952"
+        },
+        {
+          "source_line": 8953,
+          "timestamp": "2026-05-20T14:51:01.699790+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_j/data/direction_j_results.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/data/aime_bias_ratio_results.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/data/mcnemar_method_experiments.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/data/constraint_quality_crossmethod.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/data/qwen14b_kappa_analysis.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/data/cross_model_kappa_results_404744.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/data/direction_e_abstention_results.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/data/cross_model_kappa_results.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/data/fleiss_kappa_raw_all.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/data/wild6_kappa_aware_sc_results.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/data/direction_a_prove_results_3762cb.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/data/direction_d_cegis_results_partial.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/data/cross_model_sica_results.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/data/exp019_constraint_quality_analysis_c0_fixed.json\n/home/ubuntu/.agent-ml-research-idea_gen_0\n…[truncated 2153 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-008953"
+        },
+        {
+          "source_line": 8954,
+          "timestamp": "2026-05-20T14:51:04.713149+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts -name \"*cross_model_sica*\" -o -name \"*direction_r*\" 2>/dev/null",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-008954"
+        },
+        {
+          "source_line": 8955,
+          "timestamp": "2026-05-20T14:51:04.763779+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/data/cross_model_sica_results.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/cross_model_sica_results.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_r_nli_large\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_r_nli_large/data/direction_r_nli_large_pointer.txt\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_r_deberta_proofwriter.py"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-008955"
+        },
+        {
+          "source_line": 8956,
+          "timestamp": "2026-05-20T14:51:10.494372+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nd = json.load(open('/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/data/cross_model_sica_results.json'))\nif isinstance(d, dict):\n    print('Keys:', list(d.keys())[:15])\n    for k in list(d.keys())[:5]:\n        v = d[k]\n        if isinstance(v, dict):\n            print(f'{k}: dict keys={list(v.keys())[:10]}')\n        elif isinstance(v, list):\n            print(f'{k}: list len={len(v)}')\n        else:\n            print(f'{k}: {str(v)[:100]}')\nelif isinstance(d, list):\n    print('list len:', len(d))\n    if len(d) > 0 and isinstance(d[0], dict):\n        print('first item keys:', list(d[0].keys())[:10])\n\" 2>&1",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-008956"
+        },
+        {
+          "source_line": 8957,
+          "timestamp": "2026-05-20T14:51:10.545301+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Keys: ['experiment', 'date', 'setup', 'results', 'baselines', 'comparison_table', 'server_results_path']\nexperiment: Cross-Model SC + SICA on FOLIO-204\ndate: 2026-05-20\nsetup: dict keys=['models', 'traces_per_model', 'total_k', 'dataset', 'n_problems']\nresults: dict keys=['cross_model_sc', 'cross_model_sica', 'delta_sica_minus_sc', 'mcnemar_test']\nbaselines: dict keys=['mistral_only_k12', 'qwen_only_k12']"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-008957"
+        },
+        {
+          "source_line": 8958,
+          "timestamp": "2026-05-20T14:51:15.817067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -o '\"sc_vote_distribution\":[^}]*}' /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_experiment_sf2-proofwriter-nli-run_20260520T135632.log 2>/dev/null | head -5 | python3 -c \"\nimport sys\nfor line in sys.stdin:\n    print(line.strip()[:200])\n\" 2>&1",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-008958"
+        },
+        {
+          "source_line": 8959,
+          "timestamp": "2026-05-20T14:51:15.867660+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-008959"
+        },
+        {
+          "source_line": 8960,
+          "timestamp": "2026-05-20T14:51:20.234227+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -c \"sc_vote_distribution\" /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_experiment_sf2-proofwriter-nli-run_20260520T135632.log 2>/dev/null",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-008960"
+        },
+        {
+          "source_line": 8961,
+          "timestamp": "2026-05-20T14:51:20.284944+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-008961"
+        },
+        {
+          "source_line": 8962,
+          "timestamp": "2026-05-20T14:51:24.107241+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"sc_vote_distribution\" /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_experiment_sf2-proofwriter-nli-run_20260520T135632.log 2>/dev/null",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-008962"
+        },
+        {
+          "source_line": 8963,
+          "timestamp": "2026-05-20T14:51:24.158054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "30:{\"type\":\"user\",\"message\":{\"role\":\"user\",\"content\":[{\"tool_use_id\":\"toolu_01WWuv13cV82SQdJbU47ri3y\",\"type\":\"tool_result\",\"content\":\"{\\\"result\\\":\\\"{\\\\\\\"success\\\\\\\": true, \\\\\\\"data\\\\\\\": {\\\\\\\"stdout\\\\\\\": \\\\\\\"#!/usr/bin/env python3\\\\\\\\n\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"Direction R: DeBERTa NLI Verifier for ProofWriter-D5 (600 questions)\\\\\\\\nReplicates FOLIO R experiment on ProofWriter to strengthen statistical evidence.\\\\\\\\nSC/SICA baselines from exp046_mistral_7b_pw600.\\\\\\\\n\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n\\\\\\\\nimport argparse\\\\\\\\nimport json\\\\\\\\nimport os\\\\\\\\nimport time\\\\\\\\nfrom collections import Counter\\\\\\\\nfrom scipy.stats import binomtest\\\\\\\\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\\\\\\\\nimport torch\\\\\\\\n\\\\\\\\nPW_DATA_PATH = \\\\\\\\\\\\\\\"/root/symb_invariant_consensus/data/proofwriter_full.json\\\\\\\\\\\\\\\"\\\\\\\\nEXP046_PATH = \\\\\\\\\\\\\\\"/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/exp046_results.json\\\\\\\\\\\\\\\"\\\\\\\\nOUTPUT_DIR = \\\\\\\\\\\\\\\"/root/symb_invariant_consensus/results/direction_r_nli_pw600\\\\\\\\\\\\\\\"\\\\\\\\nMODEL_NAME = \\\\\\\\\\\\\\\"/root/models/deberta-large-mnli\\\\\\\\\\\\\\\"\\\\\\\\nCLASSES = [\\\\\\\\\\\\\\\"True\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"False\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"Unknown\\\\\\\\\\\\\\\"]\\\\\\\\n\\\\\\\\n\\\\\\\\ndef parse_problem(problem_text):\\\\\\\\n    marker = \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\\n\\\\\\\\\\\\\\\\nDetermine whether the following statement is true, false, or unknown:\\\\\\\\\\\\\\\\n\\\\\\\\\\\\\\\"\\\\\\\\n    if marker in problem_text:\\\\\\\\n        parts = problem_text.split(marker, 1)\\\\\\\\n        premises = parts[0].strip()\\\\\\\\n        conclusion = parts[1].strip()\\\\\\\\n    else:\\\\\\\\n        premises = problem_text\\\\\\\\n        conclusion = \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n    return premises, conclusion\\\\\\\\n\\\\\\\\n\\\\\\\\ndef main():\\\\\\\\n    parser = argparse.ArgumentParser()\\\\\\\\n    parser.add_argument(\\\\\\\\\\\\\\\"--n\\\\\\\\\\\\\\\", type=int, default=0, help=\\\\\\\\\\\\\\\"Limit to first N questions (0=all)\\\\\\\\\\\\\\\")\\\\\\\\n    args = parser.parse_args()\\\\\\\\n\\\\\\\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\\\\\\\n\\\\\\\\n    with open(PW_DATA_PATH) as f:\\\\\\\\n     \n…[truncated 11663 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-008963"
+        },
+        {
+          "source_line": 8964,
+          "timestamp": "2026-05-20T14:51:31.075149+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_s3_backups",
+              "max_results": "1"
+            }
+          },
+          "id": "event-008964"
+        },
+        {
+          "source_line": 8965,
+          "timestamp": "2026-05-20T14:51:31.125770+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-008965"
+        },
+        {
+          "source_line": 8966,
+          "timestamp": "2026-05-20T14:51:33.708365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_s3_backups"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "mcp__agent-ml-research__list_s3_backups",
+            "tool_args": {
+              "project_name": "symb_invariant_consensus",
+              "limit": "5"
+            }
+          },
+          "id": "event-008966"
+        },
+        {
+          "source_line": 8967,
+          "timestamp": "2026-05-20T14:51:33.809095+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"backups\\\": [], \\\"count\\\": 0, \\\"total\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "mcp__agent-ml-research__list_s3_backups",
+            "elapsed_ms": 100
+          },
+          "id": "event-008967"
+        },
+        {
+          "source_line": 8968,
+          "timestamp": "2026-05-20T14:51:38.727309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh -i ~/.ssh/id_ed25519 -o ConnectTimeout=10 westd-16639 'find /root -name \"exp046*\" -o -name \"direction_r_nli*\" 2>/dev/null | head -20' 2>&1",
+              "timeout": "20000"
+            }
+          },
+          "id": "event-008968"
+        },
+        {
+          "source_line": 8969,
+          "timestamp": "2026-05-20T14:51:39.992213+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.westd.seetacloud.com]:16639' (ED25519) to the list of known hosts."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 1264
+          },
+          "id": "event-008969"
+        },
+        {
+          "source_line": 8970,
+          "timestamp": "2026-05-20T14:51:53.469548+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_experiment_sf2-proofwriter-nli-run_20260520T135632.log",
+              "offset": "360",
+              "limit": "5"
+            }
+          },
+          "id": "event-008970"
+        },
+        {
+          "source_line": 8971,
+          "timestamp": "2026-05-20T14:51:53.520463+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "360\t{\"type\":\"assistant\",\"message\":{\"model\":\"claude-opus-4-6\",\"id\":\"msg_01RrWsqMuNRj8zsTcTHe3Ur7\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"text\",\"text\":\"全部关键指标已获取。现在补算 w=5 combo。\"}],\"stop_reason\":null,\"stop_sequence\":null,\"stop_details\":null,\"usage\":{\"input_tokens\":1,\"cache_creation_input_tokens\":1923,\"cache_read_input_tokens\":70039,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":1923},\"output_tokens\":1,\"service_tier\":\"standard\",\"inference_geo\":\"not_available\"},\"diagnostics\":null,\"context_management\":null},\"parent_tool_use_id\":null,\"session_id\":\"5fd916be-0a91-4919-ae30-7a0216b5583c\",\"uuid\":\"7a7ce369-6dd1-457f-87d8-e9100c68ad49\"}\n361\t{\"type\":\"assistant\",\"message\":{\"model\":\"claude-opus-4-6\",\"id\":\"msg_01RrWsqMuNRj8zsTcTHe3Ur7\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"tool_use\",\"id\":\"toolu_013CLeMguiZ13YoPtd52HsZ2\",\"name\":\"mcp__agent-ml-research__ssh_execute\",\"input\":{\"server\":\"westd-25068\",\"command\":\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"\\nimport json\\nfrom collections import Counter\\nfrom scipy.stats import binomtest\\n\\nwith open('/root/symb_invariant_consensus/results/direction_r_nli_pw600/results.json') as f:\\n    data = json.load(f)\\n\\npq = data['per_question']\\nCLASSES = ['True','False','Unknown']\\n\\n# Load exp046 for vote distributions\\nwith open('/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/exp046_results.json') as f:\\n    exp046 = json.load(f)\\nexp046_by_id = {r['problem_id']: r for r in exp046['results']}\\n\\ngt = {qid: pq[qid]['gold'] for qid in pq}\\nsc_answers = {qid: pq[qid]['sc_answer'] for qid in pq}\\ndeberta_preds = {qid: pq[qid]['deberta_pred'] for qid in pq}\\ntotal = len(gt)\\nsc_correct_n = sum(1 for qid in gt if sc_answers[qid] == gt[qid])\\nsc_acc = sc_correct_n / total\\n\\nfor weight in [5]:\\n    combo_correct = 0\\n    b_count = 0\\n    c_count = 0\\n    for qid in gt:\\n        gold = gt[qid]\\n        r = exp046_by_id.get(qid, {})\\n \n…[truncated 8731 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-008971"
+        },
+        {
+          "source_line": 8972,
+          "timestamp": "2026-05-20T14:52:01.399564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"sc_vote_distribution\\|vote_dist\" /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_experiment_sf2-proofwriter-nli-run_20260520T135632.log 2>/dev/null | head -10",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-008972"
+        },
+        {
+          "source_line": 8973,
+          "timestamp": "2026-05-20T14:52:01.450335+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (42.6KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus--claude-sessions-director-909d512a/d08365c0-89a0-49b9-b6fd-c6c2b90cc0a7/tool-results/bu6mfm0ub.txt\n\nPreview (first 2KB):\n30:{\"type\":\"user\",\"message\":{\"role\":\"user\",\"content\":[{\"tool_use_id\":\"toolu_01WWuv13cV82SQdJbU47ri3y\",\"type\":\"tool_result\",\"content\":\"{\\\"result\\\":\\\"{\\\\\\\"success\\\\\\\": true, \\\\\\\"data\\\\\\\": {\\\\\\\"stdout\\\\\\\": \\\\\\\"#!/usr/bin/env python3\\\\\\\\n\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"Direction R: DeBERTa NLI Verifier for ProofWriter-D5 (600 questions)\\\\\\\\nReplicates FOLIO R experiment on ProofWriter to strengthen statistical evidence.\\\\\\\\nSC/SICA baselines from exp046_mistral_7b_pw600.\\\\\\\\n\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n\\\\\\\\nimport argparse\\\\\\\\nimport json\\\\\\\\nimport os\\\\\\\\nimport time\\\\\\\\nfrom collections import Counter\\\\\\\\nfrom scipy.stats import binomtest\\\\\\\\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\\\\\\\\nimport torch\\\\\\\\n\\\\\\\\nPW_DATA_PATH = \\\\\\\\\\\\\\\"/root/symb_invariant_consensus/data/proofwriter_full.json\\\\\\\\\\\\\\\"\\\\\\\\nEXP046_PATH = \\\\\\\\\\\\\\\"/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/exp046_results.json\\\\\\\\\\\\\\\"\\\\\\\\nOUTPUT_DIR = \\\\\\\\\\\\\\\"/root/symb_invariant_consensus/results/direction_r_nli_pw600\\\\\\\\\\\\\\\"\\\\\\\\nMODEL_NAME = \\\\\\\\\\\\\\\"/root/models/deberta-large-mnli\\\\\\\\\\\\\\\"\\\\\\\\nCLASSES = [\\\\\\\\\\\\\\\"True\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"False\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"Unknown\\\\\\\\\\\\\\\"]\\\\\\\\n\\\\\\\\n\\\\\\\\ndef parse_problem(problem_text):\\\\\\\\n    marker = \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\\n\\\\\\\\\\\\\\\\nDetermine whether the following statement is true, false, or unknown:\\\\\\\\\\\\\\\\n\\\\\\\\\\\\\\\"\\\\\\\\n    if marker in problem_text:\\\\\\\\n        parts = problem_text.split(marker, 1)\\\\\\\\n        premises = parts[0].strip()\\\\\\\\n        conclusion = parts[1].strip()\\\\\\\\n    else:\\\\\\\\n        premises = problem_text\\\\\\\\n        conclusion = \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n    return premises, conclusion\\\\\\\\n\\\\\\\\n\\\\\\\\ndef main()\n…[truncated 335 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-008973"
+        },
+        {
+          "source_line": 8974,
+          "timestamp": "2026-05-20T14:52:12.798305+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"sc_vote_distribution\\|vote_dist\" /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_gpu_exp-062-gemma27b-cleanup-deploy_20260519T073829_result.json 2>/dev/null | head -5",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-008974"
+        },
+        {
+          "source_line": 8975,
+          "timestamp": "2026-05-20T14:52:12.899182+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (2.3MB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus--claude-sessions-director-909d512a/d08365c0-89a0-49b9-b6fd-c6c2b90cc0a7/tool-results/bfaprs91t.txt\n\nPreview (first 2KB):\n2:  \"raw\": \"Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.\\n{\\\"type\\\":\\\"system\\\",\\\"subtype\\\":\\\"init\\\",\\\"cwd\\\":\\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus\\\",\\\"session_id\\\":\\\"c9222ab5-9c92-4c29-85b2-614d861ba3ff\\\",\\\"tools\\\":[\\\"Task\\\",\\\"AskUserQuestion\\\",\\\"Bash\\\",\\\"CronCreate\\\",\\\"CronDelete\\\",\\\"CronList\\\",\\\"Edit\\\",\\\"EnterPlanMode\\\",\\\"EnterWorktree\\\",\\\"ExitPlanMode\\\",\\\"ExitWorktree\\\",\\\"Glob\\\",\\\"Grep\\\",\\\"ListMcpResourcesTool\\\",\\\"Monitor\\\",\\\"NotebookEdit\\\",\\\"PushNotification\\\",\\\"Read\\\",\\\"ReadMcpResourceTool\\\",\\\"RemoteTrigger\\\",\\\"ScheduleWakeup\\\",\\\"Skill\\\",\\\"TaskOutput\\\",\\\"TaskStop\\\",\\\"TodoWrite\\\",\\\"ToolSearch\\\",\\\"WebFetch\\\",\\\"WebSearch\\\",\\\"Write\\\",\\\"mcp__agent-ml-research__detect_image\\\",\\\"mcp__agent-ml-research__kill_job\\\",\\\"mcp__agent-ml-research__read_registry\\\",\\\"mcp__agent-ml-research__register_artifact\\\",\\\"mcp__agent-ml-research__ssh_execute\\\",\\\"mcp__agent-ml-research__ssh_read_only\\\",\\\"mcp__agent-ml-research__update_registry\\\"],\\\"mcp_servers\\\":[{\\\"name\\\":\\\"agent-ml-research\\\",\\\"status\\\":\\\"connected\\\"}],\\\"model\\\":\\\"claude-opus-4-6\\\",\\\"permissionMode\\\":\\\"bypassPermissions\\\",\\\"slash_commands\\\":[\\\"update-config\\\",\\\"debug\\\",\\\"simplify\\\",\\\"batch\\\",\\\"fewer-permission-prompts\\\",\\\"loop\\\",\\\"schedule\\\",\\\"claude-api\\\",\\\"clear\\\",\\\"compact\\\",\\\"context\\\",\\\"heapdump\\\",\\\"init\\\",\\\"review\\\",\\\"security-review\\\",\\\"extra-usage\\\",\\\"usage\\\",\\\"insights\\\",\\\"team-onboarding\\\"],\\\"apiKeySource\\\":\\\"none\\\",\\\"claude_code_version\\\":\\\"2.1.126\\\",\\\"output_style\\\":\\\"default\\\",\\\"agents\\\":[\\\"claude\\\",\\\"Explore\\\",\\\"general-purpose\\\",\\\"Plan\\\",\\\"statuslin\n…[truncated 334 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-008975"
+        },
+        {
+          "source_line": 8976,
+          "timestamp": "2026-05-20T14:52:19.124081+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh -i ~/.ssh/id_ed25519 -o ConnectTimeout=10 westd-16639 'find /root/symb_invariant_consensus -name \"*tiebreak*\" -o -name \"*tie_break*\" 2>/dev/null' 2>&1",
+              "timeout": "20000"
+            }
+          },
+          "id": "event-008976"
+        },
+        {
+          "source_line": 8977,
+          "timestamp": "2026-05-20T14:52:20.228435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.westd.seetacloud.com]:16639' (ED25519) to the list of known hosts.\r\n/root/symb_invariant_consensus/sc_tiebreak_revalidation.py\n/root/symb_invariant_consensus/results/sc_tiebreak_revalidation_16639.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 1104
+          },
+          "id": "event-008977"
+        },
+        {
+          "source_line": 8978,
+          "timestamp": "2026-05-20T14:52:23.101120+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh -i ~/.ssh/id_ed25519 -o ConnectTimeout=10 westd-16639 'cat /root/symb_invariant_consensus/sc_tiebreak_revalidation.py' 2>&1",
+              "timeout": "20000"
+            }
+          },
+          "id": "event-008978"
+        },
+        {
+          "source_line": 8979,
+          "timestamp": "2026-05-20T14:52:24.155741+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.westd.seetacloud.com]:16639' (ED25519) to the list of known hosts.\r\n\"\"\"Batch SC tiebreaking revalidation: recompute SC with deterministic alphabetical tie-breaking.\"\"\"\nimport json\nfrom pathlib import Path\n\nEXPERIMENTS = [\n    {\"exp_id\": \"exp-033\", \"label\": \"Mistral-7B FOLIO-204 seed=42 T=0.7 K=12\",\n     \"path\": \"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json\",\n     \"old_sc\": 54.41, \"model\": \"Mistral-7B\", \"dataset\": \"FOLIO-204\"},\n    {\"exp_id\": \"exp-057\", \"label\": \"Mistral-7B FOLIO-204 T=0.3\",\n     \"path\": \"/root/symb_invariant_consensus/results/exp057_mistral_folio204_t03/exp057_results.json\",\n     \"old_sc\": 57.35, \"model\": \"Mistral-7B\", \"dataset\": \"FOLIO-204\"},\n    {\"exp_id\": \"exp-058\", \"label\": \"Mistral-7B FOLIO-204 T=0.5\",\n     \"path\": \"/root/symb_invariant_consensus/results/exp058_mistral_folio204_t05/exp058_results.json\",\n     \"old_sc\": 57.84, \"model\": \"Mistral-7B\", \"dataset\": \"FOLIO-204\"},\n    {\"exp_id\": \"exp-054\", \"label\": \"Mistral-7B FOLIO-204 T=1.0\",\n     \"path\": \"/root/symb_invariant_consensus/results/exp054_mistral_folio204_t10/exp054_results.json\",\n     \"old_sc\": 55.39, \"model\": \"Mistral-7B\", \"dataset\": \"FOLIO-204\"},\n    {\"exp_id\": \"exp-051-k4\", \"label\": \"Mistral-7B FOLIO-204 K=4\",\n     \"path\": \"/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k4/results.json\",\n     \"old_sc\": 54.41, \"model\": \"Mistral-7B\", \"dataset\": \"FOLIO-204\"},\n    {\"exp_id\": \"exp-051-k8\", \"label\": \"Mistral-7B FOLIO-204 K=8\",\n     \"path\": \"/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k8/results.json\",\n     \"old_sc\": 57.35, \"model\": \"Mistral-7B\", \"dataset\": \"FOLIO-204\"},\n    {\"exp_id\": \"exp-051-k16\", \"label\": \"Mistral-7B FOLIO-204 K=16\",\n     \"path\": \"/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k16/results.json\",\n     \"old_sc\": 55.88, \"model\": \"Mistral-7B\", \"dataset\": \"FOLIO-204\"},\n    {\"exp_id\": \"exp-051-k20\", \"label\": \"Mistral-7B FOLIO-204 K=20\"\n…[truncated 6867 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 1054
+          },
+          "id": "event-008979"
+        },
+        {
+          "source_line": 8980,
+          "timestamp": "2026-05-20T14:52:30.632083+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh -i ~/.ssh/id_ed25519 -o ConnectTimeout=10 westd-16639 'python3 -c \"\nimport json\nd = json.load(open(\\\"/root/symb_invariant_consensus/results/sc_tiebreak_revalidation_16639.json\\\"))\nfor s in d[\\\"summary\\\"]:\n    print(s)\n\"' 2>&1",
+              "timeout": "20000"
+            }
+          },
+          "id": "event-008980"
+        },
+        {
+          "source_line": 8981,
+          "timestamp": "2026-05-20T14:52:31.836661+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.westd.seetacloud.com]:16639' (ED25519) to the list of known hosts.\r\n{'exp_id': 'exp-052', 'label': 'Mistral-7B FOLIO-204 seed=123', 'model': 'Mistral-7B', 'dataset': 'FOLIO-204', 'n': 204, 'registry_sc': 56.37, 'old_sc_pct': 53.92, 'new_sc_pct': 54.41, 'change': 0.49, 'sica_pct': 57.35, 'old_delta_pp': 3.43, 'new_delta_pp': 2.94, 'n_affected': 2}\n{'exp_id': 'exp-053', 'label': 'Mistral-7B FOLIO-204 seed=456', 'model': 'Mistral-7B', 'dataset': 'FOLIO-204', 'n': 204, 'registry_sc': 56.37, 'old_sc_pct': 56.37, 'new_sc_pct': 55.88, 'change': -0.49, 'sica_pct': 55.88, 'old_delta_pp': -0.49, 'new_delta_pp': 0.0, 'n_affected': 1}\n{'exp_id': 'exp-039', 'label': 'Qwen2.5-14B PW-600 (16639)', 'model': 'Qwen2.5-14B', 'dataset': 'PW-600', 'n': 600, 'registry_sc': 73.5, 'old_sc_pct': 73.5, 'new_sc_pct': 74.0, 'change': 0.5, 'sica_pct': 71.5, 'old_delta_pp': -2.0, 'new_delta_pp': -2.5, 'n_affected': 12}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 1204
+          },
+          "id": "event-008981"
+        },
+        {
+          "source_line": 8982,
+          "timestamp": "2026-05-20T14:52:37.445521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh -i ~/.ssh/id_ed25519 -o ConnectTimeout=10 westd-16639 'cat /root/symb_invariant_consensus/run_full_mvp.py 2>/dev/null | head -100' 2>&1",
+              "timeout": "20000"
+            }
+          },
+          "id": "event-008982"
+        },
+        {
+          "source_line": 8983,
+          "timestamp": "2026-05-20T14:52:38.750903+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.westd.seetacloud.com]:16639' (ED25519) to the list of known hosts.\r\n\"\"\"\nSICA Full MVP experiment: 50 MATH-500 + 10 ProofWriter, SICA vs SC@K.\nFeatures: resume support, per-dataset/per-level stats, ETA estimation.\n\nUsage:\n  python run_full_mvp.py --mode vllm --k 12\n  python run_full_mvp.py --mode vllm --k 12 --resume\n\"\"\"\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport logging\nimport os\nimport sys\nimport time\n\nfrom sica.constraint_extractor import ConstraintExtractor, MockLLM, APIBasedLLM, VLLMBackend\nfrom sica.trace_generator import MockGenerator, VLLMGenerator, APIGenerator\nfrom sica.pipeline import SICAPipeline\nfrom baselines.self_consistency import SelfConsistency\nfrom utils.math_equiv import is_equiv\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s %(levelname)s %(message)s\",\n    handlers=[logging.StreamHandler(sys.stdout)],\n)\nlogger = logging.getLogger(__name__)\n\n\ndef load_all_problems(math_path: str, pw_path: str, folio_path: str | None = None, strategyqa_path: str | None = None) -> list[dict]:\n    problems = []\n    if os.path.exists(math_path):\n        with open(math_path) as f:\n            math_data = json.load(f)\n        for p in math_data:\n            p.setdefault(\"dataset\", \"math\")\n        problems.extend(math_data)\n        logger.info(\"Loaded %d MATH problems\", len(math_data))\n    else:\n        logger.error(\"MATH data not found: %s\", math_path)\n        sys.exit(1)\n\n    if os.path.exists(pw_path):\n        with open(pw_path) as f:\n            pw_data = json.load(f)\n        for p in pw_data:\n            p.setdefault(\"dataset\", \"proofwriter\")\n        problems.extend(pw_data)\n        logger.info(\"Loaded %d ProofWriter problems\", len(pw_data))\n    else:\n        logger.error(\"ProofWriter data not found: %s\", pw_path)\n        sys.exit(1)\n\n    if folio_path and os.path.exists(folio_path):\n        with open(folio_path) as f:\n            folio_data = json.load(f)\n        for p in folio_\n…[truncated 1304 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 1305
+          },
+          "id": "event-008983"
+        },
+        {
+          "source_line": 8984,
+          "timestamp": "2026-05-20T14:52:42.667085+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh -i ~/.ssh/id_ed25519 -o ConnectTimeout=10 westd-16639 'grep -n \"sc_answer\\|most_common\\|sc_vote_distribution\\|majority_vote\\|self_consistency\" /root/symb_invariant_consensus/baselines/self_consistency.py 2>/dev/null | head -30' 2>&1",
+              "timeout": "20000"
+            }
+          },
+          "id": "event-008984"
+        },
+        {
+          "source_line": 8985,
+          "timestamp": "2026-05-20T14:52:43.922104+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.westd.seetacloud.com]:16639' (ED25519) to the list of known hosts."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 1255
+          },
+          "id": "event-008985"
+        },
+        {
+          "source_line": 8986,
+          "timestamp": "2026-05-20T14:52:47.086083+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh -i ~/.ssh/id_ed25519 -o ConnectTimeout=10 westd-16639 'find /root/symb_invariant_consensus/baselines -type f 2>/dev/null' 2>&1",
+              "timeout": "20000"
+            }
+          },
+          "id": "event-008986"
+        },
+        {
+          "source_line": 8987,
+          "timestamp": "2026-05-20T14:52:48.090234+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.westd.seetacloud.com]:16639' (ED25519) to the list of known hosts.\r\n/root/symb_invariant_consensus/baselines/__pycache__/__init__.cpython-312.pyc\n/root/symb_invariant_consensus/baselines/__pycache__/self_consistency.cpython-312.pyc\n/root/symb_invariant_consensus/baselines/__init__.py\n/root/symb_invariant_consensus/baselines/self_consistency.py"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 1004
+          },
+          "id": "event-008987"
+        },
+        {
+          "source_line": 8988,
+          "timestamp": "2026-05-20T14:52:51.101773+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh -i ~/.ssh/id_ed25519 -o ConnectTimeout=10 westd-16639 'cat /root/symb_invariant_consensus/baselines/self_consistency.py' 2>&1",
+              "timeout": "20000"
+            }
+          },
+          "id": "event-008988"
+        },
+        {
+          "source_line": 8989,
+          "timestamp": "2026-05-20T14:52:52.161752+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.westd.seetacloud.com]:16639' (ED25519) to the list of known hosts.\r\n\"\"\"Self-Consistency baseline: majority vote over K reasoning traces with math equivalence.\"\"\"\nfrom __future__ import annotations\n\nfrom utils.math_equiv import group_equivalent_answers\nfrom sica.pipeline import _group_logic_answers\n\n\nclass SelfConsistency:\n\n    def run(self, problem: dict, traces: list[str], answers: list[str]) -> dict:\n        \"\"\"Select answer by majority vote with equivalence-aware grouping.\"\"\"\n        valid = [a.strip() for a in answers if a.strip()]\n        if not valid:\n            return {\"answer\": \"\", \"vote_count\": 0, \"total_traces\": len(traces), \"vote_distribution\": {}}\n\n        dataset = problem.get(\"dataset\", \"\")\n        if dataset in (\"proofwriter\", \"folio\"):\n            groups = _group_logic_answers(valid)\n        else:\n            groups = group_equivalent_answers(valid)\n        best_answer = max(sorted(groups.keys()), key=lambda k: len(groups[k]))\n        best_count = len(groups[best_answer])\n        vote_distribution = {k: len(v) for k, v in groups.items()}\n\n        return {\n            \"answer\": best_answer,\n            \"vote_count\": best_count,\n            \"total_traces\": len(traces),\n            \"vote_distribution\": vote_distribution,\n        }"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 1059
+          },
+          "id": "event-008989"
+        },
+        {
+          "source_line": 8990,
+          "timestamp": "2026-05-20T14:53:05.162559+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\n# Test how max(sorted(keys), key=...) handles ties\ngroups = {'Unknown': ['a','b','c','d','e','f'], 'True': ['x','y','z','w','v','u']}\n# Both have count 6\n\nsorted_keys = sorted(groups.keys())\nprint('sorted_keys:', sorted_keys)  # ['True', 'Unknown']\n\nbest = max(sorted_keys, key=lambda k: len(groups[k]))\nprint('best (tie between True=6 and Unknown=6):', best)\n\n# max keeps the first maximal element? Or last?\n# Let's test explicitly\ngroups2 = {'False': [1,2,3,4,5,6], 'True': [1,2,3,4,5,6], 'Unknown': [1,2,3]}\nsorted_keys2 = sorted(groups2.keys())\nprint('sorted_keys2:', sorted_keys2)  # ['False', 'True', 'Unknown']\nbest2 = max(sorted_keys2, key=lambda k: len(groups2[k]))\nprint('best2 (tie between False=6 and True=6):', best2)\n\n# Python max returns LAST maximal element in iteration order\n# Because max uses >= internally? Let's double check\nprint()\nprint('max behavior test:')\nitems = ['a', 'b', 'c']\nprint('max with all same key:', max(items, key=lambda x: 1))\n\" 2>&1",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-008990"
+        },
+        {
+          "source_line": 8991,
+          "timestamp": "2026-05-20T14:53:05.263373+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "sorted_keys: ['True', 'Unknown']\nbest (tie between True=6 and Unknown=6): True\nsorted_keys2: ['False', 'True', 'Unknown']\nbest2 (tie between False=6 and True=6): False\n\nmax behavior test:\nmax with all same key: a"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-008991"
+        },
+        {
+          "source_line": 8992,
+          "timestamp": "2026-05-20T14:53:20.142330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nfrom collections import Counter\n\n# Counter.most_common tie-breaking is by insertion order\n# (actually in CPython 3.7+ dicts preserve insertion order,\n#  and Counter.most_common uses heapq which is not stable for ties)\n\n# Test 1: Counter with equal counts\nc1 = Counter()\nc1['Unknown'] += 6\nc1['True'] += 6\nprint('Counter order (Unknown first):', c1.most_common())\n\nc2 = Counter()\nc2['True'] += 6\nc2['Unknown'] += 6\nprint('Counter order (True first):', c2.most_common())\n\n# Test 2: Adding via dict initialization\nc3 = Counter({'True': 6, 'False': 6, 'Unknown': 0})\nprint('Counter from dict (True, False tie):', c3.most_common())\n\nc4 = Counter({'False': 6, 'True': 6, 'Unknown': 0})\nprint('Counter from dict (False, True tie):', c4.most_common())\n\n# Test 3: Counter with items added in specific order (simulating the script)\nc5 = Counter()\n# Simulating: sc_vote_distribution = {'Unknown': 6, 'True': 6}\nfor label, count in {'Unknown': 6, 'True': 6}.items():\n    c5[label] += count\n# Then add DeBERTa vote\nc5['False'] += 3\nprint('Combo Counter (Unknown=6, True=6, False=3):', c5.most_common())\nprint('most_common(1):', c5.most_common(1)[0][0])\n\" 2>&1",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-008992"
+        },
+        {
+          "source_line": 8993,
+          "timestamp": "2026-05-20T14:53:20.493996+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Counter order (Unknown first): [('Unknown', 6), ('True', 6)]\nCounter order (True first): [('True', 6), ('Unknown', 6)]\nCounter from dict (True, False tie): [('True', 6), ('False', 6), ('Unknown', 0)]\nCounter from dict (False, True tie): [('False', 6), ('True', 6), ('Unknown', 0)]\nCombo Counter (Unknown=6, True=6, False=3): [('Unknown', 6), ('True', 6), ('False', 3)]\nmost_common(1): Unknown"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "elapsed_ms": 351
+          },
+          "id": "event-008993"
+        },
+        {
+          "source_line": 8994,
+          "timestamp": "2026-05-20T14:53:33.744812+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_r_deberta_proofwriter.py",
+              "offset": "165",
+              "limit": "55"
+            }
+          },
+          "id": "event-008994"
+        },
+        {
+          "source_line": 8995,
+          "timestamp": "2026-05-20T14:53:33.795456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "165\t    # === Combo: DeBERTa vote added to SC votes ===\n166\t    print(\"\\n=== Combo (DeBERTa + SC votes) ===\")\n167\t    combo_results = {}\n168\t    for weight in [1, 3]:\n169\t        combo_correct = 0\n170\t        combo_preds = {}\n171\t        # McNemar: b = SC correct & combo wrong, c = SC wrong & combo correct\n172\t        b_count = 0\n173\t        c_count = 0\n174\t        for qid in gt:\n175\t            gold = gt[qid]\n176\t            dist = sc_vote_dists.get(qid, {})\n177\t            votes = Counter()\n178\t            for label, count in dist.items():\n179\t                if label in CLASSES:\n180\t                    votes[label] += count\n181\t\n182\t            dp = deberta_preds.get(qid)\n183\t            if dp in CLASSES:\n184\t                votes[dp] += weight\n185\t\n186\t            combo_answer = votes.most_common(1)[0][0] if votes else \"Unknown\"\n187\t            combo_preds[qid] = combo_answer\n188\t\n189\t            if combo_answer == gold:\n190\t                combo_correct += 1\n191\t\n192\t            sc_is_correct = (sc_answers.get(qid) == gold)\n193\t            combo_is_correct = (combo_answer == gold)\n194\t            if sc_is_correct and not combo_is_correct:\n195\t                b_count += 1\n196\t            if not sc_is_correct and combo_is_correct:\n197\t                c_count += 1\n198\t\n199\t        combo_acc = combo_correct / total\n200\t        delta = combo_acc - sc_acc\n201\t        n_disc = b_count + c_count\n202\t        p_val = binomtest(min(b_count, c_count), n_disc, 0.5).pvalue if n_disc > 0 else 1.0\n203\t\n204\t        combo_results[weight] = {\n205\t            \"accuracy\": round(combo_acc, 4),\n206\t            \"correct\": combo_correct,\n207\t            \"delta_vs_sc\": round(delta, 4),\n208\t            \"delta_pp\": round(delta * 100, 2),\n209\t            \"mcnemar_b\": b_count,\n210\t            \"mcnemar_c\": c_count,\n211\t            \"mcnemar_n_discordant\": n_disc,\n212\t            \"mcnemar_p\": round(p_val, 6)\n213\t        }\n214\t        sig = \"***\" if p_val < 0.001 else \"**\" if p_val < 0.01 else \n…[truncated 300 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-008995"
+        },
+        {
+          "source_line": 8996,
+          "timestamp": "2026-05-20T14:53:46.849077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "sc_tiebreak.*25068|tiebreak.*exp-046|exp-046.*affected|exp-046.*tie",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs",
+              "output_mode": "files_with_matches",
+              "head_limit": "10"
+            }
+          },
+          "id": "event-008996"
+        },
+        {
+          "source_line": 8997,
+          "timestamp": "2026-05-20T14:53:47.001689+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 10 files limit: 10\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/chats/feishu_group_oc_970d5ea3f54df81296b97321fcded892_director.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/chats/feishu_group_oc_319977a04ca60b6c4c69a2a8d4141a75_reviewer.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/chats/feishu_group_oc_319977a04ca60b6c4c69a2a8d4141a75.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_analysis_sc-tiebreak-mcnemar-recalc_20260520T141440.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/chats/feishu_group_oc_319977a04ca60b6c4c69a2a8d4141a75_paper_agent.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_analysis_search-5441_20260520T141452.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_analysis_aime-bias-ratio_20260520T134142.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/chats/feishu_group_oc_319977a04ca60b6c4c69a2a8d4141a75_director.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_research_sf2-proofwriter-nli-prep_20260520T133703.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_analysis_process-kappa-crossmodel-table_20260520T115157.log"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Grep",
+            "elapsed_ms": 152
+          },
+          "id": "event-008997"
+        },
+        {
+          "source_line": 8998,
+          "timestamp": "2026-05-20T14:53:51.067254+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_analysis_sc-tiebreak-mcnemar-recalc_20260520T141440.log",
+              "limit": "50"
+            }
+          },
+          "id": "event-008998"
+        },
+        {
+          "source_line": 8999,
+          "timestamp": "2026-05-20T14:53:51.692252+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (152838 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Read",
+            "elapsed_ms": 624
+          },
+          "id": "event-008999"
+        },
+        {
+          "source_line": 9000,
+          "timestamp": "2026-05-20T14:53:55.055027+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_analysis_sc-tiebreak-mcnemar-recalc_20260520T141440.log 2>&1",
+              "timeout": "5000"
+            }
+          },
+          "id": "event-009000"
+        }
+      ]
+    }
+  ]
+}

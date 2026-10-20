@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74823d6fc8bd0d688a53",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment o3 extraction pipeline",
+  "task_key": "worker_experiment_o3-extraction-pipeline_20260521T181530",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_o3-extraction-pipeline_20260521T181530_result.json",
+    "occurrence": 1,
+    "bytes": 129,
+    "sha256": "70f979965c4a36f8afd0518b7aabce963b344be8a25817a0cc4c4edc56ade511"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Extraction 正在后台运行（PID 473361），3/196 完成，ETA ~53 分钟。4.5 分钟后回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-o3-extraction-pipeline.md"
+}

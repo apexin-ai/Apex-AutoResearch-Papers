@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30c97b923d9b5dd6fe49",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code oracle folio exp021",
+  "task_key": "worker_code_oracle-folio-exp021_20260517T163632",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_oracle-folio-exp021_20260517T163632_result.json",
+    "occurrence": 1,
+    "bytes": 789,
+    "sha256": "a4f222e30dd1cbc37340a39861c3ffedc01c612410aa13e919f74b38ec4e13cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。核心结果：\n\n| Method | Accuracy | \n|--------|----------|\n| **Oracle-SICA** (gold FOL + Z3) | **88.24%** (180/204) |\n| SC (majority vote) | 79.41% (162/204) |\n| SICA (self-extracted) | 79.41% (162/204) |\n\n关键发现：\n- **+8.82pp** 增益（Oracle-SICA vs SC/SICA），McNemar p = 6.15e-05\n- Z3 solver 与 gold answer 一致率 **94.6%**（193/204）\n- FOL parser 全部 204 题 parse 成功，0 错误\n- SICA (self-extracted) 在 FOLIO 上与 SC 完全相同（79.41%），说明 LLM 自提取的约束在形式逻辑任务上无有效信号\n- 5 题验证阶段 5/5 正确\n\n结论：**约束质量是 SICA 在 formal logic 任务上获得增益的瓶颈**。给定完美 FOL 约束，consistency-weighted voting 能带来显著提升。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-oracle-folio-exp021.md"
+}

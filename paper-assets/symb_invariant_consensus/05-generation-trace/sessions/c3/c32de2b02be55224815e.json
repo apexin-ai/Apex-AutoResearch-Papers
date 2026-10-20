@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c32de2b02be55224815e",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis bh correction",
+  "task_key": "worker_analysis_bh-correction_20260520T152347",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_bh-correction_20260520T152347_result.json",
+    "occurrence": 1,
+    "bytes": 1141,
+    "sha256": "e0c99fab1beee6c54b5b001dd65f34701f4184634ceecf0ff2f7a55500452b69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部结果如下：\n\n## 6 个 raw p-values\n\n| Comparison | b | c | n | raw p |\n|---|---|---|---|---|\n| FOLIO w=1 | 0 | 4 | 4 | 0.1250 |\n| FOLIO w=3 | 5 | 11 | 16 | 0.2101 |\n| **FOLIO w=5** | **7** | **16** | **23** | **0.0931** |\n| PW w=1 | 4 | 9 | 13 | 0.2668 |\n| PW w=3 | 22 | 43 | 65 | 0.0125 |\n| **PW w=5** | **35** | **99** | **134** | **2.89×10⁻⁸** |\n\n## BH 校正表 (α=0.05, m=6)\n\n| Rank | Comparison | raw p | BH threshold | adj p (BH) | Survives? |\n|---|---|---|---|---|---|\n| 1 | PW w=5 | 2.89×10⁻⁸ | 0.0083 | 1.73×10⁻⁷ | **YES** |\n| 2 | PW w=3 | 0.0125 | 0.0167 | 0.0375 | **YES** |\n| 3 | FOLIO w=5 | 0.0931 | 0.0250 | 0.1863 | no |\n| 4 | FOLIO w=1 | 0.1250 | 0.0333 | 0.1875 | no |\n| 5 | FOLIO w=3 | 0.2101 | 0.0417 | 0.2521 | no |\n| 6 | PW w=1 | 0.2668 | 0.0500 | 0.2668 | no |\n\n## 结论\n\n**2/6 comparisons survive BH at α=0.05:**\n- **PW w=5**: raw p=2.89×10⁻⁸, adj p=1.73×10⁻⁷\n- **PW w=3**: raw p=0.0125 < threshold 0.0167, adj p=0.0375\n\n关键验证：PW w=3 排在 rank 2，BH threshold = (2/6)×0.05 = 0.0167，raw p=0.0125 < 0.0167 → survives。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bh-correction.md"
+}

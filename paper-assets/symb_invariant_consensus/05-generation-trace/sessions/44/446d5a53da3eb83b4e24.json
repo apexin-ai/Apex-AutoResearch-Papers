@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "446d5a53da3eb83b4e24",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment d135 frontier scb",
+  "task_key": "worker_experiment_d135-frontier-scb_20260521T135204",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_d135-frontier-scb_20260521T135204.log",
+    "occurrence": 1,
+    "bytes": 868692,
+    "sha256": "eb6995d6cd818e6c8c4889c9a4d5ae5532a77222954ea7d26a14e93c1b83d364"
+  },
+  "statistics": {
+    "messages": 497,
+    "user_turns": 0,
+    "tool_calls": 177,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "assistant": 137,
+      "record": 1,
+      "tool_call": 177,
+      "tool_result": 177,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 497,
+      "chunks": [
+        {
+          "path": "446d5a53da3eb83b4e24-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "446d5a53da3eb83b4e24-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "446d5a53da3eb83b4e24-part-0003.json",
+          "message_count": 137
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-d135-frontier-scb.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9342ebf096ce09a1d160",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix canonical recompute ft drc",
+  "task_key": "worker_fix_canonical-recompute-ft-drc_20260522T225027",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_canonical-recompute-ft-drc_20260522T225027_result.json",
+    "occurrence": 1,
+    "bytes": 1468,
+    "sha256": "86e9d6ae6a08e3707108a3d04ae41d72ccf9e2172d1ccf8b8704d3b28135747f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits verified. Here's the summary:\n\n## 重算结果\n\n### FT DeBERTa Combo (r11_canonical SC)\n| w | 旧 combo | 新 combo | 旧 Δ | 新 Δ | 变化 |\n|---|---------|---------|------|------|------|\n| 1 | 42.33   | 42.17   | +3.00| +2.83| -0.17pp |\n| 3 | 52.17   | 52.00   | +12.83| +12.67| -0.17pp |\n| 5 | 65.50   | 65.50   | +26.17| +26.17| 无变化 |\n\nComplementarity: 365:2 → 364:2 (因 ID_FIX 使 1 个 Mistral SC 回答由错变对)\n\n### DRC τ=0.7 (r11_canonical)\n| 指标 | 旧值 | 新值 | 变化 |\n|------|------|------|------|\n| Accuracy | 45.33% | 45.33% | 无变化 |\n| NLI calls | 233/600 | 207/600 | -26 |\n| NLI cost | 38.8% | 34.5% | -4.3pp |\n| Recovery | 90.0% | 90.0% | 无变化 |\n\n### 根因\n`mistral_pw600_sc_votes.json` 中两个 problem ID 用的是 `_Q4`，而 `proofwriter_full.json` 用 `_Q8`。ID_FIX 映射后 SC baseline = 236/600 = 39.33%，与 r11_canonical 完全一致（0 mismatches）。\n\n### 修改清单\n- `docs/paper/appendix.tex:868` — DRC 表 caption: \"35--39%\" → \"~35%\"\n- `docs/paper/appendix.tex:876` — DRC 表 PW-D5 行: 233/600, 38.8% → 207/600, 34.5%\n- `docs/paper/appendix.tex:1002-1003` — FT NLI 表: 42.33→42.17, 52.17→52.00, 365:2→364:2\n- `docs/paper/solutions.tex:32` — +12.83→+12.67, 365:2→364:2, DRC 文本修正\n- `docs/paper/figures/gen_capability_gap_scatter.py:50` — 12.83→12.67\n\n### 编译状态\n成功 (27 pages, 652515 bytes)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-canonical-recompute-ft-drc.md"
+}

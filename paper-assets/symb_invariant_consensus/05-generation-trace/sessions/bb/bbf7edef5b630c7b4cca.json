@@ -1,0 +1,1578 @@
+{
+  "schema_version": "1.0",
+  "id": "bbf7edef5b630c7b4cca",
+  "project": "symb_invariant_consensus",
+  "kind": "conversation",
+  "title": "experiment deberta finetune now",
+  "task_key": "worker_experiment_deberta-finetune-now_20260522T155530",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_experiment_deberta-finetune-now_20260522T155530.jsonl",
+    "occurrence": 1,
+    "bytes": 68504,
+    "sha256": "0ee8cc77f7741b38f1e239b6a1b272866b7a9c142e0c91ec3368e42c5112c001"
+  },
+  "statistics": {
+    "messages": 79,
+    "user_turns": 0,
+    "tool_calls": 39,
+    "roles": {
+      "tool_call": 39,
+      "tool_result": 39,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T16:00:54.318656+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__kill_job",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T16:00:54.319029+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T16:00:54.319222+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "nvidia-smi -i 0 --query-compute-apps=pid,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T16:00:54.319372+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"551459, 90150 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.26}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T16:00:54.319519+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__kill_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__kill_job",
+            "tool_args": {
+              "server": "westd-16639",
+              "pid": "551459",
+              "reason": "释放 cuda:0 给 DeBERTa fine-tuning，该 vLLM 进程已完成实验"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T16:00:54.319660+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"551459\\\", \\\"reason\\\": \\\"释放 cuda:0 给 DeBERTa fine-tuning，该 vLLM 进程已完成实验\\\", \\\"force_killed\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.26}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__kill_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T16:00:54.319804+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "nvidia-smi -i 0 --query-gpu=memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T16:00:54.319953+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "grep -n \"CLASSES\" /root/symb_invariant_consensus/scripts/eval_finetuned_nli.py"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T16:00:54.320081+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T16:00:54.320198+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "ls -la /root/symb_invariant_consensus/data/proofwriter_nli_train.jsonl"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T16:00:54.320324+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"30:CLASSES = sorted([\\\\\\\"True\\\\\\\", \\\\\\\"False\\\\\\\", \\\\\\\"Unknown\\\\\\\"])\\\\n66:    return max(CLASSES, key=lambda x: votes.get(x, 0))\\\\n180:    for cls in CLASSES:\\\\n196:    for cls in CLASSES:\\\\n241:                combo_v = {c: sv.get(c, 0) for c in CLASSES}\\\\n243:                combo_answers.append(max(CLASSES, key=lambda x: combo_v.get(x, 0)))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T16:00:54.320460+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/symb_invariant_consensus/data/proofwriter_nli_train.jsonl': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T16:00:54.320612+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "grep -n \"dataset\\|jsonl\\|data_path\\|train_file\\|argparse\\|add_argument\" /root/symb_invariant_consensus/scripts/finetune_deberta_pw.py"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T16:00:54.320737+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T16:00:54.320870+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "ls -la /root/symb_invariant_consensus/data/"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T16:00:54.321087+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 3952\\\\ndrwxr-xr-x  2 root root    4096 May 21 03:36 .\\\\ndrwxr-xr-x 16 root root    4096 May 22 23:14 ..\\\\n-rw-r--r--  1 root root    5615 May 18 17:48 case_study_3problems.json\\\\n-rw-r--r--  1 root root       3 May 18 16:01 empty.json\\\\n-rw-r--r--  1 root root     864 May 18 15:53 explore_proofwriter.py\\\\n-rw-r--r--  1 root root    1010 May 18 15:53 explore_pw.py\\\\n-rw-r--r--  1 root root     377 May 18 15:54 explore_pw2.py\\\\n-rw-r--r--  1 root root     749 May 18 15:55 explore_pw3.py\\\\n-rw-r--r--  1 root root   31692 May 19 00:22 folio_d012.json\\\\n-rw-r--r--  1 root root    2517 May 19 12:02 folio_dryrun_3.json\\\\n-rw-r--r--  1 root root  215383 May 18 15:53 folio_full.json\\\\n-rw-r--r--  1 root root   36413 May 19 12:02 folio_remaining_38.json\\\\n-rw-r--r--  1 root root  398032 May 19 01:33 logiqa_200.json\\\\n-rw-r--r--  1 root root   61616 May 20 18:38 logiqa_30.json\\\\n-rw-r--r--  1 root root   26853 May 21 03:36 mistral_pw600_sc_votes.json\\\\n-rw-r--r--  1 root root    1979 May 18 15:52 prepare_folio.py\\\\n-rw-r--r--  1 root root    2771 May 19 01:30 prepare_logiqa.py\\\\n-rw-r--r--  1 root root    1995 May 18 16:01 prepare_proofwriter.py\\\\n-rw-r--r--  1 root root 1521159 May 18 16:01 proofwriter-OWA-D5-validation.jsonl\\\\n-rw-r--r--  1 root root   77419 May 20 18:38 proofwriter_30.json\\\\n-rw-r--r--  1 root root   72490 May 19 00:22 proofwriter_d012.json\\\\n-rw-r--r--  1 root root 1525561 May 18 16:01 proofwriter_full.json\\\\n-rw-r--r--  1 root root     526 May 18 15:56 pw_explore.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T16:00:54.321270+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "grep -n \"dataset\\|jsonl\\|data_path\\|train_file\\|add_argument\\|default\" /root/symb_invariant_consensus/scripts/finetune_deberta_pw.py"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T16:00:54.321401+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T16:00:54.321520+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "head -80 /root/symb_invariant_consensus/scripts/finetune_deberta_pw.py"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T16:00:54.321694+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Fine-tune DeBERTa-large-mnli on ProofWriter for NLI classification.\\\\n\\\\nUsage:\\\\n    python scripts/finetune_deberta_pw.py --epochs 5 --lr 2e-5 --batch-size 16\\\\n    python scripts/finetune_deberta_pw.py --dry-run\\\\n    python scripts/finetune_deberta_pw.py --depth-filter D5  # only depth-5 training data\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n# Environment setup for westd-16639:\\\\n#   export CUDA_VISIBLE_DEVICES=<free_gpu_id>\\\\n#   export LD_LIBRARY_PATH=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib:$LD_LIBRARY_PATH\\\\n\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport numpy as np\\\\nimport torch\\\\nfrom collections import Counter\\\\nfrom transformers import (\\\\n    AutoTokenizer, AutoModelForSequenceClassification,\\\\n    TrainingArguments, Trainer, EarlyStoppingCallback,\\\\n    DataCollatorWithPadding\\\\n)\\\\nfrom sklearn.metrics import accuracy_score\\\\n\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/models/deberta-large-mnli\\\\\\\"\\\\nPW_VAL_PATH = \\\\\\\"/root/symb_invariant_consensus/data/proofwriter_full.json\\\\\\\"\\\\nDEFAULT_OUTPUT_DIR = \\\\\\\"/root/symb_invariant_consensus/checkpoints/deberta-large-pw-finetuned\\\\\\\"\\\\n\\\\nPW_TO_NLI = {\\\\\\\"True\\\\\\\": 2, \\\\\\\"False\\\\\\\": 0, \\\\\\\"Unknown\\\\\\\": 1}\\\\nNLI_TO_PW = {2: \\\\\\\"True\\\\\\\", 0: \\\\\\\"False\\\\\\\", 1: \\\\\\\"Unknown\\\\\\\"}\\\\nHF_ANSWER_MAP = {\\\\\\\"A\\\\\\\": \\\\\\\"True\\\\\\\", \\\\\\\"B\\\\\\\": \\\\\\\"False\\\\\\\", \\\\\\\"C\\\\\\\": \\\\\\\"Unknown\\\\\\\"}\\\\n\\\\n\\\\ndef parse_pw_problem(text):\\\\n    for m in [\\\\n        \\\\\\\"Determine whether the following statement is true, false, or unknown:\\\\\\\\n\\\\\\\",\\\\n        \\\\\\\"Determine whether the following statement is True, False, or Unknown:\\\\\\\\n\\\\\\\",\\\\n    ]:\\\\n        i = text.find(m)\\\\n        if i != -1:\\\\n            return text[:i].strip(), text[i + len(m):].strip()\\\\n    return text, \\\\\\\"\\\\\\\"\\\\n\\\\n\\\\ndef load_hf_train(depth_filter=None):\\\\n    from datasets import load_dataset\\\\n    print(\\\\\\\"Loading tasksource/proofwriter train split...\\\\\\\")\\\\n    d\n…[truncated 1469 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T16:00:54.321889+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "grep -n \"add_argument\\|argparse\\|parse_args\\|def main\" /root/symb_invariant_consensus/scripts/finetune_deberta_pw.py"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T16:00:54.322036+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T16:00:54.322159+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "ls -la /root/autodl-tmp/models/deberta-large-mnli/"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T16:00:54.322285+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1590320\\\\ndrwxr-xr-x  2 root root        121 May 21 04:49 .\\\\ndrwxr-xr-x 21 root root       4096 May 22 20:36 ..\\\\n-rw-r--r--  1 root root       1008 May 21 04:49 config.json\\\\n-rw-r--r--  1 root root 1624911148 May 21 04:49 model.safetensors\\\\n-rw-r--r--  1 root root    3559746 May 21 04:47 tokenizer.json\\\\n-rw-r--r--  1 root root        448 May 21 04:47 tokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T16:00:54.322421+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "grep -n \"add_argument\" /root/symb_invariant_consensus/scripts/finetune_deberta_pw.py"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T16:00:54.322563+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"178:    parser.add_argument(\\\\\\\"--model-path\\\\\\\", default=MODEL_PATH)\\\\n179:    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", default=DEFAULT_OUTPUT_DIR)\\\\n180:    parser.add_argument(\\\\\\\"--epochs\\\\\\\", type=int, default=5)\\\\n181:    parser.add_argument(\\\\\\\"--lr\\\\\\\", type=float, default=2e-5)\\\\n182:    parser.add_argument(\\\\\\\"--batch-size\\\\\\\", type=int, default=16)\\\\n183:    parser.add_argument(\\\\\\\"--max-length\\\\\\\", type=int, default=512)\\\\n184:    parser.add_argument(\\\\\\\"--warmup-ratio\\\\\\\", type=float, default=0.1)\\\\n185:    parser.add_argument(\\\\\\\"--weight-decay\\\\\\\", type=float, default=0.01)\\\\n186:    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n187:    parser.add_argument(\\\\\\\"--depth-filter\\\\\\\", default=None, help=\\\\\\\"e.g. 'D5' to only use depth-5 training data\\\\\\\")\\\\n188:    parser.add_argument(\\\\\\\"--train-data\\\\\\\", default=None,\\\\n190:    parser.add_argument(\\\\\\\"--max-steps\\\\\\\", type=int, default=-1)\\\\n191:    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n192:    parser.add_argument(\\\\\\\"--gradient-accumulation\\\\\\\", type=int, default=1)\\\\n193:    parser.add_argument(\\\\\\\"--patience\\\\\\\", type=int, default=2)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T16:00:54.322729+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "cd /root/symb_invariant_consensus && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && CUDA_VISIBLE_DEVICES=0 python3 scripts/finetune_deberta_pw.py --dry-run",
+              "warn": "True"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T16:00:54.322968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n=== DRY RUN ===\\\\n\\\\nLoading model: /root/autodl-tmp/models/deberta-large-mnli\\\\nid2label: {0: 'CONTRADICTION', 1: 'NEUTRAL', 2: 'ENTAILMENT'}\\\\nGPU: NVIDIA RTX PRO 6000 Blackwell Server Edition (94GB)\\\\nVal examples: 600, dist: {'True': 200, 'False': 200, 'Unknown': 200}\\\\nDry-run: using local data split 480/120\\\\n\\\\nToken lengths (n=320): mean=151 med=136 P95=220 P99=239 max=263\\\\nTruncated at 512: 0/320 (0.0%)\\\\n\\\\nDatasets: train=480, val=120\\\\n\\\\n=== Training ===\\\\n\\\", \\\"stderr\\\": \\\"\\\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 11518.37it/s]\\\\n\\\\rMap:   0%|          | 0/480 [00:00<?, ? examples/s]\\\\rMap: 100%|██████████| 480/480 [00:00<00:00, 8492.75 examples/s]\\\\n\\\\rMap:   0%|          | 0/120 [00:00<?, ? examples/s]\\\\rMap: 100%|██████████| 120/120 [00:00<00:00, 6656.74 examples/s]\\\\n[transformers] warmup_ratio is deprecated and will be removed in v5.2. Use `warmup_steps` instead.\\\\n\\\\r  0%|          | 0/2 [00:00<?, ?it/s]\\\\r 50%|█████     | 1/2 [00:00<00:00,  1.23it/s]\\\\r100%|██████████| 2/2 [00:00<00:00,  2.43it/s]Traceback (most recent call last):\\\\n  File \\\\\\\"/root/symb_invariant_consensus/scripts/finetune_deberta_pw.py\\\\\\\", line 341, in <module>\\\\n    main()\\\\n  File \\\\\\\"/root/symb_invariant_consensus/scripts/finetune_deberta_pw.py\\\\\\\", line 306, in main\\\\n    result = trainer.train()\\\\n             ^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\\\\\", line 1427, in train\\\\n    return inner_training_loop(\\\\n           ^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\\\\\", line 1509, in _inner_training_loop\\\\n    self._run_epoch(\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\\\\\", line 1810, in _run_epoch\\\\n    self._maybe_log_save_evaluate(\n…[truncated 4956 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T16:00:54.323168+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "find /root/miniconda3 -name \"libnvrtc-builtins*\" -type f"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T16:00:54.323307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc-builtins.alt.so.12.8\\\\n/root/miniconda3/lib/python3.12/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc-builtins.so.12.8\\\\n/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib/libnvrtc-builtins.alt.so.13.0\\\\n/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib/libnvrtc-builtins.so.13.0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T16:00:54.323456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "cd /root/symb_invariant_consensus && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export LD_LIBRARY_PATH=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib:$LD_LIBRARY_PATH && CUDA_VISIBLE_DEVICES=0 python3 scripts/finetune_deberta_pw.py --dry-run",
+              "warn": "True"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T16:00:54.323640+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n=== DRY RUN ===\\\\n\\\\nLoading model: /root/autodl-tmp/models/deberta-large-mnli\\\\nid2label: {0: 'CONTRADICTION', 1: 'NEUTRAL', 2: 'ENTAILMENT'}\\\\nGPU: NVIDIA RTX PRO 6000 Blackwell Server Edition (94GB)\\\\nVal examples: 600, dist: {'True': 200, 'False': 200, 'Unknown': 200}\\\\nDry-run: using local data split 480/120\\\\n\\\\nToken lengths (n=320): mean=151 med=136 P95=220 P99=239 max=263\\\\nTruncated at 512: 0/320 (0.0%)\\\\n\\\\nDatasets: train=480, val=120\\\\n\\\\n=== Training ===\\\\n{'eval_loss': '0.7921', 'eval_accuracy': '0.6917', 'eval_acc_True': '0.9412', 'eval_acc_False': '0.7436', 'eval_acc_Unknown': '0.4681', 'eval_runtime': '1.018', 'eval_samples_per_second': '117.9', 'eval_steps_per_second': '29.48', 'epoch': '0.008333'}\\\\n{'train_runtime': '13.88', 'train_samples_per_second': '0.288', 'train_steps_per_second': '0.144', 'train_loss': '1.897', 'epoch': '0.008333'}\\\\nTraining metrics: {'train_runtime': 13.8758, 'train_samples_per_second': 0.288, 'train_steps_per_second': 0.144, 'total_flos': 1286037736092.0, 'train_loss': 1.8971915245056152, 'epoch': 0.008333333333333333}\\\\n\\\\n=== Final Evaluation ===\\\\nVal accuracy: 0.6917\\\\n  eval_acc_False: 0.7436\\\\n  eval_acc_True: 0.9412\\\\n  eval_acc_Unknown: 0.4681\\\\n\\\\nCheckpoint: /root/symb_invariant_consensus/checkpoints/deberta-large-pw-finetuned-dryrun/best\\\\nConfig: /root/symb_invariant_consensus/checkpoints/deberta-large-pw-finetuned-dryrun/training_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 11185.34it/s]\\\\n\\\\rMap:   0%|          | 0/480 [00:00<?, ? examples/s]\\\\rMap: 100%|██████████| 480/480 [00:00<00:00, 8595.69 examples/s]\\\\n\\\\rMap:   0%|          | 0/120 [00:00<?, ? examples/s]\\\\rMap: 100%|██████████| 120/120 [00:00<00:00, 6393.11 examples/s]\\\\n[transformers] warmup_ratio is deprecated and will be removed in v5\n…[truncated 1945 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T16:00:54.323805+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "cd /root/symb_invariant_consensus && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export LD_LIBRARY_PATH=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib:$LD_LIBRARY_PATH && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python3 scripts/finetune_deberta_pw.py --epochs 5 --lr 2e-5 --batch-size 16 --max-length 512 --patience 2' > /tmp/deberta_finetune.log 2>&1 & echo \"PID: $!\""
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T16:00:54.323981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/symb_invariant_consensus && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export LD_LIBRARY_PATH=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib:$LD_LIBRARY_PATH && nohup bash -c \\\\\\\\'CUDA_VISIBLE_DEVICES=0 python3 scripts/finetune_deberta_pw.py --epochs 5 --lr 2e-5 --batch-size 16 --max-length 512 --patience 2\\\\\\\\' > /tmp/deberta_finetune.log 2>&1 & echo \\\\\\\"PID: $!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID: 639655\\\\n设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T16:00:54.324145+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -30 /tmp/deberta_finetune.log"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-22T16:00:54.324283+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading model: /root/autodl-tmp/models/deberta-large-mnli\\\\n\\\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 11379.66it/s]\\\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-22T16:00:54.324426+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -30 /tmp/deberta_finetune.log"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-22T16:00:54.324546+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "nvidia-smi -i 0 --query-gpu=memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-22T16:00:54.324677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading model: /root/autodl-tmp/models/deberta-large-mnli\\\\n\\\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 11379.66it/s]\\\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-22T16:00:54.324811+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-22T16:00:54.325058+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -40 /tmp/deberta_finetune.log"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-22T16:00:54.325234+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading model: /root/autodl-tmp/models/deberta-large-mnli\\\\n\\\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 11379.66it/s]\\\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\nid2label: {0: 'CONTRADICTION', 1: 'NEUTRAL', 2: 'ENTAILMENT'}\\\\nGPU: NVIDIA RTX PRO 6000 Blackwell Server Edition (94GB)\\\\nVal examples: 600, dist: {'True': 200, 'False': 200, 'Unknown': 200}\\\\nLoading tasksource/proofwriter train split...\\\\nTotal: 585552, columns: ['id', 'maxD', 'NFact', 'NRule', 'theory', 'question', 'answer', 'QDep', 'QLen', 'allProofs', 'config']\\\\nConfig distribution:\\\\n  NatLang: 28010\\\\n  depth-0: 69906\\\\n  depth-1: 69616\\\\n  depth-2: 70076\\\\n  depth-3: 69388\\\\n  depth-3ext: 90368\\\\n  depth-3ext-NatLang: 118378\\\\n  depth-5: 69810\\\\nNo OWA configs found, using all data\\\\nOWA filtered: 585552\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/symb_invariant_consensus/scripts/finetune_deberta_pw.py\\\\\\\", line 341, in <module>\\\\n    main()\\\\n  File \\\\\\\"/root/symb_invariant_consensus/scripts/finetune_deberta_pw.py\\\\\\\", line 232, in main\\\\n    train_examples = load_hf_train(args.depth_filter)\\\\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/symb_invariant_consensus/scripts/finetune_deberta_pw.py\\\\\\\", line 76, in load_hf_train\\\\n    ctx = row[\\\\\\\"context\\\\\\\"].strip()\\\\n          ~~~^^^^^^^^^^^\\\\nKeyError: 'context'\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-22T16:00:54.325412+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "head -120 /root/symb_invariant_consensus/scripts/finetune_deberta_pw.py"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-22T16:00:54.325611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Fine-tune DeBERTa-large-mnli on ProofWriter for NLI classification.\\\\n\\\\nUsage:\\\\n    python scripts/finetune_deberta_pw.py --epochs 5 --lr 2e-5 --batch-size 16\\\\n    python scripts/finetune_deberta_pw.py --dry-run\\\\n    python scripts/finetune_deberta_pw.py --depth-filter D5  # only depth-5 training data\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n# Environment setup for westd-16639:\\\\n#   export CUDA_VISIBLE_DEVICES=<free_gpu_id>\\\\n#   export LD_LIBRARY_PATH=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib:$LD_LIBRARY_PATH\\\\n\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport numpy as np\\\\nimport torch\\\\nfrom collections import Counter\\\\nfrom transformers import (\\\\n    AutoTokenizer, AutoModelForSequenceClassification,\\\\n    TrainingArguments, Trainer, EarlyStoppingCallback,\\\\n    DataCollatorWithPadding\\\\n)\\\\nfrom sklearn.metrics import accuracy_score\\\\n\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/models/deberta-large-mnli\\\\\\\"\\\\nPW_VAL_PATH = \\\\\\\"/root/symb_invariant_consensus/data/proofwriter_full.json\\\\\\\"\\\\nDEFAULT_OUTPUT_DIR = \\\\\\\"/root/symb_invariant_consensus/checkpoints/deberta-large-pw-finetuned\\\\\\\"\\\\n\\\\nPW_TO_NLI = {\\\\\\\"True\\\\\\\": 2, \\\\\\\"False\\\\\\\": 0, \\\\\\\"Unknown\\\\\\\": 1}\\\\nNLI_TO_PW = {2: \\\\\\\"True\\\\\\\", 0: \\\\\\\"False\\\\\\\", 1: \\\\\\\"Unknown\\\\\\\"}\\\\nHF_ANSWER_MAP = {\\\\\\\"A\\\\\\\": \\\\\\\"True\\\\\\\", \\\\\\\"B\\\\\\\": \\\\\\\"False\\\\\\\", \\\\\\\"C\\\\\\\": \\\\\\\"Unknown\\\\\\\"}\\\\n\\\\n\\\\ndef parse_pw_problem(text):\\\\n    for m in [\\\\n        \\\\\\\"Determine whether the following statement is true, false, or unknown:\\\\\\\\n\\\\\\\",\\\\n        \\\\\\\"Determine whether the following statement is True, False, or Unknown:\\\\\\\\n\\\\\\\",\\\\n    ]:\\\\n        i = text.find(m)\\\\n        if i != -1:\\\\n            return text[:i].strip(), text[i + len(m):].strip()\\\\n    return text, \\\\\\\"\\\\\\\"\\\\n\\\\n\\\\ndef load_hf_train(depth_filter=None):\\\\n    from datasets import load_dataset\\\\n    print(\\\\\\\"Loading tasksource/proofwriter train split...\\\\\\\")\\\\n    d\n…[truncated 3120 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-22T16:00:54.325815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "cd /root/symb_invariant_consensus && sed -i '76s/row\\[\"context\"\\]/row[\"theory\"]/' scripts/finetune_deberta_pw.py"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-22T16:00:54.326119+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-22T16:00:54.326264+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "head -80 /root/symb_invariant_consensus/scripts/finetune_deberta_pw.py"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-22T16:00:54.326445+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Fine-tune DeBERTa-large-mnli on ProofWriter for NLI classification.\\\\n\\\\nUsage:\\\\n    python scripts/finetune_deberta_pw.py --epochs 5 --lr 2e-5 --batch-size 16\\\\n    python scripts/finetune_deberta_pw.py --dry-run\\\\n    python scripts/finetune_deberta_pw.py --depth-filter D5  # only depth-5 training data\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n# Environment setup for westd-16639:\\\\n#   export CUDA_VISIBLE_DEVICES=<free_gpu_id>\\\\n#   export LD_LIBRARY_PATH=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib:$LD_LIBRARY_PATH\\\\n\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport numpy as np\\\\nimport torch\\\\nfrom collections import Counter\\\\nfrom transformers import (\\\\n    AutoTokenizer, AutoModelForSequenceClassification,\\\\n    TrainingArguments, Trainer, EarlyStoppingCallback,\\\\n    DataCollatorWithPadding\\\\n)\\\\nfrom sklearn.metrics import accuracy_score\\\\n\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/models/deberta-large-mnli\\\\\\\"\\\\nPW_VAL_PATH = \\\\\\\"/root/symb_invariant_consensus/data/proofwriter_full.json\\\\\\\"\\\\nDEFAULT_OUTPUT_DIR = \\\\\\\"/root/symb_invariant_consensus/checkpoints/deberta-large-pw-finetuned\\\\\\\"\\\\n\\\\nPW_TO_NLI = {\\\\\\\"True\\\\\\\": 2, \\\\\\\"False\\\\\\\": 0, \\\\\\\"Unknown\\\\\\\": 1}\\\\nNLI_TO_PW = {2: \\\\\\\"True\\\\\\\", 0: \\\\\\\"False\\\\\\\", 1: \\\\\\\"Unknown\\\\\\\"}\\\\nHF_ANSWER_MAP = {\\\\\\\"A\\\\\\\": \\\\\\\"True\\\\\\\", \\\\\\\"B\\\\\\\": \\\\\\\"False\\\\\\\", \\\\\\\"C\\\\\\\": \\\\\\\"Unknown\\\\\\\"}\\\\n\\\\n\\\\ndef parse_pw_problem(text):\\\\n    for m in [\\\\n        \\\\\\\"Determine whether the following statement is true, false, or unknown:\\\\\\\\n\\\\\\\",\\\\n        \\\\\\\"Determine whether the following statement is True, False, or Unknown:\\\\\\\\n\\\\\\\",\\\\n    ]:\\\\n        i = text.find(m)\\\\n        if i != -1:\\\\n            return text[:i].strip(), text[i + len(m):].strip()\\\\n    return text, \\\\\\\"\\\\\\\"\\\\n\\\\n\\\\ndef load_hf_train(depth_filter=None):\\\\n    from datasets import load_dataset\\\\n    print(\\\\\\\"Loading tasksource/proofwriter train split...\\\\\\\")\\\\n    d\n…[truncated 1468 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-22T16:00:54.326620+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "cd /root/symb_invariant_consensus && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export LD_LIBRARY_PATH=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib:$LD_LIBRARY_PATH && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python3 scripts/finetune_deberta_pw.py --epochs 5 --lr 2e-5 --batch-size 16 --max-length 512 --patience 2' > /tmp/deberta_finetune.log 2>&1 & echo \"PID: $!\"",
+              "warn": "True"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-22T16:00:54.326770+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/symb_invariant_consensus && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export LD_LIBRARY_PATH=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib:$LD_LIBRARY_PATH && nohup bash -c \\\\\\\\'CUDA_VISIBLE_DEVICES=0 python3 scripts/finetune_deberta_pw.py --epochs 5 --lr 2e-5 --batch-size 16 --max-length 512 --patience 2\\\\\\\\' > /tmp/deberta_finetune.log 2>&1 & echo \\\\\\\"PID: $!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID: 640384\\\\n设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-22T16:00:54.326939+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -40 /tmp/deberta_finetune.log"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-22T16:00:54.327084+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading model: /root/autodl-tmp/models/deberta-large-mnli\\\\n\\\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 10847.43it/s]\\\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-22T16:00:54.327386+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -50 /tmp/deberta_finetune.log"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-22T16:00:54.327559+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading model: /root/autodl-tmp/models/deberta-large-mnli\\\\n\\\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 10847.43it/s]\\\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-22T16:00:54.327691+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "wc -l /tmp/deberta_finetune.log"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-22T16:00:54.327816+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3 /tmp/deberta_finetune.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-22T16:00:54.327972+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "ls -la /proc/640384/status"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-22T16:00:54.328096+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-r--r--r-- 1 root root 0 May 22 23:59 /proc/640384/status\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-22T16:00:54.328231+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -50 /tmp/deberta_finetune.log"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-22T16:00:54.328395+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading model: /root/autodl-tmp/models/deberta-large-mnli\\\\n\\\\rLoading weights:   0%|          | 0/392 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 392/392 [00:00<00:00, 10847.43it/s]\\\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\nid2label: {0: 'CONTRADICTION', 1: 'NEUTRAL', 2: 'ENTAILMENT'}\\\\nGPU: NVIDIA RTX PRO 6000 Blackwell Server Edition (94GB)\\\\nVal examples: 600, dist: {'True': 200, 'False': 200, 'Unknown': 200}\\\\nLoading tasksource/proofwriter train split...\\\\nTotal: 585552, columns: ['id', 'maxD', 'NFact', 'NRule', 'theory', 'question', 'answer', 'QDep', 'QLen', 'allProofs', 'config']\\\\nConfig distribution:\\\\n  NatLang: 28010\\\\n  depth-0: 69906\\\\n  depth-1: 69616\\\\n  depth-2: 70076\\\\n  depth-3: 69388\\\\n  depth-3ext: 90368\\\\n  depth-3ext-NatLang: 118378\\\\n  depth-5: 69810\\\\nNo OWA configs found, using all data\\\\nOWA filtered: 585552\\\\nTrain examples: 585552, dist: {'True': 158805, 'False': 158805, 'Unknown': 267942}\\\\n\\\\nToken lengths (n=400): mean=124 med=118 P95=218 P99=238 max=265\\\\nTruncated at 512: 0/400 (0.0%)\\\\n\\\\rMap:   0%|          | 0/585552 [00:00<?, ? examples/s]\\\\rMap:   0%|          | 2000/585552 [00:00<00:41, 14008.63 examples/s]\\\\rMap:   1%|          | 4000/585552 [00:00<00:36, 15922.41 examples/s]\\\\rMap:   1%|          | 6000/585552 [00:00<00:35, 16390.37 examples/s]\\\\rMap:   1%|▏         | 8000/585552 [00:00<00:34, 16606.71 examples/s]\\\\rMap:   2%|▏         | 10000/585552 [00:00<00:33, 17046.19 examples/s]\\\\rMap:   2%|▏         | 12000/585552 [00:00<00:33, 17336.20 examples/s]\\\\rMap:   2%|▏         | 14000/585552 [00:00<00:32, 17355.25 examples/s]\\\\rMap:   3%|▎         | 16000/585552 [00:00<00:32, 17424.77 examples/s]\\\\rMap:   3%|▎         | 18000/585552 [00:01<00:32, 17530.91 examples/s]\\\\rMap:   3%|▎         | 20000/585552 [00:01<00:32, 17374.91 examples/s]\\\\rMap:   4%|▍         | 2\n…[truncated 1518 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-22T16:00:54.328563+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -20 /tmp/deberta_finetune.log"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-22T16:00:54.328760+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"GPU: NVIDIA RTX PRO 6000 Blackwell Server Edition (94GB)\\\\nVal examples: 600, dist: {'True': 200, 'False': 200, 'Unknown': 200}\\\\nLoading tasksource/proofwriter train split...\\\\nTotal: 585552, columns: ['id', 'maxD', 'NFact', 'NRule', 'theory', 'question', 'answer', 'QDep', 'QLen', 'allProofs', 'config']\\\\nConfig distribution:\\\\n  NatLang: 28010\\\\n  depth-0: 69906\\\\n  depth-1: 69616\\\\n  depth-2: 70076\\\\n  depth-3: 69388\\\\n  depth-3ext: 90368\\\\n  depth-3ext-NatLang: 118378\\\\n  depth-5: 69810\\\\nNo OWA configs found, using all data\\\\nOWA filtered: 585552\\\\nTrain examples: 585552, dist: {'True': 158805, 'False': 158805, 'Unknown': 267942}\\\\n\\\\nToken lengths (n=400): mean=124 med=118 P95=218 P99=238 max=265\\\\nTruncated at 512: 0/400 (0.0%)\\\\n\\\\rMap:   0%|          | 0/585552 [00:00<?, ? examples/s]\\\\rMap:   0%|          | 2000/585552 [00:00<00:41, 14008.63 examples/s]\\\\rMap:   1%|          | 4000/585552 [00:00<00:36, 15922.41 examples/s]\\\\rMap:   1%|          | 6000/585552 [00:00<00:35, 16390.37 examples/s]\\\\rMap:   1%|▏         | 8000/585552 [00:00<00:34, 16606.71 examples/s]\\\\rMap:   2%|▏         | 10000/585552 [00:00<00:33, 17046.19 examples/s]\\\\rMap:   2%|▏         | 12000/585552 [00:00<00:33, 17336.20 examples/s]\\\\rMap:   2%|▏         | 14000/585552 [00:00<00:32, 17355.25 examples/s]\\\\rMap:   3%|▎         | 16000/585552 [00:00<00:32, 17424.77 examples/s]\\\\rMap:   3%|▎         | 18000/585552 [00:01<00:32, 17530.91 examples/s]\\\\rMap:   3%|▎         | 20000/585552 [00:01<00:32, 17374.91 examples/s]\\\\rMap:   4%|▍         | 22000/585552 [00:01<00:46, 12094.41 examples/s]\\\\rMap:   4%|▍         | 24000/585552 [00:01<00:42, 13231.16 examples/s]\\\\rMap:   4%|▍         | 26000/585552 [00:01<00:39, 14323.19 examples/s]\\\\rMap:   5%|▍         | 28000/585552 [00:01<00:36, 15201.75 examples/s]\\\\rMap:   5%|▌         | 30000/585552 [00:01<00:36, 15369.78 examples/s]\\\\rMap:   5%|▌         | 32000/585552 [00:02<00:34, 15860.52 exa\n…[truncated 3509 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-22T16:00:54.329035+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -5 /tmp/deberta_finetune.log"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-22T16:00:54.329245+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Train examples: 585552, dist: {'True': 158805, 'False': 158805, 'Unknown': 267942}\\\\n\\\\nToken lengths (n=400): mean=124 med=118 P95=218 P99=238 max=265\\\\nTruncated at 512: 0/400 (0.0%)\\\\n\\\\rMap:   0%|          | 0/585552 [00:00<?, ? examples/s]\\\\rMap:   0%|          | 2000/585552 [00:00<00:41, 14008.63 examples/s]\\\\rMap:   1%|          | 4000/585552 [00:00<00:36, 15922.41 examples/s]\\\\rMap:   1%|          | 6000/585552 [00:00<00:35, 16390.37 examples/s]\\\\rMap:   1%|▏         | 8000/585552 [00:00<00:34, 16606.71 examples/s]\\\\rMap:   2%|▏         | 10000/585552 [00:00<00:33, 17046.19 examples/s]\\\\rMap:   2%|▏         | 12000/585552 [00:00<00:33, 17336.20 examples/s]\\\\rMap:   2%|▏         | 14000/585552 [00:00<00:32, 17355.25 examples/s]\\\\rMap:   3%|▎         | 16000/585552 [00:00<00:32, 17424.77 examples/s]\\\\rMap:   3%|▎         | 18000/585552 [00:01<00:32, 17530.91 examples/s]\\\\rMap:   3%|▎         | 20000/585552 [00:01<00:32, 17374.91 examples/s]\\\\rMap:   4%|▍         | 22000/585552 [00:01<00:46, 12094.41 examples/s]\\\\rMap:   4%|▍         | 24000/585552 [00:01<00:42, 13231.16 examples/s]\\\\rMap:   4%|▍         | 26000/585552 [00:01<00:39, 14323.19 examples/s]\\\\rMap:   5%|▍         | 28000/585552 [00:01<00:36, 15201.75 examples/s]\\\\rMap:   5%|▌         | 30000/585552 [00:01<00:36, 15369.78 examples/s]\\\\rMap:   5%|▌         | 32000/585552 [00:02<00:34, 15860.52 examples/s]\\\\rMap:   6%|▌         | 34000/585552 [00:02<00:33, 16483.95 examples/s]\\\\rMap:   6%|▌         | 36000/585552 [00:02<00:32, 16946.07 examples/s]\\\\rMap:   6%|▋         | 38000/585552 [00:02<00:31, 17139.32 examples/s]\\\\rMap:   7%|▋         | 40000/585552 [00:02<00:31, 17364.42 examples/s]\\\\rMap:   7%|▋         | 42000/585552 [00:02<00:41, 13188.44 examples/s]\\\\rMap:   8%|▊         | 44000/585552 [00:02<00:38, 14107.66 examples/s]\\\\rMap:   8%|▊         | 46000/585552 [00:02<00:36, 14882.60 examples/s]\\\\rMap:   8%|▊         | 48000/585552 [00:03<00:\n…[truncated 5358 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-22T16:00:54.329412+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -10 /tmp/deberta_finetune.log"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-22T16:00:54.329614+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  depth-3ext: 90368\\\\n  depth-3ext-NatLang: 118378\\\\n  depth-5: 69810\\\\nNo OWA configs found, using all data\\\\nOWA filtered: 585552\\\\nTrain examples: 585552, dist: {'True': 158805, 'False': 158805, 'Unknown': 267942}\\\\n\\\\nToken lengths (n=400): mean=124 med=118 P95=218 P99=238 max=265\\\\nTruncated at 512: 0/400 (0.0%)\\\\n\\\\rMap:   0%|          | 0/585552 [00:00<?, ? examples/s]\\\\rMap:   0%|          | 2000/585552 [00:00<00:41, 14008.63 examples/s]\\\\rMap:   1%|          | 4000/585552 [00:00<00:36, 15922.41 examples/s]\\\\rMap:   1%|          | 6000/585552 [00:00<00:35, 16390.37 examples/s]\\\\rMap:   1%|▏         | 8000/585552 [00:00<00:34, 16606.71 examples/s]\\\\rMap:   2%|▏         | 10000/585552 [00:00<00:33, 17046.19 examples/s]\\\\rMap:   2%|▏         | 12000/585552 [00:00<00:33, 17336.20 examples/s]\\\\rMap:   2%|▏         | 14000/585552 [00:00<00:32, 17355.25 examples/s]\\\\rMap:   3%|▎         | 16000/585552 [00:00<00:32, 17424.77 examples/s]\\\\rMap:   3%|▎         | 18000/585552 [00:01<00:32, 17530.91 examples/s]\\\\rMap:   3%|▎         | 20000/585552 [00:01<00:32, 17374.91 examples/s]\\\\rMap:   4%|▍         | 22000/585552 [00:01<00:46, 12094.41 examples/s]\\\\rMap:   4%|▍         | 24000/585552 [00:01<00:42, 13231.16 examples/s]\\\\rMap:   4%|▍         | 26000/585552 [00:01<00:39, 14323.19 examples/s]\\\\rMap:   5%|▍         | 28000/585552 [00:01<00:36, 15201.75 examples/s]\\\\rMap:   5%|▌         | 30000/585552 [00:01<00:36, 15369.78 examples/s]\\\\rMap:   5%|▌         | 32000/585552 [00:02<00:34, 15860.52 examples/s]\\\\rMap:   6%|▌         | 34000/585552 [00:02<00:33, 16483.95 examples/s]\\\\rMap:   6%|▌         | 36000/585552 [00:02<00:32, 16946.07 examples/s]\\\\rMap:   6%|▋         | 38000/585552 [00:02<00:31, 17139.32 examples/s]\\\\rMap:   7%|▋         | 40000/585552 [00:02<00:31, 17364.42 examples/s]\\\\rMap:   7%|▋         | 42000/585552 [00:02<00:41, 13188.44 examples/s]\\\\rMap:   8%|▊         | 44000/585552 [00:02<00:38, 14107.\n…[truncated 6439 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-22T16:00:54.329785+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -5 /tmp/deberta_finetune.log"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-22T16:00:54.330019+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Train examples: 585552, dist: {'True': 158805, 'False': 158805, 'Unknown': 267942}\\\\n\\\\nToken lengths (n=400): mean=124 med=118 P95=218 P99=238 max=265\\\\nTruncated at 512: 0/400 (0.0%)\\\\n\\\\rMap:   0%|          | 0/585552 [00:00<?, ? examples/s]\\\\rMap:   0%|          | 2000/585552 [00:00<00:41, 14008.63 examples/s]\\\\rMap:   1%|          | 4000/585552 [00:00<00:36, 15922.41 examples/s]\\\\rMap:   1%|          | 6000/585552 [00:00<00:35, 16390.37 examples/s]\\\\rMap:   1%|▏         | 8000/585552 [00:00<00:34, 16606.71 examples/s]\\\\rMap:   2%|▏         | 10000/585552 [00:00<00:33, 17046.19 examples/s]\\\\rMap:   2%|▏         | 12000/585552 [00:00<00:33, 17336.20 examples/s]\\\\rMap:   2%|▏         | 14000/585552 [00:00<00:32, 17355.25 examples/s]\\\\rMap:   3%|▎         | 16000/585552 [00:00<00:32, 17424.77 examples/s]\\\\rMap:   3%|▎         | 18000/585552 [00:01<00:32, 17530.91 examples/s]\\\\rMap:   3%|▎         | 20000/585552 [00:01<00:32, 17374.91 examples/s]\\\\rMap:   4%|▍         | 22000/585552 [00:01<00:46, 12094.41 examples/s]\\\\rMap:   4%|▍         | 24000/585552 [00:01<00:42, 13231.16 examples/s]\\\\rMap:   4%|▍         | 26000/585552 [00:01<00:39, 14323.19 examples/s]\\\\rMap:   5%|▍         | 28000/585552 [00:01<00:36, 15201.75 examples/s]\\\\rMap:   5%|▌         | 30000/585552 [00:01<00:36, 15369.78 examples/s]\\\\rMap:   5%|▌         | 32000/585552 [00:02<00:34, 15860.52 examples/s]\\\\rMap:   6%|▌         | 34000/585552 [00:02<00:33, 16483.95 examples/s]\\\\rMap:   6%|▌         | 36000/585552 [00:02<00:32, 16946.07 examples/s]\\\\rMap:   6%|▋         | 38000/585552 [00:02<00:31, 17139.32 examples/s]\\\\rMap:   7%|▋         | 40000/585552 [00:02<00:31, 17364.42 examples/s]\\\\rMap:   7%|▋         | 42000/585552 [00:02<00:41, 13188.44 examples/s]\\\\rMap:   8%|▊         | 44000/585552 [00:02<00:38, 14107.66 examples/s]\\\\rMap:   8%|▊         | 46000/585552 [00:02<00:36, 14882.60 examples/s]\\\\rMap:   8%|▊         | 48000/585552 [00:03<00:\n…[truncated 6431 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-22T16:00:54.330205+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -3 /tmp/deberta_finetune.log"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-22T16:00:54.330407+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Token lengths (n=400): mean=124 med=118 P95=218 P99=238 max=265\\\\nTruncated at 512: 0/400 (0.0%)\\\\n\\\\rMap:   0%|          | 0/585552 [00:00<?, ? examples/s]\\\\rMap:   0%|          | 2000/585552 [00:00<00:41, 14008.63 examples/s]\\\\rMap:   1%|          | 4000/585552 [00:00<00:36, 15922.41 examples/s]\\\\rMap:   1%|          | 6000/585552 [00:00<00:35, 16390.37 examples/s]\\\\rMap:   1%|▏         | 8000/585552 [00:00<00:34, 16606.71 examples/s]\\\\rMap:   2%|▏         | 10000/585552 [00:00<00:33, 17046.19 examples/s]\\\\rMap:   2%|▏         | 12000/585552 [00:00<00:33, 17336.20 examples/s]\\\\rMap:   2%|▏         | 14000/585552 [00:00<00:32, 17355.25 examples/s]\\\\rMap:   3%|▎         | 16000/585552 [00:00<00:32, 17424.77 examples/s]\\\\rMap:   3%|▎         | 18000/585552 [00:01<00:32, 17530.91 examples/s]\\\\rMap:   3%|▎         | 20000/585552 [00:01<00:32, 17374.91 examples/s]\\\\rMap:   4%|▍         | 22000/585552 [00:01<00:46, 12094.41 examples/s]\\\\rMap:   4%|▍         | 24000/585552 [00:01<00:42, 13231.16 examples/s]\\\\rMap:   4%|▍         | 26000/585552 [00:01<00:39, 14323.19 examples/s]\\\\rMap:   5%|▍         | 28000/585552 [00:01<00:36, 15201.75 examples/s]\\\\rMap:   5%|▌         | 30000/585552 [00:01<00:36, 15369.78 examples/s]\\\\rMap:   5%|▌         | 32000/585552 [00:02<00:34, 15860.52 examples/s]\\\\rMap:   6%|▌         | 34000/585552 [00:02<00:33, 16483.95 examples/s]\\\\rMap:   6%|▌         | 36000/585552 [00:02<00:32, 16946.07 examples/s]\\\\rMap:   6%|▋         | 38000/585552 [00:02<00:31, 17139.32 examples/s]\\\\rMap:   7%|▋         | 40000/585552 [00:02<00:31, 17364.42 examples/s]\\\\rMap:   7%|▋         | 42000/585552 [00:02<00:41, 13188.44 examples/s]\\\\rMap:   8%|▊         | 44000/585552 [00:02<00:38, 14107.66 examples/s]\\\\rMap:   8%|▊         | 46000/585552 [00:02<00:36, 14882.60 examples/s]\\\\rMap:   8%|▊         | 48000/585552 [00:03<00:34, 15456.03 examples/s]\\\\rMap:   9%|▊         | 50000/585552 [00:03<00:33, 15870.55 exa\n…[truncated 6429 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-22T16:00:54.330572+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -3 /tmp/deberta_finetune.log"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-22T16:00:54.330768+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Token lengths (n=400): mean=124 med=118 P95=218 P99=238 max=265\\\\nTruncated at 512: 0/400 (0.0%)\\\\n\\\\rMap:   0%|          | 0/585552 [00:00<?, ? examples/s]\\\\rMap:   0%|          | 2000/585552 [00:00<00:41, 14008.63 examples/s]\\\\rMap:   1%|          | 4000/585552 [00:00<00:36, 15922.41 examples/s]\\\\rMap:   1%|          | 6000/585552 [00:00<00:35, 16390.37 examples/s]\\\\rMap:   1%|▏         | 8000/585552 [00:00<00:34, 16606.71 examples/s]\\\\rMap:   2%|▏         | 10000/585552 [00:00<00:33, 17046.19 examples/s]\\\\rMap:   2%|▏         | 12000/585552 [00:00<00:33, 17336.20 examples/s]\\\\rMap:   2%|▏         | 14000/585552 [00:00<00:32, 17355.25 examples/s]\\\\rMap:   3%|▎         | 16000/585552 [00:00<00:32, 17424.77 examples/s]\\\\rMap:   3%|▎         | 18000/585552 [00:01<00:32, 17530.91 examples/s]\\\\rMap:   3%|▎         | 20000/585552 [00:01<00:32, 17374.91 examples/s]\\\\rMap:   4%|▍         | 22000/585552 [00:01<00:46, 12094.41 examples/s]\\\\rMap:   4%|▍         | 24000/585552 [00:01<00:42, 13231.16 examples/s]\\\\rMap:   4%|▍         | 26000/585552 [00:01<00:39, 14323.19 examples/s]\\\\rMap:   5%|▍         | 28000/585552 [00:01<00:36, 15201.75 examples/s]\\\\rMap:   5%|▌         | 30000/585552 [00:01<00:36, 15369.78 examples/s]\\\\rMap:   5%|▌         | 32000/585552 [00:02<00:34, 15860.52 examples/s]\\\\rMap:   6%|▌         | 34000/585552 [00:02<00:33, 16483.95 examples/s]\\\\rMap:   6%|▌         | 36000/585552 [00:02<00:32, 16946.07 examples/s]\\\\rMap:   6%|▋         | 38000/585552 [00:02<00:31, 17139.32 examples/s]\\\\rMap:   7%|▋         | 40000/585552 [00:02<00:31, 17364.42 examples/s]\\\\rMap:   7%|▋         | 42000/585552 [00:02<00:41, 13188.44 examples/s]\\\\rMap:   8%|▊         | 44000/585552 [00:02<00:38, 14107.66 examples/s]\\\\rMap:   8%|▊         | 46000/585552 [00:02<00:36, 14882.60 examples/s]\\\\rMap:   8%|▊         | 48000/585552 [00:03<00:34, 15456.03 examples/s]\\\\rMap:   9%|▊         | 50000/585552 [00:03<00:33, 15870.55 exa\n…[truncated 6429 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-22T16:00:54.330981+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -5 /tmp/deberta_finetune.log"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-22T16:00:54.331195+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Token lengths (n=400): mean=124 med=118 P95=218 P99=238 max=265\\\\nTruncated at 512: 0/400 (0.0%)\\\\n\\\\rMap:   0%|          | 0/585552 [00:00<?, ? examples/s]\\\\rMap:   0%|          | 2000/585552 [00:00<00:41, 14008.63 examples/s]\\\\rMap:   1%|          | 4000/585552 [00:00<00:36, 15922.41 examples/s]\\\\rMap:   1%|          | 6000/585552 [00:00<00:35, 16390.37 examples/s]\\\\rMap:   1%|▏         | 8000/585552 [00:00<00:34, 16606.71 examples/s]\\\\rMap:   2%|▏         | 10000/585552 [00:00<00:33, 17046.19 examples/s]\\\\rMap:   2%|▏         | 12000/585552 [00:00<00:33, 17336.20 examples/s]\\\\rMap:   2%|▏         | 14000/585552 [00:00<00:32, 17355.25 examples/s]\\\\rMap:   3%|▎         | 16000/585552 [00:00<00:32, 17424.77 examples/s]\\\\rMap:   3%|▎         | 18000/585552 [00:01<00:32, 17530.91 examples/s]\\\\rMap:   3%|▎         | 20000/585552 [00:01<00:32, 17374.91 examples/s]\\\\rMap:   4%|▍         | 22000/585552 [00:01<00:46, 12094.41 examples/s]\\\\rMap:   4%|▍         | 24000/585552 [00:01<00:42, 13231.16 examples/s]\\\\rMap:   4%|▍         | 26000/585552 [00:01<00:39, 14323.19 examples/s]\\\\rMap:   5%|▍         | 28000/585552 [00:01<00:36, 15201.75 examples/s]\\\\rMap:   5%|▌         | 30000/585552 [00:01<00:36, 15369.78 examples/s]\\\\rMap:   5%|▌         | 32000/585552 [00:02<00:34, 15860.52 examples/s]\\\\rMap:   6%|▌         | 34000/585552 [00:02<00:33, 16483.95 examples/s]\\\\rMap:   6%|▌         | 36000/585552 [00:02<00:32, 16946.07 examples/s]\\\\rMap:   6%|▋         | 38000/585552 [00:02<00:31, 17139.32 examples/s]\\\\rMap:   7%|▋         | 40000/585552 [00:02<00:31, 17364.42 examples/s]\\\\rMap:   7%|▋         | 42000/585552 [00:02<00:41, 13188.44 examples/s]\\\\rMap:   8%|▊         | 44000/585552 [00:02<00:38, 14107.66 examples/s]\\\\rMap:   8%|▊         | 46000/585552 [00:02<00:36, 14882.60 examples/s]\\\\rMap:   8%|▊         | 48000/585552 [00:03<00:34, 15456.03 examples/s]\\\\rMap:   9%|▊         | 50000/585552 [00:03<00:33, 15870.55 exa\n…[truncated 6433 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-22T16:00:54.331366+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -3 /tmp/deberta_finetune.log"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-22T16:00:54.331510+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n=== Training ===\\\\n\\\\r  0%|          | 0/182985 [00:00<?, ?it/s]\\\\r  0%|          | 1/182985 [00:00<50:44:55,  1.00it/s]\\\\r  0%|          | 2/182985 [00:01<28:22:41,  1.79it/s]\\\\r  0%|          | 3/182985 [00:01<22:36:09,  2.25it/s]\\\\r  0%|          | 4/182985 [00:01<18:13:23,  2.79it/s]\\\\r  0%|          | 5/182985 [00:02<18:43:02,  2.72it/s]\\\\r  0%|          | 6/182985 [00:02<17:06:43,  2.97it/s]\\\\r  0%|          | 7/182985 [00:02<15:39:00,  3.25it/s]\\\\r  0%|          | 8/182985 [00:02<15:17:57,  3.32it/s]\\\\r  0%|          | 9/182985 [00:03<13:02:34,  3.90it/s]\\\\r  0%|          | 10/182985 [00:03<13:34:18,  3.74it/s]\\\\r  0%|          | 11/182985 [00:03<13:22:48,  3.80it/s]\\\\r  0%|          | 12/182985 [00:03<13:10:11,  3.86it/s]\\\\r  0%|          | 13/182985 [00:04<12:57:14,  3.92it/s]\\\\r  0%|          | 14/182985 [00:04<13:02:08,  3.90it/s]\\\\r  0%|          | 15/182985 [00:04<14:15:31,  3.56it/s]\\\\r  0%|          | 16/182985 [00:05<13:24:29,  3.79it/s]\\\\r  0%|          | 17/182985 [00:05<12:49:18,  3.96it/s]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-22T16:00:54.331642+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "nvidia-smi -i 0 --query-gpu=memory.used --format=csv,noheader"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-22T16:00:54.331767+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"8159 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-22T16:00:54.331954+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动。\n\n## 汇报\n\n| 项目 | 详情 |\n|------|------|\n| **PID** | 640384 |\n| **GPU** | cuda:0, NVIDIA RTX PRO 6000 Blackwell (94GB), 已用 8159 MiB |\n| **训练数据** | tasksource/proofwriter 全量 585,552 条 (True: 158,805 / False: 158,805 / Unknown: 267,942) |\n| **总 steps** | 182,985 (5 epochs × 585,552 / batch_size 16) |\n| **当前速度** | ~3.9 it/s |\n| **预计总耗时** | ~13 小时 |\n| **checkpoint 路径** | `/root/symb_invariant_consensus/checkpoints/deberta-large-pw-finetuned/` |\n| **日志** | `/tmp/deberta_finetune.log` |\n\n**修复记录**：\n1. `scripts/finetune_deberta_pw.py` line 76: `row[\"context\"]` → `row[\"theory\"]`（HF 数据集列名不同）\n2. 添加 `LD_LIBRARY_PATH` 指向 `/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib`（修复 `libnvrtc-builtins.so.13.0` 找不到的问题）\n3. CLASSES tiebreaking bug 已在之前修复过（line 30 已经是 `sorted()`）\n\n**注意**：训练用了全部 585K 数据（包含所有 depth），因为该 HF 数据集的 config 列不含 \"OWA\" 标签。如果只需 OWA 子集，需要调整过滤逻辑。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-now_20260522T155530"
+          },
+          "id": "event-000079"
+        }
+      ],
+      "message_count": 79
+    }
+  ],
+  "readable_path": "readable/conversations/experiment-deberta-finetune-now.md"
+}

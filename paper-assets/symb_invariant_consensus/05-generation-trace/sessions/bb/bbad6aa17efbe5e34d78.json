@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bbad6aa17efbe5e34d78",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment llama folio multiseed cuda1",
+  "task_key": "worker_experiment_llama-folio-multiseed-cuda1_20260522T105851",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_llama-folio-multiseed-cuda1_20260522T105851_result.json",
+    "occurrence": 1,
+    "bytes": 627,
+    "sha256": "8431a77f5e095d5a8e0ec5a65f4fec4351dd151ac1b734a9a2449569f74e8a83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。3 个 seed 均已跑完：\n\n- `SENTINEL_LLAMA8B_FOLIO_SEED123_DONE`\n- `SENTINEL_LLAMA8B_FOLIO_SEED456_DONE`\n- `SENTINEL_LLAMA8B_FOLIO_SEED789_DONE`\n- `SENTINEL_LLAMA8B_FOLIO_MULTISEED_DONE`\n\nLLaMA-3.1-8B 模型较小，3 个 seed × 204 FOLIO 跑得很快（总共约 1 分钟内完成）。结果已保存在：\n- `results/multi_seed/llama8b_folio_seed123/`\n- `results/multi_seed/llama8b_folio_seed456/`\n- `results/multi_seed/llama8b_folio_seed789/`\n\n注意日志显示 SICA=0.0%, SC=0.0%——指标全零，可能需要检查 LLaMA-3.1-8B 在 FOLIO 上的输出质量是否正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-llama-folio-multiseed-cuda1.md"
+}

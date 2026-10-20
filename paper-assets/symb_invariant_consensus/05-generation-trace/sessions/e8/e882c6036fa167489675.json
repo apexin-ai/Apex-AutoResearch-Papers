@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e882c6036fa167489675",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "prep model download",
+  "task_key": "worker_prep_model-download_20260516T061644",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_prep_model-download_20260516T061644_result.json",
+    "occurrence": 1,
+    "bytes": 1260,
+    "sha256": "d546a97106011fecb58b4360d79833aefd97958e38d2cbc7043dd96c50b302f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前下载状态汇总：\n\n**两个下载都在后台正常运行：**\n\n| 模型 | 来源 | 已下载 | 总大小 | 速度 | 预计剩余时间 |\n|------|------|--------|--------|------|------------|\n| Mistral-7B-Instruct-v0.3 | ModelScope (mistralai/) | ~400MB | ~14GB (3 shards) | ~3MB/s (3并行) | ~1.3 小时 |\n| LLaMA-3.1-8B-Instruct | ModelScope (LLM-Research/) | ~3.6GB | ~15GB (4 shards) | ~1MB/s (2并行) | ~3 小时 |\n\n**进程详情：**\n- Mistral PID: 187141 — `snapshot_download('mistralai/Mistral-7B-Instruct-v0.3', ignore_file_pattern=['consolidated*', '*.pth'])`\n- LLaMA PID: 186855 — `snapshot_download('LLM-Research/Meta-Llama-3.1-8B-Instruct', ignore_file_pattern=['original/*'])`\n- 日志: `/tmp/dl_mistral.log`, `/tmp/dl_llama.log`\n- 两个都不占 GPU，不影响 PID 181491 和 174291\n\n**注意：**\n- LLaMA 因 Meta license 限制无法从 HuggingFace 直接下载，已改用 ModelScope 镜像\n- ModelScope 下载后文件存在 `<cache_dir>/mistralai/Mistral-7B-Instruct-v0.3/` 和 `<cache_dir>/LLM-Research/Meta-Llama-3___1-8B-Instruct/` 子目录中\n- 下载完成后需要验证 tokenizer 是否正常加载\n\n需要我继续轮询等待下载完成并验证吗？预计还需数小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-model-download.md"
+}

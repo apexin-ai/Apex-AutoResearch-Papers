@@ -1,0 +1,1339 @@
+{
+  "schema_version": "1.0",
+  "id": "3cf342c80db5f471b78b",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "viz fig3 matplotlib",
+  "task_key": "worker_viz_fig3-matplotlib_20260524T103853",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_viz_fig3-matplotlib_20260524T103853.log",
+    "occurrence": 1,
+    "bytes": 98685,
+    "sha256": "852744419af6a34f76525d3773b701ad7f9a20705258dbb0a80c8d1b3179c4b1"
+  },
+  "statistics": {
+    "messages": 30,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 9,
+      "tool_result": 9
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+                "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__allocate_and_submit",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__approve_worker",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__backup_project_to_s3",
+                  "mcp__agent-ml-research__cancel_worker",
+                  "mcp__agent-ml-research__check_job_status",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__distill_papers",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                  "mcp__agent-ml-research__feishu_send_alert",
+                  "mcp__agent-ml-research__feishu_send_approval_card",
+                  "mcp__agent-ml-research__feishu_send_result_card",
+                  "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                  "mcp__agent-ml-research__fetch_wandb_metrics",
+                  "mcp__agent-ml-research__get_baseline_metrics",
+                  "mcp__agent-ml-research__get_distill_status",
+                  "mcp__agent-ml-research__get_gpu_health",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_matrix_value",
+                  "mcp__agent-ml-research__get_project_resource_usage",
+                  "mcp__agent-ml-research__get_tum_config",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__impact_analysis",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_available_gpus",
+                  "mcp__agent-ml-research__list_constraints",
+                  "mcp__agent-ml-research__list_s3_backups",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__main_agent_post_to_director",
+                  "mcp__agent-ml-research__matrix_gap_analysis",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__poll_cron",
+                  "mcp__agent-ml-research__poll_secret_request",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_matrix",
+                  "mcp__agent-ml-research__read_mistakes",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__reconcile_crons",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__register_cron",
+                  "mcp__agent-ml-research__request_secret",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__submit_on_allocated",
+                  "mcp__agent-ml-research__submit_training_job",
+                  "mcp__agent-ml-research__sync_matrix_status",
+                  "mcp__agent-ml-research__tail_training_logs",
+                  "mcp__agent-ml-research__update_baseline",
+                  "mcp__agent-ml-research__update_matrix",
+                  "mcp__agent-ml-research__update_registry",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "08b8494d-9fae-40cc-b8c3-f6769b2ddabc",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1779890400,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.83,
+                  "isUsingOverage": false,
+                  "surpassedThreshold": 0.75
+                },
+                "uuid": "0e82e5da-bb4e-487d-85b7-6f1fcaa88165",
+                "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the reference file to understand the code style, then write the figure script.",
+              "signature": "EqsCCmMIDhgCKkCmkIsMIx+IC1KEl851DkYDPlV/379ctdeN/A7POyXaJwrf2+mTwWhryAAyZA8ahsDli+EOgTQ0hDibBgzkM1tAMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDL8KgvHdaLlYAHcErRoMJseGk9d/nhnQPOA8IjCO3DTau7CtEi6n5hSF8omg+YSajo9466clWNPno66FyNGoEZIuI3D0BBAVMoF9Lnsqdogl1rObQKGPBjWOERKyXaVUj2CHLNyL55Js3UDPiZ2GrWnweWlMarQKR9vb7gAgmfQcEHJ0LTbXgxdirIZzG8BkA2mFWGvelKHX/vwmOljORd0DenfL2W2m5uXLcAE8yuV6MJRGRSyO4pG1nVBxLhx8ogvUvr0YAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "c11d4ac4-2826-4941-85eb-646a3118426d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FHqRSG786WXZYGa2RBxAL9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 15407,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 15407
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the reference file first, then write the script."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "31bd1bbb-28e6-4c26-92f7-ee613b416f20",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FHqRSG786WXZYGa2RBxAL9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 15407,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 15407
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015Fzc8LDr7cTbE6YYHE6oK5",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_capability_gap_scatter_v2.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "81b97ab5-cd36-4675-9e8f-cb4b0622bc6a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FHqRSG786WXZYGa2RBxAL9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 15407,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 15407
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T10:39:09.927Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015Fzc8LDr7cTbE6YYHE6oK5",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Optimized Figure A.4: Capability gap scatter with sigmoid fit.\n2\tData from §6 cross-architecture analysis + appendix tables.\n3\t\"\"\"\n4\timport matplotlib\n5\tmatplotlib.use('Agg')\n6\timport matplotlib.pyplot as plt\n7\timport matplotlib.patheffects as pe\n8\timport numpy as np\n9\tfrom scipy.optimize import curve_fit\n10\t\n11\tplt.rcParams.update({\n12\t    'font.family': 'DejaVu Sans',\n13\t    'font.size': 9,\n14\t    'axes.labelsize': 10,\n15\t    'axes.titlesize': 10,\n16\t    'xtick.labelsize': 8,\n17\t    'ytick.labelsize': 8,\n18\t    'legend.fontsize': 7,\n19\t    'figure.dpi': 300,\n20\t    'savefig.dpi': 300,\n21\t    'savefig.bbox': 'tight',\n22\t    'savefig.pad_inches': 0.05,\n23\t    'pdf.fonttype': 42,\n24\t    'ps.fonttype': 42,\n25\t    'axes.spines.top': False,\n26\t    'axes.spines.right': False,\n27\t    'axes.linewidth': 0.5,\n28\t})\n29\t\n30\t# ── Paper-unified palette ──\n31\tC_DEBERTA   = '#0072B2'  # blue (primary verifier)\n32\tC_LLAMA_GEN = '#E69F00'  # amber (LLaMA generator)\n33\tC_ROBERTA   = '#D55E00'  # vermillion\n34\tC_BART      = '#009E73'  # green\n35\tC_FINETUNED = '#882D8B'  # purple\n36\t\n37\t# ── Data (all at w=3) ──\n38\tdeberta_pts = [\n39\t    (-36.76, 0.49, 'Qwen3-14B$_{\\\\mathrm{think}}$\\nFOLIO'),\n40\t    (-33.82, 0.49, 'Qwen3-14B\\nFOLIO'),\n41\t    (-30.83, 0.50, 'Qwen3-14B\\nPW-D5'),\n42\t    (-19.00, 0.67, 'Qwen2.5-14B\\nPW-D5'),\n43\t    (-6.37,  2.94, 'Mistral-7B\\nFOLIO'),\n44\t    (15.67,  6.67, 'Mistral-7B\\nPW-D5'),\n45\t]\n46\tllama_pt = (-17.50, 0.83, 'LLaMA-8B\\nPW-D5')\n47\tmulti_nli = [\n48\t    (-1.66, 4.17, 'RoBERTa'),\n49\t    (6.84,  5.17, 'BART'),\n50\t]\n51\tfinetuned_pts = [\n52\t    (27.17, 11.67, 'LLaMA-8B\\n(fine-tuned)'),\n53\t    (60.34, 12.67, 'Mistral-7B\\n(fine-tuned)'),\n54\t]\n55\t\n56\t# ── Sigmoid fit ──\n57\tdef sigmoid(x, L, k, x0, b):\n58\t    return L / (1 + np.exp(-k * (x - x0))) + b\n59\t\n60\tall_pts = deberta_pts + [llama_pt] + multi_nli\n61\tax_all = np.array([p[0] for p in all_pts])\n62\tay_all = np.array([p[1] for p in all_pts])\n63\t\n64\ttry:\n65\t    popt, _ = curve_fit(sigmoid, ax_all, ay_all,\n66\t                        p0=[3.5, 0.3, 1.0, 0.2],\n67\t                        bounds=([0.5, 0.01, -10, -1], [5.0, 2.0, 15, 2.0]),\n68\t                        maxfev=50000)\n69\t    x_fit = np.linspace(-42, 68, 500)\n70\t    y_sig = sigmoid(x_fit, *popt)\n71\t    has_sigmoid = True\n72\texcept Exception:\n73\t    has_sigmoid = False\n74\t    x_fit = np.linspace(-42, 68, 500)\n75\t\n76\t# ── Plot ──\n77\tfig, ax = plt.subplots(figsize=(3.8, 2.8))\n78\tfig.subplots_adjust(left=0.16, bottom=0.20, right=0.96, top=0.92)\n79\t\n80\t# Region shading\n81\tax.axvspan(-42, 0, alpha=0.025, color='#D55E00', zorder=0)\n82\tax.axvspan(0, 68, alpha=0.025, color='#009E73', zorder=0)\n83\t\n84\t# Reference lines\n85\tax.axhline(0, color='black', linewidth=0.3, alpha=0.15)\n86\tax.axvline(0, color='black', linewidth=0.4, alpha=0.20, linestyle=':')\n87\t\n88\t# Sigmoid curve\n89\tif has_sigmoid:\n90\t    ax.plot(x_fit, y_sig, '-', color='#777777', linewidth=1.0, alpha=0.50,\n91\t            label='Sigmoid fit', zorder=2)\n92\t\n93\t# DeBERTa primary\n94\tdx = np.array([p[0] for p in deberta_pts])\n95\tdy = np.array([p[1] for p in deberta_pts])\n96\tax.scatter(dx, dy, marker='o', c=C_DEBERTA, s=45, zorder=5,\n97\t           label='DeBERTa-MNLI', edgecolors='white', linewidths=0.4)\n98\t\n99\t# LLaMA generator\n100\tax.scatter([llama_pt[0]], [llama_pt[1]], marker='D', c=C_LLAMA_GEN, s=45, zorder=5,\n101\t           label='DeBERTa (LLaMA)', edgecolors='white', linewidths=0.4)\n102\t\n103\t# Multi-NLI\n104\tax.scatter([multi_nli[0][0]], [multi_nli[0][1]], marker='s', c=C_ROBERTA, s=38, zorder=5,\n105\t           label='RoBERTa-MNLI', edgecolors='white', linewidths=0.4)\n106\tax.scatter([multi_nli[1][0]], [multi_nli[1][1]], marker='^', c=C_BART, s=38, zorder=5,\n107\t           label='BART-MNLI', edgecolors='white', linewidths=0.4)\n108\t\n109\t# Fine-tuned\n110\tfx = [p[0] for p in finetuned_pts]\n111\tfy = [p[1] for p in finetuned_pts]\n112\tax.scatter(fx, fy, marker='*', c=C_FINETUNED, s=90, zorder=6,\n113\t           label='Fine-tuned DeBERTa', edgecolors='white', linewidths=0.4)\n114\t\n115\t# ── Annotations ──\n116\tpe_white = [pe.withStroke(linewidth=1.5, foreground='white')]\n117\t\n118\t# DeBERTa point annotations\n119\tannot_config = [\n120\t    (deberta_pts[0][0], deberta_pts[0][1], 'Qwen3$_{\\\\mathrm{think}}$', (-6, 5), 'right'),\n121\t    (deberta_pts[2][0], deberta_pts[2][1], 'Qwen3 PW', (-6, 5), 'right'),\n122\t    (deberta_pts[3][0], deberta_pts[3][1], 'Qwen14B PW', (6, 4), 'left'),\n123\t    (deberta_pts[4][0], deberta_pts[4][1], 'Mistral\\nFOLIO', (-5, 5), 'right'),\n124\t    (deberta_pts[5][0], deberta_pts[5][1], 'Mistral\\nPW-D5', (-5, 4), 'right'),\n125\t]\n126\tfor x, y, lbl, offset, ha in annot_config:\n127\t    t = ax.annotate(lbl, (x, y), textcoords='offset points',\n128\t                    xytext=offset, fontsize=5.5, ha=ha, color='#555555',\n129\t                    linespacing=0.9)\n130\t    t.set_path_effects(pe_white)\n131\t\n132\t# LLaMA\n133\tt = ax.annotate('LLaMA PW', (llama_pt[0], llama_pt[1]),\n134\t                textcoords='offset points', xytext=(6, -7), fontsize=5.5,\n135\t                ha='left', color='#AA7700')\n136\tt.set_path_effects(pe_white)\n137\t\n138\t# Multi-NLI\n139\tfor pt, lbl in zip(multi_nli, ['RoBERTa', 'BART']):\n140\t    t = ax.annotate(lbl, (pt[0], pt[1]), textcoords='offset points',\n141\t                    xytext=(5, 5), fontsize=5.5, ha='left',\n142\t                    color='#555555')\n143\t    t.set_path_effects(pe_white)\n144\t\n145\t# Fine-tuned\n146\tfor pt in finetuned_pts:\n147\t    t = ax.annotate(pt[2].replace('\\n', ' '), (pt[0], pt[1]),\n148\t                    textcoords='offset points', xytext=(-5, 5), fontsize=5.5,\n149\t                    ha='right', color=C_FINETUNED)\n150\t    t.set_path_effects(pe_white)\n151\t\n152\t# Region labels\n153\tax.text(-21, 14.2, 'verifier $<$ generator', fontsize=6.5, color='#bbbbbb',\n154\t        ha='center', style='italic')\n155\tax.text(38, 14.2, 'verifier $>$ generator', fontsize=6.5, color='#bbbbbb',\n156\t        ha='center', style='italic')\n157\t\n158\tax.set_xlabel('Capability gap (verifier $-$ generator SC, pp)')\n159\tax.set_ylabel('Combo gain over SC (pp, $w{=}3$)')\n160\tax.set_xlim(-42, 68)\n161\tax.set_ylim(-0.3, 15.0)\n162\tax.legend(loc='center right', framealpha=0.92, edgecolor='#dddddd',\n163\t          borderpad=0.3, handletextpad=0.3, labelspacing=0.25,\n164\t          bbox_to_anchor=(1.0, 0.45))\n165\t\n166\toutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures'\n167\tfig.savefig(f'{outdir}/capability_gap_scatter.pdf')\n168\tfig.savefig(f'{outdir}/capability_gap_scatter.png')\n169\tplt.close()\n170\tprint('Done: capability_gap_scatter v2')\n171\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "efba96df-c205-4775-8ae1-dff4d004dbd9",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_capability_gap_scatter_v2.py",
+                "content": "\"\"\"Optimized Figure A.4: Capability gap scatter with sigmoid fit.\nData from §6 cross-architecture analysis + appendix tables.\n\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patheffects as pe\nimport numpy as np\nfrom scipy.optimize import curve_fit\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 9,\n    'axes.labelsize': 10,\n    'axes.titlesize': 10,\n    'xtick.labelsize': 8,\n    'ytick.labelsize': 8,\n    'legend.fontsize': 7,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'axes.linewidth': 0.5,\n})\n\n# ── Paper-unified palette ──\nC_DEBERTA   = '#0072B2'  # blue (primary verifier)\nC_LLAMA_GEN = '#E69F00'  # amber (LLaMA generator)\nC_ROBERTA   = '#D55E00'  # vermillion\nC_BART      = '#009E73'  # green\nC_FINETUNED = '#882D8B'  # purple\n\n# ── Data (all at w=3) ──\ndeberta_pts = [\n    (-36.76, 0.49, 'Qwen3-14B$_{\\\\mathrm{think}}$\\nFOLIO'),\n    (-33.82, 0.49, 'Qwen3-14B\\nFOLIO'),\n    (-30.83, 0.50, 'Qwen3-14B\\nPW-D5'),\n    (-19.00, 0.67, 'Qwen2.5-14B\\nPW-D5'),\n    (-6.37,  2.94, 'Mistral-7B\\nFOLIO'),\n    (15.67,  6.67, 'Mistral-7B\\nPW-D5'),\n]\nllama_pt = (-17.50, 0.83, 'LLaMA-8B\\nPW-D5')\nmulti_nli = [\n    (-1.66, 4.17, 'RoBERTa'),\n    (6.84,  5.17, 'BART'),\n]\nfinetuned_pts = [\n    (27.17, 11.67, 'LLaMA-8B\\n(fine-tuned)'),\n    (60.34, 12.67, 'Mistral-7B\\n(fine-tuned)'),\n]\n\n# ── Sigmoid fit ──\ndef sigmoid(x, L, k, x0, b):\n    return L / (1 + np.exp(-k * (x - x0))) + b\n\nall_pts = deberta_pts + [llama_pt] + multi_nli\nax_all = np.array([p[0] for p in all_pts])\nay_all = np.array([p[1] for p in all_pts])\n\ntry:\n    popt, _ = curve_fit(sigmoid, ax_all, ay_all,\n                        p0=[3.5, 0.3, 1.0, 0.2],\n                        bounds=([0.5, 0.01, -10, -1], [5.0, 2.0, 15, 2.0]),\n                        maxfev=50000)\n    x_fit = np.linspace(-42, 68, 500)\n    y_sig = sigmoid(x_fit, *popt)\n    has_sigmoid = True\nexcept Exception:\n    has_sigmoid = False\n    x_fit = np.linspace(-42, 68, 500)\n\n# ── Plot ──\nfig, ax = plt.subplots(figsize=(3.8, 2.8))\nfig.subplots_adjust(left=0.16, bottom=0.20, right=0.96, top=0.92)\n\n# Region shading\nax.axvspan(-42, 0, alpha=0.025, color='#D55E00', zorder=0)\nax.axvspan(0, 68, alpha=0.025, color='#009E73', zorder=0)\n\n# Reference lines\nax.axhline(0, color='black', linewidth=0.3, alpha=0.15)\nax.axvline(0, color='black', linewidth=0.4, alpha=0.20, linestyle=':')\n\n# Sigmoid curve\nif has_sigmoid:\n    ax.plot(x_fit, y_sig, '-', color='#777777', linewidth=1.0, alpha=0.50,\n            label='Sigmoid fit', zorder=2)\n\n# DeBERTa primary\ndx = np.array([p[0] for p in deberta_pts])\ndy = np.array([p[1] for p in deberta_pts])\nax.scatter(dx, dy, marker='o', c=C_DEBERTA, s=45, zorder=5,\n           label='DeBERTa-MNLI', edgecolors='white', linewidths=0.4)\n\n# LLaMA generator\nax.scatter([llama_pt[0]], [llama_pt[1]], marker='D', c=C_LLAMA_GEN, s=45, zorder=5,\n           label='DeBERTa (LLaMA)', edgecolors='white', linewidths=0.4)\n\n# Multi-NLI\nax.scatter([multi_nli[0][0]], [multi_nli[0][1]], marker='s', c=C_ROBERTA, s=38, zorder=5,\n           label='RoBERTa-MNLI', edgecolors='white', linewidths=0.4)\nax.scatter([multi_nli[1][0]], [multi_nli[1][1]], marker='^', c=C_BART, s=38, zorder=5,\n           label='BART-MNLI', edgecolors='white', linewidths=0.4)\n\n# Fine-tuned\nfx = [p[0] for p in finetuned_pts]\nfy = [p[1] for p in finetuned_pts]\nax.scatter(fx, fy, marker='*', c=C_FINETUNED, s=90, zorder=6,\n           label='Fine-tuned DeBERTa', edgecolors='white', linewidths=0.4)\n\n# ── Annotations ──\npe_white = [pe.withStroke(linewidth=1.5, foreground='white')]\n\n# DeBERTa point annotations\nannot_config = [\n    (deberta_pts[0][0], deberta_pts[0][1], 'Qwen3$_{\\\\mathrm{think}}$', (-6, 5), 'right'),\n    (deberta_pts[2][0], deberta_pts[2][1], 'Qwen3 PW', (-6, 5), 'right'),\n    (deberta_pts[3][0], deberta_pts[3][1], 'Qwen14B PW', (6, 4), 'left'),\n    (deberta_pts[4][0], deberta_pts[4][1], 'Mistral\\nFOLIO', (-5, 5), 'right'),\n    (deberta_pts[5][0], deberta_pts[5][1], 'Mistral\\nPW-D5', (-5, 4), 'right'),\n]\nfor x, y, lbl, offset, ha in annot_config:\n    t = ax.annotate(lbl, (x, y), textcoords='offset points',\n                    xytext=offset, fontsize=5.5, ha=ha, color='#555555',\n                    linespacing=0.9)\n    t.set_path_effects(pe_white)\n\n# LLaMA\nt = ax.annotate('LLaMA PW', (llama_pt[0], llama_pt[1]),\n                textcoords='offset points', xytext=(6, -7), fontsize=5.5,\n                ha='left', color='#AA7700')\nt.set_path_effects(pe_white)\n\n# Multi-NLI\nfor pt, lbl in zip(multi_nli, ['RoBERTa', 'BART']):\n    t = ax.annotate(lbl, (pt[0], pt[1]), textcoords='offset points',\n                    xytext=(5, 5), fontsize=5.5, ha='left',\n                    color='#555555')\n    t.set_path_effects(pe_white)\n\n# Fine-tuned\nfor pt in finetuned_pts:\n    t = ax.annotate(pt[2].replace('\\n', ' '), (pt[0], pt[1]),\n                    textcoords='offset points', xytext=(-5, 5), fontsize=5.5,\n                    ha='right', color=C_FINETUNED)\n    t.set_path_effects(pe_white)\n\n# Region labels\nax.text(-21, 14.2, 'verifier $<$ generator', fontsize=6.5, color='#bbbbbb',\n        ha='center', style='italic')\nax.text(38, 14.2, 'verifier $>$ generator', fontsize=6.5, color='#bbbbbb',\n        ha='center', style='italic')\n\nax.set_xlabel('Capability gap (verifier $-$ generator SC, pp)')\nax.set_ylabel('Combo gain over SC (pp, $w{=}3$)')\nax.set_xlim(-42, 68)\nax.set_ylim(-0.3, 15.0)\nax.legend(loc='center right', framealpha=0.92, edgecolor='#dddddd',\n          borderpad=0.3, handletextpad=0.3, labelspacing=0.25,\n          bbox_to_anchor=(1.0, 0.45))\n\noutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures'\nfig.savefig(f'{outdir}/capability_gap_scatter.pdf')\nfig.savefig(f'{outdir}/capability_gap_scatter.png')\nplt.close()\nprint('Done: capability_gap_scatter v2')\n",
+                "numLines": 171,
+                "startLine": 1,
+                "totalLines": 171
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NQ2NYGE5rsKxpw9SPhgu95",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "fbd6f80a-adc7-43a9-93aa-e153993c2463",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FHqRSG786WXZYGa2RBxAL9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 15407,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 15407
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T10:39:10.560Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NQ2NYGE5rsKxpw9SPhgu95",
+              "type": "tool_result",
+              "content": "capability_gap_scatter.pdf\ncapability_gap_scatter.png\nf2_regime_scatter.pdf\nf2_regime_scatter.png\nf3_entropy_delta.pdf\nf3_entropy_delta.png\nf3_k_sensitivity.pdf\nf6_kappa_accuracy_scatter.pdf\nf6_kappa_accuracy_scatter.png\nfig1_pipeline_pb.pdf\nfig1_pipeline_pb.png\nfig1_pipeline_pb_v2.pdf\nfig1_pipeline_pb_v2.png\nfig1_pipeline_pb_v3.pdf\nfig1_pipeline_pb_v3.png\nfig1_pipeline_pb_v3_r2.png\nfig2_interventions_compact.pdf\nfig2_interventions_compact.png\nfig3_causal_dag.py\nfig3_causal_dag_pb.pdf\nfig3_causal_dag_pb.png\nfig3_causal_dag_pb_v2.pdf\nfig3_causal_dag_pb_v2.png\nfig3_causal_dag_pb_v3.pdf\nfig3_causal_dag_pb_v3.png\nfig3_process_kappa_scatter.pdf\nfig_app_interventions_summary.pdf\ngen_capability_gap_scatter.py\ngen_capability_gap_scatter_v2.py\ngen_f2_regime_scatter_v2.py\ngen_f6_kappa_accuracy_scatter.py\ngen_f6_kappa_accuracy_scatter_v2.py\ngen_fig2_interventions_v2.py\nrun_20260524_091314_5f011d\nrun_20260524_091407_d5ab57\nrun_20260524_091631_55f261\nrun_20260524_091823_1f537c\nrun_20260524_091933_a04a33\nrun_20260524_092136_c1c391\nrun_20260524_092549_6b1c7a\nrun_20260524_094311_8fa812\nrun_20260524_094340_9fdb1f\nrun_20260524_094644_00db44\nrun_20260524_094659_0c32f1\nrun_20260524_094939_a13e50\nrun_20260524_094955_63e7d3\nrun_20260524_095332_7c858e\nrun_20260524_095636_6bdcd0\nrun_20260524_100004_a8c11c\nrun_20260524_101513_923f7e\nrun_20260524_101639_a3ca0b\nrun_20260524_101831_57b8ae\nrun_20260524_102016_ec05a5\nrun_20260524_102238_d58c49\nrun_20260524_102436_4ce525",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "9a71450f-eff3-4704-9208-96d7579dce4c",
+            "tool_use_result": {
+              "stdout": "capability_gap_scatter.pdf\ncapability_gap_scatter.png\nf2_regime_scatter.pdf\nf2_regime_scatter.png\nf3_entropy_delta.pdf\nf3_entropy_delta.png\nf3_k_sensitivity.pdf\nf6_kappa_accuracy_scatter.pdf\nf6_kappa_accuracy_scatter.png\nfig1_pipeline_pb.pdf\nfig1_pipeline_pb.png\nfig1_pipeline_pb_v2.pdf\nfig1_pipeline_pb_v2.png\nfig1_pipeline_pb_v3.pdf\nfig1_pipeline_pb_v3.png\nfig1_pipeline_pb_v3_r2.png\nfig2_interventions_compact.pdf\nfig2_interventions_compact.png\nfig3_causal_dag.py\nfig3_causal_dag_pb.pdf\nfig3_causal_dag_pb.png\nfig3_causal_dag_pb_v2.pdf\nfig3_causal_dag_pb_v2.png\nfig3_causal_dag_pb_v3.pdf\nfig3_causal_dag_pb_v3.png\nfig3_process_kappa_scatter.pdf\nfig_app_interventions_summary.pdf\ngen_capability_gap_scatter.py\ngen_capability_gap_scatter_v2.py\ngen_f2_regime_scatter_v2.py\ngen_f6_kappa_accuracy_scatter.py\ngen_f6_kappa_accuracy_scatter_v2.py\ngen_fig2_interventions_v2.py\nrun_20260524_091314_5f011d\nrun_20260524_091407_d5ab57\nrun_20260524_091631_55f261\nrun_20260524_091823_1f537c\nrun_20260524_091933_a04a33\nrun_20260524_092136_c1c391\nrun_20260524_092549_6b1c7a\nrun_20260524_094311_8fa812\nrun_20260524_094340_9fdb1f\nrun_20260524_094644_00db44\nrun_20260524_094659_0c32f1\nrun_20260524_094939_a13e50\nrun_20260524_094955_63e7d3\nrun_20260524_095332_7c858e\nrun_20260524_095636_6bdcd0\nrun_20260524_100004_a8c11c\nrun_20260524_101513_923f7e\nrun_20260524_101639_a3ca0b\nrun_20260524_101831_57b8ae\nrun_20260524_102016_ec05a5\nrun_20260524_102238_d58c49\nrun_20260524_102436_4ce525",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I see there's already a `fig3_causal_dag.py` file. Let me read it to see what exists, then write the new script based on the user's specifications.",
+              "signature": "EtkCCmMIDhgCKkBwwc4YHV74BA09NV+sD5IJYvZ0LWw3u8EYJ7fnXjU6cQ7nLZKIrcH3UIlQWj1dxi8lH7k5lM57fpFBLxvWhRy0Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDLVeZqDR5NyzVYjYwRoM7g2Gyqs7toJyucZhIjCQ9KeGBwnoS6ymjLVVVW+Q2sGdwCKc/ptQtk3+/JRbXrZHQRSjfka90Dv6yDQQil8qowEWZ6M/idp8Pb6n0P5PnCYjDU6VagWdx4uVgr/pGCNfGTFTI6aAl6c4EpR9SkwIc4QfrRAH5Sn92jlhk1LsZHLWZNHdcajeMOuSQvQXSRrPtkgbfdtxdkktYi7RqnXm1UsaCA42+OPqtMcRKC71QUVjcu/azJgdL4eBVSbySkXXgUvfpPNe7xQKcebOCLr1FSvNmajzOE8IwQGE0T76AnNQCpyiGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "51a34d39-e8e2-47ed-92b5-9a56d2b7b758",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K9gia7oZBkhCTJ4wg2Dkw6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4047,
+                "cache_read_input_tokens": 27248,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4047
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the existing script briefly."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "e996da4c-8081-4373-b85a-ff765f455f0a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K9gia7oZBkhCTJ4wg2Dkw6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4047,
+                "cache_read_input_tokens": 27248,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4047
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RG2dc5Mi3gLeNs9mrmE2UB",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/fig3_causal_dag.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "9072417f-a0f5-4713-a032-080737779bdd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K9gia7oZBkhCTJ4wg2Dkw6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4047,
+                "cache_read_input_tokens": 27248,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4047
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T10:39:17.121Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RG2dc5Mi3gLeNs9mrmE2UB",
+              "type": "tool_result",
+              "content": "1\timport matplotlib\n2\tmatplotlib.use('Agg')\n3\timport matplotlib.pyplot as plt\n4\tfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\n5\timport matplotlib.patheffects as pe\n6\t\n7\tfig, ax = plt.subplots(figsize=(10, 5.2), dpi=300)\n8\tax.set_xlim(-0.2, 10.2)\n9\tax.set_ylim(0.2, 5.8)\n10\tax.axis('off')\n11\tax.set_aspect('equal')\n12\tfig.patch.set_facecolor('white')\n13\t\n14\tnodes_cfg = {\n15\t    'Y': ('Truth',   5.0, 4.95, '#FEF9E7', '#D4AC0D', 1.6),\n16\t    'M': ('Model',   1.0, 2.8, '#F5F6FA', '#BDC3C7', 1.2),\n17\t    'T': ('Trace',   3.0, 2.8, '#F5F6FA', '#BDC3C7', 1.2),\n18\t    'A': ('Answer',  5.0, 2.8, '#EBF5FB', '#2C3E50', 1.6),\n19\t    'C': ('Constr.', 7.0, 2.8, '#FDF0EF', '#C0392B', 1.4),\n20\t    'S': ('Output',  9.0, 2.8, '#E8F8F5', '#1ABC9C', 1.2),\n21\t}\n22\t\n23\tnw, nh = 0.78, 0.78\n24\tcenters = {}\n25\t\n26\tfor lbl, (sub, cx, cy, fill, ecol, ew) in nodes_cfg.items():\n27\t    box = FancyBboxPatch(\n28\t        (cx - nw/2, cy - nh/2), nw, nh,\n29\t        boxstyle=\"round,pad=0,rounding_size=0.11\",\n30\t        facecolor=fill, edgecolor=ecol, linewidth=ew, zorder=10\n31\t    )\n32\t    box.set_path_effects([\n33\t        pe.SimplePatchShadow(offset=(0.8, -0.8), shadow_rgbFace='#000000', alpha=0.05),\n34\t        pe.Normal()\n35\t    ])\n36\t    ax.add_patch(box)\n37\t    ax.text(cx, cy + 0.06, f'$\\\\mathit{{{lbl}}}$',\n38\t            fontsize=18, fontweight='bold', ha='center', va='center',\n39\t            fontfamily='serif', zorder=11)\n40\t    ax.text(cx, cy - 0.23, sub,\n41\t            fontsize=7.5, ha='center', va='center',\n42\t            fontfamily='sans-serif', color='#7F8C8D', zorder=11)\n43\t    centers[lbl] = (cx, cy)\n44\t\n45\tdef edge(p0, p1, color='#666666', lw=1.1, dashed=False, conn='arc3,rad=0',\n46\t         zorder=5, hl=6, hw=3.5):\n47\t    a = FancyArrowPatch(\n48\t        p0, p1,\n49\t        arrowstyle=f'->,head_length={hl},head_width={hw}',\n50\t        connectionstyle=conn,\n51\t        color=color, linewidth=lw,\n52\t        linestyle=(0, (5, 3.5)) if dashed else '-',\n53\t        mutation_scale=1.0, shrinkA=0, shrinkB=0,\n54\t        zorder=zorder, clip_on=False\n55\t    )\n56\t    ax.add_patch(a)\n57\t\n58\tgap = nw/2 + 0.08\n59\t\n60\t# Causal chain\n61\tedge((centers['M'][0]+gap, centers['M'][1]),\n62\t     (centers['T'][0]-gap, centers['T'][1]))\n63\tedge((centers['T'][0]+gap, centers['T'][1]),\n64\t     (centers['A'][0]-gap, centers['A'][1]))\n65\t# A → C bottleneck — crimson, thicker line, proportional head\n66\tedge((centers['A'][0]+gap, centers['A'][1]),\n67\t     (centers['C'][0]-gap, centers['C'][1]),\n68\t     color='#C0392B', lw=1.8, hl=7, hw=4)\n69\tedge((centers['C'][0]+gap, centers['C'][1]),\n70\t     (centers['S'][0]-gap, centers['S'][1]))\n71\t\n72\t# Y → A dashed gold\n73\tedge((centers['Y'][0], centers['Y'][1]-nh/2-0.06),\n74\t     (centers['A'][0], centers['A'][1]+nh/2+0.06),\n75\t     color='#B8860B', lw=1.1, dashed=True)\n76\t\n77\t# M → S curved arc below\n78\tedge((centers['M'][0]+gap, centers['M'][1]-0.18),\n79\t     (centers['S'][0]-gap, centers['S'][1]-0.18),\n80\t     color='#CCCCCC', lw=0.5, conn='arc3,rad=0.25', zorder=3, hl=4, hw=2.5)\n81\t\n82\t# Blocked path Y → C faint dashed\n83\tedge((centers['Y'][0]+0.32, centers['Y'][1]-nh/2-0.06),\n84\t     (centers['C'][0]-0.12, centers['C'][1]+nh/2+0.06),\n85\t     color='#DDDDDD', lw=0.5, dashed=True, zorder=3, hl=3, hw=2)\n86\t\n87\t# Red × on blocked path\n88\tbx = (centers['Y'][0]+0.32 + centers['C'][0]-0.12) / 2 + 0.10\n89\tby = (centers['Y'][1]-nh/2-0.06 + centers['C'][1]+nh/2+0.06) / 2\n90\tax.text(bx, by, '×', fontsize=14, fontweight='bold',\n91\t        color='#C0392B', ha='center', va='center', zorder=12)\n92\t\n93\t# \"bottleneck\" — tightly above A→C edge\n94\tmid_ac = (centers['A'][0] + centers['C'][0]) / 2\n95\tax.text(mid_ac, centers['A'][1] + 0.44, 'bottleneck',\n96\t        fontsize=8.5, fontstyle='italic', fontweight='bold',\n97\t        color='#C0392B', ha='center', va='center', fontfamily='sans-serif')\n98\t\n99\t# \"C = f(T, A)\" — below A→C edge\n100\tax.text(mid_ac, centers['A'][1] - 0.48, '$C = f\\\\,(T, A)$',\n101\t        fontsize=8, color='#666666', ha='center', va='center', fontfamily='serif')\n102\t\n103\t# Conditional independence box\n104\tbx_c, by_c = 5.0, 0.78\n105\tci = FancyBboxPatch(\n106\t    (bx_c - 1.12, by_c - 0.32), 2.24, 0.64,\n107\t    boxstyle=\"round,pad=0,rounding_size=0.09\",\n108\t    facecolor='#FDF6E3', edgecolor='#D5DBDB', linewidth=0.8, zorder=10\n109\t)\n110\tci.set_path_effects([\n111\t    pe.SimplePatchShadow(offset=(0.8, -0.8), shadow_rgbFace='#000000', alpha=0.05),\n112\t    pe.Normal()\n113\t])\n114\tax.add_patch(ci)\n115\tax.text(bx_c, by_c + 0.07, r'$C \\perp\\!\\!\\!\\perp Y \\mid A$',\n116\t        fontsize=12, ha='center', va='center', fontfamily='serif', zorder=11)\n117\tax.text(bx_c, by_c - 0.14, 'conditional independence',\n118\t        fontsize=7, fontstyle='italic', ha='center', va='center',\n119\t        fontfamily='sans-serif', color='#7F8C8D', zorder=11)\n120\t\n121\tout = '/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/fig3_causal_dag_pb_v2.png'\n122\tplt.savefig(out, dpi=300, bbox_inches='tight', pad_inches=0.10, facecolor='white')\n123\tplt.close()\n124\tprint(f'Saved: {out}')\n125\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "9059d75b-1555-4df4-9264-368032fc93dc",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/fig3_causal_dag.py",
+                "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\nimport matplotlib.patheffects as pe\n\nfig, ax = plt.subplots(figsize=(10, 5.2), dpi=300)\nax.set_xlim(-0.2, 10.2)\nax.set_ylim(0.2, 5.8)\nax.axis('off')\nax.set_aspect('equal')\nfig.patch.set_facecolor('white')\n\nnodes_cfg = {\n    'Y': ('Truth',   5.0, 4.95, '#FEF9E7', '#D4AC0D', 1.6),\n    'M': ('Model',   1.0, 2.8, '#F5F6FA', '#BDC3C7', 1.2),\n    'T': ('Trace',   3.0, 2.8, '#F5F6FA', '#BDC3C7', 1.2),\n    'A': ('Answer',  5.0, 2.8, '#EBF5FB', '#2C3E50', 1.6),\n    'C': ('Constr.', 7.0, 2.8, '#FDF0EF', '#C0392B', 1.4),\n    'S': ('Output',  9.0, 2.8, '#E8F8F5', '#1ABC9C', 1.2),\n}\n\nnw, nh = 0.78, 0.78\ncenters = {}\n\nfor lbl, (sub, cx, cy, fill, ecol, ew) in nodes_cfg.items():\n    box = FancyBboxPatch(\n        (cx - nw/2, cy - nh/2), nw, nh,\n        boxstyle=\"round,pad=0,rounding_size=0.11\",\n        facecolor=fill, edgecolor=ecol, linewidth=ew, zorder=10\n    )\n    box.set_path_effects([\n        pe.SimplePatchShadow(offset=(0.8, -0.8), shadow_rgbFace='#000000', alpha=0.05),\n        pe.Normal()\n    ])\n    ax.add_patch(box)\n    ax.text(cx, cy + 0.06, f'$\\\\mathit{{{lbl}}}$',\n            fontsize=18, fontweight='bold', ha='center', va='center',\n            fontfamily='serif', zorder=11)\n    ax.text(cx, cy - 0.23, sub,\n            fontsize=7.5, ha='center', va='center',\n            fontfamily='sans-serif', color='#7F8C8D', zorder=11)\n    centers[lbl] = (cx, cy)\n\ndef edge(p0, p1, color='#666666', lw=1.1, dashed=False, conn='arc3,rad=0',\n         zorder=5, hl=6, hw=3.5):\n    a = FancyArrowPatch(\n        p0, p1,\n        arrowstyle=f'->,head_length={hl},head_width={hw}',\n        connectionstyle=conn,\n        color=color, linewidth=lw,\n        linestyle=(0, (5, 3.5)) if dashed else '-',\n        mutation_scale=1.0, shrinkA=0, shrinkB=0,\n        zorder=zorder, clip_on=False\n    )\n    ax.add_patch(a)\n\ngap = nw/2 + 0.08\n\n# Causal chain\nedge((centers['M'][0]+gap, centers['M'][1]),\n     (centers['T'][0]-gap, centers['T'][1]))\nedge((centers['T'][0]+gap, centers['T'][1]),\n     (centers['A'][0]-gap, centers['A'][1]))\n# A → C bottleneck — crimson, thicker line, proportional head\nedge((centers['A'][0]+gap, centers['A'][1]),\n     (centers['C'][0]-gap, centers['C'][1]),\n     color='#C0392B', lw=1.8, hl=7, hw=4)\nedge((centers['C'][0]+gap, centers['C'][1]),\n     (centers['S'][0]-gap, centers['S'][1]))\n\n# Y → A dashed gold\nedge((centers['Y'][0], centers['Y'][1]-nh/2-0.06),\n     (centers['A'][0], centers['A'][1]+nh/2+0.06),\n     color='#B8860B', lw=1.1, dashed=True)\n\n# M → S curved arc below\nedge((centers['M'][0]+gap, centers['M'][1]-0.18),\n     (centers['S'][0]-gap, centers['S'][1]-0.18),\n     color='#CCCCCC', lw=0.5, conn='arc3,rad=0.25', zorder=3, hl=4, hw=2.5)\n\n# Blocked path Y → C faint dashed\nedge((centers['Y'][0]+0.32, centers['Y'][1]-nh/2-0.06),\n     (centers['C'][0]-0.12, centers['C'][1]+nh/2+0.06),\n     color='#DDDDDD', lw=0.5, dashed=True, zorder=3, hl=3, hw=2)\n\n# Red × on blocked path\nbx = (centers['Y'][0]+0.32 + centers['C'][0]-0.12) / 2 + 0.10\nby = (centers['Y'][1]-nh/2-0.06 + centers['C'][1]+nh/2+0.06) / 2\nax.text(bx, by, '×', fontsize=14, fontweight='bold',\n        color='#C0392B', ha='center', va='center', zorder=12)\n\n# \"bottleneck\" — tightly above A→C edge\nmid_ac = (centers['A'][0] + centers['C'][0]) / 2\nax.text(mid_ac, centers['A'][1] + 0.44, 'bottleneck',\n        fontsize=8.5, fontstyle='italic', fontweight='bold',\n        color='#C0392B', ha='center', va='center', fontfamily='sans-serif')\n\n# \"C = f(T, A)\" — below A→C edge\nax.text(mid_ac, centers['A'][1] - 0.48, '$C = f\\\\,(T, A)$',\n        fontsize=8, color='#666666', ha='center', va='center', fontfamily='serif')\n\n# Conditional independence box\nbx_c, by_c = 5.0, 0.78\nci = FancyBboxPatch(\n    (bx_c - 1.12, by_c - 0.32), 2.24, 0.64,\n    boxstyle=\"round,pad=0,rounding_size=0.09\",\n    facecolor='#FDF6E3', edgecolor='#D5DBDB', linewidth=0.8, zorder=10\n)\nci.set_path_effects([\n    pe.SimplePatchShadow(offset=(0.8, -0.8), shadow_rgbFace='#000000', alpha=0.05),\n    pe.Normal()\n])\nax.add_patch(ci)\nax.text(bx_c, by_c + 0.07, r'$C \\perp\\!\\!\\!\\perp Y \\mid A$',\n        fontsize=12, ha='center', va='center', fontfamily='serif', zorder=11)\nax.text(bx_c, by_c - 0.14, 'conditional independence',\n        fontsize=7, fontstyle='italic', ha='center', va='center',\n        fontfamily='sans-serif', color='#7F8C8D', zorder=11)\n\nout = '/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/fig3_causal_dag_pb_v2.png'\nplt.savefig(out, dpi=300, bbox_inches='tight', pad_inches=0.10, facecolor='white')\nplt.close()\nprint(f'Saved: {out}')\n",
+                "numLines": 125,
+                "startLine": 1,
+                "totalLines": 125
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the reference style and the existing script. Let me write the new script following the user's specifications closely - with 3D boxes, gradient fills, shadows, and proper FancyArrowPatch connections.\n\nLet me write the script now.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "40744313-05b7-4351-8868-2919a96e0bef",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S6E7fMXVQrkviBG89zvF72",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2552,
+                "cache_read_input_tokens": 31295,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2552
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now writing the script with the 3D box approach."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "b7f4b944-4698-4406-ae5a-be93bcc9bc6a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S6E7fMXVQrkviBG89zvF72",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2552,
+                "cache_read_input_tokens": 31295,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2552
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QVx4rD2Qy2qGsCtTb2wLLa",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_fig3_causal_dag.py",
+                "content": "\"\"\"Figure 3: Causal DAG — Information bottleneck in self-extracted constraints.\nM→T→A→C→S with exogenous truth Y. Red bottleneck arrow (A→C) shows\nconstraints derived from answer, establishing C⊥⊥Y|A.\n\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\nimport matplotlib.colors as mcolors\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Serif',\n    'font.size': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n})\n\nOUTDIR = '/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures'\n\n\ndef draw_3d_box(ax, x, y, w, h, fill_top, fill_bottom, border_color, border_width=2,\n                shadow_offset=(0.006, -0.008), shadow_alpha=0.35, corner_radius=0.015):\n    \"\"\"Draw a 3D raised box with gradient fill, shadow, and highlight.\"\"\"\n    # 1. Shadow\n    shadow = FancyBboxPatch((x + shadow_offset[0], y + shadow_offset[1]), w, h,\n                             boxstyle=f'round,pad=0,rounding_size={corner_radius}',\n                             facecolor='#222222', alpha=shadow_alpha, edgecolor='none',\n                             transform=ax.transAxes, zorder=1)\n    ax.add_patch(shadow)\n\n    # 2. Main box with bottom color\n    box = FancyBboxPatch((x, y), w, h,\n                          boxstyle=f'round,pad=0,rounding_size={corner_radius}',\n                          facecolor=fill_bottom, edgecolor=border_color,\n                          linewidth=border_width, transform=ax.transAxes, zorder=2)\n    ax.add_patch(box)\n\n    # 3. Gradient overlay using imshow clipped to box\n    gradient = np.linspace(1, 0, 256).reshape(-1, 1)\n    top_rgb = np.array(mcolors.to_rgb(fill_top))\n    bot_rgb = np.array(mcolors.to_rgb(fill_bottom))\n    colors = np.zeros((256, 1, 4))\n    for i in range(256):\n        t = gradient[i, 0]\n        colors[i, 0, :3] = top_rgb * t + bot_rgb * (1 - t)\n        colors[i, 0, 3] = 0.9\n    img = ax.imshow(colors, extent=[x, x + w, y, y + h], aspect='auto',\n                    transform=ax.transAxes, zorder=3, interpolation='bicubic')\n    clip_box = FancyBboxPatch((x, y), w, h,\n                               boxstyle=f'round,pad=0,rounding_size={corner_radius}',\n                               transform=ax.transAxes)\n    img.set_clip_path(clip_box)\n\n    # 4. Top highlight\n    hl_y = y + h - 0.015\n    highlight = FancyBboxPatch((x + 0.008, hl_y), w - 0.016, 0.010,\n                                boxstyle=f'round,pad=0,rounding_size={corner_radius * 0.4}',\n                                facecolor='white', alpha=0.35, edgecolor='none',\n                                transform=ax.transAxes, zorder=4)\n    ax.add_patch(highlight)\n\n    # 5. Border on top (crisp edge)\n    border = FancyBboxPatch((x, y), w, h,\n                             boxstyle=f'round,pad=0,rounding_size={corner_radius}',\n                             facecolor='none', edgecolor=border_color,\n                             linewidth=border_width, transform=ax.transAxes, zorder=5)\n    ax.add_patch(border)\n\n\ndef edge_point(node, direction):\n    \"\"\"Get the edge midpoint of a node in given direction.\"\"\"\n    x, y = node['pos']\n    w, h = node['size']\n    cx, cy = x + w / 2, y + h / 2\n    if direction == 'right':\n        return (x + w, cy)\n    if direction == 'left':\n        return (x, cy)\n    if direction == 'top':\n        return (cx, y + h)\n    if direction == 'bottom':\n        return (cx, y)\n\n\n# ── Node definitions ──\nnodes = {\n    'Y': {'pos': (0.45, 0.78), 'size': (0.10, 0.14), 'label': 'Y', 'sub': 'Truth',\n           'fill': '#F7DC6F', 'fill_dark': '#D4AC0D', 'border': '#B7950B', 'text_color': '#7D6608',\n           'border_width': 2.5, 'shadow_alpha': 0.32},\n    'M': {'pos': (0.04, 0.44), 'size': (0.10, 0.14), 'label': 'M', 'sub': 'Model',\n           'fill': '#D5D8DC', 'fill_dark': '#ABB2B9', 'border': '#808B96', 'text_color': '#2C3E50'},\n    'T': {'pos': (0.22, 0.44), 'size': (0.10, 0.14), 'label': 'T', 'sub': 'Trace',\n           'fill': '#D5D8DC', 'fill_dark': '#ABB2B9', 'border': '#808B96', 'text_color': '#2C3E50'},\n    'A': {'pos': (0.40, 0.44), 'size': (0.11, 0.15), 'label': 'A', 'sub': 'Answer',\n           'fill': '#AED6F1', 'fill_dark': '#5DADE2', 'border': '#1A5276', 'text_color': '#154360',\n           'border_width': 2.5, 'shadow_alpha': 0.32},\n    'C': {'pos': (0.58, 0.44), 'size': (0.10, 0.14), 'label': 'C', 'sub': 'Constr.',\n           'fill': '#F5B7B1', 'fill_dark': '#E74C3C', 'border': '#922B21', 'text_color': '#78281F'},\n    'S': {'pos': (0.76, 0.44), 'size': (0.10, 0.14), 'label': 'S', 'sub': 'Output',\n           'fill': '#A2D9CE', 'fill_dark': '#45B39D', 'border': '#148F77', 'text_color': '#0E6251'},\n}\n\n# ── Build figure ──\nfig, ax = plt.subplots(figsize=(8, 5))\nax.set_xlim(0, 1)\nax.set_ylim(0, 1)\nax.axis('off')\nfig.patch.set_facecolor('white')\n\n# Draw nodes\nfor key, nd in nodes.items():\n    x, y = nd['pos']\n    w, h = nd['size']\n    bw = nd.get('border_width', 2)\n    sa = nd.get('shadow_alpha', 0.35)\n    draw_3d_box(ax, x, y, w, h, nd['fill'], nd['fill_dark'], nd['border'],\n                border_width=bw, shadow_alpha=sa)\n    cx, cy = x + w / 2, y + h / 2\n    ax.text(cx, cy + 0.012, f'$\\\\mathit{{{nd[\"label\"]}}}$',\n            fontsize=18, fontweight='bold', ha='center', va='center',\n            fontfamily='serif', color=nd['text_color'],\n            transform=ax.transAxes, zorder=6)\n    ax.text(cx, cy - 0.028, nd['sub'],\n            fontsize=8, ha='center', va='center',\n            fontfamily='sans-serif', color='#7F8C8D',\n            transform=ax.transAxes, zorder=6)\n\n# ── Edges ──\n\ndef draw_arrow(p0, p1, color='#7F8C8D', lw=1.8, hl=8, hw=5,\n               dashed=False, conn='arc3,rad=0', zorder=5):\n    style = f'->,head_length={hl},head_width={hw}'\n    ls = (0, (5, 3.5)) if dashed else '-'\n    arrow = FancyArrowPatch(\n        p0, p1,\n        arrowstyle=style,\n        connectionstyle=conn,\n        color=color, linewidth=lw,\n        linestyle=ls,\n        mutation_scale=1.0,\n        shrinkA=0, shrinkB=0,\n        zorder=zorder, clip_on=False,\n        coordsA='axes fraction', coordsB='axes fraction',\n        transform=ax.transAxes,\n    )\n    ax.add_patch(arrow)\n\n\n# M → T\ndraw_arrow(edge_point(nodes['M'], 'right'), edge_point(nodes['T'], 'left'))\n\n# T → A\ndraw_arrow(edge_point(nodes['T'], 'right'), edge_point(nodes['A'], 'left'))\n\n# A → C  (bottleneck — red, thick)\ndraw_arrow(edge_point(nodes['A'], 'right'), edge_point(nodes['C'], 'left'),\n           color='#C0392B', lw=3.0, hl=10, hw=7)\n\n# C → S\ndraw_arrow(edge_point(nodes['C'], 'right'), edge_point(nodes['S'], 'left'))\n\n# Y → A  (gold dashed)\ndraw_arrow(edge_point(nodes['Y'], 'bottom'), edge_point(nodes['A'], 'top'),\n           color='#B7950B', lw=1.5, dashed=True, hl=6, hw=4)\n\n# Y → C  (blocked — faint gray dashed)\ny_bottom = edge_point(nodes['Y'], 'bottom')\nc_top = edge_point(nodes['C'], 'top')\nyc_start = (y_bottom[0] + 0.03, y_bottom[1])\nyc_end = (c_top[0] - 0.01, c_top[1])\ndraw_arrow(yc_start, yc_end,\n           color='#CCCCCC', lw=0.8, dashed=True, hl=3, hw=2, zorder=3)\n\n# Red ✗ on blocked path\nbx = (yc_start[0] + yc_end[0]) / 2 + 0.015\nby = (yc_start[1] + yc_end[1]) / 2\nax.text(bx, by, '✗', fontsize=16, fontweight='bold',\n        color='#C0392B', ha='center', va='center',\n        transform=ax.transAxes, zorder=12)\n\n# M → S  (curved arc below)\nm_right = edge_point(nodes['M'], 'right')\ns_left = edge_point(nodes['S'], 'left')\nm_arc_start = (m_right[0], m_right[1] - 0.02)\ns_arc_end = (s_left[0], s_left[1] - 0.02)\ndraw_arrow(m_arc_start, s_arc_end,\n           color='#BDC3C7', lw=1.0, conn='arc3,rad=-0.35', zorder=3, hl=5, hw=3)\n\n# ── Annotations ──\n\n# \"bottleneck\" above A→C\nac_mid_x = (edge_point(nodes['A'], 'right')[0] + edge_point(nodes['C'], 'left')[0]) / 2\nac_mid_y = edge_point(nodes['A'], 'right')[1]\nax.text(ac_mid_x, ac_mid_y + 0.055, 'bottleneck',\n        fontsize=11, fontstyle='italic', fontweight='bold',\n        color='#C0392B', ha='center', va='center',\n        fontfamily='sans-serif', transform=ax.transAxes, zorder=10)\n\n# \"C = f(T, A)\" below A→C\nax.text(ac_mid_x, ac_mid_y - 0.055, '$C = f\\\\,(T, A)$',\n        fontsize=9, fontstyle='italic', color='#888888',\n        ha='center', va='center', fontfamily='serif',\n        transform=ax.transAxes, zorder=10)\n\n# ── Conditional independence box ──\nci_x, ci_y = 0.33, 0.05\nci_w, ci_h = 0.24, 0.12\ndraw_3d_box(ax, ci_x, ci_y, ci_w, ci_h,\n            '#FDF6E3', '#F5E6C8', '#D5DBDB',\n            border_width=1.0, shadow_alpha=0.20, corner_radius=0.012)\nci_cx = ci_x + ci_w / 2\nci_cy = ci_y + ci_h / 2\nax.text(ci_cx, ci_cy + 0.012, r'$C \\perp\\!\\!\\!\\perp Y \\mid A$',\n        fontsize=14, ha='center', va='center',\n        fontfamily='serif', transform=ax.transAxes, zorder=6)\nax.text(ci_cx, ci_cy - 0.022, 'conditional independence',\n        fontsize=9, fontstyle='italic', ha='center', va='center',\n        fontfamily='sans-serif', color='#7F8C8D',\n        transform=ax.transAxes, zorder=6)\n\n# ── Save ──\nfig.savefig(f'{OUTDIR}/fig3_causal_dag.png', facecolor='white')\nfig.savefig(f'{OUTDIR}/fig3_causal_dag.pdf', facecolor='white')\nplt.close()\nprint('Done: fig3_causal_dag')\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "014d8dc1-8853-4190-9d07-de308998a32d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S6E7fMXVQrkviBG89zvF72",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2552,
+                "cache_read_input_tokens": 31295,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2552
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-24T10:40:15.737Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QVx4rD2Qy2qGsCtTb2wLLa",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_fig3_causal_dag.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "cad643db-7d5b-4ca6-b762-205a19b37b6b",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_fig3_causal_dag.py",
+              "content": "\"\"\"Figure 3: Causal DAG — Information bottleneck in self-extracted constraints.\nM→T→A→C→S with exogenous truth Y. Red bottleneck arrow (A→C) shows\nconstraints derived from answer, establishing C⊥⊥Y|A.\n\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\nimport matplotlib.colors as mcolors\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Serif',\n    'font.size': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n})\n\nOUTDIR = '/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures'\n\n\ndef draw_3d_box(ax, x, y, w, h, fill_top, fill_bottom, border_color, border_width=2,\n                shadow_offset=(0.006, -0.008), shadow_alpha=0.35, corner_radius=0.015):\n    \"\"\"Draw a 3D raised box with gradient fill, shadow, and highlight.\"\"\"\n    # 1. Shadow\n    shadow = FancyBboxPatch((x + shadow_offset[0], y + shadow_offset[1]), w, h,\n                             boxstyle=f'round,pad=0,rounding_size={corner_radius}',\n                             facecolor='#222222', alpha=shadow_alpha, edgecolor='none',\n                             transform=ax.transAxes, zorder=1)\n    ax.add_patch(shadow)\n\n    # 2. Main box with bottom color\n    box = FancyBboxPatch((x, y), w, h,\n                          boxstyle=f'round,pad=0,rounding_size={corner_radius}',\n                          facecolor=fill_bottom, edgecolor=border_color,\n                          linewidth=border_width, transform=ax.transAxes, zorder=2)\n    ax.add_patch(box)\n\n    # 3. Gradient overlay using imshow clipped to box\n    gradient = np.linspace(1, 0, 256).reshape(-1, 1)\n    top_rgb = np.array(mcolors.to_rgb(fill_top))\n    bot_rgb = np.array(mcolors.to_rgb(fill_bottom))\n    colors = np.zeros((256, 1, 4))\n    for i in range(256):\n        t = gradient[i, 0]\n        colors[i, 0, :3] = top_rgb * t + bot_rgb * (1 - t)\n        colors[i, 0, 3] = 0.9\n    img = ax.imshow(colors, extent=[x, x + w, y, y + h], aspect='auto',\n                    transform=ax.transAxes, zorder=3, interpolation='bicubic')\n    clip_box = FancyBboxPatch((x, y), w, h,\n                               boxstyle=f'round,pad=0,rounding_size={corner_radius}',\n                               transform=ax.transAxes)\n    img.set_clip_path(clip_box)\n\n    # 4. Top highlight\n    hl_y = y + h - 0.015\n    highlight = FancyBboxPatch((x + 0.008, hl_y), w - 0.016, 0.010,\n                                boxstyle=f'round,pad=0,rounding_size={corner_radius * 0.4}',\n                                facecolor='white', alpha=0.35, edgecolor='none',\n                                transform=ax.transAxes, zorder=4)\n    ax.add_patch(highlight)\n\n    # 5. Border on top (crisp edge)\n    border = FancyBboxPatch((x, y), w, h,\n                             boxstyle=f'round,pad=0,rounding_size={corner_radius}',\n                             facecolor='none', edgecolor=border_color,\n                             linewidth=border_width, transform=ax.transAxes, zorder=5)\n    ax.add_patch(border)\n\n\ndef edge_point(node, direction):\n    \"\"\"Get the edge midpoint of a node in given direction.\"\"\"\n    x, y = node['pos']\n    w, h = node['size']\n    cx, cy = x + w / 2, y + h / 2\n    if direction == 'right':\n        return (x + w, cy)\n    if direction == 'left':\n        return (x, cy)\n    if direction == 'top':\n        return (cx, y + h)\n    if direction == 'bottom':\n        return (cx, y)\n\n\n# ── Node definitions ──\nnodes = {\n    'Y': {'pos': (0.45, 0.78), 'size': (0.10, 0.14), 'label': 'Y', 'sub': 'Truth',\n           'fill': '#F7DC6F', 'fill_dark': '#D4AC0D', 'border': '#B7950B', 'text_color': '#7D6608',\n           'border_width': 2.5, 'shadow_alpha': 0.32},\n    'M': {'pos': (0.04, 0.44), 'size': (0.10, 0.14), 'label': 'M', 'sub': 'Model',\n           'fill': '#D5D8DC', 'fill_dark': '#ABB2B9', 'border': '#808B96', 'text_color': '#2C3E50'},\n    'T': {'pos': (0.22, 0.44), 'size': (0.10, 0.14), 'label': 'T', 'sub': 'Trace',\n           'fill': '#D5D8DC', 'fill_dark': '#ABB2B9', 'border': '#808B96', 'text_color': '#2C3E50'},\n    'A': {'pos': (0.40, 0.44), 'size': (0.11, 0.15), 'label': 'A', 'sub': 'Answer',\n           'fill': '#AED6F1', 'fill_dark': '#5DADE2', 'border': '#1A5276', 'text_color': '#154360',\n           'border_width': 2.5, 'shadow_alpha': 0.32},\n    'C': {'pos': (0.58, 0.44), 'size': (0.10, 0.14), 'label': 'C', 'sub': 'Constr.',\n           'fill': '#F5B7B1', 'fill_dark': '#E74C3C', 'border': '#922B21', 'text_color': '#78281F'},\n    'S': {'pos': (0.76, 0.44), 'size': (0.10, 0.14), 'label': 'S', 'sub': 'Output',\n           'fill': '#A2D9CE', 'fill_dark': '#45B39D', 'border': '#148F77', 'text_color': '#0E6251'},\n}\n\n# ── Build figure ──\nfig, ax = plt.subplots(figsize=(8, 5))\nax.set_xlim(0, 1)\nax.set_ylim(0, 1)\nax.axis('off')\nfig.patch.set_facecolor('white')\n\n# Draw nodes\nfor key, nd in nodes.items():\n    x, y = nd['pos']\n    w, h = nd['size']\n    bw = nd.get('border_width', 2)\n    sa = nd.get('shadow_alpha', 0.35)\n    draw_3d_box(ax, x, y, w, h, nd['fill'], nd['fill_dark'], nd['border'],\n                border_width=bw, shadow_alpha=sa)\n    cx, cy = x + w / 2, y + h / 2\n    ax.text(cx, cy + 0.012, f'$\\\\mathit{{{nd[\"label\"]}}}$',\n            fontsize=18, fontweight='bold', ha='center', va='center',\n            fontfamily='serif', color=nd['text_color'],\n            transform=ax.transAxes, zorder=6)\n    ax.text(cx, cy - 0.028, nd['sub'],\n            fontsize=8, ha='center', va='center',\n            fontfamily='sans-serif', color='#7F8C8D',\n            transform=ax.transAxes, zorder=6)\n\n# ── Edges ──\n\ndef draw_arrow(p0, p1, color='#7F8C8D', lw=1.8, hl=8, hw=5,\n               dashed=False, conn='arc3,rad=0', zorder=5):\n    style = f'->,head_length={hl},head_width={hw}'\n    ls = (0, (5, 3.5)) if dashed else '-'\n    arrow = FancyArrowPatch(\n        p0, p1,\n        arrowstyle=style,\n        connectionstyle=conn,\n        color=color, linewidth=lw,\n        linestyle=ls,\n        mutation_scale=1.0,\n        shrinkA=0, shrinkB=0,\n        zorder=zorder, clip_on=False,\n        coordsA='axes fraction', coordsB='axes fraction',\n        transform=ax.transAxes,\n    )\n    ax.add_patch(arrow)\n\n\n# M → T\ndraw_arrow(edge_point(nodes['M'], 'right'), edge_point(nodes['T'], 'left'))\n\n# T → A\ndraw_arrow(edge_point(nodes['T'], 'right'), edge_point(nodes['A'], 'left'))\n\n# A → C  (bottleneck — red, thick)\ndraw_arrow(edge_point(nodes['A'], 'right'), edge_point(nodes['C'], 'left'),\n           color='#C0392B', lw=3.0, hl=10, hw=7)\n\n# C → S\ndraw_arrow(edge_point(nodes['C'], 'right'), edge_point(nodes['S'], 'left'))\n\n# Y → A  (gold dashed)\ndraw_arrow(edge_point(nodes['Y'], 'bottom'), edge_point(nodes['A'], 'top'),\n           color='#B7950B', lw=1.5, dashed=True, hl=6, hw=4)\n\n# Y → C  (blocked — faint gray dashed)\ny_bottom = edge_point(nodes['Y'], 'bottom')\nc_top = edge_point(nodes['C'], 'top')\nyc_start = (y_bottom[0] + 0.03, y_bottom[1])\nyc_end = (c_top[0] - 0.01, c_top[1])\ndraw_arrow(yc_start, yc_end,\n           color='#CCCCCC', lw=0.8, dashed=True, hl=3, hw=2, zorder=3)\n\n# Red ✗ on blocked path\nbx = (yc_start[0] + yc_end[0]) / 2 + 0.015\nby = (yc_start[1] + yc_end[1]) / 2\nax.text(bx, by, '✗', fontsize=16, fontweight='bold',\n        color='#C0392B', ha='center', va='center',\n        transform=ax.transAxes, zorder=12)\n\n# M → S  (curved arc below)\nm_right = edge_point(nodes['M'], 'right')\ns_left = edge_point(nodes['S'], 'left')\nm_arc_start = (m_right[0], m_right[1] - 0.02)\ns_arc_end = (s_left[0], s_left[1] - 0.02)\ndraw_arrow(m_arc_start, s_arc_end,\n           color='#BDC3C7', lw=1.0, conn='arc3,rad=-0.35', zorder=3, hl=5, hw=3)\n\n# ── Annotations ──\n\n# \"bottleneck\" above A→C\nac_mid_x = (edge_point(nodes['A'], 'right')[0] + edge_point(nodes['C'], 'left')[0]) / 2\nac_mid_y = edge_point(nodes['A'], 'right')[1]\nax.text(ac_mid_x, ac_mid_y + 0.055, 'bottleneck',\n        fontsize=11, fontstyle='italic', fontweight='bold',\n        color='#C0392B', ha='center', va='center',\n        fontfamily='sans-serif', transform=ax.transAxes, zorder=10)\n\n# \"C = f(T, A)\" below A→C\nax.text(ac_mid_x, ac_mid_y - 0.055, '$C = f\\\\,(T, A)$',\n        fontsize=9, fontstyle='italic', color='#888888',\n        ha='center', va='center', fontfamily='serif',\n        transform=ax.transAxes, zorder=10)\n\n# ── Conditional independence box ──\nci_x, ci_y = 0.33, 0.05\nci_w, ci_h = 0.24, 0.12\ndraw_3d_box(ax, ci_x, ci_y, ci_w, ci_h,\n            '#FDF6E3', '#F5E6C8', '#D5DBDB',\n            border_width=1.0, shadow_alpha=0.20, corner_radius=0.012)\nci_cx = ci_x + ci_w / 2\nci_cy = ci_y + ci_h / 2\nax.text(ci_cx, ci_cy + 0.012, r'$C \\perp\\!\\!\\!\\perp Y \\mid A$',\n        fontsize=14, ha='center', va='center',\n        fontfamily='serif', transform=ax.transAxes, zorder=6)\nax.text(ci_cx, ci_cy - 0.022, 'conditional independence',\n        fontsize=9, fontstyle='italic', ha='center', va='center',\n        fontfamily='sans-serif', color='#7F8C8D',\n        transform=ax.transAxes, zorder=6)\n\n# ── Save ──\nfig.savefig(f'{OUTDIR}/fig3_causal_dag.png', facecolor='white')\nfig.savefig(f'{OUTDIR}/fig3_causal_dag.pdf', facecolor='white')\nplt.close()\nprint('Done: fig3_causal_dag')\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013FP8V3ypnrpBbvmTjhwJCk",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures && python3 gen_fig3_causal_dag.py 2>&1"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "f916b4f9-14f0-46c8-a3d9-71f007ee8319",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V46NxTiUPaRE1JGs2dvjDa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4074,
+                "cache_read_input_tokens": 33847,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4074
+                },
+                "output_tokens": 60,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-24T10:40:20.497Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 1\nTraceback (most recent call last):\n  File \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_fig3_causal_dag.py\", line 156, in <module>\n    draw_arrow(edge_point(nodes['M'], 'right'), edge_point(nodes['T'], 'left'))\n    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_fig3_causal_dag.py\", line 140, in draw_arrow\n    arrow = FancyArrowPatch(\n        p0, p1,\n    ...<8 lines>...\n        transform=ax.transAxes,\n    )\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/matplotlib/patches.py\", line 4270, in __init__\n    super().__init__(**kwargs)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/matplotlib/patches.py\", line 99, in __init__\n    self._internal_update(kwargs)\n    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/matplotlib/artist.py\", line 1235, in _internal_update\n    return self._update_props(\n           ~~~~~~~~~~~~~~~~~~^\n        kwargs, \"{cls.__name__}.set() got an unexpected keyword argument \"\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        \"{prop_name!r}\")\n        ^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/matplotlib/artist.py\", line 1208, in _update_props\n    raise AttributeError(\n        errfmt.format(cls=type(self), prop_name=k),\n        name=k)\nAttributeError: FancyArrowPatch.set() got an unexpected keyword argument 'coordsA'",
+              "is_error": true,
+              "tool_use_id": "toolu_013FP8V3ypnrpBbvmTjhwJCk"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "3c2f3d6a-d7dc-4526-812b-59faa26d2660",
+            "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_fig3_causal_dag.py\", line 156, in <module>\n    draw_arrow(edge_point(nodes['M'], 'right'), edge_point(nodes['T'], 'left'))\n    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_fig3_causal_dag.py\", line 140, in draw_arrow\n    arrow = FancyArrowPatch(\n        p0, p1,\n    ...<8 lines>...\n        transform=ax.transAxes,\n    )\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/matplotlib/patches.py\", line 4270, in __init__\n    super().__init__(**kwargs)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/matplotlib/patches.py\", line 99, in __init__\n    self._internal_update(kwargs)\n    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/matplotlib/artist.py\", line 1235, in _internal_update\n    return self._update_props(\n           ~~~~~~~~~~~~~~~~~~^\n        kwargs, \"{cls.__name__}.set() got an unexpected keyword argument \"\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        \"{prop_name!r}\")\n        ^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/matplotlib/artist.py\", line 1208, in _update_props\n    raise AttributeError(\n        errfmt.format(cls=type(self), prop_name=k),\n        name=k)\nAttributeError: FancyArrowPatch.set() got an unexpected keyword argument 'coordsA'"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "FancyArrowPatch doesn't accept `coordsA` and `coordsB` as keyword arguments. I need to use the `transform` parameter and work in axes coordinates directly. Let me fix the arrow drawing function. Since I'm using `ax.transAxes` as the transform and positions in axes fraction coordinates, I just need to remove the `coordsA`/`coordsB` parameters.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "91e7ef3f-0daf-4e8a-af4d-7ddcc1856d23",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Nu7gj95Z3QTc9tikpxXgET",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 639,
+                "cache_read_input_tokens": 37921,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 639
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "`coordsA`/`coordsB` aren't valid for `FancyArrowPatch`. I'll use `posA`/`posB` with `transform=ax.transAxes` instead."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "a1f05f66-5eb7-4232-968b-309a6a96b7fb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Nu7gj95Z3QTc9tikpxXgET",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 639,
+                "cache_read_input_tokens": 37921,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 639
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017GYKQsLrtneob6ZZQUJWEf",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_fig3_causal_dag.py",
+                "old_string": "def draw_arrow(p0, p1, color='#7F8C8D', lw=1.8, hl=8, hw=5,\n               dashed=False, conn='arc3,rad=0', zorder=5):\n    style = f'->,head_length={hl},head_width={hw}'\n    ls = (0, (5, 3.5)) if dashed else '-'\n    arrow = FancyArrowPatch(\n        p0, p1,\n        arrowstyle=style,\n        connectionstyle=conn,\n        color=color, linewidth=lw,\n        linestyle=ls,\n        mutation_scale=1.0,\n        shrinkA=0, shrinkB=0,\n        zorder=zorder, clip_on=False,\n        coordsA='axes fraction', coordsB='axes fraction',\n        transform=ax.transAxes,\n    )\n    ax.add_patch(arrow)",
+                "new_string": "def draw_arrow(p0, p1, color='#7F8C8D', lw=1.8, hl=8, hw=5,\n               dashed=False, conn='arc3,rad=0', zorder=5):\n    style = f'->,head_length={hl},head_width={hw}'\n    ls = (0, (5, 3.5)) if dashed else '-'\n    arrow = FancyArrowPatch(\n        p0, p1,\n        arrowstyle=style,\n        connectionstyle=conn,\n        color=color, linewidth=lw,\n        linestyle=ls,\n        mutation_scale=1.0,\n        shrinkA=0, shrinkB=0,\n        zorder=zorder, clip_on=False,\n        transform=ax.transAxes,\n    )\n    ax.add_patch(arrow)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "db484641-6a09-4e5e-ad71-997c078fa5c4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Nu7gj95Z3QTc9tikpxXgET",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 639,
+                "cache_read_input_tokens": 37921,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 639
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-24T10:40:31.862Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017GYKQsLrtneob6ZZQUJWEf",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_fig3_causal_dag.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "88b40447-37fa-4811-b8cb-4a503da4987c",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_fig3_causal_dag.py",
+              "oldString": "def draw_arrow(p0, p1, color='#7F8C8D', lw=1.8, hl=8, hw=5,\n               dashed=False, conn='arc3,rad=0', zorder=5):\n    style = f'->,head_length={hl},head_width={hw}'\n    ls = (0, (5, 3.5)) if dashed else '-'\n    arrow = FancyArrowPatch(\n        p0, p1,\n        arrowstyle=style,\n        connectionstyle=conn,\n        color=color, linewidth=lw,\n        linestyle=ls,\n        mutation_scale=1.0,\n        shrinkA=0, shrinkB=0,\n        zorder=zorder, clip_on=False,\n        coordsA='axes fraction', coordsB='axes fraction',\n        transform=ax.transAxes,\n    )\n    ax.add_patch(arrow)",
+              "newString": "def draw_arrow(p0, p1, color='#7F8C8D', lw=1.8, hl=8, hw=5,\n               dashed=False, conn='arc3,rad=0', zorder=5):\n    style = f'->,head_length={hl},head_width={hw}'\n    ls = (0, (5, 3.5)) if dashed else '-'\n    arrow = FancyArrowPatch(\n        p0, p1,\n        arrowstyle=style,\n        connectionstyle=conn,\n        color=color, linewidth=lw,\n        linestyle=ls,\n        mutation_scale=1.0,\n        shrinkA=0, shrinkB=0,\n        zorder=zorder, clip_on=False,\n        transform=ax.transAxes,\n    )\n    ax.add_patch(arrow)",
+              "originalFile": "\"\"\"Figure 3: Causal DAG — Information bottleneck in self-extracted constraints.\nM→T→A→C→S with exogenous truth Y. Red bottleneck arrow (A→C) shows\nconstraints derived from answer, establishing C⊥⊥Y|A.\n\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\nimport matplotlib.colors as mcolors\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Serif',\n    'font.size': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n})\n\nOUTDIR = '/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures'\n\n\ndef draw_3d_box(ax, x, y, w, h, fill_top, fill_bottom, border_color, border_width=2,\n                shadow_offset=(0.006, -0.008), shadow_alpha=0.35, corner_radius=0.015):\n    \"\"\"Draw a 3D raised box with gradient fill, shadow, and highlight.\"\"\"\n    # 1. Shadow\n    shadow = FancyBboxPatch((x + shadow_offset[0], y + shadow_offset[1]), w, h,\n                             boxstyle=f'round,pad=0,rounding_size={corner_radius}',\n                             facecolor='#222222', alpha=shadow_alpha, edgecolor='none',\n                             transform=ax.transAxes, zorder=1)\n    ax.add_patch(shadow)\n\n    # 2. Main box with bottom color\n    box = FancyBboxPatch((x, y), w, h,\n                          boxstyle=f'round,pad=0,rounding_size={corner_radius}',\n                          facecolor=fill_bottom, edgecolor=border_color,\n                          linewidth=border_width, transform=ax.transAxes, zorder=2)\n    ax.add_patch(box)\n\n    # 3. Gradient overlay using imshow clipped to box\n    gradient = np.linspace(1, 0, 256).reshape(-1, 1)\n    top_rgb = np.array(mcolors.to_rgb(fill_top))\n    bot_rgb = np.array(mcolors.to_rgb(fill_bottom))\n    colors = np.zeros((256, 1, 4))\n    for i in range(256):\n        t = gradient[i, 0]\n        colors[i, 0, :3] = top_rgb * t + bot_rgb * (1 - t)\n        colors[i, 0, 3] = 0.9\n    img = ax.imshow(colors, extent=[x, x + w, y, y + h], aspect='auto',\n                    transform=ax.transAxes, zorder=3, interpolation='bicubic')\n    clip_box = FancyBboxPatch((x, y), w, h,\n                               boxstyle=f'round,pad=0,rounding_size={corner_radius}',\n                               transform=ax.transAxes)\n    img.set_clip_path(clip_box)\n\n    # 4. Top highlight\n    hl_y = y + h - 0.015\n    highlight = FancyBboxPatch((x + 0.008, hl_y), w - 0.016, 0.010,\n                                boxstyle=f'round,pad=0,rounding_size={corner_radius * 0.4}',\n                                facecolor='white', alpha=0.35, edgecolor='none',\n                                transform=ax.transAxes, zorder=4)\n    ax.add_patch(highlight)\n\n    # 5. Border on top (crisp edge)\n    border = FancyBboxPatch((x, y), w, h,\n                             boxstyle=f'round,pad=0,rounding_size={corner_radius}',\n                             facecolor='none', edgecolor=border_color,\n                             linewidth=border_width, transform=ax.transAxes, zorder=5)\n    ax.add_patch(border)\n\n\ndef edge_point(node, direction):\n    \"\"\"Get the edge midpoint of a node in given direction.\"\"\"\n    x, y = node['pos']\n    w, h = node['size']\n    cx, cy = x + w / 2, y + h / 2\n    if direction == 'right':\n        return (x + w, cy)\n    if direction == 'left':\n        return (x, cy)\n    if direction == 'top':\n        return (cx, y + h)\n    if direction == 'bottom':\n        return (cx, y)\n\n\n# ── Node definitions ──\nnodes = {\n    'Y': {'pos': (0.45, 0.78), 'size': (0.10, 0.14), 'label': 'Y', 'sub': 'Truth',\n           'fill': '#F7DC6F', 'fill_dark': '#D4AC0D', 'border': '#B7950B', 'text_color': '#7D6608',\n           'border_width': 2.5, 'shadow_alpha': 0.32},\n    'M': {'pos': (0.04, 0.44), 'size': (0.10, 0.14), 'label': 'M', 'sub': 'Model',\n           'fill': '#D5D8DC', 'fill_dark': '#ABB2B9', 'border': '#808B96', 'text_color': '#2C3E50'},\n    'T': {'pos': (0.22, 0.44), 'size': (0.10, 0.14), 'label': 'T', 'sub': 'Trace',\n           'fill': '#D5D8DC', 'fill_dark': '#ABB2B9', 'border': '#808B96', 'text_color': '#2C3E50'},\n    'A': {'pos': (0.40, 0.44), 'size': (0.11, 0.15), 'label': 'A', 'sub': 'Answer',\n           'fill': '#AED6F1', 'fill_dark': '#5DADE2', 'border': '#1A5276', 'text_color': '#154360',\n           'border_width': 2.5, 'shadow_alpha': 0.32},\n    'C': {'pos': (0.58, 0.44), 'size': (0.10, 0.14), 'label': 'C', 'sub': 'Constr.',\n           'fill': '#F5B7B1', 'fill_dark': '#E74C3C', 'border': '#922B21', 'text_color': '#78281F'},\n    'S': {'pos': (0.76, 0.44), 'size': (0.10, 0.14), 'label': 'S', 'sub': 'Output',\n           'fill': '#A2D9CE', 'fill_dark': '#45B39D', 'border': '#148F77', 'text_color': '#0E6251'},\n}\n\n# ── Build figure ──\nfig, ax = plt.subplots(figsize=(8, 5))\nax.set_xlim(0, 1)\nax.set_ylim(0, 1)\nax.axis('off')\nfig.patch.set_facecolor('white')\n\n# Draw nodes\nfor key, nd in nodes.items():\n    x, y = nd['pos']\n    w, h = nd['size']\n    bw = nd.get('border_width', 2)\n    sa = nd.get('shadow_alpha', 0.35)\n    draw_3d_box(ax, x, y, w, h, nd['fill'], nd['fill_dark'], nd['border'],\n                border_width=bw, shadow_alpha=sa)\n    cx, cy = x + w / 2, y + h / 2\n    ax.text(cx, cy + 0.012, f'$\\\\mathit{{{nd[\"label\"]}}}$',\n            fontsize=18, fontweight='bold', ha='center', va='center',\n            fontfamily='serif', color=nd['text_color'],\n            transform=ax.transAxes, zorder=6)\n    ax.text(cx, cy - 0.028, nd['sub'],\n            fontsize=8, ha='center', va='center',\n            fontfamily='sans-serif', color='#7F8C8D',\n            transform=ax.transAxes, zorder=6)\n\n# ── Edges ──\n\ndef draw_arrow(p0, p1, color='#7F8C8D', lw=1.8, hl=8, hw=5,\n               dashed=False, conn='arc3,rad=0', zorder=5):\n    style = f'->,head_length={hl},head_width={hw}'\n    ls = (0, (5, 3.5)) if dashed else '-'\n    arrow = FancyArrowPatch(\n        p0, p1,\n        arrowstyle=style,\n        connectionstyle=conn,\n        color=color, linewidth=lw,\n        linestyle=ls,\n        mutation_scale=1.0,\n        shrinkA=0, shrinkB=0,\n        zorder=zorder, clip_on=False,\n        coordsA='axes fraction', coordsB='axes fraction',\n        transform=ax.transAxes,\n    )\n    ax.add_patch(arrow)\n\n\n# M → T\ndraw_arrow(edge_point(nodes['M'], 'right'), edge_point(nodes['T'], 'left'))\n\n# T → A\ndraw_arrow(edge_point(nodes['T'], 'right'), edge_point(nodes['A'], 'left'))\n\n# A → C  (bottleneck — red, thick)\ndraw_arrow(edge_point(nodes['A'], 'right'), edge_point(nodes['C'], 'left'),\n           color='#C0392B', lw=3.0, hl=10, hw=7)\n\n# C → S\ndraw_arrow(edge_point(nodes['C'], 'right'), edge_point(nodes['S'], 'left'))\n\n# Y → A  (gold dashed)\ndraw_arrow(edge_point(nodes['Y'], 'bottom'), edge_point(nodes['A'], 'top'),\n           color='#B7950B', lw=1.5, dashed=True, hl=6, hw=4)\n\n# Y → C  (blocked — faint gray dashed)\ny_bottom = edge_point(nodes['Y'], 'bottom')\nc_top = edge_point(nodes['C'], 'top')\nyc_start = (y_bottom[0] + 0.03, y_bottom[1])\nyc_end = (c_top[0] - 0.01, c_top[1])\ndraw_arrow(yc_start, yc_end,\n           color='#CCCCCC', lw=0.8, dashed=True, hl=3, hw=2, zorder=3)\n\n# Red ✗ on blocked path\nbx = (yc_start[0] + yc_end[0]) / 2 + 0.015\nby = (yc_start[1] + yc_end[1]) / 2\nax.text(bx, by, '✗', fontsize=16, fontweight='bold',\n        color='#C0392B', ha='center', va='center',\n        transform=ax.transAxes, zorder=12)\n\n# M → S  (curved arc below)\nm_right = edge_point(nodes['M'], 'right')\ns_left = edge_point(nodes['S'], 'left')\nm_arc_start = (m_right[0], m_right[1] - 0.02)\ns_arc_end = (s_left[0], s_left[1] - 0.02)\ndraw_arrow(m_arc_start, s_arc_end,\n           color='#BDC3C7', lw=1.0, conn='arc3,rad=-0.35', zorder=3, hl=5, hw=3)\n\n# ── Annotations ──\n\n# \"bottleneck\" above A→C\nac_mid_x = (edge_point(nodes['A'], 'right')[0] + edge_point(nodes['C'], 'left')[0]) / 2\nac_mid_y = edge_point(nodes['A'], 'right')[1]\nax.text(ac_mid_x, ac_mid_y + 0.055, 'bottleneck',\n        fontsize=11, fontstyle='italic', fontweight='bold',\n        color='#C0392B', ha='center', va='center',\n        fontfamily='sans-serif', transform=ax.transAxes, zorder=10)\n\n# \"C = f(T, A)\" below A→C\nax.text(ac_mid_x, ac_mid_y - 0.055, '$C = f\\\\,(T, A)$',\n        fontsize=9, fontstyle='italic', color='#888888',\n        ha='center', va='center', fontfamily='serif',\n        transform=ax.transAxes, zorder=10)\n\n# ── Conditional independence box ──\nci_x, ci_y = 0.33, 0.05\nci_w, ci_h = 0.24, 0.12\ndraw_3d_box(ax, ci_x, ci_y, ci_w, ci_h,\n            '#FDF6E3', '#F5E6C8', '#D5DBDB',\n            border_width=1.0, shadow_alpha=0.20, corner_radius=0.012)\nci_cx = ci_x + ci_w / 2\nci_cy = ci_y + ci_h / 2\nax.text(ci_cx, ci_cy + 0.012, r'$C \\perp\\!\\!\\!\\perp Y \\mid A$',\n        fontsize=14, ha='center', va='center',\n        fontfamily='serif', transform=ax.transAxes, zorder=6)\nax.text(ci_cx, ci_cy - 0.022, 'conditional independence',\n        fontsize=9, fontstyle='italic', ha='center', va='center',\n        fontfamily='sans-serif', color='#7F8C8D',\n        transform=ax.transAxes, zorder=6)\n\n# ── Save ──\nfig.savefig(f'{OUTDIR}/fig3_causal_dag.png', facecolor='white')\nfig.savefig(f'{OUTDIR}/fig3_causal_dag.pdf', facecolor='white')\nplt.close()\nprint('Done: fig3_causal_dag')\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 146,
+                  "oldLines": 7,
+                  "newStart": 146,
+                  "newLines": 6,
+                  "lines": [
+                    "         mutation_scale=1.0,",
+                    "         shrinkA=0, shrinkB=0,",
+                    "         zorder=zorder, clip_on=False,",
+                    "-        coordsA='axes fraction', coordsB='axes fraction',",
+                    "         transform=ax.transAxes,",
+                    "     )",
+                    "     ax.add_patch(arrow)"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HAUd13qB2kGwoLZ1g9pSJi",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures && python3 gen_fig3_causal_dag.py 2>&1"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "983136e9-8bbb-48a1-995f-3835b3f7e6f0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XivaYNWmA4eN4yMX4VarNx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 922,
+                "cache_read_input_tokens": 38560,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 922
+                },
+                "output_tokens": 58,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-24T10:40:39.878Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HAUd13qB2kGwoLZ1g9pSJi",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_fig3_causal_dag.py:227: UserWarning: Glyph 10007 (\\N{BALLOT X}) missing from font(s) DejaVu Serif.\n  fig.savefig(f'{OUTDIR}/fig3_causal_dag.png', facecolor='white')\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_fig3_causal_dag.py:228: UserWarning: Glyph 10007 (\\N{BALLOT X}) missing from font(s) DejaVu Serif.\n  fig.savefig(f'{OUTDIR}/fig3_causal_dag.pdf', facecolor='white')\nDone: fig3_causal_dag",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "a4ed925c-4908-48f6-bb18-699e2634194a",
+            "tool_use_result": {
+              "stdout": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_fig3_causal_dag.py:227: UserWarning: Glyph 10007 (\\N{BALLOT X}) missing from font(s) DejaVu Serif.\n  fig.savefig(f'{OUTDIR}/fig3_causal_dag.png', facecolor='white')\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_fig3_causal_dag.py:228: UserWarning: Glyph 10007 (\\N{BALLOT X}) missing from font(s) DejaVu Serif.\n  fig.savefig(f'{OUTDIR}/fig3_causal_dag.pdf', facecolor='white')\nDone: fig3_causal_dag",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Generated, but with a glyph warning for ✗. Let me fix that and check the visual."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "c968d1f3-903a-4c95-90a5-e313160b7e03",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DqPgbiiF2SLGz8QxtXk5R7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 354,
+                "cache_read_input_tokens": 39482,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 354
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AJg7mV3NeHJ7sUsqkB1jeB",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_fig3_causal_dag.py",
+                "old_string": "ax.text(bx, by, '✗', fontsize=16, fontweight='bold',\n        color='#C0392B', ha='center', va='center',\n        transform=ax.transAxes, zorder=12)",
+                "new_string": "ax.text(bx, by, r'$\\times$', fontsize=16, fontweight='bold',\n        color='#C0392B', ha='center', va='center',\n        transform=ax.transAxes, zorder=12)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "537af928-e7e6-4bc6-8010-466e77da5cf6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DqPgbiiF2SLGz8QxtXk5R7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 354,
+                "cache_read_input_tokens": 39482,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 354
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-24T10:40:46.673Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AJg7mV3NeHJ7sUsqkB1jeB",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_fig3_causal_dag.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "5121b798-e2c0-484e-91ff-2acbc28dc0ef",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_fig3_causal_dag.py",
+              "oldString": "ax.text(bx, by, '✗', fontsize=16, fontweight='bold',\n        color='#C0392B', ha='center', va='center',\n        transform=ax.transAxes, zorder=12)",
+              "newString": "ax.text(bx, by, r'$\\times$', fontsize=16, fontweight='bold',\n        color='#C0392B', ha='center', va='center',\n        transform=ax.transAxes, zorder=12)",
+              "originalFile": "\"\"\"Figure 3: Causal DAG — Information bottleneck in self-extracted constraints.\nM→T→A→C→S with exogenous truth Y. Red bottleneck arrow (A→C) shows\nconstraints derived from answer, establishing C⊥⊥Y|A.\n\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\nimport matplotlib.colors as mcolors\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Serif',\n    'font.size': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n})\n\nOUTDIR = '/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures'\n\n\ndef draw_3d_box(ax, x, y, w, h, fill_top, fill_bottom, border_color, border_width=2,\n                shadow_offset=(0.006, -0.008), shadow_alpha=0.35, corner_radius=0.015):\n    \"\"\"Draw a 3D raised box with gradient fill, shadow, and highlight.\"\"\"\n    # 1. Shadow\n    shadow = FancyBboxPatch((x + shadow_offset[0], y + shadow_offset[1]), w, h,\n                             boxstyle=f'round,pad=0,rounding_size={corner_radius}',\n                             facecolor='#222222', alpha=shadow_alpha, edgecolor='none',\n                             transform=ax.transAxes, zorder=1)\n    ax.add_patch(shadow)\n\n    # 2. Main box with bottom color\n    box = FancyBboxPatch((x, y), w, h,\n                          boxstyle=f'round,pad=0,rounding_size={corner_radius}',\n                          facecolor=fill_bottom, edgecolor=border_color,\n                          linewidth=border_width, transform=ax.transAxes, zorder=2)\n    ax.add_patch(box)\n\n    # 3. Gradient overlay using imshow clipped to box\n    gradient = np.linspace(1, 0, 256).reshape(-1, 1)\n    top_rgb = np.array(mcolors.to_rgb(fill_top))\n    bot_rgb = np.array(mcolors.to_rgb(fill_bottom))\n    colors = np.zeros((256, 1, 4))\n    for i in range(256):\n        t = gradient[i, 0]\n        colors[i, 0, :3] = top_rgb * t + bot_rgb * (1 - t)\n        colors[i, 0, 3] = 0.9\n    img = ax.imshow(colors, extent=[x, x + w, y, y + h], aspect='auto',\n                    transform=ax.transAxes, zorder=3, interpolation='bicubic')\n    clip_box = FancyBboxPatch((x, y), w, h,\n                               boxstyle=f'round,pad=0,rounding_size={corner_radius}',\n                               transform=ax.transAxes)\n    img.set_clip_path(clip_box)\n\n    # 4. Top highlight\n    hl_y = y + h - 0.015\n    highlight = FancyBboxPatch((x + 0.008, hl_y), w - 0.016, 0.010,\n                                boxstyle=f'round,pad=0,rounding_size={corner_radius * 0.4}',\n                                facecolor='white', alpha=0.35, edgecolor='none',\n                                transform=ax.transAxes, zorder=4)\n    ax.add_patch(highlight)\n\n    # 5. Border on top (crisp edge)\n    border = FancyBboxPatch((x, y), w, h,\n                             boxstyle=f'round,pad=0,rounding_size={corner_radius}',\n                             facecolor='none', edgecolor=border_color,\n                             linewidth=border_width, transform=ax.transAxes, zorder=5)\n    ax.add_patch(border)\n\n\ndef edge_point(node, direction):\n    \"\"\"Get the edge midpoint of a node in given direction.\"\"\"\n    x, y = node['pos']\n    w, h = node['size']\n    cx, cy = x + w / 2, y + h / 2\n    if direction == 'right':\n        return (x + w, cy)\n    if direction == 'left':\n        return (x, cy)\n    if direction == 'top':\n        return (cx, y + h)\n    if direction == 'bottom':\n        return (cx, y)\n\n\n# ── Node definitions ──\nnodes = {\n    'Y': {'pos': (0.45, 0.78), 'size': (0.10, 0.14), 'label': 'Y', 'sub': 'Truth',\n           'fill': '#F7DC6F', 'fill_dark': '#D4AC0D', 'border': '#B7950B', 'text_color': '#7D6608',\n           'border_width': 2.5, 'shadow_alpha': 0.32},\n    'M': {'pos': (0.04, 0.44), 'size': (0.10, 0.14), 'label': 'M', 'sub': 'Model',\n           'fill': '#D5D8DC', 'fill_dark': '#ABB2B9', 'border': '#808B96', 'text_color': '#2C3E50'},\n    'T': {'pos': (0.22, 0.44), 'size': (0.10, 0.14), 'label': 'T', 'sub': 'Trace',\n           'fill': '#D5D8DC', 'fill_dark': '#ABB2B9', 'border': '#808B96', 'text_color': '#2C3E50'},\n    'A': {'pos': (0.40, 0.44), 'size': (0.11, 0.15), 'label': 'A', 'sub': 'Answer',\n           'fill': '#AED6F1', 'fill_dark': '#5DADE2', 'border': '#1A5276', 'text_color': '#154360',\n           'border_width': 2.5, 'shadow_alpha': 0.32},\n    'C': {'pos': (0.58, 0.44), 'size': (0.10, 0.14), 'label': 'C', 'sub': 'Constr.',\n           'fill': '#F5B7B1', 'fill_dark': '#E74C3C', 'border': '#922B21', 'text_color': '#78281F'},\n    'S': {'pos': (0.76, 0.44), 'size': (0.10, 0.14), 'label': 'S', 'sub': 'Output',\n           'fill': '#A2D9CE', 'fill_dark': '#45B39D', 'border': '#148F77', 'text_color': '#0E6251'},\n}\n\n# ── Build figure ──\nfig, ax = plt.subplots(figsize=(8, 5))\nax.set_xlim(0, 1)\nax.set_ylim(0, 1)\nax.axis('off')\nfig.patch.set_facecolor('white')\n\n# Draw nodes\nfor key, nd in nodes.items():\n    x, y = nd['pos']\n    w, h = nd['size']\n    bw = nd.get('border_width', 2)\n    sa = nd.get('shadow_alpha', 0.35)\n    draw_3d_box(ax, x, y, w, h, nd['fill'], nd['fill_dark'], nd['border'],\n                border_width=bw, shadow_alpha=sa)\n    cx, cy = x + w / 2, y + h / 2\n    ax.text(cx, cy + 0.012, f'$\\\\mathit{{{nd[\"label\"]}}}$',\n            fontsize=18, fontweight='bold', ha='center', va='center',\n            fontfamily='serif', color=nd['text_color'],\n            transform=ax.transAxes, zorder=6)\n    ax.text(cx, cy - 0.028, nd['sub'],\n            fontsize=8, ha='center', va='center',\n            fontfamily='sans-serif', color='#7F8C8D',\n            transform=ax.transAxes, zorder=6)\n\n# ── Edges ──\n\ndef draw_arrow(p0, p1, color='#7F8C8D', lw=1.8, hl=8, hw=5,\n               dashed=False, conn='arc3,rad=0', zorder=5):\n    style = f'->,head_length={hl},head_width={hw}'\n    ls = (0, (5, 3.5)) if dashed else '-'\n    arrow = FancyArrowPatch(\n        p0, p1,\n        arrowstyle=style,\n        connectionstyle=conn,\n        color=color, linewidth=lw,\n        linestyle=ls,\n        mutation_scale=1.0,\n        shrinkA=0, shrinkB=0,\n        zorder=zorder, clip_on=False,\n        transform=ax.transAxes,\n    )\n    ax.add_patch(arrow)\n\n\n# M → T\ndraw_arrow(edge_point(nodes['M'], 'right'), edge_point(nodes['T'], 'left'))\n\n# T → A\ndraw_arrow(edge_point(nodes['T'], 'right'), edge_point(nodes['A'], 'left'))\n\n# A → C  (bottleneck — red, thick)\ndraw_arrow(edge_point(nodes['A'], 'right'), edge_point(nodes['C'], 'left'),\n           color='#C0392B', lw=3.0, hl=10, hw=7)\n\n# C → S\ndraw_arrow(edge_point(nodes['C'], 'right'), edge_point(nodes['S'], 'left'))\n\n# Y → A  (gold dashed)\ndraw_arrow(edge_point(nodes['Y'], 'bottom'), edge_point(nodes['A'], 'top'),\n           color='#B7950B', lw=1.5, dashed=True, hl=6, hw=4)\n\n# Y → C  (blocked — faint gray dashed)\ny_bottom = edge_point(nodes['Y'], 'bottom')\nc_top = edge_point(nodes['C'], 'top')\nyc_start = (y_bottom[0] + 0.03, y_bottom[1])\nyc_end = (c_top[0] - 0.01, c_top[1])\ndraw_arrow(yc_start, yc_end,\n           color='#CCCCCC', lw=0.8, dashed=True, hl=3, hw=2, zorder=3)\n\n# Red ✗ on blocked path\nbx = (yc_start[0] + yc_end[0]) / 2 + 0.015\nby = (yc_start[1] + yc_end[1]) / 2\nax.text(bx, by, '✗', fontsize=16, fontweight='bold',\n        color='#C0392B', ha='center', va='center',\n        transform=ax.transAxes, zorder=12)\n\n# M → S  (curved arc below)\nm_right = edge_point(nodes['M'], 'right')\ns_left = edge_point(nodes['S'], 'left')\nm_arc_start = (m_right[0], m_right[1] - 0.02)\ns_arc_end = (s_left[0], s_left[1] - 0.02)\ndraw_arrow(m_arc_start, s_arc_end,\n           color='#BDC3C7', lw=1.0, conn='arc3,rad=-0.35', zorder=3, hl=5, hw=3)\n\n# ── Annotations ──\n\n# \"bottleneck\" above A→C\nac_mid_x = (edge_point(nodes['A'], 'right')[0] + edge_point(nodes['C'], 'left')[0]) / 2\nac_mid_y = edge_point(nodes['A'], 'right')[1]\nax.text(ac_mid_x, ac_mid_y + 0.055, 'bottleneck',\n        fontsize=11, fontstyle='italic', fontweight='bold',\n        color='#C0392B', ha='center', va='center',\n        fontfamily='sans-serif', transform=ax.transAxes, zorder=10)\n\n# \"C = f(T, A)\" below A→C\nax.text(ac_mid_x, ac_mid_y - 0.055, '$C = f\\\\,(T, A)$',\n        fontsize=9, fontstyle='italic', color='#888888',\n        ha='center', va='center', fontfamily='serif',\n        transform=ax.transAxes, zorder=10)\n\n# ── Conditional independence box ──\nci_x, ci_y = 0.33, 0.05\nci_w, ci_h = 0.24, 0.12\ndraw_3d_box(ax, ci_x, ci_y, ci_w, ci_h,\n            '#FDF6E3', '#F5E6C8', '#D5DBDB',\n            border_width=1.0, shadow_alpha=0.20, corner_radius=0.012)\nci_cx = ci_x + ci_w / 2\nci_cy = ci_y + ci_h / 2\nax.text(ci_cx, ci_cy + 0.012, r'$C \\perp\\!\\!\\!\\perp Y \\mid A$',\n        fontsize=14, ha='center', va='center',\n        fontfamily='serif', transform=ax.transAxes, zorder=6)\nax.text(ci_cx, ci_cy - 0.022, 'conditional independence',\n        fontsize=9, fontstyle='italic', ha='center', va='center',\n        fontfamily='sans-serif', color='#7F8C8D',\n        transform=ax.transAxes, zorder=6)\n\n# ── Save ──\nfig.savefig(f'{OUTDIR}/fig3_causal_dag.png', facecolor='white')\nfig.savefig(f'{OUTDIR}/fig3_causal_dag.pdf', facecolor='white')\nplt.close()\nprint('Done: fig3_causal_dag')\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 179,
+                  "oldLines": 7,
+                  "newStart": 179,
+                  "newLines": 7,
+                  "lines": [
+                    " # Red ✗ on blocked path",
+                    " bx = (yc_start[0] + yc_end[0]) / 2 + 0.015",
+                    " by = (yc_start[1] + yc_end[1]) / 2",
+                    "-ax.text(bx, by, '✗', fontsize=16, fontweight='bold',",
+                    "+ax.text(bx, by, r'$\\times$', fontsize=16, fontweight='bold',",
+                    "         color='#C0392B', ha='center', va='center',",
+                    "         transform=ax.transAxes, zorder=12)",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RDKdQkHrKXtoGdPnRuaNfB",
+              "name": "Bash",
+              "input": {
+                "command": "python3 gen_fig3_causal_dag.py 2>&1"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "ea28cb37-a7a8-43a4-8dab-2dc59f952619",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qi1dsK63fvnKKafuhTxPtV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 356,
+                "cache_read_input_tokens": 39836,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 356
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-24T10:40:51.558Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RDKdQkHrKXtoGdPnRuaNfB",
+              "type": "tool_result",
+              "content": "Done: fig3_causal_dag",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0230d811-9447-4b64-baae-3d62f1e9f4f9",
+            "uuid": "065465ea-47db-40c4-8141-b24f38dd59b1",
+            "tool_use_result": {
+              "stdout": "Done: fig3_causal_dag",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000030"
+        }
+      ],
+      "message_count": 30
+    }
+  ],
+  "readable_path": "readable/worker-executions/viz-fig3-matplotlib.md"
+}

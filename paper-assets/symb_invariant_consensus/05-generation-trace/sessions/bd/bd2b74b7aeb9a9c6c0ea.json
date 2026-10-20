@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd2b74b7aeb9a9c6c0ea",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix llama seed789 30973 check",
+  "task_key": "worker_fix_llama-seed789-30973-check_20260523T171554",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_llama-seed789-30973-check_20260523T171554_result.json",
+    "occurrence": 1,
+    "bytes": 803,
+    "sha256": "bb4eb4c225446f5096107ac59e87372d35bc78de1ce6f54baff762a54730df09"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "恢复正确：跳过 325 条已完成结果，继续处理剩余 275 条。\n\n## 诊断汇报\n\n**状态：情况 C — 进程被 SIGTERM kill (exit code 143)**\n\n| 项目 | 详情 |\n|------|------|\n| 原因 | 进程在 2026-05-23 20:40:36 UTC 收到 SIGTERM 被终止，非 OOM/crash |\n| 中断点 | 326/600（已保存 325 条结果） |\n| 额外问题 | 原命令用 `--vllm-port 8001`，该 vLLM 实例已不存在 |\n\n**恢复操作已完成：**\n\n- tmux session: `exp-multi-seed-llama-pw-seed789-v2-resume`\n- 改用 `--vllm-port 8002`（与 seed456 共享 vLLM）+ `--resume`\n- 从第 326 条开始，剩余 275 条\n- GPU 1 (cuda:1)，未干扰 cuda:2 上的 vLLM 和 seed456\n- 按之前 ~1.2 min/item 的速度估算，预计 **~5.5 小时**完成（约 UTC 07:00）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-llama-seed789-30973-check.md"
+}

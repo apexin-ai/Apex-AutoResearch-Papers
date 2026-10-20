@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de404f7a8fc42c13c87e",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper figure fig2 capability scatter",
+  "task_key": "worker_paper_figure_fig2_capability_scatter_20260517T175453",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure_fig2_capability_scatter_20260517T175453_result.json",
+    "occurrence": 1,
+    "bytes": 687,
+    "sha256": "385df83d72d6288713670c557e73917dbe6f926da2594736af8b076c44b01a8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure generated and verified. Both PDFs saved (18KB each):\n\n- `docs/figures/paper/fig2_capability_scatter.pdf`\n- `artifacts/figures/paper/fig2_capability_scatter.pdf`\n\nThe scatter shows 307 problems with vote entropy on x-axis and constraint exclusion rate on y-axis. Most points cluster at low exclusion rates (0.02-0.12), with a few outliers (the 0.5 point at entropy ~0.92). Correct flips (green triangles) and wrong flips (vermillion down-triangles) concentrate at higher entropy values (0.8-1.0+), consistent with SICA flipping answers primarily on high-disagreement problems. ProofWriter (orange edges) and FOLIO (blue edges) are distinguishable by edge color."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig2-capability-scatter.md"
+}

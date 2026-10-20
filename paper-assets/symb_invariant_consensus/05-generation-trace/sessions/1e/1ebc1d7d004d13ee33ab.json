@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "1ebc1d7d004d13ee33ab",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "deploy exp 079 icg logiqa 16639",
+  "task_key": "worker_deploy_exp-079-icg-logiqa-16639_20260519T185540",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_exp-079-icg-logiqa-16639_20260519T185540.log",
+    "occurrence": 1,
+    "bytes": 649584,
+    "sha256": "e44ccda318adbd14d4024c976043d68f52d518cfc2044444486c6241ab70f366"
+  },
+  "statistics": {
+    "messages": 174,
+    "user_turns": 0,
+    "tool_calls": 63,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 44,
+      "tool_call": 63,
+      "tool_result": 63,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 174,
+      "chunks": [
+        {
+          "path": "1ebc1d7d004d13ee33ab-part-0001.json",
+          "message_count": 144
+        },
+        {
+          "path": "1ebc1d7d004d13ee33ab-part-0002.json",
+          "message_count": 30
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/deploy-exp-079-icg-logiqa-16639.md"
+}

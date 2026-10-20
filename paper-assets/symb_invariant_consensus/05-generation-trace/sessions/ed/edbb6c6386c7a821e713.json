@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "edbb6c6386c7a821e713",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 019 constraint quality",
+  "task_key": "worker_analysis_exp-019-constraint-quality_20260517T120215",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-019-constraint-quality_20260517T120215_result.json",
+    "occurrence": 1,
+    "bytes": 2009,
+    "sha256": "91b6f3798ae7a9f5a1a044255a4871001cfb8182e5bbca8efebc7b811ae956e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果总结：\n\n## 结果\n\n**产出文件（服务器 westd-32608）：**\n- `/root/symb_invariant_consensus/results/exp019_constraint_quality_analysis.json`\n- `/root/symb_invariant_consensus/results/exp019_constraint_quality_summary.csv`\n\n**核心数据表（7 个 model×domain 组合）：**\n\n| Model | Domain | n | C0 | Δpp | Excl Rate | Sat Ratio |\n|-------|--------|---|----|-----|-----------|-----------|\n| Qwen-14B | PW+FOLIO | 804 | 0.382 | +0.25 | 0.023 | 0.977 |\n| Mistral-7B | PW+FOLIO | 60 | 0.500 | 0.00 | 0.052 | 0.948 |\n| LLaMA-8B | PW+FOLIO | 60 | 0.617 | **+6.67** | 0.050 | 0.950 |\n| Qwen-14B | StrategyQA | 60 | 0.100 | +3.33 | 0.046 | 0.954 |\n| Qwen-14B | ARC | 60 | 0.050 | -1.67 | 0.025 | 0.975 |\n| LLaMA-8B | StrategyQA | 200 | 0.410 | +2.00 | **0.147** | **0.853** |\n| LLaMA-8B | FOLIO | 204 | 0.618 | -2.45 | 0.062 | 0.938 |\n\n**相关性分析：**\n- **C0 vs satisfied_ratio**: Spearman ρ = **-0.64** (p=0.13) — 方向支持 capability trap\n- **C0 vs exclusion_rate**: Spearman ρ = **+0.64** (p=0.13) — 方向支持 capability trap\n- **C0 vs constraint_density**: Pearson r = **+0.79** (p=0.04) — 高 C0 问题产生更多约束但质量更差\n- **C0 vs SICA-SC gap**: 近乎零相关 (r=0.15) — 单纯的 C0 不能预测 SICA 收益\n\n**数据局限：**\n- 结果 JSON 不包含 per-constraint 详情（没有每条约束来自哪个 trace 的映射），无法计算真正的 constraint precision（discriminative constraints / total）\n- 只有 exp001 和 exp020 保存了 `sica_scores`（per-answer 分数），其余只有聚合统计\n- 使用 exclusion_rate（MaxSAT 排除比例）和 satisfied_ratio 作为质量代理指标\n\n**关键发现：**\ncapability trap 方向成立但 n=7 统计功效不足。反例是 LLaMA-8B/PW+FOLIO（高 C0=0.62 + 低 exclusion=0.05 → SICA 大幅赢 +6.67pp），说明 \"formal logic 域的约束即使在高不确定性下仍可靠\" 是 SICA 真正的 sweet spot。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-019-constraint-quality.md"
+}

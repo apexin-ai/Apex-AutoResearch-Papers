@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41cf7152258811b66fe2",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code proofwriter prompt adapt",
+  "task_key": "worker_code_proofwriter-prompt-adapt_20260515T184126",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_proofwriter-prompt-adapt_20260515T184126_result.json",
+    "occurrence": 1,
+    "bytes": 2051,
+    "sha256": "8606e4a61a11c864261f230d954c2cdcb675cce61eedcc4a3ce61280f797453f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifacts 同步不是必须的，关键改动已在服务器上验证通过。\n\n---\n\n## 汇报\n\n### 1. Prompt template 机制\n\n**改动文件**：\n- `sica/trace_generator.py` (267→304 行, +37 行)\n- `sica/pipeline.py` (1 行改动)\n- `eval_proofwriter.py` (dry-run 增强 + 移除 TODO)\n\n**接口变化**：\n- `TraceGenerator.generate()` 新增 `task_type: str = \"math\"` 参数（默认值保持 math，零回归）\n- `VLLMGenerator._build_prompt()` 通过 `PROMPT_TEMPLATES` 字典选 template\n- `pipeline.run_single()` 自动从 `problem[\"dataset\"]` 推导 domain，传给 `generate(task_type=domain)`\n\n**新增组件**：\n| 组件 | 说明 |\n|------|------|\n| `LOGIC_PROMPT` | 逻辑推理 prompt，要求 step-by-step + `\\boxed{True/False/Unknown}` |\n| `PROMPT_TEMPLATES` | `{\"math\": SOLVE_PROMPT, \"logic\": LOGIC_PROMPT}` |\n| `normalize_logic_answer()` | 标准化 True/False/Unknown（含 yes/no/proved 等同义词） |\n| fallback pattern | `r'(?:answer\\|conclusion\\|statement)\\s+is\\s*(True\\|False\\|Unknown)'` |\n\n### 2. Dry-run 结果\n\n**Prompt 拼装**：10/10 题全部 OK\n- 所有 prompt 包含 context (facts/rules)、question、`\\boxed{True/False/Unknown}` 指令\n\n**答案提取**：8/8 测试 ALL OK\n| 输入 | 提取结果 | 方法 |\n|------|---------|------|\n| `\\boxed{True}` | True | boxed |\n| `\\boxed{False}` | False | boxed |\n| `\\boxed{Unknown}` | Unknown | boxed |\n| `the answer is True.` | True | fallback |\n| `The conclusion is False.` | False | fallback |\n| `The statement is Unknown.` | Unknown | fallback |\n| `The final answer is True.` | True | fallback |\n| `\\boxed{true}` (小写) | True (normalize) | boxed |\n\n### 3. Constraint extraction prompt\n\n已适配——`constraint_extractor.py` 在服务器上早已有 `LOGIC_EXTRACTION_PROMPT`，且 `pipeline.run_single()` 已通过 `self.constraint_extractor.domain = domain` 自动切换。无需额外改动。\n\n### v3 实验状态\n\nPID 129992 正常运行（已 3h+），未受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-proofwriter-prompt-adapt.md"
+}

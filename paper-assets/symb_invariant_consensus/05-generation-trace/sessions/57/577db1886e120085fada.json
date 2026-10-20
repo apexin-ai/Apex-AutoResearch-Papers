@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "577db1886e120085fada",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diagnose exp 026 folio204 trace regen",
+  "task_key": "worker_diagnose_exp-026-folio204-trace-regen_20260518T120909",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp-026-folio204-trace-regen_20260518T120909_result.json",
+    "occurrence": 1,
+    "bytes": 3321,
+    "sha256": "1ebebfb1c5f5cbec45ae04cf20dd3b733436b902ebc4717be1973036c1ded5cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。以下是完整分析：\n\n## 诊断结论\n\n**4 次运行记录：**\n\n| Run | 时间 | T | 处理题数 | 状态 |\n|-----|------|---|---------|------|\n| 1 (原始) | 19:39 | 0.30 | 7/204 (6完成) | 静默崩溃 |\n| 2 (restart) | 19:46 | 0.70 | 28/204 (27完成) | 静默崩溃 |\n| 3 (final) | 20:11 | 0.70 | **11/204 进行中** | PID 27245 存活 |\n| 4 (v3) | 20:11 | 0.70 | <1 | 已死 (PID 27310) |\n\n**关键发现：**\n\n1. **所有崩溃无任何错误输出** — 无 Traceback、无 OOM、无 dmesg 记录、无 cgroup kill、无 journalctl\n2. **脚本缺 `set -o pipefail`** — `python ... | tee ...` 管道掩盖了 Python 的退出码，bash 继续打印 `FOLIO_204_DONE`，让 cron 监控误判\n3. **Run 3 和 Run 4 同时启动** — 两个实例竞争写同一个输出文件 `folio_204_results.json`，Run 4 已死\n4. **Temperature 不匹配** — 用户意图 T=0.3，脚本写死 T=0.7（Run 1 的 T=0.3 来自不同命令）\n5. z3 版本 4.15.4，`parse_z3_formula()` 用 `eval()` 将 LLM 生成的公式字符串传给 z3 C++ 后端\n\n**根因：z3 C++ 层 SIGSEGV** — LLM 生成的约束公式经 `eval()` 传入 z3 后，特定病态输入触发 z3 native segfault，Python 进程被直接杀死（绕过所有 try/except）。崩溃点随 temperature/随机种子变化（不同输出→不同公式→不同 z3 代码路径）。\n\n```json\n{\"root_cause\":\"z3 C++ SIGSEGV on pathological LLM-generated constraint formulas via eval() in parse_z3_formula(); masked by set -e without set -o pipefail in | tee pipeline\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"kill duplicate wrapper PIDs (27296/27302 already dead, verify no zombies)\",\"add 'set -o pipefail' to run_folio_trace_regen.sh line 5\",\"wrap z3 dedup+MaxSAT in subprocess (multiprocessing.Process with timeout) so SIGSEGV kills child not main process\",\"fix script temperature from 0.7 to 0.3 to match intended experiment config\",\"add flock or PID file guard to prevent concurrent launches\",\"current PID 27245 is alive at 11/204 with T=0.70 — decide whether to let it run or kill and restart with correct T=0.3\"],\"can_auto_fix\":false,\"partial_results\":\"有部分结果: PID 27245 已保存 11/204 (folio_0~folio_10) 到 results/folio_204_14b/, 但 T=0.70 非目标温度 0.3\"}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "z3 C++ SIGSEGV on pathological LLM-generated constraint formulas via eval() in parse_z3_formula(); masked by set -e without set -o pipefail in | tee pipeline",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "kill duplicate wrapper PIDs (27296/27302 already dead, verify no zombies)",
+                "add 'set -o pipefail' to run_folio_trace_regen.sh line 5",
+                "wrap z3 dedup+MaxSAT in subprocess (multiprocessing.Process with timeout) so SIGSEGV kills child not main process",
+                "fix script temperature from 0.7 to 0.3 to match intended experiment config",
+                "add flock or PID file guard to prevent concurrent launches",
+                "current PID 27245 is alive at 11/204 with T=0.70 — decide whether to let it run or kill and restart with correct T=0.3"
+              ],
+              "can_auto_fix": false,
+              "partial_results": "有部分结果: PID 27245 已保存 11/204 (folio_0~folio_10) 到 results/folio_204_14b/, 但 T=0.70 非目标温度 0.3"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-026-folio204-trace-regen.md"
+}

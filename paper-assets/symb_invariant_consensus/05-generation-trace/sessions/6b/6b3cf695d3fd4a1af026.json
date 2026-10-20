@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b3cf695d3fd4a1af026",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code prep exp010 mistral v3 script",
+  "task_key": "worker_code_prep-exp010-mistral-v3-script_20260517T064640",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_prep-exp010-mistral-v3-script_20260517T064640_result.json",
+    "occurrence": 1,
+    "bytes": 623,
+    "sha256": "8d536bc1e8aa55d5663c17405d8560ed44a9d340eed17bbea2ee8f85398383e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法验证通过。v3 脚本关键参数：\n\n| 参数 | 值 |\n|------|-----|\n| 模型路径 | `/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3` |\n| max-model-len | 8192 |\n| max-tokens | 4096 |\n| gpu-memory-utilization | 0.90 |\n| vLLM 清理 | `pkill -9 -f \"vllm.entrypoints\"` + sleep 5 + nvidia-smi 确认 |\n| 启动等待 | 180s with health check |\n\n两个问题已修复：\n1. 开头增加标准化 vLLM 清理块（`pkill -9 -f \"vllm.entrypoints\"`），只杀 vllm 进程不会误杀 tmux\n2. max-model-len 保持 8192（原脚本已是 8192，v1 的 4096 问题已在之前修复过）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-exp010-mistral-v3-script.md"
+}

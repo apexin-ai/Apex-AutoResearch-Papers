@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9bf3636cd3c2220b98ba",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra cuda3 full cleanup",
+  "task_key": "worker_infra_cuda3-full-cleanup_20260522T123602",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_cuda3-full-cleanup_20260522T123602_result.json",
+    "occurrence": 1,
+    "bytes": 546,
+    "sha256": "6581920b91c3a14f984e83dbd549134ff1e4dd695f182bdb9656814746940e44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| 项目 | 结果 |\n|------|------|\n| **备份 seed=789** | 3 个文件已备份到 `mistral_folio_seed789_backup/` |\n| **vLLM (PID 466621, port 8004)** | 已杀死，端口已释放 |\n| **Qwen2.5-7B 下载 (PID 605164)** | 已杀死，残留文件已清理 |\n| **cuda:3** | **0 MiB 占用，完全空闲** |\n\nGPU 当前状态：\n- GPU 0: 90159/97887 MiB（使用中）\n- GPU 1: 88263/97887 MiB（使用中）\n- GPU 2: 90213/97887 MiB（使用中）\n- **GPU 3: 0/97887 MiB（空闲待命）**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-cuda3-full-cleanup.md"
+}

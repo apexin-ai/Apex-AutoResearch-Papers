@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "657de160855eca1e7703",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis cross model kappa phase1",
+  "task_key": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_cross-model-kappa-phase1_20260520T060602_result.json",
+    "occurrence": 1,
+    "bytes": 1463,
+    "sha256": "254eb2c88a315e6ee86a15a0f544603f9b320c88cc188726fc83947cc784733a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结果汇总：\n\n## 跨模型 Fleiss' κ 分析结果 (Variable-K, FOLIO-204, N=204)\n\n| 组合 | Nom_K | κ | Eff-K | SC Acc |\n|---|---|---|---|---|\n| Mistral-only (K=4) | 4 | 0.515 | 1.52 | 61.3% |\n| LLaMA-only (K=4) | 4 | 0.441 | 1.68 | 62.3% |\n| Qwen-only (K=4) | 4 | 0.639 | 1.37 | 74.5% |\n| Mistral-only (K=12) | 12 | 0.519 | 1.76 | 54.4% |\n| LLaMA-only (K=12) | 12 | 0.471 | 1.92 | 64.7% |\n| Qwen-only (K=12) | 12 | 0.649 | 1.47 | 76.0% |\n| Mistral+LLaMA (K=8) | 8 | 0.410 | 2.02 | 60.8% |\n| Mistral+Qwen (K=8) | 8 | 0.462 | 1.87 | 72.1% |\n| LLaMA+Qwen (K=8) | 8 | 0.459 | 1.88 | 74.0% |\n| **3-Model Mix (K=12)** | **12** | **0.422** | **2.11** | **74.5%** |\n\n### 关键发现\n\n- **κ 降低 16.5%**: 跨模型 κ 平均 0.444 vs 同模型 κ 平均 0.532 (K=4)\n- **Effective-K 增益 26.3%**: 跨模型 1.92 vs 同模型 1.52\n- **3-Model Mix Eff-K = 2.11**: 12 条 traces 等效于 2.11 条独立样本（同模型 K=12 最高仅 1.92）\n- 跨模型 SC accuracy 普遍优于等 K 的同模型 SC\n\n### 验证\n- κ_within(LLaMA, K=4) = 0.441 ≈ 预期 0.41 ✓\n- κ_within(Qwen, K=12) = 0.649 ≈ 预期 0.66 ✓  \n- κ_within(Mistral, K=12) = 0.519 > 预期 0.44（差异原因：variable-K 方法用 P_i 加权而非简单平均，Mistral 空答案率约 17%）\n\n结果已保存至服务器 `/root/symb_invariant_consensus/results/cross_model_kappa/cross_kappa_results.json` 和本地 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cross-model-kappa-phase1.md"
+}

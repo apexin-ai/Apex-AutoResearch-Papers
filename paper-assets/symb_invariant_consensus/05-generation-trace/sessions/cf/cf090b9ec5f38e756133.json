@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf090b9ec5f38e756133",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code math500 subset prep",
+  "task_key": "worker_code_math500-subset-prep_20260515T183555",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_math500-subset-prep_20260515T183555_result.json",
+    "occurrence": 1,
+    "bytes": 1084,
+    "sha256": "cba9755e61598632f2476c50fc871ce22c3974a9b6403983b0878462dc365d86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。汇报：\n\n### 1. math500_subset.json 状态\n- **已存在**，50 题，格式正确\n- 字段：`id, problem, solution, answer, level`\n- Level 分布：Level 1-5 各 10 道（分层抽样，seed=42）\n- 生成脚本 `data/prepare_data.py` 从 `HuggingFaceH4/MATH-500` 加载\n\n### 2. AIME 重叠检查\n- AIME 2024 子集 30 题，MATH-500 子集 50 题，**零重叠**\n\n### 3. 新增文件\n- **`data/__init__.py`** — 使 `data/` 可作为 Python 包导入\n- **`data/math500_loader.py`** — `load_math500_subset(path, levels, max_problems)` 接口，自动为每条记录补 `dataset=\"math\"`，兼容 `run_full_mvp.py` 输入格式\n- **`eval_math500.py`** — MATH-only 评估脚本，复用 run_full_mvp.py 核心逻辑（pipeline、SC baseline、is_equiv），支持 `--n-problems`, `--k`, `--temperature`, `--levels`, `--resume`, `--save-intermediates`\n\n### 4. 后续步骤\n- v3 实验完成后，运行 `python eval_math500.py --mode vllm --k 12 --temperature 0.7 --save-intermediates`\n- 如需仅跑难题子集：`--levels 4 5`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-math500-subset-prep.md"
+}

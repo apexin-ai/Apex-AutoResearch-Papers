@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a76c20a1a97454d4c803",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ops probe westd 30973",
+  "task_key": "worker_ops_probe-westd-30973_20260525T204041",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_probe-westd-30973_20260525T204041_result.json",
+    "occurrence": 1,
+    "bytes": 2466,
+    "sha256": "f358093de4944fff8045166fef01e71fbec56b2c3b48247cf6b4a15f59cca2de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据收集完毕。以下是完整报告：\n\n---\n\n## westd-30973 服务器数据探测报告\n\n### 磁盘空间\n\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| 根分区 `/` | 30G | 13G | **18G** | 42% |\n| 数据盘 `/root/autodl-tmp` | 250G | 54G | **197G** | 22% |\n\n### 项目总大小\n\n- `/root/symb_invariant_consensus`: **226M**\n- `/root/autodl-tmp/symb_invariant_consensus`: **不存在**\n\n### results 目录\n\n- 大小: **1.2M**\n- 文件数: **3 个** JSON 文件（均在 `results/multi_seed/` 下）\n  - `llama8b_pw_seed456_v2/results.json`\n  - `llama8b_pw_seed789_v2/results.json`\n  - `qwen25_pw_seed789_v3/results.json`\n\n### artifacts 目录\n\n- 大小: **176K**\n- 文件数: **5 个**\n  - `capability_gap_scatter.pdf` / `.png`\n  - `deberta_ft_combo_all.json`\n  - `nli_recompute_exp091_exp092.json`\n  - `nondeterminism_root_cause.md`\n\n### HF cache\n\n- `/root/autodl-tmp/.hf_cache`: **1.4M**（几乎为空，仅有元数据）\n\n### checkpoint 文件\n\n- `checkpoints/deberta-large-pw-finetuned/` 目录存在但**大小为 0**（空占位符）\n- 整个项目内**无 .pt / .pth / .bin / .safetensors 文件**\n\n### Git 状态\n\n- **`.git` 目录不存在**——项目代码不是 git 仓库（可能是通过 scp/rsync 复制过来的）\n\n### autodl-tmp 子目录明细\n\n| 目录 | 大小 | 内容 |\n|------|------|------|\n| `models/Meta-Llama-3.1-8B-Instruct` | 16G | LLM 权重 |\n| `models/Qwen2.5-14B-Instruct` | 28G | LLM 权重 |\n| `nli_models/` | 11G | bart-large-mnli, deberta-large-mnli, roberta-large-mnli |\n| `folio_traces/` | 2.5M | 推理 trace 数据 |\n| `folio_nli_combo/` | 0 | 空目录 |\n| `results/` | 768K | 额外结果数据 |\n| `run_folio_nli_combo.py` | — | 脚本文件 |\n\n### 特殊发现\n\n1. **无 git 仓库** — 代码是裸复制，无版本控制，sync_code 不可用\n2. **无 wandb 目录** — 该服务器未配置 wandb 本地日志\n3. **models 目录空** — `/root/symb_invariant_consensus/models/` 为空，实际模型全在 `/root/autodl-tmp/models/`\n4. **checkpoints 空壳** — `deberta-large-pw-finetuned` 目录存在但无实际权重文件\n5. **figures 源数据** — 仅一个 `gen_capability_gap_scatter.py`，对应 artifacts 中的 scatter 图\n6. **autodl-tmp 主要被 LLM 权重占据** — 44G models + 11G nli_models = 55G（占数据盘 54G 已用的绝大部分）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-probe-westd-30973.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "487c9131b7eb4fdb4f58",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "deploy exp 075b kill restart",
+  "task_key": "worker_deploy_exp-075b-kill-restart_20260519T174923",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_exp-075b-kill-restart_20260519T174923_result.json",
+    "occurrence": 1,
+    "bytes": 525,
+    "sha256": "5f3cd3cea09c37d744296220e4f48263185bff47da35c475cdfb555644c9097c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**exp-075 → exp-075b**\n- 旧进程 PID 257723 已 kill，旧结果已清理\n- 新进程 PID 265705 在 westd-25068 cuda:2 运行，tmux session `exp075b_run`\n- vLLM 8002 (Mistral-7B) 正常服务\n- Registry `exp-075b-contrastive-mistral-folio` 状态 RUNNING\n\n**Cron 监控已注册（每 8 分钟）**\n- `be291d00`: exp-075b (westd-25068, PID 265705)\n- `0deb2bb2`: exp-076 debate (westd-25068, PID 258370)\n- `d20015b2`: exp-072b LLaMA-8B LogiQA (westd-16639, PID 186220)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-exp-075b-kill-restart.md"
+}

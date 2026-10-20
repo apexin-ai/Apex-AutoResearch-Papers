@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1609967bb4a6eea86ee",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code multi temp sampling",
+  "task_key": "worker_code_multi-temp-sampling_20260519T014610",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_multi-temp-sampling_20260519T014610_result.json",
+    "occurrence": 1,
+    "bytes": 1473,
+    "sha256": "ec06259f74cf72d5e7454f3df4b99e3dbfba0385c04d1bbe39283cbc194cd427"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n---\n\n### 产出总结\n\n**创建文件**: `/root/symb_invariant_consensus/run_multi_temp.py`\n\n**新增参数**（替代原 `--temperature` 和 `--k`）:\n| 参数 | 类型 | 默认值 | 说明 |\n|------|------|--------|------|\n| `--temperatures` | str | `0.3,0.7,1.2` | 逗号分隔温度列表 |\n| `--k-per-temp` | str | `4,4,4` | 每个温度的 trace 数量，需与 temperatures 长度匹配 |\n\n其余参数（`--mode`, `--model`, `--api-base`, `--output`, `--resume`, `--save-intermediates` 等）与 `run_full_mvp.py` 一致。\n\n**新增类/函数**:\n- `MultiTempVLLMGenerator` — 单 async client，所有温度组并发生成，每条 trace 附带 `temperature` 字段\n- `MultiTempAPIGenerator` — 顺序生成的 API 版本\n- `parse_temp_k_pairs()` — 解析并校验温度/k 配置\n- `build_multi_temp_generator()` — 工厂函数\n\n**复用自 `run_full_mvp.py`**:\n- `load_all_problems`, `load_checkpoint`, `build_extractor`, `compute_summary`, `print_summary`\n\n**温度元数据记录位置**:\n- 每条 trace dict 的 `\"temperature\"` 字段（vllm/api 模式）\n- `per_trace_constraints/{id}.json` 中每条 trace 的 `\"temperature\"` 字段\n- `summary` 中的 `\"temperatures\"` 和 `\"k_per_temp\"` 字段\n\n**Dry-run 结果**: `--help` 解析正确，mock 模式完整 pipeline 跑通（2 题，12 traces = 4+4+4），参数校验（长度不匹配报错、单温度、不等分配）全部通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-multi-temp-sampling.md"
+}

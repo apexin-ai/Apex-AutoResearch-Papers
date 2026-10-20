@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "27a8d8a9ab4db2c7d944",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "code fix icg pipeline",
+  "task_key": "worker_code_fix-icg-pipeline_20260519T170651",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix-icg-pipeline_20260519T170651.log",
+    "occurrence": 1,
+    "bytes": 836325,
+    "sha256": "4414512a545a0f3c62533f32db9dbceb09917d58998cc5caa4ff503a4dc51400"
+  },
+  "statistics": {
+    "messages": 178,
+    "user_turns": 0,
+    "tool_calls": 64,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 64,
+      "tool_result": 64,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 178,
+      "chunks": [
+        {
+          "path": "27a8d8a9ab4db2c7d944-part-0001.json",
+          "message_count": 88
+        },
+        {
+          "path": "27a8d8a9ab4db2c7d944-part-0002.json",
+          "message_count": 90
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-icg-pipeline.md"
+}

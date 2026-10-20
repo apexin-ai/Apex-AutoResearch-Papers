@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80e30474126524235bc2",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis icg kappa corrected plan b",
+  "task_key": "worker_analysis_icg-kappa-corrected-plan-b_20260520T015454",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_icg-kappa-corrected-plan-b_20260520T015454_result.json",
+    "occurrence": 1,
+    "bytes": 765,
+    "sha256": "bd1fd02102c15dc95399c57d23afe4ddf0f4bc63d0e746d6f2c16c4e88b07209"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n| 指标 | 值 |\n|---|---|\n| **Fleiss' κ** | **0.4649** |\n| **Eff-K** | **1.93** |\n| n_raters | 10 |\n| n_questions | 204 |\n| Answer flip rate | 79.4% (162/204) |\n| Non-trace votes | 85 (MAX-SAT 翻转了 trace 答案) |\n\n与其他方法对比：\n- **ICG (corrected)**: κ=0.46, Eff-K=1.93\n- **ICG (bootstrap, 旧)**: κ=0.72 ← bootstrap overlap 膨胀\n- **SC**: κ=0.44, Eff-K=2.02\n- **Debate**: κ=0.15, Eff-K=4.44\n\nICG κ=0.46 与 SC κ=0.44 接近，方法论一致（per-independent-source rater）。85 个 non-trace votes 说明 MAX-SAT 评分不完全退化——约 4.2% 的 rater-question 对中，约束集的 MAX-SAT 结果翻转了原始 trace 答案（因 fallback mode 或约束冲突）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-icg-kappa-corrected-plan-b.md"
+}

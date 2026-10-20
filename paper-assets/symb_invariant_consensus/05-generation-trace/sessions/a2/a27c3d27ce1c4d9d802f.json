@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a27c3d27ce1c4d9d802f",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "analysis discriminative rate full",
+  "task_key": "worker_analysis_discriminative-rate-full_20260518T035020",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_discriminative-rate-full_20260518T035020.log",
+    "occurrence": 1,
+    "bytes": 632274,
+    "sha256": "f85436d227da0de18a14e911a23bb11edbd803a7285e08b2c5a1cf679d80191a"
+  },
+  "statistics": {
+    "messages": 113,
+    "user_turns": 0,
+    "tool_calls": 37,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 35,
+      "tool_call": 37,
+      "tool_result": 37,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 113,
+      "chunks": [
+        {
+          "path": "a27c3d27ce1c4d9d802f-part-0001.json",
+          "message_count": 107
+        },
+        {
+          "path": "a27c3d27ce1c4d9d802f-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-discriminative-rate-full.md"
+}

@@ -1,0 +1,1133 @@
+{
+  "schema_version": "1.0",
+  "id": "2f27d98a73b71ba7e5ea",
+  "project": "symb_invariant_consensus",
+  "kind": "conversation",
+  "title": "paper research oracle upper bound",
+  "task_key": "worker_paper_research_oracle_upper_bound_20260517T175752",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_paper_research_oracle_upper_bound_20260517T175752.jsonl",
+    "occurrence": 1,
+    "bytes": 67616,
+    "sha256": "354463977813f9e400ad3d0acf0b03769379ded5f2b28164fae3815b8493f82b"
+  },
+  "statistics": {
+    "messages": 57,
+    "user_turns": 0,
+    "tool_calls": 28,
+    "roles": {
+      "tool_call": 28,
+      "tool_result": 28,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T18:02:03.263747+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/literature_map.yaml"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T18:02:03.264428+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Literature Map — symb_invariant_consensus (SICA)\n2\t# Last updated: 2026-05-16\n3\t# Purpose: Track related work coverage for EMNLP 2026 submission\n4\t\n5\tdimensions:\n6\t\n7\t  self_consistency_and_variants:\n8\t    description: \"Self-Consistency (SC) decoding and improvements\"\n9\t    papers:\n10\t      - id: wang2023sc\n11\t        title: \"Self-Consistency Improves Chain of Thought Reasoning in Language Models\"\n12\t        authors: \"Wang et al.\"\n13\t        venue: \"ICLR 2023\"\n14\t        arxiv: \"2203.11171\"\n15\t        relevance: \"Foundational SC method; our primary baseline\"\n16\t        status: must_cite\n17\t\n18\t      - id: chen2024usc\n19\t        title: \"Universal Self-Consistency for Large Language Model Generation\"\n20\t        authors: \"Chen et al.\"\n21\t        venue: \"ICML 2024\"\n22\t        arxiv: \"2311.17311\"\n23\t        relevance: \"Extends SC to free-form answers via LLM-based selection; alternative aggregation\"\n24\t        status: must_cite\n25\t\n26\t      - id: taubenfeld2025cisc\n27\t        title: \"Confidence Improves Self-Consistency in LLMs\"\n28\t        authors: \"Taubenfeld et al.\"\n29\t        venue: \"ACL Findings 2025\"\n30\t        arxiv: \"2502.06233\"\n31\t        relevance: \"Weighted voting via model confidence; reduces samples 40-50%. Shows SC can be improved with non-uniform weighting — SICA uses constraint-based weighting instead\"\n32\t        status: must_cite\n33\t\n34\t      - id: kim2026reasc\n35\t        title: \"Reliability-Aware Adaptive Self-Consistency (ReASC)\"\n36\t        authors: \"Kim et al.\"\n37\t        venue: \"2026\"\n38\t        relevance: \"Response-level confidence for early halting; 70-80% cost saving vs naive SC\"\n39\t        status: should_cite\n40\t\n41\t      - id: loo2025reevaluating\n42\t        title: \"Reevaluating Self-Consistency Scaling in Multi-Agent Systems\"\n43\t        authors: \"Loo et al.\"\n44\t        venue: \"arXiv 2025\"\n45\t        arxiv: \"2511.00751\"\n46\t        relevance: \"CRITICAL — shows SC gains plateau early and can decline at high sample counts for strong models. Direc\n…[truncated 17360 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T18:02:03.264659+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T18:02:03.264867+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% References for SICA Capability Trap paper\n2\t% Generated from literature_map.yaml — 2026-05-17\n3\t\n4\t%%% Self-Consistency and Variants %%%\n5\t\n6\t@inproceedings{wang2023sc,\n7\t  title={Self-Consistency Improves Chain of Thought Reasoning in Language Models},\n8\t  author={Wang, Xuezhi and Wei, Jason and Schuurmans, Dale and Le, Quoc and Chi, Ed and Narang, Sharan and Chowdhery, Aakanksha and Zhou, Denny},\n9\t  booktitle={ICLR},\n10\t  year={2023}\n11\t}\n12\t\n13\t@inproceedings{chen2024usc,\n14\t  title={Universal Self-Consistency for Large Language Model Generation},\n15\t  author={Chen, Xinyun and Aksitov, Renat and Alon, Uri and Ren, Jie and Xiao, Kefan and Yin, Pengcheng and Prakash, Sushant and Sutton, Charles and Wang, Xuezhi and Zhou, Denny},\n16\t  booktitle={ICML},\n17\t  year={2024}\n18\t}\n19\t\n20\t@inproceedings{taubenfeld2025cisc,\n21\t  title={Confidence Improves Self-Consistency in {LLM}s},\n22\t  author={Taubenfeld, Asaf and Goldstein, Ido and Tsur, Oren},\n23\t  booktitle={ACL Findings},\n24\t  year={2025}\n25\t}\n26\t\n27\t@article{loo2025reevaluating,\n28\t  title={Reevaluating Self-Consistency Scaling in Multi-Agent Systems},\n29\t  author={Loo, Ryan and others},\n30\t  journal={arXiv preprint arXiv:2511.00751},\n31\t  year={2025}\n32\t}\n33\t\n34\t@inproceedings{li2023diverse,\n35\t  title={Making Language Models Better Reasoners with Step-Aware Verifier},\n36\t  author={Li, Yifei and Lin, Zeqi and Zhang, Shizhuo and Fu, Qiang and Chen, Bei and Lou, Jian-Guang and Chen, Weizhu},\n37\t  booktitle={ACL},\n38\t  year={2023}\n39\t}\n40\t\n41\t%%% Neuro-Symbolic Reasoning %%%\n42\t\n43\t@inproceedings{pan2023logiclm,\n44\t  title={Logic-{LM}: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning},\n45\t  author={Pan, Liangming and Alber, Alon and Xu, Wenhu and Deng, Yixin and Chen, Huan and Ji, Heng},\n46\t  booktitle={EMNLP Findings},\n47\t  year={2023}\n48\t}\n49\t\n50\t@inproceedings{olausson2023linc,\n51\t  title={{LINC}: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models wi\n…[truncated 8287 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T18:02:03.265125+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T18:02:03.265269+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T18:02:03.265417+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "oracle upper bound experiment NLP pipeline diagnosis gold annotation 2023 2024"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T18:02:03.265540+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "oracle retriever reader pipeline analysis ceiling experiment NLP 2023 2024"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T18:02:03.265656+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"gold annotation\" \"controlled experiment\" \"pipeline component\" ablation NLP reasoning 2023 2024"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T18:02:03.265818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"oracle retriever reader pipeline analysis ceiling experiment NLP 2023 2024\"\n\nLinks: [{\"title\":\"Query Rewriting for Retrieval-Augmented Large Language ...\",\"url\":\"https://aclanthology.org/2023.emnlp-main.322.pdf\"},{\"title\":\"Potential benefits of using NVIDIA NeMo Retriever and Oracle 23ai to power your enterprise RAG pipeline | ai-and-datascience\",\"url\":\"https://blogs.oracle.com/ai-and-datascience/nvidia-nemo-retriever-and-oracle-23ai-rag-pipeline\"},{\"title\":\"MULTI-STEP RETRIEVER-READER INTERACTION FOR ...\",\"url\":\"https://openreview.net/pdf?id=HkfPSh05K7\"},{\"title\":\"Reader Models for Open Domain Question-Answering | Pinecone\",\"url\":\"https://www.pinecone.io/learn/series/nlp/reader-models/\"},{\"title\":\"Goodbye complex SQL queries, hello natural language data dives\",\"url\":\"https://www.oracle.com/autonomous-database/select-ai/natural-language/\"},{\"title\":\"Haystack's Pipeline - A Deep Dive · Sara Zan\",\"url\":\"https://www.zansara.dev/posts/2023-10-15-haystack-series-pipeline/\"},{\"title\":\"AI Text Analysis at Scale | Oracle\",\"url\":\"https://www.oracle.com/artificial-intelligence/language/\"},{\"title\":\"ADE Oracle at #SMM4H 2024: A Two-Stage NLP System for Extracting and Normalizing Adverse Drug Events from Tweets\",\"url\":\"https://www.researchgate.net/publication/384217559_ADE_Oracle_at_SMM4H_2024_A_Two-Stage_NLP_System_for_Extracting_and_Normalizing_Adverse_Drug_Events_from_Tweets\"},{\"title\":\"Oracle Cloud for NLP | Springer Nature Link\",\"url\":\"https://link.springer.com/chapter/10.1007/979-8-8688-1073-2_2\"},{\"title\":\"Leveraging historical information to boost retrieval-augmented generation in conversations - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/pii/S0306457325003905\"}]\n\nBased on the web search results, I found several relevant papers and resources related to retriever-reader pipelines in NLP from 2023-2024:\n\n## Key Findings:\n\n**Query Rewriting for Retrieval-Augmented LLMs (2023)**\nThe research discusses rewrite-retrieve-\n…[truncated 1499 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T18:02:03.266091+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"gold annotation\" \"controlled experiment\" \"pipeline component\" ablation NLP reasoning 2023 2024\"\n\nLinks: [{\"title\":\"ABGEN: Evaluating Large Language Models in Ablation ...\",\"url\":\"https://aclanthology.org/2025.acl-long.611.pdf\"},{\"title\":\"Large Language Models for Data Annotation and Synthesis\",\"url\":\"https://aclanthology.org/2024.emnlp-main.54.pdf\"},{\"title\":\"A POWERFUL PIPELINE FOR LLM INSTRUCTION TUNING\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/473a9a75edc46eff5ff224d53d5f7294-Paper-Conference.pdf\"},{\"title\":\"SPREAD PREFERENCE ANNOTATION: DIRECT PREFER\",\"url\":\"https://openreview.net/pdf?id=BPgK5XW1Nb\"},{\"title\":\"DART: An automated end-to-end object detection pipeline with data Diversification, open-vocabulary bounding box Annotation, pseudo-label Review, and model Training - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/pii/S0957417424019912\"},{\"title\":\"Document-AI-Recommendations/Approaches/approaches_vie.md at main · SCUT-DLVCLab/Document-AI-Recommendations\",\"url\":\"https://github.com/SCUT-DLVCLab/Document-AI-Recommendations/blob/main/Approaches/approaches_vie.md\"},{\"title\":\"Optimal ablation for interpretability Maximilian Li Harvard University\",\"url\":\"https://lucasjanson.fas.harvard.edu/papers/Optimal_Ablation_For_Interpretability-Li_Janson-2024.pdf\"},{\"title\":\"(PDF) The Gold Standard in Corpus Annotation\",\"url\":\"https://www.researchgate.net/publication/265048097_The_Gold_Standard_in_Corpus_Annotation\"},{\"title\":\"How to get gold standard data for NLP – Paul Simmering\",\"url\":\"https://simmering.dev/blog/gold-data/\"},{\"title\":\"TACT: Advancing Complex Aggregative Reasoning with Information Extraction Tools\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/3d7025dc9bd4c8b6fb1eef80cc618008-Paper-Datasets_and_Benchmarks_Track.pdf\"}]\n\nI've retrieved search results for your query about gold annotation, controlled experiments, pipeline components, and ablation studies in NLP reaso\n…[truncated 1519 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T18:02:03.266291+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"oracle upper bound experiment NLP pipeline diagnosis gold annotation 2023 2024\"\n\nLinks: [{\"title\":\"ADE Oracle at #SMM4H 2024: A Two-Stage NLP System for Extracting and Normalizing Adverse Drug Events from Tweets\",\"url\":\"https://www.researchgate.net/publication/384217559_ADE_Oracle_at_SMM4H_2024_A_Two-Stage_NLP_System_for_Extracting_and_Normalizing_Adverse_Drug_Events_from_Tweets\"},{\"title\":\"Large Language Models for Data Annotation and Synthesis\",\"url\":\"https://aclanthology.org/2024.emnlp-main.54.pdf\"},{\"title\":\"The best NLP papers of 2024 - The best NLP papers\",\"url\":\"https://thebestnlppapers.com/nlp/papers/2024/\"},{\"title\":\"This Is How We Created Gold Standard Data for Developing the NLP Pipelines | HackerNoon\",\"url\":\"https://hackernoon.com/this-is-how-we-created-gold-standard-data-for-developing-the-nlp-pipelines\"},{\"title\":\"How to get gold standard data for NLP – Paul Simmering\",\"url\":\"https://simmering.dev/blog/gold-data/\"},{\"title\":\"Best Papers - EMNLP 2023\",\"url\":\"https://2023.emnlp.org/program/best_papers/\"},{\"title\":\"Oracle Labs | Publications\",\"url\":\"https://labs.oracle.com/pls/apex/labs/r/labs/publications?session=10452358880084\"},{\"title\":\"Healthcare NLP Models\",\"url\":\"https://docs.oracle.com/en-us/iaas/language/using/healthcare-nlp-models.htm\"},{\"title\":\"On LLMs-Driven Synthetic Data Generation, Curation, and ...\",\"url\":\"https://aclanthology.org/2024.findings-acl.658.pdf\"},{\"title\":\"Top 15 NLP Projects [2026 Edition]\",\"url\":\"https://www.analyticsvidhya.com/blog/2023/08/nlp-projects/\"}]\n\nI've performed the web search for your query \"oracle upper bound experiment NLP pipeline diagnosis gold annotation 2023 2024\". Here are the relevant results:\n\n## Key Findings:\n\nThe search returned several relevant papers and resources related to NLP pipelines, annotations, and diagnostics:\n\n1. **ADE Oracle System (2024)**: A two-stage NLP system for extracting and normalizing adverse drug events, with the #SMM4H shared tasks hosted at AMIA \n…[truncated 1016 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T18:02:03.266482+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "oracle retrieval experiment replace gold passages RAG question answering upper bound analysis arxiv 2023 2024"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T18:02:03.266619+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"oracle experiment\" \"upper bound\" pipeline bottleneck diagnosis LLM reasoning arxiv 2023 2024"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T18:02:03.266738+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ceiling analysis gold component replacement NLP pipeline error propagation diagnosis 2022 2023 2024"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T18:02:03.266898+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"oracle retrieval experiment replace gold passages RAG question answering upper bound analysis arxiv 2023 2024\"\n\nLinks: [{\"title\":\"Decomposing Retrieval Failures in RAG for Long-Document Financial Question Answering\",\"url\":\"https://arxiv.org/html/2602.17981\"},{\"title\":\"1 Retrieval-Augmented Generation for Large Language Models: A Survey\",\"url\":\"https://arxiv.org/pdf/2312.10997\"},{\"title\":\"arXiv:2407.16833v2 [cs.CL] 17 Oct 2024\",\"url\":\"https://arxiv.org/pdf/2407.16833\"},{\"title\":\"A Systematic Review of Key Retrieval-Augmented Generation (RAG) Systems: Progress, Gaps, and Future Directions\",\"url\":\"https://arxiv.org/html/2507.18910v1\"},{\"title\":\"Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers\",\"url\":\"https://arxiv.org/html/2506.00054v1\"},{\"title\":\"FrugalRAG: Learning to retrieve and reason for multi-hop QA\",\"url\":\"https://arxiv.org/pdf/2507.07634\"},{\"title\":\"FAIR-RAG: Faithful Adaptive Iterative Refinement for Retrieval-Augmented Generation\",\"url\":\"https://arxiv.org/html/2510.22344v1\"},{\"title\":\"W-RAG: Weakly Supervised Dense Retrieval in RAG for Open-domain Question Answering\",\"url\":\"https://arxiv.org/html/2408.08444v2\"},{\"title\":\"A Survey on Knowledge-Oriented Retrieval-Augmented Generation\",\"url\":\"https://arxiv.org/html/2503.10677v2\"},{\"title\":\"A Survey of RAG-Reasoning Systems in LLMs\",\"url\":\"https://arxiv.org/pdf/2507.09477\"}]\n\nBased on the web search results, I found relevant research on oracle-based analysis for RAG systems and upper bound analysis in question answering. Here are the key findings:\n\n## Oracle Retrieval Experiments for RAG Upper Bounds\n\nA recent study evaluates retrieval at multiple levels of granularity (document, page, and chunk level) and introduces an oracle-based analysis to provide empirical upper bounds on retrieval and generative performance in the context of financial question answering on FinanceBench.\n\nIn oracle page experiments, when the searc\n…[truncated 1258 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T18:02:03.267123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ceiling analysis gold component replacement NLP pipeline error propagation diagnosis 2022 2023 2024\"\n\nLinks: [{\"title\":\"(PDF) When it's all piling up: Investigating error propagation in an NLP pipeline\",\"url\":\"https://www.researchgate.net/publication/283474281_When_it's_all_piling_up_Investigating_error_propagation_in_an_NLP_pipeline\"},{\"title\":\"Full article: Enhancing pipeline integrity: a comprehensive review of deep learning-enabled finite element analysis for stress corrosion cracking prediction\",\"url\":\"https://www.tandfonline.com/doi/full/10.1080/19942060.2024.2302906\"},{\"title\":\"Leveraging Machine Learning for Pipeline Condition Assessment | Journal of Pipeline Systems Engineering and Practice | Vol 14, No 3\",\"url\":\"https://ascelibrary.com/doi/10.1061/JPSEA2.PSENG-1464\"},{\"title\":\"Pipeline corrosion prediction and uncertainty analysis with an ensemble Bayesian neural network approach - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/pii/S0957582024005226\"},{\"title\":\"Towards resilient pipeline infrastructure: lessons learned from failure analysis | Discover Applied Sciences | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s42452-024-06273-7\"},{\"title\":\"Prediction of oil and gas pipeline failures through machine learning approaches: A systematic review - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/pii/S2352484723011502\"},{\"title\":\"Machine learning methods for predicting residual strength in corroded oil and gas steel pipes | npj Materials Degradation\",\"url\":\"https://www.nature.com/articles/s41529-025-00573-y\"},{\"title\":\"Reliability evaluation of corroded pipeline under combined loadings based on back propagation neural network method - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0029801822012495\"},{\"title\":\"Explainability in Practice: A Survey of Explainable NLP Across Various Domains\",\"url\":\"https://arxiv.org/html/2502.00837v2\"},{\"\n…[truncated 1877 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T18:02:03.267315+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"oracle experiment\" \"upper bound\" pipeline bottleneck diagnosis LLM reasoning arxiv 2023 2024\"\n\nLinks: [{\"title\":\"LLM INFERENCE BEYOND A SINGLE NODE: FROM BOTTLENECKS TO\",\"url\":\"https://arxiv.org/pdf/2511.09557\"},{\"title\":\"OPT-Engine: Benchmarking the Limits of LLMs in Optimization Modeling via Complexity Scaling\",\"url\":\"https://arxiv.org/html/2601.19924v1\"},{\"title\":\"An Experimental Study of Real-Life LLM-Proposed Performance Improvements\",\"url\":\"https://arxiv.org/html/2510.15494v1\"},{\"title\":\"Revisiting LLM Reasoning via Information Bottleneck Shiye Lei1,*\",\"url\":\"https://arxiv.org/pdf/2507.18391\"},{\"title\":\"Breaking the Exploration Bottleneck: Rubric-Scaffolded Reinforcement Learning for General LLM Reasoning\",\"url\":\"https://arxiv.org/html/2508.16949v3\"},{\"title\":\"The New LLM Bottleneck: A Systems Perspective on Latent Attention and Mixture-of-Experts\",\"url\":\"https://arxiv.org/html/2507.15465v1\"},{\"title\":\"Revisiting LLM Reasoning via Information Bottleneck\",\"url\":\"https://arxiv.org/html/2507.18391v1\"},{\"title\":\"[2511.09557] LLM Inference Beyond a Single Node: From Bottlenecks to Mitigations with Fast All-Reduce Communication\",\"url\":\"https://arxiv.org/abs/2511.09557\"},{\"title\":\"LLMOrbit: A Circular Taxonomy of Large Language Models\",\"url\":\"https://arxiv.org/pdf/2601.14053\"},{\"title\":\"LLM Inference Scheduling: A Survey of Techniques, Frameworks, and Trade-offs\",\"url\":\"https://www.techrxiv.org/users/994660/articles/1355915/master/file/data/LLM_Scheduling_Survey_Arxiv_06Oct2025/LLM_Scheduling_Survey_Arxiv_06Oct2025.pdf?inline=true\"}]\n\nI found several relevant research papers from arXiv related to LLM reasoning, bottleneck diagnosis, and pipeline optimization. Here are the key results:\n\n## Primary Findings\n\nOne paper adopts a systematic diagnostic approach to identify and analyze the primary bottlenecks of current LLMs in optimization modeling, inspired by recent diagnostic frameworks in mathematical reasoning from 2023.\n\nAnother work a\n…[truncated 1415 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T18:02:03.267500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Self-RAG oracle retrieval gold passages upper bound Asai 2024 arxiv pipeline component analysis"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T18:02:03.267629+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"oracle extraction\" OR \"oracle retrieval\" OR \"gold passages\" upper bound analysis LLM reasoning pipeline 2023 2024 arxiv ACL EMNLP"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T18:02:03.267748+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Barnett 2024 seven failure points RAG retrieval augmented generation oracle analysis arxiv"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T18:02:03.267994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Self-RAG oracle retrieval gold passages upper bound Asai 2024 arxiv pipeline component analysis\"\n\nLinks: [{\"title\":\"RQ-RAG: Learning to Refine Queries for Retrieval Augmented Generation\",\"url\":\"https://arxiv.org/html/2404.00610v1\"},{\"title\":\"[2310.11511] Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection\",\"url\":\"https://arxiv.org/abs/2310.11511\"},{\"title\":\"[PDF] Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Self-RAG:-Learning-to-Retrieve,-Generate,-and-Asai-Wu/ddbd8fe782ac98e9c64dd98710687a962195dd9b\"},{\"title\":\"Self-Routing RAG: Binding Selective Retrieval with Knowledge Verbalization\",\"url\":\"https://arxiv.org/pdf/2504.01018\"},{\"title\":\"SmartRAG: Jointly Learn RAG-Related Tasks From the ...\",\"url\":\"https://arxiv.org/pdf/2410.18141\"},{\"title\":\"Preprint. SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND\",\"url\":\"https://arxiv.org/pdf/2310.11511\"},{\"title\":\"Probing-RAG: Self-Probing to Guide Language Models in Selective Document Retrieval\",\"url\":\"https://arxiv.org/html/2410.13339\"},{\"title\":\"Self-RAG: Learning to Retrieve, Generate and Critique through Self-Reflection\",\"url\":\"https://selfrag.github.io/\"},{\"title\":\"Understanding Adaptive-RAG: Smarter, Faster, and More Efficient Retrieval-Augmented Generation | by Tuhin Sharma | Medium\",\"url\":\"https://medium.com/@tuhinsharma121/understanding-adaptive-rag-smarter-faster-and-more-efficient-retrieval-augmented-generation-38490b6acf88\"},{\"title\":\"SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND ...\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2024/file/25f7be9694d7b32d5cc670927b8091e1-Paper-Conference.pdf\"}]\n\nBased on the search results, I found relevant information about Self-RAG and oracle/upper bound analysis:\n\n## Self-RAG Overview\n\nSelf-RAG is a framework called Self-Reflective Retrieval-Augmented Generation that enhances an LM's quality and factuality through retr\n…[truncated 1450 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T18:02:03.268220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Barnett 2024 seven failure points RAG retrieval augmented generation oracle analysis arxiv\"\n\nLinks: [{\"title\":\"[2401.05856] Seven Failure Points When Engineering a Retrieval Augmented Generation System\",\"url\":\"https://arxiv.org/abs/2401.05856\"},{\"title\":\"[PDF] Seven Failure Points When Engineering a Retrieval Augmented Generation System | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Seven-Failure-Points-When-Engineering-a-Retrieval-Barnett-Kurniawan/ba454ba8c594dfb86c25dff2e265c8a2686aa037\"},{\"title\":\"2024 SevenFailurePointsWhenEngineeri - GM-RKB\",\"url\":\"https://www.gabormelli.com/RKB/Barnett_et_al.,_2024\"},{\"title\":\"CAIN 2024: Seven Failure Points in Engineering RAG Systems - Studocu\",\"url\":\"https://www.studocu.com/row/document/comsats-university-islamabad/research-project/cain-2024-seven-failure-points-in-engineering-rag-systems/142019990\"},{\"title\":\"Seven Failure Points When Engineering a Retrieval Augmented Generation System | Proceedings of the IEEE/ACM 3rd International Conference on AI Engineering - Software Engineering for AI\",\"url\":\"https://dl.acm.org/doi/10.1145/3644815.3644945\"},{\"title\":\"Seven Failure Points When Engineering a Retrieval Augmented Generation System | Request PDF\",\"url\":\"https://www.researchgate.net/publication/381368130_Seven_Failure_Points_When_Engineering_a_Retrieval_Augmented_Generation_System\"},{\"title\":\"Seven Failure Points When Engineering a Retrieval Augmented Generation System\",\"url\":\"https://arxiv.org/html/2401.05856v1\"},{\"title\":\"Seven RAG Pitfalls and How to Solve Them | Label Studio\",\"url\":\"https://labelstud.io/blog/seven-ways-your-rag-system-could-be-failing-and-how-to-fix-them/\"},{\"title\":\"Seven Failure Points When Engineering a Retrieval Augmented Generation System | Space Frontiers\",\"url\":\"https://spacefrontiers.org/r/10.48550/arxiv.2401.05856\"},{\"title\":\"Seven Failure Points in Engineering RAG Systems: Insights from Case Studies - Studocu\",\"url\":\"https://www.studocu.com/en-\n…[truncated 1523 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T18:02:03.268425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"oracle extraction\" OR \"oracle retrieval\" OR \"gold passages\" upper bound analysis LLM reasoning pipeline 2023 2024 arxiv ACL EMNLP\"\n\nLinks: [{\"title\":\"LLMs as Oracles\",\"url\":\"https://www.emergentmind.com/topics/llms-as-oracles\"},{\"title\":\"Are LLMs Prescient? A Continuous Evaluation using Daily News as the Oracle\",\"url\":\"https://agenticlearning.ai/daily-oracle/\"},{\"title\":\"A Survey of Frontiers in LLM Reasoning: Inference Scaling,\",\"url\":\"https://llm-reasoning-ai.github.io/survey_arxiv.pdf\"},{\"title\":\"1 Reasoning Beyond Limits: Advances and Open Problems for LLMs\",\"url\":\"https://arxiv.org/pdf/2503.22732\"},{\"title\":\"OracleLLM: Empowering LLM with Self-Feedback\",\"url\":\"https://oracle-llm.github.io/\"},{\"title\":\"Progressive Multimodal Reasoning via Active Retrieval\",\"url\":\"http://playbigdata.ruc.edu.cn/dou/publication/2025_ACL_AR-MCTS.pdf\"},{\"title\":\"Understanding LLM-Driven Test Oracle Generation\",\"url\":\"https://arxiv.org/pdf/2601.05542\"},{\"title\":\"A Survey on Retrieval And Structuring Augmented Generation\",\"url\":\"https://arxiv.org/pdf/2509.10697\"},{\"title\":\"ORACLE: Optimizing Reasoning Abilities of Large Language Models via Constraint-Led Synthetic Data Elicitation\",\"url\":\"https://arxiv.org/html/2603.21140\"},{\"title\":\"Semantic Operators and Their Optimization: Enabling\",\"url\":\"https://www.vldb.org/pvldb/vol18/p4171-patel.pdf\"}]\n\nLet me search more specifically for papers on oracle passages and upper bound analysis in LLM reasoning pipelines:\n\nLinks: [{\"title\":\"The 2025 Conference on Empirical Methods in Natural Language Processing - ACL Anthology\",\"url\":\"https://aclanthology.org/events/emnlp-2025/\"},{\"title\":\"Eliciting In-context Retrieval and Reasoning for Long-context Large Language Models\",\"url\":\"https://arxiv.org/html/2501.08248\"},{\"title\":\"A Fano-Style Accuracy Upper Bound for LLM Single-Pass Reasoning in Multi-Hop QA\",\"url\":\"https://arxiv.org/html/2509.21199\"},{\"title\":\"EMNLP 2025 The 2025 Conference on Empirical Methods in Natural\"\n…[truncated 2932 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T18:02:03.268628+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Shi 2023 \"Large Language Models Can Be Easily Distracted\" irrelevant context gold oracle ICML arxiv"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T18:02:03.268761+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Yoran 2024 \"Making Retrieval-Augmented Language Models Robust\" oracle gold context ICLR arxiv"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T18:02:03.268941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "oracle semantic parsing replace generated logical forms gold annotations upper bound 2022 2023 2024 arxiv"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-17T18:02:03.269145+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Shi 2023 \"Large Language Models Can Be Easily Distracted\" irrelevant context gold oracle ICML arxiv\"\n\nLinks: [{\"title\":\"Large Language Models Can Be Easily Distracted by Irrelevant Context\",\"url\":\"https://proceedings.mlr.press/v202/shi23a.html\"},{\"title\":\"[2302.00093] Large Language Models Can Be Easily Distracted by Irrelevant Context\",\"url\":\"https://arxiv.org/abs/2302.00093\"},{\"title\":\"Large language models can be easily distracted by irrelevant context | Proceedings of the 40th International Conference on Machine Learning\",\"url\":\"https://dl.acm.org/doi/10.5555/3618408.3619699\"},{\"title\":\"Large Language Models Can Be Easily Distracted by Irrelevant Context\",\"url\":\"https://arxiv.org/pdf/2302.00093\"},{\"title\":\"[PDF] Large Language Models Can Be Easily Distracted by Irrelevant Context | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Large-Language-Models-Can-Be-Easily-Distracted-by-Shi-Chen/3d68522abfadfc8ee6b7ec9edaaf91f1b2f38e5e\"},{\"title\":\"[Quick Review] Large Language Models Can Be Easily Distracted by Irrelevant Context\",\"url\":\"https://liner.com/review/large-language-models-can-be-easily-distracted-by-irrelevant-context\"},{\"title\":\"Large Language Models Can Be Easily Distracted by Irrelevant Context - Consensus\",\"url\":\"https://k8s.consensus.app/papers/details/9f83b92242085204bb78dfd0f0b795d5/\"},{\"title\":\"Large Language Models Can Be Easily Distracted by Irrelevant Context - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2023arXiv230200093S/references\"},{\"title\":\"Large Language Models Can Be Easily Distracted by Irrelevant Context | OpenReview\",\"url\":\"https://openreview.net/forum?id=JSZmoN03Op\"},{\"title\":\"Paper page - Large Language Models Can Be Easily Distracted by Irrelevant Context\",\"url\":\"https://huggingface.co/papers/2302.00093\"}]\n\nI found the paper you're looking for. The paper \"Large Language Models Can Be Easily Distracted by Irrelevant Context\" by Freda Shi, Xinyun Chen, Kanishka Misra, Nathan Scales, David \n…[truncated 1025 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-17T18:02:03.269320+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Yoran 2024 \"Making Retrieval-Augmented Language Models Robust\" oracle gold context ICLR arxiv\"\n\nLinks: [{\"title\":\"[2310.01558] Making Retrieval-Augmented Language Models Robust to Irrelevant Context\",\"url\":\"https://arxiv.org/abs/2310.01558\"},{\"title\":\"Making Retrieval-Augmented Language Models Robust to Irrelevant Context\",\"url\":\"https://arxiv.org/html/2310.01558v2\"},{\"title\":\"Making Retrieval-Augmented Language Models Robust to ...\",\"url\":\"https://arxiv.org/pdf/2310.01558\"},{\"title\":\"sufficient context:anew lens on retrieval augmented ...\",\"url\":\"https://arxiv.org/pdf/2411.06037\"},{\"title\":\"MAKING RETRIEVAL-AUGMENTED LANGUAGE MODELS ROBUST TO IRRELEVANT CONTEXT - Tel Aviv University\",\"url\":\"https://cris.tau.ac.il/en/publications/making-retrieval-augmented-language-models-robust-to-irrelevant-c\"},{\"title\":\"ICLR Making Retrieval-Augmented Language Models Robust to Irrelevant Context\",\"url\":\"https://iclr.cc/virtual/2024/22217\"},{\"title\":\"[2310.01558v2] Making Retrieval-Augmented Language Models Robust to Irrelevant Context\",\"url\":\"https://arxiv.org/abs/2310.01558v2\"},{\"title\":\"Making Retrieval-Augmented Language Models Robust to Irrelevant Context | OpenReview\",\"url\":\"https://openreview.net/forum?id=ZS4m74kZpH\"},{\"title\":\"[PDF] Making Retrieval-Augmented Language Models Robust to Irrelevant Context | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Making-Retrieval-Augmented-Language-Models-Robust-Yoran-Wolfson/3aee33831e0bdea1a1eaae21c7586e4f7c0396d6\"},{\"title\":\"provence: efficient and robust context\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/5e956fef0946dc1e39760f94b78045fe-Paper-Conference.pdf\"}]\n\nBased on the search results, I found the paper you're looking for:\n\n**\"Making Retrieval-Augmented Language Models Robust to Irrelevant Context\"** by Ori Yoran, Tomer Wolfson, Ori Ram, and Jonathan Berant, published at ICLR 2024.\n\n**Paper Details:**\n- arXiv paper 2310.01558\n- Latest version submitted May 5, \n…[truncated 1098 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-17T18:02:03.269508+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"oracle semantic parsing replace generated logical forms gold annotations upper bound 2022 2023 2024 arxiv\"\n\nLinks: [{\"title\":\"Semantic Parsing with Candidate Expressions for ...\",\"url\":\"https://arxiv.org/pdf/2410.00414\"},{\"title\":\"Semantic parsing with candidate expressions for knowledge base question answering - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S095741742504179X\"},{\"title\":\"Semantic Parsing for Conversational Question Answering ...\",\"url\":\"https://aclanthology.org/2023.eacl-main.184.pdf\"},{\"title\":\"[2410.00414] Semantic Parsing with Candidate Expressions for Knowledge Base Question Answering\",\"url\":\"https://arxiv.org/abs/2410.00414\"},{\"title\":\"Semantic Operator Prediction and Applications Farshad Noravesh* January 3, 2023\",\"url\":\"https://arxiv.org/pdf/2301.00399\"},{\"title\":\"Retrieval-Augmented Semantic Parsing:\",\"url\":\"https://arxiv.org/pdf/2412.10207\"},{\"title\":\"ORACLE: Optimizing Reasoning Abilities of Large Language Models via Constraint-Led Synthetic Data Elicitation\",\"url\":\"https://arxiv.org/html/2603.21140v1\"},{\"title\":\"SEMANTIC PARSING WITH CANDIDATE EXPRESSIONS\",\"url\":\"https://openreview.net/pdf?id=ICSvW69W5K\"},{\"title\":\"Retrieval and Augmentation of Domain Knowledge for Text-to-SQL Semantic Parsing\",\"url\":\"https://arxiv.org/html/2510.02394v1\"},{\"title\":\"arXiv:1812.00978v3 [cs.CL] 29 May 2019\",\"url\":\"https://arxiv.org/pdf/1812.00978\"}]\n\nBased on the search results, I found several relevant papers on semantic parsing from recent years. Here are the key findings:\n\n## Semantic Parsing with Oracle Evaluations (2022-2025)\n\nOracle accuracy is used in semantic parsing to measure the fraction of examples where a search algorithm finds at least one action sequence that constructs a consistent logical form whose denotation is identical to a gold denotation for a given utterance.\n\n### Key Research Areas:\n\n1. **Semantic Parsing with Candidate Expressions (2024-2025)**: Recent work experiments on \n…[truncated 1083 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-17T18:02:03.269705+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Trivedi 2023 IRCoT \"Interleaving Retrieval with Chain-of-Thought\" oracle retrieval upper bound ACL arxiv"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-17T18:02:03.269836+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Press 2023 \"Measuring and Narrowing the Compositionality Gap\" self-ask oracle decomposition ACL arxiv"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-17T18:02:03.269984+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Saparov He 2023 \"Language Models Are Greedy Reasoners\" oracle proof steps reasoning ICLR arxiv"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-17T18:02:03.270142+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Press 2023 \"Measuring and Narrowing the Compositionality Gap\" self-ask oracle decomposition ACL arxiv\"\n\nLinks: [{\"title\":\"Measuring and Narrowing the Compositionality Gap in Language Models - ACL Anthology\",\"url\":\"https://aclanthology.org/2023.findings-emnlp.378/\"},{\"title\":\"Measuring and Narrowing the Compositionality Gap in Language Models\",\"url\":\"https://ofir.io/self-ask.pdf\"},{\"title\":\"[2210.03350] Measuring and Narrowing the Compositionality Gap in Language Models\",\"url\":\"https://arxiv.org/abs/2210.03350\"},{\"title\":\"Measuring and Narrowing the Compositionality Gap in Language Models\",\"url\":\"https://arxiv.org/html/2210.03350\"},{\"title\":\"Self-Ask - Measuring and Narrowing the Compositionality Gap in Language Models | lukkiddd\",\"url\":\"https://blog.lukkiddd.com/notes/Self-Ask-Measuring-and-Narrowing-the-Compositionality-Gap-in-Language-Models\"},{\"title\":\"GitHub - ofirpress/self-ask: Code and data for \\\"Measuring and Narrowing the Compositionality Gap in Language Models\\\"\",\"url\":\"https://github.com/ofirpress/self-ask\"},{\"title\":\"Measuring and Narrowing the Compositionality Gap in ...\",\"url\":\"https://aclanthology.org/2023.findings-emnlp.378.pdf\"},{\"title\":\"Ofir Press - ACL Anthology\",\"url\":\"https://aclanthology.org/people/o/ofir-press/\"},{\"title\":\"[Quick Review] Measuring and Narrowing the Compositionality Gap in Language Models\",\"url\":\"https://liner.com/review/measuring-and-narrowing-compositionality-gap-in-language-models\"},{\"title\":\"Measuring and Narrowing the Compositionality Gap in Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=PUwbwZJz9dO\"}]\n\nBased on the search results, I found the paper you're looking for:\n\n**\"Measuring and Narrowing the Compositionality Gap in Language Models\"**\n\nBy Ofir Press, Muru Zhang, Sewon Min, Ludwig Schmidt, Noah Smith, and Mike Lewis, published in 2023 in the Findings of the Association for Computational Linguistics: EMNLP 2023.\n\n**Key findings:**\n\nThe paper measures how often mod\n…[truncated 1087 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-17T18:02:03.270324+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Trivedi 2023 IRCoT \"Interleaving Retrieval with Chain-of-Thought\" oracle retrieval upper bound ACL arxiv\"\n\nLinks: [{\"title\":\"Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions - ACL Anthology\",\"url\":\"https://aclanthology.org/2023.acl-long.557/\"},{\"title\":\"[2212.10509] Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions\",\"url\":\"https://arxiv.org/abs/2212.10509\"},{\"title\":\"Interleaving Retrieval with Chain-of-Thought Reasoning for ...\",\"url\":\"https://aclanthology.org/2023.acl-long.557.pdf\"},{\"title\":\"GitHub - StonyBrookNLP/ircot: Repository for Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions, ACL23 · GitHub\",\"url\":\"https://github.com/StonyBrookNLP/ircot\"},{\"title\":\"Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions - ORKG\",\"url\":\"https://orkg.org/papers/R715027\"},{\"title\":\"[PDF] Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Interleaving-Retrieval-with-Chain-of-Thought-for-Trivedi-Balasubramanian/f208ea909fa7f54fea82def9a92fd81dfc758c39\"},{\"title\":\"IRCoT: Enhancing Multi-Step QA Retrieval | PDF\",\"url\":\"https://www.scribd.com/document/834748618/Interleaving-Retrieval-With-Chain-Of-Thought-Reasoning-for-Knowledge-Intensive-Multi-Step-Questions\"},{\"title\":\"Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2212.10509v2\"},{\"title\":\"Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions | Request PDF\",\"url\":\"https://www.researchgate.net/publication/372917359_Interleaving_Retrieval_with_Chain-of-Thought_Reasoning_for_Knowledge-Intensive_Multi-Step_Questions\"},{\"title\":\"Interleaving Retriev\n…[truncated 1438 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-17T18:02:03.270515+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Saparov He 2023 \"Language Models Are Greedy Reasoners\" oracle proof steps reasoning ICLR arxiv\"\n\nLinks: [{\"title\":\"[2210.01240] Language Models Are Greedy Reasoners: A Systematic Formal Analysis of Chain-of-Thought\",\"url\":\"https://arxiv.org/abs/2210.01240\"},{\"title\":\"[2210.01240v3] Language Models Are Greedy Reasoners: A Systematic Formal Analysis of Chain-of-Thought\",\"url\":\"https://arxiv.org/abs/2210.01240v3\"},{\"title\":\"Language Models Are Greedy Reasoners: A Systematic Formal Analysis of Chain-of-Thought | OpenReview\",\"url\":\"https://openreview.net/forum?id=qFVVBzXxR2V\"},{\"title\":\"[2210.01240v1] Language Models Are Greedy Reasoners: A Systematic Formal Analysis of Chain-of-Thought\",\"url\":\"https://arxiv.org/abs/2210.01240v1\"},{\"title\":\"[PDF] Language Models Are Greedy Reasoners: A Systematic Formal Analysis of Chain-of-Thought | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Language-Models-Are-Greedy-Reasoners:-A-Systematic-Saparov-He/e7028cd7ea838ab8294ecf26d5a2c0dbb8cfa81a\"},{\"title\":\"Figure 2 from Language Models Are Greedy Reasoners: A Systematic Formal Analysis of Chain-of-Thought | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Language-Models-Are-Greedy-Reasoners:-A-Systematic-Saparov-He/e7028cd7ea838ab8294ecf26d5a2c0dbb8cfa81a/figure/2\"},{\"title\":\"GitHub - asaparov/prontoqa: Synthetic question-answering dataset to formally analyze the chain-of-thought output of large language models on a reasoning task. · GitHub\",\"url\":\"https://github.com/asaparov/prontoqa\"},{\"title\":\"Figure 5 from Language Models Are Greedy Reasoners: A Systematic Formal Analysis of Chain-of-Thought | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Language-Models-Are-Greedy-Reasoners%3A-A-Systematic-Saparov-He/d5a9e02dea45d2718a068e3a3c2938bd9d1f07c0/figure/6\"},{\"title\":\"Publications\",\"url\":\"https://asaparov.org/publications/\"},{\"title\":\"dblp: Language Models Are Greedy Reasoners: A Systematic Formal Analysis of\n…[truncated 1573 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-17T18:02:03.270709+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Adlakha 2024 \"Evaluating Correctness and Faithfulness\" oracle gold context question answering TACL arxiv"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-17T18:02:03.270843+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "IRCoT Trivedi 2023 \"gold paragraphs\" OR \"oracle paragraphs\" OR \"oracle retrieval\" upper bound multi-hop QA"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-17T18:02:03.271027+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Adlakha 2024 \"Evaluating Correctness and Faithfulness\" oracle gold context question answering TACL arxiv\"\n\nLinks: [{\"title\":\"Evaluating Correctness and Faithfulness of Instruction-Following Models for Question Answering - ACL Anthology\",\"url\":\"https://aclanthology.org/2024.tacl-1.38/\"},{\"title\":\"Evaluating Correctness and Faithfulness of Instruction-Following Models for Question Answering | Transactions of the Association for Computational Linguistics | MIT Press\",\"url\":\"https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00667/121196/Evaluating-Correctness-and-Faithfulness-of\"},{\"title\":\"Evaluating Correctness and Faithfulness of Instruction-Following Models for Question Answering | Transactions of the Association for Computational Linguistics\",\"url\":\"https://transacl.org/index.php/tacl/article/view/5785\"},{\"title\":\"Evaluating Correctness and Faithfulness of Instruction-Following Models\",\"url\":\"https://aclanthology.org/2024.tacl-1.38.pdf\"},{\"title\":\"[2307.16877] Evaluating Correctness and Faithfulness of Instruction-Following Models for Question Answering\",\"url\":\"https://arxiv.org/abs/2307.16877\"},{\"title\":\"Accepted TACL Papers - ACL 2024\",\"url\":\"https://2024.aclweb.org/program/tacl_papers/\"},{\"title\":\"Evaluating Correctness and Faithfulness of Instruction-Following Models for Question Answering | Request PDF\",\"url\":\"https://www.researchgate.net/publication/380834722_Evaluating_Correctness_and_Faithfulness_of_Instruction-Following_Models_for_Question_Answering\"},{\"title\":\"Evaluating Correctness and Faithfulness of Instruction-Following Models for Question Answering | ServiceNow Research\",\"url\":\"https://www.servicenow.com/research/publication/vaibhav-adlakha-eval-acl2024.html\"},{\"title\":\"Transactions of the Association for Computational Linguistics (2024) - ACL Anthology\",\"url\":\"https://aclanthology.org/events/tacl-2024/\"},{\"title\":\"FROM FAITHFULNESS TO CORRECTNESS\",\"url\":\"https://openreview.net/pdf/8f8ec4421b9a071c23e80199fe03d84fa\n…[truncated 1496 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-17T18:02:03.271276+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"IRCoT Trivedi 2023 \"gold paragraphs\" OR \"oracle paragraphs\" OR \"oracle retrieval\" upper bound multi-hop QA\"\n\nLinks: [{\"title\":\"Interleaving Retrieval with Chain-of-Thought Reasoning for ...\",\"url\":\"https://aclanthology.org/2023.acl-long.557.pdf\"},{\"title\":\"[2212.10509] Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions\",\"url\":\"https://arxiv.org/abs/2212.10509\"},{\"title\":\"AGENTIC RETRIEVAL WITH LLMS FOR MULTI-HOP ...\",\"url\":\"https://openreview.net/pdf?id=2rwqNNIKeI\"},{\"title\":\"[PDF] Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Interleaving-Retrieval-with-Chain-of-Thought-for-Trivedi-Balasubramanian/f208ea909fa7f54fea82def9a92fd81dfc758c39\"},{\"title\":\"Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions - ACL Anthology\",\"url\":\"https://aclanthology.org/2023.acl-long.557/\"},{\"title\":\"GitHub - StonyBrookNLP/ircot: Repository for Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions, ACL23 · GitHub\",\"url\":\"https://github.com/StonyBrookNLP/ircot\"},{\"title\":\"IRCoT: Enhancing Multi-Step QA Retrieval | PDF\",\"url\":\"https://www.scribd.com/document/834748618/Interleaving-Retrieval-With-Chain-Of-Thought-Reasoning-for-Knowledge-Intensive-Multi-Step-Questions\"},{\"title\":\"Tree of Reviews: A Tree-based Dynamic Iterative Retrieval Framework for Multi-hop Question Answering\",\"url\":\"https://arxiv.org/html/2404.14464v1\"},{\"title\":\"Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions - ORKG\",\"url\":\"https://orkg.org/papers/R715027\"},{\"title\":\"[ACL2023] Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions - Yongil's Research Blog\",\"url\":\"https://yong1-kim.github.io/llm/plm/2023/09/11/IRCoT.html\"}]\n\nBased on the\n…[truncated 1226 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-17T18:02:03.271477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "site:semanticscholar.org \"Measuring and Narrowing the Compositionality Gap\" Press 2023"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-17T18:02:03.271609+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "site:semanticscholar.org \"Language Models Are Greedy Reasoners\" Saparov He 2023"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-17T18:02:03.271764+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"site:semanticscholar.org \"Measuring and Narrowing the Compositionality Gap\" Press 2023\"\n\nLinks: [{\"title\":\"Measuring and Narrowing the Compositionality Gap in Language Models - ACL Anthology\",\"url\":\"https://aclanthology.org/2023.findings-emnlp.378/\"},{\"title\":\"[2210.03350] Measuring and Narrowing the Compositionality Gap in Language Models\",\"url\":\"https://arxiv.org/abs/2210.03350\"},{\"title\":\"Measuring and Narrowing the Compositionality Gap in Language Models | Request PDF\",\"url\":\"https://www.researchgate.net/publication/376403193_Measuring_and_Narrowing_the_Compositionality_Gap_in_Language_Models\"},{\"title\":\"Measuring and Narrowing the Compositionality Gap in Language Models\",\"url\":\"https://bibbase.org/network/publication/press-zhang-min-schmidt-smith-lewis-measuringandnarrowingthecompositionalitygapinlanguagemodels-2023\"},{\"title\":\"Measuring and Narrowing the Compositionality Gap in Language Models | Scilit\",\"url\":\"https://www.scilit.com/publications/256dabf2dd95ad49dc725b02eb3f8588\"},{\"title\":\"dblp: Measuring and Narrowing the Compositionality Gap in Language Models.\",\"url\":\"https://dblp.org/rec/conf/emnlp/PressZMSSL23.html\"},{\"title\":\"GitHub - ofirpress/self-ask: Code and data for \\\"Measuring and Narrowing the Compositionality Gap in Language Models\\\"\",\"url\":\"https://github.com/ofirpress/self-ask\"},{\"title\":\"Measuring and Narrowing the Compositionality Gap in ...\",\"url\":\"https://aclanthology.org/2023.findings-emnlp.378.pdf\"},{\"title\":\"Measuring and Narrowing the Compositionality Gap in Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=feiAVaSXdb\"},{\"title\":\"Measuring and Narrowing the Compositionality Gap in Language Models. | BibSonomy\",\"url\":\"https://www.bibsonomy.org/bibtex/15ea6b79401ae38e7510e06b752ed0dd4\"}]\n\nI found the paper you're looking for. Here's the information about the research:\n\n**Title:** \"Measuring and Narrowing the Compositionality Gap in Language Models\"\n\n**Authors:** Ofir Press, Muru Zhang, Se\n…[truncated 1483 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-17T18:02:03.271966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"site:semanticscholar.org \"Language Models Are Greedy Reasoners\" Saparov He 2023\"\n\nLinks: [{\"title\":\"[2210.01240] Language Models Are Greedy Reasoners: A Systematic Formal Analysis of Chain-of-Thought\",\"url\":\"https://arxiv.org/abs/2210.01240\"},{\"title\":\"Language Models Are Greedy Reasoners: A Systematic Formal Analysis of Chain-of-Thought | OpenReview\",\"url\":\"https://openreview.net/forum?id=qFVVBzXxR2V\"},{\"title\":\"[PDF] Language Models Are Greedy Reasoners: A Systematic Formal Analysis of Chain-of-Thought | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Language-Models-Are-Greedy-Reasoners:-A-Systematic-Saparov-He/e7028cd7ea838ab8294ecf26d5a2c0dbb8cfa81a\"},{\"title\":\"[2210.01240v3] Language Models Are Greedy Reasoners: A Systematic Formal Analysis of Chain-of-Thought\",\"url\":\"https://arxiv.org/abs/2210.01240v3\"},{\"title\":\"LANGUAGE MODELS ARE GREEDY REASONERS: A SYSTEMATIC FORMAL ANALYSIS OF CHAIN-OF-THOUGHT - NYU Scholars\",\"url\":\"https://nyuscholars.nyu.edu/en/publications/language-models-are-greedy-reasoners-a-systematic-formal-analysis\"},{\"title\":\"Language Models Are Greedy Reasoners: A Systematic Formal Analysis of Chain-of-Thought\",\"url\":\"https://blog.athina.ai/language-models-are-greedy-reasoners-a-systematic-formal-analysis-of-chain-of-thought\"},{\"title\":\"Publications\",\"url\":\"https://asaparov.org/publications/\"},{\"title\":\"(PDF) Language Models Are Greedy Reasoners: A Systematic Formal Analysis of Chain-of-Thought\",\"url\":\"https://www.researchgate.net/publication/364163476_Language_Models_Are_Greedy_Reasoners_A_Systematic_Formal_Analysis_of_Chain-of-Thought\"},{\"title\":\"dblp: Language Models Are Greedy Reasoners: A Systematic Formal Analysis of Chain-of-Thought.\",\"url\":\"https://dblp.org/rec/conf/iclr/Saparov023.html\"},{\"title\":\"GitHub - asaparov/prontoqa: Synthetic question-answering dataset to formally analyze the chain-of-thought output of large language models on a reasoning task. · GitHub\",\"url\":\"https://github.com/\n…[truncated 1534 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-17T18:02:03.272184+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/literature_map.yaml",
+              "old_string": "gaps:\n  resolved:",
+              "new_string": "  oracle_upper_bound_experiments:\n    description: \"Papers using oracle/gold-data substitution to diagnose pipeline bottlenecks\"\n    papers:\n      - id: press2023compositionality\n        title: \"Measuring and Narrowing the Compositionality Gap in Language Models\"\n        authors: \"Press et al.\"\n        venue: \"EMNLP Findings 2023\"\n        arxiv: \"2210.03350\"\n        relevance: \"Measures compositionality gap: fraction of cases where model answers sub-questions correctly (oracle decomposition) but fails at composition. Diagnoses compositional reasoning, not knowledge, as bottleneck. Direct methodological parallel to our oracle FOL experiment.\"\n        status: should_cite\n        verified: true\n\n      - id: trivedi2023ircot\n        title: \"Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions\"\n        authors: \"Trivedi et al.\"\n        venue: \"ACL 2023\"\n        arxiv: \"2212.10509\"\n        relevance: \"Uses gold supporting paragraphs as oracle retrieval upper bound to diagnose that retrieval quality is the primary bottleneck in multi-step QA. Same diagnostic design as our oracle experiment: replace one pipeline component with gold data to isolate the bottleneck.\"\n        status: should_cite\n        verified: true\n\n      - id: saparov2023greedy\n        title: \"Language Models Are Greedy Reasoners: A Systematic Formal Analysis of Chain-of-Thought\"\n        authors: \"Saparov and He\"\n        venue: \"ICLR 2023\"\n        arxiv: \"2210.01240\"\n        relevance: \"Uses synthetic data with gold FOL proofs to formally analyze where CoT reasoning fails. Isolates proof planning (not individual deduction) as bottleneck. Closest methodological parallel: uses formal logic ground truth to diagnose LLM reasoning limitations.\"\n        status: should_cite\n        verified: true\n\ngaps:\n  resolved:"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-17T18:02:03.272425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/literature_map.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-17T18:02:03.272564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/literature_map.yaml",
+              "old_string": "  remaining: []",
+              "new_string": "    - dimension: \"oracle_upper_bound_experiments\"\n      gap: \"Added Press 2023 (compositionality gap), Trivedi 2023 (IRCoT oracle retrieval), Saparov & He 2023 (greedy reasoners) (2026-05-17)\"\n  remaining: []"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-17T18:02:03.272763+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/literature_map.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-17T18:02:03.272914+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib",
+              "old_string": "%%% Tools and Solvers %%%",
+              "new_string": "%%% Oracle/Upper-Bound Experiments %%%\n\n@inproceedings{press2023compositionality,\n  title={Measuring and Narrowing the Compositionality Gap in Language Models},\n  author={Press, Ofir and Zhang, Muru and Min, Sewon and Schmidt, Ludwig and Smith, Noah A. and Lewis, Mike},\n  booktitle={Findings of EMNLP},\n  year={2023}\n}\n\n@inproceedings{trivedi2023ircot,\n  title={Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions},\n  author={Trivedi, Harsh and Balasubramanian, Niranjan and Khot, Tushar and Sabharwal, Ashish},\n  booktitle={ACL},\n  year={2023}\n}\n\n@inproceedings{saparov2023greedy,\n  title={Language Models Are Greedy Reasoners: A Systematic Formal Analysis of Chain-of-Thought},\n  author={Saparov, Abulhair and He, He},\n  booktitle={ICLR},\n  year={2023}\n}\n\n%%% Tools and Solvers %%%"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-17T18:02:03.273095+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-17T18:02:03.273232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/literature_map.yaml",
+              "offset": "380",
+              "limit": "50"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-17T18:02:03.273378+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "380\t        verified: true\n381\t\n382\t  oracle_upper_bound_experiments:\n383\t    description: \"Papers using oracle/gold-data substitution to diagnose pipeline bottlenecks\"\n384\t    papers:\n385\t      - id: press2023compositionality\n386\t        title: \"Measuring and Narrowing the Compositionality Gap in Language Models\"\n387\t        authors: \"Press et al.\"\n388\t        venue: \"EMNLP Findings 2023\"\n389\t        arxiv: \"2210.03350\"\n390\t        relevance: \"Measures compositionality gap: fraction of cases where model answers sub-questions correctly (oracle decomposition) but fails at composition. Diagnoses compositional reasoning, not knowledge, as bottleneck. Direct methodological parallel to our oracle FOL experiment.\"\n391\t        status: should_cite\n392\t        verified: true\n393\t\n394\t      - id: trivedi2023ircot\n395\t        title: \"Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions\"\n396\t        authors: \"Trivedi et al.\"\n397\t        venue: \"ACL 2023\"\n398\t        arxiv: \"2212.10509\"\n399\t        relevance: \"Uses gold supporting paragraphs as oracle retrieval upper bound to diagnose that retrieval quality is the primary bottleneck in multi-step QA. Same diagnostic design as our oracle experiment: replace one pipeline component with gold data to isolate the bottleneck.\"\n400\t        status: should_cite\n401\t        verified: true\n402\t\n403\t      - id: saparov2023greedy\n404\t        title: \"Language Models Are Greedy Reasoners: A Systematic Formal Analysis of Chain-of-Thought\"\n405\t        authors: \"Saparov and He\"\n406\t        venue: \"ICLR 2023\"\n407\t        arxiv: \"2210.01240\"\n408\t        relevance: \"Uses synthetic data with gold FOL proofs to formally analyze where CoT reasoning fails. Isolates proof planning (not individual deduction) as bottleneck. Closest methodological parallel: uses formal logic ground truth to diagnose LLM reasoning limitations.\"\n409\t        status: should_cite\n410\t        verified: true\n411\t\n412\tgaps:\n413\t  resol\n…[truncated 937 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-17T18:02:03.273530+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib",
+              "offset": "200",
+              "limit": "35"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-17T18:02:03.273667+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "200\t}\n201\t\n202\t@article{mirzadeh2024gsmsymbolic,\n203\t  title={{GSM-Symbolic}: Understanding the Limitations of Mathematical Reasoning in Large Language Models},\n204\t  author={Mirzadeh, Iman and Alizadeh, Keivan and Shahrokhi, Hooman and Tuzel, Oncel and Bengio, Samy and Farajtabar, Mehrdad},\n205\t  journal={arXiv preprint arXiv:2410.05229},\n206\t  year={2024}\n207\t}\n208\t\n209\t%%% Model Papers %%%\n210\t\n211\t@article{yang2024qwen25,\n212\t  title={Qwen2.5 Technical Report},\n213\t  author={Yang, An and Yang, Baosong and Zhang, Beichen and Hui, Binyuan and Wang, Bo and others},\n214\t  journal={arXiv preprint arXiv:2412.15115},\n215\t  year={2024}\n216\t}\n217\t\n218\t@article{jiang2023mistral,\n219\t  title={Mistral 7{B}},\n220\t  author={Jiang, Albert Q. and Sablayrolles, Alexandre and Mensch, Arthur and Bamford, Chris and Chaplot, Devendra Singh and de las Casas, Diego and Bressand, Florian and Lengyel, Gianna and Lample, Guillaume and Saulnier, Lucile and Lavaud, L{\\'e}lio Renard and Lachaux, Marie-Anne and Stock, Pierre and Scao, Teven Le and Lavril, Thibaut and Wang, Thomas and Lacroix, Timoth{\\'e}e and El Sayed, William},\n221\t  journal={arXiv preprint arXiv:2310.06825},\n222\t  year={2023}\n223\t}\n224\t\n225\t@article{dubey2024llama3,\n226\t  title={The {Llama} 3 Herd of Models},\n227\t  author={Dubey, Abhimanyu and Jauhri, Abhinav and Pandey, Abhinav and Kadian, Abhishek and others},\n228\t  journal={arXiv preprint arXiv:2407.21783},\n229\t  year={2024}\n230\t}\n231\t\n232\t@article{guo2025deepseekr1,\n233\t  title={{DeepSeek-R1}: Incentivizing Reasoning Capability in {LLM}s via Reinforcement Learning},\n234\t  author={Guo, Daya and Yang, Dejian and Zhang, He and Song, Junxiao and others},"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-17T18:02:03.273798+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib",
+              "offset": "240",
+              "limit": "30"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-17T18:02:03.273953+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "240\t  title={{QwQ}: Reflect Deeply on the Boundaries of the Unknown},\n241\t  author={{Qwen Team}},\n242\t  journal={Qwen Blog},\n243\t  year={2024},\n244\t  note={\\url{https://qwenlm.github.io/blog/qwq-32b-preview/}}\n245\t}\n246\t\n247\t%%% Oracle/Upper-Bound Experiments %%%\n248\t\n249\t@inproceedings{press2023compositionality,\n250\t  title={Measuring and Narrowing the Compositionality Gap in Language Models},\n251\t  author={Press, Ofir and Zhang, Muru and Min, Sewon and Schmidt, Ludwig and Smith, Noah A. and Lewis, Mike},\n252\t  booktitle={Findings of EMNLP},\n253\t  year={2023}\n254\t}\n255\t\n256\t@inproceedings{trivedi2023ircot,\n257\t  title={Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions},\n258\t  author={Trivedi, Harsh and Balasubramanian, Niranjan and Khot, Tushar and Sabharwal, Ashish},\n259\t  booktitle={ACL},\n260\t  year={2023}\n261\t}\n262\t\n263\t@inproceedings{saparov2023greedy,\n264\t  title={Language Models Are Greedy Reasoners: A Systematic Formal Analysis of Chain-of-Thought},\n265\t  author={Saparov, Abulhair and He, He},\n266\t  booktitle={ICLR},\n267\t  year={2023}\n268\t}\n269\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-17T18:02:03.274118+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both files updated correctly. Here's a summary of the 3 papers added to the `oracle_upper_bound_experiments` dimension:\n\n| Paper | Venue | arXiv | Oracle Methodology |\n|-------|-------|-------|-------------------|\n| **Press et al.** \"Measuring and Narrowing the Compositionality Gap\" | EMNLP Findings 2023 | 2210.03350 | Oracle sub-question decomposition to diagnose that compositional reasoning (not knowledge) is the bottleneck |\n| **Trivedi et al.** \"IRCoT: Interleaving Retrieval with Chain-of-Thought\" | ACL 2023 | 2212.10509 | Gold supporting paragraphs as oracle retrieval upper bound to isolate retrieval as the multi-step QA bottleneck |\n| **Saparov & He** \"Language Models Are Greedy Reasoners\" | ICLR 2023 | 2210.01240 | Gold FOL proofs on synthetic data to diagnose that proof planning (not individual deduction) is the CoT bottleneck |\n\nAll three are verified, marked `status: should_cite`, and provide direct methodological precedent for the SICA oracle control experiment (replacing self-extracted FOL with gold FOLIO annotations to isolate extraction quality as the bottleneck)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_oracle_upper_bound_20260517T175752"
+          },
+          "id": "event-000057"
+        }
+      ],
+      "message_count": 57
+    }
+  ],
+  "readable_path": "readable/conversations/paper-research-oracle-upper-bound.md"
+}

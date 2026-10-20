@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98c9d7e832462b5ee0e0",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "eval exp 026 resume",
+  "task_key": "worker_eval_exp-026-resume_20260518T140401",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_exp-026-resume_20260518T140401_result.json",
+    "occurrence": 1,
+    "bytes": 918,
+    "sha256": "220c9812ba497a235c02dd0ba35790c5df7e4609dd00e4d4e4d86c6ec086de88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-026 状态报告\n\n**进程状态**: 正常运行中，无需干预\n\n| 项目 | 详情 |\n|---|---|\n| 评估脚本 PID | 27245 |\n| vLLM PID | 23182 (cuda:0, 88GB) |\n| 进度 | **154/204** (75.5%), 正在处理 #155 |\n| ETA | ~37 分钟 (剩余 50 题, ~44s/题) |\n| 启动时间 | 20:11 (via nohup) |\n\n**当前准确率** (154 题):\n- SICA: **112/154 = 72.7%**\n- SC: **112/154 = 72.7%**\n\n**清理操作**: 无。所有进程都是 exp-026 相关的，没有残留需要清理。\n\n**结果路径**: `/root/symb_invariant_consensus/results/folio_204_14b/`\n- `folio_204_results.json` (223KB, 持续更新)\n- `intermediates/` (154 个文件)\n- `folio_204_14b.log` (497KB)\n\n实验已在 `--resume` 模式下运行，预计约 37 分钟后完成全部 204 题。由于是 nohup 启动而非 tmux/submit_training_job，没有 cron 监控，但进程稳定运行中，无需重启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-026-resume.md"
+}

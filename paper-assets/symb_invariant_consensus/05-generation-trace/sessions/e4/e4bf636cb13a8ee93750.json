@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4bf636cb13a8ee93750",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "check kappa seed789 urgent",
+  "task_key": "worker_check_kappa-seed789-urgent_20260524T064339",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_kappa-seed789-urgent_20260524T064339_result.json",
+    "occurrence": 1,
+    "bytes": 1002,
+    "sha256": "daa252936b4d62854e1b398ca7541b81825f97277282e5a4935be1af113bcdfc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "计算完成。结果如下：\n\n## Mistral-7B seed789 FOLIO-204 真实值\n\n从 `results/multi_seed/mistral_folio_seed789/results.json` 的 `sc_vote_distribution` 直接计算 Fleiss' kappa：\n\n| 指标 | 值 |\n|------|-----|\n| **Fleiss' κ** | **0.4943** |\n| **K_eff** | **1.86** |\n| SC acc | 59.31% |\n| SICA acc | 56.86% |\n| N | 204 |\n| K_mean | 9.98 |\n| p_True / p_False / p_Unknown | 0.2569 / 0.2358 / 0.5074 |\n\nmain 和 backup 两份 results.json 内容完全一致。\n\n**结论：κ 既不是 0.41 也不是 0.45，而是 0.4943。K_eff 既不是 2.17 也不是 2.03，而是 1.86。**\n\n注意：这个值和 unified 文件（`fleiss_kappa_unified_16639.json`）中 seed123/456 的计算方法可能有差异——unified 文件里 exp052(seed123) κ=0.4572、exp053(seed456) κ=0.4565 是从 exp 目录计算的，而 multi_seed 目录的数据与 exp 目录不完全相同（multi_seed/seed456 只有 93 个问题）。seed789 从未被加入 unified 文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-kappa-seed789-urgent.md"
+}

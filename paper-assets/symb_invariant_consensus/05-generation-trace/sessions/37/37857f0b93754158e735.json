@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37857f0b93754158e735",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis loo sensitivity",
+  "task_key": "worker_analysis_loo-sensitivity_20260521T220615",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_loo-sensitivity_20260521T220615_result.json",
+    "occurrence": 1,
+    "bytes": 977,
+    "sha256": "f4c00b378a353b9d2697cb548de4ae353f70116cf6dfc66d18c48f5bd2e8fb90"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整输出：\n\n```\n=== Leave-One-Out Sensitivity Analysis ===\nFull (n=5): rho=-1.000, p=0.0000\n\nDrop R1-Distill   (k=0.248, d=+2.45): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)\nDrop gpt-5.5      (k=0.563, d=+0.49): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)\nDrop o3           (k=0.596, d=+0.00): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)\nDrop Gemini*      (k=0.790, d=-1.05): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)\nDrop gpt-4.1      (k=0.792, d=-1.47): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)\n\n=== Gemini vs gpt-4.1 swap test (kappa diff=0.002) ===\nAfter kappa swap: rho=-0.900, p=0.0374\n\n=== Gemini delta sensitivity ===\n  Gemini delta=-2.0: rho=-0.900, p=0.0374\n  Gemini delta=-1.5: rho=-0.900, p=0.0374\n  Gemini delta=-1.0: rho=-1.000, p=0.0000\n  Gemini delta=-0.5: rho=-1.000, p=0.0000\n  Gemini delta=+0.0: rho=-0.975, p=0.0048\n  Gemini delta=+0.5: rho=-0.700, p=0.1881\n  Gemini delta=+1.0: rho=-0.700, p=0.1881\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-loo-sensitivity.md"
+}

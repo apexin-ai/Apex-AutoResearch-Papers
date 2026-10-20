@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a71da1cce362a9b77a91",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code fix trace batch",
+  "task_key": "worker_code_fix-trace-batch_20260515T122210",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix-trace-batch_20260515T122210_result.json",
+    "occurrence": 1,
+    "bytes": 1170,
+    "sha256": "f676606d5d78389085f4e54d30f76f37713f416e7aa0bda21b230e020e5d17e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证成功。结果：\n\n| 指标 | 修复前 | 修复后 |\n|------|--------|--------|\n| Trace gen (n=12) | ~93s | **93s** (无变化，本来就用 n=K) |\n| Extraction (12 traces) | ~20+ min | **20s** |\n| JSON parse 失败 | 大量 | **0** |\n| 总时间/题 | 20+ min | **113s** (1.9 min) |\n\n关键数据：\n- 答案正确：`137\\frac{1}{2}`\n- 26 constraints extracted, 6/12 traces 有 constraints（6 个 empty 是因为简单题 trace 太短）\n- **0 JSON parse 失败**（`response_format=json_object` 完全消除了 parse 错误）\n- 60 题预计总时间：113s × 60 = ~113 min ≈ 1.9 小时（vs 原来 25-30 小时）\n\n修复内容总结（`sica/constraint_extractor.py` VLLMBackend 类）：\n1. `max_tokens: 4096 → 512` — JSON 输出不需要 4096 tokens\n2. 添加 `response_format={\"type\": \"json_object\"}` — 强制 vLLM 直接输出 JSON，跳过 QwQ-32B 的 `<think>` 推理，消除 parse 失败\n3. `max_workers: 4 → 12` — 12 个 extraction 全并发提交给 vLLM\n\n**trace_generator.py 无需修改** — n=K batch 本来就正确实现了，瓶颈不在 trace generation 而在 constraint extraction。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-trace-batch.md"
+}

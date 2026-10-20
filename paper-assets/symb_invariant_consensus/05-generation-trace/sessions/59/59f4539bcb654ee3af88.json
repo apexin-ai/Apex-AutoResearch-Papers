@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59f4539bcb654ee3af88",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 084 085 status check",
+  "task_key": "worker_analysis_exp-084-085-status-check_20260519T230800",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-084-085-status-check_20260519T230800_result.json",
+    "occurrence": 1,
+    "bytes": 1083,
+    "sha256": "9637479da9abd2fa4509b1b9c47da4ad6dac17ab723ff6fbb7eb50754891d525"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都已**完成**，CRON 误判。结果如下：\n\n## exp-084 (Debate × LogiQA s123)\n\n| 指标 | 值 |\n|------|-----|\n| n | 27 |\n| debate_accuracy | **18.52%** |\n| sc_accuracy | 44.44% |\n| delta | **-25.93%** (debate 大幅劣于 SC) |\n| wall_time | 1851.7s (~30.9 min) |\n| fallback_count | 1 |\n\n## exp-085 (Contrastive × LogiQA s123)\n\n| 指标 | 值 |\n|------|-----|\n| n | 52 |\n| contrastive_accuracy | **53.85%** |\n| sc_accuracy | 50.00% |\n| delta | **+3.85%** (contrastive 略优于 SC) |\n| wall_time | 1770.5s (~29.5 min) |\n| degenerate_count | 9 (17.3%) |\n\n## 注意事项\n\n1. **样本量异常**：exp-084 只跑了 27 题，exp-085 跑了 52 题，都远低于预期的 200 题。需要检查是 dry-run 模式还是数据集截断。\n2. **exp-084 结果很差**：debate 准确率仅 18.52%，远低于 SC baseline 的 44.44%，delta=-25.93%。\n3. **vLLM 状态**：因 ssh_read_only 不支持管道，未能检查 vLLM 进程；但两个实验都正常跑完并产出结果，说明 vLLM 在实验期间是正常的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-084-085-status-check.md"
+}

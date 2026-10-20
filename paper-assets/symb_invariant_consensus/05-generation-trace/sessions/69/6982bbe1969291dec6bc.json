@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6982bbe1969291dec6bc",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis cv distribution histogram",
+  "task_key": "worker_analysis_cv-distribution-histogram_20260524T232924",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_cv-distribution-histogram_20260524T232924_result.json",
+    "occurrence": 1,
+    "bytes": 362,
+    "sha256": "845b28baa723c3fd756eea972f24579ab3ce8bc7b0bba4c81f1d91d088c5f72e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。输出文件：\n\n- **数据**: `artifacts/_project/data/per_problem_cv_values.json` (204 个 CV 值)\n- **图表**: `docs/paper/figures/fig_cv_distribution.pdf` + `.png`\n\n分布统计：median=0.26, mean=0.32, Q25=0.19, Q75=0.36, max=3.46, 64% 的问题 CV≤0.3。分布右偏，大多数问题的 constraint yield 变异性较低。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cv-distribution-histogram.md"
+}

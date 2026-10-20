@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a3512d5b71745b061a0",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix appendix discoverability",
+  "task_key": "worker_fix_appendix-discoverability_20260524T050452",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_appendix-discoverability_20260524T050452_result.json",
+    "occurrence": 1,
+    "bytes": 703,
+    "sha256": "130e6e67f9f5de62057c31c6009007a5fb62c3acd51acfa73719db6072c71e6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n已添加引用 (6/9):\n1. app:z3-pseudocode → method.tex:28   | 已添加\n2. app:bootstrap    → method.tex:60   | 已添加\n3. app:case-studies → experiments.tex:5 | 已添加\n4. app:sensitivity  → method.tex:60   | 已添加\n5. app:capability-gap → solutions.tex:15 | 已添加\n6. app:ablation     → analysis.tex:51  | 已有引用（+diagnosis.tex:118）\n7. app:additional-interventions → analysis.tex:112 | 已添加\n8. app:cross-model-bias → analysis.tex:7 | 已有引用（tab:cross-model-bias）\n9. app:process-gradient → analysis.tex:40 | 已有引用（tab:process-gradient）\n\n编译：PASS（29页，无 undefined reference）\nPush：PASS\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-appendix-discoverability.md"
+}

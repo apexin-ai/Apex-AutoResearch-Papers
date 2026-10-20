@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37ff2fe0f7e5a875b7d2",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis condorcet independence",
+  "task_key": "worker_analysis_condorcet-independence_20260519T010903",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_condorcet-independence_20260519T010903_result.json",
+    "occurrence": 1,
+    "bytes": 1735,
+    "sha256": "5c79bbeb8e14c1218f123662e07af8956070703a5ddc5ab660e430d3a77c32a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n### Cross-Model Comparison\n\n| Model | n | SC Acc | Agreement | Expected | Kappa | Eff K |\n|-------|---|--------|-----------|----------|-------|-------|\n| Mistral-7B | 204 | 0.544 | 0.688 | 0.721 | **0.501** | **1.82** / 10 |\n| Qwen2.5-14B | 204 | 0.750 | 0.833 | 0.847 | **0.739** | **1.31** / 12 |\n\n### Per Entropy Bin\n\n| Model | Bin | n | SC Acc | Kappa | Eff K |\n|-------|-----|---|--------|-------|-------|\n| Mistral-7B | low | 73 | 0.740 | 0.932 | 1.06 |\n| Mistral-7B | medium | 65 | 0.523 | 0.422 | 2.09 |\n| Mistral-7B | high | 66 | 0.349 | 0.086 | 5.65 |\n| Qwen2.5-14B | low | 120 | 0.867 | 1.000 | 1.00 |\n| Qwen2.5-14B | medium | 26 | 0.808 | 0.611 | 1.55 |\n| Qwen2.5-14B | high | 58 | 0.483 | 0.267 | 3.05 |\n\n### 关键结论\n\n1. **Fleiss' Kappa 极高**：Mistral 0.50，Qwen-14B 0.74。Traces 远非独立。\n\n2. **Effective K 极低**：Mistral 名义 K=10（有效 traces），实际等效 1.82 个独立 trace；Qwen-14B 名义 K=12，实际等效仅 1.31。更强的模型反而独立性更差。\n\n3. **低 entropy 问题（模型确定的问题）**：Kappa 接近 1.0，Effective K ≈ 1.0。12 条 traces 等于 1 条。\n\n4. **高 entropy 问题（模型不确定的问题）**：Kappa 明显下降（Mistral 0.086，Qwen 0.267），Effective K 回升到 3-6。但即使在最不确定的问题上，12 条 traces 也只等效 3-6 条独立 trace。\n\n5. **Qwen-14B 有 120/204 问题 12 条 trace 完全一致**（entropy=0），这些问题完全没有从 SC 投票中获益。\n\nRaw violation 因 finite-sample bias 始终 ≤ 0，Fleiss' Kappa 是更可靠的指标。结果已保存到 `results/condorcet_independence_analysis.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-condorcet-independence.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa2f51b970fd863bd878",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis qwen3 thinking data integrity",
+  "task_key": "worker_analysis_qwen3-thinking-data-integrity_20260520T181825",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_qwen3-thinking-data-integrity_20260520T181825_result.json",
+    "occurrence": 1,
+    "bytes": 1016,
+    "sha256": "c882c4a4e3f7f2d626b6122f9d853d46bc430f3db7533ab7283d67abbaf225dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "核查完成。结果：\n\n**根因**：Dir-L 只读了 westd-25068 上的 exp028b intermediates（folio_0-165，166题），漏掉了 westd-16639 上的 remaining38（folio_166-203）。**不存在数据损坏或默认值填充问题。**\n\n**关键数字**：\n| | n | SC Correct | SC Accuracy |\n|---|---|---|---|\n| Dir-L | 166 | 139 | 83.73% |\n| Dir-I3 | 204 | 176 | 86.27% |\n| 166-subset 交叉验证 | 166 | 139 vs 139 | **完全一致** |\n| remaining38 | 38 | 37 | 97.37% |\n\n- remaining38 只有 `folio_203` 答错\n- remaining38 正确率异常高（97.37%），显著拉升了 204 题的总平均\n\n**论文建议**：\n- Dir-I3 的 n=204, SC=86.27%, SICA=86.76% 是正确的全集数值\n- Dir-L 的 83.73% 是 166-subset 上的正确结果，但不应作为完整 FOLIO 结果引用\n- Dir-L 的 Table 需要补齐 remaining38 数据后重跑，或标注 n=166\n\n报告已写入 `/root/symb_invariant_consensus/results/qwen3_thinking_data_integrity/report.json` 和 `report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen3-thinking-data-integrity.md"
+}

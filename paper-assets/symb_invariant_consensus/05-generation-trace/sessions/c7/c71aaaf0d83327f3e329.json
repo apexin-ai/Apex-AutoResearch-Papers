@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c71aaaf0d83327f3e329",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis wave3 dir i z3 filter",
+  "task_key": "worker_analysis_wave3-dir-i-z3-filter_20260520T090105",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_wave3-dir-i-z3-filter_20260520T090105_result.json",
+    "occurrence": 1,
+    "bytes": 1256,
+    "sha256": "b57fd0401d9ddcd6c4e593050c3f5b2248c5a3e4548346cd071f67ac2e630648"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Direction I: Z3 Trace Filter 结果\n\n| 指标 | 值 |\n|------|-----|\n| 问题数 | 204 |\n| 总 traces | 2448 |\n| **SC baseline** | **111/204 = 54.41%** |\n| **Filtered-SC** | **110/204 = 53.92%** |\n| **Delta** | **-0.49%** |\n\n### Status 分布\n- SAT: 2220 (90.7%)\n- UNSAT: 142 (5.8%)\n- EMPTY: 61 (2.5%)\n- PARSE_ERROR: 25 (1.0%)\n\n### 过滤质量分析\n- 被过滤的 UNSAT traces 中：正确答案 58，错误答案 56，空答案 28\n- **Filter precision = 49.12%** — 几乎等于随机，说明 UNSAT 并不能区分正确/错误 trace\n- 仅 7 个问题的投票结果发生变化：3 个改善，4 个恶化\n\n### Per-question UNSAT 分布\n- 0 UNSAT: 115 题（56%的题没有任何 trace 被过滤）\n- 1 UNSAT: 58 题\n- 2+ UNSAT: 31 题\n\n### 结论\n\n**Z3 per-trace 一致性检查作为过滤信号无效。** 原因：\n1. 过滤率仅 5.8%，影响面太小\n2. Filter precision ≈ 50%（随机水平），UNSAT 并不偏向错误 trace\n3. LLM 产生的约束中，内部矛盾跟推理正确性无显著关联——可能是约束提取本身的噪声导致矛盾，而非推理逻辑错误\n\n结果保存在 `westd-25068:/root/symb_invariant_consensus/results/direction_i_z3_filter/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-wave3-dir-i-z3-filter.md"
+}

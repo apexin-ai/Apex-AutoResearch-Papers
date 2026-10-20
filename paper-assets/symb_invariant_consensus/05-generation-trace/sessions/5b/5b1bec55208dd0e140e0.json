@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b1bec55208dd0e140e0",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis pipeline nondeterminism fix",
+  "task_key": "worker_analysis_pipeline-nondeterminism-fix_20260518T185409",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_pipeline-nondeterminism-fix_20260518T185409_result.json",
+    "occurrence": 1,
+    "bytes": 1532,
+    "sha256": "d9fd53ade9f9609bb6f9891b12ff58364cd4549218ff84d3eb2a6ef29f240c11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## Summary\n\n### Root Cause\nThe ~3pp accuracy difference (74.51% vs 77.94%) is **NOT** from pipeline non-determinism. It's from **different constraint data**: `extract_constraints.py` re-extracted constraints via separate LLM calls (temperature=0.1), producing different constraints than exp-001's in-memory extraction. 202/204 problems have different constraint counts between the two datasets.\n\n### Fixes Applied (4 files)\n\n| File | Change |\n|---|---|\n| `sica/pipeline.py` | `list(set(...))` → `sorted(set(...))` (2 locations); returns `per_trace_constraints` in output |\n| `sica/scorer.py` | Deterministic tiebreaking: alphabetical sort after frequency tie |\n| `sica/z3_maxsat.py` | Added `z3.set_param('smt.random_seed', 42)` and `z3.set_param('sat.random_seed', 42)` |\n| `run_consistency_filtering.py` | `list(set(...))` → `sorted(set(...))` |\n| `run_z3_feedback_folio.py` | `list(set(...))` → `sorted(set(...))` |\n| `run_full_mvp.py` | Saves per_trace_constraints files alongside intermediates |\n\n### Verification\nFixed pipeline produces identical results (fingerprint `77b240fb54dca62dfbf8e0497b53526f`, 159/204) across:\n- PYTHONHASHSEED = 0, 42, random\n- 3 independent Python processes\n\n### Impact on Paper\nThe canonical SICA accuracy should be re-established by re-running the full pipeline once with the fixes, which will now save the exact constraints used for scoring. The 74.51% from exp-001 and 77.94% from exp4 are both valid but computed on different constraint sets."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-pipeline-nondeterminism-fix.md"
+}

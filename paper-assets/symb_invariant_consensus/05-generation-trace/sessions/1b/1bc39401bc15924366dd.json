@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1bc39401bc15924366dd",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diagnose exp 064 failure",
+  "task_key": "worker_diagnose_exp-064-failure_20260519T181304",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp-064-failure_20260519T181304_result.json",
+    "occurrence": 1,
+    "bytes": 530,
+    "sha256": "c7ceab68949657232b25fe304e7139e65f4ebdce8fdc19734acd3b0af88958d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论：exp-064 是 Cron 误报，实验已正常完成 204/204。**\n\n关键发现：\n- 日志末尾 `FULL_MVP_DONE`，results.json 包含全部 204 条结果\n- **SICA = 83.8%, SC = 83.8%**（完全一致，约束聚合无额外增益）\n- Cron 误报原因：脚本没写 sentinel 文件，也没集成 W&B，进程正常退出后 Cron 探测不到进程，累计 5 次误判为 failed\n- 结果文件完整，无需重跑\n\n报告已写入 `artifacts/exp-064-diagnosis.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-064-failure.md"
+}

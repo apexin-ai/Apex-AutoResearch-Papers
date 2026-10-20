@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9318afcd9807f1495131",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp050b 049b final",
+  "task_key": "worker_analysis_exp050b-049b-final_20260518T231114",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp050b-049b-final_20260518T231114_result.json",
+    "occurrence": 1,
+    "bytes": 175,
+    "sha256": "fc13e78514ef000a17e0b235f58cf8151fe1e9e00e8649336a925e2c752014d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都接近完成：\n- **exp-050b**: 194/199 (ETA ~2.8 min)\n- **exp-049b**: 195/200 (ETA ~2.4 min)\n\n3 分钟后自动回来提取最终 metrics。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp050b-049b-final.md"
+}

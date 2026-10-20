@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2eb7d7e0271762729775",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "download deepseek r1 7b",
+  "task_key": "worker_download_deepseek-r1-7b_20260516T063502",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_download_deepseek-r1-7b_20260516T063502_result.json",
+    "occurrence": 1,
+    "bytes": 653,
+    "sha256": "8383259dc18d885e5ccdd22fe1f4a8bca39bbd296c4fc5e05b0f8958f3a91448"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n**结果汇总：**\n\n| 项目 | 详情 |\n|------|------|\n| 模型路径 | `/root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B` |\n| 模型大小 | 15GB（2 个 safetensors 文件） |\n| vLLM 脚本 | `/root/symb_invariant_consensus/scripts/start_vllm_deepseek_r1_7b.sh` |\n| 脚本语法 | OK |\n| 数据盘剩余 | 116GB / 250GB (54% used) |\n\n脚本配置：port 8000, max-model-len 8192, gpu-memory-utilization 0.9, trust-remote-code, dtype auto。注意当前 exp-001 正在占用 port 8000 和 GPU，需要先停掉 Qwen2.5-14B 的 vLLM 才能启动 DeepSeek-R1-7B。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/download-deepseek-r1-7b.md"
+}

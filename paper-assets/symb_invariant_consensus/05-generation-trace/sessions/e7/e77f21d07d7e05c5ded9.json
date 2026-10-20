@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e77f21d07d7e05c5ded9",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diagnose exp 080",
+  "task_key": "worker_diagnose_exp-080_20260519T204134",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp-080_20260519T204134_result.json",
+    "occurrence": 1,
+    "bytes": 1283,
+    "sha256": "4d39e8a59279ca1c054f0bb4f43dc2522b1f315d77a46d814900818496e52a7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果：exp-080 **未失败，正在正常运行**\n\n### 状态\n\n| 指标 | 值 |\n|------|-----|\n| Bash wrapper PID 279841 | **存活** |\n| Python PID 279846 | **存活** |\n| 进度 | **44/200** (logiqa_043 刚完成，正在处理 logiqa_044) |\n| 最后日志时间 | 2026-05-20 04:42:05（刚刚） |\n| ETA | ~95 分钟（剩余 156 条） |\n| vLLM (port 8000) | **正常**，所有请求返回 HTTP 200 |\n| GPU 0 (vLLM for exp-080) | RTX PRO 6000, 89889/97887 MiB, 96% util |\n\n### 误报原因\n\nCron 监控将其标记为 \"process dead 5×\" 是**误报**。可能原因：\n- 监控检查的是 PID 279841（bash nohup wrapper），该进程状态为 `S`（sleeping），实际 python 子进程 279846 状态为 `Sl`（正常运行）\n- 监控可能依赖 sentinel 文件或 W&B 心跳，而该实验不产出这些信号\n\n### 产出\n\n- `results.json`: 100KB, 2714 行（包含已完成的 44 条结果）\n- `intermediates/`: 44 个 JSON 文件 (logiqa_000 ~ logiqa_043)\n- `train.log`: 109KB，无错误\n\n### 结论\n\n**不需要任何干预。** 实验正在正常推进，预计再 ~95 分钟完成全部 200 条。建议检查 cron 监控逻辑，可能需要改为检查子进程 PID 或增加 `train.log` 活跃性检测。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-080.md"
+}

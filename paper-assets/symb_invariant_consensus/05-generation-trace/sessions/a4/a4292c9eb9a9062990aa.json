@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4292c9eb9a9062990aa",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment d126 crossmodel sica",
+  "task_key": "worker_experiment_d126-crossmodel-sica_20260521T082140",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_d126-crossmodel-sica_20260521T082140_result.json",
+    "occurrence": 1,
+    "bytes": 77,
+    "sha256": "516c01dad09855ebb7b0aeddc6904d19db8ece4a4da89faa2248869d49e531b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正在稳定运行中。30分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-d126-crossmodel-sica.md"
+}

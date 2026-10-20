@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d2a385cb2a102117ff2",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis r11 3verifier canonical",
+  "task_key": "worker_analysis_r11-3verifier-canonical_20260521T114828",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_r11-3verifier-canonical_20260521T114828_result.json",
+    "occurrence": 1,
+    "bytes": 1180,
+    "sha256": "a325d6b3181aef26f5ae2e4c3b1725e2aa4c34909bffa9c72e552c528826dc9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Results saved to `artifacts/r11_3verifier_canonical.json` and registered as `art_20260521_0c36fe`.\n\n**Key results summary:**\n\n| Verifier | Standalone | w=1 | w=3 | w=5 |\n|----------|-----------|-----|-----|-----|\n| DeBERTa-L | 55.00% | +0.83pp | **+6.67pp** (p=1.1e-5) | **+11.00pp** (p=6.2e-7) |\n| RoBERTa-L | 37.67% | -0.17pp | **+4.17pp** (p=0.003) | +4.33pp (p=0.037) |\n| BART-L | 46.17% | 0.00pp | **+5.17pp** (p=2.4e-4) | **+6.33pp** (p=0.003) |\n| Ensemble (maj) | 48.33% | +0.33pp | **+5.83pp** (p=6.5e-5) | **+8.00pp** (p=2.4e-4) |\n| Additive (3×w) | — | **+5.33pp** (p=1.3e-4) | **+12.00pp** (p=2.8e-5) | **+9.83pp** (p=0.004) |\n\n**BH correction:** 10/15 tests significant at α=0.05. Only w=1 tests for all verifiers and roberta_w5 (adj_p=0.0503, borderline) are non-significant.\n\n**Canonical verification:** DeBERTa w3 = 276/600, +6.67pp, b=21, c=61, p=1.13e-05 — matches paper exactly.\n\n**Root cause of previous failures:** The combo method must be hard-vote (add w integer votes to NLI-predicted class), not probability-weighted. The `mistral_pw600_sc_votes.json` also required fixing 2 mismatched question IDs (Q4→Q8)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r11-3verifier-canonical.md"
+}

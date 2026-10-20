@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7dc572a73e2708bbf8e8",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis sf7 constraint yield cv",
+  "task_key": "worker_analysis_sf7-constraint-yield-cv_20260523T213717",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_sf7-constraint-yield-cv_20260523T213717_result.json",
+    "occurrence": 1,
+    "bytes": 1597,
+    "sha256": "6b3f49baf8faab6f5fc710e08ae976356a1e3bb32d0e6aa3ac8d35480f8142dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果已保存到服务器。关键发现：\n\n### Observation 1 评估：**SUPPORTED（有条件）**\n\n**Per-problem CV（核心指标）**：\n- Median CV = **0.2572** < 0.3 阈值 → 支持 \"approximately uniform yield\"\n- 64.2% 的问题 CV < 0.3，91.2% < 0.5\n- Mean CV = 0.3189, Q25=0.19, Q75=0.36\n\n**Overall yield**：mean=5.75, std=2.36, CV=0.41（跨问题变异较大，但这是 between-problem 的，不影响 Observation 1 的 within-problem 假设）\n\n### 两个 WARNING\n\n**1. Majority vs Minority yield 显著不同** (p=5.2e-06)：\n- Majority traces: mean=5.61 (n=1621)\n- Minority traces: mean=6.04 (n=827)\n- Minority traces 平均多产出 ~0.43 个约束 (+7.7%)\n\n**2. Correct vs Incorrect yield 显著不同** (p=5.3e-11)：\n- Correct traces: mean=5.41 (n=1136)\n- Incorrect traces: mean=6.05 (n=1312)\n- Incorrect traces 平均多产出 ~0.64 个约束 (+11.9%)\n\n### 对 SICA-SC equivalence 的影响\n\n虽然 per-problem CV 中位数支持 \"approximately uniform\" 假设，但存在一个系统性偏差：**错误/少数派 traces 产出更多约束**。这对 SICA 有利而非不利——错误 traces 虽然多产约束，但这些约束在 MaxSAT 中更可能相互矛盾被排除。效应量较小（~8-12%），不足以颠覆 Observation 1 的核心结论。\n\n建议 rebuttal 中可以这样回应：per-problem CV median=0.26 支持 uniform yield 假设；虽然 correct/incorrect groups 间存在统计显著差异，但绝对差异仅 ~0.6 个约束（<12%），不影响 SICA-SC agreement 的理论推导。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sf7-constraint-yield-cv.md"
+}

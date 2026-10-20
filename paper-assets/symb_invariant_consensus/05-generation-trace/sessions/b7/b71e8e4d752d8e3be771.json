@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b71e8e4d752d8e3be771",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code fix contrastive normalization",
+  "task_key": "worker_code_fix-contrastive-normalization_20260519T172910",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix-contrastive-normalization_20260519T172910_result.json",
+    "occurrence": 1,
+    "bytes": 1964,
+    "sha256": "ab93ec7ef3c1173f2c1e5ec345d6d858dea73a3adbb0c3fc77a914da4851c631"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "归一化效果清晰可见：\n\n- **folio_0 Unknown**: raw_score=5.0（旧方式因 n_pro=9 获得高原始分），归一化后 score=0.0（norm_pro=1.0 - norm_con=1.0）\n- **folio_4 Unknown**: raw_score=3.0，归一化后 score=0.4286（norm_pro=1.2857 > norm_con=0.8571，pro 满足率更高）\n- **folio_4 True**: raw_score=2.0（看似不错），但归一化后 score=0.0（满足率相同）\n\n归一化确实消除了约束数量偏差。\n\n## 汇报\n\n### 修改位置\n`/root/symb_invariant_consensus/run_contrastive.py`，两处：\n\n1. **`contrastive_score_candidate` 函数**（~行 210-225）：评分逻辑从 `pro_sat_weight - con_sat_weight` 改为 `(pro_sat_weight / max(n_pro, 1)) - (con_sat_weight / max(n_con, 1))`。输出新增 `raw_score`, `normalized_pro`, `normalized_con`, `n_pro`, `n_con`。\n\n2. **`details_out` 构建部分**（~行 370-383）：同步更新字段名引用，新增 `raw_score`, `normalized_pro`, `normalized_con`, `n_pro`, `n_con` 到 per_candidate_details 输出。\n\n### Dry-run 对比（5 题真实 vLLM 推理）\n| 问题 | 候选 | raw_score (旧) | normalized_score (新) | n_pro | n_con |\n|------|------|---------|------|-------|-------|\n| folio_0 | True | 1.0 | **1.0** | 1 | 0 |\n| folio_0 | Unknown | 5.0 | **0.0** | 9 | 4 |\n| folio_4 | Unknown | 3.0 | **0.4286** | 7 | 7 |\n| folio_4 | True | 2.0 | **0.0** | 3 | 1 |\n\nfolio_0 Unknown 的旧 raw_score=5.0 远高于 True 的 1.0（因 n_pro=9 vs 1），归一化后 Unknown=0.0 vs True=1.0，修正了偏差。\n\n### exp-075 影响\n- **exp-075 实验已在运行**（01:31:14 启动，处理 204 题），使用的是**磁盘修改前加载到内存的旧代码**。\n- 实验结果目录：`results/exp075_contrastive_mistral_folio/`，尚未产出 results.json（刚启动几分钟）。\n- **需要你决定**：是否 kill 当前运行的 exp-075 并用修复后的代码重启？实验刚启动，重启代价很小。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-contrastive-normalization.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e173fa57c8732dd1aa8b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis proofwriter30 v2 interim",
+  "task_key": "worker_analysis_proofwriter30_v2_interim_20260516T012158",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_proofwriter30_v2_interim_20260516T012158_result.json",
+    "occurrence": 1,
+    "bytes": 712,
+    "sha256": "376654fd164adf37b8e9e866b69fa4d11a57c368490dd579d14514e8d4cc0d8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已生成并注册。核心结论：\n\n**SICA 严格劣于 SC**（87.5% vs 93.75%，gap = −6.25pp）。\n\n三个关键问题：\n1. **Problem #11 反向翻转**：SC 以 11:1 正确投票 False，但 SICA 的约束加权评分 (F:27 vs T:38) 将答案错误翻转为 True。少数错误 trace 产生了更多约束权重。\n2. **约束提取率仅 48.4%**（trace 级），99 条 \"No JSON found\" 警告全部是约束提取失败（答案提取正常）。3 题（#4, #5, #14）完全零约束。\n3. **零矛盾检出**：所有 16 题 satisfied_ratio=1.000，excluded=0。MaxSAT 从未排除任何约束。\n\nD012 预测：C2（矛盾检出）和 C3（SICA≥SC）极可能 FAIL。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-proofwriter30-v2-interim.md"
+}

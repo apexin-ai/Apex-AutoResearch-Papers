@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a01ab8e3e6867aca705",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code prep exp020 llama8b folio 200",
+  "task_key": "worker_code_prep-exp020-llama8b-folio-200_20260517T081040",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_prep-exp020-llama8b-folio-200_20260517T081040_result.json",
+    "occurrence": 1,
+    "bytes": 687,
+    "sha256": "b8efb767aa750d536bb31c8d52964991ed8451bc3bc41dd01abdc8c56a260717"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。\n\n**报告：**\n\n| 项目 | 状态 |\n|------|------|\n| FOLIO 全量数据 | `data/folio_full.json`，**204 题**，格式完整（含 premises_fol） |\n| `data/empty.json` | 已存在（exp-019 已用） |\n| 脚本 | `scripts/run_exp020_folio_200.sh` 已创建，`bash -n` 语法通过 |\n| 评测入口 | `run_full_mvp.py`（同 exp-011），通过 `--math-data empty.json --no-proofwriter --folio-data folio_full.json` 只跑 FOLIO |\n| 参数 | K=12, T=0.7, max-model-len=8192, max-tokens=4096, seed=42 |\n\n数据就绪，脚本可直接 `bash scripts/run_exp020_folio_200.sh` 启动。等 exp-019 StrategyQA 结果出来后决定是否执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-exp020-llama8b-folio-200.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7289e17cd48da8f5c39",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis check deberta tiebreaking fix",
+  "task_key": "worker_analysis_check-deberta-tiebreaking-fix_20260522T145113",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_check-deberta-tiebreaking-fix_20260522T145113_result.json",
+    "occurrence": 1,
+    "bytes": 1108,
+    "sha256": "9be0b9f42ad141ef29d83e8c31b985ef39e1aa5b5445a4fd0e247f78be50bbae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查完毕，结果如下：\n\n### 1. eval_finetuned_nli.py 当前 CLASSES 定义\n\n**L30**: `CLASSES = [\"True\", \"False\", \"Unknown\"]` — **未排序，原样未改。**\n\n### 2. 是否已修复\n\n**未修复。** 仍然是 `[\"True\", \"False\", \"Unknown\"]`，不是字母序 `[\"False\", \"True\", \"Unknown\"]`。\n\n当前 tiebreaking 行为：L66 `max(CLASSES, key=lambda x: votes.get(x, 0))` 在票数相同时，`max` 返回迭代顺序中最后一个最大值，即 \"Unknown\" > \"False\" > \"True\"。而 D061 canonical tiebreaking 要求字母序（\"False\" 优先），需要改为 `sorted(...)` 或直接写 `[\"False\", \"True\", \"Unknown\"]`。\n\nL241/243 的 combo voting 也有同样问题。\n\n### 3. finetune_deberta_pw.py 是否有类似问题\n\n**无同类问题。** 该文件不使用 `CLASSES` 列表，标签映射是硬编码的 dict：\n- `PW_TO_NLI = {\"True\": 2, \"False\": 0, \"Unknown\": 1}`  \n- `NLI_TO_PW = {2: \"True\", 0: \"False\", 1: \"Unknown\"}`\n\n这些是 NLI label index 映射，不涉及 tiebreaking 顺序，不需要修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-check-deberta-tiebreaking-fix.md"
+}

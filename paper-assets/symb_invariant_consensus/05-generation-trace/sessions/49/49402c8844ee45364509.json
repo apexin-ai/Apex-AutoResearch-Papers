@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "49402c8844ee45364509",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "verify br recompute qwen14b",
+  "task_key": "worker_verify_br-recompute-qwen14b_20260522T211003",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_br-recompute-qwen14b_20260522T211003.log",
+    "occurrence": 1,
+    "bytes": 911953,
+    "sha256": "442b39c8fe47d49dd0483c8434861d4c2845529a860e494188cfd5d368477b4c"
+  },
+  "statistics": {
+    "messages": 314,
+    "user_turns": 1,
+    "tool_calls": 108,
+    "roles": {
+      "log": 1,
+      "system": 22,
+      "record": 1,
+      "assistant": 72,
+      "tool_call": 108,
+      "tool_result": 108,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 222,
+      "chunks": [
+        {
+          "path": "49402c8844ee45364509-part-0001.json",
+          "message_count": 176
+        },
+        {
+          "path": "49402c8844ee45364509-part-0002.json",
+          "message_count": 46
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 92,
+      "chunks": [
+        {
+          "path": "49402c8844ee45364509-part-0002.json",
+          "message_count": 92
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/verify-br-recompute-qwen14b.md"
+}

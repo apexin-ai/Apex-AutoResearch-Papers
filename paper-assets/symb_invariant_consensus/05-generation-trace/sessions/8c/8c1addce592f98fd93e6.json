@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c1addce592f98fd93e6",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "gpu exp 069 llama8b logiqa200 dryrun",
+  "task_key": "worker_gpu_exp-069-llama8b-logiqa200-dryrun_20260519T115202",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp-069-llama8b-logiqa200-dryrun_20260519T115202_result.json",
+    "occurrence": 1,
+    "bytes": 1586,
+    "sha256": "b58a244fa3f04b6526b67b561f871089063f08a2e950c42ed0911f8010ec63c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dry-run 报告\n\n**结果: Y（通过）**\n\n| 项目 | 详情 |\n|---|---|\n| vLLM 启动时间 | ~30 秒 |\n| 处理速度 | Q1: 114.4s, Q2: 24.0s, Q3: 66.7s, 平均 68.4s/问题 |\n| 预估全量时间 | ~224 分钟（约 3.7 小时） |\n| 3 题结果 | SICA: D(V), A(V), D(X) / SC: D(V), A(V), C(V) |\n\n**警告（不影响运行）**:\n- 部分长 prompt（>4097 tokens）的 extraction 会因 `input_tokens + max_tokens > 8192` 触发 400 错误，脚本 gracefully 跳过（3 题中出现 1 次）\n- 偶有 \"Empty after stripping thinking\" / \"No JSON found\" warning，不影响最终结果\n\n**建议的全量运行命令**:\n```bash\ncd /root/symb_invariant_consensus && mkdir -p results/exp069_llama8b_logiqa200\n\n# Step 1: 启动 vLLM\nCUDA_VISIBLE_DEVICES=0 VLLM_USE_FLASHINFER_SAMPLER=0 nohup python -m vllm.entrypoints.openai.api_server \\\n  --model /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct \\\n  --max-model-len 8192 --gpu-memory-utilization 0.90 --port 8005 \\\n  --dtype auto --trust-remote-code --enforce-eager \\\n  > /tmp/vllm_exp069.log 2>&1 &\n\n# Step 2: 确认 vLLM 就绪后运行实验\npython -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 \\\n  --api-base http://localhost:8005/v1 --model auto --seed 42 \\\n  --strategyqa-data data/logiqa_200.json \\\n  --folio-data data/empty.json --math-data data/empty.json --pw-data data/empty.json \\\n  --output results/exp069_llama8b_logiqa200/exp069_results.json \\\n  --save-intermediates 2>&1 | tee results/exp069_llama8b_logiqa200/exp069.log\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-069-llama8b-logiqa200-dryrun.md"
+}

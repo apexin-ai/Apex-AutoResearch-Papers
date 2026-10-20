@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9d5268056817547aa7e",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "prep exp 010 mistral script",
+  "task_key": "worker_prep_exp-010-mistral-script_20260517T025620",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_prep_exp-010-mistral-script_20260517T025620_result.json",
+    "occurrence": 1,
+    "bytes": 523,
+    "sha256": "29832126c7fcc5775d158ffd05c70e1bcb59abc7d4332cddc412076b1989586f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本创建完成，语法验证通过。\n\n**产出汇总：**\n\n- **脚本**: `/root/symb_invariant_consensus/scripts/run_exp010_mistral.sh` ✓ 已创建并可执行\n- **模型状态**: `/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3/` 完整（28G，含 3 个 safetensors 分片 + config + tokenizer）\n- **与 exp-011 的差异**: MODEL 路径指向 Mistral，PORT=8000，输出到 `results/exp010_mistral/`，日志写 `/tmp/vllm_exp010.log`，其余参数（K=12, T=0.7, 60题, seed=42）一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-exp-010-mistral-script.md"
+}

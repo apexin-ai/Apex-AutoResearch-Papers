@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81698fdfe8cd35ba00b5",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra westd25068 model downloads",
+  "task_key": "worker_infra_westd25068-model-downloads_20260518T170104",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_westd25068-model-downloads_20260518T170104_result.json",
+    "occurrence": 1,
+    "bytes": 925,
+    "sha256": "5e91cbf8cc063271c645ffcbab797d6b1b7135d074a34730376958fbe9967491"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已生成并注册。汇总关键发现：\n\n**下载状态**:\n- 4 个模型通过 hf-mirror.com 下载中（DeepSeek-R1-0528-Qwen3-8B, DeepSeek-R1-Distill-Llama-8B, Phi-4-reasoning, gemma-3-27b-it）\n- Llama-4-Scout **失败**：gated model 需要 Meta 授权\n- **磁盘空间严重不足**：仅剩 47G，4 个模型合计约 114GB。预计只有两个 8B 模型（共 ~32G）能完成下载，Phi-4 和 gemma-3 会因磁盘满失败\n\n**实验状态**:\n- exp-007（72B AWQ）和 exp-004-rerun（7B）**均已失败**（网络/下载问题），GPU 0 和 3 空闲\n- exp-027 和 exp-028（Qwen3-14B thinking/non-thinking）在 GPU 1/2 上正常运行\n\n**需要决策**:\n1. 磁盘空间不足，是否清理部分旧模型（如 Mistral-7B、Llama-3.1-8B）腾出空间？\n2. 是否重跑 exp-007 和 exp-004-rerun（GPU 0/3 空闲）？\n3. Llama-4-Scout 需要到 HF 页面申请 Meta 授权"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd25068-model-downloads.md"
+}

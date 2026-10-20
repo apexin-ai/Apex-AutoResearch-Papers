@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c93fb53e929135dcbdcf",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "agent / loop_7_1779012893.md",
+  "task_key": "loop_7_1779012893",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_7_1779012893.md",
+    "occurrence": 1,
+    "bytes": 4456,
+    "sha256": "922959ea3fab69772af60ab15139e56a2ae8261eec077c5dab2af427d674e45e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-17T09:55:21+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 只能用 **westd-32608:cuda:0**（gpu_ids 白名单仅 `[\"cuda:0\"]`），任何其他 GPU 编号必须 push back Director\n- submit_training_job 命令必须带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀，否则 EXIT_CODE=127（memory.md 已记录此失败模式）\n- paper_framing.md **未更新**——D031 明确要求\"不在 powered test 前更新\"，必须等 exp-020 结果出来后再动 framing\n- D030 用户指令\"methods paper 质量更高\"仍有效，但 D031-D033 发现倒 U 型后，实际 framing 走向取决于 exp-020 结果\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-32608**，account=root，工作目录 `/root/symb_invariant_consensus`\n- Python：`/root/miniconda3`（通过 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base` 激活）\n- GPU：1× RTX PRO 6000 Blackwell 98GB，cuda:0\n- 活跃进程：exp-020-llama8b-folio-204（PID **309318**，tmux session，cron 监控中）\n- 活跃 Worker：`worker_analysis_exp020-definitive-check_20260517T095239`（running，在分析 exp-020 状态）\n- Cron：1 个 active，监控 exp-020（reconcile 确认 PID 309318 still running）\n- 注意：exp-020 registry 状态是 PREPARING 但实际已提交运行（spec 里有 pid/submitted_at），可能需要手动 update_registry 到 RUNNING\n\n### 3. 📊 当前状态\n**刚完成：** exp-019 StrategyQA 200 题 powered test（negative: +2pp, p>0.1, SC=72% 不在 sweet spot）和 exp-010 Mistral（negative: 0pp, SC=48%）。两者共同确认倒 U 型 pattern。\n\n**正在跑：** exp-020-llama8b-folio-204（**definitive test**）。LLaMA-8B × FOLIO 是 sweet spot 组合（SC=60%, 先验信号 +10pp at n=30），n=204 几乎必然显著。这是项目关键路径上唯一的实验。\n\n**等待中：**\n- exp-020 cron 完成回调\n- Worker `worker_analysis_exp020-definitive-check` 回调\n- Director 未有 pending 决策\n\n**Registry 总览：** 33 个实验，11 success / 5 negative / 9 failed / 4 killed / 2 preparing / 2 其他。无 RUNNING 状态实验（exp-020 卡在 PREPARING，实际在跑）。\n\n### 4. 📋 待办（条件触发式）\n- **exp-020 cron 回调到达** → 立即 spawn Worker 分析结果 → 按 on-experiment-done 流程处理：\n  - p<0.05 且 delta≥5pp → 更新 paper_framing.md 为 Operating Regime Characterization，向 Director 汇报并建议加 7B/72B scaling 实验\n  - p∈(0.05, 0.10) → Inconclusive，建议扩展到 FOLIO 全量或换数据集\n  - p>0.10 → 维持 D025 Capability Trap analysis paper framing，LLaMA-8B 结果作 suggestive evidence\n- **Worker exp020-definitive-check 回调** → 读取产出，确认 exp-020 运行状态是否正常（可能是中期检查）\n- **exp-020 结果确认后** → 根据 D030 用户指令（methods paper），评估是否启动 Constraint Consistency Filtering pilot（CPU-only，用 exp-001 的 804 题数据）\n- **exp-020 registry 状态修正** → 确认 PID 309318 在跑后，update_registry 从 PREPARING → RUNNING\n\n### 5. 🎯 战略上下文\n**核心发现（倒 U 型 operating regime）：**\n5 个数据点：SC=48%(0pp) → 60%(+6.7pp) → 72%(+2pp) → 76%(+0.3pp) → 97%(-1.7pp)。Sweet spot 在 SC accuracy ~55-65%。exp-020 是验证 sweet spot 统计显著性的 definitive test。\n\n**决策链关键节点：**\n- D025: SICA≈SC at scale，pivot to Analysis Paper\n- D030: 用户要求 methods paper（Constraint Consistency Filtering idea）\n- D031-D033: 发现倒 U 型，启动 powered test 验证\n- 当前 paper_framing.md 仍是 D025 版本（3 claims: Capability Trap / Operating Regime Empty / C0 Diagnostic），**待 exp-020 后更新**\n\n**易判断错的事：**\n- 不要混淆 D030（methods paper）和 D025（analysis paper）的 framing 状态——当前 paper_framing.md 是 D025 版，D030 的 methods paper 方向还没落到 framing 文件里\n- exp-020 的 registry 状态是 PREPARING 不是 RUNNING，但它实际在跑（有 PID 和 cron 监控）\n- pilot-contrastive-prompt 已 failed（ENV_ACTIVATION 问题 + 方法本身 discriminative ratio 不足），不要重试\n- exp-013 已确认 MaxSAT≈count-only≈random，mechanism vacuous 是定论，不需要再验证\n- FOLIO n=30 的 +10pp 和 n=60 的 +6.67pp 是同一个实验（exp-011-llama8b-v3）的不同子集视角，不是两个独立信号\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1779012893.md"
+}

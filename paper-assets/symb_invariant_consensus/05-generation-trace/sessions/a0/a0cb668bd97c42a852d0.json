@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a0cb668bd97c42a852d0",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "analysis tost equivalence",
+  "task_key": "worker_analysis_tost-equivalence_20260520T152416",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_tost-equivalence_20260520T152416.log",
+    "occurrence": 1,
+    "bytes": 767227,
+    "sha256": "1818be847a265bdb4da3bbb8a7fa10c7f1a69a890249464ba2178dc6e39e7eed"
+  },
+  "statistics": {
+    "messages": 174,
+    "user_turns": 0,
+    "tool_calls": 64,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 42,
+      "tool_call": 64,
+      "tool_result": 64,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 174,
+      "chunks": [
+        {
+          "path": "a0cb668bd97c42a852d0-part-0001.json",
+          "message_count": 119
+        },
+        {
+          "path": "a0cb668bd97c42a852d0-part-0002.json",
+          "message_count": 55
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-tost-equivalence.md"
+}

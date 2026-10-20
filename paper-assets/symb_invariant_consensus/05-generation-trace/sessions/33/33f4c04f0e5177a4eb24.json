@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "33f4c04f0e5177a4eb24",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "eval exp 034 strategyqa200 s2",
+  "task_key": "worker_eval_exp-034-strategyqa200-s2_20260518T155648",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_exp-034-strategyqa200-s2_20260518T155648.log",
+    "occurrence": 1,
+    "bytes": 651020,
+    "sha256": "8f29f389abee96485df96ff8c4cebb080ae21e0f57a694c5925a5700ff11f927"
+  },
+  "statistics": {
+    "messages": 258,
+    "user_turns": 1,
+    "tool_calls": 86,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 76,
+      "tool_call": 86,
+      "tool_result": 86,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 176,
+      "chunks": [
+        {
+          "path": "33f4c04f0e5177a4eb24-part-0001.json",
+          "message_count": 176
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 82,
+      "chunks": [
+        {
+          "path": "33f4c04f0e5177a4eb24-part-0001.json",
+          "message_count": 4
+        },
+        {
+          "path": "33f4c04f0e5177a4eb24-part-0002.json",
+          "message_count": 78
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-exp-034-strategyqa200-s2.md"
+}

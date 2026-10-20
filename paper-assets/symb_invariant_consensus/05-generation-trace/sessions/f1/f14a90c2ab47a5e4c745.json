@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f14a90c2ab47a5e4c745",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diagnosis maxsat root cause",
+  "task_key": "worker_diagnosis_maxsat_root_cause_20260516T013133",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnosis_maxsat_root_cause_20260516T013133_result.json",
+    "occurrence": 1,
+    "bytes": 1008,
+    "sha256": "52ac29a7477dfa4d82e38302ee0e0cfeac7e951dd644721f35872083c7d1ab5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。核心结论：\n\n**MaxSAT 全满足是三个问题叠加，不是单一 bug：**\n\n1. **约束提取失败 54.4%** — QwQ-32B 收到 extraction prompt 后重新推理而非输出 JSON。最致命的是，3/4 多候选题（最需要 SICA 的场景）提取为零。\n\n2. **一致投票 = 一致约束** — 14/17 题 12/12 同一答案，提取出的约束天然不矛盾。这是正确行为，不是 bug。\n\n3. **评分偏差** — 唯一 SICA≠SC 的题 (498_Q8)，SICA 给 1 票的少数派打了 38 分 > 多数派 27 分，因为提取失败是非随机的。SICA 反而比 SC 差（87.5% vs 93.75%）。\n\n**MaxSAT 求解器本身无 bug**（注入测试 6/6 通过）。\n\n**推荐最小修复（~1 小时）**：\n- **L3**：每条 trace 自动注入 `answer == <trace_answer>` 约束，使不同答案的 trace 必有冲突\n- **L1**：提取用 system prompt 强制 JSON-only，或换用 instruction-following 模型做提取\n\n报告已写入 artifacts。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-maxsat-root-cause.md"
+}

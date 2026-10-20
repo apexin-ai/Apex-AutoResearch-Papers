@@ -1,0 +1,2317 @@
+{
+  "schema_version": "1.0",
+  "id": "982834f211bc4822b619",
+  "project": "symb_invariant_consensus",
+  "kind": "conversation",
+  "title": "experiment deberta finetune launch",
+  "task_key": "worker_experiment_deberta-finetune-launch_20260522T153517",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_experiment_deberta-finetune-launch_20260522T153517.jsonl",
+    "occurrence": 1,
+    "bytes": 72464,
+    "sha256": "c10ec1f15546e5b42a1f6e6cbe2e7d25b9d612bbfc8ddd7f7122f236e5364692"
+  },
+  "statistics": {
+    "messages": 117,
+    "user_turns": 0,
+    "tool_calls": 58,
+    "roles": {
+      "tool_call": 58,
+      "tool_result": 58,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T15:43:13.201788+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T15:43:13.202208+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T15:43:13.202516+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T15:43:13.202676+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "cat /root/symb_invariant_consensus/scripts/eval_finetuned_nli.py"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T15:43:13.202818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 90159 MiB, 97887 MiB, 97 %\\\\n1, 88263 MiB, 97887 MiB, 96 %\\\\n2, 90213 MiB, 97887 MiB, 96 %\\\\n3, 88263 MiB, 97887 MiB, 96 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T15:43:13.203156+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Evaluate fine-tuned DeBERTa on ProofWriter depth-5 test set.\\\\nStandalone accuracy + combo with LLM SC votes.\\\\n\\\\nUsage:\\\\n    python scripts/eval_finetuned_nli.py \\\\\\\\\\\\n        --model-path checkpoints/deberta-large-pw-finetuned/best\\\\n    python scripts/eval_finetuned_nli.py \\\\\\\\\\\\n        --model-path /root/autodl-tmp/models/deberta-large-mnli \\\\\\\\\\\\n        --sc-sources llama8b qwen14b mistral\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n# Environment setup for westd-16639:\\\\n#   export CUDA_VISIBLE_DEVICES=<free_gpu_id>\\\\n#   export LD_LIBRARY_PATH=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib:$LD_LIBRARY_PATH\\\\n\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport time\\\\nfrom collections import Counter\\\\nimport numpy as np\\\\nimport torch\\\\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\\\\nfrom scipy.stats import binomtest\\\\n\\\\nPW_DATA_PATH = \\\\\\\"/root/symb_invariant_consensus/data/proofwriter_full.json\\\\\\\"\\\\nRESULTS_DIR = \\\\\\\"/root/symb_invariant_consensus/results\\\\\\\"\\\\nCLASSES = [\\\\\\\"True\\\\\\\", \\\\\\\"False\\\\\\\", \\\\\\\"Unknown\\\\\\\"]\\\\nWEIGHTS = [1, 3, 5]\\\\n\\\\nSC_SOURCES = {\\\\n    \\\\\\\"llama8b\\\\\\\": {\\\\n        \\\\\\\"path\\\\\\\": os.path.join(RESULTS_DIR, \\\\\\\"exp048_llama8b_pw600/exp048_results.json\\\\\\\"),\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"LLaMA-3.1-8B-Instruct\\\\\\\",\\\\n        \\\\\\\"format\\\\\\\": \\\\\\\"results_list\\\\\\\",\\\\n    },\\\\n    \\\\\\\"qwen14b\\\\\\\": {\\\\n        \\\\\\\"path\\\\\\\": os.path.join(RESULTS_DIR, \\\\\\\"exp032_qwen25_14b_pw600/results.json\\\\\\\"),\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"Qwen2.5-14B-Instruct\\\\\\\",\\\\n        \\\\\\\"format\\\\\\\": \\\\\\\"results_list\\\\\\\",\\\\n    },\\\\n    \\\\\\\"mistral\\\\\\\": {\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/symb_invariant_consensus/data/mistral_pw600_sc_votes.json\\\\\\\",\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"Mistral-7B-Instruct-v0.3\\\\\\\",\\\\n        \\\\\\\"format\\\\\\\": \\\\\\\"vote_dict\\\\\\\",\\\\n    },\\\\n}\\\\n\\\\n\\\\ndef parse_pw_problem(text):\\\\n    for m in [\\\\n        \\\\\\\"Determine whether \n…[truncated 7358 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T15:43:13.203343+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "ls -la /root/symb_invariant_consensus/data/proofwriter_train_hf.jsonl"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T15:43:13.203475+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "ps -p 626998 -o pid="
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T15:43:13.203603+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/symb_invariant_consensus/data/proofwriter_train_hf.jsonl': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T15:43:13.203727+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T15:43:13.203899+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T15:43:13.204041+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"551459, GPU-f6b99e9b-2b85-0339-f223-b7410b8e6e0d, 90150 MiB, VLLM::EngineCore\\\\n595559, GPU-365bcbc6-b83f-e87f-2997-cc4f82ede9b2, 88254 MiB, VLLM::EngineCore\\\\n510289, GPU-7b4a13c2-586f-8a41-2d25-ccd7e086269e, 90204 MiB, VLLM::EngineCore\\\\n613436, GPU-205b685b-b501-7b98-ecd9-2d85e1a8cbf9, 88254 MiB, VLLM::EngineCore\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T15:43:13.204164+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "cat /root/symb_invariant_consensus/scripts/finetune_deberta_pw.py"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T15:43:13.204443+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Fine-tune DeBERTa-large-mnli on ProofWriter for NLI classification.\\\\n\\\\nUsage:\\\\n    python scripts/finetune_deberta_pw.py --epochs 5 --lr 2e-5 --batch-size 16\\\\n    python scripts/finetune_deberta_pw.py --dry-run\\\\n    python scripts/finetune_deberta_pw.py --depth-filter D5  # only depth-5 training data\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n# Environment setup for westd-16639:\\\\n#   export CUDA_VISIBLE_DEVICES=<free_gpu_id>\\\\n#   export LD_LIBRARY_PATH=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib:$LD_LIBRARY_PATH\\\\n\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport numpy as np\\\\nimport torch\\\\nfrom collections import Counter\\\\nfrom transformers import (\\\\n    AutoTokenizer, AutoModelForSequenceClassification,\\\\n    TrainingArguments, Trainer, EarlyStoppingCallback,\\\\n    DataCollatorWithPadding\\\\n)\\\\nfrom sklearn.metrics import accuracy_score\\\\n\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/models/deberta-large-mnli\\\\\\\"\\\\nPW_VAL_PATH = \\\\\\\"/root/symb_invariant_consensus/data/proofwriter_full.json\\\\\\\"\\\\nDEFAULT_OUTPUT_DIR = \\\\\\\"/root/symb_invariant_consensus/checkpoints/deberta-large-pw-finetuned\\\\\\\"\\\\n\\\\nPW_TO_NLI = {\\\\\\\"True\\\\\\\": 2, \\\\\\\"False\\\\\\\": 0, \\\\\\\"Unknown\\\\\\\": 1}\\\\nNLI_TO_PW = {2: \\\\\\\"True\\\\\\\", 0: \\\\\\\"False\\\\\\\", 1: \\\\\\\"Unknown\\\\\\\"}\\\\nHF_ANSWER_MAP = {\\\\\\\"A\\\\\\\": \\\\\\\"True\\\\\\\", \\\\\\\"B\\\\\\\": \\\\\\\"False\\\\\\\", \\\\\\\"C\\\\\\\": \\\\\\\"Unknown\\\\\\\"}\\\\n\\\\n\\\\ndef parse_pw_problem(text):\\\\n    for m in [\\\\n        \\\\\\\"Determine whether the following statement is true, false, or unknown:\\\\\\\\n\\\\\\\",\\\\n        \\\\\\\"Determine whether the following statement is True, False, or Unknown:\\\\\\\\n\\\\\\\",\\\\n    ]:\\\\n        i = text.find(m)\\\\n        if i != -1:\\\\n            return text[:i].strip(), text[i + len(m):].strip()\\\\n    return text, \\\\\\\"\\\\\\\"\\\\n\\\\n\\\\ndef load_hf_train(depth_filter=None):\\\\n    from datasets import load_dataset\\\\n    print(\\\\\\\"Loading tasksource/proofwriter train split...\\\\\\\")\\\\n    d\n…[truncated 7292 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T15:43:13.204652+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "ps aux --sort=-rss --no-headers"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T15:43:13.204899+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     551459 99.8  0.2 150963964 2603208 ?   Rl   15:32 482:54 VLLM::EngineCore\\\\nroot     595559 99.2  0.2 144770908 2510240 ?   Rl   19:06 267:28 VLLM::EngineCore\\\\nroot     613436 99.0  0.2 144769376 2508388 ?   Rl   21:21 133:38 VLLM::EngineCore\\\\nroot     510289 98.3  0.2 146110324 2413104 ?   Rl   11:29 714:41 VLLM::EngineCore\\\\nroot     595261  5.6  0.1 35615944 1656716 ?    Sl   19:06  15:09 python3 -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct --port 8002 --enforce-eager --max-model-len 8192 --gpu-memory-utilization 0.9\\\\nroot     613156  5.6  0.1 35598296 1642344 ?    Sl   21:21   7:35 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct --port 8004 --max-model-len 8192 --enforce-eager --gpu-memory-utilization 0.90\\\\nroot     551167  3.5  0.1 35584088 1627820 ?    Sl   15:32  17:23 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Qwen2.5-14B-Instruct --port 8005 --max-model-len 8192 --enforce-eager\\\\nroot     510015  6.4  0.1 29237524 1229624 ?    Sl   11:29  47:09 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --port 8003 --max-model-len 8192 --enforce-eager\\\\nroot     614405  3.9  0.0 6172400 217440 ?      Sl   21:24   5:09 python run_cross_dataset_replication.py --dataset proofwriter --data-path data/proofwriter_full.json --k 12 --vllm-port 8003 --seed 456 --temperature 0.7 --output results/multi_seed/mistral_pw_seed456/results.json\\\\nroot     552342  1.7  0.0 856244 145484 ?       Sl   15:33   8:27 python run_full_mvp.py --mode vllm --api-base http://localhost:8005/v1 --k 12 --temperature 0.7 --seed 123 --math-data data/empty.json --pw-data data/proofwriter_full.json --output results/multi_seed/qwen25_pw_seed123/results.json --save-intermediates\\\\nroot     614155  2.4  0.0 789636 143932 pts/0   Sl   21:22   3:16 \n…[truncated 6364 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T15:43:13.205116+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -5 /tmp/qwen25_pw_seed123.log"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T15:43:13.205251+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -5 /tmp/llama8b_folio_seed789.log"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T15:43:13.205381+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"================================================================================\\\\n\\\\nTotal wall time: 3.9 min\\\\nResults saved to results/multi_seed/qwen25_pw_seed123/results.json\\\\nFULL_MVP_DONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T15:43:13.205504+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -5 /tmp/mistral_pw_seed456.log"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T15:43:13.205627+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ID: folio_46 | Dataset: folio | Level: validation\\\\nQ: Given the following premises:\\\\n[BG] There are four seasons in a year: Spring, Summer, Fall, and Winter. All students who ...\\\\nGT: True\\\\n2026-05-22 23:36:12,617 INFO Retrying request to /chat/completions in 0.433095 seconds\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T15:43:13.205746+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -5 /tmp/llama8b_pw_seed42.log"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T15:43:13.205889+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-22 23:35:57,424 INFO HTTP Request: POST http://localhost:8003/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:35:59,152 INFO HTTP Request: POST http://localhost:8003/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:36:03,865 INFO HTTP Request: POST http://localhost:8003/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:36:10,072 INFO HTTP Request: POST http://localhost:8003/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:36:13,670 INFO Scorer mode=NORMAL  satisfied_ratio=0.896 (103/115)  alpha=0.50  threshold=0.20\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T15:43:13.206047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-22 23:35:57,394 INFO HTTP Request: POST http://localhost:8004/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:35:59,764 INFO HTTP Request: POST http://localhost:8004/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:36:03,215 INFO HTTP Request: POST http://localhost:8004/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:36:14,573 INFO HTTP Request: POST http://localhost:8004/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:36:14,578 WARNING No JSON found in response for trace: To determine whether the statement \\\\\\\"The rabbit is not kind\\\\\\\" is true, false, or u...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T15:43:13.206209+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -20 /tmp/multiseed_qwen25_pw_cuda0_nohup.log"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T15:43:13.206332+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "cat /root/symb_invariant_consensus/scripts/multiseed_qwen25_pw_cuda0.sh"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T15:43:13.206477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-22 23:35:35,370 INFO HTTP Request: POST http://localhost:8005/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:35:35,556 INFO HTTP Request: POST http://localhost:8005/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:35:35,695 INFO HTTP Request: POST http://localhost:8005/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:35:35,996 INFO HTTP Request: POST http://localhost:8005/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:35:36,739 INFO HTTP Request: POST http://localhost:8005/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:35:36,740 INFO HTTP Request: POST http://localhost:8005/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:35:37,752 INFO HTTP Request: POST http://localhost:8005/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:35:38,394 INFO HTTP Request: POST http://localhost:8005/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:35:39,238 INFO HTTP Request: POST http://localhost:8005/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:35:39,328 INFO HTTP Request: POST http://localhost:8005/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:35:39,485 INFO HTTP Request: POST http://localhost:8005/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:35:48,174 INFO HTTP Request: POST http://localhost:8005/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:35:57,443 INFO HTTP Request: POST http://localhost:8005/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:36:00,885 INFO HTTP Request: POST http://localhost:8005/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:36:00,907 INFO HTTP Request: POST http://localhost:8005/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:36:08,321 INFO HTTP Request: POST http://localhost:8005/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:36:08,878 INFO HTTP Request: POST http://localhost:8005/v1/chat/completion\n…[truncated 480 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T15:43:13.206655+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -e\\\\ncd /root/symb_invariant_consensus\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\n\\\\nAPIBASE=\\\\\\\"http://localhost:8005/v1\\\\\\\"\\\\nK=12\\\\nTEMP=0.7\\\\nMATH=\\\\\\\"data/empty.json\\\\\\\"\\\\nPW_FULL=\\\\\\\"data/proofwriter_full.json\\\\\\\"\\\\n\\\\necho \\\\\\\"==========================================\\\\\\\"\\\\necho \\\\\\\"Qwen2.5 × ProofWriter Multi-seed (cuda:0)\\\\\\\"\\\\necho \\\\\\\"Started: $(date)\\\\\\\"\\\\necho \\\\\\\"==========================================\\\\\\\"\\\\n\\\\nfor SEED in 123 456 789; do\\\\n    OUTDIR=\\\\\\\"results/multi_seed/qwen25_pw_seed${SEED}\\\\\\\"\\\\n    mkdir -p \\\\\\\"$OUTDIR\\\\\\\"\\\\n    echo \\\\\\\"\\\\\\\"\\\\n    echo \\\\\\\">>> PW seed=$SEED started at $(date)\\\\\\\"\\\\n    python run_full_mvp.py \\\\\\\\\\\\n      --mode vllm --api-base \\\\\\\"$APIBASE\\\\\\\" --k $K --temperature $TEMP \\\\\\\\\\\\n      --seed $SEED \\\\\\\\\\\\n      --math-data \\\\\\\"$MATH\\\\\\\" --pw-data \\\\\\\"$PW_FULL\\\\\\\" \\\\\\\\\\\\n      --output \\\\\\\"$OUTDIR/results.json\\\\\\\" \\\\\\\\\\\\n      --save-intermediates \\\\\\\\\\\\n      2>&1 | tee /tmp/qwen25_pw_seed${SEED}.log\\\\n    echo \\\\\\\">>> PW seed=$SEED completed at $(date)\\\\\\\"\\\\ndone\\\\n\\\\necho \\\\\\\"\\\\\\\"\\\\necho \\\\\\\"==========================================\\\\\\\"\\\\necho \\\\\\\"All 3 PW experiments completed at $(date)\\\\\\\"\\\\necho \\\\\\\"==========================================\\\\\\\"\\\\necho \\\\\\\"SENTINEL_QWEN25_PW_MULTISEED_DONE\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T15:43:13.206827+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "grep -c \"FULL_MVP_DONE\\|>>> PW seed=\" /tmp/multiseed_qwen25_pw_cuda0_nohup.log"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T15:43:13.206984+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T15:43:13.207108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "grep \">>> PW seed\\|FULL_MVP_DONE\\|SENTINEL\" /tmp/multiseed_qwen25_pw_cuda0_nohup.log"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T15:43:13.207230+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T15:43:13.207349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "grep \">>> PW seed\" /tmp/multiseed_qwen25_pw_cuda0_nohup.log"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T15:43:13.207474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T15:43:13.207593+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "grep \"FULL_MVP_DONE\" /tmp/multiseed_qwen25_pw_cuda0_nohup.log"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-22T15:43:13.207711+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-22T15:43:13.207838+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "grep \"PW seed\" /tmp/multiseed_qwen25_pw_cuda0_nohup.log"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-22T15:43:13.207979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\">>> PW seed=123 started at Fri May 22 15:33:52 CST 2026\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-22T15:43:13.208096+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "ls -la /root/symb_invariant_consensus/results/multi_seed/qwen25_pw_seed456/results.json"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-22T15:43:13.208214+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 849705 May 22 19:01 /root/symb_invariant_consensus/results/multi_seed/qwen25_pw_seed456/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-22T15:43:13.208327+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "ls -la /root/symb_invariant_consensus/results/multi_seed/qwen25_pw_seed789/results.json"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-22T15:43:13.208441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 849707 May 22 19:01 /root/symb_invariant_consensus/results/multi_seed/qwen25_pw_seed789/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-22T15:43:13.208599+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "ls -la /tmp/qwen25_pw_seed456.log /tmp/qwen25_pw_seed789.log"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-22T15:43:13.208719+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -3 /tmp/qwen25_pw_seed456.log"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-22T15:43:13.208856+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 2427839 May 22 19:01 /tmp/qwen25_pw_seed456.log\\\\n-rw-r--r-- 1 root root 2622419 May 22 19:01 /tmp/qwen25_pw_seed789.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-22T15:43:13.209010+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total wall time: 0.5 min\\\\nResults saved to results/multi_seed/qwen25_pw_seed456/results.json\\\\nFULL_MVP_DONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-22T15:43:13.209161+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -3 /tmp/qwen25_pw_seed789.log"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-22T15:43:13.209280+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "grep \"SENTINEL\" /tmp/multiseed_qwen25_pw_cuda0_nohup.log"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-22T15:43:13.209400+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total wall time: 0.5 min\\\\nResults saved to results/multi_seed/qwen25_pw_seed789/results.json\\\\nFULL_MVP_DONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-22T15:43:13.209515+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-22T15:43:13.209666+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "ps -p 552342 -o pid,stat,etime"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-22T15:43:13.209782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "ps -p 552334 -o pid,stat,etime"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-22T15:43:13.209916+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED\\\\n552342 Sl      08:03:54\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-22T15:43:13.210045+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED\\\\n552334 S       08:03:54\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-22T15:43:13.210184+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "ls -la /root/symb_invariant_consensus/results/multi_seed/qwen25_pw_seed123/results.json"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-22T15:43:13.210305+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 716503 May 22 23:37 /root/symb_invariant_consensus/results/multi_seed/qwen25_pw_seed123/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-22T15:43:13.210461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "head -20 /root/symb_invariant_consensus/results/multi_seed/qwen25_pw_seed456/results.json"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-22T15:43:13.210580+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "wc -l /root/symb_invariant_consensus/results/multi_seed/qwen25_pw_seed456/results.json"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-22T15:43:13.210716+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 600,\\\\n    \\\\\\\"sica_accuracy\\\\\\\": 0.0,\\\\n    \\\\\\\"sc_accuracy\\\\\\\": 0.0,\\\\n    \\\\\\\"sica_correct\\\\\\\": 0,\\\\n    \\\\\\\"sc_correct\\\\\\\": 0,\\\\n    \\\\\\\"extraction_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"total_constraints_extracted\\\\\\\": 0,\\\\n    \\\\\\\"total_unique_constraints\\\\\\\": 0,\\\\n    \\\\\\\"contradiction_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"problems_with_contradictions\\\\\\\": 0,\\\\n    \\\\\\\"per_level_accuracy\\\\\\\": {\\\\n      \\\\\\\"OWA-D5\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.0,\\\\n        \\\\\\\"sc\\\\\\\": 0.0,\\\\n        \\\\\\\"n\\\\\\\": 600\\\\n      }\\\\n    },\\\\n    \\\\\\\"per_dataset_accuracy\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-22T15:43:13.210839+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"16832 /root/symb_invariant_consensus/results/multi_seed/qwen25_pw_seed456/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-22T15:43:13.211032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "head -20 /root/symb_invariant_consensus/results/multi_seed/qwen25_pw_seed123/results.json"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-22T15:43:13.211159+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "grep -c \"problem_id\" /root/symb_invariant_consensus/results/multi_seed/qwen25_pw_seed123/results.json"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-22T15:43:13.211298+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 423,\\\\n    \\\\\\\"sica_accuracy\\\\\\\": 0.7186761229314421,\\\\n    \\\\\\\"sc_accuracy\\\\\\\": 0.7186761229314421,\\\\n    \\\\\\\"sica_correct\\\\\\\": 304,\\\\n    \\\\\\\"sc_correct\\\\\\\": 304,\\\\n    \\\\\\\"extraction_rate\\\\\\\": 0.9905437352245863,\\\\n    \\\\\\\"total_constraints_extracted\\\\\\\": 66037,\\\\n    \\\\\\\"total_unique_constraints\\\\\\\": 15901,\\\\n    \\\\\\\"contradiction_rate\\\\\\\": 0.0071693604175838,\\\\n    \\\\\\\"problems_with_contradictions\\\\\\\": 82,\\\\n    \\\\\\\"per_level_accuracy\\\\\\\": {\\\\n      \\\\\\\"OWA-D5\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.7186761229314421,\\\\n        \\\\\\\"sc\\\\\\\": 0.7186761229314421,\\\\n        \\\\\\\"n\\\\\\\": 423\\\\n      }\\\\n    },\\\\n    \\\\\\\"per_dataset_accuracy\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-22T15:43:13.211426+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"846\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-22T15:43:13.211541+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "cat /root/symb_invariant_consensus/scripts/multiseed_llama_folio_cuda1.sh"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-22T15:43:13.211690+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# LLaMA-3.1-8B × FOLIO-204 multi-seed experiment (seeds 123, 456, 789)\\\\n# vLLM on cuda:1, port 8002\\\\nset -e\\\\ncd /root/symb_invariant_consensus\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\n\\\\nAPIBASE=\\\\\\\"http://localhost:8002/v1\\\\\\\"\\\\nK=12\\\\nTEMP=0.7\\\\nMATH=\\\\\\\"data/empty.json\\\\\\\"\\\\nPW=\\\\\\\"data/empty.json\\\\\\\"\\\\nFOLIO=\\\\\\\"data/folio_full.json\\\\\\\"\\\\n\\\\necho \\\\\\\"==========================================\\\\\\\"\\\\necho \\\\\\\"LLaMA-3.1-8B × FOLIO-204 Multi-seed (cuda:1)\\\\\\\"\\\\necho \\\\\\\"Started: $(date)\\\\\\\"\\\\necho \\\\\\\"==========================================\\\\\\\"\\\\n\\\\nfor SEED in 123 456 789; do\\\\n    OUTDIR=\\\\\\\"results/multi_seed/llama8b_folio_seed${SEED}\\\\\\\"\\\\n    mkdir -p \\\\\\\"$OUTDIR\\\\\\\"\\\\n    echo \\\\\\\"\\\\\\\"\\\\n    echo \\\\\\\">>> FOLIO seed=$SEED started at $(date)\\\\\\\"\\\\n    python run_full_mvp.py \\\\\\\\\\\\n      --mode vllm --api-base \\\\\\\"$APIBASE\\\\\\\" --k $K --temperature $TEMP \\\\\\\\\\\\n      --seed $SEED \\\\\\\\\\\\n      --math-data \\\\\\\"$MATH\\\\\\\" --pw-data \\\\\\\"$PW\\\\\\\" --folio-data \\\\\\\"$FOLIO\\\\\\\" \\\\\\\\\\\\n      --output \\\\\\\"$OUTDIR/results.json\\\\\\\" \\\\\\\\\\\\n      --save-intermediates \\\\\\\\\\\\n      --max-tokens 2048 \\\\\\\\\\\\n      2>&1 | tee /tmp/llama8b_folio_seed${SEED}.log\\\\n    echo \\\\\\\">>> FOLIO seed=$SEED completed at $(date)\\\\\\\"\\\\n    echo \\\\\\\"SENTINEL_LLAMA8B_FOLIO_SEED${SEED}_DONE\\\\\\\"\\\\ndone\\\\n\\\\necho \\\\\\\"\\\\\\\"\\\\necho \\\\\\\"==========================================\\\\\\\"\\\\necho \\\\\\\"All 3 FOLIO experiments completed at $(date)\\\\\\\"\\\\necho \\\\\\\"==========================================\\\\\\\"\\\\necho \\\\\\\"SENTINEL_LLAMA8B_FOLIO_MULTISEED_DONE\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-22T15:43:13.211831+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "cat /root/symb_invariant_consensus/scripts/multiseed_llama8b_pw_cuda3.sh"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-22T15:43:13.212010+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -e\\\\ncd /root/symb_invariant_consensus\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\n\\\\nAPIBASE=\\\\\\\"http://localhost:8004/v1\\\\\\\"\\\\nK=12\\\\nTEMP=0.7\\\\nMATH=\\\\\\\"data/empty.json\\\\\\\"\\\\nPW_FULL=\\\\\\\"data/proofwriter_full.json\\\\\\\"\\\\n\\\\necho \\\\\\\"==========================================\\\\\\\"\\\\necho \\\\\\\"LLaMA-3.1-8B × ProofWriter Multi-seed (cuda:3)\\\\\\\"\\\\necho \\\\\\\"Started: $(date)\\\\\\\"\\\\necho \\\\\\\"==========================================\\\\\\\"\\\\n\\\\nfor SEED in 42 123 456; do\\\\n    OUTDIR=\\\\\\\"results/multi_seed/llama8b_pw_seed${SEED}\\\\\\\"\\\\n    mkdir -p \\\\\\\"$OUTDIR\\\\\\\"\\\\n    echo \\\\\\\"\\\\\\\"\\\\n    echo \\\\\\\">>> PW seed=$SEED started at $(date)\\\\\\\"\\\\n    python run_full_mvp.py \\\\\\\\\\\\n      --mode vllm --api-base \\\\\\\"$APIBASE\\\\\\\" --k $K --temperature $TEMP \\\\\\\\\\\\n      --seed $SEED \\\\\\\\\\\\n      --math-data \\\\\\\"$MATH\\\\\\\" --pw-data \\\\\\\"$PW_FULL\\\\\\\" \\\\\\\\\\\\n      --output \\\\\\\"$OUTDIR/results.json\\\\\\\" \\\\\\\\\\\\n      --save-intermediates \\\\\\\\\\\\n      --max-tokens 2048 \\\\\\\\\\\\n      2>&1 | tee /tmp/llama8b_pw_seed${SEED}.log\\\\n    echo \\\\\\\">>> PW seed=$SEED completed at $(date)\\\\\\\"\\\\n    echo \\\\\\\"SENTINEL_LLAMA8B_PW_SEED${SEED}_DONE\\\\\\\"\\\\ndone\\\\n\\\\necho \\\\\\\"\\\\\\\"\\\\necho \\\\\\\"==========================================\\\\\\\"\\\\necho \\\\\\\"All 3 PW experiments completed at $(date)\\\\\\\"\\\\necho \\\\\\\"==========================================\\\\\\\"\\\\necho \\\\\\\"SENTINEL_LLAMA8B_PW_MULTISEED_DONE\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-22T15:43:13.212178+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "ls -la /root/symb_invariant_consensus/results/multi_seed/llama8b_folio_seed123/results.json"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-22T15:43:13.212313+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 299815 May 22 21:06 /root/symb_invariant_consensus/results/multi_seed/llama8b_folio_seed123/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-22T15:43:13.212433+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "ls -la /root/symb_invariant_consensus/results/multi_seed/llama8b_folio_seed456/results.json"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-22T15:43:13.212554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 300004 May 22 23:07 /root/symb_invariant_consensus/results/multi_seed/llama8b_folio_seed456/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-22T15:43:13.212669+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "grep -c \"problem_id\" /root/symb_invariant_consensus/results/multi_seed/llama8b_folio_seed789/results.json"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-22T15:43:13.212784+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -2 /tmp/llama8b_folio_seed789.log"
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-22T15:43:13.212960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"104\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-22T15:43:13.213088+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-22 23:38:58,157 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:38:58,157 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-22T15:43:13.213244+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "cd /root/symb_invariant_consensus && sed -i 's/CLASSES = \\[\"True\", \"False\", \"Unknown\"\\]/CLASSES = sorted([\"True\", \"False\", \"Unknown\"])/' scripts/eval_finetuned_nli.py"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-22T15:43:13.213366+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "grep -n \"CLASSES\" /root/symb_invariant_consensus/scripts/eval_finetuned_nli.py"
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-22T15:43:13.213491+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-22T15:43:13.213616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"30:CLASSES = sorted([\\\\\\\"True\\\\\\\", \\\\\\\"False\\\\\\\", \\\\\\\"Unknown\\\\\\\"])\\\\n66:    return max(CLASSES, key=lambda x: votes.get(x, 0))\\\\n180:    for cls in CLASSES:\\\\n196:    for cls in CLASSES:\\\\n241:                combo_v = {c: sv.get(c, 0) for c in CLASSES}\\\\n243:                combo_answers.append(max(CLASSES, key=lambda x: combo_v.get(x, 0)))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-22T15:43:13.213775+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "grep -n \"local-train\\|local_train\\|add_argument\" /root/symb_invariant_consensus/scripts/finetune_deberta_pw.py"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-22T15:43:13.213916+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-22T15:43:13.214040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "grep -n \"load_hf_train\\|load_local_train\\|train_examples\" /root/symb_invariant_consensus/scripts/finetune_deberta_pw.py"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-22T15:43:13.214158+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-22T15:43:13.214273+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "grep -n \"local.train\\|add_argument\\|train_examples\" /root/symb_invariant_consensus/scripts/finetune_deberta_pw.py"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-22T15:43:13.214387+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-22T15:43:13.214516+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "grep -n \"local.train\" /root/symb_invariant_consensus/scripts/finetune_deberta_pw.py"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-22T15:43:13.214638+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "grep -n \"add_argument\" /root/symb_invariant_consensus/scripts/finetune_deberta_pw.py"
+            }
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-22T15:43:13.214762+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"92:def load_local_train(path, depth_filter=None):\\\\n95:    print(f\\\\\\\"Loading local training data: {path}\\\\\\\")\\\\n189:                        help=\\\\\\\"Path to local training data JSONL (fallback if HF download fails)\\\\\\\")\\\\n226:            train_examples = load_local_train(args.train_data, args.depth_filter)\\\\n230:                train_examples = load_local_train(local_jsonl, args.depth_filter)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-22T15:43:13.214915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"178:    parser.add_argument(\\\\\\\"--model-path\\\\\\\", default=MODEL_PATH)\\\\n179:    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", default=DEFAULT_OUTPUT_DIR)\\\\n180:    parser.add_argument(\\\\\\\"--epochs\\\\\\\", type=int, default=5)\\\\n181:    parser.add_argument(\\\\\\\"--lr\\\\\\\", type=float, default=2e-5)\\\\n182:    parser.add_argument(\\\\\\\"--batch-size\\\\\\\", type=int, default=16)\\\\n183:    parser.add_argument(\\\\\\\"--max-length\\\\\\\", type=int, default=512)\\\\n184:    parser.add_argument(\\\\\\\"--warmup-ratio\\\\\\\", type=float, default=0.1)\\\\n185:    parser.add_argument(\\\\\\\"--weight-decay\\\\\\\", type=float, default=0.01)\\\\n186:    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n187:    parser.add_argument(\\\\\\\"--depth-filter\\\\\\\", default=None, help=\\\\\\\"e.g. 'D5' to only use depth-5 training data\\\\\\\")\\\\n188:    parser.add_argument(\\\\\\\"--train-data\\\\\\\", default=None,\\\\n190:    parser.add_argument(\\\\\\\"--max-steps\\\\\\\", type=int, default=-1)\\\\n191:    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n192:    parser.add_argument(\\\\\\\"--gradient-accumulation\\\\\\\", type=int, default=1)\\\\n193:    parser.add_argument(\\\\\\\"--patience\\\\\\\", type=int, default=2)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-22T15:43:13.215062+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "sed -n '215,240p' /root/symb_invariant_consensus/scripts/finetune_deberta_pw.py"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-22T15:43:13.215180+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-22T15:43:13.215298+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "head -240 /root/symb_invariant_consensus/scripts/finetune_deberta_pw.py"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-22T15:43:13.215566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Fine-tune DeBERTa-large-mnli on ProofWriter for NLI classification.\\\\n\\\\nUsage:\\\\n    python scripts/finetune_deberta_pw.py --epochs 5 --lr 2e-5 --batch-size 16\\\\n    python scripts/finetune_deberta_pw.py --dry-run\\\\n    python scripts/finetune_deberta_pw.py --depth-filter D5  # only depth-5 training data\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n# Environment setup for westd-16639:\\\\n#   export CUDA_VISIBLE_DEVICES=<free_gpu_id>\\\\n#   export LD_LIBRARY_PATH=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib:$LD_LIBRARY_PATH\\\\n\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport numpy as np\\\\nimport torch\\\\nfrom collections import Counter\\\\nfrom transformers import (\\\\n    AutoTokenizer, AutoModelForSequenceClassification,\\\\n    TrainingArguments, Trainer, EarlyStoppingCallback,\\\\n    DataCollatorWithPadding\\\\n)\\\\nfrom sklearn.metrics import accuracy_score\\\\n\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/models/deberta-large-mnli\\\\\\\"\\\\nPW_VAL_PATH = \\\\\\\"/root/symb_invariant_consensus/data/proofwriter_full.json\\\\\\\"\\\\nDEFAULT_OUTPUT_DIR = \\\\\\\"/root/symb_invariant_consensus/checkpoints/deberta-large-pw-finetuned\\\\\\\"\\\\n\\\\nPW_TO_NLI = {\\\\\\\"True\\\\\\\": 2, \\\\\\\"False\\\\\\\": 0, \\\\\\\"Unknown\\\\\\\": 1}\\\\nNLI_TO_PW = {2: \\\\\\\"True\\\\\\\", 0: \\\\\\\"False\\\\\\\", 1: \\\\\\\"Unknown\\\\\\\"}\\\\nHF_ANSWER_MAP = {\\\\\\\"A\\\\\\\": \\\\\\\"True\\\\\\\", \\\\\\\"B\\\\\\\": \\\\\\\"False\\\\\\\", \\\\\\\"C\\\\\\\": \\\\\\\"Unknown\\\\\\\"}\\\\n\\\\n\\\\ndef parse_pw_problem(text):\\\\n    for m in [\\\\n        \\\\\\\"Determine whether the following statement is true, false, or unknown:\\\\\\\\n\\\\\\\",\\\\n        \\\\\\\"Determine whether the following statement is True, False, or Unknown:\\\\\\\\n\\\\\\\",\\\\n    ]:\\\\n        i = text.find(m)\\\\n        if i != -1:\\\\n            return text[:i].strip(), text[i + len(m):].strip()\\\\n    return text, \\\\\\\"\\\\\\\"\\\\n\\\\n\\\\ndef load_hf_train(depth_filter=None):\\\\n    from datasets import load_dataset\\\\n    print(\\\\\\\"Loading tasksource/proofwriter train split...\\\\\\\")\\\\n    d\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-22T15:43:13.215767+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "ls -la /root/autodl-tmp/models/deberta-large-mnli/"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-22T15:43:13.215923+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1590320\\\\ndrwxr-xr-x  2 root root        121 May 21 04:49 .\\\\ndrwxr-xr-x 21 root root       4096 May 22 20:36 ..\\\\n-rw-r--r--  1 root root       1008 May 21 04:49 config.json\\\\n-rw-r--r--  1 root root 1624911148 May 21 04:49 model.safetensors\\\\n-rw-r--r--  1 root root    3559746 May 21 04:47 tokenizer.json\\\\n-rw-r--r--  1 root root        448 May 21 04:47 tokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-22T15:43:13.216065+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "python3 -c \"import sklearn; print(sklearn.__version__)\""
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-22T15:43:13.216191+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-22T15:43:13.216311+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "python3 -c \"import datasets; print(datasets.__version__)\""
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-22T15:43:13.216429+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-22T15:43:13.216545+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import sklearn; print('sklearn', sklearn.__version__); import datasets; print('datasets', datasets.__version__); import transformers; print('transformers', transformers.__version__); import torch; print('torch', torch.__version__)\""
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-22T15:43:13.216667+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"sklearn 1.8.0\\\\ndatasets 4.8.5\\\\ntransformers 5.8.1\\\\ntorch 2.11.0+cu130\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.85}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-22T15:43:13.216820+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && CUDA_VISIBLE_DEVICES=\"\" python3 scripts/finetune_deberta_pw.py --dry-run 2>&1",
+              "warn": "True"
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-22T15:43:13.217021+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && CUDA_VISIBLE_DEVICES=\\\\\\\"\\\\\\\" python3 scripts/finetune_deberta_pw.py --dry-run 2>&1'\\\\n\\\\nStdout:\\\\n\\\\n                                               \\\\n\\\\u001b[A\\\\n100%|██████████| 2/2 [00:23<00:00,  3.98s/it]\\\\n\\\\n100%|██████████| 30/30 [00:13<00:00,  1.89it/s]\\\\u001b[A\\\\n\\\\n                                               \\\\u001b[A{'eval_loss': '0.8501', 'eval_accuracy': '0.6417', 'eval_acc_True': '0.9412', 'eval_acc_False': '0.6154', 'eval_acc_Unknown': '0.4468', 'eval_runtime': '15.38', 'eval_samples_per_second': '7.803', 'eval_steps_per_second': '1.951', 'epoch': '0.008333'}\\\\n\\\\n\\\\nWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\\\\u001b[A\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-22T15:43:13.217298+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "grep -c \"problem_id\" /root/symb_invariant_consensus/results/multi_seed/llama8b_folio_seed789/results.json"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-22T15:43:13.217428+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "tail -2 /tmp/llama8b_folio_seed789.log"
+            }
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-22T15:43:13.217554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"114\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-22T15:43:13.217676+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-22 23:40:58,048 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-22 23:40:58,084 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-22T15:43:13.217840+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "submit training job",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-22T15:43:13.217987+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-22T15:43:13.218161+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/symb_invariant_consensus && nohup python3 -c \"\nfrom datasets import load_dataset\nimport json\nprint('Downloading tasksource/proofwriter...')\nds = load_dataset('tasksource/proofwriter', split='train')\nprint(f'Downloaded: {len(ds)} rows')\nrows = []\nfor r in ds:\n    rows.append({'context': r['context'], 'question': r['question'], 'answer': r['answer'], 'config': r.get('config','')})\nwith open('data/proofwriter_train_hf.jsonl', 'w') as f:\n    for row in rows:\n        f.write(json.dumps(row) + '\\n')\nprint(f'Saved {len(rows)} rows to data/proofwriter_train_hf.jsonl')\nprint('HF_DOWNLOAD_DONE')\n\" > /tmp/hf_download_pw.log 2>&1 & echo \"PID=$!\""
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-22T15:43:13.218332+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/symb_invariant_consensus && nohup python3 -c \\\\\\\"\\\\\\\\nfrom datasets import load_dataset\\\\\\\\nimport json\\\\\\\\nprint(\\\\\\\\'Downloading tasksource/proofwriter...\\\\\\\\')\\\\\\\\nds = load_dataset(\\\\\\\\'tasksource/proofwriter\\\\\\\\', split=\\\\\\\\'train\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'Downloaded: {len(ds)} rows\\\\\\\\')\\\\\\\\nrows = []\\\\\\\\nfor r in ds:\\\\\\\\n    rows.append({\\\\\\\\'context\\\\\\\\': r[\\\\\\\\'context\\\\\\\\'], \\\\\\\\'question\\\\\\\\': r[\\\\\\\\'question\\\\\\\\'], \\\\\\\\'answer\\\\\\\\': r[\\\\\\\\'answer\\\\\\\\'], \\\\\\\\'config\\\\\\\\': r.get(\\\\\\\\'config\\\\\\\\',\\\\\\\\'\\\\\\\\')})\\\\\\\\nwith open(\\\\\\\\'data/proofwriter_train_hf.jsonl\\\\\\\\', \\\\\\\\'w\\\\\\\\') as f:\\\\\\\\n    for row in rows:\\\\\\\\n        f.write(json.dumps(row) + \\\\\\\\'\\\\\\\\\\\\\\\\n\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'Saved {len(rows)} rows to data/proofwriter_train_hf.jsonl\\\\\\\\')\\\\\\\\nprint(\\\\\\\\'HF_DOWNLOAD_DONE\\\\\\\\')\\\\\\\\n\\\\\\\" > /tmp/hf_download_pw.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=637130\\\\n设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-22T15:43:13.218515+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16639",
+              "command": "cat /tmp/hf_download_pw.log"
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-22T15:43:13.218646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-22T15:43:13.218810+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "1200",
+              "reason": "checking FOLIO seed789 completion on GPU 1 (~57/204, ETA ~80min) and HF download status",
+              "prompt": "检查 GPU 1 FOLIO seed789 进度和 HF 下载状态。如果 FOLIO 完成，杀 vLLM 并启动 DeBERTa 训练。具体步骤：1) ssh_read_only 检查 /tmp/llama8b_folio_seed789.log 尾部是否有 FULL_MVP_DONE 或 SENTINEL；2) 检查 /tmp/hf_download_pw.log 是否有 HF_DOWNLOAD_DONE；3) 如果 FOLIO 完成，用 kill_job 杀 vLLM PID 595559，然后用 ssh_execute 启动 DeBERTa 训练：source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && export CUDA_VISIBLE_DEVICES=1 && nohup python3 scripts/finetune_deberta_pw.py --epochs 5 --lr 2e-5 --batch-size 16 > /tmp/deberta_finetune.log 2>&1 & echo PID=$!"
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-22T15:43:13.218965+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 16:04:00 (in 1250s)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 0
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-22T15:43:13.219118+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "20 分钟后自动检查。如果 FOLIO 提前完成你想立即启动，随时告诉我。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_deberta-finetune-launch_20260522T153517"
+          },
+          "id": "event-000117"
+        }
+      ],
+      "message_count": 117
+    }
+  ],
+  "readable_path": "readable/conversations/experiment-deberta-finetune-launch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97e7be6c6834d5a74de2",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis sub population sica sc",
+  "task_key": "worker_analysis_sub-population-sica-sc_20260521T010040",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_sub-population-sica-sc_20260521T010040_result.json",
+    "occurrence": 1,
+    "bytes": 907,
+    "sha256": "eff46ed7d9c514774334d5bda1df4f76827429be8ed583b204cbba2f3c40c3e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出汇总：\n\n**3 个产出文件：**\n- `src/analysis/sub_population_analysis.py` — 分析脚本（可本地运行）\n- `artifacts/sub_population_results.json` — 完整结果数据（含来源路径）\n- `artifacts/sub_population_appendix_draft.tex` — 2 张表 + 解读草稿\n\n**核心发现：**\n\n| | FOLIO-204 | PW-600 |\n|---|---|---|\n| **Overall Δ** | **+4.9pp** (p=.013*) | **-2.8pp** (p=.014*) |\n\n**按 answer type（FOLIO-204）：** SICA 在三类 label 上均正向，True 最大（+6.9pp, p=.063），但单组样本量太小未达显著。\n\n**按 answer type（PW-600）：** SICA 在三类上均负向，False 最明显（-5.0pp, p=.076）。\n\n**按 constraint count：** FOLIO-204 上 Mid tertile 增益最大（+7.8pp）；PW-600 上高约束组退化几乎消失（-0.5pp, p=1.0），说明约束数量充足时 SICA 至少不伤害性能。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sub-population-sica-sc.md"
+}

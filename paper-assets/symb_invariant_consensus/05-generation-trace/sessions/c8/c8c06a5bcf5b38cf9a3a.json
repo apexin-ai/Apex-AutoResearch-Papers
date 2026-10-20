@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8c06a5bcf5b38cf9a3a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "verify exp010 mistral script",
+  "task_key": "worker_verify_exp010-mistral-script_20260517T052103",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_exp010-mistral-script_20260517T052103_result.json",
+    "occurrence": 1,
+    "bytes": 524,
+    "sha256": "50080d1aff02d888c5852f113b165c5641df72d7e1aaa53e8f53fc4ee941134b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部确认完毕：\n\n**脚本参数** — 已正确修复，无需再改：\n- `--max-model-len 8192` ✓\n- `--max-tokens 4096` ✓\n- 模型路径 `/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3` ✓\n- port 8000 ✓\n- K=12, T=0.7, 60 problems (30 FOLIO + 30 ProofWriter), seed=42 ✓\n\n**语法检查** — `bash -n` 通过\n\n**模型文件** — 完整（config.json, 3 个 safetensors 分片 + consolidated.safetensors, tokenizer 均在）\n\n状态：**无需修改，可直接启动实验。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-exp010-mistral-script.md"
+}

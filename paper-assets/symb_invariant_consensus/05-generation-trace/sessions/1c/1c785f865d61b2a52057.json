@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "1c785f865d61b2a52057",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment wave3 dir h adversarial",
+  "task_key": "worker_experiment_wave3-dir-h-adversarial_20260520T090033",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_wave3-dir-h-adversarial_20260520T090033.log",
+    "occurrence": 1,
+    "bytes": 911506,
+    "sha256": "a578eb83308e45467dc111fcf37f92b459f14a63d3b3d02afe127a945d5f1144"
+  },
+  "statistics": {
+    "messages": 611,
+    "user_turns": 0,
+    "tool_calls": 258,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 92,
+      "tool_call": 258,
+      "tool_result": 258
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 611,
+      "chunks": [
+        {
+          "path": "1c785f865d61b2a52057-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1c785f865d61b2a52057-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1c785f865d61b2a52057-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "1c785f865d61b2a52057-part-0004.json",
+          "message_count": 71
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-wave3-dir-h-adversarial-copy-2.md"
+}

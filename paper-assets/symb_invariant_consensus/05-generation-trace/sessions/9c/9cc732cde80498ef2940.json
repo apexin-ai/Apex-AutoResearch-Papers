@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9cc732cde80498ef2940",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag exp 068 gpu check",
+  "task_key": "worker_diag_exp-068-gpu-check_20260519T120032",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_exp-068-gpu-check_20260519T120032_result.json",
+    "occurrence": 1,
+    "bytes": 1657,
+    "sha256": "826527c8324ebc2218c203232115d70d696cbe8f503873e068658b8ae0d2717b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n### exp-068 状态\n\n**正在运行**，位于 **westd-16639 GPU 1**。\n- 模型：Qwen3-14B，vLLM port 8001\n- 进度：**87/200** (43.5%)\n- ETA：约 63 分钟（日志显示 114 remaining samples）\n- 最后活跃时间：20:00:52（实时写入中）\n- registry 标记 RUNNING 是正确的，`get_project_resource_usage` 未显示是因为它可能没追踪到 westd-16639 上的进程。\n\n---\n\n### GPU 全景表\n\n#### westd-25068（4× RTX PRO 6000 Blackwell）— 全部满载\n\n| GPU | vLLM 模型 | Port | 实验 | 进度 |\n|-----|-----------|------|------|------|\n| 0 | Qwen2.5-7B-Instruct | 8010 | exp-065 | 333/600 (55.5%) |\n| 1 | Mistral-7B-Instruct-v0.3 | 8001 | exp-069 | 25/200 (12.5%) |\n| 2 | Qwen2.5-7B-Instruct | 8002 | exp-070 | 14/200 (7%) |\n| 3 | gemma-3-27b-it | 8003 | exp-062 | 101/204 (49.5%) |\n\n#### westd-16639（4× RTX PRO 6000 Blackwell）\n\n| GPU | vLLM 模型 | Port | 实验 | 进度 |\n|-----|-----------|------|------|------|\n| 0 | Meta-Llama-3.1-8B-Instruct | 8005 | **孤儿进程**（exp069 dry-run 残留，无 runner 使用） | N/A |\n| 1 | Qwen3-14B | 8001 | **exp-068** | 87/200 (43.5%) |\n| 2 | deepseek-r1-0528-qwen3-8b | 8002 | exp-064 | 69/204 (33.8%) |\n| 3 | Meta-Llama-3.1-8B-Instruct | 8003 | exp-048 | 448/600 (74.7%) |\n\n注：exp-048 有 context length 400 错误（8192 token 上限被触发），但仍在跑。\n\n---\n\n### 空闲 GPU\n\n**无完全空闲 GPU。** 但 westd-16639 GPU 0 上有一个孤儿 vLLM 进程（PID 148803, port 8005），是 exp-069 dry-run 残留，没有实验 runner 在使用它。杀掉后 GPU 0 即可释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp-068-gpu-check.md"
+}

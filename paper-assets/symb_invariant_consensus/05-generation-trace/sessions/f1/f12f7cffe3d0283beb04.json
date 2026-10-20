@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f12f7cffe3d0283beb04",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "check qwen seed456 resume capability",
+  "task_key": "worker_check_qwen-seed456-resume-capability_20260523T051215",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_qwen-seed456-resume-capability_20260523T051215_result.json",
+    "occurrence": 1,
+    "bytes": 1436,
+    "sha256": "b45071ad19a0e2a2e77064d524c8dc5c197a860807e9c94bdc09feed40e89ee8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All clear. Here's the report:\n\n---\n\n## Resume 检查结果\n\n### 1. results.json 状态\n- 路径: `/root/symb_invariant_consensus/results/multi_seed/qwen25_pw_seed456/results.json`\n- 结构: `{\"summary\": {...}, \"results\": [...]}`\n- **已完成 478 / 600 条**（summary.n = 478，problem_id 出现 956 次 = 478×2）\n- 文件完整（JSON 正常闭合，tail 显示 `}` 结尾）\n\n### 2. 脚本 resume 支持\n`run_full_mvp.py` **原生支持 `--resume`**（line 210）：\n- 读取已有 output 文件中的 `results` 数组\n- 提取 `completed_ids = {r[\"problem_id\"] for r in completed_results}`\n- 过滤 `remaining = [p for p in problems if p[\"id\"] not in completed_ids]`\n- 从第 479 条继续，不会重跑已完成的 478 条\n\n### 3. 恢复命令\n\n原始脚本 `multiseed_qwen25_pw_cuda0.sh` 使用 port 8005。恢复只需在原命令基础上加 `--resume`：\n\n```bash\ncd /root/symb_invariant_consensus\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\npython run_full_mvp.py \\\n  --mode vllm --api-base \"http://localhost:8005/v1\" --k 12 --temperature 0.7 \\\n  --seed 456 \\\n  --math-data \"data/empty.json\" --pw-data \"data/proofwriter_full.json\" \\\n  --output \"results/multi_seed/qwen25_pw_seed456/results.json\" \\\n  --save-intermediates \\\n  --resume\n```\n\n前提：port 8005 上的 Qwen2.5-14B vLLM 服务需要在运行。剩余 122 条。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-qwen-seed456-resume-capability.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a82d82ebd187bb41f00",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis minority constraint direction",
+  "task_key": "worker_analysis_minority-constraint-direction_20260524T233125",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_minority-constraint-direction_20260524T233125_result.json",
+    "occurrence": 1,
+    "bytes": 1611,
+    "sha256": "380cc9bd9189ea518916a264e6903baf9af9ae43a67ec442404d95c0d9988246"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n```\n=== Minority Constraint Direction Analysis ===\nNon-unanimous problems: 148\nTotal minority unique constraints: 2169\n  - Minority-exclusive (support own trace): 1596 (73.6%)\n  - Cross-group shared (undirected): 573 (26.4%)\nPer-problem stats:\n  - Minority-exclusive ratio: 0.687 ± 0.236 (median: 0.722)\n  - Shared ratio: 0.313 ± 0.236 (median: 0.278)\nVariable overlap (minority-exclusive vs majority):\n  - Predicate token overlap: 66.2% ± 22.4%\n```\n\n**Margin breakdown**: exclusive ratio 在各 margin 区间稳定在 0.45–0.83，无明显趋势（margin=6 和 10 的 shared 比例偏高但样本仅 7 个）。\n\n---\n\n**Paper-ready paragraph:**\n\n> Among minority-vote traces in non-unanimous problems (Mistral-7B, FOLIO, $n = 148$), 73.6\\% of unique constraints are exclusive to the minority group (per-problem mean: $0.69 \\pm 0.24$), while only 26.4\\% are cross-group shared formulas appearing in both answer groups (per-problem mean: $0.31 \\pm 0.24$). Despite this surface-level exclusivity, minority-exclusive constraints share 66.2\\% of their predicate tokens with majority-group constraints, indicating that the symbolic content is largely overlapping but expressed with different variable names. Under source-attribution scoring, each constraint votes exclusively for its originating trace's answer, so this near-total surface exclusivity means constraint-weighted aggregation reduces to a count of supporting traces---effectively majority vote.\n\n结果已保存至服务器 `minority_constraint_direction.json` 和本地 `artifacts/_project/data/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-minority-constraint-direction.md"
+}

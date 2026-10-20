@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2ff07d7f6d078a2336d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis qwen3 pw kappa",
+  "task_key": "worker_analysis_qwen3-pw-kappa_20260524T105840",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_qwen3-pw-kappa_20260524T105840_result.json",
+    "occurrence": 1,
+    "bytes": 822,
+    "sha256": "02f2e8d44355e7030ef1d652b21aa31f67d50c137b0489c28a6271c66801ffdb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n```\nQwen3-14B ProofWriter — Fleiss' κ\n============================================================\n\n--- exp033 (seed42) ---\n  N = 599,  K = 12,  κ = 0.7872,  K_eff = 1.24\n\n--- seed123 ---\n  N = 583,  K = 12,  κ = 0.7849,  K_eff = 1.25\n\n--- seed456 ---\n  N = 582,  K = 12,  κ = 0.7820,  K_eff = 1.25\n\n--- seed789 ---\n  N = 584,  K = 12,  κ = 0.7779,  K_eff = 1.26\n\nCross-seed:\n  Mean κ  = 0.7830\n  Std κ   = 0.0035\n```\n\n**答案类别分布**（三大类占比，其余为极少量提取错误）：\n- Unknown: ~44%\n- True: ~28%\n- False: ~28%\n\nκ ≈ 0.78 属于 \"substantial agreement\"（Landis & Koch 标准），12 条 traces 之间一致性很高。K_eff ≈ 1.25 表明 12 条 traces 的有效独立样本数约为 1.25——traces 之间高度冗余。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen3-pw-kappa.md"
+}

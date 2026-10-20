@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "472e52f4cc313a34b826",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code prep math50 rerun",
+  "task_key": "worker_code_prep-math50-rerun_20260515T130326",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_prep-math50-rerun_20260515T130326_result.json",
+    "occurrence": 1,
+    "bytes": 638,
+    "sha256": "14d345434c15da00db9375ec1cebd3fdfef7ca6f0ec9cb091cc77fbdf218447d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**参数列表**（`run_full_mvp.py`）：`--mode`, `--k`, `--model`, `--api-base`, `--api-key`, `--math-data`, `--pw-data`, `--output`, `--resume`, `--temperature`, `--max-tokens`, `--no-proofwriter`\n\n**数据集验证**：`math500_subset.json` — 50 题，levels 1-5，6 题 solution 含 Asymptote 图形代码（problem 本身不需要看图，不影响评测）\n\n**脚本**：`/root/symb_invariant_consensus/run_math50_fixed.sh` 已创建，`chmod +x` 就绪。AIME 完成后执行：\n```bash\nnohup bash /root/symb_invariant_consensus/run_math50_fixed.sh > /tmp/math50_fixed.log 2>&1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-math50-rerun.md"
+}

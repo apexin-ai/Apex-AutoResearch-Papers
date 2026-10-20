@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "609980dea194bc20f371",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "experiment q premise mutation",
+  "task_key": "worker_experiment_q-premise-mutation_20260520T103427",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_q-premise-mutation_20260520T103427.log",
+    "occurrence": 1,
+    "bytes": 1441420,
+    "sha256": "bb1687a6ae042e25cac32fedb17ee8ee199fdabc58458c3b151687a73616f693"
+  },
+  "statistics": {
+    "messages": 626,
+    "user_turns": 1,
+    "tool_calls": 262,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 94,
+      "tool_call": 262,
+      "tool_result": 262,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 84,
+      "chunks": [
+        {
+          "path": "609980dea194bc20f371-part-0001.json",
+          "message_count": 84
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 542,
+      "chunks": [
+        {
+          "path": "609980dea194bc20f371-part-0001.json",
+          "message_count": 68
+        },
+        {
+          "path": "609980dea194bc20f371-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "609980dea194bc20f371-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "609980dea194bc20f371-part-0004.json",
+          "message_count": 114
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-q-premise-mutation.md"
+}

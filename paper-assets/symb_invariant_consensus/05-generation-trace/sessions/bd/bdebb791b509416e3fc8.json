@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "bdebb791b509416e3fc8",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "prep model download",
+  "task_key": "worker_prep_model-download_20260516T061644",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_prep_model-download_20260516T061644.log",
+    "occurrence": 1,
+    "bytes": 455721,
+    "sha256": "a4bb6be233807029e8991357d60235dc58f38bd28affb004aa48ecde33adcd18"
+  },
+  "statistics": {
+    "messages": 389,
+    "user_turns": 0,
+    "tool_calls": 143,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 99,
+      "tool_call": 143,
+      "tool_result": 143,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 389,
+      "chunks": [
+        {
+          "path": "bdebb791b509416e3fc8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bdebb791b509416e3fc8-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "bdebb791b509416e3fc8-part-0003.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/prep-model-download.md"
+}

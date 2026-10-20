@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d1e79c68cd63a30346a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis mcnemar w3",
+  "task_key": "worker_analysis_mcnemar-w3_20260520T121432",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_mcnemar-w3_20260520T121432_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "8ea0ceb076da70ddfe2a7558febbdcb7ed17de54e2992cab5e95c46c9067f7ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**McNemar 2x2 Table (w=3)**\n\n|  | Combo w=3 correct | Combo w=3 wrong |\n|--|--|--|\n| **SC correct** | 105 | 6 (b) |\n| **SC wrong** | 15 (c) | 78 |\n\n- **Discordant pairs**: 21 (b=6, c=15)\n- **McNemar exact p = 0.0784** — 不显著 (α=0.05)\n- **95% Bootstrap CI**: [+0.00pp, +8.82pp]\n\n确认准确率：SC = 111/204 (0.5441), Combo w=3 = 120/204 (0.5882), Δ = +4.41pp\n\n对比 w=1 (p=0.0391, b=1, c=8)：w=3 的 discordant pairs 更多 (21 vs 9)，但 b 也从 1 升到 6，使得 p 值从 0.039 升到 0.078，不再显著。w=3 虽然绝对提升更大 (+4.41pp vs +3.43pp)，但引入了更多 SC 对→combo 错的 flip (b=6)，稀释了统计信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mcnemar-w3.md"
+}

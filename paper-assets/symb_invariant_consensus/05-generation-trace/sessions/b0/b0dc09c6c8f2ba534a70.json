@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b0dc09c6c8f2ba534a70",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "fix canonical recompute ft drc",
+  "task_key": "worker_fix_canonical-recompute-ft-drc_20260522T225027",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_canonical-recompute-ft-drc_20260522T225027.log",
+    "occurrence": 1,
+    "bytes": 976721,
+    "sha256": "d9d1ea27586b38ae489cab11356c5a488b308eceb6bef5a15236063dbbda8f2b"
+  },
+  "statistics": {
+    "messages": 253,
+    "user_turns": 0,
+    "tool_calls": 89,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 2,
+      "assistant": 68,
+      "tool_call": 89,
+      "tool_result": 89,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 253,
+      "chunks": [
+        {
+          "path": "b0dc09c6c8f2ba534a70-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b0dc09c6c8f2ba534a70-part-0002.json",
+          "message_count": 73
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-canonical-recompute-ft-drc.md"
+}

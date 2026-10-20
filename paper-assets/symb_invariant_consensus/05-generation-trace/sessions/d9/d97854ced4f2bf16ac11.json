@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d97854ced4f2bf16ac11",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "download qwen3 14b westd16639",
+  "task_key": "worker_download_qwen3-14b-westd16639_20260518T140600",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_download_qwen3-14b-westd16639_20260518T140600_result.json",
+    "occurrence": 1,
+    "bytes": 813,
+    "sha256": "e4cb629a29e600cfb8dd24e31fa2cfea71deab224b345379c190d8ee03d87d8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态总结：\n\n**任务 2（数据 SCP）：已完成**\n- 12 个文件，3.2MB，路径：`/root/autodl-tmp/sica_project/data/`\n\n**任务 1（Qwen3-14B 下载）：进行中**\n- 模型 ID：`Qwen/Qwen3-14B`（ModelScope）\n- 目标路径：`/root/autodl-tmp/models/Qwen3-14B/`\n- 当前进度：9.2GB / ~29GB（~32%）\n- 平均速度：~7 MB/s（受其他并行下载影响：Qwen2.5-14B-Instruct、Mistral-7B）\n- 预计完成时间：约 50 分钟（~23:25 UTC）\n- 已部署自动重启脚本 `/root/autodl-tmp/download_qwen3.sh`，即使进程被外部干扰也会自动恢复\n\nwestd-25068 上有后台监控脚本持续记录进度到 `/tmp/qwen3_monitor.log`。下载完成后日志会显示 `DOWNLOAD_COMPLETE`。\n\n要继续等待完成后验证，还是先到这里？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/download-qwen3-14b-westd16639.md"
+}

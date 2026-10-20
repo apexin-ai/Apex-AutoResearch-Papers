@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ed24e551722969554bb",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ops check 16639 cuda1 cleanup",
+  "task_key": "worker_ops_check-16639-cuda1-cleanup_20260519T202407",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-16639-cuda1-cleanup_20260519T202407_result.json",
+    "occurrence": 1,
+    "bytes": 217,
+    "sha256": "d0626003289243fc7033eca4afc30ae2f1d51ea58cf893d66aca3ad62d65fe16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:1 已释放** — 0MiB / 97887MiB，无进程。\n\n其他残留：**cuda:0** (exp079_vllm, port 8010, Mistral-7B) 也是 0% 利用率，占用 ~90GB 显存。如果不需要可以一并清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-16639-cuda1-cleanup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4340265d61e93f5824a6",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper writing abstract v4",
+  "task_key": "worker_paper_writing_abstract_v4_20260523T033457",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_abstract_v4_20260523T033457_result.json",
+    "occurrence": 1,
+    "bytes": 813,
+    "sha256": "e0730c97bb4c35b6517d4ce43e665f7f1bc8ce36278fc86140dbb40302fed6c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "~212 words. Structure:\n\n1. **Paradox hook** — question form + \"the answer is no\" with 99%/94.4%\n2. **Negative result** — six models, three domains, 3,000+ evaluations, FDR, power caveat (±2pp equivalence / underpowered)\n3. **Mechanism** — symbolic confirmation bias (full spelling), 83.3%, BR 1.66–4.97×, shuffle control, Huang et al. link\n4. **Remediation failure** — 27 strategies, independence-accuracy trade-off (one sentence)\n5. **Cross-architecture escape** — \"Preliminary evidence suggests\", +6.67pp weakest generator\n6. **Diagnostics** — K_eff/BR/C₀, 60/60\n\nKey changes from v3: oracle controls removed, cross-model extraction line folded into mechanism, domain adaptation numbers removed, SCB abbreviation eliminated, -ing phrase endings fixed, no em-dashes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-abstract-v4.md"
+}

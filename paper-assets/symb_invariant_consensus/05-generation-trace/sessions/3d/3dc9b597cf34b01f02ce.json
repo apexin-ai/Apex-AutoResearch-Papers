@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3dc9b597cf34b01f02ce",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis qwen25 folio seed123 harvest",
+  "task_key": "worker_analysis_qwen25-folio-seed123-harvest_20260522T075205",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_qwen25-folio-seed123-harvest_20260522T075205_result.json",
+    "occurrence": 1,
+    "bytes": 370,
+    "sha256": "01fabbf6d65ad060fbd22c32fcaab06c2cf96535c5f8303f08765bc2af72f85f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "seed456 还在跑，results.json 是中间状态（148/204）。\n\n```\nQwen2.5 × FOLIO seed=123: SC=74.51%, SICA=73.04%, Δ=-1.47pp (N=204)\nseed=456 进度: 148/204 (SC=72.30%, SICA=72.97% on partial)\n```\n\nseed=123 上 SICA 略低于 SC（-1.47pp）。seed=456 的部分结果（148题）SICA 微高于 SC（+0.67pp），最终结果需等跑完。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen25-folio-seed123-harvest.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0ffeda03b36146e9446",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis qwen14b pw canonical",
+  "task_key": "worker_analysis_qwen14b-pw-canonical_20260521T101218",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_qwen14b-pw-canonical_20260521T101218_result.json",
+    "occurrence": 1,
+    "bytes": 1316,
+    "sha256": "f1c8d0b96c84df086385c92dc0c277da8ab25b83f5bc4bb2777d094d18020ae6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计结果\n\n**Canonical SC = 74.00% (444/600)**，来源 exp032 (westd-16639)，alphabetical tiebreaking，K=12，21 ties。\n\n### 三个值溯源\n\n| 值 | 来源 | 原因 |\n|---|---|---|\n| 75.17% (451) | sica_expanded_14b (westd-25068, 已下线) | 不同 trace generation run |\n| **74.00% (444)** | **exp032 (westd-16639) — CANONICAL** | alphabetical tiebreaking，完整数据可验证 |\n| 70.33% (422) | exp034 intermediates (crashed run, 已下线) | 第三次独立 trace generation |\n\n### 下游指标变化\n\n| 指标 | 旧值 | 新值 | 变化 |\n|---|---|---|---|\n| TOST 分类 | NOT_EQUIVALENT | NOT_EQUIVALENT | 不变 |\n| McNemar p | 0.0107 | 0.0107 | 不变 |\n| CIL Qwen14B+DeBERTa | -0.0827 | **-0.2072** | CIL 更负 |\n| CIL Qwen14B+SICA | -3.5272 | **-4.2087** | CIL 更负 |\n| Qwen14B+SICA gain | +0.50pp | **-2.50pp** | 翻转为负 |\n| Spearman ρ | 0.8095 (p=.015) | **0.8810 (p=.004)** | 显著增强 |\n| Pearson r | 0.7994 (p=.017) | **0.8481 (p=.008)** | 显著增强 |\n\n### 论文需更新\n\n- **Main Table**: Qwen14B PW-D5 行 SC 从 75.17→74.00，SICA 从 72.67→71.50\n- **CIL Table**: 更新 Qwen14B 两个 pair 的 CIL 和 gain\n- **Correlation claim**: 改善，反而更强化论文论点\n- **不需要 GPU 重跑**: exp032 数据完整"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen14b-pw-canonical.md"
+}

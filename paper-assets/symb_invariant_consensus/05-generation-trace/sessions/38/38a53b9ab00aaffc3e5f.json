@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38a53b9ab00aaffc3e5f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra urgent multiseed status gpu",
+  "task_key": "worker_infra_urgent-multiseed-status-gpu_20260522T103547",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_urgent-multiseed-status-gpu_20260522T103547_result.json",
+    "occurrence": 1,
+    "bytes": 2310,
+    "sha256": "978c545cd52091e9e26bdb0226700d2dfbd6ba17211efcb10647f250aa2b319b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 全面状态报告\n\n### 1. GPU 利用率 (westd-16639)\n\n| GPU | 型号 | 利用率 | VRAM |\n|-----|------|--------|------|\n| 0 | RTX PRO 6000 Blackwell | **98%** | 90.2/97.9 GB |\n| 1 | RTX PRO 6000 Blackwell | **98%** | 90.2/97.9 GB |\n| 2 | RTX PRO 6000 Blackwell | **96%** | 90.2/97.9 GB |\n| 3 | RTX PRO 6000 Blackwell | **0%** | 90.2/97.9 GB (idle) |\n\nGPU 3 有 vLLM (Mistral port 8004) 加载但无实验使用，处于空闲。\n\n### 2. 进程状态 — 全部运行中\n\n| PID | 角色 | 状态 |\n|-----|------|------|\n| 510872 | cuda:1 Qwen FOLIO master | RUNNING |\n| 552333 | cuda:0 Qwen PW master | RUNNING |\n| 510987 | cuda:2 Mistral PW master | RUNNING |\n| 555317 | Guard (kill_cuda1_after_folio) | RUNNING |\n\nGuard log 最新：18:35 显示 folio seed789 进度 171/204，约 2 files/min。\n\n### 3. 文件进度\n\n**Qwen2.5 FOLIO** (expected: 204)\n| Seed | 进度 | 状态 |\n|------|------|------|\n| 123 | 204/204 | **DONE** |\n| 456 | 204/204 | **DONE** |\n| 789 | ~173/204 | RUNNING (~15min remaining) |\n\n**Mistral PW** (expected: 600)\n| Seed | 进度 | 状态 |\n|------|------|------|\n| 42 | 600/600 | **DONE** |\n| 123 | 261/600 (43%) | RUNNING |\n| 456 | — | NOT STARTED |\n| 789 | — | NOT STARTED |\n\n**Qwen2.5 PW** (expected: 600)\n| Seed | 进度 | 状态 |\n|------|------|------|\n| 123 | ~322/600 (54%) | RUNNING |\n| 456 | — | NOT STARTED |\n| 789 | — | NOT STARTED |\n\n### 4. 已完成 seed 准确率\n\n| Condition | Seed | SC | SICA | Δ(SICA-SC) |\n|-----------|------|----|------|------------|\n| qwen25_folio | 123 | **74.51%** (152/204) | **73.04%** (149/204) | **-1.47pp** |\n| qwen25_folio | 456 | **74.02%** (151/204) | **74.02%** (151/204) | **+0.00pp** |\n| mistral_pw | 42 | **40.00%** | **36.67%** | **-3.33pp** |\n\nPartial (in-progress):\n- mistral_pw seed123 (261/600): SC=39.08%, SICA=37.55%, Δ=-1.53pp\n\n### 5. vLLM 进程\n\n| Port | Model | GPU | 状态 |\n|------|-------|-----|------|\n| 8002 | Qwen2.5-14B | cuda:1 | Active (folio seed789) |\n| 8003 | Mistral-7B | cuda:2 | Active (mistral_pw seed123) |\n| 8004 | Mistral-7B | cuda:3 | **IDLE** — 无实验使用 |\n| 8005 | Qwen2.5-14B | cuda:0 | Active (qwen25_pw seed123) |\n\n### 6. westd-25068\n\n**Authentication failed.** 仍然无法连接。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-urgent-multiseed-status-gpu.md"
+}

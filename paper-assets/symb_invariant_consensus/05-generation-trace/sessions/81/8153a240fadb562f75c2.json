@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8153a240fadb562f75c2",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "check o3 and gpu status",
+  "task_key": "worker_check_o3-and-gpu-status_20260524T061626",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_o3-and-gpu-status_20260524T061626_result.json",
+    "occurrence": 1,
+    "bytes": 1000,
+    "sha256": "d6f57a42e3b71422a6b8ee0768b86956342b9abc6dcc2a71914a55e5af6a7fb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## o3 数据\n\nSC 是按 **n_valid=196** 算的，不是 n_questions=204。8 个问题的 traces 全部提取失败，被排除。\n\n| 指标 | 值 |\n|------|-----|\n| n_questions | 204 |\n| **n_valid** | **196** |\n| SC 正确数 | 162 |\n| **SC%** | **162/196 = 82.65%** ✓ 整数吻合 |\n| SICA | 82.65%（delta_pp=0.0，cross-model 没改变任何答案） |\n| n_err (n_sica_wrong) | 34 |\n| 来源文件 | `results/exp_d135_frontier_scb/o3/results.json` |\n\n结论：82.65% 是精确的，问题出在 n 应该用 196 而非 204。\n\n## GPU 状态\n\n| GPU | 状态 | 详情 |\n|-----|------|------|\n| cuda:0 | **occupied** | VLLM::EngineCore, 88430 MiB / 97887 MiB, 100% util |\n| cuda:1 | **free** | 0 MiB, 0% util |\n| cuda:2 | **occupied** | VLLM::EngineCore, 88430 MiB / 97887 MiB, 100% util |\n| cuda:3 | **occupied** | VLLM::EngineCore, 88430 MiB / 97887 MiB, 100% util |\n\ncuda:0/2/3 各跑一个 vLLM 引擎（3 张 H200 占满），cuda:1 完全空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-o3-and-gpu-status.md"
+}
