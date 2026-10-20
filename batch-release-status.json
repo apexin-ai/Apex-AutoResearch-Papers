@@ -460,6 +460,29 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39357442666"
+    },
+    "event-gated-adaptive-horizon/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 236467035,
+        "etag": "\"319de2f4c980dee9277df1bd4279f2b7-29\"",
+        "modified": "2026-05-31T17:29:09+00:00"
+      },
+      "archive_sha256": "58461bd0e80239ced93e13b727a697210b6b0dda0ab567897ffb040ae545b17e",
+      "projects": [
+        "event-gated-adaptive-horizon"
+      ],
+      "counts": [
+        {
+          "project": "event-gated-adaptive-horizon",
+          "title": "Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3",
+          "paper_pdf": "paper.pdf",
+          "code_count": 649,
+          "data_count": 1727,
+          "trace_count": 3085
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39357442666"
     }
   }
 }
