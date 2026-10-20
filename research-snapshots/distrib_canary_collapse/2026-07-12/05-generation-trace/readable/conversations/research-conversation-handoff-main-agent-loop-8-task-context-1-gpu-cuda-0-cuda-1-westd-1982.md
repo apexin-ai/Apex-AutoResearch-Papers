@@ -1,0 +1,3104 @@
+# Research conversation: [HANDOFF] 你是 Main Agent，这是 Loop #8。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单**仅** cuda:0, cuda:1 @ westd-1982
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 52
+- **Recorded user turns:** 1
+- **Tool calls:** 14
+- **Original source:** `logs/chats/exported-trajectories/account-3/049bcc5a-eb7a-440d-86bc-cf433b7944a4.jsonl`
+- **Structured JSON:** [`cbf4019263511decd94f.json`](../../sessions/cb/cbf4019263511decd94f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-15T20:58:49.018Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T20:58:49.018Z",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "content": "[HANDOFF] 你是 Main Agent，这是 Loop #8。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单**仅** cuda:0, cuda:1 @ westd-19828，Director 指令也不能越界（2026-04-24 事故）\n- α=0.75 vs α=1.0 consensus 数字**禁止直接对比**——前者 single-seed method-agreement，后者 4-seed full consensus（D038 #27）\n- token_entropy→perplexity @ α=0.75 **不可引用为 robust evidence**（D017/D038 #28）\n- D026 multi-seed 必须 **bs=4**（与 s42 可比），generalization 实验才用 bs=32\n- FNR=0 声明必须附 D017 独立证据，否则循环论证（D041）\n- canary→perplexity 通道已确认伪回归（D017），**不能 claim \"canary predicts model collapse\"**，只能 claim diversity collapse\n- 投稿目标 **EMNLP 2026 main track**（D043，用户指定），不要暗示降级或换 venue\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-19828，工作目录 `/root/autodl-tmp/distrib_canary_collapse`\n- **Python**: `/root/miniconda3/bin/python`（conda base），激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **HF cache**: `/root/autodl-tmp/.hf_cache`，需设 `HF_HOME` + `HF_HUB_DISABLE_XET=1` + `HF_ENDPOINT=https://hf-mirror.com`\n- **模型**: Pythia-410m（HF cache），GPT-2-medium（`/root/autodl-tmp/.hf_cache` 或 HF hub `gpt2-medium`）\n- **数据**: `data/wikitext103_5k`（5000 条，主要实验用），`data/wikitext103`（全量，plan_006 用）\n- **活跃进程**:\n  - `gen_wiki_gpt2m_a100_s42_v3`: PID 117632, tmux, cuda:0, GPT-2-medium α=1.0 ~45% (gen 4/10)\n  - `alpha_sweep_a050_s43`: PID 134860, tmux, cuda:1, Pythia α=0.50 seed=43\n- **Cron**: 2 个活跃，分别监控上述两个实验\n\n### 3. 📊 当前状态\n**刚完成**: alpha_sweep_a025_s43 (success, diversity 跨 seed <1.3pp)、alpha_sweep_a075_s42 (success, detectability boundary 确认 3/8 FDR-sig)、method_ablation_phase2 (success, naive 100% sig vs perm_granger 75% FDR-sig)、plan_006_s42 (T=18 三相 collapse，D034 决定不恢复)\n\n**RUNNING**: \n- `gen_wiki_gpt2m_a100_s42_v3` (cuda:0) — GPT-2-medium cross-arch 验证，WA→Accept 关键跳板\n- `alpha_sweep_a050_s43` (cuda:1) — D026 multi-seed #2\n\n**QUEUED 等 GPU**: plan_006_s43, gen_wiki_gpt2m_a025_s42, alpha_sweep_a050_s44, alpha_sweep_a025_s44, alpha_sweep_a010_s42\n\n**Worker 池**: 0（无运行中 Worker，两个 GPU 实验各有 cron 监控）\n\n**Paper Agent**: writing_plan.yaml 已审批，Step 2 图表生成中，venue 从 AAAI→EMNLP 处理中\n\n### 4. 📋 待办（条件触发式）\n- `alpha_sweep_a050_s43` cron 回调 → spawn worker 分析 drift + 与 a050_s42 对比 → cuda:1 提交 `alpha_sweep_a025_s44`\n- `gen_wiki_gpt2m_a100_s42_v3` cron 回调 → spawn worker 分析 GPT-2-medium cross-arch 结果 → cuda:0 提交 `gen_wiki_gpt2m_a025_s42`\n- D026 全部 4 个 multi-seed 完成 (a025_s43✅ a050_s43🔄 a025_s44⏳ a050_s44⏳) → 移除 C001 single-seed caveat → Claim 1 scope 正式升级为 α≥0.75\n- GPT-2-medium α=1.0 + α=0.25 完成 → 方法论陷阱跨架构普遍性确认 → 补充 paper 证据\n- Paper Agent Step 2 图表审查 → Fig 2 (differencing_dmax) 和 Fig 4 (metric_trajectory)\n- report.md 内容较空（近期结论缺摘要），下次 cron 回调时顺便补全\n\n### 5. 🎯 战略上下文\n- **核心 narrative (D027 reframe)**: 方法论陷阱 + 多方法共识框架为主线，canary prediction 为 case study。Title: \"Method Matters: Pitfalls and a Multi-Method Consensus Framework for Lead-Lag Analysis in Iterative Training Collapse\"\n- **Claim 强度**: Claim 3 (方法敏感性) > Claim 2 (regime map) > Claim 1 (case study)，论文呈现也按此顺序\n- **WA→Accept 剩余路径**: multi-seed (剩 ~12h GPU) + GPT-2-medium generalization (~3h GPU)\n- **EMNLP 2026 deadline**: ARR June cycle ~June 15，约 1 个月写作窗口\n- **易踩坑**:\n  - 不要把 α=0.75 的 11/16 robust 和 α=1.0 的 6/16 直接比较（标准不同）\n  - plan_006_s42 实际完成 T=18（非 T=20），D034 决定不恢复，数据在 `results/extended_20gen/s42/`\n  - GPT-2-medium 前两次尝试失败（v1 下载慢被 kill，v2 路径错误），v3 用 HF hub 名 `gpt2-medium` 成功启动\n  - registry 中 alpha_sweep_a025_s42_v3 实际磁盘路径为 `results/alpha_sweep/a025_s42/`（无 v3 后缀）\n  - 5-point regime map 在 α=0.50→0.75 间有 detectability 阶跃（0/8→3/8 FDR-sig），这是 Claim 2 核心素材\n\n## 可查的历史\n前 12 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-15T20:58:49.021Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T20:58:49.021Z",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4"
+}
+```
+
+---
+
+## Round 1
+
+50 recorded events
+
+### User
+
+_source line 3 · 2026-05-15T20:58:49.052Z_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #8。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单**仅** cuda:0, cuda:1 @ westd-19828，Director 指令也不能越界（2026-04-24 事故）
+- α=0.75 vs α=1.0 consensus 数字**禁止直接对比**——前者 single-seed method-agreement，后者 4-seed full consensus（D038 #27）
+- token_entropy→perplexity @ α=0.75 **不可引用为 robust evidence**（D017/D038 #28）
+- D026 multi-seed 必须 **bs=4**（与 s42 可比），generalization 实验才用 bs=32
+- FNR=0 声明必须附 D017 独立证据，否则循环论证（D041）
+- canary→perplexity 通道已确认伪回归（D017），**不能 claim "canary predicts model collapse"**，只能 claim diversity collapse
+- 投稿目标 **EMNLP 2026 main track**（D043，用户指定），不要暗示降级或换 venue
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: westd-19828，工作目录 `/root/autodl-tmp/distrib_canary_collapse`
+- **Python**: `/root/miniconda3/bin/python`（conda base），激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- **HF cache**: `/root/autodl-tmp/.hf_cache`，需设 `HF_HOME` + `HF_HUB_DISABLE_XET=1` + `HF_ENDPOINT=https://hf-mirror.com`
+- **模型**: Pythia-410m（HF cache），GPT-2-medium（`/root/autodl-tmp/.hf_cache` 或 HF hub `gpt2-medium`）
+- **数据**: `data/wikitext103_5k`（5000 条，主要实验用），`data/wikitext103`（全量，plan_006 用）
+- **活跃进程**:
+  - `gen_wiki_gpt2m_a100_s42_v3`: PID 117632, tmux, cuda:0, GPT-2-medium α=1.0 ~45% (gen 4/10)
+  - `alpha_sweep_a050_s43`: PID 134860, tmux, cuda:1, Pythia α=0.50 seed=43
+- **Cron**: 2 个活跃，分别监控上述两个实验
+
+### 3. 📊 当前状态
+**刚完成**: alpha_sweep_a025_s43 (success, diversity 跨 seed <1.3pp)、alpha_sweep_a075_s42 (success, detectability boundary 确认 3/8 FDR-sig)、method_ablation_phase2 (success, naive 100% sig vs perm_granger 75% FDR-sig)、plan_006_s42 (T=18 三相 collapse，D034 决定不恢复)
+
+**RUNNING**: 
+- `gen_wiki_gpt2m_a100_s42_v3` (cuda:0) — GPT-2-medium cross-arch 验证，WA→Accept 关键跳板
+- `alpha_sweep_a050_s43` (cuda:1) — D026 multi-seed #2
+
+**QUEUED 等 GPU**: plan_006_s43, gen_wiki_gpt2m_a025_s42, alpha_sweep_a050_s44, alpha_sweep_a025_s44, alpha_sweep_a010_s42
+
+**Worker 池**: 0（无运行中 Worker，两个 GPU 实验各有 cron 监控）
+
+**Paper Agent**: writing_plan.yaml 已审批，Step 2 图表生成中，venue 从 AAAI→EMNLP 处理中
+
+### 4. 📋 待办（条件触发式）
+- `alpha_sweep_a050_s43` cron 回调 → spawn worker 分析 drift + 与 a050_s42 对比 → cuda:1 提交 `alpha_sweep_a025_s44`
+- `gen_wiki_gpt2m_a100_s42_v3` cron 回调 → spawn worker 分析 GPT-2-medium cross-arch 结果 → cuda:0 提交 `gen_wiki_gpt2m_a025_s42`
+- D026 全部 4 个 multi-seed 完成 (a025_s43✅ a050_s43🔄 a025_s44⏳ a050_s44⏳) → 移除 C001 single-seed caveat → Claim 1 scope 正式升级为 α≥0.75
+- GPT-2-medium α=1.0 + α=0.25 完成 → 方法论陷阱跨架构普遍性确认 → 补充 paper 证据
+- Paper Agent Step 2 图表审查 → Fig 2 (differencing_dmax) 和 Fig 4 (metric_trajectory)
+- report.md 内容较空（近期结论缺摘要），下次 cron 回调时顺便补全
+
+### 5. 🎯 战略上下文
+- **核心 narrative (D027 reframe)**: 方法论陷阱 + 多方法共识框架为主线，canary prediction 为 case study。Title: "Method Matters: Pitfalls and a Multi-Method Consensus Framework for Lead-Lag Analysis in Iterative Training Collapse"
+- **Claim 强度**: Claim 3 (方法敏感性) > Claim 2 (regime map) > Claim 1 (case study)，论文呈现也按此顺序
+- **WA→Accept 剩余路径**: multi-seed (剩 ~12h GPU) + GPT-2-medium generalization (~3h GPU)
+- **EMNLP 2026 deadline**: ARR June cycle ~June 15，约 1 个月写作窗口
+- **易踩坑**:
+  - 不要把 α=0.75 的 11/16 robust 和 α=1.0 的 6/16 直接比较（标准不同）
+  - plan_006_s42 实际完成 T=18（非 T=20），D034 决定不恢复，数据在 `results/extended_20gen/s42/`
+  - GPT-2-medium 前两次尝试失败（v1 下载慢被 kill，v2 路径错误），v3 用 HF hub 名 `gpt2-medium` 成功启动
+  - registry 中 alpha_sweep_a025_s42_v3 实际磁盘路径为 `results/alpha_sweep/a025_s42/`（无 v3 后缀）
+  - 5-point regime map 在 α=0.50→0.75 间有 detectability 阶跃（0/8→3/8 FDR-sig），这是 Claim 2 核心素材
+
+## 可查的历史
+前 12 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "f112dfb9-ab3d-4c03-9a94-56b7de5dfab1",
+  "type": "user",
+  "uuid": "59ffff73-27cd-4db4-b3be-3f0f77f235ce",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-15T20:58:49.051Z_
+
+```json
+{
+  "parentUuid": "59ffff73-27cd-4db4-b3be-3f0f77f235ce",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "ab5457c0-8b5a-4ad6-a6c5-8bed74480f0a",
+  "timestamp": "2026-05-15T20:58:49.051Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-15T20:58:49.051Z_
+
+```json
+{
+  "parentUuid": "ab5457c0-8b5a-4ad6-a6c5-8bed74480f0a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "9e5684c8-552a-4b7e-8e6d-34d80ecd3da8",
+  "timestamp": "2026-05-15T20:58:49.051Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-15T20:58:49.051Z_
+
+```json
+{
+  "parentUuid": "9e5684c8-552a-4b7e-8e6d-34d80ecd3da8",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "d571b34e-04f6-4276-aedf-0abae010013d",
+  "timestamp": "2026-05-15T20:58:49.051Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify GPU experiments and prepare multi-seed consensus analysis",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-15T20:58:53.364Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+新 session 启动，按 session-start 规范执行初始化。先确认 handoff 内容，然后执行初始化步骤。
+
+让我先加载必要的工具，然后执行 session-start 流程。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d571b34e-04f6-4276-aedf-0abae010013d",
+  "isSidechain": false,
+  "requestId": "req_011Cb52SRhNWUiJPDQP91QpG",
+  "type": "assistant",
+  "uuid": "c129f015-cd7b-48e1-98b9-822cc43600f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UYxgFrrk1eXoWGr2yNcgmC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 24991,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 341,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24991,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 341,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 24991,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24991
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-15T20:58:55.496Z_
+
+收到 handoff，确认硬约束（GPU 白名单 cuda:0/1 @ westd-19828、α 对比禁令、EMNLP 2026 目标）和两个 RUNNING 实验（gen_wiki_gpt2m_a100_s42_v3 cuda:0、alpha_sweep_a050_s43 cuda:1）。开始 session-start 初始化。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c129f015-cd7b-48e1-98b9-822cc43600f7",
+  "isSidechain": false,
+  "requestId": "req_011Cb52SRhNWUiJPDQP91QpG",
+  "type": "assistant",
+  "uuid": "4ee712b4-f7cc-46d1-b6cb-83ac06ae5578",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UYxgFrrk1eXoWGr2yNcgmC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 24991,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 341,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24991,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 341,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 24991,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24991
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T20:58:56.741Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01GiC43N4x8z5cuxHjqGzvxC`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ee712b4-f7cc-46d1-b6cb-83ac06ae5578",
+  "isSidechain": false,
+  "requestId": "req_011Cb52SRhNWUiJPDQP91QpG",
+  "type": "assistant",
+  "uuid": "177011a1-182a-48ee-b2e2-d3a04db85d52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UYxgFrrk1eXoWGr2yNcgmC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 24991,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 341,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24991,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 341,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 24991,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24991
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T20:58:56.747Z_
+
+<details><summary>↩ Tool result · `toolu_01GiC43N4x8z5cuxHjqGzvxC`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__main_agent_post_to_director"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "177011a1-182a-48ee-b2e2-d3a04db85d52",
+  "isSidechain": false,
+  "promptId": "f112dfb9-ab3d-4c03-9a94-56b7de5dfab1",
+  "type": "user",
+  "uuid": "07fbfcdb-ae64-4757-baf4-2b6bb641e1ac",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__main_agent_post_to_director"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "177011a1-182a-48ee-b2e2-d3a04db85d52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T20:58:59.803Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01UqG96vzDu6gLnWYixUN6A4`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "07fbfcdb-ae64-4757-baf4-2b6bb641e1ac",
+  "isSidechain": false,
+  "requestId": "req_011Cb52SziEahQKE56kcuZsM",
+  "type": "assistant",
+  "uuid": "a5037024-b7de-4b60-bf78-0261a5cb122b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JACEcST6pVktHwapMPC4dz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1479,
+      "cache_read_input_tokens": 36832,
+      "output_tokens": 240,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1479,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 240,
+          "cache_read_input_tokens": 36832,
+          "cache_creation_input_tokens": 1479,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1479
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T20:59:00.359Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_017dDK1wNgcYqqFbrKZpEzEq`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a5037024-b7de-4b60-bf78-0261a5cb122b",
+  "isSidechain": false,
+  "requestId": "req_011Cb52SziEahQKE56kcuZsM",
+  "type": "assistant",
+  "uuid": "8d4dcd31-13af-4088-a1c4-65665deced8d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JACEcST6pVktHwapMPC4dz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1479,
+      "cache_read_input_tokens": 36832,
+      "output_tokens": 240,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1479,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 240,
+          "cache_read_input_tokens": 36832,
+          "cache_creation_input_tokens": 1479,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1479
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T20:58:59.888Z_
+
+<details><summary>↩ Tool result · `toolu_01UqG96vzDu6gLnWYixUN6A4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"alpha_sweep_a050_s43\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T06:58:45.880Z\", \"updated_at\": \"2026-05-15T17:40:27.311Z\"}, \"alpha_sweep_a025_s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T06:58:43.090Z\", \"updated_at\": \"2026-05-15T17:39:43.623Z\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.09833, \"distinct_2\": 0.5132, \"distinct_3\": 0.8057, \"effective_rank\": 46.61, \"mauve\": 0.03351}, \"gen10\": {\"token_entropy\": 3.0723, \"ece\": 0.02146, \"perplexity\": 21.899, \"distinct_1\": 0.05849, \"distinct_2\": 0.2236, \"distinct_3\": 0.333, \"effective_rank\": 45.37, \"mauve\": 0.01871}, \"drift_pct\": {\"token_entropy\": -5, \"ece\": 98.6, \"perplexity\": -18.7, \"distinct_1\": -40.5, \"distinct_2\": -56.4, \"distinct_3\": -58.7, \"effective_rank\": -2.7, \"mauve\": -44.2}}, \"conclusion\": \"success\"}, \"gen_wiki_gpt2m_a100_s42_v3\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T12:07:20.050Z\", \"updated_at\": \"2026-05-15T15:30:24.087Z\", \"metrics\": {\"progress\": \"gen 4/10 (generating synthetic text), ~45%\"}}, \"alpha_sweep_a075_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:52:17.315Z\", \"updated_at\": \"2026-05-15T13:29:46.421Z\", \"metrics\": {\"progress\": \"11/11 gen (complete)\", \"gen0_token_entropy\": 3.234, \"gen10_token_entropy\": 2.337, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.2063, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 76.03, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0661, \"gen0_distinct_2\": 0.5178, \"gen10_distinct_2\": 0.3037, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.5011, \"token_entropy_drift_pct\": -27.7, \"ece_drift_pct\": 1809.5, \"perplexity_drift_pct\": 182.1, \"distinct_1_drift_pct\": -32.7, \"distinct_2_drift_pct\": -41.3, \"distinct_3_drift_pct\": -38.4, \"granger_ece_to_d1_p_fdr\": 0.046, \"granger_ece_to_d2_p_fdr\": 0.046, \"granger_entropy_to_d2_p_fdr\": 0.048, \"granger_entropy_to_d1_p_fdr\": 0.054, \"granger_fdr_sig_count\": \"3/8\", \"consensus_robust_pairs\": \"11/16\", \"xcorr_entropy_d1_lag\": 2, \"xcorr_entropy_d1_r\": 0.973}, \"conclusion\": \"success\"}, \"alpha_sweep_a050_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:52:15.427Z\", \"updated_at\": \"2026-05-15T13:17:48.134Z\", \"metrics\": {\"progress\": \"11/11 gen (complete)\", \"gen0_token_entropy\": 3.234, \"gen10_token_entropy\": 2.632, \"gen0_ece\": 0.011, \"gen10_ece\": 0.102, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 32.64, \"gen0_distinct_1\": 0.098, \"gen10_distinct_1\": 0.062, \"gen0_distinct_2\": 0.518, \"gen10_distinct_2\": 0.251, \"gen0_distinct_3\": 0.813, \"gen10_distinct_3\": 0.387, \"token_entropy_drift_pct\": -18.6, \"ece_drift_pct\": 842.8, \"perplexity_drift_pct\": 21.1, \"distinct_1_drift_pct\": -37.3, \"distinct_2_drift_pct\": -51.5, \"distinct_3_drift_pct\": -52.4, \"granger_entropy_to_d1_p_raw\": 0.095, \"granger_entropy_to_d2_p_raw\": 0.097, \"granger_ece_to_d1_p_raw\": 0.019, \"granger_ece_to_d2_p_raw\": 0.039, \"granger_fdr_note\": \"4 tests within alpha=0.50; BH FDR threshold rank1=0.0125, rank2=0.025 → 0/4 FDR-sig at q=0.05. Raw p pattern (ECE < entropy) is qualitative signal only.\", \"d024_non_monotonic\": true, \"d024_ece_vs_entropy_note\": \"ECE raw p < entropy raw p at α=0.50 (0.019 vs 0.095 at 5000 perms), 0/4 FDR-sig; regime switch hypothesis pending α=0.75 confirmation\"}, \"conclusion\": \"success\"}, \"plan_006_s43\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-14T23:31:37.257Z\", \"updated_at\": \"2026-05-15T12:21:51.003Z\"}, \"plan_006_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T23:31:35.454Z\", \"updated_at\": \"2026-05-15T12:17:14.093Z\", \"metrics\": {\"progress\": \"18/20 gen (gen_0-17 complete, gen_18-20 timeout)\", \"gen0_token_entropy\": 3.2342, \"gen17_token_entropy\": 1.1819, \"gen0_ece\": 0.0108, \"gen17_ece\": 0.4454, \"gen0_perplexity\": 26.95, \"gen17_perplexity\": 3367.66, \"gen0_distinct_1\": 0.0982, \"gen17_distinct_1\": 0.0756, \"gen0_distinct_2\": 0.5178, \"gen17_distinct_2\": 0.3617, \"gen0_distinct_3\": 0.8127, \"gen17_distinct_3\": 0.5865, \"token_entropy_drift_pct_gen0_17\": -63.4, \"distinct_1_drift_pct_gen0_17\": -23, \"distinct_2_drift_pct_gen0_17\": -30.1, \"distinct_3_drift_pct_gen0_17\": -27.8, \"ece_drift_pct_gen0_17\": 4024, \"ppl_drift_pct_gen0_17\": 12395, \"phase1_rapid_collapse\": \"gen0-5\", \"phase2_apparent_plateau\": \"gen5-12\", \"phase3_secondary_decline\": \"gen13-17\", \"phase3_d2_decline_pct\": -5.8, \"phase3_d3_decline_pct\": -6.9, \"diversity_saturated_at_gen\": 5, \"diversity_secondary_decline_at_gen\": 13, \"perplexity_saturated\": false}, \"conclusion\": \"failed\", \"notes\": \"gen_0-17 complete (T=18). 三相 collapse: Phase1 急速崩塌 gen0-5 (d1 -20.6%, entropy -63.8%), Phase2 表观稳态 gen5-12 (diversity <0.3% 变化, perplexity 仍+167%), Phase3 二次衰退 gen13-17 (d2 -5.8%, d3 -6.9%). Perplexity 未饱和 (26.95→3367.66, +12395%). T=18 vs T=10: 新增 diversity 二次衰退在 T=10 window 不可见. TY power 预估 ~0.28-0.41 (vs T=10 的 0.05-0.21).\"}, \"plan_006_s42_resume\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T11:55:26.236Z\", \"updated_at\": \"2026-05-15T12:10:54.859Z\", \"conclusion\": \"killed\", \"notes\": \"D034 决定不恢复。T=18 数据已足够（超出 T=15 目标）。原 plan_006_s42 gen_0-17 数据可用于 power analysis + supplementary。\"}, \"gen_wiki_gpt2m_a100_s42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T12:02:06.478Z\", \"updated_at\": \"2026-05-15T12:04:50.741Z\", \"conclusion\": \"killed\"}, \"gen_wiki_gpt2m_a100_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T10:35:18.700Z\", \"updated_at\": \"2026-05-15T12:01:58.523Z\", \"conclusion\": \"killed\"}, \"method_ablation_phase2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T08:58:35.270Z\", \"updated_at\": \"2026-05-15T11:07:42.688Z\", \"conclusion\": \"success\", \"metrics\": {\"n_panel_rows\": 56, \"n_alphas\": 4, \"alphas\": [0, 0.25, 0.5, 1], \"naive_sig_rate_overall\": 1, \"perm_granger_sig_rate_a000_raw\": 0, \"perm_granger_sig_rate_a000_fdr\": 0, \"perm_granger_sig_rate_a025_raw\": 0.25, \"perm_granger_sig_rate_a025_fdr\": 0, \"perm_granger_sig_rate_a050_raw\": 0.25, \"perm_granger_sig_rate_a050_fdr\": 0, \"perm_granger_sig_rate_a100_raw\": 0.75, \"perm_granger_sig_rate_a100_fdr\": 0.75, \"TY_sig_rate_a000_raw\": 0, \"TY_sig_rate_a000_fdr\": 0, \"TY_sig_rate_a025_raw\": 0.625, \"TY_sig_rate_a025_fdr\": 0.375, \"TY_sig_rate_a050_raw\": 0, \"TY_sig_rate_a050_fdr\": 0, \"TY_sig_rate_a100_raw\": 0.5938, \"TY_sig_rate_a100_fdr\": 0.5938, \"diff_sig_rate_a000_raw\": 0.5, \"diff_sig_rate_a000_fdr\": 0.375, \"mean_inter_method_kappa\": 0.185, \"naive_vs_perm_granger_flip_rate\": 0.5, \"naive_vs_TY_flip_rate\": 0.57, \"fdr_flips_perm_granger\": 4, \"pair_verdict_a100_perm_granger\": \"6/8\", \"pair_verdict_a100_TY\": \"6/8\", \"entropy_to_diversity_a100_all_5methods_sig\": true, \"fdr_correction\": \"BH q=0.05\"}}, \"gen_wiki_gpt2m_a025_s42\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-15T10:35:16.032Z\", \"updated_at\": \"2026-05-15T10:35:16.032Z\"}, \"alpha_sweep_a050_s44\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-15T06:58:50.550Z\", \"updated_at\": \"2026-05-15T06:58:50.550Z\"}, \"alpha_sweep_a025_s44\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-15T06:58:48.224Z\", \"updated_at\": \"2026-05-15T06:58:48.224Z\"}, \"alpha_sweep_a010_s42\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-14T21:52:19.712Z\", \"updated_at\": \"2026-05-15T05:19:49.211Z\"}, \"alpha_sweep_a025_s42_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:04:05.726Z\", \"updated_at\": \"2026-05-15T05:13:22.207Z\", \"conclusion\": \"success\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.1017, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.01942, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 22.32, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0586, \"gen0_distinct_2\": 0.5178, \"gen10_distinct_2\": 0.2219, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.3263, \"token_entropy_drift_pct\": -4.1, \"ece_drift_pct\": 79.7, \"perplexity_drift_pct\": -17.2, \"distinct_1_drift_pct\": -40.3, \"distinct_2_drift_pct\": -57.1, \"distinct_3_drift_pct\": -59.9}, \"notes\": \"实际磁盘路径为 results/alpha_sweep/a025_s42/（无 v3 后缀）。Registry ID 带 v3 是历史原因，数据已核实无误。\"}, \"method_ablation_phase1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T23:49:16.519Z\", \"updated_at\": \"2026-05-14T23:49:40.162Z\", \"conclusion\": \"success\", \"metrics\": {\"spurious_rate_5method\": 0.75, \"spurious_rate_4method\": 0.625, \"naive_sig\": \"16/16\", \"differenced_sig\": \"14/16\", \"threshold_sig\": \"9/16\", \"permutation_granger_sig\": \"6/16\", \"ty_sig\": \"4/16\", \"ty_power_T10\": \"0.05-0.20\", \"bh_fdr_flips\": 0}}, \"alpha_sweep_a000_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T19:01:37.470Z\", \"updated_at\": \"2026-05-14T23:42:18.748Z\", \"conclusion\": \"success\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.0693, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.0164, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 21.11, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0847, \"token_entropy_drift_pct\": -5.1, \"ece_drift_pct\": 51.7, \"perplexity_drift_pct\": -21.7, \"distinct_1_drift_pct\": -13.8, \"distinct_2_drift_pct\": -9.8, \"distinct_3_drift_pct\": -4.5, \"gen1_10_perplexity_drift_pct\": 9.4, \"gen1_10_distinct_1_drift_pct\": -13.1, \"gen1_10_entropy_drift_pct\": 2.6}}, \"alpha_sweep_a060_s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T21:52:22.516Z\", \"updated_at\": \"2026-05-14T21:52:22.516Z\"}, \"plan_009_bootstrap_ty\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:33:04.665Z\", \"updated_at\": \"2026-05-14T21:33:27.106Z\", \"conclusion\": \"success\", \"metrics\": {\"T10_d0_type1\": 0.081, \"T10_d0_power\": 0.205, \"T10_d1_type1\": 0.047, \"T10_d1_power\": 0.09, \"T10_dadapt_type1\": 0.052, \"T10_dadapt_power\": 0.05, \"T20_d0_power\": 0.409, \"T20_d1_power\": 0.172, \"T30_d0_power\": 0.606, \"T30_d1_power\": 0.283}}, \"alpha_sweep_a025_s42_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T19:25:52.094Z\", \"updated_at\": \"2026-05-14T21:04:20.474Z\", \"conclusion\": \"failed\"}, \"alpha_sweep_a025_s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T19:01:39.527Z\", \"updated_at\": \"2026-05-14T19:25:38.905Z\", \"conclusion\": \"killed\"}, \"mvp_v4_rep44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T07:48:52.613Z\", \"updated_at\": \"2026-05-14T19:03:57.571Z\", \"conclusion\": \"success\"}, \"mvp_rep44\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T05:12:15.033Z\", \"updated_at\": \"2026-05-14T18:43:02.575Z\", \"metrics\": {\"gen10_token_entropy\": 1.2205, \"gen10_ece\": 0.4237, \"gen10_perplexity\": 1033.16, \"gen10_distinct_1\": 0.0731, \"gen10_distinct_2\": 0.3637, \"gen10_distinct_3\": 0.6075}}, \"mvp_v4_rep45\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T13:41:26.286Z\", \"updated_at\": \"2026-05-14T17:58:00.661Z\", \"conclusion\": \"success\", \"metrics\": {\"gen0_ppl\": 26.9, \"gen10_ppl\": 1016.2, \"gen0_entropy\": 3.234, \"gen10_entropy\": 1.315, \"gen0_ece\": 0.011, \"gen10_ece\": 0.417}}, \"mvp_v4_rep43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T07:48:50.161Z\", \"updated_at\": \"2026-05-14T13:44:15.786Z\", \"conclusion\": \"success\"}, \"mvp_v4_rep42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T07:29:48.857Z\", \"updated_at\": \"2026-05-14T13:44:11.839Z\", \"conclusion\": \"success\"}, \"mvp_v3_rep43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:25:42.195Z\", \"updated_at\": \"2026-05-14T06:48:01.316Z\", \"conclusion\": \"failed\"}, \"mvp_v3_rep42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:25:39.728Z\", \"updated_at\": \"2026-05-14T06:47:59.908Z\", \"conclusion\": \"failed\"}, \"mvp_v2_rep43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T05:38:10.434Z\", \"updated_at\": \"2026-05-14T06:25:28.345Z\", \"conclusion\": \"killed\"}, \"mvp_v2_rep42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T05:38:05.054Z\", \"updated_at\": \"2026-05-14T06:25:27.286Z\", \"conclusion\": \"killed\"}, \"mvp_v2_rep44\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T05:38:10.762Z\", \"updated_at\": \"2026-05-14T05:38:10.762Z\"}, \"mvp_rep43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T05:12:14.237Z\", \"updated_at\": \"2026-05-14T05:37:18.575Z\", \"conclusion\": \"killed\"}, \"mvp_rep42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T05:12:13.930Z\", \"updated_at\": \"2026-05-14T05:37:17.438Z\", \"conclusion\": \"killed\"}}, \"count\": 34, \"total\": 34, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0721}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a5037024-b7de-4b60-bf78-0261a5cb122b",
+  "isSidechain": false,
+  "promptId": "f112dfb9-ab3d-4c03-9a94-56b7de5dfab1",
+  "type": "user",
+  "uuid": "2b281c32-607d-4cbd-b22b-fd5e8d9fbd12",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"alpha_sweep_a050_s43\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-15T06:58:45.880Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:40:27.311Z\\\"}, \\\"alpha_sweep_a025_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T06:58:43.090Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:39:43.623Z\\\", \\\"metrics\\\": {\\\"gen0\\\": {\\\"token_entropy\\\": 3.2342, \\\"ece\\\": 0.0108, \\\"perplexity\\\": 26.949, \\\"distinct_1\\\": 0.09833, \\\"distinct_2\\\": 0.5132, \\\"distinct_3\\\": 0.8057, \\\"effective_rank\\\": 46.61, \\\"mauve\\\": 0.03351}, \\\"gen10\\\": {\\\"token_entropy\\\": 3.0723, \\\"ece\\\": 0.02146, \\\"perplexity\\\": 21.899, \\\"distinct_1\\\": 0.05849, \\\"distinct_2\\\": 0.2236, \\\"distinct_3\\\": 0.333, \\\"effective_rank\\\": 45.37, \\\"mauve\\\": 0.01871}, \\\"drift_pct\\\": {\\\"token_entropy\\\": -5, \\\"ece\\\": 98.6, \\\"perplexity\\\": -18.7, \\\"distinct_1\\\": -40.5, \\\"distinct_2\\\": -56.4, \\\"distinct_3\\\": -58.7, \\\"effective_rank\\\": -2.7, \\\"mauve\\\": -44.2}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"gen_wiki_gpt2m_a100_s42_v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-15T12:07:20.050Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:30:24.087Z\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"gen 4/10 (generating synthetic text), ~45%\\\"}}, \\\"alpha_sweep_a075_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T21:52:17.315Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:29:46.421Z\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"11/11 gen (complete)\\\", \\\"gen0_token_entropy\\\": 3.234, \\\"gen10_token_entropy\\\": 2.337, \\\"gen0_ece\\\": 0.0108, \\\"gen10_ece\\\": 0.2063, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 76.03, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen10_distinct_1\\\": 0.0661, \\\"gen0_distinct_2\\\": 0.5178, \\\"gen10_distinct_2\\\": 0.3037, \\\"gen0_distinct_3\\\": 0.8127, \\\"gen10_distinct_3\\\": 0.5011, \\\"token_entropy_drift_pct\\\": -27.7, \\\"ece_drift_pct\\\": 1809.5, \\\"perplexity_drift_pct\\\": 182.1, \\\"distinct_1_drift_pct\\\": -32.7, \\\"distinct_2_drift_pct\\\": -41.3, \\\"distinct_3_drift_pct\\\": -38.4, \\\"granger_ece_to_d1_p_fdr\\\": 0.046, \\\"granger_ece_to_d2_p_fdr\\\": 0.046, \\\"granger_entropy_to_d2_p_fdr\\\": 0.048, \\\"granger_entropy_to_d1_p_fdr\\\": 0.054, \\\"granger_fdr_sig_count\\\": \\\"3/8\\\", \\\"consensus_robust_pairs\\\": \\\"11/16\\\", \\\"xcorr_entropy_d1_lag\\\": 2, \\\"xcorr_entropy_d1_r\\\": 0.973}, \\\"conclusion\\\": \\\"success\\\"}, \\\"alpha_sweep_a050_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T21:52:15.427Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:17:48.134Z\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"11/11 gen (complete)\\\", \\\"gen0_token_entropy\\\": 3.234, \\\"gen10_token_entropy\\\": 2.632, \\\"gen0_ece\\\": 0.011, \\\"gen10_ece\\\": 0.102, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 32.64, \\\"gen0_distinct_1\\\": 0.098, \\\"gen10_distinct_1\\\": 0.062, \\\"gen0_distinct_2\\\": 0.518, \\\"gen10_distinct_2\\\": 0.251, \\\"gen0_distinct_3\\\": 0.813, \\\"gen10_distinct_3\\\": 0.387, \\\"token_entropy_drift_pct\\\": -18.6, \\\"ece_drift_pct\\\": 842.8, \\\"perplexity_drift_pct\\\": 21.1, \\\"distinct_1_drift_pct\\\": -37.3, \\\"distinct_2_drift_pct\\\": -51.5, \\\"distinct_3_drift_pct\\\": -52.4, \\\"granger_entropy_to_d1_p_raw\\\": 0.095, \\\"granger_entropy_to_d2_p_raw\\\": 0.097, \\\"granger_ece_to_d1_p_raw\\\": 0.019, \\\"granger_ece_to_d2_p_raw\\\": 0.039, \\\"granger_fdr_note\\\": \\\"4 tests within alpha=0.50; BH FDR threshold rank1=0.0125, rank2=0.025 → 0/4 FDR-sig at q=0.05. Raw p pattern (ECE < entropy) is qualitative signal only.\\\", \\\"d024_non_monotonic\\\": true, \\\"d024_ece_vs_entropy_note\\\": \\\"ECE raw p < entropy raw p at α=0.50 (0.019 vs 0.095 at 5000 perms), 0/4 FDR-sig; regime switch hypothesis pending α=0.75 confirmation\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_006_s43\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-14T23:31:37.257Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:21:51.003Z\\\"}, \\\"plan_006_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T23:31:35.454Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:17:14.093Z\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"18/20 gen (gen_0-17 complete, gen_18-20 timeout)\\\", \\\"gen0_token_entropy\\\": 3.2342, \\\"gen17_token_entropy\\\": 1.1819, \\\"gen0_ece\\\": 0.0108, \\\"gen17_ece\\\": 0.4454, \\\"gen0_perplexity\\\": 26.95, \\\"gen17_perplexity\\\": 3367.66, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen17_distinct_1\\\": 0.0756, \\\"gen0_distinct_2\\\": 0.5178, \\\"gen17_distinct_2\\\": 0.3617, \\\"gen0_distinct_3\\\": 0.8127, \\\"gen17_distinct_3\\\": 0.5865, \\\"token_entropy_drift_pct_gen0_17\\\": -63.4, \\\"distinct_1_drift_pct_gen0_17\\\": -23, \\\"distinct_2_drift_pct_gen0_17\\\": -30.1, \\\"distinct_3_drift_pct_gen0_17\\\": -27.8, \\\"ece_drift_pct_gen0_17\\\": 4024, \\\"ppl_drift_pct_gen0_17\\\": 12395, \\\"phase1_rapid_collapse\\\": \\\"gen0-5\\\", \\\"phase2_apparent_plateau\\\": \\\"gen5-12\\\", \\\"phase3_secondary_decline\\\": \\\"gen13-17\\\", \\\"phase3_d2_decline_pct\\\": -5.8, \\\"phase3_d3_decline_pct\\\": -6.9, \\\"diversity_saturated_at_gen\\\": 5, \\\"diversity_secondary_decline_at_gen\\\": 13, \\\"perplexity_saturated\\\": false}, \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"gen_0-17 complete (T=18). 三相 collapse: Phase1 急速崩塌 gen0-5 (d1 -20.6%, entropy -63.8%), Phase2 表观稳态 gen5-12 (diversity <0.3% 变化, perplexity 仍+167%), Phase3 二次衰退 gen13-17 (d2 -5.8%, d3 -6.9%). Perplexity 未饱和 (26.95→3367.66, +12395%). T=18 vs T=10: 新增 diversity 二次衰退在 T=10 window 不可见. TY power 预估 ~0.28-0.41 (vs T=10 的 0.05-0.21).\\\"}, \\\"plan_006_s42_resume\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T11:55:26.236Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:10:54.859Z\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"D034 决定不恢复。T=18 数据已足够（超出 T=15 目标）。原 plan_006_s42 gen_0-17 数据可用于 power analysis + supplementary。\\\"}, \\\"gen_wiki_gpt2m_a100_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T12:02:06.478Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:04:50.741Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"gen_wiki_gpt2m_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T10:35:18.700Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:01:58.523Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"method_ablation_phase2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T08:58:35.270Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:07:42.688Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n_panel_rows\\\": 56, \\\"n_alphas\\\": 4, \\\"alphas\\\": [0, 0.25, 0.5, 1], \\\"naive_sig_rate_overall\\\": 1, \\\"perm_granger_sig_rate_a000_raw\\\": 0, \\\"perm_granger_sig_rate_a000_fdr\\\": 0, \\\"perm_granger_sig_rate_a025_raw\\\": 0.25, \\\"perm_granger_sig_rate_a025_fdr\\\": 0, \\\"perm_granger_sig_rate_a050_raw\\\": 0.25, \\\"perm_granger_sig_rate_a050_fdr\\\": 0, \\\"perm_granger_sig_rate_a100_raw\\\": 0.75, \\\"perm_granger_sig_rate_a100_fdr\\\": 0.75, \\\"TY_sig_rate_a000_raw\\\": 0, \\\"TY_sig_rate_a000_fdr\\\": 0, \\\"TY_sig_rate_a025_raw\\\": 0.625, \\\"TY_sig_rate_a025_fdr\\\": 0.375, \\\"TY_sig_rate_a050_raw\\\": 0, \\\"TY_sig_rate_a050_fdr\\\": 0, \\\"TY_sig_rate_a100_raw\\\": 0.5938, \\\"TY_sig_rate_a100_fdr\\\": 0.5938, \\\"diff_sig_rate_a000_raw\\\": 0.5, \\\"diff_sig_rate_a000_fdr\\\": 0.375, \\\"mean_inter_method_kappa\\\": 0.185, \\\"naive_vs_perm_granger_flip_rate\\\": 0.5, \\\"naive_vs_TY_flip_rate\\\": 0.57, \\\"fdr_flips_perm_granger\\\": 4, \\\"pair_verdict_a100_perm_granger\\\": \\\"6/8\\\", \\\"pair_verdict_a100_TY\\\": \\\"6/8\\\", \\\"entropy_to_diversity_a100_all_5methods_sig\\\": true, \\\"fdr_correction\\\": \\\"BH q=0.05\\\"}}, \\\"gen_wiki_gpt2m_a025_s42\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-15T10:35:16.032Z\\\", \\\"updated_at\\\": \\\"2026-05-15T10:35:16.032Z\\\"}, \\\"alpha_sweep_a050_s44\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-15T06:58:50.550Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:58:50.550Z\\\"}, \\\"alpha_sweep_a025_s44\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-15T06:58:48.224Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:58:48.224Z\\\"}, \\\"alpha_sweep_a010_s42\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-14T21:52:19.712Z\\\", \\\"updated_at\\\": \\\"2026-05-15T05:19:49.211Z\\\"}, \\\"alpha_sweep_a025_s42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T21:04:05.726Z\\\", \\\"updated_at\\\": \\\"2026-05-15T05:13:22.207Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.2342, \\\"gen10_token_entropy\\\": 3.1017, \\\"gen0_ece\\\": 0.0108, \\\"gen10_ece\\\": 0.01942, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 22.32, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen10_distinct_1\\\": 0.0586, \\\"gen0_distinct_2\\\": 0.5178, \\\"gen10_distinct_2\\\": 0.2219, \\\"gen0_distinct_3\\\": 0.8127, \\\"gen10_distinct_3\\\": 0.3263, \\\"token_entropy_drift_pct\\\": -4.1, \\\"ece_drift_pct\\\": 79.7, \\\"perplexity_drift_pct\\\": -17.2, \\\"distinct_1_drift_pct\\\": -40.3, \\\"distinct_2_drift_pct\\\": -57.1, \\\"distinct_3_drift_pct\\\": -59.9}, \\\"notes\\\": \\\"实际磁盘路径为 results/alpha_sweep/a025_s42/（无 v3 后缀）。Registry ID 带 v3 是历史原因，数据已核实无误。\\\"}, \\\"method_ablation_phase1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T23:49:16.519Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:49:40.162Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"spurious_rate_5method\\\": 0.75, \\\"spurious_rate_4method\\\": 0.625, \\\"naive_sig\\\": \\\"16/16\\\", \\\"differenced_sig\\\": \\\"14/16\\\", \\\"threshold_sig\\\": \\\"9/16\\\", \\\"permutation_granger_sig\\\": \\\"6/16\\\", \\\"ty_sig\\\": \\\"4/16\\\", \\\"ty_power_T10\\\": \\\"0.05-0.20\\\", \\\"bh_fdr_flips\\\": 0}}, \\\"alpha_sweep_a000_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T19:01:37.470Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:42:18.748Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.2342, \\\"gen10_token_entropy\\\": 3.0693, \\\"gen0_ece\\\": 0.0108, \\\"gen10_ece\\\": 0.0164, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 21.11, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen10_distinct_1\\\": 0.0847, \\\"token_entropy_drift_pct\\\": -5.1, \\\"ece_drift_pct\\\": 51.7, \\\"perplexity_drift_pct\\\": -21.7, \\\"distinct_1_drift_pct\\\": -13.8, \\\"distinct_2_drift_pct\\\": -9.8, \\\"distinct_3_drift_pct\\\": -4.5, \\\"gen1_10_perplexity_drift_pct\\\": 9.4, \\\"gen1_10_distinct_1_drift_pct\\\": -13.1, \\\"gen1_10_entropy_drift_pct\\\": 2.6}}, \\\"alpha_sweep_a060_s42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T21:52:22.516Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:52:22.516Z\\\"}, \\\"plan_009_bootstrap_ty\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T21:33:04.665Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:33:27.106Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"T10_d0_type1\\\": 0.081, \\\"T10_d0_power\\\": 0.205, \\\"T10_d1_type1\\\": 0.047, \\\"T10_d1_power\\\": 0.09, \\\"T10_dadapt_type1\\\": 0.052, \\\"T10_dadapt_power\\\": 0.05, \\\"T20_d0_power\\\": 0.409, \\\"T20_d1_power\\\": 0.172, \\\"T30_d0_power\\\": 0.606, \\\"T30_d1_power\\\": 0.283}}, \\\"alpha_sweep_a025_s42_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T19:25:52.094Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:04:20.474Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"alpha_sweep_a025_s42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T19:01:39.527Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:25:38.905Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_v4_rep44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T07:48:52.613Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:03:57.571Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_rep44\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T05:12:15.033Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:43:02.575Z\\\", \\\"metrics\\\": {\\\"gen10_token_entropy\\\": 1.2205, \\\"gen10_ece\\\": 0.4237, \\\"gen10_perplexity\\\": 1033.16, \\\"gen10_distinct_1\\\": 0.0731, \\\"gen10_distinct_2\\\": 0.3637, \\\"gen10_distinct_3\\\": 0.6075}}, \\\"mvp_v4_rep45\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T13:41:26.286Z\\\", \\\"updated_at\\\": \\\"2026-05-14T17:58:00.661Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gen0_ppl\\\": 26.9, \\\"gen10_ppl\\\": 1016.2, \\\"gen0_entropy\\\": 3.234, \\\"gen10_entropy\\\": 1.315, \\\"gen0_ece\\\": 0.011, \\\"gen10_ece\\\": 0.417}}, \\\"mvp_v4_rep43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T07:48:50.161Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:44:15.786Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_v4_rep42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T07:29:48.857Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:44:11.839Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_v3_rep43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T06:25:42.195Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:48:01.316Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_v3_rep42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T06:25:39.728Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:47:59.908Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_v2_rep43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T05:38:10.434Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:25:28.345Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_v2_rep42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T05:38:05.054Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:25:27.286Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_v2_rep44\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T05:38:10.762Z\\\", \\\"updated_at\\\": \\\"2026-05-14T05:38:10.762Z\\\"}, \\\"mvp_rep43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T05:12:14.237Z\\\", \\\"updated_at\\\": \\\"2026-05-14T05:37:18.575Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_rep42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T05:12:13.930Z\\\", \\\"updated_at\\\": \\\"2026-05-14T05:37:17.438Z\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"count\\\": 34, \\\"total\\\": 34, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0721}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"alpha_sweep_a050_s43\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T06:58:45.880Z\", \"updated_at\": \"2026-05-15T17:40:27.311Z\"}, \"alpha_sweep_a025_s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T06:58:43.090Z\", \"updated_at\": \"2026-05-15T17:39:43.623Z\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.09833, \"distinct_2\": 0.5132, \"distinct_3\": 0.8057, \"effective_rank\": 46.61, \"mauve\": 0.03351}, \"gen10\": {\"token_entropy\": 3.0723, \"ece\": 0.02146, \"perplexity\": 21.899, \"distinct_1\": 0.05849, \"distinct_2\": 0.2236, \"distinct_3\": 0.333, \"effective_rank\": 45.37, \"mauve\": 0.01871}, \"drift_pct\": {\"token_entropy\": -5, \"ece\": 98.6, \"perplexity\": -18.7, \"distinct_1\": -40.5, \"distinct_2\": -56.4, \"distinct_3\": -58.7, \"effective_rank\": -2.7, \"mauve\": -44.2}}, \"conclusion\": \"success\"}, \"gen_wiki_gpt2m_a100_s42_v3\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T12:07:20.050Z\", \"updated_at\": \"2026-05-15T15:30:24.087Z\", \"metrics\": {\"progress\": \"gen 4/10 (generating synthetic text), ~45%\"}}, \"alpha_sweep_a075_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:52:17.315Z\", \"updated_at\": \"2026-05-15T13:29:46.421Z\", \"metrics\": {\"progress\": \"11/11 gen (complete)\", \"gen0_token_entropy\": 3.234, \"gen10_token_entropy\": 2.337, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.2063, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 76.03, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0661, \"gen0_distinct_2\": 0.5178, \"gen10_distinct_2\": 0.3037, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.5011, \"token_entropy_drift_pct\": -27.7, \"ece_drift_pct\": 1809.5, \"perplexity_drift_pct\": 182.1, \"distinct_1_drift_pct\": -32.7, \"distinct_2_drift_pct\": -41.3, \"distinct_3_drift_pct\": -38.4, \"granger_ece_to_d1_p_fdr\": 0.046, \"granger_ece_to_d2_p_fdr\": 0.046, \"granger_entropy_to_d2_p_fdr\": 0.048, \"granger_entropy_to_d1_p_fdr\": 0.054, \"granger_fdr_sig_count\": \"3/8\", \"consensus_robust_pairs\": \"11/16\", \"xcorr_entropy_d1_lag\": 2, \"xcorr_entropy_d1_r\": 0.973}, \"conclusion\": \"success\"}, \"alpha_sweep_a050_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:52:15.427Z\", \"updated_at\": \"2026-05-15T13:17:48.134Z\", \"metrics\": {\"progress\": \"11/11 gen (complete)\", \"gen0_token_entropy\": 3.234, \"gen10_token_entropy\": 2.632, \"gen0_ece\": 0.011, \"gen10_ece\": 0.102, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 32.64, \"gen0_distinct_1\": 0.098, \"gen10_distinct_1\": 0.062, \"gen0_distinct_2\": 0.518, \"gen10_distinct_2\": 0.251, \"gen0_distinct_3\": 0.813, \"gen10_distinct_3\": 0.387, \"token_entropy_drift_pct\": -18.6, \"ece_drift_pct\": 842.8, \"perplexity_drift_pct\": 21.1, \"distinct_1_drift_pct\": -37.3, \"distinct_2_drift_pct\": -51.5, \"distinct_3_drift_pct\": -52.4, \"granger_entropy_to_d1_p_raw\": 0.095, \"granger_entropy_to_d2_p_raw\": 0.097, \"granger_ece_to_d1_p_raw\": 0.019, \"granger_ece_to_d2_p_raw\": 0.039, \"granger_fdr_note\": \"4 tests within alpha=0.50; BH FDR threshold rank1=0.0125, rank2=0.025 → 0/4 FDR-sig at q=0.05. Raw p pattern (ECE < entropy) is qualitative signal only.\", \"d024_non_monotonic\": true, \"d024_ece_vs_entropy_note\": \"ECE raw p < entropy raw p at α=0.50 (0.019 vs 0.095 at 5000 perms), 0/4 FDR-sig; regime switch hypothesis pending α=0.75 confirmation\"}, \"conclusion\": \"success\"}, \"plan_006_s43\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-14T23:31:37.257Z\", \"updated_at\": \"2026-05-15T12:21:51.003Z\"}, \"plan_006_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T23:31:35.454Z\", \"updated_at\": \"2026-05-15T12:17:14.093Z\", \"metrics\": {\"progress\": \"18/20 gen (gen_0-17 complete, gen_18-20 timeout)\", \"gen0_token_entropy\": 3.2342, \"gen17_token_entropy\": 1.1819, \"gen0_ece\": 0.0108, \"gen17_ece\": 0.4454, \"gen0_perplexity\": 26.95, \"gen17_perplexity\": 3367.66, \"gen0_distinct_1\": 0.0982, \"gen17_distinct_1\": 0.0756, \"gen0_distinct_2\": 0.5178, \"gen17_distinct_2\": 0.3617, \"gen0_distinct_3\": 0.8127, \"gen17_distinct_3\": 0.5865, \"token_entropy_drift_pct_gen0_17\": -63.4, \"distinct_1_drift_pct_gen0_17\": -23, \"distinct_2_drift_pct_gen0_17\": -30.1, \"distinct_3_drift_pct_gen0_17\": -27.8, \"ece_drift_pct_gen0_17\": 4024, \"ppl_drift_pct_gen0_17\": 12395, \"phase1_rapid_collapse\": \"gen0-5\", \"phase2_apparent_plateau\": \"gen5-12\", \"phase3_secondary_decline\": \"gen13-17\", \"phase3_d2_decline_pct\": -5.8, \"phase3_d3_decline_pct\": -6.9, \"diversity_saturated_at_gen\": 5, \"diversity_secondary_decline_at_gen\": 13, \"perplexity_saturated\": false}, \"conclusion\": \"failed\", \"notes\": \"gen_0-17 complete (T=18). 三相 collapse: Phase1 急速崩塌 gen0-5 (d1 -20.6%, entropy -63.8%), Phase2 表观稳态 gen5-12 (diversity <0.3% 变化, perplexity 仍+167%), Phase3 二次衰退 gen13-17 (d2 -5.8%, d3 -6.9%). Perplexity 未饱和 (26.95→3367.66, +12395%). T=18 vs T=10: 新增 diversity 二次衰退在 T=10 window 不可见. TY power 预估 ~0.28-0.41 (vs T=10 的 0.05-0.21).\"}, \"plan_006_s42_resume\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T11:55:26.236Z\", \"updated_at\": \"2026-05-15T12:10:54.859Z\", \"conclusion\": \"killed\", \"notes\": \"D034 决定不恢复。T=18 数据已足够（超出 T=15 目标）。原 plan_006_s42 gen_0-17 数据可用于 power analysis + supplementary。\"}, \"gen_wiki_gpt2m_a100_s42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T12:02:06.478Z\", \"updated_at\": \"2026-05-15T12:04:50.741Z\", \"conclusion\": \"killed\"}, \"gen_wiki_gpt2m_a100_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T10:35:18.700Z\", \"updated_at\": \"2026-05-15T12:01:58.523Z\", \"conclusion\": \"killed\"}, \"method_ablation_phase2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T08:58:35.270Z\", \"updated_at\": \"2026-05-15T11:07:42.688Z\", \"conclusion\": \"success\", \"metrics\": {\"n_panel_rows\": 56, \"n_alphas\": 4, \"alphas\": [0, 0.25, 0.5, 1], \"naive_sig_rate_overall\": 1, \"perm_granger_sig_rate_a000_raw\": 0, \"perm_granger_sig_rate_a000_fdr\": 0, \"perm_granger_sig_rate_a025_raw\": 0.25, \"perm_granger_sig_rate_a025_fdr\": 0, \"perm_granger_sig_rate_a050_raw\": 0.25, \"perm_granger_sig_rate_a050_fdr\": 0, \"perm_granger_sig_rate_a100_raw\": 0.75, \"perm_granger_sig_rate_a100_fdr\": 0.75, \"TY_sig_rate_a000_raw\": 0, \"TY_sig_rate_a000_fdr\": 0, \"TY_sig_rate_a025_raw\": 0.625, \"TY_sig_rate_a025_fdr\": 0.375, \"TY_sig_rate_a050_raw\": 0, \"TY_sig_rate_a050_fdr\": 0, \"TY_sig_rate_a100_raw\": 0.5938, \"TY_sig_rate_a100_fdr\": 0.5938, \"diff_sig_rate_a000_raw\": 0.5, \"diff_sig_rate_a000_fdr\": 0.375, \"mean_inter_method_kappa\": 0.185, \"naive_vs_perm_granger_flip_rate\": 0.5, \"naive_vs_TY_flip_rate\": 0.57, \"fdr_flips_perm_granger\": 4, \"pair_verdict_a100_perm_granger\": \"6/8\", \"pair_verdict_a100_TY\": \"6/8\", \"entropy_to_diversity_a100_all_5methods_sig\": true, \"fdr_correction\": \"BH q=0.05\"}}, \"gen_wiki_gpt2m_a025_s42\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-15T10:35:16.032Z\", \"updated_at\": \"2026-05-15T10:35:16.032Z\"}, \"alpha_sweep_a050_s44\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-15T06:58:50.550Z\", \"updated_at\": \"2026-05-15T06:58:50.550Z\"}, \"alpha_sweep_a025_s44\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-15T06:58:48.224Z\", \"updated_at\": \"2026-05-15T06:58:48.224Z\"}, \"alpha_sweep_a010_s42\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-14T21:52:19.712Z\", \"updated_at\": \"2026-05-15T05:19:49.211Z\"}, \"alpha_sweep_a025_s42_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:04:05.726Z\", \"updated_at\": \"2026-05-15T05:13:22.207Z\", \"conclusion\": \"success\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.1017, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.01942, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 22.32, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0586, \"gen0_distinct_2\": 0.5178, \"gen10_distinct_2\": 0.2219, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.3263, \"token_entropy_drift_pct\": -4.1, \"ece_drift_pct\": 79.7, \"perplexity_drift_pct\": -17.2, \"distinct_1_drift_pct\": -40.3, \"distinct_2_drift_pct\": -57.1, \"distinct_3_drift_pct\": -59.9}, \"notes\": \"实际磁盘路径为 results/alpha_sweep/a025_s42/（无 v3 后缀）。Registry ID 带 v3 是历史原因，数据已核实无误。\"}, \"method_ablation_phase1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T23:49:16.519Z\", \"updated_at\": \"2026-05-14T23:49:40.162Z\", \"conclusion\": \"success\", \"metrics\": {\"spurious_rate_5method\": 0.75, \"spurious_rate_4method\": 0.625, \"naive_sig\": \"16/16\", \"differenced_sig\": \"14/16\", \"threshold_sig\": \"9/16\", \"permutation_granger_sig\": \"6/16\", \"ty_sig\": \"4/16\", \"ty_power_T10\": \"0.05-0.20\", \"bh_fdr_flips\": 0}}, \"alpha_sweep_a000_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T19:01:37.470Z\", \"updated_at\": \"2026-05-14T23:42:18.748Z\", \"conclusion\": \"success\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.0693, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.0164, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 21.11, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0847, \"token_entropy_drift_pct\": -5.1, \"ece_drift_pct\": 51.7, \"perplexity_drift_pct\": -21.7, \"distinct_1_drift_pct\": -13.8, \"distinct_2_drift_pct\": -9.8, \"distinct_3_drift_pct\": -4.5, \"gen1_10_perplexity_drift_pct\": 9.4, \"gen1_10_distinct_1_drift_pct\": -13.1, \"gen1_10_entropy_drift_pct\": 2.6}}, \"alpha_sweep_a060_s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T21:52:22.516Z\", \"updated_at\": \"2026-05-14T21:52:22.516Z\"}, \"plan_009_bootstrap_ty\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:33:04.665Z\", \"updated_at\": \"2026-05-14T21:33:27.106Z\", \"conclusion\": \"success\", \"metrics\": {\"T10_d0_type1\": 0.081, \"T10_d0_power\": 0.205, \"T10_d1_type1\": 0.047, \"T10_d1_power\": 0.09, \"T10_dadapt_type1\": 0.052, \"T10_dadapt_power\": 0.05, \"T20_d0_power\": 0.409, \"T20_d1_power\": 0.172, \"T30_d0_power\": 0.606, \"T30_d1_power\": 0.283}}, \"alpha_sweep_a025_s42_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T19:25:52.094Z\", \"updated_at\": \"2026-05-14T21:04:20.474Z\", \"conclusion\": \"failed\"}, \"alpha_sweep_a025_s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T19:01:39.527Z\", \"updated_at\": \"2026-05-14T19:25:38.905Z\", \"conclusion\": \"killed\"}, \"mvp_v4_rep44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T07:48:52.613Z\", \"updated_at\": \"2026-05-14T19:03:57.571Z\", \"conclusion\": \"success\"}, \"mvp_rep44\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T05:12:15.033Z\", \"updated_at\": \"2026-05-14T18:43:02.575Z\", \"metrics\": {\"gen10_token_entropy\": 1.2205, \"gen10_ece\": 0.4237, \"gen10_perplexity\": 1033.16, \"gen10_distinct_1\": 0.0731, \"gen10_distinct_2\": 0.3637, \"gen10_distinct_3\": 0.6075}}, \"mvp_v4_rep45\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T13:41:26.286Z\", \"updated_at\": \"2026-05-14T17:58:00.661Z\", \"conclusion\": \"success\", \"metrics\": {\"gen0_ppl\": 26.9, \"gen10_ppl\": 1016.2, \"gen0_entropy\": 3.234, \"gen10_entropy\": 1.315, \"gen0_ece\": 0.011, \"gen10_ece\": 0.417}}, \"mvp_v4_rep43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T07:48:50.161Z\", \"updated_at\": \"2026-05-14T13:44:15.786Z\", \"conclusion\": \"success\"}, \"mvp_v4_rep42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T07:29:48.857Z\", \"updated_at\": \"2026-05-14T13:44:11.839Z\", \"conclusion\": \"success\"}, \"mvp_v3_rep43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:25:42.195Z\", \"updated_at\": \"2026-05-14T06:48:01.316Z\", \"conclusion\": \"failed\"}, \"mvp_v3_rep42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:25:39.728Z\", \"updated_at\": \"2026-05-14T06:47:59.908Z\", \"conclusion\": \"failed\"}, \"mvp_v2_rep43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T05:38:10.434Z\", \"updated_at\": \"2026-05-14T06:25:28.345Z\", \"conclusion\": \"killed\"}, \"mvp_v2_rep42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T05:38:05.054Z\", \"updated_at\": \"2026-05-14T06:25:27.286Z\", \"conclusion\": \"killed\"}, \"mvp_v2_rep44\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T05:38:10.762Z\", \"updated_at\": \"2026-05-14T05:38:10.762Z\"}, \"mvp_rep43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T05:12:14.237Z\", \"updated_at\": \"2026-05-14T05:37:18.575Z\", \"conclusion\": \"killed\"}, \"mvp_rep42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T05:12:13.930Z\", \"updated_at\": \"2026-05-14T05:37:17.438Z\", \"conclusion\": \"killed\"}}, \"count\": 34, \"total\": 34, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0721}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a5037024-b7de-4b60-bf78-0261a5cb122b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T20:59:00.779Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01SNYjvYqvk84sXUH2Kr7GsC`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2b281c32-607d-4cbd-b22b-fd5e8d9fbd12",
+  "isSidechain": false,
+  "requestId": "req_011Cb52SziEahQKE56kcuZsM",
+  "type": "assistant",
+  "uuid": "ddcb0265-f9c1-4072-b984-8d92e2e06c3c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JACEcST6pVktHwapMPC4dz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1479,
+      "cache_read_input_tokens": 36832,
+      "output_tokens": 240,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1479,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 240,
+          "cache_read_input_tokens": 36832,
+          "cache_creation_input_tokens": 1479,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1479
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T20:59:00.831Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_017AKbA1ZGq3aLnEFG8Dk7aT`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ddcb0265-f9c1-4072-b984-8d92e2e06c3c",
+  "isSidechain": false,
+  "requestId": "req_011Cb52SziEahQKE56kcuZsM",
+  "type": "assistant",
+  "uuid": "82ddbcea-203f-4b2a-af13-fcd67255554f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JACEcST6pVktHwapMPC4dz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1479,
+      "cache_read_input_tokens": 36832,
+      "output_tokens": 240,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1479,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 240,
+          "cache_read_input_tokens": 36832,
+          "cache_creation_input_tokens": 1479,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1479
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #8。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单**仅** cuda:0, cuda:1 @ westd-19828，Director 指令也不能越界（2026-04-24 事故） - α=0.75 vs α=1.0 consensus 数字**禁止直接对比**——前…",
+  "leafUuid": "82ddbcea-203f-4b2a-af13-fcd67255554f",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify GPU experiments and prepare multi-seed consensus analysis",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4"
+}
+```
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T20:59:03.168Z_
+
+<details><summary>↩ Tool result · `toolu_017dDK1wNgcYqqFbrKZpEzEq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 2, \"results\": [{\"exp_id\": \"gen_wiki_gpt2m_a100_s42_v3\", \"success\": true, \"actions\": [\"Job still running (pid=117632)\"]}, {\"exp_id\": \"alpha_sweep_a050_s43\", \"success\": true, \"actions\": [\"Job still running (pid=134860)\"]}]}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8d4dcd31-13af-4088-a1c4-65665deced8d",
+  "isSidechain": false,
+  "promptId": "f112dfb9-ab3d-4c03-9a94-56b7de5dfab1",
+  "type": "user",
+  "uuid": "b4c4a20b-b46d-4e94-ac85-5ea356ce5d7c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 2, \\\"results\\\": [{\\\"exp_id\\\": \\\"gen_wiki_gpt2m_a100_s42_v3\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=117632)\\\"]}, {\\\"exp_id\\\": \\\"alpha_sweep_a050_s43\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=134860)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 2, \"results\": [{\"exp_id\": \"gen_wiki_gpt2m_a100_s42_v3\", \"success\": true, \"actions\": [\"Job still running (pid=117632)\"]}, {\"exp_id\": \"alpha_sweep_a050_s43\", \"success\": true, \"actions\": [\"Job still running (pid=134860)\"]}]}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8d4dcd31-13af-4088-a1c4-65665deced8d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T20:59:03.189Z_
+
+<details><summary>↩ Tool result · `toolu_01SNYjvYqvk84sXUH2Kr7GsC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| alpha_sweep_a050_s43 | — | — | — | — |\\n| gen_wiki_gpt2m_a100_s42_v3 | — | — | — | — |\\n\\n## 待处理\\n- plan_006_s43（排队等待 GPU）\\n- gen_wiki_gpt2m_a025_s42（排队等待 GPU）\\n- alpha_sweep_a050_s44（排队等待 GPU）\\n- alpha_sweep_a025_s44（排队等待 GPU）\\n- alpha_sweep_a010_s42（排队等待 GPU）\\n- alpha_sweep_a060_s42（准备中）\\n- alpha_sweep_a025_s42_v2（准备中）\\n- alpha_sweep_a025_s42（准备中）\\n- mvp_rep44（准备中）\\n- mvp_v2_rep44（准备中）\\n\\n## 近期结论\\n- **alpha_sweep_a025_s43** (success): —\\n- **alpha_sweep_a075_s42** (success): —\\n  [cross_alpha_v6_analysis](/api/workspace-files/projects/distrib_canary_collapse/artifacts/alpha_sweep_a075_s42/report/cross_alpha_v6_analysis.md)\\n- **alpha_sweep_a050_s42** (success): —\\n  [alpha_sweep_a050_s42_final_analysis](/api/workspace-files/projects/distrib_canary_collapse/artifacts/alpha_sweep_a050_s42/report/alpha_sweep_a050_s42_final_analysis.md)\\n\\n## 趋势\\n成功 12 / 负向 0 / 失败 3 / 共 22\\n累计 GPU: 8.4h\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-19828: 空闲 cuda:0, cuda:1\\n\\n## 告警\\n- mvp_rep42: 已被终止 — unknown\\n- mvp_rep43: 已被终止 — unknown\\n- mvp_v2_rep42: 已被终止 — unknown\\n- mvp_v2_rep43: 已被终止 — unknown\\n- mvp_v3_rep42: 训练失败 — unknown\\n- mvp_v3_rep43: 训练失败 — unknown\\n- plan_006_s42: 训练失败 — unknown\\n- gen_wiki_gpt2m_a100_s42: 已被终止 — unknown\\n- plan_006_s42_resume: 已被终止 — unknown\\n- gen_wiki_gpt2m_a100_s42_v2: 已被终止 — unknown\\n\", \"total_chars\": 1437, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ddcb0265-f9c1-4072-b984-8d92e2e06c3c",
+  "isSidechain": false,
+  "promptId": "f112dfb9-ab3d-4c03-9a94-56b7de5dfab1",
+  "type": "user",
+  "uuid": "f7cfd149-8489-4608-bd86-236890e2cc9f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| alpha_sweep_a050_s43 | — | — | — | — |\\\\n| gen_wiki_gpt2m_a100_s42_v3 | — | — | — | — |\\\\n\\\\n## 待处理\\\\n- plan_006_s43（排队等待 GPU）\\\\n- gen_wiki_gpt2m_a025_s42（排队等待 GPU）\\\\n- alpha_sweep_a050_s44（排队等待 GPU）\\\\n- alpha_sweep_a025_s44（排队等待 GPU）\\\\n- alpha_sweep_a010_s42（排队等待 GPU）\\\\n- alpha_sweep_a060_s42（准备中）\\\\n- alpha_sweep_a025_s42_v2（准备中）\\\\n- alpha_sweep_a025_s42（准备中）\\\\n- mvp_rep44（准备中）\\\\n- mvp_v2_rep44（准备中）\\\\n\\\\n## 近期结论\\\\n- **alpha_sweep_a025_s43** (success): —\\\\n- **alpha_sweep_a075_s42** (success): —\\\\n  [cross_alpha_v6_analysis](/api/workspace-files/projects/distrib_canary_collapse/artifacts/alpha_sweep_a075_s42/report/cross_alpha_v6_analysis.md)\\\\n- **alpha_sweep_a050_s42** (success): —\\\\n  [alpha_sweep_a050_s42_final_analysis](/api/workspace-files/projects/distrib_canary_collapse/artifacts/alpha_sweep_a050_s42/report/alpha_sweep_a050_s42_final_analysis.md)\\\\n\\\\n## 趋势\\\\n成功 12 / 负向 0 / 失败 3 / 共 22\\\\n累计 GPU: 8.4h\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-19828: 空闲 cuda:0, cuda:1\\\\n\\\\n## 告警\\\\n- mvp_rep42: 已被终止 — unknown\\\\n- mvp_rep43: 已被终止 — unknown\\\\n- mvp_v2_rep42: 已被终止 — unknown\\\\n- mvp_v2_rep43: 已被终止 — unknown\\\\n- mvp_v3_rep42: 训练失败 — unknown\\\\n- mvp_v3_rep43: 训练失败 — unknown\\\\n- plan_006_s42: 训练失败 — unknown\\\\n- gen_wiki_gpt2m_a100_s42: 已被终止 — unknown\\\\n- plan_006_s42_resume: 已被终止 — unknown\\\\n- gen_wiki_gpt2m_a100_s42_v2: 已被终止 — unknown\\\\n\\\", \\\"total_chars\\\": 1437, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| alpha_sweep_a050_s43 | — | — | — | — |\\n| gen_wiki_gpt2m_a100_s42_v3 | — | — | — | — |\\n\\n## 待处理\\n- plan_006_s43（排队等待 GPU）\\n- gen_wiki_gpt2m_a025_s42（排队等待 GPU）\\n- alpha_sweep_a050_s44（排队等待 GPU）\\n- alpha_sweep_a025_s44（排队等待 GPU）\\n- alpha_sweep_a010_s42（排队等待 GPU）\\n- alpha_sweep_a060_s42（准备中）\\n- alpha_sweep_a025_s42_v2（准备中）\\n- alpha_sweep_a025_s42（准备中）\\n- mvp_rep44（准备中）\\n- mvp_v2_rep44（准备中）\\n\\n## 近期结论\\n- **alpha_sweep_a025_s43** (success): —\\n- **alpha_sweep_a075_s42** (success): —\\n  [cross_alpha_v6_analysis](/api/workspace-files/projects/distrib_canary_collapse/artifacts/alpha_sweep_a075_s42/report/cross_alpha_v6_analysis.md)\\n- **alpha_sweep_a050_s42** (success): —\\n  [alpha_sweep_a050_s42_final_analysis](/api/workspace-files/projects/distrib_canary_collapse/artifacts/alpha_sweep_a050_s42/report/alpha_sweep_a050_s42_final_analysis.md)\\n\\n## 趋势\\n成功 12 / 负向 0 / 失败 3 / 共 22\\n累计 GPU: 8.4h\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-19828: 空闲 cuda:0, cuda:1\\n\\n## 告警\\n- mvp_rep42: 已被终止 — unknown\\n- mvp_rep43: 已被终止 — unknown\\n- mvp_v2_rep42: 已被终止 — unknown\\n- mvp_v2_rep43: 已被终止 — unknown\\n- mvp_v3_rep42: 训练失败 — unknown\\n- mvp_v3_rep43: 训练失败 — unknown\\n- plan_006_s42: 训练失败 — unknown\\n- gen_wiki_gpt2m_a100_s42: 已被终止 — unknown\\n- plan_006_s42_resume: 已被终止 — unknown\\n- gen_wiki_gpt2m_a100_s42_v2: 已被终止 — unknown\\n\", \"total_chars\": 1437, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ddcb0265-f9c1-4072-b984-8d92e2e06c3c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T20:59:03.211Z_
+
+<details><summary>↩ Tool result · `toolu_017AKbA1ZGq3aLnEFG8Dk7aT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/ROADMAP.md\", \"content\": \"# distrib_canary_collapse — Research Dashboard\\n\\n> 最后更新: 2026-05-15 20:58 UTC | 更新原因: Loop #9 启动：修正 Paper Agent 状态为 Step 5，清理已完成任务\\n\\n## 核心方向\\n**D027 reframe**: 以方法论陷阱 + 多方法共识框架为主线，canary prediction 为系统性 case study。暴露 lead-lag 分析中的方法选择敏感性（Claim 3 领衔）、伪回归陷阱（Claim 1 case study）、regime-dependent validity（Claim 2）。详见 paper_framing.md。\\n\\n**Title direction**: \\\"Method Matters: Pitfalls and a Multi-Method Consensus Framework for Lead-Lag Analysis in Iterative Training Collapse\\\"\\n\\n## 当前进展\\n- **阶段**: Research + 审稿进行中 + Paper Agent Step 5 (Iterative Refinement) 运行中\\n- **Target**: **EMNLP 2026 main track**（D043，用户明确指定）\\n- **Reviewer 评估**: Weak Accept (4-5/10)，→ Accept 需 multi-seed + generalization + 共识框架 formalization\\n- **证据强度**: Claim 3 (方法敏感性) > Claim 2 (regime map) > Claim 1 (case study)\\n- **累计 GPU**: ~13h\\n- **共识框架 formalization**: ✅ 完成（classify_robust + sensitivity 9配置 + FPR/FNR 表），Reviewer PASS\\n- **D029-D030 FDR 修复**: ✅ 全链路验证通过\\n- **D040 论文结构终版**: ✅ 5图重组 + Sequential Filtering Pipeline + FPR/FNR 校准表\\n- **D042 升级**: diagnostic → diagnostic + prescriptive（\\\"empirically calibrated\\\"，限定\\\"on reference extremes\\\"）\\n- **Paper Agent**: Step 5 Iterative Refinement 运行中（max 5 轮 Reviewer 迭代），8/8 章节初稿已完成\\n- **D026 multi-seed 进度**: ✅a025_s43 (diversity 跨 seed <1.3pp, PASS) → 🔄a050_s43 → a025_s44 → a050_s44\\n\\n## 正在运行\\n| 实验 | GPU | 角色 | 备注 |\\n|------|-----|------|------|\\n| alpha_sweep_a050_s43 | cuda:1 | D026 multi-seed #2 | α=0.50 seed=43 |\\n| gen_wiki_gpt2m_a100_s42_v3 | cuda:0 | cross-arch 验证 | GPT-2-medium, WA→Accept 关键跳板 |\\n\\n## 近期任务\\n- [x] **F-value 审计完成** — undiff F=200-501, diff F=612-2615 确认，fig_differencing_dmax 已修正并验证\\n- [ ] **a050_s43 完成** → 分析 α=0.50 seed=43 drift + 与 s42 对比 → cuda:1 提交 a025_s44\\n- [ ] **gpt2m_v3 完成** → 分析 GPT-2-medium cross-arch 结果 → cuda:0 提交 gen_wiki_gpt2m_a025_s42\\n- [ ] **Paper Agent Step 5 收敛** → 决定是否 submit_paper_to_review\\n- [ ] **D026 全部 4 个 multi-seed 完成** → 补充低 α funnel 数据 → 移除 C001 single-seed caveat\\n- [ ] **multi-seed 确认 Phase 3** → Claim 3 Results 末尾加 observation window sensitivity 段落 (~150 词)\\n\\n## WA → Accept 路径\\n1. ✅ 共识框架 formalization → key table + 正面贡献\\n2. ✅ D029-D030 FDR 修复全链路\\n3. ✅ D040 论文结构终版 + D042 prescriptive 升级\\n4. 🔄 Multi-seed (~16h GPU) → 非单调性 error bars + Claim 3 跨 seed 稳定性\\n5. 🔄 GPT-2-medium (~5h GPU) → 方法论陷阱跨架构普遍性\\n6. ✅ consensus_workflow.pdf (Fig 5) + regime_map_fdr.pdf (Fig 1) — Reviewer PASS\\n\\n## GPU 预算\\n- **分配**: 2× GPU (westd-19828, cuda:0/cuda:1)\\n- **cuda:0**: gen_wiki_gpt2m_a100_s42_v3 运行中\\n- **cuda:1**: alpha_sweep_a050_s43 运行中\\n- **剩余 P0**: multi-seed 剩余 ~12h + GPT-2-medium α=0.25 ~3h ≈ 15h\\n- **P2 可选**: Pythia-1.4B ~8h\\n\\n## 硬约束提醒\\n- GPU 白名单: 仅 cuda:0, cuda:1 (westd-19828)\\n- α=0.75 vs α=1.0 consensus 数字禁止直接对比（D038 #27）\\n- token_entropy→perplexity @ α=0.75 不可引用为 robust evidence（D017/D038 #28）\\n- FNR=0 声明必须附 D017 独立证据（D041 循环论证风险）\\n- FPR/FNR 维度不对称: FPR=method-only α=0.0, FNR=method×seed α=1.0（D041）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D043 | 2026-05-15 | D043: 投稿目标确定为 EMNLP 2026 main track（用户指定），替代之前暂定的  | — |\\n| D042 | 2026-05-15 | D042: 论文主线升级为 diagnostic + prescriptive——\\\"empirica | consensus_framework, D017 |\\n| D041 | 2026-05-15 | D041: FPR/FNR 校准表论文呈现约束——反循环论证 + 维度不对称声明 | consensus_framework, D017 |\\n| D040 | 2026-05-15 | D040: 论文结构终版确定——5图重组 + Sequential Filtering Pipeli | plan_006_s42, consensus_framework |\\n| D039 | 2026-05-15 | D039: 论文结构框架初步确定——5 图方案 + 章节组织，待 Reviewer 深度讨论后可能调 | plan_006_s42, alpha_sweep_a075_s42 |\\n| D038 | 2026-05-15 | 新增约束：α=0.75 vs α=1.0 consensus 数字不可直接对比（标准不同）；entr | alpha_sweep_a075_s42, D017 |\\n| D037 | 2026-05-15 | Claim 1 scope 扩展至 α≥0.75（附 single-seed caveat C001 | alpha_sweep_a075_s42, D026_multi_seed |\\n| D036 | 2026-05-15 | 反转 cuda:1 优先级：a025_s43 先于 plan_006_s43 | alpha_sweep_a075_s42, alpha_sweep_a025_s43, plan_006_s43 |\\n| D035 | 2026-05-15 | Phase 3 二次衰退不纳入 Core Claims，定位为 Discussion seconda | plan_006_s42, plan_006_s43 |\\n| D034 | 2026-05-15 | plan_006_s42 不恢复，T=18 数据足够（超出 T=15 目标），GPU 0 转给 GP | plan_006_s42, gen_wiki_gpt2m_a100_s42 |\\n\\n\\n\\n\", \"lines\": 76}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "82ddbcea-203f-4b2a-af13-fcd67255554f",
+  "isSidechain": false,
+  "promptId": "f112dfb9-ab3d-4c03-9a94-56b7de5dfab1",
+  "type": "user",
+  "uuid": "531495ce-66ff-4600-9b9c-854263ed4281",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/ROADMAP.md\\\", \\\"content\\\": \\\"# distrib_canary_collapse — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 20:58 UTC | 更新原因: Loop #9 启动：修正 Paper Agent 状态为 Step 5，清理已完成任务\\\\n\\\\n## 核心方向\\\\n**D027 reframe**: 以方法论陷阱 + 多方法共识框架为主线，canary prediction 为系统性 case study。暴露 lead-lag 分析中的方法选择敏感性（Claim 3 领衔）、伪回归陷阱（Claim 1 case study）、regime-dependent validity（Claim 2）。详见 paper_framing.md。\\\\n\\\\n**Title direction**: \\\\\\\"Method Matters: Pitfalls and a Multi-Method Consensus Framework for Lead-Lag Analysis in Iterative Training Collapse\\\\\\\"\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research + 审稿进行中 + Paper Agent Step 5 (Iterative Refinement) 运行中\\\\n- **Target**: **EMNLP 2026 main track**（D043，用户明确指定）\\\\n- **Reviewer 评估**: Weak Accept (4-5/10)，→ Accept 需 multi-seed + generalization + 共识框架 formalization\\\\n- **证据强度**: Claim 3 (方法敏感性) > Claim 2 (regime map) > Claim 1 (case study)\\\\n- **累计 GPU**: ~13h\\\\n- **共识框架 formalization**: ✅ 完成（classify_robust + sensitivity 9配置 + FPR/FNR 表），Reviewer PASS\\\\n- **D029-D030 FDR 修复**: ✅ 全链路验证通过\\\\n- **D040 论文结构终版**: ✅ 5图重组 + Sequential Filtering Pipeline + FPR/FNR 校准表\\\\n- **D042 升级**: diagnostic → diagnostic + prescriptive（\\\\\\\"empirically calibrated\\\\\\\"，限定\\\\\\\"on reference extremes\\\\\\\"）\\\\n- **Paper Agent**: Step 5 Iterative Refinement 运行中（max 5 轮 Reviewer 迭代），8/8 章节初稿已完成\\\\n- **D026 multi-seed 进度**: ✅a025_s43 (diversity 跨 seed <1.3pp, PASS) → 🔄a050_s43 → a025_s44 → a050_s44\\\\n\\\\n## 正在运行\\\\n| 实验 | GPU | 角色 | 备注 |\\\\n|------|-----|------|------|\\\\n| alpha_sweep_a050_s43 | cuda:1 | D026 multi-seed #2 | α=0.50 seed=43 |\\\\n| gen_wiki_gpt2m_a100_s42_v3 | cuda:0 | cross-arch 验证 | GPT-2-medium, WA→Accept 关键跳板 |\\\\n\\\\n## 近期任务\\\\n- [x] **F-value 审计完成** — undiff F=200-501, diff F=612-2615 确认，fig_differencing_dmax 已修正并验证\\\\n- [ ] **a050_s43 完成** → 分析 α=0.50 seed=43 drift + 与 s42 对比 → cuda:1 提交 a025_s44\\\\n- [ ] **gpt2m_v3 完成** → 分析 GPT-2-medium cross-arch 结果 → cuda:0 提交 gen_wiki_gpt2m_a025_s42\\\\n- [ ] **Paper Agent Step 5 收敛** → 决定是否 submit_paper_to_review\\\\n- [ ] **D026 全部 4 个 multi-seed 完成** → 补充低 α funnel 数据 → 移除 C001 single-seed caveat\\\\n- [ ] **multi-seed 确认 Phase 3** → Claim 3 Results 末尾加 observation window sensitivity 段落 (~150 词)\\\\n\\\\n## WA → Accept 路径\\\\n1. ✅ 共识框架 formalization → key table + 正面贡献\\\\n2. ✅ D029-D030 FDR 修复全链路\\\\n3. ✅ D040 论文结构终版 + D042 prescriptive 升级\\\\n4. 🔄 Multi-seed (~16h GPU) → 非单调性 error bars + Claim 3 跨 seed 稳定性\\\\n5. 🔄 GPT-2-medium (~5h GPU) → 方法论陷阱跨架构普遍性\\\\n6. ✅ consensus_workflow.pdf (Fig 5) + regime_map_fdr.pdf (Fig 1) — Reviewer PASS\\\\n\\\\n## GPU 预算\\\\n- **分配**: 2× GPU (westd-19828, cuda:0/cuda:1)\\\\n- **cuda:0**: gen_wiki_gpt2m_a100_s42_v3 运行中\\\\n- **cuda:1**: alpha_sweep_a050_s43 运行中\\\\n- **剩余 P0**: multi-seed 剩余 ~12h + GPT-2-medium α=0.25 ~3h ≈ 15h\\\\n- **P2 可选**: Pythia-1.4B ~8h\\\\n\\\\n## 硬约束提醒\\\\n- GPU 白名单: 仅 cuda:0, cuda:1 (westd-19828)\\\\n- α=0.75 vs α=1.0 consensus 数字禁止直接对比（D038 #27）\\\\n- token_entropy→perplexity @ α=0.75 不可引用为 robust evidence（D017/D038 #28）\\\\n- FNR=0 声明必须附 D017 独立证据（D041 循环论证风险）\\\\n- FPR/FNR 维度不对称: FPR=method-only α=0.0, FNR=method×seed α=1.0（D041）\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D043 | 2026-05-15 | D043: 投稿目标确定为 EMNLP 2026 main track（用户指定），替代之前暂定的  | — |\\\\n| D042 | 2026-05-15 | D042: 论文主线升级为 diagnostic + prescriptive——\\\\\\\"empirica | consensus_framework, D017 |\\\\n| D041 | 2026-05-15 | D041: FPR/FNR 校准表论文呈现约束——反循环论证 + 维度不对称声明 | consensus_framework, D017 |\\\\n| D040 | 2026-05-15 | D040: 论文结构终版确定——5图重组 + Sequential Filtering Pipeli | plan_006_s42, consensus_framework |\\\\n| D039 | 2026-05-15 | D039: 论文结构框架初步确定——5 图方案 + 章节组织，待 Reviewer 深度讨论后可能调 | plan_006_s42, alpha_sweep_a075_s42 |\\\\n| D038 | 2026-05-15 | 新增约束：α=0.75 vs α=1.0 consensus 数字不可直接对比（标准不同）；entr | alpha_sweep_a075_s42, D017 |\\\\n| D037 | 2026-05-15 | Claim 1 scope 扩展至 α≥0.75（附 single-seed caveat C001 | alpha_sweep_a075_s42, D026_multi_seed |\\\\n| D036 | 2026-05-15 | 反转 cuda:1 优先级：a025_s43 先于 plan_006_s43 | alpha_sweep_a075_s42, alpha_sweep_a025_s43, plan_006_s43 |\\\\n| D035 | 2026-05-15 | Phase 3 二次衰退不纳入 Core Claims，定位为 Discussion seconda | plan_006_s42, plan_006_s43 |\\\\n| D034 | 2026-05-15 | plan_006_s42 不恢复，T=18 数据足够（超出 T=15 目标），GPU 0 转给 GP | plan_006_s42, gen_wiki_gpt2m_a100_s42 |\\\\n\\\\n\\\\n\\\\n\\\", \\\"lines\\\": 76}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/ROADMAP.md\", \"content\": \"# distrib_canary_collapse — Research Dashboard\\n\\n> 最后更新: 2026-05-15 20:58 UTC | 更新原因: Loop #9 启动：修正 Paper Agent 状态为 Step 5，清理已完成任务\\n\\n## 核心方向\\n**D027 reframe**: 以方法论陷阱 + 多方法共识框架为主线，canary prediction 为系统性 case study。暴露 lead-lag 分析中的方法选择敏感性（Claim 3 领衔）、伪回归陷阱（Claim 1 case study）、regime-dependent validity（Claim 2）。详见 paper_framing.md。\\n\\n**Title direction**: \\\"Method Matters: Pitfalls and a Multi-Method Consensus Framework for Lead-Lag Analysis in Iterative Training Collapse\\\"\\n\\n## 当前进展\\n- **阶段**: Research + 审稿进行中 + Paper Agent Step 5 (Iterative Refinement) 运行中\\n- **Target**: **EMNLP 2026 main track**（D043，用户明确指定）\\n- **Reviewer 评估**: Weak Accept (4-5/10)，→ Accept 需 multi-seed + generalization + 共识框架 formalization\\n- **证据强度**: Claim 3 (方法敏感性) > Claim 2 (regime map) > Claim 1 (case study)\\n- **累计 GPU**: ~13h\\n- **共识框架 formalization**: ✅ 完成（classify_robust + sensitivity 9配置 + FPR/FNR 表），Reviewer PASS\\n- **D029-D030 FDR 修复**: ✅ 全链路验证通过\\n- **D040 论文结构终版**: ✅ 5图重组 + Sequential Filtering Pipeline + FPR/FNR 校准表\\n- **D042 升级**: diagnostic → diagnostic + prescriptive（\\\"empirically calibrated\\\"，限定\\\"on reference extremes\\\"）\\n- **Paper Agent**: Step 5 Iterative Refinement 运行中（max 5 轮 Reviewer 迭代），8/8 章节初稿已完成\\n- **D026 multi-seed 进度**: ✅a025_s43 (diversity 跨 seed <1.3pp, PASS) → 🔄a050_s43 → a025_s44 → a050_s44\\n\\n## 正在运行\\n| 实验 | GPU | 角色 | 备注 |\\n|------|-----|------|------|\\n| alpha_sweep_a050_s43 | cuda:1 | D026 multi-seed #2 | α=0.50 seed=43 |\\n| gen_wiki_gpt2m_a100_s42_v3 | cuda:0 | cross-arch 验证 | GPT-2-medium, WA→Accept 关键跳板 |\\n\\n## 近期任务\\n- [x] **F-value 审计完成** — undiff F=200-501, diff F=612-2615 确认，fig_differencing_dmax 已修正并验证\\n- [ ] **a050_s43 完成** → 分析 α=0.50 seed=43 drift + 与 s42 对比 → cuda:1 提交 a025_s44\\n- [ ] **gpt2m_v3 完成** → 分析 GPT-2-medium cross-arch 结果 → cuda:0 提交 gen_wiki_gpt2m_a025_s42\\n- [ ] **Paper Agent Step 5 收敛** → 决定是否 submit_paper_to_review\\n- [ ] **D026 全部 4 个 multi-seed 完成** → 补充低 α funnel 数据 → 移除 C001 single-seed caveat\\n- [ ] **multi-seed 确认 Phase 3** → Claim 3 Results 末尾加 observation window sensitivity 段落 (~150 词)\\n\\n## WA → Accept 路径\\n1. ✅ 共识框架 formalization → key table + 正面贡献\\n2. ✅ D029-D030 FDR 修复全链路\\n3. ✅ D040 论文结构终版 + D042 prescriptive 升级\\n4. 🔄 Multi-seed (~16h GPU) → 非单调性 error bars + Claim 3 跨 seed 稳定性\\n5. 🔄 GPT-2-medium (~5h GPU) → 方法论陷阱跨架构普遍性\\n6. ✅ consensus_workflow.pdf (Fig 5) + regime_map_fdr.pdf (Fig 1) — Reviewer PASS\\n\\n## GPU 预算\\n- **分配**: 2× GPU (westd-19828, cuda:0/cuda:1)\\n- **cuda:0**: gen_wiki_gpt2m_a100_s42_v3 运行中\\n- **cuda:1**: alpha_sweep_a050_s43 运行中\\n- **剩余 P0**: multi-seed 剩余 ~12h + GPT-2-medium α=0.25 ~3h ≈ 15h\\n- **P2 可选**: Pythia-1.4B ~8h\\n\\n## 硬约束提醒\\n- GPU 白名单: 仅 cuda:0, cuda:1 (westd-19828)\\n- α=0.75 vs α=1.0 consensus 数字禁止直接对比（D038 #27）\\n- token_entropy→perplexity @ α=0.75 不可引用为 robust evidence（D017/D038 #28）\\n- FNR=0 声明必须附 D017 独立证据（D041 循环论证风险）\\n- FPR/FNR 维度不对称: FPR=method-only α=0.0, FNR=method×seed α=1.0（D041）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D043 | 2026-05-15 | D043: 投稿目标确定为 EMNLP 2026 main track（用户指定），替代之前暂定的  | — |\\n| D042 | 2026-05-15 | D042: 论文主线升级为 diagnostic + prescriptive——\\\"empirica | consensus_framework, D017 |\\n| D041 | 2026-05-15 | D041: FPR/FNR 校准表论文呈现约束——反循环论证 + 维度不对称声明 | consensus_framework, D017 |\\n| D040 | 2026-05-15 | D040: 论文结构终版确定——5图重组 + Sequential Filtering Pipeli | plan_006_s42, consensus_framework |\\n| D039 | 2026-05-15 | D039: 论文结构框架初步确定——5 图方案 + 章节组织，待 Reviewer 深度讨论后可能调 | plan_006_s42, alpha_sweep_a075_s42 |\\n| D038 | 2026-05-15 | 新增约束：α=0.75 vs α=1.0 consensus 数字不可直接对比（标准不同）；entr | alpha_sweep_a075_s42, D017 |\\n| D037 | 2026-05-15 | Claim 1 scope 扩展至 α≥0.75（附 single-seed caveat C001 | alpha_sweep_a075_s42, D026_multi_seed |\\n| D036 | 2026-05-15 | 反转 cuda:1 优先级：a025_s43 先于 plan_006_s43 | alpha_sweep_a075_s42, alpha_sweep_a025_s43, plan_006_s43 |\\n| D035 | 2026-05-15 | Phase 3 二次衰退不纳入 Core Claims，定位为 Discussion seconda | plan_006_s42, plan_006_s43 |\\n| D034 | 2026-05-15 | plan_006_s42 不恢复，T=18 数据足够（超出 T=15 目标），GPU 0 转给 GP | plan_006_s42, gen_wiki_gpt2m_a100_s42 |\\n\\n\\n\\n\", \"lines\": 76}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "82ddbcea-203f-4b2a-af13-fcd67255554f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-15T20:59:26.872Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Session-start initialization complete. Let me summarize what I've found:
+
+**Registry status:**
+- RUNNING: 2 experiments
+  - `alpha_sweep_a050_s43` (cuda:1) — still running (pid=134860)
+  - `gen_wiki_gpt2m_a100_s42_v3` (cuda:0) — still running (pid=117632)
+- QUEUED: 5 experiments (plan_006_s43, gen_wiki_gpt2m_a025_s42, alpha_sweep_a050_s44, alpha_sweep_a025_s44, alpha_sweep_a010_s42)
+
+
+- PREPARING: 4 more experiments staged and ready to go
+- DONE: many completed experiments
+
+There are 2 active cron jobs still running. The report.md is outdated — it shows both GPUs as idle when they're actually both in use, and most of the recent conclusions section is empty. The roadmap looks current though, tracking Paper Agent Step 5 as active.
+
+Both GPUs are fully occupied which is efficient, but the worker pool sitting at zero technically violates the rule about keeping it below 2. That said, both running experiments are cron-monitored and there's no obvious CPU-bound work waiting. I should check what could be parallelized and review the resource-saturation skill before updating the Director, since that's part of the protocol. I need to check the resource-saturation skill to understand the protocol, then update the outdated report.md which still shows both GPUs as idle when they're actually running experiments, and finally report the current status to Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "531495ce-66ff-4600-9b9c-854263ed4281",
+  "isSidechain": false,
+  "requestId": "req_011Cb52TUFSQ87RwJ6ZgEmWF",
+  "type": "assistant",
+  "uuid": "8e84cfd2-2b68-400d-96d2-cb31790e663c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WYbYpzihBYgYphi6MtXbKX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10226,
+      "cache_read_input_tokens": 38311,
+      "output_tokens": 1073,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10226,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1073,
+          "cache_read_input_tokens": 38311,
+          "cache_creation_input_tokens": 10226,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10226
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-15T20:59:27.233Z_
+
+初始化完成。Registry 确认 2 个 RUNNING（两个 PID 均存活），5 个 QUEUED，cron 同步正常。report.md 内容过时需更新。
+
+现在读 resource-saturation skill 评估资源饱和度，再向 Director 汇报。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8e84cfd2-2b68-400d-96d2-cb31790e663c",
+  "isSidechain": false,
+  "requestId": "req_011Cb52TUFSQ87RwJ6ZgEmWF",
+  "type": "assistant",
+  "uuid": "c3ec89e8-2502-4461-8705-061870dbc5dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WYbYpzihBYgYphi6MtXbKX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10226,
+      "cache_read_input_tokens": 38311,
+      "output_tokens": 1073,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10226,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1073,
+          "cache_read_input_tokens": 38311,
+          "cache_creation_input_tokens": 10226,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10226
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T20:59:28.218Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01WFDkD8f2vtqgiPurV6uXhz`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c3ec89e8-2502-4461-8705-061870dbc5dc",
+  "isSidechain": false,
+  "requestId": "req_011Cb52TUFSQ87RwJ6ZgEmWF",
+  "type": "assistant",
+  "uuid": "8b59ec0b-2b79-4ba9-bce4-a14c49172a0b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WYbYpzihBYgYphi6MtXbKX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10226,
+      "cache_read_input_tokens": 38311,
+      "output_tokens": 1073,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10226,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1073,
+          "cache_read_input_tokens": 38311,
+          "cache_creation_input_tokens": 10226,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10226
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T20:59:28.234Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01WFDkD8f2vtqgiPurV6uXhz`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8b59ec0b-2b79-4ba9-bce4-a14c49172a0b",
+  "isSidechain": false,
+  "promptId": "f112dfb9-ab3d-4c03-9a94-56b7de5dfab1",
+  "type": "user",
+  "uuid": "e6e91c18-2fd2-4244-9098-b1d7e4c34945",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d.",
+  "sourceToolAssistantUUID": "8b59ec0b-2b79-4ba9-bce4-a14c49172a0b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #8。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单**仅** cuda:0, cuda:1 @ westd-19828，Director 指令也不能越界（2026-04-24 事故） - α=0.75 vs α=1.0 consensus 数字**禁止直接对比**——前…",
+  "leafUuid": "e6e91c18-2fd2-4244-9098-b1d7e4c34945",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify GPU experiments and prepare multi-seed consensus analysis",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4"
+}
+```
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T20:59:31.218Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01CAt1bjwypqB9sdmrRzVEV6`</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6e91c18-2fd2-4244-9098-b1d7e4c34945",
+  "isSidechain": false,
+  "requestId": "req_011Cb52VKDmqP8AroYacUYQW",
+  "type": "assistant",
+  "uuid": "805f846c-7ceb-4981-a896-e013339c7623",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y4xqMHf59y2fLG1u42RwsD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1143,
+      "cache_read_input_tokens": 48537,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1143,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 48537,
+          "cache_creation_input_tokens": 1143,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1143
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T20:59:31.247Z_
+
+<details><summary>↩ Tool result · `toolu_01CAt1bjwypqB9sdmrRzVEV6`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "805f846c-7ceb-4981-a896-e013339c7623",
+  "isSidechain": false,
+  "promptId": "f112dfb9-ab3d-4c03-9a94-56b7de5dfab1",
+  "type": "user",
+  "uuid": "b2132820-cf96-4ea4-bd6d-dd2fb43700c6",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 24,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "805f846c-7ceb-4981-a896-e013339c7623",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T20:59:33.792Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_013Rrt1r5sjGJrZjgcNbmXKE`</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b2132820-cf96-4ea4-bd6d-dd2fb43700c6",
+  "isSidechain": false,
+  "requestId": "req_011Cb52VYA9RKV4fBVX6D3Kn",
+  "type": "assistant",
+  "uuid": "045debf7-e9eb-4e50-84d8-3646accf965b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UQ5rE5UjhRGmN6L4d2y4m3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 111,
+      "cache_read_input_tokens": 49680,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 111,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 49680,
+          "cache_creation_input_tokens": 111,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 111
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T20:59:34.044Z_
+
+<details><summary>↩ Tool result · `toolu_013Rrt1r5sjGJrZjgcNbmXKE`</summary>
+
+```text
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "045debf7-e9eb-4e50-84d8-3646accf965b",
+  "isSidechain": false,
+  "promptId": "f112dfb9-ab3d-4c03-9a94-56b7de5dfab1",
+  "type": "user",
+  "uuid": "5770cb73-19c3-42bf-9f38-7d104019cce2",
+  "toolUseResult": {
+    "filenames": [
+      "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+    ],
+    "durationMs": 231,
+    "numFiles": 1,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "045debf7-e9eb-4e50-84d8-3646accf965b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32 · 2026-05-15T20:59:34.050Z_
+
+```json
+{
+  "parentUuid": "5770cb73-19c3-42bf-9f38-7d104019cce2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "58beee76-24c1-4307-88dc-7a5cf1d9001b",
+  "timestamp": "2026-05-15T20:59:34.050Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T20:59:36.732Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01XcbV4HcnLnJW5R4TVaMMdv`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "58beee76-24c1-4307-88dc-7a5cf1d9001b",
+  "isSidechain": false,
+  "requestId": "req_011Cb52Vk2mkz7a1xwqyjnaz",
+  "type": "assistant",
+  "uuid": "205f8f60-d58c-4e8a-8485-b0024bb1fec7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Ny3ocwteEHuKgMkeD96zP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 215,
+      "cache_read_input_tokens": 49791,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 215,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 49791,
+          "cache_creation_input_tokens": 215,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 215
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T20:59:36.743Z_
+
+<details><summary>↩ Tool result · `toolu_01XcbV4HcnLnJW5R4TVaMMdv`</summary>
+
+```text
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "205f8f60-d58c-4e8a-8485-b0024bb1fec7",
+  "isSidechain": false,
+  "promptId": "f112dfb9-ab3d-4c03-9a94-56b7de5dfab1",
+  "type": "user",
+  "uuid": "fcada22b-a257-49f4-96f2-47f9b1063c85",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+      "content": "---\nname: resource-saturation\ndescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\nalways: false\nroles:\n  - director\n  - agent\n---\n\n# 资源饱和度自检（硬约束）\n\n## A. GPU 分配率检查\n\n调 `get_project_resource_usage(project)` 看:\n- 已分配给本项目的 GPU 总数和具体卡号\n- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n- 分配了但没跑的 GPU 清单 ⚠️\n\n任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n- 派 Worker 铺 dry-run / 下一批实验代码准备\n- 铺 ablation（从 experiment-matrix 空白格子里挑）\n- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n\n**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n\n## B. GPU 效率检查\n\n调 `get_gpu_health(server)`:\n- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n\n## C. 非 GPU 任务并行\n\nGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n- 下一批实验的数据集下载 / 预处理 / fingerprint\n- 下一批实验的代码准备 / dry-run / 环境配置\n- 论文文献调研 / related work 检索\n- 已完成实验的 log 深度分析 / metric 聚合\n- 论文章节起草\n- 代码 review / refactor\n\n**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n\n## D. 汇报格式\n\n向 Director 汇报时开头必须带资源声明行:\n\n    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n",
+      "numLines": 50,
+      "startLine": 1,
+      "totalLines": 50
+    }
+  },
+  "sourceToolAssistantUUID": "205f8f60-d58c-4e8a-8485-b0024bb1fec7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-15T21:00:07.732Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the resource-saturation skill. Let me assess:
+
+**A. GPU 分配率**: 2 GPU 分配, 2 GPU 在跑 (cuda:0 gen_wiki_gpt2m_a100_s42_v3, cuda:1 alpha_sweep_a050_s43) — OK, no idle GPUs
+
+**B. GPU 效率**: Both processes still running per cron reconcile — would need get_gpu_health to check utilization, but cron confirms they're alive
+
+**C. 非 GPU 任务并行**: Worker 池 = 0, which is < 2 = 失职！I need to spin up CPU Workers for parallel work. 
+
+So what should I tackle? I could work on report.md summaries for the experiments that are just showing dashes, prepare the next batch of code, or do some literature research. Looking at the report, a025_s43, a075_s42, and a050_s42 all need proper conclusions written up. I could handle the report updates myself as a lightweight task, or spin up workers to prep environments for queued experiments and run literature scans.
+
+Actually, thinking about this more strategically — the Paper Agent is in Step 5 doing iterative refinement. The real bottleneck is timing: when a050_s43 finishes on cuda:1, I need a025_s44 ready to go immediately, and same for cuda:0 when gpt2m completes. Having the code and data prepared means no idle GPU time. I should also check whether literature linkage was actually completed for the finished experiments since the handoff doesn't explicitly mention it. Let me be practical about this: I'll update report.md myself since it's quick, then spawn workers to handle the CPU-intensive prep work and literature tasks. to satisfy the ≥2 Worker pool requirement
+3. Report to Director
+
+But wait — what specific Workers would add value? Let me think about what's genuinely useful:
+- The queued experiments (a025_s44, a050_s44, etc.) — do they need code preparation? Probably the code is the same alpha_sweep pipeline with different parameters, so no preparation needed. The bottleneck is purely GPU.
+- Literature scan — could be useful for paper strengthening
+- Report.md enrichment — I can do this myself
+
+Hmm, actually the key question is: is there genuine CPU work that would advance the project, or would I be spawning Workers just to meet the ≥2 rule? The spirit of the rule is "don't be idle when there's work to do."
+
+Looking at the ROADMAP tasks, Paper Agent Step 5 is running while the multi-seed and GPT-2-medium experiments are blocked waiting for GPU. For CPU work, I could prepare experiment scripts for the queued jobs to ensure they launch immediately when resources free up, run a literature review to strengthen the paper, or do a comprehensive cross-experiment analysis aggregating all alpha sweep results into publishable tables.
+
+Given the EMNLP deadline is about a month away, paper writing and experiment completion are the critical path. Since Paper Agent Step 5 is already handling the writing, I should focus on getting experiment data analyzed and ready for integration. I'll spawn one Worker to aggregate all completed alpha sweep experiments into summary tables suitable for the paper, and another to validate and prepare the queued experiment configs so they're ready to submit immediately. I need to load the tools for spawning workers and reporting status back to the Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fcada22b-a257-49f4-96f2-47f9b1063c85",
+  "isSidechain": false,
+  "requestId": "req_011Cb52VwkiZv1tK3nuPQwqn",
+  "type": "assistant",
+  "uuid": "72532b04-6a63-4570-9229-d2602d2c7914",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016qNfcPCSsAsQ7FEiVum95o",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 50006,
+      "output_tokens": 1415,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1415,
+          "cache_read_input_tokens": 50006,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-15T21:00:08.270Z_
+
+资源饱和度评估完成。GPU 2/2 在跑，但 Worker 池 = 0 违反 L1 #4。需要派 CPU Worker 并行推进。
+
+让我加载 spawn_worker 工具并评估可派发的 CPU 任务。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "72532b04-6a63-4570-9229-d2602d2c7914",
+  "isSidechain": false,
+  "requestId": "req_011Cb52VwkiZv1tK3nuPQwqn",
+  "type": "assistant",
+  "uuid": "128c0a78-0f0d-4bf1-8aee-7194f84f562c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016qNfcPCSsAsQ7FEiVum95o",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 50006,
+      "output_tokens": 1415,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1415,
+          "cache_read_input_tokens": 50006,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T21:00:09.704Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VwsSbXabGScpoc2u7yXBq9`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__get_project_resource_usage",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "128c0a78-0f0d-4bf1-8aee-7194f84f562c",
+  "isSidechain": false,
+  "requestId": "req_011Cb52VwkiZv1tK3nuPQwqn",
+  "type": "assistant",
+  "uuid": "75184e78-0ab8-4355-95f9-25ca6c381f14",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016qNfcPCSsAsQ7FEiVum95o",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 50006,
+      "output_tokens": 1415,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1415,
+          "cache_read_input_tokens": 50006,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T21:00:09.711Z_
+
+<details><summary>↩ Tool result · `toolu_01VwsSbXabGScpoc2u7yXBq9`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__spawn_worker"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_project_resource_usage"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "75184e78-0ab8-4355-95f9-25ca6c381f14",
+  "isSidechain": false,
+  "promptId": "f112dfb9-ab3d-4c03-9a94-56b7de5dfab1",
+  "type": "user",
+  "uuid": "f7b1004a-3c35-4c80-8973-61db76150eea",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__get_project_resource_usage"
+    ],
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__get_project_resource_usage",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "75184e78-0ab8-4355-95f9-25ca6c381f14",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T21:00:13.877Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage · `toolu_01XCxiMyQqakKnZ1oZnRkHmR`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f7b1004a-3c35-4c80-8973-61db76150eea",
+  "isSidechain": false,
+  "requestId": "req_011Cb52YNhi6cTTs6aDmQsz4",
+  "type": "assistant",
+  "uuid": "a2be7ee2-90a2-4efd-855e-17e698d66db2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DYBaneU2XCg22TeijmsKMd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3408,
+      "cache_read_input_tokens": 51153,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3408,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 51153,
+          "cache_creation_input_tokens": 3408,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3408
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T21:00:13.991Z_
+
+<details><summary>↩ Tool result · `toolu_01XCxiMyQqakKnZ1oZnRkHmR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"westd-19828\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"westd-19828\", \"gpu_id\": \"cuda:1\"}], \"actually_running_gpus\": [{\"server\": \"westd-19828\", \"gpu_id\": \"cuda:1\", \"exp_id\": \"alpha_sweep_a050_s43\"}, {\"server\": \"westd-19828\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"gen_wiki_gpt2m_a100_s42_v3\"}], \"allocated_but_idle\": [], \"running_experiments\": [{\"exp_id\": \"alpha_sweep_a050_s43\", \"gpus\": [\"cuda:1\"], \"util_avg\": null}, {\"exp_id\": \"gen_wiki_gpt2m_a100_s42_v3\", \"gpus\": [\"cuda:0\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 0, \"gpu_tasks\": 0, \"cpu_tasks\": 0, \"details\": []}, \"summary\": \"分配 2 张, 实际跑 2 张 | Worker 0 (GPU 0 / CPU 0)\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a2be7ee2-90a2-4efd-855e-17e698d66db2",
+  "isSidechain": false,
+  "promptId": "f112dfb9-ab3d-4c03-9a94-56b7de5dfab1",
+  "type": "user",
+  "uuid": "e6aad28a-9bec-4f3a-a205-94be7c67df2c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [{\\\"server\\\": \\\"westd-19828\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}, {\\\"server\\\": \\\"westd-19828\\\", \\\"gpu_id\\\": \\\"cuda:1\\\"}], \\\"actually_running_gpus\\\": [{\\\"server\\\": \\\"westd-19828\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"alpha_sweep_a050_s43\\\"}, {\\\"server\\\": \\\"westd-19828\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"gen_wiki_gpt2m_a100_s42_v3\\\"}], \\\"allocated_but_idle\\\": [], \\\"running_experiments\\\": [{\\\"exp_id\\\": \\\"alpha_sweep_a050_s43\\\", \\\"gpus\\\": [\\\"cuda:1\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"gen_wiki_gpt2m_a100_s42_v3\\\", \\\"gpus\\\": [\\\"cuda:0\\\"], \\\"util_avg\\\": null}], \\\"worker_pool\\\": {\\\"total\\\": 0, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 0, \\\"details\\\": []}, \\\"summary\\\": \\\"分配 2 张, 实际跑 2 张 | Worker 0 (GPU 0 / CPU 0)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"westd-19828\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"westd-19828\", \"gpu_id\": \"cuda:1\"}], \"actually_running_gpus\": [{\"server\": \"westd-19828\", \"gpu_id\": \"cuda:1\", \"exp_id\": \"alpha_sweep_a050_s43\"}, {\"server\": \"westd-19828\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"gen_wiki_gpt2m_a100_s42_v3\"}], \"allocated_but_idle\": [], \"running_experiments\": [{\"exp_id\": \"alpha_sweep_a050_s43\", \"gpus\": [\"cuda:1\"], \"util_avg\": null}, {\"exp_id\": \"gen_wiki_gpt2m_a100_s42_v3\", \"gpus\": [\"cuda:0\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 0, \"gpu_tasks\": 0, \"cpu_tasks\": 0, \"details\": []}, \"summary\": \"分配 2 张, 实际跑 2 张 | Worker 0 (GPU 0 / CPU 0)\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a2be7ee2-90a2-4efd-855e-17e698d66db2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-15T21:00:54.401Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. GPU 2/2 in use, no idle GPUs. Worker pool = 0.
+
+Now I need to identify useful CPU tasks to spawn Workers for. Let me think about what's genuinely valuable:
+
+1. **Cross-experiment analysis / paper table preparation**: Aggregate all alpha sweep results (a000, a025, a050, a075, a100) into a comprehensive comparison table suitable for the paper. This is directly useful for Paper Agent Step 5.
+
+2. **Literature linkage for recently completed experiments**: The on-experiment-done skill says to do literature linkage, but looking at the handoff, I'm not sure if this was done for a025_s43 and a075_s42. 
+
+
+3. **Prepare next experiment configs**: Ensure queued experiments are ready to launch instantly when GPU frees. But alpha_sweep experiments probably use the same script with different params, so there might not be much to prepare.
+
+4. **Check Paper Agent Step 5 status**: This is running separately, but I could check its progress.
+
+Actually, given the EMNLP deadline around mid-June, the critical path is clear: complete the multi-seed and GPT-2-medium experiments on GPU, then focus on paper writing convergence. The most impactful CPU work would be aggregating the alpha sweep results and verifying literature linkage was completed for the recent runs.
+
+I'll spawn two workers in parallel: one to create a unified analysis table across all alpha points with drift percentages and Granger significance metrics that's ready for publication, and another to scan for any recent papers on model collapse or lead-lag dynamics that might affect the narrative. I need to check if the project already has a literature_map.yaml file since the experiment-done skill references it, then prepare focused prompts for each worker. I'm reviewing the registry data to see what experiments are actually complete—I have four full alpha points with seed 42 (a000, a025, a050, a075) plus a100 from the earlier ablation, and a025_s43 giving me my first multi-seed comparison. For the cross-alpha analysis, I should focus on building a unified table that shows all the drift metrics across these alpha values so the paper has concrete numbers to work with.
+
+I'm also thinking about what parallel work makes sense right now—the cross-alpha aggregation directly feeds into the main tables, and I could prepare the queued experiment launch commands so they're ready to submit instantly once the GPU frees up, rather than spending time spawning a worker to do it then.
+
+Actually, the alpha_sweep experiments are just parameterized versions of the same script, so there's no real preparation bottleneck there—it's just waiting on GPU availability. Let me refocus on two concrete tasks: the cross-alpha aggregation analysis using registry and SSH access, and a literature scan to find new model collapse papers. For the literature work, I need to check if web search is available in the tool groups—looking at what's offered (ssh, wandb, autodl, git, knowledge, registry, feishu), I don't see web search built in, so I'd need to explicitly add that capability. Actually, there's a paper-research skill designed for this kind of work, so I should use that task type instead and spawn two workers: one for the cross-alpha analysis and one for the literature scan.
+
+Now I'll write out the prompts for both workers and get them running, then report back to the Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6aad28a-9bec-4f3a-a205-94be7c67df2c",
+  "isSidechain": false,
+  "requestId": "req_011Cb52Ygne4oExhgCUFKpcN",
+  "type": "assistant",
+  "uuid": "9dcc1757-69dd-4e02-b579-f9bd19b4152d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ev5wC7ptt9zrCKvfhAR7XZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 455,
+      "cache_read_input_tokens": 54561,
+      "output_tokens": 3570,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 455,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3570,
+          "cache_read_input_tokens": 54561,
+          "cache_creation_input_tokens": 455,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 455
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-15T21:00:54.524Z_
+
+GPU 2/2 饱和，Worker 池 = 0。需要派 CPU Worker 并行推进。识别两个有价值的 CPU 任务：
+1. 跨 alpha 综合分析聚合（直接喂给论文 Table/Figure）
+2. 文献扫描更新（EMNLP 投稿前强化 related work）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9dcc1757-69dd-4e02-b579-f9bd19b4152d",
+  "isSidechain": false,
+  "requestId": "req_011Cb52Ygne4oExhgCUFKpcN",
+  "type": "assistant",
+  "uuid": "ffc90c7a-ffc3-4846-992a-23eff7e01bde",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ev5wC7ptt9zrCKvfhAR7XZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 455,
+      "cache_read_input_tokens": 54561,
+      "output_tokens": 3570,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 455,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3570,
+          "cache_read_input_tokens": 54561,
+          "cache_creation_input_tokens": 455,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 455
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T21:01:12.447Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_01GF7AT1EqdiqKYJbJKn9AnV`</summary>
+
+```json
+{
+  "task_type": "analysis:cross_alpha_aggregation",
+  "project": "distrib_canary_collapse",
+  "task_prompt": "## 任务：跨 Alpha 综合分析聚合\n\n你需要从 registry 和服务器原始结果中，聚合所有已完成的 alpha sweep 实验数据，产出一份论文级综合分析表。\n\n### 背景\n项目研究 iterative training collapse 中的方法论陷阱。核心实验是在不同 synthetic data mixing ratio (α) 下运行 10 代迭代训练，观测 diversity/calibration metrics 的 drift 和 lead-lag 因果关系。\n\n### 已完成实验（从 registry 读取最新数据）\n- alpha_sweep_a000_s42 (α=0.00, seed=42)\n- alpha_sweep_a025_s42_v3 (α=0.25, seed=42)\n- alpha_sweep_a025_s43 (α=0.25, seed=43) — multi-seed\n- alpha_sweep_a050_s42 (α=0.50, seed=42)\n- alpha_sweep_a075_s42 (α=0.75, seed=42)\n- method_ablation_phase1 / phase2 (含 α=1.0 数据)\n\n### 产出要求\n\n1. **Table 1: Drift Summary** — 每行一个 (α, seed)，列：token_entropy_drift%, ece_drift%, perplexity_drift%, distinct_1/2/3_drift%。最后一行加 α=1.0 baseline。\n\n2. **Table 2: Detectability by Alpha** — 每行一个 α 值，列：Granger FDR-sig count (如 \"3/8\")、raw p 最小值、consensus robust pairs、定性判断 (none/weak/moderate/strong)。\n\n3. **Table 3: Cross-seed Comparison** — α=0.25 的 s42 vs s43 对比，逐指标列出差异（绝对值和百分比），判断跨 seed 一致性。\n\n4. **Figure data: 5-point regime map** — α ∈ {0.00, 0.25, 0.50, 0.75, 1.00} 的 detectability 阶跃数据，JSON 格式，可直接用于 matplotlib 绘图。\n\n5. **Key findings summary** — 3-5 bullet points，引用具体数字，对齐论文 Claim 2 (regime map) 和 Claim 3 (方法敏感性)。\n\n### 操作步骤\n1. `read_registry(project=\"distrib_canary_collapse\")` 获取所有实验 metrics\n2. SSH 到 westd-19828 读取 `/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/` 下的详细结果文件（如有）\n3. 聚合、计算、写入分析报告\n\n### 服务器信息\n- 服务器：westd-19828\n- 工作目录：`/root/autodl-tmp/distrib_canary_collapse`\n- Python：`/root/miniconda3/bin/python`\n- 结果目录：`results/alpha_sweep/`\n\n### 产出文件\n将综合分析写入本地项目 artifacts 目录：\n`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/cross_alpha_aggregation/`\n\n产出：\n- `cross_alpha_summary.md` — 包含上述所有表格和 findings\n- `regime_map_data.json` — 5-point regime map 绘图数据\n\n完成后用 `register_artifact` 注册产出。",
+  "tool_groups": [
+    "ssh",
+    "knowledge",
+    "registry"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ffc90c7a-ffc3-4846-992a-23eff7e01bde",
+  "isSidechain": false,
+  "requestId": "req_011Cb52Ygne4oExhgCUFKpcN",
+  "type": "assistant",
+  "uuid": "f7902fbe-53cb-4efb-9c4e-5de5656363b8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ev5wC7ptt9zrCKvfhAR7XZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 455,
+      "cache_read_input_tokens": 54561,
+      "output_tokens": 3570,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 455,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3570,
+          "cache_read_input_tokens": 54561,
+          "cache_creation_input_tokens": 455,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 455
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T21:01:14.989Z_
+
+<details><summary>↩ Tool result · `toolu_01GF7AT1EqdiqKYJbJKn9AnV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_cross_alpha_aggregation_20260515T210112\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_cross_alpha_aggregation_20260515T210112.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_cross_alpha_aggregation_20260515T210112 started. Use get_worker_status('worker_analysis_cross_alpha_aggregation_20260515T210112') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f7902fbe-53cb-4efb-9c4e-5de5656363b8",
+  "isSidechain": false,
+  "promptId": "f112dfb9-ab3d-4c03-9a94-56b7de5dfab1",
+  "type": "user",
+  "uuid": "f124b82a-93c6-4ea6-a549-e1a4e2bd79fd",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_cross_alpha_aggregation_20260515T210112\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_cross_alpha_aggregation_20260515T210112.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_cross_alpha_aggregation_20260515T210112 started. Use get_worker_status('worker_analysis_cross_alpha_aggregation_20260515T210112') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_cross_alpha_aggregation_20260515T210112\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_cross_alpha_aggregation_20260515T210112.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_cross_alpha_aggregation_20260515T210112 started. Use get_worker_status('worker_analysis_cross_alpha_aggregation_20260515T210112') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f7902fbe-53cb-4efb-9c4e-5de5656363b8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T21:01:27.577Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_01ShEUQjVMyTJ2p89c1BToP6`</summary>
+
+```json
+{
+  "task_type": "research:literature-scan",
+  "project": "distrib_canary_collapse",
+  "task_prompt": "## 任务：文献扫描更新\n\n距 EMNLP 2026 投稿约 1 个月，需要检查近期（2026 年 3-5 月）是否有新的相关论文发表，可能影响我们的 novelty claim 或需要在 related work 中引用。\n\n### 项目背景\n论文标题方向：\"Method Matters: Pitfalls and a Multi-Method Consensus Framework for Lead-Lag Analysis in Iterative Training Collapse\"\n\n核心贡献：\n- Claim 1 (case study): 在 iterative training collapse 中，calibration metrics (ECE) 先于 diversity metrics 变化（canary 预测 diversity collapse，但非 model collapse）\n- Claim 2 (regime map): 因果关系强度随 synthetic data ratio (α) 非单调变化，存在 detectability 阶跃\n- Claim 3 (方法论陷阱，最强 claim): naive Granger causality 在 100% 情况下给出 spurious significance，多方法共识框架可过滤伪信号\n\n相关关键词：model collapse, iterative training, synthetic data, distributional shift, Granger causality time series, lead-lag analysis, calibration metrics, diversity metrics\n\n### 操作步骤\n1. 先读 `literature_map.yaml`（用 read_project_file）了解已有文献覆盖\n2. 用 WebSearch 搜索以下方向的近期论文（2026 年发表或 arXiv preprint）：\n   - \"model collapse\" OR \"iterative training collapse\" 2026\n   - \"synthetic data\" + \"distributional shift\" + \"iterative\" 2026\n   - \"Granger causality\" + \"deep learning\" OR \"language model\" 2026\n   - \"multi-method consensus\" + \"time series\" + \"causality\" 2026\n3. 对每篇找到的新论文，评估：\n   - 是否直接竞争（做了类似的方法论批判）\n   - 是否有我们应引用的新 baseline / 新发现\n   - 是否影响我们的 novelty claim\n4. 产出分析报告\n\n### 产出\n将文献扫描结果写入：\n`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/literature_scan_20260515/scan_report.md`\n\n格式：\n- **New Papers Found**: 每篇论文的标题、作者、发表时间、关键发现、与我们的关系 (competitor/complementary/background)\n- **Novelty Assessment**: 我们的三个 Claims 是否仍然 novel\n- **Action Items**: 需要在 related work 中新增引用的论文列表\n\n完成后用 `register_artifact` 注册产出。",
+  "tool_groups": [
+    "knowledge",
+    "registry"
+  ],
+  "tools": [
+    "WebSearch"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f124b82a-93c6-4ea6-a549-e1a4e2bd79fd",
+  "isSidechain": false,
+  "requestId": "req_011Cb52Ygne4oExhgCUFKpcN",
+  "type": "assistant",
+  "uuid": "d7247eeb-b81f-46ef-bab8-87b3143b76f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ev5wC7ptt9zrCKvfhAR7XZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 455,
+      "cache_read_input_tokens": 54561,
+      "output_tokens": 3570,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 455,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3570,
+          "cache_read_input_tokens": 54561,
+          "cache_creation_input_tokens": 455,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 455
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #8。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单**仅** cuda:0, cuda:1 @ westd-19828，Director 指令也不能越界（2026-04-24 事故） - α=0.75 vs α=1.0 consensus 数字**禁止直接对比**——前…",
+  "leafUuid": "d7247eeb-b81f-46ef-bab8-87b3143b76f7",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify GPU experiments and prepare multi-seed consensus analysis",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4"
+}
+```
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T21:01:29.801Z_
+
+<details><summary>↩ Tool result · `toolu_01ShEUQjVMyTJ2p89c1BToP6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_literature-scan_20260515T210127\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_research_literature-scan_20260515T210127.log\", \"setup_data\": {}, \"message\": \"Worker worker_research_literature-scan_20260515T210127 started. Use get_worker_status('worker_research_literature-scan_20260515T210127') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d7247eeb-b81f-46ef-bab8-87b3143b76f7",
+  "isSidechain": false,
+  "promptId": "f112dfb9-ab3d-4c03-9a94-56b7de5dfab1",
+  "type": "user",
+  "uuid": "3f20f525-dcae-4557-9282-fdd92a0f4f7a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_research_literature-scan_20260515T210127\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_research_literature-scan_20260515T210127.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_research_literature-scan_20260515T210127 started. Use get_worker_status('worker_research_literature-scan_20260515T210127') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_research_literature-scan_20260515T210127\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_research_literature-scan_20260515T210127.log\", \"setup_data\": {}, \"message\": \"Worker worker_research_literature-scan_20260515T210127 started. Use get_worker_status('worker_research_literature-scan_20260515T210127') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d7247eeb-b81f-46ef-bab8-87b3143b76f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-15T21:01:41.832Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both Workers spawned successfully. Now I need to report to Director. Let me compose the status report with the [资源] line.
+
+Current state:
+- GPU: 2/2 running (cuda:0 gen_wiki_gpt2m_a100_s42_v3, cuda:1 alpha_sweep_a050_s43)
+- Worker pool: 2 (0 GPU / 2 CPU) — analysis aggregation + literature scan
+- Paper Agent: Step 5 running
+- Crons: 2 active monitoring the 2 RUNNING experiments
+
+
+- 5 experiments queued waiting for GPU availability
+- Multi-seed progress tracking shows one completed, one actively running, two queued
+- Paper Agent has finished all chapter drafts and is now in iterative refinement phase
+
+Once a050_s43 finishes, I'll analyze the results and queue a025_s44 on the available GPU, and similarly when gpt2m_v3 completes, I'll submit the next experiment on the freed slot.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3f20f525-dcae-4557-9282-fdd92a0f4f7a",
+  "isSidechain": false,
+  "requestId": "req_011Cb52eGxqrnekUa7xb3ThK",
+  "type": "assistant",
+  "uuid": "9b33a574-51c1-4d3c-825f-1edf20f1c813",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RjUHjo9XkiwRvuBUVFmy9X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4012,
+      "cache_read_input_tokens": 55016,
+      "output_tokens": 975,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4012,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 975,
+          "cache_read_input_tokens": 55016,
+          "cache_creation_input_tokens": 4012,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4012
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-15T21:01:41.837Z_
+
+两个 CPU Worker 已派发。向 Director 汇报当前状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b33a574-51c1-4d3c-825f-1edf20f1c813",
+  "isSidechain": false,
+  "requestId": "req_011Cb52eGxqrnekUa7xb3ThK",
+  "type": "assistant",
+  "uuid": "4c615a56-cfc0-456a-a5b8-d26281fd017d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RjUHjo9XkiwRvuBUVFmy9X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4012,
+      "cache_read_input_tokens": 55016,
+      "output_tokens": 975,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4012,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 975,
+          "cache_read_input_tokens": 55016,
+          "cache_creation_input_tokens": 4012,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4012
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-15T21:01:51.192Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director · `toolu_01TRzqv7cmZAAmxkHzNBsEua`</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2 / 实际跑 2 | Worker 池 2 (GPU 0 / CPU 2)\n\n**Loop #8 启动状态汇报**\n\n**RUNNING (2)**:\n- `gen_wiki_gpt2m_a100_s42_v3` (cuda:0) — GPT-2-medium cross-arch 验证，PID 117632 存活，~45% (gen 4/10)\n- `alpha_sweep_a050_s43` (cuda:1) — D026 multi-seed #2，PID 134860 存活\n\n**D026 multi-seed 进度**: ✅a025_s43 → 🔄a050_s43 → ⏳a025_s44 → ⏳a050_s44 (1/4 完成)\n\n**WA→Accept 剩余路径**:\n- Multi-seed: 剩 3 个实验 (~12h GPU)\n- GPT-2-medium: α=1.0 运行中 + α=0.25 排队 (~3h GPU)\n- Paper Agent: Step 5 Iterative Refinement 运行中\n\n**已派 CPU Worker**:\n1. 跨 alpha 综合分析聚合 — 汇总 5-point regime map 数据 + 跨 seed 对比表，直接喂给论文 Tables\n2. 文献扫描 — 检查 2026 Q1-Q2 新论文是否影响 novelty claims\n\n**下一步触发点**:\n- a050_s43 cron 回调 → 分析 + cuda:1 提交 a025_s44\n- gpt2m_v3 cron 回调 → 分析 + cuda:0 提交 gen_wiki_gpt2m_a025_s42\n\n无阻塞项，全速推进中。",
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4c615a56-cfc0-456a-a5b8-d26281fd017d",
+  "isSidechain": false,
+  "requestId": "req_011Cb52eGxqrnekUa7xb3ThK",
+  "type": "assistant",
+  "uuid": "e7d5cd9c-c9a3-43ed-8a96-0c21dad1899b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RjUHjo9XkiwRvuBUVFmy9X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4012,
+      "cache_read_input_tokens": 55016,
+      "output_tokens": 975,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4012,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 975,
+          "cache_read_input_tokens": 55016,
+          "cache_creation_input_tokens": 4012,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4012
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T21:01:54.498Z_
+
+<details><summary>↩ Tool result · `toolu_01TRzqv7cmZAAmxkHzNBsEua`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e7d5cd9c-c9a3-43ed-8a96-0c21dad1899b",
+  "isSidechain": false,
+  "promptId": "f112dfb9-ab3d-4c03-9a94-56b7de5dfab1",
+  "type": "user",
+  "uuid": "585563a6-8532-4664-9bd9-f49a7a2cf034",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "e7d5cd9c-c9a3-43ed-8a96-0c21dad1899b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_ca2a450d",
+  "sessionId": "049bcc5a-eb7a-440d-86bc-cf433b7944a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---

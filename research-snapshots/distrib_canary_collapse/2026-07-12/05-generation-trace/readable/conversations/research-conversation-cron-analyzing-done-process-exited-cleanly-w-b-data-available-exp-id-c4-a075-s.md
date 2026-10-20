@@ -1,0 +1,5439 @@
+# Research conversation: [CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available - exp_id: c4_a075_s42_
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 91
+- **Recorded user turns:** 1
+- **Tool calls:** 26
+- **Original source:** `logs/chats/exported-trajectories/account-2/38bae40d-3d8f-453a-8fb7-5b6867430133.jsonl`
+- **Structured JSON:** [`1b43eb948e119e35e964.json`](../../sessions/1b/1b43eb948e119e35e964.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-19T18:20:15.926Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-19T18:20:15.926Z",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "content": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: c4_a075_s42_fp32\n- project: distrib_canary_collapse\n- server: westd-17855\n- log_path: ~/runs/distrib_canary_collapse/c4_a075_s42_fp32.log"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T18:20:15.933Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-19T18:20:15.933Z",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133"
+}
+```
+
+---
+
+## Round 1
+
+89 recorded events
+
+### User
+
+_source line 3 · 2026-05-19T18:20:16.010Z_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: c4_a075_s42_fp32
+- project: distrib_canary_collapse
+- server: westd-17855
+- log_path: ~/runs/distrib_canary_collapse/c4_a075_s42_fp32.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "3e278823-9196-4f31-a5ea-edcc9113ca97",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-19T18:20:16.008Z_
+
+```json
+{
+  "parentUuid": "3e278823-9196-4f31-a5ea-edcc9113ca97",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__distill_papers",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_distill_status",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__distill_papers",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_distill_status",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "70a1a3d9-6690-4ae3-bb5b-b276712f45dc",
+  "timestamp": "2026-05-19T18:20:16.008Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-19T18:20:16.008Z_
+
+```json
+{
+  "parentUuid": "70a1a3d9-6690-4ae3-bb5b-b276712f45dc",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "b19c455c-cf88-4bef-b3eb-61e6ed8715e0",
+  "timestamp": "2026-05-19T18:20:16.008Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-19T18:20:16.008Z_
+
+```json
+{
+  "parentUuid": "b19c455c-cf88-4bef-b3eb-61e6ed8715e0",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "2a04ff7c-1a56-417e-831b-dd87445588f5",
+  "timestamp": "2026-05-19T18:20:16.008Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark as done",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-19T18:20:21.686Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+A CRON callback has arrived indicating that experiment `c4_a075_s42_fp32` has completed (process exited cleanly, W&B data available). I need to:
+
+1. First, do session-start initialization: read registry, reconcile crons, read report.md, read ROADMAP.md
+2. Then analyze the experiment results and push to DONE
+
+Let me start by loading the necessary tools and reading the project state.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2a04ff7c-1a56-417e-831b-dd87445588f5",
+  "isSidechain": false,
+  "requestId": "req_011CbCPaqvLpuxmbLMadyGKR",
+  "type": "assistant",
+  "uuid": "c31930fd-e6ae-422e-9d42-ffac83ab744d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012asvb28QHpY6Rx5HwEJm84",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25111,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 350,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25111,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 350,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 25111,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25111
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-19T18:20:22.316Z_
+
+Session 启动，先初始化项目状态，然后处理实验完成回调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c31930fd-e6ae-422e-9d42-ffac83ab744d",
+  "isSidechain": false,
+  "requestId": "req_011CbCPaqvLpuxmbLMadyGKR",
+  "type": "assistant",
+  "uuid": "2ca4bdcb-4ea6-4efe-b487-8eed543fe98b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012asvb28QHpY6Rx5HwEJm84",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25111,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 350,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25111,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 350,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 25111,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25111
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-19T18:20:25.470Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_019oSJNsxnfDxKxKZaLvKvai`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__load_project_config",
+  "max_results": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ca4bdcb-4ea6-4efe-b487-8eed543fe98b",
+  "isSidechain": false,
+  "requestId": "req_011CbCPaqvLpuxmbLMadyGKR",
+  "type": "assistant",
+  "uuid": "d45f65c1-8537-4b2e-a2b6-e08d5a02e160",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012asvb28QHpY6Rx5HwEJm84",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25111,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 350,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25111,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 350,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 25111,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25111
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T18:20:25.476Z_
+
+<details><summary>↩ Tool result · `toolu_019oSJNsxnfDxKxKZaLvKvai`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__main_agent_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__spawn_worker"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_experiment_plan_with_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__load_project_config"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d45f65c1-8537-4b2e-a2b6-e08d5a02e160",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "9729f5a8-c854-4065-bcb7-45a62de19d90",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__load_project_config"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__load_project_config",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "d45f65c1-8537-4b2e-a2b6-e08d5a02e160",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-19T18:20:28.350Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start the session initialization by reading registry, reconciling crons, reading report.md and ROADMAP.md in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9729f5a8-c854-4065-bcb7-45a62de19d90",
+  "isSidechain": false,
+  "requestId": "req_011CbCPbYY6v2jqhCf4Cq3hn",
+  "type": "assistant",
+  "uuid": "f4eecb54-aaae-4907-bd8d-40139fff03d9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FJSm1WgW2VkQvh1Z3ADGu9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3557,
+      "cache_read_input_tokens": 36952,
+      "output_tokens": 285,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3557,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 285,
+          "cache_read_input_tokens": 36952,
+          "cache_creation_input_tokens": 3557,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3557
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T18:20:28.794Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_0139NTJzWYNAvKfKFwBDrrBz`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f4eecb54-aaae-4907-bd8d-40139fff03d9",
+  "isSidechain": false,
+  "requestId": "req_011CbCPbYY6v2jqhCf4Cq3hn",
+  "type": "assistant",
+  "uuid": "826d0366-e0d9-4008-89fc-e9cc14793899",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FJSm1WgW2VkQvh1Z3ADGu9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3557,
+      "cache_read_input_tokens": 36952,
+      "output_tokens": 285,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3557,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 285,
+          "cache_read_input_tokens": 36952,
+          "cache_creation_input_tokens": 3557,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3557
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T18:20:29.304Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_01VWUb9ib9rN6dmLfVvFoELF`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "826d0366-e0d9-4008-89fc-e9cc14793899",
+  "isSidechain": false,
+  "requestId": "req_011CbCPbYY6v2jqhCf4Cq3hn",
+  "type": "assistant",
+  "uuid": "825efad5-b1e9-4edd-a1bd-d963b962f75b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FJSm1WgW2VkQvh1Z3ADGu9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3557,
+      "cache_read_input_tokens": 36952,
+      "output_tokens": 285,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3557,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 285,
+          "cache_read_input_tokens": 36952,
+          "cache_creation_input_tokens": 3557,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3557
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T18:20:29.636Z_
+
+<details><summary>↩ Tool result · `toolu_0139NTJzWYNAvKfKFwBDrrBz`</summary>
+
+```text
+Error: result (192,007 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-agent-8af87f9e/38bae40d-3d8f-453a-8fb7-5b6867430133/tool-results/mcp-agent-ml-research-read_registry-1779214829618.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-agent-8af87f9e/38bae40d-3d8f-453a-8fb7-5b6867430133/tool-results/mcp-agent-ml-research-read_registry-1779214829618.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "826d0366-e0d9-4008-89fc-e9cc14793899",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "c852e570-b4e1-4824-82c0-a49ad615f7e4",
+  "toolUseResult": "Error: result (192,007 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-agent-8af87f9e/38bae40d-3d8f-453a-8fb7-5b6867430133/tool-results/mcp-agent-ml-research-read_registry-1779214829618.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-agent-8af87f9e/38bae40d-3d8f-453a-8fb7-5b6867430133/tool-results/mcp-agent-ml-research-read_registry-1779214829618.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"c4_a050_s42_fp32\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:37:57.965Z\", \"updated_at\": \"2026-05-19T18:20:17.540Z\", \"hypothesis\": \"C4 域 α=0.50 fp32 验证：plan_004 bf16 下 PermG=0/8，需区分是 precision artifact（bf16 精度不足）还是 C4 域 α=0.50 确实在 blind zone。plan_049。\", \"parent\": \"alpha_sweep_c4_a050_s42\", \"spec\": {\"data_path\": \"data/c4_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}, \"server\": \"westd-17855\", \"gpu\": \"cuda:5\", \"pid\": \"152615\", \"log_path\": \"~/runs/distrib_canary_collapse/c4_a050_s42_fp32.log\", \"reproduce\": {\"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/c4_a050_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-19T18:20:17.068Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T18:20:20.777203+00:00\"}]}}, \"c4_a075_s42_fp32\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:37:54.299Z\", \"updated_at\": \"2026-05-19T18:20:08.497Z\", \"hypothesis\": \"Claim 2 跨域验证：C4 数据集 α=0.75 regime boundary fp32。WikiText α=0.75 PermG 预期 ~83%，C4 验证 canary lead-lag 跨域泛化性。plan_035。\", \"parent\": \"alpha_sweep_a075_s42_fp32\", \"spec\": {\"data_path\": \"data/c4_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}, \"server\": \"westd-17855\", \"gpu\": \"cuda:2\", \"pid\": \"151771\", \"log_path\": \"~/runs/distrib_canary_collapse/c4_a075_s42_fp32.log\", \"reproduce\": {\"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/c4_a075_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-19T18:20:08.048Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T18:20:11.695721+00:00\"}]}}, \"interv_react_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T13:41:42.984Z\", \"updated_at\": \"2026-05-19T18:08:26.320Z\", \"hypothesis\": \"Reactive intervention multi-seed fp32: Pythia-410M α=1.0 s43, distinct_1 drop >10% trigger → switch α=0.0. Validates s42 reactive result (trigger Gen 2, recovery Gen 4) is reproducible. fp32 for D079 compliance.\", \"parent\": \"intervention_reactive_s42\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --intervention_mode reactive --intervention_metric distinct_1 --intervention_threshold 0.10 --intervention_alpha 0.0 --output_dir results/intervention/reactive_d1_s43_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\", \"server\": \"westd-17855\", \"gpu_ids\": [1], \"pid\": 143073, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"checkpoint_source\": \"EleutherAI/pythia-410m\", \"eval_data\": \"data/wikitext103_5k\"}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/intervention/reactive_d1_s43_fp32/\", \"log_path\": \"~/runs/distrib_canary_collapse/interv_react_s43_fp32.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T18:05:51.990Z\", \"metrics\": {\"trigger_gen\": 2, \"trigger_distinct1_drop_pct\": -15.8, \"trigger_distinct1_from\": 0.0983, \"trigger_distinct1_to\": 0.0827, \"gen2_ppl\": 158.2, \"recovery_ppl\": 21.4, \"recovery_complete_by_gen\": 3, \"converges_to_alpha0_baseline\": true, \"precision\": \"fp32\", \"cross_seed_note\": \"s42(fp32): trigger G2 d1=-15.58%, ppl=157.09, recovery G4. s43(fp32): trigger G2 d1=-15.8%, ppl=158.2, recovery G3. Highly consistent.\"}}, \"qwen35_08b_wiki_a100_s43_fp32\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:12:33.701Z\", \"updated_at\": \"2026-05-19T18:07:09.606Z\", \"hypothesis\": \"Qwen3.5-0.8B s43 cross-seed 验证：s42 PermG=8/8, K≥3=8/8，验证这一极强信号的跨 seed 可复现性。唯一非 Pythia/GPT/OPT 家族，审稿人重点关注。\", \"parent\": \"qwen35_08b_wiki_a100_s42_v2\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name /root/autodl-tmp/models/Qwen3.5-0.8B-Base/ --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0\", \"server\": \"westd-17855\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"Qwen/Qwen3.5-0.8B-Base\", \"seed\": 43}}, \"scale_69b_a100_s43\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T18:03:25.659Z\", \"updated_at\": \"2026-05-19T18:06:45.457Z\", \"hypothesis\": \"Pythia-6.9B s43 cross-seed 验证：s42 PermG=7/8, K≥3=8/8（bf16+gradient_checkpointing），当前最强 Wiki 模型仅单 seed，审稿人可攻击可复现性。s43 bf16 匹配 s42 精度，验证跨 seed 稳健性。plan_028。\", \"parent\": \"scale_69b_a100_s42\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES={GPU_ID} python -u iterative_train.py --model_name EleutherAI/pythia-6.9b --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --gradient_checkpointing --bf16 --batch_size 4 --output_dir results/scale_check/pythia69b_wiki_a100_s43\", \"server\": \"westd-17855\", \"model_name\": \"EleutherAI/pythia-6.9b\", \"seed\": 43, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000}}, \"scale_69b_a100_s43_fp32\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:44:02.526Z\", \"updated_at\": \"2026-05-19T18:03:21.528Z\", \"hypothesis\": \"Pythia-6.9B s43 cross-seed 验证：s42 PermG=7/8, K≥3=8/8，当前最强 Wiki 模型仅单 seed，审稿人可攻击可复现性。s43 验证这一结果的跨 seed 稳健性。plan_028。\", \"parent\": \"scale_69b_a100_s42\", \"conclusion\": \"killed\"}, \"generalize_pythia1b_c4_a100_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T19:15:09.476Z\", \"updated_at\": \"2026-05-19T16:53:28.133Z\", \"hypothesis\": \"C4 域 multi-seed 验证——seed=43 下 Pythia-1B C4 α=1.0 是否复现 8/8 consensus 和 token_entropy 单向性 (rev=0/4)，确认 domain robustness 非单种子偶然\", \"parent\": \"generalize_pythia1b_c4_a100_s42_v2\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export TRANSFORMERS_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/pythia-1b-local --seed 43 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia1b_c4_a100_s43\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"291511\", \"log_path\": \"~/runs/distrib_canary_collapse/generalize_pythia1b_c4_a100_s43.log\", \"submitted_at\": \"2026-05-17T20:07:39.212Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 15455.0, \"gpu_hours\": 4.29}, \"reproduce\": {\"finished_at\": \"2026-05-18T00:16:50.616Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T00:16:52.976550+00:00\"}]}, \"metrics\": {\"robust_pairs_K4_3sigma\": \"5/8\", \"robust_pairs_K3_3sigma\": \"8/8\", \"threshold_onset_3sigma\": \"2/8\", \"D105_3sigma_note\": \"D105 backfill: true 3sigma, fdr_permethod, unified 8-pair (canary={token_entropy,ece} x downstream={d1,d2,d3,mauve})\"}, \"checkpoint_path\": \"results/generalize/pythia1b_c4_a100_s43/\", \"log_path\": \"~/runs/distrib_canary_collapse/generalize_pythia1b_c4_a100_s43.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T00:25:14.256Z\", \"notes\": \"D102 unified 8-pair. PermG fwd 8/8, rev 0/8 (perfect asymmetry). D102决策: Table 7 主指标=PermG fwd. Cross-seed confirms C4 robustness.\"}, \"generalize_pythia1b_c4_a100_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T13:06:55.402Z\", \"updated_at\": \"2026-05-19T16:53:26.694Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/pythia-1b-local --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia1b_c4_a100_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"269777\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/\", \"submitted_at\": \"2026-05-17T13:06:55.275Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/c4_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1b\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/\", \"wall_clock_seconds\": 17465.8, \"gpu_hours\": 4.85}, \"hypothesis\": \"Methodological pitfalls generalize across data domains — Pythia-1B on C4 (vs WikiText) at α=1.0 should reproduce canary→downstream causal pattern, proving domain-independence of the framework (retry after download fix)\", \"parent\": \"generalize_pythia1b_c4_a100_s42\", \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"4/8\", \"robust_pairs_K3_3sigma\": \"8/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"D105 backfill: true 3sigma, fdr_permethod, unified 8-pair (canary={token_entropy,ece} x downstream={d1,d2,d3,mauve})\"}, \"completed_at\": \"2026-05-17T17:58:01.067Z\", \"notes\": \"D102 unified 8-pair. PermG fwd 8/8 (C4 mauve strong). D102决策: Table 7 主指标=PermG fwd. C4域最强信号.\"}, \"generalize_pythia14b_wiki_a100_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T02:44:10.708Z\", \"updated_at\": \"2026-05-19T16:53:24.768Z\", \"hypothesis\": \"Pythia-1.4B s43 validates whether Scale row K>=4=5/8 is a systematic scale effect: if s43 also weak then scale is a real challenge, if s43 strong then s42 is seed noise\", \"parent\": \"generalize_pythia14b_wiki_a100_s42\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/pythia-1.4b-local --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 8 --seed 43 --output_dir results/generalize/pythia14b_wiki_a100_s43\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"314396\", \"log_path\": \"~/runs/distrib_canary_collapse/generalize_pythia14b_wiki_a100_s43.log\", \"submitted_at\": \"2026-05-18T02:46:35.941Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"seed\": 43, \"wall_clock_seconds\": 27235.4, \"gpu_hours\": 7.57}, \"reproduce\": {\"finished_at\": \"2026-05-18T10:13:51.203Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T10:13:54.511136+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"3/8\", \"robust_pairs_K3_3sigma\": \"6/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"D105 backfill: true 3sigma, fdr_permethod, unified 8-pair (canary={token_entropy,ece} x downstream={d1,d2,d3,mauve})\"}, \"checkpoint_path\": \"results/generalize/pythia14b_wiki_a100_s43\", \"log_path\": \"~/runs/distrib_canary_collapse/generalize_pythia14b_wiki_a100_s43.log\", \"completed_at\": \"2026-05-18T10:20:31.314Z\", \"notes\": \"D102 unified 8-pair. PermG fwd 6/8 stable. D102决策: Table 7 列出两seed, s42=2/8 vs s43=6/8 标注seed sensitivity.\"}, \"generalize_pythia14b_wiki_a100_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T13:25:15.889Z\", \"updated_at\": \"2026-05-19T16:53:23.362Z\", \"hypothesis\": \"方法论陷阱跨 scale 泛化——Pythia-1.4B (同家族 410M→1.4B) 在 α=1.0 WikiText 上保持 consensus ≥4/5 的 canary→downstream 因果信号，证明框架不依赖特定模型规模\", \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-17T13:57:38.626Z\"}, \"spec\": {\"command\": \"iterative_train.py --start_gen 8 (resumed)\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"292246\", \"log_path\": \"~/runs/distrib_canary_collapse/generalize_pythia14b_wiki_a100_s42.log\", \"submitted_at\": \"2026-05-17T20:11:35.916Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/gen_10/checkpoint\", \"wall_clock_seconds\": 12846.8, \"gpu_hours\": 3.57}, \"metrics\": {\"robust_pairs_K4_3sigma\": \"0/8\", \"robust_pairs_K3_3sigma\": \"2/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"D105 backfill: true 3sigma, fdr_permethod, unified 8-pair (canary={token_entropy,ece} x downstream={d1,d2,d3,mauve})\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T23:45:42.719Z\", \"notes\": \"D102 unified 8-pair. PermG fwd 2/8 (weakest Wiki model). D102决策: Table 7 主指标=PermG fwd, 辅助=K≥3. 报告cross-seed range: s42=2/8, s43=6/8, 标注seed sensitivity. Threshold σ统一=3σ(低优先级, 等训练完后统一重算).\"}, \"generalize_opt1b_wiki_a100_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T07:08:23.938Z\", \"updated_at\": \"2026-05-19T16:40:05.280Z\", \"hypothesis\": \"Methodological pitfalls (FPR inflation from single-method reliance) generalize to OPT-1.3B architecture — different model family at α=1.0 should show same canary→downstream causal pattern as Pythia\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name facebook/opt-1.3b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/opt1b_wiki_a100_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"pid\": \"249384\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"facebook/opt-1.3b\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/\"}, \"metrics\": {\"robust_pairs_K4_3sigma\": \"2/8\", \"robust_pairs_K3_3sigma\": \"6/8\", \"threshold_onset_3sigma\": \"2/8\", \"D105_3sigma_note\": \"True 3sigma recompute. threshold_onset dropped 8/8->2/8. K4 dropped 6/8->2/8. PermG/TY unchanged.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T13:57:09.537Z\", \"notes\": \"D102 reanalysis: K≥4 dropped from 6/8 to 0/8 with unified pairs. →ppl inflation confirmed. PermG fwd 6/8 stable. pair_config: unified_8pair (ent/ece→d1/d2/d3/mauve).\"}, \"gen_gpt2m_a100_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T23:45:29.110Z\", \"updated_at\": \"2026-05-19T16:40:03.963Z\", \"hypothesis\": \"GPT-2-medium multi-seed s43 fp32: Table 7 gap fill. GPT-2-medium × WikiText-103 × α=1.0 × seed=43 × fp32. Validates s42 cross-architecture canary lead-lag. D079 requires fp32 for main axis comparability.\", \"parent\": \"gen_wiki_gpt2m_a100_s42_v4\", \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-18T23:50:22.092Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 43 --output_dir results/gen_wiki_gpt2m_a100_s43\\\"\", \"finished_at\": \"2026-05-19T15:07:30.624Z\", \"training_hours\": 15.29}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 43 --output_dir results/gen_wiki_gpt2m_a100_s43\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"407859\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_gpt2m_a100_s43_fp32.log\", \"submitted_at\": \"2026-05-19T00:21:13.371Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 53472.7, \"gpu_hours\": 14.85}, \"pid\": \"407859\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_gpt2m_a100_s43_fp32.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T15:07:34.310909+00:00\"}]}, \"metrics\": {\"robust_pairs_K4_3sigma\": \"4/8\", \"robust_pairs_K3_3sigma\": \"6/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"True 3sigma recompute. threshold_onset dropped 8/8->0/8. K4 dropped 6/8->4/8 (still carried by PermG+TY). PermG/TY unchanged.\"}, \"checkpoint_path\": \"results/gen_wiki_gpt2m_a100_s43\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T15:12:26.084Z\", \"notes\": \"D102 qualified success: PermG fwd=6/8 (unified pairs), K≥4 不适用 (extreme collapse + mauve SNR不足), PermG rev=4/8 存在双向耦合但 fwd>rev. MMCT wpair=75%. Cross-seed consistent with s42.\"}, \"gen_wiki_gpt2m_a100_s42_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T01:20:50.055Z\", \"updated_at\": \"2026-05-19T16:40:02.123Z\", \"hypothesis\": \"GPT-2-medium 重跑以产出可审计 artifact：用统一参数 (n_perm=5000, xcorr_lag=5) 验证跨架构泛化，填充 Table 7 GPT-2m 行\", \"parent\": \"\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v4.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T11:28:28.313Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T11:28:30.486134+00:00\"}]}, \"metrics\": {\"robust_pairs_K4_3sigma\": \"2/8\", \"robust_pairs_K3_3sigma\": \"6/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"True 3sigma recompute. threshold_onset dropped 6/8->0/8. K4 dropped 6/8->2/8. PermG/TY unchanged.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T11:34:34.397Z\", \"notes\": \"D102: metrics updated to unified pair config (D101). K≥4 6/8→0/8 (old was inflated by →ppl). PermG fwd 6/8 unchanged. MMCT wpair 75%.\"}, \"generalize_pythia410m_wiki_a100_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T07:08:22.930Z\", \"updated_at\": \"2026-05-19T16:40:00.892Z\", \"hypothesis\": \"Methodological pitfalls (FPR inflation from single-method reliance) generalize across model architectures and data domains — Pythia-410M on WikiText α=1.0 should reproduce canary→downstream Granger signal with perfect directionality\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia410m_wiki_a100_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"pid\": \"247554\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/\"}, \"metrics\": {\"robust_pairs_K4_3sigma\": \"1/8\", \"robust_pairs_K3_3sigma\": \"6/8\", \"threshold_onset_3sigma\": \"2/8\", \"D105_3sigma_note\": \"True 3sigma recompute. threshold_onset dropped 8/8->2/8. K4 dropped 6/8->1/8. PermG/TY unchanged.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T11:47:29.919Z\", \"notes\": \"D102 reanalysis: K≥4 0/8 (was 0/8, unchanged). PermG fwd 6/8 stable. DiffXCorr 8/8→6/8 (mauve pairs weak). pair_config: unified_8pair.\"}, \"padding_robustness_a100_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T09:54:17.535Z\", \"updated_at\": \"2026-05-19T16:39:58.834Z\", \"hypothesis\": \"D093 padding_side='left' 修复后重跑 α=1.0 s42 fp32，对比修复前 mvp_v4_rep42 结果，验证 right-padding bug 对 collapse 轨迹和 lead-lag 信号的影响程度。预期：相对趋势不变，绝对数值可能有小幅差异\", \"spec\": {\"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --output_dir results/padding_robustness/a100_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:2\"], \"pid\": \"122877\", \"log_path\": \"~/runs/distrib_canary_collapse/padding_robustness_a100_s42_fp32.log\", \"submitted_at\": \"2026-05-19T10:04:16.220Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"wall_clock_seconds\": 16952.1, \"gpu_hours\": 4.71}, \"reproduce\": {\"finished_at\": \"2026-05-19T14:17:27.871Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T14:17:33.010198+00:00\"}]}, \"metrics\": {\"robust_pairs_K4_3sigma\": \"6/8\", \"robust_pairs_K3_3sigma\": \"6/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"True 3sigma recompute. threshold_onset dropped 5/8->0/8. K4 unchanged at 6/8. PermG/TY unchanged.\"}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/padding_robustness/a100_s42_fp32/gen_10\", \"log_path\": \"~/runs/distrib_canary_collapse/padding_robustness_a100_s42_fp32.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T14:46:48.338Z\"}, \"qwen35_08b_wiki_a100_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T00:28:45.037Z\", \"updated_at\": \"2026-05-19T16:39:57.414Z\", \"hypothesis\": \"D080 fix: Qwen3.5-0.8B fp32 cross-architecture validation. Resubmit with explicit .to(dtype=float32) cast after from_pretrained, because transformers 5.8.1 ignores dtype param for Qwen3.5 (loads bfloat16 from safetensors regardless).\", \"parent\": \"qwen35_08b_wiki_a100_s42\", \"server\": \"westd-17855\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"spec\": {\"command\": \"iterative_train.py --model_name Qwen3.5-0.8B-Base --seed 42 --synthetic_ratio 1.0\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:1\"], \"pid\": \"74455\", \"log_path\": \"~/runs/distrib_canary_collapse/qwen35_08b_wiki_a100_s42_v2.log\", \"submitted_at\": \"2026-05-19T00:29:15.328Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"Qwen3.5-0.8B-Base\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/Qwen3.5-0.8B-Base/\", \"eval_data\": \"data/wikitext103_5k\", \"wall_clock_seconds\": 46093.9, \"gpu_hours\": 12.8}, \"reproduce\": {\"finished_at\": \"2026-05-19T13:14:24.757Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T13:14:28.349602+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"6/8\", \"robust_pairs_K3_3sigma\": \"8/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"True 3sigma recompute. threshold_onset dropped 8/8->0/8. K4 dropped 8/8->6/8. PermG/TY unchanged.\"}, \"checkpoint_path\": \"results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2\", \"log_path\": \"~/runs/distrib_canary_collapse/qwen35_08b_wiki_a100_s42_v2.log\", \"completed_at\": \"2026-05-19T13:17:29.259Z\"}, \"scale_69b_a100_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T18:03:54.429Z\", \"updated_at\": \"2026-05-19T16:39:55.612Z\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-6.9b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --gradient_checkpointing --bf16 --batch_size 4 --output_dir results/scale_check/pythia69b_wiki_a100_s42\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:0\"], \"pid\": \"29028\", \"log_path\": \"~/runs/distrib_canary_collapse/scale_69b_a100_s42.log\", \"submitted_at\": \"2026-05-18T18:03:54.276Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"EleutherAI/pythia-6.9b\", \"seed\": 42, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/scale_check/pythia69b_wiki_a100_s42/gen_10/checkpoint/\", \"wall_clock_seconds\": 50054.8, \"gpu_hours\": 13.9}, \"hypothesis\": \"Pythia-6.9B α=1.0 s42: 17× scale-up verification of canary lead-lag phenomenon. Tests if entropy-leads-diversity pattern persists at 6.9B scale with gradient_checkpointing + bf16.\", \"reproduce\": {\"finished_at\": \"2026-05-19T07:34:28.190Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T07:34:31.175241+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"3/8\", \"robust_pairs_K3_3sigma\": \"8/8\", \"threshold_onset_3sigma\": \"2/8\", \"D105_3sigma_note\": \"True 3sigma recompute. threshold_onset dropped 8/8->2/8. K4 dropped 6/8->3/8. PermG/TY unchanged.\"}, \"completed_at\": \"2026-05-19T07:58:09.085Z\"}, \"opt13b_wiki_a100_s43_fp32\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T15:10:53.215Z\", \"updated_at\": \"2026-05-19T15:58:37.699Z\", \"hypothesis\": \"OPT-1.3B × WikiText-103 × α=1.0 × seed=43 × fp32 跨架构 multi-seed 验证。s42 已完成 K≥4=6/8，s43 验证跨 seed 稳健性。plan_030。\", \"parent\": \"gen_opt13b_a100_s43_bf16\", \"spec\": {\"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"facebook/opt-1.3b\", \"seed\": 43, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"pid\": \"452614\", \"log_path\": \"~/runs/distrib_canary_collapse/opt13b_wiki_a100_s43_fp32.log\", \"reproduce\": {\"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name facebook/opt-1.3b --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/gen_opt13b_wiki_a100_s43_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\"}, \"notes\": \"D103: s42 统一 pair K≥4=0/8。s43 验证 OPT 在统一配置下的 PermG/MMCT 表现。\"}, \"alpha_sweep_a025_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T06:18:28.979Z\", \"updated_at\": \"2026-05-19T15:02:43.632Z\", \"hypothesis\": \"D098 3-seed onset 确認：α=0.25 fp32 multi-seed 验证 s42 结果的 seed stability，确认 fp32 下 drift magnitude 和 PermG=0/8 跨 seed 稳定\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.25 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a025_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch 2>&1 | tee /root/runs/distrib_canary_collapse/alpha_sweep_a025_s43_fp32.log\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:3\"], \"pid\": \"123809\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s43_fp32.log\", \"submitted_at\": \"2026-05-19T09:55:30.729Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"wall_clock_seconds\": 18430.0, \"gpu_hours\": 5.12}, \"reproduce\": {\"finished_at\": \"2026-05-19T14:21:15.014Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T14:21:18.679847+00:00\"}]}, \"metrics\": {\"drift_pct\": {\"d1\": -38.95, \"d2\": -53.35, \"d3\": -54.8, \"entropy\": -4.94, \"ece\": 64.77, \"ppl\": -18.38, \"mauve\": -35.59, \"eff_rank\": -1.99}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0983, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen10_abs\": {\"token_entropy\": 3.069, \"distinct_1\": 0.0595, \"perplexity\": 21.95, \"ece\": 0.0218}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"mmct_detection_rate\": 0, \"ty_granger\": \"6/8\", \"naive_xcorr\": \"8/8\", \"threshold_onset\": \"4/8\"}, \"max_consensus_votes\": 3, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}, \"checkpoint_path\": \"results/alpha_sweep/a025_s43_fp32/\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s43_fp32.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T15:02:40.743Z\"}, \"alpha_sweep_a035_s42_fp32\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:37:56.167Z\", \"updated_at\": \"2026-05-19T14:39:49.039Z\", \"hypothesis\": \"D098 onset boundary 精化：与 α=0.30/0.40 并行，3 点同时定位 onset 到 ±0.05。α=0.35 预期仍在 blind zone。如果 PermG=0/8 → onset ≥ 0.35；如果 PermG>0 → onset 在 [0.30, 0.35]。plan_048。\", \"parent\": \"alpha_sweep_a030_s42_fp32\", \"spec\": {\"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}, \"server\": \"westd-17855\", \"gpu\": \"cuda:3\", \"pid\": \"151917\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a035_s42_fp32.log\", \"reproduce\": {\"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.35 --output_dir results/alpha_sweep/a035_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\"}}, \"alpha_sweep_a040_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:07:24.253Z\", \"updated_at\": \"2026-05-19T14:34:26.016Z\", \"spec\": {\"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && CUDA_VISIBLE_DEVICES=0 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.40 --output_dir results/alpha_sweep/a040_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:0\"], \"pid\": \"146540\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\"}, \"hypothesis\": \"D098 onset boundary 精化：与 α=0.30 配合将 phase transition onset 定位到 ±0.05 精度。α=0.40 预期仍在 blind zone 或刚进入 transition 区间。如果 PermG=0/8 → onset ≥ 0.40；如果 PermG>0 → onset 在 [0.30, 0.40]。\", \"parent\": \"alpha_sweep_a025_s42_fp32\", \"reproduce\": {\"finished_at\": \"2026-05-19T14:12:43.489Z\"}, \"failure_reason\": \"SIGHUP (exit code 129): 启动进程的 SSH 连接断开，进程未被 tmux 保护。GPU 无冲突（GPU 0 有 >80GB 空闲）。已通过 v2 重跑。\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-19T14:12:44.815Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T14:12:48.387429+00:00\"}]}}, \"alpha_sweep_a075_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T06:18:30.958Z\", \"updated_at\": \"2026-05-19T14:23:55.350Z\", \"hypothesis\": \"α=0.75 pre-D080 was fp16; fp32 rerun provides D079-compliant authoritative data. PermG expected ~83% (high regime), drift magnitude may change with fp32 precision.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a075_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch 2>&1 | tee /root/runs/distrib_canary_collapse/alpha_sweep_a075_s42_fp32.log\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:5\"], \"pid\": \"121667\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a075_s42_fp32.log\", \"submitted_at\": \"2026-05-19T09:33:47.560Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"wall_clock_seconds\": 17407.8, \"gpu_hours\": 4.84}, \"metrics\": {\"n_generations\": 11, \"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.098, \"distinct_2\": 0.5141, \"distinct_3\": 0.8127, \"effective_rank\": 46.613, \"mauve\": 0.0311}, \"gen10\": {\"token_entropy\": 2.283, \"ece\": 0.2145, \"perplexity\": 77.697, \"distinct_1\": 0.0731, \"distinct_2\": 0.357, \"distinct_3\": 0.5957, \"effective_rank\": 78.06, \"mauve\": 0.0299}, \"drift_pct\": {\"token_entropy\": -29.41, \"ece\": 1885.41, \"perplexity\": 188.31, \"distinct_1\": -25.38, \"distinct_2\": -30.55, \"distinct_3\": -26.7, \"effective_rank\": 67.47, \"mauve\": -3.73}, \"lead_lag\": {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"6/8\", \"MMCT_detection\": 0.75, \"TY_granger\": \"8/8\", \"naive_xcorr\": \"7/8\", \"diff_xcorr\": \"6/8\", \"threshold_onset\": \"8/8\"}, \"asymmetry\": \"strong (fwd=6, rev=0)\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T13:51:04.701Z\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/alpha_sweep/a075_s42_fp32/gen_10/checkpoint\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a075_s42_fp32.log\", \"completed_at\": \"2026-05-19T14:23:55.350Z\"}, \"alpha_sweep_a030_s42_fp32\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:16:27.139Z\", \"updated_at\": \"2026-05-19T14:20:50.000Z\", \"spec\": {\"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.30 --output_dir results/alpha_sweep/a030_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:0\"], \"pid\": \"148710\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a030_s42_fp32.log\", \"submitted_at\": \"2026-05-19T14:15:42.000Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}, \"hypothesis\": \"D098 onset boundary 精化：α=0.25 PermG=0/8, α=0.50 PermG=6/8。α=0.30 测试是否仍在 blind zone（预期 PermG=0/8），将 onset 下界从 0.25 收紧到 0.30。如果 PermG>0 则 onset 在 [0.25, 0.30]。\", \"parent\": \"alpha_sweep_a025_s42_fp32\"}, \"alpha_sweep_a040_s42_fp32_v2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:10:58.868Z\", \"updated_at\": \"2026-05-19T14:14:00.000Z\", \"spec\": {\"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.40 --output_dir results/alpha_sweep/a040_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:4\"], \"pid\": \"147488\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a040_s42_fp32_v2.log\", \"submitted_at\": \"2026-05-19T14:11:00.000Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\"}, \"hypothesis\": \"D098 onset boundary 精化：与 α=0.30 配合将 phase transition onset 定位到 ±0.05 精度。α=0.40 预期仍在 blind zone 或刚进入 transition 区间。如果 PermG=0/8 → onset ≥ 0.40；如果 PermG>0 → onset 在 [0.30, 0.40]。\", \"parent\": \"alpha_sweep_a025_s42_fp32\"}, \"alpha_sweep_a025_s44_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T06:18:29.952Z\", \"updated_at\": \"2026-05-19T14:02:39.466Z\", \"hypothesis\": \"α=0.25 位于 canary-diversity lead-lag 的 blind zone 内，PermG 应为 0/8，因为低合成比例下 calibration drift 不足以产生可检测的 Granger 因果信号\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.25 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a025_s44_fp32 --seed 44 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch 2>&1 | tee /root/runs/distrib_canary_collapse/alpha_sweep_a025_s44_fp32.log\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:4\"], \"pid\": \"124519\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s44_fp32.log\", \"submitted_at\": \"2026-05-19T09:53:53.279Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 44, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"wall_clock_seconds\": 14921.7, \"gpu_hours\": 4.14}, \"reproduce\": {\"finished_at\": \"2026-05-19T13:51:02.768Z\"}, \"metrics\": {\"drift_pct\": {\"d1\": -38.35, \"d2\": -53.44, \"d3\": -55.35, \"entropy\": -4.11, \"ece\": 68.01, \"ppl\": -16.27, \"mauve\": -40.63, \"eff_rank\": -0.87}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0974, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen9_abs\": {\"token_entropy\": 3.101, \"distinct_1\": 0.06, \"perplexity\": 22.57, \"ece\": 0.0182}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"naive_xcorr\": \"8/8\", \"diff_xcorr\": \"0/8\", \"threshold_onset\": \"0/8\", \"ty_granger\": \"1/8\"}, \"mmct_detection_rate\": 0}, \"checkpoint_path\": \"results/alpha_sweep/a025_s44_fp32\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s44_fp32.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T14:02:34.941Z\", \"notes\": \"D098 3-seed onset 第三个 seed。α=0.25 confirmed as blind zone upper bound. PermG=0/8, K≥4=0/8, MMCT=0.0 — consistent across all 3 seeds. d1 drift tightly clustered (-39.15%/-38.95%/-38.35%, σ=0.33pp). TY Granger seed-unstable (3→6→1/8), confirming C003.\"}, \"alpha_sweep_a060_s43_fp32\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T12:20:24.931Z\", \"updated_at\": \"2026-05-19T12:49:01.920Z\", \"hypothesis\": \"D096 PermG 非单调性验证：α=0.60 fp32 s42 仅 PermG=3/8，低于 α=0.50 的 6/8。补 s43 确认是单 seed 方差还是系统性非单调。如果 s43 PermG ≈ 6/8 则 s42 是 outlier；如果 s43 也低则非单调性是真实现象。\", \"parent\": \"alpha_sweep_a060_s42_fp32_v3\", \"spec\": {\"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && CUDA_VISIBLE_DEVICES=0 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.60 --output_dir results/alpha_sweep/a060_s43_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:0\"], \"pid\": \"137269\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a060_s43_fp32.log\", \"submitted_at\": \"2026-05-19T12:40:36.499Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"checkpoint_source\": \"N/A (training from scratch, parent is for derivation chain only)\", \"eval_data\": \"N/A (training experiment, not eval)\"}}, \"alpha_sweep_a025_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T06:18:27.981Z\", \"updated_at\": \"2026-05-19T12:19:59.103Z\", \"hypothesis\": \"At α=0.25 (boundary regime between 0.10 and 0.50), fp32 training will show PermG=0/8 because the synthetic data ratio is below the phase transition threshold for statistically detectable Granger-causal lead-lag structure\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.25 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a025_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch 2>&1 | tee /root/runs/distrib_canary_collapse/alpha_sweep_a025_s42_fp32.log\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:0\"], \"pid\": \"109870\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s42_fp32.log\", \"submitted_at\": \"2026-05-19T07:37:07.771Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"conda_activate\": \"source conda.sh && conda activate base\", \"wall_clock_seconds\": 16971.3, \"gpu_hours\": 4.71}, \"reproduce\": {\"finished_at\": \"2026-05-19T12:15:47.782Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T12:15:51.822301+00:00\"}]}, \"checkpoint_path\": \"results/alpha_sweep/a025_s42_fp32/gen_10/checkpoint\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s42_fp32.log\", \"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"0/8\", \"MMCT\": \"0/8\", \"MMCT_detection_rate\": 0, \"d1_drift_pct\": -39.15, \"d2_drift_pct\": -54.75, \"d3_drift_pct\": -56.98, \"mauve_drift_pct\": -41.86, \"entropy_drift_pct\": -4.79, \"ece_drift_pct\": 79.17, \"ppl_drift_pct\": -18.09, \"eff_rank_drift_pct\": -3.78, \"ppl_by_gen\": [26.95, 19.39, 20.37, 20.75, 21.14, 21.3, 21.48, 21.88, 21.9, 22.25, 22.07], \"entropy_by_gen\": [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079], \"d1_by_gen\": [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596], \"mauve_by_gen\": [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181], \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"ty_granger_sig\": \"3/8\", \"consensus_detail_max_votes\": 3, \"hypothesis_validated\": true, \"note\": \"PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> α=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this α. token_entropy→distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T12:19:59.103Z\"}, \"alpha_sweep_a050_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T05:30:58.574Z\", \"updated_at\": \"2026-05-19T10:06:02.951Z\", \"spec\": {\"command\": \"iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --synthetic_ratio 0.50\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:2\"], \"pid\": \"96513\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s42_fp32.log\", \"submitted_at\": \"2026-05-19T05:30:58.346Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_source\": \"EleutherAI/pythia-410m\", \"eval_data\": \"data/wikitext103_5k\", \"wall_clock_seconds\": 16504.6, \"gpu_hours\": 4.58}, \"hypothesis\": \"D091: α=0.50 fp32 s42 boundary regime. Pre-D080 data was fp16. fp32 rerun confirms PermG step function lower bound at boundary regime. 3-seed parallel with s43/s44.\", \"reproduce\": {\"finished_at\": \"2026-05-19T09:48:21.596Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T09:48:25.167829+00:00\"}]}, \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7075, \"token_entropy_drift_pct\": -16.3, \"distinct_1_gen0\": 0.0916, \"distinct_1_gen10\": 0.0649, \"distinct_1_drift_pct\": -29.2, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.46, \"perplexity_drift_pct\": 16.8, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0868, \"ece_drift_pct\": 703.4, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"n_perm\": 5000, \"padding_side\": \"right (D093 fix NOT applied)\"}, \"checkpoint_path\": \"results/alpha_sweep/a050_s42_fp32/gen_10/checkpoint\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s42_fp32.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T10:06:02.951Z\"}, \"alpha_sweep_a050_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T05:31:00.885Z\", \"updated_at\": \"2026-05-19T09:59:00.405Z\", \"spec\": {\"command\": \"iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --synthetic_ratio 0.50\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:3\"], \"pid\": \"96593\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s43_fp32.log\", \"submitted_at\": \"2026-05-19T05:31:00.668Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"checkpoint_source\": \"EleutherAI/pythia-410m\", \"eval_data\": \"data/wikitext103_5k\", \"wall_clock_seconds\": 15529.3, \"gpu_hours\": 4.31}, \"hypothesis\": \"D091: α=0.50 fp32 s43 boundary regime. Pre-D080 data was fp16. fp32 rerun confirms PermG step function lower bound at boundary regime. 3-seed parallel with s42/s44.\", \"reproduce\": {\"finished_at\": \"2026-05-19T09:40:51.007Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T09:40:54.290860+00:00\"}]}, \"checkpoint_path\": \"results/alpha_sweep/a050_s43_fp32/gen_10\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s43_fp32.log\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7227, \"token_entropy_drift_pct\": -15.8, \"distinct_1_gen0\": 0.0929, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -29, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.58, \"perplexity_drift_pct\": 17.2, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0842, \"ece_drift_pct\": 679.6, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"5/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"padding_side_fix\": \"pre-D093\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T09:49:49.922Z\"}, \"alpha_sweep_a010_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T05:20:18.646Z\", \"updated_at\": \"2026-05-19T09:57:34.538Z\", \"hypothesis\": \"D083/D084 blind zone fp32 s42: α=0.10 canary blind zone dual-seed fp32 validation. a010_s43_fp32 confirmed PermG=0/8 (blind zone precision-invariant). s42 fp32 completes cross-seed stability check for D075 claim.\", \"parent\": \"alpha_sweep_a010_s42_v2\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.10 --output_dir results/alpha_sweep/a010_s42_fp32\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:5\"], \"pid\": \"95313\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a010_s42_fp32.log\", \"submitted_at\": \"2026-05-19T05:20:39.341Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_source\": \"EleutherAI/pythia-410m\", \"eval_data\": \"data/wikitext103_5k\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s42_fp32/gen_10/checkpoint/\", \"wall_clock_seconds\": 16615.2, \"gpu_hours\": 4.62}, \"reproduce\": {\"finished_at\": \"2026-05-19T09:31:36.376Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T09:31:40.240029+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"token_entropy_drift_pct\": -4.59, \"distinct_1_drift_pct\": -23.8, \"distinct_2_drift_pct\": -27.15, \"distinct_3_drift_pct\": -19.36, \"perplexity_drift_pct\": -18.94, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"2/8\", \"mmct_wpair_fwd\": \"2/8\", \"mmct_detection_rate\": 0.25, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"blind_zone_confirmed\": true, \"cross_seed_permg_stable\": true}, \"completed_at\": \"2026-05-19T09:57:34.538Z\"}, \"alpha_sweep_a050_s44_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T05:31:02.887Z\", \"updated_at\": \"2026-05-19T09:50:41.134Z\", \"spec\": {\"command\": \"iterative_train.py --model_name EleutherAI/pythia-410m --seed 44 --synthetic_ratio 0.50\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:4\"], \"pid\": \"96734\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s44_fp32.log\", \"submitted_at\": \"2026-05-19T05:31:02.665Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 44, \"checkpoint_source\": \"EleutherAI/pythia-410m\", \"eval_data\": \"data/wikitext103_5k\", \"wall_clock_seconds\": 15578.5, \"gpu_hours\": 4.33}, \"hypothesis\": \"D091: α=0.50 fp32 s44 boundary regime. Pre-D080 data was fp16. fp32 rerun confirms PermG step function lower bound at boundary regime. 3-seed parallel with s42/s43.\", \"reproduce\": {\"finished_at\": \"2026-05-19T09:45:42.048Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T09:45:46.110800+00:00\"}]}, \"checkpoint_path\": \"westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44_fp32/gen_10/checkpoint/\", \"log_path\": \"westd-17855:~/runs/distrib_canary_collapse/alpha_sweep_a050_s44_fp32.log\", \"metrics\": {\"token_entropy_gen0\": 3.234, \"token_entropy_gen10\": 2.697, \"token_entropy_drift_pct\": -16.61, \"distinct_1_gen0\": 0.0915, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -27.93, \"distinct_2_drift_pct\": -34.64, \"distinct_3_drift_pct\": -30.6, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0874, \"ece_drift_pct\": 709.03, \"perplexity_gen0\": 26.949, \"perplexity_gen10\": 31.424, \"perplexity_drift_pct\": 16.61, \"effective_rank_drift_pct\": 25.06, \"mauve_drift_pct\": -13.88, \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75, \"precision\": \"fp32\", \"n_perm\": 5000}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T09:50:41.134Z\"}, \"interv_pred_a075_s42_fp32_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T00:22:52.832Z\", \"updated_at\": \"2026-05-19T05:27:05.538Z\", \"hypothesis\": \"D080 fix: predictive intervention α=0.75 fp32 (torch_dtype=float32). Resubmit with dtype bug fixed.\", \"parent\": \"interv_pred_a075_s42_fp32\", \"server\": \"westd-17855\", \"gpu\": \"cuda:4\", \"account\": \"root\", \"spec\": {\"command\": \"iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --synthetic_ratio 0.75 --intervention_mode predictive\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:4\"], \"pid\": \"71542\", \"log_path\": \"~/runs/distrib_canary_collapse/interv_pred_a075_s42_fp32_v4.log\", \"submitted_at\": \"2026-05-19T00:23:45.454Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_source\": \"EleutherAI/pythia-410m\", \"eval_data\": \"data/wikitext103_5k\", \"wall_clock_seconds\": 17709.3, \"gpu_hours\": 4.92}, \"conclusion\": \"success\", \"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.05, \"final_eff_rank\": 44.8, \"final_mauve\": 0.031, \"precision\": \"fp32\", \"intervention_trigger_gen\": 1, \"recovery_gen\": 2, \"token_entropy_drift\": -5.74, \"ece_drift\": 55.78, \"perplexity_drift\": -22.76, \"distinct_1_drift\": -7.97, \"distinct_2_drift\": -5.22, \"distinct_3_drift\": -3.9, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"8/8\", \"threshold_onset_fwd\": \"0/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75}, \"checkpoint_path\": \"westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/intervention/interv_pred_fp32_v4_d080/\", \"log_path\": \"westd-17855:~/runs/distrib_canary_collapse/interv_pred_a075_s42_fp32_v4.log\", \"completed_at\": \"2026-05-19T05:18:54.772Z\"}, \"alpha_sweep_a060_s42_fp32_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T00:22:51.958Z\", \"updated_at\": \"2026-05-19T05:27:02.040Z\", \"hypothesis\": \"D080 fix: fp32 α=0.60 dose-response (torch_dtype=float32). Resubmit with dtype bug fixed.\", \"parent\": \"alpha_sweep_a060_s42_fp32\", \"server\": \"westd-17855\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"spec\": {\"command\": \"iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --synthetic_ratio 0.60\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:2\"], \"pid\": \"71336\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a060_s42_fp32_v3.log\", \"submitted_at\": \"2026-05-19T00:23:42.392Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_source\": \"EleutherAI/pythia-410m\", \"eval_data\": \"data/wikitext103_5k\", \"wall_clock_seconds\": 17713.4, \"gpu_hours\": 4.92}, \"conclusion\": \"success\", \"metrics\": {\"final_ppl\": 45.41, \"final_entropy\": 2.48, \"final_eff_rank\": 69.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -23.36, \"ece_drift\": 1260.23, \"perplexity_drift\": 68.52, \"distinct_1_drift\": -28.17, \"distinct_2_drift\": -37.22, \"distinct_3_drift\": -35.35, \"perm_granger_fwd\": \"3/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"consensus_k4\": \"7/8\", \"mmct_wpair_fwd\": 0.875}, \"checkpoint_path\": \"westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_fp32_v3_d080/\", \"log_path\": \"westd-17855:~/runs/distrib_canary_collapse/alpha_sweep_a060_s42_fp32_v3.log\", \"completed_at\": \"2026-05-19T05:18:55.747Z\"}, \"alpha_sweep_a005_s42_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T00:22:50.997Z\", \"updated_at\": \"2026-05-19T05:26:59.154Z\", \"hypothesis\": \"D080 fix: α=0.05 diversity cliff position (fp32, torch_dtype=float32). Resubmit of a005_s42 with dtype bug fixed.\", \"parent\": \"alpha_sweep_a005_s42\", \"server\": \"westd-17855\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"spec\": {\"command\": \"iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --synthetic_ratio 0.05\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:3\"], \"pid\": \"71245\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a005_s42_v3.log\", \"submitted_at\": \"2026-05-19T00:23:39.620Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_source\": \"EleutherAI/pythia-410m\", \"eval_data\": \"data/wikitext103_5k\", \"wall_clock_seconds\": 17717.1, \"gpu_hours\": 4.92}, \"conclusion\": \"success\", \"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.04, \"final_eff_rank\": 45.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -5.96, \"ece_drift\": 55.41, \"perplexity_drift\": -22.78, \"distinct_1_drift\": -24.86, \"distinct_2_drift\": -28.42, \"distinct_3_drift\": -19.54, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"0/8\", \"mmct_wpair_fwd\": 0}, \"checkpoint_path\": \"westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32_v3_d080/\", \"log_path\": \"westd-17855:~/runs/distrib_canary_collapse/alpha_sweep_a005_s42_v3.log\", \"completed_at\": \"2026-05-19T05:18:56.721Z\"}, \"alpha_sweep_a010_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T00:39:09.725Z\", \"updated_at\": \"2026-05-19T05:07:17.324Z\", \"hypothesis\": \"α=0.10 dose-response fp32 multi-seed (s43): D083 requires cross-seed variance for fp32 main axis. α=0.10 is the canary blind zone boundary (D075: entropy canary shows NO signal despite -39.7% diversity collapse). fp32 s43 validates whether this blind zone is seed-invariant.\", \"parent\": \"alpha_sweep_a010_s43\", \"server\": \"westd-17855\", \"gpu\": \"cuda:5\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-17855\", \"gpu\": \"cuda:5\", \"started_at\": \"2026-05-19T00:40:20.251Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.10 --output_dir results/alpha_sweep/a010_s43_fp32\\\"\", \"finished_at\": \"2026-05-19T05:01:02.210Z\", \"training_hours\": 4.34}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.10 --output_dir results/alpha_sweep/a010_s43_fp32\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:5\"], \"pid\": \"76404\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s43_fp32/\", \"submitted_at\": \"2026-05-19T00:46:36.088Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s43_fp32/\", \"wall_clock_seconds\": 15641.2, \"gpu_hours\": 4.34}, \"pid\": \"76404\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a010_s43_fp32.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T05:01:06.027649+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"token_entropy_drift\": -4.49, \"distinct_1_drift\": -22.08, \"distinct_2_drift\": -23.47, \"distinct_3_drift\": -16.39, \"perplexity_drift\": -18.04, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"6/8\", \"threshold_onset_fwd\": \"4/8\", \"consensus_k4\": \"0/8 (C003 corrected)\", \"precision\": \"fp32\", \"blind_zone_confirmed_fp32\": true, \"vs_bf16_note\": \"fp32 reduces drift ~2x but does not change detection failure (PermG=0/8, k4=0/8 same as bf16)\"}, \"completed_at\": \"2026-05-19T05:07:17.324Z\"}, \"alpha_sweep_a005_s42\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-18T20:52:49.138Z\", \"updated_at\": \"2026-05-19T01:34:43.774Z\", \"hypothesis\": \"α=0.05 定位 diversity 悬崖精确位置: α=0.00 d1=-14% 到 α=0.10 d1=-40% 之间存在非线性断崖，α=0.05 确定断崖在 0-5% 还是 5-10% 区间。\", \"parent\": \"alpha_sweep_a010_s42_v2\", \"server\": \"westd-17855\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-17855\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-18T20:56:02.420Z\", \"finished_at\": \"2026-05-18T23:56:36.428Z\", \"training_hours\": 3.01}, \"failure_reason\": \"EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)\", \"completed_at\": \"2026-05-18T22:07:45.970Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T22:07:49.417515+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T23:56:42.687842+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"FAILED EXIT_CODE=127 (第2次): 提交命令缺少 conda 激活（裸 `python` 在非交互 shell 找不到）。已知模式，见 memory.md \\\"westd-17855 环境提交规范\\\"。正确模板需 `bash -c '... source conda.sh && conda activate base && ...'`。将用正确模板重新提交。\"}}, \"notes\": \"D080: torch_dtype=None bug → fp16 without GradScaler → NaN. Killed and resubmitting as v3\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && CUDA_VISIBLE_DEVICES=3 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.05 --output_dir results/alpha_sweep/a005_s42_fp32_v3\\\"\", \"server\": \"westd-17855\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"output_dir\": \"results/alpha_sweep/a005_s42_fp32_v3\", \"checkpoint_source\": \"EleutherAI/pythia-410m\", \"eval_data\": \"data/wikitext103_5k\"}, \"conclusion\": \"failed\"}, \"alpha_sweep_a060_s42_fp32_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T22:11:35.152Z\", \"updated_at\": \"2026-05-19T01:34:42.831Z\", \"hypothesis\": \"fp32 α=0.60 dose-response 主轴数据点: D079 要求 fp32 数据填补 dose-response map。与 alpha_sweep_a060_s42_bf16 完全相同配置，唯一区别 fp32 精度。bf16 的 stochastic rounding 系统性抑制 collapse 5-730x，fp32 数据是 Table 7 主轴必需。\", \"parent\": \"\", \"spec\": {\"command\": \"bash -c 'cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=2 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.60 --output_dir results/alpha_sweep/a060_s42_fp32'\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:2\"], \"pid\": \"55503\", \"log_path\": \"~/runs/distrib_canary_collapse/a060_s42_fp32.log\", \"submitted_via\": \"manual_tmux\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42}, \"conclusion\": \"killed\", \"notes\": \"D080: torch_dtype=None bug. Killed for code fix\", \"completed_at\": \"2026-05-19T01:34:42.831Z\"}, \"smollm3_3b_wiki_a100_s42_v3\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T00:24:12.263Z\", \"updated_at\": \"2026-05-19T01:12:45.290Z\", \"hypothesis\": \"D080 fix: SmolLM3-3B fp32 cross-architecture validation. Resubmit with torch_dtype=float32 to satisfy D079 fp32 requirement.\", \"parent\": \"smollm3_3b_wiki_a100_s42_v2\", \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"spec\": {\"command\": \"iterative_train.py --model_name SmolLM3-3B-Base --seed 42 --synthetic_ratio 1.0\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"408261\", \"log_path\": \"~/runs/distrib_canary_collapse/smollm3_3b_wiki_a100_s42_v3.log\", \"submitted_at\": \"2026-05-19T00:24:32.263Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"SmolLM3-3B-Base\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/SmolLM3-3B-Base/\", \"eval_data\": \"data/wikitext103_5k\"}}, \"alpha_sweep_a010_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T20:31:10.893Z\", \"updated_at\": \"2026-05-19T00:45:43.701Z\", \"hypothesis\": \"α=0.10 multi-seed s43: Validates D075 canary blind zone finding (α=0.10 diversity collapse saturated at -39.7% but entropy canary shows no signal). Single-seed → confirmed if s43 replicates same pattern.\", \"spec\": {\"checkpoint_path\": \"results/alpha_sweep/a010_s43_bf16/\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a010_s43.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T00:36:00.765Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T00:36:04.103044+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"token_entropy_drift\": -13.1, \"ece_drift\": -61.1, \"perplexity_drift\": -38.9, \"distinct_1_drift\": -29.1, \"distinct_2_drift\": -40.3, \"distinct_3_drift\": -31.9, \"effective_rank_drift\": 23.5, \"mauve_drift\": -46.3, \"naive_xcorr_fwd\": \"7/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"3/8\", \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"0/8\", \"k_gte4\": \"0/8\"}, \"completed_at\": \"2026-05-19T00:45:43.701Z\"}, \"qwen35_08b_wiki_a100_s42\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-18T20:52:52.006Z\", \"updated_at\": \"2026-05-19T00:28:40.620Z\", \"hypothesis\": \"Qwen3.5-0.8B cross-architecture validation: 第5个独立架构族(Alibaba Qwen3.5, hybrid linear+full attention), WikiText-103 α=1.0 s42. 验证 canary lead-lag 是否跨架构泛化。\", \"server\": \"westd-17855\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-17855\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-18T20:56:03.044Z\", \"command\": \"python -u iterative_train.py --model_name /root/autodl-tmp/models/Qwen3.5-0.8B-Base/ --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/qwen35_08b_wiki_a100_s42_fp32\", \"finished_at\": \"2026-05-19T00:27:32.988Z\", \"training_hours\": 3.52}, \"failure_reason\": \"EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)\", \"completed_at\": \"2026-05-18T22:08:22.536Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T22:08:25.543963+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T00:27:37.370959+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"pid\": \"55423\", \"tmux_session\": \"qwen35_08b_fp32\", \"log_path\": \"~/runs/distrib_canary_collapse/qwen35_08b_fp32.log\", \"submitted_at\": \"2026-05-19T06:09:21Z\", \"submitted_via\": \"ssh_execute_manual\", \"backend\": \"tmux\", \"account\": \"root\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/Qwen3.5-0.8B-Base/ --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/qwen35_08b_wiki_a100_s42_fp32\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:1\"], \"model_name\": \"Qwen3.5-0.8B-Base\", \"seed\": 42, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000}, \"conclusion\": \"killed\", \"notes\": \"D080: torch_dtype/dtype param ignored by Qwen3.5 in transformers 5.8.1 — model loads as bfloat16 regardless. Killed and restarting with patched code (explicit .to(dtype=target_dtype) after from_pretrained).\"}, \"smollm3_3b_wiki_a100_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T21:54:58.834Z\", \"updated_at\": \"2026-05-19T00:24:45.562Z\", \"hypothesis\": \"SmolLM3-3B fp32 cross-architecture validation: 6th independent architecture family (HuggingFace SmolLM3, 3.08B params, 128K vocab). Tests if entropy-leads-diversity canary pattern transfers. D079 requires fp32 for Table 7 main axis comparability.\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name /root/autodl-tmp/models/SmolLM3-3B-Base/ --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/smollm3_3b_wiki_a100_s42_fp32\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"399348\", \"log_path\": \"~/runs/distrib_canary_collapse/smollm3_3b_wiki_a100_s42_v2.log\", \"submitted_at\": \"2026-05-18T21:55:14.219Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"SmolLM3-3B-Base\", \"seed\": 42, \"wall_clock_seconds\": 8971.3, \"gpu_hours\": 2.49}, \"conclusion\": \"failed\", \"notes\": \"D080: torch_dtype=None → loaded as bfloat16 (native), not fp32 as D079 requires. Data invalid. Kill and restart with fixed code.\", \"reproduce\": {\"finished_at\": \"2026-05-19T00:24:43.576Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"completed_at\": \"2026-05-19T00:24:45.562Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T00:24:48.395830+00:00\"}]}}, \"interv_pred_a075_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-18T21:57:16.554Z\", \"updated_at\": \"2026-05-19T00:22:38.974Z\", \"hypothesis\": \"fp32 predictive intervention at α=0.75 boundary: Canary-based intervention (entropy >15% drop triggers α=0.0 switch) in the transitional regime where Granger causality becomes FDR-significant. D079 requires fp32 for Table 7 comparability. Tests if predictive intervention can prevent collapse at moderate contamination.\", \"reproduce\": {\"finished_at\": \"2026-05-18T23:54:54.865Z\"}, \"failure_reason\": \"EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T22:09:00.926905+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T22:41:16.163243+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T23:15:55.278333+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T23:54:59.299303+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"completed_at\": \"2026-05-18T22:41:13.549Z\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --intervention_mode predictive --intervention_metric token_entropy --intervention_threshold 0.15 --intervention_alpha 0.0 --output_dir results/intervention/predictive_te_a075_s42_fp32\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:4\"], \"pid\": \"63323\", \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000}, \"conclusion\": \"failed\", \"notes\": \"D080: torch_dtype=None bug → fp16 without GradScaler → NaN. Already failed.\"}, \"alpha_sweep_a060_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-18T21:56:18.971Z\", \"updated_at\": \"2026-05-19T00:22:38.033Z\", \"hypothesis\": \"fp32 α=0.60 dose-response 主轴数据点: D079 要求 fp32 数据填补 dose-response map。与 alpha_sweep_a060_s42_bf16 完全相同配置，唯一区别 fp32 精度。bf16 的 stochastic rounding 系统性抑制 collapse 5-730x，fp32 数据是 Table 7 主轴必需。\", \"reproduce\": {\"finished_at\": \"2026-05-19T00:03:51.535Z\"}, \"failure_reason\": \"EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T22:07:40.036683+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T00:03:55.965441+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"completed_at\": \"2026-05-18T22:13:21.439Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.60 --output_dir results/alpha_sweep/a060_s42_fp32_v2\", \"server\": \"westd-17855\", \"gpu\": \"cuda:2\", \"pid\": 63952, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"tmux_session\": \"a060_fp32_v2\", \"output_dir\": \"results/alpha_sweep/a060_s42_fp32_v2\", \"note\": \"v2 resubmit after gen_1 LinAlgError crash, metrics.py now fixed\"}, \"conclusion\": \"failed\", \"notes\": \"D080: torch_dtype=None bug → fp16 without GradScaler → NaN. Already failed.\"}, \"scale_14b_a050_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:34:35.480Z\", \"updated_at\": \"2026-05-19T00:21:09.604Z\", \"hypothesis\": \"Pythia-1.4B α=0.50 scale spot-check: Verifies whether canary lead-lag persists at 1.4B scale in the boundary regime (α=0.50). Tests if method sensitivity findings from 410M transfer to larger models.\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-1.4b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/scale_check/pythia14b_a050_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"369470\", \"log_path\": \"~/runs/distrib_canary_collapse/scale_14b_a050_s42.log\", \"submitted_at\": \"2026-05-18T16:34:46.977Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"seed\": 42, \"wall_clock_seconds\": 27982.6, \"gpu_hours\": 7.77}, \"reproduce\": {\"finished_at\": \"2026-05-18T23:52:03.891Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T23:52:07.044983+00:00\"}]}, \"checkpoint_path\": \"results/scale_check/pythia14b_a050_s42\", \"log_path\": \"~/runs/distrib_canary_collapse/scale_14b_a050_s42.log\", \"conclusion\": \"success\", \"metrics\": {\"token_entropy_g0\": 2.946, \"token_entropy_g10\": 2.227, \"token_entropy_drift_pct\": -24.4, \"distinct_1_g0\": 0.0993, \"distinct_1_g10\": 0.0636, \"distinct_1_drift_pct\": -36, \"distinct_2_g0\": 0.521, \"distinct_2_g10\": 0.262, \"distinct_2_drift_pct\": -49.7, \"distinct_3_g0\": 0.813, \"distinct_3_g10\": 0.408, \"distinct_3_drift_pct\": -49.8, \"perplexity_g0\": 19.68, \"perplexity_g10\": 35.14, \"perplexity_drift_pct\": 78.6, \"mauve_g0\": 0.033, \"mauve_g10\": 0.024, \"mauve_drift_pct\": -28.2, \"ece_g0\": 0.007, \"ece_g10\": 0.153, \"effective_rank_g0\": 50.76, \"effective_rank_g10\": 82.21, \"num_generations\": 11}, \"completed_at\": \"2026-05-19T00:21:09.604Z\"}, \"conditional_granger_d061\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T22:49:34.807Z\", \"updated_at\": \"2026-05-18T23:45:27.746Z\", \"hypothesis\": \"Conditional Granger analysis: 控制 ECE 后测 token_entropy→diversity，控制 token_entropy 后测 ECE→diversity。验证两个 canary 是否提供独立信息。\", \"conclusion\": \"success\", \"spec\": {\"command\": \"CPU analysis (zero GPU)\", \"server\": \"local\", \"data_path\": \"results/mvp/rep_42_v3 (Pythia-410M alpha=1.0 s42)\", \"data_count\": 11, \"model_name\": \"N/A (analysis)\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"artifacts/d061_conditional_granger_analysis.md\"}, \"completed_at\": \"2026-05-18T23:45:27.746Z\"}, \"method_ablation_phase3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T23:10:03.625Z\", \"updated_at\": \"2026-05-18T23:45:15.785Z\", \"hypothesis\": \"Phase 3 method ablation: 扩展 7 个 α 点（0.00-1.00）的 5 种检测方法 significance rate 矩阵，验证 permG/TY 在不同 contamination regime 下的灵敏度。\", \"conclusion\": \"success\", \"metrics\": {\"alpha_points\": 7, \"methods\": 5, \"total_pairs\": \"8-32 per alpha\", \"permG_step_change\": \"0% (alpha<=0.50) → 100% (alpha=0.60) → 83% (alpha=0.75)\", \"TY_only_at_alpha100\": \"59% FDR-corrected\", \"blind_zone_confirmed\": \"alpha=0.10 same as null (permG/TY=0%)\", \"fdr_flips_at_a050\": 12}, \"spec\": {\"command\": \"CPU analysis (zero GPU)\", \"server\": \"westd-17855\", \"data_path\": \"results/alpha_sweep/* (7 alpha points)\", \"data_count\": 7, \"model_name\": \"N/A (analysis)\", \"seed\": 42, \"checkpoint_path\": \"artifacts/method_ablation_phase3/\", \"log_path\": \"artifacts/method_ablation_phase3/method_ablation_phase3_summary.md\"}, \"completed_at\": \"2026-05-18T23:45:15.785Z\"}, \"interv_pred_a075_s42_fp32_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T23:22:16.709Z\", \"updated_at\": \"2026-05-18T23:24:17.150Z\", \"hypothesis\": \"Predictive intervention (token_entropy threshold 0.15) at synthetic_ratio=0.75 will prevent collapse compared to no-intervention baseline. v2 resubmit with metrics.py LinAlgError fix.\", \"parent\": null, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --intervention_mode predictive --intervention_metric token_entropy --intervention_threshold 0.15 --intervention_alpha 0.0 --output_dir results/intervention/predictive_te_a075_s42_fp32_v2\", \"server\": \"westd-17855\", \"pid\": 62752, \"tmux_session\": \"interv_pred_fp32_v3\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-18T23:24:17.150Z\"}, \"interv_pred_s43_bf16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T18:03:58.328Z\", \"updated_at\": \"2026-05-18T21:59:45.463Z\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --intervention_mode predictive --intervention_metric token_entropy --intervention_threshold 0.15 --intervention_alpha 0.0 --bf16 --output_dir results/intervention/predictive_te_s43_bf16\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:2\"], \"pid\": \"29174\", \"log_path\": \"~/runs/distrib_canary_collapse/interv_pred_s43_bf16.log\", \"submitted_at\": \"2026-05-18T18:03:58.167Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"checkpoint_path\": \"results/intervention/predictive_te_s43_bf16\", \"wall_clock_seconds\": 14147.3, \"gpu_hours\": 3.93}, \"hypothesis\": \"Intervention predictive multi-seed s43 (bf16): Pythia-410M WikiText α=1.0, token_entropy >15% drop trigger, switch to α=0.0. Validates s42 result (trigger Gen 1, recovery Gen 2) is reproducible across seeds.\", \"reproduce\": {\"finished_at\": \"2026-05-18T21:29:59.928Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T21:30:02.833056+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"trigger_gen\": 1, \"trigger_entropy_drop_pct\": -22.54, \"gen0_ppl\": 27.68, \"gen0_entropy\": 3.2574, \"gen0_distinct_1\": 0.0917, \"gen0_ece\": 0.0123, \"gen1_ppl\": 24.65, \"gen1_entropy\": 2.5233, \"gen1_distinct_1\": 0.0897, \"gen1_ece\": 0.0469, \"gen2_ppl\": 17.49, \"gen2_entropy\": 2.9029, \"gen10_ppl\": 16.68, \"gen10_entropy\": 2.8169, \"gen10_eff_rank\": 58.8, \"gen10_mauve\": 0.0299, \"recovery_complete_by_gen\": 2, \"converges_to_alpha0_baseline\": true, \"precision_note\": \"bf16; collapse milder than fp32 s42 (entropy drop 22.54% vs 40.71%, ppl 24.65 vs 56.99) due to stochastic rounding regularization. Core pattern (G1 trigger, G2 recovery) confirmed.\", \"cross_seed_note\": \"s42(fp32): trigger G1 entropy -40.71%, ppl spike 56.99. s43(bf16): trigger G1 entropy -22.54%, no ppl spike. Pattern consistent, magnitude differs due to precision.\"}, \"completed_at\": \"2026-05-18T21:59:45.463Z\"}, \"smollm3_3b_wiki_a100_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T21:14:35.317Z\", \"updated_at\": \"2026-05-18T21:54:45.986Z\", \"hypothesis\": \"SmolLM3-3B cross-architecture validation: 6th independent architecture family (HuggingFace SmolLM3, 3.08B params, 128K vocab, 2025-07 release). Tests if entropy-leads-diversity canary pattern transfers to a recent 3B-scale model. Paired with Qwen3.5-0.8B to cover both 0.8B and 3B parameter scales for modern architectures.\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name /root/autodl-tmp/models/SmolLM3-3B-Base/ --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --bf16 --gen_batch_size 64 --output_dir results/generalize/smollm3_3b_wiki_a100_s42\", \"server\": \"westd-19828\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"SmolLM3-3B-Base\", \"seed\": 42, \"checkpoint_path\": \"results/generalize/smollm3_3b_wiki_a100_s42\", \"log_path\": \"~/runs/distrib_canary_collapse/smollm3_3b_wiki_a100_s42.log\", \"gpu\": \"cuda:1\", \"tmux_session\": \"smollm3_3b_wiki_a100_s42\", \"pid\": 395612, \"kill_reason\": \"bf16 precision confound — Director requires fp32 for all ≤3B models\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-18T21:54:45.986Z\"}, \"interv_react_s43_bf16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T17:26:47.159Z\", \"updated_at\": \"2026-05-18T21:53:48.772Z\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --intervention_mode reactive --intervention_metric distinct_1 --intervention_threshold 0.10 --intervention_alpha 0.0 --bf16 --output_dir results/intervention/reactive_d1_s43_bf16\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:4\"], \"pid\": \"17803\", \"log_path\": \"~/runs/distrib_canary_collapse/interv_react_s43_bf16.log\", \"submitted_at\": \"2026-05-18T17:26:47.009Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"wall_clock_seconds\": 12673.6, \"gpu_hours\": 3.52, \"checkpoint_path\": \"results/intervention/reactive_d1_s43_bf16\"}, \"hypothesis\": \"Intervention reactive multi-seed s43: Pythia-410M WikiText α=1.0, distinct_1 >10% drop trigger, switch to α=0.0. Validates s42 reactive result.\", \"reproduce\": {\"finished_at\": \"2026-05-18T20:57:58.969Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T20:58:00.589Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T20:58:03.100445+00:00\"}]}}, \"gen_gpt2m_a100_s43_bf16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T17:25:55.336Z\", \"updated_at\": \"2026-05-18T21:53:47.526Z\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name openai-community/gpt2-medium --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --bf16 --output_dir results/generalize/gpt2m_wiki_a100_s43_bf16\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:1\"], \"pid\": \"16116\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_gpt2m_a100_s43_bf16.log\", \"submitted_at\": \"2026-05-18T17:25:55.193Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"openai-community/gpt2-medium\", \"seed\": 43, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"wall_clock_seconds\": 12444.6, \"gpu_hours\": 3.46, \"checkpoint_path\": \"results/generalize/gpt2m_wiki_a100_s43_bf16\"}, \"hypothesis\": \"GPT-2-medium multi-seed s43: GPT-2-medium × WikiText-103 × α=1.0 × seed=43. Validates s42 cross-architecture results (K≥4=6/8) are reproducible.\", \"reproduce\": {\"finished_at\": \"2026-05-18T20:53:18.007Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T20:53:19.746Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T20:53:22.622800+00:00\"}]}, \"metrics\": {\"token_entropy_gen0\": 3.6021, \"token_entropy_gen10\": 3.0035, \"token_entropy_delta_pct\": -16.6, \"distinct_1_gen0\": 0.1092, \"distinct_1_gen10\": 0.0724, \"distinct_1_delta_pct\": -33.7, \"distinct_2_gen0\": 0.5665, \"distinct_2_gen10\": 0.3422, \"distinct_2_delta_pct\": -39.6, \"distinct_3_gen0\": 0.8652, \"distinct_3_gen10\": 0.5756, \"distinct_3_delta_pct\": -33.5, \"ece_gen0\": 0.0111, \"ece_gen10\": 0.0716, \"ece_delta_pct\": 547.9, \"perplexity_gen0\": 32.91, \"perplexity_gen10\": 55.49, \"perplexity_delta_pct\": 68.6, \"mauve_gen0\": 0.0318, \"mauve_gen10\": 0.0227, \"mauve_delta_pct\": -28.7, \"naive\": \"8/8\", \"diff\": \"7/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"1/8\", \"pg_rev\": \"0/8\", \"ty\": \"0/8\", \"k_gte4\": \"1/8\", \"mmct_weighted_fwd\": \"6/8\", \"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"cross_seed_note\": \"CAUTION: s42 was fp32 (entropy drift -86.6%), s43 is bf16 (entropy drift -16.6%). NOT a fair cross-seed comparison. bf16 dramatically reduces collapse severity, causing PG/TY to lose power (PG_fwd 1/8 vs 6/8, TY 0/8 vs 5/8). MMCT partially recovers signal (6/8) via FPR-inverse weighting of naive+diff+thresh consensus. K>=4 drops to 1/8 (ece->ppl only, a spurious channel).\", \"precision_note\": \"bf16 mixed precision; collapse trajectory is qualitatively similar but quantitatively much milder than fp32 s42\"}}, \"interv_pred_a075_s42\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T21:01:51.433Z\", \"updated_at\": \"2026-05-18T21:36:26.200Z\", \"hypothesis\": \"Predictive intervention at α=0.75 boundary regime: Tests if canary-based intervention (switch to α=0.0 when token_entropy drops >15%) can prevent collapse in the transitional regime. At α=0.75, Granger causality becomes FDR-significant (3/8 pairs). If predictive intervention triggers and recovers quality, it validates canary as actionable early warning even in moderate contamination.\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --intervention_mode predictive --intervention_metric token_entropy --intervention_threshold 0.15 --intervention_alpha 0.0 --bf16 --output_dir results/intervention/predictive_te_a075_s42_bf16\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:3\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/distrib_canary_collapse/interv_pred_a075_s42.log\", \"submitted_at\": \"2026-05-18T21:04:06.286Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"kill_reason\": \"bf16 precision confound — Director requires fp32 for all ≤3B models\"}, \"conclusion\": \"killed\"}, \"qwen35_dryrun_launch\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T21:31:44.039Z\", \"updated_at\": \"2026-05-18T21:31:44.039Z\", \"conclusion\": \"failed\"}, \"alpha_sweep_a060_s42_bf16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T17:26:43.407Z\", \"updated_at\": \"2026-05-18T21:21:41.457Z\", \"spec\": {\"command\": \"python iterative_train.py --alpha 0.6 --seed 42 --bf16\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:3\"], \"pid\": \"17523\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16/all_metrics.json\", \"submitted_at\": \"2026-05-18T17:26:43.254Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"Pythia-410M\", \"seed\": 42, \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16\", \"data_count\": 5000, \"wall_clock_seconds\": 12233.7, \"gpu_hours\": 3.4, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16\", \"checkpoint_source\": \"iterative_train\"}, \"hypothesis\": \"α=0.60 regime map with bf16: Fills gap between α=0.50 (boundary, high seed variance) and α=0.75 (3/8 FDR-sig). Pinpoints detectability threshold.\", \"reproduce\": {\"finished_at\": \"2026-05-18T20:50:35.892Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T20:50:36.935Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T20:50:40.809332+00:00\"}]}, \"metrics\": {\"gen0\": {\"token_entropy\": 3.2574, \"ece\": 0.0123, \"perplexity\": 27.68, \"distinct_1\": 0.0914, \"distinct_2\": 0.5043, \"distinct_3\": 0.8329}, \"gen10\": {\"token_entropy\": 2.6404, \"ece\": 0.0426, \"perplexity\": 20.27, \"distinct_1\": 0.0663, \"distinct_2\": 0.3157, \"distinct_3\": 0.5707}, \"drift_pct\": {\"token_entropy\": -18.9, \"ece\": 246.5, \"perplexity\": -26.8, \"distinct_1\": -27.5, \"distinct_2\": -37.4, \"distinct_3\": -31.5}, \"lead_lag_unified_2sigma\": {\"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"6/8\", \"perm_granger_fwd\": \"8/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"0/8\", \"consensus_K4\": \"6/8\"}, \"mmct\": {\"uniform_forward\": \"0/8\", \"uniform_bidirectional\": \"0/8\", \"weighted_pair_forward\": \"6/8\", \"weighted_pair_bidirectional\": \"6/8\", \"weighted_global_forward\": \"0/8\", \"weighted_global_bidirectional\": \"0/8\"}}}, \"alpha_sweep_c4_a050_s42_bf16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T17:26:50.191Z\", \"updated_at\": \"2026-05-18T20:54:50.198Z\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --bf16 --output_dir results/alpha_sweep_c4/a050_s42_bf16\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:5\"], \"pid\": \"18253\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_c4_a050_s42_bf16.log\", \"submitted_at\": \"2026-05-18T17:26:50.044Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"data_path\": \"data/c4_5k\", \"data_count\": 5000, \"wall_clock_seconds\": 10609.4, \"gpu_hours\": 2.95}, \"hypothesis\": \"C4 α=0.50 cross-domain with bf16: Pythia-410M C4 at synthetic_ratio=0.50. Validates whether canary ranking and regime boundary transfer from WikiText to C4 domain.\", \"reproduce\": {\"finished_at\": \"2026-05-18T20:23:37.841Z\"}, \"failure_reason\": \"FALSE ALARM: Experiment completed successfully (all 10 generations, EXIT_CODE sentinel=0). Shell-level EXIT_CODE=129 caused by SIGHUP after tmux session killed post-completion. All results in all_metrics.json are complete and usable. No rerun needed.\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T20:23:39.484Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T20:23:41.952322+00:00\"}]}, \"metrics\": {\"token_entropy_gen0\": 3.136, \"token_entropy_gen10\": 1.94, \"token_entropy_delta_pct\": -38.2, \"distinct_1_gen0\": 0.111, \"distinct_1_gen10\": 0.089, \"distinct_1_delta_pct\": -20.3, \"perplexity_gen0\": 24.4, \"perplexity_gen10\": 122.8, \"perplexity_delta_pct\": 402, \"mauve_gen0\": 0.691, \"mauve_gen10\": 0.078, \"ece_gen0\": 0.011, \"ece_gen10\": 0.259, \"diff_xcorr_te_d1_lag\": 1, \"diff_xcorr_te_d1_r\": 0.914, \"permg_fwd_fdr_sig\": \"0/8\", \"permg_rev_fdr_sig\": \"0/8\"}}, \"gen_opt13b_a100_s43_bf16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T20:29:50.031Z\", \"updated_at\": \"2026-05-18T20:31:14.879Z\", \"hypothesis\": \"OPT-1.3B multi-seed s43 bf16: facebook/opt-1.3b × WikiText-103 × α=1.0 × seed=43. Validates cross-architecture canary lead-lag at 1.3B scale (Meta OPT family, 6th architecture).\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name facebook/opt-1.3b --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --bf16 --output_dir results/generalize/opt13b_wiki_a100_s43_bf16\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:5\"], \"pid\": \"44884\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_opt13b_a100_s43_bf16.log\", \"submitted_at\": \"2026-05-18T20:29:53.751Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"facebook/opt-1.3b\", \"seed\": 43, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 81.1, \"gpu_hours\": 0.02}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-18T20:31:14.879Z\"}, \"alpha_sweep_a010_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:55:45.450Z\", \"updated_at\": \"2026-05-18T19:55:24.464Z\", \"hypothesis\": \"α=0.10 regime map gap fill: Pythia-410M WikiText s42 at synthetic_ratio=0.10 (between 0.00 pure-real and 0.25). Tests whether the near-zero contamination regime shows detectable canary signal or behaves like null control, establishing the lower detection boundary for the dose-response curve.\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.10 --output_dir results/alpha_sweep/a010_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"362511\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a010_s42_v2.log\", \"submitted_at\": \"2026-05-18T14:56:01.986Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_path\": \"results/alpha_sweep/a010_s42\", \"wall_clock_seconds\": 17962.5, \"gpu_hours\": 4.99}, \"reproduce\": {\"finished_at\": \"2026-05-18T19:34:38.526Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T19:34:41.259905+00:00\"}]}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-18T19:55:24.464Z\"}, \"interv_pred_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:33:43.711Z\", \"updated_at\": \"2026-05-18T18:43:15.800Z\", \"hypothesis\": \"Intervention predictive multi-seed s43: Pythia-410M WikiText α=1.0, token_entropy >15% drop trigger, switch to α=0.0. Validates s42 result (trigger Gen 1, recovery Gen 2) is reproducible across seeds.\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --intervention_mode predictive --intervention_metric token_entropy --intervention_threshold 0.15 --intervention_alpha 0.0 --output_dir results/intervention/predictive_te_s43\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:2\"], \"pid\": \"9977\", \"log_path\": \"~/runs/distrib_canary_collapse/interv_pred_s43.log\", \"submitted_at\": \"2026-05-18T16:36:24.687Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"kill_reason\": \"missing --bf16, crashed with ValueError: Attempting to unscale FP16 gradients on Blackwell GPU\", \"wall_clock_seconds\": 7611.1, \"gpu_hours\": 2.11}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-18T18:43:15.800Z\"}, \"alpha_sweep_c4_a050_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:33:48.244Z\", \"updated_at\": \"2026-05-18T18:43:14.860Z\", \"hypothesis\": \"C4 α=0.50 cross-domain: Pythia-410M C4 at synthetic_ratio=0.50. Validates whether canary ranking and regime boundary transfer from WikiText to C4 domain.\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep_c4/a050_s42\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:5\"], \"pid\": \"10198\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_c4_a050_s42.log\", \"submitted_at\": \"2026-05-18T16:36:29.922Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/c4_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"kill_reason\": \"missing --bf16, fp16 GradScaler incompatible with Blackwell GPU\", \"wall_clock_seconds\": 7604.9, \"gpu_hours\": 2.11}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-18T18:43:14.860Z\"}, \"alpha_sweep_a060_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:33:46.539Z\", \"updated_at\": \"2026-05-18T18:43:13.901Z\", \"hypothesis\": \"α=0.60 regime map: Pythia-410M WikiText s42 at synthetic_ratio=0.60. Fills gap between α=0.50 (boundary, high seed variance) and α=0.75 (3/8 FDR-sig). Pinpoints detectability threshold.\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.60 --output_dir results/alpha_sweep/a060_s42\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:3\"], \"pid\": \"10057\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a060_s42_v2.log\", \"submitted_at\": \"2026-05-18T16:36:27.453Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"kill_reason\": \"missing --bf16, fp16 GradScaler incompatible with Blackwell GPU\", \"wall_clock_seconds\": 7606.4, \"gpu_hours\": 2.11}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-18T18:43:13.901Z\"}, \"alpha_sweep_a010_s42_bf16\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T17:26:31.462Z\", \"updated_at\": \"2026-05-18T17:55:59.099Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.10 --bf16 --output_dir results/alpha_sweep/a010_s42_bf16\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:2\"], \"pid\": \"16858\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a010_s42_bf16.log\", \"submitted_at\": \"2026-05-18T17:26:31.314Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"kill_reason\": \"Duplicate of westd-19828 alpha_sweep_a010_s42_v2 (already at Gen 5+), wasting GPU\"}, \"hypothesis\": \"α=0.10 regime map gap fill with bf16: Pythia-410M WikiText s42 at synthetic_ratio=0.10. Tests whether near-zero contamination shows detectable canary signal.\", \"conclusion\": \"killed\"}, \"scale_14b_a050_s42_bf16\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T17:24:05.784Z\", \"updated_at\": \"2026-05-18T17:55:58.153Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-1.4b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --gradient_checkpointing --bf16 --output_dir results/scale_check/pythia14b_a050_s42_bf16\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:0\"], \"pid\": \"15222\", \"log_path\": \"~/runs/distrib_canary_collapse/scale_14b_a050_s42_bf16.log\", \"submitted_at\": \"2026-05-18T17:24:05.643Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"kill_reason\": \"Duplicate of westd-19828 scale_14b_a050_s42, wasting GPU\"}, \"hypothesis\": \"Pythia-1.4B α=0.50 s42 with bf16: Verifies whether canary lead-lag persists at 1.4B scale in the boundary regime (α=0.50). Tests if method sensitivity findings from 410M transfer to larger models.\", \"conclusion\": \"killed\"}, \"interv_react_s43\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:57:59.843Z\", \"updated_at\": \"2026-05-18T17:22:48.090Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --intervention_mode reactive --intervention_metric distinct_1 --intervention_threshold 0.10 --intervention_alpha 0.0 --output_dir results/intervention/reactive_d1_s43\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:4\"], \"pid\": \"12279\", \"log_path\": \"~/runs/distrib_canary_collapse/interv_react_s43.log\", \"submitted_at\": \"2026-05-18T16:57:59.705Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"kill_reason\": \"missing --bf16, killed during Gen 0 generation phase\"}, \"hypothesis\": \"Intervention reactive multi-seed s43: Pythia-410M WikiText α=1.0, distinct_1 >10% drop trigger, switch to α=0.0. Validates s42 result (trigger Gen 2, recovery Gen 4) is reproducible across seeds.\", \"conclusion\": \"killed\"}, \"gen_gpt2m_a100_s43\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:58:48.288Z\", \"updated_at\": \"2026-05-18T17:22:47.135Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name openai-community/gpt2-medium --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/gpt2m_wiki_a100_s43\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:1\"], \"pid\": \"12767\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_gpt2m_a100_s43.log\", \"submitted_at\": \"2026-05-18T16:58:48.142Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"kill_reason\": \"missing --bf16, killed at Gen 1 step 84/5000\"}, \"hypothesis\": \"GPT-2-medium multi-seed s43: GPT-2-medium × WikiText-103 × α=1.0 × seed=43. Validates s42 cross-architecture results (K≥4=6/8) are reproducible, confirming architecture-independent canary lead-lag.\", \"conclusion\": \"killed\"}, \"intervention_predictive_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T11:31:03.869Z\", \"updated_at\": \"2026-05-18T16:33:33.782Z\", \"hypothesis\": \"Predictive intervention: monitoring token_entropy drop >15% as early-warning trigger, switching α from 1.0 to 0.0 at trigger generation. Tests whether canary-triggered intervention halts collapse earlier than reactive (downstream-triggered) intervention, demonstrating canary's practical utility.\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && ... python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --intervention_mode predictive --intervention_metric token_entropy --intervention_threshold 0.15 --intervention_alpha 0.0 --output_dir results/intervention/predictive_te_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"351357\", \"log_path\": \"~/runs/distrib_canary_collapse/intervention_predictive_s42.log\", \"submitted_at\": \"2026-05-18T11:50:57.141Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/intervention/predictive_te_s42/\", \"wall_clock_seconds\": 16956.6, \"gpu_hours\": 4.71}, \"conclusion\": \"success\", \"metrics\": {\"trigger_gen\": 1, \"trigger_entropy_drop_pct\": -40.71, \"gen0_ppl\": 26.95, \"gen0_entropy\": 3.234, \"gen0_distinct_1\": 0.0982, \"gen0_ece\": 0.0108, \"gen1_ppl\": 56.99, \"gen1_entropy\": 1.918, \"gen1_distinct_1\": 0.0975, \"gen1_ece\": 0.205, \"gen2_ppl\": 20.81, \"gen2_entropy\": 3.055, \"gen10_ppl\": 21.29, \"gen10_entropy\": 3.079, \"gen10_eff_rank\": 44.1, \"gen10_mauve\": 0.0272, \"recovery_complete_by_gen\": 2, \"vs_reactive_trigger_advantage\": \"1 gen earlier\", \"vs_reactive_peak_ppl_reduction\": \"63% (56.99 vs 157.09)\", \"vs_reactive_recovery_advantage\": \"1 gen faster (Gen 2 vs Gen 4)\", \"converges_to_alpha0_baseline\": true}, \"completed_at\": \"2026-05-18T16:33:33.782Z\"}, \"intervention_reactive_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T10:25:52.494Z\", \"updated_at\": \"2026-05-18T14:54:52.686Z\", \"hypothesis\": \"Reactive intervention baseline: monitoring distinct_1 drop >10% as trigger, switching α from 1.0 to 0.0 at trigger generation. Tests whether downstream-triggered intervention (without canary) can halt collapse, serving as comparison for predictive (canary-triggered) intervention.\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && ... python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --intervention_mode reactive --intervention_metric distinct_1 --intervention_threshold 0.10 --intervention_alpha 0.0 --output_dir results/intervention/reactive_d1_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"340964\", \"log_path\": \"~/runs/distrib_canary_collapse/intervention_reactive_s42.log\", \"submitted_at\": \"2026-05-18T10:26:06.968Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/intervention/reactive_d1_s42/\", \"wall_clock_seconds\": 16125.7, \"gpu_hours\": 4.48}, \"reproduce\": {\"finished_at\": \"2026-05-18T14:50:43.171Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T14:50:46.960650+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"trigger_gen\": 2, \"trigger_distinct1_drop_pct\": -15.58, \"gen0_distinct_1\": 0.0982, \"gen0_ppl\": 26.95, \"gen0_entropy\": 3.234, \"gen2_distinct_1\": 0.0823, \"gen2_ppl\": 157.09, \"gen2_entropy\": 1.478, \"gen10_distinct_1\": 0.0844, \"gen10_ppl\": 21.24, \"gen10_entropy\": 3.071, \"gen10_ece\": 0.0152, \"gen10_mauve\": 0.0289, \"distinct_1_drift_pct\": -14.1, \"ppl_drift_pct\": -21.2, \"entropy_drift_pct\": -5, \"vs_no_intervention_ppl_gen10\": 1003.73, \"vs_no_intervention_distinct1_gen10\": 0.0704, \"recovery_complete_by_gen\": 4, \"converges_to_alpha0_baseline\": true}, \"completed_at\": \"2026-05-18T14:54:52.686Z\"}, \"generalize_pythia1b_c4_a100_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T07:08:24.826Z\", \"updated_at\": \"2026-05-17T12:33:54.364Z\", \"hypothesis\": \"Methodological pitfalls generalize across data domains — Pythia-1B on C4 (vs WikiText) at α=1.0 should reproduce canary→downstream causal pattern, proving domain-independence of the framework\", \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T11:49:02.322Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-1b --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia1b_c4_a100_s42\\\"\", \"finished_at\": \"2026-05-17T12:27:50.691Z\", \"training_hours\": 0.65}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-1b --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia1b_c4_a100_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"265619\", \"log_path\": \"~/runs/distrib_canary_collapse/generalize_pythia1b_c4_a100_s42.log\", \"submitted_at\": \"2026-05-17T12:11:05.002Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1007.5, \"gpu_hours\": 0.28}, \"pid\": \"265619\", \"log_path\": \"~/runs/distrib_canary_collapse/generalize_pythia1b_c4_a100_s42.log\", \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-17T12:27:52.495Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T12:27:55.057137+00:00\"}]}, \"notes\": \"失败原因: hf-mirror.com 下载 Pythia-1B 权重时连接中断 (ChunkedEncodingError)，仅下载 7%。训练未开始，无可用数据。修复: 清理 .incomplete 缓存 → 预下载模型 → 重新提交。\"}, \"alpha_sweep_a050_s44\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-15T06:58:50.550Z\", \"updated_at\": \"2026-05-17T06:40:50.861Z\", \"completed_at\": \"2026-05-16T00:03:52.118Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"killed\"}, \"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T06:34:46.264183+00:00\"}]}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.5 --output_dir results/alpha_sweep/a050_s44\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"230319\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s44.log\", \"submitted_at\": \"2026-05-17T02:07:37.713Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44/gen_10/checkpoint\", \"wall_clock_seconds\": 16393.1, \"gpu_hours\": 4.55}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": \"230319\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s44.log\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.5 --output_dir results/alpha_sweep/a050_s44\\\"\", \"finished_at\": \"2026-05-17T06:34:43.961Z\"}, \"hypothesis\": \"α=0.50 第三 seed 将确认 boundary 的 seed-dependent 性质；若 PermG sig >0/8 则 2/3 seeds 有信号（boundary 偏 transitional），若 0/8 则 1/3（boundary 偏 null）\", \"parent\": \"alpha_sweep_a050_s43\", \"conclusion\": \"success\", \"metrics\": {\"perm_granger_fdr_fwd\": \"3/8\", \"perm_granger_fdr_rev\": \"0/8\", \"consensus_ge3\": \"0/8\", \"consensus_ge4\": \"0/8\", \"naive_xcorr_fwd\": \"4/8\", \"diff_xcorr_fdr_fwd\": \"6/8\", \"threshold_onset_fwd\": \"0/8\", \"ty_granger_fwd\": \"0/8\", \"ece_d1_fdr_p\": 0.016, \"ece_d2_fdr_p\": 0.0408, \"ece_d3_fdr_p\": 0.0536, \"ece_ppl_fdr_p\": 0.0475, \"entropy_d1_fdr_p\": 0.0862, \"entropy_d2_fdr_p\": 0.0862, \"entropy_d3_fdr_p\": 0.0862, \"entropy_ppl_fdr_p\": 0.0862, \"cross_seed_note\": \"s42:0/8, s43:6/8, s44:3/8 — confirms boundary regime with high seed variance; ECE only canary with signal at α=0.50\"}}, \"mvp_v4_rep45\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:41:26.286Z\", \"updated_at\": \"2026-05-17T02:58:36.890Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 45 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --output_dir results/mvp/rep_45\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"31425\", \"log_path\": \"~/runs/distrib_canary_collapse/mvp_v4_rep45.log\", \"submitted_at\": \"2026-05-14T13:42:10.455Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 45, \"wall_clock_seconds\": 15350.2, \"gpu_hours\": 4.26}, \"reproduce\": {\"finished_at\": \"2026-05-14T17:55:42.230Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T17:55:42.934182+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_45/gen_10/checkpoint\", \"metrics_summary\": {\"gen0_ppl\": 26.9, \"gen10_ppl\": 1016.2, \"gen0_entropy\": 3.234, \"gen10_entropy\": 1.315, \"gen0_ece\": 0.011, \"gen10_ece\": 0.417}, \"wall_clock_seconds\": 15212, \"gpu_hours\": 4.23, \"conclusion\": \"success\", \"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen0_distinct_1\": 0.098574, \"gen0_distinct_2\": 0.51463, \"gen0_distinct_3\": 0.808362, \"gen10_token_entropy\": 1.31536, \"gen10_ece\": 0.41654, \"gen10_perplexity\": 1016.22, \"gen10_distinct_1\": 0.069859, \"gen10_distinct_2\": 0.329549, \"gen10_distinct_3\": 0.543743, \"token_entropy_drift_pct\": -59.3296, \"ece_drift_pct\": 3755.0671, \"perplexity_drift_pct\": 3670.9063, \"distinct_1_drift_pct\": -29.1304, \"distinct_2_drift_pct\": -35.9639, \"distinct_3_drift_pct\": -32.7352}, \"completed_at\": \"2026-05-14T17:58:00.661Z\", \"hypothesis\": \"α=1.0 full replacement baseline: 完全合成污染下 canary→downstream 因果领先性在多 seeds 可复现，建立 confirmatory regime 证据基础\", \"parent\": \"mvp_v4_rep42\"}, \"mvp_v4_rep43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:48:50.161Z\", \"updated_at\": \"2026-05-17T02:58:36.247Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --output_dir results/mvp/rep_43\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"13758\", \"log_path\": \"~/runs/distrib_canary_collapse/mvp_v4_rep43.log\", \"submitted_at\": \"2026-05-14T07:51:36.759Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_10/checkpoint\", \"metrics_summary\": {\"gen0_ppl\": 26.9, \"gen10_ppl\": 1014.7, \"gen0_entropy\": 3.234, \"gen10_entropy\": 1.26, \"gen0_ece\": 0.011, \"gen10_ece\": 0.42}, \"wall_clock_seconds\": 20897.7, \"gpu_hours\": 5.8}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T13:39:54.495Z\", \"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen0_distinct_1\": 0.098334, \"gen0_distinct_2\": 0.513178, \"gen0_distinct_3\": 0.805669, \"gen10_token_entropy\": 1.25961, \"gen10_ece\": 0.41951, \"gen10_perplexity\": 1014.66, \"gen10_distinct_1\": 0.070383, \"gen10_distinct_2\": 0.329651, \"gen10_distinct_3\": 0.539571, \"token_entropy_drift_pct\": -61.0534, \"ece_drift_pct\": 3782.5544, \"perplexity_drift_pct\": 3665.1176, \"distinct_1_drift_pct\": -28.4246, \"distinct_2_drift_pct\": -35.7628, \"distinct_3_drift_pct\": -33.0282}, \"hypothesis\": \"α=1.0 full replacement baseline: 完全合成污染下 canary→downstream 因果领先性在多 seeds 可复现，建立 confirmatory regime 证据基础\", \"parent\": \"mvp_v4_rep42\"}, \"alpha_sweep_a050_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:45.880Z\", \"updated_at\": \"2026-05-17T02:58:35.307Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s43\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"134860\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s43.log\", \"submitted_at\": \"2026-05-15T17:40:27.060Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 16523.2, \"gpu_hours\": 4.59}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"pid\": \"134860\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s43.log\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s43\\\"\", \"finished_at\": \"2026-05-15T22:00:14.725Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:00:15.908424+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/alpha_sweep/a050_s43/gen_10/checkpoint/\", \"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen10_token_entropy\": 2.672, \"gen10_ece\": 0.097, \"gen10_perplexity\": 32.633, \"gen0_distinct_1\": 0.09833, \"gen0_distinct_2\": 0.5132, \"gen0_distinct_3\": 0.8057, \"gen10_distinct_1\": 0.0624, \"gen10_distinct_2\": 0.2617, \"gen10_distinct_3\": 0.4126, \"token_entropy_drift_pct\": -17.4, \"ece_drift_pct\": 799, \"perplexity_drift_pct\": 21.1, \"distinct_1_drift_pct\": -36.5, \"distinct_2_drift_pct\": -49, \"distinct_3_drift_pct\": -48.8, \"cross_seed_note\": \"vs s42: drift direction identical, magnitude <7% deviation, ppl near-identical (32.633 vs 32.64)\"}, \"completed_at\": \"2026-05-15T22:00:14Z\", \"hypothesis\": \"α=0.50 multi-seed: 中等污染下 PermG 信号是否跨种子稳定——如 signal 出现则 boundary 在 α&lt;0.50，如无则 boundary 在 α>0.50\", \"parent\": \"alpha_sweep_a050_s42\"}, \"alpha_sweep_a025_s44\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:48.224Z\", \"updated_at\": \"2026-05-17T02:58:34.439Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s44\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"147811\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s44.log\", \"submitted_at\": \"2026-05-15T22:04:28.318Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 17118.6, \"gpu_hours\": 4.76}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T22:04:26.677Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s44\\\"\", \"finished_at\": \"2026-05-16T02:24:25.056Z\", \"training_hours\": 4.33}, \"pid\": \"147811\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s44.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T02:24:26.614491+00:00\"}]}, \"metrics\": \"{\\n  \\\"gen0\\\": {\\n    \\\"token_entropy\\\": 3.2342, \\\"ece\\\": 0.01080, \\\"perplexity\\\": 26.949,\\n    \\\"distinct_1\\\": 0.09809, \\\"distinct_2\\\": 0.51324, \\\"distinct_3\\\": 0.80577,\\n    \\\"effective_rank\\\": 46.613, \\\"mauve\\\": 0.02954\\n  },\\n  \\\"gen10\\\": {\\n    \\\"token_entropy\\\": 3.0721, \\\"ece\\\": 0.01804, \\\"perplexity\\\": 21.984,\\n    \\\"distinct_1\\\": 0.05884, \\\"distinct_2\\\": 0.22703, \\\"distinct_3\\\": 0.33644,\\n    \\\"effective_rank\\\": 44.354, \\\"mauve\\\": 0.01753\\n  },\\n  \\\"drift_pct\\\": {\\n    \\\"token_entropy\\\": -5.01, \\\"ece\\\": +67.0, \\\"perplexity\\\": -18.42,\\n    \\\"distinct_1\\\": -40.01, \\\"distinct_2\\\": -55.77, \\\"distinct_3\\\": -58.24,\\n    \\\"effective_rank\\\": -4.85, \\\"mauve\\\": -40.65\\n  }\\n}\", \"conclusion\": \"success\", \"checkpoint_path\": \"results/alpha_sweep/a025_s44/gen_10/checkpoint\", \"completed_at\": \"2026-05-16T02:49:46.894Z\", \"hypothesis\": \"α=0.25 multi-seed 复现: 低污染下 diversity collapse (40-59%) 但无 Granger causal signal (0/8 PermG) 的模式跨种子稳定，定义 sub-threshold regime 下界\", \"parent\": \"alpha_sweep_a025_s42_v3\"}, \"alpha_sweep_a025_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:43.090Z\", \"updated_at\": \"2026-05-17T02:58:33.559Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s43\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"121635\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s43.log\", \"submitted_at\": \"2026-05-15T13:16:31.189Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 15792.4, \"gpu_hours\": 4.39}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"pid\": \"121635\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s43.log\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s43\\\"\", \"finished_at\": \"2026-05-15T17:36:20.945Z\"}, \"metrics\": {\"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.09833, \"distinct_2\": 0.5132, \"distinct_3\": 0.8057, \"effective_rank\": 46.61, \"mauve\": 0.03351}, \"gen10\": {\"token_entropy\": 3.0723, \"ece\": 0.02146, \"perplexity\": 21.899, \"distinct_1\": 0.05849, \"distinct_2\": 0.2236, \"distinct_3\": 0.333, \"effective_rank\": 45.37, \"mauve\": 0.01871}, \"drift_pct\": {\"token_entropy\": -5, \"ece\": 98.6, \"perplexity\": -18.7, \"distinct_1\": -40.5, \"distinct_2\": -56.4, \"distinct_3\": -58.7, \"effective_rank\": -2.7, \"mauve\": -44.2}}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T17:36:22.072334+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/gen_10/checkpoint\", \"completed_at\": \"2026-05-15T17:39:43.624Z\", \"hypothesis\": \"α=0.25 multi-seed 复现: 低污染下 diversity collapse (40-59%) 但无 Granger causal signal (0/8 PermG) 的模式跨种子稳定，定义 sub-threshold regime 下界\", \"parent\": \"alpha_sweep_a025_s42_v3\"}, \"mvp_v4_rep42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:29:48.857Z\", \"updated_at\": \"2026-05-17T02:58:25.998Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --output_dir results/mvp/rep_42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"13678\", \"log_path\": \"~/runs/distrib_canary_collapse/mvp_v4_rep42.log\", \"submitted_at\": \"2026-05-14T07:51:34.806Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_10/checkpoint\", \"metrics_summary\": {\"gen0_ppl\": 26.9, \"gen10_ppl\": 1003.7, \"gen0_entropy\": 3.234, \"gen10_entropy\": 1.276, \"gen0_ece\": 0.011, \"gen10_ece\": 0.417}, \"wall_clock_seconds\": 20898.3, \"gpu_hours\": 5.81}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T13:39:53.073Z\", \"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen0_distinct_1\": 0.098216, \"gen0_distinct_2\": 0.517803, \"gen0_distinct_3\": 0.812728, \"gen10_token_entropy\": 1.27592, \"gen10_ece\": 0.41734, \"gen10_perplexity\": 1003.73, \"gen10_distinct_1\": 0.070383, \"gen10_distinct_2\": 0.335471, \"gen10_distinct_3\": 0.555579, \"token_entropy_drift_pct\": -60.5491, \"ece_drift_pct\": 3762.4711, \"perplexity_drift_pct\": 3624.5595, \"distinct_1_drift_pct\": -28.3386, \"distinct_2_drift_pct\": -35.2126, \"distinct_3_drift_pct\": -31.6402}, \"hypothesis\": \"α=1.0 full replacement baseline: 完全合成污染下 canary→downstream 因果领先性在多 seeds 可复现，建立 confirmatory regime 证据基础\"}, \"gen_wiki_gpt2m_a025_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:35:16.032Z\", \"updated_at\": \"2026-05-17T02:56:16.958Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a025_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 0.25 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a025_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"149202\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a025_s42.log\", \"submitted_at\": \"2026-05-15T22:22:52.615Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 36787.0, \"gpu_hours\": 10.22}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T22:22:51.021Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a025_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 0.25 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a025_s42\\\"\", \"finished_at\": \"2026-05-16T08:26:22.143Z\", \"training_hours\": 10.06}, \"pid\": \"149202\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a025_s42.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T08:26:23.559830+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.5714, \"ece\": 0.0112, \"perplexity\": 32.63, \"distinct_1\": 0.1044, \"distinct_2\": 0.5483, \"distinct_3\": 0.8441, \"effective_rank\": 2.3722, \"mauve\": 0.0315}, \"gen10\": {\"token_entropy\": 2.3999, \"ece\": 0.0583, \"perplexity\": 18.12, \"distinct_1\": 0.0799, \"distinct_2\": 0.375, \"distinct_3\": 0.5893, \"effective_rank\": 8.4833, \"mauve\": 0.0282}, \"drift_pct\": {\"token_entropy\": -32.81, \"ece\": 422, \"perplexity\": -44.47, \"distinct_1\": -23.47, \"distinct_2\": -31.6, \"distinct_3\": -30.19, \"effective_rank\": 257.6, \"mauve\": -10.48}, \"lead_lag_consensus\": {\"tier3_pairs\": 1, \"tier2_pairs\": 7, \"perm_granger_sig\": \"0/8\", \"ty_sig\": \"1/8\"}}, \"checkpoint_path\": \"results/gen_wiki_gpt2m_a025_s42/gen_10/checkpoint\", \"completed_at\": \"2026-05-16T08:35:59.634Z\", \"hypothesis\": \"跨架构验证: GPT-2-medium (355M) 在 α=0.25 下展示与 Pythia-410M 相同的 regime-dependent 模式（diversity collapse 显著但 causal signal sub-threshold），确认 detectability boundary 非模型特异性\", \"parent\": \"alpha_sweep_a025_s42_v3\"}, \"alpha_sweep_a075_s44\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-16T06:16:20.468Z\", \"updated_at\": \"2026-05-17T02:56:11.121Z\", \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s44\\\"\", \"finished_at\": \"2026-05-16T14:13:08.016Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"completed_at\": \"2026-05-16T09:53:05.475Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T09:53:09.379555+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T14:13:10.811080+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: SafetensorError No space left on device — model.save_pretrained() at line 252 | 已有成果: 最后一轮训练已完成 (5000 steps, loss=0.3493) 但 checkpoint 未保存 | 建议: 清磁盘后重跑\"}}, \"notes\": \"第三次重启 (17:57 UTC)：第二次运行 (09:56-~17:00, Gen 0-3) 被另一 Agent 会话 kill+rm-rf+重启，~7h GPU 浪费。原因：并发 Agent 会话判断需重跑。当前为第三次运行，从 Gen 0 开始，预计 ~10-12h 完成。\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s44\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"184342\", \"log_path\": \"/tmp/a075_s44.log\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"pythia-410m\", \"seed\": 44, \"checkpoint_path\": \"results/alpha_sweep/a075_s44/gen_10/checkpoint\"}, \"conclusion\": \"success\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.234, \"ece\": 0.0108, \"perplexity\": 26.95, \"distinct_1\": 0.0982, \"distinct_2\": 0.5178, \"distinct_3\": 0.8127}, \"gen10\": {\"token_entropy\": 2.336, \"ece\": 0.206, \"perplexity\": 76.35, \"distinct_1\": 0.067, \"distinct_2\": 0.309, \"distinct_3\": 0.508}, \"drift_pct\": {\"token_entropy\": -27.8, \"ece\": 1774, \"perplexity\": 183.4, \"distinct_1\": -31.8, \"distinct_2\": -39.9, \"distinct_3\": -37.5}}, \"hypothesis\": \"α=0.75 multi-seed 复现: Permutation Granger 因果信号（≥4/8 FDR sig forward, 0/8 reverse）在不同随机种子下稳定存在，确认 transitional regime 非单种子偶然\", \"parent\": \"alpha_sweep_a075_s42\"}, \"alpha_sweep_a075_s43\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-16T06:16:27.880Z\", \"updated_at\": \"2026-05-17T02:56:08.786Z\", \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s43\\\"\", \"finished_at\": \"2026-05-16T14:17:44.618Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"completed_at\": \"2026-05-16T09:52:44.075Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T09:52:46.251192+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T14:17:47.470687+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: OSError [Errno 28] No space left on device — save_to_disk(synthetic_data) at line 231 | 已有成果: 跑了 ~3h，部分 generation 可能已完成 | 建议: 清磁盘后重跑\"}}, \"notes\": \"第三次重启 (17:57 UTC)：第二次运行 (09:56-~17:00, Gen 0-7) 被另一 Agent 会话 kill+rm-rf+重启，~7h GPU 浪费。原因：并发 Agent 会话判断需重跑。当前为第三次运行，从 Gen 0 开始，预计 ~10-12h 完成。\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s43\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"184026\", \"log_path\": \"/tmp/a075_s43.log\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"pythia-410m\", \"seed\": 43, \"checkpoint_path\": \"results/alpha_sweep/a075_s43/gen_10/checkpoint\"}, \"conclusion\": \"success\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.234, \"ece\": 0.0108, \"perplexity\": 26.95, \"distinct_1\": 0.0982, \"distinct_2\": 0.5178, \"distinct_3\": 0.8127, \"effective_rank\": 46.61}, \"gen10\": {\"token_entropy\": 2.349, \"ece\": 0.204, \"perplexity\": 76.08, \"distinct_1\": 0.0666, \"distinct_2\": 0.2984, \"distinct_3\": 0.4838, \"effective_rank\": 79.4}, \"drift_pct\": {\"token_entropy\": -27.4, \"ece\": 1789, \"perplexity\": 182.4, \"distinct_1\": -32.3, \"distinct_2\": -41.9, \"distinct_3\": -40, \"effective_rank\": 70.4}}, \"hypothesis\": \"α=0.75 multi-seed 复现: Permutation Granger 因果信号（≥4/8 FDR sig forward, 0/8 reverse）在不同随机种子下稳定存在，确认 transitional regime 非单种子偶然\", \"parent\": \"alpha_sweep_a075_s42\"}, \"alpha_sweep_a000_s44\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T11:29:15.357Z\", \"updated_at\": \"2026-05-17T02:56:00.115Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir results/alpha_sweep/a000_s44\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"198916\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a000_s44.log\", \"submitted_at\": \"2026-05-16T14:31:17.785Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 15749.3, \"gpu_hours\": 4.37}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"pid\": \"198916\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a000_s44.log\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir results/alpha_sweep/a000_s44\\\"\", \"finished_at\": \"2026-05-16T18:49:31.023Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T18:49:32.632808+00:00\"}]}, \"metrics\": {\"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.0981, \"distinct_2\": 0.5132, \"distinct_3\": 0.8058, \"effective_rank\": 46.613}, \"gen10\": {\"token_entropy\": 3.0957, \"ece\": 0.0134, \"perplexity\": 21.616, \"distinct_1\": 0.0838, \"distinct_2\": 0.4665, \"distinct_3\": 0.7749, \"effective_rank\": 44.498}, \"drift_pct\": {\"token_entropy\": -4.3, \"ece\": 24, \"perplexity\": -19.8, \"distinct_1\": -14.6, \"distinct_2\": -9.1, \"distinct_3\": -3.8, \"effective_rank\": -4.5}, \"five_method\": {\"perm_granger_fdr_sig\": \"0/8\", \"ty_sig\": \"0/8\", \"robust_pairs_ge3\": \"0/8\", \"fpr_controlled\": true}}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44\", \"completed_at\": \"2026-05-16T18:53:47.121Z\", \"hypothesis\": \"α=0.0 null control multi-seed: 无合成数据再训练在跨 seed 复现下仍不产生 spurious causal signal（PermG FDR 0/8），证实 signal 源于合成污染而非训练随机性\", \"parent\": \"alpha_sweep_a000_s42\"}, \"alpha_sweep_a000_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T11:29:13.444Z\", \"updated_at\": \"2026-05-17T02:55:58.475Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir results/alpha_sweep/a000_s43\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"198833\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a000_s43.log\", \"submitted_at\": \"2026-05-16T14:31:15.017Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 15486.6, \"gpu_hours\": 4.3}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": \"198833\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a000_s43.log\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir results/alpha_sweep/a000_s43\\\"\", \"finished_at\": \"2026-05-16T18:44:57.867Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T18:44:59.745869+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.0983, \"distinct_2\": 0.5132, \"distinct_3\": 0.8057, \"effective_rank\": 46.613}, \"gen10\": {\"token_entropy\": 3.0907, \"ece\": 0.0148, \"perplexity\": 21.469, \"distinct_1\": 0.0847, \"distinct_2\": 0.4631, \"distinct_3\": 0.7672, \"effective_rank\": 43.72}, \"drift_pct\": {\"token_entropy\": -4.4, \"ece\": 37.2, \"perplexity\": -20.3, \"distinct_1\": -13.9, \"distinct_2\": -9.8, \"distinct_3\": -4.8, \"effective_rank\": -6.2}, \"five_method\": {\"perm_granger_fdr_sig\": \"0/8\", \"ty_sig\": \"1/8 (df_resid=1 unreliable)\", \"robust_pairs_ge3\": \"0/8\", \"fpr_controlled\": true}}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/\", \"completed_at\": \"2026-05-16T18:49:21.663Z\", \"hypothesis\": \"α=0.0 null control multi-seed: 无合成数据再训练在跨 seed 复现下仍不产生 spurious causal signal（PermG FDR 0/8），证实 signal 源于合成污染而非训练随机性\", \"parent\": \"alpha_sweep_a000_s42\"}, \"mvp_v2_rep44\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:38:10.762Z\", \"updated_at\": \"2026-05-16T00:10:26.251Z\", \"spec\": {\"hypothesis\": \"至少一族canary指标在100% SC full replacement下对downstream指标有≥1 gen的时序领先性\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103\", \"data_count\": 5000, \"seed\": 44, \"server\": \"autodl-rtx6000\", \"gpu\": \"pending\", \"synthetic_ratio\": 1, \"num_generations\": 10, \"steps_per_gen\": 5000, \"n_prompts\": 5000, \"fix_note\": \"n_prompts 1000→5000, steps_per_gen 10000→5000, 避免过拟合\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T00:10:26.251Z\"}, \"mvp_rep44\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:12:15.033Z\", \"updated_at\": \"2026-05-16T00:10:25.605Z\", \"spec\": {\"hypothesis\": \"至少一族canary指标在100% SC full replacement下对downstream指标有≥1 gen的时序领先性\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103\", \"seed\": 44, \"server\": \"autodl-rtx6000\", \"gpu\": \"pending\", \"synthetic_ratio\": 1, \"num_generations\": 10, \"steps_per_gen\": 10000}, \"metrics\": {\"gen10_token_entropy\": 1.2205, \"gen10_ece\": 0.4237, \"gen10_perplexity\": 1033.16, \"gen10_distinct_1\": 0.0731, \"gen10_distinct_2\": 0.3637, \"gen10_distinct_3\": 0.6075}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T00:10:25.605Z\"}, \"alpha_sweep_a025_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T19:01:39.527Z\", \"updated_at\": \"2026-05-16T00:10:24.973Z\", \"spec\": {\"hypothesis\": \"α=0.25 低污染: 测试 canary→diversity lead 在温和 collapse 下是否保持，canary→perplexity lead 是否出现\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T00:10:24.973Z\"}, \"alpha_sweep_a025_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T19:25:52.094Z\", \"updated_at\": \"2026-05-16T00:10:24.568Z\", \"spec\": {\"hypothesis\": \"α=0.25 低污染: 测试 canary→diversity lead 在温和 collapse 下是否保持，canary→perplexity lead 是否出现\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a025_s42 (killed, subsample bias fix)\"}, \"conclusion\": \"killed\", \"failure_reason\": \"data corruption: unkilled old process PID 46802 wrote concurrently with new PID 48454\", \"completed_at\": \"2026-05-16T00:10:24.568Z\"}, \"alpha_sweep_a060_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:52:22.516Z\", \"updated_at\": \"2026-05-16T00:04:01.429Z\", \"spec\": {\"hypothesis\": \"α=0.60 中高污染: phase boundary 精确化, 与 α=0.50/0.75 对比 lead time 变化\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.6, \"num_generations\": 10, \"steps_per_gen\": 5000}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T00:04:01.429Z\"}, \"alpha_sweep_a010_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:52:19.712Z\", \"updated_at\": \"2026-05-16T00:03:53.018Z\", \"spec\": {\"hypothesis\": \"α=0.10 极低污染: phase boundary 精确化, canary signal 是否仍可检测\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.1, \"num_generations\": 10, \"steps_per_gen\": 5000}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T00:03:53.018Z\"}, \"plan_006_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:31:37.257Z\", \"updated_at\": \"2026-05-16T00:03:51.617Z\", \"spec\": {\"plan_id\": \"plan_006\", \"hypothesis\": \"Multi-seed replication of three-phase collapse dynamics: verify Phase 3 secondary decline (gen 13+) reproduces with seed=43, confirming it is not a single-seed artifact\", \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"data_path\": \"data/wikitext103_5k\", \"num_generations\": 18, \"synthetic_ratio\": 1, \"max_lag\": 10, \"data_count\": 5000, \"steps_per_gen\": 5000, \"parent\": \"plan_006_s42\", \"claim\": 1, \"priority\": \"P0\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T00:03:51.617Z\"}, \"gen_wiki_gpt2m_a100_s42_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:07:20.050Z\", \"updated_at\": \"2026-05-15T22:30:21.573Z\", \"spec\": {\"hypothesis\": \"Method sensitivity patterns (Granger FDR collapse, cross-correlation dominance) generalize from GPT-2-small to GPT-2-medium, validating cross-architecture universality of methodological pitfalls\", \"seed\": 42, \"model_name\": \"gpt2-medium\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T12:07:30.366Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\", \"finished_at\": \"2026-05-15T22:14:43.852Z\", \"training_hours\": 10.12}, \"pid\": \"117632\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v3.log\", \"metrics\": {\"token_entropy_drift_pct\": -86.5, \"ece_drift_pct\": 4543, \"perplexity_drift_pct\": 44703, \"distinct_1_drift_pct\": -12.4, \"distinct_2_drift_pct\": -14.7, \"distinct_3_drift_pct\": -12.7, \"five_method_forward_consensus\": \"6/6 pairs at 4/5 methods (Tier 3)\", \"five_method_reverse_consensus\": \"0/6 pairs\", \"naive_xcorr_forward\": \"|r|>0.98, all sig\", \"diff_xcorr_forward\": \"all p_fdr<0.001\", \"diff_xcorr_reverse\": \"all p>0.18 (clean directional separation)\", \"threshold_onset_entropy\": \"gen 1 (earliest canary)\", \"threshold_onset_ece\": \"gen 1-2\", \"threshold_onset_diversity\": \"gen 3\", \"perm_granger_forward\": \"p_fdr=0.003, BH corrected\", \"ty_granger_forward\": \"0/6 sig (df_resid=1-4, underpowered, consistent with Pythia C001)\", \"entropy_leads_diversity_lag\": \"1-2 gen\", \"ece_leads_diversity_lag\": \"1 gen\", \"diversity_plateau_from\": \"gen5\", \"cross_arch_note\": \"Replicates Pythia entropy-leads-diversity pattern at Tier 3 consensus. TY underpowered as expected.\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:14:45.029003+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/gen_wiki_gpt2m_a100_s42/\", \"completed_at\": \"2026-05-15T22:18:22.762Z\"}, \"mvp_v4_rep44\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:48:52.613Z\", \"updated_at\": \"2026-05-15T21:29:52.398Z\", \"spec\": {\"hypothesis\": \"至少一族canary指标在100% SC full replacement下对downstream指标有≥1 gen的时序领先性\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 44, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"synthetic_ratio\": 1, \"num_generations\": 10, \"steps_per_gen\": 5000, \"n_prompts\": 5000, \"command\": \"PYTHONUNBUFFERED=1 CUDA_VISIBLE_DEVICES=0 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --output_dir results/mvp/rep_44\", \"pid\": \"30672\", \"log_path\": \"~/runs/distrib_canary_collapse/mvp_v4_rep44.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T17:56:00.578Z\"}, \"failure_reason\": \"\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T17:56:00.717Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T17:56:03.546926+00:00\"}]}, \"metrics_summary\": {\"gen0_ppl\": 26.9, \"gen10_ppl\": 1033.16, \"gen0_entropy\": 3.234, \"gen10_entropy\": 1.2205, \"gen0_ece\": 0.011, \"gen10_ece\": 0.424}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_10/checkpoint\", \"wall_clock_seconds\": 15134, \"gpu_hours\": 4.2, \"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen0_distinct_1\": 0.098088, \"gen0_distinct_2\": 0.513235, \"gen0_distinct_3\": 0.805767, \"gen10_token_entropy\": 1.22049, \"gen10_ece\": 0.42369, \"gen10_perplexity\": 1033.16, \"gen10_distinct_1\": 0.073102, \"gen10_distinct_2\": 0.363737, \"gen10_distinct_3\": 0.607502, \"token_entropy_drift_pct\": -62.2629, \"ece_drift_pct\": 3821.2402, \"perplexity_drift_pct\": 3733.7659, \"distinct_1_drift_pct\": -25.473, \"distinct_2_drift_pct\": -29.1286, \"distinct_3_drift_pct\": -24.6057}}, \"alpha_sweep_a075_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:52:17.315Z\", \"updated_at\": \"2026-05-15T13:29:46.421Z\", \"spec\": {\"hypothesis\": \"α=0.75 high contamination: critical boundary point for Granger-causal detectability — determines Claim 1 scope (α≥0.75 vs α=1.0 only)\", \"seed\": 42, \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"synthetic_ratio\": 0.75, \"num_generations\": 10, \"steps_per_gen\": 5000}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T05:44:46.271Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s42\\\"\", \"finished_at\": \"2026-05-15T13:13:06.477Z\", \"training_hours\": 7.47}, \"pid\": \"89753\", \"log_path\": \"results/analysis/cross_alpha_v6_report.md\", \"metrics\": {\"progress\": \"11/11 gen (complete)\", \"gen0_token_entropy\": 3.234, \"gen10_token_entropy\": 2.337, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.2063, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 76.03, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0661, \"gen0_distinct_2\": 0.5178, \"gen10_distinct_2\": 0.3037, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.5011, \"token_entropy_drift_pct\": -27.7, \"ece_drift_pct\": 1809.5, \"perplexity_drift_pct\": 182.1, \"distinct_1_drift_pct\": -32.7, \"distinct_2_drift_pct\": -41.3, \"distinct_3_drift_pct\": -38.4, \"granger_ece_to_d1_p_fdr\": 0.046, \"granger_ece_to_d2_p_fdr\": 0.046, \"granger_entropy_to_d2_p_fdr\": 0.048, \"granger_entropy_to_d1_p_fdr\": 0.054, \"granger_fdr_sig_count\": \"3/8\", \"consensus_robust_pairs\": \"11/16\", \"xcorr_entropy_d1_lag\": 2, \"xcorr_entropy_d1_r\": 0.973}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:13:07.582542+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/alpha_sweep/a075_s42/\", \"completed_at\": \"2026-05-15T13:29:46.421Z\"}, \"alpha_sweep_a050_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:52:15.427Z\", \"updated_at\": \"2026-05-15T13:17:48.134Z\", \"spec\": {\"hypothesis\": \"α=0.50 moderate contamination: test canary→diversity lead at mid-range synthetic ratio, key data point for non-monotonic dose-response\", \"seed\": 42, \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"synthetic_ratio\": 0.5, \"num_generations\": 10, \"steps_per_gen\": 5000}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T01:15:14.747Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s42\\\"\", \"finished_at\": \"2026-05-15T05:42:25.788Z\", \"training_hours\": 4.45}, \"pid\": \"73737\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s42.log\", \"metrics\": {\"progress\": \"11/11 gen (complete)\", \"gen0_token_entropy\": 3.234, \"gen10_token_entropy\": 2.632, \"gen0_ece\": 0.011, \"gen10_ece\": 0.102, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 32.64, \"gen0_distinct_1\": 0.098, \"gen10_distinct_1\": 0.062, \"gen0_distinct_2\": 0.518, \"gen10_distinct_2\": 0.251, \"gen0_distinct_3\": 0.813, \"gen10_distinct_3\": 0.387, \"token_entropy_drift_pct\": -18.6, \"ece_drift_pct\": 842.8, \"perplexity_drift_pct\": 21.1, \"distinct_1_drift_pct\": -37.3, \"distinct_2_drift_pct\": -51.5, \"distinct_3_drift_pct\": -52.4, \"granger_entropy_to_d1_p_raw\": 0.095, \"granger_entropy_to_d2_p_raw\": 0.097, \"granger_ece_to_d1_p_raw\": 0.019, \"granger_ece_to_d2_p_raw\": 0.039, \"granger_fdr_note\": \"4 tests within alpha=0.50; BH FDR threshold rank1=0.0125, rank2=0.025 → 0/4 FDR-sig at q=0.05. Raw p pattern (ECE < entropy) is qualitative signal only.\", \"d024_non_monotonic\": true, \"d024_ece_vs_entropy_note\": \"ECE raw p < entropy raw p at α=0.50 (0.019 vs 0.095 at 5000 perms), 0/4 FDR-sig; regime switch hypothesis pending α=0.75 confirmation\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T05:42:26.715028+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/gen_10/checkpoint\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T05:46:48.692Z\"}, \"plan_006_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:31:35.454Z\", \"updated_at\": \"2026-05-15T12:17:14.093Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"68368\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42.log\", \"submitted_at\": \"2026-05-14T23:41:30.666Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 43212.6, \"gpu_hours\": 12.0}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T23:41:29.125Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\"\", \"finished_at\": \"2026-05-15T11:41:42.336Z\", \"training_hours\": 12.0}, \"pid\": \"68368\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42.log\", \"metrics\": {\"progress\": \"18/20 gen (gen_0-17 complete, gen_18-20 timeout)\", \"gen0_token_entropy\": 3.2342, \"gen17_token_entropy\": 1.1819, \"gen0_ece\": 0.0108, \"gen17_ece\": 0.4454, \"gen0_perplexity\": 26.95, \"gen17_perplexity\": 3367.66, \"gen0_distinct_1\": 0.0982, \"gen17_distinct_1\": 0.0756, \"gen0_distinct_2\": 0.5178, \"gen17_distinct_2\": 0.3617, \"gen0_distinct_3\": 0.8127, \"gen17_distinct_3\": 0.5865, \"token_entropy_drift_pct_gen0_17\": -63.4, \"distinct_1_drift_pct_gen0_17\": -23, \"distinct_2_drift_pct_gen0_17\": -30.1, \"distinct_3_drift_pct_gen0_17\": -27.8, \"ece_drift_pct_gen0_17\": 4024, \"ppl_drift_pct_gen0_17\": 12395, \"phase1_rapid_collapse\": \"gen0-5\", \"phase2_apparent_plateau\": \"gen5-12\", \"phase3_secondary_decline\": \"gen13-17\", \"phase3_d2_decline_pct\": -5.8, \"phase3_d3_decline_pct\": -6.9, \"diversity_saturated_at_gen\": 5, \"diversity_secondary_decline_at_gen\": 13, \"perplexity_saturated\": false}, \"failure_reason\": \"EXIT_CODE=124 (timeout — exceeded timeout_hours)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T11:41:43.235Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T11:41:44.300301+00:00\"}]}, \"notes\": \"gen_0-17 complete (T=18). 三相 collapse: Phase1 急速崩塌 gen0-5 (d1 -20.6%, entropy -63.8%), Phase2 表观稳态 gen5-12 (diversity <0.3% 变化, perplexity 仍+167%), Phase3 二次衰退 gen13-17 (d2 -5.8%, d3 -6.9%). Perplexity 未饱和 (26.95→3367.66, +12395%). T=18 vs T=10: 新增 diversity 二次衰退在 T=10 window 不可见. TY power 预估 ~0.28-0.41 (vs T=10 的 0.05-0.21).\"}, \"plan_006_s42_resume\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:55:26.236Z\", \"updated_at\": \"2026-05-15T12:10:54.859Z\", \"spec\": {\"command\": \"python -u resume_plan006_s42.py\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"114844\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42_resume.log\", \"submitted_at\": \"2026-05-15T11:55:31.984Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"hypothesis\": \"恢复 plan_006_s42 从 gen_17，完成 gen_18-20 + all_metrics（α=1.0, 20gen, s42）\", \"seed\": 42, \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"data/wikitext103\", \"data_count\": 0, \"checkpoint_path\": \"N/A\", \"notes\": \"D034 决定不恢复，T=18 数据已足够（超出 T=15 目标）。plan_006_s42 gen_0-17 数据可用。\", \"wall_clock_seconds\": 921.5, \"gpu_hours\": 0.26}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T12:10:53.514Z\", \"notes\": \"D034 决定不恢复。T=18 数据已足够（超出 T=15 目标）。原 plan_006_s42 gen_0-17 数据可用于 power analysis + supplementary。\"}, \"gen_wiki_gpt2m_a100_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:02:06.478Z\", \"updated_at\": \"2026-05-15T12:04:50.741Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"116204\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v2.log\", \"submitted_at\": \"2026-05-15T12:02:14.440Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 18.0, \"gpu_hours\": 0.01}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T12:02:13.557Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\", \"finished_at\": \"2026-05-15T12:02:31.643Z\", \"training_hours\": 0.01}, \"pid\": \"116204\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v2.log\", \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T12:02:32.472Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:02:33.931882+00:00\"}]}}, \"gen_wiki_gpt2m_a100_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:35:18.700Z\", \"updated_at\": \"2026-05-15T12:01:58.523Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"115532\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42.log\", \"submitted_at\": \"2026-05-15T11:57:48.767Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 249.8, \"gpu_hours\": 0.07}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T11:57:47.340Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\"}, \"pid\": \"115532\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42.log\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T12:01:58.523Z\"}, \"method_ablation_phase2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:58:35.270Z\", \"updated_at\": \"2026-05-15T11:07:42.688Z\", \"spec\": {\"hypothesis\": \"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\", \"command\": \"python method_ablation_phase2.py\", \"server\": \"westd-19828\", \"data_path\": \"results/alpha_sweep + results/mvp\", \"data_count\": 56, \"model_name\": \"N/A (analysis)\", \"seed\": \"42,43,44,45\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/method_ablation_phase2_panel.json\"}, \"conclusion\": \"success\", \"metrics\": {\"n_panel_rows\": 56, \"n_alphas\": 4, \"alphas\": [0, 0.25, 0.5, 1], \"naive_sig_rate_overall\": 1, \"perm_granger_sig_rate_a000_raw\": 0, \"perm_granger_sig_rate_a000_fdr\": 0, \"perm_granger_sig_rate_a025_raw\": 0.25, \"perm_granger_sig_rate_a025_fdr\": 0, \"perm_granger_sig_rate_a050_raw\": 0.25, \"perm_granger_sig_rate_a050_fdr\": 0, \"perm_granger_sig_rate_a100_raw\": 0.75, \"perm_granger_sig_rate_a100_fdr\": 0.75, \"TY_sig_rate_a000_raw\": 0, \"TY_sig_rate_a000_fdr\": 0, \"TY_sig_rate_a025_raw\": 0.625, \"TY_sig_rate_a025_fdr\": 0.375, \"TY_sig_rate_a050_raw\": 0, \"TY_sig_rate_a050_fdr\": 0, \"TY_sig_rate_a100_raw\": 0.5938, \"TY_sig_rate_a100_fdr\": 0.5938, \"diff_sig_rate_a000_raw\": 0.5, \"diff_sig_rate_a000_fdr\": 0.375, \"mean_inter_method_kappa\": 0.185, \"naive_vs_perm_granger_flip_rate\": 0.5, \"naive_vs_TY_flip_rate\": 0.57, \"fdr_flips_perm_granger\": 4, \"pair_verdict_a100_perm_granger\": \"6/8\", \"pair_verdict_a100_TY\": \"6/8\", \"entropy_to_diversity_a100_all_5methods_sig\": true, \"fdr_correction\": \"BH q=0.05\"}, \"completed_at\": \"2026-05-15T08:58:54.741Z\"}, \"alpha_sweep_a025_s42_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:04:05.726Z\", \"updated_at\": \"2026-05-15T05:13:22.207Z\", \"spec\": {\"hypothesis\": \"α=0.25 低污染: 测试 canary→diversity lead 在温和 collapse 下是否保持\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a025_s42_v2 (failed, data corruption)\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"53069\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s42_v3.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-15T01:18:42.377Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T01:18:43.329069+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.1017, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.01942, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 22.32, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0586, \"gen0_distinct_2\": 0.5178, \"gen10_distinct_2\": 0.2219, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.3263, \"token_entropy_drift_pct\": -4.1, \"ece_drift_pct\": 79.7, \"perplexity_drift_pct\": -17.2, \"distinct_1_drift_pct\": -40.3, \"distinct_2_drift_pct\": -57.1, \"distinct_3_drift_pct\": -59.9}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s42/gen_10/checkpoint\", \"completed_at\": \"2026-05-15T01:26:19.292Z\", \"notes\": \"实际磁盘路径为 results/alpha_sweep/a025_s42/（无 v3 后缀）。Registry ID 带 v3 是历史原因，数据已核实无误。\"}, \"method_ablation_phase1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:49:16.519Z\", \"updated_at\": \"2026-05-14T23:49:40.162Z\", \"spec\": {\"plan_id\": \"plan_002\", \"hypothesis\": \"lead-lag 结论对分析方法高度敏感——naive Pearson 100% SIG vs TY 25% SIG，方法选择改变 75% 的结论\", \"command\": \"python method_ablation.py + python permutation_granger.py (差分版)\", \"server\": \"westd-19828\", \"data_path\": \"results/mvp/rep_{42,43,44,45}/all_metrics.json\", \"data_count\": 4, \"model_name\": \"N/A (analysis on MVP data)\", \"seed\": \"42,43,44,45\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/mvp/analysis/method_ablation.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T23:49:37.295Z\", \"metrics\": {\"spurious_rate_5method\": 0.75, \"spurious_rate_4method\": 0.625, \"naive_sig\": \"16/16\", \"differenced_sig\": \"14/16\", \"threshold_sig\": \"9/16\", \"permutation_granger_sig\": \"6/16\", \"ty_sig\": \"4/16\", \"ty_power_T10\": \"0.05-0.20\", \"bh_fdr_flips\": 0}}, \"alpha_sweep_a000_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T19:01:37.470Z\", \"updated_at\": \"2026-05-14T23:42:18.748Z\", \"spec\": {\"hypothesis\": \"α=0.0 null control: 纯 real data 再训练无 canary signal，确认 signal 源于合成污染\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0, \"num_generations\": 10, \"steps_per_gen\": 5000, \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir results/alpha_sweep/a000_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"46716\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a000_s42.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T23:36:35.414Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T23:36:36.221435+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/gen_10/checkpoint\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a000_s42.log\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.0693, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.0164, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 21.11, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0847, \"token_entropy_drift_pct\": -5.1, \"ece_drift_pct\": 51.7, \"perplexity_drift_pct\": -21.7, \"distinct_1_drift_pct\": -13.8, \"distinct_2_drift_pct\": -9.8, \"distinct_3_drift_pct\": -4.5, \"gen1_10_perplexity_drift_pct\": 9.4, \"gen1_10_distinct_1_drift_pct\": -13.1, \"gen1_10_entropy_drift_pct\": 2.6}, \"completed_at\": \"2026-05-14T23:39:04.310Z\"}, \"plan_009_bootstrap_ty\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:33:04.665Z\", \"updated_at\": \"2026-05-14T21:33:27.106Z\", \"spec\": {\"hypothesis\": \"Monte Carlo 验证 TY Granger 在短时间序列 (T=10,15,20,30) 下的 Type I error 和 statistical power\", \"command\": \"python bootstrap_ty_validation.py (N_sim=1000)\", \"server\": \"westd-19828\", \"data_path\": \"synthetic DGP (AR(1) for H0, VAR(2) for H1)\", \"data_count\": 1000, \"model_name\": \"N/A (statistical simulation)\", \"seed\": \"multiple\", \"log_path\": \"results/bootstrap_ty_results.json\", \"checkpoint_path\": \"N/A\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T21:33:24.769Z\", \"metrics\": {\"T10_d0_type1\": 0.081, \"T10_d0_power\": 0.205, \"T10_d1_type1\": 0.047, \"T10_d1_power\": 0.09, \"T10_dadapt_type1\": 0.052, \"T10_dadapt_power\": 0.05, \"T20_d0_power\": 0.409, \"T20_d1_power\": 0.172, \"T30_d0_power\": 0.606, \"T30_d1_power\": 0.283}}, \"mvp_v3_rep43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T06:25:42.195Z\", \"updated_at\": \"2026-05-14T06:48:01.316Z\", \"spec\": {\"command\": \"python iterative_train.py --seed 43 --output_dir results/mvp/rep_43 --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000\", \"server\": \"autodl-rtx6000\", \"gpu\": \"cuda:1\", \"pid\": \"7987\", \"log_path\": \"~/runs/distrib_canary_collapse/mvp_v3_rep43.log\", \"submitted_at\": \"2026-05-14T06:26:18.477Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"gpu_model\": \"RTX PRO 6000 Blackwell 96GB\", \"tmux_session\": \"mvp_v3_rep43\", \"checkpoint_path\": \"N/A\", \"failure_reason\": \"MAUVE FAISS crash: max_samples=500 → p+q=1000 < 1950 required; 无 PYTHONUNBUFFERED 导致日志丢失\", \"wall_clock_seconds\": 1302.8, \"gpu_hours\": 0.36}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T06:48:01.316Z\"}, \"mvp_v3_rep42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T06:25:39.728Z\", \"updated_at\": \"2026-05-14T06:47:59.908Z\", \"spec\": {\"command\": \"python iterative_train.py --seed 42 --output_dir results/mvp/rep_42 --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000\", \"server\": \"autodl-rtx6000\", \"gpu\": \"cuda:0\", \"pid\": \"7909\", \"log_path\": \"~/runs/distrib_canary_collapse/mvp_v3_rep42.log\", \"submitted_at\": \"2026-05-14T06:26:16.939Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"gpu_model\": \"RTX PRO 6000 Blackwell 96GB\", \"tmux_session\": \"mvp_v3_rep42\", \"checkpoint_path\": \"N/A\", \"failure_reason\": \"MAUVE FAISS crash: max_samples=500 → p+q=1000 < 1950 required; 无 PYTHONUNBUFFERED 导致日志丢失\", \"wall_clock_seconds\": 1303.0, \"gpu_hours\": 0.36}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T06:47:59.908Z\"}, \"mvp_v2_rep43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:38:10.434Z\", \"updated_at\": \"2026-05-14T06:25:28.345Z\", \"spec\": {\"command\": \"python iterative_train.py --seed 43 --output_dir results/mvp/rep_43 --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000\", \"server\": \"autodl-rtx6000\", \"gpu\": \"cuda:1\", \"pid\": \"5364\", \"log_path\": \"~/runs/distrib_canary_collapse/mvp_v2_rep43.log\", \"submitted_at\": \"2026-05-14T05:42:39.039Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"gpu_model\": \"RTX PRO 6000 Blackwell 96GB\", \"tmux_session\": \"mvp_v2_rep43\", \"checkpoint_path\": \"N/A\", \"kill_reason\": \"v1旧进程未死导致输出目录冲突，v2死锁\", \"wall_clock_seconds\": 2569.3, \"gpu_hours\": 0.71}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T06:25:28.345Z\"}, \"mvp_v2_rep42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:38:05.054Z\", \"updated_at\": \"2026-05-14T06:25:27.286Z\", \"spec\": {\"command\": \"python iterative_train.py --seed 42 --output_dir results/mvp/rep_42 --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000\", \"server\": \"autodl-rtx6000\", \"gpu\": \"cuda:0\", \"pid\": \"5286\", \"log_path\": \"~/runs/distrib_canary_collapse/mvp_v2_rep42.log\", \"submitted_at\": \"2026-05-14T05:42:37.404Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"gpu_model\": \"RTX PRO 6000 Blackwell 96GB\", \"tmux_session\": \"mvp_v2_rep42\", \"checkpoint_path\": \"N/A\", \"kill_reason\": \"v1旧进程未死导致输出目录冲突，v2死锁\", \"wall_clock_seconds\": 2569.9, \"gpu_hours\": 0.71}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T06:25:27.286Z\"}, \"mvp_rep43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:12:14.237Z\", \"updated_at\": \"2026-05-14T05:37:18.575Z\", \"spec\": {\"command\": \"python iterative_train.py --seed 43 --output_dir results/mvp/rep_43 --data_dir data/wikitext103 --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 10000\", \"server\": \"autodl-rtx6000\", \"gpu\": \"cuda:1\", \"pid\": \"3956\", \"log_path\": \"~/runs/distrib_canary_collapse/mvp_rep43.log\", \"submitted_at\": \"2026-05-14T05:34:47.702Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103\", \"data_count\": 716506, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"gpu_model\": \"RTX PRO 6000 Blackwell 96GB\", \"tmux_session\": \"mvp_rep43\", \"checkpoint_path\": \"N/A\", \"kill_reason\": \"参数修复: n_prompts 1000→5000, steps_per_gen 10000→5000\", \"wall_clock_seconds\": 150.9, \"gpu_hours\": 0.04}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T05:37:18.575Z\"}, \"mvp_rep42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:12:13.930Z\", \"updated_at\": \"2026-05-14T05:37:17.438Z\", \"spec\": {\"command\": \"python iterative_train.py --seed 42 --output_dir results/mvp/rep_42 --data_dir data/wikitext103 --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 10000\", \"server\": \"autodl-rtx6000\", \"gpu\": \"cuda:0\", \"pid\": \"3878\", \"log_path\": \"~/runs/distrib_canary_collapse/mvp_rep42.log\", \"submitted_at\": \"2026-05-14T05:34:46.013Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103\", \"data_count\": 716506, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"gpu_model\": \"RTX PRO 6000 Blackwell 96GB\", \"tmux_session\": \"mvp_rep42\", \"checkpoint_path\": \"N/A\", \"kill_reason\": \"参数修复: n_prompts 1000→5000, steps_per_gen 10000→5000\", \"wall_clock_seconds\": 151.4, \"gpu_hours\": 0.04}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T05:37:17.438Z\"}}, \"count\": 105, \"total\": 105, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.358}}"
+    }
+  },
+  "sourceToolAssistantUUID": "826d0366-e0d9-4008-89fc-e9cc14793899",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T18:20:29.802Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01Q7psodsEdDTvHSVMkYhS2o`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c852e570-b4e1-4824-82c0-a49ad615f7e4",
+  "isSidechain": false,
+  "requestId": "req_011CbCPbYY6v2jqhCf4Cq3hn",
+  "type": "assistant",
+  "uuid": "3f92deae-49aa-4e52-a2bd-90ba36530952",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FJSm1WgW2VkQvh1Z3ADGu9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3557,
+      "cache_read_input_tokens": 36952,
+      "output_tokens": 285,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3557,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 285,
+          "cache_read_input_tokens": 36952,
+          "cache_creation_input_tokens": 3557,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3557
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T18:20:29.943Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01SdVCVor39S8YpTWQVzqSLG`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3f92deae-49aa-4e52-a2bd-90ba36530952",
+  "isSidechain": false,
+  "requestId": "req_011CbCPbYY6v2jqhCf4Cq3hn",
+  "type": "assistant",
+  "uuid": "3215d435-0ce6-46d9-b792-ce24ad14a0dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FJSm1WgW2VkQvh1Z3ADGu9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3557,
+      "cache_read_input_tokens": 36952,
+      "output_tokens": 285,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3557,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 285,
+          "cache_read_input_tokens": 36952,
+          "cache_creation_input_tokens": 3557,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3557
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: c4_a075_s42_fp32 - project: distrib_canary_collapse - server: westd-17855 - log_path: ~/run…",
+  "leafUuid": "3215d435-0ce6-46d9-b792-ce24ad14a0dc",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark as done",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133"
+}
+```
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T18:20:42.031Z_
+
+<details><summary>↩ Tool result · `toolu_01VWUb9ib9rN6dmLfVvFoELF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 6, \"results\": [{\"exp_id\": \"smollm3_3b_wiki_a100_s42_v3\", \"success\": true, \"actions\": [\"Job still running (pid=408261)\"]}, {\"exp_id\": \"alpha_sweep_a060_s43_fp32\", \"success\": true, \"actions\": [\"Job still running (pid=137269)\"]}, {\"exp_id\": \"alpha_sweep_a040_s42_fp32_v2\", \"success\": true, \"actions\": [\"Job still running (pid=147488)\"]}, {\"exp_id\": \"alpha_sweep_a030_s42_fp32\", \"success\": true, \"actions\": [\"Job still running (pid=148710)\"]}, {\"exp_id\": \"alpha_sweep_a035_s42_fp32\", \"success\": true, \"actions\": [\"Job still running (pid=151917)\"]}, {\"exp_id\": \"opt13b_wiki_a100_s43_fp32\", \"success\": true, \"actions\": [\"Job still running (pid=452614)\"]}]}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "825efad5-b1e9-4edd-a1bd-d963b962f75b",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "02febb01-fd86-4f31-bc2a-9ccf151b560d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 6, \\\"results\\\": [{\\\"exp_id\\\": \\\"smollm3_3b_wiki_a100_s42_v3\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=408261)\\\"]}, {\\\"exp_id\\\": \\\"alpha_sweep_a060_s43_fp32\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=137269)\\\"]}, {\\\"exp_id\\\": \\\"alpha_sweep_a040_s42_fp32_v2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=147488)\\\"]}, {\\\"exp_id\\\": \\\"alpha_sweep_a030_s42_fp32\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=148710)\\\"]}, {\\\"exp_id\\\": \\\"alpha_sweep_a035_s42_fp32\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=151917)\\\"]}, {\\\"exp_id\\\": \\\"opt13b_wiki_a100_s43_fp32\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=452614)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 6, \"results\": [{\"exp_id\": \"smollm3_3b_wiki_a100_s42_v3\", \"success\": true, \"actions\": [\"Job still running (pid=408261)\"]}, {\"exp_id\": \"alpha_sweep_a060_s43_fp32\", \"success\": true, \"actions\": [\"Job still running (pid=137269)\"]}, {\"exp_id\": \"alpha_sweep_a040_s42_fp32_v2\", \"success\": true, \"actions\": [\"Job still running (pid=147488)\"]}, {\"exp_id\": \"alpha_sweep_a030_s42_fp32\", \"success\": true, \"actions\": [\"Job still running (pid=148710)\"]}, {\"exp_id\": \"alpha_sweep_a035_s42_fp32\", \"success\": true, \"actions\": [\"Job still running (pid=151917)\"]}, {\"exp_id\": \"opt13b_wiki_a100_s43_fp32\", \"success\": true, \"actions\": [\"Job still running (pid=452614)\"]}]}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "825efad5-b1e9-4edd-a1bd-d963b962f75b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T18:20:42.055Z_
+
+<details><summary>↩ Tool result · `toolu_01Q7psodsEdDTvHSVMkYhS2o`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-19T18:20:19Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 104 个实验 — ANALYZING 2, DONE 87, PREPARING 9, RUNNING 6\\n**DONE 分布**: failed 9, killed 22, negative 1, success 55\\n\\n### GPU 占用\\n- **实际运行**: 6 张 — westd-19828:cuda:1(smollm3_3b_wiki_a100_s42_v3), westd-17855:cuda:0(alpha_sweep_a060_s43_fp32), westd-17855:cuda:4(alpha_sweep_a040_s42_fp32_v2), westd-17855:cuda:0(alpha_sweep_a030_s42_fp32), westd-17855:cuda:3(alpha_sweep_a035_s42_fp32), westd-19828:cuda:0(opt13b_wiki_a100_s43_fp32)\\n\\n### 💾 磁盘余量\\n- **westd-19828**:\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/usr/bin/nvidia-smi`: 817G/879G 可用（已用 3%）\\n- **westd-17855**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/usr/bin/nvidia-smi`: 816G/879G 可用（已用 3%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `smollm3_3b_wiki_a100_s42_v3` | westd-19828 | cuda:1 | 408261 | `…uns/distrib_canary_collapse/smollm3_3b_wiki_a100_s42_v3.log` |\\n| `alpha_sweep_a060_s43_fp32` | westd-17855 | cuda:0 | 137269 | `~/runs/distrib_canary_collapse/alpha_sweep_a060_s43_fp32.log` |\\n| `alpha_sweep_a040_s42_fp32_v2` | westd-17855 | cuda:4 | 147488 | `…ns/distrib_canary_collapse/alpha_sweep_a040_s42_fp32_v2.log` |\\n| `alpha_sweep_a030_s42_fp32` | westd-17855 | cuda:0 | 148710 | `~/runs/distrib_canary_collapse/alpha_sweep_a030_s42_fp32.log` |\\n| `alpha_sweep_a035_s42_fp32` | westd-17855 | cuda:3 | 151917 | `—` |\\n| `opt13b_wiki_a100_s43_fp32` | westd-19828 | cuda:0 | 452614 | `—` |\\n\\n### 📌 最近完成 (top 5)\\n- `interv_react_s43_fp32` [success] — 2026-05-19T18:08:26\\n- `generalize_pythia1b_c4_a100_s43` [success] — 2026-05-19T16:53:28\\n- `generalize_pythia1b_c4_a100_s42_v2` [success] — 2026-05-19T16:53:26\\n- `generalize_pythia14b_wiki_a100_s43` [success] — 2026-05-19T16:53:24\\n- `generalize_pythia14b_wiki_a100_s42` [success] — 2026-05-19T16:53:23\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-19\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| opt13b_wiki_a100_s43_fp32 | OPT-1.3B × WikiText-103 × α=1.0 × seed=43 × fp32 跨架构 multi-seed 验证。s42 已完成 K≥4=6/8，s43 验证跨 seed 稳健性。plan_030。 | — | — | — |\\n| alpha_sweep_a035_s42_fp32 | D098 onset boundary 精化：与 α=0.30/0.40 并行，3 点同时定位 onset 到 ±0.05。α=0.35 预期仍在 blind zone。如果 PermG=0/8 → onset ≥ 0.35；如果 PermG>0 → onset 在 [0.30, 0.35]。plan_048。 | — | — | — |\\n| alpha_sweep_a030_s42_fp32 | D098 onset boundary 精化：α=0.25 PermG=0/8, α=0.50 PermG=6/8。α=0.30 测试是否仍在 blind zone（预期 PermG=0/8），将 onset 下界从 0.25 收紧到 0.30。如果 PermG>0 则 onset 在 [0.25, 0.30]。 | — | — | — |\\n\\n## 待处理\\n- qwen35_08b_wiki_a100_s43_fp32: Qwen3.5-0.8B s43 cross-seed 验证：s42 PermG=8/8, K≥3=8/8，验证这一极强信号的跨 seed 可复现性。唯一非 Pythia/GPT/OPT 家族，审稿人重点关注。（准备中）\\n- scale_69b_a100_s43: Pythia-6.9B s43 cross-seed 验证：s42 PermG=7/8, K≥3=8/8（bf16+gradient_checkpointing），当前最强 Wiki 模型仅单 seed，审稿人可攻击可复现性。s43 bf16 匹配 s42 精度，验证跨 seed 稳健性。plan_028。（准备中）\\n- scale_69b_a100_s43_fp32: Pythia-6.9B s43 cross-seed 验证：s42 PermG=7/8, K≥3=8/8，当前最强 Wiki 模型仅单 seed，审稿人可攻击可复现性。s43 验证这一结果的跨 seed 稳健性。plan_028。（准备中）\\n- interv_pred_a075_s42: Predictive intervention at α=0.75 boundary regime: Tests if canary-based intervention (switch to α=0.0 when token_entropy drops >15%) can prevent collapse in the transitional regime. At α=0.75, Granger causality becomes FDR-significant (3/8 pairs). If predictive intervention triggers and recovers quality, it validates canary as actionable early warning even in moderate contamination.（准备中）\\n- qwen35_dryrun_launch（准备中）\\n- alpha_sweep_a010_s42_bf16: α=0.10 regime map gap fill with bf16: Pythia-410M WikiText s42 at synthetic_ratio=0.10. Tests whether near-zero contamination shows detectable canary signal.（准备中）\\n- scale_14b_a050_s42_bf16: Pythia-1.4B α=0.50 s42 with bf16: Verifies whether canary lead-lag persists at 1.4B scale in the boundary regime (α=0.50). Tests if method sensitivity findings from 410M transfer to larger models.（准备中）\\n- interv_react_s43: Intervention reactive multi-seed s43: Pythia-410M WikiText α=1.0, distinct_1 >10% drop trigger, switch to α=0.0. Validates s42 result (trigger Gen 2, recovery Gen 4) is reproducible across seeds.（准备中）\\n- gen_gpt2m_a100_s43: GPT-2-medium multi-seed s43: GPT-2-medium × WikiText-103 × α=1.0 × seed=43. Validates s42 cross-architecture results (K≥4=6/8) are reproducible, confirming architecture-independent canary lead-lag.（准备中）\\n\\n## 近期结论\\n- **interv_react_s43_fp32** (success): Reactive intervention multi-seed fp32: Pythia-410M α=1.0 s43, distinct_1 drop >10% trigger → switch α=0.0. Validates s42 reactive result (trigger Gen 2, recovery Gen 4) is reproducible. fp32 for D079 compliance. ← 基于 intervention_reactive_s42\\n- **generalize_pythia1b_c4_a100_s43** (success): C4 域 multi-seed 验证——seed=43 下 Pythia-1B C4 α=1.0 是否复现 8/8 consensus 和 token_entropy 单向性 (rev=0/4)，确认 domain robustness 非单种子偶然 ← 基于 generalize_pythia1b_c4_a100_s42_v2\\n  [analysis_pythia1b_c4_s43](/api/workspace-files/projects/distrib_canary_collapse/artifacts/generalize_pythia1b_c4_a100_s43/report/analysis_pythia1b_c4_s43.md)\\n- **generalize_pythia1b_c4_a100_s42_v2** (success): Methodological pitfalls generalize across data domains — Pythia-1B on C4 (vs WikiText) at α=1.0 should reproduce canary→downstream causal pattern, proving domain-independence of the framework (retry after download fix) ← 基于 generalize_pythia1b_c4_a100_s42\\n\\n## 趋势\\n成功 56 / 负向 1 / 失败 9 / 共 88\\n累计 GPU: 8.4h\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-17855: 无 GPU 信息\\nwestd-19828: 空闲 cuda:0, cuda:1\\n\\n## 告警\\n- mvp_rep42: 已被终止 — unknown\\n- mvp_rep43: 已被终止 — unknown\\n- mvp_rep44: 已被终止 — unknown\\n- mvp_v2_rep42: 已被终止 — unknown\\n- mvp_v2_rep43: 已被终止 — unknown\\n- mvp_v2_rep44: 已被终止 — unknown\\n- mvp_v3_rep42: 训练失败 — unknown\\n- mvp_v3_rep43: 训练失败 — unknown\\n- alpha_sweep_a025_s42: 已被终止 — unknown\\n- alpha_sweep_a025_s42_v2: 已被终止 — unknown\\n- alpha_sweep_a010_s42: 已被终止 — unknown\\n- alpha_sweep_a060_s42: 已被终止 — unknown\\n- plan_006_s42: 训练失败 — unknown\\n- plan_006_s43: 已被终止 — unknown\\n- gen_wiki_gpt2m_a100_s42: 已被终止 — unknown\\n- plan_006_s42_resume: 已被终止 — unknown\\n- gen_wiki_gpt2m_a100_s42_v2: 已被终止 — unknown\\n- generalize_pythia1b_c4_a100_s42: 训练失败 — unknown\\n- interv_pred_s43: 已被终止 — unknown\\n- alpha_sweep_a060_s42_v2: 已被终止 — unknown\\n- alpha_sweep_c4_a050_s42: 已被终止 — unknown\\n- gen_opt13b_a100_s43_bf16: 已被终止 — unknown\\n- alpha_sweep_a005_s42: 训练失败 — unknown\\n- qwen35_08b_wiki_a100_s42: 已被终止 — unknown\\n- smollm3_3b_wiki_a100_s42: 已被终止 — unknown\\n- smollm3_3b_wiki_a100_s42_v2: 训练失败 — unknown\\n- alpha_sweep_a060_s42_fp32: 训练失败 — unknown\\n- interv_pred_a075_s42_fp32: 训练失败 — unknown\\n- alpha_sweep_a060_s42_fp32_v2: 已被终止 — unknown\\n- interv_pred_a075_s42_fp32_v2: 已被终止 — unknown\\n- alpha_sweep_a040_s42_fp32: 训练失败 — unknown\\n\", \"total_chars\": 6832, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3f92deae-49aa-4e52-a2bd-90ba36530952",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "91d7da58-033a-45ed-aeca-90f1b99ad759",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/report.md\\\", \\\"content\\\": \\\"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-19T18:20:19Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 104 个实验 — ANALYZING 2, DONE 87, PREPARING 9, RUNNING 6\\\\n**DONE 分布**: failed 9, killed 22, negative 1, success 55\\\\n\\\\n### GPU 占用\\\\n- **实际运行**: 6 张 — westd-19828:cuda:1(smollm3_3b_wiki_a100_s42_v3), westd-17855:cuda:0(alpha_sweep_a060_s43_fp32), westd-17855:cuda:4(alpha_sweep_a040_s42_fp32_v2), westd-17855:cuda:0(alpha_sweep_a030_s42_fp32), westd-17855:cuda:3(alpha_sweep_a035_s42_fp32), westd-19828:cuda:0(opt13b_wiki_a100_s43_fp32)\\\\n\\\\n### 💾 磁盘余量\\\\n- **westd-19828**:\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/usr/bin/nvidia-smi`: 817G/879G 可用（已用 3%）\\\\n- **westd-17855**:\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/usr/bin/nvidia-smi`: 816G/879G 可用（已用 3%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `smollm3_3b_wiki_a100_s42_v3` | westd-19828 | cuda:1 | 408261 | `…uns/distrib_canary_collapse/smollm3_3b_wiki_a100_s42_v3.log` |\\\\n| `alpha_sweep_a060_s43_fp32` | westd-17855 | cuda:0 | 137269 | `~/runs/distrib_canary_collapse/alpha_sweep_a060_s43_fp32.log` |\\\\n| `alpha_sweep_a040_s42_fp32_v2` | westd-17855 | cuda:4 | 147488 | `…ns/distrib_canary_collapse/alpha_sweep_a040_s42_fp32_v2.log` |\\\\n| `alpha_sweep_a030_s42_fp32` | westd-17855 | cuda:0 | 148710 | `~/runs/distrib_canary_collapse/alpha_sweep_a030_s42_fp32.log` |\\\\n| `alpha_sweep_a035_s42_fp32` | westd-17855 | cuda:3 | 151917 | `—` |\\\\n| `opt13b_wiki_a100_s43_fp32` | westd-19828 | cuda:0 | 452614 | `—` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `interv_react_s43_fp32` [success] — 2026-05-19T18:08:26\\\\n- `generalize_pythia1b_c4_a100_s43` [success] — 2026-05-19T16:53:28\\\\n- `generalize_pythia1b_c4_a100_s42_v2` [success] — 2026-05-19T16:53:26\\\\n- `generalize_pythia14b_wiki_a100_s43` [success] — 2026-05-19T16:53:24\\\\n- `generalize_pythia14b_wiki_a100_s42` [success] — 2026-05-19T16:53:23\\\\n\\\\n&lt;!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-19\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| opt13b_wiki_a100_s43_fp32 | OPT-1.3B × WikiText-103 × α=1.0 × seed=43 × fp32 跨架构 multi-seed 验证。s42 已完成 K≥4=6/8，s43 验证跨 seed 稳健性。plan_030。 | — | — | — |\\\\n| alpha_sweep_a035_s42_fp32 | D098 onset boundary 精化：与 α=0.30/0.40 并行，3 点同时定位 onset 到 ±0.05。α=0.35 预期仍在 blind zone。如果 PermG=0/8 → onset ≥ 0.35；如果 PermG>0 → onset 在 [0.30, 0.35]。plan_048。 | — | — | — |\\\\n| alpha_sweep_a030_s42_fp32 | D098 onset boundary 精化：α=0.25 PermG=0/8, α=0.50 PermG=6/8。α=0.30 测试是否仍在 blind zone（预期 PermG=0/8），将 onset 下界从 0.25 收紧到 0.30。如果 PermG>0 则 onset 在 [0.25, 0.30]。 | — | — | — |\\\\n\\\\n## 待处理\\\\n- qwen35_08b_wiki_a100_s43_fp32: Qwen3.5-0.8B s43 cross-seed 验证：s42 PermG=8/8, K≥3=8/8，验证这一极强信号的跨 seed 可复现性。唯一非 Pythia/GPT/OPT 家族，审稿人重点关注。（准备中）\\\\n- scale_69b_a100_s43: Pythia-6.9B s43 cross-seed 验证：s42 PermG=7/8, K≥3=8/8（bf16+gradient_checkpointing），当前最强 Wiki 模型仅单 seed，审稿人可攻击可复现性。s43 bf16 匹配 s42 精度，验证跨 seed 稳健性。plan_028。（准备中）\\\\n- scale_69b_a100_s43_fp32: Pythia-6.9B s43 cross-seed 验证：s42 PermG=7/8, K≥3=8/8，当前最强 Wiki 模型仅单 seed，审稿人可攻击可复现性。s43 验证这一结果的跨 seed 稳健性。plan_028。（准备中）\\\\n- interv_pred_a075_s42: Predictive intervention at α=0.75 boundary regime: Tests if canary-based intervention (switch to α=0.0 when token_entropy drops >15%) can prevent collapse in the transitional regime. At α=0.75, Granger causality becomes FDR-significant (3/8 pairs). If predictive intervention triggers and recovers quality, it validates canary as actionable early warning even in moderate contamination.（准备中）\\\\n- qwen35_dryrun_launch（准备中）\\\\n- alpha_sweep_a010_s42_bf16: α=0.10 regime map gap fill with bf16: Pythia-410M WikiText s42 at synthetic_ratio=0.10. Tests whether near-zero contamination shows detectable canary signal.（准备中）\\\\n- scale_14b_a050_s42_bf16: Pythia-1.4B α=0.50 s42 with bf16: Verifies whether canary lead-lag persists at 1.4B scale in the boundary regime (α=0.50). Tests if method sensitivity findings from 410M transfer to larger models.（准备中）\\\\n- interv_react_s43: Intervention reactive multi-seed s43: Pythia-410M WikiText α=1.0, distinct_1 >10% drop trigger, switch to α=0.0. Validates s42 result (trigger Gen 2, recovery Gen 4) is reproducible across seeds.（准备中）\\\\n- gen_gpt2m_a100_s43: GPT-2-medium multi-seed s43: GPT-2-medium × WikiText-103 × α=1.0 × seed=43. Validates s42 cross-architecture results (K≥4=6/8) are reproducible, confirming architecture-independent canary lead-lag.（准备中）\\\\n\\\\n## 近期结论\\\\n- **interv_react_s43_fp32** (success): Reactive intervention multi-seed fp32: Pythia-410M α=1.0 s43, distinct_1 drop >10% trigger → switch α=0.0. Validates s42 reactive result (trigger Gen 2, recovery Gen 4) is reproducible. fp32 for D079 compliance. ← 基于 intervention_reactive_s42\\\\n- **generalize_pythia1b_c4_a100_s43** (success): C4 域 multi-seed 验证——seed=43 下 Pythia-1B C4 α=1.0 是否复现 8/8 consensus 和 token_entropy 单向性 (rev=0/4)，确认 domain robustness 非单种子偶然 ← 基于 generalize_pythia1b_c4_a100_s42_v2\\\\n  [analysis_pythia1b_c4_s43](/api/workspace-files/projects/distrib_canary_collapse/artifacts/generalize_pythia1b_c4_a100_s43/report/analysis_pythia1b_c4_s43.md)\\\\n- **generalize_pythia1b_c4_a100_s42_v2** (success): Methodological pitfalls generalize across data domains — Pythia-1B on C4 (vs WikiText) at α=1.0 should reproduce canary→downstream causal pattern, proving domain-independence of the framework (retry after download fix) ← 基于 generalize_pythia1b_c4_a100_s42\\\\n\\\\n## 趋势\\\\n成功 56 / 负向 1 / 失败 9 / 共 88\\\\n累计 GPU: 8.4h\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-17855: 无 GPU 信息\\\\nwestd-19828: 空闲 cuda:0, cuda:1\\\\n\\\\n## 告警\\\\n- mvp_rep42: 已被终止 — unknown\\\\n- mvp_rep43: 已被终止 — unknown\\\\n- mvp_rep44: 已被终止 — unknown\\\\n- mvp_v2_rep42: 已被终止 — unknown\\\\n- mvp_v2_rep43: 已被终止 — unknown\\\\n- mvp_v2_rep44: 已被终止 — unknown\\\\n- mvp_v3_rep42: 训练失败 — unknown\\\\n- mvp_v3_rep43: 训练失败 — unknown\\\\n- alpha_sweep_a025_s42: 已被终止 — unknown\\\\n- alpha_sweep_a025_s42_v2: 已被终止 — unknown\\\\n- alpha_sweep_a010_s42: 已被终止 — unknown\\\\n- alpha_sweep_a060_s42: 已被终止 — unknown\\\\n- plan_006_s42: 训练失败 — unknown\\\\n- plan_006_s43: 已被终止 — unknown\\\\n- gen_wiki_gpt2m_a100_s42: 已被终止 — unknown\\\\n- plan_006_s42_resume: 已被终止 — unknown\\\\n- gen_wiki_gpt2m_a100_s42_v2: 已被终止 — unknown\\\\n- generalize_pythia1b_c4_a100_s42: 训练失败 — unknown\\\\n- interv_pred_s43: 已被终止 — unknown\\\\n- alpha_sweep_a060_s42_v2: 已被终止 — unknown\\\\n- alpha_sweep_c4_a050_s42: 已被终止 — unknown\\\\n- gen_opt13b_a100_s43_bf16: 已被终止 — unknown\\\\n- alpha_sweep_a005_s42: 训练失败 — unknown\\\\n- qwen35_08b_wiki_a100_s42: 已被终止 — unknown\\\\n- smollm3_3b_wiki_a100_s42: 已被终止 — unknown\\\\n- smollm3_3b_wiki_a100_s42_v2: 训练失败 — unknown\\\\n- alpha_sweep_a060_s42_fp32: 训练失败 — unknown\\\\n- interv_pred_a075_s42_fp32: 训练失败 — unknown\\\\n- alpha_sweep_a060_s42_fp32_v2: 已被终止 — unknown\\\\n- interv_pred_a075_s42_fp32_v2: 已被终止 — unknown\\\\n- alpha_sweep_a040_s42_fp32: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 6832, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-19T18:20:19Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 104 个实验 — ANALYZING 2, DONE 87, PREPARING 9, RUNNING 6\\n**DONE 分布**: failed 9, killed 22, negative 1, success 55\\n\\n### GPU 占用\\n- **实际运行**: 6 张 — westd-19828:cuda:1(smollm3_3b_wiki_a100_s42_v3), westd-17855:cuda:0(alpha_sweep_a060_s43_fp32), westd-17855:cuda:4(alpha_sweep_a040_s42_fp32_v2), westd-17855:cuda:0(alpha_sweep_a030_s42_fp32), westd-17855:cuda:3(alpha_sweep_a035_s42_fp32), westd-19828:cuda:0(opt13b_wiki_a100_s43_fp32)\\n\\n### 💾 磁盘余量\\n- **westd-19828**:\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/usr/bin/nvidia-smi`: 817G/879G 可用（已用 3%）\\n- **westd-17855**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/usr/bin/nvidia-smi`: 816G/879G 可用（已用 3%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `smollm3_3b_wiki_a100_s42_v3` | westd-19828 | cuda:1 | 408261 | `…uns/distrib_canary_collapse/smollm3_3b_wiki_a100_s42_v3.log` |\\n| `alpha_sweep_a060_s43_fp32` | westd-17855 | cuda:0 | 137269 | `~/runs/distrib_canary_collapse/alpha_sweep_a060_s43_fp32.log` |\\n| `alpha_sweep_a040_s42_fp32_v2` | westd-17855 | cuda:4 | 147488 | `…ns/distrib_canary_collapse/alpha_sweep_a040_s42_fp32_v2.log` |\\n| `alpha_sweep_a030_s42_fp32` | westd-17855 | cuda:0 | 148710 | `~/runs/distrib_canary_collapse/alpha_sweep_a030_s42_fp32.log` |\\n| `alpha_sweep_a035_s42_fp32` | westd-17855 | cuda:3 | 151917 | `—` |\\n| `opt13b_wiki_a100_s43_fp32` | westd-19828 | cuda:0 | 452614 | `—` |\\n\\n### 📌 最近完成 (top 5)\\n- `interv_react_s43_fp32` [success] — 2026-05-19T18:08:26\\n- `generalize_pythia1b_c4_a100_s43` [success] — 2026-05-19T16:53:28\\n- `generalize_pythia1b_c4_a100_s42_v2` [success] — 2026-05-19T16:53:26\\n- `generalize_pythia14b_wiki_a100_s43` [success] — 2026-05-19T16:53:24\\n- `generalize_pythia14b_wiki_a100_s42` [success] — 2026-05-19T16:53:23\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-19\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| opt13b_wiki_a100_s43_fp32 | OPT-1.3B × WikiText-103 × α=1.0 × seed=43 × fp32 跨架构 multi-seed 验证。s42 已完成 K≥4=6/8，s43 验证跨 seed 稳健性。plan_030。 | — | — | — |\\n| alpha_sweep_a035_s42_fp32 | D098 onset boundary 精化：与 α=0.30/0.40 并行，3 点同时定位 onset 到 ±0.05。α=0.35 预期仍在 blind zone。如果 PermG=0/8 → onset ≥ 0.35；如果 PermG>0 → onset 在 [0.30, 0.35]。plan_048。 | — | — | — |\\n| alpha_sweep_a030_s42_fp32 | D098 onset boundary 精化：α=0.25 PermG=0/8, α=0.50 PermG=6/8。α=0.30 测试是否仍在 blind zone（预期 PermG=0/8），将 onset 下界从 0.25 收紧到 0.30。如果 PermG>0 则 onset 在 [0.25, 0.30]。 | — | — | — |\\n\\n## 待处理\\n- qwen35_08b_wiki_a100_s43_fp32: Qwen3.5-0.8B s43 cross-seed 验证：s42 PermG=8/8, K≥3=8/8，验证这一极强信号的跨 seed 可复现性。唯一非 Pythia/GPT/OPT 家族，审稿人重点关注。（准备中）\\n- scale_69b_a100_s43: Pythia-6.9B s43 cross-seed 验证：s42 PermG=7/8, K≥3=8/8（bf16+gradient_checkpointing），当前最强 Wiki 模型仅单 seed，审稿人可攻击可复现性。s43 bf16 匹配 s42 精度，验证跨 seed 稳健性。plan_028。（准备中）\\n- scale_69b_a100_s43_fp32: Pythia-6.9B s43 cross-seed 验证：s42 PermG=7/8, K≥3=8/8，当前最强 Wiki 模型仅单 seed，审稿人可攻击可复现性。s43 验证这一结果的跨 seed 稳健性。plan_028。（准备中）\\n- interv_pred_a075_s42: Predictive intervention at α=0.75 boundary regime: Tests if canary-based intervention (switch to α=0.0 when token_entropy drops >15%) can prevent collapse in the transitional regime. At α=0.75, Granger causality becomes FDR-significant (3/8 pairs). If predictive intervention triggers and recovers quality, it validates canary as actionable early warning even in moderate contamination.（准备中）\\n- qwen35_dryrun_launch（准备中）\\n- alpha_sweep_a010_s42_bf16: α=0.10 regime map gap fill with bf16: Pythia-410M WikiText s42 at synthetic_ratio=0.10. Tests whether near-zero contamination shows detectable canary signal.（准备中）\\n- scale_14b_a050_s42_bf16: Pythia-1.4B α=0.50 s42 with bf16: Verifies whether canary lead-lag persists at 1.4B scale in the boundary regime (α=0.50). Tests if method sensitivity findings from 410M transfer to larger models.（准备中）\\n- interv_react_s43: Intervention reactive multi-seed s43: Pythia-410M WikiText α=1.0, distinct_1 >10% drop trigger, switch to α=0.0. Validates s42 result (trigger Gen 2, recovery Gen 4) is reproducible across seeds.（准备中）\\n- gen_gpt2m_a100_s43: GPT-2-medium multi-seed s43: GPT-2-medium × WikiText-103 × α=1.0 × seed=43. Validates s42 cross-architecture results (K≥4=6/8) are reproducible, confirming architecture-independent canary lead-lag.（准备中）\\n\\n## 近期结论\\n- **interv_react_s43_fp32** (success): Reactive intervention multi-seed fp32: Pythia-410M α=1.0 s43, distinct_1 drop >10% trigger → switch α=0.0. Validates s42 reactive result (trigger Gen 2, recovery Gen 4) is reproducible. fp32 for D079 compliance. ← 基于 intervention_reactive_s42\\n- **generalize_pythia1b_c4_a100_s43** (success): C4 域 multi-seed 验证——seed=43 下 Pythia-1B C4 α=1.0 是否复现 8/8 consensus 和 token_entropy 单向性 (rev=0/4)，确认 domain robustness 非单种子偶然 ← 基于 generalize_pythia1b_c4_a100_s42_v2\\n  [analysis_pythia1b_c4_s43](/api/workspace-files/projects/distrib_canary_collapse/artifacts/generalize_pythia1b_c4_a100_s43/report/analysis_pythia1b_c4_s43.md)\\n- **generalize_pythia1b_c4_a100_s42_v2** (success): Methodological pitfalls generalize across data domains — Pythia-1B on C4 (vs WikiText) at α=1.0 should reproduce canary→downstream causal pattern, proving domain-independence of the framework (retry after download fix) ← 基于 generalize_pythia1b_c4_a100_s42\\n\\n## 趋势\\n成功 56 / 负向 1 / 失败 9 / 共 88\\n累计 GPU: 8.4h\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-17855: 无 GPU 信息\\nwestd-19828: 空闲 cuda:0, cuda:1\\n\\n## 告警\\n- mvp_rep42: 已被终止 — unknown\\n- mvp_rep43: 已被终止 — unknown\\n- mvp_rep44: 已被终止 — unknown\\n- mvp_v2_rep42: 已被终止 — unknown\\n- mvp_v2_rep43: 已被终止 — unknown\\n- mvp_v2_rep44: 已被终止 — unknown\\n- mvp_v3_rep42: 训练失败 — unknown\\n- mvp_v3_rep43: 训练失败 — unknown\\n- alpha_sweep_a025_s42: 已被终止 — unknown\\n- alpha_sweep_a025_s42_v2: 已被终止 — unknown\\n- alpha_sweep_a010_s42: 已被终止 — unknown\\n- alpha_sweep_a060_s42: 已被终止 — unknown\\n- plan_006_s42: 训练失败 — unknown\\n- plan_006_s43: 已被终止 — unknown\\n- gen_wiki_gpt2m_a100_s42: 已被终止 — unknown\\n- plan_006_s42_resume: 已被终止 — unknown\\n- gen_wiki_gpt2m_a100_s42_v2: 已被终止 — unknown\\n- generalize_pythia1b_c4_a100_s42: 训练失败 — unknown\\n- interv_pred_s43: 已被终止 — unknown\\n- alpha_sweep_a060_s42_v2: 已被终止 — unknown\\n- alpha_sweep_c4_a050_s42: 已被终止 — unknown\\n- gen_opt13b_a100_s43_bf16: 已被终止 — unknown\\n- alpha_sweep_a005_s42: 训练失败 — unknown\\n- qwen35_08b_wiki_a100_s42: 已被终止 — unknown\\n- smollm3_3b_wiki_a100_s42: 已被终止 — unknown\\n- smollm3_3b_wiki_a100_s42_v2: 训练失败 — unknown\\n- alpha_sweep_a060_s42_fp32: 训练失败 — unknown\\n- interv_pred_a075_s42_fp32: 训练失败 — unknown\\n- alpha_sweep_a060_s42_fp32_v2: 已被终止 — unknown\\n- interv_pred_a075_s42_fp32_v2: 已被终止 — unknown\\n- alpha_sweep_a040_s42_fp32: 训练失败 — unknown\\n\", \"total_chars\": 6832, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "3f92deae-49aa-4e52-a2bd-90ba36530952",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T18:20:42.074Z_
+
+<details><summary>↩ Tool result · `toolu_01SdVCVor39S8YpTWQVzqSLG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/ROADMAP.md\", \"content\": \"# distrib_canary_collapse — Research Dashboard\\n\\n> 最后更新: 2026-05-19 17:06 UTC | 更新原因: D105/D106 complete, Table 7 finalized, Paper Agent patching, 8 experiments RUNNING\\n\\n> **阶段**: Research Day 2 — D105/D106 数据定稿 + Paper Agent patching + 8 实验 RUNNING\\n\\n## 核心方向\\n**D067 升级**: analysis → method paper。核心贡献：\\n1. **MMCT** — 5 方法框架，**PermG fwd 主指标**（6-8/8 跨所有架构），K≥3(3σ) 辅助（6-8/8）\\n2. **Regime map + 盲区 (D075/D098)** — onset α≈0.25–0.30, transition [0.25,0.50]\\n3. **Downstream 指标选择 (D085)** — perplexity 极端 collapse 下丧失 lag structure\\n4. **threshold_onset limitation (D105)** — T=11/3σ 下 ≈0/8，MMCT 实质 4 方法共识\\n\\n**Target**: EMNLP 2026 main track（ARR June cycle, DDL ~June 15, ~26 days）\\n\\n## 当前进展\\n- **D102**: 全部 Table 7 实验统一 8-pair 配置（D102），全局 3σ 重算（D105），registry 字段统一\\n- **D106**: Table 7 主指标 = PermG fwd + K≥3(3σ)；K≥4 降级 supplementary\\n- **paper_framing.md** 8 个 Diff 已写入（约束 #41-#45 更新）\\n- **Paper Agent** 已启动 Table 7 correction patch\\n- 55+ 成功 / 8-9 RUNNING (8/8 GPU)\\n\\n## Table 7 权威数据（D105 pipeline, 统一方法论）\\n\\n| 模型 | Seed | PermG↑ | K≥3(3σ) | K≥4(3σ) | Thr(3σ) |\\n|------|------|--------|---------|---------|---------|\\n| Pythia-6.9B | s42 | 7/8 | 8/8 | 3/8 | 2/8 |\\n| Qwen3.5-0.8B | s42 | 8/8 | 8/8 | 6/8 | 0/8 |\\n| Pythia-1.4B | s42 | **2/8** | 2/8 | 0/8 | 0/8 |\\n| Pythia-1.4B | s43 | 6/8 | 6/8 | 3/8 | 0/8 |\\n| Pythia-410M | s42 | 6/8 | 6/8 | 1/8 | 2/8 |\\n| GPT-2m | s42 | 6/8 | 6/8 | 2/8 | 0/8 |\\n| GPT-2m | s43 | 6/8 | 6/8 | 4/8 | 0/8 |\\n| OPT-1.3B | s42 | 6/8 | 6/8 | 2/8 | 2/8 |\\n| Padding-410M | s42 | 6/8 | 6/8 | 6/8 | 0/8 |\\n| C4 Pythia-1B | s42 | 8/8 | 8/8 | 4/8 | 0/8 |\\n| C4 Pythia-1B | s43 | 8/8 | 8/8 | 5/8 | 2/8 |\\n| SmolLM3-3B | s42 | — | — | — | RUNNING |\\n| OPT-1.3B | s43 | — | — | — | RUNNING |\\n\\n## PermG fwd Dose-Response（fp32 权威版）\\n| α | PermG fwd | 证据 |\\n|---|-----------|------|\\n| 0.00 | 0/24 | fp16 legacy |\\n| 0.05 | 0/8 | 1 seed fp32 |\\n| 0.10 | 0/8 | 2 seed fp32 ✅ |\\n| 0.25 | 0/8 | 1 seed fp32 (borderline p=0.053) |\\n| 0.30 | TBD | RUNNING |\\n| 0.35 | TBD | RUNNING |\\n| 0.40 | TBD | RUNNING |\\n| 0.50 | 6/8 | 3 seed fp32 ✅✅✅ |\\n| 0.60 | 3/8 | 1 seed fp32 (s43 RUNNING) |\\n| 0.75 | TBD | RUNNING |\\n| 1.00 | 6-8/8 | multi seed fp32 |\\n\\n## GPU 分配（8/8 ✅）\\n| Server:GPU | exp_id | 预估完成 |\\n|------------|--------|---------|\\n| 17855:cuda:0 | a060_s43 + a030_s42 (colocated) | ~2-3h |\\n| 17855:cuda:1 | interv_react_s43 | ~2-3h |\\n| 17855:cuda:2 | c4_a075_s42 | ~2-3h |\\n| 17855:cuda:3 | a035_s42 | ~2-3h |\\n| 17855:cuda:4 | a040_v2_s42 | ~2-3h |\\n| 17855:cuda:5 | c4_a050_s42 | ~2-3h |\\n| 19828:cuda:0 | opt13b_s43 | ~5-6h |\\n| 19828:cuda:1 | smollm3_v3 | ~1h |\\n\\n## 近期任务\\n- [x] D102: 统一 8-pair 配置，全 Table 7 重分析\\n- [x] D105: 全局 3σ 重算（11 实验），源码修复，registry 统一\\n- [x] D106: Table 7 格式定稿（PermG fwd + K≥3），paper_framing.md 更新\\n- [x] Paper Agent: D102/D105/D106 correction patch 已派单\\n- [ ] SmolLM3 完成 → Table 7 新行\\n- [ ] OPT-1.3B s43 完成 → cross-seed 验证\\n- [ ] onset α=0.30/0.35/0.40 完成 → dose-response 精化到 ±0.05\\n- [ ] C4 α=0.50/0.75 完成 → cross-domain regime map\\n- [ ] interv_react s43 完成 → Claim 4 multi-seed\\n- [ ] a060_s43 完成 → D096 非单调性验证\\n- [ ] 所有完成后: dose-response figure + Table 7 最终版\\n\\n## 硬约束\\n- D079: 小模型(≤3B) fp32 强制\\n- D086: per-alpha BH FDR, n_perm=5000\\n- D091: dose-response 主轴 fp32 mandatory\\n- D098: \\\"sharp phase transition\\\" 非 \\\"step function\\\"; onset α≈0.25–0.30\\n- D102: 统一 8-pair (entropy/ECE × d1/d2/d3/mauve)\\n- D105: 全局 true 3σ; threshold_onset T=11 power limitation\\n- D106: PermG fwd 主指标 + K≥3(3σ) 辅助; K≥4 supplementary\\n- M025: nvidia-smi >10GB 确认; HF offline 必设\\n- M028: _onset_gen 已修复 2σ→3σ\\n\\n## GPU 预算\\n- westd-17855: 6× RTX PRO 6000 Blackwell (98GB)\\n- westd-19828: 2× RTX PRO 6000 Blackwell (98GB)\\n- 8/8 满载 ✅\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D106 | 2026-05-19 | D106: Table 7 最终格式——PermG fwd 主列 + K≥3(3σ) 辅助列 + K | scale_69b_a100_s42, qwen35_08b_wiki_a100_s42_v2, gen_gpt2m_a100_s43_fp32 |\\n| D105 | 2026-05-19 | D105: 全局 3σ 重算 mandatory + threshold_onset 低 power | scale_14b_a100_s42_fp32, scale_14b_a100_s43_fp32, generalize_pythia1b_c4_a100_s42_v2, generalize_pythia1b_c4_a100_s43_v2 |\\n| D104 | 2026-05-19 | D104: Pythia-1.4B Table 7 保守处理——cross-seed PermG 2 | scale_14b_a100_s42_fp32, scale_14b_a100_s43_fp32 |\\n| D103 | 2026-05-19 | D103: OPT-1.3B 统一 pair K≥4=0/8，跨架构 K≥4 共识降至 3/5 架构 | generalize_opt1b_wiki_a100_s42, scale_69b_a100_s42 |\\n| D102 | 2026-05-19 | D102: GPT-2m s42/s43 统一 pair 重分析——PermG fwd 6/8 稳定 | gen_gpt2m_a100_s43_fp32, gen_wiki_gpt2m_a100_s42_v4 |\\n| D101 | 2026-05-19 | D101: GPT-2m s43 fp32 MMCT 结果异常——PermG rev=5/8 双向耦 | gen_gpt2m_a100_s43_fp32, gen_wiki_gpt2m_a100_s42_v4 |\\n| D100 | 2026-05-19 | D100: α=0.25 3-seed fp32 onset 确认完成 + diversity/qu | alpha_sweep_a025_s42_fp32, alpha_sweep_a025_s43_fp32, alpha_sweep_a025_s44_fp32 |\\n| D099 | 2026-05-19 | D099: Qwen3.5-0.8B 跨架构验证成功 — 坍缩定性一致，MAUVE 跨架构不可比，e | qwen35_08b_wiki_a100_s42_v2 |\\n| D098 | 2026-05-19 | D098: Step function onset boundary 精确定位 [0.25, 0.5 | alpha_sweep_a025_s42_fp32, alpha_sweep_a050_s42_fp32, alpha_sweep_a010_s42_fp32 |\\n| D097 | 2026-05-19 | D097: MMCT dose-response 统一用 uniform_fwd 模式作为论文主指标 | alpha_sweep_a010_s42_fp32, alpha_sweep_a010_s43_fp32, alpha_sweep_a050_s43_fp32 |\\n\\n\\n\", \"lines\": 113}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3215d435-0ce6-46d9-b792-ce24ad14a0dc",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "e6ed7e1e-69bb-4306-8027-6dea1e9e5300",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/ROADMAP.md\\\", \\\"content\\\": \\\"# distrib_canary_collapse — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-19 17:06 UTC | 更新原因: D105/D106 complete, Table 7 finalized, Paper Agent patching, 8 experiments RUNNING\\\\n\\\\n> **阶段**: Research Day 2 — D105/D106 数据定稿 + Paper Agent patching + 8 实验 RUNNING\\\\n\\\\n## 核心方向\\\\n**D067 升级**: analysis → method paper。核心贡献：\\\\n1. **MMCT** — 5 方法框架，**PermG fwd 主指标**（6-8/8 跨所有架构），K≥3(3σ) 辅助（6-8/8）\\\\n2. **Regime map + 盲区 (D075/D098)** — onset α≈0.25–0.30, transition [0.25,0.50]\\\\n3. **Downstream 指标选择 (D085)** — perplexity 极端 collapse 下丧失 lag structure\\\\n4. **threshold_onset limitation (D105)** — T=11/3σ 下 ≈0/8，MMCT 实质 4 方法共识\\\\n\\\\n**Target**: EMNLP 2026 main track（ARR June cycle, DDL ~June 15, ~26 days）\\\\n\\\\n## 当前进展\\\\n- **D102**: 全部 Table 7 实验统一 8-pair 配置（D102），全局 3σ 重算（D105），registry 字段统一\\\\n- **D106**: Table 7 主指标 = PermG fwd + K≥3(3σ)；K≥4 降级 supplementary\\\\n- **paper_framing.md** 8 个 Diff 已写入（约束 #41-#45 更新）\\\\n- **Paper Agent** 已启动 Table 7 correction patch\\\\n- 55+ 成功 / 8-9 RUNNING (8/8 GPU)\\\\n\\\\n## Table 7 权威数据（D105 pipeline, 统一方法论）\\\\n\\\\n| 模型 | Seed | PermG↑ | K≥3(3σ) | K≥4(3σ) | Thr(3σ) |\\\\n|------|------|--------|---------|---------|---------|\\\\n| Pythia-6.9B | s42 | 7/8 | 8/8 | 3/8 | 2/8 |\\\\n| Qwen3.5-0.8B | s42 | 8/8 | 8/8 | 6/8 | 0/8 |\\\\n| Pythia-1.4B | s42 | **2/8** | 2/8 | 0/8 | 0/8 |\\\\n| Pythia-1.4B | s43 | 6/8 | 6/8 | 3/8 | 0/8 |\\\\n| Pythia-410M | s42 | 6/8 | 6/8 | 1/8 | 2/8 |\\\\n| GPT-2m | s42 | 6/8 | 6/8 | 2/8 | 0/8 |\\\\n| GPT-2m | s43 | 6/8 | 6/8 | 4/8 | 0/8 |\\\\n| OPT-1.3B | s42 | 6/8 | 6/8 | 2/8 | 2/8 |\\\\n| Padding-410M | s42 | 6/8 | 6/8 | 6/8 | 0/8 |\\\\n| C4 Pythia-1B | s42 | 8/8 | 8/8 | 4/8 | 0/8 |\\\\n| C4 Pythia-1B | s43 | 8/8 | 8/8 | 5/8 | 2/8 |\\\\n| SmolLM3-3B | s42 | — | — | — | RUNNING |\\\\n| OPT-1.3B | s43 | — | — | — | RUNNING |\\\\n\\\\n## PermG fwd Dose-Response（fp32 权威版）\\\\n| α | PermG fwd | 证据 |\\\\n|---|-----------|------|\\\\n| 0.00 | 0/24 | fp16 legacy |\\\\n| 0.05 | 0/8 | 1 seed fp32 |\\\\n| 0.10 | 0/8 | 2 seed fp32 ✅ |\\\\n| 0.25 | 0/8 | 1 seed fp32 (borderline p=0.053) |\\\\n| 0.30 | TBD | RUNNING |\\\\n| 0.35 | TBD | RUNNING |\\\\n| 0.40 | TBD | RUNNING |\\\\n| 0.50 | 6/8 | 3 seed fp32 ✅✅✅ |\\\\n| 0.60 | 3/8 | 1 seed fp32 (s43 RUNNING) |\\\\n| 0.75 | TBD | RUNNING |\\\\n| 1.00 | 6-8/8 | multi seed fp32 |\\\\n\\\\n## GPU 分配（8/8 ✅）\\\\n| Server:GPU | exp_id | 预估完成 |\\\\n|------------|--------|---------|\\\\n| 17855:cuda:0 | a060_s43 + a030_s42 (colocated) | ~2-3h |\\\\n| 17855:cuda:1 | interv_react_s43 | ~2-3h |\\\\n| 17855:cuda:2 | c4_a075_s42 | ~2-3h |\\\\n| 17855:cuda:3 | a035_s42 | ~2-3h |\\\\n| 17855:cuda:4 | a040_v2_s42 | ~2-3h |\\\\n| 17855:cuda:5 | c4_a050_s42 | ~2-3h |\\\\n| 19828:cuda:0 | opt13b_s43 | ~5-6h |\\\\n| 19828:cuda:1 | smollm3_v3 | ~1h |\\\\n\\\\n## 近期任务\\\\n- [x] D102: 统一 8-pair 配置，全 Table 7 重分析\\\\n- [x] D105: 全局 3σ 重算（11 实验），源码修复，registry 统一\\\\n- [x] D106: Table 7 格式定稿（PermG fwd + K≥3），paper_framing.md 更新\\\\n- [x] Paper Agent: D102/D105/D106 correction patch 已派单\\\\n- [ ] SmolLM3 完成 → Table 7 新行\\\\n- [ ] OPT-1.3B s43 完成 → cross-seed 验证\\\\n- [ ] onset α=0.30/0.35/0.40 完成 → dose-response 精化到 ±0.05\\\\n- [ ] C4 α=0.50/0.75 完成 → cross-domain regime map\\\\n- [ ] interv_react s43 完成 → Claim 4 multi-seed\\\\n- [ ] a060_s43 完成 → D096 非单调性验证\\\\n- [ ] 所有完成后: dose-response figure + Table 7 最终版\\\\n\\\\n## 硬约束\\\\n- D079: 小模型(≤3B) fp32 强制\\\\n- D086: per-alpha BH FDR, n_perm=5000\\\\n- D091: dose-response 主轴 fp32 mandatory\\\\n- D098: \\\\\\\"sharp phase transition\\\\\\\" 非 \\\\\\\"step function\\\\\\\"; onset α≈0.25–0.30\\\\n- D102: 统一 8-pair (entropy/ECE × d1/d2/d3/mauve)\\\\n- D105: 全局 true 3σ; threshold_onset T=11 power limitation\\\\n- D106: PermG fwd 主指标 + K≥3(3σ) 辅助; K≥4 supplementary\\\\n- M025: nvidia-smi >10GB 确认; HF offline 必设\\\\n- M028: _onset_gen 已修复 2σ→3σ\\\\n\\\\n## GPU 预算\\\\n- westd-17855: 6× RTX PRO 6000 Blackwell (98GB)\\\\n- westd-19828: 2× RTX PRO 6000 Blackwell (98GB)\\\\n- 8/8 满载 ✅\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D106 | 2026-05-19 | D106: Table 7 最终格式——PermG fwd 主列 + K≥3(3σ) 辅助列 + K | scale_69b_a100_s42, qwen35_08b_wiki_a100_s42_v2, gen_gpt2m_a100_s43_fp32 |\\\\n| D105 | 2026-05-19 | D105: 全局 3σ 重算 mandatory + threshold_onset 低 power | scale_14b_a100_s42_fp32, scale_14b_a100_s43_fp32, generalize_pythia1b_c4_a100_s42_v2, generalize_pythia1b_c4_a100_s43_v2 |\\\\n| D104 | 2026-05-19 | D104: Pythia-1.4B Table 7 保守处理——cross-seed PermG 2 | scale_14b_a100_s42_fp32, scale_14b_a100_s43_fp32 |\\\\n| D103 | 2026-05-19 | D103: OPT-1.3B 统一 pair K≥4=0/8，跨架构 K≥4 共识降至 3/5 架构 | generalize_opt1b_wiki_a100_s42, scale_69b_a100_s42 |\\\\n| D102 | 2026-05-19 | D102: GPT-2m s42/s43 统一 pair 重分析——PermG fwd 6/8 稳定 | gen_gpt2m_a100_s43_fp32, gen_wiki_gpt2m_a100_s42_v4 |\\\\n| D101 | 2026-05-19 | D101: GPT-2m s43 fp32 MMCT 结果异常——PermG rev=5/8 双向耦 | gen_gpt2m_a100_s43_fp32, gen_wiki_gpt2m_a100_s42_v4 |\\\\n| D100 | 2026-05-19 | D100: α=0.25 3-seed fp32 onset 确认完成 + diversity/qu | alpha_sweep_a025_s42_fp32, alpha_sweep_a025_s43_fp32, alpha_sweep_a025_s44_fp32 |\\\\n| D099 | 2026-05-19 | D099: Qwen3.5-0.8B 跨架构验证成功 — 坍缩定性一致，MAUVE 跨架构不可比，e | qwen35_08b_wiki_a100_s42_v2 |\\\\n| D098 | 2026-05-19 | D098: Step function onset boundary 精确定位 [0.25, 0.5 | alpha_sweep_a025_s42_fp32, alpha_sweep_a050_s42_fp32, alpha_sweep_a010_s42_fp32 |\\\\n| D097 | 2026-05-19 | D097: MMCT dose-response 统一用 uniform_fwd 模式作为论文主指标 | alpha_sweep_a010_s42_fp32, alpha_sweep_a010_s43_fp32, alpha_sweep_a050_s43_fp32 |\\\\n\\\\n\\\\n\\\", \\\"lines\\\": 113}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/ROADMAP.md\", \"content\": \"# distrib_canary_collapse — Research Dashboard\\n\\n> 最后更新: 2026-05-19 17:06 UTC | 更新原因: D105/D106 complete, Table 7 finalized, Paper Agent patching, 8 experiments RUNNING\\n\\n> **阶段**: Research Day 2 — D105/D106 数据定稿 + Paper Agent patching + 8 实验 RUNNING\\n\\n## 核心方向\\n**D067 升级**: analysis → method paper。核心贡献：\\n1. **MMCT** — 5 方法框架，**PermG fwd 主指标**（6-8/8 跨所有架构），K≥3(3σ) 辅助（6-8/8）\\n2. **Regime map + 盲区 (D075/D098)** — onset α≈0.25–0.30, transition [0.25,0.50]\\n3. **Downstream 指标选择 (D085)** — perplexity 极端 collapse 下丧失 lag structure\\n4. **threshold_onset limitation (D105)** — T=11/3σ 下 ≈0/8，MMCT 实质 4 方法共识\\n\\n**Target**: EMNLP 2026 main track（ARR June cycle, DDL ~June 15, ~26 days）\\n\\n## 当前进展\\n- **D102**: 全部 Table 7 实验统一 8-pair 配置（D102），全局 3σ 重算（D105），registry 字段统一\\n- **D106**: Table 7 主指标 = PermG fwd + K≥3(3σ)；K≥4 降级 supplementary\\n- **paper_framing.md** 8 个 Diff 已写入（约束 #41-#45 更新）\\n- **Paper Agent** 已启动 Table 7 correction patch\\n- 55+ 成功 / 8-9 RUNNING (8/8 GPU)\\n\\n## Table 7 权威数据（D105 pipeline, 统一方法论）\\n\\n| 模型 | Seed | PermG↑ | K≥3(3σ) | K≥4(3σ) | Thr(3σ) |\\n|------|------|--------|---------|---------|---------|\\n| Pythia-6.9B | s42 | 7/8 | 8/8 | 3/8 | 2/8 |\\n| Qwen3.5-0.8B | s42 | 8/8 | 8/8 | 6/8 | 0/8 |\\n| Pythia-1.4B | s42 | **2/8** | 2/8 | 0/8 | 0/8 |\\n| Pythia-1.4B | s43 | 6/8 | 6/8 | 3/8 | 0/8 |\\n| Pythia-410M | s42 | 6/8 | 6/8 | 1/8 | 2/8 |\\n| GPT-2m | s42 | 6/8 | 6/8 | 2/8 | 0/8 |\\n| GPT-2m | s43 | 6/8 | 6/8 | 4/8 | 0/8 |\\n| OPT-1.3B | s42 | 6/8 | 6/8 | 2/8 | 2/8 |\\n| Padding-410M | s42 | 6/8 | 6/8 | 6/8 | 0/8 |\\n| C4 Pythia-1B | s42 | 8/8 | 8/8 | 4/8 | 0/8 |\\n| C4 Pythia-1B | s43 | 8/8 | 8/8 | 5/8 | 2/8 |\\n| SmolLM3-3B | s42 | — | — | — | RUNNING |\\n| OPT-1.3B | s43 | — | — | — | RUNNING |\\n\\n## PermG fwd Dose-Response（fp32 权威版）\\n| α | PermG fwd | 证据 |\\n|---|-----------|------|\\n| 0.00 | 0/24 | fp16 legacy |\\n| 0.05 | 0/8 | 1 seed fp32 |\\n| 0.10 | 0/8 | 2 seed fp32 ✅ |\\n| 0.25 | 0/8 | 1 seed fp32 (borderline p=0.053) |\\n| 0.30 | TBD | RUNNING |\\n| 0.35 | TBD | RUNNING |\\n| 0.40 | TBD | RUNNING |\\n| 0.50 | 6/8 | 3 seed fp32 ✅✅✅ |\\n| 0.60 | 3/8 | 1 seed fp32 (s43 RUNNING) |\\n| 0.75 | TBD | RUNNING |\\n| 1.00 | 6-8/8 | multi seed fp32 |\\n\\n## GPU 分配（8/8 ✅）\\n| Server:GPU | exp_id | 预估完成 |\\n|------------|--------|---------|\\n| 17855:cuda:0 | a060_s43 + a030_s42 (colocated) | ~2-3h |\\n| 17855:cuda:1 | interv_react_s43 | ~2-3h |\\n| 17855:cuda:2 | c4_a075_s42 | ~2-3h |\\n| 17855:cuda:3 | a035_s42 | ~2-3h |\\n| 17855:cuda:4 | a040_v2_s42 | ~2-3h |\\n| 17855:cuda:5 | c4_a050_s42 | ~2-3h |\\n| 19828:cuda:0 | opt13b_s43 | ~5-6h |\\n| 19828:cuda:1 | smollm3_v3 | ~1h |\\n\\n## 近期任务\\n- [x] D102: 统一 8-pair 配置，全 Table 7 重分析\\n- [x] D105: 全局 3σ 重算（11 实验），源码修复，registry 统一\\n- [x] D106: Table 7 格式定稿（PermG fwd + K≥3），paper_framing.md 更新\\n- [x] Paper Agent: D102/D105/D106 correction patch 已派单\\n- [ ] SmolLM3 完成 → Table 7 新行\\n- [ ] OPT-1.3B s43 完成 → cross-seed 验证\\n- [ ] onset α=0.30/0.35/0.40 完成 → dose-response 精化到 ±0.05\\n- [ ] C4 α=0.50/0.75 完成 → cross-domain regime map\\n- [ ] interv_react s43 完成 → Claim 4 multi-seed\\n- [ ] a060_s43 完成 → D096 非单调性验证\\n- [ ] 所有完成后: dose-response figure + Table 7 最终版\\n\\n## 硬约束\\n- D079: 小模型(≤3B) fp32 强制\\n- D086: per-alpha BH FDR, n_perm=5000\\n- D091: dose-response 主轴 fp32 mandatory\\n- D098: \\\"sharp phase transition\\\" 非 \\\"step function\\\"; onset α≈0.25–0.30\\n- D102: 统一 8-pair (entropy/ECE × d1/d2/d3/mauve)\\n- D105: 全局 true 3σ; threshold_onset T=11 power limitation\\n- D106: PermG fwd 主指标 + K≥3(3σ) 辅助; K≥4 supplementary\\n- M025: nvidia-smi >10GB 确认; HF offline 必设\\n- M028: _onset_gen 已修复 2σ→3σ\\n\\n## GPU 预算\\n- westd-17855: 6× RTX PRO 6000 Blackwell (98GB)\\n- westd-19828: 2× RTX PRO 6000 Blackwell (98GB)\\n- 8/8 满载 ✅\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D106 | 2026-05-19 | D106: Table 7 最终格式——PermG fwd 主列 + K≥3(3σ) 辅助列 + K | scale_69b_a100_s42, qwen35_08b_wiki_a100_s42_v2, gen_gpt2m_a100_s43_fp32 |\\n| D105 | 2026-05-19 | D105: 全局 3σ 重算 mandatory + threshold_onset 低 power | scale_14b_a100_s42_fp32, scale_14b_a100_s43_fp32, generalize_pythia1b_c4_a100_s42_v2, generalize_pythia1b_c4_a100_s43_v2 |\\n| D104 | 2026-05-19 | D104: Pythia-1.4B Table 7 保守处理——cross-seed PermG 2 | scale_14b_a100_s42_fp32, scale_14b_a100_s43_fp32 |\\n| D103 | 2026-05-19 | D103: OPT-1.3B 统一 pair K≥4=0/8，跨架构 K≥4 共识降至 3/5 架构 | generalize_opt1b_wiki_a100_s42, scale_69b_a100_s42 |\\n| D102 | 2026-05-19 | D102: GPT-2m s42/s43 统一 pair 重分析——PermG fwd 6/8 稳定 | gen_gpt2m_a100_s43_fp32, gen_wiki_gpt2m_a100_s42_v4 |\\n| D101 | 2026-05-19 | D101: GPT-2m s43 fp32 MMCT 结果异常——PermG rev=5/8 双向耦 | gen_gpt2m_a100_s43_fp32, gen_wiki_gpt2m_a100_s42_v4 |\\n| D100 | 2026-05-19 | D100: α=0.25 3-seed fp32 onset 确认完成 + diversity/qu | alpha_sweep_a025_s42_fp32, alpha_sweep_a025_s43_fp32, alpha_sweep_a025_s44_fp32 |\\n| D099 | 2026-05-19 | D099: Qwen3.5-0.8B 跨架构验证成功 — 坍缩定性一致，MAUVE 跨架构不可比，e | qwen35_08b_wiki_a100_s42_v2 |\\n| D098 | 2026-05-19 | D098: Step function onset boundary 精确定位 [0.25, 0.5 | alpha_sweep_a025_s42_fp32, alpha_sweep_a050_s42_fp32, alpha_sweep_a010_s42_fp32 |\\n| D097 | 2026-05-19 | D097: MMCT dose-response 统一用 uniform_fwd 模式作为论文主指标 | alpha_sweep_a010_s42_fp32, alpha_sweep_a010_s43_fp32, alpha_sweep_a050_s43_fp32 |\\n\\n\\n\", \"lines\": 113}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "3215d435-0ce6-46d9-b792-ce24ad14a0dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: c4_a075_s42_fp32 - project: distrib_canary_collapse - server: westd-17855 - log_path: ~/run…",
+  "leafUuid": "e6ed7e1e-69bb-4306-8027-6dea1e9e5300",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark as done",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133"
+}
+```
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-19T18:20:45.617Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me read the specific experiment `c4_a075_s42_fp32` from the registry to understand its details, and also read the resource-saturation skill as required before reporting.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6ed7e1e-69bb-4306-8027-6dea1e9e5300",
+  "isSidechain": false,
+  "requestId": "req_011CbCPcmGMRP96bYErex6fm",
+  "type": "assistant",
+  "uuid": "816806fe-12ad-4a75-9a14-ab3b8344956f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q6btYtXuTVUtcaryPe2JtP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11786,
+      "cache_read_input_tokens": 36952,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11786,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 36952,
+          "cache_creation_input_tokens": 11786,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11786
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-19T18:20:46.607Z_
+
+先读取目标实验详情和当前实验计划。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "816806fe-12ad-4a75-9a14-ab3b8344956f",
+  "isSidechain": false,
+  "requestId": "req_011CbCPcmGMRP96bYErex6fm",
+  "type": "assistant",
+  "uuid": "e2660b25-c20f-4071-9d1e-80bb1f179836",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q6btYtXuTVUtcaryPe2JtP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11786,
+      "cache_read_input_tokens": 36952,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11786,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 36952,
+          "cache_creation_input_tokens": 11786,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11786
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T18:20:47.570Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01H69JeXB6jcTVjVomBhBNTG`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": {
+    "exp_id": "c4_a075_s42_fp32"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e2660b25-c20f-4071-9d1e-80bb1f179836",
+  "isSidechain": false,
+  "requestId": "req_011CbCPcmGMRP96bYErex6fm",
+  "type": "assistant",
+  "uuid": "52af25df-cd48-469e-b1d6-a6c8fdcc41af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q6btYtXuTVUtcaryPe2JtP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11786,
+      "cache_read_input_tokens": 36952,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11786,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 36952,
+          "cache_creation_input_tokens": 11786,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11786
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T18:20:48.619Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01YCnmwfwV5ZPBCZkJ43ZenU`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7dc5f423-0963-4a1c-a569-bb7c4b534a0e",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "69cccc31-3379-44b7-b8b1-20331f1ba94b",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e.",
+  "sourceToolAssistantUUID": "7dc5f423-0963-4a1c-a569-bb7c4b534a0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-19T18:20:47.857Z_
+
+<details><summary>↩ Tool result · `toolu_01H69JeXB6jcTVjVomBhBNTG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2778}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "52af25df-cd48-469e-b1d6-a6c8fdcc41af",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "ea5ec990-76b0-4b3b-a7eb-f1af086dfc30",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2778}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2778}}"
+    }
+  },
+  "sourceToolAssistantUUID": "52af25df-cd48-469e-b1d6-a6c8fdcc41af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-19T18:20:48.157Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status · `toolu_0145Z8mSsxG8Z7bjo3uRVLQh`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea5ec990-76b0-4b3b-a7eb-f1af086dfc30",
+  "isSidechain": false,
+  "requestId": "req_011CbCPcmGMRP96bYErex6fm",
+  "type": "assistant",
+  "uuid": "051a433b-bc34-494b-b406-34256627258c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q6btYtXuTVUtcaryPe2JtP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11786,
+      "cache_read_input_tokens": 36952,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11786,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 36952,
+          "cache_creation_input_tokens": 11786,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11786
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-19T18:20:48.497Z_
+
+<details><summary>↩ Tool result · `toolu_0145Z8mSsxG8Z7bjo3uRVLQh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": 2, \"description\": \"α-sweep anchor: Pythia-410M × WikiText-103 × α=0.25 × 10 gen × seed=42\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"notes\": \"α-sweep 基准实验。D025 统一参数。\", \"registry_id\": \"alpha_sweep_a025_s42_fp32\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"0/8\", \"MMCT\": \"0/8\", \"MMCT_detection_rate\": 0, \"d1_drift_pct\": -39.15, \"d2_drift_pct\": -54.75, \"d3_drift_pct\": -56.98, \"mauve_drift_pct\": -41.86, \"entropy_drift_pct\": -4.79, \"ece_drift_pct\": 79.17, \"ppl_drift_pct\": -18.09, \"eff_rank_drift_pct\": -3.78, \"ppl_by_gen\": [26.95, 19.39, 20.37, 20.75, 21.14, 21.3, 21.48, 21.88, 21.9, 22.25, 22.07], \"entropy_by_gen\": [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079], \"d1_by_gen\": [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596], \"mauve_by_gen\": [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181], \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"ty_granger_sig\": \"3/8\", \"consensus_detail_max_votes\": 3, \"hypothesis_validated\": true, \"note\": \"PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> α=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this α. token_entropy→distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\"}}, {\"id\": \"plan_001b\", \"claim\": 3, \"description\": \"α=0.0 null control: Pythia-410M × WikiText-103 × α=0.0 × 10 gen × seed=42。FPR ground truth\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"notes\": \"D028: perm_granger/TY 0% FPR，naive 100% FPR\", \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_001c\", \"claim\": 2, \"description\": \"α=0.50 sweep: Pythia-410M × WikiText-103 × α=0.50 × 10 gen × seed=42\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"notes\": \"D025: 所有严格方法 FDR 后归零（0/8），仅 naive 8/8。α=0.50 是 method×regime interaction 最极端例证\", \"registry_id\": \"alpha_sweep_a050_s42_fp32\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7075, \"token_entropy_drift_pct\": -16.3, \"distinct_1_gen0\": 0.0916, \"distinct_1_gen10\": 0.0649, \"distinct_1_drift_pct\": -29.2, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.46, \"perplexity_drift_pct\": 16.8, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0868, \"ece_drift_pct\": 703.4, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"n_perm\": 5000, \"padding_side\": \"right (D093 fix NOT applied)\"}}, {\"id\": \"plan_001d\", \"claim\": 1, \"description\": \"α=0.75 sweep: Pythia-410M × WikiText-103 × α=0.75 × 10 gen × seed=42\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"notes\": \"D037: 3/4 FDR-sig forward, 0/4 reverse, consensus 11/16 robust\", \"registry_id\": \"alpha_sweep_a075_s42_fp32\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"n_generations\": 11, \"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.098, \"distinct_2\": 0.5141, \"distinct_3\": 0.8127, \"effective_rank\": 46.613, \"mauve\": 0.0311}, \"gen10\": {\"token_entropy\": 2.283, \"ece\": 0.2145, \"perplexity\": 77.697, \"distinct_1\": 0.0731, \"distinct_2\": 0.357, \"distinct_3\": 0.5957, \"effective_rank\": 78.06, \"mauve\": 0.0299}, \"drift_pct\": {\"token_entropy\": -29.41, \"ece\": 1885.41, \"perplexity\": 188.31, \"distinct_1\": -25.38, \"distinct_2\": -30.55, \"distinct_3\": -26.7, \"effective_rank\": 67.47, \"mauve\": -3.73}, \"lead_lag\": {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"6/8\", \"MMCT_detection\": 0.75, \"TY_granger\": \"8/8\", \"naive_xcorr\": \"7/8\", \"diff_xcorr\": \"6/8\", \"threshold_onset\": \"8/8\"}, \"asymmetry\": \"strong (fwd=6, rev=0)\"}}, {\"id\": \"plan_045\", \"claim\": 2, \"description\": \"α=0.05 sweep: Pythia-410M × WikiText-103 × α=0.05 × 10 gen × seed=42。定位 diversity 悬崖精确位置（α=0.00 d1=-14% → α=0.10 d1=-40% 之间的断崖）\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"notes\": \"D076: HIGH ROI。如果 α=0.05 d1≈-40% → 5% 污染即全损；如果 d1 在 -14% 和 -40% 之间 → 存在明确阈值\", \"registry_id\": \"alpha_sweep_a005_s42_v3\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.04, \"final_eff_rank\": 45.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -5.96, \"ece_drift\": 55.41, \"perplexity_drift\": -22.78, \"distinct_1_drift\": -24.86, \"distinct_2_drift\": -28.42, \"distinct_3_drift\": -19.54, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"0/8\", \"mmct_wpair_fwd\": 0}}, {\"id\": \"plan_025\", \"claim\": 2, \"description\": \"α=0.10 sweep: Pythia-410M × WikiText-103 × α=0.10 × 10 gen × seed=42。Regime map 下界，验证极低污染下 signal 是否存在\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"notes\": \"D061: regime map 5→7 点，精确刻画低端 boundary。D075: canary blind zone confirmed\", \"registry_id\": \"alpha_sweep_a010_s42_fp32\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"token_entropy_drift_pct\": -4.59, \"distinct_1_drift_pct\": -23.8, \"distinct_2_drift_pct\": -27.15, \"distinct_3_drift_pct\": -19.36, \"perplexity_drift_pct\": -18.94, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"2/8\", \"mmct_wpair_fwd\": \"2/8\", \"mmct_detection_rate\": 0.25, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"blind_zone_confirmed\": true, \"cross_seed_permg_stable\": true}}, {\"id\": \"plan_026\", \"claim\": 2, \"description\": \"α=0.60 sweep: Pythia-410M × WikiText-103 × α=0.60 × 10 gen × seed=42。填补 0.50→0.75 boundary gap\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"notes\": \"D061: 精确定位 detectability threshold\", \"registry_id\": \"alpha_sweep_a060_s42_fp32_v3\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_ppl\": 45.41, \"final_entropy\": 2.48, \"final_eff_rank\": 69.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -23.36, \"ece_drift\": 1260.23, \"perplexity_drift\": 68.52, \"distinct_1_drift\": -28.17, \"distinct_2_drift\": -37.22, \"distinct_3_drift\": -35.35, \"perm_granger_fwd\": \"3/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"consensus_k4\": \"7/8\", \"mmct_wpair_fwd\": 0.875}}, {\"id\": \"plan_011\", \"claim\": 2, \"description\": \"Multi-seed α=0.25 s43: Pythia-410M × WikiText-103 × α=0.25 × 10 gen × seed=43\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_001\"], \"notes\": \"DONE: diversity drift 跨 seed <1.3pp\", \"registry_id\": \"alpha_sweep_a025_s43_fp32\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"drift_pct\": {\"d1\": -38.95, \"d2\": -53.35, \"d3\": -54.8, \"entropy\": -4.94, \"ece\": 64.77, \"ppl\": -18.38, \"mauve\": -35.59, \"eff_rank\": -1.99}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0983, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen10_abs\": {\"token_entropy\": 3.069, \"distinct_1\": 0.0595, \"perplexity\": 21.95, \"ece\": 0.0218}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"mmct_detection_rate\": 0, \"ty_granger\": \"6/8\", \"naive_xcorr\": \"8/8\", \"threshold_onset\": \"4/8\"}, \"max_consensus_votes\": 3, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}}, {\"id\": \"plan_012\", \"claim\": 2, \"description\": \"Multi-seed α=0.50 s43: Pythia-410M × WikiText-103 × α=0.50 × 10 gen × seed=43\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_001c\"], \"notes\": \"DONE: drift direction identical to s42, <7% deviation\", \"registry_id\": \"alpha_sweep_a050_s43_fp32\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7227, \"token_entropy_drift_pct\": -15.8, \"distinct_1_gen0\": 0.0929, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -29, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.58, \"perplexity_drift_pct\": 17.2, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0842, \"ece_drift_pct\": 679.6, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"5/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"padding_side_fix\": \"pre-D093\"}}, {\"id\": \"plan_013\", \"claim\": 2, \"description\": \"Multi-seed α=0.25 s44: seed=44\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_011\"], \"registry_id\": \"alpha_sweep_a025_s44_fp32\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"drift_pct\": {\"d1\": -38.35, \"d2\": -53.44, \"d3\": -55.35, \"entropy\": -4.11, \"ece\": 68.01, \"ppl\": -16.27, \"mauve\": -40.63, \"eff_rank\": -0.87}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0974, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen9_abs\": {\"token_entropy\": 3.101, \"distinct_1\": 0.06, \"perplexity\": 22.57, \"ece\": 0.0182}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"naive_xcorr\": \"8/8\", \"diff_xcorr\": \"0/8\", \"threshold_onset\": \"0/8\", \"ty_granger\": \"1/8\"}, \"mmct_detection_rate\": 0}}, {\"id\": \"plan_014\", \"claim\": 2, \"description\": \"Multi-seed α=0.50 s44: seed=44\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_012\"], \"notes\": \"D044: s42/s43 deviation <7%, s44 confirms boundary regime with high seed variance\", \"registry_id\": \"alpha_sweep_a050_s44_fp32\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"token_entropy_gen0\": 3.234, \"token_entropy_gen10\": 2.697, \"token_entropy_drift_pct\": -16.61, \"distinct_1_gen0\": 0.0915, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -27.93, \"distinct_2_drift_pct\": -34.64, \"distinct_3_drift_pct\": -30.6, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0874, \"ece_drift_pct\": 709.03, \"perplexity_gen0\": 26.949, \"perplexity_gen10\": 31.424, \"perplexity_drift_pct\": 16.61, \"effective_rank_drift_pct\": 25.06, \"mauve_drift_pct\": -13.88, \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75, \"precision\": \"fp32\", \"n_perm\": 5000}}, {\"id\": \"plan_002\", \"claim\": 3, \"description\": \"Method ablation Phase 1: MVP 4-seed 数据，5 种方法对比\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_001\"], \"notes\": \"Phase 1 完成：TY 在 N=11 下失效，Claim 3 重构为方法选择敏感性\", \"registry_id\": \"method_ablation_phase1\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"spurious_rate_5method\": 0.75, \"spurious_rate_4method\": 0.625, \"naive_sig\": \"16/16\", \"differenced_sig\": \"14/16\", \"threshold_sig\": \"9/16\", \"permutation_granger_sig\": \"6/16\", \"ty_sig\": \"4/16\", \"ty_power_T10\": \"0.05-0.20\", \"bh_fdr_flips\": 0}}, {\"id\": \"plan_002b\", \"claim\": 3, \"description\": \"Method ablation Phase 2: 跨 α pooled panel（α=0.0/0.25/0.50/0.75/1.0），56-row 分析矩阵\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_001\", \"plan_001b\", \"plan_001c\", \"plan_001d\", \"plan_002\"], \"notes\": \"D028-D030: cross_alpha_analysis_v4 统一 FDR 校正。raw 10/32 sig → FDR 仅 1/32\", \"registry_id\": \"method_ablation_phase2\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"n_panel_rows\": 56, \"n_alphas\": 4, \"alphas\": [0, 0.25, 0.5, 1], \"naive_sig_rate_overall\": 1, \"perm_granger_sig_rate_a000_raw\": 0, \"perm_granger_sig_rate_a000_fdr\": 0, \"perm_granger_sig_rate_a025_raw\": 0.25, \"perm_granger_sig_rate_a025_fdr\": 0, \"perm_granger_sig_rate_a050_raw\": 0.25, \"perm_granger_sig_rate_a050_fdr\": 0, \"perm_granger_sig_rate_a100_raw\": 0.75, \"perm_granger_sig_rate_a100_fdr\": 0.75, \"TY_sig_rate_a000_raw\": 0, \"TY_sig_rate_a000_fdr\": 0, \"TY_sig_rate_a025_raw\": 0.625, \"TY_sig_rate_a025_fdr\": 0.375, \"TY_sig_rate_a050_raw\": 0, \"TY_sig_rate_a050_fdr\": 0, \"TY_sig_rate_a100_raw\": 0.5938, \"TY_sig_rate_a100_fdr\": 0.5938, \"diff_sig_rate_a000_raw\": 0.5, \"diff_sig_rate_a000_fdr\": 0.375, \"mean_inter_method_kappa\": 0.185, \"naive_vs_perm_granger_flip_rate\": 0.5, \"naive_vs_TY_flip_rate\": 0.57, \"fdr_flips_perm_granger\": 4, \"pair_verdict_a100_perm_granger\": \"6/8\", \"pair_verdict_a100_TY\": \"6/8\", \"entropy_to_diversity_a100_all_5methods_sig\": true, \"fdr_correction\": \"BH q=0.05\"}}, {\"id\": \"plan_003\", \"claim\": 1, \"description\": \"MVP 结果 formalization: 4-seed 100% SC 结果，lead time 精确量化\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [], \"registry_id\": \"mvp_v4_rep42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen0_distinct_1\": 0.098216, \"gen0_distinct_2\": 0.517803, \"gen0_distinct_3\": 0.812728, \"gen10_token_entropy\": 1.27592, \"gen10_ece\": 0.41734, \"gen10_perplexity\": 1003.73, \"gen10_distinct_1\": 0.070383, \"gen10_distinct_2\": 0.335471, \"gen10_distinct_3\": 0.555579, \"token_entropy_drift_pct\": -60.5491, \"ece_drift_pct\": 3762.4711, \"perplexity_drift_pct\": 3624.5595, \"distinct_1_drift_pct\": -28.3386, \"distinct_2_drift_pct\": -35.2126, \"distinct_3_drift_pct\": -31.6402}}, {\"id\": \"plan_006\", \"claim\": 1, \"description\": \"Extended run: Pythia-410M × α=1.0 × 20 gen × 2 seeds (max_lag=10)。T=20 下 lead-lag 稳健性验证\", \"priority\": \"P0\", \"gpu_budget_hours\": 8, \"deps\": [], \"notes\": \"D034: gen 18/20 timeout 但 T=18 数据足够。Phase 3 二次衰退发现\", \"registry_id\": \"plan_006_s42\", \"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"progress\": \"18/20 gen (gen_0-17 complete, gen_18-20 timeout)\", \"gen0_token_entropy\": 3.2342, \"gen17_token_entropy\": 1.1819, \"gen0_ece\": 0.0108, \"gen17_ece\": 0.4454, \"gen0_perplexity\": 26.95, \"gen17_perplexity\": 3367.66, \"gen0_distinct_1\": 0.0982, \"gen17_distinct_1\": 0.0756, \"gen0_distinct_2\": 0.5178, \"gen17_distinct_2\": 0.3617, \"gen0_distinct_3\": 0.8127, \"gen17_distinct_3\": 0.5865, \"token_entropy_drift_pct_gen0_17\": -63.4, \"distinct_1_drift_pct_gen0_17\": -23, \"distinct_2_drift_pct_gen0_17\": -30.1, \"distinct_3_drift_pct_gen0_17\": -27.8, \"ece_drift_pct_gen0_17\": 4024, \"ppl_drift_pct_gen0_17\": 12395, \"phase1_rapid_collapse\": \"gen0-5\", \"phase2_apparent_plateau\": \"gen5-12\", \"phase3_secondary_decline\": \"gen13-17\", \"phase3_d2_decline_pct\": -5.8, \"phase3_d3_decline_pct\": -6.9, \"diversity_saturated_at_gen\": 5, \"diversity_secondary_decline_at_gen\": 13, \"perplexity_saturated\": false}}, {\"id\": \"plan_009\", \"claim\": 3, \"description\": \"Bootstrap/Permutation TY 验证: Monte Carlo 模拟 TY Granger 在 T=10/T=20 下的 Type I error rate 和 power\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [], \"notes\": \"D014 Dream 三档一致 CRITICAL。零 GPU\", \"registry_id\": \"plan_009_bootstrap_ty\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"T10_d0_type1\": 0.081, \"T10_d0_power\": 0.205, \"T10_d1_type1\": 0.047, \"T10_d1_power\": 0.09, \"T10_dadapt_type1\": 0.052, \"T10_dadapt_power\": 0.05, \"T20_d0_power\": 0.409, \"T20_d1_power\": 0.172, \"T30_d0_power\": 0.606, \"T30_d1_power\": 0.283}}, {\"id\": \"plan_015\", \"claim\": 1, \"description\": \"Baseline generalization: Pythia-410M × WikiText-103 × α=1.0 × seed=42，统一参数 (n_perm=5000) 分析\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"notes\": \"Table 7 Baseline 行。K≥4=6/8\", \"registry_id\": \"generalize_pythia410m_wiki_a100_s42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"1/8\", \"robust_pairs_K3_3sigma\": \"6/8\", \"threshold_onset_3sigma\": \"2/8\", \"D105_3sigma_note\": \"True 3sigma recompute. threshold_onset dropped 8/8->2/8. K4 dropped 6/8->1/8. PermG/TY unchanged.\"}}, {\"id\": \"plan_016\", \"claim\": 1, \"description\": \"OPT-1.3B 跨架构: OPT-1.3B × WikiText-103 × α=1.0 × seed=42\", \"priority\": \"P1\", \"gpu_budget_hours\": 8, \"deps\": [], \"notes\": \"Table 7 Arch:OPT 行。K≥4=6/8, PermG rev=2/8\", \"registry_id\": \"generalize_opt1b_wiki_a100_s42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"2/8\", \"robust_pairs_K3_3sigma\": \"6/8\", \"threshold_onset_3sigma\": \"2/8\", \"D105_3sigma_note\": \"True 3sigma recompute. threshold_onset dropped 8/8->2/8. K4 dropped 6/8->2/8. PermG/TY unchanged.\"}}, {\"id\": \"plan_010\", \"claim\": 1, \"description\": \"GPT-2-medium 跨架构: GPT-2-medium × WikiText-103 × α=1.0 × seed=42 (v3 旧参数)\", \"priority\": \"P1\", \"gpu_budget_hours\": 5, \"deps\": [], \"notes\": \"v3 用旧参数完成，v4 正在重跑统一参数\", \"registry_id\": \"gen_wiki_gpt2m_a100_s42_v4\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"2/8\", \"robust_pairs_K3_3sigma\": \"6/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"True 3sigma recompute. threshold_onset dropped 6/8->0/8. K4 dropped 6/8->2/8. PermG/TY unchanged.\"}}, {\"id\": \"plan_021\", \"claim\": 1, \"description\": \"GPT-2-medium v4 重跑: 统一参数 (n_perm=5000, xcorr_lag=5, granger_lag=1) 重新分析，填 Table 7\", \"priority\": \"P0\", \"gpu_budget_hours\": 5, \"deps\": [\"plan_010\"], \"notes\": \"当前 RUNNING。GPT-2m 数据被删后重跑训练+分析\", \"registry_id\": \"gen_wiki_gpt2m_a100_s42_v4\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"2/8\", \"robust_pairs_K3_3sigma\": \"6/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"True 3sigma recompute. threshold_onset dropped 6/8->0/8. K4 dropped 6/8->2/8. PermG/TY unchanged.\"}}, {\"id\": \"plan_034\", \"claim\": 1, \"description\": \"GPT-2-medium multi-seed s43: GPT-2-medium × WikiText-103 × α=1.0 × seed=43\", \"priority\": \"P1\", \"gpu_budget_hours\": 5, \"deps\": [\"plan_021\"], \"notes\": \"跨架构 multi-seed 验证，确认 GPT-2m 结果非单 seed 偶然\", \"registry_id\": \"gen_gpt2m_a100_s43_bf16\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"token_entropy_gen0\": 3.6021, \"token_entropy_gen10\": 3.0035, \"token_entropy_delta_pct\": -16.6, \"distinct_1_gen0\": 0.1092, \"distinct_1_gen10\": 0.0724, \"distinct_1_delta_pct\": -33.7, \"distinct_2_gen0\": 0.5665, \"distinct_2_gen10\": 0.3422, \"distinct_2_delta_pct\": -39.6, \"distinct_3_gen0\": 0.8652, \"distinct_3_gen10\": 0.5756, \"distinct_3_delta_pct\": -33.5, \"ece_gen0\": 0.0111, \"ece_gen10\": 0.0716, \"ece_delta_pct\": 547.9, \"perplexity_gen0\": 32.91, \"perplexity_gen10\": 55.49, \"perplexity_delta_pct\": 68.6, \"mauve_gen0\": 0.0318, \"mauve_gen10\": 0.0227, \"mauve_delta_pct\": -28.7, \"naive\": \"8/8\", \"diff\": \"7/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"1/8\", \"pg_rev\": \"0/8\", \"ty\": \"0/8\", \"k_gte4\": \"1/8\", \"mmct_weighted_fwd\": \"6/8\", \"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"cross_seed_note\": \"CAUTION: s42 was fp32 (entropy drift -86.6%), s43 is bf16 (entropy drift -16.6%). NOT a fair cross-seed comparison. bf16 dramatically reduces collapse severity, causing PG/TY to lose power (PG_fwd 1/8 vs 6/8, TY 0/8 vs 5/8). MMCT partially recovers signal (6/8) via FPR-inverse weighting of naive+diff+thresh consensus. K>=4 drops to 1/8 (ece->ppl only, a spurious channel).\", \"precision_note\": \"bf16 mixed precision; collapse trajectory is qualitatively similar but quantitatively much milder than fp32 s42\"}}, {\"id\": \"plan_030\", \"claim\": 1, \"description\": \"OPT-1.3B multi-seed s43: OPT-1.3B × WikiText-103 × α=1.0 × seed=43\", \"priority\": \"P2\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_016\"], \"notes\": \"Architecture multi-seed coverage\", \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_017\", \"claim\": 1, \"description\": \"Pythia-1.4B Scale s42: Pythia-1.4B × WikiText-103 × α=1.0 × seed=42\", \"priority\": \"P0\", \"gpu_budget_hours\": 12, \"deps\": [], \"notes\": \"Table 7 Scale 行。K≥4=5/8, TY=0/8 (underpowered)\", \"registry_id\": \"generalize_pythia14b_wiki_a100_s42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"0/8\", \"robust_pairs_K3_3sigma\": \"2/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"D105 backfill: true 3sigma, fdr_permethod, unified 8-pair (canary={token_entropy,ece} x downstream={d1,d2,d3,mauve})\"}}, {\"id\": \"plan_018\", \"claim\": 1, \"description\": \"Pythia-1.4B Scale s43: Pythia-1.4B × WikiText-103 × α=1.0 × seed=43\", \"priority\": \"P0\", \"gpu_budget_hours\": 12, \"deps\": [\"plan_017\"], \"notes\": \"K≥4=6/8, 好于 s42 的 5/8。需用 n_perm=5000 重跑分析\", \"registry_id\": \"generalize_pythia14b_wiki_a100_s43\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"3/8\", \"robust_pairs_K3_3sigma\": \"6/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"D105 backfill: true 3sigma, fdr_permethod, unified 8-pair (canary={token_entropy,ece} x downstream={d1,d2,d3,mauve})\"}}, {\"id\": \"plan_027\", \"claim\": 1, \"description\": \"Pythia-6.9B α=1.0 s42: Pythia-6.9B × WikiText-103 × α=1.0 × seed=42。17× scale-up 验证\", \"priority\": \"P1\", \"gpu_budget_hours\": 50, \"deps\": [\"plan_017\", \"plan_018\"], \"notes\": \"D060: gradient_checkpointing + adamw_torch（先试标准优化器，OOM 才 fallback 8-bit）。磁盘 auto-cleanup 已就绪\", \"registry_id\": \"scale_69b_a100_s42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"3/8\", \"robust_pairs_K3_3sigma\": \"8/8\", \"threshold_onset_3sigma\": \"2/8\", \"D105_3sigma_note\": \"True 3sigma recompute. threshold_onset dropped 8/8->2/8. K4 dropped 6/8->3/8. PermG/TY unchanged.\"}}, {\"id\": \"plan_028\", \"claim\": 1, \"description\": \"Pythia-6.9B α=1.0 s43: 6.9B multi-seed 验证\", \"priority\": \"P2\", \"gpu_budget_hours\": 50, \"deps\": [\"plan_027\"], \"notes\": \"条件: plan_027 结果正面才启动\", \"status\": \"planned\"}, {\"id\": \"plan_029\", \"claim\": 2, \"description\": \"Pythia-6.9B α=0.75: 大模型 regime boundary 验证\", \"priority\": \"P2\", \"gpu_budget_hours\": 50, \"deps\": [\"plan_027\"], \"notes\": \"条件: plan_027 正面。验证 regime map 是否跨 scale 稳定\", \"status\": \"planned\"}, {\"id\": \"plan_036\", \"claim\": 1, \"description\": \"Pythia-1.4B × C4: 1.4B 跨域验证\", \"priority\": \"P2\", \"gpu_budget_hours\": 12, \"deps\": [\"plan_017\"], \"notes\": \"Scale + Domain 交叉，如 GPU 充裕则做\", \"status\": \"planned\"}, {\"id\": \"plan_019\", \"claim\": 1, \"description\": \"C4 domain s42: Pythia-1B × C4 × α=1.0 × seed=42\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"notes\": \"Table 7 Domain:C4 行。K≥4=7/8, PermG rev=4/8\", \"registry_id\": \"generalize_pythia1b_c4_a100_s42_v2\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"4/8\", \"robust_pairs_K3_3sigma\": \"8/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"D105 backfill: true 3sigma, fdr_permethod, unified 8-pair (canary={token_entropy,ece} x downstream={d1,d2,d3,mauve})\"}}, {\"id\": \"plan_020\", \"claim\": 1, \"description\": \"C4 domain s43: Pythia-1B × C4 × α=1.0 × seed=43\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_019\"], \"notes\": \"Multi-seed 验证 C4 结果非偶然\", \"registry_id\": \"generalize_pythia1b_c4_a100_s43\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"5/8\", \"robust_pairs_K3_3sigma\": \"8/8\", \"threshold_onset_3sigma\": \"2/8\", \"D105_3sigma_note\": \"D105 backfill: true 3sigma, fdr_permethod, unified 8-pair (canary={token_entropy,ece} x downstream={d1,d2,d3,mauve})\"}}, {\"id\": \"plan_035\", \"claim\": 2, \"description\": \"C4 α=0.75: Pythia-410M × C4 × α=0.75 × seed=42。跨域 regime boundary\", \"priority\": \"P2\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_019\", \"plan_001d\"], \"notes\": \"验证 0.50→0.75 boundary 是否跨域稳定\", \"status\": \"planned\"}, {\"id\": \"plan_022\", \"claim\": 1, \"description\": \"Conditional Granger analysis: 控制 ECE 后测 token_entropy→diversity，控制 token_entropy 后测 ECE→diversity。用 α=1.0 seeds 42-45 现有数据\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [], \"notes\": \"D061: 已完成（零 GPU 分析任务）。token_entropy 和 ECE 互为 redundant（控制一个消除另一个的 signal）。简化 canary quality narrative。artifact: d061_conditional_granger_analysis.md。需补 registry 注册\", \"status\": \"planned\"}, {\"id\": \"plan_023\", \"claim\": 4, \"description\": \"Intervention predictive s42: Pythia-410M × α=1.0 × 10 gen, token_entropy drop >15% → α=0.0。验证 canary-based early warning 的实际价值\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"notes\": \"D061: 最高 ROI 实验。Baseline = MVP s42 no-intervention 数据\", \"registry_id\": \"intervention_predictive_s42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"trigger_gen\": 1, \"trigger_entropy_drop_pct\": -40.71, \"gen0_ppl\": 26.95, \"gen0_entropy\": 3.234, \"gen0_distinct_1\": 0.0982, \"gen0_ece\": 0.0108, \"gen1_ppl\": 56.99, \"gen1_entropy\": 1.918, \"gen1_distinct_1\": 0.0975, \"gen1_ece\": 0.205, \"gen2_ppl\": 20.81, \"gen2_entropy\": 3.055, \"gen10_ppl\": 21.29, \"gen10_entropy\": 3.079, \"gen10_eff_rank\": 44.1, \"gen10_mauve\": 0.0272, \"recovery_complete_by_gen\": 2, \"vs_reactive_trigger_advantage\": \"1 gen earlier\", \"vs_reactive_peak_ppl_reduction\": \"63% (56.99 vs 157.09)\", \"vs_reactive_recovery_advantage\": \"1 gen faster (Gen 2 vs Gen 4)\", \"converges_to_alpha0_baseline\": true}}, {\"id\": \"plan_024\", \"claim\": 4, \"description\": \"Intervention reactive s42: Pythia-410M × α=1.0 × 10 gen, distinct_1 drop >10% → α=0.0。Reactive baseline 对照\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"notes\": \"D061: 与 predictive 对照。Reactive 使用 downstream metric 而非 canary。cuda:1 PID 340964\", \"registry_id\": \"intervention_reactive_s42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"trigger_gen\": 2, \"trigger_distinct1_drop_pct\": -15.58, \"gen0_distinct_1\": 0.0982, \"gen0_ppl\": 26.95, \"gen0_entropy\": 3.234, \"gen2_distinct_1\": 0.0823, \"gen2_ppl\": 157.09, \"gen2_entropy\": 1.478, \"gen10_distinct_1\": 0.0844, \"gen10_ppl\": 21.24, \"gen10_entropy\": 3.071, \"gen10_ece\": 0.0152, \"gen10_mauve\": 0.0289, \"distinct_1_drift_pct\": -14.1, \"ppl_drift_pct\": -21.2, \"entropy_drift_pct\": -5, \"vs_no_intervention_ppl_gen10\": 1003.73, \"vs_no_intervention_distinct1_gen10\": 0.0704, \"recovery_complete_by_gen\": 4, \"converges_to_alpha0_baseline\": true}}, {\"id\": \"plan_031\", \"claim\": 4, \"description\": \"Intervention predictive s43: seed=43 multi-seed 验证\", \"priority\": \"P1\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_023\"], \"notes\": \"条件: plan_023 结果正面\", \"registry_id\": \"interv_pred_s43_bf16\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"trigger_gen\": 1, \"trigger_entropy_drop_pct\": -22.54, \"gen0_ppl\": 27.68, \"gen0_entropy\": 3.2574, \"gen0_distinct_1\": 0.0917, \"gen0_ece\": 0.0123, \"gen1_ppl\": 24.65, \"gen1_entropy\": 2.5233, \"gen1_distinct_1\": 0.0897, \"gen1_ece\": 0.0469, \"gen2_ppl\": 17.49, \"gen2_entropy\": 2.9029, \"gen10_ppl\": 16.68, \"gen10_entropy\": 2.8169, \"gen10_eff_rank\": 58.8, \"gen10_mauve\": 0.0299, \"recovery_complete_by_gen\": 2, \"converges_to_alpha0_baseline\": true, \"precision_note\": \"bf16; collapse milder than fp32 s42 (entropy drop 22.54% vs 40.71%, ppl 24.65 vs 56.99) due to stochastic rounding regularization. Core pattern (G1 trigger, G2 recovery) confirmed.\", \"cross_seed_note\": \"s42(fp32): trigger G1 entropy -40.71%, ppl spike 56.99. s43(bf16): trigger G1 entropy -22.54%, no ppl spike. Pattern consistent, magnitude differs due to precision.\"}}, {\"id\": \"plan_032\", \"claim\": 4, \"description\": \"Intervention reactive s43: seed=43 multi-seed 验证\", \"priority\": \"P1\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_024\"], \"notes\": \"条件: plan_024 结果正面\", \"registry_id\": \"interv_react_s43_bf16\", \"status\": \"DONE\", \"conclusion\": \"success\"}, {\"id\": \"plan_033\", \"claim\": 4, \"description\": \"Intervention at α=0.75: Pythia-410M × α=0.75 × 10 gen, predictive + reactive。在 transitional regime 下验证干预效果\", \"priority\": \"P2\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_023\", \"plan_024\"], \"notes\": \"验证干预在非极端污染下是否仍有效\", \"registry_id\": \"interv_pred_a075_s42_fp32_v4\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.05, \"final_eff_rank\": 44.8, \"final_mauve\": 0.031, \"precision\": \"fp32\", \"intervention_trigger_gen\": 1, \"recovery_gen\": 2, \"token_entropy_drift\": -5.74, \"ece_drift\": 55.78, \"perplexity_drift\": -22.76, \"distinct_1_drift\": -7.97, \"distinct_2_drift\": -5.22, \"distinct_3_drift\": -3.9, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"8/8\", \"threshold_onset_fwd\": \"0/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75}}, {\"id\": \"plan_037\", \"claim\": 4, \"description\": \"Intervention 1.4B: Pythia-1.4B × α=1.0 × 10 gen, predictive + reactive。跨 scale 干预验证\", \"priority\": \"P2\", \"gpu_budget_hours\": 24, \"deps\": [\"plan_023\", \"plan_024\", \"plan_017\"], \"notes\": \"验证干预在大模型上的效果\", \"status\": \"planned\"}, {\"id\": \"plan_008\", \"claim\": 1, \"description\": \"数据策略 ablation: α=0.50 下 accumulate vs replace 对比 × 3 seeds × 10 gen\", \"priority\": \"P2\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_001\"], \"status\": \"planned\"}, {\"id\": \"plan_038\", \"claim\": 3, \"description\": \"Method ablation Phase 3: 扩展 pooled panel 加入 α=0.10/0.60 数据，更新 method×regime interaction 证据\", \"priority\": \"P1\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_025\", \"plan_026\", \"plan_002b\"], \"notes\": \"7 点 regime map 下的完整 method ablation\", \"status\": \"planned\"}, {\"id\": \"plan_039\", \"claim\": 2, \"description\": \"α=0.10 multi-seed s43: 验证极低污染下结果的 seed stability\", \"priority\": \"P2\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_025\"], \"notes\": \"条件: plan_025 显示有趣 signal\", \"registry_id\": \"alpha_sweep_a010_s43\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"token_entropy_drift\": -13.1, \"ece_drift\": -61.1, \"perplexity_drift\": -38.9, \"distinct_1_drift\": -29.1, \"distinct_2_drift\": -40.3, \"distinct_3_drift\": -31.9, \"effective_rank_drift\": 23.5, \"mauve_drift\": -46.3, \"naive_xcorr_fwd\": \"7/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"3/8\", \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"0/8\", \"k_gte4\": \"0/8\"}}, {\"id\": \"plan_040\", \"claim\": 2, \"description\": \"α=0.60 multi-seed s43: 验证 boundary regime 的 seed sensitivity\", \"priority\": \"P2\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_026\"], \"notes\": \"条件: plan_026 在 boundary 附近\", \"status\": \"planned\"}, {\"id\": \"plan_004\", \"claim\": 2, \"description\": \"Cross-domain α=0.50: C4 × Pythia-410M × α=0.50 × 3 seeds × 10 gen\", \"priority\": \"P2\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_001\"], \"notes\": \"验证 canary ranking 跨域转移\", \"registry_id\": \"alpha_sweep_c4_a050_s42_bf16\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"token_entropy_gen0\": 3.136, \"token_entropy_gen10\": 1.94, \"token_entropy_delta_pct\": -38.2, \"distinct_1_gen0\": 0.111, \"distinct_1_gen10\": 0.089, \"distinct_1_delta_pct\": -20.3, \"perplexity_gen0\": 24.4, \"perplexity_gen10\": 122.8, \"perplexity_delta_pct\": 402, \"mauve_gen0\": 0.691, \"mauve_gen10\": 0.078, \"ece_gen0\": 0.011, \"ece_gen10\": 0.259, \"diff_xcorr_te_d1_lag\": 1, \"diff_xcorr_te_d1_r\": 0.914, \"permg_fwd_fdr_sig\": \"0/8\", \"permg_rev_fdr_sig\": \"0/8\"}}, {\"id\": \"plan_005\", \"claim\": 1, \"description\": \"Scale spot-check α=0.50: Pythia-1.4B × α=0.50 × 3 seeds × 10 gen\", \"priority\": \"P2\", \"gpu_budget_hours\": 24, \"deps\": [\"plan_001\"], \"notes\": \"单点验证 canary lead 跨规模保持\", \"registry_id\": \"scale_14b_a050_s42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"token_entropy_g0\": 2.946, \"token_entropy_g10\": 2.227, \"token_entropy_drift_pct\": -24.4, \"distinct_1_g0\": 0.0993, \"distinct_1_g10\": 0.0636, \"distinct_1_drift_pct\": -36, \"distinct_2_g0\": 0.521, \"distinct_2_g10\": 0.262, \"distinct_2_drift_pct\": -49.7, \"distinct_3_g0\": 0.813, \"distinct_3_g10\": 0.408, \"distinct_3_drift_pct\": -49.8, \"perplexity_g0\": 19.68, \"perplexity_g10\": 35.14, \"perplexity_drift_pct\": 78.6, \"mauve_g0\": 0.033, \"mauve_g10\": 0.024, \"mauve_drift_pct\": -28.2, \"ece_g0\": 0.007, \"ece_g10\": 0.153, \"effective_rank_g0\": 50.76, \"effective_rank_g10\": 82.21, \"num_generations\": 11}}, {\"id\": \"plan_007\", \"claim\": 4, \"description\": \"Intervention CRS-weighted: Pythia-410M × α=0.75 × 3 seeds × 10 gen (legacy design)\", \"priority\": \"P3\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_001\", \"plan_002\"], \"notes\": \"D014 降级为 illustration。已被 plan_023/024 的 predictive/reactive 设计替代\", \"status\": \"planned\"}, {\"id\": \"plan_041\", \"claim\": 1, \"description\": \"SmolLM3-3B 跨架构 (2025): SmolLM3-3B-Base × WikiText-103 × α=1.0 × 10 gen × seed=42。2025 年 HuggingFace 模型，第 6 个独立架构族验证泛化\", \"priority\": \"P0\", \"gpu_budget_hours\": 15, \"deps\": [], \"notes\": \"HuggingFaceTB/SmolLM3-3B-Base, 2025-07-08 发布, 3B params, 11.2T tokens。替代 Gemma 4 E2B (D073 弃用)\", \"registry_id\": \"smollm3_3b_wiki_a100_s42_v3\", \"status\": \"RUNNING\"}, {\"id\": \"plan_042\", \"claim\": 1, \"description\": \"Qwen3.5-0.8B 跨架构 (2026): Qwen3.5-0.8B-Base × WikiText-103 × α=1.0 × 10 gen × seed=42。2026 年阿里前沿小模型，验证跨架构泛化\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"notes\": \"Qwen/Qwen3.5-0.8B-Base, 2026-03-02 发布, 0.8B params, Apache 2.0。用户要求立即启动准备\", \"registry_id\": \"qwen35_08b_wiki_a100_s42_v2\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"6/8\", \"robust_pairs_K3_3sigma\": \"8/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"True 3sigma recompute. threshold_onset dropped 8/8->0/8. K4 dropped 8/8->6/8. PermG/TY unchanged.\"}}, {\"id\": \"plan_043\", \"claim\": 1, \"description\": \"SmolLM3-3B multi-seed s43: seed=43 验证\", \"priority\": \"P2\", \"gpu_budget_hours\": 15, \"deps\": [\"plan_041\"], \"notes\": \"条件: plan_041 结果正面\", \"status\": \"planned\"}, {\"id\": \"plan_044\", \"claim\": 1, \"description\": \"Qwen3.5-0.8B multi-seed s43: seed=43 验证\", \"priority\": \"P2\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_042\"], \"notes\": \"条件: plan_042 结果正面\", \"registry_id\": \"qwen35_08b_wiki_a100_s43_fp32\", \"status\": \"PREPARING\"}, {\"id\": \"plan_046\", \"claim\": 2, \"description\": \"α=0.30 onset refinement: Pythia-410M × WikiText-103 × α=0.30 × 10 gen × seed=42 × fp32。D098 onset boundary [0.25, 0.50] 精化\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_001\"], \"notes\": \"D098 onset 精化：α=0.25 PermG=0/8, α=0.50 PermG=6/8。α=0.30 定位 onset 到 ±0.05 精度\", \"registry_id\": \"alpha_sweep_a030_s42_fp32\", \"status\": \"RUNNING\"}, {\"id\": \"plan_047\", \"claim\": 2, \"description\": \"α=0.40 onset refinement: Pythia-410M × WikiText-103 × α=0.40 × 10 gen × seed=42 × fp32。D098 onset boundary 精化\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_001\"], \"notes\": \"D098 onset 精化：与 α=0.30 配合将 onset 定位到 ±0.05。如果 0.30/0.40 都 PermG=0 → onset ≥ 0.40\", \"registry_id\": \"alpha_sweep_a040_s42_fp32_v2\", \"status\": \"RUNNING\"}], \"total\": 51}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "051a433b-bc34-494b-b406-34256627258c",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "36a73adc-9752-484d-9770-f172a580f781",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"α-sweep anchor: Pythia-410M × WikiText-103 × α=0.25 × 10 gen × seed=42\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [], \\\"notes\\\": \\\"α-sweep 基准实验。D025 统一参数。\\\", \\\"registry_id\\\": \\\"alpha_sweep_a025_s42_fp32\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"PermG_fwd\\\": \\\"0/8\\\", \\\"PermG_rev\\\": \\\"0/8\\\", \\\"K_ge_4\\\": \\\"0/8\\\", \\\"MMCT\\\": \\\"0/8\\\", \\\"MMCT_detection_rate\\\": 0, \\\"d1_drift_pct\\\": -39.15, \\\"d2_drift_pct\\\": -54.75, \\\"d3_drift_pct\\\": -56.98, \\\"mauve_drift_pct\\\": -41.86, \\\"entropy_drift_pct\\\": -4.79, \\\"ece_drift_pct\\\": 79.17, \\\"ppl_drift_pct\\\": -18.09, \\\"eff_rank_drift_pct\\\": -3.78, \\\"ppl_by_gen\\\": [26.95, 19.39, 20.37, 20.75, 21.14, 21.3, 21.48, 21.88, 21.9, 22.25, 22.07], \\\"entropy_by_gen\\\": [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079], \\\"d1_by_gen\\\": [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596], \\\"mauve_by_gen\\\": [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181], \\\"naive_xcorr_fwd\\\": \\\"8/8\\\", \\\"diff_xcorr_fwd\\\": \\\"3/8\\\", \\\"threshold_onset_fwd\\\": \\\"5/8\\\", \\\"ty_granger_sig\\\": \\\"3/8\\\", \\\"consensus_detail_max_votes\\\": 3, \\\"hypothesis_validated\\\": true, \\\"note\\\": \\\"PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> α=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this α. token_entropy→distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\\\"}}, {\\\"id\\\": \\\"plan_001b\\\", \\\"claim\\\": 3, \\\"description\\\": \\\"α=0.0 null control: Pythia-410M × WikiText-103 × α=0.0 × 10 gen × seed=42。FPR ground truth\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [], \\\"notes\\\": \\\"D028: perm_granger/TY 0% FPR，naive 100% FPR\\\", \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_001c\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"α=0.50 sweep: Pythia-410M × WikiText-103 × α=0.50 × 10 gen × seed=42\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [], \\\"notes\\\": \\\"D025: 所有严格方法 FDR 后归零（0/8），仅 naive 8/8。α=0.50 是 method×regime interaction 最极端例证\\\", \\\"registry_id\\\": \\\"alpha_sweep_a050_s42_fp32\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 3.2342, \\\"token_entropy_gen10\\\": 2.7075, \\\"token_entropy_drift_pct\\\": -16.3, \\\"distinct_1_gen0\\\": 0.0916, \\\"distinct_1_gen10\\\": 0.0649, \\\"distinct_1_drift_pct\\\": -29.2, \\\"perplexity_gen0\\\": 26.95, \\\"perplexity_gen10\\\": 31.46, \\\"perplexity_drift_pct\\\": 16.8, \\\"ece_gen0\\\": 0.0108, \\\"ece_gen10\\\": 0.0868, \\\"ece_drift_pct\\\": 703.4, \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"4/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_wpair_fwd\\\": \\\"6/8\\\", \\\"precision\\\": \\\"fp32\\\", \\\"n_perm\\\": 5000, \\\"padding_side\\\": \\\"right (D093 fix NOT applied)\\\"}}, {\\\"id\\\": \\\"plan_001d\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"α=0.75 sweep: Pythia-410M × WikiText-103 × α=0.75 × 10 gen × seed=42\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [], \\\"notes\\\": \\\"D037: 3/4 FDR-sig forward, 0/4 reverse, consensus 11/16 robust\\\", \\\"registry_id\\\": \\\"alpha_sweep_a075_s42_fp32\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n_generations\\\": 11, \\\"gen0\\\": {\\\"token_entropy\\\": 3.2342, \\\"ece\\\": 0.0108, \\\"perplexity\\\": 26.949, \\\"distinct_1\\\": 0.098, \\\"distinct_2\\\": 0.5141, \\\"distinct_3\\\": 0.8127, \\\"effective_rank\\\": 46.613, \\\"mauve\\\": 0.0311}, \\\"gen10\\\": {\\\"token_entropy\\\": 2.283, \\\"ece\\\": 0.2145, \\\"perplexity\\\": 77.697, \\\"distinct_1\\\": 0.0731, \\\"distinct_2\\\": 0.357, \\\"distinct_3\\\": 0.5957, \\\"effective_rank\\\": 78.06, \\\"mauve\\\": 0.0299}, \\\"drift_pct\\\": {\\\"token_entropy\\\": -29.41, \\\"ece\\\": 1885.41, \\\"perplexity\\\": 188.31, \\\"distinct_1\\\": -25.38, \\\"distinct_2\\\": -30.55, \\\"distinct_3\\\": -26.7, \\\"effective_rank\\\": 67.47, \\\"mauve\\\": -3.73}, \\\"lead_lag\\\": {\\\"PermG_fwd\\\": \\\"6/8\\\", \\\"PermG_rev\\\": \\\"0/8\\\", \\\"K_ge_4\\\": \\\"6/8\\\", \\\"MMCT_detection\\\": 0.75, \\\"TY_granger\\\": \\\"8/8\\\", \\\"naive_xcorr\\\": \\\"7/8\\\", \\\"diff_xcorr\\\": \\\"6/8\\\", \\\"threshold_onset\\\": \\\"8/8\\\"}, \\\"asymmetry\\\": \\\"strong (fwd=6, rev=0)\\\"}}, {\\\"id\\\": \\\"plan_045\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"α=0.05 sweep: Pythia-410M × WikiText-103 × α=0.05 × 10 gen × seed=42。定位 diversity 悬崖精确位置（α=0.00 d1=-14% → α=0.10 d1=-40% 之间的断崖）\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [], \\\"notes\\\": \\\"D076: HIGH ROI。如果 α=0.05 d1≈-40% → 5% 污染即全损；如果 d1 在 -14% 和 -40% 之间 → 存在明确阈值\\\", \\\"registry_id\\\": \\\"alpha_sweep_a005_s42_v3\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_ppl\\\": 20.81, \\\"final_entropy\\\": 3.04, \\\"final_eff_rank\\\": 45.3, \\\"final_mauve\\\": 0.023, \\\"precision\\\": \\\"fp32\\\", \\\"token_entropy_drift\\\": -5.96, \\\"ece_drift\\\": 55.41, \\\"perplexity_drift\\\": -22.78, \\\"distinct_1_drift\\\": -24.86, \\\"distinct_2_drift\\\": -28.42, \\\"distinct_3_drift\\\": -19.54, \\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"3/8\\\", \\\"threshold_onset_fwd\\\": \\\"5/8\\\", \\\"consensus_k4\\\": \\\"0/8\\\", \\\"mmct_wpair_fwd\\\": 0}}, {\\\"id\\\": \\\"plan_025\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"α=0.10 sweep: Pythia-410M × WikiText-103 × α=0.10 × 10 gen × seed=42。Regime map 下界，验证极低污染下 signal 是否存在\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [], \\\"notes\\\": \\\"D061: regime map 5→7 点，精确刻画低端 boundary。D075: canary blind zone confirmed\\\", \\\"registry_id\\\": \\\"alpha_sweep_a010_s42_fp32\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"token_entropy_drift_pct\\\": -4.59, \\\"distinct_1_drift_pct\\\": -23.8, \\\"distinct_2_drift_pct\\\": -27.15, \\\"distinct_3_drift_pct\\\": -19.36, \\\"perplexity_drift_pct\\\": -18.94, \\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"3/8\\\", \\\"threshold_onset_fwd\\\": \\\"5/8\\\", \\\"consensus_k4\\\": \\\"2/8\\\", \\\"mmct_wpair_fwd\\\": \\\"2/8\\\", \\\"mmct_detection_rate\\\": 0.25, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"D093 applied\\\", \\\"blind_zone_confirmed\\\": true, \\\"cross_seed_permg_stable\\\": true}}, {\\\"id\\\": \\\"plan_026\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"α=0.60 sweep: Pythia-410M × WikiText-103 × α=0.60 × 10 gen × seed=42。填补 0.50→0.75 boundary gap\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [], \\\"notes\\\": \\\"D061: 精确定位 detectability threshold\\\", \\\"registry_id\\\": \\\"alpha_sweep_a060_s42_fp32_v3\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_ppl\\\": 45.41, \\\"final_entropy\\\": 2.48, \\\"final_eff_rank\\\": 69.3, \\\"final_mauve\\\": 0.023, \\\"precision\\\": \\\"fp32\\\", \\\"token_entropy_drift\\\": -23.36, \\\"ece_drift\\\": 1260.23, \\\"perplexity_drift\\\": 68.52, \\\"distinct_1_drift\\\": -28.17, \\\"distinct_2_drift\\\": -37.22, \\\"distinct_3_drift\\\": -35.35, \\\"perm_granger_fwd\\\": \\\"3/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"8/8\\\", \\\"threshold_onset_fwd\\\": \\\"8/8\\\", \\\"consensus_k4\\\": \\\"7/8\\\", \\\"mmct_wpair_fwd\\\": 0.875}}, {\\\"id\\\": \\\"plan_011\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Multi-seed α=0.25 s43: Pythia-410M × WikiText-103 × α=0.25 × 10 gen × seed=43\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [\\\"plan_001\\\"], \\\"notes\\\": \\\"DONE: diversity drift 跨 seed <1.3pp\\\", \\\"registry_id\\\": \\\"alpha_sweep_a025_s43_fp32\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"drift_pct\\\": {\\\"d1\\\": -38.95, \\\"d2\\\": -53.35, \\\"d3\\\": -54.8, \\\"entropy\\\": -4.94, \\\"ece\\\": 64.77, \\\"ppl\\\": -18.38, \\\"mauve\\\": -35.59, \\\"eff_rank\\\": -1.99}, \\\"gen0_abs\\\": {\\\"token_entropy\\\": 3.234, \\\"distinct_1\\\": 0.0983, \\\"perplexity\\\": 26.95, \\\"ece\\\": 0.0108}, \\\"gen10_abs\\\": {\\\"token_entropy\\\": 3.069, \\\"distinct_1\\\": 0.0595, \\\"perplexity\\\": 21.95, \\\"ece\\\": 0.0218}, \\\"lead_lag\\\": {\\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"consensus_k4\\\": \\\"0/8\\\", \\\"mmct_detection_rate\\\": 0, \\\"ty_granger\\\": \\\"6/8\\\", \\\"naive_xcorr\\\": \\\"8/8\\\", \\\"threshold_onset\\\": \\\"4/8\\\"}, \\\"max_consensus_votes\\\": 3, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"D093 applied\\\"}}, {\\\"id\\\": \\\"plan_012\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Multi-seed α=0.50 s43: Pythia-410M × WikiText-103 × α=0.50 × 10 gen × seed=43\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [\\\"plan_001c\\\"], \\\"notes\\\": \\\"DONE: drift direction identical to s42, <7% deviation\\\", \\\"registry_id\\\": \\\"alpha_sweep_a050_s43_fp32\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 3.2342, \\\"token_entropy_gen10\\\": 2.7227, \\\"token_entropy_drift_pct\\\": -15.8, \\\"distinct_1_gen0\\\": 0.0929, \\\"distinct_1_gen10\\\": 0.066, \\\"distinct_1_drift_pct\\\": -29, \\\"perplexity_gen0\\\": 26.95, \\\"perplexity_gen10\\\": 31.58, \\\"perplexity_drift_pct\\\": 17.2, \\\"ece_gen0\\\": 0.0108, \\\"ece_gen10\\\": 0.0842, \\\"ece_drift_pct\\\": 679.6, \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"5/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_wpair_fwd\\\": \\\"6/8\\\", \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"pre-D093\\\"}}, {\\\"id\\\": \\\"plan_013\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Multi-seed α=0.25 s44: seed=44\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [\\\"plan_011\\\"], \\\"registry_id\\\": \\\"alpha_sweep_a025_s44_fp32\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"drift_pct\\\": {\\\"d1\\\": -38.35, \\\"d2\\\": -53.44, \\\"d3\\\": -55.35, \\\"entropy\\\": -4.11, \\\"ece\\\": 68.01, \\\"ppl\\\": -16.27, \\\"mauve\\\": -40.63, \\\"eff_rank\\\": -0.87}, \\\"gen0_abs\\\": {\\\"token_entropy\\\": 3.234, \\\"distinct_1\\\": 0.0974, \\\"perplexity\\\": 26.95, \\\"ece\\\": 0.0108}, \\\"gen9_abs\\\": {\\\"token_entropy\\\": 3.101, \\\"distinct_1\\\": 0.06, \\\"perplexity\\\": 22.57, \\\"ece\\\": 0.0182}, \\\"lead_lag\\\": {\\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"consensus_k4\\\": \\\"0/8\\\", \\\"naive_xcorr\\\": \\\"8/8\\\", \\\"diff_xcorr\\\": \\\"0/8\\\", \\\"threshold_onset\\\": \\\"0/8\\\", \\\"ty_granger\\\": \\\"1/8\\\"}, \\\"mmct_detection_rate\\\": 0}}, {\\\"id\\\": \\\"plan_014\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Multi-seed α=0.50 s44: seed=44\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [\\\"plan_012\\\"], \\\"notes\\\": \\\"D044: s42/s43 deviation <7%, s44 confirms boundary regime with high seed variance\\\", \\\"registry_id\\\": \\\"alpha_sweep_a050_s44_fp32\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 3.234, \\\"token_entropy_gen10\\\": 2.697, \\\"token_entropy_drift_pct\\\": -16.61, \\\"distinct_1_gen0\\\": 0.0915, \\\"distinct_1_gen10\\\": 0.066, \\\"distinct_1_drift_pct\\\": -27.93, \\\"distinct_2_drift_pct\\\": -34.64, \\\"distinct_3_drift_pct\\\": -30.6, \\\"ece_gen0\\\": 0.0108, \\\"ece_gen10\\\": 0.0874, \\\"ece_drift_pct\\\": 709.03, \\\"perplexity_gen0\\\": 26.949, \\\"perplexity_gen10\\\": 31.424, \\\"perplexity_drift_pct\\\": 16.61, \\\"effective_rank_drift_pct\\\": 25.06, \\\"mauve_drift_pct\\\": -13.88, \\\"naive_xcorr_fwd\\\": \\\"8/8\\\", \\\"diff_xcorr_fwd\\\": \\\"8/8\\\", \\\"threshold_onset_fwd\\\": \\\"8/8\\\", \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"4/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_wpair_fwd\\\": 0.75, \\\"precision\\\": \\\"fp32\\\", \\\"n_perm\\\": 5000}}, {\\\"id\\\": \\\"plan_002\\\", \\\"claim\\\": 3, \\\"description\\\": \\\"Method ablation Phase 1: MVP 4-seed 数据，5 种方法对比\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [\\\"plan_001\\\"], \\\"notes\\\": \\\"Phase 1 完成：TY 在 N=11 下失效，Claim 3 重构为方法选择敏感性\\\", \\\"registry_id\\\": \\\"method_ablation_phase1\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"spurious_rate_5method\\\": 0.75, \\\"spurious_rate_4method\\\": 0.625, \\\"naive_sig\\\": \\\"16/16\\\", \\\"differenced_sig\\\": \\\"14/16\\\", \\\"threshold_sig\\\": \\\"9/16\\\", \\\"permutation_granger_sig\\\": \\\"6/16\\\", \\\"ty_sig\\\": \\\"4/16\\\", \\\"ty_power_T10\\\": \\\"0.05-0.20\\\", \\\"bh_fdr_flips\\\": 0}}, {\\\"id\\\": \\\"plan_002b\\\", \\\"claim\\\": 3, \\\"description\\\": \\\"Method ablation Phase 2: 跨 α pooled panel（α=0.0/0.25/0.50/0.75/1.0），56-row 分析矩阵\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [\\\"plan_001\\\", \\\"plan_001b\\\", \\\"plan_001c\\\", \\\"plan_001d\\\", \\\"plan_002\\\"], \\\"notes\\\": \\\"D028-D030: cross_alpha_analysis_v4 统一 FDR 校正。raw 10/32 sig → FDR 仅 1/32\\\", \\\"registry_id\\\": \\\"method_ablation_phase2\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n_panel_rows\\\": 56, \\\"n_alphas\\\": 4, \\\"alphas\\\": [0, 0.25, 0.5, 1], \\\"naive_sig_rate_overall\\\": 1, \\\"perm_granger_sig_rate_a000_raw\\\": 0, \\\"perm_granger_sig_rate_a000_fdr\\\": 0, \\\"perm_granger_sig_rate_a025_raw\\\": 0.25, \\\"perm_granger_sig_rate_a025_fdr\\\": 0, \\\"perm_granger_sig_rate_a050_raw\\\": 0.25, \\\"perm_granger_sig_rate_a050_fdr\\\": 0, \\\"perm_granger_sig_rate_a100_raw\\\": 0.75, \\\"perm_granger_sig_rate_a100_fdr\\\": 0.75, \\\"TY_sig_rate_a000_raw\\\": 0, \\\"TY_sig_rate_a000_fdr\\\": 0, \\\"TY_sig_rate_a025_raw\\\": 0.625, \\\"TY_sig_rate_a025_fdr\\\": 0.375, \\\"TY_sig_rate_a050_raw\\\": 0, \\\"TY_sig_rate_a050_fdr\\\": 0, \\\"TY_sig_rate_a100_raw\\\": 0.5938, \\\"TY_sig_rate_a100_fdr\\\": 0.5938, \\\"diff_sig_rate_a000_raw\\\": 0.5, \\\"diff_sig_rate_a000_fdr\\\": 0.375, \\\"mean_inter_method_kappa\\\": 0.185, \\\"naive_vs_perm_granger_flip_rate\\\": 0.5, \\\"naive_vs_TY_flip_rate\\\": 0.57, \\\"fdr_flips_perm_granger\\\": 4, \\\"pair_verdict_a100_perm_granger\\\": \\\"6/8\\\", \\\"pair_verdict_a100_TY\\\": \\\"6/8\\\", \\\"entropy_to_diversity_a100_all_5methods_sig\\\": true, \\\"fdr_correction\\\": \\\"BH q=0.05\\\"}}, {\\\"id\\\": \\\"plan_003\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"MVP 结果 formalization: 4-seed 100% SC 结果，lead time 精确量化\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [], \\\"registry_id\\\": \\\"mvp_v4_rep42\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.234195, \\\"gen0_ece\\\": 0.010805, \\\"gen0_perplexity\\\": 26.948959, \\\"gen0_distinct_1\\\": 0.098216, \\\"gen0_distinct_2\\\": 0.517803, \\\"gen0_distinct_3\\\": 0.812728, \\\"gen10_token_entropy\\\": 1.27592, \\\"gen10_ece\\\": 0.41734, \\\"gen10_perplexity\\\": 1003.73, \\\"gen10_distinct_1\\\": 0.070383, \\\"gen10_distinct_2\\\": 0.335471, \\\"gen10_distinct_3\\\": 0.555579, \\\"token_entropy_drift_pct\\\": -60.5491, \\\"ece_drift_pct\\\": 3762.4711, \\\"perplexity_drift_pct\\\": 3624.5595, \\\"distinct_1_drift_pct\\\": -28.3386, \\\"distinct_2_drift_pct\\\": -35.2126, \\\"distinct_3_drift_pct\\\": -31.6402}}, {\\\"id\\\": \\\"plan_006\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Extended run: Pythia-410M × α=1.0 × 20 gen × 2 seeds (max_lag=10)。T=20 下 lead-lag 稳健性验证\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [], \\\"notes\\\": \\\"D034: gen 18/20 timeout 但 T=18 数据足够。Phase 3 二次衰退发现\\\", \\\"registry_id\\\": \\\"plan_006_s42\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"18/20 gen (gen_0-17 complete, gen_18-20 timeout)\\\", \\\"gen0_token_entropy\\\": 3.2342, \\\"gen17_token_entropy\\\": 1.1819, \\\"gen0_ece\\\": 0.0108, \\\"gen17_ece\\\": 0.4454, \\\"gen0_perplexity\\\": 26.95, \\\"gen17_perplexity\\\": 3367.66, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen17_distinct_1\\\": 0.0756, \\\"gen0_distinct_2\\\": 0.5178, \\\"gen17_distinct_2\\\": 0.3617, \\\"gen0_distinct_3\\\": 0.8127, \\\"gen17_distinct_3\\\": 0.5865, \\\"token_entropy_drift_pct_gen0_17\\\": -63.4, \\\"distinct_1_drift_pct_gen0_17\\\": -23, \\\"distinct_2_drift_pct_gen0_17\\\": -30.1, \\\"distinct_3_drift_pct_gen0_17\\\": -27.8, \\\"ece_drift_pct_gen0_17\\\": 4024, \\\"ppl_drift_pct_gen0_17\\\": 12395, \\\"phase1_rapid_collapse\\\": \\\"gen0-5\\\", \\\"phase2_apparent_plateau\\\": \\\"gen5-12\\\", \\\"phase3_secondary_decline\\\": \\\"gen13-17\\\", \\\"phase3_d2_decline_pct\\\": -5.8, \\\"phase3_d3_decline_pct\\\": -6.9, \\\"diversity_saturated_at_gen\\\": 5, \\\"diversity_secondary_decline_at_gen\\\": 13, \\\"perplexity_saturated\\\": false}}, {\\\"id\\\": \\\"plan_009\\\", \\\"claim\\\": 3, \\\"description\\\": \\\"Bootstrap/Permutation TY 验证: Monte Carlo 模拟 TY Granger 在 T=10/T=20 下的 Type I error rate 和 power\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [], \\\"notes\\\": \\\"D014 Dream 三档一致 CRITICAL。零 GPU\\\", \\\"registry_id\\\": \\\"plan_009_bootstrap_ty\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"T10_d0_type1\\\": 0.081, \\\"T10_d0_power\\\": 0.205, \\\"T10_d1_type1\\\": 0.047, \\\"T10_d1_power\\\": 0.09, \\\"T10_dadapt_type1\\\": 0.052, \\\"T10_dadapt_power\\\": 0.05, \\\"T20_d0_power\\\": 0.409, \\\"T20_d1_power\\\": 0.172, \\\"T30_d0_power\\\": 0.606, \\\"T30_d1_power\\\": 0.283}}, {\\\"id\\\": \\\"plan_015\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Baseline generalization: Pythia-410M × WikiText-103 × α=1.0 × seed=42，统一参数 (n_perm=5000) 分析\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [], \\\"notes\\\": \\\"Table 7 Baseline 行。K≥4=6/8\\\", \\\"registry_id\\\": \\\"generalize_pythia410m_wiki_a100_s42\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"robust_pairs_K4_3sigma\\\": \\\"1/8\\\", \\\"robust_pairs_K3_3sigma\\\": \\\"6/8\\\", \\\"threshold_onset_3sigma\\\": \\\"2/8\\\", \\\"D105_3sigma_note\\\": \\\"True 3sigma recompute. threshold_onset dropped 8/8->2/8. K4 dropped 6/8->1/8. PermG/TY unchanged.\\\"}}, {\\\"id\\\": \\\"plan_016\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"OPT-1.3B 跨架构: OPT-1.3B × WikiText-103 × α=1.0 × seed=42\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [], \\\"notes\\\": \\\"Table 7 Arch:OPT 行。K≥4=6/8, PermG rev=2/8\\\", \\\"registry_id\\\": \\\"generalize_opt1b_wiki_a100_s42\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"robust_pairs_K4_3sigma\\\": \\\"2/8\\\", \\\"robust_pairs_K3_3sigma\\\": \\\"6/8\\\", \\\"threshold_onset_3sigma\\\": \\\"2/8\\\", \\\"D105_3sigma_note\\\": \\\"True 3sigma recompute. threshold_onset dropped 8/8->2/8. K4 dropped 6/8->2/8. PermG/TY unchanged.\\\"}}, {\\\"id\\\": \\\"plan_010\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"GPT-2-medium 跨架构: GPT-2-medium × WikiText-103 × α=1.0 × seed=42 (v3 旧参数)\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 5, \\\"deps\\\": [], \\\"notes\\\": \\\"v3 用旧参数完成，v4 正在重跑统一参数\\\", \\\"registry_id\\\": \\\"gen_wiki_gpt2m_a100_s42_v4\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"robust_pairs_K4_3sigma\\\": \\\"2/8\\\", \\\"robust_pairs_K3_3sigma\\\": \\\"6/8\\\", \\\"threshold_onset_3sigma\\\": \\\"0/8\\\", \\\"D105_3sigma_note\\\": \\\"True 3sigma recompute. threshold_onset dropped 6/8->0/8. K4 dropped 6/8->2/8. PermG/TY unchanged.\\\"}}, {\\\"id\\\": \\\"plan_021\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"GPT-2-medium v4 重跑: 统一参数 (n_perm=5000, xcorr_lag=5, granger_lag=1) 重新分析，填 Table 7\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 5, \\\"deps\\\": [\\\"plan_010\\\"], \\\"notes\\\": \\\"当前 RUNNING。GPT-2m 数据被删后重跑训练+分析\\\", \\\"registry_id\\\": \\\"gen_wiki_gpt2m_a100_s42_v4\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"robust_pairs_K4_3sigma\\\": \\\"2/8\\\", \\\"robust_pairs_K3_3sigma\\\": \\\"6/8\\\", \\\"threshold_onset_3sigma\\\": \\\"0/8\\\", \\\"D105_3sigma_note\\\": \\\"True 3sigma recompute. threshold_onset dropped 6/8->0/8. K4 dropped 6/8->2/8. PermG/TY unchanged.\\\"}}, {\\\"id\\\": \\\"plan_034\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"GPT-2-medium multi-seed s43: GPT-2-medium × WikiText-103 × α=1.0 × seed=43\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 5, \\\"deps\\\": [\\\"plan_021\\\"], \\\"notes\\\": \\\"跨架构 multi-seed 验证，确认 GPT-2m 结果非单 seed 偶然\\\", \\\"registry_id\\\": \\\"gen_gpt2m_a100_s43_bf16\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 3.6021, \\\"token_entropy_gen10\\\": 3.0035, \\\"token_entropy_delta_pct\\\": -16.6, \\\"distinct_1_gen0\\\": 0.1092, \\\"distinct_1_gen10\\\": 0.0724, \\\"distinct_1_delta_pct\\\": -33.7, \\\"distinct_2_gen0\\\": 0.5665, \\\"distinct_2_gen10\\\": 0.3422, \\\"distinct_2_delta_pct\\\": -39.6, \\\"distinct_3_gen0\\\": 0.8652, \\\"distinct_3_gen10\\\": 0.5756, \\\"distinct_3_delta_pct\\\": -33.5, \\\"ece_gen0\\\": 0.0111, \\\"ece_gen10\\\": 0.0716, \\\"ece_delta_pct\\\": 547.9, \\\"perplexity_gen0\\\": 32.91, \\\"perplexity_gen10\\\": 55.49, \\\"perplexity_delta_pct\\\": 68.6, \\\"mauve_gen0\\\": 0.0318, \\\"mauve_gen10\\\": 0.0227, \\\"mauve_delta_pct\\\": -28.7, \\\"naive\\\": \\\"8/8\\\", \\\"diff\\\": \\\"7/8\\\", \\\"thresh\\\": \\\"8/8\\\", \\\"pg_fwd\\\": \\\"1/8\\\", \\\"pg_rev\\\": \\\"0/8\\\", \\\"ty\\\": \\\"0/8\\\", \\\"k_gte4\\\": \\\"1/8\\\", \\\"mmct_weighted_fwd\\\": \\\"6/8\\\", \\\"n_perm\\\": 5000, \\\"xcorr_lag\\\": 5, \\\"granger_lag\\\": 1, \\\"cross_seed_note\\\": \\\"CAUTION: s42 was fp32 (entropy drift -86.6%), s43 is bf16 (entropy drift -16.6%). NOT a fair cross-seed comparison. bf16 dramatically reduces collapse severity, causing PG/TY to lose power (PG_fwd 1/8 vs 6/8, TY 0/8 vs 5/8). MMCT partially recovers signal (6/8) via FPR-inverse weighting of naive+diff+thresh consensus. K>=4 drops to 1/8 (ece->ppl only, a spurious channel).\\\", \\\"precision_note\\\": \\\"bf16 mixed precision; collapse trajectory is qualitatively similar but quantitatively much milder than fp32 s42\\\"}}, {\\\"id\\\": \\\"plan_030\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"OPT-1.3B multi-seed s43: OPT-1.3B × WikiText-103 × α=1.0 × seed=43\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [\\\"plan_016\\\"], \\\"notes\\\": \\\"Architecture multi-seed coverage\\\", \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_017\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Pythia-1.4B Scale s42: Pythia-1.4B × WikiText-103 × α=1.0 × seed=42\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 12, \\\"deps\\\": [], \\\"notes\\\": \\\"Table 7 Scale 行。K≥4=5/8, TY=0/8 (underpowered)\\\", \\\"registry_id\\\": \\\"generalize_pythia14b_wiki_a100_s42\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"robust_pairs_K4_3sigma\\\": \\\"0/8\\\", \\\"robust_pairs_K3_3sigma\\\": \\\"2/8\\\", \\\"threshold_onset_3sigma\\\": \\\"0/8\\\", \\\"D105_3sigma_note\\\": \\\"D105 backfill: true 3sigma, fdr_permethod, unified 8-pair (canary={token_entropy,ece} x downstream={d1,d2,d3,mauve})\\\"}}, {\\\"id\\\": \\\"plan_018\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Pythia-1.4B Scale s43: Pythia-1.4B × WikiText-103 × α=1.0 × seed=43\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 12, \\\"deps\\\": [\\\"plan_017\\\"], \\\"notes\\\": \\\"K≥4=6/8, 好于 s42 的 5/8。需用 n_perm=5000 重跑分析\\\", \\\"registry_id\\\": \\\"generalize_pythia14b_wiki_a100_s43\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"robust_pairs_K4_3sigma\\\": \\\"3/8\\\", \\\"robust_pairs_K3_3sigma\\\": \\\"6/8\\\", \\\"threshold_onset_3sigma\\\": \\\"0/8\\\", \\\"D105_3sigma_note\\\": \\\"D105 backfill: true 3sigma, fdr_permethod, unified 8-pair (canary={token_entropy,ece} x downstream={d1,d2,d3,mauve})\\\"}}, {\\\"id\\\": \\\"plan_027\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Pythia-6.9B α=1.0 s42: Pythia-6.9B × WikiText-103 × α=1.0 × seed=42。17× scale-up 验证\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 50, \\\"deps\\\": [\\\"plan_017\\\", \\\"plan_018\\\"], \\\"notes\\\": \\\"D060: gradient_checkpointing + adamw_torch（先试标准优化器，OOM 才 fallback 8-bit）。磁盘 auto-cleanup 已就绪\\\", \\\"registry_id\\\": \\\"scale_69b_a100_s42\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"robust_pairs_K4_3sigma\\\": \\\"3/8\\\", \\\"robust_pairs_K3_3sigma\\\": \\\"8/8\\\", \\\"threshold_onset_3sigma\\\": \\\"2/8\\\", \\\"D105_3sigma_note\\\": \\\"True 3sigma recompute. threshold_onset dropped 8/8->2/8. K4 dropped 6/8->3/8. PermG/TY unchanged.\\\"}}, {\\\"id\\\": \\\"plan_028\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Pythia-6.9B α=1.0 s43: 6.9B multi-seed 验证\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 50, \\\"deps\\\": [\\\"plan_027\\\"], \\\"notes\\\": \\\"条件: plan_027 结果正面才启动\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_029\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Pythia-6.9B α=0.75: 大模型 regime boundary 验证\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 50, \\\"deps\\\": [\\\"plan_027\\\"], \\\"notes\\\": \\\"条件: plan_027 正面。验证 regime map 是否跨 scale 稳定\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_036\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Pythia-1.4B × C4: 1.4B 跨域验证\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 12, \\\"deps\\\": [\\\"plan_017\\\"], \\\"notes\\\": \\\"Scale + Domain 交叉，如 GPU 充裕则做\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_019\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"C4 domain s42: Pythia-1B × C4 × α=1.0 × seed=42\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [], \\\"notes\\\": \\\"Table 7 Domain:C4 行。K≥4=7/8, PermG rev=4/8\\\", \\\"registry_id\\\": \\\"generalize_pythia1b_c4_a100_s42_v2\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"robust_pairs_K4_3sigma\\\": \\\"4/8\\\", \\\"robust_pairs_K3_3sigma\\\": \\\"8/8\\\", \\\"threshold_onset_3sigma\\\": \\\"0/8\\\", \\\"D105_3sigma_note\\\": \\\"D105 backfill: true 3sigma, fdr_permethod, unified 8-pair (canary={token_entropy,ece} x downstream={d1,d2,d3,mauve})\\\"}}, {\\\"id\\\": \\\"plan_020\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"C4 domain s43: Pythia-1B × C4 × α=1.0 × seed=43\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [\\\"plan_019\\\"], \\\"notes\\\": \\\"Multi-seed 验证 C4 结果非偶然\\\", \\\"registry_id\\\": \\\"generalize_pythia1b_c4_a100_s43\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"robust_pairs_K4_3sigma\\\": \\\"5/8\\\", \\\"robust_pairs_K3_3sigma\\\": \\\"8/8\\\", \\\"threshold_onset_3sigma\\\": \\\"2/8\\\", \\\"D105_3sigma_note\\\": \\\"D105 backfill: true 3sigma, fdr_permethod, unified 8-pair (canary={token_entropy,ece} x downstream={d1,d2,d3,mauve})\\\"}}, {\\\"id\\\": \\\"plan_035\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"C4 α=0.75: Pythia-410M × C4 × α=0.75 × seed=42。跨域 regime boundary\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [\\\"plan_019\\\", \\\"plan_001d\\\"], \\\"notes\\\": \\\"验证 0.50→0.75 boundary 是否跨域稳定\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_022\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Conditional Granger analysis: 控制 ECE 后测 token_entropy→diversity，控制 token_entropy 后测 ECE→diversity。用 α=1.0 seeds 42-45 现有数据\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [], \\\"notes\\\": \\\"D061: 已完成（零 GPU 分析任务）。token_entropy 和 ECE 互为 redundant（控制一个消除另一个的 signal）。简化 canary quality narrative。artifact: d061_conditional_granger_analysis.md。需补 registry 注册\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_023\\\", \\\"claim\\\": 4, \\\"description\\\": \\\"Intervention predictive s42: Pythia-410M × α=1.0 × 10 gen, token_entropy drop >15% → α=0.0。验证 canary-based early warning 的实际价值\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [], \\\"notes\\\": \\\"D061: 最高 ROI 实验。Baseline = MVP s42 no-intervention 数据\\\", \\\"registry_id\\\": \\\"intervention_predictive_s42\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"trigger_gen\\\": 1, \\\"trigger_entropy_drop_pct\\\": -40.71, \\\"gen0_ppl\\\": 26.95, \\\"gen0_entropy\\\": 3.234, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen0_ece\\\": 0.0108, \\\"gen1_ppl\\\": 56.99, \\\"gen1_entropy\\\": 1.918, \\\"gen1_distinct_1\\\": 0.0975, \\\"gen1_ece\\\": 0.205, \\\"gen2_ppl\\\": 20.81, \\\"gen2_entropy\\\": 3.055, \\\"gen10_ppl\\\": 21.29, \\\"gen10_entropy\\\": 3.079, \\\"gen10_eff_rank\\\": 44.1, \\\"gen10_mauve\\\": 0.0272, \\\"recovery_complete_by_gen\\\": 2, \\\"vs_reactive_trigger_advantage\\\": \\\"1 gen earlier\\\", \\\"vs_reactive_peak_ppl_reduction\\\": \\\"63% (56.99 vs 157.09)\\\", \\\"vs_reactive_recovery_advantage\\\": \\\"1 gen faster (Gen 2 vs Gen 4)\\\", \\\"converges_to_alpha0_baseline\\\": true}}, {\\\"id\\\": \\\"plan_024\\\", \\\"claim\\\": 4, \\\"description\\\": \\\"Intervention reactive s42: Pythia-410M × α=1.0 × 10 gen, distinct_1 drop >10% → α=0.0。Reactive baseline 对照\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [], \\\"notes\\\": \\\"D061: 与 predictive 对照。Reactive 使用 downstream metric 而非 canary。cuda:1 PID 340964\\\", \\\"registry_id\\\": \\\"intervention_reactive_s42\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"trigger_gen\\\": 2, \\\"trigger_distinct1_drop_pct\\\": -15.58, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen0_ppl\\\": 26.95, \\\"gen0_entropy\\\": 3.234, \\\"gen2_distinct_1\\\": 0.0823, \\\"gen2_ppl\\\": 157.09, \\\"gen2_entropy\\\": 1.478, \\\"gen10_distinct_1\\\": 0.0844, \\\"gen10_ppl\\\": 21.24, \\\"gen10_entropy\\\": 3.071, \\\"gen10_ece\\\": 0.0152, \\\"gen10_mauve\\\": 0.0289, \\\"distinct_1_drift_pct\\\": -14.1, \\\"ppl_drift_pct\\\": -21.2, \\\"entropy_drift_pct\\\": -5, \\\"vs_no_intervention_ppl_gen10\\\": 1003.73, \\\"vs_no_intervention_distinct1_gen10\\\": 0.0704, \\\"recovery_complete_by_gen\\\": 4, \\\"converges_to_alpha0_baseline\\\": true}}, {\\\"id\\\": \\\"plan_031\\\", \\\"claim\\\": 4, \\\"description\\\": \\\"Intervention predictive s43: seed=43 multi-seed 验证\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [\\\"plan_023\\\"], \\\"notes\\\": \\\"条件: plan_023 结果正面\\\", \\\"registry_id\\\": \\\"interv_pred_s43_bf16\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"trigger_gen\\\": 1, \\\"trigger_entropy_drop_pct\\\": -22.54, \\\"gen0_ppl\\\": 27.68, \\\"gen0_entropy\\\": 3.2574, \\\"gen0_distinct_1\\\": 0.0917, \\\"gen0_ece\\\": 0.0123, \\\"gen1_ppl\\\": 24.65, \\\"gen1_entropy\\\": 2.5233, \\\"gen1_distinct_1\\\": 0.0897, \\\"gen1_ece\\\": 0.0469, \\\"gen2_ppl\\\": 17.49, \\\"gen2_entropy\\\": 2.9029, \\\"gen10_ppl\\\": 16.68, \\\"gen10_entropy\\\": 2.8169, \\\"gen10_eff_rank\\\": 58.8, \\\"gen10_mauve\\\": 0.0299, \\\"recovery_complete_by_gen\\\": 2, \\\"converges_to_alpha0_baseline\\\": true, \\\"precision_note\\\": \\\"bf16; collapse milder than fp32 s42 (entropy drop 22.54% vs 40.71%, ppl 24.65 vs 56.99) due to stochastic rounding regularization. Core pattern (G1 trigger, G2 recovery) confirmed.\\\", \\\"cross_seed_note\\\": \\\"s42(fp32): trigger G1 entropy -40.71%, ppl spike 56.99. s43(bf16): trigger G1 entropy -22.54%, no ppl spike. Pattern consistent, magnitude differs due to precision.\\\"}}, {\\\"id\\\": \\\"plan_032\\\", \\\"claim\\\": 4, \\\"description\\\": \\\"Intervention reactive s43: seed=43 multi-seed 验证\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [\\\"plan_024\\\"], \\\"notes\\\": \\\"条件: plan_024 结果正面\\\", \\\"registry_id\\\": \\\"interv_react_s43_bf16\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, {\\\"id\\\": \\\"plan_033\\\", \\\"claim\\\": 4, \\\"description\\\": \\\"Intervention at α=0.75: Pythia-410M × α=0.75 × 10 gen, predictive + reactive。在 transitional regime 下验证干预效果\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [\\\"plan_023\\\", \\\"plan_024\\\"], \\\"notes\\\": \\\"验证干预在非极端污染下是否仍有效\\\", \\\"registry_id\\\": \\\"interv_pred_a075_s42_fp32_v4\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_ppl\\\": 20.81, \\\"final_entropy\\\": 3.05, \\\"final_eff_rank\\\": 44.8, \\\"final_mauve\\\": 0.031, \\\"precision\\\": \\\"fp32\\\", \\\"intervention_trigger_gen\\\": 1, \\\"recovery_gen\\\": 2, \\\"token_entropy_drift\\\": -5.74, \\\"ece_drift\\\": 55.78, \\\"perplexity_drift\\\": -22.76, \\\"distinct_1_drift\\\": -7.97, \\\"distinct_2_drift\\\": -5.22, \\\"distinct_3_drift\\\": -3.9, \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"8/8\\\", \\\"threshold_onset_fwd\\\": \\\"0/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_wpair_fwd\\\": 0.75}}, {\\\"id\\\": \\\"plan_037\\\", \\\"claim\\\": 4, \\\"description\\\": \\\"Intervention 1.4B: Pythia-1.4B × α=1.0 × 10 gen, predictive + reactive。跨 scale 干预验证\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 24, \\\"deps\\\": [\\\"plan_023\\\", \\\"plan_024\\\", \\\"plan_017\\\"], \\\"notes\\\": \\\"验证干预在大模型上的效果\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_008\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"数据策略 ablation: α=0.50 下 accumulate vs replace 对比 × 3 seeds × 10 gen\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 10, \\\"deps\\\": [\\\"plan_001\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_038\\\", \\\"claim\\\": 3, \\\"description\\\": \\\"Method ablation Phase 3: 扩展 pooled panel 加入 α=0.10/0.60 数据，更新 method×regime interaction 证据\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [\\\"plan_025\\\", \\\"plan_026\\\", \\\"plan_002b\\\"], \\\"notes\\\": \\\"7 点 regime map 下的完整 method ablation\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_039\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"α=0.10 multi-seed s43: 验证极低污染下结果的 seed stability\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [\\\"plan_025\\\"], \\\"notes\\\": \\\"条件: plan_025 显示有趣 signal\\\", \\\"registry_id\\\": \\\"alpha_sweep_a010_s43\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"token_entropy_drift\\\": -13.1, \\\"ece_drift\\\": -61.1, \\\"perplexity_drift\\\": -38.9, \\\"distinct_1_drift\\\": -29.1, \\\"distinct_2_drift\\\": -40.3, \\\"distinct_3_drift\\\": -31.9, \\\"effective_rank_drift\\\": 23.5, \\\"mauve_drift\\\": -46.3, \\\"naive_xcorr_fwd\\\": \\\"7/8\\\", \\\"diff_xcorr_fwd\\\": \\\"8/8\\\", \\\"threshold_onset_fwd\\\": \\\"3/8\\\", \\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"0/8\\\", \\\"k_gte4\\\": \\\"0/8\\\"}}, {\\\"id\\\": \\\"plan_040\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"α=0.60 multi-seed s43: 验证 boundary regime 的 seed sensitivity\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [\\\"plan_026\\\"], \\\"notes\\\": \\\"条件: plan_026 在 boundary 附近\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_004\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Cross-domain α=0.50: C4 × Pythia-410M × α=0.50 × 3 seeds × 10 gen\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 10, \\\"deps\\\": [\\\"plan_001\\\"], \\\"notes\\\": \\\"验证 canary ranking 跨域转移\\\", \\\"registry_id\\\": \\\"alpha_sweep_c4_a050_s42_bf16\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 3.136, \\\"token_entropy_gen10\\\": 1.94, \\\"token_entropy_delta_pct\\\": -38.2, \\\"distinct_1_gen0\\\": 0.111, \\\"distinct_1_gen10\\\": 0.089, \\\"distinct_1_delta_pct\\\": -20.3, \\\"perplexity_gen0\\\": 24.4, \\\"perplexity_gen10\\\": 122.8, \\\"perplexity_delta_pct\\\": 402, \\\"mauve_gen0\\\": 0.691, \\\"mauve_gen10\\\": 0.078, \\\"ece_gen0\\\": 0.011, \\\"ece_gen10\\\": 0.259, \\\"diff_xcorr_te_d1_lag\\\": 1, \\\"diff_xcorr_te_d1_r\\\": 0.914, \\\"permg_fwd_fdr_sig\\\": \\\"0/8\\\", \\\"permg_rev_fdr_sig\\\": \\\"0/8\\\"}}, {\\\"id\\\": \\\"plan_005\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Scale spot-check α=0.50: Pythia-1.4B × α=0.50 × 3 seeds × 10 gen\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 24, \\\"deps\\\": [\\\"plan_001\\\"], \\\"notes\\\": \\\"单点验证 canary lead 跨规模保持\\\", \\\"registry_id\\\": \\\"scale_14b_a050_s42\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"token_entropy_g0\\\": 2.946, \\\"token_entropy_g10\\\": 2.227, \\\"token_entropy_drift_pct\\\": -24.4, \\\"distinct_1_g0\\\": 0.0993, \\\"distinct_1_g10\\\": 0.0636, \\\"distinct_1_drift_pct\\\": -36, \\\"distinct_2_g0\\\": 0.521, \\\"distinct_2_g10\\\": 0.262, \\\"distinct_2_drift_pct\\\": -49.7, \\\"distinct_3_g0\\\": 0.813, \\\"distinct_3_g10\\\": 0.408, \\\"distinct_3_drift_pct\\\": -49.8, \\\"perplexity_g0\\\": 19.68, \\\"perplexity_g10\\\": 35.14, \\\"perplexity_drift_pct\\\": 78.6, \\\"mauve_g0\\\": 0.033, \\\"mauve_g10\\\": 0.024, \\\"mauve_drift_pct\\\": -28.2, \\\"ece_g0\\\": 0.007, \\\"ece_g10\\\": 0.153, \\\"effective_rank_g0\\\": 50.76, \\\"effective_rank_g10\\\": 82.21, \\\"num_generations\\\": 11}}, {\\\"id\\\": \\\"plan_007\\\", \\\"claim\\\": 4, \\\"description\\\": \\\"Intervention CRS-weighted: Pythia-410M × α=0.75 × 3 seeds × 10 gen (legacy design)\\\", \\\"priority\\\": \\\"P3\\\", \\\"gpu_budget_hours\\\": 10, \\\"deps\\\": [\\\"plan_001\\\", \\\"plan_002\\\"], \\\"notes\\\": \\\"D014 降级为 illustration。已被 plan_023/024 的 predictive/reactive 设计替代\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_041\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"SmolLM3-3B 跨架构 (2025): SmolLM3-3B-Base × WikiText-103 × α=1.0 × 10 gen × seed=42。2025 年 HuggingFace 模型，第 6 个独立架构族验证泛化\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 15, \\\"deps\\\": [], \\\"notes\\\": \\\"HuggingFaceTB/SmolLM3-3B-Base, 2025-07-08 发布, 3B params, 11.2T tokens。替代 Gemma 4 E2B (D073 弃用)\\\", \\\"registry_id\\\": \\\"smollm3_3b_wiki_a100_s42_v3\\\", \\\"status\\\": \\\"RUNNING\\\"}, {\\\"id\\\": \\\"plan_042\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Qwen3.5-0.8B 跨架构 (2026): Qwen3.5-0.8B-Base × WikiText-103 × α=1.0 × 10 gen × seed=42。2026 年阿里前沿小模型，验证跨架构泛化\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [], \\\"notes\\\": \\\"Qwen/Qwen3.5-0.8B-Base, 2026-03-02 发布, 0.8B params, Apache 2.0。用户要求立即启动准备\\\", \\\"registry_id\\\": \\\"qwen35_08b_wiki_a100_s42_v2\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"robust_pairs_K4_3sigma\\\": \\\"6/8\\\", \\\"robust_pairs_K3_3sigma\\\": \\\"8/8\\\", \\\"threshold_onset_3sigma\\\": \\\"0/8\\\", \\\"D105_3sigma_note\\\": \\\"True 3sigma recompute. threshold_onset dropped 8/8->0/8. K4 dropped 8/8->6/8. PermG/TY unchanged.\\\"}}, {\\\"id\\\": \\\"plan_043\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"SmolLM3-3B multi-seed s43: seed=43 验证\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 15, \\\"deps\\\": [\\\"plan_041\\\"], \\\"notes\\\": \\\"条件: plan_041 结果正面\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_044\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Qwen3.5-0.8B multi-seed s43: seed=43 验证\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [\\\"plan_042\\\"], \\\"notes\\\": \\\"条件: plan_042 结果正面\\\", \\\"registry_id\\\": \\\"qwen35_08b_wiki_a100_s43_fp32\\\", \\\"status\\\": \\\"PREPARING\\\"}, {\\\"id\\\": \\\"plan_046\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"α=0.30 onset refinement: Pythia-410M × WikiText-103 × α=0.30 × 10 gen × seed=42 × fp32。D098 onset boundary [0.25, 0.50] 精化\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [\\\"plan_001\\\"], \\\"notes\\\": \\\"D098 onset 精化：α=0.25 PermG=0/8, α=0.50 PermG=6/8。α=0.30 定位 onset 到 ±0.05 精度\\\", \\\"registry_id\\\": \\\"alpha_sweep_a030_s42_fp32\\\", \\\"status\\\": \\\"RUNNING\\\"}, {\\\"id\\\": \\\"plan_047\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"α=0.40 onset refinement: Pythia-410M × WikiText-103 × α=0.40 × 10 gen × seed=42 × fp32。D098 onset boundary 精化\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [\\\"plan_001\\\"], \\\"notes\\\": \\\"D098 onset 精化：与 α=0.30 配合将 onset 定位到 ±0.05。如果 0.30/0.40 都 PermG=0 → onset ≥ 0.40\\\", \\\"registry_id\\\": \\\"alpha_sweep_a040_s42_fp32_v2\\\", \\\"status\\\": \\\"RUNNING\\\"}], \\\"total\\\": 51}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": 2, \"description\": \"α-sweep anchor: Pythia-410M × WikiText-103 × α=0.25 × 10 gen × seed=42\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"notes\": \"α-sweep 基准实验。D025 统一参数。\", \"registry_id\": \"alpha_sweep_a025_s42_fp32\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"0/8\", \"MMCT\": \"0/8\", \"MMCT_detection_rate\": 0, \"d1_drift_pct\": -39.15, \"d2_drift_pct\": -54.75, \"d3_drift_pct\": -56.98, \"mauve_drift_pct\": -41.86, \"entropy_drift_pct\": -4.79, \"ece_drift_pct\": 79.17, \"ppl_drift_pct\": -18.09, \"eff_rank_drift_pct\": -3.78, \"ppl_by_gen\": [26.95, 19.39, 20.37, 20.75, 21.14, 21.3, 21.48, 21.88, 21.9, 22.25, 22.07], \"entropy_by_gen\": [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079], \"d1_by_gen\": [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596], \"mauve_by_gen\": [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181], \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"ty_granger_sig\": \"3/8\", \"consensus_detail_max_votes\": 3, \"hypothesis_validated\": true, \"note\": \"PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> α=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this α. token_entropy→distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\"}}, {\"id\": \"plan_001b\", \"claim\": 3, \"description\": \"α=0.0 null control: Pythia-410M × WikiText-103 × α=0.0 × 10 gen × seed=42。FPR ground truth\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"notes\": \"D028: perm_granger/TY 0% FPR，naive 100% FPR\", \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_001c\", \"claim\": 2, \"description\": \"α=0.50 sweep: Pythia-410M × WikiText-103 × α=0.50 × 10 gen × seed=42\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"notes\": \"D025: 所有严格方法 FDR 后归零（0/8），仅 naive 8/8。α=0.50 是 method×regime interaction 最极端例证\", \"registry_id\": \"alpha_sweep_a050_s42_fp32\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7075, \"token_entropy_drift_pct\": -16.3, \"distinct_1_gen0\": 0.0916, \"distinct_1_gen10\": 0.0649, \"distinct_1_drift_pct\": -29.2, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.46, \"perplexity_drift_pct\": 16.8, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0868, \"ece_drift_pct\": 703.4, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"n_perm\": 5000, \"padding_side\": \"right (D093 fix NOT applied)\"}}, {\"id\": \"plan_001d\", \"claim\": 1, \"description\": \"α=0.75 sweep: Pythia-410M × WikiText-103 × α=0.75 × 10 gen × seed=42\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"notes\": \"D037: 3/4 FDR-sig forward, 0/4 reverse, consensus 11/16 robust\", \"registry_id\": \"alpha_sweep_a075_s42_fp32\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"n_generations\": 11, \"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.098, \"distinct_2\": 0.5141, \"distinct_3\": 0.8127, \"effective_rank\": 46.613, \"mauve\": 0.0311}, \"gen10\": {\"token_entropy\": 2.283, \"ece\": 0.2145, \"perplexity\": 77.697, \"distinct_1\": 0.0731, \"distinct_2\": 0.357, \"distinct_3\": 0.5957, \"effective_rank\": 78.06, \"mauve\": 0.0299}, \"drift_pct\": {\"token_entropy\": -29.41, \"ece\": 1885.41, \"perplexity\": 188.31, \"distinct_1\": -25.38, \"distinct_2\": -30.55, \"distinct_3\": -26.7, \"effective_rank\": 67.47, \"mauve\": -3.73}, \"lead_lag\": {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"6/8\", \"MMCT_detection\": 0.75, \"TY_granger\": \"8/8\", \"naive_xcorr\": \"7/8\", \"diff_xcorr\": \"6/8\", \"threshold_onset\": \"8/8\"}, \"asymmetry\": \"strong (fwd=6, rev=0)\"}}, {\"id\": \"plan_045\", \"claim\": 2, \"description\": \"α=0.05 sweep: Pythia-410M × WikiText-103 × α=0.05 × 10 gen × seed=42。定位 diversity 悬崖精确位置（α=0.00 d1=-14% → α=0.10 d1=-40% 之间的断崖）\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"notes\": \"D076: HIGH ROI。如果 α=0.05 d1≈-40% → 5% 污染即全损；如果 d1 在 -14% 和 -40% 之间 → 存在明确阈值\", \"registry_id\": \"alpha_sweep_a005_s42_v3\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.04, \"final_eff_rank\": 45.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -5.96, \"ece_drift\": 55.41, \"perplexity_drift\": -22.78, \"distinct_1_drift\": -24.86, \"distinct_2_drift\": -28.42, \"distinct_3_drift\": -19.54, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"0/8\", \"mmct_wpair_fwd\": 0}}, {\"id\": \"plan_025\", \"claim\": 2, \"description\": \"α=0.10 sweep: Pythia-410M × WikiText-103 × α=0.10 × 10 gen × seed=42。Regime map 下界，验证极低污染下 signal 是否存在\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"notes\": \"D061: regime map 5→7 点，精确刻画低端 boundary。D075: canary blind zone confirmed\", \"registry_id\": \"alpha_sweep_a010_s42_fp32\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"token_entropy_drift_pct\": -4.59, \"distinct_1_drift_pct\": -23.8, \"distinct_2_drift_pct\": -27.15, \"distinct_3_drift_pct\": -19.36, \"perplexity_drift_pct\": -18.94, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"2/8\", \"mmct_wpair_fwd\": \"2/8\", \"mmct_detection_rate\": 0.25, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"blind_zone_confirmed\": true, \"cross_seed_permg_stable\": true}}, {\"id\": \"plan_026\", \"claim\": 2, \"description\": \"α=0.60 sweep: Pythia-410M × WikiText-103 × α=0.60 × 10 gen × seed=42。填补 0.50→0.75 boundary gap\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"notes\": \"D061: 精确定位 detectability threshold\", \"registry_id\": \"alpha_sweep_a060_s42_fp32_v3\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_ppl\": 45.41, \"final_entropy\": 2.48, \"final_eff_rank\": 69.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -23.36, \"ece_drift\": 1260.23, \"perplexity_drift\": 68.52, \"distinct_1_drift\": -28.17, \"distinct_2_drift\": -37.22, \"distinct_3_drift\": -35.35, \"perm_granger_fwd\": \"3/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"consensus_k4\": \"7/8\", \"mmct_wpair_fwd\": 0.875}}, {\"id\": \"plan_011\", \"claim\": 2, \"description\": \"Multi-seed α=0.25 s43: Pythia-410M × WikiText-103 × α=0.25 × 10 gen × seed=43\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_001\"], \"notes\": \"DONE: diversity drift 跨 seed <1.3pp\", \"registry_id\": \"alpha_sweep_a025_s43_fp32\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"drift_pct\": {\"d1\": -38.95, \"d2\": -53.35, \"d3\": -54.8, \"entropy\": -4.94, \"ece\": 64.77, \"ppl\": -18.38, \"mauve\": -35.59, \"eff_rank\": -1.99}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0983, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen10_abs\": {\"token_entropy\": 3.069, \"distinct_1\": 0.0595, \"perplexity\": 21.95, \"ece\": 0.0218}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"mmct_detection_rate\": 0, \"ty_granger\": \"6/8\", \"naive_xcorr\": \"8/8\", \"threshold_onset\": \"4/8\"}, \"max_consensus_votes\": 3, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}}, {\"id\": \"plan_012\", \"claim\": 2, \"description\": \"Multi-seed α=0.50 s43: Pythia-410M × WikiText-103 × α=0.50 × 10 gen × seed=43\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_001c\"], \"notes\": \"DONE: drift direction identical to s42, <7% deviation\", \"registry_id\": \"alpha_sweep_a050_s43_fp32\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7227, \"token_entropy_drift_pct\": -15.8, \"distinct_1_gen0\": 0.0929, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -29, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.58, \"perplexity_drift_pct\": 17.2, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0842, \"ece_drift_pct\": 679.6, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"5/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"padding_side_fix\": \"pre-D093\"}}, {\"id\": \"plan_013\", \"claim\": 2, \"description\": \"Multi-seed α=0.25 s44: seed=44\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_011\"], \"registry_id\": \"alpha_sweep_a025_s44_fp32\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"drift_pct\": {\"d1\": -38.35, \"d2\": -53.44, \"d3\": -55.35, \"entropy\": -4.11, \"ece\": 68.01, \"ppl\": -16.27, \"mauve\": -40.63, \"eff_rank\": -0.87}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0974, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen9_abs\": {\"token_entropy\": 3.101, \"distinct_1\": 0.06, \"perplexity\": 22.57, \"ece\": 0.0182}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"naive_xcorr\": \"8/8\", \"diff_xcorr\": \"0/8\", \"threshold_onset\": \"0/8\", \"ty_granger\": \"1/8\"}, \"mmct_detection_rate\": 0}}, {\"id\": \"plan_014\", \"claim\": 2, \"description\": \"Multi-seed α=0.50 s44: seed=44\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_012\"], \"notes\": \"D044: s42/s43 deviation <7%, s44 confirms boundary regime with high seed variance\", \"registry_id\": \"alpha_sweep_a050_s44_fp32\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"token_entropy_gen0\": 3.234, \"token_entropy_gen10\": 2.697, \"token_entropy_drift_pct\": -16.61, \"distinct_1_gen0\": 0.0915, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -27.93, \"distinct_2_drift_pct\": -34.64, \"distinct_3_drift_pct\": -30.6, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0874, \"ece_drift_pct\": 709.03, \"perplexity_gen0\": 26.949, \"perplexity_gen10\": 31.424, \"perplexity_drift_pct\": 16.61, \"effective_rank_drift_pct\": 25.06, \"mauve_drift_pct\": -13.88, \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75, \"precision\": \"fp32\", \"n_perm\": 5000}}, {\"id\": \"plan_002\", \"claim\": 3, \"description\": \"Method ablation Phase 1: MVP 4-seed 数据，5 种方法对比\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_001\"], \"notes\": \"Phase 1 完成：TY 在 N=11 下失效，Claim 3 重构为方法选择敏感性\", \"registry_id\": \"method_ablation_phase1\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"spurious_rate_5method\": 0.75, \"spurious_rate_4method\": 0.625, \"naive_sig\": \"16/16\", \"differenced_sig\": \"14/16\", \"threshold_sig\": \"9/16\", \"permutation_granger_sig\": \"6/16\", \"ty_sig\": \"4/16\", \"ty_power_T10\": \"0.05-0.20\", \"bh_fdr_flips\": 0}}, {\"id\": \"plan_002b\", \"claim\": 3, \"description\": \"Method ablation Phase 2: 跨 α pooled panel（α=0.0/0.25/0.50/0.75/1.0），56-row 分析矩阵\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_001\", \"plan_001b\", \"plan_001c\", \"plan_001d\", \"plan_002\"], \"notes\": \"D028-D030: cross_alpha_analysis_v4 统一 FDR 校正。raw 10/32 sig → FDR 仅 1/32\", \"registry_id\": \"method_ablation_phase2\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"n_panel_rows\": 56, \"n_alphas\": 4, \"alphas\": [0, 0.25, 0.5, 1], \"naive_sig_rate_overall\": 1, \"perm_granger_sig_rate_a000_raw\": 0, \"perm_granger_sig_rate_a000_fdr\": 0, \"perm_granger_sig_rate_a025_raw\": 0.25, \"perm_granger_sig_rate_a025_fdr\": 0, \"perm_granger_sig_rate_a050_raw\": 0.25, \"perm_granger_sig_rate_a050_fdr\": 0, \"perm_granger_sig_rate_a100_raw\": 0.75, \"perm_granger_sig_rate_a100_fdr\": 0.75, \"TY_sig_rate_a000_raw\": 0, \"TY_sig_rate_a000_fdr\": 0, \"TY_sig_rate_a025_raw\": 0.625, \"TY_sig_rate_a025_fdr\": 0.375, \"TY_sig_rate_a050_raw\": 0, \"TY_sig_rate_a050_fdr\": 0, \"TY_sig_rate_a100_raw\": 0.5938, \"TY_sig_rate_a100_fdr\": 0.5938, \"diff_sig_rate_a000_raw\": 0.5, \"diff_sig_rate_a000_fdr\": 0.375, \"mean_inter_method_kappa\": 0.185, \"naive_vs_perm_granger_flip_rate\": 0.5, \"naive_vs_TY_flip_rate\": 0.57, \"fdr_flips_perm_granger\": 4, \"pair_verdict_a100_perm_granger\": \"6/8\", \"pair_verdict_a100_TY\": \"6/8\", \"entropy_to_diversity_a100_all_5methods_sig\": true, \"fdr_correction\": \"BH q=0.05\"}}, {\"id\": \"plan_003\", \"claim\": 1, \"description\": \"MVP 结果 formalization: 4-seed 100% SC 结果，lead time 精确量化\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [], \"registry_id\": \"mvp_v4_rep42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen0_distinct_1\": 0.098216, \"gen0_distinct_2\": 0.517803, \"gen0_distinct_3\": 0.812728, \"gen10_token_entropy\": 1.27592, \"gen10_ece\": 0.41734, \"gen10_perplexity\": 1003.73, \"gen10_distinct_1\": 0.070383, \"gen10_distinct_2\": 0.335471, \"gen10_distinct_3\": 0.555579, \"token_entropy_drift_pct\": -60.5491, \"ece_drift_pct\": 3762.4711, \"perplexity_drift_pct\": 3624.5595, \"distinct_1_drift_pct\": -28.3386, \"distinct_2_drift_pct\": -35.2126, \"distinct_3_drift_pct\": -31.6402}}, {\"id\": \"plan_006\", \"claim\": 1, \"description\": \"Extended run: Pythia-410M × α=1.0 × 20 gen × 2 seeds (max_lag=10)。T=20 下 lead-lag 稳健性验证\", \"priority\": \"P0\", \"gpu_budget_hours\": 8, \"deps\": [], \"notes\": \"D034: gen 18/20 timeout 但 T=18 数据足够。Phase 3 二次衰退发现\", \"registry_id\": \"plan_006_s42\", \"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"progress\": \"18/20 gen (gen_0-17 complete, gen_18-20 timeout)\", \"gen0_token_entropy\": 3.2342, \"gen17_token_entropy\": 1.1819, \"gen0_ece\": 0.0108, \"gen17_ece\": 0.4454, \"gen0_perplexity\": 26.95, \"gen17_perplexity\": 3367.66, \"gen0_distinct_1\": 0.0982, \"gen17_distinct_1\": 0.0756, \"gen0_distinct_2\": 0.5178, \"gen17_distinct_2\": 0.3617, \"gen0_distinct_3\": 0.8127, \"gen17_distinct_3\": 0.5865, \"token_entropy_drift_pct_gen0_17\": -63.4, \"distinct_1_drift_pct_gen0_17\": -23, \"distinct_2_drift_pct_gen0_17\": -30.1, \"distinct_3_drift_pct_gen0_17\": -27.8, \"ece_drift_pct_gen0_17\": 4024, \"ppl_drift_pct_gen0_17\": 12395, \"phase1_rapid_collapse\": \"gen0-5\", \"phase2_apparent_plateau\": \"gen5-12\", \"phase3_secondary_decline\": \"gen13-17\", \"phase3_d2_decline_pct\": -5.8, \"phase3_d3_decline_pct\": -6.9, \"diversity_saturated_at_gen\": 5, \"diversity_secondary_decline_at_gen\": 13, \"perplexity_saturated\": false}}, {\"id\": \"plan_009\", \"claim\": 3, \"description\": \"Bootstrap/Permutation TY 验证: Monte Carlo 模拟 TY Granger 在 T=10/T=20 下的 Type I error rate 和 power\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [], \"notes\": \"D014 Dream 三档一致 CRITICAL。零 GPU\", \"registry_id\": \"plan_009_bootstrap_ty\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"T10_d0_type1\": 0.081, \"T10_d0_power\": 0.205, \"T10_d1_type1\": 0.047, \"T10_d1_power\": 0.09, \"T10_dadapt_type1\": 0.052, \"T10_dadapt_power\": 0.05, \"T20_d0_power\": 0.409, \"T20_d1_power\": 0.172, \"T30_d0_power\": 0.606, \"T30_d1_power\": 0.283}}, {\"id\": \"plan_015\", \"claim\": 1, \"description\": \"Baseline generalization: Pythia-410M × WikiText-103 × α=1.0 × seed=42，统一参数 (n_perm=5000) 分析\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"notes\": \"Table 7 Baseline 行。K≥4=6/8\", \"registry_id\": \"generalize_pythia410m_wiki_a100_s42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"1/8\", \"robust_pairs_K3_3sigma\": \"6/8\", \"threshold_onset_3sigma\": \"2/8\", \"D105_3sigma_note\": \"True 3sigma recompute. threshold_onset dropped 8/8->2/8. K4 dropped 6/8->1/8. PermG/TY unchanged.\"}}, {\"id\": \"plan_016\", \"claim\": 1, \"description\": \"OPT-1.3B 跨架构: OPT-1.3B × WikiText-103 × α=1.0 × seed=42\", \"priority\": \"P1\", \"gpu_budget_hours\": 8, \"deps\": [], \"notes\": \"Table 7 Arch:OPT 行。K≥4=6/8, PermG rev=2/8\", \"registry_id\": \"generalize_opt1b_wiki_a100_s42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"2/8\", \"robust_pairs_K3_3sigma\": \"6/8\", \"threshold_onset_3sigma\": \"2/8\", \"D105_3sigma_note\": \"True 3sigma recompute. threshold_onset dropped 8/8->2/8. K4 dropped 6/8->2/8. PermG/TY unchanged.\"}}, {\"id\": \"plan_010\", \"claim\": 1, \"description\": \"GPT-2-medium 跨架构: GPT-2-medium × WikiText-103 × α=1.0 × seed=42 (v3 旧参数)\", \"priority\": \"P1\", \"gpu_budget_hours\": 5, \"deps\": [], \"notes\": \"v3 用旧参数完成，v4 正在重跑统一参数\", \"registry_id\": \"gen_wiki_gpt2m_a100_s42_v4\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"2/8\", \"robust_pairs_K3_3sigma\": \"6/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"True 3sigma recompute. threshold_onset dropped 6/8->0/8. K4 dropped 6/8->2/8. PermG/TY unchanged.\"}}, {\"id\": \"plan_021\", \"claim\": 1, \"description\": \"GPT-2-medium v4 重跑: 统一参数 (n_perm=5000, xcorr_lag=5, granger_lag=1) 重新分析，填 Table 7\", \"priority\": \"P0\", \"gpu_budget_hours\": 5, \"deps\": [\"plan_010\"], \"notes\": \"当前 RUNNING。GPT-2m 数据被删后重跑训练+分析\", \"registry_id\": \"gen_wiki_gpt2m_a100_s42_v4\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"2/8\", \"robust_pairs_K3_3sigma\": \"6/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"True 3sigma recompute. threshold_onset dropped 6/8->0/8. K4 dropped 6/8->2/8. PermG/TY unchanged.\"}}, {\"id\": \"plan_034\", \"claim\": 1, \"description\": \"GPT-2-medium multi-seed s43: GPT-2-medium × WikiText-103 × α=1.0 × seed=43\", \"priority\": \"P1\", \"gpu_budget_hours\": 5, \"deps\": [\"plan_021\"], \"notes\": \"跨架构 multi-seed 验证，确认 GPT-2m 结果非单 seed 偶然\", \"registry_id\": \"gen_gpt2m_a100_s43_bf16\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"token_entropy_gen0\": 3.6021, \"token_entropy_gen10\": 3.0035, \"token_entropy_delta_pct\": -16.6, \"distinct_1_gen0\": 0.1092, \"distinct_1_gen10\": 0.0724, \"distinct_1_delta_pct\": -33.7, \"distinct_2_gen0\": 0.5665, \"distinct_2_gen10\": 0.3422, \"distinct_2_delta_pct\": -39.6, \"distinct_3_gen0\": 0.8652, \"distinct_3_gen10\": 0.5756, \"distinct_3_delta_pct\": -33.5, \"ece_gen0\": 0.0111, \"ece_gen10\": 0.0716, \"ece_delta_pct\": 547.9, \"perplexity_gen0\": 32.91, \"perplexity_gen10\": 55.49, \"perplexity_delta_pct\": 68.6, \"mauve_gen0\": 0.0318, \"mauve_gen10\": 0.0227, \"mauve_delta_pct\": -28.7, \"naive\": \"8/8\", \"diff\": \"7/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"1/8\", \"pg_rev\": \"0/8\", \"ty\": \"0/8\", \"k_gte4\": \"1/8\", \"mmct_weighted_fwd\": \"6/8\", \"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"cross_seed_note\": \"CAUTION: s42 was fp32 (entropy drift -86.6%), s43 is bf16 (entropy drift -16.6%). NOT a fair cross-seed comparison. bf16 dramatically reduces collapse severity, causing PG/TY to lose power (PG_fwd 1/8 vs 6/8, TY 0/8 vs 5/8). MMCT partially recovers signal (6/8) via FPR-inverse weighting of naive+diff+thresh consensus. K>=4 drops to 1/8 (ece->ppl only, a spurious channel).\", \"precision_note\": \"bf16 mixed precision; collapse trajectory is qualitatively similar but quantitatively much milder than fp32 s42\"}}, {\"id\": \"plan_030\", \"claim\": 1, \"description\": \"OPT-1.3B multi-seed s43: OPT-1.3B × WikiText-103 × α=1.0 × seed=43\", \"priority\": \"P2\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_016\"], \"notes\": \"Architecture multi-seed coverage\", \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_017\", \"claim\": 1, \"description\": \"Pythia-1.4B Scale s42: Pythia-1.4B × WikiText-103 × α=1.0 × seed=42\", \"priority\": \"P0\", \"gpu_budget_hours\": 12, \"deps\": [], \"notes\": \"Table 7 Scale 行。K≥4=5/8, TY=0/8 (underpowered)\", \"registry_id\": \"generalize_pythia14b_wiki_a100_s42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"0/8\", \"robust_pairs_K3_3sigma\": \"2/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"D105 backfill: true 3sigma, fdr_permethod, unified 8-pair (canary={token_entropy,ece} x downstream={d1,d2,d3,mauve})\"}}, {\"id\": \"plan_018\", \"claim\": 1, \"description\": \"Pythia-1.4B Scale s43: Pythia-1.4B × WikiText-103 × α=1.0 × seed=43\", \"priority\": \"P0\", \"gpu_budget_hours\": 12, \"deps\": [\"plan_017\"], \"notes\": \"K≥4=6/8, 好于 s42 的 5/8。需用 n_perm=5000 重跑分析\", \"registry_id\": \"generalize_pythia14b_wiki_a100_s43\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"3/8\", \"robust_pairs_K3_3sigma\": \"6/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"D105 backfill: true 3sigma, fdr_permethod, unified 8-pair (canary={token_entropy,ece} x downstream={d1,d2,d3,mauve})\"}}, {\"id\": \"plan_027\", \"claim\": 1, \"description\": \"Pythia-6.9B α=1.0 s42: Pythia-6.9B × WikiText-103 × α=1.0 × seed=42。17× scale-up 验证\", \"priority\": \"P1\", \"gpu_budget_hours\": 50, \"deps\": [\"plan_017\", \"plan_018\"], \"notes\": \"D060: gradient_checkpointing + adamw_torch（先试标准优化器，OOM 才 fallback 8-bit）。磁盘 auto-cleanup 已就绪\", \"registry_id\": \"scale_69b_a100_s42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"3/8\", \"robust_pairs_K3_3sigma\": \"8/8\", \"threshold_onset_3sigma\": \"2/8\", \"D105_3sigma_note\": \"True 3sigma recompute. threshold_onset dropped 8/8->2/8. K4 dropped 6/8->3/8. PermG/TY unchanged.\"}}, {\"id\": \"plan_028\", \"claim\": 1, \"description\": \"Pythia-6.9B α=1.0 s43: 6.9B multi-seed 验证\", \"priority\": \"P2\", \"gpu_budget_hours\": 50, \"deps\": [\"plan_027\"], \"notes\": \"条件: plan_027 结果正面才启动\", \"status\": \"planned\"}, {\"id\": \"plan_029\", \"claim\": 2, \"description\": \"Pythia-6.9B α=0.75: 大模型 regime boundary 验证\", \"priority\": \"P2\", \"gpu_budget_hours\": 50, \"deps\": [\"plan_027\"], \"notes\": \"条件: plan_027 正面。验证 regime map 是否跨 scale 稳定\", \"status\": \"planned\"}, {\"id\": \"plan_036\", \"claim\": 1, \"description\": \"Pythia-1.4B × C4: 1.4B 跨域验证\", \"priority\": \"P2\", \"gpu_budget_hours\": 12, \"deps\": [\"plan_017\"], \"notes\": \"Scale + Domain 交叉，如 GPU 充裕则做\", \"status\": \"planned\"}, {\"id\": \"plan_019\", \"claim\": 1, \"description\": \"C4 domain s42: Pythia-1B × C4 × α=1.0 × seed=42\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"notes\": \"Table 7 Domain:C4 行。K≥4=7/8, PermG rev=4/8\", \"registry_id\": \"generalize_pythia1b_c4_a100_s42_v2\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"4/8\", \"robust_pairs_K3_3sigma\": \"8/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"D105 backfill: true 3sigma, fdr_permethod, unified 8-pair (canary={token_entropy,ece} x downstream={d1,d2,d3,mauve})\"}}, {\"id\": \"plan_020\", \"claim\": 1, \"description\": \"C4 domain s43: Pythia-1B × C4 × α=1.0 × seed=43\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_019\"], \"notes\": \"Multi-seed 验证 C4 结果非偶然\", \"registry_id\": \"generalize_pythia1b_c4_a100_s43\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"5/8\", \"robust_pairs_K3_3sigma\": \"8/8\", \"threshold_onset_3sigma\": \"2/8\", \"D105_3sigma_note\": \"D105 backfill: true 3sigma, fdr_permethod, unified 8-pair (canary={token_entropy,ece} x downstream={d1,d2,d3,mauve})\"}}, {\"id\": \"plan_035\", \"claim\": 2, \"description\": \"C4 α=0.75: Pythia-410M × C4 × α=0.75 × seed=42。跨域 regime boundary\", \"priority\": \"P2\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_019\", \"plan_001d\"], \"notes\": \"验证 0.50→0.75 boundary 是否跨域稳定\", \"status\": \"planned\"}, {\"id\": \"plan_022\", \"claim\": 1, \"description\": \"Conditional Granger analysis: 控制 ECE 后测 token_entropy→diversity，控制 token_entropy 后测 ECE→diversity。用 α=1.0 seeds 42-45 现有数据\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [], \"notes\": \"D061: 已完成（零 GPU 分析任务）。token_entropy 和 ECE 互为 redundant（控制一个消除另一个的 signal）。简化 canary quality narrative。artifact: d061_conditional_granger_analysis.md。需补 registry 注册\", \"status\": \"planned\"}, {\"id\": \"plan_023\", \"claim\": 4, \"description\": \"Intervention predictive s42: Pythia-410M × α=1.0 × 10 gen, token_entropy drop >15% → α=0.0。验证 canary-based early warning 的实际价值\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"notes\": \"D061: 最高 ROI 实验。Baseline = MVP s42 no-intervention 数据\", \"registry_id\": \"intervention_predictive_s42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"trigger_gen\": 1, \"trigger_entropy_drop_pct\": -40.71, \"gen0_ppl\": 26.95, \"gen0_entropy\": 3.234, \"gen0_distinct_1\": 0.0982, \"gen0_ece\": 0.0108, \"gen1_ppl\": 56.99, \"gen1_entropy\": 1.918, \"gen1_distinct_1\": 0.0975, \"gen1_ece\": 0.205, \"gen2_ppl\": 20.81, \"gen2_entropy\": 3.055, \"gen10_ppl\": 21.29, \"gen10_entropy\": 3.079, \"gen10_eff_rank\": 44.1, \"gen10_mauve\": 0.0272, \"recovery_complete_by_gen\": 2, \"vs_reactive_trigger_advantage\": \"1 gen earlier\", \"vs_reactive_peak_ppl_reduction\": \"63% (56.99 vs 157.09)\", \"vs_reactive_recovery_advantage\": \"1 gen faster (Gen 2 vs Gen 4)\", \"converges_to_alpha0_baseline\": true}}, {\"id\": \"plan_024\", \"claim\": 4, \"description\": \"Intervention reactive s42: Pythia-410M × α=1.0 × 10 gen, distinct_1 drop >10% → α=0.0。Reactive baseline 对照\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"notes\": \"D061: 与 predictive 对照。Reactive 使用 downstream metric 而非 canary。cuda:1 PID 340964\", \"registry_id\": \"intervention_reactive_s42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"trigger_gen\": 2, \"trigger_distinct1_drop_pct\": -15.58, \"gen0_distinct_1\": 0.0982, \"gen0_ppl\": 26.95, \"gen0_entropy\": 3.234, \"gen2_distinct_1\": 0.0823, \"gen2_ppl\": 157.09, \"gen2_entropy\": 1.478, \"gen10_distinct_1\": 0.0844, \"gen10_ppl\": 21.24, \"gen10_entropy\": 3.071, \"gen10_ece\": 0.0152, \"gen10_mauve\": 0.0289, \"distinct_1_drift_pct\": -14.1, \"ppl_drift_pct\": -21.2, \"entropy_drift_pct\": -5, \"vs_no_intervention_ppl_gen10\": 1003.73, \"vs_no_intervention_distinct1_gen10\": 0.0704, \"recovery_complete_by_gen\": 4, \"converges_to_alpha0_baseline\": true}}, {\"id\": \"plan_031\", \"claim\": 4, \"description\": \"Intervention predictive s43: seed=43 multi-seed 验证\", \"priority\": \"P1\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_023\"], \"notes\": \"条件: plan_023 结果正面\", \"registry_id\": \"interv_pred_s43_bf16\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"trigger_gen\": 1, \"trigger_entropy_drop_pct\": -22.54, \"gen0_ppl\": 27.68, \"gen0_entropy\": 3.2574, \"gen0_distinct_1\": 0.0917, \"gen0_ece\": 0.0123, \"gen1_ppl\": 24.65, \"gen1_entropy\": 2.5233, \"gen1_distinct_1\": 0.0897, \"gen1_ece\": 0.0469, \"gen2_ppl\": 17.49, \"gen2_entropy\": 2.9029, \"gen10_ppl\": 16.68, \"gen10_entropy\": 2.8169, \"gen10_eff_rank\": 58.8, \"gen10_mauve\": 0.0299, \"recovery_complete_by_gen\": 2, \"converges_to_alpha0_baseline\": true, \"precision_note\": \"bf16; collapse milder than fp32 s42 (entropy drop 22.54% vs 40.71%, ppl 24.65 vs 56.99) due to stochastic rounding regularization. Core pattern (G1 trigger, G2 recovery) confirmed.\", \"cross_seed_note\": \"s42(fp32): trigger G1 entropy -40.71%, ppl spike 56.99. s43(bf16): trigger G1 entropy -22.54%, no ppl spike. Pattern consistent, magnitude differs due to precision.\"}}, {\"id\": \"plan_032\", \"claim\": 4, \"description\": \"Intervention reactive s43: seed=43 multi-seed 验证\", \"priority\": \"P1\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_024\"], \"notes\": \"条件: plan_024 结果正面\", \"registry_id\": \"interv_react_s43_bf16\", \"status\": \"DONE\", \"conclusion\": \"success\"}, {\"id\": \"plan_033\", \"claim\": 4, \"description\": \"Intervention at α=0.75: Pythia-410M × α=0.75 × 10 gen, predictive + reactive。在 transitional regime 下验证干预效果\", \"priority\": \"P2\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_023\", \"plan_024\"], \"notes\": \"验证干预在非极端污染下是否仍有效\", \"registry_id\": \"interv_pred_a075_s42_fp32_v4\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.05, \"final_eff_rank\": 44.8, \"final_mauve\": 0.031, \"precision\": \"fp32\", \"intervention_trigger_gen\": 1, \"recovery_gen\": 2, \"token_entropy_drift\": -5.74, \"ece_drift\": 55.78, \"perplexity_drift\": -22.76, \"distinct_1_drift\": -7.97, \"distinct_2_drift\": -5.22, \"distinct_3_drift\": -3.9, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"8/8\", \"threshold_onset_fwd\": \"0/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75}}, {\"id\": \"plan_037\", \"claim\": 4, \"description\": \"Intervention 1.4B: Pythia-1.4B × α=1.0 × 10 gen, predictive + reactive。跨 scale 干预验证\", \"priority\": \"P2\", \"gpu_budget_hours\": 24, \"deps\": [\"plan_023\", \"plan_024\", \"plan_017\"], \"notes\": \"验证干预在大模型上的效果\", \"status\": \"planned\"}, {\"id\": \"plan_008\", \"claim\": 1, \"description\": \"数据策略 ablation: α=0.50 下 accumulate vs replace 对比 × 3 seeds × 10 gen\", \"priority\": \"P2\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_001\"], \"status\": \"planned\"}, {\"id\": \"plan_038\", \"claim\": 3, \"description\": \"Method ablation Phase 3: 扩展 pooled panel 加入 α=0.10/0.60 数据，更新 method×regime interaction 证据\", \"priority\": \"P1\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_025\", \"plan_026\", \"plan_002b\"], \"notes\": \"7 点 regime map 下的完整 method ablation\", \"status\": \"planned\"}, {\"id\": \"plan_039\", \"claim\": 2, \"description\": \"α=0.10 multi-seed s43: 验证极低污染下结果的 seed stability\", \"priority\": \"P2\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_025\"], \"notes\": \"条件: plan_025 显示有趣 signal\", \"registry_id\": \"alpha_sweep_a010_s43\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"token_entropy_drift\": -13.1, \"ece_drift\": -61.1, \"perplexity_drift\": -38.9, \"distinct_1_drift\": -29.1, \"distinct_2_drift\": -40.3, \"distinct_3_drift\": -31.9, \"effective_rank_drift\": 23.5, \"mauve_drift\": -46.3, \"naive_xcorr_fwd\": \"7/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"3/8\", \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"0/8\", \"k_gte4\": \"0/8\"}}, {\"id\": \"plan_040\", \"claim\": 2, \"description\": \"α=0.60 multi-seed s43: 验证 boundary regime 的 seed sensitivity\", \"priority\": \"P2\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_026\"], \"notes\": \"条件: plan_026 在 boundary 附近\", \"status\": \"planned\"}, {\"id\": \"plan_004\", \"claim\": 2, \"description\": \"Cross-domain α=0.50: C4 × Pythia-410M × α=0.50 × 3 seeds × 10 gen\", \"priority\": \"P2\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_001\"], \"notes\": \"验证 canary ranking 跨域转移\", \"registry_id\": \"alpha_sweep_c4_a050_s42_bf16\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"token_entropy_gen0\": 3.136, \"token_entropy_gen10\": 1.94, \"token_entropy_delta_pct\": -38.2, \"distinct_1_gen0\": 0.111, \"distinct_1_gen10\": 0.089, \"distinct_1_delta_pct\": -20.3, \"perplexity_gen0\": 24.4, \"perplexity_gen10\": 122.8, \"perplexity_delta_pct\": 402, \"mauve_gen0\": 0.691, \"mauve_gen10\": 0.078, \"ece_gen0\": 0.011, \"ece_gen10\": 0.259, \"diff_xcorr_te_d1_lag\": 1, \"diff_xcorr_te_d1_r\": 0.914, \"permg_fwd_fdr_sig\": \"0/8\", \"permg_rev_fdr_sig\": \"0/8\"}}, {\"id\": \"plan_005\", \"claim\": 1, \"description\": \"Scale spot-check α=0.50: Pythia-1.4B × α=0.50 × 3 seeds × 10 gen\", \"priority\": \"P2\", \"gpu_budget_hours\": 24, \"deps\": [\"plan_001\"], \"notes\": \"单点验证 canary lead 跨规模保持\", \"registry_id\": \"scale_14b_a050_s42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"token_entropy_g0\": 2.946, \"token_entropy_g10\": 2.227, \"token_entropy_drift_pct\": -24.4, \"distinct_1_g0\": 0.0993, \"distinct_1_g10\": 0.0636, \"distinct_1_drift_pct\": -36, \"distinct_2_g0\": 0.521, \"distinct_2_g10\": 0.262, \"distinct_2_drift_pct\": -49.7, \"distinct_3_g0\": 0.813, \"distinct_3_g10\": 0.408, \"distinct_3_drift_pct\": -49.8, \"perplexity_g0\": 19.68, \"perplexity_g10\": 35.14, \"perplexity_drift_pct\": 78.6, \"mauve_g0\": 0.033, \"mauve_g10\": 0.024, \"mauve_drift_pct\": -28.2, \"ece_g0\": 0.007, \"ece_g10\": 0.153, \"effective_rank_g0\": 50.76, \"effective_rank_g10\": 82.21, \"num_generations\": 11}}, {\"id\": \"plan_007\", \"claim\": 4, \"description\": \"Intervention CRS-weighted: Pythia-410M × α=0.75 × 3 seeds × 10 gen (legacy design)\", \"priority\": \"P3\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_001\", \"plan_002\"], \"notes\": \"D014 降级为 illustration。已被 plan_023/024 的 predictive/reactive 设计替代\", \"status\": \"planned\"}, {\"id\": \"plan_041\", \"claim\": 1, \"description\": \"SmolLM3-3B 跨架构 (2025): SmolLM3-3B-Base × WikiText-103 × α=1.0 × 10 gen × seed=42。2025 年 HuggingFace 模型，第 6 个独立架构族验证泛化\", \"priority\": \"P0\", \"gpu_budget_hours\": 15, \"deps\": [], \"notes\": \"HuggingFaceTB/SmolLM3-3B-Base, 2025-07-08 发布, 3B params, 11.2T tokens。替代 Gemma 4 E2B (D073 弃用)\", \"registry_id\": \"smollm3_3b_wiki_a100_s42_v3\", \"status\": \"RUNNING\"}, {\"id\": \"plan_042\", \"claim\": 1, \"description\": \"Qwen3.5-0.8B 跨架构 (2026): Qwen3.5-0.8B-Base × WikiText-103 × α=1.0 × 10 gen × seed=42。2026 年阿里前沿小模型，验证跨架构泛化\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"notes\": \"Qwen/Qwen3.5-0.8B-Base, 2026-03-02 发布, 0.8B params, Apache 2.0。用户要求立即启动准备\", \"registry_id\": \"qwen35_08b_wiki_a100_s42_v2\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"6/8\", \"robust_pairs_K3_3sigma\": \"8/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"True 3sigma recompute. threshold_onset dropped 8/8->0/8. K4 dropped 8/8->6/8. PermG/TY unchanged.\"}}, {\"id\": \"plan_043\", \"claim\": 1, \"description\": \"SmolLM3-3B multi-seed s43: seed=43 验证\", \"priority\": \"P2\", \"gpu_budget_hours\": 15, \"deps\": [\"plan_041\"], \"notes\": \"条件: plan_041 结果正面\", \"status\": \"planned\"}, {\"id\": \"plan_044\", \"claim\": 1, \"description\": \"Qwen3.5-0.8B multi-seed s43: seed=43 验证\", \"priority\": \"P2\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_042\"], \"notes\": \"条件: plan_042 结果正面\", \"registry_id\": \"qwen35_08b_wiki_a100_s43_fp32\", \"status\": \"PREPARING\"}, {\"id\": \"plan_046\", \"claim\": 2, \"description\": \"α=0.30 onset refinement: Pythia-410M × WikiText-103 × α=0.30 × 10 gen × seed=42 × fp32。D098 onset boundary [0.25, 0.50] 精化\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_001\"], \"notes\": \"D098 onset 精化：α=0.25 PermG=0/8, α=0.50 PermG=6/8。α=0.30 定位 onset 到 ±0.05 精度\", \"registry_id\": \"alpha_sweep_a030_s42_fp32\", \"status\": \"RUNNING\"}, {\"id\": \"plan_047\", \"claim\": 2, \"description\": \"α=0.40 onset refinement: Pythia-410M × WikiText-103 × α=0.40 × 10 gen × seed=42 × fp32。D098 onset boundary 精化\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_001\"], \"notes\": \"D098 onset 精化：与 α=0.30 配合将 onset 定位到 ±0.05。如果 0.30/0.40 都 PermG=0 → onset ≥ 0.40\", \"registry_id\": \"alpha_sweep_a040_s42_fp32_v2\", \"status\": \"RUNNING\"}], \"total\": 51}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "051a433b-bc34-494b-b406-34256627258c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-19T18:20:48.597Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01YCnmwfwV5ZPBCZkJ43ZenU`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "36a73adc-9752-484d-9770-f172a580f781",
+  "isSidechain": false,
+  "requestId": "req_011CbCPcmGMRP96bYErex6fm",
+  "type": "assistant",
+  "uuid": "7dc5f423-0963-4a1c-a569-bb7c4b534a0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q6btYtXuTVUtcaryPe2JtP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11786,
+      "cache_read_input_tokens": 36952,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11786,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 36952,
+          "cache_creation_input_tokens": 11786,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11786
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33 · 2026-05-19T18:20:48.661Z_
+
+```json
+{
+  "parentUuid": "69cccc31-3379-44b7-b8b1-20331f1ba94b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "7657be38-b879-458b-97d1-19e845ac130b",
+  "timestamp": "2026-05-19T18:20:48.661Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: c4_a075_s42_fp32 - project: distrib_canary_collapse - server: westd-17855 - log_path: ~/run…",
+  "leafUuid": "7657be38-b879-458b-97d1-19e845ac130b",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark as done",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133"
+}
+```
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-19T18:20:53.337Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry filter returned 0 results for `c4_a075_s42_fp32`. Let me search for it with a different approach - maybe I need to search by exp_id directly. Let me also look for the resource-saturation skill at the correct path.
+
+Let me search the registry more broadly and find the experiment. Also need to read the resource-saturation skill.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7657be38-b879-458b-97d1-19e845ac130b",
+  "isSidechain": false,
+  "requestId": "req_011CbCPdFPn6yWoKNN3EDarq",
+  "type": "assistant",
+  "uuid": "26871a30-1471-4c40-bc5c-69c9d5fd873d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013XfaWH4D9NfHLztt76b3tB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17655,
+      "cache_read_input_tokens": 48738,
+      "output_tokens": 376,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17655,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 376,
+          "cache_read_input_tokens": 48738,
+          "cache_creation_input_tokens": 17655,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17655
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-19T18:20:54.229Z_
+
+实验 `c4_a075_s42_fp32` 在 registry 过滤中未找到，可能因为 exp_id 字段名不同。让我用 Bash 直接搜索 registry 文件，同时找到 resource-saturation skill。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "26871a30-1471-4c40-bc5c-69c9d5fd873d",
+  "isSidechain": false,
+  "requestId": "req_011CbCPdFPn6yWoKNN3EDarq",
+  "type": "assistant",
+  "uuid": "afc27500-b833-4ea4-b618-7adfddf02f79",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013XfaWH4D9NfHLztt76b3tB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17655,
+      "cache_read_input_tokens": 48738,
+      "output_tokens": 376,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17655,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 376,
+          "cache_read_input_tokens": 48738,
+          "cache_creation_input_tokens": 17655,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17655
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-19T18:20:55.737Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01VxfruTFvEqJCVJLogmuzv5`</summary>
+
+```json
+{
+  "command": "grep -n \"c4_a075\" /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/registry.yaml | head -20",
+  "description": "Search for c4_a075 experiment in registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "afc27500-b833-4ea4-b618-7adfddf02f79",
+  "isSidechain": false,
+  "requestId": "req_011CbCPdFPn6yWoKNN3EDarq",
+  "type": "assistant",
+  "uuid": "b0e8130c-0068-4a6b-8965-cf5a36934596",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013XfaWH4D9NfHLztt76b3tB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17655,
+      "cache_read_input_tokens": 48738,
+      "output_tokens": 376,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17655,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 376,
+          "cache_read_input_tokens": 48738,
+          "cache_creation_input_tokens": 17655,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17655
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-19T18:20:56.027Z_
+
+<details><summary>↩ Tool result · `toolu_01LZ27Nryr8r1Da4rMYSUTkv`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6bedf179-6c28-45b7-a2cd-15f717ecceed",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "c4d7f905-8767-4f64-bf6d-29a081373409",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 25,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "6bedf179-6c28-45b7-a2cd-15f717ecceed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T18:20:55.863Z_
+
+<details><summary>↩ Tool result · `toolu_01VxfruTFvEqJCVJLogmuzv5`</summary>
+
+```text
+4593:  c4_a075_s42_fp32:
+4611:    log_path: ~/runs/distrib_canary_collapse/c4_a075_s42_fp32.log
+4618:        --output_dir results/alpha_sweep/c4_a075_s42_fp32 --batch_size 4 --max_length
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b0e8130c-0068-4a6b-8965-cf5a36934596",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "c7024a47-f460-4b4c-b5f6-166acfafef51",
+  "toolUseResult": {
+    "stdout": "4593:  c4_a075_s42_fp32:\n4611:    log_path: ~/runs/distrib_canary_collapse/c4_a075_s42_fp32.log\n4618:        --output_dir results/alpha_sweep/c4_a075_s42_fp32 --batch_size 4 --max_length",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "b0e8130c-0068-4a6b-8965-cf5a36934596",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-19T18:20:55.998Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01LZ27Nryr8r1Da4rMYSUTkv`</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c7024a47-f460-4b4c-b5f6-166acfafef51",
+  "isSidechain": false,
+  "requestId": "req_011CbCPdFPn6yWoKNN3EDarq",
+  "type": "assistant",
+  "uuid": "6bedf179-6c28-45b7-a2cd-15f717ecceed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013XfaWH4D9NfHLztt76b3tB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17655,
+      "cache_read_input_tokens": 48738,
+      "output_tokens": 376,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17655,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 376,
+          "cache_read_input_tokens": 48738,
+          "cache_creation_input_tokens": 17655,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17655
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-19T18:20:59.640Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_011XAcEZuVLJ1Rv1jZUwURBq`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/registry.yaml",
+  "offset": 4590,
+  "limit": 80
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c4d7f905-8767-4f64-bf6d-29a081373409",
+  "isSidechain": false,
+  "requestId": "req_011CbCPdnxL3pYafnnXHTpee",
+  "type": "assistant",
+  "uuid": "c0af3334-3611-4bc2-8fe1-61a137be9d97",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016EvDcG6GrmLawxqjvhwhZt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18182,
+      "cache_read_input_tokens": 48738,
+      "output_tokens": 196,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18182,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 196,
+          "cache_read_input_tokens": 48738,
+          "cache_creation_input_tokens": 18182,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18182
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-19T18:20:59.650Z_
+
+<details><summary>↩ Tool result · `toolu_011XAcEZuVLJ1Rv1jZUwURBq`</summary>
+
+```text
+4590	      blind zone（预期 PermG=0/8），将 onset 下界从 0.25 收紧到 0.30。如果 PermG>0 则 onset 在 [0.25,
+4591	      0.30]。
+4592	    parent: alpha_sweep_a025_s42_fp32
+4593	  c4_a075_s42_fp32:
+4594	    status: ANALYZING
+4595	    retry_count: 0
+4596	    created_at: '2026-05-19T14:37:54.299Z'
+4597	    updated_at: '2026-05-19T18:20:08.497Z'
+4598	    hypothesis: Claim 2 跨域验证：C4 数据集 α=0.75 regime boundary fp32。WikiText α=0.75 PermG
+4599	      预期 ~83%，C4 验证 canary lead-lag 跨域泛化性。plan_035。
+4600	    parent: alpha_sweep_a075_s42_fp32
+4601	    spec:
+4602	      data_path: data/c4_5k
+4603	      data_count: 5000
+4604	      model_name: EleutherAI/pythia-410m
+4605	      seed: 42
+4606	      precision: fp32
+4607	      padding_side_fix: D093 applied
+4608	    server: westd-17855
+4609	    gpu: cuda:2
+4610	    pid: '151771'
+4611	    log_path: ~/runs/distrib_canary_collapse/c4_a075_s42_fp32.log
+4612	    reproduce:
+4613	      command: bash -c "export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1
+4614	        && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh
+4615	        && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python
+4616	        -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir
+4617	        data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75
+4618	        --output_dir results/alpha_sweep/c4_a075_s42_fp32 --batch_size 4 --max_length
+4619	        512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim
+4620	        adamw_torch"
+4621	      finished_at: '2026-05-19T18:20:08.048Z'
+4622	    extra:
+4623	      hook_events:
+4624	      - event: on_complete
+4625	        action: agent
+4626	        ts: '2026-05-19T18:20:11.695721+00:00'
+4627	  alpha_sweep_a035_s42_fp32:
+4628	    status: RUNNING
+4629	    retry_count: 0
+4630	    created_at: '2026-05-19T14:37:56.167Z'
+4631	    updated_at: '2026-05-19T14:39:49.039Z'
+4632	    hypothesis: D098 onset boundary 精化：与 α=0.30/0.40 并行，3 点同时定位 onset 到 ±0.05。α=0.35
+4633	      预期仍在 blind zone。如果 PermG=0/8 → onset ≥ 0.35；如果 PermG>0 → onset 在 [0.30, 0.35]。plan_048。
+4634	    parent: alpha_sweep_a030_s42_fp32
+4635	    spec:
+4636	      data_path: data/wikitext103_5k
+4637	      data_count: 5000
+4638	      model_name: EleutherAI/pythia-410m
+4639	      seed: 42
+4640	      precision: fp32
+4641	      padding_side_fix: D093 applied
+4642	    server: westd-17855
+4643	    gpu: cuda:3
+4644	    pid: '151917'
+4645	    log_path: ~/runs/distrib_canary_collapse/alpha_sweep_a035_s42_fp32.log
+4646	    reproduce:
+4647	      command: bash -c "export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1
+4648	        && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh
+4649	        && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python
+4650	        -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir
+4651	        data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio
+4652	        0.35 --output_dir results/alpha_sweep/a035_s42_fp32 --batch_size 4 --max_length
+4653	        512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim
+4654	        adamw_torch"
+4655	  c4_a050_s42_fp32:
+4656	    status: ANALYZING
+4657	    retry_count: 0
+4658	    created_at: '2026-05-19T14:37:57.965Z'
+4659	    updated_at: '2026-05-19T18:20:17.540Z'
+4660	    hypothesis: C4 域 α=0.50 fp32 验证：plan_004 bf16 下 PermG=0/8，需区分是 precision artifact（bf16
+4661	      精度不足）还是 C4 域 α=0.50 确实在 blind zone。plan_049。
+4662	    parent: alpha_sweep_c4_a050_s42
+4663	    spec:
+4664	      data_path: data/c4_5k
+4665	      data_count: 5000
+4666	      model_name: EleutherAI/pythia-410m
+4667	      seed: 42
+4668	      precision: fp32
+4669	      padding_side_fix: D093 applied
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c0af3334-3611-4bc2-8fe1-61a137be9d97",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "e9843618-a63c-47d3-98b2-fe3aa8cca87a",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/registry.yaml",
+      "content": "      blind zone（预期 PermG=0/8），将 onset 下界从 0.25 收紧到 0.30。如果 PermG>0 则 onset 在 [0.25,\n      0.30]。\n    parent: alpha_sweep_a025_s42_fp32\n  c4_a075_s42_fp32:\n    status: ANALYZING\n    retry_count: 0\n    created_at: '2026-05-19T14:37:54.299Z'\n    updated_at: '2026-05-19T18:20:08.497Z'\n    hypothesis: Claim 2 跨域验证：C4 数据集 α=0.75 regime boundary fp32。WikiText α=0.75 PermG\n      预期 ~83%，C4 验证 canary lead-lag 跨域泛化性。plan_035。\n    parent: alpha_sweep_a075_s42_fp32\n    spec:\n      data_path: data/c4_5k\n      data_count: 5000\n      model_name: EleutherAI/pythia-410m\n      seed: 42\n      precision: fp32\n      padding_side_fix: D093 applied\n    server: westd-17855\n    gpu: cuda:2\n    pid: '151771'\n    log_path: ~/runs/distrib_canary_collapse/c4_a075_s42_fp32.log\n    reproduce:\n      command: bash -c \"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1\n        && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh\n        && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python\n        -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir\n        data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75\n        --output_dir results/alpha_sweep/c4_a075_s42_fp32 --batch_size 4 --max_length\n        512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim\n        adamw_torch\"\n      finished_at: '2026-05-19T18:20:08.048Z'\n    extra:\n      hook_events:\n      - event: on_complete\n        action: agent\n        ts: '2026-05-19T18:20:11.695721+00:00'\n  alpha_sweep_a035_s42_fp32:\n    status: RUNNING\n    retry_count: 0\n    created_at: '2026-05-19T14:37:56.167Z'\n    updated_at: '2026-05-19T14:39:49.039Z'\n    hypothesis: D098 onset boundary 精化：与 α=0.30/0.40 并行，3 点同时定位 onset 到 ±0.05。α=0.35\n      预期仍在 blind zone。如果 PermG=0/8 → onset ≥ 0.35；如果 PermG>0 → onset 在 [0.30, 0.35]。plan_048。\n    parent: alpha_sweep_a030_s42_fp32\n    spec:\n      data_path: data/wikitext103_5k\n      data_count: 5000\n      model_name: EleutherAI/pythia-410m\n      seed: 42\n      precision: fp32\n      padding_side_fix: D093 applied\n    server: westd-17855\n    gpu: cuda:3\n    pid: '151917'\n    log_path: ~/runs/distrib_canary_collapse/alpha_sweep_a035_s42_fp32.log\n    reproduce:\n      command: bash -c \"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1\n        && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh\n        && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python\n        -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir\n        data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio\n        0.35 --output_dir results/alpha_sweep/a035_s42_fp32 --batch_size 4 --max_length\n        512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim\n        adamw_torch\"\n  c4_a050_s42_fp32:\n    status: ANALYZING\n    retry_count: 0\n    created_at: '2026-05-19T14:37:57.965Z'\n    updated_at: '2026-05-19T18:20:17.540Z'\n    hypothesis: C4 域 α=0.50 fp32 验证：plan_004 bf16 下 PermG=0/8，需区分是 precision artifact（bf16\n      精度不足）还是 C4 域 α=0.50 确实在 blind zone。plan_049。\n    parent: alpha_sweep_c4_a050_s42\n    spec:\n      data_path: data/c4_5k\n      data_count: 5000\n      model_name: EleutherAI/pythia-410m\n      seed: 42\n      precision: fp32\n      padding_side_fix: D093 applied",
+      "numLines": 80,
+      "startLine": 4590,
+      "totalLines": 4762
+    }
+  },
+  "sourceToolAssistantUUID": "c0af3334-3611-4bc2-8fe1-61a137be9d97",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-19T18:21:00.246Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01SdCYXeLhdR5Mj1No2nSNSK`</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e9843618-a63c-47d3-98b2-fe3aa8cca87a",
+  "isSidechain": false,
+  "requestId": "req_011CbCPdnxL3pYafnnXHTpee",
+  "type": "assistant",
+  "uuid": "ef0224c0-490c-4172-a5ce-c5b5fb4b4fad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016EvDcG6GrmLawxqjvhwhZt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18182,
+      "cache_read_input_tokens": 48738,
+      "output_tokens": 196,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18182,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 196,
+          "cache_read_input_tokens": 48738,
+          "cache_creation_input_tokens": 18182,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18182
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-19T18:21:00.276Z_
+
+<details><summary>↩ Tool result · `toolu_01SdCYXeLhdR5Mj1No2nSNSK`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ef0224c0-490c-4172-a5ce-c5b5fb4b4fad",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "7aac7a79-3704-4bbf-9f96-7b12fab9434a",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 27,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "ef0224c0-490c-4172-a5ce-c5b5fb4b4fad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-19T18:21:17.852Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I found the experiment `c4_a075_s42_fp32`. It's currently in ANALYZING status. Key details:
+- Hypothesis: "Claim 2 跨域验证：C4 数据集 α=0.75 regime boundary fp32。WikiText α=0.75 PermG 预期 ~83%，C4 验证 canary lead-lag 跨域泛化性。plan_035。"
+- Parent: alpha_sweep_a075_s42_fp32
+- Server: westd-17855, GPU: cuda:2
+
+
+- Model: EleutherAI/pythia-410m trained on C4 with 5000 samples at seed 42 in fp32 with synthetic_ratio of 0.75
+
+I notice `c4_a050_s42_fp32` finished around the same time and is also in ANALYZING status. Now I need to spawn a Worker to SSH into westd-17855 and analyze the results directory, running the MMCT analysis with PermG and K≥3.
+
+This maps to plan_035, which is testing C4 at α=0.75 with Pythia-410M across the regime boundary. Since both experiments transitioned to ANALYZING and aren't in the CRON reconcile list, I should spawn workers for both—though the callback was specifically triggered for c4_a075_s42_fp32, so I'll prioritize that one first. Looking at the analysis script to understand what parameters and context I need to pass to the workers so they can properly execute the MMCT analysis pipeline for both experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7aac7a79-3704-4bbf-9f96-7b12fab9434a",
+  "isSidechain": false,
+  "requestId": "req_011CbCPe75jyEnEHGnVCeR99",
+  "type": "assistant",
+  "uuid": "80dbc345-e0b6-42ba-9a6d-39917bc71dda",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R6Xe4frGW3VxcKXXYtmqzU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2007,
+      "cache_read_input_tokens": 66920,
+      "output_tokens": 1001,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2007,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1001,
+          "cache_read_input_tokens": 66920,
+          "cache_creation_input_tokens": 2007,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2007
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-19T18:21:17.853Z_
+
+找到了。`c4_a075_s42_fp32` 状态 ANALYZING，同时 `c4_a050_s42_fp32` 也在 ANALYZING。两个都需要分析。让我查看分析脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80dbc345-e0b6-42ba-9a6d-39917bc71dda",
+  "isSidechain": false,
+  "requestId": "req_011CbCPe75jyEnEHGnVCeR99",
+  "type": "assistant",
+  "uuid": "56e66021-4ea6-454a-abbb-23bf7053e3a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R6Xe4frGW3VxcKXXYtmqzU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2007,
+      "cache_read_input_tokens": 66920,
+      "output_tokens": 1001,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2007,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1001,
+          "cache_read_input_tokens": 66920,
+          "cache_creation_input_tokens": 2007,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2007
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-19T18:21:17.862Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01YSLdCRjzvL1Usew2An3eKw`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/ | grep -i analy | head -5",
+  "description": "List analysis-related artifacts"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "56e66021-4ea6-454a-abbb-23bf7053e3a9",
+  "isSidechain": false,
+  "requestId": "req_011CbCPe75jyEnEHGnVCeR99",
+  "type": "assistant",
+  "uuid": "3815a758-bd6b-4cb4-aeaf-ec28b1479f9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R6Xe4frGW3VxcKXXYtmqzU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2007,
+      "cache_read_input_tokens": 66920,
+      "output_tokens": 1001,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2007,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1001,
+          "cache_read_input_tokens": 66920,
+          "cache_creation_input_tokens": 2007,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2007
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-19T18:21:18.102Z_
+
+<details><summary>↩ Tool result · `toolu_01MU46jKQtH8ChzrrzXEJrgx`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b4dfe080-67de-4b60-a76e-d52f6de10b59",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "e1418b98-cbc2-4cc5-8ea7-0c689dbfdaac",
+  "toolUseResult": {
+    "mode": "files_with_matches",
+    "filenames": [],
+    "numFiles": 0
+  },
+  "sourceToolAssistantUUID": "b4dfe080-67de-4b60-a76e-d52f6de10b59",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-19T18:21:17.915Z_
+
+<details><summary>↩ Tool result · `toolu_01YSLdCRjzvL1Usew2An3eKw`</summary>
+
+```text
+a050_fp32_3seed_5method_analysis.md
+a075_analysis_prep.md
+analysis
+analysis_a050_a010_fp32_batch.md
+analysis_alpha_sweep_a010_s42_v2.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3815a758-bd6b-4cb4-aeaf-ec28b1479f9e",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "4256e856-ad3b-459a-9403-ad467efbc148",
+  "toolUseResult": {
+    "stdout": "a050_fp32_3seed_5method_analysis.md\na075_analysis_prep.md\nanalysis\nanalysis_a050_a010_fp32_batch.md\nanalysis_alpha_sweep_a010_s42_v2.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "3815a758-bd6b-4cb4-aeaf-ec28b1479f9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-19T18:21:18.083Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01MU46jKQtH8ChzrrzXEJrgx`</summary>
+
+```json
+{
+  "pattern": "analyze_results|mmct_analysis|run_analysis",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "glob": "*.py",
+  "output_mode": "files_with_matches"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4256e856-ad3b-459a-9403-ad467efbc148",
+  "isSidechain": false,
+  "requestId": "req_011CbCPe75jyEnEHGnVCeR99",
+  "type": "assistant",
+  "uuid": "b4dfe080-67de-4b60-a76e-d52f6de10b59",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R6Xe4frGW3VxcKXXYtmqzU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2007,
+      "cache_read_input_tokens": 66920,
+      "output_tokens": 1001,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2007,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1001,
+          "cache_read_input_tokens": 66920,
+          "cache_creation_input_tokens": 2007,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2007
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 52_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: c4_a075_s42_fp32 - project: distrib_canary_collapse - server: westd-17855 - log_path: ~/run…",
+  "leafUuid": "e1418b98-cbc2-4cc5-8ea7-0c689dbfdaac",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark as done",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133"
+}
+```
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-19T18:21:21.249Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_011Gqjjm69Fz3DT9QWqMoCPf`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/ 2>/dev/null | head -20",
+  "description": "List analysis directory contents"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e1418b98-cbc2-4cc5-8ea7-0c689dbfdaac",
+  "isSidechain": false,
+  "requestId": "req_011CbCPfRRqSyuKa5Lycc1tj",
+  "type": "assistant",
+  "uuid": "37a32c4d-92ec-48a0-a819-5387476bb6df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013t7yfHGyZCK2ccgivLjpZZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1122,
+      "cache_read_input_tokens": 68927,
+      "output_tokens": 200,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1122,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 200,
+          "cache_read_input_tokens": 68927,
+          "cache_creation_input_tokens": 1122,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1122
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-19T18:21:21.334Z_
+
+<details><summary>↩ Tool result · `toolu_011Gqjjm69Fz3DT9QWqMoCPf`</summary>
+
+```text
+consensus_framework
+cross_alpha
+cross_alpha_fdr_4point.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "37a32c4d-92ec-48a0-a819-5387476bb6df",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "f7fc2a0c-3f34-4106-9724-ed9852baec36",
+  "toolUseResult": {
+    "stdout": "consensus_framework\ncross_alpha\ncross_alpha_fdr_4point.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "37a32c4d-92ec-48a0-a819-5387476bb6df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-19T18:21:22.078Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01DscwGYNf4PYjSyqx8fZg7X`</summary>
+
+```json
+{
+  "pattern": "**/*analyze*.py",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f7fc2a0c-3f34-4106-9724-ed9852baec36",
+  "isSidechain": false,
+  "requestId": "req_011CbCPfRRqSyuKa5Lycc1tj",
+  "type": "assistant",
+  "uuid": "02ae6ce1-adcb-448f-a5ea-f529aa441293",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013t7yfHGyZCK2ccgivLjpZZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1122,
+      "cache_read_input_tokens": 68927,
+      "output_tokens": 200,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1122,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 200,
+          "cache_read_input_tokens": 68927,
+          "cache_creation_input_tokens": 1122,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1122
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-19T18:21:22.102Z_
+
+<details><summary>↩ Tool result · `toolu_01DscwGYNf4PYjSyqx8fZg7X`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_mvp.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_extended.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "02ae6ce1-adcb-448f-a5ea-f529aa441293",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "7d373076-598f-4c8b-bdd3-735a3fe38426",
+  "toolUseResult": {
+    "filenames": [
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_mvp.py",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_extended.py"
+    ],
+    "durationMs": 20,
+    "numFiles": 2,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "02ae6ce1-adcb-448f-a5ea-f529aa441293",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 58 · 2026-05-19T18:21:22.203Z_
+
+```json
+{
+  "parentUuid": "7d373076-598f-4c8b-bdd3-735a3fe38426",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "404997f9-70d4-4f80-ae05-ea7ccf133edb",
+  "timestamp": "2026-05-19T18:21:22.203Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-19T18:21:25.602Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01RD64NPpdn52puecvcqXTSL`</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse -name \"*.py\" -path \"*/artifacts/*\" | head -20",
+  "description": "Find analysis Python scripts"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "404997f9-70d4-4f80-ae05-ea7ccf133edb",
+  "isSidechain": false,
+  "requestId": "req_011CbCPfin7pynp2wCtESkrm",
+  "type": "assistant",
+  "uuid": "6a5067a0-5d86-403b-97f8-e8c46af3b680",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KVpw9ghTrvH9MkGDzzqZQ7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 458,
+      "cache_read_input_tokens": 70049,
+      "output_tokens": 118,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 458,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 118,
+          "cache_read_input_tokens": 70049,
+          "cache_creation_input_tokens": 458,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 458
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-19T18:21:25.675Z_
+
+<details><summary>↩ Tool result · `toolu_01RD64NPpdn52puecvcqXTSL`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_mvp.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/intermediate/iterative_train.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/cross_alpha_analysis.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/consensus_framework.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/permutation_granger.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/figures/plot_regime_map.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/metrics.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/test_alpha_sweep.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/iterative_train.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/cross_alpha_analysis_v4.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_extended.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/lag_sensitivity/run_lag_sensitivity.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/prepare_data.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/permutation_granger.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/detrending_utils.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/cross_alpha/cross_alpha_analysis_v4.py
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/consensus_framework.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6a5067a0-5d86-403b-97f8-e8c46af3b680",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "8bcc8711-2512-4b99-82fb-e0f7883cda91",
+  "toolUseResult": {
+    "stdout": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_mvp.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/intermediate/iterative_train.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/cross_alpha_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/consensus_framework.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/permutation_granger.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/figures/plot_regime_map.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/metrics.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/test_alpha_sweep.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/iterative_train.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/cross_alpha_analysis_v4.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_extended.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/lag_sensitivity/run_lag_sensitivity.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/prepare_data.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/permutation_granger.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/detrending_utils.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/cross_alpha/cross_alpha_analysis_v4.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/consensus_framework.py",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "6a5067a0-5d86-403b-97f8-e8c46af3b680",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-19T18:21:28.950Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me look at how recent analysis workers were done - the most recent successful analysis. Let me check a recent successful experiment to see what analysis approach was used.
+
+Let me look at the most recent analysis artifact to understand what Worker prompt was used.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8bcc8711-2512-4b99-82fb-e0f7883cda91",
+  "isSidechain": false,
+  "requestId": "req_011CbCPfycasnLRiKzyq9Vwp",
+  "type": "assistant",
+  "uuid": "787dc859-62cf-443a-8cfb-40e9c7a8cfb4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Bz1BQUvKbC33fRxTwdZgj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 833,
+      "cache_read_input_tokens": 70507,
+      "output_tokens": 378,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 833,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 378,
+          "cache_read_input_tokens": 70507,
+          "cache_creation_input_tokens": 833,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 833
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-19T18:21:29.426Z_
+
+让我查看最近完成的类似实验的分析方式，以构建正确的 Worker prompt。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "787dc859-62cf-443a-8cfb-40e9c7a8cfb4",
+  "isSidechain": false,
+  "requestId": "req_011CbCPfycasnLRiKzyq9Vwp",
+  "type": "assistant",
+  "uuid": "4fa2fcec-aa00-43bc-94b2-3d538490d21b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Bz1BQUvKbC33fRxTwdZgj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 833,
+      "cache_read_input_tokens": 70507,
+      "output_tokens": 378,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 833,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 378,
+          "cache_read_input_tokens": 70507,
+          "cache_creation_input_tokens": 833,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 833
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-19T18:21:31.408Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_012RxauSjHdZD18dAs1TYC5S`</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/ | grep -i \"generalize_pythia1b_c4\\|alpha_sweep_a060\\|interv_react\" | head -10",
+  "description": "Find recent analysis artifacts"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4fa2fcec-aa00-43bc-94b2-3d538490d21b",
+  "isSidechain": false,
+  "requestId": "req_011CbCPfycasnLRiKzyq9Vwp",
+  "type": "assistant",
+  "uuid": "ab454cee-9409-4eac-8e48-4456a6d8aff8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Bz1BQUvKbC33fRxTwdZgj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 833,
+      "cache_read_input_tokens": 70507,
+      "output_tokens": 378,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 833,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 378,
+          "cache_read_input_tokens": 70507,
+          "cache_creation_input_tokens": 833,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 833
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-19T18:21:31.483Z_
+
+<details><summary>↩ Tool result · `toolu_012RxauSjHdZD18dAs1TYC5S`</summary>
+
+```text
+drwxr-xr-x  3 ubuntu ubuntu   4096 May 18 21:22 alpha_sweep_a060_s42_bf16
+drwxr-xr-x  3 ubuntu ubuntu   4096 May 17 12:30 generalize_pythia1b_c4_a100_s42
+drwxr-xr-x  3 ubuntu ubuntu   4096 May 18 00:24 generalize_pythia1b_c4_a100_s43
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ab454cee-9409-4eac-8e48-4456a6d8aff8",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "4e8fd25b-44e9-4c0c-b76a-aef6d3ce4c27",
+  "toolUseResult": {
+    "stdout": "drwxr-xr-x  3 ubuntu ubuntu   4096 May 18 21:22 alpha_sweep_a060_s42_bf16\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 17 12:30 generalize_pythia1b_c4_a100_s42\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 18 00:24 generalize_pythia1b_c4_a100_s43",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "ab454cee-9409-4eac-8e48-4456a6d8aff8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-19T18:21:32.805Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_011pqGaow1vgQcUuVmoqVnVq`</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts -name \"*.md\" -newer /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_mvp.py -path \"*report*\" | head -10",
+  "description": "Find recent analysis report artifacts"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4e8fd25b-44e9-4c0c-b76a-aef6d3ce4c27",
+  "isSidechain": false,
+  "requestId": "req_011CbCPfycasnLRiKzyq9Vwp",
+  "type": "assistant",
+  "uuid": "5f178553-7451-40b5-a640-063eb74353f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Bz1BQUvKbC33fRxTwdZgj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 833,
+      "cache_read_input_tokens": 70507,
+      "output_tokens": 378,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 833,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 378,
+          "cache_read_input_tokens": 70507,
+          "cache_creation_input_tokens": 833,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 833
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-19T18:21:32.924Z_
+
+<details><summary>↩ Tool result · `toolu_011pqGaow1vgQcUuVmoqVnVq`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/scale_14b_a050_s42/report/analysis_report.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/report/cross_alpha_summary.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/report/padding_side_check.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/report/report_dose_response_gaps.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/report/window_sensitivity_report.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/report/paper_consistency_audit.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/report/window_sensitivity_extended.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/report/mmct_v2_a010_fp32_results.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/report/method_ablation_phase2_report.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/report/method_ablation_phase3_summary.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5f178553-7451-40b5-a640-063eb74353f1",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "abbf7843-5513-4498-a471-53b7c25e46cb",
+  "toolUseResult": {
+    "stdout": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/scale_14b_a050_s42/report/analysis_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/report/cross_alpha_summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/report/padding_side_check.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/report/report_dose_response_gaps.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/report/window_sensitivity_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/report/paper_consistency_audit.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/report/window_sensitivity_extended.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/report/mmct_v2_a010_fp32_results.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/report/method_ablation_phase2_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/report/method_ablation_phase3_summary.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "5f178553-7451-40b5-a640-063eb74353f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-19T18:21:36.342Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01N1w9oHzc2QQg4177nLEt24`</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/generalize_pythia1b_c4_a100_s43 -type f | head -20",
+  "description": "Check recent C4 analysis artifact structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "abbf7843-5513-4498-a471-53b7c25e46cb",
+  "isSidechain": false,
+  "requestId": "req_011CbCPgWpZ5gDoUh2sg63Yk",
+  "type": "assistant",
+  "uuid": "b1ed94af-4cb5-4c9c-8741-4398b21cc32c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WVXz7dXNLnyStMk8YF9KYK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1026,
+      "cache_read_input_tokens": 71340,
+      "output_tokens": 132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1026,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 132,
+          "cache_read_input_tokens": 71340,
+          "cache_creation_input_tokens": 1026,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1026
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-19T18:21:36.421Z_
+
+<details><summary>↩ Tool result · `toolu_01N1w9oHzc2QQg4177nLEt24`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/generalize_pythia1b_c4_a100_s43/report/analysis_pythia1b_c4_s43.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b1ed94af-4cb5-4c9c-8741-4398b21cc32c",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "4ee7a371-79b4-42b9-8be7-879f4d55f45b",
+  "toolUseResult": {
+    "stdout": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/generalize_pythia1b_c4_a100_s43/report/analysis_pythia1b_c4_s43.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "b1ed94af-4cb5-4c9c-8741-4398b21cc32c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-19T18:21:39.990Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01T58o1C1e1FG1J9LuZG82fS`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/generalize_pythia1b_c4_a100_s43/report/analysis_pythia1b_c4_s43.md",
+  "limit": 80
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ee7a371-79b4-42b9-8be7-879f4d55f45b",
+  "isSidechain": false,
+  "requestId": "req_011CbCPgmcJbH4NRQau5F3Rs",
+  "type": "assistant",
+  "uuid": "f2c7d491-ad39-4085-90f0-e22266d46eb9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BhWqqq1tz4ZQmjBMN4cwDq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 208,
+      "cache_read_input_tokens": 72366,
+      "output_tokens": 134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 208,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 134,
+          "cache_read_input_tokens": 72366,
+          "cache_creation_input_tokens": 208,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 208
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-19T18:21:39.999Z_
+
+<details><summary>↩ Tool result · `toolu_01T58o1C1e1FG1J9LuZG82fS`</summary>
+
+```text
+1	# Analysis: Pythia-1B C4 seed=43 (Multi-seed Validation)
+2	
+3	**Date**: 2026-05-18
+4	**Parent**: generalize_pythia1b_c4_a100_s42_v2 (seed=42, success)
+5	**Hypothesis**: C4 domain multi-seed validation — seed=43 replicates 8/8 consensus and token_entropy unidirectionality
+6	
+7	## Gen0 / Gen10 Metrics & Drift
+8	
+9	| Metric | gen0 | gen10 | drift_pct |
+10	|--------|------|-------|-----------|
+11	| token_entropy | 2.956 | 1.275 | -56.9% |
+12	| ece | 0.012 | 0.453 | +3542.3% |
+13	| perplexity | 20.60 | 1591.0 | +7623.7% |
+14	| distinct_1 | 0.116 | 0.088 | -24.3% |
+15	| distinct_2 | 0.562 | 0.378 | -32.7% |
+16	| distinct_3 | 0.838 | 0.570 | -31.9% |
+17	| mauve | 0.786 | 0.289 | -63.2% |
+18	| effective_rank | 72.5 | 146.2 | +101.6% |
+19	
+20	## 8-Pair 6-Method Results
+21	
+22	8 pairs = {token_entropy, ece} x {distinct_1, distinct_2, distinct_3, mauve}
+23	
+24	### Method Sig Rates (FDR-corrected)
+25	
+26	| Method | Sig/8 |
+27	|--------|-------|
+28	| naive_xcorr | 8/8 |
+29	| diff_xcorr_fdr | 8/8 |
+30	| threshold_onset | 8/8 |
+31	| permg_fwd_fdr | 8/8 |
+32	| permg_rev_fdr | 0/8 |
+33	| ty_granger | 5/8 |
+34	
+35	### Per-Pair Consensus (5 methods: naive, diff_xcorr, threshold, permg_fwd, TY)
+36	
+37	| Pair | Consensus |
+38	|------|-----------|
+39	| token_entropy -> distinct_1 | 5/5 |
+40	| token_entropy -> distinct_2 | 4/5 |
+41	| token_entropy -> distinct_3 | 4/5 |
+42	| token_entropy -> mauve | 4/5 |
+43	| ece -> distinct_1 | 5/5 |
+44	| ece -> distinct_2 | 5/5 |
+45	| ece -> distinct_3 | 5/5 |
+46	| ece -> mauve | 5/5 |
+47	
+48	**consensus_ge3: 8/8**
+49	**consensus_ge4: 8/8**
+50	
+51	### Token_entropy Unidirectionality (PermG reverse)
+52	
+53	| Pair | rev p_fdr | sig |
+54	|------|-----------|-----|
+55	| token_entropy -> distinct_1 | 0.791 | No |
+56	| token_entropy -> distinct_2 | 0.849 | No |
+57	| token_entropy -> distinct_3 | 0.893 | No |
+58	| token_entropy -> mauve | 0.719 | No |
+59	
+60	**token_entropy rev: 0/4** (perfect unidirectionality confirmed)
+61	
+62	### ECE Reverse (PermG)
+63	
+64	| Pair | rev p_fdr | sig |
+65	|------|-----------|-----|
+66	| ece -> distinct_1 | 0.719 | No |
+67	| ece -> distinct_2 | 0.615 | No |
+68	| ece -> distinct_3 | 0.615 | No |
+69	| ece -> mauve | 0.791 | No |
+70	
+71	**ece rev: 0/4**
+72	
+73	## Comparison with Parent (seed=42)
+74	
+75	| Metric | seed=42 | seed=43 | Match? |
+76	|--------|---------|---------|--------|
+77	| consensus_ge4 | 8/8 | 8/8 | YES |
+78	| permg_fwd_fdr | 8/8 | 8/8 | YES |
+79	| permg_rev_fdr | 3/8 | 0/8 | s43 stronger |
+80	| threshold_onset | 8/8 | 8/8 | YES |
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f2c7d491-ad39-4085-90f0-e22266d46eb9",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "2af6715f-6d97-4516-acef-8b812e7f46ec",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/generalize_pythia1b_c4_a100_s43/report/analysis_pythia1b_c4_s43.md",
+      "content": "# Analysis: Pythia-1B C4 seed=43 (Multi-seed Validation)\n\n**Date**: 2026-05-18\n**Parent**: generalize_pythia1b_c4_a100_s42_v2 (seed=42, success)\n**Hypothesis**: C4 domain multi-seed validation — seed=43 replicates 8/8 consensus and token_entropy unidirectionality\n\n## Gen0 / Gen10 Metrics & Drift\n\n| Metric | gen0 | gen10 | drift_pct |\n|--------|------|-------|-----------|\n| token_entropy | 2.956 | 1.275 | -56.9% |\n| ece | 0.012 | 0.453 | +3542.3% |\n| perplexity | 20.60 | 1591.0 | +7623.7% |\n| distinct_1 | 0.116 | 0.088 | -24.3% |\n| distinct_2 | 0.562 | 0.378 | -32.7% |\n| distinct_3 | 0.838 | 0.570 | -31.9% |\n| mauve | 0.786 | 0.289 | -63.2% |\n| effective_rank | 72.5 | 146.2 | +101.6% |\n\n## 8-Pair 6-Method Results\n\n8 pairs = {token_entropy, ece} x {distinct_1, distinct_2, distinct_3, mauve}\n\n### Method Sig Rates (FDR-corrected)\n\n| Method | Sig/8 |\n|--------|-------|\n| naive_xcorr | 8/8 |\n| diff_xcorr_fdr | 8/8 |\n| threshold_onset | 8/8 |\n| permg_fwd_fdr | 8/8 |\n| permg_rev_fdr | 0/8 |\n| ty_granger | 5/8 |\n\n### Per-Pair Consensus (5 methods: naive, diff_xcorr, threshold, permg_fwd, TY)\n\n| Pair | Consensus |\n|------|-----------|\n| token_entropy -> distinct_1 | 5/5 |\n| token_entropy -> distinct_2 | 4/5 |\n| token_entropy -> distinct_3 | 4/5 |\n| token_entropy -> mauve | 4/5 |\n| ece -> distinct_1 | 5/5 |\n| ece -> distinct_2 | 5/5 |\n| ece -> distinct_3 | 5/5 |\n| ece -> mauve | 5/5 |\n\n**consensus_ge3: 8/8**\n**consensus_ge4: 8/8**\n\n### Token_entropy Unidirectionality (PermG reverse)\n\n| Pair | rev p_fdr | sig |\n|------|-----------|-----|\n| token_entropy -> distinct_1 | 0.791 | No |\n| token_entropy -> distinct_2 | 0.849 | No |\n| token_entropy -> distinct_3 | 0.893 | No |\n| token_entropy -> mauve | 0.719 | No |\n\n**token_entropy rev: 0/4** (perfect unidirectionality confirmed)\n\n### ECE Reverse (PermG)\n\n| Pair | rev p_fdr | sig |\n|------|-----------|-----|\n| ece -> distinct_1 | 0.719 | No |\n| ece -> distinct_2 | 0.615 | No |\n| ece -> distinct_3 | 0.615 | No |\n| ece -> mauve | 0.791 | No |\n\n**ece rev: 0/4**\n\n## Comparison with Parent (seed=42)\n\n| Metric | seed=42 | seed=43 | Match? |\n|--------|---------|---------|--------|\n| consensus_ge4 | 8/8 | 8/8 | YES |\n| permg_fwd_fdr | 8/8 | 8/8 | YES |\n| permg_rev_fdr | 3/8 | 0/8 | s43 stronger |\n| threshold_onset | 8/8 | 8/8 | YES |",
+      "numLines": 80,
+      "startLine": 1,
+      "totalLines": 96
+    }
+  },
+  "sourceToolAssistantUUID": "f2c7d491-ad39-4085-90f0-e22266d46eb9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 71_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: c4_a075_s42_fp32 - project: distrib_canary_collapse - server: westd-17855 - log_path: ~/run…",
+  "leafUuid": "2af6715f-6d97-4516-acef-8b812e7f46ec",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 72_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark as done",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133"
+}
+```
+
+---
+
+### Assistant
+
+_source line 73 · 2026-05-19T18:21:48.176Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of the analysis format. I need to spawn workers to:
+1. SSH to westd-17855 and run the MMCT analysis on the c4_a075_s42_fp32 results
+2. Do the same for c4_a050_s42_fp32
+
+Let me look at what analysis script is typically used. The analysis uses a consensus framework. Let me check the remote server to understand the codebase there.
+
+Actually, based on the analysis report format, the workers SSH into the server, read the results data, run the 8-pair 6-method MMCT analysis, compute PermG fwd/rev, K≥3, K≥4, threshold_onset, and comparison with parent experiments.
+
+
+I should examine the analysis script on the server to see how it's structured.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2af6715f-6d97-4516-acef-8b812e7f46ec",
+  "isSidechain": false,
+  "requestId": "req_011CbCPh38CnB19FUayM3RfF",
+  "type": "assistant",
+  "uuid": "e1a2cddd-7e26-4857-91b8-15e0dea204f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TLy8r7ncnPvNVbqPHDxz8z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1403,
+      "cache_read_input_tokens": 72574,
+      "output_tokens": 312,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1403,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 312,
+          "cache_read_input_tokens": 72574,
+          "cache_creation_input_tokens": 1403,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1403
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-19T18:21:48.186Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_018JUYcEiWkhEzSvHcrqjNpQ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/consensus_framework.py",
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e1a2cddd-7e26-4857-91b8-15e0dea204f7",
+  "isSidechain": false,
+  "requestId": "req_011CbCPh38CnB19FUayM3RfF",
+  "type": "assistant",
+  "uuid": "23833b94-3d12-4ed4-b329-2d5b2b5258dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TLy8r7ncnPvNVbqPHDxz8z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1403,
+      "cache_read_input_tokens": 72574,
+      "output_tokens": 312,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1403,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 312,
+          "cache_read_input_tokens": 72574,
+          "cache_creation_input_tokens": 1403,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1403
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-19T18:21:48.197Z_
+
+<details><summary>↩ Tool result · `toolu_018JUYcEiWkhEzSvHcrqjNpQ`</summary>
+
+```text
+1	"""
+2	Multi-method consensus framework for canary→downstream association robustness.
+3	
+4	Formalizes "robust association": a pair is robust only when ≥method_threshold
+5	independent statistical methods agree (each requiring ≥seed_threshold seeds
+6	significant). Two-stage aggregation: seed→method verdict, then method→consensus.
+7	
+8	Input:  results/mvp/analysis/method_ablation.json
+9	Output: consensus classification, sensitivity heatmap, FPR/FNR table (JSON)
+10	
+11	Dependencies: numpy, json (stdlib)
+12	"""
+13	
+14	import json
+15	import os
+16	
+17	import numpy as np
+18	
+19	METHOD_NAMES = [
+20	    "naive_pearson",
+21	    "differenced_xcorr",
+22	    "threshold_onset",
+23	    "toda_yamamoto",
+24	    "permutation_granger",
+25	]
+26	
+27	# Primary FPR ground truth: alpha=0.0 null control; differenced_xcorr retained for legacy
+28	DIFF_INDEX = 1
+29	
+30	
+31	def _to_native(obj):
+32	    """Convert numpy types to Python native for JSON serialization."""
+33	    if isinstance(obj, (np.integer,)):
+34	        return int(obj)
+35	    if isinstance(obj, (np.floating,)):
+36	        return float(obj)
+37	    if isinstance(obj, (np.bool_,)):
+38	        return bool(obj)
+39	    if isinstance(obj, np.ndarray):
+40	        return obj.tolist()
+41	    return obj
+42	
+43	
+44	class NumpyEncoder(json.JSONEncoder):
+45	    """JSON encoder that handles numpy types."""
+46	    def default(self, obj):
+47	        native = _to_native(obj)
+48	        if native is not obj:
+49	            return native
+50	        return super().default(obj)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "23833b94-3d12-4ed4-b329-2d5b2b5258dd",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "e5d1bbfb-80f1-4076-831a-b4f744973aae",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/consensus_framework.py",
+      "content": "\"\"\"\nMulti-method consensus framework for canary→downstream association robustness.\n\nFormalizes \"robust association\": a pair is robust only when ≥method_threshold\nindependent statistical methods agree (each requiring ≥seed_threshold seeds\nsignificant). Two-stage aggregation: seed→method verdict, then method→consensus.\n\nInput:  results/mvp/analysis/method_ablation.json\nOutput: consensus classification, sensitivity heatmap, FPR/FNR table (JSON)\n\nDependencies: numpy, json (stdlib)\n\"\"\"\n\nimport json\nimport os\n\nimport numpy as np\n\nMETHOD_NAMES = [\n    \"naive_pearson\",\n    \"differenced_xcorr\",\n    \"threshold_onset\",\n    \"toda_yamamoto\",\n    \"permutation_granger\",\n]\n\n# Primary FPR ground truth: alpha=0.0 null control; differenced_xcorr retained for legacy\nDIFF_INDEX = 1\n\n\ndef _to_native(obj):\n    \"\"\"Convert numpy types to Python native for JSON serialization.\"\"\"\n    if isinstance(obj, (np.integer,)):\n        return int(obj)\n    if isinstance(obj, (np.floating,)):\n        return float(obj)\n    if isinstance(obj, (np.bool_,)):\n        return bool(obj)\n    if isinstance(obj, np.ndarray):\n        return obj.tolist()\n    return obj\n\n\nclass NumpyEncoder(json.JSONEncoder):\n    \"\"\"JSON encoder that handles numpy types.\"\"\"\n    def default(self, obj):\n        native = _to_native(obj)\n        if native is not obj:\n            return native\n        return super().default(obj)",
+      "numLines": 50,
+      "startLine": 1,
+      "totalLines": 663
+    }
+  },
+  "sourceToolAssistantUUID": "23833b94-3d12-4ed4-b329-2d5b2b5258dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76 · 2026-05-19T18:21:56.407Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, I have a good sense of the analysis framework. Let me now spawn workers to analyze both ANALYZING experiments. The workers need to:
+
+1. SSH to westd-17855
+2. Navigate to the results directory
+3. Run the MMCT analysis (8-pair, 6 methods, PermG fwd/rev, K≥3/K≥4, threshold_onset, TY)
+4. Produce a report with gen0/gen10 drift metrics, method sig rates, per-pair consensus, and comparison with parent
+
+
+I should check what analysis scripts are already available on the server and review how similar experiments have been analyzed in the past—it looks like the standard approach uses Python scripts to load the generation data and compute the necessary statistics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e5d1bbfb-80f1-4076-831a-b4f744973aae",
+  "isSidechain": false,
+  "requestId": "req_011CbCPhe7sjr4EfUTWLgMTt",
+  "type": "assistant",
+  "uuid": "92a5c905-a3e7-4fed-94ac-49e6e1b71c0a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WsSwxZCgJy9zooxxMi1G3B",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 824,
+      "cache_read_input_tokens": 73977,
+      "output_tokens": 317,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 824,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 317,
+          "cache_read_input_tokens": 73977,
+          "cache_creation_input_tokens": 824,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 824
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-19T18:21:56.540Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01G67JLuRsGtUD9VYvnXrsYF`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "file": "memory.md",
+  "max_chars": 6000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "92a5c905-a3e7-4fed-94ac-49e6e1b71c0a",
+  "isSidechain": false,
+  "requestId": "req_011CbCPhe7sjr4EfUTWLgMTt",
+  "type": "assistant",
+  "uuid": "42bc9dc0-7d96-4501-8503-136c644083db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WsSwxZCgJy9zooxxMi1G3B",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 824,
+      "cache_read_input_tokens": 73977,
+      "output_tokens": 317,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 824,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 317,
+          "cache_read_input_tokens": 73977,
+          "cache_creation_input_tokens": 824,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 824
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-19T18:21:56.552Z_
+
+<details><summary>↩ Tool result · `toolu_01G67JLuRsGtUD9VYvnXrsYF`</summary>
+
+````text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/memory.md\", \"content\": \"# Memory\\n\\n## D079 精度规则（2026-05-18，替代旧 bf16 硬约束）\\n\\n### bf16 vs fp32 系统性差异（Reviewer critical 发现）\\nGPT-2m fp32 (s42) vs bf16 (s43) 在 α=1.0：entropy drift 差 5.2×（-86.6% vs -16.6%），ppl drift 差 ~730×（+50,527% vs +68.6%）。bf16 的 stochastic rounding 提供强隐式正则化，系统性抑制 collapse。\\n\\n### 精度规则\\n- **≤3B 模型一律 fp32**（不传 --bf16）\\n- **>3B 模型**（如 Pythia-6.9B）允许 bf16，论文中 framing 为\\\"bf16 条件下 pattern 是否持续\\\"\\n- Table 7 和 dose-response map 主轴只用 fp32 数据\\n- bf16 实验作为补充证据，论文中明确标注\\n\\n### westd-17855 fp32 支持\\n- 旧问题：不带 --bf16 时 fp16 GradScaler crash（Blackwell 不兼容）\\n- 已修复：iterative_train.py 修改为不带 --bf16 时使用纯 fp32（禁用 GradScaler + autocast）\\n- dry-run 通过：westd-17855 cuda:4 上 Pythia-410M fp32 训练成功\\n\\n## D080 torch_dtype bug 及修复（2026-05-19）\\n\\n### 根因\\niterative_train.py 中 `_DTYPE_KWARG: torch.bfloat16 if args.bf16 else None`。`torch_dtype=None` 导致模型以原生 dtype 加载：\\n- Pythia-410M/1.4B: 原生 float16 → 无 GradScaler → loss=0, grad_norm=nan\\n- SmolLM3-3B: 原生 bfloat16 → 训练正常但精度不是 D079 要求的 fp32\\n- Qwen3.5-0.8B: safetensors 存储为 bfloat16 → 同上\\n\\n### 修复（两轮）\\n1. `else None` → `else torch.float32`：对大多数模型有效（SmolLM3 确认 13.8GB = fp32）\\n2. 添加 `model.to(dtype=target_dtype)` 强制转换：Qwen3.5 的 safetensors 格式导致 transformers 5.8.1 忽略 `torch_dtype` 参数，必须显式 `.to()` 才能转 float32\\n\\n### iterative_train.py 当前版本\\n- md5: `5b37837e7a6378f42bcb740f8f5e4773`（两台服务器一致）\\n- 包含: fp16=False + `else torch.float32` + `.to(dtype=target_dtype)` 强制转换\\n\\n### 教训\\n- `torch_dtype` 参数在 transformers 中对不同模型行为不一致，`.to()` 是唯一可靠的 dtype 转换方式\\n- 内存用量可以验证 dtype：3B fp32 ≈ 12-14GB, 3B bf16 ≈ 6-7GB\\n\\n## westd-17855 环境提交规范（2026-05-18）\\n\\n### 问题\\nwestd-17855 的 `.bashrc` 无 conda init 块且有 `[ -z \\\"$PS1\\\" ] && return` 导致非交互 shell 跳过所有配置。裸 `python` 命令和缺少 HF 环境变量均导致失败。\\n\\n### 完整提交命令模板\\n```\\nbash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && CUDA_VISIBLE_DEVICES=N python -u iterative_train.py ...\\\"\\n```\\n**必须包含**：conda 激活 + HF 三个环境变量。缺少 HF_HOME 会导致模型下载失败（网络不可达）。\\nwestd-19828 同理。\\n\\n### 历史失败\\n- EXIT_CODE=127（python not found）：缺 conda 激活\\n- 模型下载 crash：缺 HF_HOME/HF_ENDPOINT 环境变量\\n- interv_pred_a075_s42_fp32 连续失败两次才定位到 HF 环境变量问题\\n\\n## fp32 模型坍缩导致 metrics 崩溃（2026-05-18）\\n\\n### 问题\\nfp32 模式下（特别是高 α 如 0.75），模型可能在 Gen 1 出现完全坍缩（loss=0, grad_norm=nan）。此时 `compute_effective_rank` 中 `np.linalg.eigvalsh(cov)` 因协方差矩阵病态抛出 `LinAlgError: Eigenvalues did not converge`，导致整个实验进程 crash。\\n\\n### 已修复\\n`metrics.py` `compute_effective_rank`：加 NaN/Inf 前置检查 + eigvalsh→SVD fallback + 空特征值 guard。\\n\\n### 教训\\n- 诊断 Worker 看到进程启动就报\\\"已修复\\\"是不够的——fp32 实验崩溃点在 Gen 1 metrics 阶段（~10-15 min 后），必须等足够长时间验证\\n- EXIT_CODE=127 可能掩盖了真正的崩溃原因（cron 检测旧进程退出码，后续重提交的进程有不同的失败模式）\\n\\n## α=0.10 Informative Negative (2026-05-18)\\n\\n### 关键发现：Canary 灵敏度下界\\n- α=0.10 时 diversity collapse 已饱和（distinct_1 -39.7%，≈ α=0.25 的 -40.5%）\\n- 但 entropy canary 完全无信号（token_entropy 与 null 差 0.17%，PermG 0/16 sig）\\n- **检测阈值在 α=0.25 到 α=0.50 之间**\\n- 论文角度：这是 dose-response curve 的精确刻画，不是方法 failure\\n\\n### 非线性饱和效应\\nDiversity collapse 并非随 α 线性增长——从 null (-13.8%) 到 α=0.10 (-39.7%) 已经跳变到接近饱和。这意味着即使少量合成数据也会造成严重 diversity 损害，但 entropy canary 的敏感区域在更高的 α。\\n\\n## generalize_pythia1b_c4_a100_s43 Analysis (2026-05-18)\\n\\n### 8-pair definition\\nThe \\\"8 pairs\\\" for C4 domain = {token_entropy, ece} × {distinct_1, distinct_2, distinct_3, mauve}.\\nScript: `c4_full_8pair_analysis.py` (hardcoded for s42). For s43 we ran inline.\\n\\n### Key Results (seed=43)\\n- **consensus_ge4: 8/8** (matches parent s42)\\n- **permg_fwd_fdr: 8/8** (matches parent s42)\\n- **permg_rev_fdr: 0/8** (stronger than parent's 3/8)\\n- Conclusion: **SUCCESS** — C4 domain multi-seed confirmed\\n\\n## CSMP Gradual Shift Evaluation (2026-05-18)\\n\\n### 决策记录\\nk=0.25 在所有 α (0.50/0.75/1.0) 下 EDD=0，推荐值无需因 regime 而变。\\n\\n### 关键发现\\n- CUSUM 与简单阈值 alarm gen 相同（都是 Gen 1），但 CUSUM 有 FAR 保证和 severity 量化\\n- 论文突出 FAR 控制 + shift severity 度量，不 overclaim detection speed\\n\\n## D097 MMCT 权重模式决策 (2026-05-19)\\n\\n### 权威模式：uniform_fwd\\n**dual_track 图表 + dose-response 表统一使用 uniform_fwd。**\\n\\n理由：\\n- uniform_fwd 在 α=0.10 给出干净的 0/8（双 seed 一致）\\n- wpair 在 α≤0.10 不稳定（仅 3 null seeds，FPR 权重方差大）：s42=2/8, s43=4/8\\n- uniform 和 wglobal 在所有 alpha 点结论一致\\n- 简洁透明，无需校准参数\\n\\n### wpair 保留用途\\n- supplementary/appendix：方法敏感性讨论素材\\n- Claim 3 支撑：weighting 选择如何影响 boundary regime 结论\\n- 论文 Method 节：FPR-inverse weighting (wpair) 为理论最优，推荐 uniform 当 null sample < 10 seeds\\n\\n## 新模型信息 (2026-05-18)\\n\\n### Gemma 4 E2B — 已放弃\\nDirector 决策 D073: 5.10B params，多模态，无纯文本 base，放弃。\\n\\n### Director 决策：选 SmolLM3-3B-Base 替代 Gemma\\n理由：已有 Qwen3.5-0.8B，再加 Qwen3-1.7B 是同架构家族。\\n当前架构覆盖：Pythia(GPT-NeoX), GPT-2(OpenAI), OPT(Meta), Qwen3.5(Alibaba), SmolLM3(HuggingFace) = 5个独立架构族。\\n\\n### SmolLM3-3B-Base — 已下载验证 ✅\\n- HF ID: `HuggingFaceTB/SmolLM3-3B-Base`\\n- 3.08B 参数, vocab 128K, Apache 2.0, 2025-07-08\\n- 两台服务器路径: `/root/autodl-tmp/models/SmolLM3-3B-Base/`\\n- 原生 dtype: bfloat16（D080 确认）\\n\\n### Qwen3.5-0.8B-Base — 已验证可用 ✅\\n- 0.75B 参数, vocab 248K\\n- 两台服务器路径: `/root/autodl-tmp/models/Qwen3.5-0.8B-Base/` (必须用本地路径)\\n- Model class: `Qwen3_5ForCausalLM`\\n- 原生 dtype: bfloat16（safetensors 存储，D080 确认 transformers 5.8.1 忽略 torch_dtype 参数）\\n\", \"total_chars\": 5048, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "42bc9dc0-7d96-4501-8503-136c644083db",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "107a8d70-4849-4353-ac43-9a56cc3c8065",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/memory.md\\\", \\\"content\\\": \\\"# Memory\\\\n\\\\n## D079 精度规则（2026-05-18，替代旧 bf16 硬约束）\\\\n\\\\n### bf16 vs fp32 系统性差异（Reviewer critical 发现）\\\\nGPT-2m fp32 (s42) vs bf16 (s43) 在 α=1.0：entropy drift 差 5.2×（-86.6% vs -16.6%），ppl drift 差 ~730×（+50,527% vs +68.6%）。bf16 的 stochastic rounding 提供强隐式正则化，系统性抑制 collapse。\\\\n\\\\n### 精度规则\\\\n- **≤3B 模型一律 fp32**（不传 --bf16）\\\\n- **>3B 模型**（如 Pythia-6.9B）允许 bf16，论文中 framing 为\\\\\\\"bf16 条件下 pattern 是否持续\\\\\\\"\\\\n- Table 7 和 dose-response map 主轴只用 fp32 数据\\\\n- bf16 实验作为补充证据，论文中明确标注\\\\n\\\\n### westd-17855 fp32 支持\\\\n- 旧问题：不带 --bf16 时 fp16 GradScaler crash（Blackwell 不兼容）\\\\n- 已修复：iterative_train.py 修改为不带 --bf16 时使用纯 fp32（禁用 GradScaler + autocast）\\\\n- dry-run 通过：westd-17855 cuda:4 上 Pythia-410M fp32 训练成功\\\\n\\\\n## D080 torch_dtype bug 及修复（2026-05-19）\\\\n\\\\n### 根因\\\\niterative_train.py 中 `_DTYPE_KWARG: torch.bfloat16 if args.bf16 else None`。`torch_dtype=None` 导致模型以原生 dtype 加载：\\\\n- Pythia-410M/1.4B: 原生 float16 → 无 GradScaler → loss=0, grad_norm=nan\\\\n- SmolLM3-3B: 原生 bfloat16 → 训练正常但精度不是 D079 要求的 fp32\\\\n- Qwen3.5-0.8B: safetensors 存储为 bfloat16 → 同上\\\\n\\\\n### 修复（两轮）\\\\n1. `else None` → `else torch.float32`：对大多数模型有效（SmolLM3 确认 13.8GB = fp32）\\\\n2. 添加 `model.to(dtype=target_dtype)` 强制转换：Qwen3.5 的 safetensors 格式导致 transformers 5.8.1 忽略 `torch_dtype` 参数，必须显式 `.to()` 才能转 float32\\\\n\\\\n### iterative_train.py 当前版本\\\\n- md5: `5b37837e7a6378f42bcb740f8f5e4773`（两台服务器一致）\\\\n- 包含: fp16=False + `else torch.float32` + `.to(dtype=target_dtype)` 强制转换\\\\n\\\\n### 教训\\\\n- `torch_dtype` 参数在 transformers 中对不同模型行为不一致，`.to()` 是唯一可靠的 dtype 转换方式\\\\n- 内存用量可以验证 dtype：3B fp32 ≈ 12-14GB, 3B bf16 ≈ 6-7GB\\\\n\\\\n## westd-17855 环境提交规范（2026-05-18）\\\\n\\\\n### 问题\\\\nwestd-17855 的 `.bashrc` 无 conda init 块且有 `[ -z \\\\\\\"$PS1\\\\\\\" ] && return` 导致非交互 shell 跳过所有配置。裸 `python` 命令和缺少 HF 环境变量均导致失败。\\\\n\\\\n### 完整提交命令模板\\\\n```\\\\nbash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && CUDA_VISIBLE_DEVICES=N python -u iterative_train.py ...\\\\\\\"\\\\n```\\\\n**必须包含**：conda 激活 + HF 三个环境变量。缺少 HF_HOME 会导致模型下载失败（网络不可达）。\\\\nwestd-19828 同理。\\\\n\\\\n### 历史失败\\\\n- EXIT_CODE=127（python not found）：缺 conda 激活\\\\n- 模型下载 crash：缺 HF_HOME/HF_ENDPOINT 环境变量\\\\n- interv_pred_a075_s42_fp32 连续失败两次才定位到 HF 环境变量问题\\\\n\\\\n## fp32 模型坍缩导致 metrics 崩溃（2026-05-18）\\\\n\\\\n### 问题\\\\nfp32 模式下（特别是高 α 如 0.75），模型可能在 Gen 1 出现完全坍缩（loss=0, grad_norm=nan）。此时 `compute_effective_rank` 中 `np.linalg.eigvalsh(cov)` 因协方差矩阵病态抛出 `LinAlgError: Eigenvalues did not converge`，导致整个实验进程 crash。\\\\n\\\\n### 已修复\\\\n`metrics.py` `compute_effective_rank`：加 NaN/Inf 前置检查 + eigvalsh→SVD fallback + 空特征值 guard。\\\\n\\\\n### 教训\\\\n- 诊断 Worker 看到进程启动就报\\\\\\\"已修复\\\\\\\"是不够的——fp32 实验崩溃点在 Gen 1 metrics 阶段（~10-15 min 后），必须等足够长时间验证\\\\n- EXIT_CODE=127 可能掩盖了真正的崩溃原因（cron 检测旧进程退出码，后续重提交的进程有不同的失败模式）\\\\n\\\\n## α=0.10 Informative Negative (2026-05-18)\\\\n\\\\n### 关键发现：Canary 灵敏度下界\\\\n- α=0.10 时 diversity collapse 已饱和（distinct_1 -39.7%，≈ α=0.25 的 -40.5%）\\\\n- 但 entropy canary 完全无信号（token_entropy 与 null 差 0.17%，PermG 0/16 sig）\\\\n- **检测阈值在 α=0.25 到 α=0.50 之间**\\\\n- 论文角度：这是 dose-response curve 的精确刻画，不是方法 failure\\\\n\\\\n### 非线性饱和效应\\\\nDiversity collapse 并非随 α 线性增长——从 null (-13.8%) 到 α=0.10 (-39.7%) 已经跳变到接近饱和。这意味着即使少量合成数据也会造成严重 diversity 损害，但 entropy canary 的敏感区域在更高的 α。\\\\n\\\\n## generalize_pythia1b_c4_a100_s43 Analysis (2026-05-18)\\\\n\\\\n### 8-pair definition\\\\nThe \\\\\\\"8 pairs\\\\\\\" for C4 domain = {token_entropy, ece} × {distinct_1, distinct_2, distinct_3, mauve}.\\\\nScript: `c4_full_8pair_analysis.py` (hardcoded for s42). For s43 we ran inline.\\\\n\\\\n### Key Results (seed=43)\\\\n- **consensus_ge4: 8/8** (matches parent s42)\\\\n- **permg_fwd_fdr: 8/8** (matches parent s42)\\\\n- **permg_rev_fdr: 0/8** (stronger than parent's 3/8)\\\\n- Conclusion: **SUCCESS** — C4 domain multi-seed confirmed\\\\n\\\\n## CSMP Gradual Shift Evaluation (2026-05-18)\\\\n\\\\n### 决策记录\\\\nk=0.25 在所有 α (0.50/0.75/1.0) 下 EDD=0，推荐值无需因 regime 而变。\\\\n\\\\n### 关键发现\\\\n- CUSUM 与简单阈值 alarm gen 相同（都是 Gen 1），但 CUSUM 有 FAR 保证和 severity 量化\\\\n- 论文突出 FAR 控制 + shift severity 度量，不 overclaim detection speed\\\\n\\\\n## D097 MMCT 权重模式决策 (2026-05-19)\\\\n\\\\n### 权威模式：uniform_fwd\\\\n**dual_track 图表 + dose-response 表统一使用 uniform_fwd。**\\\\n\\\\n理由：\\\\n- uniform_fwd 在 α=0.10 给出干净的 0/8（双 seed 一致）\\\\n- wpair 在 α≤0.10 不稳定（仅 3 null seeds，FPR 权重方差大）：s42=2/8, s43=4/8\\\\n- uniform 和 wglobal 在所有 alpha 点结论一致\\\\n- 简洁透明，无需校准参数\\\\n\\\\n### wpair 保留用途\\\\n- supplementary/appendix：方法敏感性讨论素材\\\\n- Claim 3 支撑：weighting 选择如何影响 boundary regime 结论\\\\n- 论文 Method 节：FPR-inverse weighting (wpair) 为理论最优，推荐 uniform 当 null sample < 10 seeds\\\\n\\\\n## 新模型信息 (2026-05-18)\\\\n\\\\n### Gemma 4 E2B — 已放弃\\\\nDirector 决策 D073: 5.10B params，多模态，无纯文本 base，放弃。\\\\n\\\\n### Director 决策：选 SmolLM3-3B-Base 替代 Gemma\\\\n理由：已有 Qwen3.5-0.8B，再加 Qwen3-1.7B 是同架构家族。\\\\n当前架构覆盖：Pythia(GPT-NeoX), GPT-2(OpenAI), OPT(Meta), Qwen3.5(Alibaba), SmolLM3(HuggingFace) = 5个独立架构族。\\\\n\\\\n### SmolLM3-3B-Base — 已下载验证 ✅\\\\n- HF ID: `HuggingFaceTB/SmolLM3-3B-Base`\\\\n- 3.08B 参数, vocab 128K, Apache 2.0, 2025-07-08\\\\n- 两台服务器路径: `/root/autodl-tmp/models/SmolLM3-3B-Base/`\\\\n- 原生 dtype: bfloat16（D080 确认）\\\\n\\\\n### Qwen3.5-0.8B-Base — 已验证可用 ✅\\\\n- 0.75B 参数, vocab 248K\\\\n- 两台服务器路径: `/root/autodl-tmp/models/Qwen3.5-0.8B-Base/` (必须用本地路径)\\\\n- Model class: `Qwen3_5ForCausalLM`\\\\n- 原生 dtype: bfloat16（safetensors 存储，D080 确认 transformers 5.8.1 忽略 torch_dtype 参数）\\\\n\\\", \\\"total_chars\\\": 5048, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/memory.md\", \"content\": \"# Memory\\n\\n## D079 精度规则（2026-05-18，替代旧 bf16 硬约束）\\n\\n### bf16 vs fp32 系统性差异（Reviewer critical 发现）\\nGPT-2m fp32 (s42) vs bf16 (s43) 在 α=1.0：entropy drift 差 5.2×（-86.6% vs -16.6%），ppl drift 差 ~730×（+50,527% vs +68.6%）。bf16 的 stochastic rounding 提供强隐式正则化，系统性抑制 collapse。\\n\\n### 精度规则\\n- **≤3B 模型一律 fp32**（不传 --bf16）\\n- **>3B 模型**（如 Pythia-6.9B）允许 bf16，论文中 framing 为\\\"bf16 条件下 pattern 是否持续\\\"\\n- Table 7 和 dose-response map 主轴只用 fp32 数据\\n- bf16 实验作为补充证据，论文中明确标注\\n\\n### westd-17855 fp32 支持\\n- 旧问题：不带 --bf16 时 fp16 GradScaler crash（Blackwell 不兼容）\\n- 已修复：iterative_train.py 修改为不带 --bf16 时使用纯 fp32（禁用 GradScaler + autocast）\\n- dry-run 通过：westd-17855 cuda:4 上 Pythia-410M fp32 训练成功\\n\\n## D080 torch_dtype bug 及修复（2026-05-19）\\n\\n### 根因\\niterative_train.py 中 `_DTYPE_KWARG: torch.bfloat16 if args.bf16 else None`。`torch_dtype=None` 导致模型以原生 dtype 加载：\\n- Pythia-410M/1.4B: 原生 float16 → 无 GradScaler → loss=0, grad_norm=nan\\n- SmolLM3-3B: 原生 bfloat16 → 训练正常但精度不是 D079 要求的 fp32\\n- Qwen3.5-0.8B: safetensors 存储为 bfloat16 → 同上\\n\\n### 修复（两轮）\\n1. `else None` → `else torch.float32`：对大多数模型有效（SmolLM3 确认 13.8GB = fp32）\\n2. 添加 `model.to(dtype=target_dtype)` 强制转换：Qwen3.5 的 safetensors 格式导致 transformers 5.8.1 忽略 `torch_dtype` 参数，必须显式 `.to()` 才能转 float32\\n\\n### iterative_train.py 当前版本\\n- md5: `5b37837e7a6378f42bcb740f8f5e4773`（两台服务器一致）\\n- 包含: fp16=False + `else torch.float32` + `.to(dtype=target_dtype)` 强制转换\\n\\n### 教训\\n- `torch_dtype` 参数在 transformers 中对不同模型行为不一致，`.to()` 是唯一可靠的 dtype 转换方式\\n- 内存用量可以验证 dtype：3B fp32 ≈ 12-14GB, 3B bf16 ≈ 6-7GB\\n\\n## westd-17855 环境提交规范（2026-05-18）\\n\\n### 问题\\nwestd-17855 的 `.bashrc` 无 conda init 块且有 `[ -z \\\"$PS1\\\" ] && return` 导致非交互 shell 跳过所有配置。裸 `python` 命令和缺少 HF 环境变量均导致失败。\\n\\n### 完整提交命令模板\\n```\\nbash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && CUDA_VISIBLE_DEVICES=N python -u iterative_train.py ...\\\"\\n```\\n**必须包含**：conda 激活 + HF 三个环境变量。缺少 HF_HOME 会导致模型下载失败（网络不可达）。\\nwestd-19828 同理。\\n\\n### 历史失败\\n- EXIT_CODE=127（python not found）：缺 conda 激活\\n- 模型下载 crash：缺 HF_HOME/HF_ENDPOINT 环境变量\\n- interv_pred_a075_s42_fp32 连续失败两次才定位到 HF 环境变量问题\\n\\n## fp32 模型坍缩导致 metrics 崩溃（2026-05-18）\\n\\n### 问题\\nfp32 模式下（特别是高 α 如 0.75），模型可能在 Gen 1 出现完全坍缩（loss=0, grad_norm=nan）。此时 `compute_effective_rank` 中 `np.linalg.eigvalsh(cov)` 因协方差矩阵病态抛出 `LinAlgError: Eigenvalues did not converge`，导致整个实验进程 crash。\\n\\n### 已修复\\n`metrics.py` `compute_effective_rank`：加 NaN/Inf 前置检查 + eigvalsh→SVD fallback + 空特征值 guard。\\n\\n### 教训\\n- 诊断 Worker 看到进程启动就报\\\"已修复\\\"是不够的——fp32 实验崩溃点在 Gen 1 metrics 阶段（~10-15 min 后），必须等足够长时间验证\\n- EXIT_CODE=127 可能掩盖了真正的崩溃原因（cron 检测旧进程退出码，后续重提交的进程有不同的失败模式）\\n\\n## α=0.10 Informative Negative (2026-05-18)\\n\\n### 关键发现：Canary 灵敏度下界\\n- α=0.10 时 diversity collapse 已饱和（distinct_1 -39.7%，≈ α=0.25 的 -40.5%）\\n- 但 entropy canary 完全无信号（token_entropy 与 null 差 0.17%，PermG 0/16 sig）\\n- **检测阈值在 α=0.25 到 α=0.50 之间**\\n- 论文角度：这是 dose-response curve 的精确刻画，不是方法 failure\\n\\n### 非线性饱和效应\\nDiversity collapse 并非随 α 线性增长——从 null (-13.8%) 到 α=0.10 (-39.7%) 已经跳变到接近饱和。这意味着即使少量合成数据也会造成严重 diversity 损害，但 entropy canary 的敏感区域在更高的 α。\\n\\n## generalize_pythia1b_c4_a100_s43 Analysis (2026-05-18)\\n\\n### 8-pair definition\\nThe \\\"8 pairs\\\" for C4 domain = {token_entropy, ece} × {distinct_1, distinct_2, distinct_3, mauve}.\\nScript: `c4_full_8pair_analysis.py` (hardcoded for s42). For s43 we ran inline.\\n\\n### Key Results (seed=43)\\n- **consensus_ge4: 8/8** (matches parent s42)\\n- **permg_fwd_fdr: 8/8** (matches parent s42)\\n- **permg_rev_fdr: 0/8** (stronger than parent's 3/8)\\n- Conclusion: **SUCCESS** — C4 domain multi-seed confirmed\\n\\n## CSMP Gradual Shift Evaluation (2026-05-18)\\n\\n### 决策记录\\nk=0.25 在所有 α (0.50/0.75/1.0) 下 EDD=0，推荐值无需因 regime 而变。\\n\\n### 关键发现\\n- CUSUM 与简单阈值 alarm gen 相同（都是 Gen 1），但 CUSUM 有 FAR 保证和 severity 量化\\n- 论文突出 FAR 控制 + shift severity 度量，不 overclaim detection speed\\n\\n## D097 MMCT 权重模式决策 (2026-05-19)\\n\\n### 权威模式：uniform_fwd\\n**dual_track 图表 + dose-response 表统一使用 uniform_fwd。**\\n\\n理由：\\n- uniform_fwd 在 α=0.10 给出干净的 0/8（双 seed 一致）\\n- wpair 在 α≤0.10 不稳定（仅 3 null seeds，FPR 权重方差大）：s42=2/8, s43=4/8\\n- uniform 和 wglobal 在所有 alpha 点结论一致\\n- 简洁透明，无需校准参数\\n\\n### wpair 保留用途\\n- supplementary/appendix：方法敏感性讨论素材\\n- Claim 3 支撑：weighting 选择如何影响 boundary regime 结论\\n- 论文 Method 节：FPR-inverse weighting (wpair) 为理论最优，推荐 uniform 当 null sample < 10 seeds\\n\\n## 新模型信息 (2026-05-18)\\n\\n### Gemma 4 E2B — 已放弃\\nDirector 决策 D073: 5.10B params，多模态，无纯文本 base，放弃。\\n\\n### Director 决策：选 SmolLM3-3B-Base 替代 Gemma\\n理由：已有 Qwen3.5-0.8B，再加 Qwen3-1.7B 是同架构家族。\\n当前架构覆盖：Pythia(GPT-NeoX), GPT-2(OpenAI), OPT(Meta), Qwen3.5(Alibaba), SmolLM3(HuggingFace) = 5个独立架构族。\\n\\n### SmolLM3-3B-Base — 已下载验证 ✅\\n- HF ID: `HuggingFaceTB/SmolLM3-3B-Base`\\n- 3.08B 参数, vocab 128K, Apache 2.0, 2025-07-08\\n- 两台服务器路径: `/root/autodl-tmp/models/SmolLM3-3B-Base/`\\n- 原生 dtype: bfloat16（D080 确认）\\n\\n### Qwen3.5-0.8B-Base — 已验证可用 ✅\\n- 0.75B 参数, vocab 248K\\n- 两台服务器路径: `/root/autodl-tmp/models/Qwen3.5-0.8B-Base/` (必须用本地路径)\\n- Model class: `Qwen3_5ForCausalLM`\\n- 原生 dtype: bfloat16（safetensors 存储，D080 确认 transformers 5.8.1 忽略 torch_dtype 参数）\\n\", \"total_chars\": 5048, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "42bc9dc0-7d96-4501-8503-136c644083db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 79_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: c4_a075_s42_fp32 - project: distrib_canary_collapse - server: westd-17855 - log_path: ~/run…",
+  "leafUuid": "107a8d70-4849-4353-ac43-9a56cc3c8065",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 80_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark as done",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133"
+}
+```
+
+---
+
+### Assistant
+
+_source line 81 · 2026-05-19T18:22:12.178Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have good context. Let me spawn two workers in parallel:
+1. One to analyze c4_a075_s42_fp32
+2. One to analyze c4_a050_s42_fp32
+
+Both need to SSH to westd-17855, navigate to the results, run the 8-pair MMCT analysis, and report back.
+
+Key analysis requirements:
+- 8-pair: {token_entropy, ece} × {distinct_1, distinct_2, distinct_3, mauve}
+- 6 methods: naive_xcorr, diff_xcorr, threshold_onset, perm_granger (fwd+rev), TY_granger
+
+
+- PermG fwd/rev, K≥3 and K≥4 with 3σ thresholds, threshold_onset metrics
+- Gen0/Gen10 drift tracking for all metrics
+- True 3σ validation per D105 requirements
+- FDR correction applied per-method as per D086
+- Running with n_perm=5000
+
+For c4_a075_s42_fp32, I'm building on the parent alpha_sweep_a075_s42_fp32 (WikiText α=0.75 with PermG 6/8 and K≥4 6/8 success rates) to verify whether C4 exhibits the same canary lead-lag patterns.
+
+For c4_a050_s42_fp32, the parent run used bf16 precision and showed zero PermG detections across all 8 runs. The key question is whether switching to fp32 will reveal PermG signals—if so, it indicates the bf16 result was a precision artifact rather than C4 at α=0.50 being in a blind zone. I need to spawn the workers and let them handle the analysis inline, checking what analysis infrastructure exists on the remote server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "107a8d70-4849-4353-ac43-9a56cc3c8065",
+  "isSidechain": false,
+  "requestId": "req_011CbCPiFeYcmBhcG6EafpsH",
+  "type": "assistant",
+  "uuid": "4c064faf-41d8-41c1-bc8a-15738e41e947",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tp99j7czgv3BWYdeSzjm1X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3660,
+      "cache_read_input_tokens": 74801,
+      "output_tokens": 798,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3660,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 798,
+          "cache_read_input_tokens": 74801,
+          "cache_creation_input_tokens": 3660,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3660
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82 · 2026-05-19T18:22:12.202Z_
+
+两个 ANALYZING 实验需要分析。派两个 Worker 并行处理。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4c064faf-41d8-41c1-bc8a-15738e41e947",
+  "isSidechain": false,
+  "requestId": "req_011CbCPiFeYcmBhcG6EafpsH",
+  "type": "assistant",
+  "uuid": "33d38e10-9f80-4fe8-8d46-2f899cf0b282",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tp99j7czgv3BWYdeSzjm1X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3660,
+      "cache_read_input_tokens": 74801,
+      "output_tokens": 798,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3660,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 798,
+          "cache_read_input_tokens": 74801,
+          "cache_creation_input_tokens": 3660,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3660
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-19T18:22:13.141Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01RDSMcZoL7zk2sTjpfz27EN`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "33d38e10-9f80-4fe8-8d46-2f899cf0b282",
+  "isSidechain": false,
+  "requestId": "req_011CbCPiFeYcmBhcG6EafpsH",
+  "type": "assistant",
+  "uuid": "2ade8bd0-6685-4f3c-ae8f-7f99269ca1cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tp99j7czgv3BWYdeSzjm1X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3660,
+      "cache_read_input_tokens": 74801,
+      "output_tokens": 798,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3660,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 798,
+          "cache_read_input_tokens": 74801,
+          "cache_creation_input_tokens": 3660,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3660
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-19T18:22:13.161Z_
+
+<details><summary>↩ Tool result · `toolu_01RDSMcZoL7zk2sTjpfz27EN`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_worker_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_workers"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2ade8bd0-6685-4f3c-ae8f-7f99269ca1cb",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "c77c315f-cd0c-4712-b9b3-9efa6b5d3dfe",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "2ade8bd0-6685-4f3c-ae8f-7f99269ca1cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 85 · 2026-05-19T18:22:13.178Z_
+
+```json
+{
+  "parentUuid": "c77c315f-cd0c-4712-b9b3-9efa6b5d3dfe",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "36f4ea1b-bcae-4b5c-9330-0ab0a99ab73e",
+  "timestamp": "2026-05-19T18:22:13.178Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-19T18:22:16.493Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers · `toolu_011eJy689iCtitKGxZimzvw1`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "status": "running",
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "36f4ea1b-bcae-4b5c-9330-0ab0a99ab73e",
+  "isSidechain": false,
+  "requestId": "req_011CbCPjUm7ioThUX6xU7DyD",
+  "type": "assistant",
+  "uuid": "76587bbc-3ef6-4fae-bfa8-13e9de458a93",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vtd8SWick3YV5BX1QsCv1V",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2194,
+      "cache_read_input_tokens": 78461,
+      "output_tokens": 103,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2194,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 103,
+          "cache_read_input_tokens": 78461,
+          "cache_creation_input_tokens": 2194,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2194
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-19T18:22:16.574Z_
+
+<details><summary>↩ Tool result · `toolu_011eJy689iCtitKGxZimzvw1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_analysis_c4_a050_s42_fp32_20260519T182208\", \"task_type\": \"analysis:c4_a050_s42_fp32\", \"project\": \"distrib_canary_collapse\", \"status\": \"running\", \"started_at\": \"2026-05-19T18:22:08.973081+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "76587bbc-3ef6-4fae-bfa8-13e9de458a93",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "9c9008b3-83bb-409c-bec9-e8cb6a617800",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_analysis_c4_a050_s42_fp32_20260519T182208\\\", \\\"task_type\\\": \\\"analysis:c4_a050_s42_fp32\\\", \\\"project\\\": \\\"distrib_canary_collapse\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-19T18:22:08.973081+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 1}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_analysis_c4_a050_s42_fp32_20260519T182208\", \"task_type\": \"analysis:c4_a050_s42_fp32\", \"project\": \"distrib_canary_collapse\", \"status\": \"running\", \"started_at\": \"2026-05-19T18:22:08.973081+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "76587bbc-3ef6-4fae-bfa8-13e9de458a93",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 88 · 2026-05-19T18:22:30.822Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's already a worker running for c4_a050_s42_fp32 analysis. So I only need to spawn a worker for c4_a075_s42_fp32. Let me do that now.
+
+Let me construct a comprehensive prompt for the c4_a075_s42_fp32 analysis worker. The worker needs to:
+1. SSH to westd-17855
+2. Run the MMCT 8-pair analysis on the results
+3. Compute PermG fwd/rev, K≥3(3σ), K≥4(3σ), threshold_onset, TY
+
+
+4. Compare the metrics against the parent WikiText model (alpha_sweep_a075_s42_fp32) which showed PermG 6/8 and K≥4 6/8
+5. Report back with the full results
+
+The analysis will run on the C4 dataset with α=0.75, seed=42, fp32 precision using Pythia-410M, pulling from the results/alpha_sweep/c4_a075_s42_fp32 directory on westd-17855.
+
+For the analysis itself, I need to apply D105 true 3σ detection, D086 per-alpha BH FDR correction, and D102 unified 8-pair comparison with n_perm=5000, xcorr_lag=5, and granger_lag=1. The parent experiment showed strong results on PermG forward (6/8), K≥4 (6/8), and perfect scores on TY_granger and threshold_onset (8/8 each), so I'm looking for similar or better performance on the C4 variant. I'll draft a clear prompt for the worker to execute the analysis script on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c9008b3-83bb-409c-bec9-e8cb6a617800",
+  "isSidechain": false,
+  "requestId": "req_011CbCPjjFkg64hrTGCqzA6h",
+  "type": "assistant",
+  "uuid": "035e15d0-d360-498c-9bbd-920dc8017a3a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SJ8YT4GsLxZgpe8T7rLHDj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 268,
+      "cache_read_input_tokens": 80655,
+      "output_tokens": 2289,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 268,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2289,
+          "cache_read_input_tokens": 80655,
+          "cache_creation_input_tokens": 268,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 268
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 89 · 2026-05-19T18:22:30.825Z_
+
+`c4_a050_s42_fp32` 已有 Worker 在跑分析。只需为 `c4_a075_s42_fp32` 派 Worker。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "035e15d0-d360-498c-9bbd-920dc8017a3a",
+  "isSidechain": false,
+  "requestId": "req_011CbCPjjFkg64hrTGCqzA6h",
+  "type": "assistant",
+  "uuid": "ccd58c10-72b5-4fc6-875f-fab3c958bb60",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SJ8YT4GsLxZgpe8T7rLHDj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 268,
+      "cache_read_input_tokens": 80655,
+      "output_tokens": 2289,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 268,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2289,
+          "cache_read_input_tokens": 80655,
+          "cache_creation_input_tokens": 268,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 268
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-19T18:23:00.016Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_01Se5jSv4kohJy7NTaMg46ec`</summary>
+
+```json
+{
+  "task_type": "analysis:c4_a075_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "task_prompt": "## 任务：分析实验 c4_a075_s42_fp32\n\n实验已完成训练，状态 ANALYZING，需要你跑 MMCT 8-pair 分析并产出报告。\n\n### 实验信息\n- exp_id: c4_a075_s42_fp32\n- Server: westd-17855\n- 代码路径: /root/autodl-tmp/distrib_canary_collapse\n- 结果路径: results/alpha_sweep/c4_a075_s42_fp32\n- Log: ~/runs/distrib_canary_collapse/c4_a075_s42_fp32.log\n- Model: EleutherAI/pythia-410m\n- Data: C4 5k, α=0.75, seed=42, fp32\n- Hypothesis: Claim 2 跨域验证——C4 数据集 α=0.75 regime boundary fp32。WikiText α=0.75 PermG=6/8，验证 canary lead-lag 跨域泛化。\n- Parent: alpha_sweep_a075_s42_fp32 (WikiText α=0.75, PermG_fwd=6/8, PermG_rev=0/8, K≥4=6/8, TY=8/8, threshold_onset=8/8)\n\n### SSH 连接\n先 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base` 激活环境。\n\n### 分析要求（D102/D105/D106 标准）\n\n**8-pair 定义**: {token_entropy, ece} × {distinct_1, distinct_2, distinct_3, mauve}\n\n**6 方法**: naive_xcorr, diff_xcorr, threshold_onset, perm_granger (fwd+rev), TY_granger\n\n**参数**: n_perm=5000, xcorr_lag=5, granger_lag=1, true 3σ (D105), per-method BH FDR q=0.05 (D086)\n\n**步骤**:\n1. 先 ssh_read_only 检查结果目录存在性和 gen 数据文件（metrics_gen*.json 或类似）\n2. 查看服务器上是否有现成分析脚本（如 `c4_full_8pair_analysis.py`、`permutation_granger.py` 等在代码目录下）。如果有，参考其逻辑。\n3. 运行 8-pair MMCT 分析，对每个 pair 跑 6 种方法，输出：\n   - Gen0/Gen10 各 metric 绝对值 + drift%\n   - 每种方法的 sig 率 (X/8)\n   - PermG fwd 和 rev 分开报\n   - Per-pair consensus votes（5 方法: naive, diff, threshold, permg_fwd, TY）\n   - K≥3(3σ) 和 K≥4(3σ)\n   - threshold_onset(3σ)\n4. 对比 parent (WikiText α=0.75):\n   - PermG_fwd: parent=6/8, C4=?\n   - PermG_rev: parent=0/8, C4=?\n   - K≥4: parent=6/8, C4=?\n   - drift 幅度对比\n\n### 产出\n1. **Registry 更新**（必须）: 用 update_registry 把 metrics 写入 registry（包含 PermG_fwd, PermG_rev, K_ge_3, K_ge_4, threshold_onset, 各 drift% 等），然后把 status 转为 DONE，conclusion 为 success 或 negative（PermG_fwd ≥ 4/8 = success，否则根据情况判断）。设置 checkpoint_path 和 log_path。\n2. **分析报告**（markdown）: 写到本地 artifacts 目录 `/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/c4_a075_s42_fp32/report/analysis_c4_a075_s42_fp32.md`，然后用 register_artifact 注册。\n\n### 注意\n- 如果服务器上已有 analysis 目录或现成脚本，优先复用\n- 确保用 true 3σ（不是 2σ）\n- FDR 校正是 per-method（每种方法内部 8 个 pair 做 BH）\n- 分析完后检查结果合理性（C4 α=0.75 fp32 预期 PermG 应该有 signal）",
+  "tool_groups": [
+    "ssh",
+    "registry",
+    "knowledge"
+  ],
+  "tools": [
+    "register_artifact"
+  ],
+  "context": "westd-17855 环境: conda base 环境，Python 在 /root/miniconda3/bin/python。必须 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base。HF_HOME=/root/autodl-tmp/.hf_cache。\n\nD105 3σ 要求: 全局使用 true 3σ threshold（不是 2σ）。threshold_onset 在 3σ 下 power 很低（大多数实验 0/8 或 2/8），这是已知 limitation。\n\nD106 指标优先级: PermG fwd 是主指标，K≥3(3σ) 是辅助指标，K≥4 降级 supplementary。\n\nParent 实验 alpha_sweep_a075_s42_fp32 结果:\n- PermG_fwd: 6/8, PermG_rev: 0/8\n- K≥4: 6/8\n- TY_granger: 8/8\n- threshold_onset: 8/8\n- entropy drift: -29.41%, d1 drift: -25.38%, ppl drift: +188.31%\n- Strong asymmetry (fwd=6, rev=0)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ccd58c10-72b5-4fc6-875f-fab3c958bb60",
+  "isSidechain": false,
+  "requestId": "req_011CbCPjjFkg64hrTGCqzA6h",
+  "type": "assistant",
+  "uuid": "bf1c6a93-3566-49d2-b565-8072e89fab0a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SJ8YT4GsLxZgpe8T7rLHDj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 268,
+      "cache_read_input_tokens": 80655,
+      "output_tokens": 2289,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 268,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2289,
+          "cache_read_input_tokens": 80655,
+          "cache_creation_input_tokens": 268,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 268
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-19T18:23:04.047Z_
+
+<details><summary>↩ Tool result · `toolu_01Se5jSv4kohJy7NTaMg46ec`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_c4_a075_s42_fp32_20260519T182301\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_c4_a075_s42_fp32_20260519T182301.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_c4_a075_s42_fp32_20260519T182301 started. Use get_worker_status('worker_analysis_c4_a075_s42_fp32_20260519T182301') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bf1c6a93-3566-49d2-b565-8072e89fab0a",
+  "isSidechain": false,
+  "promptId": "aa29599d-2d3e-4b07-b970-fe1488c69495",
+  "type": "user",
+  "uuid": "7f2667cb-ec03-4bcf-9adf-0ca518e2bcfa",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_c4_a075_s42_fp32_20260519T182301\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_c4_a075_s42_fp32_20260519T182301.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_c4_a075_s42_fp32_20260519T182301 started. Use get_worker_status('worker_analysis_c4_a075_s42_fp32_20260519T182301') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_c4_a075_s42_fp32_20260519T182301\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_c4_a075_s42_fp32_20260519T182301.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_c4_a075_s42_fp32_20260519T182301 started. Use get_worker_status('worker_analysis_c4_a075_s42_fp32_20260519T182301') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "bf1c6a93-3566-49d2-b565-8072e89fab0a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_8af87f9e",
+  "sessionId": "38bae40d-3d8f-453a-8fb7-5b6867430133",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
