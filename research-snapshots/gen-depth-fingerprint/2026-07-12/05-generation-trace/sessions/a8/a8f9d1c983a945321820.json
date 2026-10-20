@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "a8f9d1c983a945321820",
+  "project": "gen-depth-fingerprint--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> Server: autodl-5090, conda at /root/miniconda3. 6 generators: pythia-2.8b, pythia-1b, olmo-2-1b, qwen3-0",
+  "task_key": "76765ccd-4322-4dd0-a30b-3dc2c4c494e1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/76765ccd-4322-4dd0-a30b-3dc2c4c494e1.jsonl",
+    "occurrence": 1,
+    "bytes": 613043,
+    "sha256": "2a240c8b1c4a33625d5bba6590df0ddccbb084001a9a24552d8750cd906f9cc3"
+  },
+  "statistics": {
+    "messages": 302,
+    "user_turns": 1,
+    "tool_calls": 109,
+    "roles": {
+      "record": 50,
+      "user": 1,
+      "assistant": 33,
+      "tool_call": 109,
+      "tool_result": 109
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a8f9d1c983a945321820-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 300,
+      "chunks": [
+        {
+          "path": "a8f9d1c983a945321820-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "a8f9d1c983a945321820-part-0002.json",
+          "message_count": 122
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-server-autodl-5090-conda-at-root-miniconda3-6-generators-pythia.md"
+}

@@ -1,0 +1,1038 @@
+{
+  "schema_version": "1.0",
+  "id": "6796750b71b725389bf8",
+  "project": "gen-depth-fingerprint--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read these files in full and report their complete contents: 1. /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects",
+  "task_key": "agent-a59633b679c2ca02e",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a59633b679c2ca02e.jsonl",
+    "occurrence": 1,
+    "bytes": 61466,
+    "sha256": "c36c348f92fa2404b97a4cae05b89d7af849405b0a414549f2bb6cd43f96d039"
+  },
+  "statistics": {
+    "messages": 20,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "user": 1,
+      "assistant": 5,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T08:30:47.127Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read these files in full and report their complete contents:\n1. /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex (just the first 80 lines to find the abstract)\n2. /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex (full file)\n3. /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/generation.tex (full file if exists)\n4. /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/features.tex (full file if exists)\n5. /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/evaluation.tex (full file if exists)\n\nReport ALL numbers, statistics, F1 scores, effect sizes, model counts, dataset sizes, etc. found in each file."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "b1f1579c-3a08-4738-a0d2-62cdbce4d803",
+            "agentId": "a59633b679c2ca02e",
+            "type": "user",
+            "uuid": "593afb0e-ffd6-425f-95fe-7a75968d1f02",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ef0deb25-58cd-4916-8c8f-13a3573781d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "glittery-wishing-coral"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-25T08:30:48.785Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read these files for you. Let me start by checking which files exist and then reading them."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "593afb0e-ffd6-425f-95fe-7a75968d1f02",
+            "isSidechain": true,
+            "agentId": "a59633b679c2ca02e",
+            "requestId": "req_011CbNyV9T83rdysvEnk5zth",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0b8e2aed-c678-44a5-9ff1-cb5bfb358fd7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ef0deb25-58cd-4916-8c8f-13a3573781d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "glittery-wishing-coral",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DSgJbLRWjrAFnMJEYTgVxa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 39802,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 39802,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-25T08:30:49.211Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VwhFjV4jsUHReW4v9juMWW",
+              "name": "Bash",
+              "input": {
+                "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/ 2>/dev/null | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0b8e2aed-c678-44a5-9ff1-cb5bfb358fd7",
+            "isSidechain": true,
+            "agentId": "a59633b679c2ca02e",
+            "requestId": "req_011CbNyV9T83rdysvEnk5zth",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5a8fe1be-82c3-4e5a-b992-ef224544cb49",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ef0deb25-58cd-4916-8c8f-13a3573781d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "glittery-wishing-coral",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DSgJbLRWjrAFnMJEYTgVxa",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 39802,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 121,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 39802
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 121,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 39802,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 39802,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-25T08:30:49.351Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VwhFjV4jsUHReW4v9juMWW",
+              "type": "tool_result",
+              "content": "total 16052\ndrwxr-xr-x  8 ubuntu ubuntu    4096 May 25 08:21 .\ndrwxr-xr-x 12 ubuntu ubuntu    4096 May 20 06:45 ..\ndrwxr-xr-x  2 ubuntu ubuntu    4096 May 17 12:26 _pdf_images_r8\ndrwxr-xr-x  2 ubuntu ubuntu    4096 May 17 13:24 _pdf_images_r9\ndrwxr-xr-x  2 ubuntu ubuntu    4096 May 17 13:28 _pdf_images_r9b\ndrwxr-xr-x  2 ubuntu ubuntu    4096 May 19 12:50 _visual_check\n-rw-r--r--  1 ubuntu ubuntu    1481 May 24 23:44 abstract.tex\n-rw-r--r--  1 ubuntu ubuntu   11615 May 15 04:58 acl.sty\n-rw-r--r--  1 ubuntu ubuntu   45186 May 15 04:58 acl_natbib.bst\n-rw-r--r--  1 ubuntu ubuntu    4967 May 25 08:07 appendix_9gen_scale.tex\n-rw-r--r--  1 ubuntu ubuntu     713 May 22 15:30 appendix_ablation.tex\n-rw-r--r--  1 ubuntu ubuntu     246 May 25 04:19 appendix_ai_assistants.tex\n-rw-r--r--  1 ubuntu ubuntu    6752 May 22 15:30 appendix_classifier.tex\n-rw-r--r--  1 ubuntu ubuntu    2268 May 22 15:30 appendix_confusion_matrix.tex\n-rw-r--r--  1 ubuntu ubuntu     690 May 23 07:36 appendix_convergence.tex\n-rw-r--r--  1 ubuntu ubuntu    1707 May 22 15:30 appendix_cross_model_detail.tex\n-rw-r--r--  1 ubuntu ubuntu    2591 May 22 15:30 appendix_cross_temp.tex\n-rw-r--r--  1 ubuntu ubuntu    2625 May 22 15:30 appendix_dataset_stats.tex\n-rw-r--r--  1 ubuntu ubuntu    4039 May 22 15:30 appendix_ddr_causality.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5a8fe1be-82c3-4e5a-b992-ef224544cb49",
+            "isSidechain": true,
+            "promptId": "b1f1579c-3a08-4738-a0d2-62cdbce4d803",
+            "agentId": "a59633b679c2ca02e",
+            "type": "user",
+            "uuid": "635945b3-fe34-4bbf-8778-b0e1eb286069",
+            "sourceToolAssistantUUID": "5a8fe1be-82c3-4e5a-b992-ef224544cb49",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ef0deb25-58cd-4916-8c8f-13a3573781d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "glittery-wishing-coral"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-25T08:30:50.634Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read the specific files you requested:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "635945b3-fe34-4bbf-8778-b0e1eb286069",
+            "isSidechain": true,
+            "agentId": "a59633b679c2ca02e",
+            "requestId": "req_011CbNyVJttmEsrDjrvvCEwY",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0e2fae68-7869-4f33-b52e-dc6899fd5170",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ef0deb25-58cd-4916-8c8f-13a3573781d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "glittery-wishing-coral",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_014X11N5QgkheCQ7GsKzqEJd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1596,
+                "cache_read_input_tokens": 39802,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1596,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-25T08:30:51.936Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01961JBLu6MjD2DH5g9YWwFC",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex",
+                "limit": 80
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0e2fae68-7869-4f33-b52e-dc6899fd5170",
+            "isSidechain": true,
+            "agentId": "a59633b679c2ca02e",
+            "requestId": "req_011CbNyVJttmEsrDjrvvCEwY",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "48841157-4750-4722-9a13-6f1b88779183",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ef0deb25-58cd-4916-8c8f-13a3573781d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "glittery-wishing-coral",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_014X11N5QgkheCQ7GsKzqEJd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1596,
+                "cache_read_input_tokens": 39802,
+                "output_tokens": 264,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1596
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 264,
+                    "cache_read_input_tokens": 39802,
+                    "cache_creation_input_tokens": 1596,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1596,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-25T08:30:51.943Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015Xu2Ch3dnceYoksNE9XQTQ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "48841157-4750-4722-9a13-6f1b88779183",
+            "isSidechain": true,
+            "agentId": "a59633b679c2ca02e",
+            "requestId": "req_011CbNyVJttmEsrDjrvvCEwY",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f4614384-f666-42b2-8d6b-3464738d4cf5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ef0deb25-58cd-4916-8c8f-13a3573781d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "glittery-wishing-coral",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_014X11N5QgkheCQ7GsKzqEJd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1596,
+                "cache_read_input_tokens": 39802,
+                "output_tokens": 264,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1596
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 264,
+                    "cache_read_input_tokens": 39802,
+                    "cache_creation_input_tokens": 1596,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1596,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-25T08:30:51.947Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01961JBLu6MjD2DH5g9YWwFC",
+              "type": "tool_result",
+              "content": "1\t% EMNLP 2026 ARR Submission — ACL 2023 Template\n2\t\\documentclass[11pt]{article}\n3\t\\usepackage[review]{acl}\n4\t\\usepackage{times}\n5\t\\usepackage{latexsym}\n6\t\\usepackage[T1]{fontenc}\n7\t\\usepackage[utf8]{inputenc}\n8\t\\usepackage{microtype}\n9\t\\usepackage{graphicx}\n10\t\\usepackage{booktabs}\n11\t\\usepackage{enumitem}\n12\t\\usepackage{amsmath}\n13\t\\usepackage{amssymb}\n14\t\\usepackage{placeins}\n15\t\\usepackage{multirow}\n16\t\\usepackage{float}\n17\t\\usepackage{stfloats}\n18\t\\usepackage{alphalph}\n19\t\\usepackage{tcolorbox}\n20\t\\tcbuselibrary{breakable}\n21\t\n22\t\\graphicspath{{../chart/}}\n23\t\n24\t\\setlength{\\textfloatsep}{8pt plus 2pt minus 2pt}\n25\t\\setlength{\\floatsep}{8pt plus 2pt minus 2pt}\n26\t\\setlength{\\intextsep}{6pt plus 2pt minus 2pt}\n27\t\n28\t\\title{Depth Profiling: Classifying Recursive Generation Depth\\\\in Base-Model LLM Text}\n29\t\n30\t\\author{Anonymous}\n31\t\n32\t\\begin{document}\n33\t\\raggedbottom\n34\t\\maketitle\n35\t\n36\t\\input{abstract}\n37\t\n38\t\\input{introduction}\n39\t\\input{related_work}\n40\t\\input{method}\n41\t\\input{results}\n42\t\n43\t\\input{discussion}\n44\t\\input{conclusion}\n45\t\\input{limitations}\n46\t\\bibliography{references}\n47\t\n48\t\\appendix\n49\t\\renewcommand{\\thesection}{\\alphalph{\\value{section}}}\n50\t\n51\t\\noindent\\textbf{Note:} Unless otherwise stated, appendix experiments use the original six-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-1.7B/0.6B/8B).\n52\tMain paper results (\\S\\ref{sec:results}) use the full eight-generator set (adding Llama-3.2-3B and Mistral-7B-v0.3).\n53\t\n54\t\\input{appendix_dataset_stats}\n55\t\n56\t\\section{Length Confound Analysis}\n57\t\\label{app:length}\n58\t\\input{appendix_length}\n59\t\n60\t\\section{Prompt Type Generalization}\n61\t\\label{app:prompt-type}\n62\t\\input{appendix_prompt_type}\n63\t\\FloatBarrier\n64\t\n65\t\\section{Finer-Grained Depth Classification}\n66\t\\label{app:finer-depth}\n67\t\\input{appendix_finer_depth}\n68\t\\FloatBarrier\n69\t\n70\t\\section{End-to-End Depth Classification (QLoRA)}\n71\t\\label{app:qlora}\n72\t\\input{appendix_qlora}\n73\t\\FloatBarrier\n74\t\n75\t\\section{Leave-One-Feature-Out Analysis}\n76\t\\label{app:lofo}\n77\t\\input{appendix_lofo}\n78\t\\FloatBarrier\n79\t\n80\t\\subsection{Candidate Feature Screening}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "48841157-4750-4722-9a13-6f1b88779183",
+            "isSidechain": true,
+            "promptId": "b1f1579c-3a08-4738-a0d2-62cdbce4d803",
+            "agentId": "a59633b679c2ca02e",
+            "type": "user",
+            "uuid": "c9be4efd-9d3a-43af-aaed-d5c282b4d4f9",
+            "sourceToolAssistantUUID": "48841157-4750-4722-9a13-6f1b88779183",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ef0deb25-58cd-4916-8c8f-13a3573781d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "glittery-wishing-coral"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-25T08:30:51.949Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015Xu2Ch3dnceYoksNE9XQTQ",
+              "type": "tool_result",
+              "content": "1\t\\vspace{-1mm}\n2\t\\section{Method}\n3\t\\label{sec:method}\n4\t\n5\t\\begin{table}[t!]\n6\t\\centering\n7\t\\footnotesize\n8\t\\caption{Seven distributional features. ``Entropy'' features are per-token NLL under Pythia-410M (\\S\\ref{sec:features}); surface features require no reference model. DDR analysis (\\S\\ref{sec:results-differential}) reveals entropy mean, TTR, and hapax ratio drift with depth while entropy max, min, and tail decay remain near-stationary; entropy std is intermediate.}\n9\t\\label{tab:features}\n10\t\\setlength{\\tabcolsep}{4pt}\n11\t\\begin{tabular}{@{}llp{3.0cm}@{}}\n12\t\\toprule\n13\t\\textbf{Feature} & \\textbf{Source} & \\textbf{Measures} \\\\\n14\t\\midrule\n15\t\\texttt{entropy\\_mean} \\textit{\\scriptsize(NLL)} & Ref.\\ NLL & Central tendency of token surprise \\\\\n16\t\\texttt{entropy\\_std} \\textit{\\scriptsize(NLL)}  & Ref.\\ NLL & Spread of token surprise \\\\\n17\t\\texttt{entropy\\_max} \\textit{\\scriptsize(NLL)}  & Ref.\\ NLL & Maximum token surprise \\\\\n18\t\\texttt{entropy\\_min} \\textit{\\scriptsize(NLL)}  & Ref.\\ NLL & Minimum token surprise \\\\\n19\t\\texttt{tail\\_decay}   & Ref.\\ NLL & Log-prob decay slope (ranks 100--1K) \\\\\n20\t\\midrule\n21\t\\texttt{ttr}           & Surface & Type-token ratio \\\\\n22\t\\texttt{hapax\\_ratio}  & Surface & Proportion of hapax legomena \\\\\n23\t\\bottomrule\n24\t\\end{tabular}\n25\t\\end{table}\n26\t\n27\t\\begin{figure*}[t]\n28\t\\centering\n29\t\\includegraphics[width=\\textwidth]{fig2_framework.pdf}\n30\t\\caption{Depth profiling pipeline. (a)~Human seeds are iteratively fed through generator $G$ to produce chains of increasing depth. (b)~Seven features extracted from NLL distributions group into three DDR zones: drifting (red), intermediate (purple), near-stationary (blue). (c)~LOGO evaluation holds out one generator for testing.}\n31\t\\label{fig:framework}\n32\t\\end{figure*}\n33\t\n34\t\\subsection{Task Formulation}\n35\t\\label{sec:task}\n36\t\n37\tGiven a text $x$, we predict its \\emph{generation depth} $d \\in \\{0, 1, 2{+}\\}$: human-written ($d{=}0$), first-generation LLM output ($d{=}1$), or text produced by two or more recursive LLM generations ($d{=}2{+}$).\n38\tA generation chain of depth $k$ is defined recursively: $x^{(0)} \\sim \\mathcal{C}_0$ (human corpus), $x^{(k)} = G(x^{(k-1)})$ for $k \\geq 1$, where $G$ denotes stochastic autoregressive generation.\n39\tDepths beyond 2 are merged into $2{+}$ because feature convergence compresses inter-class margins at deeper levels (\\S\\ref{sec:results-differential}).\n40\t\n41\t\\subsection{Generation Chain Construction}\n42\t\\label{sec:generation}\n43\t\n44\t\\looseness=-1 We construct generation chains using eight generators spanning five model families: \\textbf{Pythia} (2.8B, 1B) \\cite{pythia}, \\textbf{OLMo} (OLMo-2-1B) \\cite{olmo}, \\textbf{Qwen} (Qwen3-1.7B, Qwen3-0.6B, Qwen3-8B-Base) \\cite{qwen3}, \\textbf{Llama} (Llama-3.2-3B) \\cite{llama3}, and \\textbf{Mistral} (Mistral-7B-v0.3) \\cite{mistral7b}.\n45\t\\looseness=-1 These span a 13$\\times$ parameter range (0.6B--8B) across five architectures; Qwen's overrepresentation (3/8) is a limitation mitigated by LOFO (F1\\,=\\,0.686; \\S\\ref{sec:results-classification}).\n46\t\n47\t\\looseness=-1 For each generator, we sample approximately 1{,}000 seed passages from English Wikipedia as $\\mathcal{C}_0$.\n48\tThe same seed pool serves as gen-0 for all generators, controlling for input content; in LOGO evaluation this creates a potential train--test overlap for gen-0, addressed by our binary evaluation excluding gen-0 entirely (\\S\\ref{sec:results-baselines}).\n49\tEach seed is iteratively fed through the generator to produce a chain of depth 4 (i.e., gen-0 through gen-4), using the prompt ``\\texttt{Continue the following text: \\{text\\}}''.\n50\tWe generate up to depth~4 to empirically confirm convergence: 5-class analysis shows adjacent depths 2--4 become indistinguishable (F1\\,$\\approx$\\,0.27; Appendix~\\ref{app:finer-depth}), motivating the gen-2+ class collapse.\n51\tAll generation uses temperature $\\tau{=}0.7$, nucleus sampling with $p{=}0.9$, and maximum length of 256 new tokens.\n52\tAfter filtering chain breaks and passages too short for feature extraction, 37{,}058 texts remain across all depths (Appendix~\\ref{app:dataset-stats}); depths 2--4 are collapsed into $2{+}$.\n53\t\n54\t\\subsection{Feature Extraction}\n55\t\\label{sec:features}\n56\t\n57\t\\paragraph{Terminology.} Throughout this paper, we refer to per-token cross-entropy loss under a fixed reference model as ``entropy'' for conciseness; these are reference-model NLL values, not true information-theoretic entropy of the generating distribution.\n58\t\n59\tWe use interpretable distributional statistics so that the DDR partition remains transparent; end-to-end neural features improve classification ($+$10.0\\,pp; Appendix~\\ref{app:qlora}) but obscure the decomposition (LOFO confirms both feature groups contribute independently; Appendix~\\ref{app:lofo}).\n60\t\n61\t\\looseness=-1 We extract seven distributional features per text (Table~\\ref{tab:features}), covering the NLL distribution's location, spread, extremes, and tail structure, plus two reference-free surface diversity measures; six additional NLL statistics were rejected for redundancy ($|r| > 0.65$, $\\Delta$F1\\,$\\leq$\\,$-0.011$; Appendix~\\ref{app:feature-candidate}).\n62\t\n63\t\\paragraph{Reference-model features.}\n64\t\\looseness=-1 A held-out reference model (Pythia-410M, chosen to be smaller than all generators) computes per-token negative log-likelihood (NLL) for each text.\n65\tCross-family reference validation (Appendix~\\ref{app:cross-ref}) shows F1 spread of only 0.013 across Pythia, OLMo, and Qwen references, confirming DDR is reference-model agnostic; however, all tested references are causal LMs.\n66\tFrom the resulting NLL sequence, we extract five statistics: mean, standard deviation, maximum, and minimum of the token-level NLL, plus tail\\_decay---the slope of the vocabulary-level averaged log-probability distribution in ranks 100--1000, capturing the power-law regime where depth-induced compression is most detectable.\n67\t\n68\t\\paragraph{Surface features.}\n69\tTwo features capture lexical diversity without requiring a reference model: type-token ratio (TTR) and the proportion of words appearing exactly once (hapax\\_ratio).\n70\t\n71\t\\paragraph{Feature complementarity.}\n72\tThese features exhibit a \\emph{differential depth response} (DDR), separating into drifting and non-drifting groups (\\S\\ref{sec:results-differential}; pairwise correlations in Appendix~\\ref{sec:appendix-feature-correlation}).\n73\tTTR and hapax ratio are strongly correlated ($r = 0.97$); both are retained for marginal LOFO gains.\n74\t\n75\t\\subsection{Evaluation Protocol}\n76\t\\label{sec:evaluation}\n77\t\n78\t\\paragraph{Cross-validation.}\n79\t\\looseness=-1 We evaluate generalization via \\textbf{Leave-One-Generator-Out (LOGO)} cross-validation: each fold holds out one generator entirely, so the classifier must generalize to a generator absent from training---the strictest per-model protocol for assessing deployment against previously unseen generators.\n80\tLOGO does not isolate family-level effects; \\textbf{Leave-One-Family-Out (LOFO)} addresses this by holding out entire model families (binary F1\\,=\\,0.686; \\S\\ref{sec:results-classification}).\n81\tGenerator subsets vary across experiments (Appendix~\\ref{app:gen-subsets-section}).\n82\t\n83\t\\paragraph{Classifier.}\n84\t\\looseness=-1 We use XGBoost \\cite{xgboost} throughout ($n\\_\\text{estimators}{=}200$, $\\max\\_\\text{depth}{=}6$, learning rate $0.1$; fixed without tuning), with identical hyperparameters across all methods in Table~\\ref{tab:baselines}.\n85\tAlternative classifiers (CORAL \\cite{coral_ordinal}, CORN \\cite{corn_ordinal}, Frank-Hall \\cite{frank_hall_ordinal}) yield comparable performance (Appendix~\\ref{app:classifier}); hyperparameter sensitivity (max\\_depth sweep) shows F1 variation $\\leq$2.0\\,pp, confirming discriminative power resides in the features, not the classifier.\n86\t\n87\t\\paragraph{Metrics and statistical testing.}\n88\tThe primary metric is \\textbf{macro-averaged F1} over the three depth classes, with 95\\% bootstrap confidence intervals (CIs; $n{=}1{,}000$).\n89\tAll $p$-values are two-sided with Bonferroni correction within each family of simultaneous tests.\n90\t\n91\t\\paragraph{Baselines.}\n92\tWe compare the 7-feature ensemble against four single-score detection methods repurposed as depth predictors: Avg-LogProb, FastDetectGPT \\cite{fast_detectgpt}, Binoculars \\cite{binoculars}, and LD-Score \\cite{ld_score}.\n93\tEach baseline score is used as a univariate feature in the same XGBoost framework under LOGO cross-validation to ensure a controlled comparison.\n94\t\n95\t\\paragraph{Length confound control.}\n96\tSince TTR and hapax\\_ratio are mechanically length-dependent, we verify depth signal is not a length artifact via length-matched subsampling that equalizes length distributions across depth classes (\\S\\ref{sec:results-classification}; Appendix~\\ref{app:length}).\n97\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f4614384-f666-42b2-8d6b-3464738d4cf5",
+            "isSidechain": true,
+            "promptId": "b1f1579c-3a08-4738-a0d2-62cdbce4d803",
+            "agentId": "a59633b679c2ca02e",
+            "type": "user",
+            "uuid": "7e085509-7f1b-43aa-8754-bcb3c5f7c353",
+            "sourceToolAssistantUUID": "f4614384-f666-42b2-8d6b-3464738d4cf5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ef0deb25-58cd-4916-8c8f-13a3573781d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "glittery-wishing-coral"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-25T08:30:51.967Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PUCAKUdzDPHQ3s4E8h1Q9C",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/evaluation.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7e085509-7f1b-43aa-8754-bcb3c5f7c353",
+            "isSidechain": true,
+            "agentId": "a59633b679c2ca02e",
+            "requestId": "req_011CbNyVJttmEsrDjrvvCEwY",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ebbc63fd-d33b-48f1-81a2-da880e760f48",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ef0deb25-58cd-4916-8c8f-13a3573781d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "glittery-wishing-coral",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_014X11N5QgkheCQ7GsKzqEJd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1596,
+                "cache_read_input_tokens": 39802,
+                "output_tokens": 264,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1596
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 264,
+                    "cache_read_input_tokens": 39802,
+                    "cache_creation_input_tokens": 1596,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1596,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-25T08:30:51.974Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f.",
+              "is_error": true,
+              "tool_use_id": "toolu_01PUCAKUdzDPHQ3s4E8h1Q9C"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ebbc63fd-d33b-48f1-81a2-da880e760f48",
+            "isSidechain": true,
+            "promptId": "b1f1579c-3a08-4738-a0d2-62cdbce4d803",
+            "agentId": "a59633b679c2ca02e",
+            "type": "user",
+            "uuid": "d004be9a-2c97-43f6-a96b-6af23d847dd2",
+            "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f.",
+            "sourceToolAssistantUUID": "ebbc63fd-d33b-48f1-81a2-da880e760f48",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ef0deb25-58cd-4916-8c8f-13a3573781d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "glittery-wishing-coral"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-25T08:30:53.448Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check for the evaluation file and other files that might exist:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d004be9a-2c97-43f6-a96b-6af23d847dd2",
+            "isSidechain": true,
+            "agentId": "a59633b679c2ca02e",
+            "requestId": "req_011CbNyVW7LNmmESACWhq7dG",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9d87da88-fea7-47ed-849b-f59d079ed4c6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ef0deb25-58cd-4916-8c8f-13a3573781d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "glittery-wishing-coral",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UsnLsg5EXF72P2Smxojmk2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 4176,
+                "cache_read_input_tokens": 41398,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4176,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-25T08:30:53.916Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01X7hULWmxw7oCFzo7MiRL4C",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/*.tex | grep -E \"(generation|features|evaluation|results)\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9d87da88-fea7-47ed-849b-f59d079ed4c6",
+            "isSidechain": true,
+            "agentId": "a59633b679c2ca02e",
+            "requestId": "req_011CbNyVW7LNmmESACWhq7dG",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fd427fa6-fc7e-4f78-ae9d-2487e7cc154f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ef0deb25-58cd-4916-8c8f-13a3573781d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "glittery-wishing-coral",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UsnLsg5EXF72P2Smxojmk2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 4176,
+                "cache_read_input_tokens": 41398,
+                "output_tokens": 116,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4176
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 116,
+                    "cache_read_input_tokens": 41398,
+                    "cache_creation_input_tokens": 4176,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4176,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-25T08:30:53.973Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01X7hULWmxw7oCFzo7MiRL4C",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fd427fa6-fc7e-4f78-ae9d-2487e7cc154f",
+            "isSidechain": true,
+            "promptId": "b1f1579c-3a08-4738-a0d2-62cdbce4d803",
+            "agentId": "a59633b679c2ca02e",
+            "type": "user",
+            "uuid": "c385d218-00f5-44cb-a8eb-1dcb92ef3360",
+            "sourceToolAssistantUUID": "fd427fa6-fc7e-4f78-ae9d-2487e7cc154f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ef0deb25-58cd-4916-8c8f-13a3573781d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "glittery-wishing-coral"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-25T08:30:55.406Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the results file and the abstract:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c385d218-00f5-44cb-a8eb-1dcb92ef3360",
+            "isSidechain": true,
+            "agentId": "a59633b679c2ca02e",
+            "requestId": "req_011CbNyVez8WciePZVMJA8PD",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "dd4706df-25ac-4154-98c6-754b7d272e93",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ef0deb25-58cd-4916-8c8f-13a3573781d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "glittery-wishing-coral",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016Aqpqb5zJ6b2JDoei6Lh6T",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 166,
+                "cache_read_input_tokens": 45574,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 166,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-25T08:30:55.873Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YFNATuZLPPYyu7CxYjS1UM",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/abstract.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd4706df-25ac-4154-98c6-754b7d272e93",
+            "isSidechain": true,
+            "agentId": "a59633b679c2ca02e",
+            "requestId": "req_011CbNyVez8WciePZVMJA8PD",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2dbec7dd-0782-435f-a54c-75ac4345d244",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ef0deb25-58cd-4916-8c8f-13a3573781d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "glittery-wishing-coral",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016Aqpqb5zJ6b2JDoei6Lh6T",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 166,
+                "cache_read_input_tokens": 45574,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 166,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-25T08:30:55.879Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YFNATuZLPPYyu7CxYjS1UM",
+              "type": "tool_result",
+              "content": "1\t% Abstract — Depth Profiling of Recursive LLM Generation Chains\n2\t\\begin{abstract}\n3\tAs large language model (LLM) outputs re-enter training corpora and seed further generation, understanding how recursive generation reshapes text distributions is critical for data provenance and corpus curation---yet existing detectors answer only the binary human-or-machine question, ignoring \\emph{generation depth}: we introduce \\emph{depth profiling} to address this gap.\n4\tWe decompose distributional drift under recursive generation into location and shape components, revealing an asymmetry we term \\emph{differential depth response} (DDR): across eight base-model generators from five families, negative log-likelihood (NLL) location features drift monotonically with depth (effect size $d{=}0.74$--$1.05$) while three shape features remain near-stationary ($d < 0.10$), with entropy std intermediate ($d{=}0.46$)---a ${\\geq}8{\\times}$ effect-size gap.\n5\tPrior work documents \\emph{what converges}; the central finding here is \\emph{what is approximately preserved}: shape stability complements location drift for ordinal depth grading without per-generator calibration, achieving leak-free binary F1\\,=\\,0.694 (gen-1 vs.\\ gen-2+), cross-model binary F1\\,=\\,0.830, and 3-class F1\\,=\\,0.762 under leave-one-generator-out evaluation (gen-0 seeds shared across generators; \\S\\ref{sec:generation}).\n6\tInstruction tuning compresses DDR, bounding current applicability to base models.\n7\t\\end{abstract}\n8\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2dbec7dd-0782-435f-a54c-75ac4345d244",
+            "isSidechain": true,
+            "promptId": "b1f1579c-3a08-4738-a0d2-62cdbce4d803",
+            "agentId": "a59633b679c2ca02e",
+            "type": "user",
+            "uuid": "8809a416-029b-4420-aa46-b67c92e58d2f",
+            "sourceToolAssistantUUID": "2dbec7dd-0782-435f-a54c-75ac4345d244",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ef0deb25-58cd-4916-8c8f-13a3573781d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "glittery-wishing-coral"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-25T08:30:55.998Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Wev2eEWARPzVtRSRmVdQcQ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8809a416-029b-4420-aa46-b67c92e58d2f",
+            "isSidechain": true,
+            "agentId": "a59633b679c2ca02e",
+            "requestId": "req_011CbNyVez8WciePZVMJA8PD",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d21a0715-9552-46d6-8f70-264bfcc7bc5d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ef0deb25-58cd-4916-8c8f-13a3573781d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "glittery-wishing-coral",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016Aqpqb5zJ6b2JDoei6Lh6T",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 166,
+                "cache_read_input_tokens": 45574,
+                "output_tokens": 174,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 166
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 174,
+                    "cache_read_input_tokens": 45574,
+                    "cache_creation_input_tokens": 166,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 166,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-25T08:30:56.015Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Wev2eEWARPzVtRSRmVdQcQ",
+              "type": "tool_result",
+              "content": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\t\\begin{figure}[t]\n5\t\\centering\n6\t\\includegraphics[width=\\columnwidth]{fig_transfer_heatmap.pdf}\n7\t\\caption{Cross-generator $8{\\times}8$ transfer matrix (binary F1, gen-1 vs.\\ gen-2+). Mean cross-generator F1\\,=\\,0.810 [95\\% CI: 0.796, 0.822]; uniformly high off-diagonal values confirm depth signal transfers across five families without calibration.}\n8\t\\label{fig:transfer-heatmap}\n9\t\\end{figure}\n10\t\n11\t\\subsection{Depth Classification Performance}\n12\t\\label{sec:results-classification}\n13\t\n14\t\\looseness=-1 The 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\n15\tThis 3-class metric is inflated by shared gen-0 seeds (per-class gen-0 F1\\,$\\approx$\\,0.94; \\S\\ref{sec:generation}); we therefore report \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) throughout, excluding gen-0 entirely.\n16\tPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; std.\\ dev.\\ 0.028), with the primary difficulty at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\n17\t\n18\t\\paragraph{Cross-model generalization.}\n19\t\\looseness=-1 Cross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B; generator-level LOGO with bootstrap CIs ($n$\\,=\\,1{,}000).}\n20\tSingle-generator transfer confirms the signal is not a mixed-chain artifact (mean transfer F1\\,=\\,0.810, Figure~\\ref{fig:transfer-heatmap}; LOFO\\,=\\,0.686); analysis of variance (ANOVA) confirms generator identity contributes ${<}1$\\% of feature variance ($\\eta^2_{\\text{gen}} \\leq 0.009$; Appendix~\\ref{app:cross-model-detail}).\n21\tA scale effect emerges: smaller models achieve higher F1 (Pythia-2.8B: 0.724 vs.\\ Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (spread $\\leq$0.013; \\S\\ref{sec:results-differential}).\n22\tAn end-to-end QLoRA classifier reaches 3-class F1\\,=\\,0.905 (within-model 5-fold CV; $+$10.0\\,pp; Appendix~\\ref{app:qlora}), confirming additional depth signal in token-level representations; on instruct data, QLoRA recovers to 0.89--0.91 (within-model; Appendix~\\ref{app:instruct}), establishing the decomposition as DDR's primary contribution.\n23\t\n24\t\\paragraph{Confound controls.}\n25\t\\looseness=-1 Length-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770; Appendix~\\ref{app:length}); independent-seed evaluation with disjoint pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) confirms the classifier captures generative degradation, not seed-specific content.\n26\t\n27\t\\paragraph{Error analysis.}\n28\t\\looseness=-1 The gen-1\\,/\\,gen-2+ boundary is the primary failure point: depth-2 samples---the shallowest within the 2+ class---exhibit the highest error rate (48.4\\%), decreasing monotonically to 20.3\\% at depth-4 (Appendix~\\ref{app:error-analysis}), reflecting insufficient accumulated drift beyond the large gen-0$\\to$gen-1 distributional shift.\n29\tError rates decrease monotonically at deeper generations ($\\leq$29.2\\% at gen-3+), confirming that DDR signal strengthens with chain length; the DDR decomposition is the primary analytical contribution.\n30\t\n31\t\\begin{table}[t]\n32\t\\centering\n33\t\\footnotesize\n34\t\\caption{8-generator LOGO macro-F1 (bootstrap 95\\% CIs, $n$\\,=\\,1{,}000). Binary F1 excludes gen-0. $^{\\dagger}$3-class F1 has upward bias from shared gen-0 seeds; independent-seed controls confirm the signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n35\t\\label{tab:logo-results}\n36\t\\resizebox{\\columnwidth}{!}{%\n37\t\\begin{tabular}{@{}llcccc@{}}\n38\t\\toprule\n39\t\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-class F1}$^{\\dagger}$ \\\\\n40\t\\midrule\n41\tPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\n42\tPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\n43\tQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\n44\tLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\n45\tOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\n46\tQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\n47\tQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\n48\tMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n49\t\\midrule\n50\t\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n51\t\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n52\t\\bottomrule\n53\t\\end{tabular}}\n54\t\\end{table}\n55\t\n56\t\\subsection{Differential Depth Response}\n57\t\\label{sec:results-differential}\n58\t\n59\t\\paragraph{Formal definition.}\n60\t\\looseness=-1 For feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\n61\tA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; the two-cluster structure is robust across $\\varepsilon \\in [0.10, 0.75]$ ($k$-means silhouette\\,=\\,0.660, $p{=}0.030$; exhaustive split enumeration ranks this partition first; independent replication in all eight generators; Appendix~\\ref{app:ddr-validation}).\n62\t\\looseness=-1 Recursive inputs grow increasingly self-typical~\\citep{markovian_chains}, predicting location drift with shape invariance (confirmed across nucleus, greedy, and top-$k$ strategies; Appendix~\\ref{app:decoding-strategy}).\n63\t\n64\t\\looseness=-1 Figure~\\ref{fig:ddr-trajectory} reveals the dichotomy: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat (per-feature distributions: Appendix~\\ref{app:feature-distributions}; qualitative chain example: Appendix~\\ref{app:qualitative}).\n65\tThe partition is binary ($k{=}2$; silhouette\\,=\\,0.660), with entropy std as the sole \\emph{intermediate} member ($d{=}0.46$, $|\\rho|{=}0.16$), distinct from three near-stationary features ($d < 0.10$; Appendix~\\ref{app:ddr-validation}).\n66\t\n67\t\\begin{figure}[t]\n68\t\\centering\n69\t\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n70\t\\caption{Differential depth response (DDR). Drifting features (red; $|\\rho| > 0.60$, effect size $d{=}0.74$--$1.05$) shift monotonically with generation depth; near-stationary features (blue; $d \\leq 0.10$) are approximately preserved; entropy std (purple; $d{=}0.46$) is intermediate. Diamonds: cross-generator means; dots: per-generator values.}\n71\t\\label{fig:feature-drift}\n72\t\\end{figure}\n73\t\n74\t\\looseness=-1 Pooled Spearman correlations corroborate the split: drifting features show $|\\rho| > 0.60$ (hapax ratio $-0.64$, TTR $-0.62$, entropy mean $-0.60$) vs.\\ $|\\rho| \\leq 0.16$ for entropy max and tail decay; entropy min reaches $|\\rho|{=}0.40$ due to its gen-0/gen-1 boundary sensitivity (discussed below)---a persistent magnitude gap defining the DDR partition (Figure~\\ref{fig:feature-drift}).\n75\t\n76\t\\paragraph{Quantification.}\n77\t\\looseness=-1 Cohen's $d$ shows a ${\\geq}8{\\times}$ gap between drifting ($d{=}0.74$--$1.05$) and near-stationary ($d < 0.10$); KS, Glass's $\\Delta$, Cliff's $\\delta$ corroborate (Appendix~\\ref{app:ddr-validation}).\n78\tEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1/gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1; tail decay passes two one-sided tests (TOST) equivalence (Appendix~\\ref{app:tost}) for only 4/8 generators ($|d|{=}0.10$--$0.22$).\n79\t\\paragraph{Validation.}\n80\t\\looseness=-1 Each hold-out generator independently recovers the identical partition (silhouette 0.505--0.760); TOST confirms near-stationarity for entropy min (8/8) and entropy max (6/8); permutation testing confirms the split as non-random ($p{=}0.030$). Per-feature convergence dynamics (Figure~\\ref{fig:convergence}) and per-family DDR consistency appear in Appendices~\\ref{app:ddr-validation}--\\ref{app:convergence}.\n81\t\n82\t\\begin{figure}[t]\n83\t\\centering\n84\t\\includegraphics[width=\\columnwidth]{fig_convergence_dynamics.pdf}\n85\t\\caption{Feature convergence dynamics. Drifting features (red): $|d| > 1$ by gen-2+; near-stationary features (blue): $|d| < 0.25$ at all depths, confirming shape stability persists across chain lengths.}\n86\t\\label{fig:convergence}\n87\t\\end{figure}\n88\t\n89\t\\paragraph{Feature complementarity.}\n90\t\\looseness=-1 The full 7-feature set (F1\\,=\\,0.773, 10-fold stratified cross-validation) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\n91\tGroup ablation confirms complementarity: 3-class F1 gains $+$5.3\\,pp when non-drifting features are added (drifting-only 0.716, all-7 0.769), while binary detection is already saturated by location drift alone (drifting-only 0.697 vs.\\ all-7 0.700)---shape stability contributes to depth \\emph{grading}, not detection.\n92\tTTR and hapax ratio ($r = 0.97$) are retained for marginal LOFO gains (Appendix~\\ref{app:lofo}).\n93\t\n94\t\\paragraph{Cross-family reference models.}\n95\t\\looseness=-1 Alternative references (OLMo-2-1B, Qwen3-0.6B) yield F1 spread of only 0.013 (Appendix~\\ref{app:cross-ref}); same-family proximity may inflate Pythia F1 by up to 1.2\\,pp, but the DDR partition is preserved.\n96\t\n97\t\\paragraph{Temperature and prompt-type sensitivity.}\n98\t\\looseness=-1 All four tested generators degrade at $t{=}0.9$ ($-$9.3 to $-$26.0\\,pp binary F1; Appendix~\\ref{app:sampling-sensitivity}); continuation chains show the strongest drift (F1\\,=\\,0.781; Appendix~\\ref{app:prompt-type}).\n99\tThe DDR partition hierarchy is preserved across temperatures (Appendix~\\ref{app:ddr-temp-stability}), including cross-temperature transfer (Appendix~\\ref{app:cross-temp}); random word replacement at 10\\% degrades binary F1 by only 8\\,pp (Appendix~\\ref{app:human-edit}).\n100\t\n101\t\n102\t\\subsection{Comparison with Detection Baselines}\n103\t\\label{sec:results-baselines}\n104\t\n105\t\\begin{figure}[t]\n106\t\\centering\n107\t\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n108\t\\caption{LOGO binary F1 vs.\\ inference cost (8-gen pooled). The 7-feature ensemble (one 410M model) matches multi-detector ensembles (1.4B total) at ${\\sim}2.4\\times$ lower cost. RTX 5090 timings.}\n109\t\\label{fig:baseline-ci}\n110\t\\end{figure}\n111\t\n112\t\\begin{table}[t]\n113\t\\centering\n114\t\\footnotesize\n115\t\\caption{Depth classification (8-gen LOGO, pooled). 7-feature: one 410M model; 4-det ensembles: two models, 1.4B. QLoRA (\\S\\ref{sec:results-classification}) uses full token sequences (within-model 5-fold CV, not LOGO)---an information-asymmetric ceiling.}\n116\t\\label{tab:baselines}\n117\t\\resizebox{\\columnwidth}{!}{%\n118\t\\begin{tabular}{lcccc}\n119\t\\toprule\n120\t\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-class F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n121\t\\midrule\n122\t4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n123\t4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n124\t7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n125\t\\midrule\n126\tAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\n127\tFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\n128\tLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\n129\tBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n130\t\\bottomrule\n131\t\\end{tabular}}\n132\t\\end{table}\n133\t\n134\t\\looseness=-1 We next ask whether existing detection methods---designed for binary real-vs-synthetic classification---incidentally capture depth structure, repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\n135\tThe strongest baseline is a 4-detector + surface feature ensemble (binary F1\\,=\\,0.708), which pools four detection scores with TTR and hapax ratio; among individual detectors, Avg-LogProb provides the most meaningful single-feature comparison.\n136\t\n137\t\\looseness=-1 The 7-feature ensemble matches the 4-detector+surface ensemble on binary F1 (0.705 vs.\\ 0.708; Figure~\\ref{fig:baseline-ci}) at ${\\sim}2.4\\times$ lower cost, though the latter leads by 2.1\\,pp on 3-class F1 (0.795 vs.\\ 0.774); both surpass individual detectors by 3.0--16.6\\,pp.\n138\tThe DDR decomposition explains why depth discrimination is achievable---location features carry the signal, shape features enable cross-generator transfer (\\S\\ref{sec:discussion})---with a single 410M reference model; ordinal-specific methods (CORAL, Frank-Hall) yield comparable F1 (Appendix~\\ref{app:classifier}).\n139\tAmong individual detectors, LD-Score and Avg-LogProb best capture depth structure (binary F1\\,=\\,0.675 and 0.673); FastDetectGPT captures 3-class ordering (F1\\,=\\,0.660) but struggles with binary depth separation (F1\\,=\\,0.569); Binoculars is least informative (binary F1\\,=\\,0.539).\n140\tConcurrent iterative-generation studies use different chain operators, precluding direct inclusion as depth baselines (Appendix~\\ref{app:iterative-comparison}).\n141\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d21a0715-9552-46d6-8f70-264bfcc7bc5d",
+            "isSidechain": true,
+            "promptId": "b1f1579c-3a08-4738-a0d2-62cdbce4d803",
+            "agentId": "a59633b679c2ca02e",
+            "type": "user",
+            "uuid": "a384bc94-e619-46eb-bdc5-d62d4be8108b",
+            "sourceToolAssistantUUID": "d21a0715-9552-46d6-8f70-264bfcc7bc5d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ef0deb25-58cd-4916-8c8f-13a3573781d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "glittery-wishing-coral"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-25T08:31:31.600Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have all the main content files. Let me compile the complete report with all numbers, statistics, and metrics found:\n\n## Complete Report: Depth Profiling Paper Contents and Metrics\n\n### FILE 1: main.tex (First 80 lines - Abstract extraction point)\nThe document is formatted for EMNLP 2026 ARR Submission using ACL 2023 template. It includes sections on introduction, related work, method, results, discussion, conclusion, and limitations, plus multiple appendices.\n\n---\n\n### FILE 2: abstract.tex (FULL FILE)\n**Title:** \"Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text\"\n\n**Key metrics from abstract:**\n- **Effect sizes (Cohen's d):**\n  - Location features: d = 0.74–1.05 (monotonic drift with depth)\n  - Shape features: d < 0.10 (near-stationary)\n  - Entropy std: d = 0.46 (intermediate)\n  - Effect size gap: ≥8× between location and shape\n\n- **Performance metrics:**\n  - Leak-free binary F1 = 0.694 (gen-1 vs. gen-2+)\n  - Cross-model binary F1 = 0.830\n  - 3-class F1 = 0.762 (under leave-one-generator-out evaluation)\n\n- **Dataset note:** gen-0 seeds shared across generators (controlled)\n\n- **Key finding:** Instruction tuning compresses DDR, limiting applicability to base models\n\n---\n\n### FILE 3: method.tex (FULL FILE)\n\n**Table 1: Seven Distributional Features**\nFeatures extract from NLL distributions under Pythia-410M reference model:\n\n**NLL-based features:**\n- entropy_mean (measures central tendency of token surprise)\n- entropy_std (spread of token surprise)\n- entropy_max (maximum token surprise)\n- entropy_min (minimum token surprise)\n- tail_decay (log-prob decay slope, ranks 100–1000)\n\n**Surface features:**\n- ttr (type-token ratio)\n- hapax_ratio (proportion of hapax legomena)\n\n**Generation setup:**\n- **Number of generators:** 8 total\n- **Model families:** 5 (Pythia, OLMo, Qwen, Llama, Mistral)\n- **Generator specifications:**\n  - Pythia: 2.8B, 1B\n  - OLMo: OLMo-2-1B\n  - Qwen: Qwen3-1.7B, Qwen3-0.6B, Qwen3-8B-Base\n  - Llama: Llama-3.2-3B\n  - Mistral: Mistral-7B-v0.3\n- **Parameter range:** 13× (0.6B–8B)\n- **Qwen overrepresentation:** 3/8 generators\n- **LOFO performance:** F1 = 0.686 (with Qwen overrepresentation acknowledged)\n\n**Dataset construction:**\n- **Seed passages:** approximately 1,000 from English Wikipedia per generator\n- **Chain depth:** depth 4 (gen-0 through gen-4)\n- **Prompt:** \"Continue the following text: {text}\"\n- **Sampling parameters:**\n  - Temperature τ = 0.7\n  - Nucleus sampling p = 0.9\n  - Maximum length: 256 new tokens\n- **5-class analysis result:** F1 ≈ 0.27 (adjacent depths 2–4 indistinguishable, motivating gen-2+ collapse)\n- **Final dataset size:** 37,058 texts across all depths\n- **Depths 2–4:** Collapsed into 2+ class\n\n**Feature extraction details:**\n- Reference model: Pythia-410M (smaller than all generators)\n- **Feature redundancy screening:** 6 additional NLL statistics rejected (|r| > 0.65, ΔF1 ≤ −0.011)\n- **Cross-family reference validation:** F1 spread = 0.013 (Pythia, OLMo, Qwen references)\n- **Feature correlation:** TTR and hapax ratio correlation r = 0.97 (strongly correlated, retained for marginal LOFO gains)\n\n**Evaluation protocol:**\n- **Primary metric:** Macro-averaged F1 over three depth classes\n- **Confidence intervals:** 95% bootstrap (n = 1,000)\n- **Bonferroni correction:** Applied within each family of simultaneous tests\n- **Classifier:** XGBoost\n  - n_estimators = 200\n  - max_depth = 6\n  - learning rate = 0.1\n  - Hyperparameter sensitivity: F1 variation ≤ 2.0 pp\n\n**Baselines compared:**\n1. Avg-LogProb\n2. FastDetectGPT\n3. Binoculars\n4. LD-Score\n\n---\n\n### FILE 4: results.tex (FULL FILE)\n\n**Figure: Cross-generator 8×8 transfer matrix (binary F1, gen-1 vs. gen-2+)**\n- **Mean cross-generator F1:** 0.810\n- **95% CI:** [0.796, 0.822]\n- Uniform high off-diagonal values confirm depth signal transfers across five families\n\n**Classification Performance (Section 3-class LOGO):**\n- **8-generator LOGO F1:** 0.762\n- **95% CI:** [0.758, 0.766]\n- **Dataset size N:** 37,058\n- **Cross-generator F1 spread:** 9.1 pp\n- **Per-class gen-0 F1:** ≈0.94 (shared gen-0 seeds bias)\n- **Leak-free binary F1** (gen-1 vs. gen-2+, excluding gen-0): 0.694\n- **Binary F1 CI:** [0.688, 0.700]\n\n**Per-generator binary F1 results:**\n- Pythia-2.8B: 0.724 [.707, .742] – highest; 3-class: 0.798\n- Pythia-1B: 0.718 [.700, .735]; 3-class: 0.806 (best 3-class)\n- Qwen3-1.7B: 0.709 [.693, .726]; 3-class: 0.772\n- Llama-3.2-3B: 0.697 [.680, .713]; 3-class: 0.775\n- OLMo-2-1B: 0.695 [.679, .711]; 3-class: 0.781\n- Qwen3-8B: 0.692 [.674, .708]; 3-class: 0.714\n- Qwen3-0.6B: 0.691 [.673, .709]; 3-class: 0.780\n- Mistral-7B: 0.633 [.617, .648] – lowest; 3-class: 0.682\n- **Per-generator std. dev.:** 0.028\n- **Primary difficulty:** gen-1/gen-2+ boundary\n\n**Cross-model generalization:**\n- **Cross-model chains binary F1:** 0.830\n- **95% CI:** [.818, .841]\n- **LOGO setup:** 5-generator (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B)\n- **Single-generator transfer mean F1:** 0.810 (Figure 1)\n- **LOFO (family-level):** F1 = 0.686\n- **ANOVA generator variance:** η²_gen ≤ 0.009 (<1% of feature variance)\n- **Model size effect:**\n  - Pythia-2.8B: 0.724 (smaller models perform better)\n  - Mistral-7B: 0.633 (larger model lower)\n  - Same-family affinity with Pythia-410M reference spread ≤ 0.013\n\n**End-to-end neural classifier (QLoRA):**\n- **3-class F1:** 0.905\n- **Improvement:** +10.0 pp over distributional features\n- **Setup:** Within-model 5-fold CV\n- **On instruct data:** QLoRA recovers to 0.89–0.91 (within-model)\n\n**Confound controls:**\n- **Length-matched subsampling binary F1:** 0.724 (vs. 0.770 without matching)\n- **Independent-seed evaluation (disjoint pools):** F1 = 0.680\n\n**Error analysis:**\n- **Depth-2 error rate (highest):** 48.4%\n- **Depth-4 error rate:** 20.3% (monotonic decrease)\n- **Depth-3+ error rates:** ≤29.2%\n- **Primary failure:** gen-1/gen-2+ boundary\n\n**Differential Depth Response (DDR) Definition:**\n- **Depth sensitivity:** DDR(f) = |ρ(depth, f)| using Spearman correlation\n- **Drifting threshold:** Cohen's d > 0.50 between adjacent depths\n- **Stationary threshold:** d < 0.15\n- **k-means silhouette score:** 0.660\n- **Silhouette p-value:** 0.030\n- **Robustness range:** ε ∈ [0.10, 0.75]\n\n**Feature drift patterns:**\n- **Drifting features (Spearman |ρ|):**\n  - hapax_ratio: ρ = -0.64\n  - TTR: ρ = -0.62\n  - entropy_mean: ρ = -0.60\n- **Near-stationary features:**\n  - entropy_max: |ρ| ≤ 0.16\n  - tail_decay: |ρ| ≤ 0.16\n  - entropy_min: |ρ| = 0.40 (boundary feature, sensitive at gen-0/gen-1)\n- **Magnitude gap:** ≥8×\n\n**Cohen's d effect sizes:**\n- **Drifting features:** d = 0.74–1.05\n- **Near-stationary features:** d < 0.10\n- **Gap factor:** ≥8×\n- **Entropy std:** d = 0.46 (intermediate)\n\n**Boundary feature analysis:**\n- **Entropy min:** d = 0.016 (near-stationary for gen-1/gen-2+)\n- **Tail decay TOST equivalence:** 4/8 generators (|d| = 0.10–0.22)\n\n**Validation statistics:**\n- **Per-generator hold-out silhouette:** 0.505–0.760\n- **TOST entropy min:** 8/8 generators confirmed near-stationary\n- **TOST entropy max:** 6/8 generators confirmed\n- **Permutation testing p-value:** 0.030 (partition non-random)\n\n**Feature complementarity ablations:**\n- **Full 7-feature set (10-fold stratified CV):** F1 = 0.773\n- **Surface-only:** F1 = 0.688\n- **Reference-only:** F1 = 0.713\n- **McNemar p-value:** ≈ 0\n- **3-class F1 gains from non-drifting features:** +5.3 pp\n  - Drifting-only: F1 = 0.716\n  - All-7: F1 = 0.769\n- **Binary detection (drifting-only):** F1 = 0.697\n- **Binary detection (all-7):** F1 = 0.700 (already saturated)\n\n**Cross-family reference models:**\n- **Alternative references F1 spread:** 0.013 (OLMo-2-1B, Qwen3-0.6B)\n- **Same-family Pythia F1 inflation:** Up to 1.2 pp\n\n**Temperature and prompt sensitivity:**\n- **Temperature t = 0.9 degradation:** −9.3 to −26.0 pp binary F1\n- **Continuation chains F1:** 0.781 (strongest drift)\n- **Random word replacement (10%) degradation:** −8 pp binary F1\n\n**Baseline comparison (8-gen LOGO, pooled):**\n- **4-detector + surface (6 features):**\n  - 3-class F1: 0.795\n  - Binary F1: 0.708\n  - Inference: 22.8 ms/text\n- **4-detector ensemble (4 features):**\n  - 3-class F1: 0.785\n  - Binary F1: 0.700\n  - Inference: 22.8 ms/text\n- **7-feature ensemble (ours):**\n  - 3-class F1: 0.774\n  - Binary F1: 0.705\n  - Inference: 9.7 ms/text (2.4× faster)\n  - One 410M model vs. 1.4B total for ensembles\n\n**Individual detector performance:**\n- **Avg-LogProb:** 3-class F1 = 0.707, binary F1 = 0.673\n- **FastDetectGPT:** 3-class F1 = 0.660, binary F1 = 0.569\n- **LD-Score:** 3-class F1 = 0.630, binary F1 = 0.675\n- **Binoculars:** 3-class F1 = 0.411, binary F1 = 0.539\n\n**Performance differences:**\n- 4-detector+surface vs. 7-feature: 0.708 vs. 0.705 binary F1 (3 pp difference)\n- 4-detector+surface vs. 7-feature: 0.795 vs. 0.774 3-class F1 (2.1 pp difference)\n- Individual vs. ensemble: 3.0–16.6 pp improvement\n\n---\n\n## Summary of All Key Statistics:\n\n**Dataset:** 37,058 texts, 8 generators, 5 families, 0.6B–8B parameter range\n\n**Primary metrics:**\n- Binary F1 = 0.694 [0.688, 0.700] (leak-free, main result)\n- 3-class F1 = 0.762 [0.758, 0.766]\n- Cross-model binary F1 = 0.830 [0.818, 0.841]\n\n**Effect sizes:** ≥8× gap between drifting (d=0.74–1.05) and stationary (d<0.10) features\n\n**Reference model:** Pythia-410M\n\n**Classifier:** XGBoost (n_estimators=200, max_depth=6, lr=0.1)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a384bc94-e619-46eb-bdc5-d62d4be8108b",
+            "isSidechain": true,
+            "agentId": "a59633b679c2ca02e",
+            "requestId": "req_011CbNyVoQtRUbe2vpTxF6gM",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1289cd9b-e4f9-4cfa-8cd9-437465022da1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ef0deb25-58cd-4916-8c8f-13a3573781d0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "glittery-wishing-coral",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CLrrnnnALNAXfZ5CHeN87t",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 5774,
+                "cache_read_input_tokens": 45740,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5774,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        }
+      ],
+      "message_count": 20
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-these-files-in-full-and-report-their-complete-contents-1-home-ubuntu-agen.md"
+}

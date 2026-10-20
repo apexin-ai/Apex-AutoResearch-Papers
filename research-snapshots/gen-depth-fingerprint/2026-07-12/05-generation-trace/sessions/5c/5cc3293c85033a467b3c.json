@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "5cc3293c85033a467b3c",
+  "project": "gen-depth-fingerprint--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [Director 指令] [Full Draft] 写一篇 AAAI 2027 论文，DDL 2026-08-02。 **Core Claims**: 1. Depth Discriminability — 7-feature distr",
+  "task_key": "161a48f0-0745-4b04-8eba-cb4f1dbb1520",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/161a48f0-0745-4b04-8eba-cb4f1dbb1520.jsonl",
+    "occurrence": 1,
+    "bytes": 729627,
+    "sha256": "d18b3be650ec0b0129a05a68227787e92b4e4558dc359e1cbe3434d70db57e3d"
+  },
+  "statistics": {
+    "messages": 147,
+    "user_turns": 1,
+    "tool_calls": 49,
+    "roles": {
+      "record": 27,
+      "user": 1,
+      "assistant": 22,
+      "tool_call": 49,
+      "tool_result": 48
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "5cc3293c85033a467b3c-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 145,
+      "chunks": [
+        {
+          "path": "5cc3293c85033a467b3c-part-0001.json",
+          "message_count": 92
+        },
+        {
+          "path": "5cc3293c85033a467b3c-part-0002.json",
+          "message_count": 53
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-director-full-draft-aaai-2027-ddl-2026-08-02-core-claims-1-depth-discriminabil.md"
+}

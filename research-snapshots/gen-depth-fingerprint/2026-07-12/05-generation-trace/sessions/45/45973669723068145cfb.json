@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0",
+  "id": "45973669723068145cfb",
+  "project": "gen-depth-fingerprint--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [HANDOFF] 你是 Research Reviewer，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 所有 GPU 任务必须 --device cuda:0，依赖 su",
+  "task_key": "f4e168db-0e9b-4f58-ae06-4d0dd518e2e8",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/f4e168db-0e9b-4f58-ae06-4d0dd518e2e8.jsonl",
+    "occurrence": 1,
+    "bytes": 648297,
+    "sha256": "d0a6dda527637a1795bd8025d52d742501f5850d30d488fd2d2a24574a33eb0d"
+  },
+  "statistics": {
+    "messages": 194,
+    "user_turns": 5,
+    "tool_calls": 55,
+    "roles": {
+      "record": 44,
+      "user": 5,
+      "assistant": 35,
+      "tool_call": 55,
+      "tool_result": 55
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "45973669723068145cfb-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 108,
+      "chunks": [
+        {
+          "path": "45973669723068145cfb-part-0001.json",
+          "message_count": 108
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "45973669723068145cfb-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 58,
+      "chunks": [
+        {
+          "path": "45973669723068145cfb-part-0001.json",
+          "message_count": 54
+        },
+        {
+          "path": "45973669723068145cfb-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "45973669723068145cfb-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 22,
+      "chunks": [
+        {
+          "path": "45973669723068145cfb-part-0002.json",
+          "message_count": 22
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-handoff-research-reviewer-loop-2-task-context-1-gpu-device-cuda-0-su.md"
+}

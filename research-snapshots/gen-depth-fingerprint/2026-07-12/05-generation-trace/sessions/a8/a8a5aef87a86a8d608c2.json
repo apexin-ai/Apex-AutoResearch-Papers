@@ -1,0 +1,444 @@
+{
+  "schema_version": "1.0",
+  "id": "a8a5aef87a86a8d608c2",
+  "project": "gen-depth-fingerprint--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to check specific BibTeX entries in the paper's .bib file(s) for the gen-depth-fingerprint project. Find the bib ",
+  "task_key": "agent-aed4146fa26bdbdd0",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-aed4146fa26bdbdd0.jsonl",
+    "occurrence": 1,
+    "bytes": 46453,
+    "sha256": "53a75be8b4f803265773ba1dac43826cba45c1fe07f3fea764c8ae44202010bf"
+  },
+  "statistics": {
+    "messages": 8,
+    "user_turns": 1,
+    "tool_calls": 2,
+    "roles": {
+      "user": 1,
+      "assistant": 3,
+      "tool_call": 2,
+      "tool_result": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T15:04:43.771Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to check specific BibTeX entries in the paper's .bib file(s) for the gen-depth-fingerprint project. Find the bib file and extract the entries for these 16 citation keys:\n\nGhost citations (6): detectgpt, reliable_detection, detection_possibilities, aaronson_watermark, pythia, xgboost\n\nInconsistent info (10): cohen1988statistical, paraphrase_evades, intrinsic_dim_detection, self_consuming_mad, dsir, nucleus_sampling, qwen3, gutierrez_ordinal_survey, diaz_soft_labels_ordinal, llama3\n\nSearch in /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/ for .bib files, then extract each of these entries showing the full entry (title, author, year, venue/journal, etc.)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "ee622ec2-5cbd-444b-9510-61af72dbc84a",
+            "agentId": "aed4146fa26bdbdd0",
+            "type": "user",
+            "uuid": "8b66f4c4-9ca9-499f-84a3-38acf7a96a15",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "6f13698d-9bb4-4f2e-acbc-2759ff5b5bb1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "temporal-noodling-llama"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T15:04:46.378Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you find and extract the BibTeX entries from the paper's .bib file. Let me start by searching for .bib files in the paper directory."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8b66f4c4-9ca9-499f-84a3-38acf7a96a15",
+            "isSidechain": true,
+            "agentId": "aed4146fa26bdbdd0",
+            "requestId": "req_011CbMbibFgzRtYFTk3a4tTp",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e4f6cf17-efec-4a52-8e42-c421135506f2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "6f13698d-9bb4-4f2e-acbc-2759ff5b5bb1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "temporal-noodling-llama",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018vMrcrWmC2UAEB1bPyvuMn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 39735,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 39735,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T15:04:46.536Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017Uvx4TZ63YTgeLVyViRTaN",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/**/*.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e4f6cf17-efec-4a52-8e42-c421135506f2",
+            "isSidechain": true,
+            "agentId": "aed4146fa26bdbdd0",
+            "requestId": "req_011CbMbibFgzRtYFTk3a4tTp",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9407cdbd-37c5-4982-8d78-059a6fe11044",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "6f13698d-9bb4-4f2e-acbc-2759ff5b5bb1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "temporal-noodling-llama",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018vMrcrWmC2UAEB1bPyvuMn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 39735,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 124,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 39735
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 124,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 39735,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 39735,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T15:04:46.553Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017Uvx4TZ63YTgeLVyViRTaN",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9407cdbd-37c5-4982-8d78-059a6fe11044",
+            "isSidechain": true,
+            "promptId": "ee622ec2-5cbd-444b-9510-61af72dbc84a",
+            "agentId": "aed4146fa26bdbdd0",
+            "type": "user",
+            "uuid": "3c6dddf7-31f4-4c7f-aeaa-78ceeb33ef4f",
+            "sourceToolAssistantUUID": "9407cdbd-37c5-4982-8d78-059a6fe11044",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "6f13698d-9bb4-4f2e-acbc-2759ff5b5bb1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "temporal-noodling-llama"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-24T15:04:53.784Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good! I found the bib file at `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/references.bib`. Now let me read it and extract the entries for all 16 citation keys."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3c6dddf7-31f4-4c7f-aeaa-78ceeb33ef4f",
+            "isSidechain": true,
+            "agentId": "aed4146fa26bdbdd0",
+            "requestId": "req_011CbMbj3YjoUoo1JKwvdRuQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9416404a-dc87-4b21-b069-5f63e2118a54",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "6f13698d-9bb4-4f2e-acbc-2759ff5b5bb1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "temporal-noodling-llama",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MZEZqz87rWgrkdYbx6LBwz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1007,
+                "cache_read_input_tokens": 39735,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1007,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T15:04:54.024Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014mXVnDqu4wHmsKRJ2HUCAt",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9416404a-dc87-4b21-b069-5f63e2118a54",
+            "isSidechain": true,
+            "agentId": "aed4146fa26bdbdd0",
+            "requestId": "req_011CbMbj3YjoUoo1JKwvdRuQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2ce8a69d-bca3-4529-886d-064bb2fd2ae3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "6f13698d-9bb4-4f2e-acbc-2759ff5b5bb1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "temporal-noodling-llama",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MZEZqz87rWgrkdYbx6LBwz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1007,
+                "cache_read_input_tokens": 39735,
+                "output_tokens": 154,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1007
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 154,
+                    "cache_read_input_tokens": 39735,
+                    "cache_creation_input_tokens": 1007,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1007,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T15:04:54.310Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014mXVnDqu4wHmsKRJ2HUCAt",
+              "type": "tool_result",
+              "content": "1\t% ===== Data Provenance / Contamination =====\n2\t\n3\t% ===== Statistics =====\n4\t\n5\t@book{cohen1988statistical,\n6\t  title = {{Statistical Power Analysis for the Behavioral Sciences}},\n7\t  author = {Cohen, Jacob},\n8\t  edition = {2nd},\n9\t  publisher = {Lawrence Erlbaum Associates},\n10\t  year = {1988},\n11\t}\n12\t\n13\t% ===== Detection =====\n14\t\n15\t@inproceedings{detectgpt,\n16\t  title = {{DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature}},\n17\t  author = {Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n18\t  booktitle = {Proceedings of the International Conference on Machine Learning},\n19\t  year = {2023},\n20\t}\n21\t\n22\t@inproceedings{gltr,\n23\t  title = {{GLTR: Statistical Detection and Visualization of Generated Text}},\n24\t  author = {Gehrmann, Sebastian and Strobelt, Hendrik and Rush, Alexander M.},\n25\t  booktitle = {Proceedings of the Annual Meeting of the Association for Computational Linguistics: System Demonstrations},\n26\t  year = {2019},\n27\t}\n28\t\n29\t@inproceedings{dna_gpt,\n30\t  title = {{DNA-GPT: Divergent N-Gram Analysis for Training-Free Detection of GPT-Generated Text}},\n31\t  author = {Yang, Xianjun and Cheng, Wei and Wu, Yue and Petzold, Linda and Wang, William Yang and Chen, Haifeng},\n32\t  booktitle = {Proceedings of the International Conference on Learning Representations},\n33\t  year = {2024},\n34\t}\n35\t\n36\t@inproceedings{binoculars,\n37\t  title = {{Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text}},\n38\t  author = {Hans, Abhimanyu and Schwarzschild, Avi and Cherepanova, Valeriia and Kazemi, Hamid and Saha, Aniruddha and Goldblum, Micah and Geiping, Jonas and Goldstein, Tom},\n39\t  booktitle = {Proceedings of the International Conference on Machine Learning},\n40\t  year = {2024},\n41\t}\n42\t\n43\t@inproceedings{fast_detectgpt,\n44\t  title = {{Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature}},\n45\t  author = {Bao, Guangsheng and Zhao, Yanbin and Teng, Zhiyang and Yang, Linyi and Zhang, Yue},\n46\t  booktitle = {Proceedings of the International Conference on Learning Representations},\n47\t  year = {2024},\n48\t}\n49\t\n50\t@article{ld_score,\n51\t  title = {{Beyond Perplexity: Character Distribution Signatures and the MDTA Benchmark for AI Text Detection}},\n52\t  author = {Narayanasamy, Priyadarshan and Agrawal, Swastik and Faber, Klint and Alam, Fardina Fathmiul},\n53\t  journal = {arXiv preprint arXiv:2605.01647},\n54\t  year = {2026},\n55\t}\n56\t\n57\t@inproceedings{diveye,\n58\t  title = {{Diversity Boosts AI-Generated Text Detection}},\n59\t  author = {Basani, Advik Raj and Chen, Pin-Yu},\n60\t  booktitle = {Proceedings of the International Conference on Learning Representations},\n61\t  year = {2026},\n62\t  eprint = {2509.18880},\n63\t  archiveprefix = {arXiv},\n64\t}\n65\t\n66\t@article{feat_aug_transformer,\n67\t  title = {{Feature-Augmented Transformers for Robust AI-Text Detection Across Domains and Generators}},\n68\t  author = {Mady, Mohamed and Reschke, Johannes and Schuller, Bj{\\\"o}rn},\n69\t  journal = {arXiv preprint arXiv:2605.03969},\n70\t  year = {2026},\n71\t}\n72\t\n73\t@article{reliable_detection,\n74\t  title = {{Can AI-Generated Text be Reliably Detected? Stress Testing AI Text Detectors Under Various Attacks}},\n75\t  author = {Sadasivan, Vinu Sankar and Kumar, Aounon and Balasubramanian, Sriram and Wang, Wenxiao and Feizi, Soheil},\n76\t  journal = {Transactions on Machine Learning Research},\n77\t  year = {2025},\n78\t  url = {https://openreview.net/forum?id=OOgsAZdFOt},\n79\t}\n80\t\n81\t@inproceedings{paraphrase_evades,\n82\t  title = {{Paraphrasing Evades Detectors of AI-Generated Text, but Retrieval is an Effective Defense}},\n83\t  author = {Krishna, Kalpesh and Song, Yixiao and Karpinska, Marzena and Wieting, John and Iyyer, Mohit},\n84\t  booktitle = {Advances in Neural Information Processing Systems},\n85\t  year = {2023},\n86\t}\n87\t\n88\t@inproceedings{detection_possibilities,\n89\t  title = {{Position: On the Possibilities of AI-Generated Text Detection}},\n90\t  author = {Chakraborty, Souradip and Bedi, Amrit Singh and Zhu, Sicheng and An, Bang and Manocha, Dinesh and Huang, Furong},\n91\t  booktitle = {Proceedings of the International Conference on Machine Learning},\n92\t  year = {2024},\n93\t}\n94\t\n95\t@inproceedings{intrinsic_dim_detection,\n96\t  title = {{Intrinsic Dimension Estimation for Robust Detection of AI-Generated Texts}},\n97\t  author = {Tulchinskii, Eduard and Kuznetsov, Kristian and Kushnareva, Laida and Cherniavskii, Daniil and Nikolenko, Sergey and Burnaev, Evgeny and Barannikov, Serguei and Piontkovskaya, Irina},\n98\t  booktitle = {Advances in Neural Information Processing Systems},\n99\t  year = {2023},\n100\t}\n101\t\n102\t@inproceedings{seqxgpt,\n103\t  title = {{SeqXGPT: Sentence-Level AI-Generated Text Detection}},\n104\t  author = {Wang, Pengyu and Li, Linyang and Ren, Ke and Jiang, Botian and Zhang, Dong and Qiu, Xipeng},\n105\t  booktitle = {Proceedings of the Conference on Empirical Methods in Natural Language Processing},\n106\t  year = {2023},\n107\t}\n108\t\n109\t@inproceedings{grover,\n110\t  title = {{Defending Against Neural Fake News}},\n111\t  author = {Zellers, Rowan and Holtzman, Ari and Rashkin, Hannah and Bisk, Yonatan and Farhadi, Ali and Roesner, Franziska and Choi, Yejin},\n112\t  booktitle = {Advances in Neural Information Processing Systems},\n113\t  year = {2019},\n114\t}\n115\t\n116\t@article{release_strategies,\n117\t  title = {{Release Strategies and the Social Impacts of Language Models}},\n118\t  author = {Solaiman, Irene and Brundage, Miles and Clark, Jack and Askell, Amanda and Herbert-Voss, Ariel and Wu, Jeff and Radford, Alec and Krueger, Gretchen and Kim, Jong Wook and Kreps, Sarah and McCain, Miles and Newhouse, Alex and Blazakis, Jason and McGuffie, Kris and Wang, Jasmine},\n119\t  journal = {arXiv preprint arXiv:1908.09203},\n120\t  year = {2019},\n121\t}\n122\t\n123\t@inproceedings{beyond_binary,\n124\t  title = {{Beyond Binary: Towards Fine-Grained LLM-Generated Text Detection via Role Recognition and Involvement Measurement}},\n125\t  author = {Cheng, Zihao and Zhou, Li and Jiang, Feng and Wang, Benyou and Li, Haizhou},\n126\t  booktitle = {Proceedings of the ACM Web Conference},\n127\t  year = {2025},\n128\t}\n129\t\n130\t@inproceedings{semeval2024_task8,\n131\t  title = {{SemEval-2024 Task 8: Multidomain, Multimodel and Multilingual Machine-Generated Text Detection}},\n132\t  author = {Wang, Yuxia and Mansurov, Jonibek and Ivanov, Petar and Su, Jinyan and Shelmanov, Artem and Tsvigun, Akim and Afzal, Osama Mohammed and Mahmoud, Tarek and Puccetti, Giovanni and Arnold, Thomas and Whitehouse, Chenxi and Aji, Alham Fikri and Habash, Nizar and Gurevych, Iryna and Nakov, Preslav},\n133\t  booktitle = {Proceedings of the International Workshop on Semantic Evaluation},\n134\t  year = {2024},\n135\t}\n136\t\n137\t% ===== Model Collapse =====\n138\t\n139\t@inproceedings{self_consuming_mad,\n140\t  title = {{Self-Consuming Generative Models Go MAD}},\n141\t  author = {Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Babaei, Hossein and LeJeune, Daniel and Siahkoohi, Ali and Baraniuk, Richard G.},\n142\t  booktitle = {Proceedings of the International Conference on Learning Representations},\n143\t  year = {2024},\n144\t}\n145\t\n146\t@article{curse_of_recursion,\n147\t  title = {{AI models collapse when trained on recursively generated data}},\n148\t  author = {Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n149\t  journal = {Nature},\n150\t  volume = {631},\n151\t  pages = {755--759},\n152\t  year = {2024},\n153\t}\n154\t\n155\t@inproceedings{dohmatob_tale_of_tails,\n156\t  title = {{A Tale of Tails: Model Collapse as a Change of Scaling Laws}},\n157\t  author = {Dohmatob, Elvis and Feng, Yunzhen and Yang, Pu and Charton, Fran\\c{c}ois and Kempe, Julia},\n158\t  booktitle = {Proceedings of the International Conference on Machine Learning},\n159\t  year = {2024},\n160\t}\n161\t\n162\t@inproceedings{strong_model_collapse,\n163\t  title = {{Strong Model Collapse}},\n164\t  author = {Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n165\t  booktitle = {Proceedings of the International Conference on Learning Representations},\n166\t  year = {2025},\n167\t}\n168\t\n169\t@inproceedings{model_collapse_avoidable,\n170\t  title = {{Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data}},\n171\t  author = {Gerstgrasser, Matthias and Schaeffer, Rylan and Dey, Apratim and Rafailov, Rafael and Sleight, Henry and Hughes, John and Korbak, Tomasz and Agrawal, Rajashree and Pai, Dhruv and Gromov, Andrey and Roberts, Daniel A. and Yang, Diyi and Donoho, David L. and Koyejo, Sanmi},\n172\t  booktitle = {Proceedings of the First Conference on Language Modeling (COLM)},\n173\t  year = {2024},\n174\t}\n175\t\n176\t@article{schaeffer_collapse_position,\n177\t  title = {{Position: Model Collapse Does Not Mean What You Think}},\n178\t  author = {Schaeffer, Rylan and Kazdan, Joshua and Arulandu, Alvan Caleb and Koyejo, Sanmi},\n179\t  journal = {arXiv preprint arXiv:2503.03150},\n180\t  year = {2025},\n181\t}\n182\t\n183\t@inproceedings{seddik_synthetic_data,\n184\t  title = {{How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse}},\n185\t  author = {Seddik, Mohamed El Amine and Chen, Suei-Wen and Hayou, Soufiane and Youssef, Pierre and Debbah, Merouane},\n186\t  booktitle = {Proceedings of the First Conference on Language Modeling (COLM)},\n187\t  year = {2024},\n188\t}\n189\t\n190\t% ===== Fine-tuning =====\n191\t\n192\t@inproceedings{qlora,\n193\t  title = {{QLoRA: Efficient Finetuning of Quantized LLMs}},\n194\t  author = {Dettmers, Tim and Pagnoni, Artidoro and Holtzman, Ari and Zettlemoyer, Luke},\n195\t  booktitle = {Advances in Neural Information Processing Systems},\n196\t  year = {2023},\n197\t}\n198\t\n199\t% ===== Data Quality =====\n200\t\n201\t@inproceedings{dsir,\n202\t  title = {{Data Selection for Language Models via Importance Resampling}},\n203\t  author = {Xie, Sang Michael and Santurkar, Shibani and Ma, Tengyu and Liang, Percy},\n204\t  booktitle = {Advances in Neural Information Processing Systems},\n205\t  year = {2023},\n206\t}\n207\t\n208\t@inproceedings{qurating,\n209\t  title = {{QuRating: Selecting High-Quality Data for Training Language Models}},\n210\t  author = {Wettig, Alexander and Gupta, Aatmik and Malik, Saumya and Chen, Danqi},\n211\t  booktitle = {Proceedings of the International Conference on Machine Learning},\n212\t  year = {2024},\n213\t}\n214\t\n215\t@inproceedings{ccnet,\n216\t  title = {{CCNet: Extracting High Quality Monolingual Datasets from Web Crawl Data}},\n217\t  author = {Wenzek, Guillaume and Lachaux, Marie-Anne and Conneau, Alexis and Chaudhary, Vishrav and Guzm{\\'a}n, Francisco and Joulin, Armand and Grave, Edouard},\n218\t  booktitle = {Proceedings of the Language Resources and Evaluation Conference},\n219\t  year = {2020},\n220\t}\n221\t\n222\t% ===== Watermarking =====\n223\t\n224\t@inproceedings{watermark_llm,\n225\t  title = {{A Watermark for Large Language Models}},\n226\t  author = {Kirchenbauer, John and Geiping, Jonas and Wen, Yuxin and Katz, Jonathan and Miers, Ian and Goldstein, Tom},\n227\t  booktitle = {Proceedings of the International Conference on Machine Learning},\n228\t  year = {2023},\n229\t}\n230\t\n231\t@article{synthid_text,\n232\t  title = {{Scalable Watermarking for Identifying Large Language Model Outputs}},\n233\t  author = {Dathathri, Sumanth and See, Abigail and Ghaisas, Sumedh and Huang, Po-Sen and McAdam, Rob and Welbl, Johannes and Bachani, Vandana and Kaskasoli, Alex and Stanforth, Robert and Matejovicova, Tatiana and Hayes, Jamie and Vyas, Nidhi and Al Merey, Majd and Brown-Cohen, Jonah and Bunel, Rudy and Balle, Borja and Cemgil, Taylan and Ahmed, Zahra and Stacpoole, Kitty and Shumailov, Ilia and Baetu, Ciprian and Gowal, Sven and Hassabis, Demis and Kohli, Pushmeet},\n234\t  journal = {Nature},\n235\t  volume = {634},\n236\t  pages = {818--823},\n237\t  year = {2024},\n238\t}\n239\t\n240\t@misc{aaronson_watermark,\n241\t  title = {{Watermarking GPT Outputs}},\n242\t  author = {Aaronson, Scott and Kirchner, Jan Hendrik},\n243\t  year = {2022},\n244\t  note = {Blog post},\n245\t  url = {https://scottaaronson.blog/?p=6823},\n246\t}\n247\t\n248\t@article{chainwash,\n249\t  title = {{Chainwash: Multi-Step Rewriting Attacks on Diffusion Language Model Watermarks}},\n250\t  author = {Ameen, Mohd Ruhul and Islam, Akif and Mahmud, Nadim and Hamid, Md. Ekramul},\n251\t  journal = {arXiv preprint arXiv:2605.05503},\n252\t  year = {2026},\n253\t}\n254\t\n255\t% ===== Vocabulary Diversity =====\n256\t\n257\t@inproceedings{curious_decline,\n258\t  title = {{The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text}},\n259\t  author = {Guo, Yanzhu and Shang, Guokan and Vazirgiannis, Michalis and Clavel, Chlo\\'{e}},\n260\t  booktitle = {Findings of the Association for Computational Linguistics: NAACL},\n261\t  year = {2024},\n262\t}\n263\t\n264\t@inproceedings{writing_diversity,\n265\t  title = {{Does Writing with Language Models Reduce Content Diversity?}},\n266\t  author = {Padmakumar, Vishakh and He, He},\n267\t  booktitle = {Proceedings of the International Conference on Learning Representations},\n268\t  year = {2024},\n269\t}\n270\t\n271\t@inproceedings{nucleus_sampling,\n272\t  title = {{The Curious Case of Neural Text Degeneration}},\n273\t  author = {Holtzman, Ari and Buys, Jan and Du, Li and Forbes, Maxwell and Choi, Yejin},\n274\t  booktitle = {Proceedings of the International Conference on Learning Representations},\n275\t  year = {2020},\n276\t}\n277\t\n278\t@inproceedings{welleck_unlikelihood,\n279\t  title = {{Neural Text Generation with Unlikelihood Training}},\n280\t  author = {Welleck, Sean and Kulikov, Ilia and Roller, Stephen and Dinan, Emily and Cho, Kyunghyun and Weston, Jason},\n281\t  booktitle = {Proceedings of the International Conference on Learning Representations},\n282\t  year = {2020},\n283\t}\n284\t\n285\t% ===== Stylometry =====\n286\t\n287\t@article{stamatatos_survey,\n288\t  title = {{A Survey of Modern Authorship Attribution Methods}},\n289\t  author = {Stamatatos, Efstathios},\n290\t  journal = {Journal of the American Society for Information Science and Technology},\n291\t  volume = {60},\n292\t  number = {3},\n293\t  pages = {538--556},\n294\t  year = {2009},\n295\t}\n296\t\n297\t@article{koppel_authorship,\n298\t  title = {{Computational Methods in Authorship Attribution}},\n299\t  author = {Koppel, Moshe and Schler, Jonathan and Argamon, Shlomo},\n300\t  journal = {Journal of the American Society for Information Science and Technology},\n301\t  volume = {60},\n302\t  number = {1},\n303\t  pages = {9--26},\n304\t  year = {2009},\n305\t}\n306\t\n307\t@inproceedings{uchendu_attribution,\n308\t  title = {{Authorship Attribution for Neural Text Generation}},\n309\t  author = {Uchendu, Adaku and Le, Thai and Shu, Kai and Lee, Dongwon},\n310\t  booktitle = {Proceedings of the Conference on Empirical Methods in Natural Language Processing},\n311\t  year = {2020},\n312\t}\n313\t\n314\t@inproceedings{munir_looking_glass,\n315\t  title = {{Through the Looking Glass: Learning to Attribute Synthetic Text Generated by Language Models}},\n316\t  author = {Munir, Shaoor and Batool, Brishna and Shafiq, Zubair and Srinivasan, Padmini and Zaffar, Fareed},\n317\t  booktitle = {Proceedings of the Conference of the European Chapter of the Association for Computational Linguistics},\n318\t  year = {2021},\n319\t}\n320\t\n321\t@article{briesch_self_consuming,\n322\t  title = {{Large Language Models Suffer From Their Own Output: An Analysis of the Self-Consuming Training Loop}},\n323\t  author = {Briesch, Martin and Sobania, Dominik and Rothlauf, Franz},\n324\t  journal = {arXiv preprint arXiv:2311.16822},\n325\t  year = {2023},\n326\t}\n327\t\n328\t% ===== Iterative Generation =====\n329\t\n330\t@inproceedings{broken_telephone,\n331\t  title = {{LLM as a Broken Telephone: Iterative Generation Distorts Information}},\n332\t  author = {Mohamed, Amr and Geng, Mingmeng and Vazirgiannis, Michalis and Shang, Guokan},\n333\t  booktitle = {Proceedings of the Annual Meeting of the Association for Computational Linguistics},\n334\t  year = {2025},\n335\t}\n336\t\n337\t@article{markovian_chains,\n338\t  title = {{Markovian Generation Chains in Large Language Models}},\n339\t  author = {Geng, Mingmeng and Mohamed, Amr and Shang, Guokan and Vazirgiannis, Michalis and Poibeau, Thierry},\n340\t  journal = {arXiv preprint arXiv:2603.11228},\n341\t  year = {2026},\n342\t}\n343\t\n344\t@inproceedings{attractor_cycles,\n345\t  title = {{Unveiling Attractor Cycles in Large Language Models: A Dynamical Systems View of Successive Paraphrasing}},\n346\t  author = {Wang, Zhilin and Li, Yafu and Yan, Jianhao and Cheng, Yu and Zhang, Yue},\n347\t  booktitle = {Proceedings of the Annual Meeting of the Association for Computational Linguistics},\n348\t  year = {2025},\n349\t  eprint = {2502.15208},\n350\t  archiveprefix = {arXiv},\n351\t}\n352\t\n353\t% ===== Membership Inference =====\n354\t\n355\t@inproceedings{min_k_percent,\n356\t  title = {{Detecting Pretraining Data from Large Language Models}},\n357\t  author = {Shi, Weijia and Ajith, Anirudh and Xia, Mengzhou and Huang, Yangsibo and Liu, Daogao and Blevins, Terra and Chen, Danqi and Zettlemoyer, Luke},\n358\t  booktitle = {Proceedings of the International Conference on Learning Representations},\n359\t  year = {2024},\n360\t}\n361\t\n362\t@article{koike_mia_detection,\n363\t  title = {{Machine Text Detectors are Membership Inference Attacks}},\n364\t  author = {Koike, Ryuto and Dugan, Liam and Kaneko, Masahiro and Callison-Burch, Chris and Okazaki, Naoaki},\n365\t  journal = {arXiv preprint arXiv:2510.19492},\n366\t  year = {2025},\n367\t}\n368\t\n369\t% ===== Survey =====\n370\t\n371\t@article{wu_survey_2025,\n372\t  title = {{A Survey on LLM-Generated Text Detection: Necessity, Methods, and Future Directions}},\n373\t  author = {Wu, Junchao and Yang, Shu and Zhan, Runzhe and Yuan, Yulin and Chao, Lidia Sam and Wong, Derek Fai},\n374\t  journal = {Computational Linguistics},\n375\t  publisher = {MIT Press},\n376\t  year = {2025},\n377\t}\n378\t\n379\t@inproceedings{jawahar_survey,\n380\t  title = {{Automatic Detection of Machine Generated Text: A Critical Survey}},\n381\t  author = {Jawahar, Ganesh and Abdul-Mageed, Muhammad and Lakshmanan, Laks V.S.},\n382\t  booktitle = {Proceedings of the International Conference on Computational Linguistics},\n383\t  year = {2020},\n384\t}\n385\t\n386\t% ===== Models =====\n387\t\n388\t@inproceedings{pythia,\n389\t  title = {{Pythia: A Suite for Analyzing Large Language Models Across Training and Scaling}},\n390\t  author = {Biderman, Stella and Schoelkopf, Hailey and Anthony, Quentin Gregory and Bradley, Herbie and O'Brien, Kyle and Hallahan, Eric and Khan, Mohammad Aflah and Purohit, Shivanshu and Prashanth, USVSN Sai and Raff, Edward and Skowron, Aviya and Sutawika, Lintang and {van der Wal}, Oskar},\n391\t  booktitle = {Proceedings of the International Conference on Machine Learning},\n392\t  year = {2023},\n393\t}\n394\t\n395\t@inproceedings{olmo,\n396\t  title = {{OLMo: Accelerating the Science of Language Models}},\n397\t  author = {Groeneveld, Dirk and Beltagy, Iz and Walsh, Evan and Bhagia, Akshita and Kinney, Rodney and Tafjord, Oyvind and Jha, Ananya Harsh and Ivison, Hamish and Magnusson, Ian and Wang, Yizhong and Arora, Shane and Atkinson, David and Authur, Russell and Chandu, Khyathi Raghavi and Cohan, Arman and Dumas, Jennifer and Elazar, Yanai and Gu, Yuling and Hessel, Jack and Khot, Tushar and Merrill, William and Morrison, Jacob and Muennighoff, Niklas and Naik, Aakanksha and Nam, Crystal and Peters, Matthew E. and Pyatkin, Valentina and Ravichander, Abhilasha and Schwenk, Dustin and Shah, Saurabh and Smith, Will and Strubell, Emma and Subramani, Nishant and Wortsman, Mitchell and Dasigi, Pradeep and Lambert, Nathan and Richardson, Kyle and Zettlemoyer, Luke and Dodge, Jesse and Lo, Kyle and Soldaini, Luca and Smith, Noah A. and Hajishirzi, Hannaneh},\n398\t  booktitle = {Proceedings of the Annual Meeting of the Association for Computational Linguistics},\n399\t  year = {2024},\n400\t}\n401\t\n402\t@article{qwen3,\n403\t  title = {{Qwen3 Technical Report}},\n404\t  author = {{Qwen Team}},\n405\t  journal = {arXiv preprint arXiv:2505.09388},\n406\t  year = {2025},\n407\t}\n408\t\n409\t@inproceedings{ghostbuster,\n410\t  title = {{Ghostbuster: Detecting Text Ghostwritten by Large Language Models}},\n411\t  author = {Verma, Vivek and Fleisig, Eve and Tomlin, Nicholas and Klein, Dan},\n412\t  booktitle = {Proceedings of the Conference of the North American Chapter of the Association for Computational Linguistics},\n413\t  year = {2024},\n414\t}\n415\t\n416\t@article{two_birds,\n417\t  title = {{Two Birds with One Stone: Multi-Task Detection and Attribution of LLM-Generated Text}},\n418\t  author = {Rao, Zixin and Mohamed, Youssef and Liu, Shang and Liu, Zeyan},\n419\t  journal = {arXiv preprint arXiv:2508.14190},\n420\t  year = {2025},\n421\t}\n422\t\n423\t@inproceedings{beyond_final_actor,\n424\t  title = {{Beyond the Final Actor: Modeling the Dual Roles of Creator and Editor for Fine-Grained LLM-Generated Text Detection}},\n425\t  author = {Li, Yang and Sheng, Qiang and Wang, Zhengjia and Yang, Yehan and Wang, Danding and Cao, Juan},\n426\t  booktitle = {Proceedings of the Annual Meeting of the Association for Computational Linguistics},\n427\t  year = {2026},\n428\t}\n429\t\n430\t% ===== Machine Learning =====\n431\t\n432\t@article{gutierrez_ordinal_survey,\n433\t  title = {{Ordinal Regression Methods: Survey and Experimental Study}},\n434\t  author = {Guti{\\'e}rrez, Pedro Antonio and P{\\'e}rez-Ortiz, Mar{\\'i}a and S{\\'a}nchez-Monedero, Javier and Fern{\\'a}ndez-Navarro, Francisco and Herv{\\'a}s-Mart{\\'i}nez, C{\\'e}sar},\n435\t  journal = {IEEE Transactions on Knowledge and Data Engineering},\n436\t  volume = {28},\n437\t  number = {1},\n438\t  pages = {127--146},\n439\t  year = {2016},\n440\t}\n441\t\n442\t@article{coral_ordinal,\n443\t  title = {{Rank Consistent Ordinal Regression for Neural Networks with Application to Age Estimation}},\n444\t  author = {Cao, Wenzhi and Mirjalili, Vahid and Raschka, Sebastian},\n445\t  journal = {Pattern Recognition Letters},\n446\t  volume = {140},\n447\t  pages = {325--331},\n448\t  year = {2020},\n449\t}\n450\t\n451\t@inproceedings{frank_hall_ordinal,\n452\t  title = {{A Simple Approach to Ordinal Classification}},\n453\t  author = {Frank, Eibe and Hall, Mark},\n454\t  booktitle = {Proceedings of the European Conference on Machine Learning},\n455\t  year = {2001},\n456\t}\n457\t\n458\t@article{corn_ordinal,\n459\t  title = {{Deep Neural Networks for Rank-Consistent Ordinal Regression Based On Conditional Probabilities}},\n460\t  author = {Shi, Xintong and Cao, Wenzhi and Raschka, Sebastian},\n461\t  journal = {Pattern Analysis and Applications},\n462\t  volume = {26},\n463\t  pages = {941--955},\n464\t  year = {2023},\n465\t}\n466\t\n467\t@inproceedings{diaz_soft_labels_ordinal,\n468\t  title = {{Soft Labels for Ordinal Regression}},\n469\t  author = {Diaz, Raul and Marathe, Amit},\n470\t  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},\n471\t  year = {2019},\n472\t}\n473\t\n474\t@inproceedings{kasa_ordinality_nlp,\n475\t  title = {{Exploring Ordinality in Text Classification: A Comparative Study of Explicit and Implicit Techniques}},\n476\t  author = {Kasa, Siva Rajesh and Goel, Aniket and Gupta, Karan and Roychowdhury, Sumegh and Priyatam, Pattisapu and Bhanushali, Anish and Murthy, Prasanna Srinivasa},\n477\t  booktitle = {Findings of the Association for Computational Linguistics: ACL},\n478\t  year = {2024},\n479\t}\n480\t\n481\t@inproceedings{xgboost,\n482\t  title = {{XGBoost: A Scalable Tree Boosting System}},\n483\t  author = {Chen, Tianqi and Guestrin, Carlos},\n484\t  booktitle = {Proceedings of the ACM SIGKDD International Conference on Knowledge Discovery and Data Mining},\n485\t  year = {2016},\n486\t}\n487\t\n488\t@article{lakens_equivalence,\n489\t  title = {{Equivalence Tests: A Practical Primer for $t$ Tests, Correlations, and Meta-Analyses}},\n490\t  author = {Lakens, Dani{\\\"e}l},\n491\t  journal = {Social Psychological and Personality Science},\n492\t  volume = {8},\n493\t  number = {4},\n494\t  pages = {355--362},\n495\t  year = {2017},\n496\t}\n497\t\n498\t% ===== Generator Model References =====\n499\t\n500\t@article{llama3,\n501\t  title = {{The Llama 3 Herd of Models}},\n502\t  author = {Grattafiori, Aaron and Dubey, Abhimanyu and Jauhri, Abhinav and Pandey, Abhinav and Kadian, Abhishek and Al-Dahle, Ahmad and Letman, Aiesha and Mathur, Akhil and Schelten, Alan and Yang, Amy and others},\n503\t  journal = {arXiv preprint arXiv:2407.21783},\n504\t  year = {2024},\n505\t}\n506\t\n507\t@article{mistral7b,\n508\t  title = {{Mistral 7B}},\n509\t  author = {Jiang, Albert Q. and Sablayrolles, Alexandre and Mensch, Arthur and Bamford, Chris and Chaplot, Devendra Singh and Casas, Diego de las and Bressand, Florian and Lengyel, Gianna and Lample, Guillaume and Saulnier, Lucile and others},\n510\t  journal = {arXiv preprint arXiv:2310.06825},\n511\t  year = {2023},\n512\t}\n513\t\n514\t@article{strobl_conditional_2008,\n515\t  title = {Conditional Variable Importance for Random Forests},\n516\t  author = {Strobl, Carolin and Boulesteix, Anne-Laure and Kneib, Thomas and Augustin, Thomas and Zeileis, Achim},\n517\t  journal = {BMC Bioinformatics},\n518\t  volume = {9},\n519\t  pages = {307},\n520\t  year = {2008},\n521\t}\n522\t\n523\t% --- Entries from Paper Agent (docs/paper) ---\n524\t\n525\t@inproceedings{dolma,\n526\t  title = {{Dolma: an Open Corpus of Three Trillion Tokens for Language Model Pretraining Research}},\n527\t  author = {Soldaini, Luca and Kinney, Rodney and Bhagia, Akshita and Schwenk, Dustin and Atkinson, David and Authur, Russell and Bogin, Ben and Chandu, Khyathi and Dumas, Jennifer and Elazar, Yanai and Hofmann, Valentin and Jha, Ananya Harsh and Kumar, Sachin and Lucy, Li and Lyu, Xinxi and Lambert, Nathan and Magnusson, Ian and Morrison, Jacob and Muennighoff, Niklas and Naik, Aakanksha and Nam, Crystal and Peters, Matthew E. and Ravichander, Abhilasha and Richardson, Kyle and Shen, Zejiang and Strubell, Emma and Subramani, Nishant and Tafjord, Oyvind and Walsh, Evan Pete and Zettlemoyer, Luke and Smith, Noah A. and Hajishirzi, Hannaneh and Beltagy, Iz and Groeneveld, Dirk and Dodge, Jesse and Lo, Kyle},\n528\t  booktitle = {Proceedings of the Annual Meeting of the Association for Computational Linguistics},\n529\t  year = {2024},\n530\t}\n531\t\n532\t\n533\t@inproceedings{fineweb,\n534\t  title = {{The FineWeb Datasets: Decanting the Web for the Finest Text Data at Scale}},\n535\t  author = {Penedo, Guilherme and Kydl{\\'\\i}{\\v{c}}ek, Hynek and Ben Allal, Loubna and Lozhkov, Anton and Mitchell, Margaret and Raffel, Colin and Von Werra, Leandro and Wolf, Thomas},\n536\t  booktitle = {Advances in Neural Information Processing Systems: Datasets and Benchmarks Track},\n537\t  year = {2024},\n538\t}\n539\t\n540\t\n541\t@inproceedings{mapping_llm_science,\n542\t  title = {{Mapping the Increasing Use of LLMs in Scientific Papers}},\n543\t  author = {Liang, Weixin and Zhang, Yaohui and Wu, Zhengxuan and Lepp, Haley and Ji, Wenlong and Zhao, Xuandong and Cao, Hancheng and Liu, Sheng and He, Siyu and Huang, Zhi and Yang, Diyi and Potts, Christopher and Manning, Christopher D. and Zou, James Y.},\n544\t  booktitle = {Proceedings of the Conference on Language Modeling},\n545\t  year = {2024},\n546\t}\n547\t\n548\t\n549\t@inproceedings{monitoring_ai_review,\n550\t  title = {{Monitoring AI-Modified Content at Scale: A Case Study on the Impact of ChatGPT on AI Conference Peer Reviews}},\n551\t  author = {Liang, Weixin and Izzo, Zachary and Zhang, Yaohui and Lepp, Haley and Cao, Hancheng and Zhao, Xuandong and Chen, Lingjiao and Ye, Haotian and Liu, Sheng and Huang, Zhi and McFarland, Daniel A. and Zou, James Y.},\n552\t  booktitle = {Proceedings of the International Conference on Machine Learning},\n553\t  year = {2024},\n554\t}\n555\t\n556\t% ===== Stylometry =====\n557\t\n558\t\n559\t\n560\t@inproceedings{raid,\n561\t  title = {{RAID}: A Shared Benchmark for Robust Evaluation of Machine-Generated Text Detectors},\n562\t  author = {Dugan, Liam and Hwang, Alyssa and Trhl{\\'\\i}k, Filip and Zhu, Andrew and Ludan, Josh Magnus and Xu, Hainiu and Ippolito, Daphne and Callison-Burch, Chris},\n563\t  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n564\t  year = {2024},\n565\t  address = {Bangkok, Thailand},\n566\t  publisher = {Association for Computational Linguistics},\n567\t  pages = {12463--12492},\n568\t}\n569\t\n570\t% ===== Spectral / Frequency-domain Detection =====\n571\t\n572\t@article{xu_spectrum_detection,\n573\t  title = {{Detecting Subtle Differences between Human and Model Languages Using Spectrum of Relative Likelihood}},\n574\t  author = {Xu, Yang and Wang, Yu and An, Hao and Liu, Zhichen and Li, Yongyuan},\n575\t  journal = {arXiv preprint arXiv:2406.19874},\n576\t  year = {2024},\n577\t}\n578\t\n579\t% ===== Distribution Quality =====\n580\t\n581\t@inproceedings{mauve,\n582\t  title = {{MAUVE: Measuring the Gap Between Neural Text and Human Text using Divergence Frontiers}},\n583\t  author = {Pillutla, Krishna and Swayamdipta, Swabha and Zellers, Rowan and Thickstun, John and Welleck, Sean and Choi, Yejin and Harchaoui, Zaid},\n584\t  booktitle = {Advances in Neural Information Processing Systems},\n585\t  year = {2021},\n586\t}\n587\t\n588\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2ce8a69d-bca3-4529-886d-064bb2fd2ae3",
+            "isSidechain": true,
+            "promptId": "ee622ec2-5cbd-444b-9510-61af72dbc84a",
+            "agentId": "aed4146fa26bdbdd0",
+            "type": "user",
+            "uuid": "f7cb9322-5b23-4786-83cb-046b842d9edf",
+            "sourceToolAssistantUUID": "2ce8a69d-bca3-4529-886d-064bb2fd2ae3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "6f13698d-9bb4-4f2e-acbc-2759ff5b5bb1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "temporal-noodling-llama"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-24T15:05:13.237Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I found the references.bib file and have extracted all 16 citation entries. Here are the results:\n\n## Ghost Citations (6 entries)\n\n**1. detectgpt** (lines 15-20)\n```\n@inproceedings{detectgpt,\n  title = {{DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature}},\n  author = {Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n  booktitle = {Proceedings of the International Conference on Machine Learning},\n  year = {2023},\n}\n```\n\n**2. reliable_detection** (lines 73-79)\n```\n@article{reliable_detection,\n  title = {{Can AI-Generated Text be Reliably Detected? Stress Testing AI Text Detectors Under Various Attacks}},\n  author = {Sadasivan, Vinu Sankar and Kumar, Aounon and Balasubramanian, Sriram and Wang, Wenxiao and Feizi, Soheil},\n  journal = {Transactions on Machine Learning Research},\n  year = {2025},\n  url = {https://openreview.net/forum?id=OOgsAZdFOt},\n}\n```\n\n**3. detection_possibilities** (lines 88-93)\n```\n@inproceedings{detection_possibilities,\n  title = {{Position: On the Possibilities of AI-Generated Text Detection}},\n  author = {Chakraborty, Souradip and Bedi, Amrit Singh and Zhu, Sicheng and An, Bang and Manocha, Dinesh and Huang, Furong},\n  booktitle = {Proceedings of the International Conference on Machine Learning},\n  year = {2024},\n}\n```\n\n**4. aaronson_watermark** (lines 240-246)\n```\n@misc{aaronson_watermark,\n  title = {{Watermarking GPT Outputs}},\n  author = {Aaronson, Scott and Kirchner, Jan Hendrik},\n  year = {2022},\n  note = {Blog post},\n  url = {https://scottaaronson.blog/?p=6823},\n}\n```\n\n**5. pythia** (lines 388-393)\n```\n@inproceedings{pythia,\n  title = {{Pythia: A Suite for Analyzing Large Language Models Across Training and Scaling}},\n  author = {Biderman, Stella and Schoelkopf, Hailey and Anthony, Quentin Gregory and Bradley, Herbie and O'Brien, Kyle and Hallahan, Eric and Khan, Mohammad Aflah and Purohit, Shivanshu and Prashanth, USVSN Sai and Raff, Edward and Skowron, Aviya and Sutawika, Lintang and {van der Wal}, Oskar},\n  booktitle = {Proceedings of the International Conference on Machine Learning},\n  year = {2023},\n}\n```\n\n**6. xgboost** (lines 481-486)\n```\n@inproceedings{xgboost,\n  title = {{XGBoost: A Scalable Tree Boosting System}},\n  author = {Chen, Tianqi and Guestrin, Carlos},\n  booktitle = {Proceedings of the ACM SIGKDD International Conference on Knowledge Discovery and Data Mining},\n  year = {2016},\n}\n```\n\n## Inconsistent Info (10 entries)\n\n**7. cohen1988statistical** (lines 5-11)\n```\n@book{cohen1988statistical,\n  title = {{Statistical Power Analysis for the Behavioral Sciences}},\n  author = {Cohen, Jacob},\n  edition = {2nd},\n  publisher = {Lawrence Erlbaum Associates},\n  year = {1988},\n}\n```\n\n**8. paraphrase_evades** (lines 81-86)\n```\n@inproceedings{paraphrase_evades,\n  title = {{Paraphrasing Evades Detectors of AI-Generated Text, but Retrieval is an Effective Defense}},\n  author = {Krishna, Kalpesh and Song, Yixiao and Karpinska, Marzena and Wieting, John and Iyyer, Mohit},\n  booktitle = {Advances in Neural Information Processing Systems},\n  year = {2023},\n}\n```\n\n**9. intrinsic_dim_detection** (lines 95-100)\n```\n@inproceedings{intrinsic_dim_detection,\n  title = {{Intrinsic Dimension Estimation for Robust Detection of AI-Generated Texts}},\n  author = {Tulchinskii, Eduard and Kuznetsov, Kristian and Kushnareva, Laida and Cherniavskii, Daniil and Nikolenko, Sergey and Burnaev, Evgeny and Barannikov, Serguei and Piontkovskaya, Irina},\n  booktitle = {Advances in Neural Information Processing Systems},\n  year = {2023},\n}\n```\n\n**10. self_consuming_mad** (lines 139-144)\n```\n@inproceedings{self_consuming_mad,\n  title = {{Self-Consuming Generative Models Go MAD}},\n  author = {Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Babaei, Hossein and LeJeune, Daniel and Siahkoohi, Ali and Baraniuk, Richard G.},\n  booktitle = {Proceedings of the International Conference on Learning Representations},\n  year = {2024},\n}\n```\n\n**11. dsir** (lines 201-206)\n```\n@inproceedings{dsir,\n  title = {{Data Selection for Language Models via Importance Resampling}},\n  author = {Xie, Sang Michael and Santurkar, Shibani and Ma, Tengyu and Liang, Percy},\n  booktitle = {Advances in Neural Information Processing Systems},\n  year = {2023},\n}\n```\n\n**12. nucleus_sampling** (lines 271-276)\n```\n@inproceedings{nucleus_sampling,\n  title = {{The Curious Case of Neural Text Degeneration}},\n  author = {Holtzman, Ari and Buys, Jan and Du, Li and Forbes, Maxwell and Choi, Yejin},\n  booktitle = {Proceedings of the International Conference on Learning Representations},\n  year = {2020},\n}\n```\n\n**13. qwen3** (lines 402-407)\n```\n@article{qwen3,\n  title = {{Qwen3 Technical Report}},\n  author = {{Qwen Team}},\n  journal = {arXiv preprint arXiv:2505.09388},\n  year = {2025},\n}\n```\n\n**14. gutierrez_ordinal_survey** (lines 432-440)\n```\n@article{gutierrez_ordinal_survey,\n  title = {{Ordinal Regression Methods: Survey and Experimental Study}},\n  author = {Guti{\\'e}rrez, Pedro Antonio and P{\\'e}rez-Ortiz, Mar{\\'i}a and S{\\'a}nchez-Monedero, Javier and Fern{\\'a}ndez-Navarro, Francisco and Herv{\\'a}s-Mart{\\'i}nez, C{\\'e}sar},\n  journal = {IEEE Transactions on Knowledge and Data Engineering},\n  volume = {28},\n  number = {1},\n  pages = {127--146},\n  year = {2016},\n}\n```\n\n**15. diaz_soft_labels_ordinal** (lines 467-472)\n```\n@inproceedings{diaz_soft_labels_ordinal,\n  title = {{Soft Labels for Ordinal Regression}},\n  author = {Diaz, Raul and Marathe, Amit},\n  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},\n  year = {2019},\n}\n```\n\n**16. llama3** (lines 500-505)\n```\n@article{llama3,\n  title = {{The Llama 3 Herd of Models}},\n  author = {Grattafiori, Aaron and Dubey, Abhimanyu and Jauhri, Abhinav and Pandey, Abhinav and Kadian, Abhishek and Al-Dahle, Ahmad and Letman, Aiesha and Mathur, Akhil and Schelten, Alan and Yang, Amy and others},\n  journal = {arXiv preprint arXiv:2407.21783},\n  year = {2024},\n}\n```\n\nAll 16 citation keys are present in the references.bib file with complete entry information including authors, titles, publication venues, and years."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f7cb9322-5b23-4786-83cb-046b842d9edf",
+            "isSidechain": true,
+            "agentId": "aed4146fa26bdbdd0",
+            "requestId": "req_011CbMbjN3UrPuYeaRdLzoSr",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c8ae37bd-13cf-4c52-91c1-778315897965",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "6f13698d-9bb4-4f2e-acbc-2759ff5b5bb1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "temporal-noodling-llama",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TpreyZPLXgidK5Nj3AjCgi",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 10812,
+                "cache_read_input_tokens": 40742,
+                "output_tokens": 2226,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 10812
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 2226,
+                    "cache_read_input_tokens": 40742,
+                    "cache_creation_input_tokens": 10812,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 10812,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        }
+      ],
+      "message_count": 8
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-check-specific-bibtex-entries-in-the-paper-s-bib-file-s-for-the-gen.md"
+}

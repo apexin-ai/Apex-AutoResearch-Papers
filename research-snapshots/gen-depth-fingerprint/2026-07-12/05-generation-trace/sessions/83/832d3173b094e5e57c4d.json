@@ -1,0 +1,146 @@
+{
+  "schema_version": "1.0",
+  "id": "832d3173b094e5e57c4d",
+  "project": "gen-depth-fingerprint--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [系统通知 — worker_done:worker_ssh_full-status-check_20260515T012322]: Worker worker_ssh_full-status-check_20260515T012322 已",
+  "task_key": "f11fb606-573e-4fba-8d2e-c4aa83a29f20",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/f11fb606-573e-4fba-8d2e-c4aa83a29f20.jsonl",
+    "occurrence": 1,
+    "bytes": 685815,
+    "sha256": "0f6ed1aaf549c439add78b3a7c3eed31125ac4a11cf0fb048ef5f6553264d26f"
+  },
+  "statistics": {
+    "messages": 167,
+    "user_turns": 9,
+    "tool_calls": 39,
+    "roles": {
+      "record": 42,
+      "user": 9,
+      "assistant": 38,
+      "tool_call": 39,
+      "tool_result": 39
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "832d3173b094e5e57c4d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 72,
+      "chunks": [
+        {
+          "path": "832d3173b094e5e57c4d-part-0001.json",
+          "message_count": 72
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "832d3173b094e5e57c4d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "832d3173b094e5e57c4d-part-0001.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "832d3173b094e5e57c4d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "832d3173b094e5e57c4d-part-0001.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "832d3173b094e5e57c4d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 29,
+      "chunks": [
+        {
+          "path": "832d3173b094e5e57c4d-part-0001.json",
+          "message_count": 12
+        },
+        {
+          "path": "832d3173b094e5e57c4d-part-0002.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "832d3173b094e5e57c4d-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 20,
+      "chunks": [
+        {
+          "path": "832d3173b094e5e57c4d-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-worker-done-worker-ssh-full-status-check-20260515t012322-worker-worker-ssh-ful.md"
+}

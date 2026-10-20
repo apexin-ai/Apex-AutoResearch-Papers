@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "825a16a8643872785e63",
+  "project": "gen-depth-fingerprint--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [Director 指令] [Director 指令 — CRITICAL 数据修复 + Round 4 Text Fixes] ## 背景 队列里的旧消息全部过时（session reset 前的残留），忽略之前所有指令。以下是当前全量任",
+  "task_key": "56206273-981e-47f6-8444-84245971c924",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/56206273-981e-47f6-8444-84245971c924.jsonl",
+    "occurrence": 1,
+    "bytes": 654802,
+    "sha256": "9ed8208e63f492b3e3bbcde64bf1445c09f0b3227f16ce582e69cc71918b7075"
+  },
+  "statistics": {
+    "messages": 170,
+    "user_turns": 1,
+    "tool_calls": 55,
+    "roles": {
+      "record": 30,
+      "user": 1,
+      "assistant": 30,
+      "tool_call": 55,
+      "tool_result": 54
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "825a16a8643872785e63-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 168,
+      "chunks": [
+        {
+          "path": "825a16a8643872785e63-part-0001.json",
+          "message_count": 139
+        },
+        {
+          "path": "825a16a8643872785e63-part-0002.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-director-director-critical-round-4-text-fixes-session-reset.md"
+}

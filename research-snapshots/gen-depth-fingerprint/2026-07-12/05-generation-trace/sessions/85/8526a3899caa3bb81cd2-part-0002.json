@@ -1,0 +1,483 @@
+{
+  "schema_version": "1.0",
+  "session_id": "8526a3899caa3bb81cd2",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-14T22:21:08.359Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MBw7aDioY1yWRR7XVD7HmB",
+              "type": "tool_result",
+              "content": "100\t{\"ts\": \"2026-05-14T21:56:46.339261+00:00\", \"exp_id\": \"plan-002-qwen17b-retry-s1\", \"project\": \"gen-depth-fingerprint\", \"field\": \"status\", \"old_value\": \"PREPARING\", \"new_value\": \"QUEUED\", \"session_key\": \"\", \"source\": \"update_registry\"}\n101\t{\"ts\": \"2026-05-14T21:56:46.821348+00:00\", \"exp_id\": \"plan-002-qwen06b-s0\", \"project\": \"gen-depth-fingerprint\", \"field\": \"status\", \"old_value\": \"PREPARING\", \"new_value\": \"QUEUED\", \"session_key\": \"\", \"source\": \"update_registry\"}\n102\t{\"ts\": \"2026-05-14T21:56:47.535889+00:00\", \"exp_id\": \"plan-002-qwen06b-s1\", \"project\": \"gen-depth-fingerprint\", \"field\": \"status\", \"old_value\": \"PREPARING\", \"new_value\": \"QUEUED\", \"session_key\": \"\", \"source\": \"update_registry\"}\n103\t{\"ts\": \"2026-05-14T21:56:53.336774+00:00\", \"exp_id\": \"plan-002-qwen17b-retry-s0\", \"project\": \"gen-depth-fingerprint\", \"field\": \"status\", \"old_value\": \"QUEUED\", \"new_value\": \"RUNNING\", \"session_key\": \"\", \"source\": \"update_registry\"}\n104\t{\"ts\": \"2026-05-14T21:56:55.177504+00:00\", \"exp_id\": \"plan-002-qwen17b-retry-s1\", \"project\": \"gen-depth-fingerprint\", \"field\": \"status\", \"old_value\": \"QUEUED\", \"new_value\": \"RUNNING\", \"session_key\": \"\", \"source\": \"update_registry\"}\n105\t{\"ts\": \"2026-05-14T21:56:57.060152+00:00\", \"exp_id\": \"plan-002-qwen06b-s0\", \"project\": \"gen-depth-fingerprint\", \"field\": \"status\", \"old_value\": \"QUEUED\", \"new_value\": \"RUNNING\", \"session_key\": \"\", \"source\": \"update_registry\"}\n106\t{\"ts\": \"2026-05-14T21:56:59.441794+00:00\", \"exp_id\": \"plan-002-qwen06b-s1\", \"project\": \"gen-depth-fingerprint\", \"field\": \"status\", \"old_value\": \"QUEUED\", \"new_value\": \"RUNNING\", \"session_key\": \"\", \"source\": \"update_registry\"}\n107\t{\"ts\": \"2026-05-14T21:59:28.674713+00:00\", \"exp_id\": \"plan-002-qwen17b-retry-s0\", \"project\": \"gen-depth-fingerprint\", \"field\": \"conclusion\", \"old_value\": null, \"new_value\": \"failed\", \"session_key\": \"\", \"source\": \"cron_poll\"}\n108\t{\"ts\": \"2026-05-14T21:59:28.748374+00:00\", \"exp_id\": \"plan-002-qwen17b-retry-s0\", \"project\": \"gen-depth-fingerprint\", \"field\": \"status\", \"old_value\": \"RUNNING\", \"new_value\": \"DONE\", \"session_key\": \"\", \"source\": \"cron_poll\"}\n109\t{\"ts\": \"2026-05-14T21:59:32.410939+00:00\", \"exp_id\": \"plan-002-qwen17b-retry-s1\", \"project\": \"gen-depth-fingerprint\", \"field\": \"conclusion\", \"old_value\": null, \"new_value\": \"failed\", \"session_key\": \"\", \"source\": \"cron_poll\"}\n110\t{\"ts\": \"2026-05-14T21:59:33.179874+00:00\", \"exp_id\": \"plan-002-qwen17b-retry-s1\", \"project\": \"gen-depth-fingerprint\", \"field\": \"status\", \"old_value\": \"RUNNING\", \"new_value\": \"DONE\", \"session_key\": \"\", \"source\": \"cron_poll\"}\n111\t{\"ts\": \"2026-05-14T22:01:52.439932+00:00\", \"exp_id\": \"plan-002-qwen17b-r2-s0\", \"project\": \"gen-depth-fingerprint\", \"field\": \"notes\", \"old_value\": null, \"new_value\": \"⚠️ tmux_session_alive=false（PID 120612 仍在运行 ~3min）。与 retry-s0/s1 相同模式：tmux session 死亡→进程将被 SIGHUP。正在派 Worker 诊断 tmux 死亡根因。\", \"session_key\": \"\", \"source\": \"update_registry\"}\n112\t{\"ts\": \"2026-05-14T22:01:53.896818+00:00\", \"exp_id\": \"plan-002-qwen17b-r2-s1\", \"project\": \"gen-depth-fingerprint\", \"field\": \"notes\", \"old_value\": null, \"new_value\": \"⚠️ tmux_session_alive=false（PID 120689 仍在运行 ~3min）。与 retry-s0/s1 相同模式：tmux session 死亡→进程将被 SIGHUP。正在派 Worker 诊断 tmux 死亡根因。\", \"session_key\": \"\", \"source\": \"update_registry\"}\n113\t{\"ts\": \"2026-05-14T22:02:02.965053+00:00\", \"exp_id\": \"plan-002-qwen17b-retry-s0\", \"project\": \"gen-depth-fingerprint\", \"field\": \"notes\", \"old_value\": null, \"new_value\": \"失败原因: SIGHUP (EXIT_CODE=129)。高度怀疑 plan-002-qwen17b-r2-s0 在 21:58 提交到同一 cuda:0 覆盖了 tmux session（retry 仍在运行中）。这是 Qwen3-1.7B 第 3 次 SIGHUP，同一个重复提交模式。诊断 Worker worker_diagnose_server-sweep-20260514_20260514T220140 正在深查。\", \"session_key\": \"\", \"source\": \"update_registry\"}\n114\t{\"ts\": \"2026-05-14T22:02:04.360158+00:00\", \"exp_id\": \"plan-002-qwen17b-retry-s1\", \"project\": \"gen-depth-fingerprint\", \"field\": \"notes\", \"old_value\": null, \"new_value\": \"失败原因: SIGHUP (EXIT_CODE=129)。高度怀疑 plan-002-qwen17b-r2-s1 在 21:58 提交到同一 cuda:1 覆盖了 tmux session（retry 仍在运行中）。与 retry-s0 同一根因。\", \"session_key\": \"\", \"source\": \"update_registry\"}\n115\t{\"ts\": \"2026-05-14T22:04:42.640238+00:00\", \"exp_id\": \"plan-002-qwen06b-s0\", \"project\": \"gen-depth-fingerprint\", \"field\": \"conclusion\", \"old_value\": null, \"new_value\": \"failed\", \"session_key\": \"\", \"source\": \"cron_poll_auto_resolve\"}\n116\t{\"ts\": \"2026-05-14T22:04:42.733892+00:00\", \"exp_id\": \"plan-002-qwen06b-s0\", \"project\": \"gen-depth-fingerprint\", \"field\": \"status\", \"old_value\": \"RUNNING\", \"new_value\": \"DONE\", \"session_key\": \"\", \"source\": \"cron_poll_auto_resolve\"}\n117\t{\"ts\": \"2026-05-14T22:05:00.819377+00:00\", \"exp_id\": \"plan-002-qwen06b-s1\", \"project\": \"gen-depth-fingerprint\", \"field\": \"conclusion\", \"old_value\": null, \"new_value\": \"failed\", \"session_key\": \"\", \"source\": \"cron_poll_auto_resolve\"}\n118\t{\"ts\": \"2026-05-14T22:05:00.909133+00:00\", \"exp_id\": \"plan-002-qwen06b-s1\", \"project\": \"gen-depth-fingerprint\", \"field\": \"status\", \"old_value\": \"RUNNING\", \"new_value\": \"DONE\", \"session_key\": \"\", \"source\": \"cron_poll_auto_resolve\"}\n119\t{\"ts\": \"2026-05-14T22:07:33.794736+00:00\", \"exp_id\": \"plan-002-qwen06b-s0\", \"project\": \"gen-depth-fingerprint\", \"field\": \"notes\", \"old_value\": null, \"new_value\": \"失败原因: 进程在 226/498 seeds (45%) 正常运行中被外部终止，日志无任何 Python/CUDA 错误。与 Qwen3-1.7B 同一 tmux session 死亡模式。系统性 tmux 问题，非代码问题。诊断 Worker worker_diagnose_tmux-death-root-cause_20260514T220718 正在深查。\", \"session_key\": \"\", \"source\": \"update_registry\"}\n120\t{\"ts\": \"2026-05-14T22:07:37.432098+00:00\", \"exp_id\": \"plan-002-qwen06b-s1\", \"project\": \"gen-depth-fingerprint\", \"field\": \"notes\", \"old_value\": null, \"new_value\": \"失败原因: 进程在 218/498 seeds (44%) 正常运行中被外部终止，日志无任何 Python/CUDA 错误。与 s0 和 Qwen3-1.7B 同一 tmux session 死亡模式。系统性 tmux 问题。\", \"session_key\": \"\", \"source\": \"update_registry\"}\n121\t{\"ts\": \"2026-05-14T22:07:38.382264+00:00\", \"exp_id\": \"plan-002-qwen17b-r2-s0\", \"project\": \"gen-depth-fingerprint\", \"field\": \"notes\", \"old_value\": \"⚠️ tmux_session_alive=false（PID 120612 仍在运行 ~3min）。与 retry-s0/s1 相同模式：tmux session 死亡→进程将被 SIGHUP。正在派 Worker 诊断 tmux 死亡根因。\", \"new_value\": \"⚠️ PID 120612 仍在运行（8min+）但 tmux session 已死。进程为 orphan，将在任意时刻收到 SIGHUP 死亡。与所有 Qwen 实验同一 tmux 系统性问题。诊断 Worker 正在排查根因。\", \"session_key\": \"\", \"source\": \"update_registry\"}\n122\t{\"ts\": \"2026-05-14T22:07:39.210776+00:00\", \"exp_id\": \"plan-002-qwen17b-r2-s1\", \"project\": \"gen-depth-fingerprint\", \"field\": \"notes\", \"old_value\": \"⚠️ tmux_session_alive=false（PID 120689 仍在运行 ~3min）。与 retry-s0/s1 相同模式：tmux session 死亡→进程将被 SIGHUP。正在派 Worker 诊断 tmux 死亡根因。\", \"new_value\": \"⚠️ PID 120689 仍在运行（8min+）但 tmux session 已死。进程为 orphan，将在任意时刻收到 SIGHUP 死亡。与所有 Qwen 实验同一 tmux 系统性问题。\", \"session_key\": \"\", \"source\": \"update_registry\"}\n123\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c426b3f6-3cb0-49c1-a51f-4e76c15e2e01",
+            "isSidechain": false,
+            "promptId": "f9f90c45-58bc-46c0-863d-c7e2995eff5f",
+            "type": "user",
+            "uuid": "4ac04b31-3960-488e-8b8f-d916d5b02bde",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/global/logs/registry_audit.jsonl",
+                "content": "{\"ts\": \"2026-05-14T21:56:46.339261+00:00\", \"exp_id\": \"plan-002-qwen17b-retry-s1\", \"project\": \"gen-depth-fingerprint\", \"field\": \"status\", \"old_value\": \"PREPARING\", \"new_value\": \"QUEUED\", \"session_key\": \"\", \"source\": \"update_registry\"}\n{\"ts\": \"2026-05-14T21:56:46.821348+00:00\", \"exp_id\": \"plan-002-qwen06b-s0\", \"project\": \"gen-depth-fingerprint\", \"field\": \"status\", \"old_value\": \"PREPARING\", \"new_value\": \"QUEUED\", \"session_key\": \"\", \"source\": \"update_registry\"}\n{\"ts\": \"2026-05-14T21:56:47.535889+00:00\", \"exp_id\": \"plan-002-qwen06b-s1\", \"project\": \"gen-depth-fingerprint\", \"field\": \"status\", \"old_value\": \"PREPARING\", \"new_value\": \"QUEUED\", \"session_key\": \"\", \"source\": \"update_registry\"}\n{\"ts\": \"2026-05-14T21:56:53.336774+00:00\", \"exp_id\": \"plan-002-qwen17b-retry-s0\", \"project\": \"gen-depth-fingerprint\", \"field\": \"status\", \"old_value\": \"QUEUED\", \"new_value\": \"RUNNING\", \"session_key\": \"\", \"source\": \"update_registry\"}\n{\"ts\": \"2026-05-14T21:56:55.177504+00:00\", \"exp_id\": \"plan-002-qwen17b-retry-s1\", \"project\": \"gen-depth-fingerprint\", \"field\": \"status\", \"old_value\": \"QUEUED\", \"new_value\": \"RUNNING\", \"session_key\": \"\", \"source\": \"update_registry\"}\n{\"ts\": \"2026-05-14T21:56:57.060152+00:00\", \"exp_id\": \"plan-002-qwen06b-s0\", \"project\": \"gen-depth-fingerprint\", \"field\": \"status\", \"old_value\": \"QUEUED\", \"new_value\": \"RUNNING\", \"session_key\": \"\", \"source\": \"update_registry\"}\n{\"ts\": \"2026-05-14T21:56:59.441794+00:00\", \"exp_id\": \"plan-002-qwen06b-s1\", \"project\": \"gen-depth-fingerprint\", \"field\": \"status\", \"old_value\": \"QUEUED\", \"new_value\": \"RUNNING\", \"session_key\": \"\", \"source\": \"update_registry\"}\n{\"ts\": \"2026-05-14T21:59:28.674713+00:00\", \"exp_id\": \"plan-002-qwen17b-retry-s0\", \"project\": \"gen-depth-fingerprint\", \"field\": \"conclusion\", \"old_value\": null, \"new_value\": \"failed\", \"session_key\": \"\", \"source\": \"cron_poll\"}\n{\"ts\": \"2026-05-14T21:59:28.748374+00:00\", \"exp_id\": \"plan-002-qwen17b-retry-s0\", \"project\": \"gen-depth-fingerprint\", \"field\": \"status\", \"old_value\": \"RUNNING\", \"new_value\": \"DONE\", \"session_key\": \"\", \"source\": \"cron_poll\"}\n{\"ts\": \"2026-05-14T21:59:32.410939+00:00\", \"exp_id\": \"plan-002-qwen17b-retry-s1\", \"project\": \"gen-depth-fingerprint\", \"field\": \"conclusion\", \"old_value\": null, \"new_value\": \"failed\", \"session_key\": \"\", \"source\": \"cron_poll\"}\n{\"ts\": \"2026-05-14T21:59:33.179874+00:00\", \"exp_id\": \"plan-002-qwen17b-retry-s1\", \"project\": \"gen-depth-fingerprint\", \"field\": \"status\", \"old_value\": \"RUNNING\", \"new_value\": \"DONE\", \"session_key\": \"\", \"source\": \"cron_poll\"}\n{\"ts\": \"2026-05-14T22:01:52.439932+00:00\", \"exp_id\": \"plan-002-qwen17b-r2-s0\", \"project\": \"gen-depth-fingerprint\", \"field\": \"notes\", \"old_value\": null, \"new_value\": \"⚠️ tmux_session_alive=false（PID 120612 仍在运行 ~3min）。与 retry-s0/s1 相同模式：tmux session 死亡→进程将被 SIGHUP。正在派 Worker 诊断 tmux 死亡根因。\", \"session_key\": \"\", \"source\": \"update_registry\"}\n{\"ts\": \"2026-05-14T22:01:53.896818+00:00\", \"exp_id\": \"plan-002-qwen17b-r2-s1\", \"project\": \"gen-depth-fingerprint\", \"field\": \"notes\", \"old_value\": null, \"new_value\": \"⚠️ tmux_session_alive=false（PID 120689 仍在运行 ~3min）。与 retry-s0/s1 相同模式：tmux session 死亡→进程将被 SIGHUP。正在派 Worker 诊断 tmux 死亡根因。\", \"session_key\": \"\", \"source\": \"update_registry\"}\n{\"ts\": \"2026-05-14T22:02:02.965053+00:00\", \"exp_id\": \"plan-002-qwen17b-retry-s0\", \"project\": \"gen-depth-fingerprint\", \"field\": \"notes\", \"old_value\": null, \"new_value\": \"失败原因: SIGHUP (EXIT_CODE=129)。高度怀疑 plan-002-qwen17b-r2-s0 在 21:58 提交到同一 cuda:0 覆盖了 tmux session（retry 仍在运行中）。这是 Qwen3-1.7B 第 3 次 SIGHUP，同一个重复提交模式。诊断 Worker worker_diagnose_server-sweep-20260514_20260514T220140 正在深查。\", \"session_key\": \"\", \"source\": \"update_registry\"}\n{\"ts\": \"2026-05-14T22:02:04.360158+00:00\", \"exp_id\": \"plan-002-qwen17b-retry-s1\", \"project\": \"gen-depth-fingerprint\", \"field\": \"notes\", \"old_value\": null, \"new_value\": \"失败原因: SIGHUP (EXIT_CODE=129)。高度怀疑 plan-002-qwen17b-r2-s1 在 21:58 提交到同一 cuda:1 覆盖了 tmux session（retry 仍在运行中）。与 retry-s0 同一根因。\", \"session_key\": \"\", \"source\": \"update_registry\"}\n{\"ts\": \"2026-05-14T22:04:42.640238+00:00\", \"exp_id\": \"plan-002-qwen06b-s0\", \"project\": \"gen-depth-fingerprint\", \"field\": \"conclusion\", \"old_value\": null, \"new_value\": \"failed\", \"session_key\": \"\", \"source\": \"cron_poll_auto_resolve\"}\n{\"ts\": \"2026-05-14T22:04:42.733892+00:00\", \"exp_id\": \"plan-002-qwen06b-s0\", \"project\": \"gen-depth-fingerprint\", \"field\": \"status\", \"old_value\": \"RUNNING\", \"new_value\": \"DONE\", \"session_key\": \"\", \"source\": \"cron_poll_auto_resolve\"}\n{\"ts\": \"2026-05-14T22:05:00.819377+00:00\", \"exp_id\": \"plan-002-qwen06b-s1\", \"project\": \"gen-depth-fingerprint\", \"field\": \"conclusion\", \"old_value\": null, \"new_value\": \"failed\", \"session_key\": \"\", \"source\": \"cron_poll_auto_resolve\"}\n{\"ts\": \"2026-05-14T22:05:00.909133+00:00\", \"exp_id\": \"plan-002-qwen06b-s1\", \"project\": \"gen-depth-fingerprint\", \"field\": \"status\", \"old_value\": \"RUNNING\", \"new_value\": \"DONE\", \"session_key\": \"\", \"source\": \"cron_poll_auto_resolve\"}\n{\"ts\": \"2026-05-14T22:07:33.794736+00:00\", \"exp_id\": \"plan-002-qwen06b-s0\", \"project\": \"gen-depth-fingerprint\", \"field\": \"notes\", \"old_value\": null, \"new_value\": \"失败原因: 进程在 226/498 seeds (45%) 正常运行中被外部终止，日志无任何 Python/CUDA 错误。与 Qwen3-1.7B 同一 tmux session 死亡模式。系统性 tmux 问题，非代码问题。诊断 Worker worker_diagnose_tmux-death-root-cause_20260514T220718 正在深查。\", \"session_key\": \"\", \"source\": \"update_registry\"}\n{\"ts\": \"2026-05-14T22:07:37.432098+00:00\", \"exp_id\": \"plan-002-qwen06b-s1\", \"project\": \"gen-depth-fingerprint\", \"field\": \"notes\", \"old_value\": null, \"new_value\": \"失败原因: 进程在 218/498 seeds (44%) 正常运行中被外部终止，日志无任何 Python/CUDA 错误。与 s0 和 Qwen3-1.7B 同一 tmux session 死亡模式。系统性 tmux 问题。\", \"session_key\": \"\", \"source\": \"update_registry\"}\n{\"ts\": \"2026-05-14T22:07:38.382264+00:00\", \"exp_id\": \"plan-002-qwen17b-r2-s0\", \"project\": \"gen-depth-fingerprint\", \"field\": \"notes\", \"old_value\": \"⚠️ tmux_session_alive=false（PID 120612 仍在运行 ~3min）。与 retry-s0/s1 相同模式：tmux session 死亡→进程将被 SIGHUP。正在派 Worker 诊断 tmux 死亡根因。\", \"new_value\": \"⚠️ PID 120612 仍在运行（8min+）但 tmux session 已死。进程为 orphan，将在任意时刻收到 SIGHUP 死亡。与所有 Qwen 实验同一 tmux 系统性问题。诊断 Worker 正在排查根因。\", \"session_key\": \"\", \"source\": \"update_registry\"}\n{\"ts\": \"2026-05-14T22:07:39.210776+00:00\", \"exp_id\": \"plan-002-qwen17b-r2-s1\", \"project\": \"gen-depth-fingerprint\", \"field\": \"notes\", \"old_value\": \"⚠️ tmux_session_alive=false（PID 120689 仍在运行 ~3min）。与 retry-s0/s1 相同模式：tmux session 死亡→进程将被 SIGHUP。正在派 Worker 诊断 tmux 死亡根因。\", \"new_value\": \"⚠️ PID 120689 仍在运行（8min+）但 tmux session 已死。进程为 orphan，将在任意时刻收到 SIGHUP 死亡。与所有 Qwen 实验同一 tmux 系统性问题。\", \"session_key\": \"\", \"source\": \"update_registry\"}\n",
+                "numLines": 24,
+                "startLine": 100,
+                "totalLines": 123
+              }
+            },
+            "sourceToolAssistantUUID": "c426b3f6-3cb0-49c1-a51f-4e76c15e2e01",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "9cf30982-735a-49fa-bc41-960aedff3779",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": "2026-05-14T22:22:45.923Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the complete picture. Let me analyze the critical evidence:\n\n**Line 111-112 (22:01:52-22:01:53)**: The worker detected that r2-s0 and r2-s1 tmux sessions are DEAD even though the processes are still running (~3min after submission at 21:58):\n> \"⚠️ tmux_session_alive=false（PID 120612 仍在运行 ~3min）\"\n\nThis is the smoking gun! The r2 tmux sessions died within 3 minutes of creation. But the processes survived as orphans (PPID=1). \n\nYet when I check the current tmux status, those same sessions are showing as alive with creation timestamps from 05:58. This is a direct contradiction—the sessions were reported dead at 22:01:52, but they're alive now, which means they either recovered or were recreated at some point.\n\nActually, I think I've found the issue: the `check_status` method is querying tmux with the numeric process ID instead of the actual session name, so it's checking for a session called \"120612\" when it should be checking for \"plan-002-qwen17b-r2-s0\". That would explain why it reported the sessions as dead when they were actually still running. Continuing to trace through the code that checks the session status. The framework extracts the PID from the job handle and passes it to the tmux command, but since the actual session is registered under the experiment ID rather than the numeric PID, the check always returns false — even when the session is genuinely alive. So while this is definitely a bug in the diagnostic reporting, it's not what's triggering the actual kills. Let me look more carefully at what the registry notes say about when these sessions were terminated. The worker detected `tmux_session_alive=false` at 21:13:29 and concluded the process was killed, but this was a false negative—the session was actually alive. The exit code 129 (SIGHUP) rules out `kill_job` which would have sent SIGTERM (143), so the process genuinely received a hangup signal from somewhere else.\n\nActually, I think the worker called `kill_job` with the session name instead of the PID. Since `kill_job` accepts either, it would skip the SIGTERM step for non-numeric input and directly call `tmux kill-session`, which would succeed and send SIGHUP to all processes in that session—explaining the exit code 129 perfectly. So the sequence was: worker sees the session as dead due to a PID/session name mismatch in the status check, assumes the process is orphaned, then calls `kill_job` with the session name to clean up, which actually kills the live session and triggers the SIGHUP.\n\nBut looking at the timing more carefully, the qwen17b-retry process only ran for about 50 seconds before exiting with 129, and it died nearly 30 seconds before r2-s0 was even submitted, so the timing doesn't quite line up with what I'd expect if the worker was actively killing it.\n\nLet me trace through the registry timestamps again to understand when the retry actually started running versus when it was created. registry was updated to RUNNING at 21:56 as a batch update, but the actual process had been running since 21:25 and completed 156 seeds over 32 minutes before receiving SIGHUP at 21:57.\n\nLooking at the pattern across jobs: qwen3-1_7b ran for 21 minutes before dying with SIGHUP, while qwen17b-retry ran for 32 minutes before the same signal killed it. The durations don't match a fixed timeout, so something else is triggering these terminations. For r2, which started immediately after the retry died, the diagnostic worker incorrectly reported the tmux session as dead at 22:01 even though the process was still running—suggesting the session checks themselves might be unreliable.\n\nThe `check_status` bug is the culprit: it's checking for a session using the PID instead of the actual session name, so it always reports `tmux_session_alive=false` regardless of reality. When workers see this false negative, they might be calling `kill_job` to clean up what they think is an orphaned process, which would actually terminate the alive session and send SIGHUP to the running job. This would explain why both jobs died with the same signal at seemingly random intervals—it's not a timeout, it's the cleanup logic being triggered by faulty session detection.\n\nFor qwen06b specifically, the auto-resolve happened because the framework couldn't locate the PID (a separate tracking issue since it wasn't submitted through the normal path), but the processes have been running the entire time. Same root cause: the framework's broken status check is creating false negatives about process liveness.\n\nNow I'm seeing the smoking gun—the r2 sessions are actually alive in tmux right now, but the worker reported them as dead at 22:01. The sessions were created at 21:58 and never killed, yet the `tmux has-session` check is failing because it's looking for the PID as the session name when it should be using the experiment ID. This definitively proves the bug in the status check function.\n\nThe root cause is clear: when checking if a tmux session exists, the code queries using the numeric process ID, but the sessions are actually named after the experiment ID. So the check always returns false even when the session is alive, triggering workers to kill jobs that are still running.\n\nThe kill chain explains everything—workers see \"dead\" sessions and call `kill_job`, which terminates the actual tmux session with SIGHUP, causing the exit code 129. Pythia and OLMo finished too quickly for workers to detect and kill them, while qwen06b ran via direct SSH without tmux, so there was nothing to kill.\n\nThe root cause is that `check_status()` uses PID instead of `exp_id` to verify if a tmux session exists, creating a race condition where workers misidentify live sessions as dead. I need to fix this by checking the session name directly with `tmux has-session`, but I'm realizing there's more to consider about how the session name maps to the experiment ID. The fix is straightforward—the tmux session check needs to use the session name from `exp_id` instead of the PID, and that parameter is already available in `check_status`. Looking at the r2 sessions that are still alive now with processes running in them, it's clear the check was faulty rather than the sessions actually dying. The worker probably didn't call `kill_job` on r2 because it was waiting for the diagnostic output first. I'm ready to write up the diagnosis.\n\nLet me verify that `tmux has-session -t 120612` would actually fail on the server.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4ac04b31-3960-488e-8b8f-d916d5b02bde",
+            "isSidechain": false,
+            "requestId": "req_011Cb3EucgZXmDH8WwsJYrZi",
+            "type": "assistant",
+            "uuid": "d1c66494-a412-454d-b327-378133558568",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "9cf30982-735a-49fa-bc41-960aedff3779",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BLsXpeisbEB8UgbZ26uTB4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5170,
+                "cache_read_input_tokens": 123003,
+                "output_tokens": 4690,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5170,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4690,
+                    "cache_read_input_tokens": 123003,
+                    "cache_creation_input_tokens": 5170,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5170
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-14T22:22:46.253Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到根因了。让我验证关键假设：`check_status` 方法用 PID 而不是 session name 检查 tmux。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d1c66494-a412-454d-b327-378133558568",
+            "isSidechain": false,
+            "requestId": "req_011Cb3EucgZXmDH8WwsJYrZi",
+            "type": "assistant",
+            "uuid": "8a66fe02-d3e3-4d83-9643-7cc9d671b4ce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "9cf30982-735a-49fa-bc41-960aedff3779",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BLsXpeisbEB8UgbZ26uTB4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5170,
+                "cache_read_input_tokens": 123003,
+                "output_tokens": 4690,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5170,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4690,
+                    "cache_read_input_tokens": 123003,
+                    "cache_creation_input_tokens": 5170,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5170
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": "2026-05-14T22:22:48.032Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015MfWh82UYBp6HyEkYjk2L7",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "echo \"=== PID check (BUG) ===\" && tmux has-session -t 120612 2>/dev/null && echo \"YES\" || echo \"NO\" && echo \"=== Name check (CORRECT) ===\" && tmux has-session -t plan-002-qwen17b-r2-s0 2>/dev/null && echo \"YES\" || echo \"NO\" && echo \"=== tmux ls ===\" && tmux ls",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8a66fe02-d3e3-4d83-9643-7cc9d671b4ce",
+            "isSidechain": false,
+            "requestId": "req_011Cb3EucgZXmDH8WwsJYrZi",
+            "type": "assistant",
+            "uuid": "69cc9de1-a287-4dc2-8116-212bedf650fa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "9cf30982-735a-49fa-bc41-960aedff3779",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BLsXpeisbEB8UgbZ26uTB4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5170,
+                "cache_read_input_tokens": 123003,
+                "output_tokens": 4690,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5170,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4690,
+                    "cache_read_input_tokens": 123003,
+                    "cache_creation_input_tokens": 5170,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5170
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "69cc9de1-a287-4dc2-8116-212bedf650fa",
+                "sessionId": "9cf30982-735a-49fa-bc41-960aedff3779"
+              }
+            }
+          ],
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Diagnose tmux session crashes on Qwen experiments",
+                "sessionId": "9cf30982-735a-49fa-bc41-960aedff3779"
+              }
+            }
+          ],
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": "2026-05-14T22:22:48.385Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015MfWh82UYBp6HyEkYjk2L7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== PID check (BUG) ===\\\\nNO\\\\n=== Name check (CORRECT) ===\\\\nYES\\\\n=== tmux ls ===\\\\nplan-002-qwen17b-r2-s0: 1 windows (created Fri May 15 05:58:12 2026)\\\\nplan-002-qwen17b-r2-s1: 1 windows (created Fri May 15 05:58:13 2026)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "69cc9de1-a287-4dc2-8116-212bedf650fa",
+            "isSidechain": false,
+            "promptId": "f9f90c45-58bc-46c0-863d-c7e2995eff5f",
+            "type": "user",
+            "uuid": "47c42f2c-57b6-4eb2-9546-3efd7a630661",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== PID check (BUG) ===\\\\nNO\\\\n=== Name check (CORRECT) ===\\\\nYES\\\\n=== tmux ls ===\\\\nplan-002-qwen17b-r2-s0: 1 windows (created Fri May 15 05:58:12 2026)\\\\nplan-002-qwen17b-r2-s1: 1 windows (created Fri May 15 05:58:13 2026)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"=== PID check (BUG) ===\\nNO\\n=== Name check (CORRECT) ===\\nYES\\n=== tmux ls ===\\nplan-002-qwen17b-r2-s0: 1 windows (created Fri May 15 05:58:12 2026)\\nplan-002-qwen17b-r2-s1: 1 windows (created Fri May 15 05:58:13 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+              }
+            },
+            "sourceToolAssistantUUID": "69cc9de1-a287-4dc2-8116-212bedf650fa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "9cf30982-735a-49fa-bc41-960aedff3779",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-14T22:23:02.776Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "**CONFIRMED!** This is the bug.\n\n- `tmux has-session -t 120612` → NO (session not found - because session name is NOT the PID)\n- `tmux has-session -t plan-002-qwen17b-r2-s0` → YES (session is alive!)\n\nThe framework's `check_status` uses the PID (120612) to check if the tmux session is alive, but the session is named after the exp_id (plan-002-qwen17b-r2-s0). This bug causes EVERY status check to report `tmux_session_alive=false` even when the session is perfectly alive.\n\n\nThe false negative then triggers the worker to kill the session using the correct exp_id, which succeeds in terminating the alive session and marks it as failed in the registry. Looking at the audit log for qwen3-1_7b, the worker set conclusion=\"killed\" at 21:13:29 and the process died 23 seconds later, which aligns with the worker calling kill_job right after detecting the false negative.\n\nFor the r2 sessions, the worker detected the same false negative at 22:01:52 but chose not to kill them—instead spawning a diagnostic worker to investigate. That's why r2 survived: the worker was more cautious and didn't immediately terminate what appeared to be orphaned processes. Now I can write out the complete diagnosis.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "47c42f2c-57b6-4eb2-9546-3efd7a630661",
+            "isSidechain": false,
+            "requestId": "req_011Cb3F2ywSVJ8u2Pg5EF1dV",
+            "type": "assistant",
+            "uuid": "d6e4ef57-9547-4ecc-b7cf-1aa6dcf98b0a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "9cf30982-735a-49fa-bc41-960aedff3779",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019kvXgQvwu4WT9VEwfcbeMy",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4877,
+                "cache_read_input_tokens": 128173,
+                "output_tokens": 1766,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4877,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1766,
+                    "cache_read_input_tokens": 128173,
+                    "cache_creation_input_tokens": 4877,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4877
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-14T22:23:25.759Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**确认根因。**`tmux has-session -t 120612` 返回 NO（false negative），但 `tmux has-session -t plan-002-qwen17b-r2-s0` 返回 YES。Session 一直活着，是检查逻辑的 bug。\n\n---\n\n## 诊断结论\n\n```json\n{\n  \"root_cause\": \"框架 check_status 方法用 PID（如'120612'）调用 tmux has-session，但 session 名是 exp_id（如'plan-002-qwen17b-r2-s0'），导致永远报 tmux_session_alive=false。Worker 误判 session 已死，调用 kill_job(exp_id) 'cleanup orphan'，实际杀死了正在运行的 session。\",\n  \"error_type\": \"framework_bug\",\n  \"evidence\": [\n    \"tmux has-session -t 120612 → NO; tmux has-session -t plan-002-qwen17b-r2-s0 → YES（session 一直活着）\",\n    \"registry 22:01:52 记录 'tmux_session_alive=false（PID 120612 仍在运行 ~3min）' — 但 tmux ls 确认 session 存在\",\n    \"所有 Qwen 失败均为 EXIT_CODE=129（SIGHUP from tmux kill-session），非 143（SIGTERM from kill PID）\",\n    \"Pythia/OLMo 在 Worker 误判前已完成（exit 0），所以未受影响\",\n    \"qwen06b 用 ssh_execute 直接启动（无 tmux），kill_job 的 tmux kill-session 对它无效，进程存活至今\"\n  ],\n  \"why_qwen_only\": \"Pythia/OLMo 运行时间短（40-70min），在 Worker 下一次 poll 触发 kill 前已自然完成。Qwen 运行时间长（预计 ~2h），Worker poll 周期内发现 tmux_session_alive=false 就触发了 kill。\",\n  \"fix_steps\": [\n    \"修复 tmux_backend.py:check_status() — tmux has-session 检查应使用 exp_id 而非 PID\",\n    \"修复 tmux_backend.py:kill() — tmux kill-session 应使用 exp_id 而非 PID\",\n    \"确认 Worker 不应在 tmux_session_alive=false 时自动调用 kill_job\"\n  ],\n  \"can_auto_fix\": true,\n  \"r2_status\": \"PID 120612/120689 正在运行，tmux session 存活，GPU 0/1 利用率 39%/44%，进度 ~40%（200+/498 seeds）。r2 未被杀是因为 Worker 这次没立即 kill 而是先派诊断 Worker\",\n  \"recommended_resubmit_strategy\": \"不需要重提交。r2 和 qwen06b 全部 4 个进程都在正常运行。修复框架 bug 后，后续实验不会再被误杀。\"\n}\n```\n\n### Bug 位置\n\n`/home/ubuntu/agent-ml-research/core/tools/execution_backends/tmux_backend.py` 第 178 行：\n\n```python\n# BUG: pid 是数字 PID，session 名是 exp_id\ntmux_result = conn.run(\n    f\"tmux has-session -t {shlex.quote(pid)} 2>/dev/null && echo yes || echo no\", ...\n)\n```\n\n应改为：\n```python\nsession_name = exp_id if exp_id else pid\ntmux_result = conn.run(\n    f\"tmux has-session -t {shlex.quote(session_name)} 2>/dev/null && echo yes || echo no\", ...\n)\n```\n\n### 当前状态\n\n| 进程 | GPU | 进度 | 状态 |\n|------|-----|------|------|\n| qwen17b-r2-s0 (PID 120612) | cuda:0, 39% | ~200/498 seeds | tmux alive, 正常运行 |\n| qwen17b-r2-s1 (PID 120694) | cuda:1, 44% | running | tmux alive, 正常运行 |\n| qwen06b-s0 (PID 117855) | cuda:2, 33% | running (orphan) | 无 tmux，PPID=1，仍在正常写数据 |\n| qwen06b-s1 (PID 118126) | cuda:3, 33% | running (orphan) | 无 tmux，PPID=1，仍在正常写数据 |\n\n所有 4 个实验正在正常推进，无需干预。修复 `check_status` bug 可以防止未来实验被误杀。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d6e4ef57-9547-4ecc-b7cf-1aa6dcf98b0a",
+            "isSidechain": false,
+            "requestId": "req_011Cb3F2ywSVJ8u2Pg5EF1dV",
+            "type": "assistant",
+            "uuid": "9878810c-ff1a-4095-beee-b89fc6232950",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "9cf30982-735a-49fa-bc41-960aedff3779",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019kvXgQvwu4WT9VEwfcbeMy",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4877,
+                "cache_read_input_tokens": 128173,
+                "output_tokens": 1766,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4877,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1766,
+                    "cache_read_input_tokens": 128173,
+                    "cache_creation_input_tokens": 4877,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4877
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "9878810c-ff1a-4095-beee-b89fc6232950",
+                "sessionId": "9cf30982-735a-49fa-bc41-960aedff3779"
+              }
+            }
+          ],
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Diagnose tmux session crashes on Qwen experiments",
+                "sessionId": "9cf30982-735a-49fa-bc41-960aedff3779"
+              }
+            }
+          ],
+          "id": "event-000167"
+        }
+      ]
+    }
+  ]
+}

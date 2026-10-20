@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "id": "a8faf99b6528e9f87991",
+  "project": "gen-depth-fingerprint--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> Server: autodl-5090, account: root. Conda env at /root/miniconda3. Project at /root/gen-depth-fingerprin",
+  "task_key": "c36641a9-4d67-418e-8a4a-a02c24370457",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/c36641a9-4d67-418e-8a4a-a02c24370457.jsonl",
+    "occurrence": 1,
+    "bytes": 1514046,
+    "sha256": "f3be0bba7b1514621004baee5086e09b75aed65c23b4ffe887237ac8da932295"
+  },
+  "statistics": {
+    "messages": 626,
+    "user_turns": 2,
+    "tool_calls": 200,
+    "roles": {
+      "record": 107,
+      "user": 2,
+      "assistant": 116,
+      "tool_call": 200,
+      "tool_result": 200,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a8faf99b6528e9f87991-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 360,
+      "chunks": [
+        {
+          "path": "a8faf99b6528e9f87991-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "a8faf99b6528e9f87991-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a8faf99b6528e9f87991-part-0003.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 264,
+      "chunks": [
+        {
+          "path": "a8faf99b6528e9f87991-part-0003.json",
+          "message_count": 178
+        },
+        {
+          "path": "a8faf99b6528e9f87991-part-0004.json",
+          "message_count": 86
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-server-autodl-5090-account-root-conda-env-at-root-miniconda3-pro-copy-3.md"
+}

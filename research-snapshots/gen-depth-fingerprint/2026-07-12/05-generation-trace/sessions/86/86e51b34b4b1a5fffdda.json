@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "86e51b34b4b1a5fffdda",
+  "project": "gen-depth-fingerprint--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: gen-depth-fingerprint ## 运行环境 - 服务器名: bjb2-18868 - SSH 连接命令: ssh connect.bjb2.seetacloud.com # 必",
+  "task_key": "7e7d86ec-1389-4d79-8ac1-2288207da5d0",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/7e7d86ec-1389-4d79-8ac1-2288207da5d0.jsonl",
+    "occurrence": 1,
+    "bytes": 475760,
+    "sha256": "33ea70f859f5c90548bd048748d67c89418596a3f72c4c2fdc7c8b965e5edcf8"
+  },
+  "statistics": {
+    "messages": 293,
+    "user_turns": 1,
+    "tool_calls": 87,
+    "roles": {
+      "record": 46,
+      "user": 1,
+      "assistant": 72,
+      "tool_call": 87,
+      "tool_result": 87
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "86e51b34b4b1a5fffdda-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 291,
+      "chunks": [
+        {
+          "path": "86e51b34b4b1a5fffdda-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "86e51b34b4b1a5fffdda-part-0002.json",
+          "message_count": 113
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-gen-depth-fingerprint-bjb2-18868-ssh-ssh-connect-bjb2-seetaclo-copy-116.md"
+}
