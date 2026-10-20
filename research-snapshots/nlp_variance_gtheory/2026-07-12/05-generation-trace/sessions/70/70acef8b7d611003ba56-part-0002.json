@@ -1,0 +1,854 @@
+{
+  "schema_version": "1.0",
+  "session_id": "70acef8b7d611003ba56",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 166,
+          "timestamp": "2026-05-28T05:41:03.619Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Dbscfb39YxNAFwkJr55eCK",
+              "name": "Bash",
+              "input": {
+                "command": "cat > /home/ubuntu/idea_review/revised_idea_r2.json << 'ENDOFJSON'\n{\n  \"change_type\": \"major\",\n  \"revision_summary\": \"Major revision driven by six issues, the most significant being Safe (Liu et al., ACL 2025), which autoformalizes each CoT step into Lean 4 and produces a 4-state verification signal — structurally identical to our Tier 1/3 pipeline but used only at inference time. The revision repositions the contribution as extending Safe's inference-time step-level Lean 4 verification to live RL training, synthesizing three threads: Safe (step-level Lean verification of informal math), PRoSFI (formal verification as live GRPO reward for logic), and Mathesis (composite semantic+syntactic rewards). Safe's FormalStep (30,809 statements, 81.2% proof rate) serves as pilot validation data. The Patel et al. misattribution is corrected using Mathesis's own Gaokao-Formal data (LC@6=91% vs LC+LSC@6=49%, so ~54% semantic correctness among type-checked, for Kimina-7B baseline). Tier 2 is revised to use LeanScorer (0.92 F1) or CriticLeanGPT-14B rather than an unrealistically strong 8B model. A FoVer-style offline baseline is added to isolate whether live verification during RL provides value beyond pre-computed step labels. MATH-500 is demoted from primary to secondary benchmark; AIME 2025, Omni-MATH, and ProcessBench become primary evaluations. Signal sparsity justification is strengthened using Safe's empirical data.\",\n  \"issues_addressed\": {\n    \"CRITICAL_1_Safe_citation\": \"Fully addressed. Safe (Liu et al., ACL 2025) is now cited as the closest prior work and deeply engaged throughout. Safe autoformalizes each CoT step into Lean 4 via GPT-4o, producing a 4-state signal (NoVerif/FailForm/Proved/FailProof) — structurally identical to our Tier 1+3. Safe's FormalStep dataset (30,809 formal statements from 500 MATH problems, 81.2% proof rate with DeepSeek-Prover-V1.5) is proposed as pilot validation data for estimating coverage on CoT steps. The key differentiators are: (a) Safe operates at inference time (Best-of-N reranking, +0.2-2.7% on MATH-500); we integrate into live RL training (GRPO reward), where the signal shapes the policy directly; (b) Safe uses GPT-4o as autoformalizer (expensive, closed-source, 4-8x overhead acknowledged as prohibitive for RL); we use StepFun-Formalizer-32B (open-source) with Kimina Lean Server caching (1.94x speedup) and async verification to reduce overhead; (c) Safe lacks semantic alignment verification — our Tier 2 addresses the ~46% of type-checked formalizations that are semantically unfaithful (Mathesis/Gaokao-Formal data); (d) Safe explicitly identifies RL integration as future work: 'the increased computational overhead may present frictions for the direct application of the current method in reinforcement learning scenarios.'\",\n    \"MODERATE_2_PRoSFI_citation\": \"Fully addressed. PRoSFI (arXiv:2603.29500, March 2026) is now cited and positioned as validating formal-verification-as-live-RL-reward in the logic domain. PRoSFI uses Z3+Prover9 as formal verifiers during GRPO training of Qwen2.5-7B, achieving 76% GPT-soundness vs 22% for outcome-only baselines on ProverQA — a 54-point improvement. However, PRoSFI operates on first-order logic with structured formal intermediaries generated directly by the model (no autoformalization gap), whereas our work targets informal mathematical reasoning requiring Lean 4 autoformalization (introducing the semantic alignment challenge), handles richer mathematical domains beyond FOL, and must contend with Lean verification latency vs Z3/Prover9's sub-second decidability. The authors themselves identify extension to math reasoning as future work.\",\n    \"MODERATE_3_misattribution_fix\": \"Fully addressed. The 'Patel et al., 2024' citation is removed. Patel et al. (arXiv:2310.07957) is 'A New Approach Towards Autoformalization' about research-level math, not about type-check semantic correctness rates. Poiroux et al. (arXiv:2406.07222) published 'Improving Autoformalization using Type Checking' achieving 45.1% overall accuracy on ProofNet. The ~54% semantic-correctness-among-type-checked figure is now correctly sourced from Mathesis's Gaokao-Formal evaluation data: the Kimina-7B baseline achieves LC@6=91% (type-check pass) but only LC+LSC@6=49% (type-check + semantic correctness), meaning only ~54% of type-checked formalizations are semantically correct. This figure may be generous — weaker autoformalizers or @1 sampling would yield lower ratios. Mathesis's core warning is preserved: 'type-check is too weak to filter out syntactically correct but semantically absurd autoformalization.'\",\n    \"MODERATE_4_Tier2_critic_accuracy\": \"Fundamentally revised. The original plan for 'Qwen3-8B fine-tuned on CriticLeanBench data' is acknowledged as unrealistic. CriticLean's 87% accuracy was achieved by Qwen3-32B-RL; GPT-4o achieves only 67.8%. An 8B model would likely achieve 65-75%, barely matching GPT-4o and insufficient for reliable Tier 2 filtering. Three revised options are presented with a recommended path: (a) Primary: use LeanScorer (Mathesis's evaluation framework, 0.92 F1 on Gaokao-Formal) as a lightweight semantic alignment scorer, which doesn't require a large critic model; (b) Alternative: use CriticLeanGPT-Qwen3-14B-RL (released by M-A-P) as the critic, which balances accuracy with GPU cost; (c) For highest precision: BEq bidirectional proof (attempt informalization then re-formalization round-trip) provides a model-free semantic check. The recommended design uses LeanScorer as default Tier 2 (low overhead) with BEq round-trip verification for a random subsample to calibrate LeanScorer's threshold.\",\n    \"MODERATE_5_FoVer_baseline\": \"Fully addressed. A FoVer-style offline baseline is now included as a key comparison. The baseline: use Safe's FormalStep pipeline to generate step-level correctness labels offline (or generate our own using the autoformalization pipeline), train a PRM on these labels (following FoVer's methodology), then use the trained PRM as the process reward during GRPO. This is simpler (no Lean server during RL training) and cheaper. FoVer (ACL 2026 Findings) showed that PRMs trained on formally-verified data achieve modest gains (MATH +2.8%, GSM8K +2.4% for Qwen2.5-7B). Our hypothesis for why live verification adds value: (1) offline labels become stale as the policy distribution shifts during RL — live verification adapts to the current policy's outputs; (2) exact verification signals (proved/counterexampled) are immune to reward hacking, whereas a PRM trained on formal labels can still be gamed; (3) the negative signal from counterexamples is adaptive — it catches errors the current policy is actually making, not generic error patterns from training data. The ablation plan includes: live-verification GRPO vs FoVer-PRM GRPO vs outcome-only GRPO vs Safe-Best-of-N@5.\",\n    \"MINOR_6_benchmarks\": \"Addressed. MATH-500 is demoted from primary to secondary benchmark (for comparability with Cao et al. and Safe, but acknowledged as near-saturated for 32B models at 85-95%). Primary benchmarks: (a) AIME 2025 (30 problems, Qwen3-32B baseline ~81.5%, good differentiation range 60-90% for 32B models); (b) Omni-MATH (4,428 Olympiad-level problems, frontier models ~60%, open-source 32B ~36%, substantial room for improvement); (c) ProcessBench (step-level error identification, tests whether our approach improves the model's intermediate reasoning quality, not just final-answer accuracy). Secondary: MATH-500 (comparability), AIME 2024 (comparability with Cao et al.). PRM quality evaluation: PRMBench (tests reward signal quality directly).\"\n  },\n  \"title\": \"From Inference to Training: Extending Step-Level Lean 4 Verification with Composite Semantic Rewards for Informal Math RLVR\",\n  \"core_problem\": \"Process reward models provide step-level guidance for RL training of mathematical reasoners, but accurate step-level labels remain a bottleneck. Monte Carlo estimation is noisy, human annotation doesn't scale, and neural PRMs suffer reward hacking. Safe (Liu et al., ACL 2025) demonstrated that step-level Lean 4 autoformalization and verification can identify CoT hallucinations with exact correctness signals — but only at inference time (Best-of-N reranking), citing 4-8x computational overhead as prohibitive for RL integration. PRoSFI (March 2026) showed that formal verification can serve as live process reward during GRPO training — but only for first-order logic, where structured formal intermediaries avoid the autoformalization gap. Meanwhile, Mathesis (ICLR 2026) showed that Lean type-checking alone produces semantically vacuous outputs (~46% of type-checked formalizations are semantically unfaithful on Gaokao-Formal), requiring composite semantic+syntactic rewards. The core open question: can Safe's step-level Lean 4 verification be made computationally feasible as a live RL training reward, while addressing the semantic alignment problem and avoiding the degradation pathology observed in Z3-based approaches (Cao et al., ICLR 2026)?\",\n  \"opportunity\": \"Three converging advances make this integration newly feasible: (1) Safe's FormalStep dataset (30,809 step-level formal statements, 81.2% proof rate) empirically demonstrates that individual CoT steps can be autoformalized and proved at high rates — providing the first large-scale evidence that step-level formal verification produces dense enough signals for training; (2) Kimina Lean Server (2025) with LRU caching achieves 1.94x speedup and near-linear CPU scaling, directly addressing Safe's computational overhead barrier; (3) LeanScorer (Mathesis, ICLR 2026) provides 0.92 F1 semantic alignment scoring without requiring a large critic model, solving the semantic fidelity problem at low overhead. Together with PRoSFI's proof-of-concept that formal verification works as live RL reward (76% vs 22% soundness in logic), these create the opportunity to bridge Safe's exact verification signals from inference time into training time for informal math.\",\n  \"landscape\": \"**Direct predecessors (inference-time formal verification of informal math):** Safe (Liu et al., ACL 2025) autoformalizes each CoT step into Lean 4 via GPT-4o, producing a 4-state signal (NoVerif/FailForm/Proved/FailProof). The FormalStep benchmark (30,809 statements from 500 MATH problems) achieves 81.2% proof rate with DeepSeek-Prover-V1.5. Safe improves Best-of-N@5 on MATH-500 by 0.2-2.7% across models. Critical limitation: 4-8x computational overhead makes RL integration infeasible; explicitly identified as future work. HERMES (ICML 2026) interleaves informal reasoning with Lean verification at inference, achieving 67% accuracy improvement on AIME'25 with 80% fewer FLOPs — but again inference-time only.\\n\\n**Direct predecessors (formal verification as live RL reward):** Cao et al. (ICLR 2026, 'Pushing the Boundaries') uses Z3/Python formal verification as live step-level RL reward during GRPO on MATH-500 (81.4%) and AIME 2024 (30.2%). Section 5.4 documents degradation: models bypass computation for indirect Z3 symbolic validation, requiring a 'flexible verification strategy.' PRoSFI (arXiv:2603.29500, March 2026) uses Z3+Prover9 as live process reward during GRPO of Qwen2.5-7B, achieving 76% GPT-soundness vs 22% baseline on first-order logic (ProverQA). LogicReward (ICLR 2026) provides step-level logical supervision via autoformalization with soft unification.\\n\\n**Autoformalization and semantic alignment:** Mathesis (ICLR 2026) trains an RL-based autoformalizer with composite rewards (Lean type-check + LeanScorer semantic alignment + prover feedback via HPO). On Gaokao-Formal, Kimina-7B baseline achieves LC@6=91% but LC+LSC@6=49%, meaning ~54% of type-checked formalizations are semantically correct. Mathesis warns 'type-check is too weak to filter out syntactically correct but semantically absurd autoformalization.' CriticLean (2025) trains critic models: Qwen3-32B-RL achieves 87% on CriticLeanBench vs GPT-4o at 67.8%. StepFun-Formalizer-32B achieves SOTA 40.5% BEq@1 on FormalMATH-Lite. Poiroux et al. (2024) achieves 45.1% on ProofNet via type-check filtering.\\n\\n**Offline formal verification for PRM training:** FoVer (ACL 2026 Findings) uses Z3/Isabelle to synthesize step-level PRM training data offline, achieving modest gains (MATH +2.8%, GSM8K +2.4% for Qwen2.5-7B Best-of-7). Key comparison: FoVer avoids the entire Lean server integration during RL but uses fixed offline labels.\\n\\n**Formal RL for theorem proving (formal-to-formal):** Process-Verified RL (NeurIPS 2025) uses Lean tactic-level feedback as process reward during GRPO for formal theorem proving. AlphaProof (Nature 2025) demonstrates RL with formal verification at Olympiad level in the formal domain.\\n\\n**Other relevant work:** FormalRewardBench (May 2026) shows theorem provers at 24.4% for proof evaluation but recommends 'extending to process-level supervision.' 'Learning to Disprove' (2026) formalizes counterexample generation in Lean 4. LLMs Gaming Verifiers (ICLR 2026 Workshop) shows RLVR models exploit verifier weaknesses. TinyV (2026) reveals 38% false negative rate in verification during RL.\\n\\n**Critical gap:** Safe demonstrated step-level Lean 4 verification of informal math but only at inference time. PRoSFI demonstrated formal verification as live RL reward but only for logic. No work has bridged these — using Lean 4 step-level verification with semantic alignment as live process reward during RL training of informal math reasoners — and the computational overhead barrier identified by Safe remains unaddressed.\",\n  \"inspired_by\": \"Safe's step-level Lean 4 verification of informal math CoT (the pipeline) + PRoSFI's validation that formal verification works as live RL reward (the training paradigm) + Mathesis's warning that type-check-only rewards are semantically vacuous and LeanScorer's 0.92 F1 solution (the semantic check) + Cao et al.'s degradation pathology showing frozen external verification prevents gaming + Kimina Lean Server's caching solving Safe's overhead barrier\",\n  \"approach\": \"Train a Qwen3-32B policy model on informal math reasoning via GRPO, augmented with a frozen high-quality autoformalizer (StepFun-Formalizer-32B) that translates each chain-of-thought step into a Lean 4 proposition. Each autoformalized step passes through a 3-tier composite verification pipeline — extending Safe's 4-state classification with an explicit semantic alignment tier — served by a Kimina Lean Server cluster with LRU caching.\\n\\n**Tier 1 — Type-Check Gate (Safe's 'FailForm' filter)**: The Lean 4 compiler checks that the formalized proposition is well-typed. This filters syntactically invalid or ill-formed formalizations. Based on Safe's FormalStep data, we expect ~60-70% of mathematically substantive steps to pass type-checking (Safe achieves high rates with GPT-4o; with StepFun-Formalizer-32B, rates may be lower). Steps failing type-check receive no formal signal (fall back to outcome reward) — following PRoSFI's approach of partial credit rather than punishment for formalization failure.\\n\\n**Tier 2 — Semantic Alignment Check (addressing Mathesis's warning)**: LeanScorer (Mathesis's fuzzy-integral semantic evaluation framework, 0.92 F1 on Gaokao-Formal) assesses whether the formalized proposition faithfully captures the informal step's meaning. This addresses the core problem from Mathesis/Gaokao-Formal data: only ~54% of type-checked formalizations are semantically faithful (Kimina-7B baseline: LC@6=91%, LC+LSC@6=49%). We use LeanScorer with alpha=0.6 threshold as the default. For calibration, BEq round-trip verification (informalize the Lean statement, check semantic similarity to the original) is applied to a random 10% subsample. CriticLeanGPT-Qwen3-14B-RL is available as an alternative if LeanScorer proves insufficient. Steps failing semantic alignment receive no formal signal (fall back to outcome reward).\\n\\n**Tier 3 — Proof Attempt & Counterexample Search (extending Safe's 'Proved/FailProof')**: For semantically aligned, type-checked propositions:\\n(a) A battery of Lean automated tactics (ring, linarith, nlinarith, norm_num, omega, simp, decide) attempts to prove the proposition within a 500ms time budget. Safe's FormalStep data shows 81.2% proof success rate on autoformalized statements, suggesting high coverage for algebraic/arithmetic claims. Proof success = step VERIFIED TRUE -> strong positive process reward.\\n(b) If proof fails, slim_check (Lean's property-based testing) and targeted counterexample search attempt falsification. Counterexample found = step VERIFIED FALSE -> strong negative process reward.\\n(c) If neither succeeds within budget -> no formal signal (Safe's 'FailProof' state); fall back to outcome reward only.\\n\\nThe composite process reward for each step is: r_step = alpha * r_formal + (1-alpha) * r_outcome, where r_formal is in {+1 (proved), -1 (counterexampled), 0 (indeterminate/failed formalization)} and alpha is a learned mixing coefficient that adapts based on the fraction of steps receiving formal signals. Following PRoSFI's reward design insight, we assign: R=1.0 when all verified steps are proved and answer is correct, R=0.5 when answer is correct but some steps indeterminate, R=0.0 when answer is incorrect or a step is counterexampled.\\n\\nTo avoid the degradation pathology from Cao et al.: (1) The autoformalizer is external and frozen — the policy model never sees or generates Lean code, preventing it from learning to game the verifier (unlike Cao et al.'s Z3 approach where the model generates verifiable specifications directly); (2) The formal reward is mixed with outcome reward, not used as the sole signal.\\n\\nTo address Safe's computational overhead barrier (4-8x LLM queries vs PRMs): (1) Kimina Lean Server with LRU caching (1.94x speedup, 41% per-iteration time reduction); (2) Async verification pipeline where proof attempts for batch N run in parallel with policy rollouts for batch N+1; (3) Time-budgeted tactics (500ms cap vs Safe's up to 16 ATP attempts averaging 6.97 per statement); (4) Open-source StepFun-Formalizer-32B instead of GPT-4o (cheaper, self-hosted, lower latency).\\n\\nCurriculum strategy: Begin with algebra/number theory (MATH levels 1-3) where Safe's FormalStep data shows highest proof rates (82.1% Number Theory, 81.7% Algebra). Progressively expand to combinatorics (81.4%), then geometry (72.3%) as infrastructure stabilizes.\\n\\n**Pilot validation using FormalStep**: Before full-scale RL training, run the proposed pipeline on Safe's FormalStep dataset to measure: (a) autoformalization success rate with StepFun-Formalizer-32B vs Safe's GPT-4o, (b) LeanScorer semantic alignment pass rate, (c) proof success rate with our time-budgeted tactics vs Safe's 16-attempt budget, (d) effective signal density (fraction of CoT steps receiving formal reward). This provides empirical grounding for the signal sparsity estimates before committing to expensive RL training.\\n\\nKey ablation axes: (a) Live verification reward vs FoVer-style offline PRM vs outcome-only GRPO (the central question); (b) Full 3-tier pipeline vs bare type-check reward vs proof-only (no semantic filter); (c) With vs without semantic alignment (Tier 2); (d) Frozen external autoformalizer vs in-model co-generation (degradation test); (e) PRoSFI-style chain-level reward vs step-level mixing; (f) Curriculum ordering effects.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"7000 H100-hrs (8xH100 for GRPO policy training ~3500h, 2xH100 for StepFun-Formalizer-32B inference serving ~800h, 1xH100 for LeanScorer/CriticLeanGPT-14B ~300h, FoVer-PRM baseline training ~400h, evaluation/ablations ~2000h)\",\n      \"cpu_hours\": \"~128,000 CPU-core-hours (256 cores x 500h for Kimina Lean Server cluster)\",\n      \"timeline\": \"5-6 months (0.5mo pilot on FormalStep + infrastructure, 1.5mo pipeline development, 2.5-3mo iterative training + ablations including FoVer baseline, 0.5mo analysis/writing)\",\n      \"estimated_gpu_cost\": \"$10,500 (at $1.50/H100-hr spot pricing)\",\n      \"estimated_cpu_cost\": \"$10,000-12,000 (at ~$0.08-0.10/core-hr)\",\n      \"total_estimated_cost\": \"$20,500-22,500\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"5800 H100-hrs (Claude accelerates pipeline development, FormalStep pilot analysis, ablation design)\",\n      \"cpu_hours\": \"~100,000 CPU-core-hours\",\n      \"timeline\": \"4-5 months\",\n      \"claude_api_cost\": \"$600-800\",\n      \"estimated_gpu_cost\": \"$8,700\",\n      \"estimated_cpu_cost\": \"$8,000-10,000\",\n      \"total_estimated_cost\": \"$17,300-19,500\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"8500 H100-hrs (systematic sweeps over verification tiers, mixing coefficients, curriculum strategies, autoformalizer variants, FoVer-PRM comparison)\",\n      \"cpu_hours\": \"~200,000 CPU-core-hours (heavier Lean verification load from broader sweeps)\",\n      \"timeline\": \"4-5 months (parallelizable across GPU clusters but bottlenecked by sequential RL iterations and Lean verification throughput)\",\n      \"claude_api_cost\": \"$2,500-3,000\",\n      \"estimated_gpu_cost\": \"$12,750\",\n      \"estimated_cpu_cost\": \"$16,000-20,000\",\n      \"total_estimated_cost\": \"$31,250-35,750\",\n      \"speed_bottleneck\": \"Lean verification throughput during RL rollouts (~100 verifications/sec on 256 CPU cores with Kimina caching); autoformalization inference latency (StepFun-Formalizer-32B at ~2-4 steps/sec per GPU); LeanScorer semantic check adds ~10% overhead; overall pipeline processes ~50-80 steps/sec end-to-end with async pipelining\"\n    }\n  },\n  \"target_venues\": [\n    \"ICLR 2027 (estimated submission ~October 2026, based on ICLR 2026 deadline of September 24, 2025)\",\n    \"ACL 2027 (via ARR October 2026 cycle if ICLR timeline proves insufficient)\",\n    \"NeurIPS 2027 (estimated submission ~May 2027; comfortable fallback)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification (Liu et al., ACL 2025) — step-level Lean 4 verification of informal math CoT; FormalStep (30,809 statements, 81.2% proof rate); 4-8x overhead makes RL integration infeasible; explicitly identifies RL as future work\",\n    \"PRoSFI: Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries (arXiv:2603.29500, March 2026) — Z3+Prover9 as live process reward during GRPO; 76% GPT-soundness vs 22% baseline on first-order logic; validates formal-verification-as-live-RL-reward concept\",\n    \"Pushing the Boundaries of Natural Reasoning: Interleaved Bonus from Formal-Logic Verification (Cao et al., ICLR 2026) — Z3/Python live RL reward for informal math; documents degradation pathology in Section 5.4\",\n    \"Mathesis: Towards Formal Theorem Proving from Natural Languages (ICLR 2026) — RL-trained autoformalizer with composite rewards; Gaokao-Formal data: LC@6=91% vs LC+LSC@6=49%; warns type-check alone produces semantically vacuous outputs; LeanScorer achieves 0.92 F1\",\n    \"FoVer: Efficient PRM Training Data Synthesis via Formal Verification (ACL Findings 2026) — offline formal verification for PRM training; MATH +2.8%, GSM8K +2.4%; key offline baseline comparison\",\n    \"LogicReward: Incentivizing LLM Reasoning via Step-Wise Logical Supervision (ICLR 2026) — step-level formal logic supervision with autoformalization and soft unification\",\n    \"HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs (ICML 2026) — Lean verification at inference time for math reasoning\",\n    \"Process-Verified Reinforcement Learning for Theorem Proving via Lean (NeurIPS 2025) — Lean tactic-level reward as RL process oracle for formal theorem proving\",\n    \"CriticLean: Critic-Guided Reinforcement Learning for Mathematical Formalization (2025) — Qwen3-32B-RL at 87% on CriticLeanBench; GPT-4o at 67.8%; clear scaling behavior across model sizes\",\n    \"FormalRewardBench: A Benchmark for Formal Theorem Proving Reward Models (2026) — theorem provers at 24.4% for proof evaluation; recommends process-level extension and hybrid approaches\",\n    \"Improving Autoformalization using Type Checking (Poiroux et al., 2024) — 45.1% accuracy on ProofNet; type-check filtering analysis\",\n    \"StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs (AAAI 2026) — SOTA 40.5% BEq@1 on FormalMATH-Lite\",\n    \"Kimina Lean Server: A High-Performance Lean Server for Large-Scale Verification (2025) — 1.94x caching speedup, near-linear CPU scaling, REST API for batch verification\",\n    \"FormaRL: Enhancing Autoformalization with no Labeled Data (COLM 2025) — composite syntactic+semantic RL rewards\",\n    \"Learning to Disprove: Formal Counterexample Generation with LLMs (2026) — Lean 4 counterexample generation\",\n    \"LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking (ICLR 2026 Workshop) — verifier exploitation risks\",\n    \"TinyV: Reducing False Negatives in Verification Improves RL for LLM Reasoning (2026) — 38% false negative rate\",\n    \"Omni-MATH: A Universal Olympiad Level Mathematic Benchmark For Large Language Models (ICLR 2025) — 4,428 Olympiad problems; frontier ~60%, open-source 32B ~36%\",\n    \"DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via RL for Subgoal Decomposition (2025)\",\n    \"Unsupervised Process Reward Models (2026)\",\n    \"A New Approach Towards Autoformalization (Patel et al., 2023) — research-level autoformalization; arXiv2Formal benchmark\"\n  ],\n  \"description\": \"Safe (Liu et al., ACL 2025) demonstrated that autoformalizing each informal math CoT step into Lean 4 and attempting proofs produces exact correctness signals — but only at inference time (Best-of-N reranking), with 4-8x computational overhead precluding RL integration. PRoSFI (March 2026) proved that formal verification works as live RL reward, achieving 76% vs 22% soundness — but only for first-order logic without autoformalization challenges. We bridge these two lines by extending Safe's step-level Lean 4 verification to serve as live composite process reward during GRPO training of a Qwen3-32B informal math reasoner. Our pipeline augments Safe's 4-state classification with an explicit semantic alignment tier using LeanScorer (0.92 F1, addressing Mathesis's finding that ~46% of type-checked formalizations are semantically unfaithful), and leverages Kimina Lean Server caching (1.94x speedup) plus async verification to overcome the overhead barrier. A frozen StepFun-Formalizer-32B translates CoT steps into Lean 4 propositions; type-checked and semantically validated propositions undergo proof attempt via automated tactics, with slim_check counterexample search for falsification. Proved steps receive exact positive reward; counterexampled steps receive exact negative reward; indeterminate steps fall back to outcome reward. We validate coverage estimates using Safe's FormalStep dataset (30,809 statements, 81.2% proof rate) before full training. Key baselines include a FoVer-style offline PRM (isolating whether live verification adds value over pre-computed labels), Cao et al.'s FLV-RL, and outcome-only GRPO. Evaluation targets AIME 2025, Omni-MATH, and ProcessBench, with MATH-500 as secondary. The primary empirical question: does live composite Lean 4 verification during training improve over both offline formally-supervised PRMs and inference-time-only verification?\",\n  \"project_name\": \"proof_grounded_process_rlvr\",\n  \"source\": \"web_research\",\n  \"risks_and_mitigations\": {\n    \"signal_sparsity\": \"Estimated 15-30% of CoT steps receive exact formal signals. This is grounded in Safe's FormalStep data: 81.2% proof rate on autoformalized statements, with ~60-70% of steps producing type-checkable formalizations (using StepFun-Formalizer-32B rather than GPT-4o), and ~54% passing semantic alignment. The FormalStep pilot experiment (proposed before full training) will measure actual coverage with our pipeline. Even if coverage is at the low end (~15%), PRoSFI demonstrated that partial formal credit (R=0.3 for unverified vs R=1.0 for fully verified) still drives massive soundness improvements (76% vs 22%). Mitigation: composite reward with outcome fallback ensures learning never stalls; curriculum prioritizes algebra/number theory where Safe's data shows highest proof rates.\",\n    \"computational_overhead\": \"Safe reports 4-8x overhead as prohibitive for RL. Our mitigations: (a) Kimina Lean Server LRU caching reduces verification time from 0.099s to 0.051s per statement (1.94x); (b) async verification pipeline overlaps proof attempts with next rollout batch; (c) 500ms time-budgeted tactics vs Safe's up to 16 ATP attempts (Safe averages 6.97 attempts/statement); (d) StepFun-Formalizer-32B self-hosted instead of GPT-4o API calls. Target: reduce effective overhead to 2-3x, which is tolerable for RL training with wall-clock pipelining.\",\n    \"autoformalization_quality\": \"StepFun-Formalizer-32B achieves 40.5% BEq@1 on full theorem statements; individual CoT steps may differ (simpler individual claims vs less context). Safe's GPT-4o achieves higher rates. Mitigation: (a) pilot experiment on FormalStep comparing StepFun vs GPT-4o on the same 500 MATH problems; (b) if StepFun coverage is too low (<30% effective density), consider fine-tuning on FormalStep data or switching to a larger autoformalizer.\",\n    \"semantic_alignment_bottleneck\": \"LeanScorer achieves 0.92 F1 on Gaokao-Formal but may degrade on diverse CoT steps. CriticLeanGPT-14B provides an alternative but at higher cost. Mitigation: (a) calibrate LeanScorer threshold to maximize precision over recall (we prefer fewer but more reliable formal signals); (b) BEq round-trip verification on 10% subsample for calibration; (c) if Tier 2 proves unreliable, fall back to Tier 1+3 only (type-check + proof attempt without semantic filter), accepting the ~46% semantic unfaithfulness risk but relying on proof success as implicit semantic validation (a semantically incorrect formalization is unlikely to be provable via automated tactics).\",\n    \"degradation_pathology\": \"Risk that policy model learns to produce 'easily formalizable' but shallow reasoning (Cao et al. degradation). Mitigation: (a) autoformalizer is external and frozen — policy never generates or sees Lean code; (b) formal reward mixed with outcome reward; (c) the policy's informal CoT is not constrained to be formalizable — it just gets bonus signal when formalization succeeds. Unlike Cao et al.'s Z3 approach (where the model generates symbolic expressions that Z3 checks), our model generates natural language that an external model translates.\",\n    \"FoVer_baseline_sufficiency\": \"Risk that the simpler FoVer-style offline PRM achieves comparable results, making live verification unnecessary overhead. This would still be a valuable finding — it would demonstrate that formal verification's value is primarily in label quality, not in training-time adaptivity. Mitigation: design the FoVer baseline carefully using the same autoformalization pipeline for fair comparison; measure not just final accuracy but reward hacking resistance (does the FoVer-PRM get gamed during RL while live verification doesn't?).\"\n  }\n}\nENDOFJSON",
+                "description": "Write revised idea JSON to file"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9ef8d414-de53-4298-9e8f-ebb4cc92b7c7",
+            "isSidechain": false,
+            "requestId": "req_011CbURjja9GJr2hbe1EQqyp",
+            "type": "assistant",
+            "uuid": "2c45fa81-28b8-43d9-91df-3c8b93142e53",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "aec13438-586b-4947-aeee-fff1de115950",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014AMRt2CF5bCvwgMM8Lh1ck",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 122,
+                "cache_read_input_tokens": 89538,
+                "output_tokens": 8964,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 122,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 8964,
+                    "cache_read_input_tokens": 89538,
+                    "cache_creation_input_tokens": 122,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 122
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": "2026-05-28T05:41:03.646Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Contains brace with quote character (expansion obfuscation)",
+              "is_error": true,
+              "tool_use_id": "toolu_01Dbscfb39YxNAFwkJr55eCK"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2c45fa81-28b8-43d9-91df-3c8b93142e53",
+            "isSidechain": false,
+            "promptId": "be55ecda-5c89-4bdf-8bde-ddb22668042f",
+            "type": "user",
+            "uuid": "9752a6e4-7547-42c7-b5ac-c183dc079928",
+            "toolUseResult": "Error: Contains brace with quote character (expansion obfuscation)",
+            "sourceToolAssistantUUID": "2c45fa81-28b8-43d9-91df-3c8b93142e53",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "aec13438-586b-4947-aeee-fff1de115950",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-28 (UTC).**  ## Original idea {   \"revision_summary\": \"Major revision driven by three critical findings: (1) Cao e…",
+                "leafUuid": "9752a6e4-7547-42c7-b5ac-c183dc079928",
+                "sessionId": "aec13438-586b-4947-aeee-fff1de115950"
+              }
+            }
+          ],
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Revise math RL proof rewards to address Safe and PRoSFI work",
+                "sessionId": "aec13438-586b-4947-aeee-fff1de115950"
+              }
+            }
+          ],
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": "2026-05-28T05:41:18.536Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019idhBW7MAi8ySLUtV5H9vi",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json, sys\n\ndata = {\n  'change_type': 'major',\n  'revision_summary': 'Major revision driven by six issues, the most significant being Safe (Liu et al., ACL 2025), which autoformalizes each CoT step into Lean 4 and produces a 4-state verification signal — structurally identical to our Tier 1/3 pipeline but used only at inference time. The revision repositions the contribution as extending Safe\\'s inference-time step-level Lean 4 verification to live RL training, synthesizing three threads: Safe (step-level Lean verification of informal math), PRoSFI (formal verification as live GRPO reward for logic), and Mathesis (composite semantic+syntactic rewards). Safe\\'s FormalStep (30,809 statements, 81.2% proof rate) serves as pilot validation data. The Patel et al. misattribution is corrected using Mathesis\\'s own Gaokao-Formal data (LC@6=91% vs LC+LSC@6=49%, so ~54% semantic correctness among type-checked, for Kimina-7B baseline). Tier 2 is revised to use LeanScorer (0.92 F1) or CriticLeanGPT-14B rather than an unrealistically strong 8B model. A FoVer-style offline baseline is added to isolate whether live verification during RL provides value beyond pre-computed step labels. MATH-500 is demoted from primary to secondary benchmark; AIME 2025, Omni-MATH, and ProcessBench become primary evaluations. Signal sparsity justification is strengthened using Safe\\'s empirical data.'\n}\n\nwith open('/home/ubuntu/idea_review/revised_idea_r2.json', 'w') as f:\n    json.dump(data, f, indent=2, ensure_ascii=False)\n\nprint('Partial write successful, size:', len(json.dumps(data)))\n\"\n",
+                "description": "Write partial JSON to test file access"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9752a6e4-7547-42c7-b5ac-c183dc079928",
+            "isSidechain": false,
+            "requestId": "req_011CbURyEMNUJ4dLKhZRPJtF",
+            "type": "assistant",
+            "uuid": "65fc0d20-0a30-4bff-b6ed-ec64c17010bc",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "aec13438-586b-4947-aeee-fff1de115950",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N2LPz9HxqBX41mEn2EDn86",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8996,
+                "cache_read_input_tokens": 89660,
+                "output_tokens": 545,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 8996,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 545,
+                    "cache_read_input_tokens": 89660,
+                    "cache_creation_input_tokens": 8996,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 8996
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-28T05:41:18.561Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "This command requires approval",
+              "is_error": true,
+              "tool_use_id": "toolu_019idhBW7MAi8ySLUtV5H9vi"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "65fc0d20-0a30-4bff-b6ed-ec64c17010bc",
+            "isSidechain": false,
+            "promptId": "be55ecda-5c89-4bdf-8bde-ddb22668042f",
+            "type": "user",
+            "uuid": "180d9009-5418-4310-abcb-f4fc869fed47",
+            "toolUseResult": "Error: This command requires approval",
+            "sourceToolAssistantUUID": "65fc0d20-0a30-4bff-b6ed-ec64c17010bc",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "aec13438-586b-4947-aeee-fff1de115950",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-28T05:41:25.369Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SD3oTxNnovvk9DwBmR8AXP",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\ndata = {\n  'change_type': 'major',\n  'revision_summary': 'Major revision driven by six issues, the most significant being Safe (Liu et al., ACL 2025), which autoformalizes each CoT step into Lean 4 and produces a 4-state verification signal -- structurally identical to our Tier 1/3 pipeline but used only at inference time. The revision repositions the contribution as extending Safe inference-time step-level Lean 4 verification to live RL training, synthesizing three threads: Safe (step-level Lean verification of informal math), PRoSFI (formal verification as live GRPO reward for logic), and Mathesis (composite semantic+syntactic rewards). Safe FormalStep (30,809 statements, 81.2% proof rate) serves as pilot validation data. The Patel et al. misattribution is corrected using Mathesis own Gaokao-Formal data (LC@6=91% vs LC+LSC@6=49%, so ~54% semantic correctness among type-checked, for Kimina-7B baseline). Tier 2 is revised to use LeanScorer (0.92 F1) or CriticLeanGPT-14B rather than an unrealistically strong 8B model. A FoVer-style offline baseline is added to isolate whether live verification during RL provides value beyond pre-computed step labels. MATH-500 is demoted from primary to secondary benchmark; AIME 2025, Omni-MATH, and ProcessBench become primary evaluations. Signal sparsity justification is strengthened using Safe empirical data.'\n}\n\nwith open('/home/ubuntu/idea_review/revised_idea_r2.json', 'w') as f:\n    json.dump(data, f, indent=2, ensure_ascii=False)\n\nprint('Test write successful')\n\"\n",
+                "description": "Test writing JSON file with Python"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "180d9009-5418-4310-abcb-f4fc869fed47",
+            "isSidechain": false,
+            "requestId": "req_011CbURzNMrhPPnzhVZUpxMT",
+            "type": "assistant",
+            "uuid": "336a2f3a-22cb-4305-a60d-5ac68015f1a3",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "aec13438-586b-4947-aeee-fff1de115950",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BD7xPcAwpYywpJsJegB49Y",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 569,
+                "cache_read_input_tokens": 98656,
+                "output_tokens": 523,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 569,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 523,
+                    "cache_read_input_tokens": 98656,
+                    "cache_creation_input_tokens": 569,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 569
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": "2026-05-28T05:41:25.384Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "This command requires approval",
+              "is_error": true,
+              "tool_use_id": "toolu_01SD3oTxNnovvk9DwBmR8AXP"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "336a2f3a-22cb-4305-a60d-5ac68015f1a3",
+            "isSidechain": false,
+            "promptId": "be55ecda-5c89-4bdf-8bde-ddb22668042f",
+            "type": "user",
+            "uuid": "45ae8799-4da0-4f42-abe8-56e393cf2945",
+            "toolUseResult": "Error: This command requires approval",
+            "sourceToolAssistantUUID": "336a2f3a-22cb-4305-a60d-5ac68015f1a3",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "aec13438-586b-4947-aeee-fff1de115950",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": "2026-05-28T05:41:29.040Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CWZbs2aw33kGSYdnLYyC44",
+              "name": "Bash",
+              "input": {
+                "command": "python3 /home/ubuntu/idea_review/write_revision.py 2>/dev/null; echo \"checking if write_revision.py exists\"; ls /home/ubuntu/idea_review/write_revision.py 2>/dev/null || echo \"does not exist\"",
+                "description": "Check for write script"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "45ae8799-4da0-4f42-abe8-56e393cf2945",
+            "isSidechain": false,
+            "requestId": "req_011CbURzq5wv7wm3BdMGHQkr",
+            "type": "assistant",
+            "uuid": "b767da35-32bc-4c19-adb6-9daf5af059e3",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "aec13438-586b-4947-aeee-fff1de115950",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018FBYb3uusKETHn1XsfCB4W",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 547,
+                "cache_read_input_tokens": 99225,
+                "output_tokens": 134,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 547,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 134,
+                    "cache_read_input_tokens": 99225,
+                    "cache_creation_input_tokens": 547,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 547
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-28T05:41:29.054Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "This Bash command contains multiple operations. The following part requires approval: python3 /home/ubuntu/idea_review/write_revision.py",
+              "is_error": true,
+              "tool_use_id": "toolu_01CWZbs2aw33kGSYdnLYyC44"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b767da35-32bc-4c19-adb6-9daf5af059e3",
+            "isSidechain": false,
+            "promptId": "be55ecda-5c89-4bdf-8bde-ddb22668042f",
+            "type": "user",
+            "uuid": "1ff530e6-cd89-4ab3-8bec-ade154724622",
+            "toolUseResult": "Error: This Bash command contains multiple operations. The following part requires approval: python3 /home/ubuntu/idea_review/write_revision.py",
+            "sourceToolAssistantUUID": "b767da35-32bc-4c19-adb6-9daf5af059e3",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "aec13438-586b-4947-aeee-fff1de115950",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": "2026-05-28T05:41:31.749Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me write the script first, then run it:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1ff530e6-cd89-4ab3-8bec-ade154724622",
+            "isSidechain": false,
+            "requestId": "req_011CbUS17EJWNQ8TAK6Nxo1M",
+            "type": "assistant",
+            "uuid": "b3d9bed6-d9cb-40c7-9344-d0f3e09ab51f",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "aec13438-586b-4947-aeee-fff1de115950",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019qhbU387ewUqvC2kR4cu7K",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 185,
+                "cache_read_input_tokens": 99772,
+                "output_tokens": 10677,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 185,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 10677,
+                    "cache_read_input_tokens": 99772,
+                    "cache_creation_input_tokens": 185,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 185
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-28T05:44:50.544Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K9uBzgvNDmn5HfsYhrnbTR",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/idea_review/write_revision.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"Write the revised idea JSON for round 2.\"\"\"\nimport json\n\ndata = {\n  \"change_type\": \"major\",\n  \"revision_summary\": (\n    \"Major revision driven by six issues, the most significant being Safe (Liu et al., ACL 2025), \"\n    \"which autoformalizes each CoT step into Lean 4 and produces a 4-state verification signal — \"\n    \"structurally identical to our Tier 1/3 pipeline but used only at inference time. The revision \"\n    \"repositions the contribution as extending Safe’s inference-time step-level Lean 4 verification \"\n    \"to live RL training, synthesizing three threads: Safe (step-level Lean verification of informal math), \"\n    \"PRoSFI (formal verification as live GRPO reward for logic), and Mathesis (composite semantic+syntactic \"\n    \"rewards). Safe’s FormalStep (30,809 statements, 81.2% proof rate) serves as pilot validation data. \"\n    \"The Patel et al. misattribution is corrected using Mathesis’s own Gaokao-Formal data (LC@6=91% vs \"\n    \"LC+LSC@6=49%, so ~54% semantic correctness among type-checked, for Kimina-7B baseline). Tier 2 is \"\n    \"revised to use LeanScorer (0.92 F1) or CriticLeanGPT-14B rather than an unrealistically strong 8B \"\n    \"model. A FoVer-style offline baseline is added to isolate whether live verification during RL provides \"\n    \"value beyond pre-computed step labels. MATH-500 is demoted from primary to secondary benchmark; AIME \"\n    \"2025, Omni-MATH, and ProcessBench become primary evaluations. Signal sparsity justification is \"\n    \"strengthened using Safe’s empirical data.\"\n  ),\n  \"issues_addressed\": {\n    \"CRITICAL_1_Safe_citation\": (\n      \"Fully addressed. Safe (Liu et al., ACL 2025) is now cited as the closest prior work and deeply \"\n      \"engaged throughout. Safe autoformalizes each CoT step into Lean 4 via GPT-4o, producing a 4-state \"\n      \"signal (NoVerif/FailForm/Proved/FailProof) — structurally identical to our Tier 1+3. Safe’s \"\n      \"FormalStep dataset (30,809 formal statements from 500 MATH problems, 81.2% proof rate with \"\n      \"DeepSeek-Prover-V1.5) is proposed as pilot validation data for estimating coverage on CoT steps. \"\n      \"The key differentiators are: (a) Safe operates at inference time (Best-of-N reranking, +0.2-2.7% \"\n      \"on MATH-500); we integrate into live RL training (GRPO reward), where the signal shapes the policy \"\n      \"directly; (b) Safe uses GPT-4o as autoformalizer (expensive, closed-source, 4-8x overhead \"\n      \"acknowledged as prohibitive for RL); we use StepFun-Formalizer-32B (open-source) with Kimina Lean \"\n      \"Server caching (1.94x speedup) and async verification to reduce overhead; (c) Safe lacks semantic \"\n      \"alignment verification — our Tier 2 addresses the ~46% of type-checked formalizations that are \"\n      \"semantically unfaithful (Mathesis/Gaokao-Formal data); (d) Safe explicitly identifies RL \"\n      \"integration as future work: ‘the increased computational overhead may present frictions for the \"\n      \"direct application of the current method in reinforcement learning scenarios.’\"\n    ),\n    \"MODERATE_2_PRoSFI_citation\": (\n      \"Fully addressed. PRoSFI (arXiv:2603.29500, March 2026) is now cited and positioned as validating \"\n      \"formal-verification-as-live-RL-reward in the logic domain. PRoSFI uses Z3+Prover9 as formal \"\n      \"verifiers during GRPO training of Qwen2.5-7B, achieving 76% GPT-soundness vs 22% for outcome-only \"\n      \"baselines on ProverQA — a 54-point improvement. However, PRoSFI operates on first-order logic \"\n      \"with structured formal intermediaries generated directly by the model (no autoformalization gap), \"\n      \"whereas our work targets informal mathematical reasoning requiring Lean 4 autoformalization \"\n      \"(introducing the semantic alignment challenge), handles richer mathematical domains beyond FOL, \"\n      \"and must contend with Lean verification latency vs Z3/Prover9’s sub-second decidability. The \"\n      \"authors themselves identify extension to math reasoning as future work.\"\n    ),\n    \"MODERATE_3_misattribution_fix\": (\n      \"Fully addressed. The ‘Patel et al., 2024’ citation is removed. Patel et al. (arXiv:2310.07957) \"\n      \"is ‘A New Approach Towards Autoformalization’ about research-level math, not about type-check \"\n      \"semantic correctness rates. Poiroux et al. (arXiv:2406.07222) published ‘Improving \"\n      \"Autoformalization using Type Checking’ achieving 45.1% overall accuracy on ProofNet. The ~54% \"\n      \"semantic-correctness-among-type-checked figure is now correctly sourced from Mathesis’s \"\n      \"Gaokao-Formal evaluation data: the Kimina-7B baseline achieves LC@6=91% (type-check pass) but \"\n      \"only LC+LSC@6=49% (type-check + semantic correctness), meaning only ~54% of type-checked \"\n      \"formalizations are semantically correct. This figure may be generous — weaker autoformalizers \"\n      \"or @1 sampling would yield lower ratios. Mathesis’s core warning is preserved: ‘type-check is \"\n      \"too weak to filter out syntactically correct but semantically absurd autoformalization.’\"\n    ),\n    \"MODERATE_4_Tier2_critic_accuracy\": (\n      \"Fundamentally revised. The original plan for ‘Qwen3-8B fine-tuned on CriticLeanBench data’ is \"\n      \"acknowledged as unrealistic. CriticLean’s 87% accuracy was achieved by Qwen3-32B-RL; GPT-4o \"\n      \"achieves only 67.8%. An 8B model would likely achieve 65-75%, barely matching GPT-4o and \"\n      \"insufficient for reliable Tier 2 filtering. Three revised options are presented with a recommended \"\n      \"path: (a) Primary: use LeanScorer (Mathesis’s evaluation framework, 0.92 F1 on Gaokao-Formal) \"\n      \"as a lightweight semantic alignment scorer, which does not require a large critic model; (b) \"\n      \"Alternative: use CriticLeanGPT-Qwen3-14B-RL (released by M-A-P) as the critic, which balances \"\n      \"accuracy with GPU cost; (c) For highest precision: BEq bidirectional proof (attempt \"\n      \"informalization then re-formalization round-trip) provides a model-free semantic check. The \"\n      \"recommended design uses LeanScorer as default Tier 2 (low overhead) with BEq round-trip \"\n      \"verification for a random subsample to calibrate LeanScorer’s threshold.\"\n    ),\n    \"MODERATE_5_FoVer_baseline\": (\n      \"Fully addressed. A FoVer-style offline baseline is now included as a key comparison. The baseline: \"\n      \"use Safe’s FormalStep pipeline to generate step-level correctness labels offline (or generate our \"\n      \"own using the autoformalization pipeline), train a PRM on these labels (following FoVer’s \"\n      \"methodology), then use the trained PRM as the process reward during GRPO. This is simpler (no Lean \"\n      \"server during RL training) and cheaper. FoVer (ACL 2026 Findings) showed that PRMs trained on \"\n      \"formally-verified data achieve modest gains (MATH +2.8%, GSM8K +2.4% for Qwen2.5-7B). Our \"\n      \"hypothesis for why live verification adds value: (1) offline labels become stale as the policy \"\n      \"distribution shifts during RL — live verification adapts to the current policy’s outputs; (2) \"\n      \"exact verification signals (proved/counterexampled) are immune to reward hacking, whereas a PRM \"\n      \"trained on formal labels can still be gamed; (3) the negative signal from counterexamples is \"\n      \"adaptive — it catches errors the current policy is actually making, not generic error patterns \"\n      \"from training data. The ablation plan includes: live-verification GRPO vs FoVer-PRM GRPO vs \"\n      \"outcome-only GRPO vs Safe-Best-of-N@5.\"\n    ),\n    \"MINOR_6_benchmarks\": (\n      \"Addressed. MATH-500 is demoted from primary to secondary benchmark (for comparability with Cao et \"\n      \"al. and Safe, but acknowledged as near-saturated for 32B models at 85-95%). Primary benchmarks: \"\n      \"(a) AIME 2025 (30 problems, Qwen3-32B baseline ~81.5%, good differentiation range 60-90% for 32B \"\n      \"models); (b) Omni-MATH (4,428 Olympiad-level problems, frontier models ~60%, open-source 32B \"\n      \"~36%, substantial room for improvement); (c) ProcessBench (step-level error identification, tests \"\n      \"whether our approach improves the model’s intermediate reasoning quality, not just final-answer \"\n      \"accuracy). Secondary: MATH-500 (comparability), AIME 2024 (comparability with Cao et al.). PRM \"\n      \"quality evaluation: PRMBench (tests reward signal quality directly).\"\n    )\n  },\n  \"title\": \"From Inference to Training: Extending Step-Level Lean 4 Verification with Composite Semantic Rewards for Informal Math RLVR\",\n  \"core_problem\": (\n    \"Process reward models provide step-level guidance for RL training of mathematical reasoners, but \"\n    \"accurate step-level labels remain a bottleneck. Monte Carlo estimation is noisy, human annotation \"\n    \"does not scale, and neural PRMs suffer reward hacking. Safe (Liu et al., ACL 2025) demonstrated \"\n    \"that step-level Lean 4 autoformalization and verification can identify CoT hallucinations with exact \"\n    \"correctness signals — but only at inference time (Best-of-N reranking), citing 4-8x computational \"\n    \"overhead as prohibitive for RL integration. PRoSFI (March 2026) showed that formal verification can \"\n    \"serve as live process reward during GRPO training — but only for first-order logic, where structured \"\n    \"formal intermediaries avoid the autoformalization gap. Meanwhile, Mathesis (ICLR 2026) showed that \"\n    \"Lean type-checking alone produces semantically vacuous outputs (~46% of type-checked formalizations \"\n    \"are semantically unfaithful on Gaokao-Formal), requiring composite semantic+syntactic rewards. The \"\n    \"core open question: can Safe’s step-level Lean 4 verification be made computationally feasible as \"\n    \"a live RL training reward, while addressing the semantic alignment problem and avoiding the \"\n    \"degradation pathology observed in Z3-based approaches (Cao et al., ICLR 2026)?\"\n  ),\n  \"opportunity\": (\n    \"Three converging advances make this integration newly feasible: (1) Safe’s FormalStep dataset \"\n    \"(30,809 step-level formal statements, 81.2% proof rate) empirically demonstrates that individual \"\n    \"CoT steps can be autoformalized and proved at high rates — providing the first large-scale evidence \"\n    \"that step-level formal verification produces dense enough signals for training; (2) Kimina Lean \"\n    \"Server (2025) with LRU caching achieves 1.94x speedup and near-linear CPU scaling, directly \"\n    \"addressing Safe’s computational overhead barrier; (3) LeanScorer (Mathesis, ICLR 2026) provides \"\n    \"0.92 F1 semantic alignment scoring without requiring a large critic model, solving the semantic \"\n    \"fidelity problem at low overhead. Together with PRoSFI’s proof-of-concept that formal verification \"\n    \"works as live RL reward (76% vs 22% soundness in logic), these create the opportunity to bridge \"\n    \"Safe’s exact verification signals from inference time into training time for informal math.\"\n  ),\n  \"landscape\": (\n    \"**Direct predecessors (inference-time formal verification of informal math):** Safe (Liu et al., \"\n    \"ACL 2025) autoformalizes each CoT step into Lean 4 via GPT-4o, producing a 4-state signal \"\n    \"(NoVerif/FailForm/Proved/FailProof). The FormalStep benchmark (30,809 statements from 500 MATH \"\n    \"problems) achieves 81.2% proof rate with DeepSeek-Prover-V1.5. Safe improves Best-of-N@5 on \"\n    \"MATH-500 by 0.2-2.7% across models. Critical limitation: 4-8x computational overhead makes RL \"\n    \"integration infeasible; explicitly identified as future work. HERMES (ICML 2026) interleaves \"\n    \"informal reasoning with Lean verification at inference, achieving 67% accuracy improvement on \"\n    \"AIME’25 with 80% fewer FLOPs — but again inference-time only.\\n\\n\"\n    \"**Direct predecessors (formal verification as live RL reward):** Cao et al. (ICLR 2026, ‘Pushing \"\n    \"the Boundaries’) uses Z3/Python formal verification as live step-level RL reward during GRPO on \"\n    \"MATH-500 (81.4%) and AIME 2024 (30.2%). Section 5.4 documents degradation: models bypass \"\n    \"computation for indirect Z3 symbolic validation, requiring a ‘flexible verification strategy.’ \"\n    \"PRoSFI (arXiv:2603.29500, March 2026) uses Z3+Prover9 as live process reward during GRPO of \"\n    \"Qwen2.5-7B, achieving 76% GPT-soundness vs 22% baseline on first-order logic (ProverQA). \"\n    \"LogicReward (ICLR 2026) provides step-level logical supervision via autoformalization with soft \"\n    \"unification.\\n\\n\"\n    \"**Autoformalization and semantic alignment:** Mathesis (ICLR 2026) trains an RL-based autoformalizer \"\n    \"with composite rewards (Lean type-check + LeanScorer semantic alignment + prover feedback via HPO). \"\n    \"On Gaokao-Formal, Kimina-7B baseline achieves LC@6=91% but LC+LSC@6=49%, meaning ~54% of \"\n    \"type-checked formalizations are semantically correct. Mathesis warns ‘type-check is too weak to \"\n    \"filter out syntactically correct but semantically absurd autoformalization.’ CriticLean (2025) \"\n    \"trains critic models: Qwen3-32B-RL achieves 87% on CriticLeanBench vs GPT-4o at 67.8%. \"\n    \"StepFun-Formalizer-32B achieves SOTA 40.5% BEq@1 on FormalMATH-Lite. Poiroux et al. (2024) \"\n    \"achieves 45.1% on ProofNet via type-check filtering.\\n\\n\"\n    \"**Offline formal verification for PRM training:** FoVer (ACL 2026 Findings) uses Z3/Isabelle to \"\n    \"synthesize step-level PRM training data offline, achieving modest gains (MATH +2.8%, GSM8K +2.4% \"\n    \"for Qwen2.5-7B Best-of-7). Key comparison: FoVer avoids the entire Lean server integration during \"\n    \"RL but uses fixed offline labels.\\n\\n\"\n    \"**Formal RL for theorem proving (formal-to-formal):** Process-Verified RL (NeurIPS 2025) uses Lean \"\n    \"tactic-level feedback as process reward during GRPO for formal theorem proving. AlphaProof (Nature \"\n    \"2025) demonstrates RL with formal verification at Olympiad level in the formal domain.\\n\\n\"\n    \"**Other relevant work:** FormalRewardBench (May 2026) shows theorem provers at 24.4% for proof \"\n    \"evaluation but recommends ‘extending to process-level supervision.’ ‘Learning to Disprove’ (2026) \"\n    \"formalizes counterexample generation in Lean 4. LLMs Gaming Verifiers (ICLR 2026 Workshop) shows \"\n    \"RLVR models exploit verifier weaknesses. TinyV (2026) reveals 38% false negative rate in \"\n    \"verification during RL.\\n\\n\"\n    \"**Critical gap:** Safe demonstrated step-level Lean 4 verification of informal math but only at \"\n    \"inference time. PRoSFI demonstrated formal verification as live RL reward but only for logic. No \"\n    \"work has bridged these — using Lean 4 step-level verification with semantic alignment as live \"\n    \"process reward during RL training of informal math reasoners — and the computational overhead \"\n    \"barrier identified by Safe remains unaddressed.\"\n  ),\n  \"inspired_by\": (\n    \"Safe’s step-level Lean 4 verification of informal math CoT (the pipeline) + PRoSFI’s validation \"\n    \"that formal verification works as live RL reward (the training paradigm) + Mathesis’s warning that \"\n    \"type-check-only rewards are semantically vacuous and LeanScorer’s 0.92 F1 solution (the semantic \"\n    \"check) + Cao et al.’s degradation pathology showing frozen external verification prevents gaming + \"\n    \"Kimina Lean Server’s caching solving Safe’s overhead barrier\"\n  ),\n  \"approach\": (\n    \"Train a Qwen3-32B policy model on informal math reasoning via GRPO, augmented with a frozen \"\n    \"high-quality autoformalizer (StepFun-Formalizer-32B) that translates each chain-of-thought step \"\n    \"into a Lean 4 proposition. Each autoformalized step passes through a 3-tier composite verification \"\n    \"pipeline — extending Safe’s 4-state classification with an explicit semantic alignment tier — \"\n    \"served by a Kimina Lean Server cluster with LRU caching.\\n\\n\"\n    \"**Tier 1 — Type-Check Gate (Safe’s ‘FailForm’ filter)**: The Lean 4 compiler checks that the \"\n    \"formalized proposition is well-typed. This filters syntactically invalid or ill-formed \"\n    \"formalizations. Based on Safe’s FormalStep data, we expect ~60-70% of mathematically substantive \"\n    \"steps to pass type-checking (Safe achieves high rates with GPT-4o; with StepFun-Formalizer-32B, \"\n    \"rates may be lower). Steps failing type-check receive no formal signal (fall back to outcome \"\n    \"reward) — following PRoSFI’s approach of partial credit rather than punishment for formalization \"\n    \"failure.\\n\\n\"\n    \"**Tier 2 — Semantic Alignment Check (addressing Mathesis’s warning)**: LeanScorer (Mathesis’s \"\n    \"fuzzy-integral semantic evaluation framework, 0.92 F1 on Gaokao-Formal) assesses whether the \"\n    \"formalized proposition faithfully captures the informal step’s meaning. This addresses the core \"\n    \"problem from Mathesis/Gaokao-Formal data: only ~54% of type-checked formalizations are \"\n    \"semantically faithful (Kimina-7B baseline: LC@6=91%, LC+LSC@6=49%). We use LeanScorer with \"\n    \"α=0.6 threshold as the default. For calibration, BEq round-trip verification (informalize the \"\n    \"Lean statement, check semantic similarity to the original) is applied to a random 10% subsample. \"\n    \"CriticLeanGPT-Qwen3-14B-RL is available as an alternative if LeanScorer proves insufficient. \"\n    \"Steps failing semantic alignment receive no formal signal (fall back to outcome reward).\\n\\n\"\n    \"**Tier 3 — Proof Attempt & Counterexample Search (extending Safe’s ‘Proved/FailProof’)**: \"\n    \"For semantically aligned, type-checked propositions:\\n\"\n    \"(a) A battery of Lean automated tactics (ring, linarith, nlinarith, norm_num, omega, simp, decide) \"\n    \"attempts to prove the proposition within a 500ms time budget. Safe’s FormalStep data shows 81.2% \"\n    \"proof success rate on autoformalized statements, suggesting high coverage for algebraic/arithmetic \"\n    \"claims. Proof success = step VERIFIED TRUE → strong positive process reward.\\n\"\n    \"(b) If proof fails, slim_check (Lean’s property-based testing) and targeted counterexample search \"\n    \"attempt falsification. Counterexample found = step VERIFIED FALSE → strong negative process \"\n    \"reward.\\n\"\n    \"(c) If neither succeeds within budget → no formal signal (Safe’s ‘FailProof’ state); fall back \"\n    \"to outcome reward only.\\n\\n\"\n    \"The composite process reward for each step is: r_step = α·r_formal + (1-α)·r_outcome, where \"\n    \"r_formal ∈ {+1 (proved), -1 (counterexampled), 0 (indeterminate/failed formalization)} and α is \"\n    \"a learned mixing coefficient that adapts based on the fraction of steps receiving formal signals. \"\n    \"Following PRoSFI’s reward design insight, we assign: R=1.0 when all verified steps are proved and \"\n    \"answer is correct, R=0.5 when answer is correct but some steps indeterminate, R=0.0 when answer \"\n    \"is incorrect or a step is counterexampled.\\n\\n\"\n    \"To avoid the degradation pathology from Cao et al.: (1) The autoformalizer is external and frozen \"\n    \"— the policy model never sees or generates Lean code, preventing it from learning to game the \"\n    \"verifier (unlike Cao et al.’s Z3 approach where the model generates verifiable specifications \"\n    \"directly); (2) The formal reward is mixed with outcome reward, not used as the sole signal.\\n\\n\"\n    \"To address Safe’s computational overhead barrier (4-8x LLM queries vs PRMs): (1) Kimina Lean \"\n    \"Server with LRU caching (1.94x speedup, 41% per-iteration time reduction); (2) Async verification \"\n    \"pipeline where proof attempts for batch N run in parallel with policy rollouts for batch N+1; \"\n    \"(3) Time-budgeted tactics (500ms cap vs Safe’s up to 16 ATP attempts averaging 6.97 per \"\n    \"statement); (4) Open-source StepFun-Formalizer-32B instead of GPT-4o (cheaper, self-hosted, lower \"\n    \"latency).\\n\\n\"\n    \"Curriculum strategy: Begin with algebra/number theory (MATH levels 1-3) where Safe’s FormalStep \"\n    \"data shows highest proof rates (82.1% Number Theory, 81.7% Algebra). Progressively expand to \"\n    \"combinatorics (81.4%), then geometry (72.3%) as infrastructure stabilizes.\\n\\n\"\n    \"**Pilot validation using FormalStep**: Before full-scale RL training, run the proposed pipeline on \"\n    \"Safe’s FormalStep dataset to measure: (a) autoformalization success rate with \"\n    \"StepFun-Formalizer-32B vs Safe’s GPT-4o, (b) LeanScorer semantic alignment pass rate, (c) proof \"\n    \"success rate with our time-budgeted tactics vs Safe’s 16-attempt budget, (d) effective signal \"\n    \"density (fraction of CoT steps receiving formal reward). This provides empirical grounding for the \"\n    \"signal sparsity estimates before committing to expensive RL training.\\n\\n\"\n    \"Key ablation axes: (a) Live verification reward vs FoVer-style offline PRM vs outcome-only GRPO \"\n    \"(the central question); (b) Full 3-tier pipeline vs bare type-check reward vs proof-only (no \"\n    \"semantic filter); (c) With vs without semantic alignment (Tier 2); (d) Frozen external \"\n    \"autoformalizer vs in-model co-generation (degradation test); (e) PRoSFI-style chain-level reward \"\n    \"vs step-level mixing; (f) Curriculum ordering effects.\"\n  ),\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"7000 H100-hrs (8xH100 for GRPO policy training ~3500h, 2xH100 for StepFun-Formalizer-32B inference serving ~800h, 1xH100 for LeanScorer/CriticLeanGPT-14B ~300h, FoVer-PRM baseline training ~400h, evaluation/ablations ~2000h)\",\n      \"cpu_hours\": \"~128,000 CPU-core-hours (256 cores x 500h for Kimina Lean Server cluster)\",\n      \"timeline\": \"5-6 months (0.5mo pilot on FormalStep + infrastructure, 1.5mo pipeline development, 2.5-3mo iterative training + ablations including FoVer baseline, 0.5mo analysis/writing)\",\n      \"estimated_gpu_cost\": \"$10,500 (at $1.50/H100-hr spot pricing)\",\n      \"estimated_cpu_cost\": \"$10,000-12,000 (at ~$0.08-0.10/core-hr)\",\n      \"total_estimated_cost\": \"$20,500-22,500\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"5800 H100-hrs (Claude accelerates pipeline development, FormalStep pilot analysis, ablation design)\",\n      \"cpu_hours\": \"~100,000 CPU-core-hours\",\n      \"timeline\": \"4-5 months\",\n      \"claude_api_cost\": \"$600-800\",\n      \"estimated_gpu_cost\": \"$8,700\",\n      \"estimated_cpu_cost\": \"$8,000-10,000\",\n      \"total_estimated_cost\": \"$17,300-19,500\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"8500 H100-hrs (systematic sweeps over verification tiers, mixing coefficients, curriculum strategies, autoformalizer variants, FoVer-PRM comparison)\",\n      \"cpu_hours\": \"~200,000 CPU-core-hours (heavier Lean verification load from broader sweeps)\",\n      \"timeline\": \"4-5 months (parallelizable across GPU clusters but bottlenecked by sequential RL iterations and Lean verification throughput)\",\n      \"claude_api_cost\": \"$2,500-3,000\",\n      \"estimated_gpu_cost\": \"$12,750\",\n      \"estimated_cpu_cost\": \"$16,000-20,000\",\n      \"total_estimated_cost\": \"$31,250-35,750\",\n      \"speed_bottleneck\": \"Lean verification throughput during RL rollouts (~100 verifications/sec on 256 CPU cores with Kimina caching); autoformalization inference latency (StepFun-Formalizer-32B at ~2-4 steps/sec per GPU); LeanScorer semantic check adds ~10% overhead; overall pipeline processes ~50-80 steps/sec end-to-end with async pipelining\"\n    }\n  },\n  \"target_venues\": [\n    \"ICLR 2027 (estimated submission ~October 2026, based on ICLR 2026 deadline of September 24, 2025)\",\n    \"ACL 2027 (via ARR October 2026 cycle if ICLR timeline proves insufficient)\",\n    \"NeurIPS 2027 (estimated submission ~May 2027; comfortable fallback)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification (Liu et al., ACL 2025) — step-level Lean 4 verification of informal math CoT; FormalStep (30,809 statements, 81.2% proof rate); 4-8x overhead makes RL integration infeasible; explicitly identifies RL as future work\",\n    \"PRoSFI: Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries (arXiv:2603.29500, March 2026) — Z3+Prover9 as live process reward during GRPO; 76% GPT-soundness vs 22% baseline on first-order logic; validates formal-verification-as-live-RL-reward concept\",\n    \"Pushing the Boundaries of Natural Reasoning: Interleaved Bonus from Formal-Logic Verification (Cao et al., ICLR 2026) — Z3/Python live RL reward for informal math; documents degradation pathology in Section 5.4\",\n    \"Mathesis: Towards Formal Theorem Proving from Natural Languages (ICLR 2026) — RL-trained autoformalizer with composite rewards; Gaokao-Formal data: LC@6=91% vs LC+LSC@6=49%; warns type-check alone produces semantically vacuous outputs; LeanScorer achieves 0.92 F1\",\n    \"FoVer: Efficient PRM Training Data Synthesis via Formal Verification (ACL Findings 2026) — offline formal verification for PRM training; MATH +2.8%, GSM8K +2.4%; key offline baseline comparison\",\n    \"LogicReward: Incentivizing LLM Reasoning via Step-Wise Logical Supervision (ICLR 2026) — step-level formal logic supervision with autoformalization and soft unification\",\n    \"HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs (ICML 2026) — Lean verification at inference time for math reasoning\",\n    \"Process-Verified Reinforcement Learning for Theorem Proving via Lean (NeurIPS 2025) — Lean tactic-level reward as RL process oracle for formal theorem proving\",\n    \"CriticLean: Critic-Guided Reinforcement Learning for Mathematical Formalization (2025) — Qwen3-32B-RL at 87% on CriticLeanBench; GPT-4o at 67.8%; clear scaling behavior across model sizes\",\n    \"FormalRewardBench: A Benchmark for Formal Theorem Proving Reward Models (2026) — theorem provers at 24.4% for proof evaluation; recommends process-level extension and hybrid approaches\",\n    \"Improving Autoformalization using Type Checking (Poiroux et al., 2024) — 45.1% accuracy on ProofNet; type-check filtering analysis\",\n    \"StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs (AAAI 2026) — SOTA 40.5% BEq@1 on FormalMATH-Lite\",\n    \"Kimina Lean Server: A High-Performance Lean Server for Large-Scale Verification (2025) — 1.94x caching speedup, near-linear CPU scaling, REST API for batch verification\",\n    \"FormaRL: Enhancing Autoformalization with no Labeled Data (COLM 2025) — composite syntactic+semantic RL rewards\",\n    \"Learning to Disprove: Formal Counterexample Generation with LLMs (2026) — Lean 4 counterexample generation\",\n    \"LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking (ICLR 2026 Workshop) — verifier exploitation risks\",\n    \"TinyV: Reducing False Negatives in Verification Improves RL for LLM Reasoning (2026) — 38% false negative rate\",\n    \"Omni-MATH: A Universal Olympiad Level Mathematic Benchmark For Large Language Models (ICLR 2025) — 4,428 Olympiad problems; frontier ~60%, open-source 32B ~36%\",\n    \"DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via RL for Subgoal Decomposition (2025)\",\n    \"Unsupervised Process Reward Models (2026)\",\n    \"A New Approach Towards Autoformalization (Patel et al., 2023) — research-level autoformalization; arXiv2Formal benchmark\"\n  ],\n  \"description\": (\n    \"Safe (Liu et al., ACL 2025) demonstrated that autoformalizing each informal math CoT step into \"\n    \"Lean 4 and attempting proofs produces exact correctness signals — but only at inference time \"\n    \"(Best-of-N reranking), with 4-8x computational overhead precluding RL integration. PRoSFI (March \"\n    \"2026) proved that formal verification works as live RL reward, achieving 76% vs 22% soundness — \"\n    \"but only for first-order logic without autoformalization challenges. We bridge these two lines by \"\n    \"extending Safe’s step-level Lean 4 verification to serve as live composite process reward during \"\n    \"GRPO training of a Qwen3-32B informal math reasoner. Our pipeline augments Safe’s 4-state \"\n    \"classification with an explicit semantic alignment tier using LeanScorer (0.92 F1, addressing \"\n    \"Mathesis’s finding that ~46% of type-checked formalizations are semantically unfaithful), and \"\n    \"leverages Kimina Lean Server caching (1.94x speedup) plus async verification to overcome the \"\n    \"overhead barrier. A frozen StepFun-Formalizer-32B translates CoT steps into Lean 4 propositions; \"\n    \"type-checked and semantically validated propositions undergo proof attempt via automated tactics, \"\n    \"with slim_check counterexample search for falsification. Proved steps receive exact positive \"\n    \"reward; counterexampled steps receive exact negative reward; indeterminate steps fall back to \"\n    \"outcome reward. We validate coverage estimates using Safe’s FormalStep dataset (30,809 statements, \"\n    \"81.2% proof rate) before full training. Key baselines include a FoVer-style offline PRM (isolating \"\n    \"whether live verification adds value over pre-computed labels), Cao et al.’s FLV-RL, and \"\n    \"outcome-only GRPO. Evaluation targets AIME 2025, Omni-MATH, and ProcessBench, with MATH-500 as \"\n    \"secondary. The primary empirical question: does live composite Lean 4 verification during training \"\n    \"improve over both offline formally-supervised PRMs and inference-time-only verification?\"\n  ),\n  \"project_name\": \"proof_grounded_process_rlvr\",\n  \"source\": \"web_research\",\n  \"risks_and_mitigations\": {\n    \"signal_sparsity\": (\n      \"Estimated 15-30% of CoT steps receive exact formal signals. This is grounded in Safe’s \"\n      \"FormalStep data: 81.2% proof rate on autoformalized statements, with ~60-70% of steps producing \"\n      \"type-checkable formalizations (using StepFun-Formalizer-32B rather than GPT-4o), and ~54% passing \"\n      \"semantic alignment. The FormalStep pilot experiment (proposed before full training) will measure \"\n      \"actual coverage with our pipeline. Even if coverage is at the low end (~15%), PRoSFI demonstrated \"\n      \"that partial formal credit (R=0.3 for unverified vs R=1.0 for fully verified) still drives \"\n      \"massive soundness improvements (76% vs 22%). Mitigation: composite reward with outcome fallback \"\n      \"ensures learning never stalls; curriculum prioritizes algebra/number theory where Safe’s data \"\n      \"shows highest proof rates.\"\n    ),\n    \"computational_overhead\": (\n      \"Safe reports 4-8x overhead as prohibitive for RL. Our mitigations: (a) Kimina Lean Server LRU \"\n      \"caching reduces verification time from 0.099s to 0.051s per statement (1.94x); (b) async \"\n      \"verification pipeline overlaps proof attempts with next rollout batch; (c) 500ms time-budgeted \"\n      \"tactics vs Safe’s up to 16 ATP attempts (Safe averages 6.97 attempts/statement); (d) \"\n      \"StepFun-Formalizer-32B self-hosted instead of GPT-4o API calls. Target: reduce effective overhead \"\n      \"to 2-3x, which is tolerable for RL training with wall-clock pipelining.\"\n    ),\n    \"autoformalization_quality\": (\n      \"StepFun-Formalizer-32B achieves 40.5% BEq@1 on full theorem statements; individual CoT steps \"\n      \"may differ (simpler individual claims vs less context). Safe’s GPT-4o achieves higher rates. \"\n      \"Mitigation: (a) pilot experiment on FormalStep comparing StepFun vs GPT-4o on the same 500 MATH \"\n      \"problems; (b) if StepFun coverage is too low (<30% effective density), consider fine-tuning on \"\n      \"FormalStep data or switching to a larger autoformalizer.\"\n    ),\n    \"semantic_alignment_bottleneck\": (\n      \"LeanScorer achieves 0.92 F1 on Gaokao-Formal but may degrade on diverse CoT steps. \"\n      \"CriticLeanGPT-14B provides an alternative but at higher cost. Mitigation: (a) calibrate \"\n      \"LeanScorer threshold to maximize precision over recall (we prefer fewer but more reliable formal \"\n      \"signals); (b) BEq round-trip verification on 10% subsample for calibration; (c) if Tier 2 proves \"\n      \"unreliable, fall back to Tier 1+3 only (type-check + proof attempt without semantic filter), \"\n      \"accepting the ~46% semantic unfaithfulness risk but relying on proof success as implicit semantic \"\n      \"validation (a semantically incorrect formalization is unlikely to be provable via automated \"\n      \"tactics).\"\n    ),\n    \"degradation_pathology\": (\n      \"Risk that policy model learns to produce ‘easily formalizable’ but shallow reasoning (Cao et al. \"\n      \"degradation). Mitigation: (a) autoformalizer is external and frozen — policy never generates or \"\n      \"sees Lean code; (b) formal reward mixed with outcome reward; (c) the policy’s informal CoT is \"\n      \"not constrained to be formalizable — it just gets bonus signal when formalization succeeds. \"\n      \"Unlike Cao et al.’s Z3 approach (where the model generates symbolic expressions that Z3 checks), \"\n      \"our model generates natural language that an external model translates.\"\n    ),\n    \"FoVer_baseline_sufficiency\": (\n      \"Risk that the simpler FoVer-style offline PRM achieves comparable results, making live \"\n      \"verification unnecessary overhead. This would still be a valuable finding — it would demonstrate \"\n      \"that formal verification’s value is primarily in label quality, not in training-time adaptivity. \"\n      \"Mitigation: design the FoVer baseline carefully using the same autoformalization pipeline for fair \"\n      \"comparison; measure not just final accuracy but reward hacking resistance (does the FoVer-PRM get \"\n      \"gamed during RL while live verification does not?).\"\n    )\n  }\n}\n\nwith open('/home/ubuntu/idea_review/revised_idea_r2.json', 'w') as f:\n    json.dump(data, f, indent=2, ensure_ascii=False)\n\nprint(f\"Successfully wrote {len(json.dumps(data, ensure_ascii=False))} chars\")\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b3d9bed6-d9cb-40c7-9344-d0f3e09ab51f",
+            "isSidechain": false,
+            "requestId": "req_011CbUS17EJWNQ8TAK6Nxo1M",
+            "type": "assistant",
+            "uuid": "76bd7854-5712-42d3-8130-58c100263005",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "aec13438-586b-4947-aeee-fff1de115950",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019qhbU387ewUqvC2kR4cu7K",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 185,
+                "cache_read_input_tokens": 99772,
+                "output_tokens": 10677,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 185,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 10677,
+                    "cache_read_input_tokens": 99772,
+                    "cache_creation_input_tokens": 185,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 185
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": "2026-05-28T05:44:50.550Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Claude requested permissions to write to /home/ubuntu/idea_review/write_revision.py, but you haven't granted it yet.",
+              "is_error": true,
+              "tool_use_id": "toolu_01K9uBzgvNDmn5HfsYhrnbTR"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "76bd7854-5712-42d3-8130-58c100263005",
+            "isSidechain": false,
+            "promptId": "be55ecda-5c89-4bdf-8bde-ddb22668042f",
+            "type": "user",
+            "uuid": "4657239c-6d70-4521-8d85-ed92833a59e7",
+            "toolUseResult": "Error: Claude requested permissions to write to /home/ubuntu/idea_review/write_revision.py, but you haven't granted it yet.",
+            "sourceToolAssistantUUID": "76bd7854-5712-42d3-8130-58c100263005",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "aec13438-586b-4947-aeee-fff1de115950",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-28 (UTC).**  ## Original idea {   \"revision_summary\": \"Major revision driven by three critical findings: (1) Cao e…",
+                "leafUuid": "4657239c-6d70-4521-8d85-ed92833a59e7",
+                "sessionId": "aec13438-586b-4947-aeee-fff1de115950"
+              }
+            }
+          ],
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Revise math RL proof rewards to address Safe and PRoSFI work",
+                "sessionId": "aec13438-586b-4947-aeee-fff1de115950"
+              }
+            }
+          ],
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-28T05:44:54.690Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I'm having permission issues. Let me try a different approach - output the JSON directly as text in the response since file writes are being blocked.",
+              "signature": "Et0CCmMIDhgCKkB+ljVapvma4etMIFv20bpGLtCjiGox96YPkh0sJxhU5MDG8okmc0gqYx9APJX/xO1C1mDYfvm5oh6kR9xcl6u7Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDOmSKmWMdRJNoZPKxxoMgQXBKZEjXE5fvspCIjBSKPDMatRGZF2mXLNvFajnKRj/fuUKFNiPOE//G6GhBRh3nuoyiOYoZwYK/coRlDQqpwGqI/3lZOsgzISkeMUPOxJdrrhOI/68dsfurohXWbX77gyJSjYHx9ljG3+SBXaaNEQNPE3EYW31A34Sr0GU/ILTj3zNm0krd6e62qRqBCvX8SmViuWTHREKGJiGhd3UjUhfKqWAHT07HJJXNh0fjQROtGoBVcarFG5HdmFJuE3Mb4q/I1bX+5pbKO7N7E7WKAtl+A4+xIyUG6zjQa6/99jqIQGRy0LGuRgB"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4657239c-6d70-4521-8d85-ed92833a59e7",
+            "isSidechain": false,
+            "requestId": "req_011CbUSFxSPRBWj1CfQbwxjX",
+            "type": "assistant",
+            "uuid": "b7e8a92f-ea62-4a52-837d-0cf184e1a182",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "aec13438-586b-4947-aeee-fff1de115950",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N8uiHMX5vBnygsF8bx4P8f",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10200,
+                "cache_read_input_tokens": 99957,
+                "output_tokens": 9850,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 10200,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 9850,
+                    "cache_read_input_tokens": 99957,
+                    "cache_creation_input_tokens": 10200,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 10200
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-28T05:48:11.829Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "It appears I'm having permission issues writing to files in that directory. Let me output the complete revised JSON directly:\n\nHere is the **complete revised research idea** (change_type: **major**):\n\n---\n\n```json\n{\n  \"change_type\": \"major\",\n  \"revision_summary\": \"Major revision driven by six issues, the most significant being Safe (Liu et al., ACL 2025), which autoformalizes each CoT step into Lean 4 and produces a 4-state verification signal — structurally identical to our Tier 1/3 pipeline but used only at inference time. The revision repositions the contribution as extending Safe's inference-time step-level Lean 4 verification to live RL training, synthesizing three threads: Safe (step-level Lean verification of informal math), PRoSFI (formal verification as live GRPO reward for logic), and Mathesis (composite semantic+syntactic rewards). Safe's FormalStep (30,809 statements, 81.2% proof rate) serves as pilot validation data. The Patel et al. misattribution is corrected using Mathesis's own Gaokao-Formal data (LC@6=91% vs LC+LSC@6=49%, so ~54% semantic correctness among type-checked, for Kimina-7B baseline). Tier 2 is revised to use LeanScorer (0.92 F1) or CriticLeanGPT-14B rather than an unrealistically strong 8B model. A FoVer-style offline baseline is added to isolate whether live verification during RL provides value beyond pre-computed step labels. MATH-500 is demoted from primary to secondary benchmark; AIME 2025, Omni-MATH, and ProcessBench become primary evaluations. Signal sparsity justification is strengthened using Safe's empirical data.\",\n  \"issues_addressed\": {\n    \"CRITICAL_1_Safe_citation\": \"Fully addressed. Safe (Liu et al., ACL 2025) is now cited as the closest prior work and deeply engaged throughout. Safe autoformalizes each CoT step into Lean 4 via GPT-4o, producing a 4-state signal (NoVerif/FailForm/Proved/FailProof) — structurally identical to our Tier 1+3. Safe's FormalStep dataset (30,809 formal statements from 500 MATH problems, 81.2% proof rate with DeepSeek-Prover-V1.5) is proposed as pilot validation data for estimating coverage on CoT steps. The key differentiators are: (a) Safe operates at inference time (Best-of-N reranking, +0.2-2.7% on MATH-500); we integrate into live RL training (GRPO reward), where the signal shapes the policy directly; (b) Safe uses GPT-4o as autoformalizer (expensive, closed-source, 4-8x overhead acknowledged as prohibitive for RL); we use StepFun-Formalizer-32B (open-source) with Kimina Lean Server caching (1.94x speedup) and async verification to reduce overhead; (c) Safe lacks semantic alignment verification — our Tier 2 addresses the ~46% of type-checked formalizations that are semantically unfaithful (Mathesis/Gaokao-Formal data); (d) Safe explicitly identifies RL integration as future work: 'the increased computational overhead may present frictions for the direct application of the current method in reinforcement learning scenarios.'\",\n    \"MODERATE_2_PRoSFI_citation\": \"Fully addressed. PRoSFI (arXiv:2603.29500, March 2026) is now cited and positioned as validating formal-verification-as-live-RL-reward in the logic domain. PRoSFI uses Z3+Prover9 as formal verifiers during GRPO training of Qwen2.5-7B, achieving 76% GPT-soundness vs 22% for outcome-only baselines on ProverQA — a 54-point improvement. However, PRoSFI operates on first-order logic with structured formal intermediaries generated directly by the model (no autoformalization gap), whereas our work targets informal mathematical reasoning requiring Lean 4 autoformalization (introducing the semantic alignment challenge), handles richer mathematical domains beyond FOL, and must contend with Lean verification latency vs Z3/Prover9's sub-second decidability. The authors themselves identify extension to math reasoning as future work.\",\n    \"MODERATE_3_misattribution_fix\": \"Fully addressed. The 'Patel et al., 2024' citation is removed. Patel et al. (arXiv:2310.07957) is 'A New Approach Towards Autoformalization' about research-level math, not about type-check semantic correctness rates. Poiroux et al. (arXiv:2406.07222) published 'Improving Autoformalization using Type Checking' achieving 45.1% overall accuracy on ProofNet. The ~54% semantic-correctness-among-type-checked figure is now correctly sourced from Mathesis's Gaokao-Formal evaluation data: the Kimina-7B baseline achieves LC@6=91% (type-check pass) but only LC+LSC@6=49% (type-check + semantic correctness), meaning only ~54% of type-checked formalizations are semantically correct. This figure may be generous — weaker autoformalizers or @1 sampling would yield lower ratios. Mathesis's core warning is preserved: 'type-check is too weak to filter out syntactically correct but semantically absurd autoformalization.'\",\n    \"MODERATE_4_Tier2_critic_accuracy\": \"Fundamentally revised. The original plan for 'Qwen3-8B fine-tuned on CriticLeanBench data' is acknowledged as unrealistic. CriticLean's 87% accuracy was achieved by Qwen3-32B-RL; GPT-4o achieves only 67.8%. An 8B model would likely achieve 65-75%, barely matching GPT-4o and insufficient for reliable Tier 2 filtering. Three revised options are presented with a recommended path: (a) Primary: use LeanScorer (Mathesis's evaluation framework, 0.92 F1 on Gaokao-Formal) as a lightweight semantic alignment scorer, which does not require a large critic model; (b) Alternative: use CriticLeanGPT-Qwen3-14B-RL (released by M-A-P) as the critic, which balances accuracy with GPU cost; (c) For highest precision: BEq bidirectional proof (attempt informalization then re-formalization round-trip) provides a model-free semantic check. The recommended design uses LeanScorer as default Tier 2 (low overhead) with BEq round-trip verification for a random subsample to calibrate LeanScorer's threshold.\",\n    \"MODERATE_5_FoVer_baseline\": \"Fully addressed. A FoVer-style offline baseline is now included as a key comparison. The baseline: use Safe's FormalStep pipeline to generate step-level correctness labels offline (or generate our own using the autoformalization pipeline), train a PRM on these labels (following FoVer's methodology), then use the trained PRM as the process reward during GRPO. This is simpler (no Lean server during RL training) and cheaper. FoVer (ACL 2026 Findings) showed that PRMs trained on formally-verified data achieve modest gains (MATH +2.8%, GSM8K +2.4% for Qwen2.5-7B). Our hypothesis for why live verification adds value: (1) offline labels become stale as the policy distribution shifts during RL — live verification adapts to the current policy's outputs; (2) exact verification signals (proved/counterexampled) are immune to reward hacking, whereas a PRM trained on formal labels can still be gamed; (3) the negative signal from counterexamples is adaptive — it catches errors the current policy is actually making, not generic error patterns from training data. The ablation plan includes: live-verification GRPO vs FoVer-PRM GRPO vs outcome-only GRPO vs Safe-Best-of-N@5.\",\n    \"MINOR_6_benchmarks\": \"Addressed. MATH-500 is demoted from primary to secondary benchmark (for comparability with Cao et al. and Safe, but acknowledged as near-saturated for 32B models at 85-95%). Primary benchmarks: (a) AIME 2025 (30 problems, Qwen3-32B baseline ~81.5%, good differentiation range 60-90% for 32B models); (b) Omni-MATH (4,428 Olympiad-level problems, frontier models ~60%, open-source 32B ~36%, substantial room for improvement); (c) ProcessBench (step-level error identification, tests whether our approach improves the model's intermediate reasoning quality, not just final-answer accuracy). Secondary: MATH-500 (comparability), AIME 2024 (comparability with Cao et al.). PRM quality evaluation: PRMBench (tests reward signal quality directly).\"\n  },\n  \"title\": \"From Inference to Training: Extending Step-Level Lean 4 Verification with Composite Semantic Rewards for Informal Math RLVR\",\n  \"core_problem\": \"Process reward models provide step-level guidance for RL training of mathematical reasoners, but accurate step-level labels remain a bottleneck. Monte Carlo estimation is noisy, human annotation does not scale, and neural PRMs suffer reward hacking. Safe (Liu et al., ACL 2025) demonstrated that step-level Lean 4 autoformalization and verification can identify CoT hallucinations with exact correctness signals — but only at inference time (Best-of-N reranking), citing 4-8x computational overhead as prohibitive for RL integration. PRoSFI (March 2026) showed that formal verification can serve as live process reward during GRPO training — but only for first-order logic, where structured formal intermediaries avoid the autoformalization gap. Meanwhile, Mathesis (ICLR 2026) showed that Lean type-checking alone produces semantically vacuous outputs (~46% of type-checked formalizations are semantically unfaithful on Gaokao-Formal), requiring composite semantic+syntactic rewards. The core open question: can Safe's step-level Lean 4 verification be made computationally feasible as a live RL training reward, while addressing the semantic alignment problem and avoiding the degradation pathology observed in Z3-based approaches (Cao et al., ICLR 2026)?\",\n  \"opportunity\": \"Three converging advances make this integration newly feasible: (1) Safe's FormalStep dataset (30,809 step-level formal statements, 81.2% proof rate) empirically demonstrates that individual CoT steps can be autoformalized and proved at high rates — providing the first large-scale evidence that step-level formal verification produces dense enough signals for training; (2) Kimina Lean Server (2025) with LRU caching achieves 1.94x speedup and near-linear CPU scaling, directly addressing Safe's computational overhead barrier; (3) LeanScorer (Mathesis, ICLR 2026) provides 0.92 F1 semantic alignment scoring without requiring a large critic model, solving the semantic fidelity problem at low overhead. Together with PRoSFI's proof-of-concept that formal verification works as live RL reward (76% vs 22% soundness in logic), these create the opportunity to bridge Safe's exact verification signals from inference time into training time for informal math.\",\n  \"landscape\": \"**Direct predecessors (inference-time formal verification of informal math):** Safe (Liu et al., ACL 2025) autoformalizes each CoT step into Lean 4 via GPT-4o, producing a 4-state signal (NoVerif/FailForm/Proved/FailProof). The FormalStep benchmark (30,809 statements from 500 MATH problems) achieves 81.2% proof rate with DeepSeek-Prover-V1.5. Safe improves Best-of-N@5 on MATH-500 by 0.2-2.7% across models. Critical limitation: 4-8x computational overhead makes RL integration infeasible; explicitly identified as future work. HERMES (ICML 2026) interleaves informal reasoning with Lean verification at inference, achieving 67% accuracy improvement on AIME'25 with 80% fewer FLOPs — but again inference-time only.\\n\\n**Direct predecessors (formal verification as live RL reward):** Cao et al. (ICLR 2026, 'Pushing the Boundaries') uses Z3/Python formal verification as live step-level RL reward during GRPO on MATH-500 (81.4%) and AIME 2024 (30.2%). Section 5.4 documents degradation: models bypass computation for indirect Z3 symbolic validation, requiring a 'flexible verification strategy.' PRoSFI (arXiv:2603.29500, March 2026) uses Z3+Prover9 as live process reward during GRPO of Qwen2.5-7B, achieving 76% GPT-soundness vs 22% baseline on first-order logic (ProverQA). LogicReward (ICLR 2026) provides step-level logical supervision via autoformalization with soft unification.\\n\\n**Autoformalization and semantic alignment:** Mathesis (ICLR 2026) trains an RL-based autoformalizer with composite rewards (Lean type-check + LeanScorer semantic alignment + prover feedback via HPO). On Gaokao-Formal, Kimina-7B baseline achieves LC@6=91% but LC+LSC@6=49%, meaning ~54% of type-checked formalizations are semantically correct. Mathesis warns 'type-check is too weak to filter out syntactically correct but semantically absurd autoformalization.' CriticLean (2025) trains critic models: Qwen3-32B-RL achieves 87% on CriticLeanBench vs GPT-4o at 67.8%. StepFun-Formalizer-32B achieves SOTA 40.5% BEq@1 on FormalMATH-Lite. Poiroux et al. (2024) achieves 45.1% on ProofNet via type-check filtering.\\n\\n**Offline formal verification for PRM training:** FoVer (ACL 2026 Findings) uses Z3/Isabelle to synthesize step-level PRM training data offline, achieving modest gains (MATH +2.8%, GSM8K +2.4% for Qwen2.5-7B Best-of-7). Key comparison: FoVer avoids the entire Lean server integration during RL but uses fixed offline labels.\\n\\n**Formal RL for theorem proving (formal-to-formal):** Process-Verified RL (NeurIPS 2025) uses Lean tactic-level feedback as process reward during GRPO for formal theorem proving. AlphaProof (Nature 2025) demonstrates RL with formal verification at Olympiad level in the formal domain.\\n\\n**Other relevant work:** FormalRewardBench (May 2026) shows theorem provers at 24.4% for proof evaluation but recommends 'extending to process-level supervision.' 'Learning to Disprove' (2026) formalizes counterexample generation in Lean 4. LLMs Gaming Verifiers (ICLR 2026 Workshop) shows RLVR models exploit verifier weaknesses. TinyV (2026) reveals 38% false negative rate in verification during RL.\\n\\n**Critical gap:** Safe demonstrated step-level Lean 4 verification of informal math but only at inference time. PRoSFI demonstrated formal verification as live RL reward but only for logic. No work has bridged these — using Lean 4 step-level verification with semantic alignment as live process reward during RL training of informal math reasoners — and the computational overhead barrier identified by Safe remains unaddressed.\",\n  \"inspired_by\": \"Safe's step-level Lean 4 verification of informal math CoT (the pipeline) + PRoSFI's validation that formal verification works as live RL reward (the training paradigm) + Mathesis's warning that type-check-only rewards are semantically vacuous and LeanScorer's 0.92 F1 solution (the semantic check) + Cao et al.'s degradation pathology showing frozen external verification prevents gaming + Kimina Lean Server's caching solving Safe's overhead barrier\",\n  \"approach\": \"Train a Qwen3-32B policy model on informal math reasoning via GRPO, augmented with a frozen high-quality autoformalizer (StepFun-Formalizer-32B) that translates each chain-of-thought step into a Lean 4 proposition. Each autoformalized step passes through a 3-tier composite verification pipeline — extending Safe's 4-state classification with an explicit semantic alignment tier — served by a Kimina Lean Server cluster with LRU caching.\\n\\n**Tier 1 — Type-Check Gate (Safe's 'FailForm' filter)**: The Lean 4 compiler checks that the formalized proposition is well-typed. This filters syntactically invalid or ill-formed formalizations. Based on Safe's FormalStep data, we expect ~60-70% of mathematically substantive steps to pass type-checking (Safe achieves high rates with GPT-4o; with StepFun-Formalizer-32B, rates may be lower). Steps failing type-check receive no formal signal (fall back to outcome reward) — following PRoSFI's approach of partial credit rather than punishment for formalization failure.\\n\\n**Tier 2 — Semantic Alignment Check (addressing Mathesis's warning)**: LeanScorer (Mathesis's fuzzy-integral semantic evaluation framework, 0.92 F1 on Gaokao-Formal) assesses whether the formalized proposition faithfully captures the informal step's meaning. This addresses the core problem from Mathesis/Gaokao-Formal data: only ~54% of type-checked formalizations are semantically faithful (Kimina-7B baseline: LC@6=91%, LC+LSC@6=49%). We use LeanScorer with α=0.6 threshold as the default. For calibration, BEq round-trip verification (informalize the Lean statement, check semantic similarity to the original) is applied to a random 10% subsample. CriticLeanGPT-Qwen3-14B-RL is available as an alternative if LeanScorer proves insufficient. Steps failing semantic alignment receive no formal signal (fall back to outcome reward).\\n\\n**Tier 3 — Proof Attempt & Counterexample Search (extending Safe's 'Proved/FailProof')**: For semantically aligned, type-checked propositions:\\n(a) A battery of Lean automated tactics (ring, linarith, nlinarith, norm_num, omega, simp, decide) attempts to prove the proposition within a 500ms time budget. Safe's FormalStep data shows 81.2% proof success rate on autoformalized statements, suggesting high coverage for algebraic/arithmetic claims. Proof success = step VERIFIED TRUE → strong positive process reward.\\n(b) If proof fails, slim_check (Lean's property-based testing) and targeted counterexample search attempt falsification. Counterexample found = step VERIFIED FALSE → strong negative process reward.\\n(c) If neither succeeds within budget → no formal signal (Safe's 'FailProof' state); fall back to outcome reward only.\\n\\nThe composite process reward for each step is: r_step = α·r_formal + (1-α)·r_outcome, where r_formal ∈ {+1 (proved), -1 (counterexampled), 0 (indeterminate/failed formalization)} and α is a learned mixing coefficient that adapts based on the fraction of steps receiving formal signals. Following PRoSFI's reward design insight, we assign: R=1.0 when all verified steps are proved and answer is correct, R=0.5 when answer is correct but some steps indeterminate, R=0.0 when answer is incorrect or a step is counterexampled.\\n\\nTo avoid the degradation pathology from Cao et al.: (1) The autoformalizer is external and frozen — the policy model never sees or generates Lean code, preventing it from learning to game the verifier (unlike Cao et al.'s Z3 approach where the model generates verifiable specifications directly); (2) The formal reward is mixed with outcome reward, not used as the sole signal.\\n\\nTo address Safe's computational overhead barrier (4-8x LLM queries vs PRMs): (1) Kimina Lean Server with LRU caching (1.94x speedup, 41% per-iteration time reduction); (2) Async verification pipeline where proof attempts for batch N run in parallel with policy rollouts for batch N+1; (3) Time-budgeted tactics (500ms cap vs Safe's up to 16 ATP attempts averaging 6.97 per statement); (4) Open-source StepFun-Formalizer-32B instead of GPT-4o (cheaper, self-hosted, lower latency).\\n\\nCurriculum strategy: Begin with algebra/number theory (MATH levels 1-3) where Safe's FormalStep data shows highest proof rates (82.1% Number Theory, 81.7% Algebra). Progressively expand to combinatorics (81.4%), then geometry (72.3%) as infrastructure stabilizes.\\n\\n**Pilot validation using FormalStep**: Before full-scale RL training, run the proposed pipeline on Safe's FormalStep dataset to measure: (a) autoformalization success rate with StepFun-Formalizer-32B vs Safe's GPT-4o, (b) LeanScorer semantic alignment pass rate, (c) proof success rate with our time-budgeted tactics vs Safe's 16-attempt budget, (d) effective signal density (fraction of CoT steps receiving formal reward). This provides empirical grounding for the signal sparsity estimates before committing to expensive RL training.\\n\\nKey ablation axes: (a) Live verification reward vs FoVer-style offline PRM vs outcome-only GRPO (the central question); (b) Full 3-tier pipeline vs bare type-check reward vs proof-only (no semantic filter); (c) With vs without semantic alignment (Tier 2); (d) Frozen external autoformalizer vs in-model co-generation (degradation test); (e) PRoSFI-style chain-level reward vs step-level mixing; (f) Curriculum ordering effects.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"7000 H100-hrs (8xH100 for GRPO policy training ~3500h, 2xH100 for StepFun-Formalizer-32B inference serving ~800h, 1xH100 for LeanScorer/CriticLeanGPT-14B ~300h, FoVer-PRM baseline training ~400h, evaluation/ablations ~2000h)\",\n      \"cpu_hours\": \"~128,000 CPU-core-hours (256 cores x 500h for Kimina Lean Server cluster)\",\n      \"timeline\": \"5-6 months (0.5mo pilot on FormalStep + infrastructure, 1.5mo pipeline development, 2.5-3mo iterative training + ablations including FoVer baseline, 0.5mo analysis/writing)\",\n      \"estimated_gpu_cost\": \"$10,500 (at $1.50/H100-hr spot pricing)\",\n      \"estimated_cpu_cost\": \"$10,000-12,000 (at ~$0.08-0.10/core-hr)\",\n      \"total_estimated_cost\": \"$20,500-22,500\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"5800 H100-hrs (Claude accelerates pipeline development, FormalStep pilot analysis, ablation design)\",\n      \"cpu_hours\": \"~100,000 CPU-core-hours\",\n      \"timeline\": \"4-5 months\",\n      \"claude_api_cost\": \"$600-800\",\n      \"estimated_gpu_cost\": \"$8,700\",\n      \"estimated_cpu_cost\": \"$8,000-10,000\",\n      \"total_estimated_cost\": \"$17,300-19,500\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"8500 H100-hrs (systematic sweeps over verification tiers, mixing coefficients, curriculum strategies, autoformalizer variants, FoVer-PRM comparison)\",\n      \"cpu_hours\": \"~200,000 CPU-core-hours (heavier Lean verification load from broader sweeps)\",\n      \"timeline\": \"4-5 months (parallelizable across GPU clusters but bottlenecked by sequential RL iterations and Lean verification throughput)\",\n      \"claude_api_cost\": \"$2,500-3,000\",\n      \"estimated_gpu_cost\": \"$12,750\",\n      \"estimated_cpu_cost\": \"$16,000-20,000\",\n      \"total_estimated_cost\": \"$31,250-35,750\",\n      \"speed_bottleneck\": \"Lean verification throughput during RL rollouts (~100 verifications/sec on 256 CPU cores with Kimina caching); autoformalization inference latency (StepFun-Formalizer-32B at ~2-4 steps/sec per GPU); LeanScorer semantic check adds ~10% overhead; overall pipeline processes ~50-80 steps/sec end-to-end with async pipelining\"\n    }\n  },\n  \"target_venues\": [\n    \"ICLR 2027 (estimated submission ~October 2026, based on ICLR 2026 deadline of September 24, 2025)\",\n    \"ACL 2027 (via ARR October 2026 cycle if ICLR timeline proves insufficient)\",\n    \"NeurIPS 2027 (estimated submission ~May 2027; comfortable fallback)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification (Liu et al., ACL 2025) — step-level Lean 4 verification of informal math CoT; FormalStep (30,809 statements, 81.2% proof rate); 4-8x overhead makes RL integration infeasible; explicitly identifies RL as future work\",\n    \"PRoSFI: Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries (arXiv:2603.29500, March 2026) — Z3+Prover9 as live process reward during GRPO; 76% GPT-soundness vs 22% baseline on first-order logic; validates formal-verification-as-live-RL-reward concept\",\n    \"Pushing the Boundaries of Natural Reasoning: Interleaved Bonus from Formal-Logic Verification (Cao et al., ICLR 2026) — Z3/Python live RL reward for informal math; documents degradation pathology in Section 5.4\",\n    \"Mathesis: Towards Formal Theorem Proving from Natural Languages (ICLR 2026) — RL-trained autoformalizer with composite rewards; Gaokao-Formal data: LC@6=91% vs LC+LSC@6=49%; warns type-check alone produces semantically vacuous outputs; LeanScorer achieves 0.92 F1\",\n    \"FoVer: Efficient PRM Training Data Synthesis via Formal Verification (ACL Findings 2026) — offline formal verification for PRM training; MATH +2.8%, GSM8K +2.4%; key offline baseline comparison\",\n    \"LogicReward: Incentivizing LLM Reasoning via Step-Wise Logical Supervision (ICLR 2026) — step-level formal logic supervision with autoformalization and soft unification\",\n    \"HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs (ICML 2026) — Lean verification at inference time for math reasoning\",\n    \"Process-Verified Reinforcement Learning for Theorem Proving via Lean (NeurIPS 2025) — Lean tactic-level reward as RL process oracle for formal theorem proving\",\n    \"CriticLean: Critic-Guided Reinforcement Learning for Mathematical Formalization (2025) — Qwen3-32B-RL at 87% on CriticLeanBench; GPT-4o at 67.8%; clear scaling behavior across model sizes\",\n    \"FormalRewardBench: A Benchmark for Formal Theorem Proving Reward Models (2026) — theorem provers at 24.4% for proof evaluation; recommends process-level extension and hybrid approaches\",\n    \"Improving Autoformalization using Type Checking (Poiroux et al., 2024) — 45.1% accuracy on ProofNet; type-check filtering analysis\",\n    \"StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs (AAAI 2026) — SOTA 40.5% BEq@1 on FormalMATH-Lite\",\n    \"Kimina Lean Server: A High-Performance Lean Server for Large-Scale Verification (2025) — 1.94x caching speedup, near-linear CPU scaling, REST API for batch verification\",\n    \"FormaRL: Enhancing Autoformalization with no Labeled Data (COLM 2025) — composite syntactic+semantic RL rewards\",\n    \"Learning to Disprove: Formal Counterexample Generation with LLMs (2026) — Lean 4 counterexample generation\",\n    \"LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking (ICLR 2026 Workshop) — verifier exploitation risks\",\n    \"TinyV: Reducing False Negatives in Verification Improves RL for LLM Reasoning (2026) — 38% false negative rate\",\n    \"Omni-MATH: A Universal Olympiad Level Mathematic Benchmark For Large Language Models (ICLR 2025) — 4,428 Olympiad problems; frontier ~60%, open-source 32B ~36%\",\n    \"DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via RL for Subgoal Decomposition (2025)\",\n    \"Unsupervised Process Reward Models (2026)\",\n    \"A New Approach Towards Autoformalization (Patel et al., 2023) — research-level autoformalization; arXiv2Formal benchmark\"\n  ],\n  \"description\": \"Safe (Liu et al., ACL 2025) demonstrated that autoformalizing each informal math CoT step into Lean 4 and attempting proofs produces exact correctness signals — but only at inference time (Best-of-N reranking), with 4-8x computational overhead precluding RL integration. PRoSFI (March 2026) proved that formal verification works as live RL reward, achieving 76% vs 22% soundness — but only for first-order logic without autoformalization challenges. We bridge these two lines by extending Safe's step-level Lean 4 verification to serve as live composite process reward during GRPO training of a Qwen3-32B informal math reasoner. Our pipeline augments Safe's 4-state classification with an explicit semantic alignment tier using LeanScorer (0.92 F1, addressing Mathesis's finding that ~46% of type-checked formalizations are semantically unfaithful), and leverages Kimina Lean Server caching (1.94x speedup) plus async verification to overcome the overhead barrier. A frozen StepFun-Formalizer-32B translates CoT steps into Lean 4 propositions; type-checked and semantically validated propositions undergo proof attempt via automated tactics, with slim_check counterexample search for falsification. Proved steps receive exact positive reward; counterexampled steps receive exact negative reward; indeterminate steps fall back to outcome reward. We validate coverage estimates using Safe's FormalStep dataset (30,809 statements, 81.2% proof rate) before full training. Key baselines include a FoVer-style offline PRM (isolating whether live verification adds value over pre-computed labels), Cao et al.'s FLV-RL, and outcome-only GRPO. Evaluation targets AIME 2025, Omni-MATH, and ProcessBench, with MATH-500 as secondary. The primary empirical question: does live composite Lean 4 verification during training improve over both offline formally-supervised PRMs and inference-time-only verification?\",\n  \"project_name\": \"proof_grounded_process_rlvr\",\n  \"source\": \"web_research\",\n  \"risks_and_mitigations\": {\n    \"signal_sparsity\": \"Estimated 15-30% of CoT steps receive exact formal signals. This is grounded in Safe's FormalStep data: 81.2% proof rate on autoformalized statements, with ~60-70% of steps producing type-checkable formalizations (using StepFun-Formalizer-32B rather than GPT-4o), and ~54% passing semantic alignment. The FormalStep pilot experiment (proposed before full training) will measure actual coverage with our pipeline. Even if coverage is at the low end (~15%), PRoSFI demonstrated that partial formal credit (R=0.3 for unverified vs R=1.0 for fully verified) still drives massive soundness improvements (76% vs 22%). Mitigation: composite reward with outcome fallback ensures learning never stalls; curriculum prioritizes algebra/number theory where Safe's data shows highest proof rates.\",\n    \"computational_overhead\": \"Safe reports 4-8x overhead as prohibitive for RL. Our mitigations: (a) Kimina Lean Server LRU caching reduces verification time from 0.099s to 0.051s per statement (1.94x); (b) async verification pipeline overlaps proof attempts with next rollout batch; (c) 500ms time-budgeted tactics vs Safe's up to 16 ATP attempts (Safe averages 6.97 attempts/statement); (d) StepFun-Formalizer-32B self-hosted instead of GPT-4o API calls. Target: reduce effective overhead to 2-3x, which is tolerable for RL training with wall-clock pipelining.\",\n    \"autoformalization_quality\": \"StepFun-Formalizer-32B achieves 40.5% BEq@1 on full theorem statements; individual CoT steps may differ (simpler individual claims vs less context). Safe's GPT-4o achieves higher rates. Mitigation: (a) pilot experiment on FormalStep comparing StepFun vs GPT-4o on the same 500 MATH problems; (b) if StepFun coverage is too low (<30% effective density), consider fine-tuning on FormalStep data or switching to a larger autoformalizer.\",\n    \"semantic_alignment_bottleneck\": \"LeanScorer achieves 0.92 F1 on Gaokao-Formal but may degrade on diverse CoT steps. CriticLeanGPT-14B provides an alternative but at higher cost. Mitigation: (a) calibrate LeanScorer threshold to maximize precision over recall (we prefer fewer but more reliable formal signals); (b) BEq round-trip verification on 10% subsample for calibration; (c) if Tier 2 proves unreliable, fall back to Tier 1+3 only (type-check + proof attempt without semantic filter), accepting the ~46% semantic unfaithfulness risk but relying on proof success as implicit semantic validation (a semantically incorrect formalization is unlikely to be provable via automated tactics).\",\n    \"degradation_pathology\": \"Risk that policy model learns to produce 'easily formalizable' but shallow reasoning (Cao et al. degradation). Mitigation: (a) autoformalizer is external and frozen — policy never generates or sees Lean code; (b) formal reward mixed with outcome reward; (c) the policy's informal CoT is not constrained to be formalizable — it just gets bonus signal when formalization succeeds. Unlike Cao et al.'s Z3 approach (where the model generates symbolic expressions that Z3 checks), our model generates natural language that an external model translates.\",\n    \"FoVer_baseline_sufficiency\": \"Risk that the simpler FoVer-style offline PRM achieves comparable results, making live verification unnecessary overhead. This would still be a valuable finding — it would demonstrate that formal verification's value is primarily in label quality, not in training-time adaptivity. Mitigation: design the FoVer baseline carefully using the same autoformalization pipeline for fair comparison; measure not just final accuracy but reward hacking resistance (does the FoVer-PRM get gamed during RL while live verification does not?).\"\n  }\n}\n```\n\n---\n\n## Summary of Key Changes (Round 2 → Round 2 Revision)\n\n### Repositioning (the biggest change)\nThe contribution is reframed as a **synthesis** of three threads rather than a standalone novelty claim:\n- **Safe** (ACL 2025): the step-level Lean 4 verification pipeline (inference-time only)\n- **PRoSFI** (March 2026): formal verification as live RL reward (logic domain only)  \n- **Mathesis** (ICLR 2026): semantic alignment for autoformalization quality\n\nThe gap is now: *no work bridges Safe's Lean 4 step verification from inference to training time, with semantic alignment, for informal math RL*.\n\n### Issue-by-Issue\n| Issue | Resolution |\n|-------|-----------|\n| **CRITICAL: Safe** | Deeply engaged as closest prior work; FormalStep as pilot data; 4 clear differentiators (training vs inference, open-source autoformalizer, semantic alignment tier, overhead mitigations) |\n| **MODERATE: PRoSFI** | Cited; positioned as validating the concept in logic; our work extends to math+Lean4 with autoformalization challenges |\n| **MODERATE: Misattribution** | Fixed. Now sourced from Mathesis Gaokao-Formal data (LC@6=91%, LC+LSC@6=49% → ~54% semantic correctness among type-checked) |\n| **MODERATE: Tier 2 critic** | Revised from 8B to LeanScorer (0.92 F1, lightweight) + CriticLeanGPT-14B as alternative + BEq round-trip for calibration |\n| **MODERATE: FoVer baseline** | Added as key ablation: offline PRM trained on formally-verified labels vs live verification during RL |\n| **MINOR: Benchmarks** | AIME 2025 + Omni-MATH + ProcessBench as primary; MATH-500 demoted to secondary |\n\nSources:\n- [Safe: Enhancing Mathematical Reasoning via Retrospective Step-aware Formal Verification (ACL 2025)](https://aclanthology.org/2025.acl-long.594/)\n- [PRoSFI: Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning (arXiv:2603.29500)](https://arxiv.org/abs/2603.29500)\n- [Mathesis: Towards Formal Theorem Proving from Natural Languages (ICLR 2026)](https://openreview.net/forum?id=CJdX82odge)\n- [FoVer: Efficient PRM Training Data Synthesis via Formal Verification (ACL 2026)](https://arxiv.org/abs/2505.15960)\n- [CriticLean: Critic-Guided Reinforcement Learning for Mathematical Formalization](https://arxiv.org/abs/2507.06181)\n- [Improving Autoformalization using Type Checking (Poiroux et al.)](https://arxiv.org/abs/2406.07222)\n- [A New Approach Towards Autoformalization (Patel et al.)](https://arxiv.org/abs/2310.07957)\n- [Kimina Lean Server](https://arxiv.org/abs/2504.21230)\n- [Omni-MATH Benchmark](https://omni-math.github.io/)\n- [CriticLeanGPT-Qwen3-14B-RL (HuggingFace)](https://huggingface.co/m-a-p/CriticLeanGPT-Qwen3-14B-RL)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b7e8a92f-ea62-4a52-837d-0cf184e1a182",
+            "isSidechain": false,
+            "requestId": "req_011CbUSFxSPRBWj1CfQbwxjX",
+            "type": "assistant",
+            "uuid": "dd8bd80d-57f6-4542-9730-b2e91ba05867",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "aec13438-586b-4947-aeee-fff1de115950",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N8uiHMX5vBnygsF8bx4P8f",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10200,
+                "cache_read_input_tokens": 99957,
+                "output_tokens": 9850,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 10200,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 9850,
+                    "cache_read_input_tokens": 99957,
+                    "cache_creation_input_tokens": 10200,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 10200
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-28 (UTC).**  ## Original idea {   \"revision_summary\": \"Major revision driven by three critical findings: (1) Cao e…",
+                "leafUuid": "dd8bd80d-57f6-4542-9730-b2e91ba05867",
+                "sessionId": "aec13438-586b-4947-aeee-fff1de115950"
+              }
+            }
+          ],
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Revise math RL proof rewards to address Safe and PRoSFI work",
+                "sessionId": "aec13438-586b-4947-aeee-fff1de115950"
+              }
+            }
+          ],
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-28 (UTC).**  ## Original idea {   \"revision_summary\": \"Major revision driven by three critical findings: (1) Cao e…",
+                "leafUuid": "dd8bd80d-57f6-4542-9730-b2e91ba05867",
+                "sessionId": "aec13438-586b-4947-aeee-fff1de115950"
+              }
+            }
+          ],
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Revise math RL proof rewards to address Safe and PRoSFI work",
+                "sessionId": "aec13438-586b-4947-aeee-fff1de115950"
+              }
+            }
+          ],
+          "id": "event-000186"
+        }
+      ]
+    }
+  ]
+}

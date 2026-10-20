@@ -1,0 +1,1116 @@
+{
+  "schema_version": "1.0",
+  "id": "a9becb850b336271113b",
+  "project": "nlp_variance_gtheory--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to verify the author lists for 6 academic paper citations that were flagged as potentially having fabricated/wron",
+  "task_key": "agent-a414d7c07e8a3deb6",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a414d7c07e8a3deb6.jsonl",
+    "occurrence": 1,
+    "bytes": 36528,
+    "sha256": "af3e6dd28a6c34062e63c890b95290e9c7082ea67b576c41013edc03a6390846"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T12:29:37.774Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to verify the author lists for 6 academic paper citations that were flagged as potentially having fabricated/wrong author names. For each paper, fetch the arXiv or venue page and report the CORRECT author list.\n\n1. **madaan2024quantifying** — \"Quantifying Variance in Evaluation Benchmarks\", arXiv:2406.10229\n2. **hua2025flaw** — \"Flaw or Artifact? Rethinking Prompt Sensitivity in Evaluating LLMs\", ACL Anthology: https://aclanthology.org/2025.emnlp-main.1006/\n3. **zhou2026irt** — \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\", arXiv:2505.15055\n4. **bui2025seeds** — \"Assessing the Macro and Micro Effects of Random Seeds on Fine-Tuning Large Language Models\", ACL Anthology: https://aclanthology.org/2025.ijcnlp-short.3/\n5. **messina2026background** — \"Introducing Background Temperature to Characterise Hidden Randomness in Large Language Models\", arXiv:2604.22411\n6. **brittlebench2026** — \"Brittlebench: Quantifying LLM Robustness via Prompt Sensitivity\", arXiv:2603.13285\n\nFor each one, use WebFetch to get the actual page and report:\n- The CORRECT full author list from the source\n- Whether the current bib entry's author list matches or not\n- If wrong, what exactly needs to be changed\n\nCurrent bib entries have these authors:\n1. madaan2024quantifying: \"Madaan, Lovish and Bhatia, Samarth and Tulio Ribeiro, Marco and Roth, Dan\"\n2. hua2025flaw: \"Hua, Angie and Tang, Kevin and Gu, Chaoqun and Gu, Jing and Wong, Edmund and Qin, Yilin\"\n3. zhou2026irt: \"Zhou, Hao and Huang, Huifeng and Zhao, Zhe and Han, Long and Wang, Haobo and Chen, Ke and Yang, Min and Bao, Wanli and Dong, Jiaxin and Xu, Bo and Zhu, Conghui and Cao, Hao and Zhao, Tiejun\"\n4. bui2025seeds: \"Bui, Ngoc Thang and Savova, Guergana and Wang, Lijun\"\n5. messina2026background: \"Messina, Alberto and Scotta, Sara\"\n6. brittlebench2026: \"Romanou, Angelika and Ibrahim, Marah and Ross, Candace and Shaib, Chantal and Oktar, Kerem and Bell, Samuel J. and Ovalle, Anaelia and Dodge, Jesse and Bosselut, Antoine and Sinha, Koustuv and Williams, Adina\"\n\nReport each result clearly with CORRECT vs CURRENT comparison."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "f9ff5067-cf4d-4a7c-932b-122d5d4908e3",
+            "agentId": "a414d7c07e8a3deb6",
+            "type": "user",
+            "uuid": "5bdafecc-8300-4a62-8865-93b0b90a6cb8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "humming-moseying-pizza"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-26T12:29:37.909Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "5bdafecc-8300-4a62-8865-93b0b90a6cb8",
+                "isSidechain": true,
+                "agentId": "a414d7c07e8a3deb6",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__add_constraint",
+                    "mcp__agent-ml-research__approve_experiment",
+                    "mcp__agent-ml-research__approve_secret_request",
+                    "mcp__agent-ml-research__archive_project",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__backup_project_to_s3",
+                    "mcp__agent-ml-research__cancel_agent_queue_item",
+                    "mcp__agent-ml-research__cancel_pending_director_messages",
+                    "mcp__agent-ml-research__check_credentials",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__complete_mvp",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__create_project",
+                    "mcp__agent-ml-research__delete_secret",
+                    "mcp__agent-ml-research__director_allocate_gpus",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_main_agent",
+                    "mcp__agent-ml-research__director_post_to_manager",
+                    "mcp__agent-ml-research__director_post_to_paper_agent",
+                    "mcp__agent-ml-research__director_reply_to_user",
+                    "mcp__agent-ml-research__distill_papers",
+                    "mcp__agent-ml-research__dream_simulate",
+                    "mcp__agent-ml-research__feishu_read_chat_history",
+                    "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                    "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                    "mcp__agent-ml-research__feishu_upload_file",
+                    "mcp__agent-ml-research__get_agent_queue_status",
+                    "mcp__agent-ml-research__get_distill_status",
+                    "mcp__agent-ml-research__get_dream_status",
+                    "mcp__agent-ml-research__get_dream_trend",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_matrix_value",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__get_project_status",
+                    "mcp__agent-ml-research__get_resource_inventory",
+                    "mcp__agent-ml-research__get_tum_config",
+                    "mcp__agent-ml-research__impact_analysis",
+                    "mcp__agent-ml-research__keepalive_respond",
+                    "mcp__agent-ml-research__list_available_gpus",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__list_projects",
+                    "mcp__agent-ml-research__list_s3_backups",
+                    "mcp__agent-ml-research__list_secrets",
+                    "mcp__agent-ml-research__list_ssh_hosts",
+                    "mcp__agent-ml-research__list_workspace_projects",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__log_decision",
+                    "mcp__agent-ml-research__log_mistake",
+                    "mcp__agent-ml-research__matrix_gap_analysis",
+                    "mcp__agent-ml-research__paper_compile_and_check",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__post_to_reviewer",
+                    "mcp__agent-ml-research__ralph_respond",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_mistakes",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__register_server",
+                    "mcp__agent-ml-research__reject_experiment",
+                    "mcp__agent-ml-research__reject_secret_request",
+                    "mcp__agent-ml-research__remove_constraint",
+                    "mcp__agent-ml-research__remove_server",
+                    "mcp__agent-ml-research__replace_agent_queue",
+                    "mcp__agent-ml-research__request_study_approval",
+                    "mcp__agent-ml-research__research_director_post_to_study_director",
+                    "mcp__agent-ml-research__should_skip_dream",
+                    "mcp__agent-ml-research__store_secret",
+                    "mcp__agent-ml-research__submit_paper_to_review",
+                    "mcp__agent-ml-research__sync_matrix_status",
+                    "mcp__agent-ml-research__update_matrix",
+                    "mcp__agent-ml-research__update_project_config",
+                    "mcp__agent-ml-research__update_review_issues",
+                    "mcp__agent-ml-research__update_roadmap",
+                    "mcp__agent-ml-research__update_skill",
+                    "mcp__agent-ml-research__upgrade_to_dual_group",
+                    "mcp__agent-ml-research__urgent_agent_message"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__add_constraint",
+                    "mcp__agent-ml-research__approve_experiment",
+                    "mcp__agent-ml-research__approve_secret_request",
+                    "mcp__agent-ml-research__archive_project",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__backup_project_to_s3",
+                    "mcp__agent-ml-research__cancel_agent_queue_item",
+                    "mcp__agent-ml-research__cancel_pending_director_messages",
+                    "mcp__agent-ml-research__check_credentials",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__complete_mvp",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__create_project",
+                    "mcp__agent-ml-research__delete_secret",
+                    "mcp__agent-ml-research__director_allocate_gpus",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_main_agent",
+                    "mcp__agent-ml-research__director_post_to_manager",
+                    "mcp__agent-ml-research__director_post_to_paper_agent",
+                    "mcp__agent-ml-research__director_reply_to_user",
+                    "mcp__agent-ml-research__distill_papers",
+                    "mcp__agent-ml-research__dream_simulate",
+                    "mcp__agent-ml-research__feishu_read_chat_history",
+                    "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                    "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                    "mcp__agent-ml-research__feishu_upload_file",
+                    "mcp__agent-ml-research__get_agent_queue_status",
+                    "mcp__agent-ml-research__get_distill_status",
+                    "mcp__agent-ml-research__get_dream_status",
+                    "mcp__agent-ml-research__get_dream_trend",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_matrix_value",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__get_project_status",
+                    "mcp__agent-ml-research__get_resource_inventory",
+                    "mcp__agent-ml-research__get_tum_config",
+                    "mcp__agent-ml-research__impact_analysis",
+                    "mcp__agent-ml-research__keepalive_respond",
+                    "mcp__agent-ml-research__list_available_gpus",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__list_projects",
+                    "mcp__agent-ml-research__list_s3_backups",
+                    "mcp__agent-ml-research__list_secrets",
+                    "mcp__agent-ml-research__list_ssh_hosts",
+                    "mcp__agent-ml-research__list_workspace_projects",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__log_decision",
+                    "mcp__agent-ml-research__log_mistake",
+                    "mcp__agent-ml-research__matrix_gap_analysis",
+                    "mcp__agent-ml-research__paper_compile_and_check",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__post_to_reviewer",
+                    "mcp__agent-ml-research__ralph_respond",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_mistakes",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__register_server",
+                    "mcp__agent-ml-research__reject_experiment",
+                    "mcp__agent-ml-research__reject_secret_request",
+                    "mcp__agent-ml-research__remove_constraint",
+                    "mcp__agent-ml-research__remove_server",
+                    "mcp__agent-ml-research__replace_agent_queue",
+                    "mcp__agent-ml-research__request_study_approval",
+                    "mcp__agent-ml-research__research_director_post_to_study_director",
+                    "mcp__agent-ml-research__should_skip_dream",
+                    "mcp__agent-ml-research__store_secret",
+                    "mcp__agent-ml-research__submit_paper_to_review",
+                    "mcp__agent-ml-research__sync_matrix_status",
+                    "mcp__agent-ml-research__update_matrix",
+                    "mcp__agent-ml-research__update_project_config",
+                    "mcp__agent-ml-research__update_review_issues",
+                    "mcp__agent-ml-research__update_roadmap",
+                    "mcp__agent-ml-research__update_skill",
+                    "mcp__agent-ml-research__upgrade_to_dual_group",
+                    "mcp__agent-ml-research__urgent_agent_message"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "f0efd84c-44ad-4701-8c39-ba82b560c143",
+                "timestamp": "2026-05-26T12:29:37.909Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+                "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+                "version": "2.1.126",
+                "gitBranch": "HEAD",
+                "slug": "humming-moseying-pizza"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-26T12:29:40.549Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll fetch all 6 pages in parallel to verify the author lists."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f0efd84c-44ad-4701-8c39-ba82b560c143",
+            "isSidechain": true,
+            "agentId": "a414d7c07e8a3deb6",
+            "requestId": "req_011CbRBWSaC27GLV81rgxvkD",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "814a162c-463f-48de-a258-260875cb2d98",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "humming-moseying-pizza",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TJAmJ1LGULusRmGddNB5pf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 33511,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 33511,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-26T12:29:40.996Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y5Md3P79YCEQ4mY9b7nrmn",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebFetch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "814a162c-463f-48de-a258-260875cb2d98",
+            "isSidechain": true,
+            "agentId": "a414d7c07e8a3deb6",
+            "requestId": "req_011CbRBWSaC27GLV81rgxvkD",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "080d1312-fa9a-4fbb-9400-974a7b86e1cb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "humming-moseying-pizza",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TJAmJ1LGULusRmGddNB5pf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 33511,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 94,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 33511
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 94,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 33511,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 33511,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-26T12:29:40.999Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Y5Md3P79YCEQ4mY9b7nrmn",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "080d1312-fa9a-4fbb-9400-974a7b86e1cb",
+            "isSidechain": true,
+            "promptId": "f9ff5067-cf4d-4a7c-932b-122d5d4908e3",
+            "agentId": "a414d7c07e8a3deb6",
+            "type": "user",
+            "uuid": "e98abe35-c659-44cf-a720-68b812d2bcb8",
+            "sourceToolAssistantUUID": "080d1312-fa9a-4fbb-9400-974a7b86e1cb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "humming-moseying-pizza"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-26T12:29:43.761Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me fetch all 6 pages in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e98abe35-c659-44cf-a720-68b812d2bcb8",
+            "isSidechain": true,
+            "agentId": "a414d7c07e8a3deb6",
+            "requestId": "req_011CbRBWg4Z6Hp4FAoUEnaCi",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "256ab318-9965-4c5c-a292-9b83158a148e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "humming-moseying-pizza",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BmtY2co5fiac2ZAoK6mYj1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1450,
+                "cache_read_input_tokens": 33511,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1450,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-26T12:29:45.655Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012J1DYFXzgb2MJm1PTHUmNG",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2406.10229",
+                "prompt": "Extract the COMPLETE list of all authors of this paper. List every author name exactly as shown on the page. Also extract the paper title."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "256ab318-9965-4c5c-a292-9b83158a148e",
+            "isSidechain": true,
+            "agentId": "a414d7c07e8a3deb6",
+            "requestId": "req_011CbRBWg4Z6Hp4FAoUEnaCi",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8c1b708c-4588-4975-9e01-3ac18a4f88a9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "humming-moseying-pizza",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BmtY2co5fiac2ZAoK6mYj1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1450,
+                "cache_read_input_tokens": 33511,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1450,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-26T12:29:46.573Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XCRatwtQkCpcyXnYFFZrkB",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://aclanthology.org/2025.emnlp-main.1006/",
+                "prompt": "Extract the COMPLETE list of all authors of this paper. List every author name exactly as shown on the page. Also extract the paper title."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8c1b708c-4588-4975-9e01-3ac18a4f88a9",
+            "isSidechain": true,
+            "agentId": "a414d7c07e8a3deb6",
+            "requestId": "req_011CbRBWg4Z6Hp4FAoUEnaCi",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e1762a98-a5d3-4b1c-a170-2b45c954f012",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "humming-moseying-pizza",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BmtY2co5fiac2ZAoK6mYj1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1450,
+                "cache_read_input_tokens": 33511,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1450,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-26T12:29:47.039Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FjfJwjJ1DHVqfiNTVbTxWq",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2505.15055",
+                "prompt": "Extract the COMPLETE list of all authors of this paper. List every author name exactly as shown on the page. Also extract the paper title."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e1762a98-a5d3-4b1c-a170-2b45c954f012",
+            "isSidechain": true,
+            "agentId": "a414d7c07e8a3deb6",
+            "requestId": "req_011CbRBWg4Z6Hp4FAoUEnaCi",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "44e2d557-c94e-4560-b392-c0ebdcc78af0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "humming-moseying-pizza",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BmtY2co5fiac2ZAoK6mYj1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1450,
+                "cache_read_input_tokens": 33511,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1450,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-26T12:29:47.984Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BxU6wT7GHTgwaoGagbaR3X",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://aclanthology.org/2025.ijcnlp-short.3/",
+                "prompt": "Extract the COMPLETE list of all authors of this paper. List every author name exactly as shown on the page. Also extract the paper title."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "44e2d557-c94e-4560-b392-c0ebdcc78af0",
+            "isSidechain": true,
+            "agentId": "a414d7c07e8a3deb6",
+            "requestId": "req_011CbRBWg4Z6Hp4FAoUEnaCi",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "29bbfe16-5e7d-4834-bb5f-88eccbd60708",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "humming-moseying-pizza",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BmtY2co5fiac2ZAoK6mYj1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1450,
+                "cache_read_input_tokens": 33511,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1450,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-26T12:29:48.632Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XCRatwtQkCpcyXnYFFZrkB",
+              "type": "tool_result",
+              "content": "# Paper Information\n\n**Title:** \"Flaw or Artifact? Rethinking Prompt Sensitivity in Evaluating LLMs\"\n\n**Authors (complete list):**\n1. Andong Hua\n2. Kenan Tang\n3. Chenhe Gu\n4. Jindong Gu\n5. Eric Wong\n6. Yao Qin"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e1762a98-a5d3-4b1c-a170-2b45c954f012",
+            "isSidechain": true,
+            "promptId": "f9ff5067-cf4d-4a7c-932b-122d5d4908e3",
+            "agentId": "a414d7c07e8a3deb6",
+            "type": "user",
+            "uuid": "00346b5b-2548-44fd-a033-e675e1e849e8",
+            "sourceToolAssistantUUID": "e1762a98-a5d3-4b1c-a170-2b45c954f012",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "humming-moseying-pizza"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-26T12:29:48.987Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F2JXFG4ovnt9oT58aGgRoq",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2604.22411",
+                "prompt": "Extract the COMPLETE list of all authors of this paper. List every author name exactly as shown on the page. Also extract the paper title."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "00346b5b-2548-44fd-a033-e675e1e849e8",
+            "isSidechain": true,
+            "agentId": "a414d7c07e8a3deb6",
+            "requestId": "req_011CbRBWg4Z6Hp4FAoUEnaCi",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5233ccb3-3781-4f15-94f1-2cfe29c979ae",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "humming-moseying-pizza",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BmtY2co5fiac2ZAoK6mYj1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1450,
+                "cache_read_input_tokens": 33511,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1450,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-26T12:29:49.382Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FjfJwjJ1DHVqfiNTVbTxWq",
+              "type": "tool_result",
+              "content": "# Paper Title and Authors\n\n**Title:** \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\"\n\n**Complete Author List:**\n1. Hongli Zhou\n2. Hui Huang\n3. Ziqing Zhao\n4. Lvyuan Han\n5. Huicheng Wang\n6. Kehai Chen\n7. Muyun Yang\n8. Wei Bao\n9. Jian Dong\n10. Bing Xu\n11. Conghui Zhu\n12. Hailong Cao\n13. Tiejun Zhao"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "44e2d557-c94e-4560-b392-c0ebdcc78af0",
+            "isSidechain": true,
+            "promptId": "f9ff5067-cf4d-4a7c-932b-122d5d4908e3",
+            "agentId": "a414d7c07e8a3deb6",
+            "type": "user",
+            "uuid": "be81374e-ca12-45dd-99db-f4256a484696",
+            "sourceToolAssistantUUID": "44e2d557-c94e-4560-b392-c0ebdcc78af0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "humming-moseying-pizza"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-26T12:29:49.432Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012J1DYFXzgb2MJm1PTHUmNG",
+              "type": "tool_result",
+              "content": "# Paper Information\n\n**Title:** \"Quantifying Variance in Evaluation Benchmarks\"\n\n**Authors:**\n1. Lovish Madaan\n2. Aaditya K. Singh\n3. Rylan Schaeffer\n4. Andrew Poulton\n5. Sanmi Koyejo\n6. Pontus Stenetorp\n7. Sharan Narang\n8. Dieuwke Hupkes"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8c1b708c-4588-4975-9e01-3ac18a4f88a9",
+            "isSidechain": true,
+            "promptId": "f9ff5067-cf4d-4a7c-932b-122d5d4908e3",
+            "agentId": "a414d7c07e8a3deb6",
+            "type": "user",
+            "uuid": "d3ad0028-39ea-475e-b8d1-72fd7b900452",
+            "sourceToolAssistantUUID": "8c1b708c-4588-4975-9e01-3ac18a4f88a9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "humming-moseying-pizza"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-26T12:29:49.434Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BxU6wT7GHTgwaoGagbaR3X",
+              "type": "tool_result",
+              "content": "# Paper Information\n\n**Title:** \"Assessing the Macro and Micro Effects of Random Seeds on Fine-Tuning Large Language Models\"\n\n**Authors:**\n1. Nghia Tuan Bui\n2. Guergana K Savova\n3. Lijing Wang"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "29bbfe16-5e7d-4834-bb5f-88eccbd60708",
+            "isSidechain": true,
+            "promptId": "f9ff5067-cf4d-4a7c-932b-122d5d4908e3",
+            "agentId": "a414d7c07e8a3deb6",
+            "type": "user",
+            "uuid": "6a690b46-f3c8-4359-b9a2-1f956eb3abcc",
+            "sourceToolAssistantUUID": "29bbfe16-5e7d-4834-bb5f-88eccbd60708",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "humming-moseying-pizza"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-26T12:29:49.662Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LpDM2Ucw4upEKMrTbF9MrK",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2603.13285",
+                "prompt": "Extract the COMPLETE list of all authors of this paper. List every author name exactly as shown on the page. Also extract the paper title."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6a690b46-f3c8-4359-b9a2-1f956eb3abcc",
+            "isSidechain": true,
+            "agentId": "a414d7c07e8a3deb6",
+            "requestId": "req_011CbRBWg4Z6Hp4FAoUEnaCi",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "eab7c459-4030-4507-a855-01115e20ad90",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "humming-moseying-pizza",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BmtY2co5fiac2ZAoK6mYj1",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1450,
+                "cache_read_input_tokens": 33511,
+                "output_tokens": 605,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1450
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 605,
+                    "cache_read_input_tokens": 33511,
+                    "cache_creation_input_tokens": 1450,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1450,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-26T12:29:50.600Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F2JXFG4ovnt9oT58aGgRoq",
+              "type": "tool_result",
+              "content": "# Paper Information\n\n**Title:** \"Introducing Background Temperature to Characterise Hidden Randomness in Large Language Models\"\n\n**Authors:**\n1. Alberto Messina\n2. Stefano Scotta"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5233ccb3-3781-4f15-94f1-2cfe29c979ae",
+            "isSidechain": true,
+            "promptId": "f9ff5067-cf4d-4a7c-932b-122d5d4908e3",
+            "agentId": "a414d7c07e8a3deb6",
+            "type": "user",
+            "uuid": "7489a22a-002a-433a-b06b-3ba9063c8feb",
+            "sourceToolAssistantUUID": "5233ccb3-3781-4f15-94f1-2cfe29c979ae",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "humming-moseying-pizza"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-26T12:29:52.105Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LpDM2Ucw4upEKMrTbF9MrK",
+              "type": "tool_result",
+              "content": "# Brittlebench Paper - Authors and Title\n\n**Paper Title:** \"Brittlebench: Quantifying LLM robustness via prompt sensitivity\"\n\n**Complete Author List:**\n1. Angelika Romanou\n2. Mark Ibrahim\n3. Candace Ross\n4. Chantal Shaib\n5. Kerem Oktar\n6. Samuel J. Bell\n7. Anaelia Ovalle\n8. Jesse Dodge\n9. Antoine Bosselut\n10. Koustuv Sinha\n11. Adina Williams"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eab7c459-4030-4507-a855-01115e20ad90",
+            "isSidechain": true,
+            "promptId": "f9ff5067-cf4d-4a7c-932b-122d5d4908e3",
+            "agentId": "a414d7c07e8a3deb6",
+            "type": "user",
+            "uuid": "bc9d806d-a9c7-4634-a5a6-24d75f072ff5",
+            "sourceToolAssistantUUID": "eab7c459-4030-4507-a855-01115e20ad90",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "humming-moseying-pizza"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-26T12:30:20.462Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are the verification results for all 6 papers:\n\n---\n\n## 1. madaan2024quantifying — \"Quantifying Variance in Evaluation Benchmarks\"\n\n**CORRECT authors (arXiv):** Lovish Madaan, Aaditya K. Singh, Rylan Schaeffer, Andrew Poulton, Sanmi Koyejo, Pontus Stenetorp, Sharan Narang, Dieuwke Hupkes\n\n**CURRENT bib:** \"Madaan, Lovish and Bhatia, Samarth and Tulio Ribeiro, Marco and Roth, Dan\"\n\n**Verdict: WRONG — completely fabricated author list (except Madaan).** The bib has 4 authors, the real paper has 8. Only \"Lovish Madaan\" is correct. \"Bhatia, Samarth\", \"Tulio Ribeiro, Marco\", and \"Roth, Dan\" are not authors of this paper at all.\n\n**Fix:** Replace with `Madaan, Lovish and Singh, Aaditya K. and Schaeffer, Rylan and Poulton, Andrew and Koyejo, Sanmi and Stenetorp, Pontus and Narang, Sharan and Hupkes, Dieuwke`\n\n---\n\n## 2. hua2025flaw — \"Flaw or Artifact? Rethinking Prompt Sensitivity in Evaluating LLMs\"\n\n**CORRECT authors (ACL Anthology):** Andong Hua, Kenan Tang, Chenhe Gu, Jindong Gu, Eric Wong, Yao Qin\n\n**CURRENT bib:** \"Hua, Angie and Tang, Kevin and Gu, Chaoqun and Gu, Jing and Wong, Edmund and Qin, Yilin\"\n\n**Verdict: WRONG — all 6 first names are fabricated.** The family names are roughly correct, but every single given name is wrong (Angie→Andong, Kevin→Kenan, Chaoqun→Chenhe, Jing→Jindong, Edmund→Eric, Yilin→Yao).\n\n**Fix:** Replace with `Hua, Andong and Tang, Kenan and Gu, Chenhe and Gu, Jindong and Wong, Eric and Qin, Yao`\n\n---\n\n## 3. zhou2026irt — \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\"\n\n**CORRECT authors (arXiv):** Hongli Zhou, Hui Huang, Ziqing Zhao, Lvyuan Han, Huicheng Wang, Kehai Chen, Muyun Yang, Wei Bao, Jian Dong, Bing Xu, Conghui Zhu, Hailong Cao, Tiejun Zhao\n\n**CURRENT bib:** \"Zhou, Hao and Huang, Huifeng and Zhao, Zhe and Han, Long and Wang, Haobo and Chen, Ke and Yang, Min and Bao, Wanli and Dong, Jiaxin and Xu, Bo and Zhu, Conghui and Cao, Hao and Zhao, Tiejun\"\n\n**Verdict: WRONG — most given names are fabricated.** The count (13 authors) is correct, and the family names are mostly correct, but almost every given name is wrong: Hao→Hongli, Huifeng→Hui, Zhe→Ziqing, Long→Lvyuan, Haobo→Huicheng, Ke→Kehai, Min→Muyun, Wanli→Wei, Jiaxin→Jian, Bo→Bing, Hao→Hailong. Only \"Conghui Zhu\" and \"Tiejun Zhao\" are correct.\n\n**Fix:** Replace with `Zhou, Hongli and Huang, Hui and Zhao, Ziqing and Han, Lvyuan and Wang, Huicheng and Chen, Kehai and Yang, Muyun and Bao, Wei and Dong, Jian and Xu, Bing and Zhu, Conghui and Cao, Hailong and Zhao, Tiejun`\n\n---\n\n## 4. bui2025seeds — \"Assessing the Macro and Micro Effects of Random Seeds on Fine-Tuning Large Language Models\"\n\n**CORRECT authors (ACL Anthology):** Nghia Tuan Bui, Guergana K Savova, Lijing Wang\n\n**CURRENT bib:** \"Bui, Ngoc Thang and Savova, Guergana and Wang, Lijun\"\n\n**Verdict: WRONG — first names partially fabricated.**\n- Ngoc Thang → Nghia Tuan (wrong given name for Bui)\n- Guergana → Guergana K (missing middle initial, minor)\n- Lijun → Lijing (wrong given name for Wang)\n\n**Fix:** Replace with `Bui, Nghia Tuan and Savova, Guergana K. and Wang, Lijing`\n\n---\n\n## 5. messina2026background — \"Introducing Background Temperature to Characterise Hidden Randomness in Large Language Models\"\n\n**CORRECT authors (arXiv):** Alberto Messina, Stefano Scotta\n\n**CURRENT bib:** \"Messina, Alberto and Scotta, Sara\"\n\n**Verdict: WRONG — one first name fabricated.** Sara → Stefano (wrong given name for Scotta).\n\n**Fix:** Replace with `Messina, Alberto and Scotta, Stefano`\n\n---\n\n## 6. brittlebench2026 — \"Brittlebench: Quantifying LLM Robustness via Prompt Sensitivity\"\n\n**CORRECT authors (arXiv):** Angelika Romanou, Mark Ibrahim, Candace Ross, Chantal Shaib, Kerem Oktar, Samuel J. Bell, Anaelia Ovalle, Jesse Dodge, Antoine Bosselut, Koustuv Sinha, Adina Williams\n\n**CURRENT bib:** \"Romanou, Angelika and Ibrahim, Marah and Ross, Candace and Shaib, Chantal and Oktar, Kerem and Bell, Samuel J. and Ovalle, Anaelia and Dodge, Jesse and Bosselut, Antoine and Sinha, Koustuv and Williams, Adina\"\n\n**Verdict: WRONG — one first name fabricated.** Marah → Mark (wrong given name for Ibrahim). All other 10 authors are correct.\n\n**Fix:** Replace with `Romanou, Angelika and Ibrahim, Mark and Ross, Candace and Shaib, Chantal and Oktar, Kerem and Bell, Samuel J. and Ovalle, Anaelia and Dodge, Jesse and Bosselut, Antoine and Sinha, Koustuv and Williams, Adina`\n\n---\n\n## Summary\n\n| # | Key | Status | Severity |\n|---|-----|--------|----------|\n| 1 | madaan2024quantifying | WRONG | **Critical** — 3 of 4 authors completely fabricated, 4 real authors missing |\n| 2 | hua2025flaw | WRONG | **High** — all 6 given names wrong |\n| 3 | zhou2026irt | WRONG | **High** — 11 of 13 given names wrong |\n| 4 | bui2025seeds | WRONG | **Medium** — 2 of 3 given names wrong |\n| 5 | messina2026background | WRONG | **Medium** — 1 of 2 given names wrong |\n| 6 | brittlebench2026 | WRONG | **Low** — 1 of 11 given names wrong |\n\n**All 6 entries need correction.** Entry #1 is by far the worst — it has entirely fabricated co-authors. Entries #2 and #3 show a pattern of hallucinating plausible-sounding Chinese given names. Entries #4-6 have isolated name errors."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bc9d806d-a9c7-4634-a5a6-24d75f072ff5",
+            "isSidechain": true,
+            "agentId": "a414d7c07e8a3deb6",
+            "requestId": "req_011CbRBXVMuEzSZYuV4XKcwM",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ffc6a4f4-ab62-40f7-a881-d5ffc84a5311",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "humming-moseying-pizza",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Mz1N1DLGyjPHFjs7YwLrZ6",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1335,
+                "cache_read_input_tokens": 34961,
+                "output_tokens": 1986,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1335
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1986,
+                    "cache_read_input_tokens": 34961,
+                    "cache_creation_input_tokens": 1335,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1335,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-verify-the-author-lists-for-6-academic-paper-citations-that-were-fla.md"
+}

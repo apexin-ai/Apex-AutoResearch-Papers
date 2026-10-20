@@ -1,0 +1,631 @@
+{
+  "schema_version": "1.0",
+  "session_id": "e3801b3d1d8ad7dbd3d3",
+  "rounds": [
+    {
+      "number": 10,
+      "messages": [
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-25T21:34:03.052Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "视觉审查已完成（3 warnings, 10 info），外部审稿未请求。现在合成最终审稿报告。\n\n先准备更新后的 issues YAML，然后提交报告。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd64043a-8132-4ec1-8928-113d2d8e4649",
+            "isSidechain": false,
+            "requestId": "req_011CbQ1AB54KoTiiNqEKoE3H",
+            "type": "assistant",
+            "uuid": "b1ea140b-ce76-4c65-b1a1-4d0b751b725a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/review_director_9cb08a07",
+            "sessionId": "154e59b5-c8c1-41f3-bd11-3d5b8dc93e82",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UM6JidRoHSWAub2Ew2emRm",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2632,
+                "cache_read_input_tokens": 117482,
+                "output_tokens": 15316,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2632,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 15316,
+                    "cache_read_input_tokens": 117482,
+                    "cache_creation_input_tokens": 2632,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2632
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": "2026-05-25T21:37:39.108Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TqmJJB4dqY125RaUTBs3L1",
+              "name": "mcp__agent-ml-research__update_review_issues",
+              "input": {
+                "project": "nlp_variance_gtheory",
+                "issues_yaml": "# Review Issues Tracker — nlp_variance_gtheory\n# Round 1-11 | Updated: 2026-05-25 Round 11 report synthesis\n\nissues:\n  # === ROUND 1-5 RESOLVED (compact) ===\n\n  - id: \"R1-N1\"\n    summary: \"Binary data G-theory 理论辩护\"\n    category: method\n    severity: critical\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 2\n    resolution: \"四重验证 + Henderson I justification。\"\n    resolution_round: 2\n\n  - id: \"R1-N2\"\n    summary: \"4→8 模型扩展\"\n    category: method\n    severity: critical\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 2\n    resolution: \"8-model 完成。\"\n    resolution_round: 2\n\n  - id: \"INT-001\"\n    summary: \"η²/Henderson I 混用\"\n    category: method\n    severity: critical\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 1\n    resolution: \"Henderson I 统一。\"\n    resolution_round: 1\n\n  - id: \"INT-002\"\n    summary: \"HellaSwag 温度不一致\"\n    category: experiment\n    severity: critical\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 1\n    resolution: \"2-temp 修复。\"\n    resolution_round: 1\n\n  - id: \"INT-003\"\n    summary: \"G_item formula bug\"\n    category: method\n    severity: critical\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 1\n    resolution: \"修复验证。\"\n    resolution_round: 1\n\n  - id: \"FR2-W2\"\n    summary: \"'Hidden' overclaim\"\n    category: framing\n    severity: critical\n    status: resolved\n    first_raised_round: 2\n    last_seen_round: 2\n    resolution: \"标题改 Reproducibility Budgets。\"\n    resolution_round: 2\n\n  - id: \"FR2-W3\"\n    summary: \"可复现性缺陷\"\n    category: format\n    severity: critical\n    status: resolved\n    first_raised_round: 2\n    last_seen_round: 2\n    resolution: \"Appendix 补全。\"\n    resolution_round: 2\n\n  - id: \"FR2-W5\"\n    summary: \"D-study CI 缺失\"\n    category: method\n    severity: critical\n    status: resolved\n    first_raised_round: 2\n    last_seen_round: 2\n    resolution: \"Bootstrap CI。\"\n    resolution_round: 2\n\n  - id: \"FR2-W6\"\n    summary: \"遗漏 Madaan et al.\"\n    category: writing\n    severity: critical\n    status: resolved\n    first_raised_round: 2\n    last_seen_round: 2\n    resolution: \"已引用。\"\n    resolution_round: 2\n\n  - id: \"FR3-N1\"\n    summary: \"AAAI→ACL 模板\"\n    category: format\n    severity: critical\n    status: resolved\n    first_raised_round: 3\n    last_seen_round: 3\n    resolution: \"ACL 2023 切换。\"\n    resolution_round: 3\n\n  - id: \"FR4-MF1\"\n    summary: \"Format claim benchmark-level 统计功效不足 (n=5, p=0.10)\"\n    category: framing\n    severity: critical\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 6\n    resolution: \"D022→D023: Round 5 合并为 corollary; Round 6 nuclear removal — 从 Abstract/Contributions 完全移除, 降级为 §4.3 exploratory observation。\"\n    resolution_round: 6\n\n  - id: \"FR4-MF2\"\n    summary: \"Item-related bundling Abstract 信息不对称\"\n    category: framing\n    severity: critical\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 4\n    resolution: \"Abstract 并列 bundled+unbundled。\"\n    resolution_round: 4\n\n  - id: \"FR4-MF3\"\n    summary: \"Binary scoring FF variance 混淆因素\"\n    category: method\n    severity: critical\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 6\n    resolution: \"Round 5: §3.5 统一 caveat。Round 6: partial-credit pilot on GSM8K。\"\n    resolution_round: 6\n\n  - id: \"FR4-SF1\"\n    summary: \"Trivial explanation 未充分排除\"\n    category: framing\n    severity: warning\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 4\n    resolution: \"双重反驳。\"\n    resolution_round: 4\n\n  - id: \"FR4-SF2\"\n    summary: \"Target universe 定义模糊\"\n    category: method\n    severity: warning\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 4\n    resolution: \"§3.5 明确 target universe。\"\n    resolution_round: 4\n\n  - id: \"FR4-SF3\"\n    summary: \"Reduced crossing 验证仅 MMLU\"\n    category: experiment\n    severity: warning\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 6\n    resolution: \"Limitations 强化 FF transferability assumption。\"\n    resolution_round: 5\n\n  - id: \"FR4-SF4\"\n    summary: \"DeepSeek MATH 排除影响\"\n    category: experiment\n    severity: warning\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 5\n    resolution: \"MATH 数据确认完整，升级为 8-model。\"\n    resolution_round: 5\n\n  - id: \"FR4-SF5\"\n    summary: \"Bootstrap 未 respect stratified design\"\n    category: method\n    severity: warning\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 4\n    resolution: \"Stratified vs simple CI 差异 <4%。\"\n    resolution_round: 4\n\n  - id: \"FR4-SF6\"\n    summary: \"References 格式 + double-blind\"\n    category: format\n    severity: warning\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 4\n    resolution: \"varannot 合规; 8 个引用幻觉修正。\"\n    resolution_round: 4\n\n  - id: \"FR4-SF7\"\n    summary: \"遗漏 4 篇相关工作\"\n    category: writing\n    severity: warning\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 4\n    resolution: \"3 篇加入 Related Work。\"\n    resolution_round: 4\n\n  - id: \"FR5-N1\"\n    summary: \"Format-associated claim 呈现层级与统计功效不匹配\"\n    category: framing\n    severity: critical\n    status: resolved\n    first_raised_round: 5\n    last_seen_round: 6\n    resolution: \"D022→D023: Round 5 合并 corollary; Round 6 nuclear removal。\"\n    resolution_round: 6\n\n  - id: \"FR5-N2\"\n    summary: \"D-study budget 跨 benchmark/跨 item-sample 验证仅限 MMLU\"\n    category: experiment\n    severity: critical\n    status: resolved\n    first_raised_round: 5\n    last_seen_round: 6\n    resolution: \"Round 5: bootstrap CI 加入。Round 6: forward prediction 4→8 model validation。\"\n    resolution_round: 6\n\n  - id: \"FR5-N3\"\n    summary: \"Binary scoring confound 未统一讨论\"\n    category: method\n    severity: critical\n    status: resolved\n    first_raised_round: 5\n    last_seen_round: 5\n    resolution: \"§3.5 统一 binary scoring caveat。\"\n    resolution_round: 5\n\n  - id: \"FR5-W1\"\n    summary: \"Model exchangeability temporal correlation\"\n    category: method\n    severity: warning\n    status: resolved\n    first_raised_round: 5\n    last_seen_round: 5\n    resolution: \"Limitations 补充 temporal correlation 限制。\"\n    resolution_round: 5\n\n  - id: \"FR5-W2\"\n    summary: \"Reduced crossing validation 仅 MMLU (FF 未覆盖)\"\n    category: experiment\n    severity: warning\n    status: resolved\n    first_raised_round: 5\n    last_seen_round: 6\n    resolution: \"Limitations 强化 FF transferability assumption。\"\n    resolution_round: 5\n\n  - id: \"FR5-W3\"\n    summary: \"Scale validation 语言过强\"\n    category: framing\n    severity: warning\n    status: resolved\n    first_raised_round: 5\n    last_seen_round: 5\n    resolution: \"'scale-robust' → 'consistent within Qwen2.5 3B-7B range'。\"\n    resolution_round: 5\n\n  - id: \"FR5-W4\"\n    summary: \"Few-shot example selection 未作为 facet 交叉\"\n    category: experiment\n    severity: warning\n    status: resolved\n    first_raised_round: 5\n    last_seen_round: 5\n    resolution: \"Limitations 补充 example identity facet 遗漏讨论。\"\n    resolution_round: 5\n\n  - id: \"FR5-W5\"\n    summary: \"DeepSeek MATH 排除原因未说明\"\n    category: experiment\n    severity: warning\n    status: resolved\n    first_raised_round: 5\n    last_seen_round: 5\n    resolution: \"数据确认完整，升级为 8-model。\"\n    resolution_round: 5\n\n  - id: \"FR5-W6\"\n    summary: \"Conclusion 过于简短\"\n    category: writing\n    severity: warning\n    status: resolved\n    first_raised_round: 5\n    last_seen_round: 5\n    resolution: \"扩展 practical implications。\"\n    resolution_round: 5\n\n  - id: \"FR5-W7\"\n    summary: \"遗漏相关工作 (6 篇)\"\n    category: writing\n    severity: warning\n    status: resolved\n    first_raised_round: 5\n    last_seen_round: 5\n    resolution: \"6 篇全部验证真实并添加。\"\n    resolution_round: 5\n\n  # === ROUND 6+ ISSUES ===\n\n  - id: \"FR6-N1\"\n    summary: \"Quasi-random model facet: 8 purposively selected models 作为 random facet 辩护不充分\"\n    category: method\n    severity: warning\n    status: open\n    first_raised_round: 6\n    last_seen_round: 11\n    mentions:\n      - round: 6\n        reviewers: [1, 2]\n        note: \"R1 N1 critical; R2 AGREE with nuance。\"\n      - round: 7\n        reviewers: [1, 2]\n        note: \"两位 Reviewer 独立再次提出。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R8-R1 W3 warning + R8-R2 AGREE (partial)。\"\n      - round: 9\n        reviewers: [1, 2]\n        note: \"R9-R1 W8 (bootstrap CI 仅 item-level) + R9-R2 W7 (model main effect 2.8% 同质性)。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R10-R1 W2 + R10-R2 W5。强共识。\"\n      - round: 11\n        reviewers: [1, 2]\n        note: \"R11-R1 W3 + R2 AGREE。引用 Meredith(1993)/Putnick(2016) 不恰当（measurement invariance 非 facet sampling）；LOMO/four-model subset 是 within-sample stability，非 out-of-sample；FF 7.3% error (MATH) 非 trivial。R2 确认 random>fixed 保守性论证有效但核心问题未变。\"\n    action_items:\n      - round: 6\n        action: \"§3.6 完全重写: conservatism argument + LOMO + Cohen's κ\"\n        assigned_to: \"Paper Agent\"\n        status: done\n      - round: 8\n        action: \"§3.2 更精确定义 target universe\"\n        assigned_to: \"Paper Agent\"\n        status: in_progress\n      - round: 10\n        action: \"获取至少一个 cross-family validation point（如 Llama-3 70B）\"\n        assigned_to: \"Paper Agent\"\n        status: open\n      - round: 11\n        action: \"替换 Meredith(1993)/Putnick(2016) 为 Brennan(2001 Ch.4-5) 关于 facet universe definition；明确讨论 exchangeability 假设的可检验条件；单独讨论 FF benchmarks 较大预测偏差 (7.3%)\"\n        assigned_to: \"Paper Agent\"\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"FR6-N2\"\n    summary: \"Format-associated pattern 统计功效不足但叙事权重过高\"\n    category: framing\n    severity: warning\n    status: open\n    first_raised_round: 4\n    last_seen_round: 11\n    mentions:\n      - round: 6\n        reviewers: [1, 2]\n        note: \"强共识。D023 nuclear removal 执行。\"\n      - round: 7\n        reviewers: [1, 2]\n        note: \"已从 Contributions 移除，§4.3 仍占完整 section。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R8-R1 W2 + R8-R2 W5。共识。\"\n      - round: 9\n        reviewers: [1, 2]\n        note: \"R9-R1 W6 + R9-R2 W3。强共识。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R10-R1 W4 + R10-R2 W2。强共识。\"\n      - round: 11\n        reviewers: [1, 2]\n        note: \"R11-R1 W1 critical + R11-R2 W4 warning。核心问题：§5 Conclusion 写 'format-dependent...motivating per-format budget calibration' 完全去掉了 exploratory 限定词；Table 9 按 MC/FF 分列将 p=0.10 观察升级为 prescriptive budget。R1 要求 Conclusion 保留 exploratory + Table 9 加注。R2 建议压缩 §4.3，R1 REBUT 认为描述性价值足够——存在分歧。\"\n    action_items:\n      - round: 8\n        action: \"§4.3 明确讨论 prompt semantics 和 ordering 非对称性作为 confound\"\n        assigned_to: \"Paper Agent\"\n        status: done\n      - round: 10\n        action: \"§4.3 正文压缩至 1 段核心发现\"\n        assigned_to: \"Paper Agent\"\n        status: in_progress\n      - round: 11\n        action: \"§5 Conclusion 保留 'exploratory/preliminary' 限定词；Table 9 加注 'based on n=5 benchmarks; format-specific calibration requires replication'；C3 降级标注 'preliminary/exploratory'\"\n        assigned_to: \"Paper Agent\"\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"FR6-N3\"\n    summary: \"D-study projection 外推假设（variance component invariance）未充分讨论\"\n    category: method\n    severity: critical\n    status: open\n    first_raised_round: 6\n    last_seen_round: 11\n    mentions:\n      - round: 6\n        reviewers: [1, 2]\n        note: \"R1 N3 critical; R2 AGREE。\"\n      - round: 7\n        reviewers: [1, 2]\n        note: \"item pool/model/temporal invariance 威胁仍未充分讨论。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R8-R1 N2 critical + R8-R2 AGREE。强共识。\"\n      - round: 9\n        reviewers: [1, 2]\n        note: \"R9-R1 W2 + R9-R1 W3。强共识。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R10-R1 W2 再次触及。\"\n      - round: 11\n        reviewers: [1, 2]\n        note: \"R11-R1 W4 + R2 AGREE。§4.5 仅一句话 'All projections assume the 2024-2025 model generation'。Scale validation (§4.6) 仅检验参数规模，无时间维度证据。两位均要求讨论哪些方差分量最可能随模型代际变化。\"\n    action_items:\n      - round: 9\n        action: \"将 Table 8 重标为 'internal consistency check'\"\n        assigned_to: \"Paper Agent\"\n        status: in_progress\n      - round: 11\n        action: \"增加一段讨论方差分量 temporal stability：model×item 是否随模型同质化下降？对预算的影响方向？\"\n        assigned_to: \"Paper Agent\"\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"FR6-N4\"\n    summary: \"与 Messing (2026) 的增量贡献界定不充分\"\n    category: framing\n    severity: warning\n    status: open\n    first_raised_round: 6\n    last_seen_round: 11\n    mentions:\n      - round: 6\n        reviewers: [2]\n        note: \"R2 N1 critical; R1 REBUT。\"\n      - round: 7\n        reviewers: [1, 2]\n        note: \"分歧持续。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"分歧持续（3 轮）。\"\n      - round: 9\n        reviewers: [1, 2]\n        note: \"4 轮持续分歧。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"5 轮持续分歧。\"\n      - round: 11\n        reviewers: [1, 2]\n        note: \"R11-R2 W12 + Q4 指出 Table 1 positioning 对比不公平（Messing: judge-based single benchmark vs 本文: generation-based 5 benchmarks），facet 定义和评测范式不同。R1 AGREE 需加 caveats。R2 整体评价中认为 D-study 和 IRT 互补性是最有价值贡献。\"\n    action_items:\n      - round: 8\n        action: \"强化 D-study budget 的 practical framing\"\n        assigned_to: \"Paper Agent\"\n        status: in_progress\n      - round: 10\n        action: \"将 IRT+G-theory 互补性提升至 Contributions\"\n        assigned_to: \"Paper Agent\"\n        status: in_progress\n      - round: 11\n        action: \"Table 1 caption 加注评测范式差异（judge-based vs generation-based）\"\n        assigned_to: \"Paper Agent\"\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"FR6-N5\"\n    summary: \"'10× fewer items' / '3.1× item reduction' framing 隐藏总评估量增长\"\n    category: framing\n    severity: warning\n    status: open\n    first_raised_round: 6\n    last_seen_round: 11\n    mentions:\n      - round: 6\n        reviewers: [2]\n        note: \"R2 N3 critical; R1 REBUT。\"\n      - round: 7\n        reviewers: [1, 2]\n        note: \"强共识。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"强共识。\"\n      - round: 9\n        reviewers: [1, 2]\n        note: \"R9-R2 W1 Must-Fix + R9-R1 W9 → 共识 Should-Fix。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R10-R2 W1 + R10-R1 AGREE。强共识。\"\n      - round: 11\n        reviewers: [1, 2]\n        note: \"R11-R2 W1 critical + R1 AGREE。Abstract 仅报 item reduction，full multi-facet total evals 从 552→71,280 (129×)。推荐 3×3 设计 §4.5 已披露 2.9× overhead 但 abstract/Figure 1 未提。R1 认为 severity 介于 critical/warning 之间，因正文已披露且 3×3 的 2.9× overhead 可接受。\"\n    action_items:\n      - round: 10\n        action: \"Abstract 和 C1 对称呈现 item reduction 和 total evaluation increase\"\n        assigned_to: \"Paper Agent\"\n        status: in_progress\n      - round: 11\n        action: \"Abstract 中对推荐的 3×3 设计同时报告 item reduction (3.1×) 和 total evaluation overhead (2.9×)\"\n        assigned_to: \"Paper Agent\"\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"FR6-W1\"\n    summary: \"Item-related variance bundling 解释性问题\"\n    category: method\n    severity: warning\n    status: resolved\n    first_raised_round: 6\n    last_seen_round: 7\n    resolution: \"§4.3 bundled/unbundled 对比已完成。连续三轮未被提及。\"\n    resolution_round: 8\n\n  - id: \"FR6-W2\"\n    summary: \"模型范围 7-9B instruction-tuned, 标题/Abstract 未对齐限定\"\n    category: framing\n    severity: warning\n    status: resolved\n    first_raised_round: 6\n    last_seen_round: 11\n    mentions:\n      - round: 11\n        reviewers: []\n        note: \"模型范围限定已充分（标题含 '7–9B Instruction-Tuned Models'）。Binary scoring 限定见 FR6-W6。\"\n    resolution: \"标题已含 '7–9B Instruction-Tuned Models'，模型范围限定充分。\"\n    resolution_round: 11\n\n  - id: \"FR6-W3\"\n    summary: \"Reduced crossing validation 仅 MMLU，FF 未验证\"\n    category: experiment\n    severity: warning\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 8\n    resolution: \"§4.3 design asymmetry confound 已讨论。已被 FR6-N2 和 FR6-N3 吸收。\"\n    resolution_round: 9\n\n  - id: \"FR6-W4\"\n    summary: \"200-item stratified sample 代表性 (10/57 subjects)\"\n    category: experiment\n    severity: warning\n    status: resolved\n    first_raised_round: 6\n    last_seen_round: 7\n    resolution: \"CV=3.1% resampling stability + subject-level G-study (Appendix E) 充分缓解。连续两轮未提及。\"\n    resolution_round: 9\n\n  - id: \"FR6-W5\"\n    summary: \"FF benchmarks 高 residual variance (40-44%) 归因不充分\"\n    category: experiment\n    severity: critical\n    status: open\n    first_raised_round: 6\n    last_seen_round: 11\n    mentions:\n      - round: 6\n        reviewers: [1, 2]\n        note: \"R1-W6, R2-W2。共识。\"\n      - round: 7\n        reviewers: [2]\n        note: \"R7-R2 W5。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R8-R2 N3 critical + R8-R1 AGREE。\"\n      - round: 9\n        reviewers: [1]\n        note: \"R9-R1 Q5。Appendix F residual regression 部分回应。\"\n      - round: 10\n        reviewers: []\n        note: \"Round 10 未直接提及。Appendix F 分析可能已充分缓解。\"\n      - round: 11\n        reviewers: []\n        note: \"Round 11 未直接提及。Appendix F (Table 11) Bernoulli variance ceiling 分析 (R²=0.47-0.86) 和 §4.3 讨论似已充分缓解。连续两轮未提及，考虑标注可能已修复。\"\n    action_items:\n      - round: 8\n        action: \"分析 item-level features 与 residual magnitude 的相关性\"\n        assigned_to: \"Paper Agent\"\n        status: done\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"FR6-W6\"\n    summary: \"所有发现仅限 binary scoring — title/abstract scope 未限定\"\n    category: method\n    severity: critical\n    status: open\n    first_raised_round: 6\n    last_seen_round: 11\n    mentions:\n      - round: 6\n        reviewers: [2]\n        note: \"R2-W4; R1 AGREE。\"\n      - round: 7\n        reviewers: [1, 2]\n        note: \"共识。Partial-credit pilot 显示方差结构根本性改变。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R8-R1 W1 + R8-R2 AGREE。\"\n      - round: 9\n        reviewers: [1, 2]\n        note: \"R9-R1 W4 + R9-R2 AGREE。强共识。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R10-R2 N2 critical + R10-R1 AGREE。\"\n      - round: 11\n        reviewers: [1, 2]\n        note: \"R11-R2 W2 critical + R1 AGREE。强共识。Title 暗示通用 LLM 评测。Text-exact-match G 0.936→0.007，partial-credit G 0.86→0.77。R1 补充：MC benchmarks 的 binary scoring 是标准做法，问题主要在 FF benchmarks。R2 指出对 code generation/open-ended QA/rubric-based evaluation 不适用。两位建议：title 加限定语或 abstract 明确声明 scope。\"\n    action_items:\n      - round: 8\n        action: \"§4.4 或 §5 增加独立段落讨论 partial-credit implications\"\n        assigned_to: \"Paper Agent\"\n        status: in_progress\n      - round: 10\n        action: \"Abstract 首处 binary scoring scope 声明\"\n        assigned_to: \"Paper Agent\"\n        status: in_progress\n      - round: 11\n        action: \"Title 考虑加 'under Binary Correctness Scoring' 或 abstract 首段明确限定 scope；§3.5 增加不适用场景列表 (LLM-as-judge, continuous metrics, preference ranking)\"\n        assigned_to: \"Paper Agent\"\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"FR6-W7\"\n    summary: \"Abstract 数字过密 (>20 个数值)\"\n    category: writing\n    severity: warning\n    status: open\n    first_raised_round: 6\n    last_seen_round: 11\n    mentions:\n      - round: 7\n        reviewers: []\n        note: \"Round 7 未再提及。\"\n      - round: 8\n        reviewers: []\n        note: \"Round 8 未再提及。\"\n      - round: 9\n        reviewers: [2]\n        note: \"R9-R2 W5 Should-Fix。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R10-R2 M1 + R10-R1 AGREE。\"\n      - round: 11\n        reviewers: [1, 2]\n        note: \"R11-R2 W10 minor + R1 REBUT。分歧：R2 认为 20+ 数值影响可读性；R1 认为 methods paper 惯例允许高数值密度。\"\n    action_items:\n      - round: 10\n        action: \"精简 Abstract 至 3-4 个关键数字\"\n        assigned_to: \"Paper Agent\"\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"FR6-W8\"\n    summary: \"遗漏 Mizrahi (2024) TACL, HELM (2023), measurement invariance 文献\"\n    category: writing\n    severity: warning\n    status: resolved\n    first_raised_round: 6\n    last_seen_round: 6\n    resolution: \"Round 6 遗漏已补。\"\n    resolution_round: 7\n\n  - id: \"FR6-M1\"\n    summary: \"Table 3 'Prompt' 行 MC vs FF 报告量不一致, caption 不清晰\"\n    category: writing\n    severity: info\n    status: open\n    first_raised_round: 6\n    last_seen_round: 11\n    mentions:\n      - round: 8\n        reviewers: []\n        note: \"Round 8 未直接提及。\"\n      - round: 9\n        reviewers: []\n        note: \"Round 9 未提及。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R10-R2 M2 + R10-R1 AGREE。\"\n      - round: 11\n        reviewers: [1, 2]\n        note: \"R11-R2 W5 warning + R1 AGREE。同一行 'prompt†' 对 MC 报 prompt×item interaction 对 FF 报 prompt main effect。建议拆两行或用不同标注。\"\n    action_items:\n      - round: 11\n        action: \"Table 6 拆 prompt_main / prompt×item 为两行，或用更清晰标注区分\"\n        assigned_to: \"Paper Agent\"\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"FR6-M2\"\n    summary: \"Abstract 'no unified factorial framework exists' 过于绝对\"\n    category: framing\n    severity: info\n    status: resolved\n    first_raised_round: 6\n    last_seen_round: 6\n    resolution: \"Round 7 未再提及。已改为更精确措辞。\"\n    resolution_round: 7\n\n  # === ROUND 7 ISSUES ===\n\n  - id: \"FR7-M1\"\n    summary: \"Anonymous (2025) arXiv:2601.00822 匿名性风险\"\n    category: format\n    severity: info\n    status: open\n    first_raised_round: 7\n    last_seen_round: 9\n    mentions:\n      - round: 8\n        reviewers: []\n        note: \"Round 8 未提及。\"\n      - round: 9\n        reviewers: [2]\n        note: \"R9-R2 W8 Minor。\"\n      - round: 10\n        reviewers: []\n        note: \"Round 10 未提及。\"\n      - round: 11\n        reviewers: []\n        note: \"Round 11 未提及。连续两轮未提及。\"\n    action_items: []\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"FR7-M2\"\n    summary: \"Section 4.2 '(1.1 c.u., 1.0)' 含义不明\"\n    category: writing\n    severity: info\n    status: open\n    first_raised_round: 7\n    last_seen_round: 7\n    mentions:\n      - round: 11\n        reviewers: []\n        note: \"Round 11 未提及。连续四轮未提及，可能已修复或不再相关。\"\n    action_items: []\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"FR7-M3\"\n    summary: \"建议补充引用: Gao et al. (2024) lm-eval-harness, Cardinet et al. (2010)\"\n    category: writing\n    severity: info\n    status: open\n    first_raised_round: 7\n    last_seen_round: 11\n    mentions:\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R8-R1 建议 Cardinet et al. (2010)。\"\n      - round: 9\n        reviewers: []\n        note: \"论文已引用 Cardinet et al. (2010)。\"\n      - round: 10\n        reviewers: [2]\n        note: \"R10-R2 W4：缺 lm-evaluation-harness 整合讨论。\"\n      - round: 11\n        reviewers: [1, 2]\n        note: \"R11-R2 W8 建议补充 MMLU-Redux (Gema 2024)、MMLU-Pro (Wang 2024)、contamination 文献。R1 部分同意：contamination 文献应补，MMLU-Redux/Pro 非必需。R11-R1 建议补充 Cronbach et al. (1972) G-theory 奠基文献。\"\n    action_items:\n      - round: 10\n        action: \"Related Work 增加 evaluation harness 整合讨论\"\n        assigned_to: \"Paper Agent\"\n        status: in_progress\n      - round: 11\n        action: \"补充 Cronbach et al. (1972)；考虑补充 MMLU-Redux (Gema 2024) 和 contamination 检测文献\"\n        assigned_to: \"Paper Agent\"\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  # === ROUND 8 ISSUES ===\n\n  - id: \"FR8-N1\"\n    summary: \"Henderson Method I binary validation: probit ρ=0.73 仅中等，缺 bias/RMSE 报告\"\n    category: method\n    severity: warning\n    status: open\n    first_raised_round: 8\n    last_seen_round: 11\n    mentions:\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R8-R1 N1 critical; R8-R2 REBUT。分歧。\"\n      - round: 9\n        reviewers: [1, 2]\n        note: \"R9-R1 W1。共识：方法论前提成立但报告完整性需补充。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R10-R1 N2 critical + R10-R2 AGREE with nuance。\"\n      - round: 11\n        reviewers: [1, 2]\n        note: \"R11-R1 Q2 间接触及。R2 回应：ρ=0.732 支持 ranking recovery 但不支持精确定量估计。论文已论证 binary 产生 conservative budgets (+36%)，误差方向安全。定量精度存疑但实践建议不危险。\"\n    action_items:\n      - round: 9\n        action: \"补充 full difficulty quintile 的 bias/RMSE 分解\"\n        assigned_to: \"Paper Agent\"\n        status: in_progress\n      - round: 10\n        action: \"从 probit continuous components 计算 D-study projections 比较\"\n        assigned_to: \"Main Agent\"\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"FR8-W1\"\n    summary: \"Data contamination 作为 model×item interaction 混淆变量未讨论\"\n    category: method\n    severity: warning\n    status: open\n    first_raised_round: 8\n    last_seen_round: 11\n    mentions:\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R8-R2 W1 + R8-R1 AGREE。\"\n      - round: 9\n        reviewers: [1, 2]\n        note: \"R9-R1 W5 + R9-R2 部分 AGREE。\"\n      - round: 10\n        reviewers: []\n        note: \"Limitations 已含 contamination 讨论。\"\n      - round: 11\n        reviewers: [1, 2]\n        note: \"R11-R1 M4 + R2 W8。Limitations 提及 contamination 但未引用检测文献。R1 补充：contamination 使所有模型答对的 items 的 model×item=0，可能系统性低估 clean benchmarks 上的 model×item。\"\n    action_items:\n      - round: 9\n        action: \"Limitations 补引 contamination 检测文献\"\n        assigned_to: \"Paper Agent\"\n        status: in_progress\n      - round: 11\n        action: \"讨论 contamination 对 model×item 估计的方向性影响（可能低估）\"\n        assigned_to: \"Paper Agent\"\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"FR8-W2\"\n    summary: \"C2 (precision separability) 与 C1 并列 overclaiming\"\n    category: framing\n    severity: warning\n    status: open\n    first_raised_round: 8\n    last_seen_round: 9\n    mentions:\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R8-R2 W2 + R8-R1 部分同意。\"\n      - round: 9\n        reviewers: [1, 2]\n        note: \"R9-R1 W7 + R9-R2 W2。强共识。\"\n      - round: 10\n        reviewers: []\n        note: \"C1 sub-finding 处理。\"\n      - round: 11\n        reviewers: []\n        note: \"Round 11 未提及。连续两轮未提及。\"\n    action_items: []\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"FR8-W3\"\n    summary: \"ARC model×prompt 异常 (8.0%) 未讨论\"\n    category: experiment\n    severity: warning\n    status: resolved\n    first_raised_round: 8\n    last_seen_round: 10\n    resolution: \"§4.3 已讨论 ARC anomaly 及可能原因。\"\n    resolution_round: 10\n\n  - id: \"FR8-W4\"\n    summary: \"Conclusion 过于简短，缺 practical implications\"\n    category: writing\n    severity: warning\n    status: open\n    first_raised_round: 8\n    last_seen_round: 11\n    mentions:\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R8-R2 W4 + R8-R1 AGREE。\"\n      - round: 9\n        reviewers: [2]\n        note: \"R9-R2 W6 Minor。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R10-R2 W3 + R10-R1 部分 REBUT。\"\n      - round: 11\n        reviewers: [1, 2]\n        note: \"R11-R2 W6 warning + R1 部分 REBUT。分歧：R2 要求扩展至 2-3 段含 adoption pathway、future work、IRT 集成路径；R1 认为 8 页限制下简洁合理，但同意可加 1-2 句 adoption pathway。\"\n    action_items:\n      - round: 10\n        action: \"Conclusion 扩展至 2-3 段\"\n        assigned_to: \"Paper Agent\"\n        status: in_progress\n      - round: 11\n        action: \"至少增加 1-2 句 practical adoption pathway（如 benchmark 开发者如何集成 G-theory pipeline）\"\n        assigned_to: \"Paper Agent\"\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"FR8-W5\"\n    summary: \"Bootstrap CI 仅 item-level resampling，未纳入 model-level uncertainty\"\n    category: method\n    severity: warning\n    status: open\n    first_raised_round: 8\n    last_seen_round: 11\n    mentions:\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R8-R1 W4 + R8-R2 AGREE。\"\n      - round: 9\n        reviewers: [1, 2]\n        note: \"R9-R1 W8 + R9-R2 AGREE。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R10-R1 N2 触及。\"\n      - round: 11\n        reviewers: [1, 2]\n        note: \"R11-R1 W2 critical + R2 AGREE with nuance。Table 9 CI 仅反映 item-level resampling。LOMO max|ΔG|=0.030 → ~23% 预算变动。两者从未联合量化。R2 补充：n_model=8 做 model-level bootstrap 方差极大，更实用做法是报告 sensitivity band（Appendix B Figure 9 框架）。\"\n    action_items:\n      - round: 10\n        action: \"CI 报告中明确标注 'item-sampling variability conditional on these 8 models'\"\n        assigned_to: \"Paper Agent\"\n        status: in_progress\n      - round: 11\n        action: \"Table 9 标题/脚注标注 CI 仅反映 item-level variability；正文讨论 combined uncertainty 量级 (item CI ~20% + model uncertainty ~23%)\"\n        assigned_to: \"Paper Agent\"\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"FR8-M1\"\n    summary: \"建议补充引用: contamination, DynaBench, Saxon (2024), Alzahrani (2024)\"\n    category: writing\n    severity: info\n    status: open\n    first_raised_round: 8\n    last_seen_round: 9\n    mentions:\n      - round: 11\n        reviewers: []\n        note: \"Round 11 未直接提及。部分已被 FR7-M3 和 FR8-W1 吸收。\"\n    action_items: []\n    resolution: \"\"\n    resolution_round: null\n\n  # === ROUND 9 ISSUES ===\n\n  - id: \"FR9-N1\"\n    summary: \"Partial-credit pilot 仅 GSM8K 单一 benchmark，泛化性未验证\"\n    category: experiment\n    severity: warning\n    status: open\n    first_raised_round: 9\n    last_seen_round: 11\n    mentions:\n      - round: 9\n        reviewers: [1]\n        note: \"R9-R1 Q3。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R10-R1 W3 + R10-R2 AGREE。\"\n      - round: 11\n        reviewers: [1, 2]\n        note: \"R11-R1 W5 warning + R2 W7 warning + 双向 AGREE。GSM8K 唯一的 partial-credit 证据。论文应限定为 'GSM8K step-level partial credit 下初步观察到'，非泛化到所有 partial-credit 方案。R1 补充 MATH 的 \\\\boxed{} 格式也支持 partial credit 但未分析。\"\n    action_items:\n      - round: 10\n        action: \"§3.5 将 'do not transfer' 改为 'preliminary evidence suggests limited transferability'\"\n        assigned_to: \"Paper Agent\"\n        status: in_progress\n      - round: 11\n        action: \"明确限定为 'GSM8K step-level partial credit 下初步观察到'；讨论 binary→partial-credit 对 model×item 主导结论的影响\"\n        assigned_to: \"Paper Agent\"\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  # === ROUND 10 ISSUES ===\n\n  - id: \"FR10-N1\"\n    summary: \"D-study item budget 公式不完整——Equation 1 不含 n_p，核心贡献不可独立验证\"\n    category: method\n    severity: critical\n    status: open\n    first_raised_round: 10\n    last_seen_round: 11\n    mentions:\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R10-R1 N1 critical + R10-R2 AGREE。\"\n      - round: 11\n        reviewers: []\n        note: \"Round 11 未直接提及。论文当前版本已含 Equation 2 (D-study projection with n_p) 并标注 'enabling independent verification of all budget projections in Table 7'。可能已修复。\"\n    action_items:\n      - round: 10\n        action: \"§3.1 补充完整 D-study 投影公式含 n_p\"\n        assigned_to: \"Paper Agent\"\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"FR10-W1\"\n    summary: \"G_item 测量 item 难度可靠性而非模型比较可靠性——概念鸿沟未讨论\"\n    category: method\n    severity: critical\n    status: open\n    first_raised_round: 10\n    last_seen_round: 11\n    mentions:\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R10-R1 W1 + R10-R2 AGREE。\"\n      - round: 11\n        reviewers: [1, 2]\n        note: \"R11-R2 W3 critical + R1 W6 warning + 双向 AGREE。强共识（R2 建议从 should-fix 升级为 near-critical）。G_item 衡量 item-level 跨条件泛化，但用户关心 model ranking reliability。σ²_model 仅 2.8%，G_model 可能远低于 G_item=0.896。间接证据（LOMO, κ）不直接回答 model ranking stability。R1 解释：当 model×item >> model (30-36% vs 3-5%)，model ranking stability 会低于 G_item 暗示的水平。两位建议：增加 G_model 计算或 Kendall's W / bootstrap ranking consistency 分析。\"\n    action_items:\n      - round: 10\n        action: \"§4.5 或 Discussion 增加 G_model 计算结果\"\n        assigned_to: \"Paper Agent\"\n        status: in_progress\n      - round: 11\n        action: \"补充 model ranking stability 分析（Kendall's W 或 bootstrap 排名一致性）；讨论 G_item≥0.80 蕴含 model ranking reliability 的条件\"\n        assigned_to: \"Paper Agent\"\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  # === ROUND 11 NEW ISSUES ===\n\n  - id: \"FR11-M1\"\n    summary: \"Abstract 约 201 词，超 EMNLP 2026 的 200 词限制\"\n    category: format\n    severity: warning\n    status: open\n    first_raised_round: 11\n    last_seen_round: 11\n    mentions:\n      - round: 11\n        reviewers: [1, 2]\n        note: \"R11-R2 W9 minor + R1 AGREE。EMNLP 2026 硬性限制 abstract ≤ 200 words。\"\n    action_items:\n      - round: 11\n        action: \"Abstract 删减至 ≤ 200 words\"\n        assigned_to: \"Paper Agent\"\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"FR11-M2\"\n    summary: \"main.tex \\\\enlargethispage{1\\\\baselineskip} 排版 hack\"\n    category: format\n    severity: info\n    status: open\n    first_raised_round: 11\n    last_seen_round: 11\n    mentions:\n      - round: 11\n        reviewers: [1, 2]\n        note: \"R11-R2 W11 minor + R1 AGREE（实际投稿常见，不违反 page limit 即可）。\"\n    action_items: []\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"FR11-M3\"\n    summary: \"'quasi-random facet' 非 G-theory 标准术语\"\n    category: writing\n    severity: info\n    status: open\n    first_raised_round: 11\n    last_seen_round: 11\n    mentions:\n      - round: 11\n        reviewers: [1, 2]\n        note: \"R11-R1 M3 + R2 AGREE。Brennan (2001) 用 'random'/'fixed' 二分法。应用标准术语并解释 purposive selection 按 random 处理的理由。\"\n    action_items:\n      - round: 11\n        action: \"将 'quasi-random facet' 改为标准术语 'treated as random' 并引用 Brennan (2001 Ch.4)\"\n        assigned_to: \"Paper Agent\"\n        status: open\n    resolution: \"\"\n    resolution_round: null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b1ea140b-ce76-4c65-b1a1-4d0b751b725a",
+            "isSidechain": false,
+            "requestId": "req_011CbQ1AB54KoTiiNqEKoE3H",
+            "type": "assistant",
+            "uuid": "06b4d7fd-638a-478f-8127-c67a52ea5c6b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/review_director_9cb08a07",
+            "sessionId": "154e59b5-c8c1-41f3-bd11-3d5b8dc93e82",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UM6JidRoHSWAub2Ew2emRm",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2632,
+                "cache_read_input_tokens": 117482,
+                "output_tokens": 15316,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2632,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 15316,
+                    "cache_read_input_tokens": 117482,
+                    "cache_creation_input_tokens": 2632,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2632
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-25T21:37:39.236Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TqmJJB4dqY125RaUTBs3L1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 32739}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "06b4d7fd-638a-478f-8127-c67a52ea5c6b",
+            "isSidechain": false,
+            "promptId": "af03b3fc-df3d-4122-89ba-6a75dfe8b241",
+            "type": "user",
+            "uuid": "2ee9afb5-3d59-4968-90a5-0df21d82e96b",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 32739}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/review_issues.yaml\", \"bytes\": 32739}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "06b4d7fd-638a-478f-8127-c67a52ea5c6b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/review_director_9cb08a07",
+            "sessionId": "154e59b5-c8c1-41f3-bd11-3d5b8dc93e82",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Reviewer 2 审稿意见]:  # Reviewer 2 对 Reviewer 1 审稿意见的逐条回应  ---  ## Weaknesses 回应  ### W1 [critical]: 格式关联模式在结论中被过度声称  **[AGREE] R1-W1**: 完全同意。我在自己的审稿中也将此标记为 W4 (should-fix)。  核实原文：§4.3 明确写 \"we report th…",
+                "leafUuid": "2ee9afb5-3d59-4968-90a5-0df21d82e96b",
+                "sessionId": "154e59b5-c8c1-41f3-bd11-3d5b8dc93e82"
+              }
+            }
+          ],
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review NLP variance theory paper for EMNLP 2026",
+                "sessionId": "154e59b5-c8c1-41f3-bd11-3d5b8dc93e82"
+              }
+            }
+          ],
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": "2026-05-25T21:37:45.326Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, issues tracker updated. Now let me compose and submit the final review report.\n\nLet me synthesize the report following the structure:\n1. Summary\n2. Strengths\n3. Weaknesses (consolidated from both reviewers)\n4. Reviewer Consensus\n5. Reviewer Divergence\n6. Questions\n7. Missing References\n8. External Review\n9. Visual Layout Check\n10. Overall Assessment\n11. Detailed Comments",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2ee9afb5-3d59-4968-90a5-0df21d82e96b",
+            "isSidechain": false,
+            "requestId": "req_011CbQ1VMdb8fSctfkGC48zH",
+            "type": "assistant",
+            "uuid": "a15e3b75-a10d-4739-ba0c-559334b7ca09",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/review_director_9cb08a07",
+            "sessionId": "154e59b5-c8c1-41f3-bd11-3d5b8dc93e82",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KzDEaXBEPqteBcYDkY7Jxg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 15395,
+                "cache_read_input_tokens": 120114,
+                "output_tokens": 8091,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 15395,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 8091,
+                    "cache_read_input_tokens": 120114,
+                    "cache_creation_input_tokens": 15395,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 15395
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": "2026-05-25T21:37:46.296Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Issues tracker 已更新。现在提交最终审稿报告。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a15e3b75-a10d-4739-ba0c-559334b7ca09",
+            "isSidechain": false,
+            "requestId": "req_011CbQ1VMdb8fSctfkGC48zH",
+            "type": "assistant",
+            "uuid": "10825657-0e79-4c8b-9420-bbe41d260eef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/review_director_9cb08a07",
+            "sessionId": "154e59b5-c8c1-41f3-bd11-3d5b8dc93e82",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KzDEaXBEPqteBcYDkY7Jxg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 15395,
+                "cache_read_input_tokens": 120114,
+                "output_tokens": 8091,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 15395,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 8091,
+                    "cache_read_input_tokens": 120114,
+                    "cache_creation_input_tokens": 15395,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 15395
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-25T21:41:00.380Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Bp8pANBB8tyLL3DJkmvjam",
+              "name": "mcp__agent-ml-research__submit_review_report_to_research_director",
+              "input": {
+                "project": "nlp_variance_gtheory",
+                "reviewer_ids_acknowledged": [
+                  1,
+                  2
+                ],
+                "cross_response_reviewer_ids": [
+                  1,
+                  2
+                ],
+                "overall_score": "3.5",
+                "report": "# 审稿报告 — Round 11 (Fresh Review)\n\n**项目**: nlp_variance_gtheory\n**论文**: Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models\n**目标 venue**: EMNLP 2026 (ARR May cycle, deadline 2026-05-25)\n**Reviewer 编排**: 2 名 Reviewer（R1: 方法严谨性 + 实验设计; R2: 新颖性 + 完整性 + 写作质量）\n**审稿流程**: Round 1 独立审稿 → 交叉分享 → 收敛（1 轮即达共识）\n\n---\n\n## Summary\n\n本文将教育测量领域的概化理论（G-theory）系统应用于 LLM 评估，通过 Henderson Method I 对 8 个 7–9B 开源模型在 5 个 benchmark 上约 230 万条二值记录进行方差分量分解。核心发现：model×item 交互是主导非残差方差源（MC 30–36%, FF 15–17%），表明模型主要在\"哪些题目难\"上分歧而非整体能力差异。D-study 投影将可复现性预算从 552 降至 178 items（3-prompt × 3-seed 设计），但总评估量相应增长 2.9×。论文附有 9 项稳健性检验和开源 G-theory pipeline。\n\n---\n\n## Strengths\n\n**S1 [方法新颖性]** 首次将 G-theory 完整工作流（G-study + D-study budgets）系统应用于 LLM 评估。相比 Messing (2026) 的 5 facets × 1 benchmark，扩展到 7 facets × 5 benchmarks + D-study 预算投影，填补了跨格式方差比较和可操作预算建议的空白。[AGREE: R1-S1, R2-S1]\n\n**S2 [实验规模]** 7 facet × 8 model × 5 benchmark 的全因子/准全因子设计（exp-001: 460,800 records; exp-002: 2,304,000 records）是该领域迄今最大规模的多面交叉方差分析。设计矩阵（Table 2）清晰可复现。[AGREE: R1-S2, R2-S1]\n\n**S3 [稳健性检验]** Appendix A 提供 9 项独立稳健性分析（GLMM ρ=1.0、REML <0.5pp、probit simulation、null calibration ratio=1.0008、LOMO max|ΔG|=0.030、accuracy-range stability r=−0.048、CI method comparison、facet specification sensitivity、reduced crossing validation ΔG=0.0008），系统覆盖估计方法、数据分布、样本稳定性。两位 Reviewer 一致认为\"堪称典范\"。[AGREE: R1-S3, R2-S3]\n\n**S4 [核心洞察]** model×item 交互主导（§4.2, Table 5）是非直觉但重要的发现。MMLU 学科粒度分析（Table 12）验证了 knowledge vs. reasoning 维度的梯度（G_item: 0.614–0.930）。[AGREE: R1-S4, R2 implicitly via S2]\n\n**S5 [IRT+G-theory 互补性]** Table 7 中 IRT 116 items 在 single-condition 下 G=0.457、multi-facet 下 G=0.895，证明 item selection 和 protocol optimization 是正交的独立优化维度。两位 Reviewer 一致认为这是全文最有说服力的单一结果。[AGREE: R1-S5, R2-S5]\n\n**S6 [实用产出]** 开源 G-theory pipeline 和 D-study calculator、推荐的 3×3 设计方案（§4.5）、per-benchmark 预算表（Table 9）具有直接实用价值。[AGREE: R1-S5, R2-S2]\n\n**S7 [Binary data 透明度]** §3.5 明确标注 binary scoring 假设，probit simulation 量化 binarization 代价（+36% budget），partial-credit 和 text-exact-match 对比展示 metric conditionality。[AGREE: R1-S6, R2-S4]\n\n---\n\n## Weaknesses\n\n### Must-Fix（影响接收决定）\n\n**MF-1 [critical]: \"10× fewer items\" framing 隐藏总评估量增长** [R2-W1, R1 AGREE]\n- Abstract 仅报告 item reduction（\"from over 1,000 to roughly 100\"），未提 total evaluations 增长\n- Full multi-facet: items 552→55 (10×)，但 total evaluations 552→71,280 (129×)\n- 推荐的 3×3 设计在 §4.5 已披露 \"2.9× total-evaluation increase for a 3.1× item reduction\"，但 abstract 和 Figure 1 overview 未提及\n- R1 补充：severity 介于 critical/warning，因正文已披露且 3×3 的 2.9× overhead 在实际 GPU 时间上可接受\n- **修改要求**: Abstract 和 Contribution C1 中对称报告 item reduction 和 total evaluation overhead（至少对推荐的 3×3 设计）\n\n**MF-2 [critical]: Binary scoring scope 未在 title/abstract 中充分限定** [R2-W2, R1 AGREE]\n- Title \"Reproducibility Budgets for Open-Weight LLM Evaluation\" 暗示通用适用性\n- 但所有发现严格受限于 binary correctness scoring\n  - Text-exact-match: G 0.936 → 0.007（方差结构完全改变）\n  - Partial-credit (GSM8K): G 0.86 → 0.77（显著退化）\n- R1 补充：MC benchmarks 的 binary scoring 是标准做法，问题主要在 FF benchmarks 和更广泛的评测场景（code generation、open-ended QA、LLM-as-judge、preference ranking）\n- **修改要求**: Title 添加限定语（如 \"under Binary Correctness Scoring\"）或 abstract 首段明确声明 scope；§3.5 增加不适用场景列表\n\n**MF-3 [critical]: G_item 与 model ranking reliability 之间的概念鸿沟** [R2-W3 critical, R1-W6 warning → 交叉后 R2 建议升级为 near-critical, R1 AGREE]\n- 论文以 items 为 object of measurement（§3.1），G_item 衡量 item-level 跨条件泛化能力\n- 但 benchmark 用户关心的是 model ranking reliability: \"用 178 items 排出的模型顺序是否可重复？\"\n- G_item ≥ 0.80 保证 item scores 在不同 prompt/seed 下一致，**不直接等同于** model ranking 稳定\n- 论文提供间接证据（LOMO Table 4: max|ΔG|=0.030; κ=0.33–0.46），但未直接量化 model ranking stability\n- R1 解释：当 model×item (30–36%) >> model main effect (3–5%)，model ranking stability 会低于 G_item 所暗示的水平\n- **修改要求**: 补充 model ranking stability 分析（G_model 计算、Kendall's W 或 bootstrap 排名一致性）；讨论 G_item ≥ 0.80 蕴含 model ranking reliability 的条件\n\n**MF-4 [critical]: 格式关联模式在结论中从 \"exploratory\" 升级为 \"established\"** [R1-W1, R2-W4 → 双向 AGREE on Conclusion overclaim]\n- §4.3 明确标记为 \"exploratory\" 和 \"descriptive observation\"（permutation p=0.10, n=5, benchmark-level CI spans zero）\n- 但 §5 Conclusion 写 \"The variance structure is format-dependent...motivating per-format budget calibration\"，完全去掉了 \"exploratory\" 限定词\n- Table 9 按 MC/FF 分列 D-study 预算，实际上将 p=0.10 的探索性发现用于实践推荐\n- **修改要求**: Conclusion 保留 \"exploratory/preliminary\" 限定词；Table 9 加注 \"based on n=5 benchmarks; format-specific calibration requires replication\"；C3 降级标注 \"preliminary\"\n\n**MF-5 [critical]: Bootstrap CI 仅捕获 item-level 不确定性，D-study 预算 CI 被低估** [R1-W2, R2 AGREE with nuance]\n- Table 9 的 95% CI（如 MMLU: [76, 116]）仅反映 item-level resampling\n- LOMO max|ΔG|=0.030 对应 ~23% 预算变化（Appendix B Figure 9），但 model-level uncertainty 从未与 item-level CI 联合量化\n- 论文自己承认：\"Bootstrap CIs capture item-sampling variability conditional on these 8 specific models\"（Appendix A）\n- R2 补充 nuance：n_model=8 做 model-level bootstrap 方差极大，更实用做法是报告 sensitivity band\n- **修改要求**: Table 9 标题/脚注标注 CI 仅反映 item-level variability；正文讨论 combined uncertainty 量级（item CI ~20% + model uncertainty ~23%）\n\n### Should-Fix（影响评分但不一票否决）\n\n**SF-1 [warning]: Model 作为 quasi-random facet 的辩护链不完整** [R1-W3, R2 AGREE]\n- 引用 Meredith (1993)/Putnick (2016) 不恰当（关于 measurement invariance，非 facet sampling）\n- LOMO 和 four-model subset 是 within-sample stability checks，不等于 out-of-sample generalization\n- FF 的 7.3% error（MATH, Table 11）是非 trivial 偏差\n- Fixed vs. random 对比（Table 10: ΔG=0.077–0.113）的保守性论证有效，但核心问题不在 specification 而在 representativeness\n- **修改建议**: 替换引用为 Brennan (2001 Ch.4-5)；讨论 exchangeability 假设的可检验条件；单独讨论 FF benchmarks 较大预测偏差\n\n**SF-2 [warning]: D-study 投影的时间不变性假设未被讨论** [R1-W4, R2 AGREE]\n- §4.5 仅一句话 \"All projections assume the 2024–2025 model generation\"\n- Scale validation (§4.6) 检验参数规模泛化，但无时间维度证据\n- LLM 架构和训练数据变化极快，model×item interaction 可能随模型同质化下降\n- **修改建议**: 增加一段讨论哪些方差分量最可能随模型代际变化，以及对预算的影响方向\n\n**SF-3 [warning]: Partial-credit 影响被低估且仅 GSM8K 单 benchmark 验证** [R1-W5 + R2-W7, 双向 AGREE]\n- GSM8K partial-credit G 从 0.86 降至 0.77（ΔG=−0.135），降幅超过许多论文中详细讨论的效应\n- 48.1% incorrect responses 有正确中间步骤但错误问题理解（Appendix A）\n- 仅 GSM8K 一个 benchmark 的 step-level partial credit，MATH 未分析\n- 现实中越来越多 LLM 评估采用 partial-credit 或连续评分\n- **修改建议**: 限定为 \"GSM8K step-level partial credit 下初步观察到\"；正文（而非仅附录）更 prominently 讨论 partial-credit 影响\n\n**SF-4 [warning]: Conclusion 缺乏 practical adoption pathway** [R2-W6, R1 部分 REBUT — 分歧]\n- §5 仅 4 句话，覆盖核心结论和 3 条实践建议，但缺少：benchmark 开发者如何集成 G-theory pipeline、leaderboard 影响、IRT pipeline 集成路径、future work\n- R1 认为 8 页限制下简洁合理，但同意可加 1-2 句 adoption pathway\n- **修改建议**: 至少增加 1-2 句 practical adoption pathway\n\n**SF-5 [warning]: Table 6 caption 中 MC vs FF 报告不同统计量** [R2-W5, R1 AGREE]\n- \"prompt†\" 行对 MC 报告 prompt×item interaction，对 FF 报告 prompt main effect\n- 同一行代表不同统计量，违反表格一致性原则\n- **修改建议**: 拆为两行（prompt_main, prompt×item），或用更清晰标注\n\n**SF-6 [warning]: Table 1 与 Messing (2026) 的 positioning 对比需注明范式差异** [R2-W12, R1 AGREE]\n- Messing: LLM-as-judge, single benchmark, judge identity 43.8%\n- 本文: generation-based scoring, 5 benchmarks\n- 简单的 facet 数量对比（5 vs 7）可能高估增量贡献\n- **修改建议**: Table 1 caption 加注评测范式差异\n\n### Minor（不影响接收）\n\n**M-1**: Abstract 约 201 词，超 EMNLP 2026 的 200 词硬性限制。必须删减。[R2-W9, R1 AGREE]\n\n**M-2**: Abstract 数字密度（20+ 数值）是否影响可读性——分歧。R2 认为应精简至 3-4 个；R1 认为 methods paper 惯例允许。[R2-W10, R1 REBUT]\n\n**M-3**: `\\enlargethispage{1\\baselineskip}` 排版 hack，实际投稿常见但可能引起格式审查。[R2-W11, R1 AGREE]\n\n**M-4**: \"quasi-random facet\" 非 G-theory 标准术语，应改用 \"treated as random\" 并引用 Brennan (2001 Ch.4)。[R1-M3, R2 AGREE]\n\n**M-5**: Benchmark contamination 机制未讨论：contamination 使所有模型答对的 items 的 model×item=0，可能系统性低估 clean benchmarks 上的 model×item 比例。[R1-M4, R2 W8]\n\n**M-6**: exp-002 reduced crossing validation 仅基于 MMLU，其他 4 个 benchmark 的 precision×benchmark 交互无法检验。[R1-M1]\n\n---\n\n## Reviewer Consensus（所有 Reviewer 达成共识的关键问题）\n\n| # | 问题 | 状态 | R1 | R2 |\n|---|------|------|-----|-----|\n| 1 | \"10× fewer items\" framing 隐藏 total eval 增长 | [AGREE] | W1 触及→AGREE R2-W1 | W1 critical |\n| 2 | Binary scoring scope 未限定 | [AGREE] | AGREE R2-W2 | W2 critical |\n| 3 | G_item vs model ranking 概念鸿沟 | [AGREE] | W6 warning→AGREE R2-W3 | W3 critical |\n| 4 | Format pattern Conclusion overclaim | [AGREE] | W1 critical | W4 warning→AGREE R1-W1 |\n| 5 | Bootstrap CI 仅 item-level | [AGREE] | W2 critical | AGREE with nuance |\n| 6 | Quasi-random facet 辩护不完整 | [AGREE] | W3 warning | AGREE |\n| 7 | D-study temporal invariance 未讨论 | [AGREE] | W4 warning | AGREE |\n| 8 | Partial-credit 单 benchmark + 影响低估 | [AGREE] | W5 warning | W7 warning + AGREE |\n| 9 | Table 6 混合统计量 | [AGREE] | AGREE R2-W5 | W5 warning |\n| 10 | Abstract 超 200 词限制 | [AGREE] | AGREE | W9 minor |\n\n---\n\n## Reviewer Divergence（分歧点及各方理由）\n\n| # | 问题 | R1 立场 | R2 立场 | 解读 |\n|---|------|---------|---------|------|\n| 1 | §4.3 format-associated 占 ~1 页是否失衡 | [REBUT] 描述性价值足够，Figure 7-8 提供机制解释（difficulty dispersion, ρ=0.82），MMLU subject-level (n=10, p=0.005) 提供 converging evidence | [AGREE] 应压缩为一段，Figure 7-8 移入 appendix | 非关键分歧：两位均同意 Conclusion 应保留 \"exploratory\"，分歧仅在 §4.3 正文篇幅。R1 的 mechanism interpretation 论证有一定说服力 |\n| 2 | Conclusion 是否需要扩展 | [REBUT] 8 页限制下简洁合理，但同意加 1-2 句 adoption pathway | 应扩展至 2-3 段，含 benchmark 开发者建议、future work | 非关键分歧：两位均同意至少需要 adoption pathway 讨论 |\n| 3 | Abstract 数字密度 | [REBUT] Methods paper 惯例允许高数值密度 | 建议保留 2-3 个核心数值 | 风格分歧，非实质性问题 |\n| 4 | MMLU-Redux/Pro 是否为 critical omission | [REBUT] 与方差分解框架关联有限，200-item stratified sample 已控制质量 | MMLU-Redux 影响 item-level 方差分解解读 | R2 的论点更有说服力：如果部分 MMLU items 标注错误，item difficulty 方差分解混入数据质量伪影 |\n\n---\n\n## Questions（需要作者澄清）\n\n**Q1 [R1-Q1, R2-Q1]**: G_item ≥ 0.80 在什么条件下保证 model ranking stability？如果用户仅评估 1 个模型，D-study 预算应如何调整？（§4.1 单模型分析与 Table 9 cross-model 分析使用不同方差结构，论文应更明确区分这两个使用场景。）\n\n**Q2 [R1-Q2]**: Probit simulation ρ=0.732 支持 ranking recovery 但不支持精确定量估计。binarization +36% budget 论证了保守性（误差方向安全），但 D-study 预算的 quantitative precision 如何评估？\n\n**Q3 [R2-Q2]**: 推荐的 3×3 设计（178 items × 9 conditions = 1,602 evaluations）在单 GPU 上的实际 wall-clock time？对需评估大量模型的 leaderboard 是否可行？\n\n**Q4 [R1-Q3]**: Scale validation 仅覆盖 dense architectures（Qwen, Llama）。MoE 架构（Mixtral, DeepSeek-MoE）的 routing 机制可能引入额外 model×item 交互，是否有任何 MoE 证据？\n\n**Q5 [R1-Q4]**: Ordering facet 在非 MMLU benchmarks 上 σ²=0——论文已说明 \"retained for design balance\"（§3.3），但 ARC/HellaSwag（MC）的 few-shot demo ordering 可能影响 in-context learning，未变异 ordering 意味着这两个 benchmark 可能低估了 ordering-related 交互。\n\n---\n\n## Missing References\n\n**两位 Reviewer 共识：**\n- Cronbach, L. J., Gleser, G. C., Nanda, H., & Rajaratnam, N. (1972). *The Dependability of Behavioral Measurements*. — G-theory 奠基文献，应引用\n- Contamination 检测文献 (如 Shi et al. 2023, Golchin & Surdeanu 2024) — Limitations 提及 contamination 但未引用\n\n**R2 建议（R1 部分同意）：**\n- MMLU-Redux (Gema et al., 2024) — 识别 MMLU 错误标注，可能影响 item-level 方差分解解读\n- MMLU-Pro (Wang et al., 2024) — 10 选项 MMLU 变体，降低 guessing variance\n\n**R1 建议（R2 部分同意）：**\n- Webb, Shavelson, & Haertel (2006) — G-theory 在 non-standard data 上的应用综述\n\n---\n\n## External Review (Stanford Agentic Reviewer)\n\n外部审稿：未请求（项目配置未启用）。\n\n---\n\n## Visual Layout Check（非评分项）\n\n状态：**已完成** (2026-05-25T21:18–21:21, 约 3 分钟)\n\n**Warnings (3):**\n1. **Page 15**: 末页大面积空白（~85% 留白）。Appendix H \"Use of AI Assistants\" 仅 3 个 bullet point，页面利用率极低。建议与前一个 appendix 合并。\n2. **Page 7**: 单页 4 个 display items（Table 5, Table 6, Figure 7, Figure 8），视觉密度过高。Figure 7 尺寸偏小，bar label 和 axis text 打印时可能难以辨认。\n3. **Page 8**: 3 张表格（Tables 7-9）+ Conclusion + Limitations 挤在同一页，排版紧凑。Table 8 行间距窄。\n\n**Info (10):**\n- Figure 1（page 2）pipeline 概览图位置合理，色块区分清晰，title-abstract-figure story 一致\n- Figure 6 heatmap（page 6）数值标注已有（好），但字号偏小（~7pt），灰度打印颜色区分度可能不足\n- Figure 3（page 3）信息密度偏低，可考虑与 Table 1 合并\n- Pages 10-11 Appendix A 连续纯文本无 display item，可读性一般\n- 正文 8 页 17 个 display items（~2.1/页），总量偏多\n- 所有表格使用 booktabs 风格，格式专业统一\n- 公式渲染正确，无 LaTeX 错误或 margin 溢出\n- 参考文献格式统一，无未解析引用\n- 无 section heading 孤悬页底\n\n---\n\n## Overall Assessment\n\n### 评分: **3.5** (Borderline Conference)\n\n| 维度 | R1 | R2 | 合并 |\n|------|-----|-----|------|\n| Soundness | 3.5/5 | 3.5/5 | **3.5/5** |\n| Excitement | 3.5/5 | 3.0/5 | **3.25/5** |\n| Reproducibility | 4/5 | 4/5 | **4/5** |\n| Overall | 3.5 | 3.5 | **3.5** |\n| Confidence | 4/5 | 4/5 | **4/5** |\n\n### 总评理由\n\n本文在方法论框架（G-theory→LLM evaluation）、实验规模（2.3M records, 7 facets × 8 models × 5 benchmarks）和稳健性检验（9 项）方面达到高标准。核心发现（model×item interaction dominance + D-study budgets + IRT 互补性）具有实用价值和理论启发性。\n\n将其评为 **Borderline Conference (3.5)** 而非 Conference (4.0) 的原因是五个 Must-Fix 问题的叠加：\n\n1. **Framing 失衡**: \"10× fewer items\" 隐藏了 total evaluations 增长（MF-1），format-associated pattern 从 exploratory 升级为 established（MF-4）——presentation 问题而非 methodological flaws\n2. **Scope 限制**: Binary scoring 的严格限定未在 title/abstract 中体现（MF-2），使论文的适用范围比表面呈现的窄得多\n3. **概念鸿沟**: G_item 与 model ranking reliability 之间的映射缺乏直接分析（MF-3），使核心实用价值——\"reproducibility budgets\"——的解释框架不完整\n4. **CI 透明度**: D-study 预算的 CI 仅反映 item-level uncertainty，model-level uncertainty 未被联合量化（MF-5）\n\n**关键判断**: 所有 Must-Fix 问题均为 framing/scope/presentation 问题或可通过补充分析解决，而非基础方法论缺陷。论文的实验设计、方差分解方法论和稳健性检验本身是扎实的。如果修订中解决 MF-1 至 MF-5 并改善 SF-1 至 SF-6，本文有清晰的路径达到 **Conference (4.0)** 水平。当前版本是 **strong Findings candidate**。\n\n---\n\n## Detailed Comments\n\n### 按优先级排列的修改路线图\n\n**P0 (修改后可达 4.0 的关键项)**:\n1. Abstract + C1: 对称报告 item reduction 和 total evaluation overhead（MF-1）\n2. Title 或 abstract 首段: 明确 binary scoring scope（MF-2）\n3. §4.5 或新 Discussion: 补充 G_model 计算或 model ranking stability 分析（MF-3）\n4. §5 Conclusion: 保留 \"exploratory\" 限定词；Table 9 加注（MF-4）\n5. Table 9 标题/脚注: 标注 CI 仅反映 item-level variability（MF-5）\n\n**P1 (显著改善论文质量)**:\n6. §3.6: 替换 Meredith/Putnick 引用为 Brennan (2001 Ch.4-5)，讨论 exchangeability 条件（SF-1）\n7. §4.5 或 Limitations: 增加方差分量 temporal stability 讨论（SF-2）\n8. §3.5: 将 partial-credit 限定为 \"GSM8K step-level\" 初步观察（SF-3）\n9. §5: 增加 1-2 句 practical adoption pathway（SF-4）\n10. Table 6: 拆行或改善标注（SF-5）\n\n**P2 (Polish)**:\n11. Abstract 删减至 ≤ 200 词（M-1，格式硬约束）\n12. 补充 Cronbach et al. (1972)；考虑 MMLU-Redux（M-5, Missing Refs）\n13. \"quasi-random\" → 标准术语（M-4）\n14. 讨论 contamination 对 model×item 估计的方向性影响（M-5）"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "10825657-0e79-4c8b-9420-bbe41d260eef",
+            "isSidechain": false,
+            "requestId": "req_011CbQ1VMdb8fSctfkGC48zH",
+            "type": "assistant",
+            "uuid": "8229f66c-744f-47c8-bfc6-4f36b8ab9fdd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/review_director_9cb08a07",
+            "sessionId": "154e59b5-c8c1-41f3-bd11-3d5b8dc93e82",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KzDEaXBEPqteBcYDkY7Jxg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 15395,
+                "cache_read_input_tokens": 120114,
+                "output_tokens": 8091,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 15395,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 8091,
+                    "cache_read_input_tokens": 120114,
+                    "cache_creation_input_tokens": 15395,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 15395
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-25T21:41:04.445Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Bp8pANBB8tyLL3DJkmvjam",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_117593098ee414309ced84ea501938c9:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8229f66c-744f-47c8-bfc6-4f36b8ab9fdd",
+            "isSidechain": false,
+            "promptId": "af03b3fc-df3d-4122-89ba-6a75dfe8b241",
+            "type": "user",
+            "uuid": "ca9d5b46-7f1e-4dd2-b26f-a8adc2c80321",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_117593098ee414309ced84ea501938c9:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_117593098ee414309ced84ea501938c9:director\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "8229f66c-744f-47c8-bfc6-4f36b8ab9fdd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/review_director_9cb08a07",
+            "sessionId": "154e59b5-c8c1-41f3-bd11-3d5b8dc93e82",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review NLP variance theory paper for EMNLP 2026",
+                "sessionId": "154e59b5-c8c1-41f3-bd11-3d5b8dc93e82"
+              }
+            }
+          ],
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": "2026-05-25T21:41:20.145Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-25T21:41:20.145Z",
+                "sessionId": "154e59b5-c8c1-41f3-bd11-3d5b8dc93e82",
+                "content": "[Reviewer 2 审稿结果]:\n交叉回应已提交。总结：\n\n- R1 的 6 个 Weaknesses 中 **5 个 AGREE**，W6 (object of measurement) 建议从 should-fix **提升至 near-critical**，与我自己的 W3 一致\n- **1 个 REBUT**：R1-M2 中的 \"79 percentage points\" 是误读，论文实际写的是 76\n- R1 的 4 个 Questions 中：Q1 REBUT（论文 §4.1 已回答单模型预算）、Q4 REBUT with nuance（ordering σ²=0 是设计选择非发现）、Q2/Q3 AGREE\n- 两位 Reviewer 独立评估在核心问题上高度趋同（format overclaim、object of measurement、binary scope），均给出 3.5 Borderline Conference"
+              }
+            }
+          ],
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": "2026-05-25T21:41:20.145Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-25T21:41:20.145Z",
+                "sessionId": "154e59b5-c8c1-41f3-bd11-3d5b8dc93e82"
+              }
+            }
+          ],
+          "id": "event-000168"
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "messages": [
+        {
+          "source_line": 169,
+          "timestamp": "2026-05-25T21:41:20.136Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue from where you left off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca9d5b46-7f1e-4dd2-b26f-a8adc2c80321",
+            "isSidechain": false,
+            "promptId": "77c98865-2ebb-41eb-963e-02227796509f",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "5cea140f-2fae-43d1-957c-cbf71a9984d6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/review_director_9cb08a07",
+            "sessionId": "154e59b5-c8c1-41f3-bd11-3d5b8dc93e82",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": "2026-05-25T21:41:20.136Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5cea140f-2fae-43d1-957c-cbf71a9984d6",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "bda1d57d-5072-4975-bd60-401f5454df22",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/review_director_9cb08a07",
+            "sessionId": "154e59b5-c8c1-41f3-bd11-3d5b8dc93e82",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "efbe5e25-e2d1-4bee-8384-c39db768d0f9",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000170"
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "messages": [
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-25T21:41:20.213Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿结果]:\n交叉回应已提交。总结：\n\n- R1 的 6 个 Weaknesses 中 **5 个 AGREE**，W6 (object of measurement) 建议从 should-fix **提升至 near-critical**，与我自己的 W3 一致\n- **1 个 REBUT**：R1-M2 中的 \"79 percentage points\" 是误读，论文实际写的是 76\n- R1 的 4 个 Questions 中：Q1 REBUT（论文 §4.1 已回答单模型预算）、Q4 REBUT with nuance（ordering σ²=0 是设计选择非发现）、Q2/Q3 AGREE\n- 两位 Reviewer 独立评估在核心问题上高度趋同（format overclaim、object of measurement、binary scope），均给出 3.5 Borderline Conference"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bda1d57d-5072-4975-bd60-401f5454df22",
+            "isSidechain": false,
+            "promptId": "77c98865-2ebb-41eb-963e-02227796509f",
+            "type": "user",
+            "uuid": "af1d79f3-f362-47aa-b1cd-6d690ad41209",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/review_director_9cb08a07",
+            "sessionId": "154e59b5-c8c1-41f3-bd11-3d5b8dc93e82",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000171"
+        }
+      ]
+    }
+  ]
+}

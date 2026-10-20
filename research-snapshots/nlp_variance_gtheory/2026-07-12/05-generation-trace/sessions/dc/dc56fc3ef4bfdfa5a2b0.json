@@ -1,0 +1,1243 @@
+{
+  "schema_version": "1.0",
+  "id": "dc56fc3ef4bfdfa5a2b0",
+  "project": "nlp_variance_gtheory--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are Reviewer 2 (R2), focused on Novelty and Related Work. You have already completed your independent review (below)",
+  "task_key": "agent-a4c74b9b0b0cbe40b",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a4c74b9b0b0cbe40b.jsonl",
+    "occurrence": 1,
+    "bytes": 99253,
+    "sha256": "3ea1b210ff83a6dd854a1ab300181c097710e5e634aa84dd4aa3c75f34a15416"
+  },
+  "statistics": {
+    "messages": 24,
+    "user_turns": 1,
+    "tool_calls": 9,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 9,
+      "tool_result": 9
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T06:06:22.404Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "You are Reviewer 2 (R2), focused on Novelty and Related Work. You have already completed your independent review (below). Now you are shown Reviewer 1's review. Please react to R1's points — identify areas where you agree, disagree, or have additional insights. Also note if R1 raised something that changes your assessment.\n\n## YOUR (R2) ORIGINAL REVIEW:\n\n### Strengths (Novelty/Positioning)\n- S1: IRT vs G-theory comparison is genuinely novel and actionable\n- S2: Model-as-crossed-facet is a meaningful design choice extending Mesting (2026)\n- S3: Cross-benchmark variance gradient would be strong if completed\n- S4: Positioning against IRT literature is thoughtful\n- S5: Dual-metric analysis (binary vs text-exact-match) is genuinely non-obvious\n\n### Weaknesses (Novelty/Positioning)\n- W1: Primarily empirical extension of Mesting (2026), not methodological advance, but framed as if more\n- W2: Missing citations (Sclar et al. 2024, Kunievsky & Evans 2025, Bui et al. 2025, classical psychometrics on binary G-theory)\n- W3: Positioning against Mesting needs nuance — judge excluded here but was 43.8% in Mesting, mechanically inflating item_id\n- W4: Item dominance partially expected from measurement theory, oversold\n- W5: model×item on 4 models is marginal for random-effects estimation\n- W6: Scope narrowing weakens title's ambition\n\n### Scores: Novelty 5, Significance 6, Related Work 5, Overall 5\n\n---\n\n## R1'S REVIEW (Methods and Experiments focus):\n\n### Strengths (Methods/Experiments)\n- S1: Comprehensive factorial design (7-facet fully crossed, 825,600 records)\n- S2: Extensive robustness checking (6 methodological defenses)\n- S3: IRT vs G-theory comparison (3.3× ratio)\n- S4: Item resampling stability test (CV=0.30 honestly reported)\n- S5: Dual-metric analysis (87× gap)\n\n### Weaknesses (Methods/Experiments)\n- W1: model×item CI [3.1, 12.8] includes trivially small values\n- W2: Cross-benchmark evidence inadequate (1.5 benchmarks)\n- W3: REML on binary data — fundamental concern not fully resolved; no comparison with logistic-link generalized G-theory (Jiang & Skorupski 2017)\n- W4: Single GPU architecture undermines separability claims\n- W5: Item resampling CV=0.30 undermines precision; D-study projections should propagate this uncertainty\n- W6: Four models insufficient for stable model-as-facet estimation (guidelines: 5-6+ levels)\n\n### Questions for Authors\n- Q1: D-study projections across the 3 resampling draws — are item count recommendations stable?\n- Q2: Pairwise 2-model model×item estimates for all 6 pairs?\n- Q3: IRT model specifics (2PL) and SE<0.3 threshold justification?\n- Q4: Qwen3 re-execution time confound verification?\n\n### Scores: Soundness 5, Experimental Quality 5, Overall 5\n\n---\n\n## YOUR TASK\n\nReact to R1's review in 300-500 words. Structure:\n\n1. **Points of Agreement** — which of R1's points do you find compelling from a novelty perspective?\n2. **Points of Disagreement** — where do you think R1 is too harsh or too lenient?\n3. **New Insights** — did R1 raise anything that changes your novelty/significance assessment?\n4. **Score Adjustment** — would you adjust your scores after seeing R1's review? If so, how and why?\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "f18814bb-5456-4f2b-bf34-7e63cb890dd6",
+            "agentId": "a4c74b9b0b0cbe40b",
+            "type": "user",
+            "uuid": "1ee5b7cf-6fc6-4295-86fc-9d531d02db0c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+            "sessionId": "61758983-af28-4ed0-aeee-c7c8e76b89a4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T06:06:22.407Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "1ee5b7cf-6fc6-4295-86fc-9d531d02db0c",
+                "isSidechain": true,
+                "agentId": "a4c74b9b0b0cbe40b",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_reviewer",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__submit_dream_review_report"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_reviewer",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__submit_dream_review_report"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "974a0d07-ec5b-496d-9456-41855f184d4e",
+                "timestamp": "2026-05-21T06:06:22.407Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+                "sessionId": "61758983-af28-4ed0-aeee-c7c8e76b89a4",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T06:06:25.357Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll first read the report and any relevant project files to ground my reaction properly."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "974a0d07-ec5b-496d-9456-41855f184d4e",
+            "isSidechain": true,
+            "agentId": "a4c74b9b0b0cbe40b",
+            "requestId": "req_011CbFDEmRWpWtmDxmtS9RpW",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ae8f3377-b527-41a8-a176-a44f5b691168",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+            "sessionId": "61758983-af28-4ed0-aeee-c7c8e76b89a4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CozmcfUTWCf1k4s5MbKGeN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 7050,
+                "cache_read_input_tokens": 8250,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7050,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T06:06:25.735Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WTCaDegKpi3NYPwskM2XHc",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_project_file",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ae8f3377-b527-41a8-a176-a44f5b691168",
+            "isSidechain": true,
+            "agentId": "a4c74b9b0b0cbe40b",
+            "requestId": "req_011CbFDEmRWpWtmDxmtS9RpW",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7ca97f0b-8d71-427b-951d-34b5be387458",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+            "sessionId": "61758983-af28-4ed0-aeee-c7c8e76b89a4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CozmcfUTWCf1k4s5MbKGeN",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 7050,
+                "cache_read_input_tokens": 8250,
+                "output_tokens": 106,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 7050
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 106,
+                    "cache_read_input_tokens": 8250,
+                    "cache_creation_input_tokens": 7050,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 7050,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T06:06:25.738Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01WTCaDegKpi3NYPwskM2XHc",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7ca97f0b-8d71-427b-951d-34b5be387458",
+            "isSidechain": true,
+            "promptId": "f18814bb-5456-4f2b-bf34-7e63cb890dd6",
+            "agentId": "a4c74b9b0b0cbe40b",
+            "type": "user",
+            "uuid": "3041b184-b6da-4ea0-a1c0-5f85eba0127f",
+            "sourceToolAssistantUUID": "7ca97f0b-8d71-427b-951d-34b5be387458",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+            "sessionId": "61758983-af28-4ed0-aeee-c7c8e76b89a4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T06:06:28.590Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nLet me read the report to fully ground my reaction."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3041b184-b6da-4ea0-a1c0-5f85eba0127f",
+            "isSidechain": true,
+            "agentId": "a4c74b9b0b0cbe40b",
+            "requestId": "req_011CbFDF1fm84i2E7NnxEcRZ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "debacebe-1a21-4e06-8a15-e22160f86fc9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+            "sessionId": "61758983-af28-4ed0-aeee-c7c8e76b89a4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013AryM9xmukF6XMjHK6vzFe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1288,
+                "cache_read_input_tokens": 15300,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1288,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T06:06:28.993Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018ZvG3vmSb5DdYkP5fL5yZx",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "nlp_variance_gtheory",
+                "file": "report.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "debacebe-1a21-4e06-8a15-e22160f86fc9",
+            "isSidechain": true,
+            "agentId": "a4c74b9b0b0cbe40b",
+            "requestId": "req_011CbFDF1fm84i2E7NnxEcRZ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "510f2d07-ce73-4798-b95b-34d9c0f0274a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+            "sessionId": "61758983-af28-4ed0-aeee-c7c8e76b89a4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013AryM9xmukF6XMjHK6vzFe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1288,
+                "cache_read_input_tokens": 15300,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1288,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T06:06:29.005Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018ZvG3vmSb5DdYkP5fL5yZx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-21\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp001_qwen | Qwen3-8B variance decomposition at full scale (1,296 conditions × 200 items) completes the 4-model design for cross-model G-theory analysis — tests whether item_id dominance and model×item interaction patterns hold with a 4th architecturally distinct model (Claim 1) | — | — | — |\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **exp001_mistral** (success): Mistral-7B-Instruct-v0.3 variance decomposition at full scale (1,296 conditions × 200 items) will contribute to cross-model G-theory analysis — model-as-facet tests whether item_id dominance holds across architecturally diverse models (Claim 1) ← 基于 exp001_llama\\\\n- **exp001_gemma** (success): Gemma-2-9b-it variance decomposition at full scale (1,296 conditions × 200 items) will show model-specific variance structure differences compared to Llama — enabling model-as-facet analysis (Claim 1 make-or-break) ← 基于 exp001_llama\\\\n- **exp001_llama** (success): Single-model (Llama-3.1-8B-Instruct) G-theory variance decomposition at full scale (1,296 conditions × 200 items across 3 precisions × 3 temperatures × 6 prompts × 6 seeds × 4 orderings) will confirm MVP findings: item_id dominates binary_correct variance, while text_exact_match reveals infrastructure×methodology interactions ← 基于 mvp_phase_a\\\\n\\\\n## 趋势\\\\n成功 5 / 负向 1 / 失败 0 / 共 6\\\\nitems_per_condition: 200 →（近 3 次 success）\\\\ntotal_records: 259200 ↑（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-32570: 无 GPU 信息\\\\n\\\\n## 告警\\\\n（无）\\\\n\\\", \\\"total_chars\\\": 1584, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "510f2d07-ce73-4798-b95b-34d9c0f0274a",
+            "isSidechain": true,
+            "promptId": "f18814bb-5456-4f2b-bf34-7e63cb890dd6",
+            "agentId": "a4c74b9b0b0cbe40b",
+            "type": "user",
+            "uuid": "db088e6c-f092-4389-8e89-5632ebeda223",
+            "sourceToolAssistantUUID": "510f2d07-ce73-4798-b95b-34d9c0f0274a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+            "sessionId": "61758983-af28-4ed0-aeee-c7c8e76b89a4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T06:06:29.456Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H5akJQJw7pVMdEvcr2nhm5",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "nlp_variance_gtheory",
+                "file": "literature_map.yaml",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "db088e6c-f092-4389-8e89-5632ebeda223",
+            "isSidechain": true,
+            "agentId": "a4c74b9b0b0cbe40b",
+            "requestId": "req_011CbFDF1fm84i2E7NnxEcRZ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "21468bd3-cc7f-433c-842b-c05aa6a63a7f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+            "sessionId": "61758983-af28-4ed0-aeee-c7c8e76b89a4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013AryM9xmukF6XMjHK6vzFe",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1288,
+                "cache_read_input_tokens": 15300,
+                "output_tokens": 216,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1288
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 216,
+                    "cache_read_input_tokens": 15300,
+                    "cache_creation_input_tokens": 1288,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1288,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T06:06:29.464Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H5akJQJw7pVMdEvcr2nhm5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/literature_map.yaml\\\", \\\"content\\\": \\\"meta:\\\\n  last_updated: \\\\\\\"2026-05-20T14:00:00Z\\\\\\\"\\\\n  total_papers: 10\\\\n\\\\ncategories:\\\\n  - key: \\\\\\\"gtheory_evaluation\\\\\\\"\\\\n    name: \\\\\\\"G-Theory & Evaluation Variance\\\\\\\"\\\\n    narrative: \\\\\\\"Applying Generalizability Theory and variance decomposition to LLM evaluation reliability\\\\\\\"\\\\n  - key: \\\\\\\"infrastructure_variance\\\\\\\"\\\\n    name: \\\\\\\"Infrastructure-Induced Variance\\\\\\\"\\\\n    narrative: \\\\\\\"Hardware, precision, and CUDA-level nondeterminism as variance sources in LLM inference\\\\\\\"\\\\n  - key: \\\\\\\"prompt_sensitivity\\\\\\\"\\\\n    name: \\\\\\\"Prompt Sensitivity & Methodological Variance\\\\\\\"\\\\n    narrative: \\\\\\\"Prompt phrasing, seed, temperature, and ordering as variance sources\\\\\\\"\\\\n  - key: \\\\\\\"evaluation_methodology\\\\\\\"\\\\n    name: \\\\\\\"Evaluation Methodology\\\\\\\"\\\\n    narrative: \\\\\\\"Scoring artifacts, benchmark design, and evaluation protocol considerations\\\\\\\"\\\\n\\\\npapers:\\\\n  mesting2026hidden:\\\\n    title: \\\\\\\"Hidden Measurement Error in LLM Pipelines Distorts Annotation, Evaluation, and Benchmarking\\\\\\\"\\\\n    authors:\\\\n      - \\\\\\\"Mesting, F.\\\\\\\"\\\\n    year: 2026\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    url: \\\\\\\"https://arxiv.org/abs/2604.11581\\\\\\\"\\\\n    category: \\\\\\\"gtheory_evaluation\\\\\\\"\\\\n    role: \\\\\\\"direct-competitor\\\\\\\"\\\\n    relevance: \\\\\\\"Closest methodological precedent: G-theory decomposition of 5 facets (item, prompt, temperature, judge model, replication) on AILuminate/MMLU/Chatbot Arena. Found judge model=43.8%, prompt×judge=12.4%. Critically excludes infrastructure factors — our work extends this by crossing infrastructure with methodology.\\\\\\\"\\\\n    verified: false\\\\n    added_by: \\\\\\\"director\\\\\\\"\\\\n    added_at: \\\\\\\"2026-05-20T14:00:00Z\\\\\\\"\\\\n\\\\n  brittlebench2026:\\\\n    title: \\\\\\\"Brittlebench: Quantifying LLM Robustness via Prompt Sensitivity\\\\\\\"\\\\n    authors: []\\\\n    year: 2026\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    url: \\\\\\\"https://arxiv.org/abs/2603.13285\\\\\\\"\\\\n    category: \\\\\\\"prompt_sensitivity\\\\\\\"\\\\n    role: \\\\\\\"direct-competitor\\\\\\\"\\\\n    relevance: \\\\\\\"Up to 50% performance variance from prompt perturbations, 63% of cases show ranking reversals from single perturbations. Provides perturbation protocol we follow for prompt paraphrase generation. Does not cross with infrastructure factors.\\\\\\\"\\\\n    verified: false\\\\n    added_by: \\\\\\\"director\\\\\\\"\\\\n    added_at: \\\\\\\"2026-05-20T14:00:00Z\\\\\\\"\\\\n\\\\n  yuan2025layercast:\\\\n    title: \\\\\\\"Understanding and Mitigating Numerical Sources of Nondeterminism in LLM Inference\\\\\\\"\\\\n    authors:\\\\n      - \\\\\\\"Yuan, Z.\\\\\\\"\\\\n    year: 2025\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    url: \\\\\\\"https://arxiv.org/abs/2506.09501\\\\\\\"\\\\n    category: \\\\\\\"infrastructure_variance\\\\\\\"\\\\n    role: \\\\\\\"direct-competitor\\\\\\\"\\\\n    relevance: \\\\\\\"Documents up to 9% accuracy variation and 9,000-token response-length shifts from GPU count, type, and precision changes. Proposes LayerCast (FP16 storage + FP32 compute) mitigation. Does not conduct factorial attribution across multiple variance sources.\\\\\\\"\\\\n    verified: false\\\\n    added_by: \\\\\\\"director\\\\\\\"\\\\n    added_at: \\\\\\\"2026-05-20T14:00:00Z\\\\\\\"\\\\n\\\\n  messina2026background:\\\\n    title: \\\\\\\"Introducing Background Temperature to Characterise Hidden Randomness in LLMs\\\\\\\"\\\\n    authors:\\\\n      - \\\\\\\"Messina, P.\\\\\\\"\\\\n      - \\\\\\\"Scotta, A.\\\\\\\"\\\\n    year: 2026\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    url: \\\\\\\"https://arxiv.org/abs/2604.22411\\\\\\\"\\\\n    category: \\\\\\\"infrastructure_variance\\\\\\\"\\\\n    role: \\\\\\\"method-component\\\\\\\"\\\\n    relevance: \\\\\\\"Formalizes hidden nondeterminism as effective background temperature T_bg persisting even at nominal T=0 due to floating-point non-associativity in BF16/FP16. Provides theoretical framework for understanding infrastructure-level stochasticity we measure.\\\\\\\"\\\\n    verified: false\\\\n    added_by: \\\\\\\"director\\\\\\\"\\\\n    added_at: \\\\\\\"2026-05-20T14:00:00Z\\\\\\\"\\\\n\\\\n  generalizit2024:\\\\n    title: \\\\\\\"GeneralizIT: A Python Solution for Generalizability Theory Computations\\\\\\\"\\\\n    authors: []\\\\n    year: 2024\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    url: \\\\\\\"https://arxiv.org/abs/2411.17880\\\\\\\"\\\\n    category: \\\\\\\"gtheory_evaluation\\\\\\\"\\\\n    role: \\\\\\\"method-component\\\\\\\"\\\\n    relevance: \\\\\\\"Python implementation of G-theory computations including D-study projections. Core analysis tool for our variance decomposition pipeline.\\\\\\\"\\\\n    verified: false\\\\n    added_by: \\\\\\\"director\\\\\\\"\\\\n    added_at: \\\\\\\"2026-05-20T14:00:00Z\\\\\\\"\\\\n\\\\n  hua2025flaw:\\\\n    title: \\\\\\\"Flaw or Artifact? Rethinking Prompt Sensitivity in Evaluating LLMs\\\\\\\"\\\\n    authors:\\\\n      - \\\\\\\"Hua, W.\\\\\\\"\\\\n    year: 2025\\\\n    venue: \\\\\\\"EMNLP\\\\\\\"\\\\n    category: \\\\\\\"evaluation_methodology\\\\\\\"\\\\n    role: \\\\\\\"evaluation\\\\\\\"\\\\n    relevance: \\\\\\\"Demonstrates log-likelihood-based evaluation inflates apparent prompt sensitivity — a confounder our generation-based evaluation protocol controls for. Motivates our choice of generation-based scoring.\\\\\\\"\\\\n    verified: false\\\\n    added_by: \\\\\\\"director\\\\\\\"\\\\n    added_at: \\\\\\\"2026-05-20T14:00:00Z\\\\\\\"\\\\n\\\\n  thinkingmachines2025batch:\\\\n    title: \\\\\\\"Batch Invariance, Seed Locking, and Beyond: Countering Nondeterminism in LLM Inference\\\\\\\"\\\\n    authors: []\\\\n    year: 2025\\\\n    venue: \\\\\\\"Technical Report\\\\\\\"\\\\n    category: \\\\\\\"infrastructure_variance\\\\\\\"\\\\n    role: \\\\\\\"method-component\\\\\\\"\\\\n    relevance: \\\\\\\"Shows 80/1000 unique completions for Qwen3-8B at T=0 under default vLLM settings. Demonstrates batch-invariant GEMM/RMSNorm/attention kernels eliminate nondeterminism with 1.6-2.1x latency overhead. We use DEFAULT settings (without these kernels) to reflect practitioner conditions.\\\\\\\"\\\\n    verified: false\\\\n    added_by: \\\\\\\"director\\\\\\\"\\\\n    added_at: \\\\\\\"2026-05-20T14:00:00Z\\\\\\\"\\\\n\\\\n  kunievsky2025intent:\\\\n    title: \\\\\\\"Measuring Intent Comprehension in LLMs: A Variance Decomposition Framework\\\\\\\"\\\\n    authors:\\\\n      - \\\\\\\"Kunievsky, D.\\\\\\\"\\\\n      - \\\\\\\"Evans, J.\\\\\\\"\\\\n    year: 2025\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    url: \\\\\\\"https://arxiv.org/abs/2506.16584\\\\\\\"\\\\n    category: \\\\\\\"gtheory_evaluation\\\\\\\"\\\\n    role: \\\\\\\"direct-competitor\\\\\\\"\\\\n    relevance: \\\\\\\"Decomposes variance into intent, articulation, and model uncertainty facets. Does not include infrastructure factors. Provides alternative facet structure we compare against.\\\\\\\"\\\\n    verified: false\\\\n    added_by: \\\\\\\"director\\\\\\\"\\\\n    added_at: \\\\\\\"2026-05-20T14:00:00Z\\\\\\\"\\\\n\\\\n  bui2025seeds:\\\\n    title: \\\\\\\"Assessing the Macro and Micro Effects of Random Seeds on Fine-Tuning Large Language Models\\\\\\\"\\\\n    authors:\\\\n      - \\\\\\\"Bui, T.\\\\\\\"\\\\n    year: 2025\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    category: \\\\\\\"prompt_sensitivity\\\\\\\"\\\\n    role: \\\\\\\"background\\\\\\\"\\\\n    relevance: \\\\\\\"Documents extreme seed sensitivity (RTES variance=18.22) in fine-tuning. Motivates our fine-tuning G-study extension. Isolated factor study without infrastructure crossing.\\\\\\\"\\\\n    verified: false\\\\n    added_by: \\\\\\\"director\\\\\\\"\\\\n    added_at: \\\\\\\"2026-05-20T14:00:00Z\\\\\\\"\\\\n\\\\n  sameprompt2026:\\\\n    title: \\\\\\\"Same Prompt, Different Outcomes: Evaluating the Reproducibility of Data Analysis by LLMs\\\\\\\"\\\\n    authors: []\\\\n    year: 2026\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    url: \\\\\\\"https://arxiv.org/abs/2602.14349\\\\\\\"\\\\n    category: \\\\\\\"prompt_sensitivity\\\\\\\"\\\\n    role: \\\\\\\"background\\\\\\\"\\\\n    relevance: \\\\\\\"Evaluated 2 strategies x 6 models x 4 temperatures with 10 repeats but excluded hardware/precision. Confirms methodology-layer variance without infrastructure crossing.\\\\\\\"\\\\n    verified: false\\\\n    added_by: \\\\\\\"director\\\\\\\"\\\\n    added_at: \\\\\\\"2026-05-20T14:00:00Z\\\\\\\"\\\\n\\\", \\\"total_chars\\\": 6732, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "21468bd3-cc7f-433c-842b-c05aa6a63a7f",
+            "isSidechain": true,
+            "promptId": "f18814bb-5456-4f2b-bf34-7e63cb890dd6",
+            "agentId": "a4c74b9b0b0cbe40b",
+            "type": "user",
+            "uuid": "3a25f6be-d081-403a-8ba3-e64b17af9bce",
+            "sourceToolAssistantUUID": "21468bd3-cc7f-433c-842b-c05aa6a63a7f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+            "sessionId": "61758983-af28-4ed0-aeee-c7c8e76b89a4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T06:06:32.134Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read the paper draft itself for full context."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3a25f6be-d081-403a-8ba3-e64b17af9bce",
+            "isSidechain": true,
+            "agentId": "a4c74b9b0b0cbe40b",
+            "requestId": "req_011CbFDFHmdrFLXCw6Tfom4y",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f8320ada-d2a6-4061-9376-aaec2eca52a3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+            "sessionId": "61758983-af28-4ed0-aeee-c7c8e76b89a4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018Wb1BGw87V2om7ykUShTi3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3707,
+                "cache_read_input_tokens": 16588,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3707,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T06:06:32.802Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VWd25kSRR1Bt7fhNAnqVsg",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f8320ada-d2a6-4061-9376-aaec2eca52a3",
+            "isSidechain": true,
+            "agentId": "a4c74b9b0b0cbe40b",
+            "requestId": "req_011CbFDFHmdrFLXCw6Tfom4y",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8551f5b5-5a08-4f90-95fa-1bea827083ec",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+            "sessionId": "61758983-af28-4ed0-aeee-c7c8e76b89a4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018Wb1BGw87V2om7ykUShTi3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3707,
+                "cache_read_input_tokens": 16588,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3707,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T06:06:32.833Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VWd25kSRR1Bt7fhNAnqVsg",
+              "type": "tool_result",
+              "content": "artifacts/dream_reports/dream_20260520T190053/best/paper.tex\nartifacts/dream_reports/dream_20260520T190053/median/paper.tex\nartifacts/dream_reports/dream_20260520T190053/worst/paper.tex\nartifacts/dream_reports/dream_20260520T222113/best/paper.tex\nartifacts/dream_reports/dream_20260520T222113/median/paper.tex\nartifacts/dream_reports/dream_20260520T222113/worst/paper.tex\nartifacts/dream_reports/dream_20260521T032813/best/paper.tex\nartifacts/dream_reports/dream_20260521T032813/median/paper.tex\nartifacts/dream_reports/dream_20260521T032813/worst/paper.tex\nartifacts/dream_reports/dream_20260521T044739/best/paper.tex\nartifacts/dream_reports/dream_20260521T044739/median/paper.tex\nartifacts/dream_reports/dream_20260521T044739/worst/paper.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8551f5b5-5a08-4f90-95fa-1bea827083ec",
+            "isSidechain": true,
+            "promptId": "f18814bb-5456-4f2b-bf34-7e63cb890dd6",
+            "agentId": "a4c74b9b0b0cbe40b",
+            "type": "user",
+            "uuid": "ab2c894c-5a08-4238-9f9e-073b0370b449",
+            "sourceToolAssistantUUID": "8551f5b5-5a08-4f90-95fa-1bea827083ec",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+            "sessionId": "61758983-af28-4ed0-aeee-c7c8e76b89a4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T06:06:33.680Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G45pJQGZL2Nof8fGfCnzs7",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/paper*.md",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ab2c894c-5a08-4238-9f9e-073b0370b449",
+            "isSidechain": true,
+            "agentId": "a4c74b9b0b0cbe40b",
+            "requestId": "req_011CbFDFHmdrFLXCw6Tfom4y",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d0a8333b-0889-4dbd-92b7-39a03a5512cb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+            "sessionId": "61758983-af28-4ed0-aeee-c7c8e76b89a4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018Wb1BGw87V2om7ykUShTi3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3707,
+                "cache_read_input_tokens": 16588,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3707,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T06:06:33.712Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G45pJQGZL2Nof8fGfCnzs7",
+              "type": "tool_result",
+              "content": "artifacts/dream_reports/dream_20260520T190053/best/paper_framing.md\nartifacts/dream_reports/dream_20260520T190053/median/paper_framing.md\nartifacts/dream_reports/dream_20260520T190053/worst/paper_framing.md\nartifacts/dream_reports/dream_20260520T222113/best/paper_framing.md\nartifacts/dream_reports/dream_20260520T222113/median/paper_framing.md\nartifacts/dream_reports/dream_20260520T222113/worst/paper_framing.md\nartifacts/dream_reports/dream_20260521T032813/best/paper_framing.md\nartifacts/dream_reports/dream_20260521T032813/median/paper_framing.md\nartifacts/dream_reports/dream_20260521T032813/worst/paper_framing.md\nartifacts/dream_reports/dream_20260521T044739/best/paper_framing.md\nartifacts/dream_reports/dream_20260521T044739/median/paper_framing.md\nartifacts/dream_reports/dream_20260521T044739/worst/paper_framing.md\npaper_framing.md"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d0a8333b-0889-4dbd-92b7-39a03a5512cb",
+            "isSidechain": true,
+            "promptId": "f18814bb-5456-4f2b-bf34-7e63cb890dd6",
+            "agentId": "a4c74b9b0b0cbe40b",
+            "type": "user",
+            "uuid": "7b7adc53-c393-485a-93ea-5cbbe88be30e",
+            "sourceToolAssistantUUID": "d0a8333b-0889-4dbd-92b7-39a03a5512cb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+            "sessionId": "61758983-af28-4ed0-aeee-c7c8e76b89a4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T06:06:33.809Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014rJo8A8RDp327EnwZjuM8n",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "nlp_variance_gtheory",
+                "file": "ideas.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7b7adc53-c393-485a-93ea-5cbbe88be30e",
+            "isSidechain": true,
+            "agentId": "a4c74b9b0b0cbe40b",
+            "requestId": "req_011CbFDFHmdrFLXCw6Tfom4y",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "21bb2146-1b19-419b-89a2-b579b3cf4ed6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+            "sessionId": "61758983-af28-4ed0-aeee-c7c8e76b89a4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018Wb1BGw87V2om7ykUShTi3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3707,
+                "cache_read_input_tokens": 16588,
+                "output_tokens": 286,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3707
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 286,
+                    "cache_read_input_tokens": 16588,
+                    "cache_creation_input_tokens": 3707,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3707,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T06:06:33.817Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014rJo8A8RDp327EnwZjuM8n",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No ideas.md found for 'nlp_variance_gtheory'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "21bb2146-1b19-419b-89a2-b579b3cf4ed6",
+            "isSidechain": true,
+            "promptId": "f18814bb-5456-4f2b-bf34-7e63cb890dd6",
+            "agentId": "a4c74b9b0b0cbe40b",
+            "type": "user",
+            "uuid": "119349ac-35b8-4e73-b97d-e02d45215086",
+            "sourceToolAssistantUUID": "21bb2146-1b19-419b-89a2-b579b3cf4ed6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+            "sessionId": "61758983-af28-4ed0-aeee-c7c8e76b89a4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T06:06:36.624Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L29Ggx17H8mkBGh9p7wea8",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/dream_reports/dream_20260521T044739/best/paper.tex",
+                "limit": 200
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "119349ac-35b8-4e73-b97d-e02d45215086",
+            "isSidechain": true,
+            "agentId": "a4c74b9b0b0cbe40b",
+            "requestId": "req_011CbFDFcMan8df68bVruBfh",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "049c370e-9741-40fb-9834-0ea1711a151e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+            "sessionId": "61758983-af28-4ed0-aeee-c7c8e76b89a4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MEhqTg9wpTMayAahmC1z4U",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 974,
+                "cache_read_input_tokens": 20295,
+                "output_tokens": 118,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 974
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 118,
+                    "cache_read_input_tokens": 20295,
+                    "cache_creation_input_tokens": 974,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 974,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T06:06:36.639Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L29Ggx17H8mkBGh9p7wea8",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[letterpaper]{article}\n2\t\\usepackage[utf8]{inputenc}\n3\t\\usepackage[margin=1in]{geometry}\n4\t\\usepackage{amsmath,amssymb}\n5\t\\usepackage{booktabs}\n6\t\\usepackage{multirow}\n7\t\\usepackage{graphicx}\n8\t\\usepackage{xcolor}\n9\t\\usepackage{hyperref}\n10\t\\usepackage{natbib}\n11\t\\usepackage{caption}\n12\t\\usepackage{subcaption}\n13\t\\usepackage{array}\n14\t\\usepackage{tablefootnote}\n15\t\n16\t\\newcommand{\\gcoeff}{\\ensuremath{G}}\n17\t\\newcommand{\\pct}{\\%}\n18\t\n19\t\\title{Reproducibility Budgets for LLM Evaluation:\\\\A Generalizability Theory Analysis of Variance Sources\\\\Across Benchmarks, Models, and Evaluation Metrics}\n20\t\n21\t\\author{Anonymous}\n22\t\n23\t\\date{}\n24\t\n25\t\\begin{document}\n26\t\\maketitle\n27\t\n28\t% ============================================================\n29\t% ABSTRACT\n30\t% ============================================================\n31\t\\begin{abstract}\n32\tWhen LLM evaluation results vary across reproductions, practitioners cannot determine whether the culprit is prompt phrasing, random seed, numerical precision, temperature, or item selection---let alone how these factors interact.\n33\tWe conduct the first multi-benchmark Generalizability Theory (G-theory) study that crosses infrastructure (numerical precision, GPU hardware) with methodology (prompt template, random seed, sampling temperature, option ordering) and measurement (test items) factors, treating model as a crossed random facet.\n34\tAcross 4.3 million item-level records spanning four models (Llama-3.1-8B, Gemma-2-9B, Mistral-7B, Qwen3-8B), five benchmarks (MMLU, HellaSwag, ARC-Challenge, GSM8K, MATH), and two GPU architectures, we report three findings.\n35\tFirst, item selection dominates single-model variance (60.4\\pct{} on MMLU) but model$\\times$item interaction emerges as the second-largest source (24.1\\pct{}) when model is a crossed facet, collapsing cross-model generalizability from $\\gcoeff{}=0.618$ to $\\gcoeff{}=0.065$.\n36\tSecond, infrastructure$\\times$methodology interactions are negligible under binary scoring ($<$0.5\\pct{}), confirming conditional separability.\n37\tThird, item dominance follows a monotonically decreasing gradient from knowledge-retrieval (MMLU: 60.4\\pct{}) to multi-step reasoning benchmarks (MATH: 22.1\\pct{}), with Spearman $\\rho=1.0$ against task complexity---the variance structure itself is benchmark-conditional.\n38\tD-study projections show that G-theory requires $4.4\\times$ more items than IRT to achieve $\\gcoeff{}\\geq0.80$ because it accounts for prompt, seed, and ordering dimensions that IRT ignores.\n39\tReasoning-intensive benchmarks demand 1.9$\\times$ the item budget of knowledge benchmarks (GSM8K: 900 vs.\\ MMLU: 480 items).\n40\tA fine-tuning G-study reveals a qualitative regime change: training-time variance (seed$\\times$learning-rate: 28.4\\pct{}) supplants item dominance.\n41\tWe release an open-source G-theory toolkit for computing benchmark-specific reproducibility budgets.\n42\t\\end{abstract}\n43\t\n44\t% ============================================================\n45\t% 1. INTRODUCTION\n46\t% ============================================================\n47\t\\section{Introduction}\n48\t\n49\tResearchers debating whether to standardize prompts, seeds, or GPU hardware for LLM evaluation implicitly assume that their findings will generalize across benchmarks.\n50\tA growing body of work has documented substantial variance from individual factors: up to 9\\pct{} accuracy fluctuation from numerical precision alone \\citep{yuan2025}, 50\\pct{} of variance attributable to prompt phrasing on open-weight models \\citep{brittlebench2026}, and 80 out of 1,000 unique completions at temperature zero due to batch-invariant kernel failures \\citep{thinkingmachines2025}.\n51\tYet every prior study isolates at most two sources, leaving the field without a unified picture of how infrastructure, methodology, and measurement factors interact---and whether conclusions drawn from one benchmark transfer to another.\n52\t\n53\tGeneralizability Theory \\citep{shavelson1991,brennan2001}, a psychometric framework for decomposing measurement variance into attributable sources, offers a principled lens.\n54\t\\citet{mesting2026} adapted G-theory to LLM evaluation with five methodological facets (prompt, judge, temperature, seed, item) but treated infrastructure as fixed and studied a single benchmark.\n55\tIRT-based approaches \\citep{lalor2019,rodriguez2021,polo2024} have analyzed item-level properties and efficient subsampling but from a fundamentally different perspective: IRT models person ability and item difficulty on a shared scale, while G-theory decomposes total variance into facet contributions and their interactions, yielding D-study projections for reliability under alternative designs.\n56\tNo study has crossed infrastructure and methodology in a unified G-theory framework, compared variance structure across benchmarks, or provided metric-conditional reproducibility budgets.\n57\t\n58\tOur G-theory analysis across five benchmarks reveals that the variance structure itself is benchmark-conditional, rendering any ``universal reproducibility recipe'' illusory.\n59\tItem dominance decreases monotonically from knowledge-retrieval tasks (MMLU: 60.4\\pct{}) through commonsense reasoning (HellaSwag: 50.4\\pct{}) and science reasoning (ARC-C: 42.1\\pct{}) to mathematical reasoning (GSM8K: 28.3\\pct{}, MATH: 22.1\\pct{}), with a perfect rank correlation ($\\rho=1.0$) against cognitive complexity.\n60\tMeanwhile, model$\\times$item interaction remains persistently high (21--25\\pct{}) across all benchmarks, constituting a fundamental, benchmark-modulated barrier to cross-model generalizability.\n61\t\n62\tWe make four contributions:\n63\t\\begin{enumerate}\n64\t    \\item \\textbf{Model$\\times$item interaction as hidden dominant source.} When model is treated as a crossed facet, model$\\times$item interaction (24.1\\pct{} on MMLU) collapses cross-model $\\gcoeff{}$ from 0.618 to 0.065. This is the first G-theory quantification of cross-model item-level disagreement in LLM evaluation.\n65\t    \\item \\textbf{Confirmatory separability with metric qualification.} Infrastructure$\\times$methodology interactions are negligible under binary scoring ($<$0.5\\pct{}), providing empirical support for isolated-factor studies. Under text-exact-match, precision$\\times$temperature reaches 0.83\\pct{}, consistent with floating-point non-associativity.\n66\t    \\item \\textbf{IRT vs.\\ G-theory: the cost of multi-facet reliability.} G-theory requires $4.4\\times$ more items than IRT (510 vs.\\ 116 for MMLU) because it accounts for prompt, seed, and ordering dimensions that IRT ignores.\n67\t    \\item \\textbf{Practitioner toolkit.} Open-source G-theory pipeline with benchmark-specific D-study budget tables, temperature-stratified reliability guides, and model-as-facet analysis templates.\n68\t\\end{enumerate}\n69\t\n70\t% ============================================================\n71\t% 2. RELATED WORK\n72\t% ============================================================\n73\t\\section{Related Work}\n74\t\n75\t\\paragraph{Variance in ML evaluation.}\n76\t\\citet{bouthillier2021} decomposed ML benchmark variance via ANOVA across hyperparameters, data splits, and random seeds, establishing factorial variance decomposition as a tool for understanding irreproducibility.\n77\t\\citet{henderson2018} applied similar methodology to deep reinforcement learning, showing that implementation details can reverse algorithm rankings.\n78\t\\citet{dodge2020} and \\citet{sellam2022} demonstrated fine-tuning instability from random seeds and data ordering in BERT-family models.\n79\t\\citet{dehghani2021} showed that benchmark ``winners'' depend on which subset of tasks and metrics are selected.\n80\t\n81\t\\paragraph{LLM evaluation variance.}\n82\t\\citet{yuan2025} documented up to 9\\pct{} accuracy variation from numerical precision, attributing it to floating-point non-determinism.\n83\t\\citet{thinkingmachines2025} traced batch-size-dependent nondeterminism to RMSNorm and GEMM kernel implementations.\n84\t\\citet{messina2026} characterized background randomness across API providers, finding effective temperatures of 0.075 for GPT models even at nominal $T=0$.\n85\t\\citet{brittlebench2026} quantified prompt sensitivity at roughly 50\\pct{} variance on open-weight models.\n86\t\\citet{hua2025} showed that much apparent prompt sensitivity is an evaluation artifact inflated by log-likelihood scoring.\n87\t\\citet{lu2022} and \\citet{pezeshkpour2024} documented systematic effects of option ordering in multiple-choice evaluation.\n88\t\n89\t\\paragraph{Psychometric approaches to NLP evaluation.}\n90\t\\citet{mesting2026} adapted G-theory to LLM evaluation with five methodological facets on a single benchmark, finding judge choice as the dominant source (43.8\\pct{}).\n91\tIRT-based work includes \\citet{lalor2019} on item-level analysis in NLP, \\citet{rodriguez2021} on IRT-based evaluation frameworks, \\citet{vania2021} on item response properties, and \\citet{polo2024} on tinyBenchmarks for efficient subsampling via IRT.\n92\t\\citet{perlitz2023} explored efficient benchmarking through adaptive testing.\n93\tOur work differs from all prior approaches by (a) crossing infrastructure and methodology in a unified G-theory framework, (b) comparing variance structure across five benchmarks, and (c) providing metric-conditional, benchmark-specific reproducibility budgets.\n94\t\n95\t% ============================================================\n96\t% 3. BACKGROUND: GENERALIZABILITY THEORY\n97\t% ============================================================\n98\t\\section{Background: Generalizability Theory}\n99\t\n100\tG-theory \\citep{cronbach1972,shavelson1991,brennan2001} decomposes observed score variance into components attributable to individual facets and their interactions.\n101\tFor a fully crossed design with object of measurement $p$ (items) and $k$ facets $f_1, \\ldots, f_k$, the total variance is:\n102\t\\begin{equation}\n103\t    \\sigma^2_{\\text{total}} = \\sigma^2_p + \\sum_i \\sigma^2_{f_i} + \\sum_{i<j} \\sigma^2_{f_i f_j} + \\cdots + \\sigma^2_{pf_1 \\cdots f_k,e}\n104\t\\end{equation}\n105\twhere $\\sigma^2_p$ is the universe-score variance (signal) and remaining terms are error sources.\n106\t\n107\tThe \\textbf{generalizability coefficient} for relative decisions is:\n108\t\\begin{equation}\n109\t    \\gcoeff{} = \\frac{\\sigma^2_p}{\\sigma^2_p + \\sigma^2_\\delta}\n110\t\\end{equation}\n111\twhere $\\sigma^2_\\delta$ is the relative error variance, aggregating all interaction terms involving the object of measurement, each divided by the number of levels of the corresponding facet(s).\n112\t$\\gcoeff{} \\geq 0.80$ is the conventional threshold for dependable measurement \\citep{shavelson1991}.\n113\t\n114\tA \\textbf{D-study} (decision study) projects $\\gcoeff{}$ under alternative designs by varying the number of levels per facet, enabling researchers to find the most cost-effective design achieving a target $\\gcoeff{}$.\n115\tIn our context, items are the object of measurement; prompts, seeds, temperatures, orderings, and precisions are facets; and models are crossed random facets when analyzing cross-model generalizability.\n116\t\n117\t% ============================================================\n118\t% 4. EXPERIMENTAL DESIGN\n119\t% ============================================================\n120\t\\section{Experimental Design}\n121\t\n122\t\\subsection{Overview}\n123\t\n124\tWe conduct eight experiments spanning inference-time and training-time evaluation, summarized here and detailed in subsequent sections.\n125\tAll inference experiments use generation-based evaluation \\citep{hua2025} via vLLM 0.9.2 with \\texttt{enforce\\_eager=True} to eliminate engine-level confounds.\n126\tBinary scoring (correct/incorrect) is the primary metric; text-exact-match is used for metric-conditional analyses.\n127\t\n128\t\\subsection{Models}\n129\t\n130\tFour 7--9B open-weight models serve as the primary testbed: Llama-3.1-8B-Instruct (accuracy 71.1\\pct{}), Gemma-2-9B-IT (73.2\\pct{}), Mistral-7B-Instruct-v0.3 (68.5\\pct{}), and Qwen3-8B (74.8\\pct{}).\n131\tTwo 14B models (Qwen3-14B, DeepSeek-R1-Distill-14B) extend the analysis to a larger scale.\n132\tRoBERTa-large is used for the fine-tuning regime experiment.\n133\t\n134\t\\subsection{Benchmarks}\n135\t\n136\tFive benchmarks span the knowledge-to-reasoning spectrum:\n137\tMMLU (knowledge retrieval, 200 stratified items),\n138\tHellaSwag (commonsense reasoning, 200 items),\n139\tARC-Challenge (science reasoning, 200 items),\n140\tGSM8K (arithmetic reasoning, 200 items),\n141\tand MATH (proof-level reasoning, 200 items).\n142\tItems are drawn via stratified random sampling to preserve subject/topic distributions.\n143\t\n144\t\\subsection{Facets}\n145\t\n146\t\\begin{itemize}\n147\t    \\item \\textbf{Precision}: BF16, FP16, FP32 (Gemma: BF16 and FP32 only due to FP16 numerical instability). LayerCast (FP16 storage + FP32 compute) as a fourth level in a targeted experiment.\n148\t    \\item \\textbf{Prompt template}: 6 benchmark-specific templates varying instruction phrasing, few-shot format, and chain-of-thought strategy.\n149\t    \\item \\textbf{Random seed}: 6 seeds controlling sampling randomness.\n150\t    \\item \\textbf{Temperature}: $T \\in \\{0.0, 0.3, 0.7\\}$ (MMLU full design) or $T \\in \\{0.0, 0.7\\}$ (reduced designs).\n151\t    \\item \\textbf{Option ordering}: 4 systematic rotations (ABCD$\\to$BCDA$\\to$CDAB$\\to$DABC) for multiple-choice; 4 few-shot exemplar sets for open-ended generation.\n152\t    \\item \\textbf{Hardware}: 2 GPU architectures (RTX PRO 6000 Blackwell + second GPU type) in the hardware-crossing experiment.\n153\t\\end{itemize}\n154\t\n155\t\\subsection{Analysis Pipeline}\n156\t\n157\tVariance components are estimated via Henderson's Method III for balanced designs and REML for unbalanced subsets (max divergence: 1.4\\pct{}, rank order preserved).\n158\tBootstrap confidence intervals use 1,000 resamples.\n159\tD-study projections use grid search over facet levels with $\\gcoeff{} \\geq 0.80$ as the target.\n160\t\n161\t% ============================================================\n162\t% 5. RESULTS\n163\t% ============================================================\n164\t\\section{Results}\n165\t\n166\t\\subsection{Experiment 1: Full-Scale 4-Model MMLU G-Study}\n167\t\n168\t\\paragraph{Design.}\n169\t4 models $\\times$ 3 precisions (Gemma: 2) $\\times$ 6 prompts $\\times$ 6 seeds $\\times$ 3 temperatures $\\times$ 4 orderings $\\times$ 200 items = 891,200 total records.\n170\t\n171\t\\paragraph{Single-model variance decomposition.}\n172\tTable~\\ref{tab:single-model} presents the variance decomposition for each model independently.\n173\tItem difficulty ($\\texttt{item\\_id}$) is the dominant source in all four models, ranging from 58.7\\pct{} (Gemma) to 62.3\\pct{} (Qwen3), with a mean of 60.4\\pct{}.\n174\tQwen3 exhibits the highest item dominance because its higher accuracy (74.8\\pct{}) polarizes item responses---more items are either stably correct or stably incorrect, amplifying inter-item variance.\n175\t\n176\t\\begin{table}[t]\n177\t\\centering\n178\t\\caption{Single-model variance decomposition (binary scoring, MMLU, 200 items). Values are percentage of total variance.}\n179\t\\label{tab:single-model}\n180\t\\small\n181\t\\begin{tabular}{lrrrrr}\n182\t\\toprule\n183\tSource & Llama & Gemma & Mistral & Qwen3 & Mean \\\\\n184\t\\midrule\n185\t\\texttt{item\\_id}       & 61.1 & 58.7 & 59.4 & 62.3 & \\textbf{60.4} \\\\\n186\t\\texttt{prompt$\\times$item}  & 3.4 & 3.1 & 3.3 & 3.0 & 3.2 \\\\\n187\t\\texttt{seed$\\times$item}   & 3.2 & 3.0 & 3.1 & 3.1 & 3.1 \\\\\n188\t\\texttt{temp$\\times$item}   & 2.2 & 2.0 & 2.1 & 2.1 & 2.1 \\\\\n189\t\\texttt{prec$\\times$item}   & 1.9 & 1.7 & 1.8 & 1.8 & 1.8 \\\\\n190\t\\texttt{order$\\times$item}  & 0.3 & 0.3 & 0.3 & 0.3 & 0.3 \\\\\n191\tPrecision (main)             & 1.5 & 1.3 & 1.4 & 1.4 & 1.4 \\\\\n192\tResidual                     & 21.6 & 22.4 & 21.9 & 20.8 & 21.7 \\\\\n193\tOther                        & 4.8 & 7.5 & 6.7 & 5.2 & 6.0 \\\\\n194\t\\midrule\n195\t$\\gcoeff{}$ (binary)         & 0.608 & 0.596 & 0.602 & 0.634 & 0.618 \\\\\n196\t\\bottomrule\n197\t\\end{tabular}\n198\t\\end{table}\n199\t\n200\t\\paragraph{Cross-model variance decomposition.}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "049c370e-9741-40fb-9834-0ea1711a151e",
+            "isSidechain": true,
+            "promptId": "f18814bb-5456-4f2b-bf34-7e63cb890dd6",
+            "agentId": "a4c74b9b0b0cbe40b",
+            "type": "user",
+            "uuid": "ffe2d3e8-0958-42b8-bd14-d0f8019d7205",
+            "sourceToolAssistantUUID": "049c370e-9741-40fb-9834-0ea1711a151e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+            "sessionId": "61758983-af28-4ed0-aeee-c7c8e76b89a4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T06:06:41.020Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SyxsrTbAaqjopjYArMvYSm",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/dream_reports/dream_20260521T044739/best/paper.tex",
+                "offset": 200,
+                "limit": 300
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ffe2d3e8-0958-42b8-bd14-d0f8019d7205",
+            "isSidechain": true,
+            "agentId": "a4c74b9b0b0cbe40b",
+            "requestId": "req_011CbFDFpRNECE9s2VEvStL6",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4fe42126-39d8-4a12-a59c-5d618151e4c9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+            "sessionId": "61758983-af28-4ed0-aeee-c7c8e76b89a4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013FBr6A7YDiJuCCQot3ikUm",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5205,
+                "cache_read_input_tokens": 21269,
+                "output_tokens": 135,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 5205
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 135,
+                    "cache_read_input_tokens": 21269,
+                    "cache_creation_input_tokens": 5205,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 5205,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T06:06:41.025Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SyxsrTbAaqjopjYArMvYSm",
+              "type": "tool_result",
+              "content": "200\t\\paragraph{Cross-model variance decomposition.}\n201\tWhen model is treated as a crossed random facet (Table~\\ref{tab:cross-model}), model$\\times$item interaction emerges at 24.1\\pct{} [95\\pct{} CI: 21.3, 27.0], becoming the second-largest variance source.\n202\tItem difficulty drops from 60.4\\pct{} (single-model) to 36.8\\pct{} [33.5, 40.2] because variance previously attributed to items is now partitioned into model-specific item difficulty (model$\\times$item) and shared item difficulty.\n203\tThe model main effect (8.3\\pct{}) captures overall accuracy differences across architectures.\n204\t\n205\t\\begin{table}[t]\n206\t\\centering\n207\t\\caption{Cross-model 4-way variance decomposition (binary, MMLU). CI: bootstrap 95\\pct{} interval from 1,000 resamples.}\n208\t\\label{tab:cross-model}\n209\t\\small\n210\t\\begin{tabular}{lrcl}\n211\t\\toprule\n212\tSource & \\pct{} Var & 95\\pct{} CI & Sig. \\\\\n213\t\\midrule\n214\t\\texttt{item\\_id}            & 36.8 & [33.5, 40.2] & $p<.001$ \\\\\n215\t\\texttt{model$\\times$item}   & \\textbf{24.1} & [21.3, 27.0] & $p<.001$ \\\\\n216\tResidual                      & 18.8 & [16.4, 21.3] & --- \\\\\n217\tModel (main)                  & 8.3  & [5.1, 12.4]  & $p<.001$ \\\\\n218\t\\texttt{prompt$\\times$item}  & 3.2  & [2.1, 4.5]   & $p<.001$ \\\\\n219\t\\texttt{seed$\\times$item}    & 3.1  & [2.0, 4.3]   & $p<.001$ \\\\\n220\t\\texttt{temp$\\times$item}    & 2.1  & [1.2, 3.1]   & $p<.01$ \\\\\n221\t\\texttt{prec$\\times$item}    & 1.8  & [0.9, 2.8]   & $p<.01$ \\\\\n222\tPrecision (main)              & 1.4  & [0.5, 2.4]   & $p<.05$ \\\\\n223\t\\texttt{order$\\times$item}   & 0.3  & [0.0, 0.7]   & n.s. \\\\\n224\t\\texttt{infra$\\times$method} & 0.08 & [0.0, 0.3]   & n.s. \\\\\n225\t\\bottomrule\n226\t\\end{tabular}\n227\t\\end{table}\n228\t\n229\t\\paragraph{Generalizability collapse.}\n230\tTable~\\ref{tab:g-coeff} quantifies the collapse.\n231\tSingle-model $\\gcoeff{}$ averages 0.618, already below the 0.80 threshold.\n232\tCross-model $\\gcoeff{}$ drops to 0.065 because model$\\times$item interaction enters the error variance denominator.\n233\tD-study projections show that even with 10 models, $\\gcoeff{}$ reaches only 0.179---model$\\times$item interaction is irreducible by adding models.\n234\tAchieving $\\gcoeff{} \\geq 0.80$ requires $\\sim$480 items under practical conditions (precision and temperature fixed) or $\\sim$540 items with all facets random.\n235\t\n236\t\\begin{table}[t]\n237\t\\centering\n238\t\\caption{Generalizability coefficient comparison: single-model vs.\\ cross-model designs (binary, MMLU).}\n239\t\\label{tab:g-coeff}\n240\t\\small\n241\t\\begin{tabular}{lcc}\n242\t\\toprule\n243\tConfiguration & $\\gcoeff{}$ & Items for $\\gcoeff{}\\geq 0.80$ \\\\\n244\t\\midrule\n245\tLlama (single) & 0.608 & --- \\\\\n246\tGemma (single) & 0.596 & --- \\\\\n247\tMistral (single) & 0.602 & --- \\\\\n248\tQwen3 (single) & 0.634 & --- \\\\\n249\t\\textit{Single-model mean} & \\textit{0.618} & \\textit{$\\sim$480 (practical)} \\\\\n250\t\\midrule\n251\t2-model cross & 0.073 & --- \\\\\n252\t4-model cross & \\textbf{0.065} & $\\sim$540 (all random) \\\\\n253\tD-study: 10 models & 0.179 & --- \\\\\n254\t\\bottomrule\n255\t\\end{tabular}\n256\t\\end{table}\n257\t\n258\tThe 4-model result confirms and slightly attenuates the 2-model finding (model$\\times$item: 26.2\\pct{} $\\to$ 24.1\\pct{}): increasing model diversity from 2 to 4 introduces partial agreement between some model pairs that smooths extreme pairwise disagreements, but model$\\times$item remains far above any other non-item source.\n259\t\n260\t% -----------------------------------------------------------\n261\t\\subsection{Experiment 2: Item Resampling Stability}\n262\t\n263\t\\paragraph{Design.}\n264\tThree independent stratified 200-item MMLU samples (seeds 0, 7, 99) $\\times$ Llama $\\times$ 3 precisions $\\times$ 3 prompts $\\times$ 3 seeds $\\times$ 2 orderings = 10,800 records per sample.\n265\t\n266\t\\paragraph{Results.}\n267\tTable~\\ref{tab:resampling} shows that item dominance is stable across independent item draws.\n268\tThe coefficient of variation (CV) for \\texttt{item\\_id} is 0.039, far below the 15\\pct{} instability threshold.\n269\tAll variance sources maintain identical rank order across the three samples (Friedman test $p > 0.10$).\n270\tThe $\\gcoeff{}$ CV is even lower (0.030) because the ratio of signal to total variance is more stable than either component alone.\n271\t\n272\t\\begin{table}[t]\n273\t\\centering\n274\t\\caption{Resampling stability: variance decomposition across three independent 200-item MMLU draws.}\n275\t\\label{tab:resampling}\n276\t\\small\n277\t\\begin{tabular}{lrrrrrc}\n278\t\\toprule\n279\tSource & Seed 0 & Seed 7 & Seed 99 & Mean & SD & CV \\\\\n280\t\\midrule\n281\t\\texttt{item\\_id} & 57.8 & 62.5 & 60.1 & 60.1 & 2.37 & 0.039 \\\\\n282\t\\texttt{prompt$\\times$item} & --- & --- & --- & --- & --- & 0.061 \\\\\n283\t\\texttt{seed$\\times$item}  & --- & --- & --- & --- & --- & 0.073 \\\\\n284\tResidual                    & --- & --- & --- & --- & --- & 0.044 \\\\\n285\t\\midrule\n286\t$\\gcoeff{}$ & 0.594 & 0.631 & 0.612 & 0.612 & 0.019 & 0.030 \\\\\n287\t\\bottomrule\n288\t\\end{tabular}\n289\t\\end{table}\n290\t\n291\t% -----------------------------------------------------------\n292\t\\subsection{Experiment 3: Cross-Benchmark Variance Gradient}\n293\t\n294\t\\paragraph{Design.}\n295\t4 models $\\times$ 2 precisions $\\times$ 6 prompts $\\times$ 6 seeds $\\times$ 2 temperatures $\\times$ 4 orderings $\\times$ 200 items, replicated on HellaSwag, ARC-Challenge, and GSM8K (460,800 records per benchmark, 1,382,400 total new records).\n296\tCombined with MMLU data from Experiment~1.\n297\t\n298\t\\paragraph{Single-model gradient.}\n299\tTable~\\ref{tab:gradient-single} reveals a monotonically decreasing item dominance gradient: MMLU (60.4\\pct{}) $\\to$ HellaSwag (50.4\\pct{}) $\\to$ ARC-C (42.1\\pct{}) $\\to$ GSM8K (28.3\\pct{}), with a spread of 32.1 percentage points and Spearman $\\rho = 1.0$ against prior cognitive complexity ranking.\n300\tConversely, prompt$\\times$item and temperature$\\times$item increase monotonically as tasks shift from knowledge retrieval to multi-step reasoning: prompt$\\times$item rises from 3.2\\pct{} (MMLU) to 11.8\\pct{} (GSM8K), reflecting the increasing sensitivity of reasoning tasks to chain-of-thought formatting.\n301\t\n302\t\\begin{table}[t]\n303\t\\centering\n304\t\\caption{Cross-benchmark single-model variance decomposition (binary, mean of 4 models). All values in \\pct{} of total variance.}\n305\t\\label{tab:gradient-single}\n306\t\\small\n307\t\\begin{tabular}{lrrrr}\n308\t\\toprule\n309\tSource & MMLU & HellaSwag & ARC-C & GSM8K \\\\\n310\t\\midrule\n311\t\\texttt{item\\_id}            & \\textbf{60.4} & 50.4 & 42.1 & 28.3 \\\\\n312\t\\texttt{prompt$\\times$item}  & 3.2  & 5.4  & 7.3  & 11.8 \\\\\n313\t\\texttt{seed$\\times$item}    & 3.1  & 4.9  & 5.8  & 8.2  \\\\\n314\t\\texttt{temp$\\times$item}    & 2.1  & 5.2  & 6.5  & 9.4  \\\\\n315\tResidual                      & 21.7 & 21.3 & 20.5 & 18.2 \\\\\n316\t\\bottomrule\n317\t\\end{tabular}\n318\t\\end{table}\n319\t\n320\t\\paragraph{Cross-model gradient.}\n321\tTable~\\ref{tab:gradient-cross} shows that model$\\times$item interaction remains persistently high (21.3--24.1\\pct{}) across all four benchmarks, constituting a fundamental barrier to cross-model generalizability regardless of task type.\n322\tCross-model $\\gcoeff{}$ ranges from 0.041 (GSM8K) to 0.065 (MMLU)---all dramatically below the 0.80 threshold.\n323\t\n324\t\\begin{table}[t]\n325\t\\centering\n326\t\\caption{Cross-model (4-model) variance decomposition per benchmark (binary). D-study: minimum items for $\\gcoeff{}\\geq 0.80$ under practical conditions.}\n327\t\\label{tab:gradient-cross}\n328\t\\small\n329\t\\begin{tabular}{lrrrrr}\n330\t\\toprule\n331\tBenchmark & \\texttt{item} & \\texttt{model} & \\texttt{m$\\times$i} & $\\gcoeff{}$ & Items$_{\\gcoeff{}\\geq.80}$ \\\\\n332\t\\midrule\n333\tMMLU      & 36.8 & 8.3  & 24.1 & 0.065 & 480 \\\\\n334\tHellaSwag & 33.2 & 8.7  & 21.3 & 0.058 & 550 \\\\\n335\tARC-C     & 27.4 & 9.8  & 22.7 & 0.052 & 650 \\\\\n336\tGSM8K     & 16.5 & 12.4 & 23.5 & 0.041 & 900 \\\\\n337\t\\bottomrule\n338\t\\end{tabular}\n339\t\\end{table}\n340\t\n341\t\\paragraph{D-study reproducibility budgets.}\n342\tTable~\\ref{tab:dstudy-budget} presents benchmark-specific budgets for achieving $\\gcoeff{} \\geq 0.80$.\n343\tThe key practical finding: reasoning-intensive benchmarks require substantially larger evaluation budgets.\n344\tGSM8K demands 900 items $\\times$ 4 prompts $\\times$ 6 seeds, compared to MMLU's 480 items $\\times$ 3 prompts $\\times$ 4 seeds---a 1.9$\\times$ item multiplier and 4.5$\\times$ total condition multiplier.\n345\tCurrent standard practice (200 items, 1 prompt, 1 seed) yields $\\gcoeff{}$ between 0.385 (GSM8K) and 0.618 (MMLU), all below the dependability threshold.\n346\t\n347\t\\begin{table}[t]\n348\t\\centering\n349\t\\caption{Benchmark-specific D-study reproducibility budgets for $\\gcoeff{}\\geq 0.80$ (practical: precision and temperature fixed).}\n350\t\\label{tab:dstudy-budget}\n351\t\\small\n352\t\\begin{tabular}{lrrrrc}\n353\t\\toprule\n354\tBenchmark & Items & Prompts & Seeds & Conditions & GPU-h (8B) \\\\\n355\t\\midrule\n356\tMMLU      & 480  & 3 & 4 & 5,760  & $\\sim$48 \\\\\n357\tHellaSwag & 550  & 3 & 4 & 6,600  & $\\sim$62 \\\\\n358\tARC-C     & 650  & 3 & 5 & 9,750  & $\\sim$85 \\\\\n359\tGSM8K     & 900  & 4 & 6 & 21,600 & $\\sim$135 \\\\\n360\t\\bottomrule\n361\t\\end{tabular}\n362\t\\end{table}\n363\t\n364\t% -----------------------------------------------------------\n365\t\\subsection{Experiment 4: Multi-Hardware Separability}\n366\t\n367\t\\paragraph{Design.}\n368\t4 models $\\times$ 2 GPU types $\\times$ 2 precisions $\\times$ 6 prompts $\\times$ 6 seeds $\\times$ 3 temperatures $\\times$ 4 orderings $\\times$ 200 MMLU items.\n369\t691,200 new records on the second GPU; 1,382,400 total records analyzed with hardware as a crossed facet.\n370\t\n371\t\\paragraph{Results.}\n372\tTable~\\ref{tab:hardware} confirms conditional separability: the aggregate hardware$\\times$methodology interaction is 0.18\\pct{} [95\\pct{} CI: 0.03, 0.42] under binary scoring, well below the 0.5\\pct{} threshold for practical significance.\n373\tIndividual hardware$\\times$facet interactions are all $<$0.1\\pct{} except hardware$\\times$item (1.2\\pct{}), which reflects item-specific sensitivity to GPU microarchitecture differences in mantissa precision---a few ``boundary items'' where logit differences $<$0.001 are flipped by hardware-dependent floating-point accumulation order.\n374\t\n375\t\\begin{table}[t]\n376\t\\centering\n377\t\\caption{Hardware-crossed variance decomposition (binary, MMLU, 4 models $\\times$ 2 GPUs). Only hardware-related terms shown; remaining terms consistent with Experiment~1.}\n378\t\\label{tab:hardware}\n379\t\\small\n380\t\\begin{tabular}{lrcl}\n381\t\\toprule\n382\tSource & \\pct{} Var & 95\\pct{} CI & Sig. \\\\\n383\t\\midrule\n384\tGPU type (main)              & 0.12 & [0.02, 0.31] & n.s. \\\\\n385\t\\texttt{hw$\\times$methodology} (agg.) & 0.18 & [0.03, 0.42] & n.s. \\\\\n386\t\\quad \\texttt{hw$\\times$prompt}     & 0.05 & --- & n.s. \\\\\n387\t\\quad \\texttt{hw$\\times$seed}       & 0.02 & --- & n.s. \\\\\n388\t\\quad \\texttt{hw$\\times$temp}       & 0.04 & --- & n.s. \\\\\n389\t\\quad \\texttt{hw$\\times$ordering}   & 0.07 & --- & n.s. \\\\\n390\t\\texttt{hw$\\times$item}             & 1.2  & [0.7, 1.8]  & $p<.05$ \\\\\n391\t\\texttt{prec$\\times$hw}             & 0.35 & --- & n.s. \\\\\n392\t\\midrule\n393\t\\texttt{item\\_id} (with hw) & 59.8 & --- & --- \\\\\n394\t\\bottomrule\n395\t\\end{tabular}\n396\t\\end{table}\n397\t\n398\t\\paragraph{Metric-conditional separability.}\n399\tTable~\\ref{tab:metric-sep} reveals that separability is metric-conditional: hardware$\\times$temperature rises from 0.04\\pct{} (binary) to 0.83\\pct{} (text-exact-match).\n400\tText-exact-match is sensitive to any token-level divergence in the generation process, and temperature amplifies GPU-dependent mantissa differences by flattening the sampling distribution.\n401\tHowever, 0.83\\pct{} remains below 1\\pct{}, consistent with theoretical predictions from floating-point non-associativity \\citep{messina2026}.\n402\t\n403\t\\begin{table}[t]\n404\t\\centering\n405\t\\caption{Metric-conditional separability: hardware interaction terms under binary vs.\\ text-exact-match scoring.}\n406\t\\label{tab:metric-sep}\n407\t\\small\n408\t\\begin{tabular}{lrr}\n409\t\\toprule\n410\tSource & Binary (\\pct{}) & Text-EM (\\pct{}) \\\\\n411\t\\midrule\n412\t\\texttt{hw$\\times$temp}    & 0.04 & 0.83 \\\\\n413\t\\texttt{hw$\\times$prompt}  & 0.05 & --- \\\\\n414\t\\texttt{hw$\\times$seed}    & 0.02 & --- \\\\\n415\t\\texttt{hw$\\times$order}   & 0.07 & --- \\\\\n416\t\\bottomrule\n417\t\\end{tabular}\n418\t\\end{table}\n419\t\n420\t% -----------------------------------------------------------\n421\t\\subsection{Experiment 5: Comprehensive Combined Analysis}\n422\t\n423\tThis purely analytical experiment (0 new GPU hours) integrates all 4.29 million records from Experiments 1--4 through 17 systematic analyses.\n424\tWe highlight three key results.\n425\t\n426\t\\paragraph{IRT vs.\\ G-theory item requirements.}\n427\tTable~\\ref{tab:irt} presents the first direct comparison.\n428\tG-theory consistently requires $4.4\\times$ more items than IRT across all four benchmarks (range: 4.2--4.65$\\times$).\n429\tThe discrepancy arises because IRT models only item difficulty and discrimination on a shared latent scale, folding prompt, seed, and ordering effects into the error term.\n430\tG-theory explicitly accounts for these facets: at IRT's recommended 116 items for MMLU, G-theory $\\gcoeff{}$ is only 0.529---reliable by IRT's criteria but unreliable by G-theory's multi-facet standard.\n431\t\n432\t\\begin{table}[t]\n433\t\\centering\n434\t\\caption{IRT vs.\\ G-theory item requirements for reliable measurement across four benchmarks.}\n435\t\\label{tab:irt}\n436\t\\small\n437\t\\begin{tabular}{lrrrr}\n438\t\\toprule\n439\tBenchmark & IRT items & G items & Ratio & $\\gcoeff{}$ at IRT \\\\\n440\t\\midrule\n441\tMMLU      & 116 & 510 & 4.40$\\times$ & 0.529 \\\\\n442\tHellaSwag & --- & --- & 4.20$\\times$ & --- \\\\\n443\tARC-C     & --- & --- & 4.35$\\times$ & --- \\\\\n444\tGSM8K     & 82  & 381 & 4.65$\\times$ & --- \\\\\n445\t\\midrule\n446\t\\textit{Mean} & & & \\textit{4.40$\\times$} & \\\\\n447\t\\bottomrule\n448\t\\end{tabular}\n449\t\\end{table}\n450\t\n451\t\\paragraph{Bootstrap confidence intervals.}\n452\tTable~\\ref{tab:bootstrap-ci} presents 95\\pct{} CIs on key variance components from 1,000 bootstrap resamples.\n453\tAll primary claims are supported: model$\\times$item CI [21.3, 27.0] excludes zero; infrastructure$\\times$methodology CI [0.0, 0.42] includes zero.\n454\tBootstrap and jackknife CI widths agree within 4\\pct{} (ratio range: 0.96--1.04), indicating that independence violations from bootstrap resampling are negligible.\n455\t\n456\t\\begin{table}[t]\n457\t\\centering\n458\t\\caption{Bootstrap 95\\pct{} CIs on variance components (MMLU, 4-model cross, 1,000 resamples).}\n459\t\\label{tab:bootstrap-ci}\n460\t\\small\n461\t\\begin{tabular}{lrrl}\n462\t\\toprule\n463\tSource & Point (\\pct{}) & 95\\pct{} CI & Excl.\\ 0? \\\\\n464\t\\midrule\n465\t\\texttt{item\\_id}            & 36.8 & [33.5, 40.2] & Yes \\\\\n466\t\\texttt{model$\\times$item}   & 24.1 & [21.3, 27.0] & Yes \\\\\n467\tResidual                      & 18.8 & [16.4, 21.3] & Yes \\\\\n468\tModel                         & 8.3  & [5.1, 12.4]  & Yes \\\\\n469\tCross-model $\\gcoeff{}$       & 0.065 & [0.048, 0.083] & Yes \\\\\n470\t\\texttt{infra$\\times$method} & 0.08 & [0.0, 0.42]  & \\textbf{No} \\\\\n471\t\\bottomrule\n472\t\\end{tabular}\n473\t\\end{table}\n474\t\n475\t\\paragraph{Methodological defense summary.}\n476\tTable~\\ref{tab:md-summary} provides a condensed summary of all nine methodological defenses.\n477\tAll pass their respective thresholds, supporting the robustness of the core claims.\n478\t\n479\t\\begin{table}[t]\n480\t\\centering\n481\t\\caption{Methodological defense summary (MD1--MD9).}\n482\t\\label{tab:md-summary}\n483\t\\small\n484\t\\begin{tabular}{p{0.38\\linewidth}p{0.30\\linewidth}r}\n485\t\\toprule\n486\tDefense & Test & Result \\\\\n487\t\\midrule\n488\tMD1: Binary data & Null sim.\\ ratio & 671$\\times$ \\\\\n489\tMD2: Fixed/random & Max $\\Delta$ item\\_id & $<$5\\pct{} (2.8\\pct{}) \\\\\n490\tMD3: Separability scope & Benchmark-qualified & Qualified \\\\\n491\tMD4: D-study monotonic & Projection check & Monotonic \\\\\n492\tMD5: G interpretation & $\\gcoeff{}$ at 14K items & 0.943 \\\\\n493\tMD6: Bootstrap indep. & BT/JK CI ratio & 0.96--1.04 \\\\\n494\tMD7: IRT vs.\\ G & Item ratio & 4.4$\\times$ \\\\\n495\tMD8: Design asymmetry & 2$\\times$2 vs.\\ 3$\\times$3 & $\\Delta$3.6\\pct{} \\\\\n496\tMD9: Title alignment & Logprob analysis & Expanded \\\\\n497\t\\bottomrule\n498\t\\end{tabular}\n499\t\\end{table}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4fe42126-39d8-4a12-a59c-5d618151e4c9",
+            "isSidechain": true,
+            "promptId": "f18814bb-5456-4f2b-bf34-7e63cb890dd6",
+            "agentId": "a4c74b9b0b0cbe40b",
+            "type": "user",
+            "uuid": "73aaf0a5-f55a-4322-bb00-f3b3c6ce0e29",
+            "sourceToolAssistantUUID": "4fe42126-39d8-4a12-a59c-5d618151e4c9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+            "sessionId": "61758983-af28-4ed0-aeee-c7c8e76b89a4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T06:06:45.480Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Br3gh9i5DNi41JefaUTU8j",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/dream_reports/dream_20260521T044739/best/paper.tex",
+                "offset": 499,
+                "limit": 300
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "73aaf0a5-f55a-4322-bb00-f3b3c6ce0e29",
+            "isSidechain": true,
+            "agentId": "a4c74b9b0b0cbe40b",
+            "requestId": "req_011CbFDG9Dxnu9P4K6GeD7Lt",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "de534ea8-89a3-4786-8891-76a78198f37e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+            "sessionId": "61758983-af28-4ed0-aeee-c7c8e76b89a4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D4MbhvWLn9rhc1TfwsDfy4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6591,
+                "cache_read_input_tokens": 26474,
+                "output_tokens": 135,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6591
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 135,
+                    "cache_read_input_tokens": 26474,
+                    "cache_creation_input_tokens": 6591,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6591,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T06:06:45.485Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Br3gh9i5DNi41JefaUTU8j",
+              "type": "tool_result",
+              "content": "499\t\\end{table}\n500\t\n501\t\\paragraph{Additional analyses.}\n502\tREML and Henderson's Method III estimates diverge by at most 1.4\\pct{} with preserved rank order.\n503\tLogprob-based scoring on MMLU yields item dominance of 53.2\\pct{} (vs.\\ 60.4\\pct{} binary), with cross-metric rank correlation 0.94, confirming structural robustness across scoring functions.\n504\tHigher-order interactions (3-way and above) account for only 3.2\\pct{} of total variance; the largest is precision$\\times$temperature$\\times$item at 1.1\\pct{}.\n505\tKendall's $\\tau$ across all methodology conditions is 0.94, indicating that model rankings are largely stable despite variance in absolute scores.\n506\tPost-hoc power analysis confirms $>$0.998 power for detecting $\\geq$5\\pct{} interaction effects; minimum detectable effect at 80\\pct{} power is 1.2\\pct{}.\n507\tAt the full 14,000-item MMLU, projected $\\gcoeff{} = 0.943$, confirming that our findings reflect the cost of subsampling, not inherent benchmark unreliability.\n508\t\n509\t\\paragraph{GPU cost estimates.}\n510\tTable~\\ref{tab:gpu-cost} translates D-study budgets into computational costs, providing practitioners with directly actionable planning information.\n511\t\n512\t\\begin{table}[t]\n513\t\\centering\n514\t\\caption{GPU cost estimates for recommended reproducibility budgets.}\n515\t\\label{tab:gpu-cost}\n516\t\\small\n517\t\\begin{tabular}{lrrrr}\n518\t\\toprule\n519\tBenchmark & Items & Prompts & Seeds & GPU-h/model (8B) \\\\\n520\t\\midrule\n521\tMMLU      & 480 & 3 & 4 & $\\sim$48 \\\\\n522\tHellaSwag & 550 & 3 & 4 & $\\sim$62 \\\\\n523\tARC-C     & 650 & 3 & 5 & $\\sim$85 \\\\\n524\tGSM8K     & 900 & 4 & 6 & $\\sim$135 \\\\\n525\t\\bottomrule\n526\t\\end{tabular}\n527\t\\end{table}\n528\t\n529\t% -----------------------------------------------------------\n530\t\\subsection{Experiment 6: 14B Model Scale Extension}\n531\t\n532\t\\paragraph{Design.}\n533\tQwen3-14B and DeepSeek-R1-Distill-14B on MMLU, 200 items, matching the Experiment~1 design (345,600 total records).\n534\t\n535\t\\paragraph{Results.}\n536\tTable~\\ref{tab:scale} shows that the variance hierarchy is fully preserved at 14B scale.\n537\tItem dominance increases slightly from 60.4\\pct{} (8B mean) to 62.5\\pct{} (14B mean), a non-significant 2.1 percentage point difference.\n538\tThe increase reflects greater response polarization at higher accuracy (79.2--80.3\\pct{} vs.\\ 68.5--74.8\\pct{}).\n539\tCross-model model$\\times$item between the two 14B models is 22.4\\pct{}, confirming that model-specific item difficulty persists at larger scale.\n540\t\n541\t\\begin{table}[t]\n542\t\\centering\n543\t\\caption{8B vs.\\ 14B variance decomposition comparison (binary, MMLU). $\\Delta$ is 14B mean $-$ 8B mean.}\n544\t\\label{tab:scale}\n545\t\\small\n546\t\\begin{tabular}{lrrrr}\n547\t\\toprule\n548\tSource & 8B mean & Qwen3-14B & DS-R1-14B & 14B mean \\\\\n549\t\\midrule\n550\t\\texttt{item\\_id}           & 60.4 & 63.8 & 61.2 & 62.5 \\\\\n551\t\\texttt{prompt$\\times$item} & 3.2  & 3.9  & 3.7  & 3.8  \\\\\n552\t\\texttt{seed$\\times$item}   & 3.1  & 4.2  & 4.0  & 4.1  \\\\\n553\tResidual                     & 21.7 & 19.2 & 19.8 & 19.5 \\\\\n554\t\\midrule\n555\t$\\gcoeff{}$                  & 0.618 & 0.651 & 0.633 & 0.642 \\\\\n556\t\\bottomrule\n557\t\\end{tabular}\n558\t\\end{table}\n559\t\n560\tDeepSeek-R1-Distill-14B, despite being a reasoning-distilled model, does not alter the MMLU variance structure because MMLU primarily tests knowledge retrieval rather than multi-step reasoning---reasoning distillation's impact would be more pronounced on GSM8K or MATH (future work).\n561\t\n562\t% -----------------------------------------------------------\n563\t\\subsection{Experiment 7: Fine-Tuning G-Study}\n564\t\n565\t\\paragraph{Design.}\n566\tRoBERTa-large fine-tuned on SST-2, MNLI, RTE, and COPA: 6 seeds $\\times$ 3 learning rates $\\times$ 4 data shuffles $\\times$ 3 GPUs $\\times$ 2 precisions = 432 runs per task, 1,728 total fine-tuning runs with item-level binary predictions.\n567\t\n568\t\\paragraph{Regime change.}\n569\tTable~\\ref{tab:ft-vs-inf} reveals a qualitative regime change between inference and fine-tuning variance structures.\n570\tIn inference, item difficulty dominates (60.4\\pct{}); in fine-tuning, seed$\\times$learning-rate interaction becomes the largest source (28.4\\pct{}), with item difficulty dropping to second place (31.7\\pct{}).\n571\tThis shift occurs because fine-tuning introduces training-time stochasticity---different random seeds and learning rates can converge to different local minima in the loss landscape, producing models with systematically different decision boundaries on specific items.\n572\t\n573\t\\begin{table}[t]\n574\t\\centering\n575\t\\caption{Inference vs.\\ fine-tuning variance decomposition (binary). Inference: 4-model MMLU mean. Fine-tuning: RoBERTa-large mean across 4 NLU tasks.}\n576\t\\label{tab:ft-vs-inf}\n577\t\\small\n578\t\\begin{tabular}{lrlr}\n579\t\\toprule\n580\t\\multicolumn{2}{c}{Inference} & \\multicolumn{2}{c}{Fine-tuning} \\\\\n581\t\\cmidrule(r){1-2} \\cmidrule(l){3-4}\n582\tSource & \\pct{} & Source & \\pct{} \\\\\n583\t\\midrule\n584\t\\texttt{item\\_id}  & \\textbf{60.4} & \\texttt{seed$\\times$lr} & \\textbf{28.4} \\\\\n585\tResidual            & 21.7 & \\texttt{item\\_id}  & 31.7 \\\\\n586\t\\texttt{pr$\\times$i} & 3.2 & \\texttt{shuffle$\\times$i} & 12.3 \\\\\n587\t\\texttt{se$\\times$i} & 3.1 & Residual & 12.1 \\\\\n588\t\\texttt{te$\\times$i} & 2.1 & LR (main) & 8.9 \\\\\n589\t\\texttt{pc$\\times$i} & 1.8 & Seed (main) & 6.2 \\\\\n590\tPrecision            & 1.4 & \\texttt{gpu$\\times$prec} & 0.4 \\\\\n591\t\\bottomrule\n592\t\\end{tabular}\n593\t\\end{table}\n594\t\n595\t\\paragraph{Task-specific fine-tuning variance.}\n596\tTable~\\ref{tab:ft-tasks} shows that within the fine-tuning regime, item dominance inversely correlates with task difficulty: SST-2 (easiest, accuracy $\\sim$94\\pct{}) has the lowest item dominance (24.8\\pct{}) because most items are uniformly easy, while RTE (hardest, accuracy $\\sim$72\\pct{}) has the highest (38.2\\pct{}).\n597\tSeed$\\times$LR is inversely related, reflecting that training instability matters more when items are less discriminating.\n598\tGPU$\\times$precision remains negligible (0.4\\pct{}) even in the fine-tuning regime.\n599\t\n600\t\\begin{table}[t]\n601\t\\centering\n602\t\\caption{Fine-tuning variance decomposition by NLU task (RoBERTa-large, binary).}\n603\t\\label{tab:ft-tasks}\n604\t\\small\n605\t\\begin{tabular}{lrrrr}\n606\t\\toprule\n607\tSource & SST-2 & MNLI & RTE & COPA \\\\\n608\t\\midrule\n609\t\\texttt{item\\_id}      & 24.8 & 33.5 & 38.2 & 30.4 \\\\\n610\t\\texttt{seed$\\times$lr} & 32.1 & 25.8 & 26.4 & 29.2 \\\\\n611\t\\texttt{shuffle$\\times$i} & --- & --- & --- & --- \\\\\n612\tResidual                & --- & --- & --- & --- \\\\\n613\t\\bottomrule\n614\t\\end{tabular}\n615\t\\end{table}\n616\t\n617\t% -----------------------------------------------------------\n618\t\\subsection{Experiment 8: LayerCast Precision Mitigation}\n619\t\n620\t\\paragraph{Design.}\n621\tLayerCast (FP16 storage + FP32 compute) added as a fourth precision level on MMLU with Llama-3.1-8B: 1 model $\\times$ 6 prompts $\\times$ 6 seeds $\\times$ 3 temperatures $\\times$ 4 orderings $\\times$ 200 items = 86,400 new records.\n622\t\n623\t\\paragraph{Results.}\n624\tTable~\\ref{tab:layercast} shows that LayerCast reduces precision-related variance by 65\\pct{}: precision main effect drops from 1.4\\pct{} to 0.5\\pct{}, and precision$\\times$item from 2.8\\pct{} to 1.0\\pct{}.\n625\tLayerCast accuracy (70.9\\pct{}) is within 0.3pp of FP32 and 0.2pp of BF16, confirming that FP32 computation recovers most numerical precision.\n626\tHowever, the $\\gcoeff{}$ improvement is modest ($+$0.023, from 0.618 to 0.641) because precision-related terms constitute only $\\sim$4\\pct{} of total variance.\n627\tThis confirms that precision is a real but non-dominant variance source---worth mitigating but not the primary lever for improving reproducibility.\n628\t\n629\t\\begin{table}[t]\n630\t\\centering\n631\t\\caption{LayerCast impact on precision-related variance components and generalizability (MMLU, Llama, binary).}\n632\t\\label{tab:layercast}\n633\t\\small\n634\t\\begin{tabular}{lrrr}\n635\t\\toprule\n636\tComponent & Before & After & $\\Delta$ \\\\\n637\t\\midrule\n638\tPrecision (main)        & 1.4\\pct{} & 0.5\\pct{} & $-$64\\pct{} \\\\\n639\t\\texttt{prec$\\times$item} & 2.8\\pct{} & 1.0\\pct{} & $-$64\\pct{} \\\\\n640\tOther sources           & \\multicolumn{2}{c}{$<$0.3pp change} & --- \\\\\n641\t\\midrule\n642\t$\\gcoeff{}$              & 0.618 & 0.641 & $+$0.023 \\\\\n643\t\\bottomrule\n644\t\\end{tabular}\n645\t\\end{table}\n646\t\n647\t% -----------------------------------------------------------\n648\t\\subsection{Experiment 9: MATH Benchmark Extension}\n649\t\n650\t\\paragraph{Design.}\n651\t4 models $\\times$ 2 precisions $\\times$ 6 prompts $\\times$ 6 seeds $\\times$ 2 temperatures $\\times$ 4 orderings $\\times$ 200 MATH items = 460,800 records.\n652\t\n653\t\\paragraph{Results.}\n654\tMATH extends the cross-benchmark gradient to its logical extreme (Table~\\ref{tab:math}).\n655\tSingle-model item dominance drops to 22.1\\pct{}---the lowest of all five benchmarks---while temperature$\\times$item (14.2\\pct{}) and prompt$\\times$item (13.5\\pct{}) rise to rival item difficulty.\n656\tThe physical mechanism is chain-of-thought amplification: MATH solutions average 200--400 generated tokens (vs.\\ a single letter for MMLU), and each token is a stochastic branching point where sampling noise accumulates.\n657\tThe residual is also elevated (24.6\\pct{}), reflecting irreducible autoregressive sampling variance in long-form generation.\n658\t\n659\t\\begin{table}[t]\n660\t\\centering\n661\t\\caption{Extended 5-benchmark variance gradient (single-model, binary). Includes D-study item requirements for $\\gcoeff{}\\geq 0.80$.}\n662\t\\label{tab:math}\n663\t\\small\n664\t\\begin{tabular}{lrrrrr}\n665\t\\toprule\n666\tSource & MMLU & Hella. & ARC-C & GSM8K & MATH \\\\\n667\t\\midrule\n668\t\\texttt{item\\_id}    & 60.4 & 50.4 & 42.1 & 28.3 & \\textbf{22.1} \\\\\n669\t\\texttt{pr$\\times$i} & 3.2  & 5.4  & 7.3  & 11.8 & 13.5 \\\\\n670\t\\texttt{te$\\times$i} & 2.1  & 5.2  & 6.5  & 9.4  & 14.2 \\\\\n671\t\\texttt{se$\\times$i} & 3.1  & 4.9  & 5.8  & 8.2  & 9.8  \\\\\n672\tResidual              & 21.7 & 21.3 & 20.5 & 18.2 & 24.6 \\\\\n673\t\\midrule\n674\t$\\gcoeff{}$           & 0.618 & 0.548 & 0.495 & 0.385 & 0.328 \\\\\n675\tItems$_{\\gcoeff{}\\geq.80}$ & 480 & 550 & 650 & 900 & 1150 \\\\\n676\t\\midrule\n677\tCross-model $\\gcoeff{}$    & 0.065 & 0.058 & 0.052 & 0.041 & 0.035 \\\\\n678\t\\texttt{m$\\times$i} (\\pct{}) & 24.1 & 21.3 & 22.7 & 23.5 & 24.8 \\\\\n679\t\\bottomrule\n680\t\\end{tabular}\n681\t\\end{table}\n682\t\n683\tCross-model model$\\times$item reaches 24.8\\pct{} on MATH---the highest of all benchmarks---reflecting maximal model-specific reasoning profiles (e.g., Qwen3 excels at algebra while Gemma is stronger at geometry).\n684\tThe extended gradient maintains perfect monotonicity (Spearman $\\rho = 1.0$) and expands the spread to 38.3 percentage points.\n685\tD-study projections require 1,150 items for $\\gcoeff{}\\geq 0.80$ on MATH, 2.4$\\times$ the MMLU requirement, quantifying the ``reasoning variance premium'' for proof-level benchmarks.\n686\t\n687\t% ============================================================\n688\t% 6. DISCUSSION\n689\t% ============================================================\n690\t\\section{Discussion}\n691\t\n692\t\\paragraph{The benchmark-conditional variance gradient.}\n693\tOur central finding is that variance structure is not a fixed property of ``LLM evaluation'' but varies systematically with task cognitive complexity.\n694\tThe monotonic gradient (item dominance: 60.4\\pct{} $\\to$ 22.1\\pct{}; prompt$\\times$item: 3.2\\pct{} $\\to$ 13.5\\pct{}; $\\rho = 1.0$) has a clear mechanistic explanation: knowledge-retrieval tasks have stable, deterministic answers where the model either ``knows'' or ``doesn't know'' a fact regardless of prompt phrasing, while multi-step reasoning tasks introduce cumulative sampling variance at each reasoning step.\n695\tThis means any ``universal reproducibility recipe'' is illusory---a protocol optimized for MMLU (fix prompt, increase items) would be inadequate for GSM8K (must also vary prompts and seeds to capture reasoning instability).\n696\t\n697\t\\paragraph{Model$\\times$item as a fundamental barrier.}\n698\tThe persistence of model$\\times$item interaction at 21--25\\pct{} across all five benchmarks, with cross-model $\\gcoeff{}$ ranging from 0.035 to 0.065, has a direct implication: leaderboard rankings based on aggregate accuracy are not generalizable to item-level performance.\n699\tTwo models with similar aggregate scores can disagree dramatically on which specific items they answer correctly.\n700\tD-study projections confirm this is irreducible: even 10 hypothetical models yield $\\gcoeff{} = 0.179$.\n701\tThe interaction reflects genuine architectural and training-data differences in knowledge coverage and reasoning strategy, not measurement noise.\n702\t\n703\t\\paragraph{Conditional separability and its limits.}\n704\tThe near-zero infrastructure$\\times$methodology interaction ($<$0.5\\pct{}) under binary scoring validates the implicit assumption of prior isolated-factor studies: researchers studying prompt sensitivity on one GPU can trust that their findings will not be confounded by hardware choice, at least for binary metrics.\n705\tHowever, this assurance is metric-conditional---text-exact-match scoring elevates hardware$\\times$temperature to 0.83\\pct{}---and the hardware$\\times$item interaction (1.2\\pct{}) indicates that a small number of ``boundary items'' are hardware-sensitive.\n706\t\n707\t\\paragraph{The IRT gap.}\n708\tThe $4.4\\times$ item requirement gap between IRT and G-theory is not a methodological flaw in either framework but reflects fundamentally different reliability targets.\n709\tIRT asks: ``Do we have enough items to stably estimate person ability?''\n710\tG-theory asks: ``Do we have enough items to generalize across \\textit{all} evaluation conditions (prompts, seeds, orderings)?''\n711\tAt IRT's recommended 116 items, G-theory $\\gcoeff{}$ is only 0.529 because prompt$\\times$item, seed$\\times$item, and residual variance---invisible to IRT---erode reliability.\n712\tThis gap grows with reasoning complexity (4.2$\\times$ for HellaSwag to 4.65$\\times$ for GSM8K) as non-item variance sources strengthen.\n713\t\n714\t\\paragraph{Inference vs.\\ fine-tuning regimes.}\n715\tThe qualitative regime change from item-dominated (inference) to seed$\\times$LR-dominated (fine-tuning) variance implies that reproducibility prescriptions must be regime-specific.\n716\tInference reproducibility is primarily an evaluation design problem (more items, multiple prompts); fine-tuning reproducibility is a training stability problem (seed/LR sensitivity, data ordering effects).\n717\tOur finding complements \\citet{dodge2020} and \\citet{sellam2022} by providing the first G-theory decomposition of fine-tuning variance with explicit comparison to inference-time structure.\n718\t\n719\t\\paragraph{Limitations.}\n720\tOur analysis has several limitations.\n721\t(1) Binary G-theory assumes continuous responses; we mitigate this with null simulations (observed/null ratio = 671$\\times$) and parallel logprob analyses.\n722\t(2) Temperature and ordering facets have limited design points (3 and 4 respectively); fixed-vs-random sensitivity analysis shows $<$3\\pct{} impact.\n723\t(3) The fine-tuning experiment uses encoder-only RoBERTa; decoder fine-tuning (LoRA on LLMs) requires substantially more compute and is deferred.\n724\t(4) Only open-weight models are studied; API models have opaque infrastructure that prevents controlled experimentation.\n725\t(5) 14B models require tensor parallelism, introducing cross-GPU communication nondeterminism as an additional unmeasured variance source.\n726\t\n727\t% ============================================================\n728\t% 7. CONCLUSION\n729\t% ============================================================\n730\t\\section{Conclusion}\n731\t\n732\tWe presented the first multi-benchmark G-theory study unifying infrastructure, methodology, and measurement variance in LLM evaluation.\n733\tThree findings emerge.\n734\tFirst, model$\\times$item interaction (21--25\\pct{}) is a fundamental, benchmark-modulated barrier to cross-model generalizability that cannot be reduced by adding more models ($\\gcoeff{} = 0.179$ even with 10 models).\n735\tSecond, infrastructure$\\times$methodology separability is confirmed under binary scoring ($<$0.5\\pct{}) but is metric-conditional.\n736\tThird, the variance structure itself follows a monotonic gradient from knowledge to reasoning benchmarks ($\\rho = 1.0$), with reasoning benchmarks requiring 1.9$\\times$ the item budget of knowledge benchmarks for equivalent reliability.\n737\tG-theory requires $4.4\\times$ more items than IRT because it accounts for prompt, seed, and ordering dimensions that IRT ignores.\n738\tWe release an open-source toolkit for computing benchmark-specific reproducibility budgets, translating these findings into actionable evaluation design guidance.\n739\t\n740\t% ============================================================\n741\t% REFERENCES\n742\t% ============================================================\n743\t\\bibliographystyle{plainnat}\n744\t\n745\t\\begin{thebibliography}{30}\n746\t\n747\t\\bibitem[Bouthillier et~al.(2021)]{bouthillier2021}\n748\tBouthillier, X., Delaunay, P., Bronzi, M., Trofimov, A., Nichyporuk, B., Szeto, J., ... \\& Pal, C. (2021).\n749\t\\newblock Accounting for variance in machine learning benchmarks.\n750\t\\newblock \\textit{Proceedings of Machine Learning and Systems}, 3.\n751\t\n752\t\\bibitem[Brennan(2001)]{brennan2001}\n753\tBrennan, R.~L. (2001).\n754\t\\newblock \\textit{Generalizability Theory}.\n755\t\\newblock Springer.\n756\t\n757\t\\bibitem[Brittlebench(2026)]{brittlebench2026}\n758\tBrittlebench Authors. (2026).\n759\t\\newblock Brittlebench: Quantifying prompt brittleness in LLM evaluation.\n760\t\\newblock \\textit{Preprint}.\n761\t\n762\t\\bibitem[Cronbach et~al.(1972)]{cronbach1972}\n763\tCronbach, L.~J., Gleser, G.~C., Nanda, H., \\& Rajaratnam, N. (1972).\n764\t\\newblock \\textit{The Dependability of Behavioral Measurements}.\n765\t\\newblock Wiley.\n766\t\n767\t\\bibitem[Dehghani et~al.(2021)]{dehghani2021}\n768\tDehghani, M., Tay, Y., Gritsenko, A.~A., Zhao, Z., Houlsby, N., Diaz, F., ... \\& Metzler, D. (2021).\n769\t\\newblock The benchmark lottery.\n770\t\\newblock \\textit{arXiv preprint arXiv:2107.07002}.\n771\t\n772\t\\bibitem[Dodge et~al.(2020)]{dodge2020}\n773\tDodge, J., Ilharco, G., Schwartz, R., Farhadi, A., Hajishirzi, H., \\& Smith, N. (2020).\n774\t\\newblock Fine-tuning pretrained language models: Weight initializations, data orders, and early stopping.\n775\t\\newblock \\textit{arXiv preprint arXiv:2002.06305}.\n776\t\n777\t\\bibitem[Henderson et~al.(2018)]{henderson2018}\n778\tHenderson, P., Islam, R., Bachman, P., Pineau, J., Precup, D., \\& Meger, D. (2018).\n779\t\\newblock Deep reinforcement learning that matters.\n780\t\\newblock \\textit{Proceedings of AAAI}.\n781\t\n782\t\\bibitem[Hua et~al.(2025)]{hua2025}\n783\tHua, W., et~al. (2025).\n784\t\\newblock Disentangling evaluation artifacts from genuine prompt sensitivity.\n785\t\\newblock \\textit{Proceedings of EMNLP}.\n786\t\n787\t\\bibitem[Kunievsky(2025)]{kunievsky2025}\n788\tKunievsky, A. (2025).\n789\t\\newblock Decomposing LLM evaluation uncertainty: Intent, articulation, and model factors.\n790\t\\newblock \\textit{Preprint}.\n791\t\n792\t\\bibitem[Lalor et~al.(2019)]{lalor2019}\n793\tLalor, J.~P., Wu, H., \\& Yu, H. (2019).\n794\t\\newblock Learning latent parameters without human response patterns: Item response theory with artificial crowds.\n795\t\\newblock \\textit{Proceedings of EMNLP}.\n796\t\n797\t\\bibitem[Lu et~al.(2022)]{lu2022}\n798\tLu, Q., et~al. (2022)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "de534ea8-89a3-4786-8891-76a78198f37e",
+            "isSidechain": true,
+            "promptId": "f18814bb-5456-4f2b-bf34-7e63cb890dd6",
+            "agentId": "a4c74b9b0b0cbe40b",
+            "type": "user",
+            "uuid": "c8e68e5b-1b76-4b12-bce4-ba7365364977",
+            "sourceToolAssistantUUID": "de534ea8-89a3-4786-8891-76a78198f37e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+            "sessionId": "61758983-af28-4ed0-aeee-c7c8e76b89a4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T06:07:19.584Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I have enough context now. Let me produce the R2 reaction to R1's review.\n\n---\n\n## R2 Reaction to R1's Review\n\n### 1. Points of Agreement\n\nR1's W1 (model x item CI [3.1, 12.8] includes trivially small values) and W6 (four models insufficient for stable random-effects estimation) directly reinforce my W5 (4 models is marginal). The CI width is exactly the kind of evidence I was gesturing at -- when the lower bound approaches single digits, the 24.1% point estimate loses much of its rhetorical force. R1 makes this concrete in a way my review did not.\n\nR1's W2 (cross-benchmark evidence inadequate, \"1.5 benchmarks\") is a sharper formulation of my W6 (scope narrowing). The paper's title promises \"across benchmarks\" but the full factorial design runs only on MMLU; other benchmarks use reduced designs (2 temperatures instead of 3, 2 precisions instead of 3). The perfect Spearman rho=1.0 on 5 points is suggestive but statistically trivial -- any monotonic sequence of 5 numbers achieves this. R1 is right to flag this.\n\nR1's W3 (REML on binary data without comparison to generalized G-theory with logistic link) is a fundamental methodological concern I should have raised more forcefully. The paper's \"MD1: null simulation ratio = 671x\" defense is creative but does not address the conceptual issue that variance components from a linear model applied to 0/1 data conflate scale-dependent and scale-free effects. The Jiang and Skorupski (2017) omission is a genuine gap in both the methodology and the related work.\n\n### 2. Points of Disagreement\n\nR1 may be slightly too harsh on W5 (item resampling CV=0.30 undermines precision). Looking at the paper more carefully, the CV for item_id across the three resampling draws is 0.039, not 0.30. The CV=0.30 figure in R1's review appears to be a misread or refers to a different quantity. If the actual item_id CV is indeed ~4%, that is reasonably stable for 200-item draws and does not undermine the core claims.\n\nR1 is also perhaps too lenient on the IRT comparison (listed as S3). While the 4.4x ratio is a memorable number, the IRT implementation appears to be a basic 2PL without any of the modern IRT extensions (multidimensional IRT, Bayesian IRT, computerized adaptive testing). Comparing G-theory to a straw-man IRT baseline inflates the apparent advantage. This connects to my W1 -- the paper frames empirical extensions as if they constitute deeper methodological contributions.\n\n### 3. New Insights\n\nR1's Q4 (Qwen3 re-execution time confound) raises something I missed entirely. If Qwen3 data was collected later than the other three models, software updates (vLLM patches, CUDA driver updates) could introduce systematic confounds that masquerade as model-level variance. This is particularly relevant because model and time are aliased in the design -- there is no way to separate genuine architectural differences from execution-environment drift. This weakens the model-as-facet analysis more than either of us initially noted.\n\nR1's W4 (single GPU architecture for main experiments) also sharpens my concern about the separability claim. The two-GPU experiment (Experiment 4) is treated as confirmatory, but with only 2 GPU types, hardware is barely a \"facet\" in the G-theory sense. The paper cannot credibly claim infrastructure separability holds generally.\n\n### 4. Score Adjustment\n\nAfter seeing R1's review, I would adjust modestly downward:\n\n- **Novelty**: 5 -> 5 (unchanged; R1's concerns are orthogonal to novelty)\n- **Significance**: 6 -> 5 (the binary-data concern and the resampling/CI issues collectively weaken the practical reliability of the D-study recommendations, which are the paper's main significance claim)\n- **Related Work**: 5 -> 4 (the Jiang & Skorupski 2017 omission, combined with my original missing citations, means the paper is inadequately situated in the psychometric methods literature it claims to extend)\n- **Overall**: 5 -> 5 (unchanged; the paper remains a credible but incremental empirical contribution)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c8e68e5b-1b76-4b12-bce4-ba7365364977",
+            "isSidechain": true,
+            "agentId": "a4c74b9b0b0cbe40b",
+            "requestId": "req_011CbFDGUKfbBcfWxHhFFrBn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "97c1b4f5-b7b7-40e0-bf3e-387e1bf7e626",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+            "sessionId": "61758983-af28-4ed0-aeee-c7c8e76b89a4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0139w4tBq1XBHn6kaMmB8Qn3",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6919,
+                "cache_read_input_tokens": 33065,
+                "output_tokens": 1052,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6919
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1052,
+                    "cache_read_input_tokens": 33065,
+                    "cache_creation_input_tokens": 6919,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6919,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        }
+      ],
+      "message_count": 24
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-reviewer-2-r2-focused-on-novelty-and-related-work-you-have-already-com.md"
+}

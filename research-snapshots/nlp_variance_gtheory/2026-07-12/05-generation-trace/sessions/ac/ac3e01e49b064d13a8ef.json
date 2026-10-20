@@ -1,0 +1,1108 @@
+{
+  "schema_version": "1.0",
+  "id": "ac3e01e49b064d13a8ef",
+  "project": "nlp_variance_gtheory--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are researching the paper \"Skill-Aware Data Selection and Fine-Tuning for Data-Efficient Reasoning Distillation\" by ",
+  "task_key": "agent-a351cc21b62865b86",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a351cc21b62865b86.jsonl",
+    "occurrence": 1,
+    "bytes": 60552,
+    "sha256": "99af74544a560ac01f4fc98f2b38a67441e39f7d4739294f2f1f843cef0f113d"
+  },
+  "statistics": {
+    "messages": 22,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "user": 1,
+      "record": 2,
+      "assistant": 5,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-29T05:36:50.882Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "You are researching the paper \"Skill-Aware Data Selection and Fine-Tuning for Data-Efficient Reasoning Distillation\" by Lechen Zhang et al., arXiv 2026, at https://arxiv.org/abs/2601.10109\n\nTasks:\n1. Use WebFetch to read the arxiv abstract page for this paper.\n2. Use WebFetch to read the full PDF content at https://arxiv.org/pdf/2601.10109\n3. Use WebSearch for \"Skill-Aware Data Selection Fine-Tuning Reasoning Distillation Lechen Zhang 2026\" to find any additional info.\n\nFor each fetch, extract:\n- Abstract and key claims\n- Problem identification: what gap did they find?\n- Key insight: how do they label skills? How do they prioritize weak skills?\n- Technical method: how does skill decomposition work? What's the data selection strategy?\n- Key results: the +1.6% improvement from 1K out of 100K examples\n- How do they treat skills — flat labels vs dependency structure?\n- Any limitations\n\nReport all findings in detail. This is for a research analysis."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "f933bd5a-1f38-482e-9a55-8990f3e8a283",
+            "agentId": "a351cc21b62865b86",
+            "type": "user",
+            "uuid": "229ee8d7-028a-4fa4-add2-273f466a2d95",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "6388a8b4-70e1-462a-a675-27840ef57338",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-29T05:36:50.884Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "229ee8d7-028a-4fa4-add2-273f466a2d95",
+                "isSidechain": true,
+                "agentId": "a351cc21b62865b86",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": [],
+                  "readdedNames": []
+                },
+                "type": "attachment",
+                "uuid": "e743b1cc-4e2f-4fce-8720-516accbad55c",
+                "timestamp": "2026-05-29T05:36:50.884Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_adversarial",
+                "sessionId": "6388a8b4-70e1-462a-a675-27840ef57338",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-29T05:36:50.884Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "e743b1cc-4e2f-4fce-8720-516accbad55c",
+                "isSidechain": true,
+                "agentId": "a351cc21b62865b86",
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "affac254-6ddf-47d1-96c4-0d61bf32e9f3",
+                "timestamp": "2026-05-29T05:36:50.884Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_adversarial",
+                "sessionId": "6388a8b4-70e1-462a-a675-27840ef57338",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-29T05:36:54.347Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll research this paper thoroughly. Let me start by fetching the arxiv page, the PDF, and running a web search in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "affac254-6ddf-47d1-96c4-0d61bf32e9f3",
+            "isSidechain": true,
+            "agentId": "a351cc21b62865b86",
+            "requestId": "req_011CbWKTWEpTvRRTLHQuJsPb",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "07253312-6208-4051-a48b-02bc74e8ef83",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "6388a8b4-70e1-462a-a675-27840ef57338",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GFWMM8hdew1PnRMc8LzuCG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1610,
+                "cache_read_input_tokens": 7413,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1610,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-29T05:36:54.795Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HUddaAQFfvjwSGSMLtEfiu",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebFetch,WebSearch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "07253312-6208-4051-a48b-02bc74e8ef83",
+            "isSidechain": true,
+            "agentId": "a351cc21b62865b86",
+            "requestId": "req_011CbWKTWEpTvRRTLHQuJsPb",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e2970689-2221-4e0a-9efc-3b2b0634cce9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "6388a8b4-70e1-462a-a675-27840ef57338",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GFWMM8hdew1PnRMc8LzuCG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1610,
+                "cache_read_input_tokens": 7413,
+                "output_tokens": 110,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1610
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 110,
+                    "cache_read_input_tokens": 7413,
+                    "cache_creation_input_tokens": 1610,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1610,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-29T05:36:54.799Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01HUddaAQFfvjwSGSMLtEfiu",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e2970689-2221-4e0a-9efc-3b2b0634cce9",
+            "isSidechain": true,
+            "promptId": "f933bd5a-1f38-482e-9a55-8990f3e8a283",
+            "agentId": "a351cc21b62865b86",
+            "type": "user",
+            "uuid": "86880197-993c-4a98-aa41-accb1dd513c4",
+            "sourceToolAssistantUUID": "e2970689-2221-4e0a-9efc-3b2b0634cce9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "6388a8b4-70e1-462a-a675-27840ef57338",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-29T05:36:57.623Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me fetch the arxiv abstract page, the PDF, and run the web search all in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "86880197-993c-4a98-aa41-accb1dd513c4",
+            "isSidechain": true,
+            "agentId": "a351cc21b62865b86",
+            "requestId": "req_011CbWKToTuvP9eWEguZjpEC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e8be52c5-b081-44ea-a5a3-08f1c32bd542",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "6388a8b4-70e1-462a-a675-27840ef57338",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hn5j4EJfbiBxWGe8GKqvV4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1132,
+                "cache_read_input_tokens": 9023,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1132,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-29T05:37:00.504Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Snnhjx15LvVmwAExTKYkqR",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2601.10109",
+                "prompt": "Extract ALL information from this arxiv paper page. I need:\n1. Full title\n2. All authors\n3. Complete abstract text (every word)\n4. Submission date\n5. Any subject categories\n6. Any comments (e.g., number of pages, figures, tables)\nProvide everything verbatim, do not summarize."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e8be52c5-b081-44ea-a5a3-08f1c32bd542",
+            "isSidechain": true,
+            "agentId": "a351cc21b62865b86",
+            "requestId": "req_011CbWKToTuvP9eWEguZjpEC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3fc87bcf-6593-4be6-a1d1-a656b71a7208",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "6388a8b4-70e1-462a-a675-27840ef57338",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hn5j4EJfbiBxWGe8GKqvV4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1132,
+                "cache_read_input_tokens": 9023,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1132,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-29T05:37:05.882Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Snnhjx15LvVmwAExTKYkqR",
+              "type": "tool_result",
+              "content": "# Paper Information Extract\n\n**1. Full Title:**\n\"Skill-Aware Data Selection and Fine-Tuning for Data-Efficient Reasoning Distillation\"\n\n**2. All Authors:**\n- Lechen Zhang\n- Yunxiang Zhang\n- Wei Hu\n- Lu Wang\n\n**3. Complete Abstract:**\n\"Large reasoning models such as DeepSeek-R1 and their distilled variants achieve strong performance on complex reasoning tasks. Yet, distilling these models often demands large-scale data for supervised fine-tuning (SFT), motivating the pursuit of data-efficient training methods. To address this, we propose a skill-centric distillation framework that efficiently transfers reasoning ability to weaker models with two components: (1) Skill-based data selection, which prioritizes examples targeting the student model's weaker skills, and (2) Skill-aware fine-tuning, which encourages explicit skill decomposition during problem solving. With only 1,000 training examples selected from a 100K teacher-generated corpus, our method surpasses random SFT baselines by +1.6% on Qwen3-4B and +1.4% on Qwen3-8B across five mathematical reasoning benchmarks. Further analysis confirms that these gains concentrate on skills emphasized during training, highlighting the effectiveness of skill-centric training for efficient reasoning distillation.\"\n\n**4. Submission Date:**\nJanuary 15, 2026\n\n**5. Subject Categories:**\nComputation and Language (cs.CL)\n\n**6. Comments:**\nNo page count, figure count, or table information provided on the page."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3fc87bcf-6593-4be6-a1d1-a656b71a7208",
+            "isSidechain": true,
+            "promptId": "f933bd5a-1f38-482e-9a55-8990f3e8a283",
+            "agentId": "a351cc21b62865b86",
+            "type": "user",
+            "uuid": "bd227c7c-aa78-4c06-b19a-9fde162bc8d9",
+            "sourceToolAssistantUUID": "3fc87bcf-6593-4be6-a1d1-a656b71a7208",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "6388a8b4-70e1-462a-a675-27840ef57338",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-29T05:37:06.422Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GnVa83DLtk21Wv6XzDNdeR",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/pdf/2601.10109",
+                "prompt": "Extract the COMPLETE content of this paper in full detail. I need:\n1. Full abstract\n2. Introduction - what is the problem? What gap did they find?\n3. Related work section\n4. Method section - FULL details on:\n   - How they decompose problems into skills\n   - How they label skills\n   - How they identify weak skills\n   - The data selection strategy\n   - Any skill dependency structure or hierarchy\n   - The fine-tuning procedure\n5. Experiments section - ALL results, especially:\n   - The +1.6% improvement from 1K out of 100K examples\n   - Baselines compared\n   - Datasets used\n   - Ablation studies\n6. Analysis and discussion\n7. Limitations section\n8. How they treat skills - flat labels vs dependency structure?\n9. Any figures or tables descriptions\n\nBe as detailed and thorough as possible. Extract every technical detail."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bd227c7c-aa78-4c06-b19a-9fde162bc8d9",
+            "isSidechain": true,
+            "agentId": "a351cc21b62865b86",
+            "requestId": "req_011CbWKToTuvP9eWEguZjpEC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3569d5cd-e560-42be-9815-c10fdc91062f",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "6388a8b4-70e1-462a-a675-27840ef57338",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hn5j4EJfbiBxWGe8GKqvV4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1132,
+                "cache_read_input_tokens": 9023,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1132,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-29T05:37:07.216Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01W6uXqSwznG3vVisSUvENwg",
+              "name": "WebSearch",
+              "input": {
+                "query": "Skill-Aware Data Selection Fine-Tuning Reasoning Distillation Lechen Zhang 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3569d5cd-e560-42be-9815-c10fdc91062f",
+            "isSidechain": true,
+            "agentId": "a351cc21b62865b86",
+            "requestId": "req_011CbWKToTuvP9eWEguZjpEC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d63f16e7-ff26-478e-a8db-2bb3cd514dd1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "6388a8b4-70e1-462a-a675-27840ef57338",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hn5j4EJfbiBxWGe8GKqvV4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1132,
+                "cache_read_input_tokens": 9023,
+                "output_tokens": 508,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1132
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 508,
+                    "cache_read_input_tokens": 9023,
+                    "cache_creation_input_tokens": 1132,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1132,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-29T05:37:13.880Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01W6uXqSwznG3vVisSUvENwg",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Skill-Aware Data Selection Fine-Tuning Reasoning Distillation Lechen Zhang 2026\"\n\nLinks: [{\"title\":\"[2601.10109] Skill-Aware Data Selection and Fine-Tuning for Data-Efficient Reasoning Distillation\",\"url\":\"https://arxiv.org/abs/2601.10109\"},{\"title\":\"Skill-Aware Data Selection and Fine-Tuning for Data-Efficient Reasoning Distillation\",\"url\":\"https://arxiv.org/html/2601.10109v1\"},{\"title\":\"Skill-Aware Data Selection and Fine-Tuning for Data-Efficient Reasoning Distillation\",\"url\":\"https://arxiv.org/pdf/2601.10109\"},{\"title\":\"(PDF) Skill-Aware Data Selection and Fine-Tuning for Data-Efficient Reasoning Distillation\",\"url\":\"https://www.researchgate.net/publication/399808695_Skill-Aware_Data_Selection_and_Fine-Tuning_for_Data-Efficient_Reasoning_Distillation\"},{\"title\":\"[Literature Review] Skill-Aware Data Selection and Fine-Tuning for Data-Efficient Reasoning Distillation\",\"url\":\"https://www.themoonlight.io/en/review/skill-aware-data-selection-and-fine-tuning-for-data-efficient-reasoning-distillation\"}]\n\nI found the paper you're searching for! Here are the details:\n\n**Title:** Skill-Aware Data Selection and Fine-Tuning for Data-Efficient Reasoning Distillation\n\n**Authors:** Lechen Zhang, Yunxiang Zhang, Wei Hu, and Lu Wang from University of Michigan, Ann Arbor\n\n**Publication Date:** January 15, 2026\n\n**Overview:** The paper addresses the challenge that distilling large reasoning models often demands large-scale data for supervised fine-tuning, proposing a skill-centric distillation framework with two components: skill-based data selection (prioritizing examples targeting the student model's weaker skills) and skill-aware fine-tuning (encouraging explicit skill decomposition during problem solving).\n\n**Key Results:** With only 1,000 training examples selected from a 100K teacher-generated corpus, the method surpasses random SFT baselines by +1.6% on Qwen3-4B and +1.4% on Qwen3-8B across five mathematical reasoning benchmarks.\n\nThe paper is available on arXiv at: https://arxiv.org/abs/2601.10109\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d63f16e7-ff26-478e-a8db-2bb3cd514dd1",
+            "isSidechain": true,
+            "promptId": "f933bd5a-1f38-482e-9a55-8990f3e8a283",
+            "agentId": "a351cc21b62865b86",
+            "type": "user",
+            "uuid": "14ff6342-7b38-48b0-8043-bfc12bf4ff93",
+            "sourceToolAssistantUUID": "d63f16e7-ff26-478e-a8db-2bb3cd514dd1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "6388a8b4-70e1-462a-a675-27840ef57338",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-29T05:37:16.518Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GnVa83DLtk21Wv6XzDNdeR",
+              "type": "tool_result",
+              "content": "# Summary of \"Skill-Aware Data Selection and Fine-Tuning for Data-Efficient Reasoning Distillation\"\n\n## Abstract\nThe paper presents a method for efficient reasoning model distillation through skill-aware data selection. The approach achieves significant performance gains by selectively fine-tuning on a small subset of training data labeled by underlying reasoning skills rather than using full datasets.\n\n## Problem & Gap\nThe research addresses inefficiency in distilling reasoning capabilities from large language models. The authors identify that not all training examples equally contribute to student model improvement, and training data contains diverse reasoning skills that could be leveraged strategically for more efficient distillation.\n\n## Core Method Components\n\n**Skill Decomposition & Labeling:**\nThe framework decomposes reasoning problems into constituent skills required for solving them. Skills are identified through systematic analysis of reasoning trajectories and intermediate steps needed to reach solutions.\n\n**Skill Identification Strategy:**\nThe authors employ a multi-step process:\n- Analyze reasoning traces from teacher models\n- Extract distinct reasoning skills appearing across problems\n- Assign skill labels to training examples based on which skills they require\n\n**Weak Skill Detection:**\nThe approach identifies skills where student models show performance gaps relative to the teacher model, prioritizing data samples containing these skills.\n\n**Data Selection Mechanism:**\nRather than random or full-data approaches, the method selects examples strategically:\n- Identifies which skills the student model struggles with\n- Prioritizes training examples requiring those weak skills\n- Focuses computational resources on high-impact samples\n\n**Fine-Tuning Procedure:**\nThe distillation process involves supervised fine-tuning using the selected skill-aware subset rather than exhaustive training data.\n\n## Key Results\nThe paper demonstrates that training on just 1,000 carefully selected examples (1% of a 100,000-example dataset) achieves improvements of approximately 1.6 percentage points over baseline approaches. This represents substantial data efficiency gains in reasoning task distillation.\n\n## Skill Treatment Structure\nSkills are treated as discrete labels assigned to training examples rather than as a formal dependency hierarchy. However, the method recognizes relationships between skills through analysis of which skills appear together in reasoning processes.\n\n## Experimental Setup\n- **Datasets:** Mathematical reasoning and other complex reasoning benchmarks\n- **Baselines:** Random sampling, full-data training, and other data selection methods\n- **Ablations:** Tests validating the importance of skill identification and weak skill prioritization\n\n## Analysis Findings\nThe approach demonstrates that selective data focusing on weak skills substantially outperforms random sampling. The research provides evidence that \"skill-aware selection targets high-impact training examples more effectively than generic sampling strategies.\"\n\n## Limitations & Considerations\nThe method's effectiveness depends on accurate skill identification and labeling quality. Performance gains are task-dependent and may vary based on skill granularity and dataset characteristics.\n\n[Binary content (application/pdf, 460.5KB) also saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu-idea-adversarial/6388a8b4-70e1-462a-a675-27840ef57338/tool-results/webfetch-1780033026438-gdmtqw.pdf]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3569d5cd-e560-42be-9815-c10fdc91062f",
+            "isSidechain": true,
+            "promptId": "f933bd5a-1f38-482e-9a55-8990f3e8a283",
+            "agentId": "a351cc21b62865b86",
+            "type": "user",
+            "uuid": "7e419e0d-237d-4614-b80a-7e30b393c906",
+            "sourceToolAssistantUUID": "3569d5cd-e560-42be-9815-c10fdc91062f",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "6388a8b4-70e1-462a-a675-27840ef57338",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-29T05:37:20.910Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, I have the abstract and a summary from the PDF. The PDF extraction was somewhat summarized by the processing model, so let me fetch the HTML version for more detailed technical content, and also fetch the Moonlight review for additional insights."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7e419e0d-237d-4614-b80a-7e30b393c906",
+            "isSidechain": true,
+            "agentId": "a351cc21b62865b86",
+            "requestId": "req_011CbWKVQSdDpHvnviKCoEmb",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5429f0a6-fce0-4cdf-be49-791712f0d1c5",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "6388a8b4-70e1-462a-a675-27840ef57338",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CcRngZM7cwUWFkuZKi34CL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 652,
+                "cache_creation_input_tokens": 1636,
+                "cache_read_input_tokens": 10155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1636,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-29T05:37:30.327Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016fEPyptvUvR2zc8Qptw3KM",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2601.10109v1",
+                "prompt": "Extract the COMPLETE technical details from this paper. I need EVERYTHING from:\n\n1. INTRODUCTION: What specific gap/problem motivates this work? What are the key observations?\n\n2. METHOD section - every detail:\n   - How exactly do they define \"skills\"? What taxonomy do they use?\n   - How do they label each training example with skills? Do they use an LLM to tag skills?\n   - How do they measure which skills are \"weak\" for the student model?\n   - The exact data selection algorithm/procedure\n   - How does skill-aware fine-tuning work? Do they modify the training objective?\n   - Do they add skill labels to the prompt or the response during fine-tuning?\n   - Is there any skill dependency structure or is it flat?\n\n3. EXPERIMENTS - every result number:\n   - Which 5 math reasoning benchmarks?\n   - Exact accuracy numbers for all methods\n   - What teacher model generates the data?\n   - Baseline methods compared\n   - Ablation study results\n\n4. ANALYSIS section:\n   - Per-skill breakdown of improvements\n   - Any analysis of skill coverage\n   - How gains concentrate on skills emphasized during training\n\n5. LIMITATIONS - explicit and implicit\n\n6. Any skill taxonomy or list of specific skills they identify\n\nExtract verbatim text where possible, especially for technical definitions and algorithm descriptions."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5429f0a6-fce0-4cdf-be49-791712f0d1c5",
+            "isSidechain": true,
+            "agentId": "a351cc21b62865b86",
+            "requestId": "req_011CbWKVQSdDpHvnviKCoEmb",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "57758fdc-9f9a-43ff-b212-282009b967ab",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "6388a8b4-70e1-462a-a675-27840ef57338",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CcRngZM7cwUWFkuZKi34CL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 652,
+                "cache_creation_input_tokens": 1636,
+                "cache_read_input_tokens": 10155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1636,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-29T05:37:32.655Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B48qXsqyLMyiPVCNRKMJXy",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://www.themoonlight.io/en/review/skill-aware-data-selection-and-fine-tuning-for-data-efficient-reasoning-distillation",
+                "prompt": "Extract ALL information from this review/analysis of the paper. I need:\n1. Any critique or analysis of the method\n2. Any identified strengths and weaknesses\n3. Any additional technical details about the method\n4. Any discussion of limitations\n5. How they characterize the skill treatment (flat vs hierarchical)\nProvide everything in full detail."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "57758fdc-9f9a-43ff-b212-282009b967ab",
+            "isSidechain": true,
+            "agentId": "a351cc21b62865b86",
+            "requestId": "req_011CbWKVQSdDpHvnviKCoEmb",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "18947784-516d-4d3f-8fda-df4ba5d0dca3",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "6388a8b4-70e1-462a-a675-27840ef57338",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CcRngZM7cwUWFkuZKi34CL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 652,
+                "cache_creation_input_tokens": 1636,
+                "cache_read_input_tokens": 10155,
+                "output_tokens": 603,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1636
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 652,
+                    "output_tokens": 603,
+                    "cache_read_input_tokens": 10155,
+                    "cache_creation_input_tokens": 1636,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1636,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-29T05:37:40.104Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B48qXsqyLMyiPVCNRKMJXy",
+              "type": "tool_result",
+              "content": "# Analysis of \"Skill-Aware Data Selection and Fine-Tuning for Data-Efficient Reasoning Distillation\"\n\n## Critiques and Analysis\n\nThe review identifies a fundamental problem with traditional approaches: \"traditional supervised fine-tuning (SFT) often treats all training data uniformly, neglecting the underlying skill structures.\" The paper presents this as a critical oversight in existing reasoning distillation methods.\n\nA striking empirical finding challenges conventional wisdom: \"fine-tuning on the full 100K corpus consistently degrades performance\" relative to baseline models, suggesting that data quantity without strategic selection can harm model performance.\n\n## Identified Strengths\n\n1. **Hierarchical Skill Structure**: The framework explicitly uses a \"hierarchical skill tree to inform data selection and training,\" enabling targeted learning rather than uniform data treatment.\n\n2. **Computational Efficiency**: The skill attribution process achieves O(log N) complexity, making it scalable across large skill taxonomies.\n\n3. **Robust Empirical Results**: Demonstrates \"+1.6% accuracy gain on Qwen3-4B and +1.4% on Qwen3-8B\" using only 1,000 selected examples from 100K candidates.\n\n4. **Balanced Skill Mastery**: \"Skill-based oversampling leads to a more balanced mastery across skills, flattening the per-skill accuracy curve.\"\n\n## Identified Weaknesses and Limitations\n\n1. **Limited Scale**: Experiments conducted only on \"Qwen3-4B and Qwen3-8B models\" with modest accuracy improvements (1.4-1.6%).\n\n2. **Upfront Computational Cost**: Skill labeling requires \"approximately 200 GPU hours\" as a one-time investment.\n\n3. **Taxonomy Dependency**: Framework relies on pre-defined skill hierarchies; performance with custom or poorly-designed taxonomies remains unclear.\n\n4. **Narrow Evaluation Domain**: Testing restricted to \"five diverse mathematical reasoning benchmarks,\" limiting generalizability claims.\n\n## Technical Details\n\n**Data Selection Mechanism**: Sampling probability inversely proportional to per-skill accuracy: P(skill) = clip(acc⁻¹, 0, w_max) / Σ clip(acc'⁻¹, 0, w_max), where w_max prevents excessive weighting of extremely weak skills.\n\n**Skill-Aware Augmentation**: Training examples prepended with \"explicit, ordered sequence of required skills\" (e.g., \"Skills: [Mathematics → Probability → Bayes' theorem]\") to encourage structured decomposition.\n\n## Skill Treatment Characterization\n\nThe framework explicitly employs **hierarchical skill organization**, not flat structures. The approach \"navigates the tree, identifying high-level skills first and then drilling down to leaf nodes.\" Ablation studies confirm that \"providing the full hierarchical skill chain\" significantly outperforms using only \"root-level or leaf-level skills,\" demonstrating the critical importance of hierarchical relationships for effective learning."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "18947784-516d-4d3f-8fda-df4ba5d0dca3",
+            "isSidechain": true,
+            "promptId": "f933bd5a-1f38-482e-9a55-8990f3e8a283",
+            "agentId": "a351cc21b62865b86",
+            "type": "user",
+            "uuid": "26ba7092-87f0-4fa6-99ca-ff4d0a4b92f1",
+            "sourceToolAssistantUUID": "18947784-516d-4d3f-8fda-df4ba5d0dca3",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "6388a8b4-70e1-462a-a675-27840ef57338",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-29T05:38:01.671Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016fEPyptvUvR2zc8Qptw3KM",
+              "type": "tool_result",
+              "content": "# Comprehensive Technical Extraction: Skill-Aware Data Selection for Reasoning Distillation\n\n## 1. MOTIVATION & KEY OBSERVATIONS\n\n**Core Gap:** Current reasoning distillation treats all training examples equally, overlooking latent data structure and model's current knowledge state. The authors observe that \"human learning is highly structured, with knowledge organized hierarchically.\"\n\n**Key Insight:** Models should receive more training data on weaker skills while avoiding redundancy on mastered competencies. Prior work either ignores atomic skill structure within problems or fails to adapt to individual model strengths/weaknesses.\n\n---\n\n## 2. METHOD DETAILS\n\n### 2.1 Skill Definition & Taxonomy\nThe paper uses a **pre-defined hierarchical skill tree** from Instruct-SkillMix (Kaur et al., 2025), organizing mathematical problems into multi-level skills. Skills are defined as \"atomic competencies\" (e.g., addition, multiplication, probability, Bayes' theorem).\n\nThe hierarchy is **not flat**—they employ a tree structure with root-to-leaf organization. They also test alternative taxonomies (EvalTree) in generalization experiments.\n\n### 2.2 Skill Attribution (Step 1)\n\n**Process:** Each training problem's reference solution is mapped to relevant skills via top-down LLM-based attribution.\n\n**Implementation:** Using Qwen2.5-32B-Instruct, they prompt the model to:\n- Start at the root node and decide which high-level skill applies\n- Recursively drill down at each level until reaching leaf nodes\n- Select multiple skills if needed\n\n**Key Quote:** \"This recursive process leverages the hierarchical structure (with O(log N) complexity) to avoid overwhelming the model with a flat multi-label decision.\"\n\n**Validation:** Manual inspection of ~100 random QA pairs found no evidence of missing/mislabeled skills.\n\n**Computational Cost:** ~200 GPU hours for 100K examples (inference-only, amortizable across multiple students).\n\n### 2.3 Skill-Based Sampling (Step 2)\n\n**Measurement of Weakness:** Evaluate the student model on the entire 100K corpus, compute accuracy per leaf skill node.\n\n**Sampling Formula:**\n```\nP(skill) = clip(acc_skill^(-1), 0, w_max) / Σ_skill' clip(acc_skill'^(-1), 0, w_max)\n\nwhere w_max = 10,000 (empirically set to prevent divide-by-zero)\n```\n\n**Effect:** Probabilities are inversely proportional to per-skill accuracy. Underrepresented/difficult skills are emphasized; well-mastered skills are undersampled.\n\n**Training Set Construction:** Using this distribution, they construct 1,000-example subsets from the 100K pool.\n\n### 2.4 Skill-Aware Fine-Tuning (Step 3)\n\n**Data Augmentation Strategy:** Prepend the explicit skill chain to each training instance before the solution.\n\n**Example Format:**\n```\nSkills: [Mathematics → Probability → Bayes' theorem]\n[Original problem + solution]\n```\n\n**Mechanism:** This encourages models to \"explicitly traverse the required skills before attempting the solution, enabling fine-grained diagnostics.\"\n\n**No Custom Training Objective:** Standard supervised fine-tuning is applied; the modification is purely data augmentation (prepending skill chains to prompts/responses).\n\n---\n\n## 3. EXPERIMENTS\n\n### 3.1 Setup\n- **Base Models:** Qwen3-4B and Qwen3-8B\n- **Teacher Data:** 100K clean QA pairs extracted from OpenMathReasoning (DeepSeek-R1 outputs)\n- **Evaluation Benchmarks (5 total):**\n  1. AMC23\n  2. AIME2024\n  3. AIME2025\n  4. MATH L5 (Level 5)\n  5. OlympiadBench\n\n- **Metric:** Avg@8 accuracy (average over 8 independent samples per question)\n- **Training Details:** 5 epochs, batch size 32, learning rate 1e-5, max sequence length 8192\n\n### 3.2 Main Results (Table 1)\n\n**Qwen3-4B (1K examples):**\n| Method | AMC23 | AIME2024 | AIME2025 | MATH L5 | OlympiadBench | Average |\n|--------|-------|----------|----------|---------|---------------|---------|\n| Base | 90.1 | 61.1 | 50.7 | 84.3 | 49.1 | 67.1 |\n| Random SFT | 89.5 | 60.1 | 50.3 | 85.3 | 49.0 | 66.8 |\n| Random + Skill-aware SFT | 90.9 | 62.2 | 49.9 | 85.8 | 49.0 | 67.6 |\n| Skill-based SFT | 89.1 | 62.5 | 50.0 | 85.5 | 49.5 | 67.3 |\n| **Skill-based + Skill-aware** | **91.9** | **64.6** | **50.8** | **85.3** | **49.6** | **68.4** |\n\n**Improvement:** +1.6% over random sampling\n\n---\n\n**Qwen3-8B (1K examples):**\n| Method | AMC23 | AIME2024 | AIME2025 | MATH L5 | OlympiadBench | Average |\n|--------|-------|----------|----------|---------|---------------|---------|\n| Base | 88.2 | 61.1 | 50.2 | 84.7 | 49.1 | 66.7 |\n| Random SFT | 90.2 | 62.6 | 50.8 | 86.0 | 50.7 | 68.1 |\n| Random + Skill-aware SFT | 91.5 | 65.7 | 52.6 | 86.6 | 50.4 | 69.4 |\n| Skill-based SFT | 93.4 | 62.1 | 51.3 | 86.2 | 49.7 | 68.5 |\n| **Skill-based + Skill-aware** | **91.9** | **67.1** | **50.0** | **86.6** | **51.6** | **69.5** |\n\n**Improvement:** +1.4% over random sampling\n\n---\n\n**Critical Finding:** Training on the full 100K corpus degrades performance relative to base models (Qwen3-4B: 58.1% avg vs. 67.1% base), emphasizing data quality over quantity.\n\n### 3.3 Ablation Studies\n\n**Effect of Sampling Aggressiveness (varying exponent T in acc^-T):**\n\n| T Value | Avg Accuracy |\n|---------|--------------|\n| T=0.5 | 70.7% |\n| T=0.75 | 71.3% |\n| **T=1.0** | **71.9%** |\n| T=2.0 | 72.0% |\n| T=3.0 | 71.9% |\n\nPerformance rises quickly then saturates; T=1.0 provides optimal balance.\n\n---\n\n**Full Skill Chain Necessity:**\n\n| Configuration | Avg Accuracy |\n|---------------|--------------|\n| Full skill chain | **72.9%** |\n| Root skills only | 72.2% |\n| Leaf skills only | 72.7% |\n\nFull hierarchy outperforms single-layer variants, confirming that \"training with the complete skill tree structure is beneficial.\"\n\n### 3.4 Per-Skill Analysis (Figure 2 & MATH-500)\n\n**Key Finding:** Skill-based sampling \"improves weaker skills while preserving strong ones, flattening the accuracy curve toward balanced mastery.\"\n\n- Weaker skills sampled more frequently show largest accuracy gains\n- Stronger skills maintain high accuracy despite reduced sampling\n- Skill-aware augmentation further flattens the curve\n\nThe paper quantifies this by examining 500 MATH problems across distinct skill categories, showing more balanced skill-level performance.\n\n### 3.5 Generalization Studies (Appendix C)\n\n**C.1 - Skill Tree Variants:** EvalTree taxonomy yields comparable/better results than Instruct-SkillMix:\n- Qwen3-4B with EvalTree: 68.2% avg vs. 67.3% with Instruct-SkillMix\n- Qwen3-8B with EvalTree: 68.8% avg vs. 68.5% with Instruct-SkillMix\n\n**C.2 - Model Family Generalization:** DeepSeek-R1-Distill-Llama-8B:\n- Skill-based + Skill-aware: 53.0% avg\n- Random SFT: 52.0% avg\n- Improvement: +1.0%\n\n**C.3 - Comparison to Existing Methods (Table 4, Qwen3-4B):**\n\n| Method | AMC23 | AIME2024 | AIME2025 | MATH L5 | Average |\n|--------|-------|----------|----------|---------|---------|\n| Base | 90.1 | 61.1 | 50.7 | 84.3 | 71.6 |\n| Random | 89.5 | 60.1 | 50.3 | 85.3 | 71.3 |\n| LIMO (offline) | 88.4 | 61.3 | 45.4 | 85.3 | 70.1 |\n| S1 (offline) | 89.1 | 57.9 | 47.5 | 85.9 | 70.1 |\n| S1 (online) | 89.1 | 60.7 | 50.2 | 84.9 | 71.2 |\n| **This work** | **91.9** | **64.6** | **50.8** | **85.3** | **73.2** |\n\nTheir method consistently outperforms LIMO and S1 baselines across all benchmarks.\n\n---\n\n## 4. ANALYSIS & INSIGHTS\n\n**Mechanism of Improvement:** The paper demonstrates gains concentrate on emphasized skills:\n- Weak skills receive larger accuracy improvements when prioritized\n- Strong skills maintain performance despite reduced data allocation\n- This suggests \"models waste training cost on areas where they already excel\"\n\n**Interpretability Benefit:** By embedding skill chains in training data, \"models learn to both solve problems and internalize how different levels of skills are organized.\"\n\n---\n\n## 5. LIMITATIONS (Section 6)\n\n1. **Skill Tree Dependency:** Method relies on existing taxonomies; alternative hierarchies may misalign with student model's decomposition\n2. **Noisy Per-Skill Evaluation:** Accuracy estimates can be unstable with limited evaluation data per skill; uncertainty modeling could improve robustness\n3. **Limited Scale:** Evaluation on only 4B and 8B models; larger model validation needed\n4. **No Custom Loss:** Uses standard SFT without skill-specific weighting in the training objective\n\n---\n\n## 6. KEY IMPLEMENTATION DETAILS\n\n| Aspect | Value |\n|--------|-------|\n| Student Models | Qwen3-4B, Qwen3-8B |\n| Skill Labeling Model | Qwen2.5-32B-Instruct |\n| Training Data | 100K OpenMathReasoning pairs |\n| Selected Subset | 1,000 examples |\n| Epochs | 5 |\n| Batch Size | 32 (8 GPUs × 4 accumulation) |\n| Learning Rate | 1e-5 |\n| Optimizer | AdamW with cosine schedule |\n| Warmup | 10% of steps |\n| GPU Cost (Labeling) | ~200 hours (amortizable) |\n| GPU Cost (SFT per run) | ~40 hours per model |\n| Hardware | NVIDIA A40 (48GB) |\n\n---\n\n## 7. SPECIFIC SKILLS IDENTIFIED\n\nThe paper does not enumerate a complete skill taxonomy (it references existing taxonomies). Example skills mentioned:\n- Basic arithmetic (addition, subtraction)\n- Probability theory\n- Bayes' theorem\n- Geometry\n- Mathematical reasoning at various hierarchical levels\n\nThe actual taxonomy is drawn from Instruct-SkillMix or EvalTree (external sources).\n\n---\n\n**Code & Data Availability:** https://github.com/orange0629/skill-data-selection"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "57758fdc-9f9a-43ff-b212-282009b967ab",
+            "isSidechain": true,
+            "promptId": "f933bd5a-1f38-482e-9a55-8990f3e8a283",
+            "agentId": "a351cc21b62865b86",
+            "type": "user",
+            "uuid": "b8d37261-e0a4-43c0-a1a1-89243897bf1e",
+            "sourceToolAssistantUUID": "57758fdc-9f9a-43ff-b212-282009b967ab",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "6388a8b4-70e1-462a-a675-27840ef57338",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-29T05:38:05.356Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent. I now have comprehensive information. Let me fetch one more source to get any additional details about the specific skill taxonomies and the GitHub repository."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b8d37261-e0a4-43c0-a1a1-89243897bf1e",
+            "isSidechain": true,
+            "agentId": "a351cc21b62865b86",
+            "requestId": "req_011CbWKYiuiMyMqpxesLwqmr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "bb35dfa7-e67f-4b4f-9516-987ce1a639e5",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "6388a8b4-70e1-462a-a675-27840ef57338",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RCqdV29dE3mpMQvmmvWLeG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 701,
+                "cache_creation_input_tokens": 4371,
+                "cache_read_input_tokens": 11791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4371,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-29T05:38:07.521Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012J9SXKjV3Ec7TV77qvmJh9",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://github.com/orange0629/skill-data-selection",
+                "prompt": "Extract all information about this repository:\n1. README contents - any details about the method, code structure, how to run\n2. Any information about the skill taxonomy used\n3. Any example skill trees or skill lists\n4. Any additional implementation details not in the paper\n5. Data formats and examples"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bb35dfa7-e67f-4b4f-9516-987ce1a639e5",
+            "isSidechain": true,
+            "agentId": "a351cc21b62865b86",
+            "requestId": "req_011CbWKYiuiMyMqpxesLwqmr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "dd3fa12e-d404-445f-bae3-5937647adb7f",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "6388a8b4-70e1-462a-a675-27840ef57338",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RCqdV29dE3mpMQvmmvWLeG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 701,
+                "cache_creation_input_tokens": 4371,
+                "cache_read_input_tokens": 11791,
+                "output_tokens": 178,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4371
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 701,
+                    "output_tokens": 178,
+                    "cache_read_input_tokens": 11791,
+                    "cache_creation_input_tokens": 4371,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4371,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-29T05:38:11.605Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012J9SXKjV3Ec7TV77qvmJh9",
+              "type": "tool_result",
+              "content": "# Repository Analysis: skill-data-selection\n\nBased on the provided web page content, I cannot extract the requested information because **the repository is empty**.\n\nThe GitHub page explicitly states: \"This repository is empty.\"\n\n## What's Available:\n- Repository name: `skill-data-selection`\n- Owner: `orange0629`\n- Status: Public repository\n- Current content: None (no README, code files, or documentation)\n\n## What's Missing:\n1. **README contents** - Not present\n2. **Skill taxonomy information** - Not available\n3. **Example skill trees/lists** - Not provided\n4. **Implementation details** - Absent\n5. **Data formats and examples** - No files to reference\n\n## Recommendation:\nTo obtain the information you're seeking about methodology, code structure, skill taxonomies, and implementation details, you would need to either:\n- Contact the repository owner directly\n- Check if related documentation exists elsewhere\n- Wait for content to be added to this repository"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd3fa12e-d404-445f-bae3-5937647adb7f",
+            "isSidechain": true,
+            "promptId": "f933bd5a-1f38-482e-9a55-8990f3e8a283",
+            "agentId": "a351cc21b62865b86",
+            "type": "user",
+            "uuid": "1370d610-c6bd-4d8f-a9e3-768ffddc5f4a",
+            "sourceToolAssistantUUID": "dd3fa12e-d404-445f-bae3-5937647adb7f",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "6388a8b4-70e1-462a-a675-27840ef57338",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-29T05:39:33.495Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The repository is empty (code not yet released). I now have all the information needed for a comprehensive report. Here is the full research analysis:\n\n---\n\n## Comprehensive Research Analysis: \"Skill-Aware Data Selection and Fine-Tuning for Data-Efficient Reasoning Distillation\"\n\n**Authors:** Lechen Zhang, Yunxiang Zhang, Wei Hu, Lu Wang (University of Michigan, Ann Arbor)\n**Published:** January 15, 2026, arXiv:2601.10109\n**Category:** Computation and Language (cs.CL)\n**Code:** https://github.com/orange0629/skill-data-selection (repository exists but is currently empty)\n\n---\n\n### Abstract and Key Claims\n\nLarge reasoning models such as DeepSeek-R1 and their distilled variants achieve strong performance on complex reasoning tasks, but distilling them often demands large-scale data for supervised fine-tuning (SFT). The authors propose a **skill-centric distillation framework** with two components:\n\n1. **Skill-based data selection** -- prioritizes examples targeting the student model's weaker skills\n2. **Skill-aware fine-tuning** -- encourages explicit skill decomposition during problem solving\n\nWith only **1,000 training examples selected from a 100K teacher-generated corpus**, their method surpasses random SFT baselines by **+1.6% on Qwen3-4B** and **+1.4% on Qwen3-8B** across five mathematical reasoning benchmarks. Gains concentrate on skills emphasized during training.\n\n---\n\n### Problem Identification: The Gap\n\nThe paper identifies several gaps:\n\n1. **Uniform data treatment:** Traditional SFT treats all training examples equally, neglecting latent skill structure within problems. This ignores the fact that not all examples contribute equally to student improvement.\n\n2. **Quantity over quality failure:** A critical empirical finding is that fine-tuning on the **full 100K corpus consistently degrades performance** relative to base models (Qwen3-4B drops from 67.1% to 58.1% average). This directly challenges the \"more data is better\" assumption.\n\n3. **No adaptation to student state:** Prior work does not adapt data selection to the individual student model's strengths and weaknesses. The paper draws an analogy to human learning: \"human learning is highly structured, with knowledge organized hierarchically\" -- models should receive more training on weaker skills while avoiding redundancy on mastered competencies.\n\n---\n\n### Key Insight: How They Label Skills and Prioritize Weak Skills\n\n**Skill labeling** uses a **pre-defined hierarchical skill tree** from Instruct-SkillMix (Kaur et al., 2025), which organizes mathematical problems into multi-level skills. Skills are defined as \"atomic competencies\" (e.g., addition, multiplication, probability, Bayes' theorem).\n\nThe labeling process is **LLM-based and top-down recursive:**\n- They use **Qwen2.5-32B-Instruct** to attribute skills to each training example\n- The model starts at the root node, decides which high-level skill applies, then recursively drills down to leaf nodes\n- Multiple skills can be assigned per problem\n- This recursive traversal has **O(log N) complexity**, avoiding overwhelming the model with a flat multi-label decision over all possible skills\n\n**Validation:** Manual inspection of ~100 random QA pairs found no evidence of missing or mislabeled skills.\n\n**Weak skill identification:** They evaluate the student model on the entire 100K corpus, then compute **per-skill accuracy at the leaf level**. Skills with lower accuracy are deemed \"weak.\"\n\n---\n\n### Technical Method in Detail\n\n#### Step 1: Skill Attribution\nEach problem's reference solution is mapped to relevant skills via top-down LLM-based attribution using the hierarchical taxonomy. Cost: ~200 GPU hours for 100K examples (inference-only, amortizable across multiple students).\n\n#### Step 2: Skill-Based Sampling (Data Selection)\nThe sampling probability is **inversely proportional to per-skill accuracy:**\n\n```\nP(skill) = clip(acc_skill^(-1), 0, w_max) / Sigma_skill' clip(acc_skill'^(-1), 0, w_max)\n```\n\nWhere `w_max = 10,000` (empirically set to prevent extreme weighting from near-zero accuracy skills). This ensures underperforming/difficult skills are emphasized while well-mastered skills are undersampled. Using this distribution, they construct 1,000-example subsets from the 100K pool.\n\n#### Step 3: Skill-Aware Fine-Tuning (Data Augmentation)\nThey **prepend the explicit skill chain** to each training instance before the solution:\n\n```\nSkills: [Mathematics -> Probability -> Bayes' theorem]\n[Original problem + solution]\n```\n\nThis is purely a **data augmentation** strategy -- no custom training objective or loss function is used. Standard SFT is applied. The skill chain encourages models to \"explicitly traverse the required skills before attempting the solution, enabling fine-grained diagnostics.\"\n\n**Training details:**\n- 5 epochs, batch size 32 (8 GPUs x 4 accumulation steps)\n- Learning rate: 1e-5, AdamW with cosine schedule, 10% warmup\n- Max sequence length: 8192\n- Hardware: NVIDIA A40 (48GB)\n- SFT cost: ~40 GPU hours per model\n\n---\n\n### Skill Treatment: Hierarchical, Not Flat\n\nThis is a critical architectural choice. The paper explicitly uses a **tree-structured hierarchy**, not flat labels:\n\n- Skills are organized in a root-to-leaf tree structure\n- Attribution traverses the tree top-down\n- The full skill chain (e.g., `Mathematics -> Probability -> Bayes' theorem`) is preserved\n\n**Ablation confirming hierarchy matters:**\n\n| Configuration | Avg Accuracy |\n|---|---|\n| Full skill chain | **72.9%** |\n| Root skills only | 72.2% |\n| Leaf skills only | 72.7% |\n\nThe full hierarchy outperforms single-layer variants. The paper states: \"training with the complete skill tree structure is beneficial.\"\n\nHowever, it is important to note that while the skill taxonomy is hierarchical, **there is no formal dependency graph between skills** (e.g., no explicit modeling of \"skill A is a prerequisite for skill B\"). The hierarchy is a classification taxonomy (is-a relationship), not a prerequisite/dependency structure. Skills are treated as multi-level categories for labeling and sampling purposes.\n\n---\n\n### Key Results\n\n#### Main Results (1K examples from 100K, Avg@8 accuracy)\n\n**Qwen3-4B:**\n\n| Method | AMC23 | AIME2024 | AIME2025 | MATH L5 | OlympiadBench | Average |\n|---|---|---|---|---|---|---|\n| Base (no SFT) | 90.1 | 61.1 | 50.7 | 84.3 | 49.1 | 67.1 |\n| Random SFT | 89.5 | 60.1 | 50.3 | 85.3 | 49.0 | 66.8 |\n| Random + Skill-aware SFT | 90.9 | 62.2 | 49.9 | 85.8 | 49.0 | 67.6 |\n| Skill-based selection only | 89.1 | 62.5 | 50.0 | 85.5 | 49.5 | 67.3 |\n| **Skill-based + Skill-aware** | **91.9** | **64.6** | **50.8** | **85.3** | **49.6** | **68.4** |\n\nDelta vs random SFT: **+1.6%**\n\n**Qwen3-8B:**\n\n| Method | AMC23 | AIME2024 | AIME2025 | MATH L5 | OlympiadBench | Average |\n|---|---|---|---|---|---|---|\n| Base | 88.2 | 61.1 | 50.2 | 84.7 | 49.1 | 66.7 |\n| Random SFT | 90.2 | 62.6 | 50.8 | 86.0 | 50.7 | 68.1 |\n| **Skill-based + Skill-aware** | **91.9** | **67.1** | **50.0** | **86.6** | **51.6** | **69.5** |\n\nDelta vs random SFT: **+1.4%**\n\n#### Critical Finding: Full Data Hurts\nTraining on the full 100K corpus **degrades** Qwen3-4B from 67.1% (base) to 58.1% average -- a massive 9% drop. This powerfully motivates careful data selection.\n\n#### Comparison to Existing Methods (Qwen3-4B)\n\n| Method | Average |\n|---|---|\n| LIMO (offline) | 70.1 |\n| S1 (offline) | 70.1 |\n| S1 (online) | 71.2 |\n| **This work** | **73.2** |\n\nConsistently outperforms LIMO and S1 baselines.\n\n#### Ablation: Sampling Aggressiveness (exponent T in acc^-T)\n\n| T | Avg |\n|---|---|\n| 0.5 | 70.7% |\n| 0.75 | 71.3% |\n| 1.0 | 71.9% |\n| 2.0 | 72.0% |\n| 3.0 | 71.9% |\n\nPerformance rises quickly then saturates; T=1.0 is optimal.\n\n#### Generalization: Alternative Taxonomy (EvalTree)\nEvalTree taxonomy yields comparable or slightly better results than Instruct-SkillMix (Qwen3-4B: 68.2% vs 67.3%), suggesting the method is not overly sensitive to the specific taxonomy used.\n\n#### Generalization: Different Model Family\nDeepSeek-R1-Distill-Llama-8B: +1.0% improvement (53.0% vs 52.0% random SFT).\n\n---\n\n### Per-Skill Analysis\n\nThe paper demonstrates that skill-based sampling \"improves weaker skills while preserving strong ones, flattening the accuracy curve toward balanced mastery.\" Specifically:\n- Weaker skills that are sampled more frequently show the **largest accuracy gains**\n- Stronger skills **maintain high accuracy** despite reduced sampling allocation\n- This suggests \"models waste training cost on areas where they already excel\"\n- Skill-aware augmentation further flattens the per-skill accuracy curve\n\nThe per-skill analysis on MATH-500 across distinct skill categories confirms more balanced skill-level performance.\n\n---\n\n### Limitations\n\n**Explicit (from Section 6):**\n1. **Skill tree dependency:** The method relies on existing pre-defined taxonomies. Alternative or poorly-designed hierarchies may misalign with the student model's actual decomposition of skills.\n2. **Noisy per-skill evaluation:** Per-skill accuracy estimates can be unstable when there are limited evaluation examples per skill. Uncertainty modeling could improve robustness.\n3. **Limited model scale:** Evaluated only on 4B and 8B parameter models. Validation on larger models is needed.\n4. **No custom loss:** Uses standard SFT without skill-specific weighting in the training objective -- a natural but unexplored extension.\n\n**Implicit limitations I identify:**\n5. **Domain specificity:** Only tested on mathematical reasoning. Whether the skill-based framework transfers to code, science, or general reasoning is unknown.\n6. **Taxonomy availability:** The method assumes a suitable hierarchical skill taxonomy exists for the domain. Creating such taxonomies for new domains may be non-trivial.\n7. **Modest absolute gains:** The +1.6% improvement, while statistically meaningful, is relatively small. The practical significance depends on the application.\n8. **Evaluation metric sensitivity:** Using Avg@8 (averaging over 8 samples) could mask variance issues.\n9. **No dependency modeling:** Skills are organized taxonomically but without prerequisite/dependency relationships. A student might benefit from learning foundational skills before advanced ones, but this ordering is not captured.\n10. **Static skill assessment:** The student's weak skills are assessed once before selection. An iterative/curriculum-style approach that reassesses skills during training might yield further gains.\n\n---\n\n### Summary of Key Takeaways for Research Analysis\n\n- The core contribution is framing distillation as a **skill-aware curriculum** problem rather than a uniform sampling problem\n- The hierarchical skill tree is borrowed from existing work (Instruct-SkillMix), not a novel contribution in itself\n- The inverse-accuracy sampling formula is simple but effective\n- The skill-chain prepending is a lightweight augmentation that requires no architectural changes\n- The finding that **100K full-data SFT hurts performance** is arguably the most striking result\n- Skills are treated as a **taxonomic hierarchy** (classification tree), not as a **dependency graph** with prerequisite relationships\n- The method is validated primarily on math and on relatively small models (4B, 8B)\n- Code has not been released yet despite a GitHub repository being created\n\nSources:\n- [arXiv Abstract](https://arxiv.org/abs/2601.10109)\n- [arXiv HTML](https://arxiv.org/html/2601.10109v1)\n- [arXiv PDF](https://arxiv.org/pdf/2601.10109)\n- [Moonlight Review](https://www.themoonlight.io/en/review/skill-aware-data-selection-and-fine-tuning-for-data-efficient-reasoning-distillation)\n- [ResearchGate](https://www.researchgate.net/publication/399808695_Skill-Aware_Data_Selection_and_Fine-Tuning_for_Data-Efficient_Reasoning_Distillation)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1370d610-c6bd-4d8f-a9e3-768ffddc5f4a",
+            "isSidechain": true,
+            "agentId": "a351cc21b62865b86",
+            "requestId": "req_011CbWKZTPLcU1P1nxRfhbxd",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3c2b4723-3005-4bb4-9900-21f84021669f",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "6388a8b4-70e1-462a-a675-27840ef57338",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016Tzw2TmZkS4i8uYiB9A6sp",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1204,
+                "cache_read_input_tokens": 16162,
+                "output_tokens": 3343,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1204
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3343,
+                    "cache_read_input_tokens": 16162,
+                    "cache_creation_input_tokens": 1204,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1204,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        }
+      ],
+      "message_count": 22
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-researching-the-paper-skill-aware-data-selection-and-fine-tuning-for-d.md"
+}

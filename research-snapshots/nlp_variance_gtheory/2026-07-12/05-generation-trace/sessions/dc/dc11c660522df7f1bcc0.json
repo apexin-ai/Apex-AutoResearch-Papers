@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "dc11c660522df7f1bcc0",
+  "project": "nlp_variance_gtheory--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Complete the research direction below with implementation details. **Today's date: 2026-05-27 (UTC).** Only recommend ve",
+  "task_key": "1db3df38-81f6-460f-960d-d852da1c785f",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/1db3df38-81f6-460f-960d-d852da1c785f.jsonl",
+    "occurrence": 1,
+    "bytes": 535559,
+    "sha256": "a34c97609a03ba33d83187bd1eb67176bbe0ce88b030c22659dd443dd6193081"
+  },
+  "statistics": {
+    "messages": 206,
+    "user_turns": 1,
+    "tool_calls": 70,
+    "roles": {
+      "record": 45,
+      "user": 1,
+      "assistant": 20,
+      "tool_call": 70,
+      "tool_result": 70
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "dc11c660522df7f1bcc0-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 204,
+      "chunks": [
+        {
+          "path": "dc11c660522df7f1bcc0-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "dc11c660522df7f1bcc0-part-0002.json",
+          "message_count": 26
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-complete-the-research-direction-below-with-implementation-details-today-s-date-copy-12.md"
+}

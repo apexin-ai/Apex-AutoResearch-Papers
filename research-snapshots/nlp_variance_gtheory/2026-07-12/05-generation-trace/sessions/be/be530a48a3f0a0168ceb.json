@@ -1,0 +1,212 @@
+{
+  "schema_version": "1.0",
+  "id": "be530a48a3f0a0168ceb",
+  "project": "nlp_variance_gtheory--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [Director 指令] ## 新项目启动：nlp_variance_gtheory 项目目标：用 G-Theory 联合分解 LLM 评估中基础设施因素（GPU、精度）和方法学因素（prompt、seed、温度、few-shot 顺序）",
+  "task_key": "76b78391-5547-4518-b3b2-b252887bfb89",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/76b78391-5547-4518-b3b2-b252887bfb89.jsonl",
+    "occurrence": 1,
+    "bytes": 529155,
+    "sha256": "82f083f1adf32743a7418e002b3dcfadfcb901408df62c68f13c45cad06a9802"
+  },
+  "statistics": {
+    "messages": 219,
+    "user_turns": 15,
+    "tool_calls": 54,
+    "roles": {
+      "record": 53,
+      "user": 15,
+      "assistant": 43,
+      "tool_call": 54,
+      "tool_result": 54
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "be530a48a3f0a0168ceb-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 43,
+      "chunks": [
+        {
+          "path": "be530a48a3f0a0168ceb-part-0001.json",
+          "message_count": 43
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "be530a48a3f0a0168ceb-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 41,
+      "chunks": [
+        {
+          "path": "be530a48a3f0a0168ceb-part-0001.json",
+          "message_count": 41
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "be530a48a3f0a0168ceb-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 9,
+      "chunks": [
+        {
+          "path": "be530a48a3f0a0168ceb-part-0001.json",
+          "message_count": 9
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "be530a48a3f0a0168ceb-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "be530a48a3f0a0168ceb-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "be530a48a3f0a0168ceb-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 32,
+      "chunks": [
+        {
+          "path": "be530a48a3f0a0168ceb-part-0001.json",
+          "message_count": 32
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "be530a48a3f0a0168ceb-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 54,
+      "chunks": [
+        {
+          "path": "be530a48a3f0a0168ceb-part-0001.json",
+          "message_count": 36
+        },
+        {
+          "path": "be530a48a3f0a0168ceb-part-0002.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "be530a48a3f0a0168ceb-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "boundary": "recorded_user_message",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "be530a48a3f0a0168ceb-part-0002.json",
+          "message_count": 14
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "be530a48a3f0a0168ceb-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "boundary": "recorded_user_message",
+      "message_count": 3,
+      "chunks": [
+        {
+          "path": "be530a48a3f0a0168ceb-part-0002.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-director-nlp-variance-gtheory-g-theory-llm-gpu-promptseedfew-shot.md"
+}

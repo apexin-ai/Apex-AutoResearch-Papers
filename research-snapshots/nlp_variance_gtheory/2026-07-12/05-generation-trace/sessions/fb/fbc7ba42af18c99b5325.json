@@ -1,0 +1,2517 @@
+{
+  "schema_version": "1.0",
+  "id": "fbc7ba42af18c99b5325",
+  "project": "nlp_variance_gtheory--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # Measuring What Models Know But Do",
+  "task_key": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/8d2af9c5-53d1-4d93-8d7e-3c8632f128a0.jsonl",
+    "occurrence": 1,
+    "bytes": 119782,
+    "sha256": "d3d1865e089499938bd4784cd50e2bed7a58db09f4905835ba245d8b30b1bb2f"
+  },
+  "statistics": {
+    "messages": 46,
+    "user_turns": 1,
+    "tool_calls": 12,
+    "roles": {
+      "record": 14,
+      "user": 1,
+      "assistant": 7,
+      "tool_call": 12,
+      "tool_result": 12
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T02:59:01.156Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-20T02:59:01.156Z",
+                "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+                "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# Measuring What Models Know But Don't Use: Calibrated Temporal Information-Contribution Divergence for Chain-of-Thought Faithfulness\n\n## Description\nWe propose the Information-Contribution Gap (ICG) framework, a calibrated temporal diagnostic for chain-of-thought faithfulness that exploits a robust empirical finding: linear probes on hidden states reliably diagnose answer correctness (0.82-0.95 AUROC across four independent groups) yet causal interventions based on these probes consistently fail on reasoning-trained models (Cox et al.: negligible flip rates; Yuan et al.: all four intervention strategies fail). Rather than treating this diagnostic-causal gap as an obstacle, we make it the primary object of study — the gap between what models internally know and what their CoT causally contributes IS the faithfulness signal.\n\nThe framework tracks two calibrated time-varying quantities across the full CoT trajectory: P*(t), null-probe-calibrated correctness awareness (explicitly targeting right/wrong prediction — justified over answer-content probes by broader applicability beyond binary tasks, grounding in the diagnostic-not-causal finding which is about correctness, and more direct faithfulness interpretation — with supplementary answer-content analysis on binary/MC subsets), and C(t), causal contribution estimated via three complementary methods (prefix truncation with Ballon et al.'s three control conditions validating sequential content matters, paraphrase perturbation, NLDD). Their divergence G*(t) = P*(t) − C(t) produces phenomenon-specific temporal fingerprints, operationalizing Wang's (2604.15726) H1/H2 distinction: G*(t) >> 0 is latent-mediated (H1-consistent), G*(t) ≈ 0 is CoT-mediated (H2-consistent).\n\nPositioned against the closest concurrent work — Chrabąszcz et al.'s (2605.18549) probe trajectories with 60+ signal-processing features achieving up to 17pp improvement over static probes across 4 reasoning models — our framework adds the entire causal contribution dimension, the calibrated gap metric, null-probe calibration with MCT geometric validation, phenomenon taxonomy, and task-difficulty conditioning. Their probe-trajectory methodology validates our P*(t) direction; we extend it to the dual-estimator gap that no existing framework provides.\n\nWe adopt honest scoping: 2-3 faithfulness phenomena (pre-CoT encoding, genuine reasoning, post-hoc rationalization) as the realistic classification target, with steganographic encoding and reasoning theater as stretch goals. A new empirical pilot phase (Phase 0b) constructs real G*(t) curves from the SAME model and dataset and tests whether at least 2 phenomena produce distinguishable trajectories (effect size d > 0.5) before committing to the full classification pipeline — addressing the concern that semi-synthetic simulation from cross-study measurements overestimates real-data accuracy. The semi-synthetic simulation is retained as hypothesis generation producing testable predictions, not as evidence.\n\nTask-difficulty conditioning — grounded in David's easy (0.84) vs. hard (0.76) probe splits, the ICLR 2026 Workshop finding, and Gjølbye et al.'s (2605.15454) demonstration that difficulty-geometry coupling is systematic (ρ⊥ = +0.41 on Codeforces) but domain-specific (weaker on MATH) — reveals the decorative→load-bearing transition with practical guidance on when chain-of-thought adds genuine value, applying length correction (residualizing on log(N)) to avoid generation-length confounds.\n\nThe paper focuses on four core contributions: (a) calibrated ICG diagnostic with explicitly justified correctness-probe target on 4 models × 4 benchmarks, positioned against Chrabąszcz et al. to demonstrate the value of the causal contribution dimension; (b) empirical pilot validating that 2-3 phenomena produce distinguishable G*(t) signatures on real data; (c) difficulty-conditioned gap analysis with domain-specific nuance; (d) probe-target analysis contrasting correctness vs. answer-content gaps. Total compute: ~830 H100-hours, with NLDD on 32B models (~250 hrs) as the primary bottleneck.\n"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T02:59:01.159Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-20T02:59:01.159Z",
+                "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T02:59:01.170Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# Measuring What Models Know But Don't Use: Calibrated Temporal Information-Contribution Divergence for Chain-of-Thought Faithfulness\n\n## Description\nWe propose the Information-Contribution Gap (ICG) framework, a calibrated temporal diagnostic for chain-of-thought faithfulness that exploits a robust empirical finding: linear probes on hidden states reliably diagnose answer correctness (0.82-0.95 AUROC across four independent groups) yet causal interventions based on these probes consistently fail on reasoning-trained models (Cox et al.: negligible flip rates; Yuan et al.: all four intervention strategies fail). Rather than treating this diagnostic-causal gap as an obstacle, we make it the primary object of study — the gap between what models internally know and what their CoT causally contributes IS the faithfulness signal.\n\nThe framework tracks two calibrated time-varying quantities across the full CoT trajectory: P*(t), null-probe-calibrated correctness awareness (explicitly targeting right/wrong prediction — justified over answer-content probes by broader applicability beyond binary tasks, grounding in the diagnostic-not-causal finding which is about correctness, and more direct faithfulness interpretation — with supplementary answer-content analysis on binary/MC subsets), and C(t), causal contribution estimated via three complementary methods (prefix truncation with Ballon et al.'s three control conditions validating sequential content matters, paraphrase perturbation, NLDD). Their divergence G*(t) = P*(t) − C(t) produces phenomenon-specific temporal fingerprints, operationalizing Wang's (2604.15726) H1/H2 distinction: G*(t) >> 0 is latent-mediated (H1-consistent), G*(t) ≈ 0 is CoT-mediated (H2-consistent).\n\nPositioned against the closest concurrent work — Chrabąszcz et al.'s (2605.18549) probe trajectories with 60+ signal-processing features achieving up to 17pp improvement over static probes across 4 reasoning models — our framework adds the entire causal contribution dimension, the calibrated gap metric, null-probe calibration with MCT geometric validation, phenomenon taxonomy, and task-difficulty conditioning. Their probe-trajectory methodology validates our P*(t) direction; we extend it to the dual-estimator gap that no existing framework provides.\n\nWe adopt honest scoping: 2-3 faithfulness phenomena (pre-CoT encoding, genuine reasoning, post-hoc rationalization) as the realistic classification target, with steganographic encoding and reasoning theater as stretch goals. A new empirical pilot phase (Phase 0b) constructs real G*(t) curves from the SAME model and dataset and tests whether at least 2 phenomena produce distinguishable trajectories (effect size d > 0.5) before committing to the full classification pipeline — addressing the concern that semi-synthetic simulation from cross-study measurements overestimates real-data accuracy. The semi-synthetic simulation is retained as hypothesis generation producing testable predictions, not as evidence.\n\nTask-difficulty conditioning — grounded in David's easy (0.84) vs. hard (0.76) probe splits, the ICLR 2026 Workshop finding, and Gjølbye et al.'s (2605.15454) demonstration that difficulty-geometry coupling is systematic (ρ⊥ = +0.41 on Codeforces) but domain-specific (weaker on MATH) — reveals the decorative→load-bearing transition with practical guidance on when chain-of-thought adds genuine value, applying length correction (residualizing on log(N)) to avoid generation-length confounds.\n\nThe paper focuses on four core contributions: (a) calibrated ICG diagnostic with explicitly justified correctness-probe target on 4 models × 4 benchmarks, positioned against Chrabąszcz et al. to demonstrate the value of the causal contribution dimension; (b) empirical pilot validating that 2-3 phenomena produce distinguishable G*(t) signatures on real data; (c) difficulty-conditioned gap analysis with domain-specific nuance; (d) probe-target analysis contrasting correctness vs. answer-content gaps. Total compute: ~830 H100-hours, with NLDD on 32B models (~250 hrs) as the primary bottleneck.\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "378fa169-de03-4ebf-ab07-1b8f8dc80d1b",
+            "type": "user",
+            "uuid": "207e4357-c008-44e1-b564-a6fdadeae200",
+            "permissionMode": "default",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T02:59:01.169Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "207e4357-c008-44e1-b564-a6fdadeae200",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": [],
+                  "readdedNames": [],
+                  "pendingMcpServers": []
+                },
+                "type": "attachment",
+                "uuid": "915a25dc-0c6d-4a0e-b28e-e014aff78116",
+                "timestamp": "2026-05-20T02:59:01.169Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T02:59:01.169Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "915a25dc-0c6d-4a0e-b28e-e014aff78116",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "0d7a2970-2435-4f3f-8bcf-b7051775d6ce",
+                "timestamp": "2026-05-20T02:59:01.169Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Evaluate proposal on chain-of-thought faithfulness framework",
+                "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T02:59:05.175Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me analyze this proposal carefully. It's about measuring chain-of-thought (CoT) faithfulness in language models using a framework called \"Information-Contribution Gap\" (ICG). Before I can give a proper assessment, I need to do thorough web searches to understand the current landscape of CoT faithfulness research.\n\nLet me search for the key papers and concepts mentioned in the proposal.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0d7a2970-2435-4f3f-8bcf-b7051775d6ce",
+            "isSidechain": false,
+            "requestId": "req_011CbD59DMsM7kdykAP4YMc8",
+            "type": "assistant",
+            "uuid": "65cf69c1-ffe2-4158-8f63-56453a5d1ad9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BH38yEiJtrTqoEJ2jtRWe2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 16388,
+                "output_tokens": 208,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 208,
+                    "cache_read_input_tokens": 16388,
+                    "cache_creation_input_tokens": 0,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T02:59:05.721Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to do thorough literature research before I can evaluate this proposal. Let me search for the key papers and the current state of CoT faithfulness research."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "65cf69c1-ffe2-4158-8f63-56453a5d1ad9",
+            "isSidechain": false,
+            "requestId": "req_011CbD59DMsM7kdykAP4YMc8",
+            "type": "assistant",
+            "uuid": "9f5a372b-c76e-4c1f-a2bc-e0074ee453c6",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BH38yEiJtrTqoEJ2jtRWe2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 16388,
+                "output_tokens": 208,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 208,
+                    "cache_read_input_tokens": 16388,
+                    "cache_creation_input_tokens": 0,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T02:59:06.054Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VLfLfzeWhiKCQcf1goHacU",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9f5a372b-c76e-4c1f-a2bc-e0074ee453c6",
+            "isSidechain": false,
+            "requestId": "req_011CbD59DMsM7kdykAP4YMc8",
+            "type": "assistant",
+            "uuid": "548cfb4a-271a-4d53-a365-89c8cd999e66",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BH38yEiJtrTqoEJ2jtRWe2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 16388,
+                "output_tokens": 208,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 208,
+                    "cache_read_input_tokens": 16388,
+                    "cache_creation_input_tokens": 0,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T02:59:06.062Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01VLfLfzeWhiKCQcf1goHacU",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "548cfb4a-271a-4d53-a365-89c8cd999e66",
+            "isSidechain": false,
+            "promptId": "378fa169-de03-4ebf-ab07-1b8f8dc80d1b",
+            "type": "user",
+            "uuid": "6de5d12f-3895-46c1-8ec9-7c122dab38d6",
+            "toolUseResult": {
+              "matches": [
+                "WebSearch"
+              ],
+              "query": "select:WebSearch",
+              "total_deferred_tools": 19
+            },
+            "sourceToolAssistantUUID": "548cfb4a-271a-4d53-a365-89c8cd999e66",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T02:59:09.176Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me run multiple targeted searches in parallel to understand the landscape."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6de5d12f-3895-46c1-8ec9-7c122dab38d6",
+            "isSidechain": false,
+            "requestId": "req_011CbD59aS94tcLbCgG2KQ5a",
+            "type": "assistant",
+            "uuid": "35723b2b-1b9c-484a-ab7e-2aea214e33f6",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LAR9tny5SQ8ANxX42sxdTa",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 735,
+                "cache_read_input_tokens": 16388,
+                "output_tokens": 88,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 735,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 88,
+                    "cache_read_input_tokens": 16388,
+                    "cache_creation_input_tokens": 735,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 735
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T02:59:09.470Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012QE1EmetiY27aYFjC5Qg7E",
+              "name": "WebSearch",
+              "input": {
+                "query": "chain-of-thought faithfulness LLM probing causal intervention 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "35723b2b-1b9c-484a-ab7e-2aea214e33f6",
+            "isSidechain": false,
+            "requestId": "req_011CbD59aS94tcLbCgG2KQ5a",
+            "type": "assistant",
+            "uuid": "39222750-5422-4f60-a109-820b2dd2d64e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LAR9tny5SQ8ANxX42sxdTa",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 735,
+                "cache_read_input_tokens": 16388,
+                "output_tokens": 88,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 735,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 88,
+                    "cache_read_input_tokens": 16388,
+                    "cache_creation_input_tokens": 735,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 735
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T02:59:18.219Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012QE1EmetiY27aYFjC5Qg7E",
+              "type": "tool_result",
+              "content": "Web search results for query: \"chain-of-thought faithfulness LLM probing causal intervention 2025 2026\"\n\nLinks: [{\"title\":\"How does Chain of Thought Think? Mechanistic ...\",\"url\":\"https://arxiv.org/pdf/2507.22928\"},{\"title\":\"Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures\",\"url\":\"https://arxiv.org/html/2603.16475v1\"},{\"title\":\"Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures | OpenReview\",\"url\":\"https://openreview.net/forum?id=yfqHr7l2tG\"},{\"title\":\"Why Models Know But Don’t Say: Chain-of-Thought Faithfulness Divergence Between Thinking Tokens and Answers in Open-Weight Reasoning Models\",\"url\":\"https://arxiv.org/html/2603.26410\"},{\"title\":\"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning\",\"url\":\"https://arxiv.org/html/2510.04040v1\"},{\"title\":\"Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents\",\"url\":\"https://arxiv.org/pdf/2601.02314\"},{\"title\":\"Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures\",\"url\":\"https://arxiv.org/pdf/2603.16475\"}]\n\nI found several highly relevant research papers from 2025-2026 on chain-of-thought faithfulness in LLMs using probing and causal intervention methods:\n\n## Key Recent Research\n\nChain-of-Thought (CoT) prompting improves LLM performance on complex, multi-step reasoning tasks, but it remains unclear whether CoT reasoning is faithful—whether intermediate reasoning steps faithfully reflect the model's true internal decision-making process, or merely serve as plausible surface-level scaffolding.\n\n### Causal Intervention Methods\n\nRecent approaches probe CoT faithfulness by perturbing reasoning traces, for example by adding mistakes, removing steps, or forcing early answers, and then testing whether the final prediction changes accordingly. Matton et al. (2025) introduce interventions at the semantic concept level, elevating faithfulness analysis to a higher abstraction level.\n\n### Key Findings on Unfaithfulness\n\nAcross nine models and four benchmarks with annotated intermediates, research reveals a systematic gap: while models rely on structures more than the original text (>60% consistency under interventions to original prompt), they fail to update under logically significant structural edits more than 50% of the time.\n\nModels are more faithful to their self-generated structures than to gold ones, suggesting that the act of generation elicits reasoning more effectively than passive consumption.\n\n### Mechanistic Evidence (2026)\n\nRecent work identified a \"Reasoning Horizon\" at 70–85% of chain length, beyond which reasoning tokens have diminishing causal influence on the final answer. Models often commit to answers early in the reasoning chain, with subsequent tokens serving a performative rather than computational role.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "39222750-5422-4f60-a109-820b2dd2d64e",
+            "isSidechain": false,
+            "promptId": "378fa169-de03-4ebf-ab07-1b8f8dc80d1b",
+            "type": "user",
+            "uuid": "a159efaf-0254-4321-812d-c14326bdfdde",
+            "toolUseResult": {
+              "query": "chain-of-thought faithfulness LLM probing causal intervention 2025 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01NquobfVbj3aEog2NPLzNiF",
+                  "content": [
+                    {
+                      "title": "How does Chain of Thought Think? Mechanistic ...",
+                      "url": "https://arxiv.org/pdf/2507.22928"
+                    },
+                    {
+                      "title": "Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures",
+                      "url": "https://arxiv.org/html/2603.16475v1"
+                    },
+                    {
+                      "title": "Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures | OpenReview",
+                      "url": "https://openreview.net/forum?id=yfqHr7l2tG"
+                    },
+                    {
+                      "title": "Why Models Know But Don’t Say: Chain-of-Thought Faithfulness Divergence Between Thinking Tokens and Answers in Open-Weight Reasoning Models",
+                      "url": "https://arxiv.org/html/2603.26410"
+                    },
+                    {
+                      "title": "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning",
+                      "url": "https://arxiv.org/html/2510.04040v1"
+                    },
+                    {
+                      "title": "Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents",
+                      "url": "https://arxiv.org/pdf/2601.02314"
+                    },
+                    {
+                      "title": "Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures",
+                      "url": "https://arxiv.org/pdf/2603.16475"
+                    }
+                  ]
+                },
+                "I found several highly relevant research papers from 2025-2026 on chain-of-thought faithfulness in LLMs using probing and causal intervention methods:\n\n## Key Recent Research\n\nChain-of-Thought (CoT) prompting improves LLM performance on complex, multi-step reasoning tasks, but it remains unclear whether CoT reasoning is faithful—whether intermediate reasoning steps faithfully reflect the model's true internal decision-making process, or merely serve as plausible surface-level scaffolding.\n\n### Causal Intervention Methods\n\nRecent approaches probe CoT faithfulness by perturbing reasoning traces, for example by adding mistakes, removing steps, or forcing early answers, and then testing whether the final prediction changes accordingly. Matton et al. (2025) introduce interventions at the semantic concept level, elevating faithfulness analysis to a higher abstraction level.\n\n### Key Findings on Unfaithfulness\n\nAcross nine models and four benchmarks with annotated intermediates, research reveals a systematic gap: while models rely on structures more than the original text (>60% consistency under interventions to original prompt), they fail to update under logically significant structural edits more than 50% of the time.\n\nModels are more faithful to their self-generated structures than to gold ones, suggesting that the act of generation elicits reasoning more effectively than passive consumption.\n\n### Mechanistic Evidence (2026)\n\nRecent work identified a \"Reasoning Horizon\" at 70–85% of chain length, beyond which reasoning tokens have diminishing causal influence on the final answer. Models often commit to answers early in the reasoning chain, with subsequent tokens serving a performative rather than computational role."
+              ],
+              "durationSeconds": 8.746263793000002,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "39222750-5422-4f60-a109-820b2dd2d64e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T02:59:20.764Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KC5D3qssVHcN3uXxHoNFJF",
+              "name": "WebSearch",
+              "input": {
+                "query": "Chrabąszcz et al. 2605.18549 probe trajectories reasoning models 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a159efaf-0254-4321-812d-c14326bdfdde",
+            "isSidechain": false,
+            "requestId": "req_011CbD5AUQmV9AoKBfx4xA8a",
+            "type": "assistant",
+            "uuid": "e5b298c3-fbf1-425b-a968-6fcefaaa01d8",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XfMQa7KKuEXfJ6aQJR6c8p",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 848,
+                "cache_read_input_tokens": 17123,
+                "output_tokens": 76,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 848,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 76,
+                    "cache_read_input_tokens": 17123,
+                    "cache_creation_input_tokens": 848,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 848
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T02:59:28.242Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KC5D3qssVHcN3uXxHoNFJF",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Chrabąszcz et al. 2605.18549 probe trajectories reasoning models 2026\"\n\nLinks: [{\"title\":\"[2605.18549] Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics\",\"url\":\"https://arxiv.org/abs/2605.18549\"},{\"title\":\"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics\",\"url\":\"https://arxiv.org/html/2605.18549\"},{\"title\":\"Probing the Trajectories of Reasoning Traces in Large Language Models\",\"url\":\"https://arxiv.org/html/2601.23163\"},{\"title\":\"LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals\",\"url\":\"https://arxiv.org/pdf/2604.05655\"},{\"title\":\"[2601.23163] Probing the Trajectories of Reasoning Traces in Large Language Models\",\"url\":\"https://arxiv.org/abs/2601.23163\"},{\"title\":\"Truth as a Trajectory: What Internal Representations Reveal About Large Language Model Reasoning\",\"url\":\"https://arxiv.org/pdf/2603.01326\"},{\"title\":\"Harnessing Reasoning Trajectories for Hallucination Detection via Answer-agreement Representation Shaping\",\"url\":\"https://arxiv.org/pdf/2601.17467\"},{\"title\":\"[2605.15454] Reasoning Models Don't Just Think Longer, They Move Differently\",\"url\":\"https://arxiv.org/abs/2605.15454\"}]\n\nBased on the search results, I found the paper you're looking for:\n\n**\"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics\"** by Maciej Chrabąszcz and colleagues (arXiv:2605.18549) addresses Large Reasoning Models (LRMs) and Chain of Thought reasoning.\n\n**Key findings of the paper:**\n\nThe researchers investigate hidden representations of LRMs to determine whether future behavior can be predicted from prompt and Chain of Thought representations, constructing probe trajectories that show the continuous evolution of a concept's probability across the reasoning process.\n\nThey find that future model behavior is more distinguishable when examined over the full trajectory than from a single static prediction, and they extract signal-processing features that capture volatility, trend, and steady-state behavior to improve separation of future model states.\n\nThe paper presents methodological insights showing that template-based training data achieves near-parity with dynamically generated model responses, and that max-pooling achieves up to 95% AUROC and yields stable probe trajectories, while average-pooling and last-token methods collapse to near-random performance.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e5b298c3-fbf1-425b-a968-6fcefaaa01d8",
+            "isSidechain": false,
+            "promptId": "378fa169-de03-4ebf-ab07-1b8f8dc80d1b",
+            "type": "user",
+            "uuid": "f53c56ff-73c6-4f77-a697-b3c57a481ce3",
+            "toolUseResult": {
+              "query": "Chrabąszcz et al. 2605.18549 probe trajectories reasoning models 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01RpL1BGTz9F8Pzab4SrjHrD",
+                  "content": [
+                    {
+                      "title": "[2605.18549] Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics",
+                      "url": "https://arxiv.org/abs/2605.18549"
+                    },
+                    {
+                      "title": "Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics",
+                      "url": "https://arxiv.org/html/2605.18549"
+                    },
+                    {
+                      "title": "Probing the Trajectories of Reasoning Traces in Large Language Models",
+                      "url": "https://arxiv.org/html/2601.23163"
+                    },
+                    {
+                      "title": "LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals",
+                      "url": "https://arxiv.org/pdf/2604.05655"
+                    },
+                    {
+                      "title": "[2601.23163] Probing the Trajectories of Reasoning Traces in Large Language Models",
+                      "url": "https://arxiv.org/abs/2601.23163"
+                    },
+                    {
+                      "title": "Truth as a Trajectory: What Internal Representations Reveal About Large Language Model Reasoning",
+                      "url": "https://arxiv.org/pdf/2603.01326"
+                    },
+                    {
+                      "title": "Harnessing Reasoning Trajectories for Hallucination Detection via Answer-agreement Representation Shaping",
+                      "url": "https://arxiv.org/pdf/2601.17467"
+                    },
+                    {
+                      "title": "[2605.15454] Reasoning Models Don't Just Think Longer, They Move Differently",
+                      "url": "https://arxiv.org/abs/2605.15454"
+                    }
+                  ]
+                },
+                "Based on the search results, I found the paper you're looking for:\n\n**\"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics\"** by Maciej Chrabąszcz and colleagues (arXiv:2605.18549) addresses Large Reasoning Models (LRMs) and Chain of Thought reasoning.\n\n**Key findings of the paper:**\n\nThe researchers investigate hidden representations of LRMs to determine whether future behavior can be predicted from prompt and Chain of Thought representations, constructing probe trajectories that show the continuous evolution of a concept's probability across the reasoning process.\n\nThey find that future model behavior is more distinguishable when examined over the full trajectory than from a single static prediction, and they extract signal-processing features that capture volatility, trend, and steady-state behavior to improve separation of future model states.\n\nThe paper presents methodological insights showing that template-based training data achieves near-parity with dynamically generated model responses, and that max-pooling achieves up to 95% AUROC and yields stable probe trajectories, while average-pooling and last-token methods collapse to near-random performance."
+              ],
+              "durationSeconds": 7.4736484579999996,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "e5b298c3-fbf1-425b-a968-6fcefaaa01d8",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Measuring What Models Know But Don't Use: Calibrated Temporal Information-Contribution Divergence for Chain-of-T…",
+                "leafUuid": "f53c56ff-73c6-4f77-a697-b3c57a481ce3",
+                "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0"
+              }
+            }
+          ],
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Evaluate proposal on chain-of-thought faithfulness framework",
+                "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0"
+              }
+            }
+          ],
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T02:59:30.752Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N9mdY2zo7pG71b1gqaTaJq",
+              "name": "WebSearch",
+              "input": {
+                "query": "Cox et al. linear probes LLM hidden states causal intervention fail reasoning models 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f53c56ff-73c6-4f77-a697-b3c57a481ce3",
+            "isSidechain": false,
+            "requestId": "req_011CbD5BCvP4nzyqimMjhjdR",
+            "type": "assistant",
+            "uuid": "8d066424-01dc-4358-9755-78df46981b62",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0118sCvsXV5c7g8qSCEC7JVf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 744,
+                "cache_read_input_tokens": 17971,
+                "output_tokens": 72,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 744,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 72,
+                    "cache_read_input_tokens": 17971,
+                    "cache_creation_input_tokens": 744,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 744
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T02:59:38.157Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N9mdY2zo7pG71b1gqaTaJq",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Cox et al. linear probes LLM hidden states causal intervention fail reasoning models 2025\"\n\nLinks: [{\"title\":\"Reasoning Models Know When They’re Right: Probing Hidden States for Self-Verification\",\"url\":\"https://arxiv.org/html/2504.05419v1\"},{\"title\":\"Temporal Predictors of Outcome in Reasoning Language Models\",\"url\":\"https://arxiv.org/pdf/2511.14773\"},{\"title\":\"Published as a conference paper at COLM 2024\",\"url\":\"https://arxiv.org/pdf/2310.06824\"},{\"title\":\"Failure Modes of LLMs for Causal Reasoning on Narratives\",\"url\":\"https://arxiv.org/pdf/2410.23884\"},{\"title\":\"Failure Modes of LLMs for Causal Reasoning on Narratives\",\"url\":\"https://arxiv.org/html/2410.23884v5\"},{\"title\":\"No Global Plan in Chain-of-Thought: Uncover the Latent Planning Horizon of LLMs\",\"url\":\"https://arxiv.org/pdf/2602.02103\"},{\"title\":\"Inference Time Causal Probing in LLMs | OpenReview\",\"url\":\"https://openreview.net/forum?id=8FnyRB90Bg\"}]\n\nI found several relevant papers on linear probes, LLM hidden states, and causal interventions. Here are the key findings:\n\n**Research on Linear Probes and Hidden States:**\n\nLinear probes trained on LLM representations can classify correctness, even without ground-truth labels, and representations at intermediate stages of chain-of-thought (CoT) generated by reasoning models capture key information about the correctness of each intermediate stage.\n\n**Limitations and Failures:**\n\nHowever, there are notable concerns about generalization. Previous probes have been found to fail in basic ways, such as generalizing to statements containing the word \"not,\" with similar generalization issues especially when using representations from autoregressive transformers, suggesting these probes may be identifying not truth but other features that correlate with truth on their training data.\n\n**On Reasoning Tasks:**\n\nMathematical reasoning makes it harder to linearly decode internal confidence, indicating limitations when applying these methods to complex reasoning models.\n\n**Causal Intervention Research:**\n\nCausal probing methods aim to test and control how internal representations influence the behavior of generative models, with interventions modifying hidden states so that a property takes on a different value.\n\nThe search results don't appear to contain a specific paper by \"Cox et al.\" matching all your query terms, but these papers provide relevant context on the challenges of using linear probes and causal interventions with LLM hidden states.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8d066424-01dc-4358-9755-78df46981b62",
+            "isSidechain": false,
+            "promptId": "378fa169-de03-4ebf-ab07-1b8f8dc80d1b",
+            "type": "user",
+            "uuid": "4803dbb2-fb44-42f7-8129-cb35f2a03a6e",
+            "toolUseResult": {
+              "query": "Cox et al. linear probes LLM hidden states causal intervention fail reasoning models 2025",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01VieJfVwt1y7S1RAADkfn4A",
+                  "content": [
+                    {
+                      "title": "Reasoning Models Know When They’re Right: Probing Hidden States for Self-Verification",
+                      "url": "https://arxiv.org/html/2504.05419v1"
+                    },
+                    {
+                      "title": "Temporal Predictors of Outcome in Reasoning Language Models",
+                      "url": "https://arxiv.org/pdf/2511.14773"
+                    },
+                    {
+                      "title": "Published as a conference paper at COLM 2024",
+                      "url": "https://arxiv.org/pdf/2310.06824"
+                    },
+                    {
+                      "title": "Failure Modes of LLMs for Causal Reasoning on Narratives",
+                      "url": "https://arxiv.org/pdf/2410.23884"
+                    },
+                    {
+                      "title": "Failure Modes of LLMs for Causal Reasoning on Narratives",
+                      "url": "https://arxiv.org/html/2410.23884v5"
+                    },
+                    {
+                      "title": "No Global Plan in Chain-of-Thought: Uncover the Latent Planning Horizon of LLMs",
+                      "url": "https://arxiv.org/pdf/2602.02103"
+                    },
+                    {
+                      "title": "Inference Time Causal Probing in LLMs | OpenReview",
+                      "url": "https://openreview.net/forum?id=8FnyRB90Bg"
+                    }
+                  ]
+                },
+                "I found several relevant papers on linear probes, LLM hidden states, and causal interventions. Here are the key findings:\n\n**Research on Linear Probes and Hidden States:**\n\nLinear probes trained on LLM representations can classify correctness, even without ground-truth labels, and representations at intermediate stages of chain-of-thought (CoT) generated by reasoning models capture key information about the correctness of each intermediate stage.\n\n**Limitations and Failures:**\n\nHowever, there are notable concerns about generalization. Previous probes have been found to fail in basic ways, such as generalizing to statements containing the word \"not,\" with similar generalization issues especially when using representations from autoregressive transformers, suggesting these probes may be identifying not truth but other features that correlate with truth on their training data.\n\n**On Reasoning Tasks:**\n\nMathematical reasoning makes it harder to linearly decode internal confidence, indicating limitations when applying these methods to complex reasoning models.\n\n**Causal Intervention Research:**\n\nCausal probing methods aim to test and control how internal representations influence the behavior of generative models, with interventions modifying hidden states so that a property takes on a different value.\n\nThe search results don't appear to contain a specific paper by \"Cox et al.\" matching all your query terms, but these papers provide relevant context on the challenges of using linear probes and causal interventions with LLM hidden states."
+              ],
+              "durationSeconds": 7.401083615000003,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "8d066424-01dc-4358-9755-78df46981b62",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T02:59:40.639Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019GB9bDvr1waYSp4JmNbWmR",
+              "name": "WebSearch",
+              "input": {
+                "query": "Wang 2604.15726 chain-of-thought faithfulness H1 H2 latent mediated 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4803dbb2-fb44-42f7-8129-cb35f2a03a6e",
+            "isSidechain": false,
+            "requestId": "req_011CbD5BwJKAdoRdEWxyDc9X",
+            "type": "assistant",
+            "uuid": "07bbffe3-84cc-41e8-af3f-982506493ce9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011gTgxLBFJYLmsSKN6PLrJh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 723,
+                "cache_read_input_tokens": 18715,
+                "output_tokens": 79,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 723,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 79,
+                    "cache_read_input_tokens": 18715,
+                    "cache_creation_input_tokens": 723,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 723
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T02:59:46.751Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019GB9bDvr1waYSp4JmNbWmR",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Wang 2604.15726 chain-of-thought faithfulness H1 H2 latent mediated 2026\"\n\nLinks: [{\"title\":\"LLM Reasoning Is Latent, Not the Chain of Thought\",\"url\":\"https://arxiv.org/html/2604.15726\"},{\"title\":\"[2604.15726] LLM Reasoning Is Latent, Not the Chain of Thought\",\"url\":\"https://arxiv.org/abs/2604.15726\"},{\"title\":\"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps\",\"url\":\"https://arxiv.org/html/2502.14829v3\"},{\"title\":\"Measuring Faithfulness in Chain-of-Thought Reasoning Tamera Lanham\",\"url\":\"https://arxiv.org/pdf/2307.13702\"},{\"title\":\"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning\",\"url\":\"https://arxiv.org/pdf/2510.04040\"},{\"title\":\"[2307.13702] Measuring Faithfulness in Chain-of-Thought Reasoning\",\"url\":\"https://arxiv.org/abs/2307.13702\"},{\"title\":\"Towards Better Chain-of-Thought: A Reflection on Effectiveness and Faithfulness\",\"url\":\"https://arxiv.org/html/2405.18915v2\"},{\"title\":\"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps\",\"url\":\"https://aclanthology.org/2025.emnlp-main.504.pdf\"}]\n\nBased on the search results, I found the paper you're looking for:\n\nThe paper \"LLM Reasoning Is Latent, Not the Chain of Thought\" by Wenshuo Wang (arXiv:2604.15726) argues that large language model reasoning should be studied as latent-state trajectory formation rather than as faithful surface chain-of-thought.\n\nThe paper formalizes three competing hypotheses: H1, reasoning is primarily mediated by latent-state trajectories; H2, reasoning is primarily mediated by explicit surface CoT; and H0, most apparent reasoning gains are better explained by generic serial compute than by any privileged representational object.\n\nThe paper argues this matters because claims about faithfulness, interpretability, reasoning benchmarks, and inference-time intervention all depend on what the field takes the primary object of reasoning to be.\n\nThe paper was submitted on April 17, 2026, and is available on arXiv as a position paper exploring how LLM reasoning should be conceptualized—emphasizing latent mechanisms over surface-level chain-of-thought explanations.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "07bbffe3-84cc-41e8-af3f-982506493ce9",
+            "isSidechain": false,
+            "promptId": "378fa169-de03-4ebf-ab07-1b8f8dc80d1b",
+            "type": "user",
+            "uuid": "6bbf9eac-5a37-4882-bcaa-e6bfb981fb4f",
+            "toolUseResult": {
+              "query": "Wang 2604.15726 chain-of-thought faithfulness H1 H2 latent mediated 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_0117VvZiy1XVBN74V6UQPGws",
+                  "content": [
+                    {
+                      "title": "LLM Reasoning Is Latent, Not the Chain of Thought",
+                      "url": "https://arxiv.org/html/2604.15726"
+                    },
+                    {
+                      "title": "[2604.15726] LLM Reasoning Is Latent, Not the Chain of Thought",
+                      "url": "https://arxiv.org/abs/2604.15726"
+                    },
+                    {
+                      "title": "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps",
+                      "url": "https://arxiv.org/html/2502.14829v3"
+                    },
+                    {
+                      "title": "Measuring Faithfulness in Chain-of-Thought Reasoning Tamera Lanham",
+                      "url": "https://arxiv.org/pdf/2307.13702"
+                    },
+                    {
+                      "title": "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning",
+                      "url": "https://arxiv.org/pdf/2510.04040"
+                    },
+                    {
+                      "title": "[2307.13702] Measuring Faithfulness in Chain-of-Thought Reasoning",
+                      "url": "https://arxiv.org/abs/2307.13702"
+                    },
+                    {
+                      "title": "Towards Better Chain-of-Thought: A Reflection on Effectiveness and Faithfulness",
+                      "url": "https://arxiv.org/html/2405.18915v2"
+                    },
+                    {
+                      "title": "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps",
+                      "url": "https://aclanthology.org/2025.emnlp-main.504.pdf"
+                    }
+                  ]
+                },
+                "Based on the search results, I found the paper you're looking for:\n\nThe paper \"LLM Reasoning Is Latent, Not the Chain of Thought\" by Wenshuo Wang (arXiv:2604.15726) argues that large language model reasoning should be studied as latent-state trajectory formation rather than as faithful surface chain-of-thought.\n\nThe paper formalizes three competing hypotheses: H1, reasoning is primarily mediated by latent-state trajectories; H2, reasoning is primarily mediated by explicit surface CoT; and H0, most apparent reasoning gains are better explained by generic serial compute than by any privileged representational object.\n\nThe paper argues this matters because claims about faithfulness, interpretability, reasoning benchmarks, and inference-time intervention all depend on what the field takes the primary object of reasoning to be.\n\nThe paper was submitted on April 17, 2026, and is available on arXiv as a position paper exploring how LLM reasoning should be conceptualized—emphasizing latent mechanisms over surface-level chain-of-thought explanations."
+              ],
+              "durationSeconds": 6.109484038999995,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "07bbffe3-84cc-41e8-af3f-982506493ce9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T02:59:49.083Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UKkJjFoe3jwe9RcHG422wJ",
+              "name": "WebSearch",
+              "input": {
+                "query": "Gjølbye 2605.15454 reasoning models difficulty geometry coupling 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6bbf9eac-5a37-4882-bcaa-e6bfb981fb4f",
+            "isSidechain": false,
+            "requestId": "req_011CbD5Ca2feAyHi51HkQKwq",
+            "type": "assistant",
+            "uuid": "637d2903-3dd6-42be-bef7-b8c167b9a81d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N8PD357RgSeyYeabd5ZtMg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 734,
+                "cache_read_input_tokens": 19438,
+                "output_tokens": 70,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 734,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 70,
+                    "cache_read_input_tokens": 19438,
+                    "cache_creation_input_tokens": 734,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 734
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T02:59:56.210Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UKkJjFoe3jwe9RcHG422wJ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Gjølbye 2605.15454 reasoning models difficulty geometry coupling 2026\"\n\nLinks: [{\"title\":\"[2605.15454] Reasoning Models Don't Just Think Longer, They Move Differently\",\"url\":\"https://arxiv.org/abs/2605.15454\"},{\"title\":\"Reasoning Models Don’t Just Think Longer, They Move Differently\",\"url\":\"https://arxiv.org/html/2605.15454\"},{\"title\":\"GeomVerse: A Systematic Evaluation of Large Models for Geometric Reasoning | OpenReview\",\"url\":\"https://openreview.net/forum?id=1AUbiBrOF1\"},{\"title\":\"The Geometry of Thought: How Scale Restructures Reasoning In Large Language Models\",\"url\":\"https://arxiv.org/pdf/2601.13358\"},{\"title\":\"GenesisGeo: Technical Report\",\"url\":\"https://arxiv.org/pdf/2509.21896\"},{\"title\":\"GeometryZero: Improving Geometry Solving for LLM with Group Contrastive Policy Optimization\",\"url\":\"https://arxiv.org/pdf/2506.07160\"}]\n\nBased on the search results, I found the paper you're asking about:\n\n\"Reasoning Models Don't Just Think Longer, They Move Differently\" is a paper by Anders Gjølbye, Lars Kai Hansen, and Sanmi Koyejo from the Technical University of Denmark and Stanford University, published on May 14, 2026.\n\nThe paper's core findings are:\n\nThe research examines whether reasoning-trained language models are merely computing for more steps or following a different internal trajectory when spending more tokens on harder problems. The study analyzes hidden-state trajectories during chain-of-thought generation across competitive programming, mathematics, and Boolean satisfiability.\n\nKey results include:\n\n- Raw trajectory geometry is strongly shaped by generation length, with longer generations mechanically altering path statistics, making difficulty-dependent comparisons misleading without adjustment.\n\n- After residualizing trajectory statistics on length, difficulty remains systematically coupled to corrected trajectory geometry across all domains studied.\n\n- The clearest reasoning-specific separation appears in the code domain, where harder problems show more direct corrected trajectories and less heterogeneous local curvature in reasoning-trained models than in matched instruction-tuned baselines.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "637d2903-3dd6-42be-bef7-b8c167b9a81d",
+            "isSidechain": false,
+            "promptId": "378fa169-de03-4ebf-ab07-1b8f8dc80d1b",
+            "type": "user",
+            "uuid": "afa23dfc-b2c0-4007-aeab-2caa122a8ecf",
+            "toolUseResult": {
+              "query": "Gjølbye 2605.15454 reasoning models difficulty geometry coupling 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01VoWh2tPwFqYtGjiY8p58LG",
+                  "content": [
+                    {
+                      "title": "[2605.15454] Reasoning Models Don't Just Think Longer, They Move Differently",
+                      "url": "https://arxiv.org/abs/2605.15454"
+                    },
+                    {
+                      "title": "Reasoning Models Don’t Just Think Longer, They Move Differently",
+                      "url": "https://arxiv.org/html/2605.15454"
+                    },
+                    {
+                      "title": "GeomVerse: A Systematic Evaluation of Large Models for Geometric Reasoning | OpenReview",
+                      "url": "https://openreview.net/forum?id=1AUbiBrOF1"
+                    },
+                    {
+                      "title": "The Geometry of Thought: How Scale Restructures Reasoning In Large Language Models",
+                      "url": "https://arxiv.org/pdf/2601.13358"
+                    },
+                    {
+                      "title": "GenesisGeo: Technical Report",
+                      "url": "https://arxiv.org/pdf/2509.21896"
+                    },
+                    {
+                      "title": "GeometryZero: Improving Geometry Solving for LLM with Group Contrastive Policy Optimization",
+                      "url": "https://arxiv.org/pdf/2506.07160"
+                    }
+                  ]
+                },
+                "Based on the search results, I found the paper you're asking about:\n\n\"Reasoning Models Don't Just Think Longer, They Move Differently\" is a paper by Anders Gjølbye, Lars Kai Hansen, and Sanmi Koyejo from the Technical University of Denmark and Stanford University, published on May 14, 2026.\n\nThe paper's core findings are:\n\nThe research examines whether reasoning-trained language models are merely computing for more steps or following a different internal trajectory when spending more tokens on harder problems. The study analyzes hidden-state trajectories during chain-of-thought generation across competitive programming, mathematics, and Boolean satisfiability.\n\nKey results include:\n\n- Raw trajectory geometry is strongly shaped by generation length, with longer generations mechanically altering path statistics, making difficulty-dependent comparisons misleading without adjustment.\n\n- After residualizing trajectory statistics on length, difficulty remains systematically coupled to corrected trajectory geometry across all domains studied.\n\n- The clearest reasoning-specific separation appears in the code domain, where harder problems show more direct corrected trajectories and less heterogeneous local curvature in reasoning-trained models than in matched instruction-tuned baselines."
+              ],
+              "durationSeconds": 7.122320474,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "637d2903-3dd6-42be-bef7-b8c167b9a81d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T02:59:58.721Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MpXT9FZTr2dc1WmpQg3rpQ",
+              "name": "WebSearch",
+              "input": {
+                "query": "Ballon et al. chain-of-thought prefix truncation control conditions sequential content 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "afa23dfc-b2c0-4007-aeab-2caa122a8ecf",
+            "isSidechain": false,
+            "requestId": "req_011CbD5DGXjEPKRQfSb9ThH5",
+            "type": "assistant",
+            "uuid": "5a80de71-19b2-47d8-bd41-066017d70d7c",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011LqvH33Pkr3BgprfppuaU3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 632,
+                "cache_read_input_tokens": 20172,
+                "output_tokens": 75,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 632,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 75,
+                    "cache_read_input_tokens": 20172,
+                    "cache_creation_input_tokens": 632,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 632
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T03:00:07.780Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MpXT9FZTr2dc1WmpQg3rpQ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Ballon et al. chain-of-thought prefix truncation control conditions sequential content 2025 2026\"\n\nLinks: [{\"title\":\"CtrlCoT: Dual-Granularity Chain-of-Thought Compression for Controllable Reasoning\",\"url\":\"https://arxiv.org/pdf/2601.20467\"},{\"title\":\"EntroCut: Entropy-Guided Adaptive Truncation for Efficient Chain-of-Thought Reasoning in Small-scale Large Reasoning Models\",\"url\":\"https://arxiv.org/pdf/2601.22617\"},{\"title\":\"Chain-of-Thought Prompting Elicits Reasoning in Large Language Models Jason Wei\",\"url\":\"https://arxiv.org/pdf/2201.11903\"},{\"title\":\"What Makes a Good Reasoning Chain? Uncovering Structural Patterns in Long Chain-of-Thought Reasoning\",\"url\":\"https://arxiv.org/html/2505.22148v1\"},{\"title\":\"Learning from Partial Chain-of-Thought via Truncated-Reasoning Self-Distillation\",\"url\":\"https://arxiv.org/pdf/2603.13274\"},{\"title\":\"What Makes a Good Reasoning Chain? Uncovering ...\",\"url\":\"https://aclanthology.org/2025.emnlp-main.329.pdf\"},{\"title\":\"Reinforcement Learning for Chain of Thought Compression with One-Domain-to-All Generalization\",\"url\":\"https://arxiv.org/pdf/2601.06052\"}]\n\nI found relevant search results. The most directly relevant result is from the paper \"What Makes a Good Reasoning Chain? Uncovering Structural Patterns in Long Chain-of-Thought Reasoning,\" which references Ballon et al.'s work on chain-of-thought reasoning.\n\nBallon et al. highlighted the overthinking phenomenon, where overly long reasoning chains can degrade rather than improve final answer quality. Their 2025 work is titled \"The relationship between reasoning and performance in large language models–o3 (mini) thinks harder, not longer\" (arXiv:2502.15631).\n\nThe search results also show related research on chain-of-thought compression and truncation, including:\n\n- Truncated-Reasoning Self-Distillation (TRSD) trains student models to match teacher answer distributions while conditioned only on truncated prefixes of reasoning traces, demonstrating improved robustness to truncated inference across multiple reasoning benchmarks.\n\n- Recent compression methods typically rely on global and static controls such as uniform penalties or fixed truncation limits, which risk operating at the wrong unit by not adapting to the heterogeneous difficulty of individual samples.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5a80de71-19b2-47d8-bd41-066017d70d7c",
+            "isSidechain": false,
+            "promptId": "378fa169-de03-4ebf-ab07-1b8f8dc80d1b",
+            "type": "user",
+            "uuid": "4bce2076-0baf-4de8-8868-f4a7182032f7",
+            "toolUseResult": {
+              "query": "Ballon et al. chain-of-thought prefix truncation control conditions sequential content 2025 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01XJMAfJrxSVR1b3nGqNzmjf",
+                  "content": [
+                    {
+                      "title": "CtrlCoT: Dual-Granularity Chain-of-Thought Compression for Controllable Reasoning",
+                      "url": "https://arxiv.org/pdf/2601.20467"
+                    },
+                    {
+                      "title": "EntroCut: Entropy-Guided Adaptive Truncation for Efficient Chain-of-Thought Reasoning in Small-scale Large Reasoning Models",
+                      "url": "https://arxiv.org/pdf/2601.22617"
+                    },
+                    {
+                      "title": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models Jason Wei",
+                      "url": "https://arxiv.org/pdf/2201.11903"
+                    },
+                    {
+                      "title": "What Makes a Good Reasoning Chain? Uncovering Structural Patterns in Long Chain-of-Thought Reasoning",
+                      "url": "https://arxiv.org/html/2505.22148v1"
+                    },
+                    {
+                      "title": "Learning from Partial Chain-of-Thought via Truncated-Reasoning Self-Distillation",
+                      "url": "https://arxiv.org/pdf/2603.13274"
+                    },
+                    {
+                      "title": "What Makes a Good Reasoning Chain? Uncovering ...",
+                      "url": "https://aclanthology.org/2025.emnlp-main.329.pdf"
+                    },
+                    {
+                      "title": "Reinforcement Learning for Chain of Thought Compression with One-Domain-to-All Generalization",
+                      "url": "https://arxiv.org/pdf/2601.06052"
+                    }
+                  ]
+                },
+                "I found relevant search results. The most directly relevant result is from the paper \"What Makes a Good Reasoning Chain? Uncovering Structural Patterns in Long Chain-of-Thought Reasoning,\" which references Ballon et al.'s work on chain-of-thought reasoning.\n\nBallon et al. highlighted the overthinking phenomenon, where overly long reasoning chains can degrade rather than improve final answer quality. Their 2025 work is titled \"The relationship between reasoning and performance in large language models–o3 (mini) thinks harder, not longer\" (arXiv:2502.15631).\n\nThe search results also show related research on chain-of-thought compression and truncation, including:\n\n- Truncated-Reasoning Self-Distillation (TRSD) trains student models to match teacher answer distributions while conditioned only on truncated prefixes of reasoning traces, demonstrating improved robustness to truncated inference across multiple reasoning benchmarks.\n\n- Recent compression methods typically rely on global and static controls such as uniform penalties or fixed truncation limits, which risk operating at the wrong unit by not adapting to the heterogeneous difficulty of individual samples."
+              ],
+              "durationSeconds": 9.055899210999996,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "5a80de71-19b2-47d8-bd41-066017d70d7c",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T03:00:10.353Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014x1TPeZoiV9WhTH7zsT8MR",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"information contribution gap\" OR \"diagnostic causal gap\" chain-of-thought probe faithfulness 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4bce2076-0baf-4de8-8868-f4a7182032f7",
+            "isSidechain": false,
+            "requestId": "req_011CbD5E7xKQkVbV6X1LGjVL",
+            "type": "assistant",
+            "uuid": "ba95f6a2-062b-446a-9561-211f55f609c2",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016AQ6MJZ1A7fjkDJcVGoD1a",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 722,
+                "cache_read_input_tokens": 20804,
+                "output_tokens": 77,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 722,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 77,
+                    "cache_read_input_tokens": 20804,
+                    "cache_creation_input_tokens": 722,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 722
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T03:00:19.709Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014x1TPeZoiV9WhTH7zsT8MR",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"information contribution gap\" OR \"diagnostic causal gap\" chain-of-thought probe faithfulness 2025 2026\"\n\nLinks: [{\"title\":\"Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures\",\"url\":\"https://arxiv.org/html/2603.16475v1\"},{\"title\":\"Making Reasoning Matter: Measuring and Improving Faithfulness of Chain-of-Thought Reasoning | Request PDF\",\"url\":\"https://www.researchgate.net/publication/386203451_Making_Reasoning_Matter_Measuring_and_Improving_Faithfulness_of_Chain-of-Thought_Reasoning\"},{\"title\":\"Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning\",\"url\":\"https://arxiv.org/html/2602.11201v1\"},{\"title\":\"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning\",\"url\":\"https://arxiv.org/html/2510.04040v1\"},{\"title\":\"Truthful or Fabricated? Using Causal Attribution to Mitigate Reward Hacking in Explanations\",\"url\":\"https://arxiv.org/pdf/2504.05294\"},{\"title\":\"Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents\",\"url\":\"https://arxiv.org/pdf/2601.02314\"},{\"title\":\"Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering\",\"url\":\"https://arxiv.org/pdf/2603.01437\"}]\n\nBased on the search results, I found relevant recent research on chain-of-thought (CoT) faithfulness and related evaluation methods from 2025-2026:\n\n## Key Papers and Findings\n\n**\"Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures\"** (March 2026)\nParametric approaches evaluate faithfulness by estimating the causal contribution of internal representations using techniques such as activation and attribution patching, causal tracing, propositional probes and parameter interventions. Reasoning intervention approaches evaluate faithfulness by modifying reasoning traces or introducing perturbations to the input and measuring whether the model's prediction changes accordingly, with trace perturbation protocols editing or truncating chain-of-thought reasoning to test whether the final answer depends on the generated reasoning steps.\n\n**\"Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning\"** (January 2026)\nA metric (NLDD) quantifies step-level faithfulness by measuring how a model's confidence changes when reasoning steps are corrupted.\n\n**\"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning\"** (October 2025)\nCounterfactual-based methods probe CoT faithfulness by perturbing reasoning traces through adding mistakes, removing steps, or forcing early answers, and testing whether the final prediction changes accordingly, with such causal sensitivity treated as evidence of faithfulness.\n\n**\"Decoding Answers Before Chain-of-Thought\"** (March 2026)\nPrior work documents instances where models rationalize biased answers with convincing but misleading CoT, and instances where larger models ignore their own CoT when producing final answers.\n\nThese papers represent the recent focus on quantifying and understanding the causal relationship between chain-of-thought reasoning and model outputs.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ba95f6a2-062b-446a-9561-211f55f609c2",
+            "isSidechain": false,
+            "promptId": "378fa169-de03-4ebf-ab07-1b8f8dc80d1b",
+            "type": "user",
+            "uuid": "4bca7321-d216-447b-ba4a-b07b60a9dde6",
+            "toolUseResult": {
+              "query": "\"information contribution gap\" OR \"diagnostic causal gap\" chain-of-thought probe faithfulness 2025 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01LBzbj1hyfvj2o3uR6p3C7c",
+                  "content": [
+                    {
+                      "title": "Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures",
+                      "url": "https://arxiv.org/html/2603.16475v1"
+                    },
+                    {
+                      "title": "Making Reasoning Matter: Measuring and Improving Faithfulness of Chain-of-Thought Reasoning | Request PDF",
+                      "url": "https://www.researchgate.net/publication/386203451_Making_Reasoning_Matter_Measuring_and_Improving_Faithfulness_of_Chain-of-Thought_Reasoning"
+                    },
+                    {
+                      "title": "Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning",
+                      "url": "https://arxiv.org/html/2602.11201v1"
+                    },
+                    {
+                      "title": "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning",
+                      "url": "https://arxiv.org/html/2510.04040v1"
+                    },
+                    {
+                      "title": "Truthful or Fabricated? Using Causal Attribution to Mitigate Reward Hacking in Explanations",
+                      "url": "https://arxiv.org/pdf/2504.05294"
+                    },
+                    {
+                      "title": "Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents",
+                      "url": "https://arxiv.org/pdf/2601.02314"
+                    },
+                    {
+                      "title": "Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering",
+                      "url": "https://arxiv.org/pdf/2603.01437"
+                    }
+                  ]
+                },
+                "Based on the search results, I found relevant recent research on chain-of-thought (CoT) faithfulness and related evaluation methods from 2025-2026:\n\n## Key Papers and Findings\n\n**\"Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures\"** (March 2026)\nParametric approaches evaluate faithfulness by estimating the causal contribution of internal representations using techniques such as activation and attribution patching, causal tracing, propositional probes and parameter interventions. Reasoning intervention approaches evaluate faithfulness by modifying reasoning traces or introducing perturbations to the input and measuring whether the model's prediction changes accordingly, with trace perturbation protocols editing or truncating chain-of-thought reasoning to test whether the final answer depends on the generated reasoning steps.\n\n**\"Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning\"** (January 2026)\nA metric (NLDD) quantifies step-level faithfulness by measuring how a model's confidence changes when reasoning steps are corrupted.\n\n**\"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning\"** (October 2025)\nCounterfactual-based methods probe CoT faithfulness by perturbing reasoning traces through adding mistakes, removing steps, or forcing early answers, and testing whether the final prediction changes accordingly, with such causal sensitivity treated as evidence of faithfulness.\n\n**\"Decoding Answers Before Chain-of-Thought\"** (March 2026)\nPrior work documents instances where models rationalize biased answers with convincing but misleading CoT, and instances where larger models ignore their own CoT when producing final answers.\n\nThese papers represent the recent focus on quantifying and understanding the causal relationship between chain-of-thought reasoning and model outputs."
+              ],
+              "durationSeconds": 9.349450622999997,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "ba95f6a2-062b-446a-9561-211f55f609c2",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T03:00:19.715Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "4bca7321-d216-447b-ba4a-b07b60a9dde6",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "task_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "d4c7c689-33e5-4cca-b519-3a6c89b06fd1",
+                "timestamp": "2026-05-20T03:00:19.715Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Measuring What Models Know But Don't Use: Calibrated Temporal Information-Contribution Divergence for Chain-of-T…",
+                "leafUuid": "d4c7c689-33e5-4cca-b519-3a6c89b06fd1",
+                "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0"
+              }
+            }
+          ],
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Evaluate proposal on chain-of-thought faithfulness framework",
+                "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0"
+              }
+            }
+          ],
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T03:00:22.357Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018gn43Kyo3mnvZVQP2RdSNa",
+              "name": "WebSearch",
+              "input": {
+                "query": "Yuan et al. intervention strategies fail reasoning models probes hidden states correctness 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d4c7c689-33e5-4cca-b519-3a6c89b06fd1",
+            "isSidechain": false,
+            "requestId": "req_011CbD5F11e3bqkiKwbqdc8H",
+            "type": "assistant",
+            "uuid": "da16dd2f-82fd-475c-824a-19d471115eec",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F5AfxaptYPeETT5dyCkNYc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1020,
+                "cache_read_input_tokens": 21526,
+                "output_tokens": 69,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1020,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 69,
+                    "cache_read_input_tokens": 21526,
+                    "cache_creation_input_tokens": 1020,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1020
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T03:00:28.628Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018gn43Kyo3mnvZVQP2RdSNa",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Yuan et al. intervention strategies fail reasoning models probes hidden states correctness 2025\"\n\nLinks: [{\"title\":\"Reasoning Models Know When They’re Right: Probing Hidden States for Self-Verification\",\"url\":\"https://arxiv.org/html/2504.05419v1\"},{\"title\":\"May 23, 2025 Seek in the Dark: Reasoning via Test-Time Instance-Level Policy\",\"url\":\"http://www.stat.ucla.edu/~ywu/2025Henry.pdf\"},{\"title\":\"Towards Safe Reasoning in Large Reasoning Models via Corrective Intervention\",\"url\":\"https://arxiv.org/html/2509.24393v1\"},{\"title\":\"Effectively Controlling Reasoning Models through Thinking Intervention\",\"url\":\"https://arxiv.org/html/2503.24370v3\"},{\"title\":\"Reasoning Models Know When They're Right: Probing Hidden States for   Self-Verification\",\"url\":\"https://arxiv.org/pdf/2504.05419\"},{\"title\":\"Internalizing LLM Reasoning via Discovery and Replay of Latent Actions\",\"url\":\"https://arxiv.org/pdf/2602.04925\"}]\n\nBased on the search results, I found a highly relevant paper that matches your query:\n\n\"Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification\" is a paper from April 2025 that investigates the ability of reasoning models like OpenAI's o1 and DeepSeek-R1 to evaluate answer correctness.\n\nThe key findings include:\n\n1. **Hidden State Encoding**: Models' hidden states encode correctness of future answers, enabling early prediction of the correctness before the intermediate answer is fully formulated.\n\n2. **Intervention Strategy**: The paper uses the probe as a verifier to decide whether to exit reasoning at intermediate answers during inference, reducing the number of inference tokens by 24% without compromising performance.\n\n3. **Main Conclusion**: These findings confirm that reasoning models do encode a notion of correctness yet fail to exploit it, revealing substantial untapped potential to enhance their efficiency.\n\nThe research suggests that while reasoning models have the internal capability to recognize when they're correct (through their hidden states), they fail to effectively use this information during inference, leading to unnecessary computational expenditure through \"overthinking.\"\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "da16dd2f-82fd-475c-824a-19d471115eec",
+            "isSidechain": false,
+            "promptId": "378fa169-de03-4ebf-ab07-1b8f8dc80d1b",
+            "type": "user",
+            "uuid": "38ed62b9-bd93-4afc-b6d0-b4f2b00d9c2f",
+            "toolUseResult": {
+              "query": "Yuan et al. intervention strategies fail reasoning models probes hidden states correctness 2025",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01MNFdpyPp7xZj7F27JHCVRY",
+                  "content": [
+                    {
+                      "title": "Reasoning Models Know When They’re Right: Probing Hidden States for Self-Verification",
+                      "url": "https://arxiv.org/html/2504.05419v1"
+                    },
+                    {
+                      "title": "May 23, 2025 Seek in the Dark: Reasoning via Test-Time Instance-Level Policy",
+                      "url": "http://www.stat.ucla.edu/~ywu/2025Henry.pdf"
+                    },
+                    {
+                      "title": "Towards Safe Reasoning in Large Reasoning Models via Corrective Intervention",
+                      "url": "https://arxiv.org/html/2509.24393v1"
+                    },
+                    {
+                      "title": "Effectively Controlling Reasoning Models through Thinking Intervention",
+                      "url": "https://arxiv.org/html/2503.24370v3"
+                    },
+                    {
+                      "title": "Reasoning Models Know When They're Right: Probing Hidden States for   Self-Verification",
+                      "url": "https://arxiv.org/pdf/2504.05419"
+                    },
+                    {
+                      "title": "Internalizing LLM Reasoning via Discovery and Replay of Latent Actions",
+                      "url": "https://arxiv.org/pdf/2602.04925"
+                    }
+                  ]
+                },
+                "Based on the search results, I found a highly relevant paper that matches your query:\n\n\"Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification\" is a paper from April 2025 that investigates the ability of reasoning models like OpenAI's o1 and DeepSeek-R1 to evaluate answer correctness.\n\nThe key findings include:\n\n1. **Hidden State Encoding**: Models' hidden states encode correctness of future answers, enabling early prediction of the correctness before the intermediate answer is fully formulated.\n\n2. **Intervention Strategy**: The paper uses the probe as a verifier to decide whether to exit reasoning at intermediate answers during inference, reducing the number of inference tokens by 24% without compromising performance.\n\n3. **Main Conclusion**: These findings confirm that reasoning models do encode a notion of correctness yet fail to exploit it, revealing substantial untapped potential to enhance their efficiency.\n\nThe research suggests that while reasoning models have the internal capability to recognize when they're correct (through their hidden states), they fail to effectively use this information during inference, leading to unnecessary computational expenditure through \"overthinking.\""
+              ],
+              "durationSeconds": 6.267006942000007,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "da16dd2f-82fd-475c-824a-19d471115eec",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T03:00:31.093Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XBMALgaqADJSytfEHRxJk2",
+              "name": "WebSearch",
+              "input": {
+                "query": "CoRL 2026 conference on robot learning call for papers topics scope"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "38ed62b9-bd93-4afc-b6d0-b4f2b00d9c2f",
+            "isSidechain": false,
+            "requestId": "req_011CbD5Ff5rFzLVhPuuG1Svp",
+            "type": "assistant",
+            "uuid": "6f48ec85-5e4a-4f78-a456-b95b94a308cc",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016x8rSjcrnVbux4LCGLhsJw",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 629,
+                "cache_read_input_tokens": 22546,
+                "output_tokens": 66,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 629,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 66,
+                    "cache_read_input_tokens": 22546,
+                    "cache_creation_input_tokens": 629,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 629
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T03:00:38.447Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XBMALgaqADJSytfEHRxJk2",
+              "type": "tool_result",
+              "content": "Web search results for query: \"CoRL 2026 conference on robot learning call for papers topics scope\"\n\nLinks: [{\"title\":\"Conference on Robot Learning (@corl_conf) / Posts / X\",\"url\":\"https://x.com/corl_conf?lang=en\"},{\"title\":\"CoRL 2026 - Call for Workshops\",\"url\":\"https://www.corl.org/contributions/call-for-workshops\"},{\"title\":\"CoRL 2026 - Call for Papers\",\"url\":\"https://www.corl.org/contributions/call-for-papers\"},{\"title\":\"CoRL 2026 - Instruction for Authors\",\"url\":\"https://www.corl.org/contributions/instruction-for-authors\"},{\"title\":\"CoRL 2026\",\"url\":\"https://www.corl.org/\"},{\"title\":\"CoRL 2026 - Contributions\",\"url\":\"https://www.corl.org/contributions\"},{\"title\":\"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf\"},{\"title\":\"Safe Learning for Contact-Rich Robot Tasks: A Survey from Classical Learning-Based Methods to Safe Foundation Models\",\"url\":\"https://arxiv.org/pdf/2512.11908\"}]\n\nBased on the search results, here's information about the CoRL 2026 conference on robot learning:\n\n## Conference Overview\nThe Conference on Robot Learning (CoRL) is an annual international conference focusing on the intersection of robotics and machine learning. CoRL 2026 will be held in Austin, Texas, US, with workshops and tutorials on November 9th, 2026, and the main conference on November 10–12, 2026.\n\n## Paper Submission Scope and Topics\nSubmissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics. One highlighted topic area is video models and latent world models for robot learning.\n\nAuthors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots. Additionally, submissions without a robotics focus will be returned without review.\n\n## Submission Requirements\nAll submissions should include a Limitations section, explicitly describing limiting assumptions, failure modes, and other limitations of the results and experiments and how these might be addressed in the future. Authors are also encouraged to submit video, code and data as supplementary materials.\n\nFor more detailed information about submission deadlines and specific formatting instructions, you can visit the official CoRL 2026 website at corl.org.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6f48ec85-5e4a-4f78-a456-b95b94a308cc",
+            "isSidechain": false,
+            "promptId": "378fa169-de03-4ebf-ab07-1b8f8dc80d1b",
+            "type": "user",
+            "uuid": "1bef8be2-b2a3-4e0e-a33f-b51fa97a6aec",
+            "toolUseResult": {
+              "query": "CoRL 2026 conference on robot learning call for papers topics scope",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01FWxSTQDzMpxTDxybCaitwK",
+                  "content": [
+                    {
+                      "title": "Conference on Robot Learning (@corl_conf) / Posts / X",
+                      "url": "https://x.com/corl_conf?lang=en"
+                    },
+                    {
+                      "title": "CoRL 2026 - Call for Workshops",
+                      "url": "https://www.corl.org/contributions/call-for-workshops"
+                    },
+                    {
+                      "title": "CoRL 2026 - Call for Papers",
+                      "url": "https://www.corl.org/contributions/call-for-papers"
+                    },
+                    {
+                      "title": "CoRL 2026 - Instruction for Authors",
+                      "url": "https://www.corl.org/contributions/instruction-for-authors"
+                    },
+                    {
+                      "title": "CoRL 2026",
+                      "url": "https://www.corl.org/"
+                    },
+                    {
+                      "title": "CoRL 2026 - Contributions",
+                      "url": "https://www.corl.org/contributions"
+                    },
+                    {
+                      "title": "Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a",
+                      "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+                    },
+                    {
+                      "title": "Safe Learning for Contact-Rich Robot Tasks: A Survey from Classical Learning-Based Methods to Safe Foundation Models",
+                      "url": "https://arxiv.org/pdf/2512.11908"
+                    }
+                  ]
+                },
+                "Based on the search results, here's information about the CoRL 2026 conference on robot learning:\n\n## Conference Overview\nThe Conference on Robot Learning (CoRL) is an annual international conference focusing on the intersection of robotics and machine learning. CoRL 2026 will be held in Austin, Texas, US, with workshops and tutorials on November 9th, 2026, and the main conference on November 10–12, 2026.\n\n## Paper Submission Scope and Topics\nSubmissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics. One highlighted topic area is video models and latent world models for robot learning.\n\nAuthors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots. Additionally, submissions without a robotics focus will be returned without review.\n\n## Submission Requirements\nAll submissions should include a Limitations section, explicitly describing limiting assumptions, failure modes, and other limitations of the results and experiments and how these might be addressed in the future. Authors are also encouraged to submit video, code and data as supplementary materials.\n\nFor more detailed information about submission deadlines and specific formatting instructions, you can visit the official CoRL 2026 website at corl.org."
+              ],
+              "durationSeconds": 7.350053863999987,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "6f48ec85-5e4a-4f78-a456-b95b94a308cc",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T03:00:46.719Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "This is a critical finding. CoRL 2026 is the **Conference on Robot Learning**, and the proposal is about chain-of-thought faithfulness in LLMs — a pure NLP/AI interpretability topic with ZERO robotics content. The CoRL call for papers explicitly states: \"submissions without a robotics focus will be returned without review.\"\n\nThis is a fundamental mismatch. The proposal is about measuring CoT faithfulness using probes and causal interventions — this has nothing to do with robotics or robot learning. This would be desk-rejected at CoRL.\n\nLet me verify this is really what the user asked — yes, they said \"投稿 CoRL 2026 主会\". \n\nThis is a fatal issue. I should do a few more searches to evaluate the proposal's actual merit independent of this venue problem.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1bef8be2-b2a3-4e0e-a33f-b51fa97a6aec",
+            "isSidechain": false,
+            "requestId": "req_011CbD5GP7CdKCiESqCHqdyB",
+            "type": "assistant",
+            "uuid": "8e2c0485-f577-41a7-9774-6f2faeb7a6fc",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JFhmm7JUApfPFkTksoYoTq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 713,
+                "cache_read_input_tokens": 23175,
+                "output_tokens": 310,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 713,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 310,
+                    "cache_read_input_tokens": 23175,
+                    "cache_creation_input_tokens": 713,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 713
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T03:00:46.722Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "This is a critical finding. Let me do one more search to be absolutely sure about the CoRL scope, and also check the NLDD metric mentioned in the proposal."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8e2c0485-f577-41a7-9774-6f2faeb7a6fc",
+            "isSidechain": false,
+            "requestId": "req_011CbD5GP7CdKCiESqCHqdyB",
+            "type": "assistant",
+            "uuid": "4a881835-5623-404b-acbf-59183cc2ee7e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JFhmm7JUApfPFkTksoYoTq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 713,
+                "cache_read_input_tokens": 23175,
+                "output_tokens": 310,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 713,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 310,
+                    "cache_read_input_tokens": 23175,
+                    "cache_creation_input_tokens": 713,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 713
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T03:00:46.771Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QrKp9b7qypx31igqaAnLUN",
+              "name": "WebSearch",
+              "input": {
+                "query": "NLDD metric faithfulness chain-of-thought step-level corruption confidence 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4a881835-5623-404b-acbf-59183cc2ee7e",
+            "isSidechain": false,
+            "requestId": "req_011CbD5GP7CdKCiESqCHqdyB",
+            "type": "assistant",
+            "uuid": "1dd04ee0-b39c-414d-a25d-2d3289865d2e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JFhmm7JUApfPFkTksoYoTq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 713,
+                "cache_read_input_tokens": 23175,
+                "output_tokens": 310,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 713,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 310,
+                    "cache_read_input_tokens": 23175,
+                    "cache_creation_input_tokens": 713,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 713
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T03:00:54.540Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QrKp9b7qypx31igqaAnLUN",
+              "type": "tool_result",
+              "content": "Web search results for query: \"NLDD metric faithfulness chain-of-thought step-level corruption confidence 2026\"\n\nLinks: [{\"title\":\"Published as a LIT workshop paper at ICLR 2026\",\"url\":\"https://openreview.net/pdf?id=wVj7dB7waI\"},{\"title\":\"[2602.11201] Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning\",\"url\":\"https://arxiv.org/abs/2602.11201\"},{\"title\":\"Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning\",\"url\":\"https://arxiv.org/html/2602.11201v1\"},{\"title\":\"Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning\",\"url\":\"https://arxiv.org/pdf/2602.11201\"},{\"title\":\"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps\",\"url\":\"https://arxiv.org/html/2502.14829v3\"},{\"title\":\"Chain-of-Thought Unfaithfulness as Disguised Accuracy\",\"url\":\"https://arxiv.org/pdf/2402.14897\"}]\n\nBased on the search results, I found detailed information about the NLDD metric you're asking about:\n\n## NLDD Metric Overview\n\nNLDD (Normalized Logit Difference Decay) is a metric that measures whether individual reasoning steps are faithful to the model's decision-making process by corrupting individual reasoning steps from the explanation and measuring how much the model's confidence in its answer drops.\n\n## Key Features\n\nNLDD quantifies step-level faithfulness by measuring how a model's confidence changes when reasoning steps are corrupted, and critically operates in logit space and normalizes for cross-model comparison. NLDD addresses this by normalizing the observed logit degradation against the model's intrinsic output variability, providing an architecture-agnostic measure of causal reliance.\n\n## Behavioral Regimes\n\nThe metric identifies different modes of operation: negative NLDD values indicate an \"anti-faithful\" regime where corruption paradoxically increases answer confidence, while positive values indicate faithful reasoning.\n\n## Research Context\n\nTesting three model families across syntactic, logical, and arithmetic tasks, the research discovers a consistent Reasoning Horizon (k*) at 70--85% of chain length, beyond which reasoning tokens have little or negative effect on the final answer. This work was published as a LIT workshop paper at ICLR 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1dd04ee0-b39c-414d-a25d-2d3289865d2e",
+            "isSidechain": false,
+            "promptId": "378fa169-de03-4ebf-ab07-1b8f8dc80d1b",
+            "type": "user",
+            "uuid": "b3828103-943b-4859-a841-50e823404f9d",
+            "toolUseResult": {
+              "query": "NLDD metric faithfulness chain-of-thought step-level corruption confidence 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_014AUh2cmWkrRox64jeVtxRM",
+                  "content": [
+                    {
+                      "title": "Published as a LIT workshop paper at ICLR 2026",
+                      "url": "https://openreview.net/pdf?id=wVj7dB7waI"
+                    },
+                    {
+                      "title": "[2602.11201] Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning",
+                      "url": "https://arxiv.org/abs/2602.11201"
+                    },
+                    {
+                      "title": "Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning",
+                      "url": "https://arxiv.org/html/2602.11201v1"
+                    },
+                    {
+                      "title": "Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning",
+                      "url": "https://arxiv.org/pdf/2602.11201"
+                    },
+                    {
+                      "title": "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps",
+                      "url": "https://arxiv.org/html/2502.14829v3"
+                    },
+                    {
+                      "title": "Chain-of-Thought Unfaithfulness as Disguised Accuracy",
+                      "url": "https://arxiv.org/pdf/2402.14897"
+                    }
+                  ]
+                },
+                "Based on the search results, I found detailed information about the NLDD metric you're asking about:\n\n## NLDD Metric Overview\n\nNLDD (Normalized Logit Difference Decay) is a metric that measures whether individual reasoning steps are faithful to the model's decision-making process by corrupting individual reasoning steps from the explanation and measuring how much the model's confidence in its answer drops.\n\n## Key Features\n\nNLDD quantifies step-level faithfulness by measuring how a model's confidence changes when reasoning steps are corrupted, and critically operates in logit space and normalizes for cross-model comparison. NLDD addresses this by normalizing the observed logit degradation against the model's intrinsic output variability, providing an architecture-agnostic measure of causal reliance.\n\n## Behavioral Regimes\n\nThe metric identifies different modes of operation: negative NLDD values indicate an \"anti-faithful\" regime where corruption paradoxically increases answer confidence, while positive values indicate faithful reasoning.\n\n## Research Context\n\nTesting three model families across syntactic, logical, and arithmetic tasks, the research discovers a consistent Reasoning Horizon (k*) at 70--85% of chain length, beyond which reasoning tokens have little or negative effect on the final answer. This work was published as a LIT workshop paper at ICLR 2026."
+              ],
+              "durationSeconds": 7.762857361000002,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "1dd04ee0-b39c-414d-a25d-2d3289865d2e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T03:00:57.273Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PtbjfyXV5bKVVVXhbvEH7r",
+              "name": "WebSearch",
+              "input": {
+                "query": "CoRL conference robot learning scope NLP language model papers desk reject policy"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b3828103-943b-4859-a841-50e823404f9d",
+            "isSidechain": false,
+            "requestId": "req_011CbD5HZt81vmg48xH9qcBT",
+            "type": "assistant",
+            "uuid": "6fc89db9-86e7-420c-8a9c-110339ab0f27",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AeNty7gV1UpcGnBBrrcrv9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 916,
+                "cache_read_input_tokens": 23888,
+                "output_tokens": 65,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 916,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 65,
+                    "cache_read_input_tokens": 23888,
+                    "cache_creation_input_tokens": 916,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 916
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T03:01:04.864Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PtbjfyXV5bKVVVXhbvEH7r",
+              "type": "tool_result",
+              "content": "Web search results for query: \"CoRL conference robot learning scope NLP language model papers desk reject policy\"\n\nLinks: [{\"title\":\"CoRL 2021 - Frequently Asked Questions\",\"url\":\"https://2021.corl.org/author-information/frequently-asked-questions\"},{\"title\":\"CoRL 2021 - Submission Instructions\",\"url\":\"https://2021.corl.org/author-information/submission-instructions\"},{\"title\":\"CoRL 2024 - Instruction for Reviews\",\"url\":\"https://2024.corl.org/contributions/instruction-for-reviews\"},{\"title\":\"CoRL 2026 - Instruction for Authors\",\"url\":\"https://www.corl.org/contributions/instruction-for-authors\"},{\"title\":\"Reviewer Guidelines — CoRL 2023\",\"url\":\"https://www.corl2023.org/reviewer-guidelines\"},{\"title\":\"LangRob @ CoRL 2023\",\"url\":\"https://sites.google.com/view/langrob-corl23/home\"},{\"title\":\"CoRL 2026 - Call for Papers\",\"url\":\"https://www.corl.org/contributions/call-for-papers\"},{\"title\":\"LangRob @ CoRL 2024\",\"url\":\"https://sites.google.com/view/langrob-corl24/\"},{\"title\":\"News - IEEE Robotics and Automation Society - IEEE Robotics and Automation Society\",\"url\":\"https://www.ieee-ras.org/robot-learning/news\"}]\n\nBased on the search results, here's what I found regarding CoRL's scope, desk rejection policy, and relationship with NLP/language model papers:\n\n## CoRL Scope and Desk Rejection Policy\n\nPapers can be desk rejected for one of three reasons: formatting issues, anonymity violation, or scope. \n\nAll CoRL submissions must demonstrate relevance to Robot Learning through either explicitly addressing a learning question for physical robots OR testing the proposed learning solution on physical robots. CoRL takes a broad view of robot learning, and papers with both experimental and theoretical results relevant to robot learning are welcome.\n\nSubmissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics. Submissions without a robotics focus will be returned without review.\n\n## NLP and Language Models in Robot Learning\n\nWhile NLP and language models are relevant to robot learning, they must maintain a robotics focus. The advancement of large language models has sparked growing interest in integrating language into robot learning, resulting in research at the intersection of NLP, computer vision, and robotics, covering topics such as human-robot communication, language-driven representation learning, specification of rewards, tasks, and constraints, and utilization of large pretrained language models for control.\n\nThis suggests that papers on NLP and language models can be accepted at CoRL, but only if they demonstrate clear relevance and application to actual robot learning tasks.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6fc89db9-86e7-420c-8a9c-110339ab0f27",
+            "isSidechain": false,
+            "promptId": "378fa169-de03-4ebf-ab07-1b8f8dc80d1b",
+            "type": "user",
+            "uuid": "ff2caca2-dc7d-4938-8072-91f086aab839",
+            "toolUseResult": {
+              "query": "CoRL conference robot learning scope NLP language model papers desk reject policy",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_018SDhfGrTGvZJxKJ5yPJvKm",
+                  "content": [
+                    {
+                      "title": "CoRL 2021 - Frequently Asked Questions",
+                      "url": "https://2021.corl.org/author-information/frequently-asked-questions"
+                    },
+                    {
+                      "title": "CoRL 2021 - Submission Instructions",
+                      "url": "https://2021.corl.org/author-information/submission-instructions"
+                    },
+                    {
+                      "title": "CoRL 2024 - Instruction for Reviews",
+                      "url": "https://2024.corl.org/contributions/instruction-for-reviews"
+                    },
+                    {
+                      "title": "CoRL 2026 - Instruction for Authors",
+                      "url": "https://www.corl.org/contributions/instruction-for-authors"
+                    },
+                    {
+                      "title": "Reviewer Guidelines — CoRL 2023",
+                      "url": "https://www.corl2023.org/reviewer-guidelines"
+                    },
+                    {
+                      "title": "LangRob @ CoRL 2023",
+                      "url": "https://sites.google.com/view/langrob-corl23/home"
+                    },
+                    {
+                      "title": "CoRL 2026 - Call for Papers",
+                      "url": "https://www.corl.org/contributions/call-for-papers"
+                    },
+                    {
+                      "title": "LangRob @ CoRL 2024",
+                      "url": "https://sites.google.com/view/langrob-corl24/"
+                    },
+                    {
+                      "title": "News - IEEE Robotics and Automation Society - IEEE Robotics and Automation Society",
+                      "url": "https://www.ieee-ras.org/robot-learning/news"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found regarding CoRL's scope, desk rejection policy, and relationship with NLP/language model papers:\n\n## CoRL Scope and Desk Rejection Policy\n\nPapers can be desk rejected for one of three reasons: formatting issues, anonymity violation, or scope. \n\nAll CoRL submissions must demonstrate relevance to Robot Learning through either explicitly addressing a learning question for physical robots OR testing the proposed learning solution on physical robots. CoRL takes a broad view of robot learning, and papers with both experimental and theoretical results relevant to robot learning are welcome.\n\nSubmissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics. Submissions without a robotics focus will be returned without review.\n\n## NLP and Language Models in Robot Learning\n\nWhile NLP and language models are relevant to robot learning, they must maintain a robotics focus. The advancement of large language models has sparked growing interest in integrating language into robot learning, resulting in research at the intersection of NLP, computer vision, and robotics, covering topics such as human-robot communication, language-driven representation learning, specification of rewards, tasks, and constraints, and utilization of large pretrained language models for control.\n\nThis suggests that papers on NLP and language models can be accepted at CoRL, but only if they demonstrate clear relevance and application to actual robot learning tasks."
+              ],
+              "durationSeconds": 7.586665364000001,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "6fc89db9-86e7-420c-8a9c-110339ab0f27",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T03:01:23.816Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have enough information to make my assessment. The critical issue is:\n\n**This proposal is about CoT faithfulness measurement for LLMs — a pure NLP/AI interpretability topic. It has ZERO robotics content. CoRL explicitly states \"submissions without a robotics focus will be returned without review.\"**\n\nThis is a fatal venue mismatch. The proposal would be desk-rejected at CoRL 2026 before even reaching reviewers.\n\nBeyond the venue issue, let me also assess the idea quality itself:\n\n**Idea Summary:** The proposal introduces ICG (Information-Contribution Gap), which measures the divergence between what models \"know\" internally (measured by probes on hidden states) and what their CoT causally contributes (measured by truncation/perturbation/NLDD). \n\nLooking at the novelty, the core observation that probes can diagnose correctness while causal interventions fail is already well-documented in prior work. The individual components—probe trajectories with extensive signal-processing features, the NLDD metric, and the formalized distinction between different hypothesis types—all exist in the literature. This proposal essentially repackages these existing techniques without introducing fundamentally new methodology.\n\nThe significance is also limited. While CoT faithfulness matters, this is purely a diagnostic framework rather than something that advances the field methodologically. It taxonomizes phenomena, which has some value, but doesn't improve model behavior or interpretability in a meaningful way.\n\nThe fatal issue is the venue mismatch—CoRL focuses on robot learning, not NLP interpretability. Beyond that, the novelty is genuinely incremental: combining existing tools in a fairly obvious way given what's already known. The gap metric itself feels like a natural consequence of the existing literature rather than a creative insight. Since the work leans heavily on existing tools and frameworks, it reads more as an empirical study than a conceptual contribution.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ff2caca2-dc7d-4938-8072-91f086aab839",
+            "isSidechain": false,
+            "requestId": "req_011CbD5JL2iCmKh7SwSsosei",
+            "type": "assistant",
+            "uuid": "127d45b7-9d0c-4938-a1d9-a5eb7263f100",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U1YcVSKWD5Uez5zFaYC5v8",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 745,
+                "cache_read_input_tokens": 24804,
+                "output_tokens": 4180,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 745,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4180,
+                    "cache_read_input_tokens": 24804,
+                    "cache_creation_input_tokens": 745,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 745
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T03:02:35.245Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have sufficient information to make my assessment. Let me compile the evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- [Chrabąszcz et al., \"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics\" (arXiv:2605.18549)](https://arxiv.org/abs/2605.18549) (2026): 最直接的竞争工作。已经在 4 个推理模型上做了 probe trajectory + 60+ 信号处理特征，达到比 static probe 高 17pp 的性能。Proposal 的 P*(t) 方向被此工作高度验证但也高度重叠。\n- [Wang, \"LLM Reasoning Is Latent, Not the Chain of Thought\" (arXiv:2604.15726)](https://arxiv.org/abs/2604.15726) (2026): 已经形式化了 H1(latent-mediated) / H2(CoT-mediated) / H0(generic compute) 三假设框架。Proposal 声称 operationalize 此区分，但框架本身来自此文。\n- [Gjølbye et al., \"Reasoning Models Don't Just Think Longer, They Move Differently\" (arXiv:2605.15454)](https://arxiv.org/abs/2605.15454) (2026): 已经做了 difficulty-geometry coupling 分析，发现 ρ⊥ = +0.41 (Codeforces) 且 domain-specific。Proposal 的 task-difficulty conditioning 直接复用此发现。\n- [\"Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning\" (arXiv:2602.11201)](https://arxiv.org/abs/2602.11201) (ICLR 2026 Workshop): NLDD 指标已存在，已发现 Reasoning Horizon (70-85% chain length)。Proposal 将 NLDD 作为三种因果贡献估计方法之一直接使用。\n- [\"Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification\" (arXiv:2504.05419)](https://arxiv.org/abs/2504.05419) (2025): 已证明推理模型隐藏状态编码正确性信息但未能利用，probe AUROC 高但介入效果差。Proposal 的核心前提观察来自此类工作。\n- [\"Breaking the Chain: A Causal Analysis of LLM Faithfulness\" (arXiv:2603.16475)](https://arxiv.org/abs/2603.16475) (2026): 系统性因果分析 CoT 对中间结构的忠实度，发现模型对自生成结构比 gold 结构更忠实。\n- [\"Decoding Answers Before Chain-of-Thought\" (arXiv:2603.01437)](https://arxiv.org/abs/2603.01437) (2026): Pre-CoT probes + activation steering，已经在探测 CoT 前答案编码。\n\n- **调研总结**: CoT faithfulness 是 2025-2026 年 NLP 解释性领域的热点方向，已有大量工作分别从 probe trajectory、因果介入、NLDD 指标、difficulty conditioning 等角度展开。该 proposal 的各个组件（probe trajectory, 因果贡献估计, difficulty conditioning）均已有独立的近期论文覆盖；其核心主张的 novelty 在于将这些组件组合为一个统一的 \"gap metric\" 框架。\n\n【Trivial Alternative 检验】:\n**存在显著的 trivial alternative 威胁。** \nProposal 的核心度量 G*(t) = P*(t) − C(t) 本质上是将两个已有的度量（probe correctness prediction 和 causal contribution estimation）相减。一个研究者已经可以：(1) 用 Chrabąszcz 等人的 probe trajectory 方法跟踪内部状态演变；(2) 用 NLDD 或 prefix truncation 单独评估因果贡献；(3) 直接对比两个信号在时间轴上的行为。这不需要一个新的\"框架\"——分别 plot 两条曲线并目视/统计比较，就能得到 proposal 声称的 \"divergence fingerprint\"。将两个已有信号相减并命名为 \"ICG\" 的增量价值有限。真正的增量在于：是否存在 calibration 方法使得 P*(t) 和 C(t) 在同一度量空间中可减，以及减出来的 gap 是否比单独看两个信号提供了**不可通过其他方式获得**的洞见。Proposal 未能令人信服地论证后者。\n\n【前提假设检验】:\n核心 claim 的逻辑链有多个未经验证的环节：\n1. **P*(t) 和 C(t) 在同一标尺上可相减**：probe 输出的概率和因果贡献（truncation accuracy drop / NLDD score / paraphrase sensitivity）是完全不同性质的量。\"null-probe calibration\" 是否真的能让它们 commensurable 是一个未经实证的假设。\n2. **Gap 的 temporal shape 能区分 faithfulness phenomena**：proposal 假设 pre-CoT encoding、genuine reasoning、post-hoc rationalization 会产生可区分的 G*(t) 形状，但这完全是 hypothetical——没有任何先验理论或实证表明这些现象的 gap curve 形状会有 d > 0.5 的效应量。\n3. **跨研究数字的可组合性**：proposal 大量引用不同研究的数字（Cox 的 AUROC, David 的 easy/hard split, Gjølbye 的 ρ⊥）作为框架设计依据，但这些数字来自不同模型、不同任务、不同设置，组合起来的有效性存疑。虽然 proposal 加入了 Phase 0b pilot 来验证，这说明作者意识到了这个问题，但也说明核心 claim 目前缺乏实证基础。\n\n【3 维度打分】:\n\n1. **Novelty: 弱** — Proposal 的每个组件都直接来自近期已发表工作：probe trajectory (Chrabąszcz 2605.18549)、NLDD (arXiv:2602.11201)、H1/H2 框架 (Wang 2604.15726)、difficulty-geometry coupling (Gjølbye 2605.15454)、prefix truncation 因果分析 (Ballon et al.)。\"将 probe 信号与因果贡献信号相减得到 gap\" 是一个 natural next step，而非 surprising insight。核心 novelty claim 是 \"gap metric + calibration + temporal fingerprint → faithfulness taxonomy\"，但这更像是一个工程性的组装，而非概念性的突破。如果最终结果是 positive（gap curve 确实能区分 phenomena），审稿人更可能说 \"makes sense, I would have expected this to work\" 而非 \"surprising\"。\n\n2. **Significance: 中** — CoT faithfulness 确实是重要问题，了解模型\"知道但不使用\"的信息有实际价值。但此 proposal 本质上是一个**诊断/测量框架**，不改进模型、不提供 actionable 的训练信号、不直接解决安全问题。其价值取决于 taxonomy 的实用性——如果最终只能区分 2-3 种现象且无法指导下游干预，影响力有限。此外，830 H100-hours 的计算成本相对于一个诊断工具来说偏高。\n\n3. **Related Work: 中** — Proposal 引用的关键论文（Chrabąszcz 2605.18549, Wang 2604.15726, Gjølbye 2605.15454, NLDD 2602.11201）经验证均真实存在且描述基本准确。差异化定位（\"我们加了 causal contribution 维度\"）也有合理性。但 proposal 对最直接竞争者的差异化论证不够有力——Chrabąszcz 已经用 probe trajectory 做到了很多，加上 causal contribution 维度的**边际价值**没有被清晰论证。同时，对 \"Breaking the Chain\" (2603.16475) 和 \"Decoding Answers Before Chain-of-Thought\" (2603.01437) 等高度相关工作的讨论不足。\n\n【⚠️ 致命问题：venue mismatch】:\n**CoRL (Conference on Robot Learning) 2026 明确要求所有投稿必须聚焦于机器人学习核心问题（\"submissions without a robotics focus will be returned without review\"）。本 proposal 是纯 NLP/AI 可解释性工作（CoT faithfulness 诊断框架），不涉及任何机器人、物理交互、控制、感知或 embodied AI 内容。按照 CoRL 的 scope 政策，本文将在 desk review 阶段被直接退回（desk reject），不会进入同行评审。**\n\n这不是 idea 质量问题，而是投稿目标会议与论文内容的根本性错配。该 proposal 的合适 venue 应为 NeurIPS / ICML / ACL / EMNLP 等 NLP/ML 主会，或 ICLR。\n\n【概率估计】: [0% - 3%] 中位 1%\n\n【估计理由】: \n即使完全不考虑 venue mismatch（假设投到合适的 NLP/ML venue），基于 idea 质量的估计约为 [15% - 25%] 中位 20%——idea 方向站得住脚但内核薄弱，各组件来自已有工作的组装，核心 gap metric 存在 trivial alternative 威胁，前提假设（P* 和 C 可减、gap shape 可区分现象）未经验证。Novelty 弱是限制上界的主要维度。\n\n但考虑到投稿目标是 **CoRL 2026**（Conference on Robot Learning），该 proposal 将几乎确定被 desk reject。因此实际概率接近 0%。\n\n【主要风险】:\n1. **致命 venue mismatch**: CoRL 要求 robotics focus，本文是纯 NLP 可解释性工作，将被 desk reject\n2. **Novelty 不足**: 核心贡献是组合已有工具（probe trajectory + 因果贡献估计 + gap metric），缺乏概念性突破，审稿人可能认为是 \"engineering contribution\" 而非 \"scientific insight\"\n```\n\n---\n\n**总结**：这个 proposal 存在一个**致命的 venue 错配问题**。CoRL 是 Conference on Robot Learning，明确要求论文聚焦机器人学习，non-robotics 投稿会被直接退回。本 proposal 是纯粹的 NLP/AI 可解释性研究（CoT faithfulness 诊断框架），与机器人学习没有任何关联。\n\n即使抛开 venue 问题单看 idea 质量，novelty 也偏弱——各组件（probe trajectory, NLDD, difficulty conditioning, H1/H2 框架）均来自 2025-2026 年的已发表工作，核心创新在于将它们组合为一个 gap metric，但这个组合是 natural next step 而非 surprising insight。\n\n**建议：如果要推进此 proposal，应将目标 venue 改为 NeurIPS / ICML / ACL / EMNLP 等 NLP/ML 主会，并需在 novelty 层面做实质性加强——比如证明 gap metric 能提供单独看 probe 或单独看 causal contribution 所无法获得的独特洞见。**\n\nSources:\n- [Chrabąszcz et al., \"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics\"](https://arxiv.org/abs/2605.18549)\n- [Wang, \"LLM Reasoning Is Latent, Not the Chain of Thought\"](https://arxiv.org/abs/2604.15726)\n- [Gjølbye et al., \"Reasoning Models Don't Just Think Longer, They Move Differently\"](https://arxiv.org/abs/2605.15454)\n- [\"Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning\"](https://arxiv.org/abs/2602.11201)\n- [\"Reasoning Models Know When They're Right\"](https://arxiv.org/abs/2504.05419)\n- [\"Breaking the Chain: A Causal Analysis of LLM Faithfulness\"](https://arxiv.org/abs/2603.16475)\n- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)\n- [CoRL 2026 Instruction for Authors](https://www.corl.org/contributions/instruction-for-authors)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "127d45b7-9d0c-4938-a1d9-a5eb7263f100",
+            "isSidechain": false,
+            "requestId": "req_011CbD5JL2iCmKh7SwSsosei",
+            "type": "assistant",
+            "uuid": "e59d071c-0daa-43eb-9bef-06be14502d90",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U1YcVSKWD5Uez5zFaYC5v8",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 745,
+                "cache_read_input_tokens": 24804,
+                "output_tokens": 4180,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 745,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4180,
+                    "cache_read_input_tokens": 24804,
+                    "cache_creation_input_tokens": 745,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 745
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Measuring What Models Know But Don't Use: Calibrated Temporal Information-Contribution Divergence for Chain-of-T…",
+                "leafUuid": "e59d071c-0daa-43eb-9bef-06be14502d90",
+                "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0"
+              }
+            }
+          ],
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Evaluate proposal on chain-of-thought faithfulness framework",
+                "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0"
+              }
+            }
+          ],
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Measuring What Models Know But Don't Use: Calibrated Temporal Information-Contribution Divergence for Chain-of-T…",
+                "leafUuid": "e59d071c-0daa-43eb-9bef-06be14502d90",
+                "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0"
+              }
+            }
+          ],
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Evaluate proposal on chain-of-thought faithfulness framework",
+                "sessionId": "8d2af9c5-53d1-4d93-8d7e-3c8632f128a0"
+              }
+            }
+          ],
+          "id": "event-000046"
+        }
+      ],
+      "message_count": 44
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-proposal-rubric-go-kill-proposal-measuring-what-models-know-but-do-copy-12.md"
+}

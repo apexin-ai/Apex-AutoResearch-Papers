@@ -1,0 +1,624 @@
+{
+  "schema_version": "1.0",
+  "id": "e1ea232a502a52350320",
+  "project": "nlp_variance_gtheory--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to read several LaTeX source files from a paper project. Read the following files in full: 1. /home/ubuntu/.agent",
+  "task_key": "agent-abb0722481ef06c45",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/agent-abb0722481ef06c45.jsonl",
+    "occurrence": 1,
+    "bytes": 56484,
+    "sha256": "bd4f500af2570cb8e24de3c7481ef1c47c3fa76118cf28437682df95bde7ccfc"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 1,
+    "tool_calls": 5,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 5,
+      "tool_result": 5
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T14:53:52.855Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to read several LaTeX source files from a paper project. Read the following files in full:\n\n1. /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/anon_repo/nlp_variance_gtheory/paper/introduction.tex\n2. /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/anon_repo/nlp_variance_gtheory/paper/related_work.tex\n3. /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/anon_repo/nlp_variance_gtheory/paper/main.tex (just the structure/includes)\n4. /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/anon_repo/nlp_variance_gtheory/paper/conclusion.tex\n5. /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/anon_repo/nlp_variance_gtheory/paper/appendix.tex\n\nReport the full content of each file, especially:\n- The current contributions list in introduction.tex (how many, what they say)\n- The structure of related_work.tex (subsections, figure placements)\n- What's in the appendix that could potentially be moved to main text\n- The overall \\input structure in main.tex\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "8b560695-79c9-4a5e-b619-2b065d2ef63a",
+            "agentId": "abb0722481ef06c45",
+            "type": "user",
+            "uuid": "248bb9b1-9eb5-40f3-a85b-ec828d74b28d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-25T14:53:54.904Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read all five LaTeX files for you. Let me retrieve them in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "248bb9b1-9eb5-40f3-a85b-ec828d74b28d",
+            "isSidechain": true,
+            "agentId": "abb0722481ef06c45",
+            "requestId": "req_011CbPUhXCHCDGfRoKJHD8Jk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8231bea9-a875-4677-83cd-000390ec3b6d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Vem3BemLVxtHjxaaPp4uRT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 39900,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 39900,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-25T14:53:55.109Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NB56xVwDTdPpN2RXy8RZpC",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/anon_repo/nlp_variance_gtheory/paper/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8231bea9-a875-4677-83cd-000390ec3b6d",
+            "isSidechain": true,
+            "agentId": "abb0722481ef06c45",
+            "requestId": "req_011CbPUhXCHCDGfRoKJHD8Jk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "dbfaf1a8-1440-4d2b-9d96-fcd44f45dd6c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Vem3BemLVxtHjxaaPp4uRT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 39900,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 39900,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-25T14:53:55.119Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NB56xVwDTdPpN2RXy8RZpC",
+              "type": "tool_result",
+              "content": "1\t\\begin{figure*}[t]\n2\t\\centering\n3\t\\includegraphics[width=\\textwidth]{fig_overview_pipeline}\n4\t\\caption{Overview of the G-theory evaluation pipeline. A factorial design crossing seven facets across eight models and five benchmarks produces 2.3M binary records. G-study variance decomposition via Henderson Method~I reveals that model$\\times$item interaction accounts for up to 36\\% of variance. D-study projections translate variance components into design-dependent item budgets: a 3-prompt $\\times$ 3-seed design achieves $G \\geq 0.80$ with 178 items (3.1$\\times$ reduction). Two contributions emerge: reproducibility budgets (C1) and format-associated variance patterns (C2).}\n5\t\\label{fig:overview}\n6\t\\end{figure*}\n7\t\n8\t\\section{Introduction}\n9\t\\label{sec:introduction}\n10\t\n11\tLLM benchmark scores are increasingly used for model selection and deployment decisions, but their reliability depends on choices that are rarely reported or controlled. Prompt formatting alone can shift accuracy by up to 76 percentage points \\citep{sclar2024formatting, brittlebench2026}. Answer ordering \\citep{pezeshkpour2024ordering}, numerical precision \\citep{yuan2025layercast}, and random seeds \\citep{dodge2020finetuning, bui2025seeds} each introduce further variation. These studies examine one source at a time, leaving a fundamental question open: when all sources vary simultaneously, which ones dominate, and does the answer depend on the benchmark format?\n12\t\n13\tThe piecemeal approach cannot capture interactions between variance sources or track how their relative importance shifts across benchmarks. \\citet{bouthillier2021accounting} established variance decomposition for ML reproducibility via ANOVA but did not address LLM evaluation. \\citet{messing2026hidden} applied G-theory to LLM evaluation across five methodology facets on a single benchmark but excluded infrastructure facets and cross-benchmark comparison. Item Response Theory (IRT) approaches \\citep{polo2024tinybenchmarks, lalor2019irt, zhou2026irt} optimize item selection but treat prompt, seed, and ordering as fixed. Three gaps remain: no study has (a)~crossed infrastructure and methodology facets in a unified factorial design, (b)~compared variance structures across benchmark formats, or (c)~translated variance components into design-dependent reproducibility budgets.\n14\t\n15\tWe address these gaps with a G-theory study \\citep{shavelson1991generalizability, brennan2001generalizability} crossing up to seven facets across eight open-weight 7--9B parameter models and five benchmarks (Figure~\\ref{fig:overview}), totaling approximately 2.3 million binary evaluation records. Our central finding is that the variance structure of LLM evaluation is format-conditional. On multiple-choice benchmarks, item-related factors (item difficulty and model-specific item difficulty) account for 68--72\\% of total variance; on free-form reasoning benchmarks, this concentration drops below 42\\%, with variance distributed across items, models, and prompts. The model$\\times$item interaction, at 30--36\\% across benchmarks, reveals that models differ primarily in which items they find difficult rather than in overall ability. D-study projections show that multi-facet designs need an order of magnitude fewer items than single-condition designs for reliable measurement (Figure~\\ref{fig:teaser}).\n16\t\n17\tOur contributions:\n18\t\\begin{enumerate}\n19\t    \\item \\textbf{Design-dependent reproducibility budgets.} Multi-facet designs that vary prompts and seeds require dramatically fewer items for reliable measurement. A 3-prompt $\\times$ 3-seed design reduces item requirements by 3.1$\\times$ on MMLU; cross-benchmark projections yield multi-facet budgets of 93--128 items versus 1,078--2,768 single-condition (Table~\\ref{tab:dstudy_cross}). IRT item selection and G-theory protocol optimization are orthogonal and complementary (Table~\\ref{tab:dstudy}).\n20\t\n21\t    \\item \\textbf{Format-associated variance patterns (exploratory).} Item-related variance concentrates in multiple-choice benchmarks (68--72\\%) and disperses in free-form benchmarks (31--41\\%), driven by item difficulty heterogeneity ($\\rho = 0.82$ within MMLU subjects). This exploratory observation ($n = 5$ benchmarks, $p = 0.10$) warrants confirmation with broader benchmark samples.\n22\t\\end{enumerate}\n23\tWe release an open-source G-theory pipeline and D-study budget calculator for evaluation design optimization.\n24\t\n25\t\\begin{figure}[t]\n26\t\\centering\n27\t\\includegraphics[width=\\columnwidth]{fig0_teaser_dstudy}\n28\t\\caption{D-study projections for MMLU (single-model baseline). A recommended 3-prompt $\\times$ 3-seed design reduces the budget from 552 to 178 items for $G \\geq 0.80$; the full multi-facet design reduces further to 55 items.}\n29\t\\label{fig:teaser}\n30\t\\end{figure}\n31\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dbfaf1a8-1440-4d2b-9d96-fcd44f45dd6c",
+            "isSidechain": true,
+            "promptId": "8b560695-79c9-4a5e-b619-2b065d2ef63a",
+            "agentId": "abb0722481ef06c45",
+            "type": "user",
+            "uuid": "3a1b24c5-abcc-44cf-9625-1d5f470fba9a",
+            "sourceToolAssistantUUID": "dbfaf1a8-1440-4d2b-9d96-fcd44f45dd6c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-25T14:53:55.537Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0125yXrysU8wQ7kNf2LZU6Uk",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/anon_repo/nlp_variance_gtheory/paper/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3a1b24c5-abcc-44cf-9625-1d5f470fba9a",
+            "isSidechain": true,
+            "agentId": "abb0722481ef06c45",
+            "requestId": "req_011CbPUhXCHCDGfRoKJHD8Jk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1d95b632-5268-4e1f-aee6-a6425cf9fc1c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Vem3BemLVxtHjxaaPp4uRT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 39900,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 39900,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-25T14:53:55.544Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0125yXrysU8wQ7kNf2LZU6Uk",
+              "type": "tool_result",
+              "content": "1\t\\section{Related Work}\n2\t\\label{sec:related}\n3\t\n4\t\\begin{figure}[t]\n5\t\\centering\n6\t\\includegraphics[width=0.85\\columnwidth]{fig_method_comparison}\n7\t\\caption{Scope comparison with prior multi-facet variance studies. Our work uniquely combines broad facet crossing, multi-benchmark coverage, and D-study budget projections.}\n8\t\\label{fig:method_comparison}\n9\t\\end{figure}\n10\t\n11\t\\paragraph{Variance Sources in LLM Evaluation.}\n12\t\\citet{bouthillier2021accounting} introduced ANOVA-based variance decomposition for ML reproducibility, establishing that design choices account for a substantial share of benchmark variance. Subsequent work isolated individual sources: \\citet{yuan2025layercast} documented up to 9\\% accuracy variation from numerical precision; \\citet{sclar2024formatting} and BrittleBench \\citep{brittlebench2026} found 50--76\\% accuracy swings from prompt formatting; \\citet{pezeshkpour2024ordering} and \\citet{bui2025seeds} documented ordering and seed sensitivity. \\citet{messina2026background} formalized CUDA nondeterminism from floating-point non-associativity. Each study holds other factors fixed, precluding interaction estimation. \\citet{madaan2024quantifying} proposed per-factor metrics without crossing factors; holistic evaluation frameworks \\citep{liang2023helm, gao2024lmeval} reduce implementation variance but do not decompose it. Our work crosses seven facets simultaneously, enabling interaction estimation and cross-format comparison (Figure~\\ref{fig:method_comparison}).\n13\t\n14\t\\paragraph{IRT and Efficient Benchmarking.}\n15\tIRT models item difficulty and discrimination to optimize benchmark efficiency \\citep{lalor2019irt, rodriguez2021leaderboards}. \\citet{polo2024tinybenchmarks} and \\citet{zhou2026irt} developed IRT-based subsampling for efficient evaluation; \\citet{perlitz2023efficient} and \\citet{kipnis2025metabench} explored related compression strategies. These approaches optimize item selection but do not model variance from prompt, seed, or ordering facets. IRT-selected items under a single methodological condition can therefore underestimate required item counts---our results show IRT's 116 items yield $G = 0.457$ single-condition but $G = 0.895$ multi-facet, demonstrating that item selection and protocol optimization are orthogonal.\n16\t\n17\t\\paragraph{G-Theory and Positioning.}\n18\tG-theory \\cite{shavelson1991generalizability, brennan2001generalizability} provides the canonical framework for multi-facet reliability analysis, with extensions to binary data \\cite{mushquash2006gtheory, jiang2018bayesian}. We operationalize differential item functioning \\citep{holland1993dif, clauser1998dif} as model$\\times$item interaction. Recent psychometric perspectives on LLM evaluation address construct validity \\cite{kearns2026construct} and measurement properties \\cite{ye2025psychometrics}. Closest to our work, \\citet{messing2026hidden} applied G-theory to LLM evaluation, decomposing five methodology facets on a single benchmark (judge identity: 43.8\\%). We extend this in three directions: (i) replacing judge identity with infrastructure facets and additional methodology facets; (ii) crossing facets across five benchmarks for cross-format comparison; and (iii) translating variance components into reproducibility budgets via D-study projections. Table~\\ref{tab:positioning} summarizes these distinctions.\n19\t\n20\t\\begin{table}[t]\n21\t\\centering\n22\t\\caption{Positioning relative to prior multi-facet variance studies. ``--'' = not addressed.}\n23\t\\label{tab:positioning}\n24\t\\scriptsize\n25\t\\begin{tabular*}{\\columnwidth}{@{\\extracolsep{\\fill}}lccc@{}}\n26\t\\toprule\n27\t & \\citet{bouthillier2021accounting} & \\citet{messing2026hidden} & Ours \\\\\n28\t\\midrule\n29\tFacets crossed & 4 & 5 & 7 \\\\\n30\tDesign & Factorial & Factorial & Factorial \\\\\n31\tMethod & ANOVA & G-theory & G-theory \\\\\n32\tD-study budgets & -- & -- & \\checkmark \\\\\n33\tModels & ML models & 6 LLMs & 8 LLMs \\\\\n34\tBenchmarks & 3 & 1 & 5 \\\\\n35\tCross-format & -- & -- & MC+FF \\\\\n36\t\\bottomrule\n37\t\\end{tabular*}\n38\t\\end{table}\n39\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1d95b632-5268-4e1f-aee6-a6425cf9fc1c",
+            "isSidechain": true,
+            "promptId": "8b560695-79c9-4a5e-b619-2b065d2ef63a",
+            "agentId": "abb0722481ef06c45",
+            "type": "user",
+            "uuid": "00b67403-9be6-4ed6-b344-5d3144c446a2",
+            "sourceToolAssistantUUID": "1d95b632-5268-4e1f-aee6-a6425cf9fc1c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-25T14:53:55.742Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018yX7WJoXBWCWczy6qRiiry",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/anon_repo/nlp_variance_gtheory/paper/main.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "00b67403-9be6-4ed6-b344-5d3144c446a2",
+            "isSidechain": true,
+            "agentId": "abb0722481ef06c45",
+            "requestId": "req_011CbPUhXCHCDGfRoKJHD8Jk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0366daed-0b34-4e3d-88e0-254f2f209ace",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Vem3BemLVxtHjxaaPp4uRT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 39900,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 39900,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-25T14:53:55.749Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018yX7WJoXBWCWczy6qRiiry",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\n11\t\\usepackage{graphicx}\n12\t\\usepackage{amsmath,amssymb}\n13\t\\usepackage{booktabs}\n14\t\\usepackage{multirow}\n15\t\\usepackage{xcolor}\n16\t\n17\t\\graphicspath{{figures/}}\n18\t\n19\t\\title{Reproducibility Budgets for Open-Weight LLM Evaluation:\\\\A Generalizability Theory Study of 7--9B Instruction-Tuned Models}\n20\t\n21\t\\author{Anonymous}\n22\t\n23\t\\begin{document}\n24\t\\maketitle\n25\t\n26\t\\begin{abstract}\n27\t\\input{abstract}\n28\t\\end{abstract}\n29\t\n30\t% === INTRODUCTION ===\n31\t\\input{introduction}\n32\t\n33\t% === RELATED WORK ===\n34\t\\input{related_work}\n35\t\n36\t% === METHOD ===\n37\t\\input{method}\n38\t\n39\t% === EXPERIMENTS ===\n40\t\\input{experiments}\n41\t\n42\t% === CONCLUSION ===\n43\t\\input{conclusion}\n44\t\n45\t% === LIMITATIONS ===\n46\t\\input{limitations}\n47\t\n48\t\\bibliography{references}\n49\t\n50\t% === APPENDIX ===\n51\t\\input{appendix}\n52\t\n53\t\\end{document}\n54\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0366daed-0b34-4e3d-88e0-254f2f209ace",
+            "isSidechain": true,
+            "promptId": "8b560695-79c9-4a5e-b619-2b065d2ef63a",
+            "agentId": "abb0722481ef06c45",
+            "type": "user",
+            "uuid": "32fa5d9d-2fe5-4e48-b860-eceaf5af203e",
+            "sourceToolAssistantUUID": "0366daed-0b34-4e3d-88e0-254f2f209ace",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-25T14:53:55.964Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011vTuCZWGHEnSHcUmje11cT",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/anon_repo/nlp_variance_gtheory/paper/conclusion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "32fa5d9d-2fe5-4e48-b860-eceaf5af203e",
+            "isSidechain": true,
+            "agentId": "abb0722481ef06c45",
+            "requestId": "req_011CbPUhXCHCDGfRoKJHD8Jk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9eb8ec48-5f0e-427e-8425-52b4ae33097d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Vem3BemLVxtHjxaaPp4uRT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 39900,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 39900,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-25T14:53:55.969Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011vTuCZWGHEnSHcUmje11cT",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion and Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tThe dominant model$\\times$item interaction (30--36\\%) means model rankings are partly item-dependent, reinforcing calls for item-level reporting \\cite{polo2024tinybenchmarks}. The exploratory format-associated pattern---MC benchmarks concentrating 68--72\\% in item-related components versus 31--41\\% for FF ($p = 0.10$)---suggests per-format budget calibration, pending broader confirmation. A 3-prompt $\\times$ 3-seed design reduces items from 552 to 178 ($G \\geq 0.80$, MMLU); cross-model projections yield 93--128 items versus 1,078--2,768 single-condition (Table~\\ref{tab:dstudy_cross}). We recommend multi-facet validation as standard practice.\n5\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9eb8ec48-5f0e-427e-8425-52b4ae33097d",
+            "isSidechain": true,
+            "promptId": "8b560695-79c9-4a5e-b619-2b065d2ef63a",
+            "agentId": "abb0722481ef06c45",
+            "type": "user",
+            "uuid": "20b7a003-4861-4e1c-ad76-5eaef75ba5d3",
+            "sourceToolAssistantUUID": "9eb8ec48-5f0e-427e-8425-52b4ae33097d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-25T14:53:56.227Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012oXrxuBpEzEqZGttqqxLBd",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/anon_repo/nlp_variance_gtheory/paper/appendix.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "20b7a003-4861-4e1c-ad76-5eaef75ba5d3",
+            "isSidechain": true,
+            "agentId": "abb0722481ef06c45",
+            "requestId": "req_011CbPUhXCHCDGfRoKJHD8Jk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "68c9aa9c-1a38-40ec-99bf-639487612aad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Vem3BemLVxtHjxaaPp4uRT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 39900,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 464,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 39900
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 464,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 39900,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 39900,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-25T14:53:56.239Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012oXrxuBpEzEqZGttqqxLBd",
+              "type": "tool_result",
+              "content": "1\t\\appendix\n2\t\n3\t\\section{Additional Robustness Analyses}\n4\t\\label{app:robustness}\n5\t\n6\tWe report nine robustness analyses that verify the stability of the variance decomposition under alternative analytical choices.\n7\t\n8\t\\paragraph{GLMM complement.} A generalized linear mixed model (GLMM) with marginal logit link produces variance component rankings that perfectly preserve all seven grouped component orderings ($\\rho = 1.0$) relative to Henderson Method~I \\cite{jiang2018bayesian, tuerlinckx2006glmm}. This confirms that the linear variance decomposition is robust to the binary outcome distribution.\n9\t\n10\t\\paragraph{Accuracy-range stability.} The \\texttt{item\\_id} variance share remains stable across subsets with mean accuracy from 0.62 to 0.72 ($r = -0.048$). This rules out distortion from binary floor or ceiling effects at observed accuracy levels.\n11\t\n12\t\\paragraph{Estimator robustness.} We compare Henderson Method~I with restricted maximum likelihood (REML-EM, 500 iterations, practical convergence $\\Delta < 0.003$ percentage points). All variance components differ by $<$0.5 percentage points between estimators. The largest discrepancy occurs on the residual component (0.47pp); all substantive components (item, model$\\times$item, model) differ by $<$0.3pp. Henderson Method~I is preferred for our balanced designs because it produces unbiased estimates without distributional assumptions \\cite[Ch.~12]{brennan2001generalizability}.\n13\t\n14\t\\paragraph{Probit simulation.} A probit simulation matched to our 1,296-condition design confirms that Henderson Method~I recovers variance component rankings from dichotomized data (Spearman $\\rho = 0.732$ between binary and continuous rankings, excluding residual; \\texttt{item\\_id} dominant in all 100 replications; top-5 ordering correct in 79\\% of replications). Bias analysis by difficulty stratum shows $|\\text{bias}| = 0.28$--$0.37$ for items with $p \\in [0.5, 0.8]$, where the Bernoulli variance ceiling $p(1{-}p)$ is largest. This analysis covers the observed accuracy range ($p \\in [0.3, 0.9]$); extreme-difficulty items ($p < 0.3$ or $p > 0.9$) are rare in our sample ($<$8\\% of items) and may exhibit larger deviations. Henderson Method~I absorbs this Bernoulli-inherent variance into the residual, explaining inflated bias near medium difficulty; systematic component ordering is robustly recovered across all replications. Binary scoring inflates residual variance by absorbing the Bernoulli $p(1{-}p)$ ceiling, which enters $\\sigma^2_\\text{rel}$ and increases D-study item requirements. Within a matched probit simulation, binarization increases D-study budgets by approximately 36\\% (99 $\\to$ 135 items for $G \\geq 0.80$), driven by residual inflation (16\\% $\\to$ 41\\%) and item variance compression (50\\% $\\to$ 32\\%). Facet$\\times$item interactions---the components entering $\\sigma^2_\\text{rel}$---are best preserved under binarization (MAPE = 12.8\\%, range 8.7--17.5\\%), while residual variance inflates as expected from Bernoulli $p(1{-}p)$ noise (MAPE = 156\\%). D-study budgets derived from binary data are therefore conservative: continuous-scored designs would require equal or fewer items for the same $G$ threshold. Null calibration (ratio $= 1.0008$) confirms that this conservatism does not distort relative component magnitudes.\n15\t\n16\t\\paragraph{CI method comparison.} Bootstrap (1,000 item-level resamples with replacement) and delete-1 jackknife confidence intervals agree closely: width ratios range from 0.96 to 1.04 across all variance components. Bootstrap CIs capture item-sampling variability conditional on these 8 specific models; model-level stability is assessed separately via LOMO (below). The agreement indicates that the dependence structure introduced by item-level bootstrap resampling (which creates $\\sim$127 unique items per 200-item resample) does not materially distort interval estimates. Stratified resampling by subject (10 subjects $\\times$ 20 items) produces CIs within 4\\% of simple item-level bootstrap, confirming that the within-subject dependence structure does not materially affect interval estimates.\n17\t\n18\t\\paragraph{Facet specification sensitivity.} Treating temperature and ordering as fixed (rather than random) facets changes $G_\\text{item}$ by only 0.37 percentage points (all-random: 0.820 vs.\\ fixed temperature+ordering: 0.824). The small difference reflects the negligible temperature$\\times$item (0.65\\%) and ordering$\\times$item (0.54\\%) variance shares. The random-facet assumption is therefore robust to facet classification.\n19\t\n20\t\\paragraph{Leave-one-model-out (LOMO).} Across all 40 leave-one-model-out subsets (8 models $\\times$ 5 benchmarks), $G_\\text{item}$ ranges from 0.833 to 0.919, with CV $\\leq$ 1.25\\% per benchmark. No single model removal changes $G$ by more than 0.030 (GSM8K, removing Gemma-2-9B). Item-related variance rankings are preserved in all 40 subsets. Table~\\ref{tab:lomo_full} (main text) reports per-benchmark stability. This supports treating models as exchangeable within the target universe of 7--9B instruction-tuned models (\\S\\ref{sec:model_facet}).\n21\t\n22\t\\paragraph{Inter-model agreement.} We computed pairwise Cohen's $\\kappa$ and Fleiss' $\\kappa$ across all model pairs on each benchmark. Mean pairwise $\\kappa$ ranges from 0.326 (MATH) to 0.461 (MMLU); Fleiss' $\\kappa$ ranges from 0.309 (GSM8K) to 0.456 (MMLU). HellaSwag uses six models ($\\kappa = 0.332$) due to missing OLMo and Yi data. The fair-to-moderate agreement independently confirms that the model$\\times$item interaction (30--36\\% of variance) reflects genuine differential item functioning: models disagree substantially on which items are difficult, consistent with prior DIF findings in educational measurement \\cite{holland1993dif, clauser1998dif}.\n23\t\n24\t\\paragraph{Scoring metric sensitivity.}\n25\t\\label{sec:partial_credit}\n26\tTo probe metric conditionality, we compared binary correctness with step-level partial credit on GSM8K using the full 8-model crossed design (200 items, 2,304 conditions per item). Under partial credit, $G_\\text{item}$ drops from 0.863 to 0.768, with residual variance rising from 39.9\\% to 64.9\\% and item variance falling from 16.9\\% to 10.3\\%. All eight models individually show $G_\\text{partial} < G_\\text{binary}$ (mean $\\Delta G = -0.135$, range $-0.025$ to $-0.309$), with $\\Delta G$ magnitude moderated by model accuracy: higher-accuracy models have fewer incorrect responses whose scores shift under partial credit (e.g., OLMo at 70.1\\% accuracy shows $\\Delta G = -0.025$, while Llama at 49.0\\% shows $\\Delta G = -0.309$). The mechanism is clear: 48.1\\% of incorrect responses have numerically correct arithmetic steps but incorrect problem setup, receiving partial score $= 1.0$ despite binary score $= 0$---this compresses item discrimination and inflates residual variance. Binary scoring amplifies prompt sensitivity by collapsing reasoning quality into pass/fail, confirming that all findings in this paper are metric-conditional.\n27\t\n28\t\\paragraph{Facet specification sensitivity: random vs.\\ fixed model.} Table~\\ref{tab:fixed_vs_random} reports per-benchmark generalizability coefficients under random and fixed model specifications. The consistent $\\Delta G$ of 0.077--0.113 confirms that random-model budgets are strictly more conservative across all benchmarks.\n29\t\n30\t\\begin{table}[h]\n31\t\\centering\n32\t\\caption{Generalizability coefficients under random vs.\\ fixed model facet specification across five benchmarks.}\n33\t\\label{tab:fixed_vs_random}\n34\t\\scriptsize\n35\t\\begin{tabular}{lrrr}\n36\t\\toprule\n37\tBenchmark & $G_\\text{random}$ & $G_\\text{fixed}$ & $\\Delta G$ \\\\\n38\t\\midrule\n39\tMMLU & 0.896 & 0.984 & $+$0.088 \\\\\n40\tARC & 0.892 & 0.990 & $+$0.098 \\\\\n41\tHellaSwag & 0.872 & 0.984 & $+$0.113 \\\\\n42\tGSM8K & 0.863 & 0.951 & $+$0.089 \\\\\n43\tMATH & 0.888 & 0.965 & $+$0.077 \\\\\n44\t\\midrule\n45\tMean & 0.882 & 0.975 & $+$0.093 \\\\\n46\t\\bottomrule\n47\t\\end{tabular}\n48\t\\end{table}\n49\t\n50\t\\paragraph{Null calibration.} We generate 100 Bernoulli-distributed datasets with item difficulties matched to the empirical distribution but no systematic facet effects. The observed-to-null variance ratio is 1.0008, confirming that Henderson Method~I does not introduce systematic bias when applied to binary outcomes. The null simulation also verifies that the item variance share (58.4\\%) is not an artifact of the Bernoulli $p(1{-}p)$ ceiling: the null produces item variance of 0.08\\%, three orders of magnitude below the observed value. Across all 100 replications, the same three components (item, model$\\times$item, residual) emerge as the top three (set consistency 100\\%), with Kendall's $\\tau = 0.81$ between binary and continuous rankings.\n51\t\n52\t\\paragraph{Reduced crossing validation.} To verify that the reduced crossing in exp-002 (BF16 only $\\times$ 2 temperatures) does not introduce confounding, we extracted the corresponding subset from the fully crossed exp-001 design. The generalizability coefficient differs by only 0.0008 ($G = 0.9361$ vs.\\ $0.9369$), and all non-precision variance components differ by less than 2 percentage points. The 10pp increase in item variance share (58.4\\% $\\to$ 68.5\\%) is fully explained by the removal of precision-related components ($\\sim$4.5\\% total), which redistributes across remaining sources. This confirms that the exp-002 design preserves the variance structure of the full crossing.\n53\t\n54\t\\section{Projection Validation Details}\n55\t\\label{app:dstudy_cross}\n56\t\n57\t\\paragraph{Internal consistency check.} Table~\\ref{tab:forward_pred} reports consistency checks from four exp-001 models (DeepSeek, Llama, Mistral, Qwen3) to the full eight-model design across all five benchmarks. MC benchmarks show $|\\Delta G| \\leq 0.029$ ($<$3.5\\% error), while FF benchmarks show larger deviations ($|\\Delta G| \\leq 0.065$, $\\sim$7\\%) due to limited model diversity in the four-model subset. FF predictions consistently underestimate actual $G$ (conservative); MC predictions show mixed directions with small deviations ($|\\Delta G| \\leq 0.029$).\n58\t\n59\t\\begin{table}[h]\n60\t\\centering\n61\t\\caption{Internal consistency: four-model subset vs.\\ eight-model $G_\\text{item}$. FF subsets underestimate actual $G$ (conservative); MC shows mixed directions with small deviations.}\n62\t\\label{tab:forward_pred}\n63\t\\small\n64\t\\begin{tabular}{lrrrr}\n65\t\\toprule\n66\tBenchmark & Predicted $G$ & Actual $G$ & $|\\Delta G|$ & Error\\% \\\\\n67\t\\midrule\n68\t\\multicolumn{5}{l}{\\textit{Multiple-choice}} \\\\\n69\tMMLU & 0.888 & 0.896 & 0.009 & 0.96 \\\\\n70\tARC & 0.904 & 0.892 & 0.012 & 1.38 \\\\\n71\tHellaSwag & 0.901 & 0.872 & 0.029 & 3.33 \\\\\n72\t\\midrule\n73\t\\multicolumn{5}{l}{\\textit{Free-form}} \\\\\n74\tGSM8K & 0.803 & 0.863 & 0.059 & 6.88 \\\\\n75\tMATH & 0.823 & 0.888 & 0.065 & 7.30 \\\\\n76\t\\midrule\n77\tMean & --- & --- & 0.035 & 3.97 \\\\\n78\t\\bottomrule\n79\t\\end{tabular}\n80\t\\end{table}\n81\t\n82\t\\begin{figure}[h]\n83\t\\centering\n84\t\\includegraphics[width=\\columnwidth]{budget_sensitivity_band}\n85\t\\caption{Effect of $|\\Delta G| = 0.035$ estimation error on item budgets. The $\\sim$23\\% increase is consistent across benchmarks.}\n86\t\\label{fig:budget_sensitivity}\n87\t\\end{figure}\n88\t\n89\t\\paragraph{Budget sensitivity to estimation error.}\n90\t\\label{app:budget_sensitivity}\n91\tThe effect of $|\\Delta G| = 0.035$ estimation error on item budgets is shown in Figure~\\ref{fig:budget_sensitivity}. The percentage increase is remarkably stable (23.0--24.5\\%, mean 23.2\\%), because the relative budget adjustment $\\Delta n / n$ depends on the $G$-formula ratio rather than on absolute variance components. Absolute $\\Delta n$ ranges from 13 (ARC) to 67 (GSM8K), scaling with the baseline budget.\n92\t\n93\t\\paragraph{Cross-benchmark $G$ stability.}\n94\t\\label{app:cross_benchmark_transfer}\n95\t$G_\\text{item}$ values cluster in a narrow band across all five benchmarks (0.863--0.896, CV = 1.4\\%), despite qualitatively different variance structures: MC benchmarks concentrate 68--72\\% in item-related components while GSM8K disperses variance across item (17\\%), model (11\\%), and interaction (15\\%) sources (Table~\\ref{tab:cross_benchmark}). This stability implies that D-study budget recommendations calibrated on one benchmark provide reasonable order-of-magnitude guidance for others. However, the 0.033 range in $G_\\text{item}$ translates to a 71--128 item range for multi-facet $G \\geq 0.80$ (Table~\\ref{tab:dstudy_cross}), and the variance compositions differ substantially---benchmark-specific G-studies remain necessary to identify dominant variance sources and optimize condition selection.\n96\t\n97\t\\section{Format-Associated Variance: Per-Benchmark Details}\n98\t\\label{app:format_details}\n99\t\n100\tThis section supplements the compressed format-associated analysis in \\S\\ref{sec:format_conditional} with per-benchmark details.\n101\t\n102\t\\paragraph{MC benchmark exceptions.} HellaSwag is the sole MC case where model$\\times$item slightly exceeds item (36.0\\% vs.\\ 34.3\\%), though their sum (70.3\\%) remains in the MC range (68--72\\%). Among MC benchmarks, ARC-Challenge shows an anomalously high model$\\times$prompt interaction (8.0\\% vs.\\ $<$2\\% for MMLU and HellaSwag), suggesting that science-domain items are differentially sensitive to option formatting across model families.\n103\t\n104\t\\paragraph{FF benchmark patterns.} Free-form benchmarks differ markedly from MC. On GSM8K, variance distributes across item (16.9\\%), model$\\times$item (14.6\\%), model (10.7\\%), and model$\\times$prompt (8.5\\%); prompt main effect is 5.4\\%. MATH shows an intermediate pattern: item leads at 24.0\\% with model$\\times$item at 17.3\\%, but residual variance is substantially larger (43.9\\%). Item-level regression reveals that FF residual variance is predominantly explained by the Bernoulli variance ceiling $p(1{-}p)$ ($R^2 = 0.47$--$0.86$; Appendix~\\ref{app:ff_residual}): medium-difficulty items maximize binary outcome variance regardless of facet structure, so the elevated FF residuals reflect measurement resolution rather than unmodeled substantive sources.\n105\t\n106\t\\paragraph{Difficulty dispersion as variance predictor.} Difficulty dispersion ($\\text{std}(p_i)$) strongly predicts item variance share ($\\rho = 0.82$, $n = 5$ benchmarks; Appendix~\\ref{app:difficulty_scatter}; reasoning-heavy subjects show $G_\\text{item}$ as low as 0.614, Appendix~\\ref{app:subject_gstudy}). Format constrains the noise floor, but difficulty heterogeneity determines variance magnitude within it.\n107\t\n108\t\\paragraph{Item-level bootstrap stability.} Bootstrap resampling (1,000 item resamples per benchmark) confirms that the MC--FF separation is robust to item selection: 95\\% CIs for item-related variance (item + model$\\times$item) are [65.2, 75.0]\\% (MC) and [28.0, 44.2]\\% (FF), with no overlap (minimum gap 21.0 percentage points).\n109\t\n110\t\\section{Cross-Benchmark Difficulty Heterogeneity}\n111\t\\label{app:difficulty_scatter}\n112\t\n113\tItem difficulty heterogeneity is shown in Figure~\\ref{fig:difficulty_scatter} (main text). MC benchmarks cluster at higher dispersion ($0.27$--$0.31$) and higher item variance ($34$--$38\\%$), while FF benchmarks occupy the lower-left region ($0.22$--$0.23$, $17$--$24\\%$). The cross-benchmark Spearman $\\rho = 0.82$ ($p = 0.089$, $n = 5$) is consistent in direction with the within-MMLU correlation ($\\rho = 0.806$, $p = 0.005$, $n = 10$ subjects); these are independent analyses at different granularities (benchmarks vs.\\ subjects within MMLU), providing multi-scale support for the item difficulty heterogeneity mechanism discussed in \\S\\ref{sec:format_conditional}.\n114\t\n115\t\\section{MMLU Subject-Level Variance Decomposition}\n116\t\\label{app:subject_gstudy}\n117\t\n118\tTable~\\ref{tab:subject_gstudy} reports per-subject variance decomposition for 10 MMLU subjects (20 items each, 8 models, 2,304 conditions per item). $G_\\text{item}$ ranges from 0.614 (\\texttt{high\\_school\\_mathematics}) to 0.930 (\\texttt{international\\_law}), with mean 0.843. Knowledge-intensive subjects (\\texttt{international\\_law}, \\texttt{clinical\\_knowledge}, \\texttt{world\\_religions}) show \\texttt{item\\_id} $>$ 40\\%, while reasoning-heavy subjects (\\texttt{high\\_school\\_mathematics}, \\texttt{abstract\\_algebra}) show model$\\times$item $>$ \\texttt{item\\_id}, consistent with models differing more in reasoning strategies than in factual recall. The \\texttt{high\\_school\\_mathematics} \\texttt{item\\_id} of 10.4\\% referenced in \\S\\ref{sec:format_conditional} is the lowest across all subjects, below even GSM8K (16.9\\%).\n119\t\n120\t\\begin{table}[h]\n121\t\\centering\n122\t\\caption{Subject-level variance decomposition within MMLU (20 items per subject, 8 models, 2,304 conditions per item). Sorted by $G_\\text{item}$ descending.}\n123\t\\label{tab:subject_gstudy}\n124\t\\scriptsize\n125\t\\begin{tabular}{lrrrr}\n126\t\\toprule\n127\tSubject & Acc. & item\\% & mod.$\\times$it.\\% & $G_\\text{item}$ \\\\\n128\t\\midrule\n129\tinternational\\_law & .717 & 44.4 & 24.1 & .930 \\\\\n130\tclinical\\_knowledge & .581 & 47.5 & 30.0 & .923 \\\\\n131\tworld\\_religions & .826 & 42.2 & 27.1 & .910 \\\\\n132\tcomputer\\_security & .740 & 37.0 & 24.9 & .908 \\\\\n133\tcollege\\_physics & .436 & 31.6 & 30.1 & .876 \\\\\n134\tphilosophy & .782 & 33.0 & 36.1 & .868 \\\\\n135\tabstract\\_algebra & .457 & 24.1 & 32.8 & .822 \\\\\n136\tus\\_foreign\\_policy & .864 & 20.4 & 36.9 & .802 \\\\\n137\tprofessional\\_medicine & .671 & 19.9 & 41.7 & .778 \\\\\n138\thigh\\_school\\_math & .385 & 10.4 & 41.9 & .614 \\\\\n139\t\\midrule\n140\tMean & --- & 31.1 & 32.6 & .843 \\\\\n141\t\\bottomrule\n142\t\\end{tabular}\n143\t\\end{table}\n144\t\n145\t\\section{FF Residual Variance Analysis}\n146\t\\label{app:ff_residual}\n147\t\n148\tTo investigate whether the elevated residual variance in free-form benchmarks (GSM8K 39.9\\%, MATH 43.9\\%) reflects unmodeled substantive sources or measurement properties of binary scoring, we regress item-level residual variance on item characteristics across all five benchmarks (Table~\\ref{tab:ff_residual}).\n149\t\n150\tThe dominant predictor is the quadratic difficulty effect ($p < 10^{-5}$ on all benchmarks): items near $p = 0.5$ show maximal residual variance, while items near the floor or ceiling show minimal residual. This inverted-U pattern directly mirrors the Bernoulli variance ceiling $p(1{-}p)$. Item content features (number of reasoning steps, answer length) are not significant predictors for GSM8K ($p > 0.38$), confirming that the difficulty--residual relationship is statistical rather than content-driven.\n151\t\n152\tFF benchmarks show substantially higher $R^2$ (mean 0.66) than MC benchmarks (mean 0.25), consistent with FF items spanning a wider difficulty range. The MC--FF contrast in residual magnitude is therefore a mathematical consequence of the difficulty distribution under binary scoring, not evidence of additional unmodeled variance sources in free-form evaluation.\n153\t\n154\t\\begin{table}[h]\n155\t\\centering\n156\t\\caption{Item-level residual variance regression. Difficulty$^2$ = quadratic (inverted-U) term reflecting the Bernoulli $p(1{-}p)$ ceiling. GSM8K additionally tests n\\_steps and answer\\_length (both $p > 0.38$).}\n157\t\\label{tab:ff_residual}\n158\t\\scriptsize\n159\t\\begin{tabular}{lrrr}\n160\t\\toprule\n161\tBenchmark & $R^2$ (full) & $R^2$ (diff.\\ only) & Diff.$^2$ $p$ \\\\\n162\t\\midrule\n163\t\\multicolumn{4}{l}{\\textit{Multiple-choice}} \\\\\n164\tMMLU & 0.377 & 0.347 & $<$0.001 \\\\\n165\tARC & 0.221 & 0.204 & $<$0.001 \\\\\n166\tHellaSwag & 0.156 & 0.140 & $<$0.001 \\\\\n167\t\\midrule\n168\t\\multicolumn{4}{l}{\\textit{Free-form}} \\\\\n169\tGSM8K & 0.468 & 0.449 & $<$0.001 \\\\\n170\tMATH & 0.856 & 0.845 & $<$0.001 \\\\\n171\t\\bottomrule\n172\t\\end{tabular}\n173\t\\end{table}\n174\t\n175\t\\section{Model and Prompt Details}\n176\t\\label{app:models}\n177\t\n178\t\\paragraph{Models.} See Table~\\ref{tab:model_ids} (main text) for the eight models. Full HuggingFace identifiers: \\texttt{meta-llama/Llama-3.1-8B-Instruct}, \\texttt{google/gemma-2-9b-it}, \\texttt{mistralai/Mistral-7B-Instruct-v0.3}, \\texttt{Qwen/Qwen3-8B}, \\texttt{01-ai/Yi-1.5-9B-Chat}, \\texttt{allenai/OLMo-2-1124-7B-Instruct}, \\texttt{internlm/internlm2\\_5-7b-chat}, \\texttt{deepseek-ai/deepseek-llm-7b-chat}.\n179\t\n180\t\\paragraph{Prompt templates.} Our six prompt templates follow a surface perturbation design inspired by BrittleBench \\cite{brittlebench2026}. For multiple-choice benchmarks, templates vary along three dimensions: option layout (lettered vs.\\ numbered), instruction wording (direct vs.\\ contextual), and answer prompt cue. For free-form benchmarks, templates vary chain-of-thought elicitation strategy. All six templates are semantically equivalent---they request the same task with different surface forms---to isolate formatting effects from content effects. ARC-Challenge and HellaSwag use the same six surface patterns as MMLU with domain-appropriate system instructions; MATH mirrors the GSM8K pattern with \\texttt{\\textbackslash boxed\\{\\}} answer formatting.\n181\t\n182\t\\smallskip\\noindent\\textit{MMLU templates (representative MC format):}\n183\t\\begin{enumerate}\\setlength{\\itemsep}{0pt}\\setlength{\\parsep}{0pt}\\setlength{\\topsep}{0pt}\n184\t\\item \\texttt{The following are multiple choice questions (with answers) about \\{subject\\}.\\textbackslash n\\textbackslash n\\{question\\}\\textbackslash nA. ... D. ...\\textbackslash nAnswer:}\n185\t\\item \\texttt{Answer the following \\{subject\\} questions by selecting the correct option.\\textbackslash nQuestion: \\{question\\}\\textbackslash n(A) ... (B) ... (C) ... (D) ...\\textbackslash nCorrect answer:}\n186\t\\item \\texttt{Below are \\{subject\\} multiple-choice problems. Pick the right letter.\\textbackslash nQ: \\{question\\}\\textbackslash n~~A) ... B) ... C) ... D) ...\\textbackslash nA:}\n187\t\\item \\texttt{Answer the following \\{subject\\} question by selecting A, B, C, or D.\\textbackslash n\\{question\\}\\textbackslash n- A. ... - B. ... - C. ... - D. ...\\textbackslash nAnswer:}\n188\t\\item \\texttt{Below is a \\{subject\\} exam question with four possible answers. Choose the correct one.\\textbackslash n\\{question\\}\\textbackslash nOption A: ... Option B: ... Option C: ... Option D: ...\\textbackslash nCorrect:}\n189\t\\item \\texttt{Question (\\{subject\\}):\\textbackslash n\\{question\\}\\textbackslash nChoices: (A) ... (B) ... (C) ... (D) ...\\textbackslash nYour answer:}\n190\t\\end{enumerate}\n191\t\n192\t\\smallskip\\noindent\\textit{GSM8K templates (representative FF format):}\n193\t\\begin{enumerate}\\setlength{\\itemsep}{0pt}\\setlength{\\parsep}{0pt}\\setlength{\\topsep}{0pt}\n194\t\\item \\texttt{Solve the following math problem step by step.\\textbackslash nQ: \\{question\\}\\textbackslash nA: Let's think step by step.}\n195\t\\item \\texttt{Answer the following math word problem. Show your work.\\textbackslash nQuestion: \\{question\\}\\textbackslash nSolution:}\n196\t\\item \\texttt{Solve each problem below. Write your reasoning, then give the final answer after \\#\\#\\#\\#.\\textbackslash nProblem: \\{question\\}\\textbackslash nReasoning:}\n197\t\\item \\texttt{You are a math tutor. Solve the problem and show your steps.\\textbackslash n\\{question\\}\\textbackslash nSteps:}\n198\t\\item \\texttt{Work through this math question carefully.\\textbackslash nQ: \\{question\\}\\textbackslash nWork:}\n199\t\\item \\texttt{Math problem:\\textbackslash n\\{question\\}\\textbackslash nLet's solve this step by step.}\n200\t\\end{enumerate}\n201\t\n202\t\\section{Use of AI Assistants}\n203\t\\label{app:ai-assistants}\n204\t\n205\tWe used Claude (Anthropic) as an AI coding and writing assistant throughout this work. Specifically:\n206\t\\begin{itemize}\n207\t    \\item \\textbf{Code:} drafting experiment scripts, data-processing pipelines, and analysis utilities; debugging and refactoring.\n208\t    \\item \\textbf{Writing:} drafting and revising paper sections, polishing prose, and reformatting \\LaTeX{}.\n209\t    \\item \\textbf{Literature:} summarizing related papers to inform related-work section.\n210\t\\end{itemize}\n211\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "68c9aa9c-1a38-40ec-99bf-639487612aad",
+            "isSidechain": true,
+            "promptId": "8b560695-79c9-4a5e-b619-2b065d2ef63a",
+            "agentId": "abb0722481ef06c45",
+            "type": "user",
+            "uuid": "5a819097-e05c-4915-8eb1-de77f431a0d7",
+            "sourceToolAssistantUUID": "68c9aa9c-1a38-40ec-99bf-639487612aad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-25T14:54:19.108Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I have successfully read all five LaTeX files. Here's a comprehensive report:\n\n---\n\n## **1. introduction.tex - Contributions Analysis**\n\nThe introduction contains **2 main contributions** (in an enumerate block):\n\n1. **Design-dependent reproducibility budgets**: Multi-facet designs (varying prompts and seeds) require dramatically fewer items for reliable measurement. A 3-prompt × 3-seed design reduces item requirements by 3.1× on MMLU; cross-benchmark projections yield 93--128 items vs. 1,078--2,768 for single-condition designs. Notes that IRT item selection and G-theory protocol optimization are orthogonal and complementary.\n\n2. **Format-associated variance patterns (exploratory)**: Item-related variance concentrates in multiple-choice benchmarks (68--72%) and disperses in free-form benchmarks (31--41%), driven by item difficulty heterogeneity (ρ = 0.82 within MMLU subjects). This is explicitly labeled as exploratory with n=5 benchmarks and p=0.10, warranting broader confirmation.\n\n**Key structural elements**:\n- Opens with Figure 1 (overview pipeline) at the top\n- Central finding: model×item interaction dominates at 30--36% across benchmarks\n- D-study projections are central to the contribution narrative\n- Closes with Figure 2 (teaser D-study projections for MMLU)\n\n---\n\n## **2. related_work.tex - Structure and Figures**\n\n**Three main paragraph sections** (not subsections):\n\n1. **Variance Sources in LLM Evaluation** - Reviews prior work on prompt formatting, seeds, ordering, precision effects; notes piecemeal approaches; introduces the need for multi-facet factorial designs\n   - **Figure 1** embedded here: `fig_method_comparison` showing scope comparison with prior studies\n\n2. **IRT and Efficient Benchmarking** - Discusses Item Response Theory approaches (Polo et al., Zhou et al.) that optimize item selection but don't model variance from prompt/seed/ordering\n\n3. **G-Theory and Positioning** - Establishes G-theory framework and closest prior work (Messing et al. 2026)\n   - **Table 1** (`tab:positioning`) embedded here: Positioning table comparing Bouthillier, Messing, and current work across 7 dimensions (facets, design, method, D-study budgets, models, benchmarks, cross-format)\n\n**No subsections**, only `\\paragraph{}` headers. One figure and one table integrated seamlessly into the narrative.\n\n---\n\n## **3. main.tex - Document Structure**\n\nThe main document follows a standard ACL article template with these `\\input` directives (in order):\n\n```\n\\input{abstract}\n\\input{introduction}\n\\input{related_work}\n\\input{method}\n\\input{experiments}\n\\input{conclusion}\n\\input{limitations}\n\\bibliography{references}\n\\input{appendix}\n```\n\n**Key metadata**:\n- Uses `acl` package with `[review]` option\n- Title: \"Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models\"\n- Graphs path set to `./figures/`\n- Anonymous author\n\n---\n\n## **4. conclusion.tex - Condensed Discussion**\n\nA single `\\section{Discussion and Conclusion}` (very brief):\n\n- Reiterates the model×item interaction dominance (30--36%) and calls for item-level reporting\n- States the exploratory format-associated pattern (MC: 68--72%, FF: 31--41%, p=0.10)\n- Quantifies the 3-prompt × 3-seed design benefit: 552 → 178 items for G ≥ 0.80 on MMLU\n- Cross-model projection: 93--128 items (multi-facet) vs. 1,078--2,768 (single-condition)\n- Recommends multi-facet validation as standard practice\n\n**Length**: Only 5 lines in the source file.\n\n---\n\n## **5. appendix.tex - Content That Could Potentially Be Moved**\n\nThe appendix is comprehensive and contains **9 major sections**:\n\n### **Robustness Analyses (most of appendix)**\n- GLMM complement (validates linear decomposition)\n- Accuracy-range stability analysis\n- Estimator robustness (Henderson Method I vs. REML-EM)\n- Probit simulation (validates binary scoring method)\n- CI method comparison (bootstrap vs. jackknife)\n- Facet specification sensitivity (random vs. fixed)\n- Leave-one-model-out (LOMO) stability across 40 subsets\n- Inter-model agreement (Cohen's κ, Fleiss' κ)\n- Scoring metric sensitivity (binary vs. partial credit on GSM8K)\n- Fixed vs. random model facet specification table\n\n### **Projection Validation Details**\n- Internal consistency checks (four-model subset vs. eight-model)\n- Budget sensitivity to estimation error (Figure with 23% stability band)\n- Cross-benchmark G stability analysis\n\n### **Format-Associated Variance: Per-Benchmark Details**\n- MC benchmark exceptions (HellaSwag anomaly)\n- Free-form benchmark patterns (GSM8K distribution details)\n- Difficulty dispersion as variance predictor (ρ = 0.82)\n- Item-level bootstrap stability with 95% CIs\n\n### **Cross-Benchmark Difficulty Heterogeneity**\n- Figure scatter plot and Spearman correlation (ρ = 0.82, p = 0.089)\n\n### **MMLU Subject-Level Variance Decomposition**\n- Per-subject G-study table (10 MMLU subjects, 20 items each)\n- Ranges from 0.614 (high school math) to 0.930 (international law)\n\n### **Free-Form Residual Variance Analysis**\n- Regression of item-level residual variance on item characteristics\n- Demonstrates Bernoulli ceiling effect explains FF residuals\n\n### **Model and Prompt Details**\n- Full HuggingFace identifiers for 8 models\n- All 6 MMLU prompt templates (representative MC)\n- All 6 GSM8K prompt templates (representative FF)\n\n### **Use of AI Assistants**\n- Disclosure of Claude use for code, writing, and literature summarization\n\n---\n\n## **Key Moveable Content Analysis**\n\n**Could be moved to main text**:\n- Subject-level MMLU G-study table (Table in Section \\ref{app:subject_gstudy}) — this granular per-subject breakdown directly supports the format-associated variance claim\n- The prompt template examples (Section \\ref{app:models}) — understanding the six surface perturbation patterns is methodologically important for reproducibility\n- The LOMO stability results — key evidence for model exchangeability assumption\n\n**Should stay in appendix**:\n- All 9 robustness analyses (too technical, validate rather than drive narrative)\n- Detailed projection validation (supporting analysis, not core contribution)\n- Residual variance regression details (explains a null finding)\n- Model and prompt full technical details\n\n**Currently optimal**:\n- The appendix is well-organized with clear motivation for each section\n- Main text focuses correctly on the two contributions; appendix provides mathematical rigor"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5a819097-e05c-4915-8eb1-de77f431a0d7",
+            "isSidechain": true,
+            "agentId": "abb0722481ef06c45",
+            "requestId": "req_011CbPUhmjPu8A5vMvHeejM4",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "eff77283-3036-4a6c-b553-19074edfcb39",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f",
+            "sessionId": "6e659a43-3c04-4e3a-bdbf-8c0ba0d43717",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Ata4Q1Vu5eRTLrMPgasTqk",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 12285,
+                "cache_read_input_tokens": 39900,
+                "output_tokens": 1737,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 12285
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 1737,
+                    "cache_read_input_tokens": 39900,
+                    "cache_creation_input_tokens": 12285,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 12285,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-read-several-latex-source-files-from-a-paper-project-read-the-follow.md"
+}

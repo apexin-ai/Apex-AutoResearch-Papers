@@ -1,0 +1,157 @@
+{
+  "schema_version": "1.0",
+  "id": "bca4700f14a1c3a7893d",
+  "project": "nlp_variance_gtheory--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 服务器 westd-32570，conda 环境。GPU: cuda:0 (3B), cuda:1 (7B), cuda:0-3 (72B TP=4, 等 3B/7B 完成后)。实验 IDs: exp003_",
+  "task_key": "d09b5b1b-ac14-4bd2-82e4-0ffdf89f9160",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/d09b5b1b-ac14-4bd2-82e4-0ffdf89f9160.jsonl",
+    "occurrence": 1,
+    "bytes": 628335,
+    "sha256": "3aaef2e2f539a815ead90201e2a229692e7995c9568380dc60a81cac3e8625f3"
+  },
+  "statistics": {
+    "messages": 325,
+    "user_turns": 10,
+    "tool_calls": 76,
+    "roles": {
+      "record": 75,
+      "user": 10,
+      "assistant": 88,
+      "tool_call": 76,
+      "tool_result": 76
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "bca4700f14a1c3a7893d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 139,
+      "chunks": [
+        {
+          "path": "bca4700f14a1c3a7893d-part-0001.json",
+          "message_count": 139
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "bca4700f14a1c3a7893d-part-0001.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "bca4700f14a1c3a7893d-part-0001.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 22,
+      "chunks": [
+        {
+          "path": "bca4700f14a1c3a7893d-part-0001.json",
+          "message_count": 10
+        },
+        {
+          "path": "bca4700f14a1c3a7893d-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 37,
+      "chunks": [
+        {
+          "path": "bca4700f14a1c3a7893d-part-0002.json",
+          "message_count": 37
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 36,
+      "chunks": [
+        {
+          "path": "bca4700f14a1c3a7893d-part-0002.json",
+          "message_count": 36
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "bca4700f14a1c3a7893d-part-0002.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "bca4700f14a1c3a7893d-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "bca4700f14a1c3a7893d-part-0002.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "bca4700f14a1c3a7893d-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-westd-32570-conda-gpu-cuda-0-3b-cuda-1-7b-cuda-0-3-72b-tp-4-3b-7.md"
+}

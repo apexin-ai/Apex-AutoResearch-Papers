@@ -1,0 +1,179 @@
+{
+  "schema_version": "1.0",
+  "id": "e3801b3d1d8ad7dbd3d3",
+  "project": "nlp_variance_gtheory--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 系统通知：审稿审批已通过。请开始审稿。 [论文提交] - 项目: nlp_variance_gtheory - 论文路径: /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp",
+  "task_key": "154e59b5-c8c1-41f3-bd11-3d5b8dc93e82",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/154e59b5-c8c1-41f3-bd11-3d5b8dc93e82.jsonl",
+    "occurrence": 1,
+    "bytes": 655716,
+    "sha256": "6ab91aabd1fabbc58a15600c3ed6ba5ac1434eac12b12c8d8cd0bec2cc7b30eb"
+  },
+  "statistics": {
+    "messages": 171,
+    "user_turns": 12,
+    "tool_calls": 39,
+    "roles": {
+      "record": 52,
+      "user": 12,
+      "assistant": 29,
+      "tool_call": 39,
+      "tool_result": 39
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "e3801b3d1d8ad7dbd3d3-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 102,
+      "chunks": [
+        {
+          "path": "e3801b3d1d8ad7dbd3d3-part-0001.json",
+          "message_count": 102
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "e3801b3d1d8ad7dbd3d3-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "e3801b3d1d8ad7dbd3d3-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "e3801b3d1d8ad7dbd3d3-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "e3801b3d1d8ad7dbd3d3-part-0001.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "e3801b3d1d8ad7dbd3d3-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "e3801b3d1d8ad7dbd3d3-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "e3801b3d1d8ad7dbd3d3-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "e3801b3d1d8ad7dbd3d3-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 23,
+      "chunks": [
+        {
+          "path": "e3801b3d1d8ad7dbd3d3-part-0001.json",
+          "message_count": 11
+        },
+        {
+          "path": "e3801b3d1d8ad7dbd3d3-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "e3801b3d1d8ad7dbd3d3-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "e3801b3d1d8ad7dbd3d3-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-nlp-variance-gtheory-home-ubuntu-agent-ml-research-idea-gen-0519-projects-nlp.md"
+}

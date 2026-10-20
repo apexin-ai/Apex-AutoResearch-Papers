@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "ecb097c20cb9cc0aa1de",
+  "project": "nlp_variance_gtheory--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 执行项目轨迹扫描，将报告写入 /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/scan_reports/layer2_20260531T",
+  "task_key": "9c684f91-5121-4322-b157-f0a72276c8cc",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/9c684f91-5121-4322-b157-f0a72276c8cc.jsonl",
+    "occurrence": 1,
+    "bytes": 1033334,
+    "sha256": "a8a9280880fd1a1e47fe9b9d609e11b695d9c1c0623de96925250c39b6166931"
+  },
+  "statistics": {
+    "messages": 208,
+    "user_turns": 1,
+    "tool_calls": 84,
+    "roles": {
+      "record": 29,
+      "user": 1,
+      "assistant": 10,
+      "tool_call": 84,
+      "tool_result": 84
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ecb097c20cb9cc0aa1de-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 206,
+      "chunks": [
+        {
+          "path": "ecb097c20cb9cc0aa1de-part-0001.json",
+          "message_count": 121
+        },
+        {
+          "path": "ecb097c20cb9cc0aa1de-part-0002.json",
+          "message_count": 85
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-home-ubuntu-agent-ml-research-idea-gen-0519-projects-nlp-variance-gtheory-scan.md"
+}

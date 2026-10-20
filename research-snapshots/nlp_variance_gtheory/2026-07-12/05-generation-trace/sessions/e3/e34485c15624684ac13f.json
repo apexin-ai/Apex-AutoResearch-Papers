@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "e34485c15624684ac13f",
+  "project": "nlp_variance_gtheory--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: nlp_variance_gtheory ## 运行环境 - 服务器名: westd-15695 - SSH 账户: root（调用 ssh_execute / submit_training",
+  "task_key": "1d916dfe-3559-4820-84af-83517a8287aa",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/1d916dfe-3559-4820-84af-83517a8287aa.jsonl",
+    "occurrence": 1,
+    "bytes": 1136151,
+    "sha256": "d7b7c4dc496327ee8cabf5fa2f0003ac363528cb8e71957ef658b7e114585518"
+  },
+  "statistics": {
+    "messages": 536,
+    "user_turns": 1,
+    "tool_calls": 181,
+    "roles": {
+      "record": 91,
+      "user": 1,
+      "assistant": 82,
+      "tool_call": 181,
+      "tool_result": 181
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "e34485c15624684ac13f-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 534,
+      "chunks": [
+        {
+          "path": "e34485c15624684ac13f-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "e34485c15624684ac13f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e34485c15624684ac13f-part-0003.json",
+          "message_count": 176
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-nlp-variance-gtheory-westd-15695-ssh-root-ssh-execute-submit-t.md"
+}
