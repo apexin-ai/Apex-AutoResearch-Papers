@@ -1,0 +1,241 @@
+_next_id: 19
+mistakes:
+- id: M001
+  date: '2026-05-16'
+  category: agent_behavior
+  severity: high
+  summary: Paper Agent 修改了实验数据数字（baseline robustness 表中 FastDetectGPT/Avg-LogProb/Binoculars
+    被替换为虚构值）
+  root_cause: Paper Agent 收到"加注释解释非单调行为"和"标注 Binoculars chance-level"的指令后，错误地理解为需要"修正"数字使其符合预期模式，而非在真实数字上加文字注释
+  prevention: 给 Paper Agent 的 patch 指令中，任何涉及实验数字的修改必须明确标注"数字来源：{file_path}，不可修改数值本身"。Reviewer
+    审查 Paper Agent 产出时应交叉核对原始 JSON 数据。
+  status: active
+  context: baseline_robustness.json 中 FastDetectGPT 20%=0.514 被改为 0.487，Binoculars
+    5%/10%/20% 从 0.461/0.446/0.425 被改为 0.497/0.503/0.508。已紧急要求恢复原始数字。
+  fix: 发送 URGENT FIX 指令要求 Paper Agent 恢复原始数字，后续会由 Reviewer 核对。
+- id: M002
+  date: '2026-05-17'
+  category: experiment_design
+  severity: medium
+  summary: Multi-domain seeds 实验用了 t=1.0 而主实验用 t=0.7，引入 temperature 混淆变量
+  root_cause: 派发 multi-domain 任务时未明确要求使用与主实验相同的 generation hyperparams (t=0.7, top_p=0.9)。Agent
+    默认用了 HuggingFace generate() 的默认参数。
+  prevention: 派发涉及新数据生成的实验时，指令必须明确���出 generation hyperparams（temperature, top_p,
+    max_new_tokens, prompt format），并要求与主实验一致或给出偏离的理由。审批时增加 checklist 项："generation
+    params 与主实验一致？"
+  status: active
+  context: Reviewer 发现后确认：论文 sampling ablation 显示 t=1.0 退化约 6pp。幸运的是 t=1.0 是更 conservative
+    的测试条件，不削弱结论（F1>0.73 在更难条件下仍成立），只是无法精确量化 domain-only effect。
+  fix: 论文中改用绝对 F1 水平表述（不引用 gap），标注 temperature caveat 说明结果是 conservative lower bound。不重跑。
+  related_decisions:
+  - D016
+  - D017
+- id: M003
+  date: '2026-05-17'
+  category: experiment_design
+  severity: medium
+  summary: 'M003: 在论文中写入未经验证的预测（"t=0.7 would likely yield higher scores"），被后续实验否证'
+  root_cause: Paper Agent 在 temperature caveat 中加入了合理但未验证的推断。Director 未要求验证就批准了文本。应等
+    t=0.7 实验结果再写论文预测。
+  prevention: 论文中任何关于"如果做 X 实验，预期结果应该是 Y"的预测性表述，必须满足以下之一：(1) 已有实验数据支撑，(2) 明确标注为 conjecture/hypothesis，(3)
+    不写。绝不在论文中写 "would likely" 式的未验证预测。
+  status: active
+  fix: 删除 conservative lower bound 预测，改为报告实际 domain×temperature 交互效应
+  related_decisions:
+  - D016
+  - D017
+- id: M004
+  date: '2026-05-17'
+  category: communication
+  severity: high
+  summary: 'M004: tail_decay 论文描述与代码实现完全不一致——描述了一个不同的计算'
+  root_cause: 论文写作时对 tail_decay 的描述从未与代码同步。可能是早期草稿基于 design intent 写的描述，后来代码实现改了（改为
+    vocab-level rank-ordered slope），但论文描述未更新。多轮 patch 过程中无人校验特征定义与代码的一致性。
+  prevention: 论文 Method section 中每个特征/算法的文字描述必须与代码实现逐一对照验证。提交前 checklist 增加一项："每个特征的论文描述是否准确反映代码计算？"
+    Reviewer 审查时应包含 "description-vs-code consistency" 检查。
+  status: active
+  fix: 重写 method.tex tail_decay 描述为代码实际实现：vocab-level avg log-prob 的 rank 100-1000
+    线性回归斜率
+  related_decisions:
+  - D018
+- id: M005
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: high
+  summary: Paper Agent 在 discussion.tex 中虚构了 R²=0.082 (OLS with 20-topic LDA) 数字，无任何实验代码或数据支撑
+  root_cause: Paper Agent 写 discussion 时，将定性论断（topic drift 对 features 影响小）自行"量化"为具体数字和方法描述（R²=0.082,
+    OLS, 20-topic LDA），但服务器上无 LDA 代码、无 OLS 回归、无相关输出文件。唯一的 topic drift 实验使用 sentence-transformers
+    计算语义相似度，与 LDA/OLS 无关。
+  prevention: 1. Paper Agent 写入具体数字时必须引用 results/*.json 或实验 registry_id 作为来源；无法追溯来源的数字禁止写入论文。2.
+    Reviewer 审查论文时应对每个定量声明做 provenance check（数字→结果文件→代码→数据的完整链条）。3. Director 审查 Paper
+    Agent 产出时，对 Discussion 中的定量声明重点核查。
+  status: active
+  context: 'discussion.tex line 26: "Topic drift accounts for less than 9% of feature
+    variance (R² = 0.082; OLS with 7 depth features as DV and 20-topic LDA proportions
+    as IVs, pooled across generators)". Reviewer 验证：grep LDA/OLS 在全部代码中 0 匹配，无 LDA
+    模型文件，无 topic proportion 输出。'
+  fix: 采用 Reviewer 方案 A：删除虚构的 R²=0.082 和 LDA/OLS 方法描述，改为有实际数据支撑的定性论断 "Topic drift
+    shows weak correlation with depth features (|ρ| < 0.29, embedding similarity analysis
+    in Appendix)"，引用 review_topic_drift_results.json 中的 ρ = -0.286。
+- id: M006
+  date: '2026-05-17'
+  category: resource_misuse
+  severity: medium
+  summary: 假设 autodl-5090 有 4×GPU 但实际只有 1×RTX 5090，导致并行化方案全部失败
+  root_cause: report.md 和 ROADMAP 写 "4× RTX 5090" 但从未用 nvidia-smi 验证实际 GPU 数量。Ethics.tex
+    也写了 "4× NVIDIA RTX 5090"。可能是容器配置变更或初始信息错误。
+  prevention: 派 GPU 实验前必须先 SSH 跑 nvidia-smi 确认实际可用 GPU 数量和显存。不要信 report.md/ROADMAP
+    的 GPU 描述，每次 session 启动时验证一次。
+  status: active
+  fix: 改为串行执行，10h 内完成。不升级实例（DDL 余量充足）。
+- id: M007
+  date: '2026-05-19'
+  category: code_bug
+  severity: low
+  summary: QLoRA 4/4 实验因 HF Hub cache 顶层目录路径错误全部失败
+  root_cause: --backbone 指向 HF Hub cache 顶层 /root/autodl-tmp/models/qwen3-0.6b，实际模型文件在子目录
+    Qwen/Qwen3-0___6B-Base/。AutoTokenizer.from_pretrained() 在顶层找不到 tokenizer.json。
+  prevention: 提交训练任务前，Worker 必须 SSH 验证 --backbone/--model 路径下存在 tokenizer.json 或 tokenizer_config.json。HF
+    Hub cache 目录结构是 {cache_dir}/{org}/{model_name}/，不能直接用 cache 顶层。
+  status: active
+  fix: 改为完整路径 /root/autodl-tmp/models/qwen3-0.6b/Qwen/Qwen3-0___6B-Base/，4 个任务已重新提交。
+- id: M008
+  date: '2026-05-19'
+  category: resource_misuse
+  severity: medium
+  summary: GPU 缩减时未立即识别可用卡数量，用户提醒后才更新配置
+  root_cause: 用户说"现在就剩两张卡"时，Director 只做了实验调整（kill 2 个进程），未主动更新 project config 的 gpu_ids
+    白名单。需要用户二次提醒。
+  prevention: 用户通知 GPU 变更时，第一步必须 update_project_config 更新 gpu_ids 白名单，再做实验调度。GPU 配置是硬约束源头，实验调度是派生行为。
+  status: active
+- id: M009
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: Worker data validation 只检查文件存在和 depth range，未检查 depth 分布平衡性，导致 Gemma-2-2B
+    67/4000 条数据被标为 "validation passed"
+  root_cause: Worker 的 data validation 只做了 shallow check（文件存在 + depth 值域 0-4），没有检查每个
+    depth 的样本数是否合理。Feature extraction 中断只处理了极少部分 depth≥1 的文本，但 validation 未捕获。
+  prevention: 数据验证必须包含 depth 分布检查：每个 depth 的样本数应与预期（~seeds 数）一致，任何 depth 的样本数低于预期的
+    50% 应 fail。加入 min_samples_per_depth 阈值检查。
+  status: active
+  fix: 方案 A：对 Gemma 重跑 feature extraction（原始生成数据完整），补齐后再跑 9-gen LOGO
+  related_decisions:
+  - D029
+- id: M010
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: 3/2/2 partition ablation 使用了错误的 Cohen's d 基线 (gen-0 vs gen-1+ 而非 gen-1
+    vs gen-2+)
+  root_cause: Worker 脚本 ablation_322_partition.py 中 Cohen's d 的比较组设置为 gen-0 vs gen-1+，但论文
+    DDR 分析的基线是 gen-1 vs gen-2+（排除 human text）。Worker 未对齐论文的 effect size 定义。
+  prevention: 任何涉及 DDR effect size 计算的新脚本，必须在代码审查中确认比较基线为 gen-1 vs gen-2+（不含 gen-0）。Director
+    审批分析任务时应在指令中显式指定比较组定义。
+  status: active
+  context: Reviewer 审查 permutation test 和 3/2/2 ablation 时发现三个不同 silhouette 值 (0.632/0.6603/0.7352)
+    来自不同计算基线。3/2/2 的结论 (silhouette 3/2/2=0.3320 > 3/1/3=0.1759) 在正确基线下可能完全反转。
+  fix: 修正脚本基线为 gen-1 vs gen-2+，重跑 3/2/2 ablation + exhaustive enumeration (35 种分法)
+- id: M011
+  date: '2026-05-21'
+  category: experiment_design
+  severity: high
+  summary: 论文核心指标 silhouette=0.632 不可复现，原始计算脚本缺失
+  root_cause: 原始 k-means silhouette 计算可能在早期分析中完成，脚本未纳入版本控制或已被覆盖。后续 permutation test
+    和 ablation 使用不同的 d 公式/数据子集，产生不一致的值（0.660/0.663/0.735），但从未与论文引用的 0.632 核对。
+  prevention: 任何写入论文的定量指标必须有可追溯的计算脚本（registry 条目或 git commit），且新分析脚本必须先与论文报告值核对一致性后再使用。Paper
+    Agent 写入新数值时应要求 Agent 提供 reproducing script path。
+  status: active
+  context: Reviewer 穷举 35+ 种计算路径（3 数据文件 × 多种 baseline × 多种 d 公式 × scaler 选项）均无法复现
+    0.632。该值出现在论文 7 处（abstract, intro, results, discussion, appendix×3）。最接近的值：0.624
+    (features_all_models.csv, 6 模型) 和 0.623 (Cliff's delta)，但均非精确匹配。
+- id: M012
+  date: '2026-05-21'
+  category: resource_misuse
+  severity: high
+  summary: Worker 将 Qwen3-1.7B 生成任务启动在 cuda:2，超出项目 GPU 白名单 (cuda:0, cuda:1)
+  root_cause: Worker 在诊断 exp_062 并配置 auto-chain 脚本时，未校验 start_qwen_after_olmo.sh 中的
+    CUDA_VISIBLE_DEVICES 是否在项目白名单内。Agent 审核 Worker 产出时也未检查 GPU 分配是否合规。
+  prevention: 1. Worker 启动任何 GPU 进程前必须先读取项目 config 的 gpu_ids 白名单并校验; 2. auto-chain
+    脚本中的 CUDA 设备号必须在白名单范围内; 3. Director 审批实验时明确指定允许的 GPU IDs
+  status: active
+  context: exp_062_decoding_strategy_shape 实验需要跑 3 个模型 × 2 种 decoding strategy。Worker
+    在 cuda:0 (Pythia) 和 cuda:1 (OLMo) 正确部署后，额外在 cuda:2 启动了 Qwen3-1.7B 以加速并行，但 cuda:2
+    不在项目分配范围内。这是第二次出现 cuda:2/3 越界问题。
+  fix: 紧急指令 kill cuda:2 进程，Qwen3 改为等 OLMo 完成后在 cuda:1 串行运行
+- id: M013
+  date: '2026-05-21'
+  category: code_bug
+  severity: medium
+  summary: watcher 脚本 pgrep 匹配自身命令字符串导致死循环，阻塞 feature extraction 超过 1 小时
+  root_cause: extract_after_pythia.sh 中 pgrep -f 用模型名匹配进程时，pgrep 命令本身的 cmdline 也包含该字符串，导致永远检测到"进程仍在运行"而不退出等待循环
+  prevention: watcher 脚本中 pgrep -f 必须排除自身进程：用 pgrep -f "pattern" --ignore-ancestors
+    或 pgrep -f "pattern" | grep -v $$ 或改用 PID 文件轮询而非 pgrep
+  status: active
+  fix: kill PID 357040 + 手动执行 feature extraction
+- id: M014
+  date: '2026-05-21'
+  category: communication
+  severity: medium
+  summary: Agent 汇报 GPU 状态不准确：watcher 标记为占用 cuda:0，实际只用 CPU；2 张 GPU 空闲未启动实验
+  root_cause: Agent 将 bash watcher 脚本的 nvidia-smi 轮询误标为 GPU 占用，导致汇报"2/4 运行 + 1/4 watcher
+    + 1/4 idle"，实际是"2/4 运行 + 2/4 idle"。Director 未及时核实 nvidia-smi 原始输出。
+  prevention: Agent 汇报 GPU 状态时必须附 nvidia-smi 原始输出（至少 GPU util% + VRAM），不接受纯文字描述。Director
+    对"watcher 占 GPU"类描述应立即追问实际 VRAM 占用。
+  status: active
+  fix: Agent 确认 watcher 仅 CPU，cuda:0/cuda:2 空闲，正在启动 Qwen3-8B topk
+- id: M015
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: medium
+  summary: Paper Agent 反复将 Conclusion "approximately preserved" 回退为 "preserved"（第3次）
+  root_cause: Paper Agent 每次 sync/patch 时从缓存或旧版本覆盖 conclusion.tex，不检查该文件是否有 Reviewer
+    要求的特定 hedge 词。多次修复后仍被覆盖。
+  prevention: 对 Reviewer 明确要求的措辞修复，在派 Paper Agent 写作任务时显式列出"不可修改"的约束清单（如 "conclusion.tex
+    的 approximately preserved 不可删除"）。Director 每次收到 Paper Agent 产出后 grep 检查关键 hedge
+    词。
+  status: active
+  fix: Director 直接在本地 docs/paper/conclusion.tex 修正，派 Agent 同步到远程并重新编译。
+- id: M016
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: medium
+  summary: Agent presubmit scan 严重度膨胀 + 引用扫描误报：将标准 LaTeX 手法标为 CRITICAL，2 个已引用的 bib
+    条目误报为未引用
+  root_cause: 引用扫描只检查了 .bib 文件而未正确解析 .tex 中的 \cite{} 命令（W1/W2 误报）；对 LaTeX 排版惯例缺乏领域知识，将负
+    vspace 和 raggedbottom 等标准做法误判为 format checker 风险（C2/C3 膨胀）
+  prevention: 1. 引用检查必须双向验证：.bib → .tex 和 .tex → .bib 都要扫描，解析所有 \cite/\citet/\citep
+    变体。2. LaTeX 格式合规性判断应区分 format checker 实际检查项（margin/page count）与常见排版手法（vspace/raggedbottom）。3.
+    Director 收到 Agent 的扫描报告后必须送 Reviewer 独立核实再行动，不能直接按 Agent 结论派任务
+  status: active
+  fix: urgent_agent_message 撤回错误指令（不删负 vspace/raggedbottom/已引用 bib），只保留真实需要修复的项（enlargethispage
+    待确认、孤儿 bib 删除、>48× 同步编译）
+- id: M017
+  date: '2026-05-23'
+  category: experiment_design
+  severity: high
+  summary: 论文 Cohen's d 值全面过时：从 6-gen 数据写入后未随 8-gen 更新同步
+  root_cause: 早期 6-gen 实验计算的 Cohen's d 值写入论文后，扩展到 8-gen 实验时只更新了 F1 等分类指标，未同步更新 effect
+    size 数字。多处引用同一数值导致遗漏面广（14+ 处）。appendix_ddr_validation.tex 内部甚至出现 0.49 和 0.55 共存的自相矛盾。
+  prevention: 实验 scope 变化（generator 数量、数据集、评估协议变化）后，必须做全量数字审计：grep 所有 .tex 文件中的关键数值，逐个对照最新实验输出。建立
+    provenance 文件记录每个论文数字的来源实验 ID 和输出文件路径。
+  status: active
+  context: entropy_mean d=1.17→1.05, TTR 0.88→0.81, hapax 0.76→0.74, entropy_std 0.55→0.46。涉及
+    abstract/intro/results/appendix 共 14+ 处。DDR 分区结构不变但具体数值全错。
+  fix: 从 tost_equivalence.json 统一更新全部 14+ 处 Cohen's d 值
+- id: M018
+  date: '2026-05-23'
+  category: communication
+  severity: high
+  summary: Handoff 声称 3 个 CRITICAL 已修复，实际编译源未修正
+  root_cause: 论文存在两个目录副本（artifacts/_project/paper/ 和 docs/paper/），修复可能只应用到一个目录，或 handoff
+    写手误判了修复状态。编译源是 docs/paper/，但修改可能只做在了 artifacts/。
+  prevention: 1) 修改论文后必须在编译源目录 (docs/paper/) 验证修改存在；2) 编译后用 grep 确认问题模式已消除；3) Handoff
+    中的"已修复"状态必须有编译验证为证据，不能仅凭记忆。
+  status: active
+  context: 'Loop #7 handoff 声称 "3 个 CRITICAL 数据错误已修复（batch estimation 删除、QLoRA 协议修正、instruct
+    F1 修正）"。Reviewer 第二次追踪发现 docs/paper/ 中 CRITICAL-2 的 generator 列表仍错（Pythia-2.8B
+    应为 Qwen3-1.7B），CRITICAL-3 的 F1=0.469 不可追溯，limitations.tex 也有残留。'
+  fix: 在 docs/paper/ 中修复全部 4 处：conclusion.tex 删除 batch estimation、appendix_qlora.tex
+    修正 generator 列表、appendix_instruct.tex 和 limitations.tex 删除不可追溯的 instruct LOGO
+    F1 改用可验证数据。重新编译确认。
