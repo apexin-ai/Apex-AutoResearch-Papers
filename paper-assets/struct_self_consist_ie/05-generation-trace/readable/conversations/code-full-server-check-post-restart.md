@@ -1,0 +1,2290 @@
+# code full server check post restart
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 77
+- **Recorded user turns:** 0
+- **Tool calls:** 38
+- **Original source:** `logs/chats/worker_code_full_server_check_post_restart_20260519T125009.jsonl`
+- **Structured JSON:** [`42e5f9a1c19170f6d6bb.json`](../../sessions/42/42e5f9a1c19170f6d6bb.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+77 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-19T12:52:48.272024+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-19T12:52:48.272369+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T12:52:48.272581+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-19T12:52:48.272725+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 70 %, 29778 MiB, 32607 MiB\\n1, 78 %, 29814 MiB, 32607 MiB\\n2, 100 %, 29906 MiB, 32607 MiB\\n3, 91 %, 28594 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.96}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-19T12:52:48.272854+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ps aux --no-headers -o pid,user,%cpu,%mem,etime,args --sort=-%cpu",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ps aux --no-headers -o pid,user,%cpu,%mem,etime,args --sort=-%cpu",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T12:52:48.272998+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"error: conflicting format options\\n\\nUsage:\\n ps [options]\\n\\n Try 'ps --help &lt;simple|list|output|threads|misc|all>'\\n  or 'ps --help &lt;s|l|o|t|m|a>'\\n for additional help text.\\n\\nFor more details see ps(1).\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-19T12:52:48.273152+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_32b_fewnerd_s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_32b_fewnerd_s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T12:52:48.273368+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"rms_norm_eps\\\": 1e-06,\\n  \\\"rope_scaling\\\": null,\\n  \\\"rope_theta\\\": 1000000.0,\\n  \\\"sliding_window\\\": null,\\n  \\\"tie_word_embeddings\\\": false,\\n  \\\"transformers_version\\\": \\\"4.57.1\\\",\\n  \\\"use_cache\\\": true,\\n  \\\"use_sliding_window\\\": false,\\n  \\\"vocab_size\\\": 152064\\n}\\n\\n[INFO|tokenization_utils_base.py:2421] 2026-05-19 20:22:56,421 >> chat template saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42/checkpoint-3000/chat_template.jinja\\n[INFO|tokenization_utils_base.py:2590] 2026-05-19 20:22:56,422 >> tokenizer config file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42/checkpoint-3000/tokenizer_config.json\\n[INFO|tokenization_utils_base.py:2599] 2026-05-19 20:22:56,422 >> Special tokens file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42/checkpoint-3000/special_tokens_map.json\\n/root/miniconda3/lib/python3.12/site-packages/torch/distributed/c10d_logger.py:83: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.\\n  return func(*args, **kwargs)\\n\\r  7%|▋         | 3001/41180 [2:46:05<2680:58:18, 252.80s/it]\\r  7%|▋         | 3002/41180 [2:46:07<1884:17:15, 177.68s/it]\\r  7%|▋         | 3003/41180 [2:46:10<1326:44:26, 125.11s/it]\\r  7%|▋         | 3004/41180 [2:46:12<937:22:45, 88.39s/it]  \\r  7%|▋         | 3005/41180 [2:46:15<664:42:49, 62.68s/it]\\r  7%|▋         | 3006/41180 [2:46:17<473:03:27, 44.61s/it]\\r  7%|▋         | 3007/41180 [2:46:20<338:29:28, 31.92s/it]\\r  7%|▋         | 3008/41180 [2:46:22<244:34:02, 23.07s/it]\\r  7%|▋         | 3009/41180 [2:46:25<179:05:49, 16.89s/it]\\r  7%|▋         | 3010/41180 [2:46:27<133:54:26, 12.63s/it]\\r  7%|▋         | 3011/41180 [2:46:30<101:05:01,  9.53s/it]\\r  7%|▋         | 3012/41180 [2:4
+…[truncated 6530 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-19T12:52:48.273539+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-19T12:52:48.273671+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ps aux --no-headers -o pid,user,%cpu,%mem,etime,args --sort=-%cpu",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "ps aux --no-headers -o pid,user,%cpu,%mem,etime,args --sort=-%cpu",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T12:52:48.273798+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 100 %, 31932 MiB, 32607 MiB\\n1, 100 %, 31932 MiB, 32607 MiB\\n2, 100 %, 31932 MiB, 32607 MiB\\n3, 100 %, 31932 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T12:52:48.273924+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"error: conflicting format options\\n\\nUsage:\\n ps [options]\\n\\n Try 'ps --help &lt;simple|list|output|threads|misc|all>'\\n  or 'ps --help &lt;s|l|o|t|m|a>'\\n for additional help text.\\n\\nFor more details see ps(1).\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T12:52:48.274045+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T12:52:48.274189+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x  4 root root   84 May 19 16:26 .\\ndrwxr-xr-x 12 root root 4096 May 19 16:05 ..\\ndrwxr-xr-x  2 root root   35 May 19 16:26 conll2003\\n-rw-r--r--  1 root root 3526 May 19 16:30 full_signal_report.json\\ndrwxr-xr-x  2 root root   35 May 19 16:05 scierc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T12:52:48.274322+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-c",
+    "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T12:52:48.274443+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "ps aux --no-headers -o pid,user,%cpu,%mem,etime,args --sort=-%cpu",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-c",
+    "command": "ps aux --no-headers -o pid,user,%cpu,%mem,etime,args --sort=-%cpu",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T12:52:48.274558+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/logs/pipeline_qwen25_7b_fewnerd.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-c",
+    "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/logs/pipeline_qwen25_7b_fewnerd.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T12:52:48.274677+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 97 %, 25883 MiB, 32607 MiB\\n1, 97 %, 25523 MiB, 32607 MiB\\n2, 93 %, 16659 MiB, 32607 MiB\\n3, 93 %, 17741 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.75}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T12:52:48.274797+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"error: conflicting format options\\n\\nUsage:\\n ps [options]\\n\\n Try 'ps --help &lt;simple|list|output|threads|misc|all>'\\n  or 'ps --help &lt;s|l|o|t|m|a>'\\n for additional help text.\\n\\nFor more details see ps(1).\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.66}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T12:52:48.274946+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r 47%|████▋     | 1117/2353 [03:21<03:39,  5.64it/s]\\u001b[A\\n\\r 48%|████▊     | 1118/2353 [03:21<03:34,  5.75it/s]\\u001b[A\\n\\r 48%|████▊     | 1119/2353 [03:21<04:00,  5.13it/s]\\u001b[A\\n\\r 48%|████▊     | 1120/2353 [03:22<03:48,  5.41it/s]\\u001b[A\\n\\r 48%|████▊     | 1121/2353 [03:22<04:01,  5.10it/s]\\u001b[A\\n\\r 48%|████▊     | 1122/2353 [03:22<03:52,  5.30it/s]\\u001b[A\\n\\r 48%|████▊     | 1123/2353 [03:22<03:45,  5.46it/s]\\u001b[A\\n\\r 48%|████▊     | 1124/2353 [03:22<03:38,  5.63it/s]\\u001b[A\\n\\r 48%|████▊     | 1125/2353 [03:23<04:01,  5.08it/s]\\u001b[A\\n\\r 48%|████▊     | 1126/2353 [03:23<03:51,  5.30it/s]\\u001b[A\\n\\r 48%|████▊     | 1127/2353 [03:23<03:42,  5.50it/s]\\u001b[A\\n\\r 48%|████▊     | 1128/2353 [03:23<03:38,  5.61it/s]\\u001b[A\\n\\r 48%|████▊     | 1129/2353 [03:23<03:34,  5.71it/s]\\u001b[A\\n\\r 48%|████▊     | 1130/2353 [03:23<03:37,  5.61it/s]\\u001b[A\\n\\r 48%|████▊     | 1131/2353 [03:24<03:36,  5.66it/s]\\u001b[A\\n\\r 48%|█���██▊     | 1132/2353 [03:24<03:25,  5.94it/s]\\u001b[A\\n\\r 48%|████▊     | 1133/2353 [03:24<03:19,  6.13it/s]\\u001b[A\\n\\r 48%|████▊     | 1134/2353 [03:24<03:23,  6.00it/s]\\u001b[A\\n\\r 48%|████▊     | 1135/2353 [03:24<03:22,  6.02it/s]\\u001b[A\\n\\r 48%|████▊     | 1136/2353 [03:24<03:47,  5.34it/s]\\u001b[A\\n\\r 48%|████▊     | 1137/2353 [03:25<03:33,  5.68it/s]\\u001b[A\\n\\r 48%|████▊     | 1138/2353 [03:25<03:29,  5.81it/s]\\u001b[A\\n\\r 48%|████▊     | 1139/2353 [03:25<03:20,  6.04it/s]\\u001b[A\\n\\r 48%|████▊     | 1140/2353 [03:25<03:15,  6.21it/s]\\u001b[A\\n\\r 48%|████▊     | 1141/2353 [03:25<03:25,  5.91it/s]\\u001b[A\\n\\r 49%|████▊     | 1142/2353 [03:26<04:00,  5.03it/s]\\u001b[A\\n\\r 49%|████▊     | 1143/2353 [03:26<03:47,  5.33it/s]\\u001b[A\\n\\r 49%|████▊     | 1144/2353 [03:26<03:41,  5.45it/s]\\u001b[A\\n\\r 49%|████▊     | 1145/2353 [03:26<03:34,  5.64it/s]\\u001b[A\\n\\r 49%|████▊     | 1146/235
+…[truncated 139 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-19T12:52:48.275141+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -c llamafactory /proc/*/cmdline 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -c llamafactory /proc/*/cmdline 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T12:52:48.275281+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T12:52:48.275402+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -lt /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -lt /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T12:52:48.275526+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 28\\n-rw-r--r-- 1 root root 15461 May 19 20:50 trainer_log.jsonl\\ndrwxr-xr-x 2 root root  4096 May 19 20:22 checkpoint-3000\\ndrwxr-xr-x 2 root root  4096 May 19 19:27 checkpoint-2000\\ndrwxr-xr-x 2 root root  4096 May 19 18:32 checkpoint-1000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T12:52:48.275645+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "grep -c \"vllm\\|zeroshot\\|59040\" /proc/*/cmdline 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "grep -c \"vllm\\|zeroshot\\|59040\" /proc/*/cmdline 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T12:52:48.275762+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T12:52:48.275876+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/scierc/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/conll2003/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/scierc/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/conll2003/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T12:52:48.276012+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     551 /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/scierc/samples.jsonl\\n    3453 /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/conll2003/samples.jsonl\\n    4004 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-19T12:52:48.276145+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/ -name \"*.jsonl\" -o -name \"*.json\" -o -name \"*.log\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/ -name \"*.jsonl\" -o -name \"*.json\" -o -name \"*.log\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T12:52:48.276281+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/scierc/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/full_signal_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/conll2003/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T12:52:48.276399+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/logs/zeroshot_72b_all.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/logs/zeroshot_72b_all.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T12:52:48.276516+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/autodl-tmp/struct_self_consist_ie/logs/zeroshot_72b_all.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-19T12:52:48.276631+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "grep -c llamafactory /proc/*/cmdline 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-c",
+    "command": "grep -c llamafactory /proc/*/cmdline 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T12:52:48.276745+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-19T12:52:48.276856+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_14b_fewnerd_s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-c",
+    "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_14b_fewnerd_s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-19T12:52:48.276977+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "grep -c \"71837\\|71844\\|pipeline\" /proc/*/cmdline 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-c",
+    "command": "grep -c \"71837\\|71844\\|pipeline\" /proc/*/cmdline 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-19T12:52:48.277115+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_14b_fewnerd_s42.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T12:52:48.277256+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T12:52:48.277404+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/logs/ -name \"*72b*\" -o -name \"*zeroshot*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/logs/ -name \"*72b*\" -o -name \"*zeroshot*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T12:52:48.277527+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-tmp/struct_self_consist_ie/logs/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-19T12:52:48.277642+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "ls -lt /root/autodl-tmp/struct_self_consist_ie/logs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "ls -lt /root/autodl-tmp/struct_self_consist_ie/logs/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-19T12:52:48.277760+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/struct_self_consist_ie/logs/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-19T12:52:48.277874+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "ls -lt /root/autodl-tmp/struct_self_consist_ie/logs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-c",
+    "command": "ls -lt /root/autodl-tmp/struct_self_consist_ie/logs/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-19T12:52:48.277987+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "nvidia-smi --query-compute-apps=pid,name,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "nvidia-smi --query-compute-apps=pid,name,used_memory --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-19T12:52:48.278113+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 2528\\n-rw-r--r-- 1 root root  229676 May 19 20:51 pipeline_qwen25_7b_fewnerd.log\\n-rw-r--r-- 1 root root  229611 May 19 20:51 train_qwen25_7b_fewnerd_s42.log\\n-rw-r--r-- 1 root root 1393219 May 19 20:51 train_14b_s42.log\\n-rw-r--r-- 1 root root  374669 May 19 18:23 exp_wnut17_7b_pipeline.log\\n-rw-r--r-- 1 root root    8487 May 19 18:16 export_qwen25_7b_wnut17.log\\n-rw-r--r-- 1 root root   94056 May 19 18:15 train_qwen25_7b_wnut17_s42.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-19T12:52:48.278254+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "nvidia-smi --query-compute-apps=pid,name,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-c",
+    "command": "nvidia-smi --query-compute-apps=pid,name,used_memory --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-19T12:52:48.278374+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"59314, VLLM::Worker_TP0, 31922 MiB\\n59315, VLLM::Worker_TP1, 31922 MiB\\n59316, VLLM::Worker_TP2, 31922 MiB\\n59317, VLLM::Worker_TP3, 31922 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.65}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-19T12:52:48.278490+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "nvidia-smi --query-compute-apps=pid,name,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "nvidia-smi --query-compute-apps=pid,name,used_memory --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-19T12:52:48.278610+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"56978, /root/miniconda3/bin/python, 25874 MiB\\n56979, /root/miniconda3/bin/python, 25514 MiB\\n72042, /root/miniconda3/bin/python, 16650 MiB\\n72043, /root/miniconda3/bin/python, 17732 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-19T12:52:48.278727+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"804665, /root/miniconda3/bin/python, 29768 MiB\\n804666, /root/miniconda3/bin/python, 29804 MiB\\n804667, /root/miniconda3/bin/python, 29896 MiB\\n804668, /root/miniconda3/bin/python, 28584 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-19T12:52:48.278876+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"*.log\" -newer /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/full_signal_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"*.log\" -newer /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/full_signal_report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-19T12:52:48.279008+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-19T12:52:48.279140+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /root/autodl-tmp/ -maxdepth 3 -name \"*72b*\" -o -name \"*zeroshot*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /root/autodl-tmp/ -maxdepth 3 -name \"*72b*\" -o -name \"*zeroshot*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-19T12:52:48.279271+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/zeroshot_prompts.py\\n/root/autodl-tmp/struct_self_consist_ie/code/zeroshot_inference_72b.py\\n/root/autodl-tmp/struct_self_consist_ie/code/postprocess_72b_zeroshot.py\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot_pilot\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot\\n/root/autodl-tmp/zeroshot_pilot.log\\n/root/autodl-tmp/zeroshot_full.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-19T12:52:48.279392+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "find /tmp/ -name \"*.log\" -newer /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/full_signal_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "find /tmp/ -name \"*.log\" -newer /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/full_signal_report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-19T12:52:48.279510+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-19T12:52:48.279623+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/full_signal_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/full_signal_report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-19T12:52:48.279809+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scierc\\\": {\\n    \\\"name\\\": \\\"scierc\\\",\\n    \\\"n_instances\\\": 529,\\n    \\\"n_samples\\\": 8,\\n    \\\"signals\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.21675186319295206\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.2268643208878706\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.08105629653698664\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.18119551565265815\\n      },\\n      \\\"VC\\\": {\\n        \\\"rho\\\": 0.2774474257594968\\n      }\\n    },\\n    \\\"baselines\\\": {\\n      \\\"greedy\\\": {\\n        \\\"mean\\\": 0.3993396070428207,\\n        \\\"ci_lo\\\": 0.37502776576500585,\\n        \\\"ci_hi\\\": 0.42486000661804063\\n      },\\n      \\\"lp_selection\\\": {\\n        \\\"mean\\\": 0.39836297485580263,\\n        \\\"ci_lo\\\": 0.3737535525620703,\\n        \\\"ci_hi\\\": 0.4225968895628631\\n      },\\n      \\\"majority_vote\\\": {\\n        \\\"mean\\\": 0.4132481984238029,\\n        \\\"ci_lo\\\": 0.38694121463497644,\\n        \\\"ci_hi\\\": 0.43869730298443865\\n      },\\n      \\\"oracle\\\": {\\n        \\\"mean\\\": 0.5488904605161693,\\n        \\\"ci_lo\\\": 0.5240391828293529,\\n        \\\"ci_hi\\\": 0.5739669278421642\\n      },\\n      \\\"consensus_theta2n\\\": {\\n        \\\"mean\\\": 0.3941296496146429,\\n        \\\"ci_lo\\\": 0.37087546121195103,\\n        \\\"ci_hi\\\": 0.4162955855512563\\n      },\\n      \\\"consensus_lp_weighted\\\": {\\n        \\\"mean\\\": 0.41463973897533335,\\n        \\\"ci_lo\\\": 0.389058094011947,\\n        \\\"ci_hi\\\": 0.4393016036683333\\n      }\\n    },\\n    \\\"consensus_variants\\\": {\\n      \\\"high=0.5_medium=0.1\\\": {\\n        \\\"mean\\\": 0.39422476137663975,\\n        \\\"ci_lo\\\": 0.3699544254853355,\\n        \\\"ci_hi\\\": 0.4168598469711323\\n      },\\n      \\\"high=0.6_medium=0.2\\\": {\\n        \\\"mean\\\": 0.40482014598440896,\\n       
+…[truncated 2620 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-19T12:52:48.279968+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/logs/train_14b_s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-c",
+    "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/logs/train_14b_s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-19T12:52:48.280094+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/logs/pipeline_qwen25_7b_fewnerd.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-c",
+    "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/logs/pipeline_qwen25_7b_fewnerd.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-19T12:52:48.280321+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"num_key_value_heads\\\": 8,\\n  \\\"rms_norm_eps\\\": 1e-06,\\n  \\\"rope_scaling\\\": null,\\n  \\\"rope_theta\\\": 1000000.0,\\n  \\\"sliding_window\\\": null,\\n  \\\"tie_word_embeddings\\\": false,\\n  \\\"transformers_version\\\": \\\"4.57.1\\\",\\n  \\\"use_cache\\\": true,\\n  \\\"use_sliding_window\\\": false,\\n  \\\"vocab_size\\\": 152064\\n}\\n\\n[INFO|tokenization_utils_base.py:2421] 2026-05-19 20:28:29,135 >> chat template saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-14b-fewnerd-qlora-s42/checkpoint-6000/chat_template.jinja\\n[INFO|tokenization_utils_base.py:2590] 2026-05-19 20:28:29,136 >> tokenizer config file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-14b-fewnerd-qlora-s42/checkpoint-6000/tokenizer_config.json\\n[INFO|tokenization_utils_base.py:2599] 2026-05-19 20:28:29,136 >> Special tokens file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-14b-fewnerd-qlora-s42/checkpoint-6000/special_tokens_map.json\\n/root/miniconda3/lib/python3.12/site-packages/torch/distributed/c10d_logger.py:83: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.\\n  return func(*args, **kwargs)\\n\\r 15%|█▍        | 6001/41180 [4:21:52<2476:04:28, 253.39s/it]\\r 15%|█▍        | 6002/41180 [4:21:55<1739:33:54, 178.02s/it]\\r 15%|█▍        | 6003/41180 [4:21:57<1224:16:34, 125.29s/it]\\r 15%|█▍        | 6004/41180 [4:21:59<863:26:19, 88.37s/it]  \\r 15%|█▍        | 6005/41180 [4:22:01<610:46:20, 62.51s/it]\\r 15%|█▍        | 6006/41180 [4:22:04<434:18:14, 44.45s/it]\\r 15%|█▍        | 6007/41180 [4:22:06<310:45:45, 31.81s/it]\\r 15%|█▍        | 6008/41180 [4:22:08<223:55:12, 22.92s/it]\\r 15%|█▍        | 6009/41180 [4:22:11<163:57:58, 16.78s/it]\\r 15%|█▍        | 6010/41180 [4:22:13<121:38:17, 12.45s/it]\\r 15%|█▍        | 6011/41180 [4:22:15<91:41:02,  9.39s/it]
+…[truncated 6538 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-19T12:52:48.280513+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r 57%|█████▋    | 1351/2353 [04:03<02:40,  6.24it/s]\\u001b[A\\n\\r 57%|█████▋    | 1352/2353 [04:03<02:43,  6.14it/s]\\u001b[A\\n\\r 58%|█████▊    | 1353/2353 [04:03<02:33,  6.50it/s]\\u001b[A\\n\\r 58%|█████▊    | 1354/2353 [04:03<02:36,  6.38it/s]\\u001b[A\\n\\r 58%|█████▊    | 1355/2353 [04:04<02:41,  6.18it/s]\\u001b[A\\n\\r 58%|█████▊    | 1356/2353 [04:04<02:41,  6.18it/s]\\u001b[A\\n\\r 58%|█████▊    | 1357/2353 [04:04<02:37,  6.31it/s]\\u001b[A\\n\\r 58%|█████▊    | 1358/2353 [04:04<02:56,  5.63it/s]\\u001b[A\\n\\r 58%|█████▊    | 1359/2353 [04:04<02:52,  5.77it/s]\\u001b[A\\n\\r 58%|█████▊    | 1360/2353 [04:04<02:40,  6.17it/s]\\u001b[A\\n\\r 58%|█████▊    | 1361/2353 [04:05<02:37,  6.31it/s]\\u001b[A\\n\\r 58%|█████▊    | 1362/2353 [04:05<02:41,  6.13it/s]\\u001b[A\\n\\r 58%|█████▊    | 1363/2353 [04:05<02:41,  6.12it/s]\\u001b[A\\n\\r 58%|█████▊    | 1364/2353 [04:05<02:41,  6.14it/s]\\u001b[A\\n\\r 58%|█████▊    | 1365/2353 [04:05<02:55,  5.62it/s]\\u001b[A\\n\\r 58%|█████▊    | 1366/2353 [04:05<02:47,  5.91it/s]\\u001b[A\\n\\r 58%|█████▊    | 1367/2353 [04:06<02:36,  6.28it/s]\\u001b[A\\n\\r 58%|█████▊    | 1368/2353 [04:06<02:56,  5.59it/s]\\u001b[A\\n\\r 58%|█████▊    | 1369/2353 [04:06<02:50,  5.76it/s]\\u001b[A\\n\\r 58%|█████▊    | 1370/2353 [04:06<02:40,  6.13it/s]\\u001b[A\\n\\r 58%|█████▊    | 1371/2353 [04:06<02:31,  6.50it/s]\\u001b[A\\n\\r 58%|█████▊    | 1372/2353 [04:06<02:30,  6.54it/s]\\u001b[A\\n\\r 58%|█████▊    | 1373/2353 [04:07<02:47,  5.84it/s]\\u001b[A\\n\\r 58%|█████▊    | 1374/2353 [04:07<03:09,  5.18it/s]\\u001b[A\\n\\r 58%|█████▊    | 1375/2353 [04:07<03:00,  5.41it/s]\\u001b[A\\n\\r 58%|█████▊    | 1376/2353 [04:07<02:49,  5.76it/s]\\u001b[A\\n\\r 59%|█████▊    | 1377/2353 [04:07<02:46,  5.88it/s]\\u001b[A\\n\\r 59%|█████▊    | 1378/2353 [04:08<03:06,  5.23it/s]\\u001b[A\\n\\r 59%|█████▊    | 1379/2353 [04:08<03:16,  4.95it/s]\\u001b[A\\n\\r 59%|█████▊    | 1380/2353 
+…[truncated 137 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-19T12:52:48.280683+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-b",
+  "command": "tail -50 /root/autodl-tmp/zeroshot_full.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-b",
+    "command": "tail -50 /root/autodl-tmp/zeroshot_full.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-19T12:52:48.280809+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_7b_fewnerd_s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-c",
+    "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_7b_fewnerd_s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-19T12:52:48.280935+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "ls -lt /root/autodl-tmp/struct_self_consist_ie/checkpoints/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-c",
+    "command": "ls -lt /root/autodl-tmp/struct_self_consist_ie/checkpoints/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-19T12:52:48.281151+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"(Worker_TP3 pid=59317) INFO 05-19 15:59:34 [gpu_worker.py:617] CUDA graph pool memory: 1.26 GiB (actual), 1.45 GiB (estimated), difference: 0.2 GiB (15.7%).\\n(Worker_TP1 pid=59315) INFO 05-19 15:59:34 [gpu_worker.py:617] CUDA graph pool memory: 1.26 GiB (actual), 1.45 GiB (estimated), difference: 0.2 GiB (15.7%).\\n(Worker_TP0 pid=59314) INFO 05-19 15:59:34 [gpu_model_runner.py:5746] Graph capturing finished in 11 secs, took 1.26 GiB\\n(Worker_TP0 pid=59314) INFO 05-19 15:59:34 [gpu_worker.py:617] CUDA graph pool memory: 1.26 GiB (actual), 1.45 GiB (estimated), difference: 0.2 GiB (15.7%).\\n(EngineCore pid=59308) INFO 05-19 15:59:34 [core.py:281] init engine (profile, create kv cache, warmup model) took 25.12 seconds\\nINFO 05-19 15:59:34 [llm.py:391] Supported tasks: ['generate']\\nModel loaded.\\n\\n============================================================\\nDataset: scierc\\n============================================================\\nLoaded 551 test instances\\n[scierc] Building prompts for 551 instances...\\n[scierc] Stochastic sampling N=8, T=1.0...\\n\\rRendering prompts:   0%|          | 0/551 [00:00<?, ?it/s]\\rRendering prompts:  21%|██        | 114/551 [00:00<00:00, 1137.37it/s]\\rRendering prompts:  45%|████▌     | 250/551 [00:00<00:00, 1267.34it/s]\\rRendering prompts:  70%|███████   | 387/551 [00:00<00:00, 1312.24it/s]\\rRendering prompts:  94%|█████████▍| 520/551 [00:00<00:00, 1318.02it/s]\\rRendering prompts: 100%|██████████| 551/551 [00:00<00:00, 1299.61it/s]\\n\\rProcessed prompts:   0%|          | 0/4408 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/4408 [00:06<55:39,  1.32it/s, est. speed input: 486.13 toks/s, output: 53.69 toks/s]\\rProcessed prompts:   0%|          | 16/4408 [00:06<23:37,  3.10it/s, est. speed input: 927.39 toks/s, output: 106.58 toks/s]\\rProcessed prompts:   1%|          | 24/4408 [00:06<13:36,  5.37it
+…[truncated 6347 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-19T12:52:48.281346+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r 63%|██████▎   | 1494/2353 [04:30<02:35,  5.51it/s]\\u001b[A\\n\\r 64%|██████▎   | 1495/2353 [04:30<02:50,  5.02it/s]\\u001b[A\\n\\r 64%|██████▎   | 1496/2353 [04:30<02:44,  5.22it/s]\\u001b[A\\n\\r 64%|██████▎   | 1497/2353 [04:30<02:32,  5.60it/s]\\u001b[A\\n\\r 64%|██████▎   | 1498/2353 [04:30<02:31,  5.65it/s]\\u001b[A\\n\\r 64%|██████▎   | 1499/2353 [04:30<02:29,  5.70it/s]\\u001b[A\\n\\r 64%|██████▎   | 1500/2353 [04:31<02:22,  6.00it/s]\\u001b[A\\n\\r 64%|██████▍   | 1501/2353 [04:31<02:13,  6.37it/s]\\u001b[A\\n\\r 64%|██████▍   | 1502/2353 [04:31<02:14,  6.32it/s]\\u001b[A\\n\\r 64%|██████▍   | 1503/2353 [04:31<02:27,  5.76it/s]\\u001b[A\\n\\r 64%|██████▍   | 1504/2353 [04:31<02:17,  6.17it/s]\\u001b[A\\n\\r 64%|██████▍   | 1505/2353 [04:31<02:29,  5.66it/s]\\u001b[A\\n\\r 64%|██████▍   | 1506/2353 [04:32<02:27,  5.74it/s]\\u001b[A\\n\\r 64%|██████▍   | 1507/2353 [04:32<02:36,  5.41it/s]\\u001b[A\\n\\r 64%|████��█▍   | 1508/2353 [04:32<02:27,  5.74it/s]\\u001b[A\\n\\r 64%|██████▍   | 1509/2353 [04:32<02:24,  5.82it/s]\\u001b[A\\n\\r 64%|██████▍   | 1510/2353 [04:32<02:34,  5.47it/s]\\u001b[A\\n\\r 64%|██████▍   | 1511/2353 [04:33<02:28,  5.67it/s]\\u001b[A\\n\\r 64%|██████▍   | 1512/2353 [04:33<02:27,  5.70it/s]\\u001b[A\\n\\r 64%|██████▍   | 1513/2353 [04:33<02:25,  5.76it/s]\\u001b[A\\n\\r 64%|██████▍   | 1514/2353 [04:33<02:25,  5.76it/s]\\u001b[A\\n\\r 64%|██████▍   | 1515/2353 [04:33<02:28,  5.64it/s]\\u001b[A\\n\\r 64%|██████▍   | 1516/2353 [04:33<02:21,  5.93it/s]\\u001b[A\\n\\r 64%|██████▍   | 1517/2353 [04:34<02:20,  5.96it/s]\\u001b[A\\n\\r 65%|██████▍   | 1518/2353 [04:34<02:43,  5.10it/s]\\u001b[A\\n\\r 65%|██████▍   | 1519/2353 [04:34<02:35,  5.37it/s]\\u001b[A\\n\\r 65%|██████▍   | 1520/2353 [04:34<02:26,  5.70it/s]\\u001b[A\\n\\r 65%|██████▍   | 1521/2353 [04:34<02:23,  5.81it/s]\\u001b[A\\n\\r 65%|██████▍   | 1522/2353 [04:35<02:47,  4.96it/s]\\u001b[A\\n\\r 65%|██████▍   | 1523/2353
+…[truncated 138 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-19T12:52:48.281509+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 28\\ndrwxr-xr-x 5 root root  120 May 19 20:28 qwen25-14b-fewnerd-qlora-s42\\ndrwxr-xr-x 2 root root   39 May 19 19:31 qwen25-7b-fewnerd-qlora-s42\\ndrwxr-xr-x 2 root root 4096 May 19 18:16 qwen25-7b-wnut17-merged\\ndrwxr-xr-x 5 root root 4096 May 19 18:15 qwen25-7b-wnut17-qlora-s42\\ndrwxr-xr-x 2 root root 4096 May 19 04:09 qwen3-8b-fewnerd-exp021-merged\\ndrwxr-xr-x 2 root root   10 May 19 03:34 llama3.1-8b-scierc-merged\\ndrwxr-xr-x 2 root root 4096 May 19 03:30 qwen3-8b-fewnerd-exp021-lora\\ndrwxr-xr-x 2 root root 4096 May 19 01:38 qwen3-8b-conll2003-merged\\ndrwxr-xr-x 5 root root 4096 May 14 21:08 llama3.1-8b-scierc-lora\\ndrwxr-xr-x 2 root root 4096 May 14 16:44 qwen3-8b-scierc-merged-v2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.65}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-19T12:52:48.281669+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "ls -lt /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-14b-fewnerd-qlora-s42/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-c",
+    "command": "ls -lt /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-14b-fewnerd-qlora-s42/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-19T12:52:48.281799+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "ls -lt /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-fewnerd-qlora-s42/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-c",
+    "command": "ls -lt /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-fewnerd-qlora-s42/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-19T12:52:48.281927+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 40\\n-rw-r--r-- 1 root root 27450 May 19 20:50 trainer_log.jsonl\\ndrwxr-xr-x 2 root root  4096 May 19 20:28 checkpoint-6000\\ndrwxr-xr-x 2 root root  4096 May 19 19:01 checkpoint-4000\\ndrwxr-xr-x 2 root root  4096 May 19 17:33 checkpoint-2000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-19T12:52:48.282055+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "grep -c \"it/s\" /root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_7b_fewnerd_s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-c",
+    "command": "grep -c \"it/s\" /root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_7b_fewnerd_s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-19T12:52:48.282197+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090-c",
+  "command": "grep \"loss\" /root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_7b_fewnerd_s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090-c",
+    "command": "grep \"loss\" /root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_7b_fewnerd_s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-19T12:52:48.282323+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 8\\n-rw-r--r-- 1 root root 7886 May 19 20:47 trainer_log.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.11}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-19T12:52:48.282442+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1641\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.64}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-19T12:52:48.282640+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r  0%|          | 0/20590 [00:00<?, ?it/s]\\r  0%|          | 1/20590 [00:02<15:22:15,  2.69s/it]\\r  0%|          | 2/20590 [00:04<13:42:43,  2.40s/it]\\r  0%|          | 3/20590 [00:07<13:00:03,  2.27s/it]\\r  0%|          | 4/20590 [00:09<13:06:47,  2.29s/it]\\r  0%|          | 5/20590 [00:11<13:05:56,  2.29s/it]\\r  0%|          | 6/20590 [00:13<12:56:42,  2.26s/it]\\r  0%|          | 7/20590 [00:16<12:54:14,  2.26s/it]\\r  0%|          | 8/20590 [00:18<13:03:02,  2.28s/it]\\r  0%|          | 9/20590 [00:20<12:54:03,  2.26s/it]\\r  0%|          | 10/20590 [00:22<13:03:50,  2.29s/it]\\r  0%|          | 11/20590 [00:25<12:46:33,  2.23s/it]\\r  0%|          | 12/20590 [00:27<13:11:47,  2.31s/it]\\r  0%|          | 13/20590 [00:29<13:01:02,  2.28s/it]\\r  0%|          | 14/20590 [00:32<13:09:05,  2.30s/it]\\r  0%|          | 15/20590 [00:34<12:58:31,  2.27s/it]\\r  0%|          | 16/20590 [00:36<12:50:44,  2.25s/it]\\r  0%|          | 17/20590 [00:38<12:56:24,  2.26s/it]\\r  0%|          | 18/20590 [00:41<12:51:59,  2.25s/it]\\r  0%|          | 19/20590 [00:43<12:56:12,  2.26s/it]\\r  0%|          | 20/20590 [00:45<13:09:33,  2.30s/it]\\r  0%|          | 21/20590 [00:47<12:57:53,  2.27s/it]\\r  0%|          | 22/20590 [00:50<13:00:43,  2.28s/it]\\r  0%|          | 23/20590 [00:52<13:14:38,  2.32s/it]\\r  0%|          | 24/20590 [00:54<13:09:14,  2.30s/it]\\r  0%|          | 25/20590 [00:57<13:11:00,  2.31s/it]\\r  0%|          | 26/20590 [00:59<13:04:19,  2.29s/it]\\r  0%|          | 27/20590 [01:02<13:40:58,  2.40s/it]\\r  0%|          | 28/20590 [01:04<13:16:46,  2.32s/it]\\r  0%|          | 29/20590 [01:06<13:09:46,  2.30s/it]\\r  0%|          | 30/20590 [01:09<13:54:49,  2.44s/it]\\r  0%|          | 31/20590 [01:11<13:45:10,  2.41s/it]\\r  0%|          | 32/20590 [01:14<13:57:32,  2.44s/it]\\r  0%|          | 33/20590 [01:16<13:56:07,  2.44s/it]\\r  0%|          | 34/20590 [01:18<13:29:36,  2.36s/it]\\r  
+…[truncated 6491 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77 · 2026-05-19T12:52:48.282866+00:00_
+
+## Server A (autodl-5090) — 32B QLoRA Training
+- **进程**：存活（PIDs 804665-804668，4 GPU 进程）
+- **GPU**: 70% / 78% / 100% / 91%，显存 ~29-30 GB / 32 GB
+- **Step**: 3659/41180 (8.9%)
+- **Loss**: 0.0624 (step 3650), grad_norm: 0.288
+- **Checkpoint**: checkpoint-3000 (20:22 保存), checkpoint-2000, checkpoint-1000
+- **Speed**: ~2.5s/it, 预计剩余 ~26h
+
+## Server B (autodl-5090-b) — 72B Zero-shot Inference
+- **进程**：存活（VLLM Workers PIDs 59314-59317，4 GPU 100%，~31.9 GB / 32 GB）
+- **SciERC**: 551 行 ✓ (完成)
+- **CoNLL**: 3453 行 ✓ (完成)
+- **FewNERD**: 推理中 — 295704/301184 prompts (**98.2%**)
+  - 301184 = 37648 instances × 8 samples
+  - 剩余 ~5480 prompts，预计几分钟内完成
+  - 速度: ~7110 toks/s input, ~1792 toks/s output
+- **Signal report**: `full_signal_report.json` 已存在，但仅含 scierc + conll2003 结果（FewNERD 完成前生成的）
+- **注意**: FewNERD 输出目录尚未创建，推理完成后会写入。脚本应会自动更新 signal report 包含 FewNERD 结果
+
+## Server C (autodl-5090-c)
+
+### 14B (cuda:0,1)
+- **进程**：存活（PIDs 56978-56979，~25.5-25.9 GB）
+- **GPU**: 97% / 97%
+- **Step**: 6617/41180 (16.1%)
+- **Loss**: 0.0604 (step 6600), grad_norm: 0.574
+- **Checkpoint**: checkpoint-6000 (20:28), checkpoint-4000, checkpoint-2000
+- **Speed**: ~2.2s/it
+
+### 7B (cuda:2,3)
+- **进程**：存活（PIDs 72042-72043，~16.7-17.7 GB）
+- **GPU**: 93% / 93%
+- **Step**: 2000/20590 (9.7%)
+- **Loss**: 0.072 (step 2000), grad_norm: 0.528
+- **Checkpoint**: 暂无（尚未到第一个保存点）
+- **Speed**: ~2.3s/it
+- Pipeline 日志显示 1523/2353（pipeline 内部子进度，非训练 step）
+
+---
+
+**总结**: 4 个实验全部存活，状态正常。72B FewNERD 推理 98.2%，几分钟内即将完成。3 个训练任务稳步推进，loss 均在合理下降。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_full_server_check_post_restart_20260519T125009"
+}
+```
+
+</details>
+
+---

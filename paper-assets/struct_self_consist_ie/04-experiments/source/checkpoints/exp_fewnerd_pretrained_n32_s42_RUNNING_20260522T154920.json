@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp_fewnerd_pretrained_n32_s42",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:12:53.761Z",
+    "updated_at": "2026-05-22T15:49:19.555Z",
+    "hypothesis": "Pretrained N-scaling: FewNERD N=32 with Qwen2.5-7B-Instruct (unfinetuned). FewNERD pretrained showed +3.90pp MV gain at N=8. Tests whether pretrained MV advantage scales with N and whether the pretrained-vs-finetuned direction flip persists at 4× budget. Complements CoNLL/SciERC pretrained N=32 for cross-dataset generalization evidence.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 32 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_pretrained_n32_seed42/\"",
+      "server": "autodl-5090-c",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "387491",
+      "log_path": "~/runs/struct_self_consist_ie/exp_fewnerd_pretrained_n32_s42.log",
+      "submitted_at": "2026-05-22T04:13:16.155Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/fewnerd/",
+      "data_count": 37648,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "n_samples": 32,
+      "checkpoint_path": "output/fewnerd_pretrained_n32_seed42/"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-22T15:49:20.172550+00:00",
+  "trigger": "update_registry"
+}

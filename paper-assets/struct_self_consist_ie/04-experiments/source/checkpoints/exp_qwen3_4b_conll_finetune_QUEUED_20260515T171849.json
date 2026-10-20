@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_qwen3_4b_conll_finetune",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:18:35.501Z",
+    "updated_at": "2026-05-15T17:18:49.175Z",
+    "hypothesis": "Scale ablation: Qwen3-4B CoNLL NER LoRA fine-tune to provide cross-scale evidence (vs 8B). Verify correlation-selection gap, SJ>FK ordering, and LP compression generalize across model scale."
+  },
+  "timestamp": "2026-05-15T17:18:49.361116+00:00",
+  "trigger": "update_registry"
+}

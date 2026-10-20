@@ -1,0 +1,90 @@
+{
+  "exp_id": "exp_017_llama_conll_n16_s456",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T19:23:21.987Z",
+    "updated_at": "2026-05-14T20:24:45.875Z",
+    "hypothesis": "LLaMA CoNLL N=16 seed=456: structural>surface ranking preserved across seeds, complementing Qwen SciERC 3-seed protocol",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --num_test 9999 --output_dir output/exp_017_llama_conll_n16_s456",
+      "server": "autodl-5090",
+      "data_path": "data/conll2003",
+      "data_count": 3453,
+      "model_name": "llama3.1-8b-conll2003-merged",
+      "seed": 456
+    },
+    "metrics": {
+      "greedy_f1": 0.9243,
+      "oracle_f1": 0.9488,
+      "oracle_headroom": 0.0245,
+      "n_instances": 3453,
+      "n_valid": 2756,
+      "n_conditional": 2642,
+      "structural_beats_surface": true,
+      "full": {
+        "SJ_rho": 0.4552,
+        "SJ_AUROC": 0.7288,
+        "SJ_ECE": 0.1134,
+        "FK_rho": 0.4478,
+        "FK_AUROC": 0.7248,
+        "FK_ECE": 0.109,
+        "logprob_rho": 0.3078,
+        "logprob_AUROC": 0.7612,
+        "logprob_ECE": 0.1289,
+        "EM_rho": 0.452,
+        "EM_AUROC": 0.7275,
+        "EM_ECE": 0.1082,
+        "voting_conf_rho": 0.4571,
+        "voting_conf_AUROC": 0.7348,
+        "voting_conf_ECE": 0.0863
+      },
+      "conditional": {
+        "SJ_rho": 0.4505,
+        "SJ_AUROC": 0.7449,
+        "SJ_ECE": 0.0826,
+        "FK_rho": 0.4422,
+        "FK_AUROC": 0.7401,
+        "FK_ECE": 0.0835,
+        "logprob_rho": 0.3242,
+        "logprob_AUROC": 0.8067,
+        "logprob_ECE": 0.0921,
+        "EM_rho": 0.451,
+        "EM_AUROC": 0.745,
+        "EM_ECE": 0.0756,
+        "voting_conf_rho": 0.3962,
+        "voting_conf_AUROC": 0.7202,
+        "voting_conf_ECE": 0.0746
+      },
+      "best_of_n": {
+        "greedy": 0.9243,
+        "random_avg": 0.9215,
+        "sj_best": 0.9243,
+        "logprob_best": 0.9243,
+        "voting_conf_best": 0.9243,
+        "oracle": 0.9488
+      },
+      "n8_vs_n16_delta": {
+        "full_SJ_rho_delta": 0.0238,
+        "full_FK_rho_delta": 0.0201,
+        "full_logprob_rho_delta": 0.0006,
+        "full_EM_rho_delta": 0.0214,
+        "full_voting_conf_rho_delta": 0.0315,
+        "cond_SJ_rho_delta": 0.0149,
+        "cond_FK_rho_delta": 0.0112,
+        "cond_logprob_rho_delta": -0.004,
+        "cond_EM_rho_delta": 0.0107,
+        "cond_voting_conf_rho_delta": 0.0219
+      }
+    },
+    "checkpoint_path": "output/exp_017_llama_conll_n16_s456/samples.jsonl",
+    "log_path": "output/exp_017_llama_conll_n16_s456/all_signals_report.json",
+    "conclusion": "success",
+    "completed_at": "2026-05-14T20:24:45.875Z"
+  },
+  "timestamp": "2026-05-14T20:24:46.006891+00:00",
+  "trigger": "update_registry"
+}

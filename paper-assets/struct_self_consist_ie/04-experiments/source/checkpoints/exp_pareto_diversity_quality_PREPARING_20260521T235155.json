@@ -1,0 +1,54 @@
+{
+  "exp_id": "exp_pareto_diversity_quality",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T09:31:45.421Z",
+    "updated_at": "2026-05-21T23:51:55.294Z",
+    "hypothesis": "There exists a Pareto frontier in the diversity (1-degeneracy) vs construction quality (ΔF1) space across temperature configurations. Well-separated temperature mixing (T=0.7+T=1.0) achieves Pareto optimality for both uniform and VC construction, while VC-weighted construction flattens the trade-off slope, reducing the diversity cost of quality.",
+    "metrics": {
+      "dataset": "SciERC",
+      "configs": {
+        "t07": {
+          "one_minus_degen": 0.777,
+          "uniform_delta": 1.81,
+          "vc_delta": 1.17,
+          "pareto": "uniform only"
+        },
+        "t08": {
+          "one_minus_degen": 0.819,
+          "uniform_delta": 1.25,
+          "vc_delta": 1.68,
+          "pareto": "VC only"
+        },
+        "mix_07_10": {
+          "one_minus_degen": 0.83,
+          "uniform_delta": 1.43,
+          "vc_delta": 1.67,
+          "pareto": "both"
+        },
+        "t10": {
+          "one_minus_degen": 0.877,
+          "uniform_delta": 0.75,
+          "vc_delta": 1.21,
+          "pareto": "both (highest diversity)"
+        },
+        "mix_08_10": {
+          "one_minus_degen": 0.789,
+          "uniform_delta": -0.17,
+          "vc_delta": 0.47,
+          "pareto": "dominated"
+        }
+      },
+      "vc_slope_reduction": "~50% flatter than uniform",
+      "key_insight": "well-separated T mixing dual Pareto optimal; close T mixing dominated"
+    },
+    "conclusion": "killed",
+    "notes": "A4 Pareto diversity-quality analysis on SciERC. Mix T=0.7+T=1.0 is dual-Pareto optimal (uniform +1.43pp, VC +1.67pp). VC construction flattens trade-off slope ~50% vs uniform — increasing diversity costs less quality. Mix T=0.8+T=1.0 is dominated (close T → higher degeneracy, no construction gain). Confirms DGEC heterogeneous-T finding: ΔT matters, ΔT=0.3 beneficial, ΔT=0.2 harmful. Pareto plot artifact registered."
+  },
+  "timestamp": "2026-05-21T23:51:55.826587+00:00",
+  "trigger": "update_registry"
+}

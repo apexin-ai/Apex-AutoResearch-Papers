@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp_b2_entity_verifier",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:13:41.037Z",
+    "updated_at": "2026-05-20T10:14:00.616Z",
+    "hypothesis": "An XGBoost/LightGBM entity-level verifier trained on agreement_count, VC, LP features can predict whether entity candidates are in gold annotations, enabling post-hoc filtering or score-weighted construction that improves over greedy baseline, with cross-dataset generalization from CoNLL+SciERC to FewNERD+WNUT.",
+    "metrics": {
+      "n_entities": 122984,
+      "n_configs": 13,
+      "train_entities": 44486,
+      "test_entities": 78498,
+      "xgb_cv_auc": 0.9273,
+      "lgb_cv_auc": 0.9254,
+      "xgb_test_auc": 0.8282,
+      "lgb_test_auc": 0.8335,
+      "top_features": {
+        "vc": 0.5296,
+        "agreement_count": 0.2504,
+        "dataset_enc": 0.06
+      },
+      "path_a_lgb_f1": 0.7336,
+      "greedy_f1": 0.7321,
+      "path_a_beats_greedy": true,
+      "path_b_xgb_train_f1": 0.8122
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T10:14:00.926596+00:00",
+  "trigger": "update_registry"
+}

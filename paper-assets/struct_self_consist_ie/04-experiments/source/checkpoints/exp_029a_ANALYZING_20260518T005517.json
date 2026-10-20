@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp_029a",
+  "project": "struct_self_consist_ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T23:32:17.191Z",
+    "updated_at": "2026-05-18T00:55:16.982Z",
+    "hypothesis": "Training convergence modulates degeneracy across datasets. SciERC 3-epoch training should produce lower degeneracy than 5-epoch baseline (17.8%), confirming epoch confound is not Few-NERD-specific.",
+    "parent": "ft_002_v2",
+    "spec": {
+      "command": "FORCE_TORCHRUN=0 CUDA_VISIBLE_DEVICES=0 bash -c \"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && llamafactory-cli train train_config_scierc_3ep.yaml\"",
+      "server": "autodl-5090",
+      "gpu": "cuda:0",
+      "pid": 436761,
+      "data_path": "data/scierc_uie_train",
+      "data_count": 1861,
+      "model_name": "Qwen3-8B LoRA rank=32",
+      "seed": 42,
+      "checkpoint_path": "checkpoints/qwen3-8b-scierc-3epoch-lora",
+      "log_path": "logs/exp_029a_train.log",
+      "checkpoint_source": "Qwen/Qwen3-8B",
+      "eval_data": "data/scierc_uie_dev"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T00:55:16.392Z"
+    }
+  },
+  "timestamp": "2026-05-18T00:55:17.224624+00:00",
+  "trigger": "update_registry"
+}

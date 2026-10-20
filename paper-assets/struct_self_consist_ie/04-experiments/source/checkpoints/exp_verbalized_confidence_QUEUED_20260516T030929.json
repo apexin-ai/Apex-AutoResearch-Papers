@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_verbalized_confidence",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:45:20.552Z",
+    "updated_at": "2026-05-16T03:09:29.355Z",
+    "hypothesis": "Verbalized confidence baseline: let model self-rate extraction confidence. If also compressed → strengthens \"score compression is general\" claim. If effective → important positive finding requiring narrative adjustment.",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-16T03:09:29.552622+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp_32b_inference_fewnerd",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:21:12.060Z",
+    "updated_at": "2026-05-21T04:23:52.252Z",
+    "hypothesis": "32B fine-tuned model (Qwen2.5-32B-Instruct QLoRA, best checkpoint-32000) FewNERD inference with N=8 SC sampling. Scaling from 8B→32B should improve per-sample quality and strengthen SC diagnostic correlation (Fleiss kappa / Soft-Jaccard vs F1). Comparison baseline: Qwen3-8B-FT FewNERD results.",
+    "parent": "exp_qwen25_32b_fewnerd",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_32b_fewnerd_n8_s42/",
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/logs/inference_32b_fewnerd_n8_s42.log",
+      "command": "python code/run_mvp_pilot.py --model_path checkpoints/qwen25-32b-fewnerd-merged --data_dir data/fewnerd --dataset fewnerd --n_samples 8 --temperature 1.0 --seed 42 --output_dir output/exp_32b_fewnerd_n8_s42 --tensor_parallel 4 --collect_logprobs",
+      "server": "autodl-5090",
+      "model_name": "qwen25-32b-fewnerd-merged",
+      "seed": 42,
+      "data_path": "data/fewnerd",
+      "data_count": 301184
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T04:23:52.252Z"
+  },
+  "timestamp": "2026-05-21T04:23:52.681107+00:00",
+  "trigger": "update_registry"
+}

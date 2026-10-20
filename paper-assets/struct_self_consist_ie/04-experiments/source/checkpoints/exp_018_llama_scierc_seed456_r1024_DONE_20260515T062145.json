@@ -1,0 +1,67 @@
+{
+  "exp_id": "exp_018_llama_scierc_seed456_r1024",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T06:12:43.492Z",
+    "updated_at": "2026-05-15T06:21:45.350Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 456 --max_tokens 1024 --num_test 9999 --collect_logprobs --output_dir output/exp_018_llama_scierc_seed456_r1024\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "157584",
+      "log_path": "~/runs/struct_self_consist_ie/exp_018_llama_scierc_seed456_r1024.log",
+      "submitted_at": "2026-05-15T06:13:03.588Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 521.8,
+      "gpu_hours": 0.14
+    },
+    "server": "autodl-5090",
+    "gpu": "cuda:1",
+    "pid": "157584",
+    "log_path": "~/runs/struct_self_consist_ie/exp_018_llama_scierc_seed456_r1024.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 456 --max_tokens 1024 --num_test 9999 --collect_logprobs --output_dir output/exp_018_llama_scierc_seed456_r1024\"",
+      "finished_at": "2026-05-15T06:18:22.307Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T06:18:24.880896+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456_r1024",
+    "metrics": {
+      "ner_greedy_f1": 0.6597,
+      "ner_oracle_f1": 0.7683,
+      "ner_oracle_headroom": 0.1086,
+      "ner_cond_rho_fk": 0.1472,
+      "ner_cond_rho_sj": 0.2718,
+      "ner_cond_rho_logprob": 0.083,
+      "ner_logprob_auroc_cond": 0.5485,
+      "re_greedy_f1": 0.4338,
+      "re_oracle_f1": 0.5834,
+      "re_oracle_headroom": 0.1496,
+      "re_cond_rho_fk": 0.2107,
+      "re_cond_rho_sj": 0.3898,
+      "re_cond_rho_logprob": 0.1252,
+      "re_logprob_auroc_cond": 0.6119,
+      "ner_structural_beats_logprob": true,
+      "re_structural_beats_logprob": true
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T06:21:45.350Z"
+  },
+  "timestamp": "2026-05-15T06:21:45.523180+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_017_llama_conll_n16_s123",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T19:23:21.084Z",
+    "updated_at": "2026-05-14T19:23:21.084Z"
+  },
+  "timestamp": "2026-05-14T19:23:21.201693+00:00",
+  "trigger": "update_registry"
+}

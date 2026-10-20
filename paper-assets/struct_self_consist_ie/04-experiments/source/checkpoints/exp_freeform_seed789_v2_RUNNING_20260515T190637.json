@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp_freeform_seed789_v2",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:02:03.813Z",
+    "updated_at": "2026-05-15T19:06:37.372Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python run_freeform_inference.py --seed 789 --num_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir results/exp_freeform_ablation_seed789\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "218882",
+      "log_path": "~/runs/struct_self_consist_ie/exp_freeform_seed789_v2.log",
+      "submitted_at": "2026-05-15T19:02:03.527Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "hypothesis": "Multi-seed free-form ablation (seed=789): third seed for 3-seed mean±σ statistical significance. Verify RE LP flip and NER gap stability.",
+      "data_path": "data/scierc/processed_data",
+      "data_count": 551,
+      "model_name": "qwen3-8b-scierc-merged-v2",
+      "seed": 789
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T19:06:35.698Z"
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-15T19:06:37.602629+00:00",
+  "trigger": "update_registry"
+}

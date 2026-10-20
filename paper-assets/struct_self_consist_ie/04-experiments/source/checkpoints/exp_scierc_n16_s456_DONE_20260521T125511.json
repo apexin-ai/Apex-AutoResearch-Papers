@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp_scierc_n16_s456",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-21T04:30:43.414Z",
+    "updated_at": "2026-05-21T12:55:10.336Z",
+    "hypothesis": "SciERC N=16 seed=456: third seed completing 3-seed N=16 set. Tests N-scaling consistency for SciERC — whether oracle headroom increase and MV aggregation gap pattern are reproducible across seeds.",
+    "completed_at": "2026-05-21T04:44:33.829Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "success"
+      }
+    },
+    "parent": "exp_scierc_n16_s42",
+    "spec": {
+      "command": "python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/scierc_n16_s456/",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "data_path": "data/scierc/processed_data/",
+      "data_count": 551,
+      "model_name": "qwen3-8b-scierc-merged-v2",
+      "seed": 456,
+      "checkpoint_source": "checkpoints/qwen3-8b-scierc-merged-v2",
+      "eval_data": "data/scierc/processed_data/"
+    },
+    "conclusion": "success",
+    "log_path": "~/runs/struct_self_consist_ie/exp_scierc_n16_s456.log",
+    "checkpoint_path": "output/scierc_n16_s456/"
+  },
+  "timestamp": "2026-05-21T12:55:11.386636+00:00",
+  "trigger": "update_registry"
+}

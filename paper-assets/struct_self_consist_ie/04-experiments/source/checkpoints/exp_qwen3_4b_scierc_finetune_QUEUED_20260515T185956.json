@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_qwen3_4b_scierc_finetune",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:58:58.948Z",
+    "updated_at": "2026-05-15T18:59:56.528Z",
+    "spec": {
+      "hypothesis": "Scale ablation: Qwen3-4B SciERC NER LoRA fine-tune. Same LoRA config as CoNLL 4B. Forms 2 datasets x 2 scales matrix. Verify correlation-selection gap, SJ>FK ordering, LP compression are scale-invariant.",
+      "server": "autodl-5090",
+      "data_path": "data/scierc/processed_data",
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "gpu": "cuda:3",
+      "plan_id": "D096"
+    }
+  },
+  "timestamp": "2026-05-15T18:59:56.753525+00:00",
+  "trigger": "update_registry"
+}

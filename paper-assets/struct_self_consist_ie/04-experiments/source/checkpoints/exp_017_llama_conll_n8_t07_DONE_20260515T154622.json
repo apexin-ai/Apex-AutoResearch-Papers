@@ -1,0 +1,92 @@
+{
+  "exp_id": "exp_017_llama_conll_n8_t07",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:29:34.595Z",
+    "updated_at": "2026-05-15T15:46:22.722Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 8 --temperature 0.7 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_017_llama_conll_n8_t07\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "195927",
+      "log_path": "~/runs/struct_self_consist_ie/exp_017_llama_conll_n8_t07.log",
+      "submitted_at": "2026-05-15T15:31:17.989Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 881.3,
+      "gpu_hours": 0.24
+    },
+    "hypothesis": "LLaMA CoNLL N=8 T=0.7 防御性实验：填补\"LLaMA 仅在 SciERC 上测过\"的弱点，验证 cross-model consistency（vs Qwen CoNLL）。T=0.7 低温下 confidence signals 的 correlation-selection gap 是否依然存在。",
+    "parent": "exp_017_llama_conll",
+    "server": "autodl-5090",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "autodl-5090",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-15T15:31:15.772Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 8 --temperature 0.7 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_017_llama_conll_n8_t07\"",
+      "finished_at": "2026-05-15T15:40:02.605Z",
+      "training_hours": 0.15
+    },
+    "pid": "195927",
+    "log_path": "/root/runs/struct_self_consist_ie/exp_017_llama_conll_n8_t07.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T15:40:08.277684+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "n_valid": 2756,
+      "greedy_f1": 0.9242,
+      "oracle_f1": 0.9391,
+      "lp_range_median": 1.1e-05,
+      "lp_tied_fraction_005": 0.9579,
+      "signals": {
+        "SJ": {
+          "rho": 0.3934,
+          "auroc": 0.6506
+        },
+        "FK": {
+          "rho": 0.3879,
+          "auroc": 0.6488
+        },
+        "VC": {
+          "rho": 0.375,
+          "auroc": 0.6551
+        },
+        "EM": {
+          "rho": 0.3888,
+          "auroc": 0.6494
+        },
+        "LP": {
+          "rho": 0.2951,
+          "auroc": 0.7509
+        }
+      },
+      "selection_f1": {
+        "SJ": 0.9247,
+        "FK": 0.9254,
+        "VC": 0.9264,
+        "EM": 0.9255,
+        "LP": 0.9248
+      }
+    },
+    "conclusion": "success",
+    "checkpoint_path": "N/A (inference-only)",
+    "completed_at": "2026-05-15T15:45:59.311Z"
+  },
+  "timestamp": "2026-05-15T15:46:22.894294+00:00",
+  "trigger": "update_registry"
+}

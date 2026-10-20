@@ -1,0 +1,80 @@
+# reviewer / loop_12.md
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_12.md`
+- **Structured JSON:** [`46d2dece19ab7e3eaa04.json`](../../sessions/46/46d2dece19ab7e3eaa04.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 12
+reason: max_wall_time
+updated: '2026-05-16T16:05:39+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 本项目 GPU 白名单：autodl-5090 cuda:0/1/2/3（4张 RTX 5090）。无其他服务器。
+- 论文统一使用 **macro F1**（D113 修复后）。任何新分析脚本必须输出 macro F1，不能用 micro F1。greedy baseline = 0.645（529 gold-filtered, 2-seed mean）。
+- exp-021 Few-NERD full run **必须用 rank=32, α=64**（与论文 Method 一致）。exp-020 smoke test 用了 rank=16 是故意的，但 exp-021 不能沿用。Config 已准备好：`train_config_fewnerd_exp021.yaml`。
+- N-scaling appendix 表用 greedy=0.614（551 instances, seed=42），与 Table 2 的 0.645 有 footnote 解释差异。不要试图"统一"它们——只确保 delta 在同一 metric 空间内一致。
+- 论文标题已改为 "Strong Predictors, Weak Selectors: Why Confidence Signals **Fail to** Scale Structured Information Extraction"。不要改回 "Cannot"。
+
+### 2. 🖥️ 基础设施快照
+- 服务器：`autodl-5090(root)`，项目目录 `/root/autodl-tmp/struct_self_consist_ie`
+- Python：`/root/miniconda3/bin/python`（conda base，不用 venv）
+- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/`
+- 论文 tex：`docs/paper/sections/*.tex`（本地），main.tex 在 `docs/paper/main.tex`
+- 模型 checkpoint：`checkpoints/qwen3-8b-scierc-merged-v2`（主力）、`checkpoints/ft_fewnerd_smoke/`（exp-020 训练中）
+- 数据：`data/scierc/processed_data`（551 test）、`data/fewnerd/llmfactory_train.json`（131k train）、`data/conll2003`
+- 活跃进程：PID 288683 (llamafactory-cl, cuda:1, exp-020 训练, ~85% done at last check)
+- N=32 修正脚本：`output/exp_025_n_ablation/n_ablation_fixed.py`，统一结果：`output/exp_025_n32/unified_results.json`
+
+### 3. 📊 当前状态
+刚完成两个纸面一致性 issue 的闭环审查：(1) N-scaling 表 macro F1 统一 + baseline footnote，(2) LR verifier 数值更新为 exp-027（F1=0.641, AUROC=0.652）+ MLP/RF 写入。两个 issue 均 PASS。
+
+Registry RUNNING/ANALYZING：
+- `exp_020_fewnerd_smoke` — ANALYZING（训练 ~85%，ETA ~40min from last check）
+- `exp_025_n32` — 已完成但 registry 未更新为 DONE
+- `exp_022_seed789` — registry 仍 RUNNING 但进程早已结束，需清理为 DONE
+- `exp_026_t05/t08/t12` — 均 ANALYZING，实际已完成
+
+等待中：
+- exp-020 训练完成 → merge → pilot inference → gate exp-021
+- 第三次 Dream 验证（等所有写作修复完成后）
+
+### 4. 📋 待办（条件触发式）
+- exp-020 训练完成通知 → 核实 final loss / eval_loss，确认 checkpoint 完整 → gate exp-021 启动（验证 config 用 rank=32）
+- exp-021 启动 → 核实 GPU 分配在白名单内，核实 rank=32/α=64
+- exp-021 inference 完成 → 核实 Few-NERD 结果，检查 degeneracy rate 是否符合预期（新数据集应有不同 pattern）
+- N=32 bootstrap significance test 完成 → 核实 p-value，如果 p>0.05 则论文叙事 "selection fails" 不变；如果 p<0.05 则需调整为 "marginal improvement"
+- Paper Agent D117 写作全部完成 → 触发第三次 Dream 验证审查
+- Dream #3 结果 → 如果 ≥3.5 → Main Conference 可行；<3.5 → 需再次评估策略
+
+### 5. 🎯 战略上下文
+**核心结论**：confidence signals 是好的 QE 工具（ρ up to 0.45, AUROC 0.82）但 selection 失败。两个机制：instance degeneracy（21-58%）+ LP compression（median range 0.041 nats）。supervised verifier（LR/MLP/RF）也失败 → feature bottleneck。
+
+**决策链关键节点**：D113（micro/macro bug）→ D114（GPU 空转 + P0 修复）→ D117（Dream #2 = 3.0, 未达 3.5）→ D118（N-scaling greedy baseline bug 修复）
+
+**易错点**：
+1. **greedy baseline 有多个版本**。report.json 的 `ner_greedy_f1` 是 micro F1（~0.658-0.665）；论文 Table 2 的 0.645 是 macro F1（529 gold-filtered, 2-seed）；N-scaling 表的 0.614 是 macro F1（551 instances, seed=42）。三个数字都"对"但来自不同定义。不要试图让它们相等。
+2. **exp-019 vs exp-027 数值**：论文已更新为 exp-027。如果看到旧的 AUROC=0.697 或 F1=0.648，那是 exp-019 的陈旧数据，不要引用。
+3. **T-ablation subtask 不一致**：T=0.5/1.0 用 `--subtask joint`，T=0.8/1.2 用 `--subtask ner`。论文 appendix 表已标注。不要遗忘。
+4. **VC 在高 N 时恶化**：这不是 bug，是 mode-seeking bias。N=32 VC=-4.18pp。
+5. **exp-020 用 rank=16 是故意的（smoke test）**，但 exp-021 MUST 用 rank=32。不要因为 exp-020 "成功了" 就沿用它的 config。
+
+
+---

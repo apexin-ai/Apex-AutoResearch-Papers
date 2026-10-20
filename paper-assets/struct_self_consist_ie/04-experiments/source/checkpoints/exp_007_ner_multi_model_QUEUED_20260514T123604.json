@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp_007_ner_multi_model",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T11:42:20.748Z",
+    "updated_at": "2026-05-14T12:36:04.882Z",
+    "spec": {
+      "hypothesis": "Model-agnostic validation: SJ/voting confidence signals are effective with LLaMA-3.1-8B, not specific to Qwen3 architecture.",
+      "plan_id": "exp-007",
+      "model_name": "LLaMA-3.1-8B-Instruct",
+      "dataset": "SciERC",
+      "gpu": "cuda:3",
+      "server": "gpu-5090-4x-2",
+      "gpu_budget_hours": 15,
+      "description": "Cross-model validation: Fine-tune LLaMA-3.1-8B on SciERC, then NER pilot N=8 T=0.7 with logprobs + voting_confidence",
+      "command": "bash -c 'source env.sh && llamafactory-cli train train_config_llama.yaml'",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data",
+      "data_count": 1861,
+      "seed": 42
+    },
+    "server": "autodl-5090",
+    "gpu": "cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "autodl-5090",
+      "gpu": "cuda:3",
+      "started_at": "2026-05-14T11:43:50.977Z"
+    }
+  },
+  "timestamp": "2026-05-14T12:36:04.961809+00:00",
+  "trigger": "update_registry"
+}

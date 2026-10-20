@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp_conll_pretrained_n64_s42",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:13:43.979Z",
+    "updated_at": "2026-05-22T06:42:46.235Z",
+    "hypothesis": "Pretrained N-scaling: CoNLL N=64 with Qwen2.5-7B-Instruct (unfinetuned). Fourth data point for pretrained CoNLL N-scaling curve (N=8 +3.01, N=32 +3.21). Tests whether pretrained MV gain continues scaling and whether degeneracy continues declining at N=64.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 64 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/conll_pretrained_n64_seed42/\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "108176",
+      "log_path": "~/runs/struct_self_consist_ie/exp_conll_pretrained_n64_s42.log",
+      "submitted_at": "2026-05-22T05:30:13.269Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-22T06:42:46.905508+00:00",
+  "trigger": "update_registry"
+}

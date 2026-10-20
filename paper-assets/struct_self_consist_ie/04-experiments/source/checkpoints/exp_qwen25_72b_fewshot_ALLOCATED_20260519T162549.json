@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp_qwen25_72b_fewshot",
+  "project": "struct_self_consist_ie",
+  "state": "ALLOCATED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T15:59:44.340Z",
+    "updated_at": "2026-05-19T16:25:48.656Z",
+    "hypothesis": "72B 3-shot few-shot NER will show reduced output diversity compared to zero-shot (higher degeneracy) due to in-context examples constraining output space, while improving greedy baseline F1. The key diagnostic question: does few-shot improve LP-F1 alignment (enabling construction) or does increased degeneracy negate any calibration gain? This fills the zero-shot vs few-shot vs fine-tuned regime comparison for the scaling section. Parent: exp_qwen25_72b_zeroshot (negative — LP near-zero, high degeneracy in ZS).",
+    "parent": "exp_qwen25_72b_zeroshot",
+    "server": "autodl-5090-b",
+    "gpu": "cuda:0,cuda:1,cuda:2,cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "autodl-5090-b",
+      "gpu": "cuda:0,cuda:1,cuda:2,cuda:3",
+      "started_at": "2026-05-19T16:22:20.071Z"
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0,1,2,3 python code/fewshot_inference_72b.py --datasets scierc conll2003 fewnerd --output-dir output/72b_fewshot --seed 42\"",
+      "server": "autodl-5090-b",
+      "data_path": "data/{scierc,conll2003,fewnerd}",
+      "data_count": 41652,
+      "model_name": "Qwen2.5-72B-Instruct-AWQ",
+      "seed": 42,
+      "gpu_ids": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ]
+    }
+  },
+  "timestamp": "2026-05-19T16:25:49.151264+00:00",
+  "trigger": "update_registry"
+}

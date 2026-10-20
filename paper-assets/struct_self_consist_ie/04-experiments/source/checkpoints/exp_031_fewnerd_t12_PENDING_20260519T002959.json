@@ -1,0 +1,18 @@
+{
+  "exp_id": "exp_031_fewnerd_t12",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T20:04:12.040Z",
+    "updated_at": "2026-05-19T00:29:59.388Z",
+    "hypothesis": "FewNERD T=1.2 temperature ablation: test if higher temperature reduces degeneracy on FewNERD as observed on SciERC",
+    "conclusion": "killed",
+    "failure_reason": "数据不可用于论文：测试集(37648 vs T=1.0的5000)、N(8 vs 16)、分析管道(MVP pilot vs 5-signal)三重不一致。Director决定不重跑(DDL约束+非核心claim)。",
+    "notes": "T=1.2 ablation not in paper scope, SciERC T=1.2 sufficient"
+  },
+  "timestamp": "2026-05-19T00:29:59.663592+00:00",
+  "trigger": "update_registry"
+}

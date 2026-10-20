@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_qwen3_4b_conll_scs_inference_v2",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:41:33.501Z",
+    "updated_at": "2026-05-15T19:45:05.762Z",
+    "hypothesis": "CoNLL 4B SCS inference with best checkpoint-4200 (from resume training). Scale ablation: cross-scale evidence for correlation-selection gap. Compare vs v1 (ckpt-3800 baseline: greedy_f1=0.9251, SJ_rho=0.4045)."
+  },
+  "timestamp": "2026-05-15T19:45:05.988393+00:00",
+  "trigger": "update_registry"
+}

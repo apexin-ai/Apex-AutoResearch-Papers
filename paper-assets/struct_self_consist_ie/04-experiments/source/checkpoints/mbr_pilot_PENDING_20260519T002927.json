@@ -1,0 +1,15 @@
+{
+  "exp_id": "mbr_pilot",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T17:56:06.462Z",
+    "updated_at": "2026-05-19T00:29:27.579Z",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-19T00:29:27.857889+00:00",
+  "trigger": "update_registry"
+}

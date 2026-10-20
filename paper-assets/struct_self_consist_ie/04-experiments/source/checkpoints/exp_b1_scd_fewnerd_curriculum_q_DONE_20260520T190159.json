@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp_b1_scd_fewnerd_curriculum_q",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:17:38.760Z",
+    "updated_at": "2026-05-20T19:01:59.017Z",
+    "hypothesis": "Q variant SCD with curriculum ordering: use B2 entity verifier confidence to stratify pseudo-labels (conf>0.8→Round1, 0.5-0.8→Round2, conf<0.5→discard). Curriculum by verifier confidence improves SCD convergence and final greedy F1 vs standard flat SCD on FewNERD.",
+    "spec": {
+      "command": "llamafactory-cli train train_config_scd_fewnerd_fallback_s43.yaml",
+      "server": "autodl-5090-b",
+      "gpu_ids": [
+        1
+      ],
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/scd_fewnerd_theta2n_s42.jsonl",
+      "data_count": 32565,
+      "model_name": "Qwen3-8B-FT",
+      "seed": 43,
+      "note": "Fallback standard SCD seed=43 (Q-variant deferred per D189)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T19:01:52.441Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-20T19:01:57.213Z"
+  },
+  "timestamp": "2026-05-20T19:01:59.800854+00:00",
+  "trigger": "update_registry"
+}

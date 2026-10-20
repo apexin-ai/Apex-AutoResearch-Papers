@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp_frontier_sc_gemini25pro",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T06:50:24.793Z",
+    "updated_at": "2026-05-21T10:54:44.138Z",
+    "hypothesis": "Frontier model Gemini 2.5 Pro on FewNERD SC (200 inst, N=8, T=1.0): 4-family cross-validation. If correlation-selection gap persists across GPT + Claude + Gemini + DeepSeek, the finding is universal.",
+    "spec": {
+      "command": "python -u code/run_frontier_sc.py --model google/gemini-2.5-pro --base_url http://47.94.22.126/v1 --dataset fewnerd --n_instances 200 --n_samples 8 --temperature 1.0 --output_dir output/frontier_sc_gemini25pro/ --max_workers 4",
+      "server": "autodl-5090-c",
+      "data_path": "data/fewnerd/test.json",
+      "data_count": 200,
+      "model_name": "google/gemini-2.5-pro",
+      "seed": 42
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T10:54:44.616651+00:00",
+  "trigger": "update_registry"
+}

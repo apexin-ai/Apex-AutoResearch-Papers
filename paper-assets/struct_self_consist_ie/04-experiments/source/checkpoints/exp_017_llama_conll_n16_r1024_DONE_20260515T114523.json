@@ -1,0 +1,49 @@
+{
+  "exp_id": "exp_017_llama_conll_n16_r1024",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:17:01.036Z",
+    "updated_at": "2026-05-15T11:45:23.213Z",
+    "spec": {
+      "hypothesis": "D054 rerun: max_tokens=1024. Verify truncation impact on LLaMA CoNLL N=16 seed42.",
+      "parent": "exp_017_llama_conll_n16",
+      "model_name": "llama3.1-8b-conll2003-merged",
+      "dataset": "CoNLL-2003",
+      "seed": 42,
+      "server": "autodl-5090",
+      "command": "python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_017_llama_conll_n16_r1024",
+      "gpu": "cuda:1",
+      "pid": "175734",
+      "data_path": "data/conll2003",
+      "data_count": 3453,
+      "tmux_session": "exp_017_llama_conll_n16_r1024"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "instance_count": 3453,
+      "parse_rate": 1,
+      "ner_greedy_f1": 0.9264,
+      "ner_oracle_f1": 0.9494,
+      "rho_sj_ner": 0.1815,
+      "rho_fk_ner": 0.8095,
+      "rho_vc_ner": 0.7949,
+      "rho_lp_ner": 0.0903,
+      "rho_em_ner": 0.1785,
+      "auroc_sj_ner": 0.6313,
+      "auroc_fk_ner": 0.907,
+      "auroc_vc_ner": 0.8757,
+      "auroc_lp_ner": 0.5861,
+      "auroc_em_ner": 0.631,
+      "auroc_note": "median F1=1.0, AUROC uses >=median threshold"
+    },
+    "checkpoint_path": "N/A (inference-only)",
+    "log_path": "output/exp_017_llama_conll_n16_r1024_run.log",
+    "completed_at": "2026-05-15T11:45:23.213Z"
+  },
+  "timestamp": "2026-05-15T11:45:23.371163+00:00",
+  "trigger": "update_registry"
+}

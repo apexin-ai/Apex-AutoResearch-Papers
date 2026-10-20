@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_lsc_latent_sc",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:37:31.881Z",
+    "updated_at": "2026-05-20T15:37:45.174Z",
+    "hypothesis": "Latent Self-Consistency: F4 diagnostic proves LP is compressed (median range 0.041 nats). Hidden states contain richer per-sample information than scalar LP. Entity-level mean-pooled hidden state representations enable latent aggregation (centroid selection, latent confidence scoring, clustering) that bypasses LP compression and provides discriminative per-sample ranking unavailable from output-space signals.",
+    "parent": "exp_e2_mixture_of_signals"
+  },
+  "timestamp": "2026-05-20T15:37:45.495180+00:00",
+  "trigger": "update_registry"
+}

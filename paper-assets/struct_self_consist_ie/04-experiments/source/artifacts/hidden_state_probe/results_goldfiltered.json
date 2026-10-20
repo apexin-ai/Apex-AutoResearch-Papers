@@ -1,0 +1,69 @@
+{
+  "protocol": "gold-filtered 529 instances, 5-fold CV x 3 seeds",
+  "n_instances_total": 551,
+  "n_instances_goldfiltered": 529,
+  "n_empty_gold": 22,
+  "n_samples_per_instance": 8,
+  "n_samples_used": 4232,
+  "methods": {
+    "lp": {
+      "rho": 0.2207,
+      "sel_f1": 0.6087,
+      "gap_closure": -0.44
+    },
+    "hidden_linear": {
+      "rho_mean": 0.2346,
+      "rho_std": 0.0200,
+      "rho_per_seed": [0.2115, 0.2474, 0.2450],
+      "sel_f1_mean": 0.6206,
+      "sel_f1_std": 0.0053,
+      "sel_f1_per_seed": [0.6247, 0.6225, 0.6146],
+      "gap_closure": 7.02
+    },
+    "hidden_mlp": {
+      "rho_mean": 0.4611,
+      "rho_std": 0.0200,
+      "rho_per_seed": [0.4704, 0.4748, 0.4382],
+      "sel_f1_mean": 0.6317,
+      "sel_f1_std": 0.0044,
+      "sel_f1_per_seed": [0.6366, 0.6282, 0.6302],
+      "gap_closure": 13.93
+    }
+  },
+  "architecture": {
+    "linear": "Ridge regression, alpha=1.0, StandardScaler",
+    "mlp_layers": "4096 -> 256 -> 64 -> 1",
+    "mlp_hidden_sizes": [256, 64],
+    "mlp_activation": "ReLU",
+    "mlp_dropout": 0.1,
+    "mlp_lr": 0.001,
+    "mlp_optimizer": "Adam (weight_decay=1e-4)",
+    "mlp_epochs": "100 max (early stopping patience=15)",
+    "mlp_batch_size": 256,
+    "cv_folds": 5,
+    "seeds": [42, 123, 456]
+  },
+  "overfitting": {
+    "linear": {
+      "train_loss_mean": 0.000356,
+      "val_loss_mean": 0.5652,
+      "gap": 0.5649,
+      "note": "Severe overfitting - Ridge with 4096 features on ~3400 training samples"
+    },
+    "mlp": {
+      "train_loss_mean": 0.0423,
+      "val_loss_mean": 0.0784,
+      "gap": 0.0360,
+      "best_epoch_mean": 9.4,
+      "note": "Moderate gap, early stopping effective (avg best epoch 9.4/100)"
+    }
+  },
+  "hidden_state_source": {
+    "model": "Qwen3-8B + SciERC LoRA (merged)",
+    "checkpoint": "checkpoints/qwen3-8b-scierc-merged-v2",
+    "pooling": "mean-pool over output tokens (last hidden layer)",
+    "hidden_dim": 4096
+  },
+  "greedy_f1": 0.6094,
+  "oracle_f1": 0.7692
+}

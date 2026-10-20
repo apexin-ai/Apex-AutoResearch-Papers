@@ -1,0 +1,26 @@
+{
+  "exp_id": "mvp_pilot_002",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:02:16.991Z",
+    "updated_at": "2026-05-14T08:02:20.795Z",
+    "spec": {
+      "hypothesis": "Structural self-consistency (soft Jaccard) correlates with per-instance F1 better than surface Fleiss Kappa on fine-tuned Qwen3-8B SciERC",
+      "model_name": "Qwen3-8B-SciERC-LoRA (ft_001)",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/scierc",
+      "data_count": 551,
+      "server": "autodl-5090",
+      "seed": 42,
+      "parent": "ft_001",
+      "method": "N=8 sampling T=1.0 + XGrammar + span realignment + gold-empty filter + conditional rho",
+      "gpu": "cuda:0",
+      "note": "Rerun of mvp_pilot_001 which crashed silently"
+    }
+  },
+  "timestamp": "2026-05-14T08:02:20.807884+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,2752 @@
+# analysis read exp016 and seed123 results
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 91
+- **Recorded user turns:** 0
+- **Tool calls:** 45
+- **Original source:** `logs/chats/worker_analysis_read_exp016_and_seed123_results_20260514T122622.jsonl`
+- **Structured JSON:** [`21b254b2cb2b63e2228f.json`](../../sessions/21/21b254b2cb2b63e2228f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+91 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T12:28:58.417792+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_registry",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_registry",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T12:28:58.418188+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T12:28:58.418427+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls output/exp016_signal_ensemble/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls output/exp016_signal_ensemble/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-14T12:28:58.418582+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access 'output/exp016_signal_ensemble/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.0}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T12:28:58.418715+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-5090-4x-2",
+  "command": "ls output/exp001_n16_seed123/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-5090-4x-2",
+    "command": "ls output/exp001_n16_seed123/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-14T12:28:58.418840+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-5090-4x-2",
+  "command": "ps aux | grep run_mvp_pilot | grep -v grep",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-5090-4x-2",
+    "command": "ps aux | grep run_mvp_pilot | grep -v grep",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T12:28:58.418968+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access 'output/exp001_n16_seed123/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.71}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T12:28:58.419088+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T12:28:58.419296+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T12:28:58.419439+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"correlation_matrix.json\\nlinear_combo_grid.json\\nlogistic_ensemble.json\\nselection_f1_comparison.json\\nselection_f1_full.json\\nsummary.md\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T12:28:58.419573+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-5090-4x-2",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-5090-4x-2",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T12:28:58.419694+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-5090-4x-2",
+  "command": "grep -r run_mvp_pilot /proc/*/cmdline 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-5090-4x-2",
+    "command": "grep -r run_mvp_pilot /proc/*/cmdline 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T12:28:58.419816+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"report.json\\nrun.log\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T12:28:58.419930+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T12:28:58.420062+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble/summary.md",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble/summary.md",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T12:28:58.420247+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# exp-016: Signal Ensemble Analysis\\n\\n\\n## NER\\n\\n### Part 1: Signal Correlation (SJ vs logprob)\\n- Pearson r = 0.5672, Spearman ρ = 0.5379\\n\\n### Part 2: Linear Combo Grid (best α)\\n- alpha*soft_jaccard + (1-alpha)*logprob: best α=1.0, ρ=0.3565 (single: 0.3565, 0.1396)\\n- alpha*voting_confidence + (1-alpha)*logprob: best α=0.8, ρ=0.4458 (single: 0.4303, 0.1396)\\n- alpha*soft_jaccard + (1-alpha)*voting_confidence: best α=0.3, ρ=0.4893 (single: 0.3565, 0.4303)\\n\\n### Part 3: Logistic Ensemble\\n- Ensemble AUROC: 0.735 ± 0.0296\\n  - soft_jaccard: 0.6892 ± 0.0353\\n  - fleiss_kappa: 0.6317 ± 0.0195\\n  - logprob: 0.5873 ± 0.0533\\n  - exact_match: 0.6615 ± 0.0553\\n  - voting_confidence: 0.6996 ± 0.0339\\n- Coefficients: {'soft_jaccard': 0.1211, 'fleiss_kappa': -0.338, 'logprob': 0.0383, 'exact_match': 0.6452, 'voting_confidence': 0.8648}\\n\\n### Part 4: Best-of-N Selection F1\\n| Method | Mean F1 |\\n|--------|---------|\\n| greedy | 0.6094 |\\n| random_avg | 0.5796 |\\n| sj_best | 0.6042 |\\n| voting_conf_best | 0.5959 |\\n| logprob_best | 0.6087 |\\n| ensemble_best | 0.6043 |\\n| oracle | 0.7692 |\\n\\n\\n## RE\\n\\n### Part 1: Signal Correlation (SJ vs logprob)\\n- Pearson r = 0.4173, Spearman ρ = 0.4892\\n\\n### Part 2: Linear Combo Grid (best α)\\n- alpha*soft_jaccard + (1-alpha)*logprob: best α=0.3, ρ=0.2871 (single: 0.2112, 0.2467)\\n- alpha*voting_confidence + (1-alpha)*logprob: best α=0.6, ρ=0.4292 (single: 0.4265, 0.2467)\\n- alpha*soft_jaccard + (1-alpha)*voting_confidence: best α=0.0, ρ=0.4265 (single: 0.2112, 0.4265)\\n\\n### Part 3: Logistic Ensemble\\n- Ensemble AUROC: 0.7191 ± 0.0273\\n  - soft_jaccard: 0.5909 ± 0.0176\\n  - fleiss_kappa: 0.6284 ± 0.0327\\n  - logprob: 0.6207 ± 0.0508\\n  - exact_match: 0.4959 ± 0.0335\\n  - voting_confidence: 0.721 ± 0.0232\\n- Coefficients: {'soft_jaccard': 0.1304, 'fleiss_kappa': -0.3303, 'logprob': 0.0774, 'exact_match': -0.0669, 'voting_confid
+…[truncated 389 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T12:28:58.420408+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble/correlation_matrix.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble/correlation_matrix.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T12:28:58.420692+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"ner\\\": {\\n    \\\"subtask\\\": \\\"ner\\\",\\n    \\\"n\\\": 529,\\n    \\\"pairwise_correlations\\\": {\\n      \\\"soft_jaccard_vs_fleiss_kappa\\\": {\\n        \\\"pearson_r\\\": 0.7533,\\n        \\\"pearson_p\\\": 5.610552472357065e-98,\\n        \\\"spearman_rho\\\": 0.7413,\\n        \\\"spearman_p\\\": 2.63349929831264e-93\\n      },\\n      \\\"soft_jaccard_vs_logprob\\\": {\\n        \\\"pearson_r\\\": 0.5672,\\n        \\\"pearson_p\\\": 2.344432837599061e-46,\\n        \\\"spearman_rho\\\": 0.5379,\\n        \\\"spearman_p\\\": 5.205099272566096e-41\\n      },\\n      \\\"soft_jaccard_vs_exact_match\\\": {\\n        \\\"pearson_r\\\": 0.7949,\\n        \\\"pearson_p\\\": 1.966594563264871e-116,\\n        \\\"spearman_rho\\\": 0.7952,\\n        \\\"spearman_p\\\": 1.3238634832086152e-116\\n      },\\n      \\\"soft_jaccard_vs_voting_confidence\\\": {\\n        \\\"pearson_r\\\": 0.4495,\\n        \\\"pearson_p\\\": 1.1233244793359651e-27,\\n        \\\"spearman_rho\\\": 0.6592,\\n        \\\"spearman_p\\\": 3.081541888453036e-67\\n      },\\n      \\\"fleiss_kappa_vs_logprob\\\": {\\n        \\\"pearson_r\\\": 0.3682,\\n        \\\"pearson_p\\\": 1.968446570976365e-18,\\n        \\\"spearman_rho\\\": 0.3632,\\n        \\\"spearman_p\\\": 6.091258915193217e-18\\n      },\\n      \\\"fleiss_kappa_vs_exact_match\\\": {\\n        \\\"pearson_r\\\": 0.6325,\\n        \\\"pearson_p\\\": 1.8471876578464703e-60,\\n        \\\"spearman_rho\\\": 0.5055,\\n        \\\"spearman_p\\\": 1.1704119012225124e-35\\n      },\\n      \\\"fleiss_kappa_vs_voting_confidence\\\": {\\n        \\\"pearson_r\\\": 0.4576,\\n        \\\"pearson_p\\\": 9.869271199721576e-29,\\n        \\\"spearman_rho\\\": 0.6841,\\n        \\\"spearman_p\\\": 3.1254765533865358e-74\\n      },\\n      \\\"logprob_vs_exact_match\\\": {\\n        \\\"pearson_r\\\": 0.3888,\\n        \\\"pearson_p\\\": 1.5456790596876958e-20,\\n        
+…[truncated 7616 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T12:28:58.420847+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble/linear_combo_grid.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble/linear_combo_grid.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T12:28:58.421213+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"ner\\\": {\\n    \\\"subtask\\\": \\\"ner\\\",\\n    \\\"n\\\": 529,\\n    \\\"combinations\\\": {\\n      \\\"soft_jaccard_vs_logprob\\\": {\\n        \\\"signal_a\\\": \\\"soft_jaccard\\\",\\n        \\\"signal_b\\\": \\\"logprob\\\",\\n        \\\"formula\\\": \\\"alpha*soft_jaccard + (1-alpha)*logprob\\\",\\n        \\\"grid\\\": [\\n          {\\n            \\\"alpha\\\": 0.0,\\n            \\\"spearman_rho\\\": 0.1396,\\n            \\\"p_value\\\": 0.001286366893477423\\n          },\\n          {\\n            \\\"alpha\\\": 0.1,\\n            \\\"spearman_rho\\\": 0.1942,\\n            \\\"p_value\\\": 6.798783482631861e-06\\n          },\\n          {\\n            \\\"alpha\\\": 0.2,\\n            \\\"spearman_rho\\\": 0.2421,\\n            \\\"p_value\\\": 1.7160805935709476e-08\\n          },\\n          {\\n            \\\"alpha\\\": 0.3,\\n            \\\"spearman_rho\\\": 0.2805,\\n            \\\"p_value\\\": 5.054418058711141e-11\\n          },\\n          {\\n            \\\"alpha\\\": 0.4,\\n            \\\"spearman_rho\\\": 0.3077,\\n            \\\"p_value\\\": 4.583350520554149e-13\\n          },\\n          {\\n            \\\"alpha\\\": 0.5,\\n            \\\"spearman_rho\\\": 0.3265,\\n            \\\"p_value\\\": 1.3147149961697286e-14\\n          },\\n          {\\n            \\\"alpha\\\": 0.6,\\n            \\\"spearman_rho\\\": 0.3372,\\n            \\\"p_value\\\": 1.5650021902823672e-15\\n          },\\n          {\\n            \\\"alpha\\\": 0.7,\\n            \\\"spearman_rho\\\": 0.3446,\\n            \\\"p_value\\\": 3.396289392600684e-16\\n          },\\n          {\\n            \\\"alpha\\\": 0.8,\\n            \\\"spearman_rho\\\": 0.3491,\\n            \\\"p_value\\\": 1.3157619957985584e-16\\n          },\\n          {\\n            \\\"alpha\\\": 0.9,\\n            \\\"spearman_rho\\\": 0.3523,\\n            \\\"p_value\\\": 6.606104468793279e-17\\n      
+…[truncated 8035 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T12:28:58.421392+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble/logistic_ensemble.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble/logistic_ensemble.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T12:28:58.421667+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"ner\\\": {\\n    \\\"subtask\\\": \\\"ner\\\",\\n    \\\"n\\\": 529,\\n    \\\"median_f1_threshold\\\": 0.6667,\\n    \\\"features_used\\\": [\\n      \\\"soft_jaccard\\\",\\n      \\\"fleiss_kappa\\\",\\n      \\\"logprob\\\",\\n      \\\"exact_match\\\",\\n      \\\"voting_confidence\\\"\\n    ],\\n    \\\"ensemble_mean_auroc\\\": 0.735,\\n    \\\"ensemble_std_auroc\\\": 0.0296,\\n    \\\"single_signal_aurocs\\\": {\\n      \\\"soft_jaccard\\\": {\\n        \\\"mean_auroc\\\": 0.6892,\\n        \\\"std_auroc\\\": 0.0353\\n      },\\n      \\\"fleiss_kappa\\\": {\\n        \\\"mean_auroc\\\": 0.6317,\\n        \\\"std_auroc\\\": 0.0195\\n      },\\n      \\\"logprob\\\": {\\n        \\\"mean_auroc\\\": 0.5873,\\n        \\\"std_auroc\\\": 0.0533\\n      },\\n      \\\"exact_match\\\": {\\n        \\\"mean_auroc\\\": 0.6615,\\n        \\\"std_auroc\\\": 0.0553\\n      },\\n      \\\"voting_confidence\\\": {\\n        \\\"mean_auroc\\\": 0.6996,\\n        \\\"std_auroc\\\": 0.0339\\n      }\\n    },\\n    \\\"mean_coefficients\\\": {\\n      \\\"soft_jaccard\\\": 0.1211,\\n      \\\"fleiss_kappa\\\": -0.338,\\n      \\\"logprob\\\": 0.0383,\\n      \\\"exact_match\\\": 0.6452,\\n      \\\"voting_confidence\\\": 0.8648\\n    },\\n    \\\"ensemble_scores\\\": [\\n      0.2177,\\n      0.7181,\\n      0.5937,\\n      0.234,\\n      0.2371,\\n      0.5059,\\n      0.367,\\n      0.1596,\\n      0.1233,\\n      0.5542,\\n      0.4641,\\n      0.3425,\\n      0.4038,\\n      0.2083,\\n      0.228,\\n      0.5567,\\n      0.5736,\\n      0.6441,\\n      0.2803,\\n      0.2747,\\n      0.5096,\\n      0.2768,\\n      0.7223,\\n      0.4921,\\n      0.2769,\\n      0.7124,\\n      0.3862,\\n      0.1091,\\n      0.4664,\\n      0.3094,\\n      0.3927,\\n      0.7194,\\n      0.4853,\\n      0.7295,\\n      0.4248,\\n      0.1156,\\n      0.0534,\\n      0.7292,\\n      0.7251,\\n      0.289,\\n      0.6742,\\n 
+…[truncated 7517 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T12:28:58.421827+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble/selection_f1_comparison.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble/selection_f1_comparison.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T12:28:58.421979+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"ner\\\": {\\n    \\\"subtask\\\": \\\"ner\\\",\\n    \\\"n\\\": 529,\\n    \\\"summary\\\": {\\n      \\\"greedy\\\": 0.6094,\\n      \\\"random_avg\\\": 0.5796,\\n      \\\"sj_best\\\": 0.6042,\\n      \\\"voting_conf_best\\\": 0.5959,\\n      \\\"logprob_best\\\": 0.6087,\\n      \\\"ensemble_best\\\": 0.6043,\\n      \\\"oracle\\\": 0.7692\\n    }\\n  },\\n  \\\"re\\\": {\\n    \\\"subtask\\\": \\\"re\\\",\\n    \\\"n\\\": 397,\\n    \\\"summary\\\": {\\n      \\\"greedy\\\": 0.3735,\\n      \\\"random_avg\\\": 0.338,\\n      \\\"sj_best\\\": 0.368,\\n      \\\"voting_conf_best\\\": 0.3379,\\n      \\\"logprob_best\\\": 0.3971,\\n      \\\"ensemble_best\\\": 0.3673,\\n      \\\"oracle\\\": 0.5608\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T12:28:58.422110+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-5090-4x-2",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-5090-4x-2",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T12:28:58.422365+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"joint\\\",\\n  \\\"n_samples\\\": 16,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 200,\\n  \\\"use_train_format\\\": true,\\n  \\\"ner_greedy_f1\\\": 0.655035685963521,\\n  \\\"ner_oracle_f1\\\": 0.8028169014084506,\\n  \\\"ner_oracle_headroom\\\": 0.14778121544492961,\\n  \\\"ner_fleiss_kappa_mean\\\": 0.44018903553227867,\\n  \\\"ner_soft_jaccard_mean\\\": 0.6999846530674897,\\n  \\\"ner_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.27990918135056614,\\n    \\\"p_value\\\": 8.064971180015847e-05,\\n    \\\"n\\\": 193\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.40756369966387257,\\n    \\\"p_value\\\": 4.0363519843816565e-09,\\n    \\\"n\\\": 193\\n  },\\n  \\\"ner_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.2742759093048163,\\n    \\\"p_value\\\": 0.00013958360693706528,\\n    \\\"n\\\": 188\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.427065118687106,\\n    \\\"p_value\\\": 9.848295067738276e-10,\\n    \\\"n\\\": 188\\n  },\\n  \\\"ner_n_gold_empty_filtered\\\": 7,\\n  \\\"ner_n_all_samples_f1_zero_filtered\\\": 5,\\n  \\\"ner_structural_beats_surface\\\": true,\\n  \\\"ner_rho_advantage\\\": 0.12765451831330643,\\n  \\\"ner_sample_f1_mean\\\": 0.6107212679735348,\\n  \\\"ner_sample_f1_std\\\": 0.31151689284243994,\\n  \\\"ner_sample_f1_pct_zero\\\": 11.463730569948186,\\n  \\\"ner_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.3189426574269059,\\n      \\\"p_rho\\\": 6.162415799439815e-06,\\n      \\\"tau\\\": 0.22620751974244124,\\n      \\\"p_tau\\\": 7.1769389481606424e-06,\\n      \\\"auroc\\\": 0.6441119063109955,\\n      \\\"n\\\": 193\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.2834723792721716,\\n      \\\"p_rho\\\": 8.079700288090341e-05,\\n      \\\"tau\\\": 0.2002358056
+…[truncated 2344 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-14T12:28:58.422527+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-5090-4x-2",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-5090-4x-2",
+    "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T12:28:58.422661+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"200 /root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-14T12:28:58.422783+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-5090-4x-2",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"samples.jsonl\" -path \"*seed456*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-5090-4x-2",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"samples.jsonl\" -path \"*seed456*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T12:28:58.422905+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T12:28:58.423028+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-5090-4x-2",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"samples.jsonl\" -path \"*exp008*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-5090-4x-2",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"samples.jsonl\" -path \"*exp008*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T12:28:58.423172+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T12:28:58.423324+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-5090-4x-2",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-5090-4x-2",
+    "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T12:28:58.423448+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"200 /root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T12:28:58.423563+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-5090-4x-2",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-5090-4x-2",
+    "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T12:28:58.423681+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"200 /root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-14T12:28:58.423793+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-5090-4x-2",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-5090-4x-2",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T12:28:58.423910+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"report.json\\nrun.log\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-14T12:28:58.424021+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-5090-4x-2",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-5090-4x-2",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T12:28:58.424162+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"report.json\\nrun.log\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-14T12:28:58.424360+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-5090-4x-2",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-5090-4x-2",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T12:28:58.424641+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"joint\\\",\\n  \\\"n_samples\\\": 16,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 200,\\n  \\\"use_train_format\\\": true,\\n  \\\"ner_greedy_f1\\\": 0.6576862123613313,\\n  \\\"ner_oracle_f1\\\": 0.8129439621152328,\\n  \\\"ner_oracle_headroom\\\": 0.1552577497539015,\\n  \\\"ner_fleiss_kappa_mean\\\": 0.4454496291584843,\\n  \\\"ner_soft_jaccard_mean\\\": 0.6931024895610437,\\n  \\\"ner_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.25779088608939377,\\n    \\\"p_value\\\": 0.0002952297045307231,\\n    \\\"n\\\": 193\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.3296594275947629,\\n    \\\"p_value\\\": 2.8470174917810953e-06,\\n    \\\"n\\\": 193\\n  },\\n  \\\"ner_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.27206451694514394,\\n    \\\"p_value\\\": 0.00016536436150150894,\\n    \\\"n\\\": 187\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.33941533138590585,\\n    \\\"p_value\\\": 2.012667999069719e-06,\\n    \\\"n\\\": 187\\n  },\\n  \\\"ner_n_gold_empty_filtered\\\": 7,\\n  \\\"ner_n_all_samples_f1_zero_filtered\\\": 6,\\n  \\\"ner_structural_beats_surface\\\": true,\\n  \\\"ner_rho_advantage\\\": 0.07186854150536914,\\n  \\\"ner_sample_f1_mean\\\": 0.6032656713176122,\\n  \\\"ner_sample_f1_std\\\": 0.311982953530564,\\n  \\\"ner_sample_f1_pct_zero\\\": 11.884715025906736,\\n  \\\"ner_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.2866130448109571,\\n      \\\"p_rho\\\": 5.3224482602877715e-05,\\n      \\\"tau\\\": 0.20804691442337597,\\n      \\\"p_tau\\\": 3.6707717741911775e-05,\\n      \\\"auroc\\\": 0.6194968553459119,\\n      \\\"n\\\": 193\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.25671611990838433,\\n      \\\"p_rho\\\": 0.0003901975449604514,\\n      \\\"tau\\\": 0.186082711
+…[truncated 2351 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-14T12:28:58.424802+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-5090-4x-2",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-5090-4x-2",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T12:28:58.425071+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"joint\\\",\\n  \\\"n_samples\\\": 16,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 200,\\n  \\\"use_train_format\\\": true,\\n  \\\"ner_greedy_f1\\\": 0.6635071090047393,\\n  \\\"ner_oracle_f1\\\": 0.820754716981132,\\n  \\\"ner_oracle_headroom\\\": 0.1572476079763927,\\n  \\\"ner_fleiss_kappa_mean\\\": 0.4674971976220045,\\n  \\\"ner_soft_jaccard_mean\\\": 0.710176740657774,\\n  \\\"ner_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2508425964279952,\\n    \\\"p_value\\\": 0.0004338227749934837,\\n    \\\"n\\\": 193\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.37699928903361,\\n    \\\"p_value\\\": 6.511419322567289e-08,\\n    \\\"n\\\": 193\\n  },\\n  \\\"ner_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.22509559784043268,\\n    \\\"p_value\\\": 0.001793681737681565,\\n    \\\"n\\\": 190\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.359835833011427,\\n    \\\"p_value\\\": 3.4126016951464886e-07,\\n    \\\"n\\\": 190\\n  },\\n  \\\"ner_n_gold_empty_filtered\\\": 7,\\n  \\\"ner_n_all_samples_f1_zero_filtered\\\": 3,\\n  \\\"ner_structural_beats_surface\\\": true,\\n  \\\"ner_rho_advantage\\\": 0.1261566926056148,\\n  \\\"ner_sample_f1_mean\\\": 0.6121842697457982,\\n  \\\"ner_sample_f1_std\\\": 0.3078719162033053,\\n  \\\"ner_sample_f1_pct_zero\\\": 11.237046632124352,\\n  \\\"ner_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.31534312820326277,\\n      \\\"p_rho\\\": 7.934939606379748e-06,\\n      \\\"tau\\\": 0.22664290673510568,\\n      \\\"p_tau\\\": 6.870199435112849e-06,\\n      \\\"auroc\\\": 0.651082251082251,\\n      \\\"n\\\": 193\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.29268246371849743,\\n      \\\"p_rho\\\": 4.170522222957911e-05,\\n      \\\"tau\\\": 0.21029261776970756,\\
+…[truncated 2347 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-14T12:28:58.425406+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_016_signal_ensemble",
+  "field": "metrics",
+  "value": "{'ner': {'n': 529, 'signal_correlation_sj_logprob': {'pearson_r': 0.5672, 'spearman_rho': 0.5379}, 'linear_combo_best': {'sj_votconf': {'alpha': 0.3, 'rho': 0.4893}, 'votconf_logprob': {'alpha': 0.8, 'rho': 0.4458}, 'sj_logprob': {'alpha': 1, 'rho': 0.3565}}, 'ensemble_auroc': 0.735, 'single_aurocs': {'voting_confidence': 0.6996, 'soft_jaccard': 0.6892, 'exact_match': 0.6615, 'fleiss_kappa': 0.6317, 'logprob': 0.5873}, 'ensemble_coefficients': {'voting_confidence': 0.8648, 'exact_match': 0.6452, 'soft_jaccard': 0.1211, 'logprob': 0.0383, 'fleiss_kappa': -0.338}, 'selection_f1': {'greedy': 0.6094, 'logprob_best': 0.6087, 'ensemble_best': 0.6043, 'sj_best': 0.6042, 'voting_conf_best': 0.5959, 'random_avg': 0.5796, 'oracle': 0.7692}}, 're': {'n': 397, 'signal_correlation_sj_logprob': {'pearson_r': 0.4173, 'spearman_rho': 0.4892}, 'linear_combo_best': {'votconf_logprob': {'alpha': 0.6, 'rho': 0.4292}, 'sj_votconf': {'alpha': 0, 'rho': 0.4265}, 'sj_logprob': {'alpha': 0.3, 'rho': 0.2871}}, 'ensemble_auroc': 0.7191, 'single_aurocs': {'voting_confidence': 0.721, 'fleiss_kappa': 0.6284, 'logprob': 0.6207, 'soft_jaccard': 0.5909, 'exact_match': 0.4959}, 'ensemble_coefficients': {'voting_confidence': 1.0331, 'soft_jaccard': 0.1304, 'logprob': 0.0774, 'exact_match': -0.0669, 'fleiss_kappa': -0.3303}, 'selection_f1': {'logprob_best': 0.3971, 'greedy': 0.3735, 'sj_best': 0.368, 'ensemble_best': 0.3673, 'random_avg': 0.338, 'voting_conf_best': 0.3379, 'oracle': 0.5608}}}",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_016_signal_ensemble",
+    "field": "metrics",
+    "value": "{'ner': {'n': 529, 'signal_correlation_sj_logprob': {'pearson_r': 0.5672, 'spearman_rho': 0.5379}, 'linear_combo_best': {'sj_votconf': {'alpha': 0.3, 'rho': 0.4893}, 'votconf_logprob': {'alpha': 0.8, 'rho': 0.4458}, 'sj_logprob': {'alpha': 1, 'rho': 0.3565}}, 'ensemble_auroc': 0.735, 'single_aurocs': {'voting_confidence': 0.6996, 'soft_jaccard': 0.6892, 'exact_match': 0.6615, 'fleiss_kappa': 0.6317, 'logprob': 0.5873}, 'ensemble_coefficients': {'voting_confidence': 0.8648, 'exact_match': 0.6452, 'soft_jaccard': 0.1211, 'logprob': 0.0383, 'fleiss_kappa': -0.338}, 'selection_f1': {'greedy': 0.6094, 'logprob_best': 0.6087, 'ensemble_best': 0.6043, 'sj_best': 0.6042, 'voting_conf_best': 0.5959, 'random_avg': 0.5796, 'oracle': 0.7692}}, 're': {'n': 397, 'signal_correlation_sj_logprob': {'pearson_r': 0.4173, 'spearman_rho': 0.4892}, 'linear_combo_best': {'votconf_logprob': {'alpha': 0.6, 'rho': 0.4292}, 'sj_votconf': {'alpha': 0, 'rho': 0.4265}, 'sj_logprob': {'alpha': 0.3, 'rho': 0.2871}}, 'ensemble_auroc': 0.7191, 'single_aurocs': {'voting_confidence': 0.721, 'fleiss_kappa': 0.6284, 'logprob': 0.6207, 'soft_jaccard': 0.5909, 'exact_match': 0.4959}, 'ensemble_coefficients': {'voting_confidence': 1.0331, 'soft_jaccard': 0.1304, 'logprob': 0.0774, 'exact_match': -0.0669, 'fleiss_kappa': -0.3303}, 'selection_f1': {'logprob_best': 0.3971, 'greedy': 0.3735, 'sj_best': 0.368, 'ensemble_best': 0.3673, 'random_avg': 0.338, 'voting_conf_best': 0.3379, 'oracle': 0.5608}}}",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T12:28:58.425670+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_016_signal_ensemble\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:15:23.771Z\", \"updated_at\": \"2026-05-14T12:27:58.743Z\", \"spec\": {\"command\": \"python code/analyze_exp016_ensemble.py\", \"server\": \"autodl-5090\", \"data_path\": \"output/exp_012_logprob/samples_with_logprobs.jsonl\", \"data_count\": 551, \"model_name\": \"N/A (CPU-only analysis)\", \"seed\": 42, \"checkpoint_source\": \"N/A\", \"eval_data\": \"pilot_004\", \"checkpoint_path\": \"N/A\", \"log_path\": \"output/exp016_signal_ensemble/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T12:15:53.341Z\", \"metrics\": {\"ner\": {\"n\": 529, \"signal_correlation_sj_logprob\": {\"pearson_r\": 0.5672, \"spearman_rho\": 0.5379}, \"linear_combo_best\": {\"sj_votconf\": {\"alpha\": 0.3, \"rho\": 0.4893}, \"votconf_logprob\": {\"alpha\": 0.8, \"rho\": 0.4458}, \"sj_logprob\": {\"alpha\": 1, \"rho\": 0.3565}}, \"ensemble_auroc\": 0.735, \"single_aurocs\": {\"voting_confidence\": 0.6996, \"soft_jaccard\": 0.6892, \"exact_match\": 0.6615, \"fleiss_kappa\": 0.6317, \"logprob\": 0.5873}, \"ensemble_coefficients\": {\"voting_confidence\": 0.8648, \"exact_match\": 0.6452, \"soft_jaccard\": 0.1211, \"logprob\": 0.0383, \"fleiss_kappa\": -0.338}, \"selection_f1\": {\"greedy\": 0.6094, \"logprob_best\": 0.6087, \"ensemble_best\": 0.6043, \"sj_best\": 0.6042, \"voting_conf_best\": 0.5959, \"random_avg\": 0.5796, \"oracle\": 0.7692}}, \"re\": {\"n\": 397, \"signal_correlation_sj_logprob\": {\"pearson_r\": 0.4173, \"spearman_rho\": 0.4892}, \"linear_combo_best\": {\"votconf_logprob\": {\"alpha\": 0.6, \"rho\": 0.4292}, \"sj_votconf\": {\"alpha\": 0, \"rho\": 0.4265}, \"sj_logprob\": {\"alpha\": 0.3, \"rho\": 0.2871}}, \"ensemble_auroc\": 0.7191, \"single_aurocs\": {\"voting_confidence\": 0.721, \"fleiss_kappa\": 0.6284, \"logprob\": 0.6207, \"soft_jaccard\": 0.5909, \"exact_match\": 0.4959}, \"ense
+…[truncated 407 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-14T12:28:58.425831+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_016_signal_ensemble",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_016_signal_ensemble",
+    "field": "status",
+    "value": "DONE",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T12:28:58.426036+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_016_signal_ensemble\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:15:23.771Z\", \"updated_at\": \"2026-05-14T12:27:59.667Z\", \"spec\": {\"command\": \"python code/analyze_exp016_ensemble.py\", \"server\": \"autodl-5090\", \"data_path\": \"output/exp_012_logprob/samples_with_logprobs.jsonl\", \"data_count\": 551, \"model_name\": \"N/A (CPU-only analysis)\", \"seed\": 42, \"checkpoint_source\": \"N/A\", \"eval_data\": \"pilot_004\", \"checkpoint_path\": \"N/A\", \"log_path\": \"output/exp016_signal_ensemble/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T12:15:53.341Z\", \"metrics\": {\"ner\": {\"n\": 529, \"signal_correlation_sj_logprob\": {\"pearson_r\": 0.5672, \"spearman_rho\": 0.5379}, \"linear_combo_best\": {\"sj_votconf\": {\"alpha\": 0.3, \"rho\": 0.4893}, \"votconf_logprob\": {\"alpha\": 0.8, \"rho\": 0.4458}, \"sj_logprob\": {\"alpha\": 1, \"rho\": 0.3565}}, \"ensemble_auroc\": 0.735, \"single_aurocs\": {\"voting_confidence\": 0.6996, \"soft_jaccard\": 0.6892, \"exact_match\": 0.6615, \"fleiss_kappa\": 0.6317, \"logprob\": 0.5873}, \"ensemble_coefficients\": {\"voting_confidence\": 0.8648, \"exact_match\": 0.6452, \"soft_jaccard\": 0.1211, \"logprob\": 0.0383, \"fleiss_kappa\": -0.338}, \"selection_f1\": {\"greedy\": 0.6094, \"logprob_best\": 0.6087, \"ensemble_best\": 0.6043, \"sj_best\": 0.6042, \"voting_conf_best\": 0.5959, \"random_avg\": 0.5796, \"oracle\": 0.7692}}, \"re\": {\"n\": 397, \"signal_correlation_sj_logprob\": {\"pearson_r\": 0.4173, \"spearman_rho\": 0.4892}, \"linear_combo_best\": {\"votconf_logprob\": {\"alpha\": 0.6, \"rho\": 0.4292}, \"sj_votconf\": {\"alpha\": 0, \"rho\": 0.4265}, \"sj_logprob\": {\"alpha\": 0.3, \"rho\": 0.2871}}, \"ensemble_auroc\": 0.7191, \"single_aurocs\": {\"voting_confidence\": 0.721, \"fleiss_kappa\": 0.6284, \"logprob\": 0.6207, \"soft_jaccard\": 0.5909, \"exact_match\": 0.4959}, \"ense
+…[truncated 458 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-14T12:28:58.426246+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_001_n16_seed123",
+  "field": "metrics",
+  "value": "{'ner': {'greedy_f1': 0.655, 'oracle_f1': 0.8028, 'headroom': 0.1478, 'rho_sj_full': 0.4076, 'rho_fk_full': 0.2799, 'rho_logprob_full': 0.3189, 'rho_sj_cond': 0.4271, 'rho_fk_cond': 0.2743, 'rho_logprob_cond': 0.2835, 'sj_beats_fk': True, 'rho_advantage': 0.1277}, 're': {'greedy_f1': 0.4243, 'oracle_f1': 0.6771, 'headroom': 0.2528, 'rho_sj_full': 0.2943, 'rho_fk_full': 0.2657, 'rho_logprob_full': 0.3005, 'rho_sj_cond': 0.4003, 'rho_fk_cond': 0.313, 'rho_logprob_cond': 0.2317, 'sj_beats_fk': True, 'rho_advantage': 0.0286}, 'verdict': 'FAIL'}",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_001_n16_seed123",
+    "field": "metrics",
+    "value": "{'ner': {'greedy_f1': 0.655, 'oracle_f1': 0.8028, 'headroom': 0.1478, 'rho_sj_full': 0.4076, 'rho_fk_full': 0.2799, 'rho_logprob_full': 0.3189, 'rho_sj_cond': 0.4271, 'rho_fk_cond': 0.2743, 'rho_logprob_cond': 0.2835, 'sj_beats_fk': True, 'rho_advantage': 0.1277}, 're': {'greedy_f1': 0.4243, 'oracle_f1': 0.6771, 'headroom': 0.2528, 'rho_sj_full': 0.2943, 'rho_fk_full': 0.2657, 'rho_logprob_full': 0.3005, 'rho_sj_cond': 0.4003, 'rho_fk_cond': 0.313, 'rho_logprob_cond': 0.2317, 'sj_beats_fk': True, 'rho_advantage': 0.0286}, 'verdict': 'FAIL'}",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T12:28:58.426433+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_001_n16_seed123\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:10:29.393Z\", \"updated_at\": \"2026-05-14T12:28:03.936Z\", \"spec\": {\"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs\", \"server\": \"gpu-5090-4x-2\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 123}, \"metrics\": {\"ner\": {\"greedy_f1\": 0.655, \"oracle_f1\": 0.8028, \"headroom\": 0.1478, \"rho_sj_full\": 0.4076, \"rho_fk_full\": 0.2799, \"rho_logprob_full\": 0.3189, \"rho_sj_cond\": 0.4271, \"rho_fk_cond\": 0.2743, \"rho_logprob_cond\": 0.2835, \"sj_beats_fk\": true, \"rho_advantage\": 0.1277}, \"re\": {\"greedy_f1\": 0.4243, \"oracle_f1\": 0.6771, \"headroom\": 0.2528, \"rho_sj_full\": 0.2943, \"rho_fk_full\": 0.2657, \"rho_logprob_full\": 0.3005, \"rho_sj_cond\": 0.4003, \"rho_fk_cond\": 0.313, \"rho_logprob_cond\": 0.2317, \"sj_beats_fk\": true, \"rho_advantage\": 0.0286}, \"verdict\": \"FAIL\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2217}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-14T12:28:58.426580+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_001_n16_seed123",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_001_n16_seed123",
+    "field": "status",
+    "value": "DONE",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-14T12:28:58.426708+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.1228}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-14T12:28:58.426838+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_001_n16_seed456",
+  "field": "metrics",
+  "value": "{'ner': {'greedy_f1': 0.6577, 'oracle_f1': 0.8129, 'headroom': 0.1553, 'rho_sj_full': 0.3297, 'rho_fk_full': 0.2578, 'rho_logprob_full': 0.2866, 'rho_sj_cond': 0.3394, 'rho_fk_cond': 0.2721, 'rho_logprob_cond': 0.2567, 'sj_beats_fk': True, 'rho_advantage': 0.0719}, 're': {'greedy_f1': 0.4312, 'oracle_f1': 0.6737, 'headroom': 0.2425, 'rho_sj_full': 0.285, 'rho_fk_full': 0.2372, 'rho_logprob_full': 0.2626, 'rho_sj_cond': 0.3525, 'rho_fk_cond': 0.2614, 'rho_logprob_cond': 0.1927, 'sj_beats_fk': True, 'rho_advantage': 0.0478}, 'verdict': 'FAIL'}",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_001_n16_seed456",
+    "field": "metrics",
+    "value": "{'ner': {'greedy_f1': 0.6577, 'oracle_f1': 0.8129, 'headroom': 0.1553, 'rho_sj_full': 0.3297, 'rho_fk_full': 0.2578, 'rho_logprob_full': 0.2866, 'rho_sj_cond': 0.3394, 'rho_fk_cond': 0.2721, 'rho_logprob_cond': 0.2567, 'sj_beats_fk': True, 'rho_advantage': 0.0719}, 're': {'greedy_f1': 0.4312, 'oracle_f1': 0.6737, 'headroom': 0.2425, 'rho_sj_full': 0.285, 'rho_fk_full': 0.2372, 'rho_logprob_full': 0.2626, 'rho_sj_cond': 0.3525, 'rho_fk_cond': 0.2614, 'rho_logprob_cond': 0.1927, 'sj_beats_fk': True, 'rho_advantage': 0.0478}, 'verdict': 'FAIL'}",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-14T12:28:58.426998+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_001_n16_seed456\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:10:30.350Z\", \"updated_at\": \"2026-05-14T12:28:07.847Z\", \"spec\": {\"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs\", \"server\": \"gpu-5090-4x-2\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 456}, \"metrics\": {\"ner\": {\"greedy_f1\": 0.6577, \"oracle_f1\": 0.8129, \"headroom\": 0.1553, \"rho_sj_full\": 0.3297, \"rho_fk_full\": 0.2578, \"rho_logprob_full\": 0.2866, \"rho_sj_cond\": 0.3394, \"rho_fk_cond\": 0.2721, \"rho_logprob_cond\": 0.2567, \"sj_beats_fk\": true, \"rho_advantage\": 0.0719}, \"re\": {\"greedy_f1\": 0.4312, \"oracle_f1\": 0.6737, \"headroom\": 0.2425, \"rho_sj_full\": 0.285, \"rho_fk_full\": 0.2372, \"rho_logprob_full\": 0.2626, \"rho_sj_cond\": 0.3525, \"rho_fk_cond\": 0.2614, \"rho_logprob_cond\": 0.1927, \"sj_beats_fk\": true, \"rho_advantage\": 0.0478}, \"verdict\": \"FAIL\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.153}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-14T12:28:58.427169+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_001_n16_seed456",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_001_n16_seed456",
+    "field": "status",
+    "value": "DONE",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-14T12:28:58.427337+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.1087}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-14T12:28:58.427471+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_008_re_n16",
+  "field": "metrics",
+  "value": "{'ner': {'greedy_f1': 0.6635, 'oracle_f1': 0.8208, 'headroom': 0.1572, 'rho_sj_full': 0.377, 'rho_fk_full': 0.2508, 'rho_logprob_full': 0.3153, 'rho_sj_cond': 0.3598, 'rho_fk_cond': 0.2251, 'rho_logprob_cond': 0.2927, 'sj_beats_fk': True, 'rho_advantage': 0.1262}, 're': {'greedy_f1': 0.4339, 'oracle_f1': 0.6658, 'headroom': 0.2319, 'rho_sj_full': 0.2966, 'rho_fk_full': 0.2871, 'rho_logprob_full': 0.2986, 'rho_sj_cond': 0.3975, 'rho_fk_cond': 0.3774, 'rho_logprob_cond': 0.2745, 'sj_beats_fk': True, 'rho_advantage': 0.0095}, 'verdict': 'FAIL'}",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_008_re_n16",
+    "field": "metrics",
+    "value": "{'ner': {'greedy_f1': 0.6635, 'oracle_f1': 0.8208, 'headroom': 0.1572, 'rho_sj_full': 0.377, 'rho_fk_full': 0.2508, 'rho_logprob_full': 0.3153, 'rho_sj_cond': 0.3598, 'rho_fk_cond': 0.2251, 'rho_logprob_cond': 0.2927, 'sj_beats_fk': True, 'rho_advantage': 0.1262}, 're': {'greedy_f1': 0.4339, 'oracle_f1': 0.6658, 'headroom': 0.2319, 'rho_sj_full': 0.2966, 'rho_fk_full': 0.2871, 'rho_logprob_full': 0.2986, 'rho_sj_cond': 0.3975, 'rho_fk_cond': 0.3774, 'rho_logprob_cond': 0.2745, 'sj_beats_fk': True, 'rho_advantage': 0.0095}, 'verdict': 'FAIL'}",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-14T12:28:58.427639+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_008_re_n16\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:03:06.876Z\", \"updated_at\": \"2026-05-14T12:28:12.079Z\", \"spec\": {\"hypothesis\": \"RE N=16 confirms negative finding with higher statistical power. If rho still <0.30, task-complexity boundary is robust.\", \"plan_id\": \"exp-008\", \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"dataset\": \"SciERC\", \"gpu\": \"cuda:2\", \"server\": \"gpu-5090-4x-2\", \"gpu_budget_hours\": 12, \"description\": \"RE N=16 on SciERC to confirm negative finding. Inference with log-prob capture.\", \"priority\": \"P1\", \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"seed\": 42}, \"metrics\": {\"ner\": {\"greedy_f1\": 0.6635, \"oracle_f1\": 0.8208, \"headroom\": 0.1572, \"rho_sj_full\": 0.377, \"rho_fk_full\": 0.2508, \"rho_logprob_full\": 0.3153, \"rho_sj_cond\": 0.3598, \"rho_fk_cond\": 0.2251, \"rho_logprob_cond\": 0.2927, \"sj_beats_fk\": true, \"rho_advantage\": 0.1262}, \"re\": {\"greedy_f1\": 0.4339, \"oracle_f1\": 0.6658, \"headroom\": 0.2319, \"rho_sj_full\": 0.2966, \"rho_fk_full\": 0.2871, \"rho_logprob_full\": 0.2986, \"rho_sj_cond\": 0.3975, \"rho_fk_cond\": 0.3774, \"rho_logprob_cond\": 0.2745, \"sj_beats_fk\": true, \"rho_advantage\": 0.0095}, \"verdict\": \"FAIL\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1421}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-14T12:28:58.427775+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_008_re_n16",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_008_re_n16",
+    "field": "status",
+    "value": "DONE",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-14T12:28:58.427901+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.0884}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-14T12:28:58.428038+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_001_n16_seed123",
+  "field": "conclusion",
+  "value": "negative",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_001_n16_seed123",
+    "field": "conclusion",
+    "value": "negative",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-14T12:28:58.428199+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_001_n16_seed123\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:10:29.393Z\", \"updated_at\": \"2026-05-14T12:28:17.258Z\", \"spec\": {\"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs\", \"server\": \"gpu-5090-4x-2\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 123}, \"metrics\": {\"ner\": {\"greedy_f1\": 0.655, \"oracle_f1\": 0.8028, \"headroom\": 0.1478, \"rho_sj_full\": 0.4076, \"rho_fk_full\": 0.2799, \"rho_logprob_full\": 0.3189, \"rho_sj_cond\": 0.4271, \"rho_fk_cond\": 0.2743, \"rho_logprob_cond\": 0.2835, \"sj_beats_fk\": true, \"rho_advantage\": 0.1277}, \"re\": {\"greedy_f1\": 0.4243, \"oracle_f1\": 0.6771, \"headroom\": 0.2528, \"rho_sj_full\": 0.2943, \"rho_fk_full\": 0.2657, \"rho_logprob_full\": 0.3005, \"rho_sj_cond\": 0.4003, \"rho_fk_cond\": 0.313, \"rho_logprob_cond\": 0.2317, \"sj_beats_fk\": true, \"rho_advantage\": 0.0286}, \"verdict\": \"FAIL\"}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1426}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-14T12:28:58.428331+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_001_n16_seed456",
+  "field": "conclusion",
+  "value": "negative",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_001_n16_seed456",
+    "field": "conclusion",
+    "value": "negative",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-14T12:28:58.428469+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_001_n16_seed456\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:10:30.350Z\", \"updated_at\": \"2026-05-14T12:28:18.217Z\", \"spec\": {\"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs\", \"server\": \"gpu-5090-4x-2\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 456}, \"metrics\": {\"ner\": {\"greedy_f1\": 0.6577, \"oracle_f1\": 0.8129, \"headroom\": 0.1553, \"rho_sj_full\": 0.3297, \"rho_fk_full\": 0.2578, \"rho_logprob_full\": 0.2866, \"rho_sj_cond\": 0.3394, \"rho_fk_cond\": 0.2721, \"rho_logprob_cond\": 0.2567, \"sj_beats_fk\": true, \"rho_advantage\": 0.0719}, \"re\": {\"greedy_f1\": 0.4312, \"oracle_f1\": 0.6737, \"headroom\": 0.2425, \"rho_sj_full\": 0.285, \"rho_fk_full\": 0.2372, \"rho_logprob_full\": 0.2626, \"rho_sj_cond\": 0.3525, \"rho_fk_cond\": 0.2614, \"rho_logprob_cond\": 0.1927, \"sj_beats_fk\": true, \"rho_advantage\": 0.0478}, \"verdict\": \"FAIL\"}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1829}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-14T12:28:58.428601+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_008_re_n16",
+  "field": "conclusion",
+  "value": "negative",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_008_re_n16",
+    "field": "conclusion",
+    "value": "negative",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-14T12:28:58.428748+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_008_re_n16\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:03:06.876Z\", \"updated_at\": \"2026-05-14T12:28:18.768Z\", \"spec\": {\"hypothesis\": \"RE N=16 confirms negative finding with higher statistical power. If rho still <0.30, task-complexity boundary is robust.\", \"plan_id\": \"exp-008\", \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"dataset\": \"SciERC\", \"gpu\": \"cuda:2\", \"server\": \"gpu-5090-4x-2\", \"gpu_budget_hours\": 12, \"description\": \"RE N=16 on SciERC to confirm negative finding. Inference with log-prob capture.\", \"priority\": \"P1\", \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"seed\": 42}, \"metrics\": {\"ner\": {\"greedy_f1\": 0.6635, \"oracle_f1\": 0.8208, \"headroom\": 0.1572, \"rho_sj_full\": 0.377, \"rho_fk_full\": 0.2508, \"rho_logprob_full\": 0.3153, \"rho_sj_cond\": 0.3598, \"rho_fk_cond\": 0.2251, \"rho_logprob_cond\": 0.2927, \"sj_beats_fk\": true, \"rho_advantage\": 0.1262}, \"re\": {\"greedy_f1\": 0.4339, \"oracle_f1\": 0.6658, \"headroom\": 0.2319, \"rho_sj_full\": 0.2966, \"rho_fk_full\": 0.2871, \"rho_logprob_full\": 0.2986, \"rho_sj_cond\": 0.3975, \"rho_fk_cond\": 0.3774, \"rho_logprob_cond\": 0.2745, \"sj_beats_fk\": true, \"rho_advantage\": 0.0095}, \"verdict\": \"FAIL\"}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1503}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-14T12:28:58.428964+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_001_n16_seed123",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_001_n16_seed123",
+    "field": "status",
+    "value": "DONE",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-14T12:28:58.429183+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path', 'log_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 0.1079}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-14T12:28:58.429387+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_001_n16_seed456",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_001_n16_seed456",
+    "field": "status",
+    "value": "DONE",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-14T12:28:58.429571+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path', 'log_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 0.0857}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-14T12:28:58.429749+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_008_re_n16",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_008_re_n16",
+    "field": "status",
+    "value": "DONE",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-14T12:28:58.429926+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path', 'log_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 0.0913}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-14T12:28:58.430145+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_001_n16_seed123",
+  "field": "checkpoint_path",
+  "value": "N/A",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_001_n16_seed123",
+    "field": "checkpoint_path",
+    "value": "N/A",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-14T12:28:58.430367+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_001_n16_seed123\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:10:29.393Z\", \"updated_at\": \"2026-05-14T12:28:27.870Z\", \"spec\": {\"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs\", \"server\": \"gpu-5090-4x-2\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 123}, \"metrics\": {\"ner\": {\"greedy_f1\": 0.655, \"oracle_f1\": 0.8028, \"headroom\": 0.1478, \"rho_sj_full\": 0.4076, \"rho_fk_full\": 0.2799, \"rho_logprob_full\": 0.3189, \"rho_sj_cond\": 0.4271, \"rho_fk_cond\": 0.2743, \"rho_logprob_cond\": 0.2835, \"sj_beats_fk\": true, \"rho_advantage\": 0.1277}, \"re\": {\"greedy_f1\": 0.4243, \"oracle_f1\": 0.6771, \"headroom\": 0.2528, \"rho_sj_full\": 0.2943, \"rho_fk_full\": 0.2657, \"rho_logprob_full\": 0.3005, \"rho_sj_cond\": 0.4003, \"rho_fk_cond\": 0.313, \"rho_logprob_cond\": 0.2317, \"sj_beats_fk\": true, \"rho_advantage\": 0.0286}, \"verdict\": \"FAIL\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"N/A\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1469}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-14T12:28:58.430667+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_001_n16_seed123",
+  "field": "log_path",
+  "value": "output/exp001_n16_seed123/",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_001_n16_seed123",
+    "field": "log_path",
+    "value": "output/exp001_n16_seed123/",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-14T12:28:58.430893+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_001_n16_seed123\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:10:29.393Z\", \"updated_at\": \"2026-05-14T12:28:28.993Z\", \"spec\": {\"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs\", \"server\": \"gpu-5090-4x-2\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 123}, \"metrics\": {\"ner\": {\"greedy_f1\": 0.655, \"oracle_f1\": 0.8028, \"headroom\": 0.1478, \"rho_sj_full\": 0.4076, \"rho_fk_full\": 0.2799, \"rho_logprob_full\": 0.3189, \"rho_sj_cond\": 0.4271, \"rho_fk_cond\": 0.2743, \"rho_logprob_cond\": 0.2835, \"sj_beats_fk\": true, \"rho_advantage\": 0.1277}, \"re\": {\"greedy_f1\": 0.4243, \"oracle_f1\": 0.6771, \"headroom\": 0.2528, \"rho_sj_full\": 0.2943, \"rho_fk_full\": 0.2657, \"rho_logprob_full\": 0.3005, \"rho_sj_cond\": 0.4003, \"rho_fk_cond\": 0.313, \"rho_logprob_cond\": 0.2317, \"sj_beats_fk\": true, \"rho_advantage\": 0.0286}, \"verdict\": \"FAIL\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"N/A\", \"log_path\": \"output/exp001_n16_seed123/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1408}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-14T12:28:58.431091+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_001_n16_seed456",
+  "field": "checkpoint_path",
+  "value": "N/A",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_001_n16_seed456",
+    "field": "checkpoint_path",
+    "value": "N/A",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-14T12:28:58.431326+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_001_n16_seed456\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:10:30.350Z\", \"updated_at\": \"2026-05-14T12:28:29.691Z\", \"spec\": {\"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs\", \"server\": \"gpu-5090-4x-2\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 456}, \"metrics\": {\"ner\": {\"greedy_f1\": 0.6577, \"oracle_f1\": 0.8129, \"headroom\": 0.1553, \"rho_sj_full\": 0.3297, \"rho_fk_full\": 0.2578, \"rho_logprob_full\": 0.2866, \"rho_sj_cond\": 0.3394, \"rho_fk_cond\": 0.2721, \"rho_logprob_cond\": 0.2567, \"sj_beats_fk\": true, \"rho_advantage\": 0.0719}, \"re\": {\"greedy_f1\": 0.4312, \"oracle_f1\": 0.6737, \"headroom\": 0.2425, \"rho_sj_full\": 0.285, \"rho_fk_full\": 0.2372, \"rho_logprob_full\": 0.2626, \"rho_sj_cond\": 0.3525, \"rho_fk_cond\": 0.2614, \"rho_logprob_cond\": 0.1927, \"sj_beats_fk\": true, \"rho_advantage\": 0.0478}, \"verdict\": \"FAIL\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"N/A\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.153}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-14T12:28:58.431570+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_001_n16_seed456",
+  "field": "log_path",
+  "value": "output/exp001_n16_seed456/",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_001_n16_seed456",
+    "field": "log_path",
+    "value": "output/exp001_n16_seed456/",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-14T12:28:58.431780+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_001_n16_seed456\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:10:30.350Z\", \"updated_at\": \"2026-05-14T12:28:30.693Z\", \"spec\": {\"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs\", \"server\": \"gpu-5090-4x-2\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 456}, \"metrics\": {\"ner\": {\"greedy_f1\": 0.6577, \"oracle_f1\": 0.8129, \"headroom\": 0.1553, \"rho_sj_full\": 0.3297, \"rho_fk_full\": 0.2578, \"rho_logprob_full\": 0.2866, \"rho_sj_cond\": 0.3394, \"rho_fk_cond\": 0.2721, \"rho_logprob_cond\": 0.2567, \"sj_beats_fk\": true, \"rho_advantage\": 0.0719}, \"re\": {\"greedy_f1\": 0.4312, \"oracle_f1\": 0.6737, \"headroom\": 0.2425, \"rho_sj_full\": 0.285, \"rho_fk_full\": 0.2372, \"rho_logprob_full\": 0.2626, \"rho_sj_cond\": 0.3525, \"rho_fk_cond\": 0.2614, \"rho_logprob_cond\": 0.1927, \"sj_beats_fk\": true, \"rho_advantage\": 0.0478}, \"verdict\": \"FAIL\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"N/A\", \"log_path\": \"output/exp001_n16_seed456/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.157}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-14T12:28:58.431965+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_008_re_n16",
+  "field": "checkpoint_path",
+  "value": "N/A",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_008_re_n16",
+    "field": "checkpoint_path",
+    "value": "N/A",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-14T12:28:58.432253+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_008_re_n16\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:03:06.876Z\", \"updated_at\": \"2026-05-14T12:28:31.591Z\", \"spec\": {\"hypothesis\": \"RE N=16 confirms negative finding with higher statistical power. If rho still <0.30, task-complexity boundary is robust.\", \"plan_id\": \"exp-008\", \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"dataset\": \"SciERC\", \"gpu\": \"cuda:2\", \"server\": \"gpu-5090-4x-2\", \"gpu_budget_hours\": 12, \"description\": \"RE N=16 on SciERC to confirm negative finding. Inference with log-prob capture.\", \"priority\": \"P1\", \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"seed\": 42}, \"metrics\": {\"ner\": {\"greedy_f1\": 0.6635, \"oracle_f1\": 0.8208, \"headroom\": 0.1572, \"rho_sj_full\": 0.377, \"rho_fk_full\": 0.2508, \"rho_logprob_full\": 0.3153, \"rho_sj_cond\": 0.3598, \"rho_fk_cond\": 0.2251, \"rho_logprob_cond\": 0.2927, \"sj_beats_fk\": true, \"rho_advantage\": 0.1262}, \"re\": {\"greedy_f1\": 0.4339, \"oracle_f1\": 0.6658, \"headroom\": 0.2319, \"rho_sj_full\": 0.2966, \"rho_fk_full\": 0.2871, \"rho_logprob_full\": 0.2986, \"rho_sj_cond\": 0.3975, \"rho_fk_cond\": 0.3774, \"rho_logprob_cond\": 0.2745, \"sj_beats_fk\": true, \"rho_advantage\": 0.0095}, \"verdict\": \"FAIL\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"N/A\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1483}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-14T12:28:58.432475+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_008_re_n16",
+  "field": "log_path",
+  "value": "output/exp008_re_n16/",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_008_re_n16",
+    "field": "log_path",
+    "value": "output/exp008_re_n16/",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-14T12:28:58.432660+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_008_re_n16\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:03:06.876Z\", \"updated_at\": \"2026-05-14T12:28:32.263Z\", \"spec\": {\"hypothesis\": \"RE N=16 confirms negative finding with higher statistical power. If rho still <0.30, task-complexity boundary is robust.\", \"plan_id\": \"exp-008\", \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"dataset\": \"SciERC\", \"gpu\": \"cuda:2\", \"server\": \"gpu-5090-4x-2\", \"gpu_budget_hours\": 12, \"description\": \"RE N=16 on SciERC to confirm negative finding. Inference with log-prob capture.\", \"priority\": \"P1\", \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"seed\": 42}, \"metrics\": {\"ner\": {\"greedy_f1\": 0.6635, \"oracle_f1\": 0.8208, \"headroom\": 0.1572, \"rho_sj_full\": 0.377, \"rho_fk_full\": 0.2508, \"rho_logprob_full\": 0.3153, \"rho_sj_cond\": 0.3598, \"rho_fk_cond\": 0.2251, \"rho_logprob_cond\": 0.2927, \"sj_beats_fk\": true, \"rho_advantage\": 0.1262}, \"re\": {\"greedy_f1\": 0.4339, \"oracle_f1\": 0.6658, \"headroom\": 0.2319, \"rho_sj_full\": 0.2966, \"rho_fk_full\": 0.2871, \"rho_logprob_full\": 0.2986, \"rho_sj_cond\": 0.3975, \"rho_fk_cond\": 0.3774, \"rho_logprob_cond\": 0.2745, \"sj_beats_fk\": true, \"rho_advantage\": 0.0095}, \"verdict\": \"FAIL\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"N/A\", \"log_path\": \"output/exp008_re_n16/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1412}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-14T12:28:58.432803+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_001_n16_seed123",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_001_n16_seed123",
+    "field": "status",
+    "value": "DONE",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-14T12:28:58.433084+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_001_n16_seed123\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:10:29.393Z\", \"updated_at\": \"2026-05-14T12:28:38.104Z\", \"spec\": {\"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs\", \"server\": \"gpu-5090-4x-2\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 123}, \"metrics\": {\"ner\": {\"greedy_f1\": 0.655, \"oracle_f1\": 0.8028, \"headroom\": 0.1478, \"rho_sj_full\": 0.4076, \"rho_fk_full\": 0.2799, \"rho_logprob_full\": 0.3189, \"rho_sj_cond\": 0.4271, \"rho_fk_cond\": 0.2743, \"rho_logprob_cond\": 0.2835, \"sj_beats_fk\": true, \"rho_advantage\": 0.1277}, \"re\": {\"greedy_f1\": 0.4243, \"oracle_f1\": 0.6771, \"headroom\": 0.2528, \"rho_sj_full\": 0.2943, \"rho_fk_full\": 0.2657, \"rho_logprob_full\": 0.3005, \"rho_sj_cond\": 0.4003, \"rho_fk_cond\": 0.313, \"rho_logprob_cond\": 0.2317, \"sj_beats_fk\": true, \"rho_advantage\": 0.0286}, \"verdict\": \"FAIL\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"N/A\", \"log_path\": \"output/exp001_n16_seed123/\", \"completed_at\": \"2026-05-14T12:28:38.104Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3318}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-14T12:28:58.433309+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_001_n16_seed456",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_001_n16_seed456",
+    "field": "status",
+    "value": "DONE",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-14T12:28:58.433485+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_001_n16_seed456\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:10:30.350Z\", \"updated_at\": \"2026-05-14T12:28:38.721Z\", \"spec\": {\"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs\", \"server\": \"gpu-5090-4x-2\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 456}, \"metrics\": {\"ner\": {\"greedy_f1\": 0.6577, \"oracle_f1\": 0.8129, \"headroom\": 0.1553, \"rho_sj_full\": 0.3297, \"rho_fk_full\": 0.2578, \"rho_logprob_full\": 0.2866, \"rho_sj_cond\": 0.3394, \"rho_fk_cond\": 0.2721, \"rho_logprob_cond\": 0.2567, \"sj_beats_fk\": true, \"rho_advantage\": 0.0719}, \"re\": {\"greedy_f1\": 0.4312, \"oracle_f1\": 0.6737, \"headroom\": 0.2425, \"rho_sj_full\": 0.285, \"rho_fk_full\": 0.2372, \"rho_logprob_full\": 0.2626, \"rho_sj_cond\": 0.3525, \"rho_fk_cond\": 0.2614, \"rho_logprob_cond\": 0.1927, \"sj_beats_fk\": true, \"rho_advantage\": 0.0478}, \"verdict\": \"FAIL\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"N/A\", \"log_path\": \"output/exp001_n16_seed456/\", \"completed_at\": \"2026-05-14T12:28:38.721Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4321}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-14T12:28:58.433640+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_008_re_n16",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_008_re_n16",
+    "field": "status",
+    "value": "DONE",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-14T12:28:58.433815+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_008_re_n16\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:03:06.876Z\", \"updated_at\": \"2026-05-14T12:28:39.268Z\", \"spec\": {\"hypothesis\": \"RE N=16 confirms negative finding with higher statistical power. If rho still <0.30, task-complexity boundary is robust.\", \"plan_id\": \"exp-008\", \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"dataset\": \"SciERC\", \"gpu\": \"cuda:2\", \"server\": \"gpu-5090-4x-2\", \"gpu_budget_hours\": 12, \"description\": \"RE N=16 on SciERC to confirm negative finding. Inference with log-prob capture.\", \"priority\": \"P1\", \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"seed\": 42}, \"metrics\": {\"ner\": {\"greedy_f1\": 0.6635, \"oracle_f1\": 0.8208, \"headroom\": 0.1572, \"rho_sj_full\": 0.377, \"rho_fk_full\": 0.2508, \"rho_logprob_full\": 0.3153, \"rho_sj_cond\": 0.3598, \"rho_fk_cond\": 0.2251, \"rho_logprob_cond\": 0.2927, \"sj_beats_fk\": true, \"rho_advantage\": 0.1262}, \"re\": {\"greedy_f1\": 0.4339, \"oracle_f1\": 0.6658, \"headroom\": 0.2319, \"rho_sj_full\": 0.2966, \"rho_fk_full\": 0.2871, \"rho_logprob_full\": 0.2986, \"rho_sj_cond\": 0.3975, \"rho_fk_cond\": 0.3774, \"rho_logprob_cond\": 0.2745, \"sj_beats_fk\": true, \"rho_advantage\": 0.0095}, \"verdict\": \"FAIL\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"N/A\", \"log_path\": \"output/exp008_re_n16/\", \"completed_at\": \"2026-05-14T12:28:39.268Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2991}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91 · 2026-05-14T12:28:58.434018+00:00_
+
+全部 registry 已更新。汇总如下：
+
+---
+
+## 汇总
+
+### exp-016 (Signal Ensemble, autodl-5090) — DONE
+
+**NER** (n=529):
+| 指标 | 值 |
+|---|---|
+| SJ↔logprob 相关 | r=0.567, ρ=0.538 |
+| 最优线性组合 | SJ+VotConf α=0.3 → ρ=**0.489** |
+| Ensemble AUROC | **0.735** (vs best single VotConf 0.700) |
+| 系数排名 | VotConf(0.86) > ExactMatch(0.65) > SJ(0.12) > logprob(0.04) > FK(-0.34) |
+| Selection F1 | greedy 0.609 > logprob 0.609 > ensemble 0.604 > oracle 0.769 |
+
+**RE** (n=397):
+| 指标 | 值 |
+|---|---|
+| SJ↔logprob 相关 | r=0.417, ρ=0.489 |
+| 最优线性组合 | VotConf+logprob α=0.6 → ρ=**0.429** |
+| Ensemble AUROC | **0.719** (vs best single VotConf 0.721) |
+| Selection F1 | logprob 0.397 > greedy 0.374 > oracle 0.561 |
+
+关键发现：Ensemble 在 NER 上 AUROC 提升 ~3.5pp，但 **Selection F1 未超过 greedy**。RE 上 Ensemble AUROC 甚至不如单 VotConf。
+
+---
+
+### exp-001 三 seed 对比 (gpu-5090-4x-2) — 全部 DONE, verdict=FAIL
+
+| Seed | NER ρ_sj (cond) | NER advantage | RE ρ_sj (cond) | RE advantage |
+|------|----------------|--------------|---------------|-------------|
+| 42 (原始) | — | — | — | — |
+| **123** | **0.427** | +0.128 | **0.400** | +0.029 |
+| **456** | 0.339 | +0.072 | 0.353 | +0.048 |
+
+seed=123 的 NER ρ_sj 最高 (0.427)，RE ρ_sj 刚好触及 0.40 门槛但整体 joint verdict 仍 FAIL。seed=456 数值明显低于 seed=123。
+
+---
+
+### exp-008 (RE N=16, seed=42) — DONE, verdict=FAIL
+
+NER ρ_sj_cond=0.360, RE ρ_sj_cond=**0.398** (接近但未达 0.40)。RE SJ 仅比 FK 高 0.01，几乎无优势。
+
+---
+
+### seed=456 和 exp-008 进度
+
+均已完成（200 samples, report.json 存在），已更新 registry 为 DONE。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_read_exp016_and_seed123_results_20260514T122622"
+}
+```
+
+</details>
+
+---

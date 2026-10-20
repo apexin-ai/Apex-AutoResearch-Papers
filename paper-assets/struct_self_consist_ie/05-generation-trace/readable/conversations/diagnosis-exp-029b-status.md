@@ -1,0 +1,528 @@
+# diagnosis exp 029b status
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 17
+- **Recorded user turns:** 0
+- **Tool calls:** 8
+- **Original source:** `logs/chats/worker_diagnosis_exp_029b_status_20260518T014159.jsonl`
+- **Structured JSON:** [`04c75e726a4071ce1ebf.json`](../../sessions/04/04c75e726a4071ce1ebf.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+17 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T01:42:46.407031+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_exp_029b_status_20260518T014159",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T01:42:46.407396+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_exp_029b_status_20260518T014159",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T01:42:46.407568+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -200 ~/runs/struct_self_consist_ie/exp_029b.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_exp_029b_status_20260518T014159",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -200 ~/runs/struct_self_consist_ie/exp_029b.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-18T01:42:46.407703+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-lora/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_exp_029b_status_20260518T014159",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-lora/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-18T01:42:46.407951+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"sliding_window\\\": null,\\n  \\\"tie_word_embeddings\\\": false,\\n  \\\"transformers_version\\\": \\\"4.57.1\\\",\\n  \\\"use_cache\\\": true,\\n  \\\"use_sliding_window\\\": false,\\n  \\\"vocab_size\\\": 151936\\n}\\n\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 07:34:00,688 >> loading file vocab.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 07:34:00,688 >> loading file merges.txt\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 07:34:00,688 >> loading file tokenizer.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 07:34:00,688 >> loading file added_tokens.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 07:34:00,688 >> loading file special_tokens_map.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 07:34:00,688 >> loading file tokenizer_config.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-18 07:34:00,688 >> loading file chat_template.jinja\\n[INFO|tokenization_utils_base.py:2364] 2026-05-18 07:34:00,997 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.\\n[WARNING|2026-05-18 07:34:01] llamafactory.data.template:148 >> You are using reasoning template, please add `_nothink` suffix if the model is not a reasoning model. e.g., qwen3_vl_nothink\\n[INFO|2026-05-18 07:34:01] llamafactory.data.loader:143 >> Loading dataset llmfactory_train.json...\\n[INFO|2026-05-18 07:34:01] llamafactory.data.loader:143 >> Loading dataset llmfactory_dev.json...\\ntraining example:\\ninput_ids:\\n[151644, 872, 198, 28959, 678, 32930, 1995, 320, 10499, 323, 4300, 8, 504, 279, 2701, 1467, 13, 9258, 264, 4718, 1633, 382, 1178, 25, 6364, 374, 6839, 311, 387, 1356, 63633, 12577, 389, 279, 8037, 315, 29378, 804, 315, 279, 15576, 943, 429, 21058, 25470, 83187, 23170, 5312, 12, 10182, 9128, 16448, 3030, 4494, 25, 21281, 11, 10230, 11, 6730, 11, 52458, 11, 6944, 50565, 1086, 17249, 11, 5430, 198, 33790, 4494, 25
+…[truncated 6690 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_exp_029b_status_20260518T014159",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-18T01:42:46.408147+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "nvidia-smi",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_exp_029b_status_20260518T014159",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "nvidia-smi",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-18T01:42:46.408312+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x  2 root root   39 May 18 09:38 .\\ndrwxr-xr-x 17 root root 4096 May 18 09:37 ..\\n-rw-r--r--  1 root root 1746 May 18 09:41 trainer_log.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_exp_029b_status_20260518T014159",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T01:42:46.408477+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Mon May 18 09:42:14 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 5090        On  |   00000000:38:00.0 Off |                  N/A |\\n| 72%   77C    P1            545W /  575W |   30128MiB /  32607MiB |    100%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA GeForce RTX 5090        On  |   00000000:49:00.0 Off |                  N/A |\\n| 85%   71C    P1            498W /  575W |   30128MiB /  32607MiB |    100%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA GeForce RTX 5090        On  |   00000000:5A:00.0 Off |                  N/A |\\n| 42%   29C    P8             15W /  575W |       2MiB /  32607MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA GeForce RTX 5090        On  |   00000000:98:00.0 Off |                  N/A |\\n| 39%   29C    P8             
+…[truncated 1111 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_exp_029b_status_20260518T014159",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T01:42:46.408629+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ps aux --no-header -w -w",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_exp_029b_status_20260518T014159",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ps aux --no-header -w -w",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T01:42:46.408781+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root          1  0.0  0.0   4476  3080 ?        Ss   May14   0:00 bash /init/boot/boot.sh\\nroot        917  1.6  0.0 719264 19440 ?        Sl   May14  93:48 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        932  0.0  0.0  15444  7972 ?        S    May14   0:03 sshd: /usr/sbin/sshd -D [listener] 1 of 10-100 startups\\nroot        935  0.0  0.0 4147828 71156 ?       Sl   May14   1:56 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        937  0.3  0.0 6822352 127316 ?      Sl   May14  19:13 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        939  0.0  0.0 191560 96316 ?        S    May14   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        940  0.0  0.0 3682352 19224 ?       Sl   May14   1:36 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        941  0.0  0.0 3682864 21076 ?       Sl   May14   3:18 proxy -c /init/proxy/proxy.ini\\nroot       1050  0.0  0.0 28341068 10600 ?      Sl   May14   4:49 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_n2g13yqg/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_n2g13yqg/startup_error\\nroot     174588  0.0  0.0  11360  6564 ?        Ss   May15   0:03 tmux new-session -d -s exp_001_n16_seed456 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --output_dir output/exp001_n16_seed456 --collect_logprobs 2>&1 | tee output/exp001_n16_seed456_run.log\\nroot     175728 
+…[truncated 2085 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_exp_029b_status_20260518T014159",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T01:42:46.408931+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "df -h /root/autodl-tmp",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_exp_029b_status_20260518T014159",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "df -h /root/autodl-tmp",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T01:42:46.409058+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\n/dev/md0        250G  115G  136G  46% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_exp_029b_status_20260518T014159",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T01:42:46.409251+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-lora/trainer_log.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_exp_029b_status_20260518T014159",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-lora/trainer_log.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T01:42:46.409430+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"current_steps\\\": 10, \\\"total_steps\\\": 1170, \\\"loss\\\": 0.8281, \\\"lr\\\": 1.5384615384615387e-05, \\\"epoch\\\": 0.08592910848549946, \\\"percentage\\\": 0.85, \\\"elapsed_time\\\": \\\"0:00:29\\\", \\\"remaining_time\\\": \\\"0:56:35\\\"}\\n{\\\"current_steps\\\": 20, \\\"total_steps\\\": 1170, \\\"loss\\\": 0.4474, \\\"lr\\\": 3.247863247863248e-05, \\\"epoch\\\": 0.17185821697099893, \\\"percentage\\\": 1.71, \\\"elapsed_time\\\": \\\"0:00:55\\\", \\\"remaining_time\\\": \\\"0:53:10\\\"}\\n{\\\"current_steps\\\": 30, \\\"total_steps\\\": 1170, \\\"loss\\\": 0.1997, \\\"lr\\\": 4.9572649572649575e-05, \\\"epoch\\\": 0.2577873254564984, \\\"percentage\\\": 2.56, \\\"elapsed_time\\\": \\\"0:01:23\\\", \\\"remaining_time\\\": \\\"0:52:52\\\"}\\n{\\\"current_steps\\\": 40, \\\"total_steps\\\": 1170, \\\"loss\\\": 0.1589, \\\"lr\\\": 6.666666666666667e-05, \\\"epoch\\\": 0.34371643394199786, \\\"percentage\\\": 3.42, \\\"elapsed_time\\\": \\\"0:01:50\\\", \\\"remaining_time\\\": \\\"0:52:09\\\"}\\n{\\\"current_steps\\\": 50, \\\"total_steps\\\": 1170, \\\"loss\\\": 0.1365, \\\"lr\\\": 8.376068376068377e-05, \\\"epoch\\\": 0.4296455424274973, \\\"percentage\\\": 4.27, \\\"elapsed_time\\\": \\\"0:02:22\\\", \\\"remaining_time\\\": \\\"0:53:19\\\"}\\n{\\\"current_steps\\\": 60, \\\"total_steps\\\": 1170, \\\"loss\\\": 0.1301, \\\"lr\\\": 0.00010085470085470086, \\\"epoch\\\": 0.5155746509129968, \\\"percentage\\\": 5.13, \\\"elapsed_time\\\": \\\"0:02:51\\\", \\\"remaining_time\\\": \\\"0:52:53\\\"}\\n{\\\"current_steps\\\": 70, \\\"total_steps\\\": 1170, \\\"loss\\\": 0.1229, \\\"lr\\\": 0.00011794871794871796, \\\"epoch\\\": 0.6015037593984962, \\\"percentage\\\": 5.98, \\\"elapsed_time\\\": \\\"0:03:18\\\", \\\"remaining_time\\\": \\\"0:52:03\\\"}\\n{\\\"current_steps\\\": 80, \\\"total_steps\\\": 1170, \\\"loss\\\": 0.1109, \\\"lr\\\": 0.00013504273504273505, \\\"epoch\\\": 0.6874328678839957, \\\"
+…[truncated 721 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_exp_029b_status_20260518T014159",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T01:42:46.409588+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/logs/exp_029b_train.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_exp_029b_status_20260518T014159",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/logs/exp_029b_train.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T01:42:46.409749+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r 46%|████▋     | 32/69 [00:06<00:09,  3.99it/s]\\u001b[A\\n\\r 48%|████▊     | 33/69 [00:07<00:09,  3.63it/s]\\u001b[A\\n\\r 49%|████▉     | 34/69 [00:07<00:08,  4.11it/s]\\u001b[A\\n\\r 51%|█████     | 35/69 [00:07<00:07,  4.50it/s]\\u001b[A\\n\\r 52%|█████▏    | 36/69 [00:07<00:07,  4.34it/s]\\u001b[A\\n\\r 54%|█████▎    | 37/69 [00:08<00:07,  4.27it/s]\\u001b[A\\n\\r 55%|█████▌    | 38/69 [00:08<00:06,  4.56it/s]\\u001b[A\\n\\r 57%|█████▋    | 39/69 [00:08<00:07,  3.75it/s]\\u001b[A\\n\\r 58%|█████▊    | 40/69 [00:09<00:08,  3.49it/s]\\u001b[A\\n\\r 59%|█████▉    | 41/69 [00:09<00:07,  3.59it/s]\\u001b[A\\n\\r 61%|██████    | 42/69 [00:09<00:07,  3.59it/s]\\u001b[A\\n\\r 62%|██████▏   | 43/69 [00:09<00:06,  3.97it/s]\\u001b[A\\n\\r 64%|██████▍   | 44/69 [00:10<00:08,  2.87it/s]\\u001b[A\\n\\r 65%|██████▌   | 45/69 [00:10<00:07,  3.22it/s]\\u001b[A\\n\\r 67%|██████▋   | 46/69 [00:10<00:06,  3.55it/s]\\u001b[A\\n\\r 68%|██████▊   | 47/69 [00:11<00:07,  3.12it/s]\\u001b[A\\n\\r 70%|██████▉   | 48/69 [00:11<00:05,  3.57it/s]\\u001b[A\\n\\r 71%|███████   | 49/69 [00:11<00:04,  4.04it/s]\\u001b[A\\n\\r 72%|███████▏  | 50/69 [00:11<00:04,  4.47it/s]\\u001b[A\\n\\r 74%|███████▍  | 51/69 [00:11<00:03,  4.69it/s]\\u001b[A\\n\\r 75%|███████▌  | 52/69 [00:12<00:03,  4.87it/s]\\u001b[A\\n\\r 77%|███████▋  | 53/69 [00:12<00:02,  5.58it/s]\\u001b[A\\n\\r 78%|███████▊  | 54/69 [00:12<00:02,  6.11it/s]\\u001b[A\\n\\r 80%|███████▉  | 55/69 [00:12<00:03,  4.48it/s]\\u001b[A\\n\\r 81%|████████  | 56/69 [00:12<00:02,  4.71it/s]\\u001b[A\\n\\r 83%|████████▎ | 57/69 [00:13<00:02,  4.87it/s]\\u001b[A\\n\\r 84%|████████▍ | 58/69 [00:13<00:02,  4.06it/s]\\u001b[A\\n\\r 86%|████████▌ | 59/69 [00:13<00:02,  3.66it/s]\\u001b[A\\n\\r 87%|████████▋ | 60/69 [00:14<00:02,  3.77it/s]\\u001b[A\\n\\r 88%|████████▊ | 61/69 [00:14<00:01,  4.00it/s]\\u001b[A\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_se
+…[truncated 17 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_exp_029b_status_20260518T014159",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17 · 2026-05-18T01:42:46.409946+00:00_
+
+## exp_029b 状态：正在训练中
+
+**旧日志 (exp_029b.log)**：之前的启动因 OOM 失败（Process 416808 占用 GPU 0 显存 29.52 GiB），模型加载阶段就崩溃了。
+
+**当前状态**：已成功重启，正在正常训练。
+
+| 项目 | 详情 |
+|---|---|
+| PID | 441471 (GPU 1) |
+| 启动时间 | 09:37 (今天) |
+| 总步数 | 1170 |
+| 当前进度 | ~100 steps / 1170 (8.55%), epoch ≈ 0.86 |
+| Loss | 0.83 → 0.11 (快速下降，正常) |
+| 预计剩余 | ~50 分钟 |
+| GPU | cuda:1, 30128MiB/32607MiB, 100% util |
+| 磁盘 | 136G 可用，无问题 |
+
+**同时运行**：exp_029a (3-epoch) 在 GPU 0 上 (PID 441469)，两个实验并行。
+
+**Checkpoint 目录**：目前只有 `trainer_log.jsonl`，尚未保存模型 checkpoint（训练还在早期阶段）。
+
+**结论**：exp_029b 从未成功启动的旧进程已失败，但已被重新启动并正在正常训练，预计约 50 分钟后完成。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_diagnosis_exp_029b_status_20260518T014159"
+}
+```
+
+</details>
+
+---

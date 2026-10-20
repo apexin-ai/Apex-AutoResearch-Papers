@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp_001_n16_seed456_full",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:44:31.348Z",
+    "updated_at": "2026-05-14T13:45:50.536Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --num_test 9999 --output_dir output/exp001_n16_seed456/\"",
+      "server": "gpu-5090-4x-2",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "62170",
+      "log_path": "~/runs/struct_self_consist_ie/exp_001_n16_seed456_full.log",
+      "submitted_at": "2026-05-14T12:44:31.087Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-14T13:45:50.602528+00:00",
+  "trigger": "update_registry"
+}

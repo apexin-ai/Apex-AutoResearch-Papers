@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp_013_exact_match_voting",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T10:53:18.753Z",
+    "updated_at": "2026-05-14T11:33:22.644Z",
+    "spec": {
+      "hypothesis": "Exact-match voting rate correlates with F1",
+      "model_name": "N/A (reuse pilot_004 samples)",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004",
+      "data_count": 551,
+      "server": "autodl-5090",
+      "seed": 42,
+      "parent": "mvp_pilot_004",
+      "method": "Count exact-match duplicates across N=8 samples",
+      "command": "python code/analyze_exact_match_voting.py",
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004",
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/exp013_exact_match_report.json"
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-14T11:18:09.026Z",
+    "metrics": {
+      "ner_full_rho": 0.2941,
+      "ner_full_p": 5.12e-12,
+      "ner_full_tau": 0.2181,
+      "ner_full_auroc": 0.6398,
+      "re_full_rho": 0.1562,
+      "re_full_p": 0.0018,
+      "re_full_tau": 0.1185,
+      "re_full_auroc": 0.5863,
+      "diagnosis": "EM between SJ and FK on NER, weakest on RE. Too coarse-grained."
+    }
+  },
+  "timestamp": "2026-05-14T11:33:22.672592+00:00",
+  "trigger": "update_registry"
+}

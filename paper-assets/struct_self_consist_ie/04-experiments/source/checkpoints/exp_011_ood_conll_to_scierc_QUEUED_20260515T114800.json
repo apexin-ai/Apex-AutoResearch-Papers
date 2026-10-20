@@ -1,0 +1,21 @@
+{
+  "exp_id": "exp_011_ood_conll_to_scierc",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:36:08.325Z",
+    "updated_at": "2026-05-15T11:47:59.967Z",
+    "spec": {
+      "hypothesis": "SCS structural signals remain effective under domain shift (CoNLL model on SciERC data)",
+      "plan_id": "exp-011",
+      "model_name": "qwen3-8b-conll2003-merged",
+      "data_path": "data/scierc",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-15T11:48:00.194032+00:00",
+  "trigger": "update_registry"
+}

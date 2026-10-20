@@ -1,0 +1,64 @@
+{
+  "exp_id": "exp_conll_n16_s42",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-21T03:11:59.589Z",
+    "updated_at": "2026-05-21T11:59:01.943Z",
+    "hypothesis": "CoNLL N=16 seed=42: third seed completing 3-seed N=16 set. Tests whether high-degeneracy regime (60%+ at N=8) changes at N=16 — if degeneracy drops, additional samples may help; if persists, confirms structural ceiling.",
+    "completed_at": "2026-05-21T04:24:19.862Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "success",
+        "metrics": {
+          "greedy_f1": 0.908,
+          "oracle_f1": 0.959,
+          "rho_SJ_full": 0.446,
+          "rho_FK_full": 0.427,
+          "rho_advantage": 0.019,
+          "oracle_headroom": 0.051,
+          "degeneracy_pct": 7.8,
+          "verdict": "PASS"
+        }
+      }
+    },
+    "spec": {
+      "command": "python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/conll_n16_s42/",
+      "server": "autodl-5090-c",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "312281",
+      "log_path": "~/runs/struct_self_consist_ie/exp_conll_n16_s42.log",
+      "submitted_at": "2026-05-21T11:24:02.614Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/conll2003/",
+      "data_count": 0,
+      "model_name": "qwen3-8b-conll2003-merged",
+      "seed": 42,
+      "checkpoint_path": "output/conll_n16_s42/",
+      "wall_clock_seconds": 2099.3,
+      "gpu_hours": 0.58
+    },
+    "conclusion": "success",
+    "metrics": {
+      "greedy_f1": 0.908,
+      "oracle_f1": 0.9592,
+      "oracle_headroom": 0.0512,
+      "fleiss_kappa": 0.762,
+      "soft_jaccard": 0.8844,
+      "n_instances": 3453,
+      "rho_fk": 0.4222,
+      "rho_sj": 0.4414,
+      "rho_lp": 0.3144,
+      "structural_beats_surface": true
+    }
+  },
+  "timestamp": "2026-05-21T11:59:02.429768+00:00",
+  "trigger": "update_registry"
+}

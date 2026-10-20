@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_entity_consensus",
+  "project": "struct_self_consist_ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:59:50.628Z",
+    "updated_at": "2026-05-18T20:00:45.410Z",
+    "hypothesis": "Constructing new output from N samples using entity frequency thresholds and LP-weighted decisions can capture complementary information that single-sample selection misses"
+  },
+  "timestamp": "2026-05-18T20:00:45.690319+00:00",
+  "trigger": "update_registry"
+}

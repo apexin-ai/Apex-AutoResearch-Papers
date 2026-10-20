@@ -1,0 +1,47 @@
+{
+  "exp_id": "exp_011_ood_conll_to_scierc",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:36:08.325Z",
+    "updated_at": "2026-05-15T12:11:38.385Z",
+    "spec": {
+      "hypothesis": "SCS structural signals remain effective under domain shift (CoNLL model on SciERC data, joint NER+RE)",
+      "plan_id": "exp-011",
+      "model_name": "qwen3-8b-conll2003-merged",
+      "data_path": "data/scierc/processed_data",
+      "seed": 42,
+      "server": "autodl-5090",
+      "gpu": "cuda:3",
+      "pid": 181723,
+      "command": "python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --dataset scierc --data_dir data/scierc/processed_data --subtask joint --n_samples 8 --temperature 1.0 --max_tokens 1024 --seed 42 --collect_logprobs --output_dir output/exp_011_ood_conll_to_scierc",
+      "data_count": 551
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "output/exp_011_ood_conll_to_scierc/samples.jsonl",
+    "log_path": "output/exp_011_ood_conll_to_scierc/report.json",
+    "completed_at": "2026-05-15T11:50:21.969Z",
+    "metrics": {
+      "direction": "CoNLL_model_to_SciERC_data",
+      "n_instances": 551,
+      "n_valid_ner": 529,
+      "parse_rate": 1,
+      "ner_greedy_f1": 0.0093,
+      "re_greedy_f1": 0.0008,
+      "rho_sj_ner": -0.1857,
+      "rho_fk_ner": -0.0695,
+      "rho_vc_ner": 0.1051,
+      "rho_lp_ner": -0.1521,
+      "rho_em_ner": -0.2015,
+      "structural_avg_rho": -0.05,
+      "indomain_structural_avg_rho": 0.3347,
+      "delta_structural_rho": -0.3847,
+      "note": "Model collapse - CoNLL NER-only model cannot handle SciERC complex schema"
+    }
+  },
+  "timestamp": "2026-05-15T12:11:38.563519+00:00",
+  "trigger": "update_registry"
+}

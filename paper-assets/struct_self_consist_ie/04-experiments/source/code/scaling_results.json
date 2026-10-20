@@ -1,0 +1,62 @@
+[
+  {
+    "model": "LLaMA-3.1-8B",
+    "family": "LLaMA",
+    "size_b": 8,
+    "dataset": "FewNERD",
+    "regime": "fine-tuned",
+    "n_seeds": 3,
+    "greedy_f1": 0.7842,
+    "oracle_f1": 0.8843,
+    "headroom_pp": 10.01,
+    "degen_pct": 23.36,
+    "lp_rho": null,
+    "lp_delta_pp": 0.36,
+    "constr_delta_pp": null
+  },
+  {
+    "model": "Qwen3-8B",
+    "family": "Qwen3",
+    "size_b": 8,
+    "dataset": "FewNERD",
+    "regime": "fine-tuned",
+    "n_seeds": 4,
+    "greedy_f1": 0.7481,
+    "oracle_f1": 0.8739,
+    "headroom_pp": 12.58,
+    "degen_pct": 12.69,
+    "lp_rho": null,
+    "lp_delta_pp": 1.38,
+    "constr_delta_pp": null
+  },
+  {
+    "model": "Qwen3-4B",
+    "family": "Qwen3",
+    "size_b": 4,
+    "dataset": "SciERC",
+    "regime": "fine-tuned",
+    "n_seeds": 1,
+    "greedy_f1": 0.6622,
+    "oracle_f1": 0.7925,
+    "headroom_pp": 13.03,
+    "degen_pct": 10.4,
+    "lp_rho": null,
+    "lp_delta_pp": null,
+    "constr_delta_pp": null
+  },
+  {
+    "model": "Qwen2.5-72B",
+    "family": "Qwen2.5",
+    "size_b": 72,
+    "dataset": "SciERC",
+    "regime": "zero-shot",
+    "n_seeds": 1,
+    "greedy_f1": 0.399,
+    "oracle_f1": 0.549,
+    "headroom_pp": 15.0,
+    "degen_pct": null,
+    "lp_rho": null,
+    "lp_delta_pp": null,
+    "constr_delta_pp": null
+  }
+]

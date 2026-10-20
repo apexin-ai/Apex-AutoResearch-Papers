@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_epoch_dgs_analysis",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:59:57.921Z",
+    "updated_at": "2026-05-18T20:00:38.155Z",
+    "hypothesis": "DGS benefit is strictly monotonic with degeneracy rate: higher degeneracy → greater DGS improvement, validating that degeneracy rate is the key gating signal"
+  },
+  "timestamp": "2026-05-18T20:00:38.423108+00:00",
+  "trigger": "update_registry"
+}

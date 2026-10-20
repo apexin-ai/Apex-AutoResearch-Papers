@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_026_t08_seed456",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:05:38.605Z",
+    "updated_at": "2026-05-18T22:06:56.681Z",
+    "hypothesis": "Temperature ablation (T=0.8, seed=456) of Qwen3-8B SciERC N=8 SCS inference to study temperature sensitivity of structural consistency signals.",
+    "spec": {
+      "command": "python scs_inference.py --dataset scierc --seed 456 --n_samples 8 --temperature 0.8",
+      "server": "autodl-5090",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/scierc",
+      "data_count": 551,
+      "model_name": "Qwen3-8B",
+      "seed": 456,
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t08_seed456",
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t08_seed456.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-18T22:06:56.681Z"
+  },
+  "timestamp": "2026-05-18T22:06:56.968584+00:00",
+  "trigger": "update_registry"
+}

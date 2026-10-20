@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp_017_llama_conll_n16",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T19:19:35.318Z",
+    "updated_at": "2026-05-14T19:21:53.389Z",
+    "spec": {
+      "hypothesis": "LLaMA CoNLL N=16: complete the 2x2 matrix (model x dataset x N). If SJ N-scaling holds for LLaMA on CoNLL, the finding is fully cross-model cross-dataset.",
+      "plan_id": "exp-017",
+      "parent": "exp_017_llama_conll_infer",
+      "model_name": "llama3.1-8b-conll2003-merged",
+      "dataset": "CoNLL-2003",
+      "data_count": 3453,
+      "seed": 42,
+      "server": "autodl-5090"
+    }
+  },
+  "timestamp": "2026-05-14T19:21:53.566958+00:00",
+  "trigger": "update_registry"
+}

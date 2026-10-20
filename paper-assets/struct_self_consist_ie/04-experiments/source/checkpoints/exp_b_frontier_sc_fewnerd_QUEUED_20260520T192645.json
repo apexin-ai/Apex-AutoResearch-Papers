@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_b_frontier_sc_fewnerd",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:15:19.266Z",
+    "updated_at": "2026-05-20T19:26:44.909Z",
+    "hypothesis": "The correlation-selection gap in structured self-consistency (where agreement correlates with accuracy but majority voting fails to improve over greedy) persists even with frontier models (GPT-5.5, Claude Opus 4.6), indicating it is a fundamental structural limitation of entity-level majority voting rather than a model capability issue.",
+    "spec": {
+      "command": "python run_frontier_sc.py --from-hf --n-instances 200 --n-samples 8 --temperature 1.0 --seed 42",
+      "server": "local (CPU-only, API calls)",
+      "data_path": "HuggingFace: DFKI-SLT/few-nerd (supervised, test split)",
+      "data_count": 200,
+      "model_name": "GPT-5.5 + Claude Opus 4.6",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-20T19:26:45.408315+00:00",
+  "trigger": "update_registry"
+}

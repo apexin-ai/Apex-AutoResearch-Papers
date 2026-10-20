@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_016_signal_ensemble",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:15:23.771Z",
+    "updated_at": "2026-05-14T12:15:23.771Z"
+  },
+  "timestamp": "2026-05-14T12:15:23.888623+00:00",
+  "trigger": "update_registry"
+}

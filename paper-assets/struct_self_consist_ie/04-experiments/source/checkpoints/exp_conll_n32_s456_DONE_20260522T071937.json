@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp_conll_n32_s456",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T06:41:52.575Z",
+    "updated_at": "2026-05-22T07:19:37.115Z",
+    "hypothesis": "N=32 multi-seed robustness: CoNLL N=32 finetuned seed=456. Third seed to complete 3-seed mean±σ (s42 +0.46pp, s123 +0.55pp). CoNLL shows stable MV gain at N=32; this confirms reproducibility.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 32 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/conll_n32_seed456/\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "112189",
+      "log_path": "~/runs/struct_self_consist_ie/exp_conll_n32_s456.log",
+      "submitted_at": "2026-05-22T06:43:01.923Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/conll2003/",
+      "data_count": 3453,
+      "model_name": "qwen3-8b-conll2003-merged",
+      "seed": 456,
+      "checkpoint_path": "output/conll_n32_seed456/",
+      "wall_clock_seconds": 2195.2,
+      "gpu_hours": 0.61
+    },
+    "metrics": {
+      "greedy_f1": 0.9117,
+      "mv_strict_f1": 0.9167,
+      "mv_delta_strict_pp": 0.51,
+      "degeneracy_rate": 0.401,
+      "oracle_f1": 0.9686,
+      "alpha_crit_eff_strict": 0.7614
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-22T07:19:37.115Z"
+  },
+  "timestamp": "2026-05-22T07:19:37.732527+00:00",
+  "trigger": "update_registry"
+}

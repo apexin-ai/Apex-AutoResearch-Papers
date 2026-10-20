@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp_conll_mf4_v2_s456",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T05:34:10.294Z",
+    "updated_at": "2026-05-21T09:10:46.609Z",
+    "hypothesis": "MF4 pipeline fix v2: CoNLL N=8 T=1.0 seed=456 using run_mvp_pilot.py (greedy_f1/micro-F1). 3-seed set with exp_conll_t10_s42.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/conll_mf4v2_seed456/\"",
+      "server": "autodl-5090-b",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "334155",
+      "log_path": "~/runs/struct_self_consist_ie/exp_conll_mf4_v2_s456.log",
+      "submitted_at": "2026-05-21T08:33:55.428Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-21T09:10:47.241487+00:00",
+  "trigger": "update_registry"
+}

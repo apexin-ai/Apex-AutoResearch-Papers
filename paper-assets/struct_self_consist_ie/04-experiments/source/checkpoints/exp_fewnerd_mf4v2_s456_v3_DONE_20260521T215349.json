@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp_fewnerd_mf4v2_s456_v3",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T19:43:45.275Z",
+    "updated_at": "2026-05-21T21:53:49.363Z",
+    "hypothesis": "FewNERD MF4v2 s456 re-run v3: regenerate finetuned FewNERD seed=456 data on current server for provenance verification. N=8, T=1.0, seed=456. Original data lost with 5090-b.",
+    "spec": {
+      "checkpoint_path": "output/fewnerd_mf4v2_seed456_v3/samples.jsonl",
+      "log_path": "output/fewnerd_mf4v2_seed456_v3/"
+    },
+    "metrics": {
+      "greedy_f1": 0.791,
+      "mv_strict_f1": 0.7686,
+      "mv_delta_strict_pp": -2.24,
+      "mv_incl_f1": 0.7857,
+      "mv_delta_incl_pp": -0.52,
+      "degeneracy_rate": 0.081,
+      "alpha_crit_eff_strict": 0.6793,
+      "n_instances": 32565
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T21:53:49.363Z"
+  },
+  "timestamp": "2026-05-21T21:53:49.887271+00:00",
+  "trigger": "update_registry"
+}

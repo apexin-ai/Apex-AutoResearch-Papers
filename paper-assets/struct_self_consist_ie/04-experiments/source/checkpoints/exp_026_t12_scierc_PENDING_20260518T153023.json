@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_026_t12_scierc",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T15:28:36.812Z",
+    "updated_at": "2026-05-18T15:30:23.205Z",
+    "hypothesis": "Higher temperature (T=1.2) reduces degeneracy rate and increases LP range on SciERC NER, but may degrade absolute generation quality",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python code/analyze_exp026_temp_5signal.py --data_path output/exp_026_t12/samples.jsonl --output_dir output/exp_026_t12/ --subtasks ner,re\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "665522",
+      "log_path": "~/runs/struct_self_consist_ie/exp_026_t12_scierc.log",
+      "submitted_at": "2026-05-18T15:28:56.997Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T15:30:23.457960+00:00",
+  "trigger": "update_registry"
+}

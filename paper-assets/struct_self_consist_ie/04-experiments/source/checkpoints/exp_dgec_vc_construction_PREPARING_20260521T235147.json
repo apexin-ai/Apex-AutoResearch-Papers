@@ -1,0 +1,63 @@
+{
+  "exp_id": "exp_dgec_vc_construction",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:37:55.968Z",
+    "updated_at": "2026-05-21T23:51:46.733Z",
+    "hypothesis": "VC-weighted entity construction outperforms greedy and LP-weighted construction across configs because Vote Count is a more direct quality estimator for structured outputs — it measures exact-match consensus without relying on model-internal log probabilities. Especially effective in high-degeneracy regimes where LP compression makes LP-weighting uninformative.",
+    "metrics": {
+      "total_configs": 28,
+      "significant_positive": 9,
+      "significant_negative": 10,
+      "not_significant": 9,
+      "by_dataset": {
+        "fewnerd": {
+          "configs": 11,
+          "sig+": 5,
+          "sig-": 5,
+          "ns": 1,
+          "mean_delta_pp": -0.12
+        },
+        "wnut17": {
+          "configs": 3,
+          "sig+": 2,
+          "sig-": 0,
+          "ns": 1,
+          "mean_delta_pp": 0.92
+        },
+        "scierc": {
+          "configs": 7,
+          "sig+": 2,
+          "sig-": 0,
+          "ns": 5,
+          "mean_delta_pp": 0.62
+        },
+        "conll": {
+          "configs": 7,
+          "sig+": 0,
+          "sig-": 5,
+          "ns": 2,
+          "mean_delta_pp": -0.33
+        }
+      },
+      "qwen3_8b_ft_supplement": {
+        "configs": 9,
+        "sig+": 3,
+        "sig-": 3,
+        "ns": 3,
+        "best": "SciERC s42 +1.40pp p=0.017",
+        "worst": "CoNLL s456 -0.54pp p=0.998",
+        "note": "VC inconsistent on LP-success configs; seed-dependent on FewNERD; CoNLL all negative due to high degeneracy"
+      },
+      "m030_all_passed": true
+    },
+    "notes": "COMPLETE (28 configs). VC-weighted construction: 9 sig+ / 10 sig- / 9 ns. Qwen3-8B FT supplement (9 configs): 3+/3-/3ns — VC inconsistent even on LP-success configs. SciERC s42 best (+1.40pp) but cross-seed unstable. CoNLL all negative (high degeneracy). WNUT17/SciERC lean positive but not robust. Key answer: VC does NOT reliably improve where LP already works — seed-dependent, dataset-dependent. DGEC unified method goal (70-80% configs) unreachable at 32% (9/28). Closed per D170/D171.",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-21T23:51:47.294636+00:00",
+  "trigger": "update_registry"
+}

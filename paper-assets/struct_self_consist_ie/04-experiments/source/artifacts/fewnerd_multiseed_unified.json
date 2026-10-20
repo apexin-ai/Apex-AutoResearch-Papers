@@ -1,0 +1,93 @@
+{
+  "per_seed": {
+    "seed42": {
+      "n_total": 37648,
+      "n_filtered": 32565,
+      "n_samples": 8,
+      "greedy_macro_f1": 0.7478465965854552,
+      "oracle_macro_f1": 0.8718523412957434,
+      "headroom_pp": 12.400574471028825,
+      "degeneracy_rate_pct": 10.127437432826653,
+      "zero_f1_rate_pct": 11.905419929372025,
+      "lp_spearman_global": 0.4215,
+      "lp_spearman_conditional": 0.4225,
+      "lp_auroc": 0.5782,
+      "lp_selection_f1": 0.7614,
+      "lp_selection_delta_pp": 1.3551,
+      "lp_bootstrap_ci_lo": 1.1912,
+      "lp_bootstrap_ci_hi": 1.5615,
+      "lp_bootstrap_significant": true
+    },
+    "seed123": {
+      "n_total": 37648,
+      "n_filtered": 32565,
+      "n_samples": 8,
+      "greedy_macro_f1": 0.7480463604385982,
+      "oracle_macro_f1": 0.8772023271351918,
+      "headroom_pp": 12.915596669659358,
+      "degeneracy_rate_pct": 9.36895439889452,
+      "zero_f1_rate_pct": 11.883924458774759,
+      "lp_spearman_global": 0.4223,
+      "lp_spearman_conditional": 0.4274,
+      "lp_auroc": 0.5767,
+      "lp_selection_f1": 0.7624,
+      "lp_selection_delta_pp": 1.4375,
+      "lp_bootstrap_ci_lo": 1.2626,
+      "lp_bootstrap_ci_hi": 1.6138,
+      "lp_bootstrap_significant": true
+    },
+    "seed456": {
+      "n_total": 37648,
+      "n_filtered": 32565,
+      "n_samples": 8,
+      "greedy_macro_f1": 0.7486020812401402,
+      "oracle_macro_f1": 0.8751113568975637,
+      "headroom_pp": 12.650927565742354,
+      "degeneracy_rate_pct": 8.238906801781052,
+      "zero_f1_rate_pct": 11.816367265469061,
+      "lp_spearman_global": 0.4206,
+      "lp_spearman_conditional": 0.4329,
+      "lp_auroc": 0.5768,
+      "lp_selection_f1": 0.7623,
+      "lp_selection_delta_pp": 1.3729,
+      "lp_bootstrap_ci_lo": 1.1939,
+      "lp_bootstrap_ci_hi": 1.5515,
+      "lp_bootstrap_significant": true
+    }
+  },
+  "summary": {
+    "greedy_macro_f1": {
+      "mean": 0.7482,
+      "std": 0.0003,
+      "values": [0.7478, 0.7480, 0.7486]
+    },
+    "oracle_macro_f1": {
+      "mean": 0.8747,
+      "std": 0.0022,
+      "values": [0.8719, 0.8772, 0.8751]
+    },
+    "headroom_pp": {
+      "mean": 12.66,
+      "std": 0.21,
+      "values": [12.40, 12.92, 12.65]
+    },
+    "degeneracy_rate_pct": {
+      "mean": 9.25,
+      "std": 0.78,
+      "values": [10.13, 9.37, 8.24]
+    },
+    "lp_spearman_global": {
+      "mean": 0.4215,
+      "std": 0.0007,
+      "values": [0.4215, 0.4223, 0.4206]
+    },
+    "lp_selection_delta_pp": {
+      "mean": 1.39,
+      "std": 0.04,
+      "values": [1.36, 1.44, 1.37]
+    },
+    "lp_bootstrap_significant": {
+      "all_significant": true
+    }
+  }
+}

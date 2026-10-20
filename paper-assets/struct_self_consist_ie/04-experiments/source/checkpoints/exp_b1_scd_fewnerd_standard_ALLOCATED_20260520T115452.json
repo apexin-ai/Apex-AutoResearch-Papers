@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_b1_scd_fewnerd_standard",
+  "project": "struct_self_consist_ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:17:37.804Z",
+    "updated_at": "2026-05-20T11:54:52.303Z",
+    "hypothesis": "Standard Self-Consistency Distillation on FewNERD: fine-tune Qwen3-8B-FT with theta2n construction pseudo-labels (32,565 instances) mixed 1:1 with gold data. Greedy F1 after SCD should approach N=8 construction F1 (0.764 vs current 0.748). Transductive setting: pseudo-labels from test set SC outputs."
+  },
+  "timestamp": "2026-05-20T11:54:52.961510+00:00",
+  "trigger": "update_registry"
+}

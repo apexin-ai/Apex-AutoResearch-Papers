@@ -1,0 +1,33 @@
+{
+  "description": "Table 3 (tab:fewnerd) 3-seed degeneracy statistics for N=8",
+  "created": "2026-05-19",
+  "source": "Director-provided values from exp_002 (CoNLL) and FewNERD multiseed experiments",
+  "data": {
+    "CoNLL": {
+      "N": 8,
+      "seed42_degen_pct": 59.14,
+      "seed123_degen_pct": 63.03,
+      "seed456_degen_pct": 62.88,
+      "mean_degen_pct": 61.7,
+      "note": "Previous paper value 48.4% was from N=16 experiment"
+    },
+    "FewNERD": {
+      "N": 8,
+      "seed42_degen_pct": 13.754,
+      "seed123_degen_pct": 13.12,
+      "seed456_degen_pct": 12.12,
+      "mean_degen_pct": 13.0,
+      "note": "Previous paper value 13.8% was seed42 only"
+    },
+    "SciERC": {
+      "N": 8,
+      "degen_pct": 17.8,
+      "note": "Unchanged"
+    },
+    "WNUT-17": {
+      "N": 8,
+      "degen_pct": 67.9,
+      "note": "Unchanged"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_b3_prompted_diversity",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:12:51.750Z",
+    "updated_at": "2026-05-20T11:12:59.194Z",
+    "hypothesis": "Structurally diverse prompt templates (role framing, output format variants, few-shot exemplar diversity) increase inter-sample entity extraction diversity beyond temperature-only diversity, improving construction F1 over identical-prompt N=8 sampling on FewNERD/SciERC/CoNLL."
+  },
+  "timestamp": "2026-05-20T11:12:59.518283+00:00",
+  "trigger": "update_registry"
+}

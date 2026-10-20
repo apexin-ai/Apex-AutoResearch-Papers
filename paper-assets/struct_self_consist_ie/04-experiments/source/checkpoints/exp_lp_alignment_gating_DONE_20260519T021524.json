@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_lp_alignment_gating",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T02:00:16.520Z",
+    "updated_at": "2026-05-19T02:15:23.716Z",
+    "hypothesis": "Within-instance LP-F1 alignment score (adjusted by valid_ratio for degeneracy) can automatically gate whether LP selection should be applied to a dataset. A small probe sample (50-100 instances) suffices for a stable gating decision.",
+    "conclusion": "success",
+    "spec": {
+      "command": "python code/lp_alignment_gated_selection.py",
+      "server": "autodl-5090",
+      "data_path": "output/*/samples_*.json",
+      "data_count": 3,
+      "model_name": "analysis_cpu",
+      "seed": 42,
+      "checkpoint_path": "output/prescriptive_analysis/",
+      "log_path": "output/prescriptive_analysis/"
+    },
+    "completed_at": "2026-05-19T02:15:23.716Z"
+  },
+  "timestamp": "2026-05-19T02:15:24.175390+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,4394 @@
+# exp llama3b phase3
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 147
+- **Recorded user turns:** 0
+- **Tool calls:** 73
+- **Original source:** `logs/chats/worker_exp_llama3b_phase3_20260516T035207.jsonl`
+- **Structured JSON:** [`336e8cc1b11cdb88848e.json`](../../sessions/33/336e8cc1b11cdb88848e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+147 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T04:00:42.422651+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T04:00:42.423011+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T04:00:42.423249+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && tmux has-session -t llama3b_train 2>/dev/null && echo \"SESSION_EXISTS\" || echo \"SESSION_GONE\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && tmux has-session -t llama3b_train 2>/dev/null && echo \"SESSION_EXISTS\" || echo \"SESSION_GONE\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-16T04:00:42.423432+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T04:00:42.423565+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.2-3b-scierc-lora/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.2-3b-scierc-lora/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-16T04:00:42.423689+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'exp_llama3b_scierc_ablation'}",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'exp_llama3b_scierc_ablation'}",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-16T04:00:42.423833+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 206944\\ndrwxr-xr-x  5 root root      4096 May 16 11:45 .\\ndrwxr-xr-x 21 root root      4096 May 16 11:30 ..\\n-rw-r--r--  1 root root      1993 May 16 11:45 README.md\\n-rw-r--r--  1 root root       974 May 16 11:45 adapter_config.json\\n-rw-r--r--  1 root root 194563400 May 16 11:45 adapter_model.safetensors\\n-rw-r--r--  1 root root       349 May 16 11:45 all_results.json\\n-rw-r--r--  1 root root      3827 May 16 11:45 chat_template.jinja\\ndrwxr-xr-x  2 root root      4096 May 16 11:41 checkpoint-400\\ndrwxr-xr-x  2 root root      4096 May 16 11:43 checkpoint-500\\ndrwxr-xr-x  2 root root      4096 May 16 11:45 checkpoint-585\\n-rw-r--r--  1 root root       161 May 16 11:45 eval_results.json\\n-rw-r--r--  1 root root       506 May 16 11:45 special_tokens_map.json\\n-rw-r--r--  1 root root  17209920 May 16 11:45 tokenizer.json\\n-rw-r--r--  1 root root     50669 May 16 11:45 tokenizer_config.json\\n-rw-r--r--  1 root root       208 May 16 11:45 train_results.json\\n-rw-r--r--  1 root root     12269 May 16 11:45 trainer_log.jsonl\\n-rw-r--r--  1 root root     12129 May 16 11:45 trainer_state.json\\n-rw-r--r--  1 root root      6353 May 16 11:45 training_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T04:00:42.423978+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3032}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T04:00:42.424170+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/train_config_scierc_llama3b.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/train_config_scierc_llama3b.yaml",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T04:00:42.424336+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"### Model\\nmodel_name_or_path: /root/autodl-tmp/.hf_cache/LLM-Research/Llama-3___2-3B-Instruct\\n\\n### Method\\nstage: sft\\ndo_train: true\\nfinetuning_type: lora\\nlora_rank: 32\\nlora_alpha: 64\\nlora_target: all\\n\\n### Dataset\\ndataset_dir: /root/autodl-tmp/struct_self_consist_ie/data\\ndataset: scierc_uie_train\\neval_dataset: scierc_uie_dev\\ntemplate: llama3\\n\\n### Training\\nper_device_train_batch_size: 2\\ngradient_accumulation_steps: 8\\nlearning_rate: 2.0e-4\\nnum_train_epochs: 5.0\\nlr_scheduler_type: cosine\\nwarmup_ratio: 0.1\\nbf16: true\\ngradient_checkpointing: true\\nmax_grad_norm: 1.0\\n\\n### Evaluation\\nper_device_eval_batch_size: 4\\neval_strategy: steps\\neval_steps: 100\\n\\n### Logging\\nlogging_steps: 10\\nsave_steps: 100\\nsave_total_limit: 3\\n\\n### Output\\noutput_dir: /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.2-3b-scierc-lora\\noverwrite_output_dir: true\\nreport_to: none\\n\\n### Misc\\nseed: 42\\ncutoff_len: 2048\\npreprocessing_num_workers: 4\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T04:00:42.424467+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.2-3b-scierc-lora/all_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.2-3b-scierc-lora/all_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T04:00:42.424598+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n    \\\"epoch\\\": 5.0,\\n    \\\"eval_loss\\\": 0.11569289118051529,\\n    \\\"eval_runtime\\\": 7.1538,\\n    \\\"eval_samples_per_second\\\": 38.441,\\n    \\\"eval_steps_per_second\\\": 9.645,\\n    \\\"total_flos\\\": 6.582208654737408e+16,\\n    \\\"train_loss\\\": 0.09137348362013825,\\n    \\\"train_runtime\\\": 891.4561,\\n    \\\"train_samples_per_second\\\": 10.438,\\n    \\\"train_steps_per_second\\\": 0.656\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T04:00:42.424727+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.2-3b-scierc-lora/train_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.2-3b-scierc-lora/train_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T04:00:42.424853+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n    \\\"epoch\\\": 5.0,\\n    \\\"total_flos\\\": 6.582208654737408e+16,\\n    \\\"train_loss\\\": 0.09137348362013825,\\n    \\\"train_runtime\\\": 891.4561,\\n    \\\"train_samples_per_second\\\": 10.438,\\n    \\\"train_steps_per_second\\\": 0.656\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T04:00:42.424994+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.2-3b-scierc-lora/eval_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.2-3b-scierc-lora/eval_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T04:00:42.425120+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n    \\\"epoch\\\": 5.0,\\n    \\\"eval_loss\\\": 0.11569289118051529,\\n    \\\"eval_runtime\\\": 7.1538,\\n    \\\"eval_samples_per_second\\\": 38.441,\\n    \\\"eval_steps_per_second\\\": 9.645\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T04:00:42.425300+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:TodoWrite",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:TodoWrite",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T04:00:42.425420+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T04:00:42.425537+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Check training status', 'status': 'completed', 'activeForm': 'Checking training status'}, {'content': 'Merge LoRA adapter to base model', 'status': 'in_progress', 'activeForm': 'Merging LoRA adapter to base model'}, {'content': 'Run inference with merged model', 'status': 'pending', 'activeForm': 'Running inference with merged model'}, {'content': 'Analyze results and compare with 8B', 'status': 'pending', 'activeForm': 'Analyzing results and comparing with 8B'}, {'content': 'Save outputs and update registry', 'status': 'pending', 'activeForm': 'Saving outputs and updating registry'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Check training status', 'status': 'completed', 'activeForm': 'Checking training status'}, {'content': 'Merge LoRA adapter to base model', 'status': 'in_progress', 'activeForm': 'Merging LoRA adapter to base model'}, {'content': 'Run inference with merged model', 'status': 'pending', 'activeForm': 'Running inference with merged model'}, {'content': 'Analyze results and compare with 8B', 'status': 'pending', 'activeForm': 'Analyzing results and comparing with 8B'}, {'content': 'Save outputs and update registry', 'status': 'pending', 'activeForm': 'Saving outputs and updating registry'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T04:00:42.425672+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-16T04:00:42.425787+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=3 llamafactory-cli export --model_name_or_path /root/autodl-tmp/.hf_cache/LLM-Research/Llama-3___2-3B-Instruct --adapter_name_or_path checkpoints/llama3.2-3b-scierc-lora --template llama3 --export_dir checkpoints/llama3.2-3b-scierc-merged --export_size 4",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=3 llamafactory-cli export --model_name_or_path /root/autodl-tmp/.hf_cache/LLM-Research/Llama-3___2-3B-Instruct --adapter_name_or_path checkpoints/llama3.2-3b-scierc-lora --template llama3 --export_dir checkpoints/llama3.2-3b-scierc-merged --export_size 4",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T04:00:42.426045+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"设置成功\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\n[INFO|2026-05-16 11:53:03] llamafactory.data.template:143 >> Add pad token: <|eot_id|>\\n[INFO|2026-05-16 11:53:03] llamafactory.data.template:143 >> Add <|eom_id|> to stop words.\\n[INFO|2026-05-16 11:53:03] llamafactory.model.model_utils.kv_cache:143 >> KV cache is enabled for faster generation.\\n[INFO|2026-05-16 11:53:03] llamafactory.model.model_utils.attention:143 >> Using torch SDPA for faster training and inference.\\n[INFO|2026-05-16 11:53:14] llamafactory.model.adapter:143 >> Merged 1 adapter(s).\\n[INFO|2026-05-16 11:53:14] llamafactory.model.adapter:143 >> Loaded adapter(s): checkpoints/llama3.2-3b-scierc-lora\\n[INFO|2026-05-16 11:53:14] llamafactory.model.loader:143 >> all params: 3,212,749,824\\n[INFO|2026-05-16 11:53:14] llamafactory.train.tuner:143 >> Convert model dtype to: torch.bfloat16.\\n[INFO|2026-05-16 11:53:21] llamafactory.train.tuner:143 >> Ollama modelfile saved in checkpoints/llama3.2-3b-scierc-merged/Modelfile\\n\", \"stderr\": \"[INFO|tokenization_utils_base.py:2093] 2026-05-16 11:53:02,813 >> loading file tokenizer.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-16 11:53:02,814 >> loading file tokenizer.model\\n[INFO|tokenization_utils_base.py:2093] 2026-05-16 11:53:02,814 >> loading file added_tokens.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-16 11:53:02,814 >> loading file special_tokens_map.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-16 11:53:02,814 >> loading file tokenizer_config.json\\n[INFO|tokenization_utils_base.py:2093] 2026-05-16 11:53:02,814 >> loading file chat_template.jinja\\n[INFO|tokenization_utils_base.py:2364] 2026-05-16 11:53:03,099 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.\\n[INFO|configuration_utils.py:763] 2026-05-16 11:53:03,100 >> loading configuration file /root/autodl-tmp/.hf_cache/LLM-Research/Lla
+…[truncated 6295 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-16T04:00:42.426277+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Check training status', 'status': 'completed', 'activeForm': 'Checking training status'}, {'content': 'Merge LoRA adapter to base model', 'status': 'completed', 'activeForm': 'Merging LoRA adapter to base model'}, {'content': 'Run inference with merged model', 'status': 'in_progress', 'activeForm': 'Running inference with merged model'}, {'content': 'Analyze results and compare with 8B', 'status': 'pending', 'activeForm': 'Analyzing results and comparing with 8B'}, {'content': 'Save outputs and update registry', 'status': 'pending', 'activeForm': 'Saving outputs and updating registry'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Check training status', 'status': 'completed', 'activeForm': 'Checking training status'}, {'content': 'Merge LoRA adapter to base model', 'status': 'completed', 'activeForm': 'Merging LoRA adapter to base model'}, {'content': 'Run inference with merged model', 'status': 'in_progress', 'activeForm': 'Running inference with merged model'}, {'content': 'Analyze results and compare with 8B', 'status': 'pending', 'activeForm': 'Analyzing results and comparing with 8B'}, {'content': 'Save outputs and update registry', 'status': 'pending', 'activeForm': 'Saving outputs and updating registry'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T04:00:42.426432+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T04:00:42.426554+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.2-3b-scierc-merged/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.2-3b-scierc-merged/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T04:00:42.426679+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Modelfile\\nchat_template.jinja\\nconfig.json\\ngeneration_config.json\\nmodel-00001-of-00002.safetensors\\nmodel-00002-of-00002.safetensors\\nmodel.safetensors.index.json\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T04:00:42.426804+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -50 /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -50 /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T04:00:42.426954+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"MVP pilot experiment script for structured self-consistency IE.\\n\\nIntegrates data loading, vLLM sampling, consistency scoring, and evaluation\\ninto a single CLI-driven pipeline. Outputs a verdict (PASS/MARGINAL/FAIL)\\nbased on the correlation between structural consistency and per-instance F1.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport sys\\n\\nimport numpy as np\\n\\nfrom data_utils import load_scierc, load_ace05, load_conll2003, load_wnut17\\nfrom sampling import (\\n    VLLMSampler,\\n    run_sampling_pipeline,\\n    save_sampled_results,\\n    load_sampled_results,\\n    realign_spans,\\n    SCIERC_SCHEMA_HINT,\\n    CONLL2003_SCHEMA_HINT,\\n    WNUT17_SCHEMA_HINT,\\n)\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import (\\n    per_instance_f1,\\n    compute_ner_f1,\\n    compute_re_f1,\\n    compute_eae_f1,\\n    spearman_correlation,\\n    kendall_correlation,\\n    compute_auroc,\\n    compute_sample_f1_distribution,\\n)\\n\\n\\ndef parse_args() -> argparse.Namespace:\\n    \\\"\\\"\\\"Parse command-line arguments.\\\"\\\"\\\"\\n    p = argparse.ArgumentParser(description=\\\"MVP pilot for structured self-consistency IE\\\")\\n    p.add_argument(\\\"--model_path\\\", type=str, required=True, help=\\\"Path to the fine-tuned model\\\")\\n    p.add_argument(\\\"--data_dir\\\", type=str, required=True, help=\\\"Dataset directory (SciERC or ACE05)\\\")\\n    p.add_argument(\\\"--dataset\\\", type=str, default=\\\"scierc\\\", choices=[\\\"scierc\\\", \\\"ace05\\\", \\\"conll2003\\\", \\\"wnut17\\\"],\\n                   help=\\\"Dataset name (default: scierc)\\\")\\n    p.add_argument(\\\"--subtask\\\", type=str, default=\\\"ner\\\", choices=[\\\"ner\\\", \\\"re\\\", \\\"eae\\\", \\\"joint\\\"],\\n                   help=\\\"Subtask (default: ner)\\\")\\n\", \"stderr\": \"\", \"re
+…[truncated 78 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-16T04:00:42.427111+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"collect_logprobs\\|VLLMSampler\\|gpu_memory\\|max_model_len\\|tensor_parallel\" /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"collect_logprobs\\|VLLMSampler\\|gpu_memory\\|max_model_len\\|tensor_parallel\" /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T04:00:42.427263+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-16T04:00:42.427383+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"collect_logprobs\\|gpu_memory\\|max_model_len\\|tensor_parallel\" /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"collect_logprobs\\|gpu_memory\\|max_model_len\\|tensor_parallel\" /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T04:00:42.427509+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-16T04:00:42.427627+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"collect_logprobs\\|gpu_memory\\|max_model_len\\|tensor_parallel\\|VLLMSampler\" /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"collect_logprobs\\|gpu_memory\\|max_model_len\\|tensor_parallel\\|VLLMSampler\" /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T04:00:42.427742+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-16T04:00:42.427856+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"collect_logprobs\\|gpu_memory\\|max_model_len\\|tensor_parallel\\|VLLMSampler\" /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"collect_logprobs\\|gpu_memory\\|max_model_len\\|tensor_parallel\\|VLLMSampler\" /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T04:00:42.427972+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-16T04:00:42.428106+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"collect_logprobs\" /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"collect_logprobs\" /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-16T04:00:42.428253+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"67:    p.add_argument(\\\"--collect_logprobs\\\", action=\\\"store_true\\\",\\n196:            collect_logprobs=args.collect_logprobs,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-16T04:00:42.428371+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"gpu_memory\" /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"gpu_memory\" /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T04:00:42.428486+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-16T04:00:42.428604+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"max_model_len\" /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"max_model_len\" /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T04:00:42.428722+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"101:        max_model_len: int = 4096,\\n109:            max_model_len: Maximum sequence length.\\n117:            max_model_len=max_model_len,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-16T04:00:42.428835+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"gpu_memory_utilization\" /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"gpu_memory_utilization\" /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-16T04:00:42.428965+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"102:        gpu_memory_utilization: float = 0.90,\\n110:            gpu_memory_utilization: Fraction of GPU memory to reserve.\\n118:            gpu_memory_utilization=gpu_memory_utilization,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-16T04:00:42.429080+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -n 120 /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -n 120 /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-16T04:00:42.429269+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        use_train_format: If True, use the train-aligned prompt template.\\n        output_path: If provided, save results to this JSONL path.\\n\\n    Returns:\\n        List of SampledInstance dicts.\\n    \\\"\\\"\\\"\\n    prompts = [build_uie_prompt(inst[\\\"text\\\"], subtask=subtask, schema_hint=schema_hint,\\n                                use_train_format=use_train_format)\\n               for inst in instances]\\n\\n    # Stochastic sampling\\n    if collect_logprobs:\\n        raw_samples, stoch_logprobs = sampler.sample(\\n            prompts,\\n            n_samples=n_samples,\\n            temperature=temperature,\\n            max_tokens=max_tokens,\\n            use_grammar=use_grammar,\\n            use_chat_template=use_chat_template,\\n            collect_logprobs=True,\\n        )\\n        raw_greedy, greedy_logprobs = sampler.sample(\\n            prompts,\\n            n_samples=1,\\n            temperature=0.0,\\n            max_tokens=max_tokens,\\n            use_grammar=use_grammar,\\n            use_chat_template=use_chat_template,\\n            collect_logprobs=True,\\n        )\\n    else:\\n        raw_samples = sampler.sample(\\n            prompts,\\n            n_samples=n_samples,\\n            temperature=temperature,\\n            max_tokens=max_tokens,\\n            use_grammar=use_grammar,\\n            use_chat_template=use_chat_template,\\n        )\\n        raw_greedy = sampler.sample(\\n            prompts,\\n            n_samples=1,\\n            temperature=0.0,\\n            max_tokens=max_tokens,\\n            use_grammar=use_grammar,\\n            use_chat_template=use_chat_template,\\n        )\\n        stoch_logprobs = None\\n        greedy_logprobs = None\\n\\n    # Assemble SampledInstance list\\n    sampled_instances: list[dict] = []\\n    for idx, inst in enumerate(instances):\\n        gold = {\\n            \\\"entities\\\": inst.get(\\\"entities\\\", [
+…[truncated 2538 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-16T04:00:42.429451+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && mkdir -p output/review_round9_experiments/llama3b_scierc && CUDA_VISIBLE_DEVICES=3 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.2-3b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/review_round9_experiments/llama3b_scierc/",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && mkdir -p output/review_round9_experiments/llama3b_scierc && CUDA_VISIBLE_DEVICES=3 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.2-3b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/review_round9_experiments/llama3b_scierc/",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-16T04:00:42.429618+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && mkdir -p output/review_round9_experiments/llama3b_scierc && CUDA_VISIBLE_DEVICES=3 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.2-3b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/review_round9_experiments/llama3b_scierc/'\\n\\nStdout:\\n\\n(EngineCore pid=261608) INFO 05-16 11:54:33 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=512\\n(EngineCore pid=261608) INFO 05-16 11:54:33 [gpu_model_runner.py:5607] Profiling CUDA graph memory: PIECEWISE=51 (largest=512), FULL=35 (largest=256)\\n(EngineCore pid=261608) INFO 05-16 11:54:34 [gpu_model_runner.py:5686] Estimated CUDA graph memory: 0.41 GiB total\\n(EngineCore pid=261608) INFO 05-16 11:54:34 [gpu_worker.py:456] Available KV cache memory: 21.18 GiB\\n(EngineCore pid=261608) INFO 05-16 11:54:34 [gpu_worker.py:490] In v0.19, CUDA graph memory profiling will be enabled by default (VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1), which more accurately accounts for CUDA graph memory during KV cache allocation. To try it now, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1 and increase --gpu-memory-utilization from 0.9000 to 0.9130 to maintain the same effective KV cache size.\\n(EngineCore pid=261608) INFO 05-16 11:54:34 [kv_cache_utils.py:1316] GPU KV cache size: 198,240 tokens\\n(EngineCore pid=261608) INFO 05-16 11:54:34 [kv_cache_utils.py:1321] Maximum concurrency for 4,096 tokens per request: 48.40x\\n(EngineCore pid=261608) INFO 05-16 11:54:37 [gpu_model_runner.py:5746] Graph capturing finished in 3 secs, took 0.30 GiB\\n(EngineCore pid=261608) I
+…[truncated 1163 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-16T04:00:42.429791+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && tmux new-session -d -s llama3b_infer 'source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=3 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.2-3b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/review_round9_experiments/llama3b_scierc/ 2>&1 | tee output/review_round9_experiments/llama3b_scierc/inference.log'",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && tmux new-session -d -s llama3b_infer 'source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=3 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.2-3b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/review_round9_experiments/llama3b_scierc/ 2>&1 | tee output/review_round9_experiments/llama3b_scierc/inference.log'",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-16T04:00:42.429933+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-16T04:00:42.430084+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -c \"pid\" /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/inference.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -c \"pid\" /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/inference.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-16T04:00:42.430234+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-16T04:00:42.430353+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/inference.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/inference.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-16T04:00:42.430496+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 551 test instances from scierc\\nINFO 05-16 11:54:53 [utils.py:233] non-default args: {'max_model_len': 4096, 'disable_log_stats': True, 'model': 'checkpoints/llama3.2-3b-scierc-merged'}\\nINFO 05-16 11:54:53 [model.py:533] Resolved architecture: LlamaForCausalLM\\nINFO 05-16 11:54:53 [model.py:1582] Using max model len 4096\\nINFO 05-16 11:54:53 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=8192.\\nINFO 05-16 11:54:53 [vllm.py:775] Asynchronous scheduling is enabled.\\n(EngineCore pid=262115) INFO 05-16 11:54:54 [core.py:103] Initializing a V1 LLM engine (v0.18.1) with config: model='checkpoints/llama3.2-3b-scierc-merged', speculative_config=None, tokenizer='checkpoints/llama3.2-3b-scierc-merged', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=checkpoints/llama3.2-3b-scierc-merged, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <
+…[truncated 1888 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-16T04:00:42.430676+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024/report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-16T04:00:42.430905+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"joint\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"ner_greedy_f1\\\": 0.6606660666066607,\\n  \\\"ner_oracle_f1\\\": 0.7780772686433063,\\n  \\\"ner_oracle_headroom\\\": 0.11741120203664557,\\n  \\\"ner_fleiss_kappa_mean\\\": 0.45646991031506734,\\n  \\\"ner_soft_jaccard_mean\\\": 0.7508215651636536,\\n  \\\"ner_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.23520541410421159,\\n    \\\"p_value\\\": 4.402244766602746e-08,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.3096282300557742,\\n    \\\"p_value\\\": 3.2318026986960163e-13,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.1471761396501902,\\n    \\\"p_value\\\": 0.0012513594721615879,\\n    \\\"n\\\": 478\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.2717613140824144,\\n    \\\"p_value\\\": 1.5405526831187722e-09,\\n    \\\"n\\\": 478\\n  },\\n  \\\"ner_n_gold_empty_filtered\\\": 22,\\n  \\\"ner_n_greedy_f1_zero_filtered\\\": 51,\\n  \\\"ner_structural_beats_surface\\\": true,\\n  \\\"ner_rho_advantage\\\": 0.07442281595156264,\\n  \\\"ner_sample_f1_mean\\\": 0.6191379089014599,\\n  \\\"ner_sample_f1_std\\\": 0.3139882251418352,\\n  \\\"ner_sample_f1_pct_zero\\\": 11.436672967863894,\\n  \\\"ner_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.15027534533111941,\\n      \\\"p_rho\\\": 0.0005246029384220238,\\n      \\\"tau\\\": 0.10868081183890423,\\n      \\\"p_tau\\\": 0.0003585574516605718,\\n      \\\"auroc\\\": 0.5807993300412949,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.08099201912081824,\\n      \\\"p_rho\\\": 0.07689111176253832,\\n      \\\"tau\\\": 0.058126350173464
+…[truncated 2338 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-16T04:00:42.431088+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-16T04:00:42.431253+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"all_signals_report.json\\nreport.json\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-16T04:00:42.431380+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/code -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/code -name \"*.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-16T04:00:42.431546+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/data_utils.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_to_llamafactory.py\\n/root/autodl-tmp/struct_self_consist_ie/code/evaluation.py\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py\\n/root/autodl-tmp/struct_self_consist_ie/code/sampling.py\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_eval.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_diagnose.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_realign_eval.py\\n/root/autodl-tmp/struct_self_consist_ie/code/mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_wnut17.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/extract_logprobs.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exact_match_voting.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_postprocess.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py\\n/root/autodl-tmp/struct_self_consist_ie/code/diagnose_logprob_rho.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp002_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/run_mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp015_unified.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp004_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_component_wise_re.py\\n/root/a
+…[truncated 4621 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-16T04:00:42.431715+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024/all_signals_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024/all_signals_report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-16T04:00:42.431840+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/analyze_llama3b_vs_8b.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/analyze_llama3b_vs_8b.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-16T04:00:42.432048+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"ner\\\": {\\n    \\\"full\\\": {\\n      \\\"n\\\": 529,\\n      \\\"pct_perfect\\\": 0.2495,\\n      \\\"greedy_f1_mean\\\": 0.646,\\n      \\\"metrics\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.3096,\\n          \\\"p_rho\\\": 3.2318026986960163e-13,\\n          \\\"tau\\\": 0.2288,\\n          \\\"p_tau\\\": 1.3838905631259319e-13,\\n          \\\"auroc\\\": 0.6683\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.2352,\\n          \\\"p_rho\\\": 4.402244766602746e-08,\\n          \\\"tau\\\": 0.1759,\\n          \\\"p_tau\\\": 1.310429035438713e-08,\\n          \\\"auroc\\\": 0.6069\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho\\\": 0.1503,\\n          \\\"p_rho\\\": 0.0005246029384220238,\\n          \\\"tau\\\": 0.1087,\\n          \\\"p_tau\\\": 0.0003585574516605718,\\n          \\\"auroc\\\": 0.5318\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho\\\": 0.2587,\\n          \\\"p_rho\\\": 1.5437867914378069e-09,\\n          \\\"tau\\\": 0.1966,\\n          \\\"p_tau\\\": 1.5737752978622827e-09,\\n          \\\"auroc\\\": 0.7174\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho\\\": 0.4053,\\n          \\\"p_rho\\\": 2.4865289139294866e-22,\\n          \\\"tau\\\": 0.3042,\\n          \\\"p_tau\\\": 1.5512470332456044e-22,\\n          \\\"auroc\\\": 0.6967\\n        }\\n      }\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 478,\\n      \\\"pct_perfect\\\": 0.2762,\\n      \\\"greedy_f1_mean\\\": 0.715,\\n      \\\"metrics\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": 0.2718,\\n          \\\"p_rho\\\": 1.5405526831187722e-09,\\n          \\\"tau\\\": 0.1995,\\n          \\\"p_tau\\\": 1.0488054129515403e-09,\\n          \\\"auroc\\\": 0.6565\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": 0.1472,\\n          \\\"p_rho\\\": 0.0012513594721615879,\\n          \\\"tau\\\": 0.1088,\\n          \\\"
+…[truncated 3690 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-16T04:00:42.432359+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Scale ablation: LLaMA 3.2-3B vs LLaMA 3.1-8B — SciERC NER — 5-signal comparison.\\\"\\\"\\\"\\nimport json, sys, os\\nimport numpy as np\\nfrom scipy.stats import spearmanr, rankdata\\nfrom collections import Counter\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import per_instance_f1\\n\\nEXPERIMENTS = {\\n    \\\"llama_8b_scierc\\\": {\\n        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"model\\\": \\\"LLaMA-3.1-8B\\\",\\n    },\\n    \\\"llama_3b_scierc\\\": {\\n        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"model\\\": \\\"LLaMA-3.2-3B\\\",\\n    },\\n}\\n\\ndef load_data(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f if line.strip()]\\n\\ndef compute_exact_match_rate(samples, subtask):\\n    if subtask == \\\"ner\\\":\\n        keys = [frozenset((e[\\\"text\\\"], e[\\\"type\\\"]) for e in s.get(\\\"entities\\\", [])) for s in samples]\\n    else:\\n        keys = [frozenset((r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in s.get(\\\"relations\\\", [])) for s in samples]\\n    if not keys: return 0.0\\n    c = Counter(keys)\\n    return c.most_common(1)[0][1] / len(samples)\\n\\ndef compute_voting_confidence(samples, subtask):\\n    N = len(samples)\\n    if N == 0: return 0.0\\n    counter = Counter()\\n    if subtask == \\\"ner\\\":\\n        for s in samples:\\n            for e in s.get(\\\"entities\\\", []):\\n                counter[(e[\\\"text\\\"], e[\\\"type\\\"])] += 1\\n    else:\\n        for s in samples:\\n            for r in s.get(\\\"relations\\
+…[truncated 6205 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-16T04:00:42.432566+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -20 /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/inference.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -20 /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/inference.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-16T04:00:42.432768+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"(EngineCore pid=262115) INFO 05-16 11:55:01 [backends.py:1048] Dynamo bytecode transform time: 1.73 s\\n(EngineCore pid=262115) INFO 05-16 11:55:02 [backends.py:284] Directly load the compiled graph(s) for compile range (1, 8192) from the cache, took 0.859 s\\n(EngineCore pid=262115) INFO 05-16 11:55:02 [monitor.py:48] torch.compile took 2.77 s in total\\n(EngineCore pid=262115) INFO 05-16 11:55:02 [decorators.py:296] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/0078511f3e176a3b956989d7c36b19e779245456382a3f466afce056107fe0ce/rank_0_0/model\\n(EngineCore pid=262115) INFO 05-16 11:55:02 [monitor.py:76] Initial profiling/warmup run took 0.15 s\\n(EngineCore pid=262115) INFO 05-16 11:55:02 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=512\\n(EngineCore pid=262115) INFO 05-16 11:55:02 [gpu_model_runner.py:5607] Profiling CUDA graph memory: PIECEWISE=51 (largest=512), FULL=35 (largest=256)\\n(EngineCore pid=262115) INFO 05-16 11:55:04 [gpu_model_runner.py:5686] Estimated CUDA graph memory: 0.41 GiB total\\n(EngineCore pid=262115) INFO 05-16 11:55:04 [gpu_worker.py:456] Available KV cache memory: 21.44 GiB\\n(EngineCore pid=262115) INFO 05-16 11:55:04 [gpu_worker.py:490] In v0.19, CUDA graph memory profiling will be enabled by default (VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1), which more accurately accounts for CUDA graph memory during KV cache allocation. To try it now, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1 and increase --gpu-memory-utilization from 0.9000 to 0.9131 to maintain the same effective KV cache size.\\n(EngineCore pid=262115) INFO 05-16 11:55:04 [kv_cache_utils.py:1316] GPU KV cache size: 200,688 tokens\\n(EngineCore pid=262115) INFO 05-16 11:55:04 [kv_cache_utils.py:1321] Maximum concurrency for 4,096 tokens per request: 49.00x\\n(EngineCore pid=262115) \\rCapturing CUDA graphs (mixed prefill-decode, PIECEWI
+…[truncated 6333 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-16T04:00:42.432965+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -30 /root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -30 /root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-16T04:00:42.433140+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Multi-seed Selection F1 for Table 3 (C2 critical).\\n\\nFor each instance's N samples, score with 5 signals (SJ/FK/VC/EM/LP),\\nselect the top-scoring sample, compute its F1 vs gold.\\nReports 3-seed mean±σ, per-seed bootstrap p-value vs greedy, and\\na combined bootstrap p-value across seeds.\\n\\nInput: samples.jsonl files from inference experiments.\\nOutput: JSON results + markdown report.\\nDepends: consistency.py, evaluation.py (same directory).\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nimport time\\nfrom collections import Counter\\n\\nimport numpy as np\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import (\\n    _ner_soft_jaccard_pair,\\n    _re_soft_jaccard_pair,\\n    _extract_surface_keys,\\n)\\nfrom evaluation import per_instance_f1\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-16T04:00:42.433301+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/inference.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/inference.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-16T04:00:42.433565+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"(EngineCore pid=262115) &lt;frozen importlib._bootstrap_external>:1297: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.\\n(EngineCore pid=262115) &lt;frozen importlib._bootstrap_external>:1297: FutureWarning: The cuda.nvrtc module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.nvrtc module instead.\\n(EngineCore pid=262115) \\rLoading safetensors checkpoint shards:   0% Completed | 0/2 [00:00<?, ?it/s]\\n(EngineCore pid=262115) \\rLoading safetensors checkpoint shards:  50% Completed | 1/2 [00:00<00:00,  1.82it/s]\\n(EngineCore pid=262115) \\rLoading safetensors checkpoint shards: 100% Completed | 2/2 [00:01<00:00,  1.91it/s]\\n(EngineCore pid=262115) \\rLoading safetensors checkpoint shards: 100% Completed | 2/2 [00:01<00:00,  1.90it/s]\\n(EngineCore pid=262115) \\n(EngineCore pid=262115) INFO 05-16 11:54:58 [default_loader.py:384] Loading weights took 1.16 seconds\\n(EngineCore pid=262115) INFO 05-16 11:54:59 [gpu_model_runner.py:4566] Model loading took 6.02 GiB memory and 1.698650 seconds\\n(EngineCore pid=262115) INFO 05-16 11:55:01 [backends.py:988] Using cache directory: /root/.cache/vllm/torch_compile_cache/d88279970d/rank_0_0/backbone for vLLM's torch.compile\\n(EngineCore pid=262115) INFO 05-16 11:55:01 [backends.py:1048] Dynamo bytecode transform time: 1.73 s\\n(EngineCore pid=262115) INFO 05-16 11:55:02 [backends.py:284] Directly load the compiled graph(s) for compile range (1, 8192) from the cache, took 0.859 s\\n(EngineCore pid=262115) INFO 05-16 11:55:02 [monitor.py:48] torch.compile took 2.77 s in total\\n(EngineCore pid=262115) INFO 05-16 11:55:02 [decorators.py:296] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/0078511f3e176a3b956989d7c36b19e779245456382a3f466afce056107fe0ce/rank_0_0/model\\n(Engin
+…[truncated 6330 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-16T04:00:42.433773+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "sleep 180",
+  "description": "Wait 3 minutes for inference to progress",
+  "timeout": "200000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "sleep 180",
+    "description": "Wait 3 minutes for inference to progress",
+    "timeout": "200000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-16T04:00:42.433905+00:00_
+
+&lt;tool_use_error>Blocked: standalone sleep 180. To wait for a condition, use Monitor with an until-loop (e.g. `until &lt;check>; do sleep 2; done`). To wait for a command you started, use run_in_background: true. Do not chain shorter sleeps to work around this block.&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-16T04:00:42.434026+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:Monitor",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:Monitor",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-16T04:00:42.434175+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-16T04:00:42.434320+00:00_
+
+called Monitor
+
+<details open><summary>🔧 Tool call — Monitor</summary>
+
+```json
+{
+  "description": "LLaMA 3B SciERC inference completion",
+  "timeout_ms": "600000",
+  "persistent": "False",
+  "command": "until ssh autodl-5090 \"ls /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/report.json 2>/dev/null && echo DONE || (tmux has-session -t llama3b_infer 2>/dev/null && echo RUNNING || echo SESSION_GONE)\" | grep -qE \"DONE|SESSION_GONE\"; do sleep 15; done; ssh autodl-5090 \"ls /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/report.json 2>/dev/null && echo 'INFERENCE_COMPLETE: report.json exists' || echo 'INFERENCE_ENDED: session gone but no report.json - check logs'\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "Monitor",
+  "tool_args": {
+    "description": "LLaMA 3B SciERC inference completion",
+    "timeout_ms": "600000",
+    "persistent": "False",
+    "command": "until ssh autodl-5090 \"ls /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/report.json 2>/dev/null && echo DONE || (tmux has-session -t llama3b_infer 2>/dev/null && echo RUNNING || echo SESSION_GONE)\" | grep -qE \"DONE|SESSION_GONE\"; do sleep 15; done; ssh autodl-5090 \"ls /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/report.json 2>/dev/null && echo 'INFERENCE_COMPLETE: report.json exists' || echo 'INFERENCE_ENDED: session gone but no report.json - check logs'\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-16T04:00:42.434454+00:00_
+
+Monitor started (task byr7ff5lu, timeout 600000ms). You will be notified on each event. Keep working — do not poll or sleep. Events may arrive while you are waiting for the user — an event is not their reply.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "Monitor",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-16T04:00:42.434605+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-16T04:00:42.434853+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Multi-seed Selection F1 for Table 3 (C2 critical).\\n\\nFor each instance's N samples, score with 5 signals (SJ/FK/VC/EM/LP),\\nselect the top-scoring sample, compute its F1 vs gold.\\nReports 3-seed mean±σ, per-seed bootstrap p-value vs greedy, and\\na combined bootstrap p-value across seeds.\\n\\nInput: samples.jsonl files from inference experiments.\\nOutput: JSON results + markdown report.\\nDepends: consistency.py, evaluation.py (same directory).\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nimport time\\nfrom collections import Counter\\n\\nimport numpy as np\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import (\\n    _ner_soft_jaccard_pair,\\n    _re_soft_jaccard_pair,\\n    _extract_surface_keys,\\n)\\nfrom evaluation import per_instance_f1\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\n\\nEXPERIMENT_GROUPS = {\\n    # --- Qwen SciERC N=16 (v2 pipeline) ---\\n    \\\"qwen_scierc_ner_n16\\\": {\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\\\",\\n        },\\n    },\\n    \\\"qwen_scierc_re_n16\\\": {\\n        \\\"subtask\\\": \\\"re\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\\\",\\n        },\\n    },\\n    # --- Qwen SciERC N=8 (r1024 logprobs) ---\\n    \\\"qwen_scierc_ner_n8\\\": {\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\",\\n            123: f\\\"{B
+…[truncated 7324 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-16T04:00:42.435039+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -5 /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/inference.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -5 /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/inference.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-16T04:00:42.435280+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"(EngineCore pid=262115) INFO 05-16 11:55:06 [gpu_worker.py:617] CUDA graph pool memory: 0.3 GiB (actual), 0.41 GiB (estimated), difference: 0.11 GiB (38.2%).\\n(EngineCore pid=262115) INFO 05-16 11:55:06 [core.py:281] init engine (profile, create kv cache, warmup model) took 7.69 seconds\\nINFO 05-16 11:55:07 [llm.py:391] Supported tasks: ['generate']\\n\\rRendering prompts:   0%|          | 0/551 [00:00<?, ?it/s]\\rRendering prompts:   7%|▋         | 39/551 [00:00<00:01, 383.41it/s]\\rRendering prompts:  14%|█▍        | 78/551 [00:00<00:03, 147.94it/s]\\rRendering prompts:  24%|██▍       | 133/551 [00:00<00:01, 245.06it/s]\\rRendering prompts:  34%|███▍      | 189/551 [00:00<00:01, 324.42it/s]\\rRendering prompts:  44%|████▍     | 245/551 [00:00<00:00, 386.44it/s]\\rRendering prompts:  55%|█████▍    | 301/551 [00:00<00:00, 432.39it/s]\\rRendering prompts:  65%|██████▍   | 357/551 [00:00<00:00, 466.58it/s]\\rRendering prompts:  75%|███████���  | 412/551 [00:01<00:00, 490.23it/s]\\rRendering prompts:  85%|████████▍ | 467/551 [00:01<00:00, 507.00it/s]\\rRendering prompts:  95%|█████████▍| 523/551 [00:01<00:00, 520.48it/s]\\rRendering prompts: 100%|██████████| 551/551 [00:01<00:00, 411.81it/s]\\n\\rProcessed prompts:   0%|          | 0/4408 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/4408 [00:01<15:10,  4.83it/s, est. speed input: 1019.49 toks/s, output: 193.26 toks/s]\\rProcessed prompts:   1%|          | 24/4408 [00:02<06:00, 12.17it/s, est. speed input: 2261.15 toks/s, output: 412.51 toks/s]\\rProcessed prompts:   1%|          | 32/4408 [00:03<06:25, 11.34it/s, est. speed input: 2221.70 toks/s, output: 494.46 toks/s]\\rProcessed prompts:   1%|          | 40/4408 [00:03<05:29, 13.25it/s, est. speed input: 2486.20 toks/s, output: 696.27 toks/s]\\rProcessed prompts:   1%|▏         | 56/4408 [00:03<03:05, 23.49it/s, est. speed input: 3355.90 toks/s, o
+…[truncated 6341 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-16T04:00:42.435469+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -3 /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/inference.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -3 /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/inference.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-16T04:00:42.435667+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"INFO 05-16 11:55:07 [llm.py:391] Supported tasks: ['generate']\\n\\rRendering prompts:   0%|          | 0/551 [00:00<?, ?it/s]\\rRendering prompts:   7%|▋         | 39/551 [00:00<00:01, 383.41it/s]\\rRendering prompts:  14%|█▍        | 78/551 [00:00<00:03, 147.94it/s]\\rRendering prompts:  24%|██▍       | 133/551 [00:00<00:01, 245.06it/s]\\rRendering prompts:  34%|███▍      | 189/551 [00:00<00:01, 324.42it/s]\\rRendering prompts:  44%|████▍     | 245/551 [00:00<00:00, 386.44it/s]\\rRendering prompts:  55%|█████▍    | 301/551 [00:00<00:00, 432.39it/s]\\rRendering prompts:  65%|██████▍   | 357/551 [00:00<00:00, 466.58it/s]\\rRendering prompts:  75%|███████▍  | 412/551 [00:01<00:00, 490.23it/s]\\rRendering prompts:  85%|████████▍ | 467/551 [00:01<00:00, 507.00it/s]\\rRendering prompts:  95%|█████████▍| 523/551 [00:01<00:00, 520.48it/s]\\rRendering prompts: 100%|██████████| 551/551 [00:01<00:00, 411.81it/s]\\n\\rProcessed prompts:   0%|          | 0/4408 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/4408 [00:01<15:10,  4.83it/s, est. speed input: 1019.49 toks/s, output: 193.26 toks/s]\\rProcessed prompts:   1%|          | 24/4408 [00:02<06:00, 12.17it/s, est. speed input: 2261.15 toks/s, output: 412.51 toks/s]\\rProcessed prompts:   1%|          | 32/4408 [00:03<06:25, 11.34it/s, est. speed input: 2221.70 toks/s, output: 494.46 toks/s]\\rProcessed prompts:   1%|          | 40/4408 [00:03<05:29, 13.25it/s, est. speed input: 2486.20 toks/s, output: 696.27 toks/s]\\rProcessed prompts:   1%|▏         | 56/4408 [00:03<03:05, 23.49it/s, est. speed input: 3355.90 toks/s, output: 982.41 toks/s]\\rProcessed prompts:   1%|▏         | 64/4408 [00:03<02:42, 26.77it/s, est. speed input: 3621.54 toks/s, output: 1187.71 toks/s]\\rProcessed prompts:   2%|▏         | 80/4408 [00:03<01:52, 38.31it/s, est. speed input: 4310.96 toks/s, output: 1635.61 toks/s]\\rProcessed p
+…[truncated 6342 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-16T04:00:42.435838+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-16T04:00:42.435972+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 44\\ndrwxr-xr-x 2 root root    35 May 16 11:54 .\\ndrwxr-xr-x 5 root root   177 May 16 11:54 ..\\n-rw-r--r-- 1 root root 42547 May 16 11:56 inference.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-16T04:00:42.436109+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tmux has-session -t llama3b_infer 2>/dev/null; echo $?",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tmux has-session -t llama3b_infer 2>/dev/null; echo $?",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-16T04:00:42.436258+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-16T04:00:42.436385+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tmux has-session -t llama3b_infer 2>/dev/null && echo \"RUNNING\" || echo \"DONE\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tmux has-session -t llama3b_infer 2>/dev/null && echo \"RUNNING\" || echo \"DONE\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-16T04:00:42.436508+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"RUNNING\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-16T04:00:42.436639+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -c /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/inference.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "wc -c /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/inference.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-16T04:00:42.436762+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"47717 /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/inference.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-16T04:00:42.436889+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "stat -c %Y /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/inference.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "stat -c %Y /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/inference.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-16T04:00:42.437013+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1778903817\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-16T04:00:42.437159+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-16T04:00:42.437287+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 52\\ndrwxr-xr-x 2 root root    35 May 16 11:54 .\\ndrwxr-xr-x 5 root root   177 May 16 11:54 ..\\n-rw-r--r-- 1 root root 52081 May 16 11:57 inference.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-16T04:00:42.437418+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-16T04:00:42.437544+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 56\\ndrwxr-xr-x 2 root root    35 May 16 11:54 .\\ndrwxr-xr-x 5 root root   177 May 16 11:54 ..\\n-rw-r--r-- 1 root root 54874 May 16 11:57 inference.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-16T04:00:42.437661+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-16T04:00:42.437779+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 56\\ndrwxr-xr-x 2 root root    35 May 16 11:54 .\\ndrwxr-xr-x 5 root root   177 May 16 11:54 ..\\n-rw-r--r-- 1 root root 55609 May 16 11:57 inference.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-16T04:00:42.437892+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-16T04:00:42.438010+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 56\\ndrwxr-xr-x 2 root root    35 May 16 11:54 .\\ndrwxr-xr-x 5 root root   177 May 16 11:54 ..\\n-rw-r--r-- 1 root root 56648 May 16 11:57 inference.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-16T04:00:42.438171+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -80 /root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -80 /root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-16T04:00:42.438341+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Selection F1 for Qwen3-4B scale ablation (single-seed).\\n\\nRuns the same per-sample selection pipeline as compute_selection_f1.py\\non 4B CoNLL NER and SciERC NER/RE inference outputs.\\n\\\"\\\"\\\"\\nimport json\\nimport os\\nimport sys\\nimport time\\nfrom collections import Counter\\n\\nimport numpy as np\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import (\\n    _ner_soft_jaccard_pair,\\n    _re_soft_jaccard_pair,\\n    _extract_surface_keys,\\n)\\nfrom evaluation import per_instance_f1\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\n\\nEXPERIMENTS = {\\n    \\\"qwen3_4b_conll_ner\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n    },\\n    \\\"qwen3_4b_scierc_ner\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n    },\\n    \\\"qwen3_4b_scierc_re\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"re\\\",\\n    },\\n}\\n\\nN_BOOTSTRAP = 10000\\nBOOTSTRAP_SEED = 42\\nSIGNALS = [\\\"VC\\\", \\\"SJ\\\", \\\"FK\\\", \\\"EM\\\", \\\"LP\\\"]\\n\\n\\ndef load_data(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f if line.strip()]\\n\\n\\ndef compute_sample_sj_scores(instance, subtask):\\n    samples = instance[\\\"samples\\\"]\\n    N = len(samples)\\n    field = \\\"entities\\\" if subtask == \\\"ner\\\" else \\\"relations\\\"\\n    pair_fn = _ner_soft_jaccard_pair if subtask == \\\"ner\\\" else _re_soft_jaccard_pair\\n    matrix = np.zeros((N, N))\\n    for i in range(N):\\n        for j in range(i + 1, N):\\n            s = pair_fn(samples[i].get(field, []), samples[j].get(field, []))\\n            matrix[
+…[truncated 967 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-16T04:00:42.438490+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-16T04:00:42.438759+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Selection F1 for Qwen3-4B scale ablation (single-seed).\\n\\nRuns the same per-sample selection pipeline as compute_selection_f1.py\\non 4B CoNLL NER and SciERC NER/RE inference outputs.\\n\\\"\\\"\\\"\\nimport json\\nimport os\\nimport sys\\nimport time\\nfrom collections import Counter\\n\\nimport numpy as np\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import (\\n    _ner_soft_jaccard_pair,\\n    _re_soft_jaccard_pair,\\n    _extract_surface_keys,\\n)\\nfrom evaluation import per_instance_f1\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\n\\nEXPERIMENTS = {\\n    \\\"qwen3_4b_conll_ner\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n    },\\n    \\\"qwen3_4b_scierc_ner\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n    },\\n    \\\"qwen3_4b_scierc_re\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"re\\\",\\n    },\\n}\\n\\nN_BOOTSTRAP = 10000\\nBOOTSTRAP_SEED = 42\\nSIGNALS = [\\\"VC\\\", \\\"SJ\\\", \\\"FK\\\", \\\"EM\\\", \\\"LP\\\"]\\n\\n\\ndef load_data(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f if line.strip()]\\n\\n\\ndef compute_sample_sj_scores(instance, subtask):\\n    samples = instance[\\\"samples\\\"]\\n    N = len(samples)\\n    field = \\\"entities\\\" if subtask == \\\"ner\\\" else \\\"relations\\\"\\n    pair_fn = _ner_soft_jaccard_pair if subtask == \\\"ner\\\" else _re_soft_jaccard_pair\\n    matrix = np.zeros((N, N))\\n    for i in range(N):\\n        for j in range(i + 1, N):\\n            s = pair_fn(samples[i].get(field, []), samples[j].get(field, []))\\n            matrix[
+…[truncated 7231 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-16T04:00:42.438996+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat > /root/autodl-tmp/struct_self_consist_ie/code/selection_f1_3b.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Selection F1 for LLaMA-3.2-3B vs 8B scale ablation (single-seed).\"\"\"\nimport json\nimport os\nimport sys\nimport time\nfrom collections import Counter\n\nimport numpy as np\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom consistency import (\n    _ner_soft_jaccard_pair,\n    _re_soft_jaccard_pair,\n    _extract_surface_keys,\n)\nfrom evaluation import per_instance_f1\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\n\nEXPERIMENTS = {\n    \"llama_8b_scierc_ner\": {\n        \"path\": f\"{BASE}/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\",\n        \"subtask\": \"ner\",\n    },\n    \"llama_3b_scierc_ner\": {\n        \"path\": f\"{BASE}/output/review_round9_experiments/llama3b_scierc/samples.jsonl\",\n        \"subtask\": \"ner\",\n    },\n}\n\nN_BOOTSTRAP = 10000\nBOOTSTRAP_SEED = 42\nSIGNALS = [\"VC\", \"SJ\", \"FK\", \"EM\", \"LP\"]\n\n\ndef load_data(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f if line.strip()]\n\n\ndef compute_sample_sj_scores(instance, subtask):\n    samples = instance[\"samples\"]\n    N = len(samples)\n    field = \"entities\" if subtask == \"ner\" else \"relations\"\n    pair_fn = _ner_soft_jaccard_pair if subtask == \"ner\" else _re_soft_jaccard_pair\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            s = pair_fn(samples[i].get(field, []), samples[j].get(field, []))\n            matrix[i][j] = s\n            matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    return [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\n\n\ndef compute_sample_surface_scores(instance, subtask):\n    samples = instance[\"samples\"]\n    N = len(samples)\n    key_sets = [frozenset(_extract_surface_keys(s, subtask)) for s in samples]\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            union = len(key_sets[i] | key_sets[j])\n            inter = len(key_sets[i] & key_sets[j])\n            s = inter / union if union > 0 else 1.0\n            matrix[i][j] = s\n            matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    fk_scores = [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\n    return fk_scores, key_sets\n\n\ndef compute_sample_voting_conf(key_sets, N):\n    all_keys_count = Counter()\n    for ks in key_sets:\n        for key in ks:\n            all_keys_count[key] += 1\n    scores = []\n    for ks in key_sets:\n        if not ks:\n            scores.append(0.0)\n        else:\n            fracs = [all_keys_count[key] / N for key in ks]\n            scores.append(float(np.mean(fracs)))\n    return scores\n\n\ndef compute_sample_em_scores(key_sets):\n    N = len(key_sets)\n    return [float(sum(1 for j in range(N) if j != k and key_sets[k] == key_sets[j])) for k in range(N)]\n\n\ndef compute_sample_logprobs(instance):\n    lps = []\n    for s in instance[\"samples\"]:\n        lp = s.get(\"mean_logprob\")\n        if lp is None:\n            lp = s.get(\"cumulative_logprob\", -999) / max(s.get(\"n_tokens\", 1), 1)\n        lps.append(lp)\n    return lps\n\n\ndef paired_bootstrap(sel_f1s, greedy_f1s, n_bootstrap, seed):\n    rng = np.random.RandomState(seed)\n    n = len(sel_f1s)\n    count_ge = 0\n    deltas = np.empty(n_bootstrap)\n    for b in range(n_bootstrap):\n        idx = rng.randint(0, n, size=n)\n        d = sel_f1s[idx].mean() - greedy_f1s[idx].mean()\n        deltas[b] = d\n        if d <= 0:\n            count_ge += 1\n    p_value = count_ge / n_bootstrap\n    ci95 = [float(np.percentile(deltas, 2.5)), float(np.percentile(deltas, 97.5))]\n    return {\"p_value\": float(p_value), \"ci95\": ci95}\n\n\ndef analyze(path, subtask):\n    data = load_data(path)\n    field = \"entities\" if subtask == \"ner\" else \"relations\"\n    instances = [inst for inst in data if len(inst[\"gold\"].get(field, [])) > 0]\n    n_inst = len(instances)\n    N_per = len(instances[0][\"samples\"]) if instances else 0\n    print(f\"  {n_inst} valid instances (gold-empty filtered: {len(data) - n_inst}), N={N_per}\")\n\n    t0 = time.time()\n    greedy_f1s, oracle_f1s, random_f1s = [], [], []\n    signal_f1s = {sig: [] for sig in SIGNALS}\n\n    for inst in instances:\n        samples = inst[\"samples\"]\n        gold = inst[\"gold\"]\n        greedy = inst.get(\"greedy\", samples[0])\n        N = len(samples)\n\n        g_f1 = per_instance_f1(greedy, gold, subtask=subtask)\n        greedy_f1s.append(g_f1)\n\n        sample_f1s = [per_instance_f1(s, gold, subtask=subtask) for s in samples]\n        oracle_f1s.append(max(sample_f1s))\n        random_f1s.append(float(np.mean(sample_f1s)))\n\n        sj_scores = compute_sample_sj_scores(inst, subtask)\n        fk_scores, key_sets = compute_sample_surface_scores(inst, subtask)\n        vc_scores = compute_sample_voting_conf(key_sets, N)\n        em_scores = compute_sample_em_scores(key_sets)\n        lp_scores = compute_sample_logprobs(inst)\n\n        all_scores = {\"SJ\": sj_scores, \"FK\": fk_scores, \"VC\": vc_scores,\n                      \"EM\": em_scores, \"LP\": lp_scores}\n\n        for sig in SIGNALS:\n            chosen = int(np.argmax(all_scores[sig]))\n            signal_f1s[sig].append(sample_f1s[chosen])\n\n    elapsed = time.time() - t0\n    print(f\"  Computed in {elapsed:.1f}s\")\n\n    greedy_arr = np.array(greedy_f1s)\n    oracle_arr = np.array(oracle_f1s)\n    random_arr = np.array(random_f1s)\n\n    result = {\n        \"n_instances\": n_inst,\n        \"n_gold_empty_filtered\": len(data) - n_inst,\n        \"n_samples_per_instance\": N_per,\n        \"greedy_f1\": round(float(greedy_arr.mean()), 5),\n        \"random_f1\": round(float(random_arr.mean()), 5),\n        \"oracle_f1\": round(float(oracle_arr.mean()), 5),\n    }\n\n    for sig in SIGNALS:\n        arr = np.array(signal_f1s[sig])\n        boot = paired_bootstrap(arr, greedy_arr, N_BOOTSTRAP, BOOTSTRAP_SEED)\n        result[sig] = {\n            \"selection_f1\": round(float(arr.mean()), 5),\n            \"delta_vs_greedy\": round(float(arr.mean() - greedy_arr.mean()), 5),\n            \"bootstrap_p\": round(boot[\"p_value\"], 5),\n            \"bootstrap_ci95\": [round(x, 5) for x in boot[\"ci95\"]],\n        }\n\n    return result\n\n\ndef main():\n    all_results = {}\n\n    for exp_name, cfg in EXPERIMENTS.items():\n        path = cfg[\"path\"]\n        subtask = cfg[\"subtask\"]\n        print(f\"\\n{'='*60}\")\n        print(f\"  {exp_name} (subtask={subtask})\")\n        print(f\"{'='*60}\")\n\n        if not os.path.exists(path):\n            print(f\"  SKIP: {path} not found\")\n            continue\n\n        result = analyze(path, subtask)\n        all_results[exp_name] = result\n\n        print(f\"\\n  {'Method':<10s}  {'Sel F1':>9s}  {'delta Greedy':>12s}  {'p-value':>9s}\")\n        print(f\"  {'-'*10}  {'-'*9}  {'-'*12}  {'-'*9}\")\n        print(f\"  {'Greedy':<10s}  {result['greedy_f1']:.5f}\")\n        print(f\"  {'Random':<10s}  {result['random_f1']:.5f}  {result['random_f1']-result['greedy_f1']:+.5f}\")\n        for sig in SIGNALS:\n            sr = result[sig]\n            print(f\"  {sig:<10s}  {sr['selection_f1']:.5f}  {sr['delta_vs_greedy']:+.5f}  {sr['bootstrap_p']:.5f}\")\n        print(f\"  {'Oracle':<10s}  {result['oracle_f1']:.5f}  {result['oracle_f1']-result['greedy_f1']:+.5f}\")\n\n    out_path = f\"{BASE}/output/review_round9_experiments/llama3b_scierc/selection_f1_3b_vs_8b.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    print(f\"\\nSaved: {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat > /root/autodl-tmp/struct_self_consist_ie/code/selection_f1_3b.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Selection F1 for LLaMA-3.2-3B vs 8B scale ablation (single-seed).\"\"\"\nimport json\nimport os\nimport sys\nimport time\nfrom collections import Counter\n\nimport numpy as np\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom consistency import (\n    _ner_soft_jaccard_pair,\n    _re_soft_jaccard_pair,\n    _extract_surface_keys,\n)\nfrom evaluation import per_instance_f1\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\n\nEXPERIMENTS = {\n    \"llama_8b_scierc_ner\": {\n        \"path\": f\"{BASE}/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\",\n        \"subtask\": \"ner\",\n    },\n    \"llama_3b_scierc_ner\": {\n        \"path\": f\"{BASE}/output/review_round9_experiments/llama3b_scierc/samples.jsonl\",\n        \"subtask\": \"ner\",\n    },\n}\n\nN_BOOTSTRAP = 10000\nBOOTSTRAP_SEED = 42\nSIGNALS = [\"VC\", \"SJ\", \"FK\", \"EM\", \"LP\"]\n\n\ndef load_data(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f if line.strip()]\n\n\ndef compute_sample_sj_scores(instance, subtask):\n    samples = instance[\"samples\"]\n    N = len(samples)\n    field = \"entities\" if subtask == \"ner\" else \"relations\"\n    pair_fn = _ner_soft_jaccard_pair if subtask == \"ner\" else _re_soft_jaccard_pair\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            s = pair_fn(samples[i].get(field, []), samples[j].get(field, []))\n            matrix[i][j] = s\n            matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    return [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\n\n\ndef compute_sample_surface_scores(instance, subtask):\n    samples = instance[\"samples\"]\n    N = len(samples)\n    key_sets = [frozenset(_extract_surface_keys(s, subtask)) for s in samples]\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            union = len(key_sets[i] | key_sets[j])\n            inter = len(key_sets[i] & key_sets[j])\n            s = inter / union if union > 0 else 1.0\n            matrix[i][j] = s\n            matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    fk_scores = [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\n    return fk_scores, key_sets\n\n\ndef compute_sample_voting_conf(key_sets, N):\n    all_keys_count = Counter()\n    for ks in key_sets:\n        for key in ks:\n            all_keys_count[key] += 1\n    scores = []\n    for ks in key_sets:\n        if not ks:\n            scores.append(0.0)\n        else:\n            fracs = [all_keys_count[key] / N for key in ks]\n            scores.append(float(np.mean(fracs)))\n    return scores\n\n\ndef compute_sample_em_scores(key_sets):\n    N = len(key_sets)\n    return [float(sum(1 for j in range(N) if j != k and key_sets[k] == key_sets[j])) for k in range(N)]\n\n\ndef compute_sample_logprobs(instance):\n    lps = []\n    for s in instance[\"samples\"]:\n        lp = s.get(\"mean_logprob\")\n        if lp is None:\n            lp = s.get(\"cumulative_logprob\", -999) / max(s.get(\"n_tokens\", 1), 1)\n        lps.append(lp)\n    return lps\n\n\ndef paired_bootstrap(sel_f1s, greedy_f1s, n_bootstrap, seed):\n    rng = np.random.RandomState(seed)\n    n = len(sel_f1s)\n    count_ge = 0\n    deltas = np.empty(n_bootstrap)\n    for b in range(n_bootstrap):\n        idx = rng.randint(0, n, size=n)\n        d = sel_f1s[idx].mean() - greedy_f1s[idx].mean()\n        deltas[b] = d\n        if d <= 0:\n            count_ge += 1\n    p_value = count_ge / n_bootstrap\n    ci95 = [float(np.percentile(deltas, 2.5)), float(np.percentile(deltas, 97.5))]\n    return {\"p_value\": float(p_value), \"ci95\": ci95}\n\n\ndef analyze(path, subtask):\n    data = load_data(path)\n    field = \"entities\" if subtask == \"ner\" else \"relations\"\n    instances = [inst for inst in data if len(inst[\"gold\"].get(field, [])) > 0]\n    n_inst = len(instances)\n    N_per = len(instances[0][\"samples\"]) if instances else 0\n    print(f\"  {n_inst} valid instances (gold-empty filtered: {len(data) - n_inst}), N={N_per}\")\n\n    t0 = time.time()\n    greedy_f1s, oracle_f1s, random_f1s = [], [], []\n    signal_f1s = {sig: [] for sig in SIGNALS}\n\n    for inst in instances:\n        samples = inst[\"samples\"]\n        gold = inst[\"gold\"]\n        greedy = inst.get(\"greedy\", samples[0])\n        N = len(samples)\n\n        g_f1 = per_instance_f1(greedy, gold, subtask=subtask)\n        greedy_f1s.append(g_f1)\n\n        sample_f1s = [per_instance_f1(s, gold, subtask=subtask) for s in samples]\n        oracle_f1s.append(max(sample_f1s))\n        random_f1s.append(float(np.mean(sample_f1s)))\n\n        sj_scores = compute_sample_sj_scores(inst, subtask)\n        fk_scores, key_sets = compute_sample_surface_scores(inst, subtask)\n        vc_scores = compute_sample_voting_conf(key_sets, N)\n        em_scores = compute_sample_em_scores(key_sets)\n        lp_scores = compute_sample_logprobs(inst)\n\n        all_scores = {\"SJ\": sj_scores, \"FK\": fk_scores, \"VC\": vc_scores,\n                      \"EM\": em_scores, \"LP\": lp_scores}\n\n        for sig in SIGNALS:\n            chosen = int(np.argmax(all_scores[sig]))\n            signal_f1s[sig].append(sample_f1s[chosen])\n\n    elapsed = time.time() - t0\n    print(f\"  Computed in {elapsed:.1f}s\")\n\n    greedy_arr = np.array(greedy_f1s)\n    oracle_arr = np.array(oracle_f1s)\n    random_arr = np.array(random_f1s)\n\n    result = {\n        \"n_instances\": n_inst,\n        \"n_gold_empty_filtered\": len(data) - n_inst,\n        \"n_samples_per_instance\": N_per,\n        \"greedy_f1\": round(float(greedy_arr.mean()), 5),\n        \"random_f1\": round(float(random_arr.mean()), 5),\n        \"oracle_f1\": round(float(oracle_arr.mean()), 5),\n    }\n\n    for sig in SIGNALS:\n        arr = np.array(signal_f1s[sig])\n        boot = paired_bootstrap(arr, greedy_arr, N_BOOTSTRAP, BOOTSTRAP_SEED)\n        result[sig] = {\n            \"selection_f1\": round(float(arr.mean()), 5),\n            \"delta_vs_greedy\": round(float(arr.mean() - greedy_arr.mean()), 5),\n            \"bootstrap_p\": round(boot[\"p_value\"], 5),\n            \"bootstrap_ci95\": [round(x, 5) for x in boot[\"ci95\"]],\n        }\n\n    return result\n\n\ndef main():\n    all_results = {}\n\n    for exp_name, cfg in EXPERIMENTS.items():\n        path = cfg[\"path\"]\n        subtask = cfg[\"subtask\"]\n        print(f\"\\n{'='*60}\")\n        print(f\"  {exp_name} (subtask={subtask})\")\n        print(f\"{'='*60}\")\n\n        if not os.path.exists(path):\n            print(f\"  SKIP: {path} not found\")\n            continue\n\n        result = analyze(path, subtask)\n        all_results[exp_name] = result\n\n        print(f\"\\n  {'Method':<10s}  {'Sel F1':>9s}  {'delta Greedy':>12s}  {'p-value':>9s}\")\n        print(f\"  {'-'*10}  {'-'*9}  {'-'*12}  {'-'*9}\")\n        print(f\"  {'Greedy':<10s}  {result['greedy_f1']:.5f}\")\n        print(f\"  {'Random':<10s}  {result['random_f1']:.5f}  {result['random_f1']-result['greedy_f1']:+.5f}\")\n        for sig in SIGNALS:\n            sr = result[sig]\n            print(f\"  {sig:<10s}  {sr['selection_f1']:.5f}  {sr['delta_vs_greedy']:+.5f}  {sr['bootstrap_p']:.5f}\")\n        print(f\"  {'Oracle':<10s}  {result['oracle_f1']:.5f}  {result['oracle_f1']-result['greedy_f1']:+.5f}\")\n\n    out_path = f\"{BASE}/output/review_round9_experiments/llama3b_scierc/selection_f1_3b_vs_8b.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    print(f\"\\nSaved: {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-16T04:00:42.439234+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-16T04:00:42.439402+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Check training status', 'status': 'completed', 'activeForm': 'Checking training status'}, {'content': 'Merge LoRA adapter to base model', 'status': 'completed', 'activeForm': 'Merging LoRA adapter to base model'}, {'content': 'Run inference with merged model', 'status': 'completed', 'activeForm': 'Running inference with merged model'}, {'content': 'Analyze results and compare with 8B', 'status': 'in_progress', 'activeForm': 'Analyzing results and comparing with 8B'}, {'content': 'Save outputs and update registry', 'status': 'pending', 'activeForm': 'Saving outputs and updating registry'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Check training status', 'status': 'completed', 'activeForm': 'Checking training status'}, {'content': 'Merge LoRA adapter to base model', 'status': 'completed', 'activeForm': 'Merging LoRA adapter to base model'}, {'content': 'Run inference with merged model', 'status': 'completed', 'activeForm': 'Running inference with merged model'}, {'content': 'Analyze results and compare with 8B', 'status': 'in_progress', 'activeForm': 'Analyzing results and comparing with 8B'}, {'content': 'Save outputs and update registry', 'status': 'pending', 'activeForm': 'Saving outputs and updating registry'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-16T04:00:42.439550+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-16T04:00:42.439672+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-16T04:00:42.439836+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.6386093321134492,\\n  \\\"oracle_f1\\\": 0.7620206938527084,\\n  \\\"oracle_headroom\\\": 0.12341136173925926,\\n  \\\"fleiss_kappa_mean\\\": 0.40958068084974214,\\n  \\\"soft_jaccard_mean\\\": 0.6892939719951904,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.26757947718743574,\\n    \\\"p_value\\\": 3.996421212245791e-10,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.3753764153173726,\\n    \\\"p_value\\\": 3.810830457759779e-19,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.21245909306045482,\\n    \\\"p_value\\\": 2.9164381728373104e-06,\\n    \\\"n\\\": 476\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.34451889019076404,\\n    \\\"p_value\\\": 1.0356167229901628e-14,\\n    \\\"n\\\": 476\\n  },\\n  \\\"n_gold_empty_filtered\\\": 22,\\n  \\\"n_greedy_f1_zero_filtered\\\": 53,\\n  \\\"structural_beats_surface\\\": true,\\n  \\\"rho_advantage\\\": 0.10779693812993685,\\n  \\\"sample_f1_mean\\\": 0.5922038941898138,\\n  \\\"sample_f1_std\\\": 0.3209505056726283,\\n  \\\"sample_f1_pct_zero\\\": 12.783553875236295,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.2662420929688805,\\n      \\\"p_rho\\\": 4.917109486490698e-10,\\n      \\\"tau\\\": 0.18966767744611032,\\n      \\\"p_tau\\\": 4.920105748486957e-10,\\n      \\\"auroc\\\": 0.6479737066056285,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.20990826449031955,\\n      \\\"p_rho\\\": 3.852642141266197e-06,\\n      \\\"tau\\\": 0.15004691033986964,\\n      \\\"p_tau\\\": 3.3755496599225243e-06,\\n      \\\"auro
+…[truncated 341 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-16T04:00:42.439986+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-16T04:00:42.440117+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 3692\\ndrwxr-xr-x 2 root root      83 May 16 11:57 .\\ndrwxr-xr-x 5 root root     177 May 16 11:54 ..\\n-rw-r--r-- 1 root root   77813 May 16 11:57 inference.log\\n-rw-r--r-- 1 root root    1733 May 16 11:57 report.json\\n-rw-r--r-- 1 root root 3642813 May 16 11:57 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-16T04:00:42.440296+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/analyze_llama3b_vs_8b.py",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/analyze_llama3b_vs_8b.py",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114 · 2026-05-16T04:00:42.440421+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/selection_f1_3b.py",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/selection_f1_3b.py",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-16T04:00:42.440569+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Processing llama_8b_scierc (LLaMA-3.1-8B)...\\nProcessing llama_3b_scierc (LLaMA-3.2-3B)...\\n\\n================================================================================\\n  SCALE ABLATION: LLaMA-3.2-3B vs LLaMA-3.1-8B — SciERC NER\\n================================================================================\\n\\n--- FULL split ---\\nSignal         8B rho   8B AUROC   3B rho   3B AUROC  delta_rho\\n--------------------------------------------------------------\\nVoting        +0.4053     0.6967  +0.4602     0.7429    +0.0549\\nSJ            +0.3096     0.6683  +0.3754     0.7383    +0.0658\\nFK            +0.2352     0.6069  +0.2676     0.6714    +0.0324\\nEM            +0.2587     0.7174  +0.3341     0.7763    +0.0754\\nLP            +0.1503     0.5318  +0.2662     0.6330    +0.1159\\n\\n  Greedy F1:  8B=0.6460  3B=0.6267\\n\\n--- CONDITIONAL split ---\\nSignal         8B rho   8B AUROC   3B rho   3B AUROC  delta_rho\\n--------------------------------------------------------------\\nVoting        +0.3078     0.6714  +0.3815     0.7222    +0.0737\\nSJ            +0.2718     0.6565  +0.3445     0.7292    +0.0727\\nFK            +0.1472     0.5866  +0.2125     0.6600    +0.0653\\nEM            +0.3165     0.7244  +0.3952     0.7822    +0.0787\\nLP            +0.0810     0.5129  +0.2099     0.6156    +0.1289\\n\\n  Greedy F1:  8B=0.7150  3B=0.6965\\n\\n--- Greedy/Oracle F1 ---\\n  LLaMA-3.1-8B: greedy=0.6460 oracle=0.7748 gap=+0.1288\\n  LLaMA-3.2-3B: greedy=0.6267 oracle=0.7630 gap=+0.1363\\n\\n--- SJ > FK ordering ---\\n  LLaMA-3.1-8B: SJ=0.3096 FK=0.2352 SJ>FK=True (delta=+0.0744)\\n  LLaMA-3.2-3B: SJ=0.3754 FK=0.2676 SJ>FK=True (delta=+0.1078)\\n\\nReport saved to /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/comparison_vs_8b.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.07}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-16T04:00:42.440731+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  llama_8b_scierc_ner (subtask=ner)\\n============================================================\\n  529 valid instances (gold-empty filtered: 22), N=8\\n  Computed in 0.3s\\n\\n  Method         Sel F1  delta Greedy    p-value\\n  ----------  ---------  ------------  ---------\\n  Greedy      0.64603\\n  Random      0.61914  -0.02689\\n  VC          0.63984  -0.00620  0.76190\\n  SJ          0.63779  -0.00825  0.90320\\n  FK          0.63962  -0.00642  0.84860\\n  EM          0.62913  -0.01690  0.99510\\n  LP          0.64792  +0.00189  0.37820\\n  Oracle      0.77479  +0.12876\\n\\n============================================================\\n  llama_3b_scierc_ner (subtask=ner)\\n============================================================\\n  529 valid instances (gold-empty filtered: 22), N=8\\n  Computed in 0.3s\\n\\n  Method         Sel F1  delta Greedy    p-value\\n  ----------  ---------  ------------  ---------\\n  Greedy      0.62670\\n  Random      0.59220  -0.03450\\n  VC          0.61132  -0.01538  0.97270\\n  SJ          0.63279  +0.00609  0.17510\\n  FK          0.62952  +0.00282  0.33660\\n  EM          0.61739  -0.00931  0.91170\\n  LP          0.62785  +0.00115  0.43380\\n  Oracle      0.76297  +0.13627\\n\\nSaved: /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/selection_f1_3b_vs_8b.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.79}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-16T04:00:42.440917+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/selection_f1_3b_vs_8b.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/selection_f1_3b_vs_8b.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-16T04:00:42.441100+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"llama_8b_scierc_ner\\\": {\\n    \\\"n_instances\\\": 529,\\n    \\\"n_gold_empty_filtered\\\": 22,\\n    \\\"n_samples_per_instance\\\": 8,\\n    \\\"greedy_f1\\\": 0.64603,\\n    \\\"random_f1\\\": 0.61914,\\n    \\\"oracle_f1\\\": 0.77479,\\n    \\\"VC\\\": {\\n      \\\"selection_f1\\\": 0.63984,\\n      \\\"delta_vs_greedy\\\": -0.0062,\\n      \\\"bootstrap_p\\\": 0.7619,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.02324,\\n        0.01089\\n      ]\\n    },\\n    \\\"SJ\\\": {\\n      \\\"selection_f1\\\": 0.63779,\\n      \\\"delta_vs_greedy\\\": -0.00825,\\n      \\\"bootstrap_p\\\": 0.9032,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.02064,\\n        0.00405\\n      ]\\n    },\\n    \\\"FK\\\": {\\n      \\\"selection_f1\\\": 0.63962,\\n      \\\"delta_vs_greedy\\\": -0.00642,\\n      \\\"bootstrap_p\\\": 0.8486,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.01867,\\n        0.00591\\n      ]\\n    },\\n    \\\"EM\\\": {\\n      \\\"selection_f1\\\": 0.62913,\\n      \\\"delta_vs_greedy\\\": -0.0169,\\n      \\\"bootstrap_p\\\": 0.9951,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.02988,\\n        -0.00447\\n      ]\\n    },\\n    \\\"LP\\\": {\\n      \\\"selection_f1\\\": 0.64792,\\n      \\\"delta_vs_greedy\\\": 0.00189,\\n      \\\"bootstrap_p\\\": 0.3782,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.00927,\\n        0.01317\\n      ]\\n    }\\n  },\\n  \\\"llama_3b_scierc_ner\\\": {\\n    \\\"n_instances\\\": 529,\\n    \\\"n_gold_empty_filtered\\\": 22,\\n    \\\"n_samples_per_instance\\\": 8,\\n    \\\"greedy_f1\\\": 0.6267,\\n    \\\"random_f1\\\": 0.5922,\\n    \\\"oracle_f1\\\": 0.76297,\\n    \\\"VC\\\": {\\n      \\\"selection_f1\\\": 0.61132,\\n      \\\"delta_vs_greedy\\\": -0.01538,\\n      \\\"bootstrap_p\\\": 0.9727,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.03137,\\n        0.0002\\n      ]\\n    },\\n    \\\"SJ\\\": {\\n      \\\"selection_f1\\\": 0.63279,\
+…[truncated 970 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-16T04:00:42.441309+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Check training status', 'status': 'completed', 'activeForm': 'Checking training status'}, {'content': 'Merge LoRA adapter to base model', 'status': 'completed', 'activeForm': 'Merging LoRA adapter to base model'}, {'content': 'Run inference with merged model', 'status': 'completed', 'activeForm': 'Running inference with merged model'}, {'content': 'Analyze results and compare with 8B', 'status': 'completed', 'activeForm': 'Analyzing results and comparing with 8B'}, {'content': 'Save outputs and update registry', 'status': 'in_progress', 'activeForm': 'Saving outputs and updating registry'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Check training status', 'status': 'completed', 'activeForm': 'Checking training status'}, {'content': 'Merge LoRA adapter to base model', 'status': 'completed', 'activeForm': 'Merging LoRA adapter to base model'}, {'content': 'Run inference with merged model', 'status': 'completed', 'activeForm': 'Running inference with merged model'}, {'content': 'Analyze results and compare with 8B', 'status': 'completed', 'activeForm': 'Analyzing results and comparing with 8B'}, {'content': 'Save outputs and update registry', 'status': 'in_progress', 'activeForm': 'Saving outputs and updating registry'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-16T04:00:42.441461+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121 · 2026-05-16T04:00:42.441603+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_llama3b_scierc_ablation",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie",
+  "spec": "{'command': 'CUDA_VISIBLE_DEVICES=3 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.2-3b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/review_round9_experiments/llama3b_scierc/', 'server': 'autodl-5090', 'data_path': 'data/scierc/processed_data', 'data_count': 551, 'model_name': 'LLaMA-3.2-3B-Instruct (LoRA r=32 SciERC fine-tuned)', 'seed': 42, 'checkpoint_path': 'checkpoints/llama3.2-3b-scierc-merged', 'log_path': 'output/review_round9_experiments/llama3b_scierc/inference.log'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_llama3b_scierc_ablation",
+    "field": "status",
+    "value": "DONE",
+    "project": "struct_self_consist_ie",
+    "spec": "{'command': 'CUDA_VISIBLE_DEVICES=3 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.2-3b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/review_round9_experiments/llama3b_scierc/', 'server': 'autodl-5090', 'data_path': 'data/scierc/processed_data', 'data_count': 551, 'model_name': 'LLaMA-3.2-3B-Instruct (LoRA r=32 SciERC fine-tuned)', 'seed': 42, 'checkpoint_path': 'checkpoints/llama3.2-3b-scierc-merged', 'log_path': 'output/review_round9_experiments/llama3b_scierc/inference.log'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-16T04:00:42.441751+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.349}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-16T04:00:42.441875+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_llama3b_scierc_ablation",
+  "field": "conclusion",
+  "value": "success",
+  "project": "struct_self_consist_ie",
+  "spec": "{'command': 'CUDA_VISIBLE_DEVICES=3 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.2-3b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/review_round9_experiments/llama3b_scierc/', 'server': 'autodl-5090', 'data_path': 'data/scierc/processed_data', 'data_count': 551, 'model_name': 'LLaMA-3.2-3B-Instruct (LoRA r=32 SciERC fine-tuned)', 'seed': 42, 'checkpoint_path': 'checkpoints/llama3.2-3b-scierc-merged', 'log_path': 'output/review_round9_experiments/llama3b_scierc/inference.log'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_llama3b_scierc_ablation",
+    "field": "conclusion",
+    "value": "success",
+    "project": "struct_self_consist_ie",
+    "spec": "{'command': 'CUDA_VISIBLE_DEVICES=3 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.2-3b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/review_round9_experiments/llama3b_scierc/', 'server': 'autodl-5090', 'data_path': 'data/scierc/processed_data', 'data_count': 551, 'model_name': 'LLaMA-3.2-3B-Instruct (LoRA r=32 SciERC fine-tuned)', 'seed': 42, 'checkpoint_path': 'checkpoints/llama3.2-3b-scierc-merged', 'log_path': 'output/review_round9_experiments/llama3b_scierc/inference.log'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-16T04:00:42.442023+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_llama3b_scierc_ablation\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T02:45:23.638Z\", \"updated_at\": \"2026-05-16T03:59:12.472Z\", \"hypothesis\": \"Cross-family scale ablation: LLaMA 3.2-3B on SciERC NER. Verify correlation-selection gap generalizes across model families AND scales. Compare with LLaMA 8B results.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.2-3b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/review_round9_experiments/llama3b_scierc/\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"LLaMA-3.2-3B-Instruct (LoRA r=32 SciERC fine-tuned)\", \"seed\": 42, \"checkpoint_path\": \"checkpoints/llama3.2-3b-scierc-merged\", \"log_path\": \"output/review_round9_experiments/llama3b_scierc/inference.log\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5725}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125 · 2026-05-16T04:00:42.442171+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_llama3b_scierc_ablation",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_llama3b_scierc_ablation",
+    "field": "status",
+    "value": "DONE",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-16T04:00:42.442317+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_llama3b_scierc_ablation\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T02:45:23.638Z\", \"updated_at\": \"2026-05-16T03:59:16.198Z\", \"hypothesis\": \"Cross-family scale ablation: LLaMA 3.2-3B on SciERC NER. Verify correlation-selection gap generalizes across model families AND scales. Compare with LLaMA 8B results.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.2-3b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/review_round9_experiments/llama3b_scierc/\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"LLaMA-3.2-3B-Instruct (LoRA r=32 SciERC fine-tuned)\", \"seed\": 42, \"checkpoint_path\": \"checkpoints/llama3.2-3b-scierc-merged\", \"log_path\": \"output/review_round9_experiments/llama3b_scierc/inference.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T03:59:16.198Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.231}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127 · 2026-05-16T04:00:42.442477+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_llama3b_scierc_ablation",
+  "field": "metrics",
+  "value": "{'ner_full': {'SJ_rho': 0.3754, 'FK_rho': 0.2676, 'LP_rho': 0.2662, 'EM_rho': 0.3341, 'VC_rho': 0.4602, 'SJ_auroc': 0.7383, 'FK_auroc': 0.6714, 'LP_auroc': 0.633, 'EM_auroc': 0.7763, 'VC_auroc': 0.7429, 'n': 529}, 'ner_cond': {'SJ_rho': 0.3445, 'FK_rho': 0.2125, 'LP_rho': 0.2099, 'EM_rho': 0.3952, 'VC_rho': 0.3815, 'SJ_auroc': 0.7292, 'FK_auroc': 0.66, 'LP_auroc': 0.6156, 'EM_auroc': 0.7822, 'VC_auroc': 0.7222, 'n': 476}, 'greedy_f1': 0.6267, 'oracle_f1': 0.763, 'oracle_headroom': 0.1363, 'selection_f1_SJ': 0.6328, 'selection_f1_VC': 0.6113, 'selection_f1_FK': 0.6295, 'selection_f1_EM': 0.6174, 'selection_f1_LP': 0.6279, 'n_gold_empty': 22, 'structural_beats_surface': True, 'rho_advantage_SJ_over_FK': 0.1078}",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_llama3b_scierc_ablation",
+    "field": "metrics",
+    "value": "{'ner_full': {'SJ_rho': 0.3754, 'FK_rho': 0.2676, 'LP_rho': 0.2662, 'EM_rho': 0.3341, 'VC_rho': 0.4602, 'SJ_auroc': 0.7383, 'FK_auroc': 0.6714, 'LP_auroc': 0.633, 'EM_auroc': 0.7763, 'VC_auroc': 0.7429, 'n': 529}, 'ner_cond': {'SJ_rho': 0.3445, 'FK_rho': 0.2125, 'LP_rho': 0.2099, 'EM_rho': 0.3952, 'VC_rho': 0.3815, 'SJ_auroc': 0.7292, 'FK_auroc': 0.66, 'LP_auroc': 0.6156, 'EM_auroc': 0.7822, 'VC_auroc': 0.7222, 'n': 476}, 'greedy_f1': 0.6267, 'oracle_f1': 0.763, 'oracle_headroom': 0.1363, 'selection_f1_SJ': 0.6328, 'selection_f1_VC': 0.6113, 'selection_f1_FK': 0.6295, 'selection_f1_EM': 0.6174, 'selection_f1_LP': 0.6279, 'n_gold_empty': 22, 'structural_beats_surface': True, 'rho_advantage_SJ_over_FK': 0.1078}",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-16T04:00:42.442665+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_llama3b_scierc_ablation\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T02:45:23.638Z\", \"updated_at\": \"2026-05-16T03:59:26.005Z\", \"hypothesis\": \"Cross-family scale ablation: LLaMA 3.2-3B on SciERC NER. Verify correlation-selection gap generalizes across model families AND scales. Compare with LLaMA 8B results.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.2-3b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/review_round9_experiments/llama3b_scierc/\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"LLaMA-3.2-3B-Instruct (LoRA r=32 SciERC fine-tuned)\", \"seed\": 42, \"checkpoint_path\": \"checkpoints/llama3.2-3b-scierc-merged\", \"log_path\": \"output/review_round9_experiments/llama3b_scierc/inference.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T03:59:16.198Z\", \"metrics\": {\"ner_full\": {\"SJ_rho\": 0.3754, \"FK_rho\": 0.2676, \"LP_rho\": 0.2662, \"EM_rho\": 0.3341, \"VC_rho\": 0.4602, \"SJ_auroc\": 0.7383, \"FK_auroc\": 0.6714, \"LP_auroc\": 0.633, \"EM_auroc\": 0.7763, \"VC_auroc\": 0.7429, \"n\": 529}, \"ner_cond\": {\"SJ_rho\": 0.3445, \"FK_rho\": 0.2125, \"LP_rho\": 0.2099, \"EM_rho\": 0.3952, \"VC_rho\": 0.3815, \"SJ_auroc\": 0.7292, \"FK_auroc\": 0.66, \"LP_auroc\": 0.6156, \"EM_auroc\": 0.7822, \"VC_auroc\": 0.7222, \"n\": 476}, \"greedy_f1\": 0.6267, \"oracle_f1\": 0.763, \"oracle_headroom\": 0.1363, \"selection_f1_SJ\": 0.6328, \"selection_f1_VC\": 0.6113, \"selection_f1_FK\": 0.6295, \"selection_f1_EM\": 0.6174, \"selection_f1_LP\": 0.6279, \"n_gold_empty\": 22, \"structural_beats_surface\": true, \"rho_advantage_SJ_over_FK\":
+…[truncated 75 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-16T04:00:42.442834+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "llama3b_vs_8b_scierc_comparison",
+  "type": "report",
+  "description": "LLaMA-3.2-3B vs 3.1-8B SciERC NER 5-signal correlation comparison (scale ablation)",
+  "project": "struct_self_consist_ie",
+  "exp_id": "exp_llama3b_scierc_ablation",
+  "source_path": "/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/comparison_vs_8b.json",
+  "tags": "['scale-ablation', 'llama-3b', 'llama-8b', 'scierc', 'ner', 'review-round9']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "llama3b_vs_8b_scierc_comparison",
+    "type": "report",
+    "description": "LLaMA-3.2-3B vs 3.1-8B SciERC NER 5-signal correlation comparison (scale ablation)",
+    "project": "struct_self_consist_ie",
+    "exp_id": "exp_llama3b_scierc_ablation",
+    "source_path": "/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/comparison_vs_8b.json",
+    "tags": "['scale-ablation', 'llama-3b', 'llama-8b', 'scierc', 'ner', 'review-round9']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-16T04:00:42.442971+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/comparison_vs_8b.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 131 · 2026-05-16T04:00:42.443094+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "llama3b_vs_8b_selection_f1",
+  "type": "report",
+  "description": "Selection F1 comparison: LLaMA-3.2-3B vs 3.1-8B on SciERC NER (single-seed bootstrap)",
+  "project": "struct_self_consist_ie",
+  "exp_id": "exp_llama3b_scierc_ablation",
+  "source_path": "/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/selection_f1_3b_vs_8b.json",
+  "tags": "['selection-f1', 'scale-ablation', 'llama-3b', 'llama-8b', 'scierc', 'review-round9']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "llama3b_vs_8b_selection_f1",
+    "type": "report",
+    "description": "Selection F1 comparison: LLaMA-3.2-3B vs 3.1-8B on SciERC NER (single-seed bootstrap)",
+    "project": "struct_self_consist_ie",
+    "exp_id": "exp_llama3b_scierc_ablation",
+    "source_path": "/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/selection_f1_3b_vs_8b.json",
+    "tags": "['selection-f1', 'scale-ablation', 'llama-3b', 'llama-8b', 'scierc', 'review-round9']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-16T04:00:42.443243+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/selection_f1_3b_vs_8b.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133 · 2026-05-16T04:00:42.443390+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/comparison_vs_8b.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/comparison_vs_8b.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 134 · 2026-05-16T04:00:42.443578+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"llama_8b_scierc\\\": {\\n    \\\"n_total\\\": 551,\\n    \\\"n_valid\\\": 529,\\n    \\\"n_conditional\\\": 478,\\n    \\\"greedy_f1\\\": 0.646,\\n    \\\"oracle_f1\\\": 0.7748,\\n    \\\"full\\\": {\\n      \\\"n\\\": 529,\\n      \\\"greedy_f1_mean\\\": 0.646,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3096,\\n        \\\"p_rho\\\": 3.2318026986960163e-13,\\n        \\\"auroc\\\": 0.6683\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.2352,\\n        \\\"p_rho\\\": 4.402244766602746e-08,\\n        \\\"auroc\\\": 0.6069\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.1503,\\n        \\\"p_rho\\\": 0.0005246029384220238,\\n        \\\"auroc\\\": 0.5318\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.2587,\\n        \\\"p_rho\\\": 1.5437867914378069e-09,\\n        \\\"auroc\\\": 0.7174\\n      },\\n      \\\"Voting\\\": {\\n        \\\"rho\\\": 0.4053,\\n        \\\"p_rho\\\": 2.4865289139294866e-22,\\n        \\\"auroc\\\": 0.6967\\n      }\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 478,\\n      \\\"greedy_f1_mean\\\": 0.715,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.2718,\\n        \\\"p_rho\\\": 1.5405526831187722e-09,\\n        \\\"auroc\\\": 0.6565\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.1472,\\n        \\\"p_rho\\\": 0.0012513594721615879,\\n        \\\"auroc\\\": 0.5866\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.081,\\n        \\\"p_rho\\\": 0.07689111176253832,\\n        \\\"auroc\\\": 0.5129\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3165,\\n        \\\"p_rho\\\": 1.3968369792265314e-12,\\n        \\\"auroc\\\": 0.7244\\n      },\\n      \\\"Voting\\\": {\\n        \\\"rho\\\": 0.3078,\\n        \\\"p_rho\\\": 6.048848266499103e-12,\\n        \\\"auroc\\\": 0.6714\\n      }\\n    },\\n    \\\"model\\\": \\\"LLaMA-3.1-8B\\\"\\n  },\\n  \\\"llama_3b_scierc\\\": {\\n    \\\"n_total\\\": 551,\\n   
+…[truncated 1919 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 135 · 2026-05-16T04:00:42.443743+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "llama3b_vs_8b_scierc_comparison",
+  "type": "report",
+  "description": "LLaMA-3.2-3B vs 3.1-8B SciERC NER 5-signal correlation comparison (scale ablation). Remote: output/review_round9_experiments/llama3b_scierc/comparison_vs_8b.json",
+  "project": "struct_self_consist_ie",
+  "exp_id": "exp_llama3b_scierc_ablation",
+  "content": "{\"llama_8b_scierc\":{\"n_total\":551,\"n_valid\":529,\"n_conditional\":478,\"greedy_f1\":0.646,\"oracle_f1\":0.7748,\"full\":{\"n\":529,\"SJ\":{\"rho\":0.3096,\"auroc\":0.6683},\"FK\":{\"rho\":0.2352,\"auroc\":0.6069},\"LP\":{\"rho\":0.1503,\"auroc\":0.5318},\"EM\":{\"rho\":0.2587,\"auroc\":0.7174},\"Voting\":{\"rho\":0.4053,\"auroc\":0.6967}},\"conditional\":{\"n\":478,\"SJ\":{\"rho\":0.2718,\"auroc\":0.6565},\"FK\":{\"rho\":0.1472,\"auroc\":0.5866},\"LP\":{\"rho\":0.081,\"auroc\":0.5129},\"EM\":{\"rho\":0.3165,\"auroc\":0.7244},\"Voting\":{\"rho\":0.3078,\"auroc\":0.6714}},\"model\":\"LLaMA-3.1-8B\"},\"llama_3b_scierc\":{\"n_total\":551,\"n_valid\":529,\"n_conditional\":476,\"greedy_f1\":0.6267,\"oracle_f1\":0.763,\"full\":{\"n\":529,\"SJ\":{\"rho\":0.3754,\"auroc\":0.7383},\"FK\":{\"rho\":0.2676,\"auroc\":0.6714},\"LP\":{\"rho\":0.2662,\"auroc\":0.633},\"EM\":{\"rho\":0.3341,\"auroc\":0.7763},\"Voting\":{\"rho\":0.4602,\"auroc\":0.7429}},\"conditional\":{\"n\":476,\"SJ\":{\"rho\":0.3445,\"auroc\":0.7292},\"FK\":{\"rho\":0.2125,\"auroc\":0.66},\"LP\":{\"rho\":0.2099,\"auroc\":0.6156},\"EM\":{\"rho\":0.3952,\"auroc\":0.7822},\"Voting\":{\"rho\":0.3815,\"auroc\":0.7222}},\"model\":\"LLaMA-3.2-3B\"}}",
+  "content_filename": "comparison_vs_8b.json",
+  "tags": "['scale-ablation', 'llama-3b', 'llama-8b', 'scierc', 'ner', 'review-round9']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "llama3b_vs_8b_scierc_comparison",
+    "type": "report",
+    "description": "LLaMA-3.2-3B vs 3.1-8B SciERC NER 5-signal correlation comparison (scale ablation). Remote: output/review_round9_experiments/llama3b_scierc/comparison_vs_8b.json",
+    "project": "struct_self_consist_ie",
+    "exp_id": "exp_llama3b_scierc_ablation",
+    "content": "{\"llama_8b_scierc\":{\"n_total\":551,\"n_valid\":529,\"n_conditional\":478,\"greedy_f1\":0.646,\"oracle_f1\":0.7748,\"full\":{\"n\":529,\"SJ\":{\"rho\":0.3096,\"auroc\":0.6683},\"FK\":{\"rho\":0.2352,\"auroc\":0.6069},\"LP\":{\"rho\":0.1503,\"auroc\":0.5318},\"EM\":{\"rho\":0.2587,\"auroc\":0.7174},\"Voting\":{\"rho\":0.4053,\"auroc\":0.6967}},\"conditional\":{\"n\":478,\"SJ\":{\"rho\":0.2718,\"auroc\":0.6565},\"FK\":{\"rho\":0.1472,\"auroc\":0.5866},\"LP\":{\"rho\":0.081,\"auroc\":0.5129},\"EM\":{\"rho\":0.3165,\"auroc\":0.7244},\"Voting\":{\"rho\":0.3078,\"auroc\":0.6714}},\"model\":\"LLaMA-3.1-8B\"},\"llama_3b_scierc\":{\"n_total\":551,\"n_valid\":529,\"n_conditional\":476,\"greedy_f1\":0.6267,\"oracle_f1\":0.763,\"full\":{\"n\":529,\"SJ\":{\"rho\":0.3754,\"auroc\":0.7383},\"FK\":{\"rho\":0.2676,\"auroc\":0.6714},\"LP\":{\"rho\":0.2662,\"auroc\":0.633},\"EM\":{\"rho\":0.3341,\"auroc\":0.7763},\"Voting\":{\"rho\":0.4602,\"auroc\":0.7429}},\"conditional\":{\"n\":476,\"SJ\":{\"rho\":0.3445,\"auroc\":0.7292},\"FK\":{\"rho\":0.2125,\"auroc\":0.66},\"LP\":{\"rho\":0.2099,\"auroc\":0.6156},\"EM\":{\"rho\":0.3952,\"auroc\":0.7822},\"Voting\":{\"rho\":0.3815,\"auroc\":0.7222}},\"model\":\"LLaMA-3.2-3B\"}}",
+    "content_filename": "comparison_vs_8b.json",
+    "tags": "['scale-ablation', 'llama-3b', 'llama-8b', 'scierc', 'ner', 'review-round9']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-16T04:00:42.443882+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'llama_8b_scierc': {'n_t...model': 'LLaMA-3.2-3B'}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 137 · 2026-05-16T04:00:42.444016+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "llama3b_vs_8b_selection_f1",
+  "type": "report",
+  "description": "Selection F1 comparison: LLaMA-3.2-3B vs 3.1-8B on SciERC NER. Remote: output/review_round9_experiments/llama3b_scierc/selection_f1_3b_vs_8b.json",
+  "project": "struct_self_consist_ie",
+  "exp_id": "exp_llama3b_scierc_ablation",
+  "content": "{\"llama_8b_scierc_ner\":{\"n_instances\":529,\"n_gold_empty_filtered\":22,\"greedy_f1\":0.64603,\"random_f1\":0.61914,\"oracle_f1\":0.77479,\"VC\":{\"selection_f1\":0.63984,\"delta_vs_greedy\":-0.0062},\"SJ\":{\"selection_f1\":0.63779,\"delta_vs_greedy\":-0.00825},\"FK\":{\"selection_f1\":0.63962,\"delta_vs_greedy\":-0.00642},\"EM\":{\"selection_f1\":0.62913,\"delta_vs_greedy\":-0.0169},\"LP\":{\"selection_f1\":0.64792,\"delta_vs_greedy\":0.00189}},\"llama_3b_scierc_ner\":{\"n_instances\":529,\"n_gold_empty_filtered\":22,\"greedy_f1\":0.6267,\"random_f1\":0.5922,\"oracle_f1\":0.76297,\"VC\":{\"selection_f1\":0.61132,\"delta_vs_greedy\":-0.01538},\"SJ\":{\"selection_f1\":0.63279,\"delta_vs_greedy\":0.00609},\"FK\":{\"selection_f1\":0.62952,\"delta_vs_greedy\":0.00282},\"EM\":{\"selection_f1\":0.61739,\"delta_vs_greedy\":-0.00931},\"LP\":{\"selection_f1\":0.62785,\"delta_vs_greedy\":0.00115}}}",
+  "content_filename": "selection_f1_3b_vs_8b.json",
+  "tags": "['selection-f1', 'scale-ablation', 'llama-3b', 'llama-8b', 'scierc', 'review-round9']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "llama3b_vs_8b_selection_f1",
+    "type": "report",
+    "description": "Selection F1 comparison: LLaMA-3.2-3B vs 3.1-8B on SciERC NER. Remote: output/review_round9_experiments/llama3b_scierc/selection_f1_3b_vs_8b.json",
+    "project": "struct_self_consist_ie",
+    "exp_id": "exp_llama3b_scierc_ablation",
+    "content": "{\"llama_8b_scierc_ner\":{\"n_instances\":529,\"n_gold_empty_filtered\":22,\"greedy_f1\":0.64603,\"random_f1\":0.61914,\"oracle_f1\":0.77479,\"VC\":{\"selection_f1\":0.63984,\"delta_vs_greedy\":-0.0062},\"SJ\":{\"selection_f1\":0.63779,\"delta_vs_greedy\":-0.00825},\"FK\":{\"selection_f1\":0.63962,\"delta_vs_greedy\":-0.00642},\"EM\":{\"selection_f1\":0.62913,\"delta_vs_greedy\":-0.0169},\"LP\":{\"selection_f1\":0.64792,\"delta_vs_greedy\":0.00189}},\"llama_3b_scierc_ner\":{\"n_instances\":529,\"n_gold_empty_filtered\":22,\"greedy_f1\":0.6267,\"random_f1\":0.5922,\"oracle_f1\":0.76297,\"VC\":{\"selection_f1\":0.61132,\"delta_vs_greedy\":-0.01538},\"SJ\":{\"selection_f1\":0.63279,\"delta_vs_greedy\":0.00609},\"FK\":{\"selection_f1\":0.62952,\"delta_vs_greedy\":0.00282},\"EM\":{\"selection_f1\":0.61739,\"delta_vs_greedy\":-0.00931},\"LP\":{\"selection_f1\":0.62785,\"delta_vs_greedy\":0.00115}}}",
+    "content_filename": "selection_f1_3b_vs_8b.json",
+    "tags": "['selection-f1', 'scale-ablation', 'llama-3b', 'llama-8b', 'scierc', 'review-round9']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 138 · 2026-05-16T04:00:42.444166+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'llama_8b_scierc_ner': {...a_vs_greedy': 0.00115}}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 139 · 2026-05-16T04:00:42.444296+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "llama3b_vs_8b_scierc_comparison",
+  "type": "report",
+  "description": "LLaMA-3.2-3B vs 3.1-8B SciERC NER 5-signal correlation comparison (scale ablation). Remote: output/review_round9_experiments/llama3b_scierc/comparison_vs_8b.json",
+  "project": "struct_self_consist_ie",
+  "exp_id": "exp_llama3b_scierc_ablation",
+  "content": "{\"llama_8b_scierc\":{\"greedy_f1\":0.646,\"oracle_f1\":0.7748,\"full\":{\"SJ_rho\":0.3096,\"FK_rho\":0.2352,\"LP_rho\":0.1503,\"EM_rho\":0.2587,\"VC_rho\":0.4053},\"conditional\":{\"SJ_rho\":0.2718,\"FK_rho\":0.1472,\"LP_rho\":0.081,\"EM_rho\":0.3165,\"VC_rho\":0.3078}},\"llama_3b_scierc\":{\"greedy_f1\":0.6267,\"oracle_f1\":0.763,\"full\":{\"SJ_rho\":0.3754,\"FK_rho\":0.2676,\"LP_rho\":0.2662,\"EM_rho\":0.3341,\"VC_rho\":0.4602},\"conditional\":{\"SJ_rho\":0.3445,\"FK_rho\":0.2125,\"LP_rho\":0.2099,\"EM_rho\":0.3952,\"VC_rho\":0.3815}}}",
+  "content_filename": "comparison_vs_8b.json",
+  "tags": "['scale-ablation', 'llama-3b', 'llama-8b', 'scierc', 'ner', 'review-round9']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "llama3b_vs_8b_scierc_comparison",
+    "type": "report",
+    "description": "LLaMA-3.2-3B vs 3.1-8B SciERC NER 5-signal correlation comparison (scale ablation). Remote: output/review_round9_experiments/llama3b_scierc/comparison_vs_8b.json",
+    "project": "struct_self_consist_ie",
+    "exp_id": "exp_llama3b_scierc_ablation",
+    "content": "{\"llama_8b_scierc\":{\"greedy_f1\":0.646,\"oracle_f1\":0.7748,\"full\":{\"SJ_rho\":0.3096,\"FK_rho\":0.2352,\"LP_rho\":0.1503,\"EM_rho\":0.2587,\"VC_rho\":0.4053},\"conditional\":{\"SJ_rho\":0.2718,\"FK_rho\":0.1472,\"LP_rho\":0.081,\"EM_rho\":0.3165,\"VC_rho\":0.3078}},\"llama_3b_scierc\":{\"greedy_f1\":0.6267,\"oracle_f1\":0.763,\"full\":{\"SJ_rho\":0.3754,\"FK_rho\":0.2676,\"LP_rho\":0.2662,\"EM_rho\":0.3341,\"VC_rho\":0.4602},\"conditional\":{\"SJ_rho\":0.3445,\"FK_rho\":0.2125,\"LP_rho\":0.2099,\"EM_rho\":0.3952,\"VC_rho\":0.3815}}}",
+    "content_filename": "comparison_vs_8b.json",
+    "tags": "['scale-ablation', 'llama-3b', 'llama-8b', 'scierc', 'ner', 'review-round9']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 140 · 2026-05-16T04:00:42.444421+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'llama_8b_scierc': {'gre...952, 'VC_rho': 0.3815}}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 141 · 2026-05-16T04:00:42.444546+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "llama3b_vs_8b_selection_f1",
+  "type": "report",
+  "description": "Selection F1 comparison: LLaMA-3.2-3B vs 3.1-8B on SciERC NER. Remote: output/review_round9_experiments/llama3b_scierc/selection_f1_3b_vs_8b.json",
+  "project": "struct_self_consist_ie",
+  "exp_id": "exp_llama3b_scierc_ablation",
+  "content": "{\"llama_8b\":{\"greedy_f1\":0.64603,\"oracle_f1\":0.77479,\"SJ_sel\":0.63779,\"FK_sel\":0.63962,\"VC_sel\":0.63984,\"EM_sel\":0.62913,\"LP_sel\":0.64792},\"llama_3b\":{\"greedy_f1\":0.6267,\"oracle_f1\":0.76297,\"SJ_sel\":0.63279,\"FK_sel\":0.62952,\"VC_sel\":0.61132,\"EM_sel\":0.61739,\"LP_sel\":0.62785}}",
+  "content_filename": "selection_f1_3b_vs_8b.json",
+  "tags": "['selection-f1', 'scale-ablation', 'llama-3b', 'llama-8b', 'scierc', 'review-round9']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "llama3b_vs_8b_selection_f1",
+    "type": "report",
+    "description": "Selection F1 comparison: LLaMA-3.2-3B vs 3.1-8B on SciERC NER. Remote: output/review_round9_experiments/llama3b_scierc/selection_f1_3b_vs_8b.json",
+    "project": "struct_self_consist_ie",
+    "exp_id": "exp_llama3b_scierc_ablation",
+    "content": "{\"llama_8b\":{\"greedy_f1\":0.64603,\"oracle_f1\":0.77479,\"SJ_sel\":0.63779,\"FK_sel\":0.63962,\"VC_sel\":0.63984,\"EM_sel\":0.62913,\"LP_sel\":0.64792},\"llama_3b\":{\"greedy_f1\":0.6267,\"oracle_f1\":0.76297,\"SJ_sel\":0.63279,\"FK_sel\":0.62952,\"VC_sel\":0.61132,\"EM_sel\":0.61739,\"LP_sel\":0.62785}}",
+    "content_filename": "selection_f1_3b_vs_8b.json",
+    "tags": "['selection-f1', 'scale-ablation', 'llama-3b', 'llama-8b', 'scierc', 'review-round9']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 142 · 2026-05-16T04:00:42.444670+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'llama_8b': {'greedy_f1'...739, 'LP_sel': 0.62785}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 143 · 2026-05-16T04:00:42.444815+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "llama3b_vs_8b_scierc_comparison",
+  "type": "report",
+  "description": "LLaMA-3.2-3B vs 3.1-8B SciERC NER 5-signal rho + selection F1 comparison (scale ablation). Files on autodl-5090: output/review_round9_experiments/llama3b_scierc/{comparison_vs_8b.json, selection_f1_3b_vs_8b.json}",
+  "project": "struct_self_consist_ie",
+  "exp_id": "exp_llama3b_scierc_ablation",
+  "content": "SCALE ABLATION: LLaMA-3.2-3B vs LLaMA-3.1-8B — SciERC NER\n\n=== 5-SIGNAL CORRELATION (Spearman rho) ===\n\nFULL split (n=529, gold-empty=22 excluded):\nSignal    8B rho   3B rho   delta    8B AUROC  3B AUROC\nVoting    0.405    0.460   +0.055    0.697     0.743\nSJ        0.310    0.375   +0.066    0.668     0.738\nFK        0.235    0.268   +0.032    0.607     0.671\nEM        0.259    0.334   +0.075    0.717     0.776\nLP        0.150    0.266   +0.116    0.532     0.633\n\nCONDITIONAL split (greedy_f1 > 0):\nSignal    8B rho   3B rho   delta    8B AUROC  3B AUROC\nVoting    0.308    0.382   +0.074    0.671     0.722\nSJ        0.272    0.345   +0.073    0.657     0.729\nFK        0.147    0.213   +0.065    0.587     0.660\nEM        0.317    0.395   +0.079    0.724     0.782\nLP        0.081    0.210   +0.129    0.513     0.616\n\n=== F1 METRICS ===\n8B: greedy=0.646, oracle=0.775, headroom=+0.129\n3B: greedy=0.627, oracle=0.763, headroom=+0.136\n\n=== SELECTION F1 (single-seed, bootstrap N=10000) ===\nMethod      8B sel_F1  3B sel_F1\nGreedy      0.646      0.627\nSJ          0.638      0.633 (3B delta=+0.006, p=0.175)\nFK          0.640      0.630 (3B delta=+0.003, p=0.337)\nVC          0.640      0.611 (3B delta=-0.015, p=0.973)\nEM          0.629      0.617 (3B delta=-0.009, p=0.912)\nLP          0.648      0.628 (3B delta=+0.001, p=0.434)\nOracle      0.775      0.763\n\n=== KEY FINDINGS ===\n1. All 5 signals show HIGHER rho for 3B vs 8B (delta +0.03 to +0.13)\n2. SJ > FK ordering preserved in both models (3B gap=0.108, 8B gap=0.074)\n3. structural_beats_surface = True for both\n4. LP rho shows largest improvement in 3B (+0.116 full, +0.129 cond)\n5. Selection F1: SJ shows positive trend for 3B (+0.006) but not significant (p=0.175)\n6. The \"correlation-selection gap\" persists: high rho but limited selection gain",
+  "content_filename": "llama3b_vs_8b_full_report.txt",
+  "tags": "['scale-ablation', 'llama-3b', 'llama-8b', 'scierc', 'ner', 'review-round9']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "llama3b_vs_8b_scierc_comparison",
+    "type": "report",
+    "description": "LLaMA-3.2-3B vs 3.1-8B SciERC NER 5-signal rho + selection F1 comparison (scale ablation). Files on autodl-5090: output/review_round9_experiments/llama3b_scierc/{comparison_vs_8b.json, selection_f1_3b_vs_8b.json}",
+    "project": "struct_self_consist_ie",
+    "exp_id": "exp_llama3b_scierc_ablation",
+    "content": "SCALE ABLATION: LLaMA-3.2-3B vs LLaMA-3.1-8B — SciERC NER\n\n=== 5-SIGNAL CORRELATION (Spearman rho) ===\n\nFULL split (n=529, gold-empty=22 excluded):\nSignal    8B rho   3B rho   delta    8B AUROC  3B AUROC\nVoting    0.405    0.460   +0.055    0.697     0.743\nSJ        0.310    0.375   +0.066    0.668     0.738\nFK        0.235    0.268   +0.032    0.607     0.671\nEM        0.259    0.334   +0.075    0.717     0.776\nLP        0.150    0.266   +0.116    0.532     0.633\n\nCONDITIONAL split (greedy_f1 > 0):\nSignal    8B rho   3B rho   delta    8B AUROC  3B AUROC\nVoting    0.308    0.382   +0.074    0.671     0.722\nSJ        0.272    0.345   +0.073    0.657     0.729\nFK        0.147    0.213   +0.065    0.587     0.660\nEM        0.317    0.395   +0.079    0.724     0.782\nLP        0.081    0.210   +0.129    0.513     0.616\n\n=== F1 METRICS ===\n8B: greedy=0.646, oracle=0.775, headroom=+0.129\n3B: greedy=0.627, oracle=0.763, headroom=+0.136\n\n=== SELECTION F1 (single-seed, bootstrap N=10000) ===\nMethod      8B sel_F1  3B sel_F1\nGreedy      0.646      0.627\nSJ          0.638      0.633 (3B delta=+0.006, p=0.175)\nFK          0.640      0.630 (3B delta=+0.003, p=0.337)\nVC          0.640      0.611 (3B delta=-0.015, p=0.973)\nEM          0.629      0.617 (3B delta=-0.009, p=0.912)\nLP          0.648      0.628 (3B delta=+0.001, p=0.434)\nOracle      0.775      0.763\n\n=== KEY FINDINGS ===\n1. All 5 signals show HIGHER rho for 3B vs 8B (delta +0.03 to +0.13)\n2. SJ > FK ordering preserved in both models (3B gap=0.108, 8B gap=0.074)\n3. structural_beats_surface = True for both\n4. LP rho shows largest improvement in 3B (+0.116 full, +0.129 cond)\n5. Selection F1: SJ shows positive trend for 3B (+0.006) but not significant (p=0.175)\n6. The \"correlation-selection gap\" persists: high rho but limited selection gain",
+    "content_filename": "llama3b_vs_8b_full_report.txt",
+    "tags": "['scale-ablation', 'llama-3b', 'llama-8b', 'scierc', 'ner', 'review-round9']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 144 · 2026-05-16T04:00:42.445112+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_45805e\", \"name\": \"llama3b_vs_8b_scierc_comparison\", \"type\": \"report\", \"description\": \"LLaMA-3.2-3B vs 3.1-8B SciERC NER 5-signal rho + selection F1 comparison (scale ablation). Files on autodl-5090: output/review_round9_experiments/llama3b_scierc/{comparison_vs_8b.json, selection_f1_3b_vs_8b.json}\", \"path\": \"projects/struct_self_consist_ie/artifacts/exp_llama3b_scierc_ablation/report/llama3b_vs_8b_full_report.txt\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": \"exp_llama3b_scierc_ablation\", \"skill\": \"\", \"created_at\": \"2026-05-16T04:00:27.130319+00:00\", \"tags\": [\"scale-ablation\", \"llama-3b\", \"llama-8b\", \"scierc\", \"ner\", \"review-round9\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 145 · 2026-05-16T04:00:42.445330+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Check training status', 'status': 'completed', 'activeForm': 'Checking training status'}, {'content': 'Merge LoRA adapter to base model', 'status': 'completed', 'activeForm': 'Merging LoRA adapter to base model'}, {'content': 'Run inference with merged model', 'status': 'completed', 'activeForm': 'Running inference with merged model'}, {'content': 'Analyze results and compare with 8B', 'status': 'completed', 'activeForm': 'Analyzing results and comparing with 8B'}, {'content': 'Save outputs and update registry', 'status': 'completed', 'activeForm': 'Saving outputs and updating registry'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Check training status', 'status': 'completed', 'activeForm': 'Checking training status'}, {'content': 'Merge LoRA adapter to base model', 'status': 'completed', 'activeForm': 'Merging LoRA adapter to base model'}, {'content': 'Run inference with merged model', 'status': 'completed', 'activeForm': 'Running inference with merged model'}, {'content': 'Analyze results and compare with 8B', 'status': 'completed', 'activeForm': 'Analyzing results and comparing with 8B'}, {'content': 'Save outputs and update registry', 'status': 'completed', 'activeForm': 'Saving outputs and updating registry'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 146 · 2026-05-16T04:00:42.445484+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama3b_phase3_20260516T035207",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 147 · 2026-05-16T04:00:42.445659+00:00_
+
+Phase 3 全部完成。总结：
+
+## LLaMA-3.2-3B SciERC NER — 结果
+
+**训练**: 5 epochs, 585 steps, train_loss=0.091, eval_loss=0.116
+
+**F1**: greedy=0.627 (8B: 0.646), oracle=0.763 (8B: 0.775)
+
+**5-Signal ρ (FULL split)** — 3B 所有信号都高于 8B：
+
+| Signal | 8B ρ | 3B ρ | Δ |
+|--------|------|------|-----|
+| VC | 0.405 | **0.460** | +0.055 |
+| SJ | 0.310 | **0.375** | +0.066 |
+| EM | 0.259 | **0.334** | +0.075 |
+| FK | 0.235 | **0.268** | +0.032 |
+| LP | 0.150 | **0.266** | +0.116 |
+
+**Selection F1**: SJ 在 3B 上 +0.006 vs greedy (p=0.175, 趋势正但不显著)
+
+**关键发现**:
+1. 小模型信号相关性更高（模型越弱，信号越 informative）
+2. SJ > FK ordering 在两个 scale 都成立（3B gap=0.108 > 8B gap=0.074）
+3. LP 提升最大（+0.116），表明 3B 的 logprob 校准与 8B 差异显著
+4. correlation-selection gap 依然存在
+
+产出文件在 `output/review_round9_experiments/llama3b_scierc/`，registry 已更新为 DONE/success。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_exp_llama3b_phase3_20260516T035207"
+}
+```
+
+</details>
+
+---

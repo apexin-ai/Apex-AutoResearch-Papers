@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_conll_t05_s42",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T22:41:11.361Z",
+    "updated_at": "2026-05-20T22:41:46.081Z",
+    "hypothesis": "CoNLL T=0.5 temperature point: test low temperature on CoNLL2003 to extend cross-dataset T-ablation evidence beyond SciERC and FewNERD. N=8, Qwen3-8B-FT-CoNLL, seed=42. Complements SciERC T-ablation for 3-dataset degeneracy-temperature comparison."
+  },
+  "timestamp": "2026-05-20T22:41:46.440164+00:00",
+  "trigger": "update_registry"
+}

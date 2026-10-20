@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_conll_t_ablation_t12",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T22:41:01.169Z",
+    "updated_at": "2026-05-20T22:44:02.767Z",
+    "hypothesis": "CoNLL temperature ablation (T=1.2): test how temperature affects degeneracy rate and SC diagnostic cascade on CoNLL-2003, complementing SciERC and FewNERD T-ablation data to form 3-dataset temperature-degeneracy frontier. N=8, Qwen3-8B-FT, seed=42."
+  },
+  "timestamp": "2026-05-20T22:44:03.150545+00:00",
+  "trigger": "update_registry"
+}

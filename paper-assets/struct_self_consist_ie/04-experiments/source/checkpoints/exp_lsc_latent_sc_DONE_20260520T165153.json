@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp_lsc_latent_sc",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:37:31.881Z",
+    "updated_at": "2026-05-20T16:51:53.120Z",
+    "hypothesis": "Latent Self-Consistency: F4 diagnostic proves LP is compressed (median range 0.041 nats). Hidden states contain richer per-sample information than scalar LP. Entity-level mean-pooled hidden state representations enable latent aggregation (centroid selection, latent confidence scoring, clustering) that bypasses LP compression and provides discriminative per-sample ranking unavailable from output-space signals.",
+    "parent": "exp_e2_mixture_of_signals",
+    "server": "autodl-5090-c",
+    "gpu": "cuda:2",
+    "account": "root",
+    "reproduce": {
+      "server": "autodl-5090-c",
+      "gpu": "cuda:2",
+      "started_at": "2026-05-20T15:39:11.609Z"
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python run_lsc.py --base_model_path qwen25-7b-fewnerd-merged --data_path fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl --max_instances 2000",
+      "server": "autodl-5090-c",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl",
+      "data_count": 2000,
+      "model_name": "qwen25-7b-fewnerd-merged",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-fewnerd-merged",
+      "eval_data": "FewNERD test (gold-filtered, n=2000)",
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_lsc_latent_sc",
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_lsc_latent_sc.log"
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-20T16:51:53.120Z"
+  },
+  "timestamp": "2026-05-20T16:51:53.459841+00:00",
+  "trigger": "update_registry"
+}

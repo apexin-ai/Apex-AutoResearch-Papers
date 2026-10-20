@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp_conll_freeform_n8_s42",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T09:09:24.843Z",
+    "updated_at": "2026-05-22T15:19:57.307Z",
+    "hypothesis": "Free-form decoding ablation: CoNLL N=8 T=1.0 seed=42 with use_grammar=False. Tests whether removing XGrammar constrained decoding degrades extraction quality and consistency scores, quantifying the contribution of grammar constraints to the structured self-consistency pipeline.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --use_grammar false --collect_logprobs --output_dir output/conll_freeform_n8_seed42",
+      "server": "autodl-5090",
+      "data_path": "data/conll2003",
+      "data_count": 3453,
+      "model_name": "qwen3-8b-conll2003-merged",
+      "seed": 42
+    },
+    "metrics": {
+      "greedy_f1": 0.9046,
+      "mv_strict_f1": 0.8994,
+      "mv_delta_pp": -0.52,
+      "lp_f1": 0.8951,
+      "lp_delta_pp": -0.95,
+      "degeneracy_rate": 0.6,
+      "lp_std_ratio": 0.023466,
+      "n_instances": 2756,
+      "vs_constrained": {
+        "greedy_f1_delta": -0.0042,
+        "mv_delta_change": "+0.43pp (less hurt)",
+        "degen_delta": "+3.0pp (higher in freeform)",
+        "lp_std_ratio_delta": -0.0022
+      }
+    },
+    "conclusion": "success",
+    "checkpoint_path": "output/conll_freeform_n8_seed42/",
+    "log_path": "output/conll_freeform_n8_seed42/eval_results.json",
+    "completed_at": "2026-05-22T15:19:57.307Z"
+  },
+  "timestamp": "2026-05-22T15:19:57.880302+00:00",
+  "trigger": "update_registry"
+}

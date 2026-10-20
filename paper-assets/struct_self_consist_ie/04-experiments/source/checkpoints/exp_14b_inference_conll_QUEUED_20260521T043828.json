@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp_14b_inference_conll",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:36:26.315Z",
+    "updated_at": "2026-05-21T04:38:28.368Z",
+    "hypothesis": "14B Qwen2.5 inference on CoNLL (N∈{1,2,4,8}): filling scale curve between 8B (greedy F1=0.907) and 32B. Tests whether 14B shows intermediate behavior in SC diagnostic metrics.",
+    "reproduce": {
+      "finished_at": "2026-05-20T14:49:00.238Z"
+    },
+    "failure_reason": "Director ordered kill: cross-domain 14B inference deemed valueless by Reviewer. Only FewNERD 14B inference retained.",
+    "conclusion": "killed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T14:49:09.529266+00:00"
+        }
+      ]
+    },
+    "server": "autodl-5090-c",
+    "gpu": "cuda:2"
+  },
+  "timestamp": "2026-05-21T04:38:28.790174+00:00",
+  "trigger": "update_registry"
+}

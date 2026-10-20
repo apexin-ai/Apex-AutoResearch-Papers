@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_ccs_selection",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:59:48.671Z",
+    "updated_at": "2026-05-18T20:01:00.495Z",
+    "hypothesis": "Three-stage cascaded selection (degen→greedy, low-LP-range→entity MV, high-LP-range→LP) can outperform single-strategy selection by adapting to local confidence patterns",
+    "spec": {
+      "command": "python3 code/ccs_selection.py",
+      "server": "autodl-5090",
+      "data_path": "/root/struct_self_consist_ie/data/",
+      "data_count": "all datasets",
+      "model_name": "Qwen3-8B",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-18T20:01:00.893786+00:00",
+  "trigger": "update_registry"
+}

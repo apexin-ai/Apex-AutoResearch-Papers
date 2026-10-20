@@ -1,0 +1,49 @@
+{
+  "exp_id": "exp_scierc_mf4_v2_s456",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T09:28:19.668Z",
+    "updated_at": "2026-05-21T10:18:41.541Z",
+    "spec": {
+      "command": "python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/scierc_mf4v2_seed456/",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "20216",
+      "log_path": "~/runs/struct_self_consist_ie/exp_scierc_mf4_v2_s456.log",
+      "submitted_at": "2026-05-21T09:28:18.878Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/scierc/processed_data",
+      "data_count": 529,
+      "model_name": "qwen3-8b-scierc-merged-v2",
+      "seed": 456,
+      "wall_clock_seconds": 3022.7,
+      "gpu_hours": 0.84
+    },
+    "checkpoint_path": "output/scierc_mf4v2_seed456/",
+    "conclusion": "success",
+    "metrics": {
+      "greedy_f1": 0.6631,
+      "oracle_f1": 0.7732,
+      "oracle_headroom": 0.1101,
+      "fleiss_kappa_mean": 0.3885,
+      "soft_jaccard_mean": 0.6945,
+      "sample_f1_mean": 0.6061,
+      "rho_softjaccard_full": 0.3756,
+      "rho_fleiss_full": 0.2832,
+      "rho_logprob_full": 0.2184,
+      "verdict": "MARGINAL"
+    },
+    "hypothesis": "MF4v2 pipeline (N=8, T=1.0, logprobs) on SciERC with seed 456 produces consistent SC diagnostic signals (structural agreement > logprob baseline for quality estimation), validating cross-seed stability of the structured self-consistency framework on scientific NER.",
+    "completed_at": "2026-05-21T10:18:41.541Z"
+  },
+  "timestamp": "2026-05-21T10:18:42.023193+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_conll_n16_s456",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T04:30:49.693Z",
+    "updated_at": "2026-05-21T04:43:58.351Z",
+    "hypothesis": "CoNLL N=16 (seed=456): extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003. Tests whether oracle gains plateau or continue at higher sample counts, critical for F1(N)=a-b*N^(-c) scaling law estimation. Third seed for 3-seed statistical power."
+  },
+  "timestamp": "2026-05-21T04:43:58.785836+00:00",
+  "trigger": "update_registry"
+}

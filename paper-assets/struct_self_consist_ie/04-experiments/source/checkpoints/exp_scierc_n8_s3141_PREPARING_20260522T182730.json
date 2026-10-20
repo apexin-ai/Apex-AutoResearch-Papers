@@ -1,0 +1,54 @@
+{
+  "exp_id": "exp_scierc_n8_s3141",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T16:33:47.527Z",
+    "updated_at": "2026-05-22T18:27:29.767Z",
+    "hypothesis": "R40 N2 statistical power: SciERC N=8 T=1.0 seed=3141 finetuned Qwen3-8B. 5th seed to strengthen 5-seed Holm-Bonferroni test for core correlation-selection claim (current p_adj=0.055 with 3 seeds).",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 3141 --collect_logprobs --output_dir output/scierc_mf4v2_seed3141/\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "158859",
+      "log_path": "~/runs/struct_self_consist_ie/exp_scierc_n8_s3141.log",
+      "submitted_at": "2026-05-22T16:34:05.985Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "metrics": {
+      "greedy_f1": 0.6609,
+      "oracle_f1": 0.7645,
+      "oracle_headroom": 0.1036,
+      "fleiss_kappa_mean": 0.2906,
+      "soft_jaccard_mean": 0.6265,
+      "rho_sj_f1_full": 0.3477,
+      "rho_kappa_f1_full": 0.2074,
+      "rho_sj_f1_cond": 0.2427,
+      "rho_kappa_f1_cond": 0.0806,
+      "structural_beats_surface": true,
+      "rho_advantage": 0.1404,
+      "logprob_rho_full": 0.1926,
+      "logprob_auroc_full": 0.5733,
+      "logprob_rho_cond": 0.1231,
+      "logprob_auroc_cond": 0.5399,
+      "sample_f1_mean": 0.5802,
+      "sample_f1_std": 0.3357,
+      "sample_f1_pct_zero": 16.5,
+      "n_instances": 551,
+      "degeneracy_rate": 16.5,
+      "verdict": "MARGINAL"
+    },
+    "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed3141/",
+    "log_path": "~/runs/struct_self_consist_ie/exp_scierc_n8_s3141.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T18:27:30.360307+00:00",
+  "trigger": "update_registry"
+}

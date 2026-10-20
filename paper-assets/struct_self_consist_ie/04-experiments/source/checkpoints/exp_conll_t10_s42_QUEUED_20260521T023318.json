@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_conll_t10_s42",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:32:32.990Z",
+    "updated_at": "2026-05-21T02:33:17.891Z",
+    "hypothesis": "CoNLL T=1.0 baseline (seed=42): fills the gap in the temperature ablation matrix (T=0.5/0.8/1.2 already complete with 3 seeds). T=1.0 is the default sampling temperature and should show intermediate behavior between T=0.8 (sweet spot) and T=1.2 (over-diversification), completing the temperature sweep for CoNLL."
+  },
+  "timestamp": "2026-05-21T02:33:18.295631+00:00",
+  "trigger": "update_registry"
+}

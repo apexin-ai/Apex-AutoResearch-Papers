@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_freeform_seed456",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:14:48.842Z",
+    "updated_at": "2026-05-15T17:14:48.843Z"
+  },
+  "timestamp": "2026-05-15T17:14:49.005425+00:00",
+  "trigger": "update_registry"
+}

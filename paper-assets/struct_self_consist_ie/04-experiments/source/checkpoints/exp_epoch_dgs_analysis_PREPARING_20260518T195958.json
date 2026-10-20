@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_epoch_dgs_analysis",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:59:57.921Z",
+    "updated_at": "2026-05-18T19:59:57.921Z"
+  },
+  "timestamp": "2026-05-18T19:59:58.190615+00:00",
+  "trigger": "update_registry"
+}

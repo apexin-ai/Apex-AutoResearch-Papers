@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp_freeform_seed789",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:38:29.851Z",
+    "updated_at": "2026-05-15T18:38:29.851Z",
+    "spec": {
+      "hypothesis": "Multi-seed free-form ablation (seed=789): third seed for 3-seed mean±σ statistical significance. Verify RE LP flip and NER gap stability.",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python run_freeform_inference.py --seed 789 --num_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir results/exp_freeform_ablation_seed789\"",
+      "server": "autodl-5090",
+      "data_path": "data/scierc/processed_data",
+      "data_count": 551,
+      "model_name": "qwen3-8b-scierc-merged-v2",
+      "seed": 789,
+      "gpu": "cuda:3"
+    }
+  },
+  "timestamp": "2026-05-15T18:38:30.040597+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_vc_quartile_analysis",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T04:48:35.263Z",
+    "updated_at": "2026-05-16T05:00:30.439Z",
+    "hypothesis": "VC quartile stratification: split instances by VC score into Q1-Q4, compute LP selection F1 per quartile. Test if LP selection ability recovers in high-VC instances. Addresses SF3.",
+    "spec": {
+      "command": "python vc_quartile_analysis.py",
+      "server": "autodl-5090",
+      "data_path": "output/exp_012_rerun_1024/samples.jsonl + output/exp_002_conll_n8_seed42/samples.jsonl",
+      "data_count": 3682,
+      "model_name": "analysis_only (Qwen3-8B data)",
+      "seed": 42
+    },
+    "conclusion": "success",
+    "checkpoint_path": "artifacts/vc_quartile_analysis/results.json",
+    "log_path": "artifacts/vc_quartile_analysis/report.md",
+    "completed_at": "2026-05-16T05:00:30.439Z"
+  },
+  "timestamp": "2026-05-16T05:00:30.682746+00:00",
+  "trigger": "update_registry"
+}

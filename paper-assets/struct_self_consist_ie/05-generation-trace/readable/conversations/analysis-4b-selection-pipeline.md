@@ -1,0 +1,1430 @@
+# analysis 4b selection pipeline
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 45
+- **Recorded user turns:** 0
+- **Tool calls:** 22
+- **Original source:** `logs/chats/worker_analysis_4b_selection_pipeline_20260515T200110.jsonl`
+- **Structured JSON:** [`a9de165ac1a330649b30.json`](../../sessions/a9/a9de165ac1a330649b30.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+45 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T20:05:35.453847+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T20:05:35.454266+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T20:05:35.454456+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/code/ -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/code/ -name \"*.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T20:05:35.454649+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/data_utils.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_to_llamafactory.py\\n/root/autodl-tmp/struct_self_consist_ie/code/evaluation.py\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py\\n/root/autodl-tmp/struct_self_consist_ie/code/sampling.py\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_eval.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_diagnose.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_realign_eval.py\\n/root/autodl-tmp/struct_self_consist_ie/code/mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_wnut17.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/extract_logprobs.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exact_match_voting.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_postprocess.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py\\n/root/autodl-tmp/struct_self_consist_ie/code/diagnose_logprob_rho.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp002_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/run_mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp015_unified.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp004_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_component_wise_re.py\\n/root/a
+…[truncated 4260 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T20:05:35.454803+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T20:05:35.454976+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"analysis_epsilon_sweep\\nanalysis_fk_bootstrap_ci.json\\nanalysis_fk_bootstrap_per_instance.json\\nanalysis_lp_range_cdf.json\\nanalysis_lp_range_cdf_n16_3seed.json\\nanalysis_multiseed_selection_f1.json\\nanalysis_round8\\nanalysis_scierc_n16_3seed_selection_f1.json\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\nanalysis_unified_rho_full.json\\nbootstrap_ci_nscaling\\nbootstrap_ci_summary.json\\nbootstrap_ci_tables.tex\\nconditional_filter_diagnosis.json\\nexp001_n16_seed123\\nexp001_n16_seed123_200only\\nexp001_n16_seed123_200only_backup\\nexp001_n16_seed123_full\\nexp001_n16_seed123_run.log\\nexp001_n16_seed42\\nexp001_n16_seed42_200only_backup\\nexp001_n16_seed42_run.log\\nexp001_n16_seed456\\nexp001_n16_seed456_200only\\nexp001_n16_seed456_run.log\\nexp001_seed123_t10_full\\nexp001_seed123_t10_full.log\\nexp001_seed456_t10_full\\nexp001_seed456_t10_full.log\\nexp002_conll2003\\nexp003_wnut17_dryrun\\nexp003_wnut17_eval\\nexp003_wnut17_eval.log\\nexp003_wnut17_pilot\\nexp003_wnut17_pilot.log\\nexp004_re_diagnostic\\nexp004v2_re_diagnostic\\nexp007_llama_dryrun\\nexp007_llama_inference\\nexp008_re_n16\\nexp008_re_n16_200only\\nexp008_re_n16_t10_full\\nexp008_re_n16_t10_full.log\\nexp009_stratification_results.json\\nexp010_selection_curves\\nexp016_signal_ensemble\\nexp018_3seed_5signal_results.json\\nexp_001_seed123_v2\\nexp_001_seed123_v2_r1024\\nexp_001_seed42_v2\\nexp_001_seed42_v2_r1024\\nexp_001_seed456_v2\\nexp_001_seed456_v2_ner\\nexp_001_seed456_v2_ner.log\\nexp_001_seed456_v2_ner_r1024\\nexp_002_conll_n16\\nexp_002_conll_n16.log\\nexp_002_conll_n16_r1024\\nexp_003_wnut17_v2_infer\\nexp_005_v2_temperature\\nexp_006_v2\\nexp_006_v2_run.log\\nexp_007_llama_n16\\nexp_007_llama_n16.log\\nexp_007_llama_n16_r1024\\nexp_007_llama_seed123\\nexp_007_llama_seed456\\nexp_008_re_n16_v2\\nexp_008_re_seed123\\nexp_009_v2\\nexp_009_v2_re_rerun\\nexp_009_v2_r
+…[truncated 1842 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T20:05:35.455204+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T20:05:35.455509+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Multi-seed Selection F1 for Table 3 (C2 critical).\\n\\nFor each instance's N samples, score with 5 signals (SJ/FK/VC/EM/LP),\\nselect the top-scoring sample, compute its F1 vs gold.\\nReports 3-seed mean±σ, per-seed bootstrap p-value vs greedy, and\\na combined bootstrap p-value across seeds.\\n\\nInput: samples.jsonl files from inference experiments.\\nOutput: JSON results + markdown report.\\nDepends: consistency.py, evaluation.py (same directory).\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nimport time\\nfrom collections import Counter\\n\\nimport numpy as np\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import (\\n    _ner_soft_jaccard_pair,\\n    _re_soft_jaccard_pair,\\n    _extract_surface_keys,\\n)\\nfrom evaluation import per_instance_f1\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\n\\nEXPERIMENT_GROUPS = {\\n    # --- Qwen SciERC N=16 (v2 pipeline) ---\\n    \\\"qwen_scierc_ner_n16\\\": {\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\\\",\\n        },\\n    },\\n    \\\"qwen_scierc_re_n16\\\": {\\n        \\\"subtask\\\": \\\"re\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\\\",\\n        },\\n    },\\n    # --- Qwen SciERC N=8 (r1024 logprobs) ---\\n    \\\"qwen_scierc_ner_n8\\\": {\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\",\\n            123: f\\\"{B
+…[truncated 7324 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T20:05:35.455705+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/analyze_scale_ablation_4b.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/analyze_scale_ablation_4b.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T20:05:35.455968+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Scale ablation: Qwen3-4B vs 8B CoNLL NER — 5-signal comparison.\\\"\\\"\\\"\\nimport json, sys\\nimport numpy as np\\nfrom scipy.stats import spearmanr, rankdata\\nfrom collections import Counter\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import per_instance_f1\\n\\nEXPERIMENTS = {\\n    \\\"qwen3_8b_conll\\\": {\\n        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"model\\\": \\\"Qwen3-8B\\\",\\n    },\\n    \\\"qwen3_4b_conll\\\": {\\n        \\\"path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/samples.jsonl\\\",\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"model\\\": \\\"Qwen3-4B\\\",\\n    },\\n}\\n\\ndef load_data(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f if line.strip()]\\n\\ndef compute_exact_match_rate(samples, subtask):\\n    if subtask == \\\"ner\\\":\\n        keys = [frozenset((e[\\\"text\\\"], e[\\\"type\\\"]) for e in s.get(\\\"entities\\\", [])) for s in samples]\\n    else:\\n        keys = [frozenset((r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in s.get(\\\"relations\\\", [])) for s in samples]\\n    if not keys: return 0.0\\n    c = Counter(keys)\\n    return c.most_common(1)[0][1] / len(samples)\\n\\ndef compute_voting_confidence(samples, subtask):\\n    N = len(samples)\\n    if N == 0: return 0.0\\n    counter = Counter()\\n    if subtask == \\\"ner\\\":\\n        for s in samples:\\n            for e in s.get(\\\"entities\\\", []):\\n                counter[(e[\\\"text\\\"], e[\\\"type\\\"])] += 1\\n    else:\\n        for s in samples:\\n            for r in s.get(\\\"relations\\\", []):\\n                counter[(r[\\\"head\\\"], r[\\\"tail\
+…[truncated 7329 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T20:05:35.456153+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T20:05:35.456344+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 9312\\ndrwxr-xr-x  2 root root      58 May 16 03:53 .\\ndrwxr-xr-x 90 root root    8192 May 16 03:52 ..\\n-rw-r--r--  1 root root    1741 May 16 03:53 report.json\\n-rw-r--r--  1 root root 9515799 May 16 03:53 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T20:05:35.456481+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_scierc_scs_inference/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_scierc_scs_inference/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T20:05:35.456612+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 3816\\ndrwxr-xr-x  2 root root      58 May 16 03:56 .\\ndrwxr-xr-x 90 root root    8192 May 16 03:52 ..\\n-rw-r--r--  1 root root    3366 May 16 03:56 report.json\\n-rw-r--r--  1 root root 3889057 May 16 03:56 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T20:05:35.456735+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T20:05:35.456872+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 9316\\ndrwxr-xr-x  2 root root      96 May 16 03:49 .\\ndrwxr-xr-x 90 root root    8192 May 16 03:52 ..\\n-rw-r--r--  1 root root    1745 May 16 03:46 report.json\\n-rw-r--r--  1 root root 9518115 May 16 03:46 samples.jsonl\\n-rw-r--r--  1 root root    2148 May 16 03:49 scale_ablation_report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T20:05:35.457055+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -200 /root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -200 /root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T20:05:35.457203+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/scale_ablation_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/scale_ablation_report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T20:05:35.457328+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T20:05:35.457743+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Multi-seed Selection F1 for Table 3 (C2 critical).\\n\\nFor each instance's N samples, score with 5 signals (SJ/FK/VC/EM/LP),\\nselect the top-scoring sample, compute its F1 vs gold.\\nReports 3-seed mean±σ, per-seed bootstrap p-value vs greedy, and\\na combined bootstrap p-value across seeds.\\n\\nInput: samples.jsonl files from inference experiments.\\nOutput: JSON results + markdown report.\\nDepends: consistency.py, evaluation.py (same directory).\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nimport time\\nfrom collections import Counter\\n\\nimport numpy as np\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import (\\n    _ner_soft_jaccard_pair,\\n    _re_soft_jaccard_pair,\\n    _extract_surface_keys,\\n)\\nfrom evaluation import per_instance_f1\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\n\\nEXPERIMENT_GROUPS = {\\n    # --- Qwen SciERC N=16 (v2 pipeline) ---\\n    \\\"qwen_scierc_ner_n16\\\": {\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\\\",\\n        },\\n    },\\n    \\\"qwen_scierc_re_n16\\\": {\\n        \\\"subtask\\\": \\\"re\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\\\",\\n        },\\n    },\\n    # --- Qwen SciERC N=8 (r1024 logprobs) ---\\n    \\\"qwen_scierc_ner_n8\\\": {\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\",\\n            123: f\\\"{B
+…[truncated 5768 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T20:05:35.457993+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"qwen3_8b_conll\\\": {\\n    \\\"n_total\\\": 3453,\\n    \\\"n_valid\\\": 2756,\\n    \\\"n_conditional\\\": 2617,\\n    \\\"greedy_f1\\\": 0.9079,\\n    \\\"oracle_f1\\\": 0.9483,\\n    \\\"lp_tied_count\\\": 694,\\n    \\\"lp_tied_pct\\\": 25.2,\\n    \\\"full\\\": {\\n      \\\"n\\\": 2756,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.4357,\\n        \\\"auroc\\\": 0.8008\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3998,\\n        \\\"auroc\\\": 0.7741\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.3157,\\n        \\\"auroc\\\": 0.7532\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4507,\\n        \\\"auroc\\\": 0.8156\\n      },\\n      \\\"Voting\\\": {\\n        \\\"rho\\\": 0.4237,\\n        \\\"auroc\\\": 0.7889\\n      },\\n      \\\"greedy_f1_mean\\\": 0.9079\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 2617,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3994,\\n        \\\"auroc\\\": 0.8061\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3521,\\n        \\\"auroc\\\": 0.7699\\n      },\\n      \\\"LP\\\": {\\n        \\\"rho\\\": 0.3671,\\n        \\\"auroc\\\": 0.8185\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4449,\\n        \\\"auroc\\\": 0.842\\n      },\\n      \\\"Voting\\\": {\\n        \\\"rho\\\": 0.3521,\\n        \\\"auroc\\\": 0.7697\\n      },\\n      \\\"greedy_f1_mean\\\": 0.9561\\n    },\\n    \\\"model\\\": \\\"Qwen3-8B\\\"\\n  },\\n  \\\"qwen3_4b_conll\\\": {\\n    \\\"n_total\\\": 3453,\\n    \\\"n_valid\\\": 2756,\\n    \\\"n_conditional\\\": 2640,\\n    \\\"greedy_f1\\\": 0.9208,\\n    \\\"oracle_f1\\\": 0.9384,\\n    \\\"lp_tied_count\\\": 1971,\\n    \\\"lp_tied_pct\\\": 71.5,\\n    \\\"full\\\": {\\n      \\\"n\\\": 2756,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.4324,\\n        \\\"auroc\\\": 0.6931\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.4244,\\n        \\\"auroc\\\":
+…[truncated 1094 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T20:05:35.458177+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_scierc_scs_inference/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_scierc_scs_inference/report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T20:05:35.458777+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"conll2003\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 3453,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.92340275326509,\\n  \\\"oracle_f1\\\": 0.9403985187797567,\\n  \\\"oracle_headroom\\\": 0.01699576551466664,\\n  \\\"fleiss_kappa_mean\\\": 0.9342818559086602,\\n  \\\"soft_jaccard_mean\\\": 0.9748228201588379,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.4181163421891748,\\n    \\\"p_value\\\": 4.431055585876661e-117,\\n    \\\"n\\\": 2756\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.4216523996064672,\\n    \\\"p_value\\\": 3.068659337454799e-119,\\n    \\\"n\\\": 2756\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.4537767289784424,\\n    \\\"p_value\\\": 2.566930923437062e-134,\\n    \\\"n\\\": 2641\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.4590247713350013,\\n    \\\"p_value\\\": 8.649043243264728e-138,\\n    \\\"n\\\": 2641\\n  },\\n  \\\"n_gold_empty_filtered\\\": 697,\\n  \\\"n_greedy_f1_zero_filtered\\\": 115,\\n  \\\"structural_beats_surface\\\": true,\\n  \\\"rho_advantage\\\": 0.003536057417292404,\\n  \\\"sample_f1_mean\\\": 0.9183192688649836,\\n  \\\"sample_f1_std\\\": 0.2301141019984235,\\n  \\\"sample_f1_pct_zero\\\": 4.376814223512337,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.33134857322416716,\\n      \\\"p_rho\\\": 1.288942038617803e-71,\\n      \\\"tau\\\": 0.2615476800056602,\\n      \\\"p_tau\\\": 2.3584005690788482e-67,\\n      \\\"auroc\\\": 0.7761070419189873,\\n      \\\"n\\\": 2756\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.3486729246332634,\\n      \\\"p_rho\\\": 2.3299439307115813e-76,\\n      \\\"tau\\\": 0.27868915974402253,\\n      \\\"p_tau\\\": 5.086417187432997e-72,\\n      \
+…[truncated 349 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T20:05:35.459117+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"joint\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"ner_greedy_f1\\\": 0.6611617312072894,\\n  \\\"ner_oracle_f1\\\": 0.7839488223320733,\\n  \\\"ner_oracle_headroom\\\": 0.12278709112478392,\\n  \\\"ner_fleiss_kappa_mean\\\": 0.3627662026254509,\\n  \\\"ner_soft_jaccard_mean\\\": 0.6417319480071191,\\n  \\\"ner_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.325825924958949,\\n    \\\"p_value\\\": 1.5059643082856944e-14,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.42206691768705,\\n    \\\"p_value\\\": 2.8900364123236118e-24,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.28139474856764607,\\n    \\\"p_value\\\": 2.0895265978043796e-10,\\n    \\\"n\\\": 492\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3807880496255638,\\n    \\\"p_value\\\": 2.007402504563935e-18,\\n    \\\"n\\\": 492\\n  },\\n  \\\"ner_n_gold_empty_filtered\\\": 22,\\n  \\\"ner_n_greedy_f1_zero_filtered\\\": 37,\\n  \\\"ner_structural_beats_surface\\\": true,\\n  \\\"ner_rho_advantage\\\": 0.096240992728101,\\n  \\\"ner_sample_f1_mean\\\": 0.5991348774074003,\\n  \\\"ner_sample_f1_std\\\": 0.3115358106123299,\\n  \\\"ner_sample_f1_pct_zero\\\": 11.36578449905482,\\n  \\\"ner_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.2800331541140455,\\n      \\\"p_rho\\\": 5.483886459901985e-11,\\n      \\\"tau\\\": 0.20027883487619444,\\n      \\\"p_tau\\\": 5.0020767023235506e-11,\\n      \\\"auroc\\\": 0.6439186264608282,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.22082506121957016,\\n      \\\"p_rho\\\": 7.54139592711259e-07,\\n      \\\"tau\\\": 0.15850227072478087,\\
+…[truncated 2335 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T20:05:35.459317+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/table2_selection_f1.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/table2_selection_f1.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T20:05:35.459600+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Selection F1 for Table 2: Qwen SciERC NER N=8, seed42+seed123.\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nimport time\\nfrom collections import Counter\\n\\nimport numpy as np\\nfrom scipy.stats import binomtest\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import (\\n    _ner_soft_jaccard_pair,\\n    _extract_surface_keys,\\n)\\nfrom evaluation import per_instance_f1\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\nSEEDS = {\\n    42: f\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\",\\n    123: f\\\"{BASE}/output/exp_018_qwen_scierc_seed123/samples.jsonl\\\",\\n}\\nSUBTASK = \\\"ner\\\"\\nSIGNALS = [\\\"LP\\\", \\\"SJ\\\", \\\"EM\\\", \\\"VC\\\", \\\"FK\\\"]\\nN_RANDOM_REPEATS = 50\\n\\n\\ndef load_data(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f if line.strip()]\\n\\n\\ndef compute_sample_sj_scores(instance):\\n    samples = instance[\\\"samples\\\"]\\n    N = len(samples)\\n    matrix = np.zeros((N, N))\\n    for i in range(N):\\n        for j in range(i + 1, N):\\n            s = _ner_soft_jaccard_pair(\\n                samples[i].get(\\\"entities\\\", []),\\n                samples[j].get(\\\"entities\\\", []),\\n            )\\n            matrix[i][j] = s\\n            matrix[j][i] = s\\n    np.fill_diagonal(matrix, 1.0)\\n    return [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\\n\\n\\ndef compute_sample_surface_scores(instance):\\n    samples = instance[\\\"samples\\\"]\\n    N = len(samples)\\n    key_sets = [frozenset(_extract_surface_keys(s, SUBTASK)) for s in samples]\\n    matrix = np.zeros((N, N))\\n    for i in range(N):\\n        for j in range(i + 1, N):\\n            union = len(key_sets[i] | key_sets[j])\\n            inter = len(key_sets[i] & key_sets[j])\\n            s = inter / union if union > 0 else 
+…[truncated 7277 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T20:05:35.459813+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -n +200 /root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -n +200 /root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T20:05:35.460093+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        greedy_f1s.append(g_f1)\\n\\n        sample_f1s = [per_instance_f1(s, gold, subtask=subtask) for s in samples]\\n        oracle_f1s.append(max(sample_f1s))\\n        random_f1s.append(float(np.mean(sample_f1s)))\\n\\n        sj_scores = compute_sample_sj_scores(inst, subtask)\\n        fk_scores, key_sets = compute_sample_surface_scores(inst, subtask)\\n        vc_scores = compute_sample_voting_conf(key_sets, N)\\n        em_scores = compute_sample_em_scores(key_sets)\\n        lp_scores = compute_sample_logprobs(inst)\\n\\n        all_scores = {\\\"SJ\\\": sj_scores, \\\"FK\\\": fk_scores, \\\"VC\\\": vc_scores,\\n                      \\\"EM\\\": em_scores, \\\"LP\\\": lp_scores}\\n\\n        for sig in SIGNALS:\\n            chosen = select_top1(all_scores[sig])\\n            signal_f1s[sig].append(sample_f1s[chosen])\\n\\n    elapsed = time.time() - t0\\n    print(f\\\"      Done in {elapsed:.1f}s\\\")\\n\\n    greedy_arr = np.array(greedy_f1s)\\n    random_arr = np.array(random_f1s)\\n    oracle_arr = np.array(oracle_f1s)\\n\\n    result = {\\n        \\\"n_instances\\\": n_inst,\\n        \\\"n_samples_per_instance\\\": N_per,\\n        \\\"greedy_f1\\\": float(greedy_arr.mean()),\\n        \\\"random_f1\\\": float(random_arr.mean()),\\n        \\\"oracle_f1\\\": float(oracle_arr.mean()),\\n    }\\n\\n    for sig in SIGNALS:\\n        arr = np.array(signal_f1s[sig])\\n        boot = paired_bootstrap(arr, greedy_arr, N_BOOTSTRAP, BOOTSTRAP_SEED)\\n        result[sig] = {\\n            \\\"selection_f1\\\": float(arr.mean()),\\n            \\\"delta_vs_greedy\\\": float(arr.mean() - greedy_arr.mean()),\\n            \\\"bootstrap\\\": boot,\\n        }\\n\\n    return result\\n\\n\\ndef aggregate_seeds(seed_results, seeds):\\n    agg = {}\\n    agg[\\\"seeds\\\"] = seeds\\n    agg[\\\"n_instances\\\"] = seed_results[seeds[0]][\\\"n_instances\\\"]\\n    agg[\\\"n_samples_per_instance\\\"] = seed_resu
+…[truncated 7104 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T20:05:35.460285+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_merge_inference_v2/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_merge_inference_v2/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T20:05:35.460422+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 12\\ndrwxr-xr-x  2 root root   10 May 16 03:45 .\\ndrwxr-xr-x 90 root root 8192 May 16 03:52 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T20:05:35.460546+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -2 /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -2 /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T20:05:35.460783+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"conll2003_test_00000\\\", \\\"text\\\": \\\"SOCCER - JAPAN GET LUCKY WIN , CHINA IN SURPRISE DEFEAT .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -0.23260687344568254, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.0034717443797863067}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -1.6076354032826643, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.023994558257950212}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type
+…[truncated 5186 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T20:05:35.461058+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat > /root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Selection F1 for Qwen3-4B scale ablation (single-seed).\n\nRuns the same per-sample selection pipeline as compute_selection_f1.py\non 4B CoNLL NER and SciERC NER/RE inference outputs.\n\"\"\"\nimport json\nimport os\nimport sys\nimport time\nfrom collections import Counter\n\nimport numpy as np\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom consistency import (\n    _ner_soft_jaccard_pair,\n    _re_soft_jaccard_pair,\n    _extract_surface_keys,\n)\nfrom evaluation import per_instance_f1\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\n\nEXPERIMENTS = {\n    \"qwen3_4b_conll_ner\": {\n        \"path\": f\"{BASE}/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl\",\n        \"subtask\": \"ner\",\n    },\n    \"qwen3_4b_scierc_ner\": {\n        \"path\": f\"{BASE}/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\",\n        \"subtask\": \"ner\",\n    },\n    \"qwen3_4b_scierc_re\": {\n        \"path\": f\"{BASE}/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\",\n        \"subtask\": \"re\",\n    },\n}\n\nN_BOOTSTRAP = 10000\nBOOTSTRAP_SEED = 42\nSIGNALS = [\"VC\", \"SJ\", \"FK\", \"EM\", \"LP\"]\n\n\ndef load_data(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f if line.strip()]\n\n\ndef compute_sample_sj_scores(instance, subtask):\n    samples = instance[\"samples\"]\n    N = len(samples)\n    field = \"entities\" if subtask == \"ner\" else \"relations\"\n    pair_fn = _ner_soft_jaccard_pair if subtask == \"ner\" else _re_soft_jaccard_pair\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            s = pair_fn(samples[i].get(field, []), samples[j].get(field, []))\n            matrix[i][j] = s\n            matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    return [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\n\n\ndef compute_sample_surface_scores(instance, subtask):\n    samples = instance[\"samples\"]\n    N = len(samples)\n    key_sets = [frozenset(_extract_surface_keys(s, subtask)) for s in samples]\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            union = len(key_sets[i] | key_sets[j])\n            inter = len(key_sets[i] & key_sets[j])\n            s = inter / union if union > 0 else 1.0\n            matrix[i][j] = s\n            matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    fk_scores = [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\n    return fk_scores, key_sets\n\n\ndef compute_sample_voting_conf(key_sets, N):\n    all_keys_count = Counter()\n    for ks in key_sets:\n        for key in ks:\n            all_keys_count[key] += 1\n    scores = []\n    for ks in key_sets:\n        if not ks:\n            scores.append(0.0)\n        else:\n            fracs = [all_keys_count[key] / N for key in ks]\n            scores.append(float(np.mean(fracs)))\n    return scores\n\n\ndef compute_sample_em_scores(key_sets):\n    N = len(key_sets)\n    return [float(sum(1 for j in range(N) if j != k and key_sets[k] == key_sets[j])) for k in range(N)]\n\n\ndef compute_sample_logprobs(instance):\n    lps = []\n    for s in instance[\"samples\"]:\n        lp = s.get(\"mean_logprob\")\n        if lp is None:\n            lp = s.get(\"cumulative_logprob\", -999) / max(s.get(\"n_tokens\", 1), 1)\n        lps.append(lp)\n    return lps\n\n\ndef paired_bootstrap(sel_f1s, greedy_f1s, n_bootstrap, seed):\n    rng = np.random.RandomState(seed)\n    n = len(sel_f1s)\n    observed_delta = sel_f1s.mean() - greedy_f1s.mean()\n    count_ge = 0\n    deltas = np.empty(n_bootstrap)\n    for b in range(n_bootstrap):\n        idx = rng.randint(0, n, size=n)\n        d = sel_f1s[idx].mean() - greedy_f1s[idx].mean()\n        deltas[b] = d\n        if d <= 0:\n            count_ge += 1\n    p_value = count_ge / n_bootstrap\n    ci95 = [float(np.percentile(deltas, 2.5)), float(np.percentile(deltas, 97.5))]\n    return {\"observed_delta\": float(observed_delta), \"p_value\": float(p_value), \"ci95\": ci95}\n\n\ndef analyze(path, subtask):\n    data = load_data(path)\n    field = \"entities\" if subtask == \"ner\" else \"relations\"\n    instances = [d for d in data if len(d[\"gold\"].get(field, [])) > 0]\n    n_inst = len(instances)\n    N_per = len(instances[0][\"samples\"]) if instances else 0\n    print(f\"  {n_inst} valid instances (from {len(data)} total), N={N_per}\")\n\n    t0 = time.time()\n    greedy_f1s = []\n    oracle_f1s = []\n    random_f1s = []\n    signal_f1s = {sig: [] for sig in SIGNALS}\n\n    for inst in instances:\n        samples = inst[\"samples\"]\n        gold = inst[\"gold\"]\n        greedy = inst.get(\"greedy\", samples[0])\n        N = len(samples)\n\n        g_f1 = per_instance_f1(greedy, gold, subtask=subtask)\n        greedy_f1s.append(g_f1)\n\n        sample_f1s = [per_instance_f1(s, gold, subtask=subtask) for s in samples]\n        oracle_f1s.append(max(sample_f1s))\n        random_f1s.append(float(np.mean(sample_f1s)))\n\n        sj_scores = compute_sample_sj_scores(inst, subtask)\n        fk_scores, key_sets = compute_sample_surface_scores(inst, subtask)\n        vc_scores = compute_sample_voting_conf(key_sets, N)\n        em_scores = compute_sample_em_scores(key_sets)\n        lp_scores = compute_sample_logprobs(inst)\n\n        all_scores = {\"SJ\": sj_scores, \"FK\": fk_scores, \"VC\": vc_scores,\n                      \"EM\": em_scores, \"LP\": lp_scores}\n\n        for sig in SIGNALS:\n            chosen = int(np.argmax(all_scores[sig]))\n            signal_f1s[sig].append(sample_f1s[chosen])\n\n    elapsed = time.time() - t0\n    print(f\"  Computed in {elapsed:.1f}s\")\n\n    greedy_arr = np.array(greedy_f1s)\n    oracle_arr = np.array(oracle_f1s)\n    random_arr = np.array(random_f1s)\n\n    result = {\n        \"n_instances\": n_inst,\n        \"n_samples_per_instance\": N_per,\n        \"greedy_f1\": round(float(greedy_arr.mean()), 5),\n        \"random_f1\": round(float(random_arr.mean()), 5),\n        \"oracle_f1\": round(float(oracle_arr.mean()), 5),\n    }\n\n    for sig in SIGNALS:\n        arr = np.array(signal_f1s[sig])\n        boot = paired_bootstrap(arr, greedy_arr, N_BOOTSTRAP, BOOTSTRAP_SEED)\n        result[sig] = {\n            \"selection_f1\": round(float(arr.mean()), 5),\n            \"delta_vs_greedy\": round(float(arr.mean() - greedy_arr.mean()), 5),\n            \"bootstrap_p\": round(boot[\"p_value\"], 5),\n            \"bootstrap_ci95\": [round(x, 5) for x in boot[\"ci95\"]],\n        }\n\n    return result\n\n\ndef main():\n    all_results = {}\n\n    for exp_name, cfg in EXPERIMENTS.items():\n        path = cfg[\"path\"]\n        subtask = cfg[\"subtask\"]\n        print(f\"\\n{'='*60}\")\n        print(f\"  {exp_name} (subtask={subtask})\")\n        print(f\"{'='*60}\")\n\n        if not os.path.exists(path):\n            print(f\"  SKIP: {path} not found\")\n            continue\n\n        result = analyze(path, subtask)\n        all_results[exp_name] = result\n\n        # Print table\n        print(f\"\\n  {'Method':<10s}  {'Sel F1':>9s}  {'Δ Greedy':>9s}  {'p-value':>9s}\")\n        print(f\"  {'-'*10}  {'-'*9}  {'-'*9}  {'-'*9}\")\n        print(f\"  {'Greedy':<10s}  {result['greedy_f1']:.5f}\")\n        print(f\"  {'Random':<10s}  {result['random_f1']:.5f}  {result['random_f1']-result['greedy_f1']:+.5f}\")\n        for sig in SIGNALS:\n            sr = result[sig]\n            print(f\"  {sig:<10s}  {sr['selection_f1']:.5f}  {sr['delta_vs_greedy']:+.5f}  {sr['bootstrap_p']:.5f}\")\n        print(f\"  {'Oracle':<10s}  {result['oracle_f1']:.5f}  {result['oracle_f1']-result['greedy_f1']:+.5f}\")\n\n    # Save JSON\n    out_path = f\"{BASE}/output/selection_f1_4b_results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    print(f\"\\nSaved: {out_path}\")\n\n    # Summary comparison\n    print(f\"\\n{'='*60}\")\n    print(\"  SUMMARY: Selection Gap (SJ vs FK/VC)\")\n    print(f\"{'='*60}\")\n    for exp_name, r in all_results.items():\n        sj_sel = r[\"SJ\"][\"selection_f1\"]\n        fk_sel = r[\"FK\"][\"selection_f1\"]\n        vc_sel = r[\"VC\"][\"selection_f1\"]\n        lp_sel = r[\"LP\"][\"selection_f1\"]\n        print(f\"\\n  {exp_name}:\")\n        print(f\"    Greedy={r['greedy_f1']:.4f}  Oracle={r['oracle_f1']:.4f}  Headroom={r['oracle_f1']-r['greedy_f1']:+.4f}\")\n        print(f\"    SJ sel={sj_sel:.4f}  FK sel={fk_sel:.4f}  VC sel={vc_sel:.4f}  LP sel={lp_sel:.4f}\")\n        print(f\"    SJ-FK gap: {sj_sel-fk_sel:+.4f}\")\n        print(f\"    SJ-VC gap: {sj_sel-vc_sel:+.4f}\")\n        print(f\"    SJ-LP gap: {sj_sel-lp_sel:+.4f}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written successfully\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat > /root/autodl-tmp/struct_self_consist_ie/code/selection_f1_4b.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Selection F1 for Qwen3-4B scale ablation (single-seed).\n\nRuns the same per-sample selection pipeline as compute_selection_f1.py\non 4B CoNLL NER and SciERC NER/RE inference outputs.\n\"\"\"\nimport json\nimport os\nimport sys\nimport time\nfrom collections import Counter\n\nimport numpy as np\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom consistency import (\n    _ner_soft_jaccard_pair,\n    _re_soft_jaccard_pair,\n    _extract_surface_keys,\n)\nfrom evaluation import per_instance_f1\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\n\nEXPERIMENTS = {\n    \"qwen3_4b_conll_ner\": {\n        \"path\": f\"{BASE}/output/exp_qwen3_4b_conll_scs_inference_v2/samples.jsonl\",\n        \"subtask\": \"ner\",\n    },\n    \"qwen3_4b_scierc_ner\": {\n        \"path\": f\"{BASE}/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\",\n        \"subtask\": \"ner\",\n    },\n    \"qwen3_4b_scierc_re\": {\n        \"path\": f\"{BASE}/output/exp_qwen3_4b_scierc_scs_inference/samples.jsonl\",\n        \"subtask\": \"re\",\n    },\n}\n\nN_BOOTSTRAP = 10000\nBOOTSTRAP_SEED = 42\nSIGNALS = [\"VC\", \"SJ\", \"FK\", \"EM\", \"LP\"]\n\n\ndef load_data(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f if line.strip()]\n\n\ndef compute_sample_sj_scores(instance, subtask):\n    samples = instance[\"samples\"]\n    N = len(samples)\n    field = \"entities\" if subtask == \"ner\" else \"relations\"\n    pair_fn = _ner_soft_jaccard_pair if subtask == \"ner\" else _re_soft_jaccard_pair\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            s = pair_fn(samples[i].get(field, []), samples[j].get(field, []))\n            matrix[i][j] = s\n            matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    return [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\n\n\ndef compute_sample_surface_scores(instance, subtask):\n    samples = instance[\"samples\"]\n    N = len(samples)\n    key_sets = [frozenset(_extract_surface_keys(s, subtask)) for s in samples]\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            union = len(key_sets[i] | key_sets[j])\n            inter = len(key_sets[i] & key_sets[j])\n            s = inter / union if union > 0 else 1.0\n            matrix[i][j] = s\n            matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    fk_scores = [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\n    return fk_scores, key_sets\n\n\ndef compute_sample_voting_conf(key_sets, N):\n    all_keys_count = Counter()\n    for ks in key_sets:\n        for key in ks:\n            all_keys_count[key] += 1\n    scores = []\n    for ks in key_sets:\n        if not ks:\n            scores.append(0.0)\n        else:\n            fracs = [all_keys_count[key] / N for key in ks]\n            scores.append(float(np.mean(fracs)))\n    return scores\n\n\ndef compute_sample_em_scores(key_sets):\n    N = len(key_sets)\n    return [float(sum(1 for j in range(N) if j != k and key_sets[k] == key_sets[j])) for k in range(N)]\n\n\ndef compute_sample_logprobs(instance):\n    lps = []\n    for s in instance[\"samples\"]:\n        lp = s.get(\"mean_logprob\")\n        if lp is None:\n            lp = s.get(\"cumulative_logprob\", -999) / max(s.get(\"n_tokens\", 1), 1)\n        lps.append(lp)\n    return lps\n\n\ndef paired_bootstrap(sel_f1s, greedy_f1s, n_bootstrap, seed):\n    rng = np.random.RandomState(seed)\n    n = len(sel_f1s)\n    observed_delta = sel_f1s.mean() - greedy_f1s.mean()\n    count_ge = 0\n    deltas = np.empty(n_bootstrap)\n    for b in range(n_bootstrap):\n        idx = rng.randint(0, n, size=n)\n        d = sel_f1s[idx].mean() - greedy_f1s[idx].mean()\n        deltas[b] = d\n        if d <= 0:\n            count_ge += 1\n    p_value = count_ge / n_bootstrap\n    ci95 = [float(np.percentile(deltas, 2.5)), float(np.percentile(deltas, 97.5))]\n    return {\"observed_delta\": float(observed_delta), \"p_value\": float(p_value), \"ci95\": ci95}\n\n\ndef analyze(path, subtask):\n    data = load_data(path)\n    field = \"entities\" if subtask == \"ner\" else \"relations\"\n    instances = [d for d in data if len(d[\"gold\"].get(field, [])) > 0]\n    n_inst = len(instances)\n    N_per = len(instances[0][\"samples\"]) if instances else 0\n    print(f\"  {n_inst} valid instances (from {len(data)} total), N={N_per}\")\n\n    t0 = time.time()\n    greedy_f1s = []\n    oracle_f1s = []\n    random_f1s = []\n    signal_f1s = {sig: [] for sig in SIGNALS}\n\n    for inst in instances:\n        samples = inst[\"samples\"]\n        gold = inst[\"gold\"]\n        greedy = inst.get(\"greedy\", samples[0])\n        N = len(samples)\n\n        g_f1 = per_instance_f1(greedy, gold, subtask=subtask)\n        greedy_f1s.append(g_f1)\n\n        sample_f1s = [per_instance_f1(s, gold, subtask=subtask) for s in samples]\n        oracle_f1s.append(max(sample_f1s))\n        random_f1s.append(float(np.mean(sample_f1s)))\n\n        sj_scores = compute_sample_sj_scores(inst, subtask)\n        fk_scores, key_sets = compute_sample_surface_scores(inst, subtask)\n        vc_scores = compute_sample_voting_conf(key_sets, N)\n        em_scores = compute_sample_em_scores(key_sets)\n        lp_scores = compute_sample_logprobs(inst)\n\n        all_scores = {\"SJ\": sj_scores, \"FK\": fk_scores, \"VC\": vc_scores,\n                      \"EM\": em_scores, \"LP\": lp_scores}\n\n        for sig in SIGNALS:\n            chosen = int(np.argmax(all_scores[sig]))\n            signal_f1s[sig].append(sample_f1s[chosen])\n\n    elapsed = time.time() - t0\n    print(f\"  Computed in {elapsed:.1f}s\")\n\n    greedy_arr = np.array(greedy_f1s)\n    oracle_arr = np.array(oracle_f1s)\n    random_arr = np.array(random_f1s)\n\n    result = {\n        \"n_instances\": n_inst,\n        \"n_samples_per_instance\": N_per,\n        \"greedy_f1\": round(float(greedy_arr.mean()), 5),\n        \"random_f1\": round(float(random_arr.mean()), 5),\n        \"oracle_f1\": round(float(oracle_arr.mean()), 5),\n    }\n\n    for sig in SIGNALS:\n        arr = np.array(signal_f1s[sig])\n        boot = paired_bootstrap(arr, greedy_arr, N_BOOTSTRAP, BOOTSTRAP_SEED)\n        result[sig] = {\n            \"selection_f1\": round(float(arr.mean()), 5),\n            \"delta_vs_greedy\": round(float(arr.mean() - greedy_arr.mean()), 5),\n            \"bootstrap_p\": round(boot[\"p_value\"], 5),\n            \"bootstrap_ci95\": [round(x, 5) for x in boot[\"ci95\"]],\n        }\n\n    return result\n\n\ndef main():\n    all_results = {}\n\n    for exp_name, cfg in EXPERIMENTS.items():\n        path = cfg[\"path\"]\n        subtask = cfg[\"subtask\"]\n        print(f\"\\n{'='*60}\")\n        print(f\"  {exp_name} (subtask={subtask})\")\n        print(f\"{'='*60}\")\n\n        if not os.path.exists(path):\n            print(f\"  SKIP: {path} not found\")\n            continue\n\n        result = analyze(path, subtask)\n        all_results[exp_name] = result\n\n        # Print table\n        print(f\"\\n  {'Method':<10s}  {'Sel F1':>9s}  {'Δ Greedy':>9s}  {'p-value':>9s}\")\n        print(f\"  {'-'*10}  {'-'*9}  {'-'*9}  {'-'*9}\")\n        print(f\"  {'Greedy':<10s}  {result['greedy_f1']:.5f}\")\n        print(f\"  {'Random':<10s}  {result['random_f1']:.5f}  {result['random_f1']-result['greedy_f1']:+.5f}\")\n        for sig in SIGNALS:\n            sr = result[sig]\n            print(f\"  {sig:<10s}  {sr['selection_f1']:.5f}  {sr['delta_vs_greedy']:+.5f}  {sr['bootstrap_p']:.5f}\")\n        print(f\"  {'Oracle':<10s}  {result['oracle_f1']:.5f}  {result['oracle_f1']-result['greedy_f1']:+.5f}\")\n\n    # Save JSON\n    out_path = f\"{BASE}/output/selection_f1_4b_results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    print(f\"\\nSaved: {out_path}\")\n\n    # Summary comparison\n    print(f\"\\n{'='*60}\")\n    print(\"  SUMMARY: Selection Gap (SJ vs FK/VC)\")\n    print(f\"{'='*60}\")\n    for exp_name, r in all_results.items():\n        sj_sel = r[\"SJ\"][\"selection_f1\"]\n        fk_sel = r[\"FK\"][\"selection_f1\"]\n        vc_sel = r[\"VC\"][\"selection_f1\"]\n        lp_sel = r[\"LP\"][\"selection_f1\"]\n        print(f\"\\n  {exp_name}:\")\n        print(f\"    Greedy={r['greedy_f1']:.4f}  Oracle={r['oracle_f1']:.4f}  Headroom={r['oracle_f1']-r['greedy_f1']:+.4f}\")\n        print(f\"    SJ sel={sj_sel:.4f}  FK sel={fk_sel:.4f}  VC sel={vc_sel:.4f}  LP sel={lp_sel:.4f}\")\n        print(f\"    SJ-FK gap: {sj_sel-fk_sel:+.4f}\")\n        print(f\"    SJ-VC gap: {sj_sel-vc_sel:+.4f}\")\n        print(f\"    SJ-LP gap: {sj_sel-lp_sel:+.4f}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written successfully\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T20:05:35.461318+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T20:05:35.461666+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONPATH=code python code/selection_f1_4b.py 2>&1",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONPATH=code python code/selection_f1_4b.py 2>&1",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T20:05:35.461859+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  qwen3_4b_conll_ner (subtask=ner)\\n============================================================\\n  2756 valid instances (from 3453 total), N=8\\n  Computed in 1.2s\\n\\n  Method         Sel F1   Δ Greedy    p-value\\n  ----------  ---------  ---------  ---------\\n  Greedy      0.92125\\n  Random      0.91832  -0.00293\\n  VC          0.92328  +0.00203  0.07580\\n  SJ          0.92197  +0.00072  0.25620\\n  FK          0.92150  +0.00025  0.41050\\n  EM          0.92196  +0.00071  0.25450\\n  LP          0.92214  +0.00089  0.09320\\n  Oracle      0.93824  +0.01699\\n\\n============================================================\\n  qwen3_4b_scierc_ner (subtask=ner)\\n============================================================\\n  529 valid instances (from 551 total), N=8\\n  Computed in 0.3s\\n\\n  Method         Sel F1   Δ Greedy    p-value\\n  ----------  ---------  ---------  ---------\\n  Greedy      0.66224\\n  Random      0.59913  -0.06311\\n  VC          0.62825  -0.03399  0.99990\\n  SJ          0.64733  -0.01491  0.97490\\n  FK          0.64663  -0.01561  0.97950\\n  EM          0.64357  -0.01867  0.99200\\n  LP          0.63994  -0.02230  0.99830\\n  Oracle      0.79249  +0.13025\\n\\n============================================================\\n  qwen3_4b_scierc_re (subtask=re)\\n============================================================\\n  397 valid instances (from 551 total), N=8\\n  Computed in 0.2s\\n\\n  Method         Sel F1   Δ Greedy    p-value\\n  ----------  ---------  ---------  ---------\\n  Greedy      0.40759\\n  Random      0.33498  -0.07261\\n  VC          0.40024  -0.00735  0.71270\\n  SJ          0.40734  -0.00024  0.51050\\n  FK          0.39246  -0.01513  0.91210\\n  EM          0.38037  -0.02721  0.99470\\n  LP          0.39409  -0.01349  0.85240\\n  Oracle      0.59700  +0.18941\\n\\nSaved: /root/autodl-tm
+…[truncated 998 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T20:05:35.462064+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/multiseed_selection_f1.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/multiseed_selection_f1.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-15T20:05:35.462225+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/selection_f1_4b_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/selection_f1_4b_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T20:05:35.462617+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"qwen_scierc_ner_n16\\\": {\\n    \\\"seeds\\\": [\\n      42,\\n      123,\\n      456\\n    ],\\n    \\\"n_instances\\\": 529,\\n    \\\"n_samples_per_instance\\\": 16,\\n    \\\"greedy_f1\\\": {\\n      \\\"mean\\\": 0.6441,\\n      \\\"std\\\": 0.00015,\\n      \\\"per_seed\\\": [\\n        0.64418,\\n        0.64418,\\n        0.64392\\n      ]\\n    },\\n    \\\"random_f1\\\": {\\n      \\\"mean\\\": 0.60955,\\n      \\\"std\\\": 0.00079,\\n      \\\"per_seed\\\": [\\n        0.6101,\\n        0.60865,\\n        0.6099\\n      ]\\n    },\\n    \\\"oracle_f1\\\": {\\n      \\\"mean\\\": 0.81983,\\n      \\\"std\\\": 0.00288,\\n      \\\"per_seed\\\": [\\n        0.81937,\\n        0.81722,\\n        0.82291\\n      ]\\n    },\\n    \\\"signal_selection_f1\\\": {\\n      \\\"VC\\\": {\\n        \\\"mean\\\": 0.61189,\\n        \\\"std\\\": 0.00552,\\n        \\\"per_seed\\\": [\\n          0.60959,\\n          0.6079,\\n          0.61819\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": -0.0322,\\n        \\\"delta_vs_greedy_std\\\": 0.00566,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.9998,\\n          1.0,\\n          0.9959\\n        ],\\n        \\\"vs_greedy_p_combined_fisher\\\": 1.0,\\n        \\\"vs_greedy_ci95_per_seed\\\": [\\n          [\\n            -0.05402,\\n            -0.01532\\n          ],\\n          [\\n            -0.05502,\\n            -0.0178\\n          ],\\n          [\\n            -0.04474,\\n            -0.00673\\n          ]\\n        ]\\n      },\\n      \\\"SJ\\\": {\\n        \\\"mean\\\": 0.64356,\\n        \\\"std\\\": 0.00238,\\n        \\\"per_seed\\\": [\\n          0.64621,\\n          0.64285,\\n          0.64162\\n        ],\\n        \\\"delta_vs_greedy_mean\\\": -0.00053,\\n        \\\"delta_vs_greedy_std\\\": 0.00227,\\n        \\\"vs_greedy_p_per_seed\\\": [\\n          0.3723,\\n          0.5814,\\n          0.6457\\n        ],\\n      
+…[truncated 7824 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T20:05:35.462985+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"qwen3_4b_conll_ner\\\": {\\n    \\\"n_instances\\\": 2756,\\n    \\\"n_samples_per_instance\\\": 8,\\n    \\\"greedy_f1\\\": 0.92125,\\n    \\\"random_f1\\\": 0.91832,\\n    \\\"oracle_f1\\\": 0.93824,\\n    \\\"VC\\\": {\\n      \\\"selection_f1\\\": 0.92328,\\n      \\\"delta_vs_greedy\\\": 0.00203,\\n      \\\"bootstrap_p\\\": 0.0758,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.00076,\\n        0.00489\\n      ]\\n    },\\n    \\\"SJ\\\": {\\n      \\\"selection_f1\\\": 0.92197,\\n      \\\"delta_vs_greedy\\\": 0.00072,\\n      \\\"bootstrap_p\\\": 0.2562,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.0015,\\n        0.00302\\n      ]\\n    },\\n    \\\"FK\\\": {\\n      \\\"selection_f1\\\": 0.9215,\\n      \\\"delta_vs_greedy\\\": 0.00025,\\n      \\\"bootstrap_p\\\": 0.4105,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.00191,\\n        0.00246\\n      ]\\n    },\\n    \\\"EM\\\": {\\n      \\\"selection_f1\\\": 0.92196,\\n      \\\"delta_vs_greedy\\\": 0.00071,\\n      \\\"bootstrap_p\\\": 0.2545,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.00149,\\n        0.00296\\n      ]\\n    },\\n    \\\"LP\\\": {\\n      \\\"selection_f1\\\": 0.92214,\\n      \\\"delta_vs_greedy\\\": 0.00089,\\n      \\\"bootstrap_p\\\": 0.0932,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.00038,\\n        0.00237\\n      ]\\n    }\\n  },\\n  \\\"qwen3_4b_scierc_ner\\\": {\\n    \\\"n_instances\\\": 529,\\n    \\\"n_samples_per_instance\\\": 8,\\n    \\\"greedy_f1\\\": 0.66224,\\n    \\\"random_f1\\\": 0.59913,\\n    \\\"oracle_f1\\\": 0.79249,\\n    \\\"VC\\\": {\\n      \\\"selection_f1\\\": 0.62825,\\n      \\\"delta_vs_greedy\\\": -0.03399,\\n      \\\"bootstrap_p\\\": 0.9999,\\n      \\\"bootstrap_ci95\\\": [\\n        -0.0523,\\n        -0.01552\\n      ]\\n    },\\n    \\\"SJ\\\": {\\n      \\\"selection_f1\\\": 0.64733,\\n      \\\"delta_vs_greedy\\\": -0.01491,\\n      \\\"bootstrap_p\\\": 0.9749,\\n  
+…[truncated 2251 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T20:05:35.463315+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, sys, time, numpy as np\nfrom collections import Counter\nsys.path.insert(0, 'code')\nfrom consistency import _ner_soft_jaccard_pair, _re_soft_jaccard_pair, _extract_surface_keys\nfrom evaluation import per_instance_f1\n\nSIGNALS = ['VC','SJ','FK','EM','LP']\n\ndef load_data(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f if line.strip()]\n\ndef compute_sample_sj_scores(inst, subtask):\n    samples = inst['samples']; N = len(samples)\n    field = 'entities' if subtask == 'ner' else 'relations'\n    pair_fn = _ner_soft_jaccard_pair if subtask == 'ner' else _re_soft_jaccard_pair\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i+1, N):\n            s = pair_fn(samples[i].get(field,[]), samples[j].get(field,[]))\n            matrix[i][j] = s; matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    return [float(np.mean([matrix[k][j] for j in range(N) if j!=k])) for k in range(N)]\n\ndef compute_sample_surface_scores(inst, subtask):\n    samples = inst['samples']; N = len(samples)\n    key_sets = [frozenset(_extract_surface_keys(s, subtask)) for s in samples]\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i+1, N):\n            union = len(key_sets[i]|key_sets[j]); inter = len(key_sets[i]&key_sets[j])\n            s = inter/union if union>0 else 1.0\n            matrix[i][j] = s; matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    fk = [float(np.mean([matrix[k][j] for j in range(N) if j!=k])) for k in range(N)]\n    return fk, key_sets\n\ndef compute_sample_vc(key_sets, N):\n    cnt = Counter()\n    for ks in key_sets:\n        for k in ks: cnt[k] += 1\n    return [float(np.mean([cnt[k]/N for k in ks])) if ks else 0.0 for ks in key_sets]\n\ndef compute_sample_em(key_sets):\n    N = len(key_sets)\n    return [float(sum(1 for j in range(N) if j!=k and key_sets[k]==key_sets[j])) for k in range(N)]\n\ndef compute_sample_lp(inst):\n    return [s.get('mean_logprob', s.get('cumulative_logprob',-999)/max(s.get('n_tokens',1),1)) for s in inst['samples']]\n\ndef analyze(path, subtask):\n    data = load_data(path)\n    field = 'entities' if subtask == 'ner' else 'relations'\n    insts = [d for d in data if len(d['gold'].get(field,[]))>0]\n    print(f'  {len(insts)} valid instances, N={len(insts[0][\\\"samples\\\"])}')\n    greedy_f1s, oracle_f1s, random_f1s = [],[],[]\n    sig_f1s = {s:[] for s in SIGNALS}\n    for inst in insts:\n        samples, gold = inst['samples'], inst['gold']\n        greedy = inst.get('greedy', samples[0])\n        N = len(samples)\n        g = per_instance_f1(greedy, gold, subtask=subtask)\n        greedy_f1s.append(g)\n        sf = [per_instance_f1(s, gold, subtask=subtask) for s in samples]\n        oracle_f1s.append(max(sf)); random_f1s.append(np.mean(sf))\n        sj = compute_sample_sj_scores(inst, subtask)\n        fk, ks = compute_sample_surface_scores(inst, subtask)\n        vc = compute_sample_vc(ks, N); em = compute_sample_em(ks); lp = compute_sample_lp(inst)\n        scores = {'SJ':sj,'FK':fk,'VC':vc,'EM':em,'LP':lp}\n        for sig in SIGNALS:\n            sig_f1s[sig].append(sf[int(np.argmax(scores[sig]))])\n    r = {'greedy': round(np.mean(greedy_f1s),5), 'random': round(np.mean(random_f1s),5), 'oracle': round(np.mean(oracle_f1s),5)}\n    for sig in SIGNALS:\n        r[sig] = round(np.mean(sig_f1s[sig]),5)\n    return r\n\n# 8B experiments for comparison\nexps = {\n    '8B_conll_ner': ('output/exp002_conll2003/samples.jsonl', 'ner'),\n    '8B_scierc_ner': ('output/exp_001_seed42_v2/samples.jsonl', 'ner'),\n    '8B_scierc_re': ('output/exp_001_seed42_v2/samples.jsonl', 're'),\n}\nfor name, (path, sub) in exps.items():\n    print(f'\\\\n{name}:')\n    r = analyze(path, sub)\n    print(f'  greedy={r[\\\"greedy\\\"]:.4f} oracle={r[\\\"oracle\\\"]:.4f} headroom={r[\\\"oracle\\\"]-r[\\\"greedy\\\"]:+.4f}')\n    for sig in SIGNALS:\n        print(f'  {sig}: sel_f1={r[sig]:.4f} delta={r[sig]-r[\\\"greedy\\\"]:+.4f}')\n    print(f'  SJ-FK gap: {r[\\\"SJ\\\"]-r[\\\"FK\\\"]:+.4f}')\n    print(f'  SJ-VC gap: {r[\\\"SJ\\\"]-r[\\\"VC\\\"]:+.4f}')\n\" 2>&1",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, sys, time, numpy as np\nfrom collections import Counter\nsys.path.insert(0, 'code')\nfrom consistency import _ner_soft_jaccard_pair, _re_soft_jaccard_pair, _extract_surface_keys\nfrom evaluation import per_instance_f1\n\nSIGNALS = ['VC','SJ','FK','EM','LP']\n\ndef load_data(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f if line.strip()]\n\ndef compute_sample_sj_scores(inst, subtask):\n    samples = inst['samples']; N = len(samples)\n    field = 'entities' if subtask == 'ner' else 'relations'\n    pair_fn = _ner_soft_jaccard_pair if subtask == 'ner' else _re_soft_jaccard_pair\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i+1, N):\n            s = pair_fn(samples[i].get(field,[]), samples[j].get(field,[]))\n            matrix[i][j] = s; matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    return [float(np.mean([matrix[k][j] for j in range(N) if j!=k])) for k in range(N)]\n\ndef compute_sample_surface_scores(inst, subtask):\n    samples = inst['samples']; N = len(samples)\n    key_sets = [frozenset(_extract_surface_keys(s, subtask)) for s in samples]\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i+1, N):\n            union = len(key_sets[i]|key_sets[j]); inter = len(key_sets[i]&key_sets[j])\n            s = inter/union if union>0 else 1.0\n            matrix[i][j] = s; matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    fk = [float(np.mean([matrix[k][j] for j in range(N) if j!=k])) for k in range(N)]\n    return fk, key_sets\n\ndef compute_sample_vc(key_sets, N):\n    cnt = Counter()\n    for ks in key_sets:\n        for k in ks: cnt[k] += 1\n    return [float(np.mean([cnt[k]/N for k in ks])) if ks else 0.0 for ks in key_sets]\n\ndef compute_sample_em(key_sets):\n    N = len(key_sets)\n    return [float(sum(1 for j in range(N) if j!=k and key_sets[k]==key_sets[j])) for k in range(N)]\n\ndef compute_sample_lp(inst):\n    return [s.get('mean_logprob', s.get('cumulative_logprob',-999)/max(s.get('n_tokens',1),1)) for s in inst['samples']]\n\ndef analyze(path, subtask):\n    data = load_data(path)\n    field = 'entities' if subtask == 'ner' else 'relations'\n    insts = [d for d in data if len(d['gold'].get(field,[]))>0]\n    print(f'  {len(insts)} valid instances, N={len(insts[0][\\\"samples\\\"])}')\n    greedy_f1s, oracle_f1s, random_f1s = [],[],[]\n    sig_f1s = {s:[] for s in SIGNALS}\n    for inst in insts:\n        samples, gold = inst['samples'], inst['gold']\n        greedy = inst.get('greedy', samples[0])\n        N = len(samples)\n        g = per_instance_f1(greedy, gold, subtask=subtask)\n        greedy_f1s.append(g)\n        sf = [per_instance_f1(s, gold, subtask=subtask) for s in samples]\n        oracle_f1s.append(max(sf)); random_f1s.append(np.mean(sf))\n        sj = compute_sample_sj_scores(inst, subtask)\n        fk, ks = compute_sample_surface_scores(inst, subtask)\n        vc = compute_sample_vc(ks, N); em = compute_sample_em(ks); lp = compute_sample_lp(inst)\n        scores = {'SJ':sj,'FK':fk,'VC':vc,'EM':em,'LP':lp}\n        for sig in SIGNALS:\n            sig_f1s[sig].append(sf[int(np.argmax(scores[sig]))])\n    r = {'greedy': round(np.mean(greedy_f1s),5), 'random': round(np.mean(random_f1s),5), 'oracle': round(np.mean(oracle_f1s),5)}\n    for sig in SIGNALS:\n        r[sig] = round(np.mean(sig_f1s[sig]),5)\n    return r\n\n# 8B experiments for comparison\nexps = {\n    '8B_conll_ner': ('output/exp002_conll2003/samples.jsonl', 'ner'),\n    '8B_scierc_ner': ('output/exp_001_seed42_v2/samples.jsonl', 'ner'),\n    '8B_scierc_re': ('output/exp_001_seed42_v2/samples.jsonl', 're'),\n}\nfor name, (path, sub) in exps.items():\n    print(f'\\\\n{name}:')\n    r = analyze(path, sub)\n    print(f'  greedy={r[\\\"greedy\\\"]:.4f} oracle={r[\\\"oracle\\\"]:.4f} headroom={r[\\\"oracle\\\"]-r[\\\"greedy\\\"]:+.4f}')\n    for sig in SIGNALS:\n        print(f'  {sig}: sel_f1={r[sig]:.4f} delta={r[sig]-r[\\\"greedy\\\"]:+.4f}')\n    print(f'  SJ-FK gap: {r[\\\"SJ\\\"]-r[\\\"FK\\\"]:+.4f}')\n    print(f'  SJ-VC gap: {r[\\\"SJ\\\"]-r[\\\"VC\\\"]:+.4f}')\n\" 2>&1",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T20:05:35.463601+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n8B_conll_ner:\\n  2756 valid instances, N=8\\n  greedy=0.9079 oracle=0.9483 headroom=+0.0404\\n  VC: sel_f1=0.8950 delta=-0.0129\\n  SJ: sel_f1=0.8990 delta=-0.0089\\n  FK: sel_f1=0.8988 delta=-0.0091\\n  EM: sel_f1=0.8971 delta=-0.0107\\n  LP: sel_f1=0.8974 delta=-0.0105\\n  SJ-FK gap: +0.0002\\n  SJ-VC gap: +0.0040\\n\\n8B_scierc_ner:\\n  529 valid instances, N=16\\n  greedy=0.6442 oracle=0.8194 headroom=+0.1752\\n  VC: sel_f1=0.6096 delta=-0.0346\\n  SJ: sel_f1=0.6462 delta=+0.0020\\n  FK: sel_f1=0.6469 delta=+0.0027\\n  EM: sel_f1=0.6312 delta=-0.0130\\n  LP: sel_f1=0.6465 delta=+0.0024\\n  SJ-FK gap: -0.0007\\n  SJ-VC gap: +0.0366\\n\\n8B_scierc_re:\\n  397 valid instances, N=16\\n  greedy=0.4046 oracle=0.6426 headroom=+0.2380\\n  VC: sel_f1=0.3913 delta=-0.0133\\n  SJ: sel_f1=0.3827 delta=-0.0220\\n  FK: sel_f1=0.3842 delta=-0.0204\\n  EM: sel_f1=0.3724 delta=-0.0322\\n  LP: sel_f1=0.4066 delta=+0.0020\\n  SJ-FK gap: -0.0015\\n  SJ-VC gap: -0.0086\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.22}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T20:05:35.463903+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd = json.load(open('output/multiseed_selection_f1.json'))\nfor group in ['qwen_scierc_ner_n8', 'qwen_scierc_re_n16']:\n    if group in d:\n        a = d[group]\n        print(f'{group}: n={a[\\\"n_instances\\\"]}, N={a[\\\"n_samples_per_instance\\\"]}')\n        print(f'  greedy={a[\\\"greedy_f1\\\"][\\\"mean\\\"]:.4f}  oracle={a[\\\"oracle_f1\\\"][\\\"mean\\\"]:.4f}')\n        for sig in ['VC','SJ','FK','EM','LP']:\n            sr = a['signal_selection_f1'][sig]\n            print(f'  {sig}: sel={sr[\\\"mean\\\"]:.4f} delta={sr[\\\"delta_vs_greedy_mean\\\"]:+.4f} p={sr[\\\"vs_greedy_p_combined_fisher\\\"]:.4f}')\n        print(f'  SJ-FK: {a[\\\"signal_selection_f1\\\"][\\\"SJ\\\"][\\\"mean\\\"]-a[\\\"signal_selection_f1\\\"][\\\"FK\\\"][\\\"mean\\\"]:+.4f}')\n        print(f'  SJ-VC: {a[\\\"signal_selection_f1\\\"][\\\"SJ\\\"][\\\"mean\\\"]-a[\\\"signal_selection_f1\\\"][\\\"VC\\\"][\\\"mean\\\"]:+.4f}')\n        print()\n# Also check the Qwen CoNLL N=16 if available\nfor k in d:\n    if 'conll' in k.lower():\n        print(f'Found CoNLL group: {k}')\n\" 2>&1",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd = json.load(open('output/multiseed_selection_f1.json'))\nfor group in ['qwen_scierc_ner_n8', 'qwen_scierc_re_n16']:\n    if group in d:\n        a = d[group]\n        print(f'{group}: n={a[\\\"n_instances\\\"]}, N={a[\\\"n_samples_per_instance\\\"]}')\n        print(f'  greedy={a[\\\"greedy_f1\\\"][\\\"mean\\\"]:.4f}  oracle={a[\\\"oracle_f1\\\"][\\\"mean\\\"]:.4f}')\n        for sig in ['VC','SJ','FK','EM','LP']:\n            sr = a['signal_selection_f1'][sig]\n            print(f'  {sig}: sel={sr[\\\"mean\\\"]:.4f} delta={sr[\\\"delta_vs_greedy_mean\\\"]:+.4f} p={sr[\\\"vs_greedy_p_combined_fisher\\\"]:.4f}')\n        print(f'  SJ-FK: {a[\\\"signal_selection_f1\\\"][\\\"SJ\\\"][\\\"mean\\\"]-a[\\\"signal_selection_f1\\\"][\\\"FK\\\"][\\\"mean\\\"]:+.4f}')\n        print(f'  SJ-VC: {a[\\\"signal_selection_f1\\\"][\\\"SJ\\\"][\\\"mean\\\"]-a[\\\"signal_selection_f1\\\"][\\\"VC\\\"][\\\"mean\\\"]:+.4f}')\n        print()\n# Also check the Qwen CoNLL N=16 if available\nfor k in d:\n    if 'conll' in k.lower():\n        print(f'Found CoNLL group: {k}')\n\" 2>&1",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T20:05:35.464155+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"qwen_scierc_ner_n8: n=529, N=8\\n  greedy=0.6458  oracle=0.7764\\n  VC: sel=0.6194 delta=-0.0265 p=1.0000\\n  SJ: sel=0.6413 delta=-0.0045 p=0.7489\\n  FK: sel=0.6413 delta=-0.0046 p=0.7756\\n  EM: sel=0.6339 delta=-0.0119 p=0.9948\\n  LP: sel=0.6462 delta=+0.0004 p=0.5407\\n  SJ-FK: +0.0001\\n  SJ-VC: +0.0220\\n\\nqwen_scierc_re_n16: n=397, N=16\\n  greedy=0.4045  oracle=0.6423\\n  VC: sel=0.3937 delta=-0.0107 p=0.9734\\n  SJ: sel=0.3903 delta=-0.0142 p=0.9931\\n  FK: sel=0.3922 delta=-0.0123 p=0.9849\\n  EM: sel=0.3841 delta=-0.0204 p=0.9989\\n  LP: sel=0.4146 delta=+0.0101 p=0.0531\\n  SJ-FK: -0.0019\\n  SJ-VC: -0.0034\\n\\nFound CoNLL group: llama_conll_ner_n16\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-15T20:05:35.464469+00:00_
+
+全部数据齐了。以下是完整结果：
+
+---
+
+## Qwen3-4B Selection F1 Results
+
+### CoNLL NER (n=2756, N=8)
+
+| Method | Sel F1 | Δ Greedy | p-value |
+|--------|--------|----------|---------|
+| Greedy | 0.9213 | — | — |
+| Random | 0.9183 | -0.0029 | — |
+| **VC** | **0.9233** | **+0.0020** | 0.076 |
+| SJ | 0.9220 | +0.0007 | 0.256 |
+| FK | 0.9215 | +0.0003 | 0.411 |
+| EM | 0.9220 | +0.0007 | 0.255 |
+| LP | 0.9221 | +0.0009 | 0.093 |
+| Oracle | 0.9382 | +0.0170 | — |
+
+**Selection gaps**: SJ-FK=+0.0005, SJ-VC=-0.0013, SJ-LP=-0.0002
+
+### SciERC NER (n=529, N=8)
+
+| Method | Sel F1 | Δ Greedy | p-value |
+|--------|--------|----------|---------|
+| Greedy | 0.6622 | — | — |
+| Random | 0.5991 | -0.0631 | — |
+| VC | 0.6282 | -0.0340 | 1.000 |
+| **SJ** | **0.6473** | **-0.0149** | 0.975 |
+| FK | 0.6466 | -0.0156 | 0.980 |
+| EM | 0.6436 | -0.0187 | 0.992 |
+| LP | 0.6399 | -0.0223 | 0.998 |
+| Oracle | 0.7925 | +0.1302 | — |
+
+**Selection gaps**: SJ-FK=+0.0007, SJ-VC=+0.0191, SJ-LP=+0.0074
+
+### SciERC RE (n=397, N=8)
+
+| Method | Sel F1 | Δ Greedy | p-value |
+|--------|--------|----------|---------|
+| Greedy | 0.4076 | — | — |
+| Random | 0.3350 | -0.0726 | — |
+| VC | 0.4002 | -0.0074 | 0.713 |
+| **SJ** | **0.4073** | **-0.0002** | 0.511 |
+| FK | 0.3925 | -0.0151 | 0.912 |
+| EM | 0.3804 | -0.0272 | 0.995 |
+| LP | 0.3941 | -0.0135 | 0.852 |
+| Oracle | 0.5970 | +0.1894 | — |
+
+**Selection gaps**: SJ-FK=+0.0149, SJ-VC=+0.0071, SJ-LP=+0.0132
+
+---
+
+## 4B vs 8B Comparison (N=8)
+
+### CoNLL NER
+
+| Metric | 8B | 4B |
+|--------|----|----|
+| Greedy | 0.9079 | 0.9213 |
+| Oracle | 0.9483 | 0.9382 |
+| Headroom | +0.0404 | +0.0170 |
+| SJ sel | 0.8990 | 0.9220 |
+| FK sel | 0.8988 | 0.9215 |
+| SJ-FK sel gap | +0.0002 | +0.0005 |
+| SJ ρ | 0.4357 | 0.4324 |
+| FK ρ | 0.3998 | 0.4244 |
+| SJ-FK ρ gap | +0.0359 | +0.0080 |
+
+### SciERC NER (8B = 3-seed mean N=8)
+
+| Metric | 8B | 4B |
+|--------|----|----|
+| Greedy | 0.6458 | 0.6622 |
+| Oracle | 0.7764 | 0.7925 |
+| SJ sel | 0.6413 | 0.6473 |
+| FK sel | 0.6413 | 0.6466 |
+| SJ-FK sel gap | +0.0001 | +0.0007 |
+| SJ ρ | ~0.42 | 0.4221 |
+| FK ρ | ~0.33 | 0.3258 |
+| SJ-FK ρ gap | ~+0.09 | +0.0963 |
+
+---
+
+## Key Finding for Correlation-Selection Gap Claim
+
+**SciERC NER 4B** demonstrates the pattern clearly:
+- **Correlation gap** (SJ-FK ρ): **+0.096** — SJ correlates much better with quality
+- **Selection gap** (SJ-FK sel F1): **+0.0007** — but selects virtually identically
+
+**SciERC RE 4B** shows the largest selection gap:
+- SJ-FK sel: **+0.0149** (SJ definitively better at selection for RE)
+- SJ-LP sel: **+0.0132**
+
+**CoNLL 4B** has compressed headroom (only 1.7pp greedy-oracle gap), so all signals are packed together with negligible selection gaps.
+
+Results saved to `/root/autodl-tmp/struct_self_consist_ie/output/selection_f1_4b_results.json`.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_4b_selection_pipeline_20260515T200110"
+}
+```
+
+</details>
+
+---

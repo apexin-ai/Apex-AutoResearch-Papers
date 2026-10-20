@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_030_conll_t12",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T20:24:47.839Z",
+    "updated_at": "2026-05-18T20:24:47.839Z"
+  },
+  "timestamp": "2026-05-18T20:24:48.115992+00:00",
+  "trigger": "update_registry"
+}

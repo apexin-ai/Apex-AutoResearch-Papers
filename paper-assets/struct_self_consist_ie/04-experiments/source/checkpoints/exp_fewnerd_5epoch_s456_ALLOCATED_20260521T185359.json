@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_fewnerd_5epoch_s456",
+  "project": "struct_self_consist_ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T18:53:46.586Z",
+    "updated_at": "2026-05-21T18:53:59.323Z",
+    "hypothesis": "FewNERD 5-epoch epoch confound check seed=456: third seed for 5-epoch fine-tuned Qwen3-8B (LoRA r=32 alpha=64) on FewNERD NER, N=8, T=1.0. Completes 3-seed set for epoch confound analysis. If degeneracy/MV pattern consistent across seeds, epoch count is not the confound."
+  },
+  "timestamp": "2026-05-21T18:53:59.810847+00:00",
+  "trigger": "update_registry"
+}

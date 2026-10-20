@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_016_rerun_1024_bootstrap",
+  "project": "struct_self_consist_ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T23:44:21.577Z",
+    "updated_at": "2026-05-14T23:44:28.587Z",
+    "hypothesis": "3-seed bootstrap significance test for NER logprob vs greedy selection gap (+0.6pp). Tests whether the observed advantage is statistically significant."
+  },
+  "timestamp": "2026-05-14T23:44:28.722023+00:00",
+  "trigger": "update_registry"
+}

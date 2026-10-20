@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp_016_signal_ensemble",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:15:23.771Z",
+    "updated_at": "2026-05-14T12:15:53.341Z",
+    "spec": {
+      "command": "python code/analyze_exp016_ensemble.py",
+      "server": "autodl-5090",
+      "data_path": "output/exp_012_logprob/samples_with_logprobs.jsonl",
+      "data_count": 551,
+      "model_name": "N/A (CPU-only analysis)",
+      "seed": 42,
+      "checkpoint_source": "N/A",
+      "eval_data": "pilot_004",
+      "checkpoint_path": "N/A",
+      "log_path": "output/exp016_signal_ensemble/"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T12:15:53.341Z"
+  },
+  "timestamp": "2026-05-14T12:15:53.431973+00:00",
+  "trigger": "update_registry"
+}

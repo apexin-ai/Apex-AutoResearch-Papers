@@ -1,0 +1,30 @@
+FewNERD 3-seed (s42, s456, s123) N=8 T=1.0 Qwen3-8B FT
+Metric: entity-type-averaged macro-F1
+
+Source files:
+  seed=42:  output/fewnerd_mf4v2_seed42_v3/samples.jsonl
+  seed=456: output/fewnerd_mf4v2_seed456/samples.jsonl
+  seed=123: output/fewnerd_mf4v2_seed123_v4/samples.jsonl
+Eval subset: gold-nonempty instances (n=32565 per seed)
+MV threshold: strict > N/2 (count >= 5 for N=8)
+LP selection: argmax mean_logprob
+
+| Seed | Greedy | MV | MV Δ(pp) | LP | LP Δ(pp) | Oracle | Degen% |
+|------|--------|------|----------|------|----------|--------|--------|
+| 42   | 75.07  | 70.44 | -4.63    | 75.30 | +0.23    | 85.52  | 9.1   |
+| 456  | 75.12  | 71.93 | -3.20    | 75.11 | -0.01    | 86.30  | 8.1   |
+| 123  | 75.06  | 71.44 | -3.62    | 75.22 | +0.15    | 86.81  | 9.2   |
+| Mean±σ | 75.08±0.03 | 71.27±0.62 | -3.82±0.60 | 75.21±0.08 | +0.12±0.10 | 86.21±0.53 | 8.80±0.48 |
+
+=== Per-type F1 breakdown (seed-averaged) ===
+
+| Type         | Greedy | MV    | MV Δ(pp) | LP    | LP Δ(pp) | Oracle |
+|--------------|--------|-------|----------|-------|----------|--------|
+| art          | 80.11  | 79.16 | -0.95    | 79.99 | -0.12    | 87.79  |
+| building     | 69.10  | 65.02 | -4.08    | 69.05 | -0.06    | 83.59  |
+| event        | 63.97  | 58.81 | -5.17    | 63.61 | -0.36    | 80.22  |
+| location     | 83.88  | 82.28 | -1.60    | 83.86 | -0.02    | 91.51  |
+| organization | 73.88  | 69.37 | -4.51    | 73.71 | -0.17    | 85.48  |
+| other        | 70.04  | 62.35 | -7.69    | 71.54 | +1.50    | 84.43  |
+| person       | 89.18  | 87.82 | -1.36    | 89.37 | +0.19    | 93.55  |
+| product      | 70.51  | 65.34 | -5.18    | 70.54 | +0.02    | 83.11  |

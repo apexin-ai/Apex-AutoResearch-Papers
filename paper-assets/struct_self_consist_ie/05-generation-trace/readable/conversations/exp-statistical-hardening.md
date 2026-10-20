@@ -1,0 +1,2469 @@
+# exp statistical hardening
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 83
+- **Recorded user turns:** 0
+- **Tool calls:** 41
+- **Original source:** `logs/chats/worker_exp_statistical_hardening_20260518T064531.jsonl`
+- **Structured JSON:** [`26852b26e85269a17cbc.json`](../../sessions/26/26852b26e85269a17cbc.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+83 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T06:53:58.312790+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T06:53:58.313249+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T06:53:58.313460+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "a100",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-18T06:53:58.313597+00:00_
+
+Error executing tool ssh_read_only: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-18T06:53:58.313722+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024*/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "a100",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024*/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T06:53:58.313842+00:00_
+
+Error executing tool ssh_read_only: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T06:53:58.313958+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_001_n16_seed*/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "a100",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_001_n16_seed*/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T06:53:58.314070+00:00_
+
+Error executing tool ssh_read_only: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T06:53:58.314240+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T06:53:58.314433+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"adalp_analysis_results.json\\nanalysis_epsilon_sweep\\nanalysis_fk_bootstrap_ci.json\\nanalysis_fk_bootstrap_per_instance.json\\nanalysis_lp_range_cdf.json\\nanalysis_lp_range_cdf_n16_3seed.json\\nanalysis_multiseed_selection_f1.json\\nanalysis_round8\\nanalysis_scierc_n16_3seed_selection_f1.json\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\nanalysis_unified_rho_full.json\\nbootstrap_ci_nscaling\\nbootstrap_ci_summary.json\\nbootstrap_ci_tables.tex\\ncalibration_baseline_results.json\\nconditional_filter_diagnosis.json\\nd108_greedy_f1\\nd108_lp_vc_combination\\nd108_mbr_within_rho\\nd108_q4q5\\nd110_4b_degeneracy\\nd112_disk_cleanup\\nd112_hybrid_strategy\\nd112_mf3_random_single\\nd112_table2_fix\\nd114_auroc_investigation\\ndals_analysis.json\\ndeberta_verifier\\nexp001_n16_seed123\\nexp001_n16_seed123_200only\\nexp001_n16_seed123_200only_backup\\nexp001_n16_seed123_full\\nexp001_n16_seed123_run.log\\nexp001_n16_seed42\\nexp001_n16_seed42_200only_backup\\nexp001_n16_seed42_run.log\\nexp001_n16_seed456\\nexp001_n16_seed456_200only\\nexp001_n16_seed456_run.log\\nexp001_seed123_t10_full\\nexp001_seed123_t10_full.log\\nexp001_seed456_t10_full\\nexp001_seed456_t10_full.log\\nexp002_conll2003\\nexp003_wnut17_dryrun\\nexp003_wnut17_eval\\nexp003_wnut17_eval.log\\nexp003_wnut17_pilot\\nexp003_wnut17_pilot.log\\nexp004_re_diagnostic\\nexp004v2_re_diagnostic\\nexp007_llama_dryrun\\nexp007_llama_inference\\nexp008_re_n16\\nexp008_re_n16_200only\\nexp008_re_n16_t10_full\\nexp008_re_n16_t10_full.log\\nexp009_stratification_results.json\\nexp010_selection_curves\\nexp016_signal_ensemble\\nexp018_3seed_5signal_results.json\\nexp_001_seed123_v2\\nexp_001_seed123_v2_r1024\\nexp_001_seed42_v2\\nexp_001_seed42_v2_r1024\\nexp_001_seed456_v2\\nexp_001_seed456_v2_ner\\nexp_001_seed456_v2_ner.log\\nexp_001_seed456_v2_ner_r1024\\nexp_002_conll_n16\\nexp_002_conll_n16.log\\ne
+…[truncated 3209 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T06:53:58.314588+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"samples.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"samples.jsonl\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T06:53:58.314773+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2_ckpt400/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_con
+…[truncated 6263 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T06:53:58.314942+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T06:53:58.315265+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"
+…[truncated 8656 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T06:53:58.315428+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T06:53:58.315561+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"all_signals_5signal.json\\nauroc_5signal.json\\ncomparison.json\\nper_type_lp_analysis.csv\\nper_type_lp_table.tex\\nreliability_data_1024.json\\nreport.json\\nrun.log\\nsamples.jsonl\\nsamples_with_logprobs.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T06:53:58.315686+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"full_signal_analysis.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"full_signal_analysis.json\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T06:53:58.315817+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/full_signal_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T06:53:58.315937+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T06:53:58.316058+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"report.json\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T06:53:58.316195+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/statistical_hardening/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/statistical_hardening/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T06:53:58.316317+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T06:53:58.316449+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/statistical_hardening/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/statistical_hardening/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-18T06:53:58.316562+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/per_type_lp_analysis.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/per_type_lp_analysis.csv",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-18T06:53:58.316678+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/struct_self_consist_ie/output/statistical_hardening/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.62}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T06:53:58.316801+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"type,n_instances,degeneracy_rate,greedy_f1,lp_sel_f1,lp_delta_pp,lp_rho,oracle_f1,headroom_pp\\r\\nOtherScientificTerm,162,0.06172839506172839,0.6368185997815627,0.6311231292712773,-0.5695470510285405,0.20537282299488782,0.761720172831284,12.490157304972128\\r\\nMethod,147,0.16326530612244897,0.6921176706890992,0.6918631821693046,-0.02544885197945934,0.1531748230753816,0.8093476817966613,11.723001110756204\\r\\nGeneric,90,0.1,0.6055772005772005,0.6262658329324995,2.068863235529894,0.14481164853200323,0.7689506172839506,16.33734167067501\\r\\nTask,79,0.10126582278481013,0.6080881144172283,0.6339153235281307,2.5827209110902416,0.2138866076931693,0.7552101369301666,14.712202251293826\\r\\nMaterial,35,0.2,0.627014097014097,0.6361606647320934,0.9146567717996379,0.15953336628332834,0.7350687407830265,10.805464376892948\\r\\nMetric,16,0.125,0.7026515151515151,0.7020833333333334,-0.05681818181817455,0.19539224479031822,0.8395066738816739,13.685515873015873\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T06:53:58.316925+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/n8_5signal_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/n8_5signal_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T06:53:58.317158+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_002_conll_n8\\\": {\\n    \\\"n_total\\\": 3453,\\n    \\\"n_valid\\\": 2756,\\n    \\\"n_conditional\\\": 2617,\\n    \\\"full\\\": {\\n      \\\"n\\\": 2756,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.4357,\\n        \\\"p_rho\\\": 4.712009758299203e-128,\\n        \\\"auroc\\\": 0.8008,\\n        \\\"ece\\\": 0.0871\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3998,\\n        \\\"p_rho\\\": 2.6472486805154954e-106,\\n        \\\"auroc\\\": 0.7741,\\n        \\\"ece\\\": 0.1867\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.3157,\\n        \\\"p_rho\\\": 8.156803289565863e-65,\\n        \\\"auroc\\\": 0.7532,\\n        \\\"ece\\\": 0.1419\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4507,\\n        \\\"p_rho\\\": 5.131271323324008e-138,\\n        \\\"auroc\\\": 0.8156,\\n        \\\"ece\\\": 0.0993\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.4237,\\n        \\\"p_rho\\\": 1.70625274366621e-120,\\n        \\\"auroc\\\": 0.7889,\\n        \\\"ece\\\": 0.4712\\n      },\\n      \\\"greedy_f1_mean\\\": 0.9079\\n    },\\n    \\\"conditional\\\": {\\n      \\\"n\\\": 2617,\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3994,\\n        \\\"p_rho\\\": 8.386092104206872e-101,\\n        \\\"auroc\\\": 0.8061,\\n        \\\"ece\\\": 0.1013\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.3521,\\n        \\\"p_rho\\\": 3.194643880667708e-77,\\n        \\\"auroc\\\": 0.7699,\\n        \\\"ece\\\": 0.1924\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.3671,\\n        \\\"p_rho\\\": 2.729796996601389e-84,\\n        \\\"auroc\\\": 0.8185,\\n        \\\"ece\\\": 0.1837\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4449,\\n        \\\"p_rho\\\": 1.9991366022672317e-127,\\n        \\\"auroc\\\": 0.842,\\n        \\\"ece\\\": 0.1161\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3521,\\n    
+…[truncated 2460 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-18T06:53:58.317337+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T06:53:58.317467+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"551 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-18T06:53:58.317589+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T06:53:58.317711+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"analysis_log.txt\\nexp021_full_analysis.json\\nfull_analysis_log.txt\\nper_type_lp_analysis.csv\\nper_type_lp_table.tex\\nresults.json\\nsamples.jsonl\\nshard_0\\nshard_1\\nshard_2\\nshard_3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-18T06:53:58.317844+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -50 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/all_signals_5signal.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -50 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/all_signals_5signal.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-18T06:53:58.317989+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"ner\\\": {\\n    \\\"full\\\": {\\n      \\\"n\\\": 529,\\n      \\\"pct_perfect\\\": 0.2495274102079395,\\n      \\\"metrics\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.3598905669976535,\\n            \\\"ci_95\\\": [\\n              0.2732249154962052,\\n              0.4389387695378309\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.26461187931901686\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.6917410884665293,\\n            \\\"ci_95\\\": [\\n              0.6303734201016633,\\n              0.74057642792587\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.4530916055268938\\n          }\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho\\\": {\\n            \\\"value\\\": 0.2665109373463269,\\n            \\\"ci_95\\\": [\\n              0.1742613109914005,\\n              0.3486237484303476\\n            ]\\n          },\\n          \\\"tau\\\": {\\n            \\\"value\\\": 0.19742423874169443\\n          },\\n          \\\"AUROC\\\": {\\n            \\\"value\\\": 0.6289977864285169,\\n            \\\"ci_95\\\": [\\n              0.5612201516175135,\\n              0.6882363040668321\\n            ]\\n          },\\n          \\\"ECE\\\": {\\n            \\\"value\\\": 0.4512460702104627\\n          }\\n        },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-18T06:53:58.318124+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-18T06:53:58.318278+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      551 /root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123/samples.jsonl\\n      551 /root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456/samples.jsonl\\n     3453 /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n    37648 /root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl\\n    42203 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-18T06:53:58.318398+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/per_type_lp_analysis.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/per_type_lp_analysis.csv",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-18T06:53:58.318527+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"type,n_instances,degeneracy_rate,greedy_f1,lp_sel_f1,lp_delta_pp,lp_rho,oracle_f1,headroom_pp\\r\\nevent,1306,0.05972434915773354,0.6551339073016501,0.6616361178894867,0.6502210587836621,0.4565009364147397,0.816545094632082,16.141118733043193\\r\\nother,3433,0.06612292455578211,0.6374051033890412,0.6847030612525028,4.729795786346158,0.4913764856241942,0.8313619108256985,19.395680743665732\\r\\norganization,6647,0.06739882653828795,0.7203167727049137,0.7324315858779609,1.211481317304719,0.5085331400228096,0.8535636189718241,13.324684626691042\\r\\nbuilding,1587,0.07183364839319471,0.7023874270361101,0.7046809340406991,0.22935070045889683,0.4776340302818146,0.8513871161258935,14.899968908978334\\r\\nproduct,2276,0.08172231985940245,0.6563902029804073,0.676468790633814,2.0078587653406754,0.48276184204532546,0.8141237260605452,15.773352308013788\\r\\nlocation,8023,0.11417175620092235,0.7925874131045431,0.797864103755345,0.5276690650801941,0.5197959076324555,0.8953004737367691,10.271306063222607\\r\\nperson,8016,0.1342315369261477,0.822022567661955,0.834542107238335,1.2519539576379968,0.5436472317546069,0.9141805995608239,9.215803189886884\\r\\nart,1277,0.1981205951448708,0.7556519658258094,0.7539795228199109,-0.16724430058985273,0.4511850705431738,0.8477654227570787,9.211345693126926\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-18T06:53:58.318656+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"all_signals_5signal.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"all_signals_5signal.json\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-18T06:53:58.318777+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/all_signals_5signal.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_023_rank8_inference/all_signals_5signal.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-18T06:53:58.318909+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"compute_selection_f1.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"compute_selection_f1.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-18T06:53:58.319028+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-18T06:53:58.319179+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/compute_selection_f1.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-18T06:53:58.319433+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Multi-seed Selection F1 for Table 3 (C2 critical).\\n\\nFor each instance's N samples, score with 5 signals (SJ/FK/VC/EM/LP),\\nselect the top-scoring sample, compute its F1 vs gold.\\nReports 3-seed mean±σ, per-seed bootstrap p-value vs greedy, and\\na combined bootstrap p-value across seeds.\\n\\nInput: samples.jsonl files from inference experiments.\\nOutput: JSON results + markdown report.\\nDepends: consistency.py, evaluation.py (same directory).\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nimport time\\nfrom collections import Counter\\n\\nimport numpy as np\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import (\\n    _ner_soft_jaccard_pair,\\n    _re_soft_jaccard_pair,\\n    _extract_surface_keys,\\n)\\nfrom evaluation import per_instance_f1\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\n\\nEXPERIMENT_GROUPS = {\\n    # --- Qwen SciERC N=16 (v2 pipeline) ---\\n    \\\"qwen_scierc_ner_n16\\\": {\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\\\",\\n        },\\n    },\\n    \\\"qwen_scierc_re_n16\\\": {\\n        \\\"subtask\\\": \\\"re\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\",\\n            123: f\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\",\\n            456: f\\\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\\\",\\n        },\\n    },\\n    # --- Qwen SciERC N=8 (r1024 logprobs) ---\\n    \\\"qwen_scierc_ner_n8\\\": {\\n        \\\"subtask\\\": \\\"ner\\\",\\n        \\\"seeds\\\": {\\n            42: f\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\",\\n            123: f\\\"{B
+…[truncated 7324 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-18T06:53:58.319596+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -2 /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -2 /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-18T06:53:58.319847+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"conll2003_test_00000\\\", \\\"text\\\": \\\"SOCCER - JAPAN GET LUCKY WIN , CHINA IN SURPRISE DEFEAT .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [{\\\"head\\\": \\\"JAPAN\\\", \\\"tail\\\": \\\"CHINA\\\", \\\"type\\\": \\\"DEFEAT\\\", \\\"head_start\\\": 9, \\\"head_end\\\": 14, \\\"tail_start\\\": 31, \\\"tail_end\\\": 36}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -8.094252856627776, \\\"n_tokens\\\": 120, \\\"mean_logprob\\\": -0.0674521071385648}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.469490054730798, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.06670880678702684}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -12.203311816377365, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.18213898233399053}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cum
+…[truncated 5294 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-18T06:53:58.320050+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-18T06:53:58.320246+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -100 /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -100 /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-18T06:53:58.320523+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluation module for structured self-consistency IE experiments.\\n\\nProvides strict-match NER/EAE evaluation, per-instance F1 computation,\\ncorrelation analysis, and summary report generation.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport statistics\\nfrom typing import Any\\n\\nfrom scipy.stats import kendalltau, spearmanr\\n\\n\\n# ---------------------------------------------------------------------------\\n# NER evaluation (strict match)\\n# ---------------------------------------------------------------------------\\n\\ndef entity_strict_match(\\n    pred_entities: list[dict],\\n    gold_entities: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Compute strict entity match counts.\\n\\n    Strict match requires exact span (start, end) AND exact type.\\n\\n    Args:\\n        pred_entities: Predicted entity dicts with keys text, type, start, end.\\n        gold_entities: Gold entity dicts with the same schema.\\n\\n    Returns:\\n        (tp, fp, fn) counts.\\n    \\\"\\\"\\\"\\n    pred_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    return tp, fp, fn\\n\\n\\ndef compute_ner_f1(\\n    predictions: list[dict],\\n    golds: list[dict],\\n) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute micro-averaged NER precision, recall, and F1.\\n\\n    Args:\\n        predictions: List of Extraction dicts (one per instance).\\n        golds: List of Extraction dicts (one per instance), aligned with predictions.\\n\\n    Returns:\\n        Dict with keys \\\"precision\\\", \\\"recall\\\", \\\"f1\\\".\\n    \\\"\\\"\\\"\\n    total_tp = total_fp = total_fn = 0\\n    for pred, gold in zip(predictions, golds):\\n        tp, fp, fn = entity_
+…[truncated 7194 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-18T06:53:58.320742+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Consistency metrics for structured information extraction with self-consistency.\\n\\nImplements three complementary consistency measures over N sampled extractions:\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\n\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nfrom itertools import combinations\\nfrom typing import TYPE_CHECKING\\n\\nimport numpy as np\\nfrom scipy.optimize import linear_sum_assignment\\n\\nif TYPE_CHECKING:\\n    pass\\n\\n# ---------------------------------------------------------------------------\\n# Type aliases (mirrors shared data format)\\n# ---------------------------------------------------------------------------\\nEntity = dict       # {\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"}\\nRelation = dict     # {\\\"head\\\", \\\"tail\\\", \\\"type\\\", ...}\\nEvent = dict        # {\\\"trigger\\\": {...}, \\\"arguments\\\": [...]}\\nExtraction = dict   # {\\\"entities\\\", \\\"relations\\\", \\\"events\\\"}\\n\\n\\n# ===================================================================\\n# 1. Fleiss' Kappa — surface-level entity agreement\\n# ===================================================================\\n\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\n    \\\"\\\"\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\"\\\"\\\"\\n    if subtask == \\\"ner\\\":\\n        return {(e[\\\"text\\\"], e[\\\"type\\\"]) for e in sample.get(\\\"entities\\\", [])}\\n    elif subtask == \\\"re\\\":\\n        return {(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in sample.get(\\\"relations\\\", [])}\\n    elif subtask == \\\"eae\\\":\\n   
+…[truncated 2301 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-18T06:53:58.320959+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def per_instance_f1\" /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"def per_instance_f1\" /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-18T06:53:58.321112+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"167:def per_instance_f1(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-18T06:53:58.321263+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def _ner_soft_jaccard_pair\\|def _re_soft_jaccard_pair\\|def compute_em_scores\\|def voting_confidence\" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"def _ner_soft_jaccard_pair\\|def _re_soft_jaccard_pair\\|def compute_em_scores\\|def voting_confidence\" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-18T06:53:58.321392+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-18T06:53:58.321513+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def \" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"def \" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-18T06:53:58.321641+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"35:def _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\n52:def fleiss_kappa_surface(samples: list[Extraction], subtask: str = \\\"ner\\\") -> float:\\n123:def _span_soft_jaccard(s1_start: int, s1_end: int, s2_start: int, s2_end: int) -> float:\\n134:def _ner_soft_jaccard_pair(entities_a: list[Entity], entities_b: list[Entity]) -> float:\\n199:def _re_soft_jaccard_pair(relations_a: list[dict], relations_b: list[dict]) -> float:\\n225:def _eae_soft_jaccard_pair(events_a: list[Event], events_b: list[Event]) -> float:\\n239:    def _flatten(events: list[Event]) -> dict[tuple[str, str], list[dict]]:\\n288:def structural_consistency_soft_jaccard(\\n332:def oracle_best_of_n(\\n369:def compute_all_consistency_scores(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-18T06:53:58.321771+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def per_instance_f1\" /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"def per_instance_f1\" /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-18T06:53:58.321894+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"167:def per_instance_f1(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-18T06:53:58.322008+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-18T06:53:58.322282+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluation module for structured self-consistency IE experiments.\\n\\nProvides strict-match NER/EAE evaluation, per-instance F1 computation,\\ncorrelation analysis, and summary report generation.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport statistics\\nfrom typing import Any\\n\\nfrom scipy.stats import kendalltau, spearmanr\\n\\n\\n# ---------------------------------------------------------------------------\\n# NER evaluation (strict match)\\n# ---------------------------------------------------------------------------\\n\\ndef entity_strict_match(\\n    pred_entities: list[dict],\\n    gold_entities: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Compute strict entity match counts.\\n\\n    Strict match requires exact span (start, end) AND exact type.\\n\\n    Args:\\n        pred_entities: Predicted entity dicts with keys text, type, start, end.\\n        gold_entities: Gold entity dicts with the same schema.\\n\\n    Returns:\\n        (tp, fp, fn) counts.\\n    \\\"\\\"\\\"\\n    pred_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    return tp, fp, fn\\n\\n\\ndef compute_ner_f1(\\n    predictions: list[dict],\\n    golds: list[dict],\\n) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute micro-averaged NER precision, recall, and F1.\\n\\n    Args:\\n        predictions: List of Extraction dicts (one per instance).\\n        golds: List of Extraction dicts (one per instance), aligned with predictions.\\n\\n    Returns:\\n        Dict with keys \\\"precision\\\", \\\"recall\\\", \\\"f1\\\".\\n    \\\"\\\"\\\"\\n    total_tp = total_fp = total_fn = 0\\n    for pred, gold in zip(predictions, golds):\\n        tp, fp, fn = entity_
+…[truncated 7194 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-18T06:53:58.322468+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -n +167 /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -n +167 /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-18T06:53:58.322743+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def per_instance_f1(\\n    pred: dict,\\n    gold: dict,\\n    subtask: str = \\\"ner\\\",\\n) -> float:\\n    \\\"\\\"\\\"Compute F1 for a single instance.\\n\\n    Args:\\n        pred: Predicted Extraction dict.\\n        gold: Gold Extraction dict.\\n        subtask: \\\"ner\\\" for entity matching, \\\"eae\\\" for argument matching.\\n\\n    Returns:\\n        F1 score (float in [0, 1]).\\n    \\\"\\\"\\\"\\n    if subtask == \\\"ner\\\":\\n        tp, fp, fn = entity_strict_match(\\n            pred.get(\\\"entities\\\", []),\\n            gold.get(\\\"entities\\\", []),\\n        )\\n    elif subtask == \\\"re\\\":\\n        tp, fp, fn = relation_strict_match(\\n            pred.get(\\\"relations\\\", []),\\n            gold.get(\\\"relations\\\", []),\\n        )\\n    elif subtask == \\\"eae\\\":\\n        tp, fp, fn = argument_match(\\n            pred.get(\\\"events\\\", []),\\n            gold.get(\\\"events\\\", []),\\n        )\\n    else:\\n        raise ValueError(f\\\"subtask must be 'ner', 're', or 'eae', got '{subtask}'\\\")\\n    return _prf(tp, fp, fn)[\\\"f1\\\"]\\n\\n\\n# ---------------------------------------------------------------------------\\n# Per-sample F1 distribution\\n# ---------------------------------------------------------------------------\\n\\ndef compute_sample_f1_distribution(\\n    sampled_instances: list[dict],\\n    subtask: str = \\\"ner\\\",\\n) -> dict:\\n    \\\"\\\"\\\"Compute per-sample F1 distribution statistics.\\n\\n    For each instance, compute F1 of each of its N samples against gold.\\n    Aggregate into distribution statistics.\\n\\n    Args:\\n        sampled_instances: List of SampledInstance dicts, each containing\\n            \\\"gold\\\" (Extraction) and \\\"samples\\\" (list of Extraction).\\n        subtask: \\\"ner\\\" or \\\"eae\\\".\\n\\n    Returns:\\n        Dict with keys:\\n            - \\\"all_sample_f1s\\\": flat list of all per-sample
+…[truncated 7221 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-18T06:53:58.323193+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat << 'PYEOF' > /root/autodl-tmp/struct_self_consist_ie/code/statistical_hardening.py\n#!/usr/bin/env python3\n\"\"\"Statistical hardening: W1/W2/I8/I9 for EMNLP 2026 submission.\"\"\"\n\nimport json\nimport os\nimport sys\nimport time\nfrom collections import defaultdict\n\nimport numpy as np\nfrom scipy.stats import spearmanr, kruskal\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom evaluation import entity_strict_match, per_instance_f1, _prf\nfrom consistency import (\n    _ner_soft_jaccard_pair,\n    _extract_surface_keys,\n)\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\nOUT_DIR = f\"{BASE}/output/statistical_hardening\"\nos.makedirs(OUT_DIR, exist_ok=True)\n\nN_BOOTSTRAP = 10000\nRNG = np.random.RandomState(42)\n\n# ======================================================================\n# Data paths\n# ======================================================================\nDATASETS = {\n    \"scierc_n8\": {\n        \"seeds\": {\n            42: f\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\",\n            123: f\"{BASE}/output/exp_018_qwen_scierc_seed123/samples.jsonl\",\n            456: f\"{BASE}/output/exp_018_qwen_scierc_seed456/samples.jsonl\",\n        },\n    },\n    \"scierc_n16\": {\n        \"seeds\": {\n            42: f\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\",\n            123: f\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\",\n            456: f\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\",\n        },\n    },\n    \"conll_n8\": {\n        \"seeds\": {\n            42: f\"{BASE}/output/exp002_conll2003/samples.jsonl\",\n        },\n    },\n    \"fewnerd_n8\": {\n        \"seeds\": {\n            42: f\"{BASE}/output/exp_021_inference/samples.jsonl\",\n        },\n    },\n}\n\n\ndef load_data(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f if line.strip()]\n\n\ndef gold_filter(data):\n    return [inst for inst in data if len(inst[\"gold\"].get(\"entities\", [])) > 0]\n\n\n# ======================================================================\n# Signal computation\n# ======================================================================\ndef compute_lp_scores(instance):\n    return [s[\"mean_logprob\"] for s in instance[\"samples\"]]\n\n\ndef compute_sj_scores(instance):\n    samples = instance[\"samples\"]\n    N = len(samples)\n    if N <= 1:\n        return [1.0] * N\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            s = _ner_soft_jaccard_pair(\n                samples[i].get(\"entities\", []),\n                samples[j].get(\"entities\", [])\n            )\n            matrix[i][j] = s\n            matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    return [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\n\n\ndef compute_em_scores(instance):\n    samples = instance[\"samples\"]\n    N = len(samples)\n    key_sets = [frozenset(_extract_surface_keys(s, \"ner\")) for s in samples]\n    return [sum(1 for j in range(N) if j != k and key_sets[k] == key_sets[j]) / max(N - 1, 1)\n            for k in range(N)]\n\n\ndef select_by_signal(instance, signal_fn, gold):\n    scores = signal_fn(instance)\n    best_idx = int(np.argmax(scores))\n    selected = instance[\"samples\"][best_idx]\n    return per_instance_f1(selected, gold, \"ner\")\n\n\n# ======================================================================\n# W1: Multi-seed Table 3\n# ======================================================================\ndef compute_seed_metrics(data):\n    filtered = gold_filter(data)\n    n = len(filtered)\n    \n    greedy_f1s = []\n    oracle_f1s = []\n    lp_sel_f1s = []\n    sj_sel_f1s = []\n    em_sel_f1s = []\n    \n    for inst in filtered:\n        gold = inst[\"gold\"]\n        g_f1 = per_instance_f1(inst[\"greedy\"], gold, \"ner\")\n        greedy_f1s.append(g_f1)\n        \n        sample_f1s = [per_instance_f1(s, gold, \"ner\") for s in inst[\"samples\"]]\n        oracle_f1s.append(max(sample_f1s))\n        \n        lp_scores = compute_lp_scores(inst)\n        best_lp_idx = int(np.argmax(lp_scores))\n        lp_sel_f1s.append(sample_f1s[best_lp_idx])\n        \n        sj_scores = compute_sj_scores(inst)\n        best_sj_idx = int(np.argmax(sj_scores))\n        sj_sel_f1s.append(sample_f1s[best_sj_idx])\n        \n        em_scores = compute_em_scores(inst)\n        best_em_idx = int(np.argmax(em_scores))\n        em_sel_f1s.append(sample_f1s[best_em_idx])\n    \n    greedy_mean = float(np.mean(greedy_f1s))\n    oracle_mean = float(np.mean(oracle_f1s))\n    lp_mean = float(np.mean(lp_sel_f1s))\n    sj_mean = float(np.mean(sj_sel_f1s))\n    em_mean = float(np.mean(em_sel_f1s))\n    \n    return {\n        \"n_instances\": n,\n        \"greedy_f1\": greedy_mean,\n        \"oracle_f1\": oracle_mean,\n        \"headroom_pp\": (oracle_mean - greedy_mean) * 100,\n        \"lp_sel_f1\": lp_mean,\n        \"sj_sel_f1\": sj_mean,\n        \"em_sel_f1\": em_mean,\n        \"lp_delta_pp\": (lp_mean - greedy_mean) * 100,\n        \"sj_delta_pp\": (sj_mean - greedy_mean) * 100,\n        \"em_delta_pp\": (em_mean - greedy_mean) * 100,\n        \"per_instance_greedy_f1\": greedy_f1s,\n        \"per_instance_lp_sel_f1\": lp_sel_f1s,\n        \"per_instance_sj_sel_f1\": sj_sel_f1s,\n        \"per_instance_em_sel_f1\": em_sel_f1s,\n        \"per_instance_oracle_f1\": oracle_f1s,\n    }\n\n\ndef task_w1():\n    print(\"=\" * 60)\n    print(\"  W1: Multi-seed Table 3\")\n    print(\"=\" * 60)\n    \n    results = {}\n    for ds_name, ds_cfg in DATASETS.items():\n        seeds_cfg = ds_cfg[\"seeds\"]\n        seed_results = {}\n        \n        for seed, path in sorted(seeds_cfg.items()):\n            if not os.path.exists(path):\n                print(f\"  SKIP {ds_name} seed {seed}: not found\")\n                continue\n            print(f\"  Computing {ds_name} seed {seed}...\", end=\" \", flush=True)\n            t0 = time.time()\n            data = load_data(path)\n            metrics = compute_seed_metrics(data)\n            seed_results[seed] = metrics\n            print(f\"n={metrics['n_instances']}, greedy={metrics['greedy_f1']:.4f}, \"\n                  f\"LP={metrics['lp_sel_f1']:.4f} ({metrics['lp_delta_pp']:+.2f}pp) \"\n                  f\"[{time.time()-t0:.1f}s]\")\n        \n        if not seed_results:\n            continue\n        \n        seeds = sorted(seed_results.keys())\n        agg = {\"seeds\": seeds, \"n_seeds\": len(seeds)}\n        \n        for metric in [\"greedy_f1\", \"oracle_f1\", \"headroom_pp\",\n                        \"lp_sel_f1\", \"sj_sel_f1\", \"em_sel_f1\",\n                        \"lp_delta_pp\", \"sj_delta_pp\", \"em_delta_pp\"]:\n            vals = [seed_results[s][metric] for s in seeds]\n            agg[metric] = {\n                \"mean\": float(np.mean(vals)),\n                \"std\": float(np.std(vals, ddof=1)) if len(vals) > 1 else 0.0,\n                \"per_seed\": {s: seed_results[s][metric] for s in seeds},\n            }\n        \n        agg[\"n_instances\"] = {s: seed_results[s][\"n_instances\"] for s in seeds}\n        results[ds_name] = agg\n        \n        print(f\"\\n  {ds_name} ({len(seeds)} seeds):\")\n        print(f\"    greedy:  {agg['greedy_f1']['mean']:.4f} ± {agg['greedy_f1']['std']:.4f}\")\n        print(f\"    LP sel:  {agg['lp_sel_f1']['mean']:.4f} ± {agg['lp_sel_f1']['std']:.4f} \"\n              f\"(Δ={agg['lp_delta_pp']['mean']:+.2f}pp)\")\n        print(f\"    SJ sel:  {agg['sj_sel_f1']['mean']:.4f} ± {agg['sj_sel_f1']['std']:.4f}\")\n        print(f\"    EM sel:  {agg['em_sel_f1']['mean']:.4f} ± {agg['em_sel_f1']['std']:.4f}\")\n        print(f\"    oracle:  {agg['oracle_f1']['mean']:.4f} ± {agg['oracle_f1']['std']:.4f}\")\n    \n    out_path = f\"{OUT_DIR}/w1_table3_multiseed.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\n  Saved: {out_path}\")\n    return results\n\n\n# ======================================================================\n# W2: ICC + Permutation Test for Per-Entity-Type Analysis\n# ======================================================================\ndef compute_per_type_metrics(data):\n    filtered = gold_filter(data)\n    type_instances = defaultdict(list)\n    \n    for inst in filtered:\n        gold = inst[\"gold\"]\n        gold_types = set(e[\"type\"] for e in gold.get(\"entities\", []))\n        \n        lp_scores = compute_lp_scores(inst)\n        best_lp_idx = int(np.argmax(lp_scores))\n        \n        greedy_ents = inst[\"greedy\"].get(\"entities\", [])\n        selected_ents = inst[\"samples\"][best_lp_idx].get(\"entities\", [])\n        gold_ents = gold.get(\"entities\", [])\n        \n        samples = inst[\"samples\"]\n        key_sets = [frozenset(_extract_surface_keys(s, \"ner\")) for s in samples]\n        n_unique = len(set(key_sets))\n        is_degenerate = (n_unique == 1)\n        \n        for etype in gold_types:\n            gold_typed = [e for e in gold_ents if e[\"type\"] == etype]\n            greedy_typed = [e for e in greedy_ents if e[\"type\"] == etype]\n            selected_typed = [e for e in selected_ents if e[\"type\"] == etype]\n            \n            g_f1 = _prf(*entity_strict_match(greedy_typed, gold_typed))[\"f1\"]\n            lp_f1 = _prf(*entity_strict_match(selected_typed, gold_typed))[\"f1\"]\n            \n            sample_f1s = []\n            for s in samples:\n                s_typed = [e for e in s.get(\"entities\", []) if e[\"type\"] == etype]\n                sample_f1s.append(_prf(*entity_strict_match(s_typed, gold_typed))[\"f1\"])\n            oracle_f1 = max(sample_f1s)\n            \n            type_instances[etype].append({\n                \"greedy_f1\": g_f1,\n                \"lp_sel_f1\": lp_f1,\n                \"oracle_f1\": oracle_f1,\n                \"lp_delta\": lp_f1 - g_f1,\n                \"is_degenerate\": is_degenerate,\n                \"max_lp\": float(max(lp_scores)),\n            })\n    \n    type_summary = {}\n    for etype, instances in sorted(type_instances.items()):\n        n = len(instances)\n        deg_rate = sum(1 for x in instances if x[\"is_degenerate\"]) / n\n        greedy_mean = np.mean([x[\"greedy_f1\"] for x in instances])\n        lp_sel_mean = np.mean([x[\"lp_sel_f1\"] for x in instances])\n        lp_deltas = [x[\"lp_delta\"] for x in instances]\n        \n        greedy_f1s = [x[\"greedy_f1\"] for x in instances]\n        max_lps = [x[\"max_lp\"] for x in instances]\n        if len(set(greedy_f1s)) > 1 and len(set(max_lps)) > 1:\n            rho, p = spearmanr(max_lps, greedy_f1s)\n        else:\n            rho, p = 0.0, 1.0\n        \n        type_summary[etype] = {\n            \"n_instances\": n,\n            \"degeneracy_rate\": float(deg_rate),\n            \"greedy_f1\": float(greedy_mean),\n            \"lp_sel_f1\": float(lp_sel_mean),\n            \"lp_delta_pp\": float((lp_sel_mean - greedy_mean) * 100),\n            \"lp_rho\": float(rho),\n            \"lp_rho_p\": float(p),\n            \"per_instance_lp_deltas\": [float(d) for d in lp_deltas],\n        }\n    \n    return type_summary\n\n\ndef compute_icc_one_way(type_summary):\n    groups = []\n    for etype, ts in type_summary.items():\n        groups.append(ts[\"per_instance_lp_deltas\"])\n    \n    k = len(groups)\n    ns = [len(g) for g in groups]\n    N = sum(ns)\n    \n    grand_mean = np.mean([v for g in groups for v in g])\n    \n    ss_between = sum(n * (np.mean(g) - grand_mean)**2 for g, n in zip(groups, ns))\n    ss_within = sum(sum((v - np.mean(g))**2 for v in g) for g in groups)\n    \n    ms_between = ss_between / (k - 1) if k > 1 else 0\n    ms_within = ss_within / (N - k) if (N - k) > 0 else 1e-10\n    \n    n0 = (N - sum(n**2 for n in ns) / N) / (k - 1) if k > 1 else 1\n    \n    icc = (ms_between - ms_within) / (ms_between + (n0 - 1) * ms_within) if (ms_between + (n0 - 1) * ms_within) != 0 else 0\n    \n    effective_df = k - 1\n    \n    return {\n        \"icc\": float(icc),\n        \"k_types\": k,\n        \"N_total\": N,\n        \"n0\": float(n0),\n        \"ms_between\": float(ms_between),\n        \"ms_within\": float(ms_within),\n        \"effective_df\": effective_df,\n    }\n\n\ndef permutation_test_type_correlation(type_summary, n_perm=10000):\n    types = sorted(type_summary.keys())\n    deg_rates = np.array([type_summary[t][\"degeneracy_rate\"] for t in types])\n    lp_rhos = np.array([type_summary[t][\"lp_rho\"] for t in types])\n    \n    k = len(types)\n    if k < 3:\n        return {\"observed_rho\": 0.0, \"p_value\": 1.0, \"n_types\": k, \"n_perm\": n_perm}\n    \n    observed_rho, _ = spearmanr(deg_rates, lp_rhos)\n    \n    count_extreme = 0\n    for _ in range(n_perm):\n        perm_deg = RNG.permutation(deg_rates)\n        perm_rho, _ = spearmanr(perm_deg, lp_rhos)\n        if abs(perm_rho) >= abs(observed_rho):\n            count_extreme += 1\n    \n    p_value = (count_extreme + 1) / (n_perm + 1)\n    \n    return {\n        \"observed_rho\": float(observed_rho),\n        \"p_value\": float(p_value),\n        \"n_types\": k,\n        \"n_perm\": n_perm,\n        \"type_data\": {t: {\"degeneracy_rate\": type_summary[t][\"degeneracy_rate\"],\n                          \"lp_rho\": type_summary[t][\"lp_rho\"]}\n                      for t in types},\n    }\n\n\ndef task_w2():\n    print(\"\\n\" + \"=\" * 60)\n    print(\"  W2: ICC + Permutation Test (Per-Entity-Type)\")\n    print(\"=\" * 60)\n    \n    path = DATASETS[\"scierc_n8\"][\"seeds\"][42]\n    data = load_data(path)\n    print(f\"  Loaded {len(data)} instances from SciERC N=8 seed42\")\n    \n    type_summary = compute_per_type_metrics(data)\n    print(f\"  Found {len(type_summary)} entity types:\")\n    for t, ts in sorted(type_summary.items()):\n        print(f\"    {t}: n={ts['n_instances']}, deg={ts['degeneracy_rate']:.3f}, \"\n              f\"LP_rho={ts['lp_rho']:.3f}, LP_delta={ts['lp_delta_pp']:+.2f}pp\")\n    \n    icc_result = compute_icc_one_way(type_summary)\n    print(f\"\\n  ICC = {icc_result['icc']:.4f} (k={icc_result['k_types']}, N={icc_result['N_total']})\")\n    \n    perm_result = permutation_test_type_correlation(type_summary, n_perm=N_BOOTSTRAP)\n    print(f\"  Permutation test: rho={perm_result['observed_rho']:.4f}, p={perm_result['p_value']:.4f}\")\n    \n    results = {\n        \"type_summary\": {t: {k: v for k, v in ts.items() if k != \"per_instance_lp_deltas\"}\n                         for t, ts in type_summary.items()},\n        \"icc\": icc_result,\n        \"permutation_test\": perm_result,\n    }\n    \n    out_path = f\"{OUT_DIR}/w2_icc_permutation.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"  Saved: {out_path}\")\n    return results\n\n\n# ======================================================================\n# I8: Paired Bootstrap Tests\n# ======================================================================\ndef paired_bootstrap_test(sel_f1s, greedy_f1s, n_boot=10000):\n    deltas = np.array(sel_f1s) - np.array(greedy_f1s)\n    n = len(deltas)\n    observed_mean = float(np.mean(deltas))\n    \n    boot_means = np.zeros(n_boot)\n    for b in range(n_boot):\n        idx = RNG.randint(0, n, size=n)\n        boot_means[b] = np.mean(deltas[idx])\n    \n    ci_lo = float(np.percentile(boot_means, 2.5))\n    ci_hi = float(np.percentile(boot_means, 97.5))\n    \n    p_value = float(np.mean(boot_means <= 0))\n    \n    return {\n        \"mean_delta\": observed_mean,\n        \"mean_delta_pp\": observed_mean * 100,\n        \"ci_95\": [ci_lo * 100, ci_hi * 100],\n        \"p_value\": p_value,\n        \"n_instances\": n,\n        \"n_bootstrap\": n_boot,\n    }\n\n\ndef task_i8():\n    print(\"\\n\" + \"=\" * 60)\n    print(\"  I8: Paired Bootstrap Tests (Selection vs Greedy)\")\n    print(\"=\" * 60)\n    \n    results = {}\n    \n    for ds_name in [\"scierc_n8\", \"conll_n8\", \"fewnerd_n8\"]:\n        ds_cfg = DATASETS[ds_name]\n        seed = sorted(ds_cfg[\"seeds\"].keys())[0]\n        path = ds_cfg[\"seeds\"][seed]\n        \n        if not os.path.exists(path):\n            print(f\"  SKIP {ds_name}: not found\")\n            continue\n        \n        print(f\"\\n  {ds_name} (seed={seed})...\", flush=True)\n        t0 = time.time()\n        data = load_data(path)\n        metrics = compute_seed_metrics(data)\n        \n        ds_results = {}\n        for signal_name, sel_key in [(\"LP\", \"per_instance_lp_sel_f1\"),\n                                      (\"SJ\", \"per_instance_sj_sel_f1\"),\n                                      (\"EM\", \"per_instance_em_sel_f1\")]:\n            boot = paired_bootstrap_test(\n                metrics[sel_key],\n                metrics[\"per_instance_greedy_f1\"],\n                n_boot=N_BOOTSTRAP,\n            )\n            ds_results[signal_name] = boot\n            print(f\"    {signal_name}: Δ={boot['mean_delta_pp']:+.2f}pp, \"\n                  f\"95% CI=[{boot['ci_95'][0]:+.2f}, {boot['ci_95'][1]:+.2f}], \"\n                  f\"p={boot['p_value']:.4f}\")\n        \n        # Also test oracle\n        boot_oracle = paired_bootstrap_test(\n            metrics[\"per_instance_oracle_f1\"],\n            metrics[\"per_instance_greedy_f1\"],\n            n_boot=N_BOOTSTRAP,\n        )\n        ds_results[\"oracle\"] = boot_oracle\n        print(f\"    Oracle: Δ={boot_oracle['mean_delta_pp']:+.2f}pp, p={boot_oracle['p_value']:.4f}\")\n        \n        results[ds_name] = ds_results\n        print(f\"    [{time.time()-t0:.1f}s]\")\n    \n    out_path = f\"{OUT_DIR}/i8_bootstrap_tests.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\n  Saved: {out_path}\")\n    return results\n\n\n# ======================================================================\n# I9: Per-Type LP Heterogeneity\n# ======================================================================\ndef task_i9():\n    print(\"\\n\" + \"=\" * 60)\n    print(\"  I9: Per-Type LP Heterogeneity\")\n    print(\"=\" * 60)\n    \n    path = DATASETS[\"scierc_n8\"][\"seeds\"][42]\n    data = load_data(path)\n    type_summary = compute_per_type_metrics(data)\n    \n    type_deltas = {}\n    for etype, ts in type_summary.items():\n        deltas = ts[\"per_instance_lp_deltas\"]\n        type_deltas[etype] = deltas\n        \n        n_pos = sum(1 for d in deltas if d > 0)\n        n_neg = sum(1 for d in deltas if d < 0)\n        n_zero = sum(1 for d in deltas if d == 0)\n        \n        boot = paired_bootstrap_test(\n            [d + 0 for d in deltas],  # lp_sel - greedy already encoded\n            [0.0] * len(deltas),\n            n_boot=N_BOOTSTRAP,\n        )\n        \n        type_summary[etype][\"bootstrap\"] = boot\n        type_summary[etype][\"n_positive\"] = n_pos\n        type_summary[etype][\"n_negative\"] = n_neg\n        type_summary[etype][\"n_zero\"] = n_zero\n    \n    groups = [np.array(type_deltas[t]) for t in sorted(type_deltas.keys())]\n    if len(groups) >= 2:\n        stat, kw_p = kruskal(*groups)\n    else:\n        stat, kw_p = 0.0, 1.0\n    \n    types_sorted = sorted(type_summary.keys(), key=lambda t: type_summary[t][\"lp_delta_pp\"], reverse=True)\n    \n    print(f\"\\n  Per-type LP selection gain:\")\n    for t in types_sorted:\n        ts = type_summary[t]\n        print(f\"    {t:25s}: Δ={ts['lp_delta_pp']:+.2f}pp, \"\n              f\"n={ts['n_instances']}, \"\n              f\"boot_p={ts['bootstrap']['p_value']:.4f}, \"\n              f\"+{ts['n_positive']}/-{ts['n_negative']}/={ts['n_zero']}\")\n    \n    print(f\"\\n  Kruskal-Wallis: H={stat:.4f}, p={kw_p:.4f}\")\n    print(f\"  Highest gain: {types_sorted[0]} ({type_summary[types_sorted[0]]['lp_delta_pp']:+.2f}pp)\")\n    print(f\"  Lowest gain:  {types_sorted[-1]} ({type_summary[types_sorted[-1]]['lp_delta_pp']:+.2f}pp)\")\n    \n    results = {\n        \"per_type\": {t: {k: v for k, v in ts.items() if k != \"per_instance_lp_deltas\"}\n                     for t, ts in type_summary.items()},\n        \"kruskal_wallis\": {\n            \"statistic\": float(stat),\n            \"p_value\": float(kw_p),\n            \"n_types\": len(type_deltas),\n        },\n        \"highest_gain_type\": types_sorted[0],\n        \"lowest_gain_type\": types_sorted[-1],\n    }\n    \n    out_path = f\"{OUT_DIR}/i9_per_type_heterogeneity.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\n  Saved: {out_path}\")\n    return results\n\n\n# ======================================================================\n# Main\n# ======================================================================\ndef main():\n    print(\"Statistical Hardening: W1/W2/I8/I9\")\n    print(f\"Output directory: {OUT_DIR}\")\n    t_start = time.time()\n    \n    w1 = task_w1()\n    w2 = task_w2()\n    i8 = task_i8()\n    i9 = task_i9()\n    \n    # Summary\n    print(\"\\n\" + \"=\" * 60)\n    print(\"  SUMMARY\")\n    print(\"=\" * 60)\n    \n    print(\"\\n## W1: Table 3 multi-seed\")\n    for ds_name, agg in w1.items():\n        n_seeds = agg[\"n_seeds\"]\n        g = agg[\"greedy_f1\"]\n        lp = agg[\"lp_sel_f1\"]\n        lpd = agg[\"lp_delta_pp\"]\n        if n_seeds > 1:\n            print(f\"  {ds_name}: greedy={g['mean']:.4f}±{g['std']:.4f}, \"\n                  f\"LP={lp['mean']:.4f}±{lp['std']:.4f}, \"\n                  f\"Δ={lpd['mean']:+.2f}±{lpd['std']:.2f}pp\")\n        else:\n            print(f\"  {ds_name}: greedy={g['mean']:.4f}, \"\n                  f\"LP={lp['mean']:.4f}, Δ={lpd['mean']:+.2f}pp\")\n    \n    print(f\"\\n## W2: ICC + Permutation\")\n    print(f\"  ICC = {w2['icc']['icc']:.4f}\")\n    print(f\"  Permutation p = {w2['permutation_test']['p_value']:.4f} \"\n          f\"(rho = {w2['permutation_test']['observed_rho']:.4f})\")\n    \n    print(f\"\\n## I8: Paired Bootstrap (LP vs Greedy)\")\n    for ds_name, ds_r in i8.items():\n        lp = ds_r[\"LP\"]\n        print(f\"  {ds_name}: Δ={lp['mean_delta_pp']:+.2f}pp, \"\n              f\"95% CI=[{lp['ci_95'][0]:+.2f}, {lp['ci_95'][1]:+.2f}], \"\n              f\"p={lp['p_value']:.4f}\")\n    \n    print(f\"\\n## I9: Per-Type Heterogeneity\")\n    kw = i9[\"kruskal_wallis\"]\n    print(f\"  Kruskal-Wallis p = {kw['p_value']:.4f}\")\n    print(f\"  Highest gain: {i9['highest_gain_type']} \"\n          f\"({i9['per_type'][i9['highest_gain_type']]['lp_delta_pp']:+.2f}pp)\")\n    print(f\"  Lowest gain: {i9['lowest_gain_type']} \"\n          f\"({i9['per_type'][i9['lowest_gain_type']]['lp_delta_pp']:+.2f}pp)\")\n    \n    print(f\"\\nTotal time: {time.time()-t_start:.1f}s\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written successfully\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat << 'PYEOF' > /root/autodl-tmp/struct_self_consist_ie/code/statistical_hardening.py\n#!/usr/bin/env python3\n\"\"\"Statistical hardening: W1/W2/I8/I9 for EMNLP 2026 submission.\"\"\"\n\nimport json\nimport os\nimport sys\nimport time\nfrom collections import defaultdict\n\nimport numpy as np\nfrom scipy.stats import spearmanr, kruskal\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom evaluation import entity_strict_match, per_instance_f1, _prf\nfrom consistency import (\n    _ner_soft_jaccard_pair,\n    _extract_surface_keys,\n)\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\nOUT_DIR = f\"{BASE}/output/statistical_hardening\"\nos.makedirs(OUT_DIR, exist_ok=True)\n\nN_BOOTSTRAP = 10000\nRNG = np.random.RandomState(42)\n\n# ======================================================================\n# Data paths\n# ======================================================================\nDATASETS = {\n    \"scierc_n8\": {\n        \"seeds\": {\n            42: f\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\",\n            123: f\"{BASE}/output/exp_018_qwen_scierc_seed123/samples.jsonl\",\n            456: f\"{BASE}/output/exp_018_qwen_scierc_seed456/samples.jsonl\",\n        },\n    },\n    \"scierc_n16\": {\n        \"seeds\": {\n            42: f\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\",\n            123: f\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\",\n            456: f\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\",\n        },\n    },\n    \"conll_n8\": {\n        \"seeds\": {\n            42: f\"{BASE}/output/exp002_conll2003/samples.jsonl\",\n        },\n    },\n    \"fewnerd_n8\": {\n        \"seeds\": {\n            42: f\"{BASE}/output/exp_021_inference/samples.jsonl\",\n        },\n    },\n}\n\n\ndef load_data(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f if line.strip()]\n\n\ndef gold_filter(data):\n    return [inst for inst in data if len(inst[\"gold\"].get(\"entities\", [])) > 0]\n\n\n# ======================================================================\n# Signal computation\n# ======================================================================\ndef compute_lp_scores(instance):\n    return [s[\"mean_logprob\"] for s in instance[\"samples\"]]\n\n\ndef compute_sj_scores(instance):\n    samples = instance[\"samples\"]\n    N = len(samples)\n    if N <= 1:\n        return [1.0] * N\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            s = _ner_soft_jaccard_pair(\n                samples[i].get(\"entities\", []),\n                samples[j].get(\"entities\", [])\n            )\n            matrix[i][j] = s\n            matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    return [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\n\n\ndef compute_em_scores(instance):\n    samples = instance[\"samples\"]\n    N = len(samples)\n    key_sets = [frozenset(_extract_surface_keys(s, \"ner\")) for s in samples]\n    return [sum(1 for j in range(N) if j != k and key_sets[k] == key_sets[j]) / max(N - 1, 1)\n            for k in range(N)]\n\n\ndef select_by_signal(instance, signal_fn, gold):\n    scores = signal_fn(instance)\n    best_idx = int(np.argmax(scores))\n    selected = instance[\"samples\"][best_idx]\n    return per_instance_f1(selected, gold, \"ner\")\n\n\n# ======================================================================\n# W1: Multi-seed Table 3\n# ======================================================================\ndef compute_seed_metrics(data):\n    filtered = gold_filter(data)\n    n = len(filtered)\n    \n    greedy_f1s = []\n    oracle_f1s = []\n    lp_sel_f1s = []\n    sj_sel_f1s = []\n    em_sel_f1s = []\n    \n    for inst in filtered:\n        gold = inst[\"gold\"]\n        g_f1 = per_instance_f1(inst[\"greedy\"], gold, \"ner\")\n        greedy_f1s.append(g_f1)\n        \n        sample_f1s = [per_instance_f1(s, gold, \"ner\") for s in inst[\"samples\"]]\n        oracle_f1s.append(max(sample_f1s))\n        \n        lp_scores = compute_lp_scores(inst)\n        best_lp_idx = int(np.argmax(lp_scores))\n        lp_sel_f1s.append(sample_f1s[best_lp_idx])\n        \n        sj_scores = compute_sj_scores(inst)\n        best_sj_idx = int(np.argmax(sj_scores))\n        sj_sel_f1s.append(sample_f1s[best_sj_idx])\n        \n        em_scores = compute_em_scores(inst)\n        best_em_idx = int(np.argmax(em_scores))\n        em_sel_f1s.append(sample_f1s[best_em_idx])\n    \n    greedy_mean = float(np.mean(greedy_f1s))\n    oracle_mean = float(np.mean(oracle_f1s))\n    lp_mean = float(np.mean(lp_sel_f1s))\n    sj_mean = float(np.mean(sj_sel_f1s))\n    em_mean = float(np.mean(em_sel_f1s))\n    \n    return {\n        \"n_instances\": n,\n        \"greedy_f1\": greedy_mean,\n        \"oracle_f1\": oracle_mean,\n        \"headroom_pp\": (oracle_mean - greedy_mean) * 100,\n        \"lp_sel_f1\": lp_mean,\n        \"sj_sel_f1\": sj_mean,\n        \"em_sel_f1\": em_mean,\n        \"lp_delta_pp\": (lp_mean - greedy_mean) * 100,\n        \"sj_delta_pp\": (sj_mean - greedy_mean) * 100,\n        \"em_delta_pp\": (em_mean - greedy_mean) * 100,\n        \"per_instance_greedy_f1\": greedy_f1s,\n        \"per_instance_lp_sel_f1\": lp_sel_f1s,\n        \"per_instance_sj_sel_f1\": sj_sel_f1s,\n        \"per_instance_em_sel_f1\": em_sel_f1s,\n        \"per_instance_oracle_f1\": oracle_f1s,\n    }\n\n\ndef task_w1():\n    print(\"=\" * 60)\n    print(\"  W1: Multi-seed Table 3\")\n    print(\"=\" * 60)\n    \n    results = {}\n    for ds_name, ds_cfg in DATASETS.items():\n        seeds_cfg = ds_cfg[\"seeds\"]\n        seed_results = {}\n        \n        for seed, path in sorted(seeds_cfg.items()):\n            if not os.path.exists(path):\n                print(f\"  SKIP {ds_name} seed {seed}: not found\")\n                continue\n            print(f\"  Computing {ds_name} seed {seed}...\", end=\" \", flush=True)\n            t0 = time.time()\n            data = load_data(path)\n            metrics = compute_seed_metrics(data)\n            seed_results[seed] = metrics\n            print(f\"n={metrics['n_instances']}, greedy={metrics['greedy_f1']:.4f}, \"\n                  f\"LP={metrics['lp_sel_f1']:.4f} ({metrics['lp_delta_pp']:+.2f}pp) \"\n                  f\"[{time.time()-t0:.1f}s]\")\n        \n        if not seed_results:\n            continue\n        \n        seeds = sorted(seed_results.keys())\n        agg = {\"seeds\": seeds, \"n_seeds\": len(seeds)}\n        \n        for metric in [\"greedy_f1\", \"oracle_f1\", \"headroom_pp\",\n                        \"lp_sel_f1\", \"sj_sel_f1\", \"em_sel_f1\",\n                        \"lp_delta_pp\", \"sj_delta_pp\", \"em_delta_pp\"]:\n            vals = [seed_results[s][metric] for s in seeds]\n            agg[metric] = {\n                \"mean\": float(np.mean(vals)),\n                \"std\": float(np.std(vals, ddof=1)) if len(vals) > 1 else 0.0,\n                \"per_seed\": {s: seed_results[s][metric] for s in seeds},\n            }\n        \n        agg[\"n_instances\"] = {s: seed_results[s][\"n_instances\"] for s in seeds}\n        results[ds_name] = agg\n        \n        print(f\"\\n  {ds_name} ({len(seeds)} seeds):\")\n        print(f\"    greedy:  {agg['greedy_f1']['mean']:.4f} ± {agg['greedy_f1']['std']:.4f}\")\n        print(f\"    LP sel:  {agg['lp_sel_f1']['mean']:.4f} ± {agg['lp_sel_f1']['std']:.4f} \"\n              f\"(Δ={agg['lp_delta_pp']['mean']:+.2f}pp)\")\n        print(f\"    SJ sel:  {agg['sj_sel_f1']['mean']:.4f} ± {agg['sj_sel_f1']['std']:.4f}\")\n        print(f\"    EM sel:  {agg['em_sel_f1']['mean']:.4f} ± {agg['em_sel_f1']['std']:.4f}\")\n        print(f\"    oracle:  {agg['oracle_f1']['mean']:.4f} ± {agg['oracle_f1']['std']:.4f}\")\n    \n    out_path = f\"{OUT_DIR}/w1_table3_multiseed.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\n  Saved: {out_path}\")\n    return results\n\n\n# ======================================================================\n# W2: ICC + Permutation Test for Per-Entity-Type Analysis\n# ======================================================================\ndef compute_per_type_metrics(data):\n    filtered = gold_filter(data)\n    type_instances = defaultdict(list)\n    \n    for inst in filtered:\n        gold = inst[\"gold\"]\n        gold_types = set(e[\"type\"] for e in gold.get(\"entities\", []))\n        \n        lp_scores = compute_lp_scores(inst)\n        best_lp_idx = int(np.argmax(lp_scores))\n        \n        greedy_ents = inst[\"greedy\"].get(\"entities\", [])\n        selected_ents = inst[\"samples\"][best_lp_idx].get(\"entities\", [])\n        gold_ents = gold.get(\"entities\", [])\n        \n        samples = inst[\"samples\"]\n        key_sets = [frozenset(_extract_surface_keys(s, \"ner\")) for s in samples]\n        n_unique = len(set(key_sets))\n        is_degenerate = (n_unique == 1)\n        \n        for etype in gold_types:\n            gold_typed = [e for e in gold_ents if e[\"type\"] == etype]\n            greedy_typed = [e for e in greedy_ents if e[\"type\"] == etype]\n            selected_typed = [e for e in selected_ents if e[\"type\"] == etype]\n            \n            g_f1 = _prf(*entity_strict_match(greedy_typed, gold_typed))[\"f1\"]\n            lp_f1 = _prf(*entity_strict_match(selected_typed, gold_typed))[\"f1\"]\n            \n            sample_f1s = []\n            for s in samples:\n                s_typed = [e for e in s.get(\"entities\", []) if e[\"type\"] == etype]\n                sample_f1s.append(_prf(*entity_strict_match(s_typed, gold_typed))[\"f1\"])\n            oracle_f1 = max(sample_f1s)\n            \n            type_instances[etype].append({\n                \"greedy_f1\": g_f1,\n                \"lp_sel_f1\": lp_f1,\n                \"oracle_f1\": oracle_f1,\n                \"lp_delta\": lp_f1 - g_f1,\n                \"is_degenerate\": is_degenerate,\n                \"max_lp\": float(max(lp_scores)),\n            })\n    \n    type_summary = {}\n    for etype, instances in sorted(type_instances.items()):\n        n = len(instances)\n        deg_rate = sum(1 for x in instances if x[\"is_degenerate\"]) / n\n        greedy_mean = np.mean([x[\"greedy_f1\"] for x in instances])\n        lp_sel_mean = np.mean([x[\"lp_sel_f1\"] for x in instances])\n        lp_deltas = [x[\"lp_delta\"] for x in instances]\n        \n        greedy_f1s = [x[\"greedy_f1\"] for x in instances]\n        max_lps = [x[\"max_lp\"] for x in instances]\n        if len(set(greedy_f1s)) > 1 and len(set(max_lps)) > 1:\n            rho, p = spearmanr(max_lps, greedy_f1s)\n        else:\n            rho, p = 0.0, 1.0\n        \n        type_summary[etype] = {\n            \"n_instances\": n,\n            \"degeneracy_rate\": float(deg_rate),\n            \"greedy_f1\": float(greedy_mean),\n            \"lp_sel_f1\": float(lp_sel_mean),\n            \"lp_delta_pp\": float((lp_sel_mean - greedy_mean) * 100),\n            \"lp_rho\": float(rho),\n            \"lp_rho_p\": float(p),\n            \"per_instance_lp_deltas\": [float(d) for d in lp_deltas],\n        }\n    \n    return type_summary\n\n\ndef compute_icc_one_way(type_summary):\n    groups = []\n    for etype, ts in type_summary.items():\n        groups.append(ts[\"per_instance_lp_deltas\"])\n    \n    k = len(groups)\n    ns = [len(g) for g in groups]\n    N = sum(ns)\n    \n    grand_mean = np.mean([v for g in groups for v in g])\n    \n    ss_between = sum(n * (np.mean(g) - grand_mean)**2 for g, n in zip(groups, ns))\n    ss_within = sum(sum((v - np.mean(g))**2 for v in g) for g in groups)\n    \n    ms_between = ss_between / (k - 1) if k > 1 else 0\n    ms_within = ss_within / (N - k) if (N - k) > 0 else 1e-10\n    \n    n0 = (N - sum(n**2 for n in ns) / N) / (k - 1) if k > 1 else 1\n    \n    icc = (ms_between - ms_within) / (ms_between + (n0 - 1) * ms_within) if (ms_between + (n0 - 1) * ms_within) != 0 else 0\n    \n    effective_df = k - 1\n    \n    return {\n        \"icc\": float(icc),\n        \"k_types\": k,\n        \"N_total\": N,\n        \"n0\": float(n0),\n        \"ms_between\": float(ms_between),\n        \"ms_within\": float(ms_within),\n        \"effective_df\": effective_df,\n    }\n\n\ndef permutation_test_type_correlation(type_summary, n_perm=10000):\n    types = sorted(type_summary.keys())\n    deg_rates = np.array([type_summary[t][\"degeneracy_rate\"] for t in types])\n    lp_rhos = np.array([type_summary[t][\"lp_rho\"] for t in types])\n    \n    k = len(types)\n    if k < 3:\n        return {\"observed_rho\": 0.0, \"p_value\": 1.0, \"n_types\": k, \"n_perm\": n_perm}\n    \n    observed_rho, _ = spearmanr(deg_rates, lp_rhos)\n    \n    count_extreme = 0\n    for _ in range(n_perm):\n        perm_deg = RNG.permutation(deg_rates)\n        perm_rho, _ = spearmanr(perm_deg, lp_rhos)\n        if abs(perm_rho) >= abs(observed_rho):\n            count_extreme += 1\n    \n    p_value = (count_extreme + 1) / (n_perm + 1)\n    \n    return {\n        \"observed_rho\": float(observed_rho),\n        \"p_value\": float(p_value),\n        \"n_types\": k,\n        \"n_perm\": n_perm,\n        \"type_data\": {t: {\"degeneracy_rate\": type_summary[t][\"degeneracy_rate\"],\n                          \"lp_rho\": type_summary[t][\"lp_rho\"]}\n                      for t in types},\n    }\n\n\ndef task_w2():\n    print(\"\\n\" + \"=\" * 60)\n    print(\"  W2: ICC + Permutation Test (Per-Entity-Type)\")\n    print(\"=\" * 60)\n    \n    path = DATASETS[\"scierc_n8\"][\"seeds\"][42]\n    data = load_data(path)\n    print(f\"  Loaded {len(data)} instances from SciERC N=8 seed42\")\n    \n    type_summary = compute_per_type_metrics(data)\n    print(f\"  Found {len(type_summary)} entity types:\")\n    for t, ts in sorted(type_summary.items()):\n        print(f\"    {t}: n={ts['n_instances']}, deg={ts['degeneracy_rate']:.3f}, \"\n              f\"LP_rho={ts['lp_rho']:.3f}, LP_delta={ts['lp_delta_pp']:+.2f}pp\")\n    \n    icc_result = compute_icc_one_way(type_summary)\n    print(f\"\\n  ICC = {icc_result['icc']:.4f} (k={icc_result['k_types']}, N={icc_result['N_total']})\")\n    \n    perm_result = permutation_test_type_correlation(type_summary, n_perm=N_BOOTSTRAP)\n    print(f\"  Permutation test: rho={perm_result['observed_rho']:.4f}, p={perm_result['p_value']:.4f}\")\n    \n    results = {\n        \"type_summary\": {t: {k: v for k, v in ts.items() if k != \"per_instance_lp_deltas\"}\n                         for t, ts in type_summary.items()},\n        \"icc\": icc_result,\n        \"permutation_test\": perm_result,\n    }\n    \n    out_path = f\"{OUT_DIR}/w2_icc_permutation.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"  Saved: {out_path}\")\n    return results\n\n\n# ======================================================================\n# I8: Paired Bootstrap Tests\n# ======================================================================\ndef paired_bootstrap_test(sel_f1s, greedy_f1s, n_boot=10000):\n    deltas = np.array(sel_f1s) - np.array(greedy_f1s)\n    n = len(deltas)\n    observed_mean = float(np.mean(deltas))\n    \n    boot_means = np.zeros(n_boot)\n    for b in range(n_boot):\n        idx = RNG.randint(0, n, size=n)\n        boot_means[b] = np.mean(deltas[idx])\n    \n    ci_lo = float(np.percentile(boot_means, 2.5))\n    ci_hi = float(np.percentile(boot_means, 97.5))\n    \n    p_value = float(np.mean(boot_means <= 0))\n    \n    return {\n        \"mean_delta\": observed_mean,\n        \"mean_delta_pp\": observed_mean * 100,\n        \"ci_95\": [ci_lo * 100, ci_hi * 100],\n        \"p_value\": p_value,\n        \"n_instances\": n,\n        \"n_bootstrap\": n_boot,\n    }\n\n\ndef task_i8():\n    print(\"\\n\" + \"=\" * 60)\n    print(\"  I8: Paired Bootstrap Tests (Selection vs Greedy)\")\n    print(\"=\" * 60)\n    \n    results = {}\n    \n    for ds_name in [\"scierc_n8\", \"conll_n8\", \"fewnerd_n8\"]:\n        ds_cfg = DATASETS[ds_name]\n        seed = sorted(ds_cfg[\"seeds\"].keys())[0]\n        path = ds_cfg[\"seeds\"][seed]\n        \n        if not os.path.exists(path):\n            print(f\"  SKIP {ds_name}: not found\")\n            continue\n        \n        print(f\"\\n  {ds_name} (seed={seed})...\", flush=True)\n        t0 = time.time()\n        data = load_data(path)\n        metrics = compute_seed_metrics(data)\n        \n        ds_results = {}\n        for signal_name, sel_key in [(\"LP\", \"per_instance_lp_sel_f1\"),\n                                      (\"SJ\", \"per_instance_sj_sel_f1\"),\n                                      (\"EM\", \"per_instance_em_sel_f1\")]:\n            boot = paired_bootstrap_test(\n                metrics[sel_key],\n                metrics[\"per_instance_greedy_f1\"],\n                n_boot=N_BOOTSTRAP,\n            )\n            ds_results[signal_name] = boot\n            print(f\"    {signal_name}: Δ={boot['mean_delta_pp']:+.2f}pp, \"\n                  f\"95% CI=[{boot['ci_95'][0]:+.2f}, {boot['ci_95'][1]:+.2f}], \"\n                  f\"p={boot['p_value']:.4f}\")\n        \n        # Also test oracle\n        boot_oracle = paired_bootstrap_test(\n            metrics[\"per_instance_oracle_f1\"],\n            metrics[\"per_instance_greedy_f1\"],\n            n_boot=N_BOOTSTRAP,\n        )\n        ds_results[\"oracle\"] = boot_oracle\n        print(f\"    Oracle: Δ={boot_oracle['mean_delta_pp']:+.2f}pp, p={boot_oracle['p_value']:.4f}\")\n        \n        results[ds_name] = ds_results\n        print(f\"    [{time.time()-t0:.1f}s]\")\n    \n    out_path = f\"{OUT_DIR}/i8_bootstrap_tests.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\n  Saved: {out_path}\")\n    return results\n\n\n# ======================================================================\n# I9: Per-Type LP Heterogeneity\n# ======================================================================\ndef task_i9():\n    print(\"\\n\" + \"=\" * 60)\n    print(\"  I9: Per-Type LP Heterogeneity\")\n    print(\"=\" * 60)\n    \n    path = DATASETS[\"scierc_n8\"][\"seeds\"][42]\n    data = load_data(path)\n    type_summary = compute_per_type_metrics(data)\n    \n    type_deltas = {}\n    for etype, ts in type_summary.items():\n        deltas = ts[\"per_instance_lp_deltas\"]\n        type_deltas[etype] = deltas\n        \n        n_pos = sum(1 for d in deltas if d > 0)\n        n_neg = sum(1 for d in deltas if d < 0)\n        n_zero = sum(1 for d in deltas if d == 0)\n        \n        boot = paired_bootstrap_test(\n            [d + 0 for d in deltas],  # lp_sel - greedy already encoded\n            [0.0] * len(deltas),\n            n_boot=N_BOOTSTRAP,\n        )\n        \n        type_summary[etype][\"bootstrap\"] = boot\n        type_summary[etype][\"n_positive\"] = n_pos\n        type_summary[etype][\"n_negative\"] = n_neg\n        type_summary[etype][\"n_zero\"] = n_zero\n    \n    groups = [np.array(type_deltas[t]) for t in sorted(type_deltas.keys())]\n    if len(groups) >= 2:\n        stat, kw_p = kruskal(*groups)\n    else:\n        stat, kw_p = 0.0, 1.0\n    \n    types_sorted = sorted(type_summary.keys(), key=lambda t: type_summary[t][\"lp_delta_pp\"], reverse=True)\n    \n    print(f\"\\n  Per-type LP selection gain:\")\n    for t in types_sorted:\n        ts = type_summary[t]\n        print(f\"    {t:25s}: Δ={ts['lp_delta_pp']:+.2f}pp, \"\n              f\"n={ts['n_instances']}, \"\n              f\"boot_p={ts['bootstrap']['p_value']:.4f}, \"\n              f\"+{ts['n_positive']}/-{ts['n_negative']}/={ts['n_zero']}\")\n    \n    print(f\"\\n  Kruskal-Wallis: H={stat:.4f}, p={kw_p:.4f}\")\n    print(f\"  Highest gain: {types_sorted[0]} ({type_summary[types_sorted[0]]['lp_delta_pp']:+.2f}pp)\")\n    print(f\"  Lowest gain:  {types_sorted[-1]} ({type_summary[types_sorted[-1]]['lp_delta_pp']:+.2f}pp)\")\n    \n    results = {\n        \"per_type\": {t: {k: v for k, v in ts.items() if k != \"per_instance_lp_deltas\"}\n                     for t, ts in type_summary.items()},\n        \"kruskal_wallis\": {\n            \"statistic\": float(stat),\n            \"p_value\": float(kw_p),\n            \"n_types\": len(type_deltas),\n        },\n        \"highest_gain_type\": types_sorted[0],\n        \"lowest_gain_type\": types_sorted[-1],\n    }\n    \n    out_path = f\"{OUT_DIR}/i9_per_type_heterogeneity.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\n  Saved: {out_path}\")\n    return results\n\n\n# ======================================================================\n# Main\n# ======================================================================\ndef main():\n    print(\"Statistical Hardening: W1/W2/I8/I9\")\n    print(f\"Output directory: {OUT_DIR}\")\n    t_start = time.time()\n    \n    w1 = task_w1()\n    w2 = task_w2()\n    i8 = task_i8()\n    i9 = task_i9()\n    \n    # Summary\n    print(\"\\n\" + \"=\" * 60)\n    print(\"  SUMMARY\")\n    print(\"=\" * 60)\n    \n    print(\"\\n## W1: Table 3 multi-seed\")\n    for ds_name, agg in w1.items():\n        n_seeds = agg[\"n_seeds\"]\n        g = agg[\"greedy_f1\"]\n        lp = agg[\"lp_sel_f1\"]\n        lpd = agg[\"lp_delta_pp\"]\n        if n_seeds > 1:\n            print(f\"  {ds_name}: greedy={g['mean']:.4f}±{g['std']:.4f}, \"\n                  f\"LP={lp['mean']:.4f}±{lp['std']:.4f}, \"\n                  f\"Δ={lpd['mean']:+.2f}±{lpd['std']:.2f}pp\")\n        else:\n            print(f\"  {ds_name}: greedy={g['mean']:.4f}, \"\n                  f\"LP={lp['mean']:.4f}, Δ={lpd['mean']:+.2f}pp\")\n    \n    print(f\"\\n## W2: ICC + Permutation\")\n    print(f\"  ICC = {w2['icc']['icc']:.4f}\")\n    print(f\"  Permutation p = {w2['permutation_test']['p_value']:.4f} \"\n          f\"(rho = {w2['permutation_test']['observed_rho']:.4f})\")\n    \n    print(f\"\\n## I8: Paired Bootstrap (LP vs Greedy)\")\n    for ds_name, ds_r in i8.items():\n        lp = ds_r[\"LP\"]\n        print(f\"  {ds_name}: Δ={lp['mean_delta_pp']:+.2f}pp, \"\n              f\"95% CI=[{lp['ci_95'][0]:+.2f}, {lp['ci_95'][1]:+.2f}], \"\n              f\"p={lp['p_value']:.4f}\")\n    \n    print(f\"\\n## I9: Per-Type Heterogeneity\")\n    kw = i9[\"kruskal_wallis\"]\n    print(f\"  Kruskal-Wallis p = {kw['p_value']:.4f}\")\n    print(f\"  Highest gain: {i9['highest_gain_type']} \"\n          f\"({i9['per_type'][i9['highest_gain_type']]['lp_delta_pp']:+.2f}pp)\")\n    print(f\"  Lowest gain: {i9['lowest_gain_type']} \"\n          f\"({i9['per_type'][i9['lowest_gain_type']]['lp_delta_pp']:+.2f}pp)\")\n    \n    print(f\"\\nTotal time: {time.time()-t_start:.1f}s\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written successfully\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-18T06:53:58.323625+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-18T06:53:58.323816+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/bin/activate && python code/statistical_hardening.py 2>&1",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/bin/activate && python code/statistical_hardening.py 2>&1",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-18T06:53:58.324008+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/bin/activate && python code/statistical_hardening.py 2>&1'\\n\\nStdout:\\n\\n    oracle:  0.8198 ± 0.0029\\n  Computing conll_n8 seed 42... n=2756, greedy=0.9079, LP=0.8974 (-1.05pp) [1.1s]\\n\\n  conll_n8 (1 seeds):\\n    greedy:  0.9079 ± 0.0000\\n    LP sel:  0.8974 ± 0.0000 (Δ=-1.05pp)\\n    SJ sel:  0.8990 ± 0.0000\\n    EM sel:  0.8971 ± 0.0000\\n    oracle:  0.9483 ± 0.0000\\n  Computing fewnerd_n8 seed 42... \\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-18T06:53:58.324373+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat << 'PYEOF' > /root/autodl-tmp/struct_self_consist_ie/code/statistical_hardening.py\n#!/usr/bin/env python3\n\"\"\"Statistical hardening: W1/W2/I8/I9 for EMNLP 2026 submission.\"\"\"\n\nimport json\nimport os\nimport sys\nimport time\nfrom collections import defaultdict\n\nimport numpy as np\nfrom scipy.stats import spearmanr, kruskal\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom evaluation import entity_strict_match, per_instance_f1, _prf\nfrom consistency import _ner_soft_jaccard_pair, _extract_surface_keys\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\nOUT_DIR = f\"{BASE}/output/statistical_hardening\"\nos.makedirs(OUT_DIR, exist_ok=True)\n\nN_BOOTSTRAP = 10000\nRNG = np.random.RandomState(42)\n\nDATASETS = {\n    \"scierc_n8\": {\n        \"seeds\": {\n            42: f\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\",\n            123: f\"{BASE}/output/exp_018_qwen_scierc_seed123/samples.jsonl\",\n            456: f\"{BASE}/output/exp_018_qwen_scierc_seed456/samples.jsonl\",\n        },\n    },\n    \"scierc_n16\": {\n        \"seeds\": {\n            42: f\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\",\n            123: f\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\",\n            456: f\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\",\n        },\n    },\n    \"conll_n8\": {\n        \"seeds\": {42: f\"{BASE}/output/exp002_conll2003/samples.jsonl\"},\n    },\n    \"fewnerd_n8\": {\n        \"seeds\": {42: f\"{BASE}/output/exp_021_inference/samples.jsonl\"},\n    },\n}\n\n\ndef load_data(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f if line.strip()]\n\n\ndef gold_filter(data):\n    return [inst for inst in data if len(inst[\"gold\"].get(\"entities\", [])) > 0]\n\n\ndef compute_lp_scores(inst):\n    return [s[\"mean_logprob\"] for s in inst[\"samples\"]]\n\n\ndef compute_sj_scores(inst):\n    samples = inst[\"samples\"]\n    N = len(samples)\n    if N <= 1:\n        return [1.0] * N\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            s = _ner_soft_jaccard_pair(samples[i].get(\"entities\", []),\n                                       samples[j].get(\"entities\", []))\n            matrix[i][j] = s\n            matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    return [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\n\n\ndef compute_em_scores(inst):\n    samples = inst[\"samples\"]\n    N = len(samples)\n    key_sets = [frozenset(_extract_surface_keys(s, \"ner\")) for s in samples]\n    return [sum(1 for j in range(N) if j != k and key_sets[k] == key_sets[j]) / max(N - 1, 1)\n            for k in range(N)]\n\n\ndef compute_seed_metrics(data, compute_slow_signals=True):\n    filtered = gold_filter(data)\n    n = len(filtered)\n    greedy_f1s, oracle_f1s, lp_sel_f1s = [], [], []\n    sj_sel_f1s, em_sel_f1s = [], []\n\n    for idx, inst in enumerate(filtered):\n        gold = inst[\"gold\"]\n        g_f1 = per_instance_f1(inst[\"greedy\"], gold, \"ner\")\n        greedy_f1s.append(g_f1)\n\n        sample_f1s = [per_instance_f1(s, gold, \"ner\") for s in inst[\"samples\"]]\n        oracle_f1s.append(max(sample_f1s))\n\n        lp_scores = compute_lp_scores(inst)\n        lp_sel_f1s.append(sample_f1s[int(np.argmax(lp_scores))])\n\n        if compute_slow_signals:\n            sj_scores = compute_sj_scores(inst)\n            sj_sel_f1s.append(sample_f1s[int(np.argmax(sj_scores))])\n            em_scores = compute_em_scores(inst)\n            em_sel_f1s.append(sample_f1s[int(np.argmax(em_scores))])\n\n    result = {\n        \"n_instances\": n,\n        \"greedy_f1\": float(np.mean(greedy_f1s)),\n        \"oracle_f1\": float(np.mean(oracle_f1s)),\n        \"lp_sel_f1\": float(np.mean(lp_sel_f1s)),\n        \"lp_delta_pp\": float((np.mean(lp_sel_f1s) - np.mean(greedy_f1s)) * 100),\n        \"headroom_pp\": float((np.mean(oracle_f1s) - np.mean(greedy_f1s)) * 100),\n        \"per_instance_greedy_f1\": greedy_f1s,\n        \"per_instance_lp_sel_f1\": lp_sel_f1s,\n        \"per_instance_oracle_f1\": oracle_f1s,\n    }\n    if compute_slow_signals:\n        result[\"sj_sel_f1\"] = float(np.mean(sj_sel_f1s))\n        result[\"em_sel_f1\"] = float(np.mean(em_sel_f1s))\n        result[\"sj_delta_pp\"] = float((np.mean(sj_sel_f1s) - np.mean(greedy_f1s)) * 100)\n        result[\"em_delta_pp\"] = float((np.mean(em_sel_f1s) - np.mean(greedy_f1s)) * 100)\n        result[\"per_instance_sj_sel_f1\"] = sj_sel_f1s\n        result[\"per_instance_em_sel_f1\"] = em_sel_f1s\n    return result\n\n\ndef paired_bootstrap_test(sel_f1s, greedy_f1s, n_boot=10000):\n    deltas = np.array(sel_f1s) - np.array(greedy_f1s)\n    n = len(deltas)\n    observed_mean = float(np.mean(deltas))\n    boot_means = np.zeros(n_boot)\n    for b in range(n_boot):\n        idx = RNG.randint(0, n, size=n)\n        boot_means[b] = np.mean(deltas[idx])\n    return {\n        \"mean_delta\": observed_mean,\n        \"mean_delta_pp\": observed_mean * 100,\n        \"ci_95\": [float(np.percentile(boot_means, 2.5)) * 100,\n                  float(np.percentile(boot_means, 97.5)) * 100],\n        \"p_value\": float(np.mean(boot_means <= 0)),\n        \"n_instances\": n,\n    }\n\n\ndef compute_per_type_metrics(data):\n    filtered = gold_filter(data)\n    type_instances = defaultdict(list)\n    for inst in filtered:\n        gold = inst[\"gold\"]\n        gold_types = set(e[\"type\"] for e in gold.get(\"entities\", []))\n        lp_scores = compute_lp_scores(inst)\n        best_lp_idx = int(np.argmax(lp_scores))\n        greedy_ents = inst[\"greedy\"].get(\"entities\", [])\n        selected_ents = inst[\"samples\"][best_lp_idx].get(\"entities\", [])\n        gold_ents = gold.get(\"entities\", [])\n        samples = inst[\"samples\"]\n        key_sets = [frozenset(_extract_surface_keys(s, \"ner\")) for s in samples]\n        is_degenerate = (len(set(key_sets)) == 1)\n        for etype in gold_types:\n            gold_typed = [e for e in gold_ents if e[\"type\"] == etype]\n            greedy_typed = [e for e in greedy_ents if e[\"type\"] == etype]\n            selected_typed = [e for e in selected_ents if e[\"type\"] == etype]\n            g_f1 = _prf(*entity_strict_match(greedy_typed, gold_typed))[\"f1\"]\n            lp_f1 = _prf(*entity_strict_match(selected_typed, gold_typed))[\"f1\"]\n            sample_f1s = []\n            for s in samples:\n                s_typed = [e for e in s.get(\"entities\", []) if e[\"type\"] == etype]\n                sample_f1s.append(_prf(*entity_strict_match(s_typed, gold_typed))[\"f1\"])\n            type_instances[etype].append({\n                \"greedy_f1\": g_f1, \"lp_sel_f1\": lp_f1,\n                \"oracle_f1\": max(sample_f1s),\n                \"lp_delta\": lp_f1 - g_f1,\n                \"is_degenerate\": is_degenerate,\n                \"max_lp\": float(max(lp_scores)),\n            })\n    type_summary = {}\n    for etype, instances in sorted(type_instances.items()):\n        n = len(instances)\n        deg_rate = sum(1 for x in instances if x[\"is_degenerate\"]) / n\n        greedy_mean = np.mean([x[\"greedy_f1\"] for x in instances])\n        lp_sel_mean = np.mean([x[\"lp_sel_f1\"] for x in instances])\n        lp_deltas = [x[\"lp_delta\"] for x in instances]\n        max_lps = [x[\"max_lp\"] for x in instances]\n        greedy_f1s = [x[\"greedy_f1\"] for x in instances]\n        rho, p = (spearmanr(max_lps, greedy_f1s) if len(set(greedy_f1s)) > 1 and len(set(max_lps)) > 1\n                  else (0.0, 1.0))\n        if hasattr(rho, 'statistic'):\n            rho = rho.statistic\n        type_summary[etype] = {\n            \"n_instances\": n, \"degeneracy_rate\": float(deg_rate),\n            \"greedy_f1\": float(greedy_mean), \"lp_sel_f1\": float(lp_sel_mean),\n            \"lp_delta_pp\": float((lp_sel_mean - greedy_mean) * 100),\n            \"lp_rho\": float(rho) if not isinstance(rho, tuple) else float(rho),\n            \"per_instance_lp_deltas\": [float(d) for d in lp_deltas],\n        }\n    return type_summary\n\n\ndef run_task(task_name):\n    if task_name == \"w1\":\n        return task_w1()\n    elif task_name == \"w2\":\n        return task_w2()\n    elif task_name == \"i8\":\n        return task_i8()\n    elif task_name == \"i9\":\n        return task_i9()\n\n\ndef task_w1():\n    print(\"W1: Multi-seed Table 3\")\n    results = {}\n    for ds_name, ds_cfg in DATASETS.items():\n        slow = ds_name not in (\"fewnerd_n8\",)  # skip SJ/EM for large datasets\n        seed_results = {}\n        for seed, path in sorted(ds_cfg[\"seeds\"].items()):\n            if not os.path.exists(path):\n                print(f\"  SKIP {ds_name} seed {seed}\")\n                continue\n            print(f\"  {ds_name} seed {seed}...\", end=\" \", flush=True)\n            t0 = time.time()\n            data = load_data(path)\n            m = compute_seed_metrics(data, compute_slow_signals=slow)\n            seed_results[seed] = m\n            print(f\"n={m['n_instances']}, greedy={m['greedy_f1']:.4f}, \"\n                  f\"LP={m['lp_sel_f1']:.4f} (Δ={m['lp_delta_pp']:+.2f}pp) [{time.time()-t0:.1f}s]\")\n        if not seed_results:\n            continue\n        seeds = sorted(seed_results.keys())\n        agg = {\"seeds\": seeds, \"n_seeds\": len(seeds)}\n        metrics_to_agg = [\"greedy_f1\", \"oracle_f1\", \"headroom_pp\", \"lp_sel_f1\", \"lp_delta_pp\"]\n        if slow:\n            metrics_to_agg += [\"sj_sel_f1\", \"em_sel_f1\", \"sj_delta_pp\", \"em_delta_pp\"]\n        for metric in metrics_to_agg:\n            vals = [seed_results[s][metric] for s in seeds if metric in seed_results[s]]\n            agg[metric] = {\n                \"mean\": float(np.mean(vals)),\n                \"std\": float(np.std(vals, ddof=1)) if len(vals) > 1 else 0.0,\n                \"per_seed\": {str(s): seed_results[s][metric] for s in seeds if metric in seed_results[s]},\n            }\n        agg[\"n_instances\"] = {str(s): seed_results[s][\"n_instances\"] for s in seeds}\n        results[ds_name] = agg\n    with open(f\"{OUT_DIR}/w1_table3_multiseed.json\", \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"Saved: {OUT_DIR}/w1_table3_multiseed.json\")\n    return results\n\n\ndef task_w2():\n    print(\"W2: ICC + Permutation Test\")\n    path = DATASETS[\"scierc_n8\"][\"seeds\"][42]\n    data = load_data(path)\n    type_summary = compute_per_type_metrics(data)\n    types = sorted(type_summary.keys())\n    \n    # ICC\n    groups = [type_summary[t][\"per_instance_lp_deltas\"] for t in types]\n    k = len(groups)\n    ns = [len(g) for g in groups]\n    N = sum(ns)\n    grand_mean = np.mean([v for g in groups for v in g])\n    ss_between = sum(n * (np.mean(g) - grand_mean)**2 for g, n in zip(groups, ns))\n    ss_within = sum(sum((v - np.mean(g))**2 for v in g) for g in groups)\n    ms_between = ss_between / (k - 1) if k > 1 else 0\n    ms_within = ss_within / (N - k) if (N - k) > 0 else 1e-10\n    n0 = (N - sum(n**2 for n in ns) / N) / (k - 1) if k > 1 else 1\n    denom = ms_between + (n0 - 1) * ms_within\n    icc = float((ms_between - ms_within) / denom) if denom != 0 else 0.0\n\n    # Permutation test\n    deg_rates = np.array([type_summary[t][\"degeneracy_rate\"] for t in types])\n    lp_rhos = np.array([type_summary[t][\"lp_rho\"] for t in types])\n    obs_rho = float(spearmanr(deg_rates, lp_rhos).statistic) if k >= 3 else 0.0\n    count = 0\n    for _ in range(N_BOOTSTRAP):\n        perm_rho = float(spearmanr(RNG.permutation(deg_rates), lp_rhos).statistic)\n        if abs(perm_rho) >= abs(obs_rho):\n            count += 1\n    perm_p = (count + 1) / (N_BOOTSTRAP + 1)\n\n    results = {\n        \"type_summary\": {t: {k2: v for k2, v in type_summary[t].items()\n                             if k2 != \"per_instance_lp_deltas\"}\n                         for t in types},\n        \"icc\": {\"value\": icc, \"k_types\": k, \"N_total\": N, \"n0\": float(n0),\n                \"ms_between\": float(ms_between), \"ms_within\": float(ms_within)},\n        \"permutation_test\": {\"observed_rho\": obs_rho, \"p_value\": float(perm_p),\n                             \"n_types\": k, \"n_perm\": N_BOOTSTRAP},\n    }\n    for t in types:\n        ts = type_summary[t]\n        print(f\"  {t}: n={ts['n_instances']}, deg={ts['degeneracy_rate']:.3f}, \"\n              f\"LP_rho={ts['lp_rho']:.3f}, Δ={ts['lp_delta_pp']:+.2f}pp\")\n    print(f\"  ICC={icc:.4f}, perm_p={perm_p:.4f} (rho={obs_rho:.4f})\")\n    with open(f\"{OUT_DIR}/w2_icc_permutation.json\", \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"Saved: {OUT_DIR}/w2_icc_permutation.json\")\n    return results\n\n\ndef task_i8():\n    print(\"I8: Paired Bootstrap Tests\")\n    results = {}\n    for ds_name in [\"scierc_n8\", \"conll_n8\", \"fewnerd_n8\"]:\n        seed = sorted(DATASETS[ds_name][\"seeds\"].keys())[0]\n        path = DATASETS[ds_name][\"seeds\"][seed]\n        if not os.path.exists(path):\n            continue\n        print(f\"  {ds_name}...\", end=\" \", flush=True)\n        t0 = time.time()\n        data = load_data(path)\n        slow = ds_name != \"fewnerd_n8\"\n        m = compute_seed_metrics(data, compute_slow_signals=slow)\n        ds_r = {}\n        for sig, key in [(\"LP\", \"per_instance_lp_sel_f1\")]:\n            boot = paired_bootstrap_test(m[key], m[\"per_instance_greedy_f1\"], N_BOOTSTRAP)\n            ds_r[sig] = boot\n            print(f\"LP Δ={boot['mean_delta_pp']:+.2f}pp CI=[{boot['ci_95'][0]:+.2f},{boot['ci_95'][1]:+.2f}] p={boot['p_value']:.4f}\", end=\" \")\n        if slow:\n            for sig, key in [(\"SJ\", \"per_instance_sj_sel_f1\"), (\"EM\", \"per_instance_em_sel_f1\")]:\n                boot = paired_bootstrap_test(m[key], m[\"per_instance_greedy_f1\"], N_BOOTSTRAP)\n                ds_r[sig] = boot\n        boot_o = paired_bootstrap_test(m[\"per_instance_oracle_f1\"], m[\"per_instance_greedy_f1\"], N_BOOTSTRAP)\n        ds_r[\"oracle\"] = boot_o\n        results[ds_name] = ds_r\n        print(f\"[{time.time()-t0:.1f}s]\")\n    with open(f\"{OUT_DIR}/i8_bootstrap_tests.json\", \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"Saved: {OUT_DIR}/i8_bootstrap_tests.json\")\n    return results\n\n\ndef task_i9():\n    print(\"I9: Per-Type LP Heterogeneity\")\n    data = load_data(DATASETS[\"scierc_n8\"][\"seeds\"][42])\n    type_summary = compute_per_type_metrics(data)\n    for etype, ts in type_summary.items():\n        deltas = ts[\"per_instance_lp_deltas\"]\n        boot = paired_bootstrap_test([d for d in deltas], [0.0] * len(deltas), N_BOOTSTRAP)\n        ts[\"bootstrap_p\"] = boot[\"p_value\"]\n        ts[\"n_positive\"] = sum(1 for d in deltas if d > 0)\n        ts[\"n_negative\"] = sum(1 for d in deltas if d < 0)\n        ts[\"n_zero\"] = sum(1 for d in deltas if d == 0)\n    groups = [np.array(type_summary[t][\"per_instance_lp_deltas\"]) for t in sorted(type_summary)]\n    stat, kw_p = kruskal(*groups) if len(groups) >= 2 else (0.0, 1.0)\n    types_sorted = sorted(type_summary, key=lambda t: type_summary[t][\"lp_delta_pp\"], reverse=True)\n    for t in types_sorted:\n        ts = type_summary[t]\n        print(f\"  {t:25s}: Δ={ts['lp_delta_pp']:+.2f}pp, n={ts['n_instances']}, \"\n              f\"boot_p={ts['bootstrap_p']:.4f}, +{ts['n_positive']}/-{ts['n_negative']}/={ts['n_zero']}\")\n    print(f\"  KW: H={stat:.4f}, p={kw_p:.4f}\")\n    results = {\n        \"per_type\": {t: {k2: v for k2, v in type_summary[t].items()\n                         if k2 != \"per_instance_lp_deltas\"}\n                     for t in types_sorted},\n        \"kruskal_wallis\": {\"statistic\": float(stat), \"p_value\": float(kw_p), \"n_types\": len(groups)},\n        \"highest_gain_type\": types_sorted[0],\n        \"lowest_gain_type\": types_sorted[-1],\n    }\n    with open(f\"{OUT_DIR}/i9_per_type_heterogeneity.json\", \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"Saved: {OUT_DIR}/i9_per_type_heterogeneity.json\")\n    return results\n\n\nif __name__ == \"__main__\":\n    task = sys.argv[1] if len(sys.argv) > 1 else \"all\"\n    t_start = time.time()\n    if task == \"all\":\n        for t in [\"w1\", \"w2\", \"i8\", \"i9\"]:\n            run_task(t)\n            print()\n    else:\n        run_task(task)\n    print(f\"Total: {time.time()-t_start:.1f}s\")\nPYEOF\necho \"Script updated\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat << 'PYEOF' > /root/autodl-tmp/struct_self_consist_ie/code/statistical_hardening.py\n#!/usr/bin/env python3\n\"\"\"Statistical hardening: W1/W2/I8/I9 for EMNLP 2026 submission.\"\"\"\n\nimport json\nimport os\nimport sys\nimport time\nfrom collections import defaultdict\n\nimport numpy as np\nfrom scipy.stats import spearmanr, kruskal\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom evaluation import entity_strict_match, per_instance_f1, _prf\nfrom consistency import _ner_soft_jaccard_pair, _extract_surface_keys\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\nOUT_DIR = f\"{BASE}/output/statistical_hardening\"\nos.makedirs(OUT_DIR, exist_ok=True)\n\nN_BOOTSTRAP = 10000\nRNG = np.random.RandomState(42)\n\nDATASETS = {\n    \"scierc_n8\": {\n        \"seeds\": {\n            42: f\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\",\n            123: f\"{BASE}/output/exp_018_qwen_scierc_seed123/samples.jsonl\",\n            456: f\"{BASE}/output/exp_018_qwen_scierc_seed456/samples.jsonl\",\n        },\n    },\n    \"scierc_n16\": {\n        \"seeds\": {\n            42: f\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\",\n            123: f\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\",\n            456: f\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\",\n        },\n    },\n    \"conll_n8\": {\n        \"seeds\": {42: f\"{BASE}/output/exp002_conll2003/samples.jsonl\"},\n    },\n    \"fewnerd_n8\": {\n        \"seeds\": {42: f\"{BASE}/output/exp_021_inference/samples.jsonl\"},\n    },\n}\n\n\ndef load_data(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f if line.strip()]\n\n\ndef gold_filter(data):\n    return [inst for inst in data if len(inst[\"gold\"].get(\"entities\", [])) > 0]\n\n\ndef compute_lp_scores(inst):\n    return [s[\"mean_logprob\"] for s in inst[\"samples\"]]\n\n\ndef compute_sj_scores(inst):\n    samples = inst[\"samples\"]\n    N = len(samples)\n    if N <= 1:\n        return [1.0] * N\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            s = _ner_soft_jaccard_pair(samples[i].get(\"entities\", []),\n                                       samples[j].get(\"entities\", []))\n            matrix[i][j] = s\n            matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    return [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\n\n\ndef compute_em_scores(inst):\n    samples = inst[\"samples\"]\n    N = len(samples)\n    key_sets = [frozenset(_extract_surface_keys(s, \"ner\")) for s in samples]\n    return [sum(1 for j in range(N) if j != k and key_sets[k] == key_sets[j]) / max(N - 1, 1)\n            for k in range(N)]\n\n\ndef compute_seed_metrics(data, compute_slow_signals=True):\n    filtered = gold_filter(data)\n    n = len(filtered)\n    greedy_f1s, oracle_f1s, lp_sel_f1s = [], [], []\n    sj_sel_f1s, em_sel_f1s = [], []\n\n    for idx, inst in enumerate(filtered):\n        gold = inst[\"gold\"]\n        g_f1 = per_instance_f1(inst[\"greedy\"], gold, \"ner\")\n        greedy_f1s.append(g_f1)\n\n        sample_f1s = [per_instance_f1(s, gold, \"ner\") for s in inst[\"samples\"]]\n        oracle_f1s.append(max(sample_f1s))\n\n        lp_scores = compute_lp_scores(inst)\n        lp_sel_f1s.append(sample_f1s[int(np.argmax(lp_scores))])\n\n        if compute_slow_signals:\n            sj_scores = compute_sj_scores(inst)\n            sj_sel_f1s.append(sample_f1s[int(np.argmax(sj_scores))])\n            em_scores = compute_em_scores(inst)\n            em_sel_f1s.append(sample_f1s[int(np.argmax(em_scores))])\n\n    result = {\n        \"n_instances\": n,\n        \"greedy_f1\": float(np.mean(greedy_f1s)),\n        \"oracle_f1\": float(np.mean(oracle_f1s)),\n        \"lp_sel_f1\": float(np.mean(lp_sel_f1s)),\n        \"lp_delta_pp\": float((np.mean(lp_sel_f1s) - np.mean(greedy_f1s)) * 100),\n        \"headroom_pp\": float((np.mean(oracle_f1s) - np.mean(greedy_f1s)) * 100),\n        \"per_instance_greedy_f1\": greedy_f1s,\n        \"per_instance_lp_sel_f1\": lp_sel_f1s,\n        \"per_instance_oracle_f1\": oracle_f1s,\n    }\n    if compute_slow_signals:\n        result[\"sj_sel_f1\"] = float(np.mean(sj_sel_f1s))\n        result[\"em_sel_f1\"] = float(np.mean(em_sel_f1s))\n        result[\"sj_delta_pp\"] = float((np.mean(sj_sel_f1s) - np.mean(greedy_f1s)) * 100)\n        result[\"em_delta_pp\"] = float((np.mean(em_sel_f1s) - np.mean(greedy_f1s)) * 100)\n        result[\"per_instance_sj_sel_f1\"] = sj_sel_f1s\n        result[\"per_instance_em_sel_f1\"] = em_sel_f1s\n    return result\n\n\ndef paired_bootstrap_test(sel_f1s, greedy_f1s, n_boot=10000):\n    deltas = np.array(sel_f1s) - np.array(greedy_f1s)\n    n = len(deltas)\n    observed_mean = float(np.mean(deltas))\n    boot_means = np.zeros(n_boot)\n    for b in range(n_boot):\n        idx = RNG.randint(0, n, size=n)\n        boot_means[b] = np.mean(deltas[idx])\n    return {\n        \"mean_delta\": observed_mean,\n        \"mean_delta_pp\": observed_mean * 100,\n        \"ci_95\": [float(np.percentile(boot_means, 2.5)) * 100,\n                  float(np.percentile(boot_means, 97.5)) * 100],\n        \"p_value\": float(np.mean(boot_means <= 0)),\n        \"n_instances\": n,\n    }\n\n\ndef compute_per_type_metrics(data):\n    filtered = gold_filter(data)\n    type_instances = defaultdict(list)\n    for inst in filtered:\n        gold = inst[\"gold\"]\n        gold_types = set(e[\"type\"] for e in gold.get(\"entities\", []))\n        lp_scores = compute_lp_scores(inst)\n        best_lp_idx = int(np.argmax(lp_scores))\n        greedy_ents = inst[\"greedy\"].get(\"entities\", [])\n        selected_ents = inst[\"samples\"][best_lp_idx].get(\"entities\", [])\n        gold_ents = gold.get(\"entities\", [])\n        samples = inst[\"samples\"]\n        key_sets = [frozenset(_extract_surface_keys(s, \"ner\")) for s in samples]\n        is_degenerate = (len(set(key_sets)) == 1)\n        for etype in gold_types:\n            gold_typed = [e for e in gold_ents if e[\"type\"] == etype]\n            greedy_typed = [e for e in greedy_ents if e[\"type\"] == etype]\n            selected_typed = [e for e in selected_ents if e[\"type\"] == etype]\n            g_f1 = _prf(*entity_strict_match(greedy_typed, gold_typed))[\"f1\"]\n            lp_f1 = _prf(*entity_strict_match(selected_typed, gold_typed))[\"f1\"]\n            sample_f1s = []\n            for s in samples:\n                s_typed = [e for e in s.get(\"entities\", []) if e[\"type\"] == etype]\n                sample_f1s.append(_prf(*entity_strict_match(s_typed, gold_typed))[\"f1\"])\n            type_instances[etype].append({\n                \"greedy_f1\": g_f1, \"lp_sel_f1\": lp_f1,\n                \"oracle_f1\": max(sample_f1s),\n                \"lp_delta\": lp_f1 - g_f1,\n                \"is_degenerate\": is_degenerate,\n                \"max_lp\": float(max(lp_scores)),\n            })\n    type_summary = {}\n    for etype, instances in sorted(type_instances.items()):\n        n = len(instances)\n        deg_rate = sum(1 for x in instances if x[\"is_degenerate\"]) / n\n        greedy_mean = np.mean([x[\"greedy_f1\"] for x in instances])\n        lp_sel_mean = np.mean([x[\"lp_sel_f1\"] for x in instances])\n        lp_deltas = [x[\"lp_delta\"] for x in instances]\n        max_lps = [x[\"max_lp\"] for x in instances]\n        greedy_f1s = [x[\"greedy_f1\"] for x in instances]\n        rho, p = (spearmanr(max_lps, greedy_f1s) if len(set(greedy_f1s)) > 1 and len(set(max_lps)) > 1\n                  else (0.0, 1.0))\n        if hasattr(rho, 'statistic'):\n            rho = rho.statistic\n        type_summary[etype] = {\n            \"n_instances\": n, \"degeneracy_rate\": float(deg_rate),\n            \"greedy_f1\": float(greedy_mean), \"lp_sel_f1\": float(lp_sel_mean),\n            \"lp_delta_pp\": float((lp_sel_mean - greedy_mean) * 100),\n            \"lp_rho\": float(rho) if not isinstance(rho, tuple) else float(rho),\n            \"per_instance_lp_deltas\": [float(d) for d in lp_deltas],\n        }\n    return type_summary\n\n\ndef run_task(task_name):\n    if task_name == \"w1\":\n        return task_w1()\n    elif task_name == \"w2\":\n        return task_w2()\n    elif task_name == \"i8\":\n        return task_i8()\n    elif task_name == \"i9\":\n        return task_i9()\n\n\ndef task_w1():\n    print(\"W1: Multi-seed Table 3\")\n    results = {}\n    for ds_name, ds_cfg in DATASETS.items():\n        slow = ds_name not in (\"fewnerd_n8\",)  # skip SJ/EM for large datasets\n        seed_results = {}\n        for seed, path in sorted(ds_cfg[\"seeds\"].items()):\n            if not os.path.exists(path):\n                print(f\"  SKIP {ds_name} seed {seed}\")\n                continue\n            print(f\"  {ds_name} seed {seed}...\", end=\" \", flush=True)\n            t0 = time.time()\n            data = load_data(path)\n            m = compute_seed_metrics(data, compute_slow_signals=slow)\n            seed_results[seed] = m\n            print(f\"n={m['n_instances']}, greedy={m['greedy_f1']:.4f}, \"\n                  f\"LP={m['lp_sel_f1']:.4f} (Δ={m['lp_delta_pp']:+.2f}pp) [{time.time()-t0:.1f}s]\")\n        if not seed_results:\n            continue\n        seeds = sorted(seed_results.keys())\n        agg = {\"seeds\": seeds, \"n_seeds\": len(seeds)}\n        metrics_to_agg = [\"greedy_f1\", \"oracle_f1\", \"headroom_pp\", \"lp_sel_f1\", \"lp_delta_pp\"]\n        if slow:\n            metrics_to_agg += [\"sj_sel_f1\", \"em_sel_f1\", \"sj_delta_pp\", \"em_delta_pp\"]\n        for metric in metrics_to_agg:\n            vals = [seed_results[s][metric] for s in seeds if metric in seed_results[s]]\n            agg[metric] = {\n                \"mean\": float(np.mean(vals)),\n                \"std\": float(np.std(vals, ddof=1)) if len(vals) > 1 else 0.0,\n                \"per_seed\": {str(s): seed_results[s][metric] for s in seeds if metric in seed_results[s]},\n            }\n        agg[\"n_instances\"] = {str(s): seed_results[s][\"n_instances\"] for s in seeds}\n        results[ds_name] = agg\n    with open(f\"{OUT_DIR}/w1_table3_multiseed.json\", \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"Saved: {OUT_DIR}/w1_table3_multiseed.json\")\n    return results\n\n\ndef task_w2():\n    print(\"W2: ICC + Permutation Test\")\n    path = DATASETS[\"scierc_n8\"][\"seeds\"][42]\n    data = load_data(path)\n    type_summary = compute_per_type_metrics(data)\n    types = sorted(type_summary.keys())\n    \n    # ICC\n    groups = [type_summary[t][\"per_instance_lp_deltas\"] for t in types]\n    k = len(groups)\n    ns = [len(g) for g in groups]\n    N = sum(ns)\n    grand_mean = np.mean([v for g in groups for v in g])\n    ss_between = sum(n * (np.mean(g) - grand_mean)**2 for g, n in zip(groups, ns))\n    ss_within = sum(sum((v - np.mean(g))**2 for v in g) for g in groups)\n    ms_between = ss_between / (k - 1) if k > 1 else 0\n    ms_within = ss_within / (N - k) if (N - k) > 0 else 1e-10\n    n0 = (N - sum(n**2 for n in ns) / N) / (k - 1) if k > 1 else 1\n    denom = ms_between + (n0 - 1) * ms_within\n    icc = float((ms_between - ms_within) / denom) if denom != 0 else 0.0\n\n    # Permutation test\n    deg_rates = np.array([type_summary[t][\"degeneracy_rate\"] for t in types])\n    lp_rhos = np.array([type_summary[t][\"lp_rho\"] for t in types])\n    obs_rho = float(spearmanr(deg_rates, lp_rhos).statistic) if k >= 3 else 0.0\n    count = 0\n    for _ in range(N_BOOTSTRAP):\n        perm_rho = float(spearmanr(RNG.permutation(deg_rates), lp_rhos).statistic)\n        if abs(perm_rho) >= abs(obs_rho):\n            count += 1\n    perm_p = (count + 1) / (N_BOOTSTRAP + 1)\n\n    results = {\n        \"type_summary\": {t: {k2: v for k2, v in type_summary[t].items()\n                             if k2 != \"per_instance_lp_deltas\"}\n                         for t in types},\n        \"icc\": {\"value\": icc, \"k_types\": k, \"N_total\": N, \"n0\": float(n0),\n                \"ms_between\": float(ms_between), \"ms_within\": float(ms_within)},\n        \"permutation_test\": {\"observed_rho\": obs_rho, \"p_value\": float(perm_p),\n                             \"n_types\": k, \"n_perm\": N_BOOTSTRAP},\n    }\n    for t in types:\n        ts = type_summary[t]\n        print(f\"  {t}: n={ts['n_instances']}, deg={ts['degeneracy_rate']:.3f}, \"\n              f\"LP_rho={ts['lp_rho']:.3f}, Δ={ts['lp_delta_pp']:+.2f}pp\")\n    print(f\"  ICC={icc:.4f}, perm_p={perm_p:.4f} (rho={obs_rho:.4f})\")\n    with open(f\"{OUT_DIR}/w2_icc_permutation.json\", \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"Saved: {OUT_DIR}/w2_icc_permutation.json\")\n    return results\n\n\ndef task_i8():\n    print(\"I8: Paired Bootstrap Tests\")\n    results = {}\n    for ds_name in [\"scierc_n8\", \"conll_n8\", \"fewnerd_n8\"]:\n        seed = sorted(DATASETS[ds_name][\"seeds\"].keys())[0]\n        path = DATASETS[ds_name][\"seeds\"][seed]\n        if not os.path.exists(path):\n            continue\n        print(f\"  {ds_name}...\", end=\" \", flush=True)\n        t0 = time.time()\n        data = load_data(path)\n        slow = ds_name != \"fewnerd_n8\"\n        m = compute_seed_metrics(data, compute_slow_signals=slow)\n        ds_r = {}\n        for sig, key in [(\"LP\", \"per_instance_lp_sel_f1\")]:\n            boot = paired_bootstrap_test(m[key], m[\"per_instance_greedy_f1\"], N_BOOTSTRAP)\n            ds_r[sig] = boot\n            print(f\"LP Δ={boot['mean_delta_pp']:+.2f}pp CI=[{boot['ci_95'][0]:+.2f},{boot['ci_95'][1]:+.2f}] p={boot['p_value']:.4f}\", end=\" \")\n        if slow:\n            for sig, key in [(\"SJ\", \"per_instance_sj_sel_f1\"), (\"EM\", \"per_instance_em_sel_f1\")]:\n                boot = paired_bootstrap_test(m[key], m[\"per_instance_greedy_f1\"], N_BOOTSTRAP)\n                ds_r[sig] = boot\n        boot_o = paired_bootstrap_test(m[\"per_instance_oracle_f1\"], m[\"per_instance_greedy_f1\"], N_BOOTSTRAP)\n        ds_r[\"oracle\"] = boot_o\n        results[ds_name] = ds_r\n        print(f\"[{time.time()-t0:.1f}s]\")\n    with open(f\"{OUT_DIR}/i8_bootstrap_tests.json\", \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"Saved: {OUT_DIR}/i8_bootstrap_tests.json\")\n    return results\n\n\ndef task_i9():\n    print(\"I9: Per-Type LP Heterogeneity\")\n    data = load_data(DATASETS[\"scierc_n8\"][\"seeds\"][42])\n    type_summary = compute_per_type_metrics(data)\n    for etype, ts in type_summary.items():\n        deltas = ts[\"per_instance_lp_deltas\"]\n        boot = paired_bootstrap_test([d for d in deltas], [0.0] * len(deltas), N_BOOTSTRAP)\n        ts[\"bootstrap_p\"] = boot[\"p_value\"]\n        ts[\"n_positive\"] = sum(1 for d in deltas if d > 0)\n        ts[\"n_negative\"] = sum(1 for d in deltas if d < 0)\n        ts[\"n_zero\"] = sum(1 for d in deltas if d == 0)\n    groups = [np.array(type_summary[t][\"per_instance_lp_deltas\"]) for t in sorted(type_summary)]\n    stat, kw_p = kruskal(*groups) if len(groups) >= 2 else (0.0, 1.0)\n    types_sorted = sorted(type_summary, key=lambda t: type_summary[t][\"lp_delta_pp\"], reverse=True)\n    for t in types_sorted:\n        ts = type_summary[t]\n        print(f\"  {t:25s}: Δ={ts['lp_delta_pp']:+.2f}pp, n={ts['n_instances']}, \"\n              f\"boot_p={ts['bootstrap_p']:.4f}, +{ts['n_positive']}/-{ts['n_negative']}/={ts['n_zero']}\")\n    print(f\"  KW: H={stat:.4f}, p={kw_p:.4f}\")\n    results = {\n        \"per_type\": {t: {k2: v for k2, v in type_summary[t].items()\n                         if k2 != \"per_instance_lp_deltas\"}\n                     for t in types_sorted},\n        \"kruskal_wallis\": {\"statistic\": float(stat), \"p_value\": float(kw_p), \"n_types\": len(groups)},\n        \"highest_gain_type\": types_sorted[0],\n        \"lowest_gain_type\": types_sorted[-1],\n    }\n    with open(f\"{OUT_DIR}/i9_per_type_heterogeneity.json\", \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"Saved: {OUT_DIR}/i9_per_type_heterogeneity.json\")\n    return results\n\n\nif __name__ == \"__main__\":\n    task = sys.argv[1] if len(sys.argv) > 1 else \"all\"\n    t_start = time.time()\n    if task == \"all\":\n        for t in [\"w1\", \"w2\", \"i8\", \"i9\"]:\n            run_task(t)\n            print()\n    else:\n        run_task(task)\n    print(f\"Total: {time.time()-t_start:.1f}s\")\nPYEOF\necho \"Script updated\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-18T06:53:58.324849+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script updated\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-18T06:53:58.325011+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/bin/activate && python code/statistical_hardening.py w2 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/bin/activate && python code/statistical_hardening.py w2 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-18T06:53:58.325190+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/bin/activate && python code/statistical_hardening.py i9 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/bin/activate && python code/statistical_hardening.py i9 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-18T06:53:58.325337+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"W2: ICC + Permutation Test\\n  Generic: n=202, deg=0.084, LP_rho=0.153, Δ=+0.06pp\\n  Material: n=127, deg=0.094, LP_rho=0.208, Δ=+2.47pp\\n  Method: n=281, deg=0.114, LP_rho=0.237, Δ=+0.51pp\\n  Metric: n=54, deg=0.111, LP_rho=0.316, Δ=+0.62pp\\n  OtherScientificTerm: n=296, deg=0.071, LP_rho=0.111, Δ=-0.42pp\\n  Task: n=196, deg=0.122, LP_rho=0.201, Δ=+0.97pp\\n  ICC=-0.0038, perm_p=0.2471 (rho=0.6000)\\nSaved: /root/autodl-tmp/struct_self_consist_ie/output/statistical_hardening/w2_icc_permutation.json\\nTotal: 2.2s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.28}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-18T06:53:58.325482+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"I9: Per-Type LP Heterogeneity\\n  Material                 : Δ=+2.47pp, n=127, boot_p=0.1706, +9/-6/=112\\n  Task                     : Δ=+0.97pp, n=196, boot_p=0.3212, +17/-13/=166\\n  Metric                   : Δ=+0.62pp, n=54, boot_p=0.4591, +2/-2/=50\\n  Method                   : Δ=+0.51pp, n=281, boot_p=0.3046, +12/-12/=257\\n  Generic                  : Δ=+0.06pp, n=202, boot_p=0.4855, +10/-13/=179\\n  OtherScientificTerm      : Δ=-0.42pp, n=296, boot_p=0.6229, +24/-30/=242\\n  KW: H=2.3683, p=0.7962\\nSaved: /root/autodl-tmp/struct_self_consist_ie/output/statistical_hardening/i9_per_type_heterogeneity.json\\nTotal: 0.6s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.79}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-18T06:53:58.325635+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/bin/activate && python -c \"\nimport sys; sys.path.insert(0, 'code')\nfrom statistical_hardening import *\n# Run W1 for SciERC only first\nresults = {}\nfor ds_name in ['scierc_n8', 'scierc_n16', 'conll_n8']:\n    ds_cfg = DATASETS[ds_name]\n    slow = True\n    seed_results = {}\n    for seed, path in sorted(ds_cfg['seeds'].items()):\n        import os\n        if not os.path.exists(path): continue\n        print(f'{ds_name} seed {seed}...', end=' ', flush=True)\n        import time; t0=time.time()\n        data = load_data(path)\n        m = compute_seed_metrics(data, compute_slow_signals=slow)\n        seed_results[seed] = m\n        print(f'n={m[\\\"n_instances\\\"]}, greedy={m[\\\"greedy_f1\\\"]:.4f}, LP={m[\\\"lp_sel_f1\\\"]:.4f} (D={m[\\\"lp_delta_pp\\\"]:+.2f}pp) [{time.time()-t0:.1f}s]')\n    seeds = sorted(seed_results.keys())\n    agg = {'seeds': seeds, 'n_seeds': len(seeds)}\n    metrics_to_agg = ['greedy_f1','oracle_f1','headroom_pp','lp_sel_f1','lp_delta_pp','sj_sel_f1','em_sel_f1','sj_delta_pp','em_delta_pp']\n    for metric in metrics_to_agg:\n        vals = [seed_results[s][metric] for s in seeds if metric in seed_results[s]]\n        agg[metric] = {'mean':float(np.mean(vals)), 'std':float(np.std(vals,ddof=1)) if len(vals)>1 else 0.0, 'per_seed':{str(s):seed_results[s][metric] for s in seeds if metric in seed_results[s]}}\n    agg['n_instances'] = {str(s): seed_results[s]['n_instances'] for s in seeds}\n    results[ds_name] = agg\n    print(f'  => greedy={agg[\\\"greedy_f1\\\"][\\\"mean\\\"]:.4f}+/-{agg[\\\"greedy_f1\\\"][\\\"std\\\"]:.4f}, LP={agg[\\\"lp_sel_f1\\\"][\\\"mean\\\"]:.4f}+/-{agg[\\\"lp_sel_f1\\\"][\\\"std\\\"]:.4f}')\nimport json\nwith open(f'{OUT_DIR}/w1_partial.json','w') as f: json.dump(results,f,indent=2)\nprint('Saved partial W1')\n\" 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/bin/activate && python -c \"\nimport sys; sys.path.insert(0, 'code')\nfrom statistical_hardening import *\n# Run W1 for SciERC only first\nresults = {}\nfor ds_name in ['scierc_n8', 'scierc_n16', 'conll_n8']:\n    ds_cfg = DATASETS[ds_name]\n    slow = True\n    seed_results = {}\n    for seed, path in sorted(ds_cfg['seeds'].items()):\n        import os\n        if not os.path.exists(path): continue\n        print(f'{ds_name} seed {seed}...', end=' ', flush=True)\n        import time; t0=time.time()\n        data = load_data(path)\n        m = compute_seed_metrics(data, compute_slow_signals=slow)\n        seed_results[seed] = m\n        print(f'n={m[\\\"n_instances\\\"]}, greedy={m[\\\"greedy_f1\\\"]:.4f}, LP={m[\\\"lp_sel_f1\\\"]:.4f} (D={m[\\\"lp_delta_pp\\\"]:+.2f}pp) [{time.time()-t0:.1f}s]')\n    seeds = sorted(seed_results.keys())\n    agg = {'seeds': seeds, 'n_seeds': len(seeds)}\n    metrics_to_agg = ['greedy_f1','oracle_f1','headroom_pp','lp_sel_f1','lp_delta_pp','sj_sel_f1','em_sel_f1','sj_delta_pp','em_delta_pp']\n    for metric in metrics_to_agg:\n        vals = [seed_results[s][metric] for s in seeds if metric in seed_results[s]]\n        agg[metric] = {'mean':float(np.mean(vals)), 'std':float(np.std(vals,ddof=1)) if len(vals)>1 else 0.0, 'per_seed':{str(s):seed_results[s][metric] for s in seeds if metric in seed_results[s]}}\n    agg['n_instances'] = {str(s): seed_results[s]['n_instances'] for s in seeds}\n    results[ds_name] = agg\n    print(f'  => greedy={agg[\\\"greedy_f1\\\"][\\\"mean\\\"]:.4f}+/-{agg[\\\"greedy_f1\\\"][\\\"std\\\"]:.4f}, LP={agg[\\\"lp_sel_f1\\\"][\\\"mean\\\"]:.4f}+/-{agg[\\\"lp_sel_f1\\\"][\\\"std\\\"]:.4f}')\nimport json\nwith open(f'{OUT_DIR}/w1_partial.json','w') as f: json.dump(results,f,indent=2)\nprint('Saved partial W1')\n\" 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-18T06:53:58.325788+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"scierc_n8 seed 42... n=529, greedy=0.6439, LP=0.6501 (D=+0.61pp) [0.3s]\\nscierc_n8 seed 123... n=529, greedy=0.6457, LP=0.6436 (D=-0.21pp) [0.3s]\\nscierc_n8 seed 456... n=529, greedy=0.6478, LP=0.6450 (D=-0.28pp) [0.3s]\\n  => greedy=0.6458+/-0.0020, LP=0.6462+/-0.0034\\nscierc_n16 seed 42... n=529, greedy=0.6442, LP=0.6465 (D=+0.23pp) [0.9s]\\nscierc_n16 seed 123... n=529, greedy=0.6442, LP=0.6432 (D=-0.09pp) [0.9s]\\nscierc_n16 seed 456... n=529, greedy=0.6439, LP=0.6566 (D=+1.27pp) [0.9s]\\n  => greedy=0.6441+/-0.0002, LP=0.6488+/-0.0070\\nconll_n8 seed 42... n=2756, greedy=0.9079, LP=0.8974 (D=-1.05pp) [1.1s]\\n  => greedy=0.9079+/-0.0000, LP=0.8974+/-0.0000\\nSaved partial W1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.93}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-18T06:53:58.325936+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/bin/activate && python -c \"\nimport sys, json, time, numpy as np\nsys.path.insert(0, 'code')\nfrom statistical_hardening import *\n\nprint('Loading Few-NERD...', flush=True)\nt0 = time.time()\ndata = load_data(DATASETS['fewnerd_n8']['seeds'][42])\nprint(f'Loaded {len(data)} instances [{time.time()-t0:.1f}s]', flush=True)\n\n# LP-only metrics (fast)\nfiltered = gold_filter(data)\nn = len(filtered)\nprint(f'Gold-filtered: {n} instances', flush=True)\n\ngreedy_f1s, lp_sel_f1s, oracle_f1s = [], [], []\nfor idx, inst in enumerate(filtered):\n    gold = inst['gold']\n    g_f1 = per_instance_f1(inst['greedy'], gold, 'ner')\n    greedy_f1s.append(g_f1)\n    sample_f1s = [per_instance_f1(s, gold, 'ner') for s in inst['samples']]\n    oracle_f1s.append(max(sample_f1s))\n    lp_scores = compute_lp_scores(inst)\n    lp_sel_f1s.append(sample_f1s[int(np.argmax(lp_scores))])\n    if (idx+1) % 5000 == 0:\n        print(f'  {idx+1}/{n}...', flush=True)\n\ngm = float(np.mean(greedy_f1s))\nlm = float(np.mean(lp_sel_f1s))\nom = float(np.mean(oracle_f1s))\nprint(f'greedy={gm:.4f}, LP={lm:.4f} (D={((lm-gm)*100):+.2f}pp), oracle={om:.4f}')\n\n# Bootstrap\nprint('Bootstrap...', flush=True)\nboot = paired_bootstrap_test(lp_sel_f1s, greedy_f1s, N_BOOTSTRAP)\nprint(f'LP bootstrap: D={boot[\\\"mean_delta_pp\\\"]:+.2f}pp CI=[{boot[\\\"ci_95\\\"][0]:+.2f},{boot[\\\"ci_95\\\"][1]:+.2f}] p={boot[\\\"p_value\\\"]:.4f}')\n\n# Oracle bootstrap\nboot_o = paired_bootstrap_test(oracle_f1s, greedy_f1s, N_BOOTSTRAP)\nprint(f'Oracle: D={boot_o[\\\"mean_delta_pp\\\"]:+.2f}pp p={boot_o[\\\"p_value\\\"]:.4f}')\n\nresult = {\n    'fewnerd_n8': {\n        'n_instances': n,\n        'greedy_f1': gm, 'lp_sel_f1': lm, 'oracle_f1': om,\n        'lp_delta_pp': (lm - gm) * 100,\n        'headroom_pp': (om - gm) * 100,\n        'bootstrap_LP': boot,\n        'bootstrap_oracle': boot_o,\n    }\n}\nwith open(f'{OUT_DIR}/w1_fewnerd.json', 'w') as f:\n    json.dump(result, f, indent=2)\nprint(f'Saved: {OUT_DIR}/w1_fewnerd.json')\nprint(f'Total: {time.time()-t0:.1f}s')\n\" 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/bin/activate && python -c \"\nimport sys, json, time, numpy as np\nsys.path.insert(0, 'code')\nfrom statistical_hardening import *\n\nprint('Loading Few-NERD...', flush=True)\nt0 = time.time()\ndata = load_data(DATASETS['fewnerd_n8']['seeds'][42])\nprint(f'Loaded {len(data)} instances [{time.time()-t0:.1f}s]', flush=True)\n\n# LP-only metrics (fast)\nfiltered = gold_filter(data)\nn = len(filtered)\nprint(f'Gold-filtered: {n} instances', flush=True)\n\ngreedy_f1s, lp_sel_f1s, oracle_f1s = [], [], []\nfor idx, inst in enumerate(filtered):\n    gold = inst['gold']\n    g_f1 = per_instance_f1(inst['greedy'], gold, 'ner')\n    greedy_f1s.append(g_f1)\n    sample_f1s = [per_instance_f1(s, gold, 'ner') for s in inst['samples']]\n    oracle_f1s.append(max(sample_f1s))\n    lp_scores = compute_lp_scores(inst)\n    lp_sel_f1s.append(sample_f1s[int(np.argmax(lp_scores))])\n    if (idx+1) % 5000 == 0:\n        print(f'  {idx+1}/{n}...', flush=True)\n\ngm = float(np.mean(greedy_f1s))\nlm = float(np.mean(lp_sel_f1s))\nom = float(np.mean(oracle_f1s))\nprint(f'greedy={gm:.4f}, LP={lm:.4f} (D={((lm-gm)*100):+.2f}pp), oracle={om:.4f}')\n\n# Bootstrap\nprint('Bootstrap...', flush=True)\nboot = paired_bootstrap_test(lp_sel_f1s, greedy_f1s, N_BOOTSTRAP)\nprint(f'LP bootstrap: D={boot[\\\"mean_delta_pp\\\"]:+.2f}pp CI=[{boot[\\\"ci_95\\\"][0]:+.2f},{boot[\\\"ci_95\\\"][1]:+.2f}] p={boot[\\\"p_value\\\"]:.4f}')\n\n# Oracle bootstrap\nboot_o = paired_bootstrap_test(oracle_f1s, greedy_f1s, N_BOOTSTRAP)\nprint(f'Oracle: D={boot_o[\\\"mean_delta_pp\\\"]:+.2f}pp p={boot_o[\\\"p_value\\\"]:.4f}')\n\nresult = {\n    'fewnerd_n8': {\n        'n_instances': n,\n        'greedy_f1': gm, 'lp_sel_f1': lm, 'oracle_f1': om,\n        'lp_delta_pp': (lm - gm) * 100,\n        'headroom_pp': (om - gm) * 100,\n        'bootstrap_LP': boot,\n        'bootstrap_oracle': boot_o,\n    }\n}\nwith open(f'{OUT_DIR}/w1_fewnerd.json', 'w') as f:\n    json.dump(result, f, indent=2)\nprint(f'Saved: {OUT_DIR}/w1_fewnerd.json')\nprint(f'Total: {time.time()-t0:.1f}s')\n\" 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-18T06:53:58.326087+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading Few-NERD...\\nLoaded 37648 instances [13.4s]\\nGold-filtered: 32565 instances\\n  5000/32565...\\n  10000/32565...\\n  15000/32565...\\n  20000/32565...\\n  25000/32565...\\n  30000/32565...\\ngreedy=0.7478, LP=0.7614 (D=+1.36pp), oracle=0.8719\\nBootstrap...\\nLP bootstrap: D=+1.36pp CI=[+1.18,+1.53] p=0.0000\\nOracle: D=+12.40pp p=0.0000\\nSaved: /root/autodl-tmp/struct_self_consist_ie/output/statistical_hardening/w1_fewnerd.json\\nTotal: 17.0s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 20.27}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-18T06:53:58.326258+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/bin/activate && python code/statistical_hardening.py i8 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/bin/activate && python code/statistical_hardening.py i8 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-18T06:53:58.326397+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"I8: Paired Bootstrap Tests\\n  scierc_n8... LP Δ=+0.61pp CI=[-0.77,+1.99] p=0.1930 [0.9s]\\n  conll_n8... LP Δ=-1.05pp CI=[-1.45,-0.66] p=1.0000 [2.6s]\\n  fewnerd_n8... LP Δ=+1.36pp CI=[+1.18,+1.53] p=0.0000 [16.8s]\\nSaved: /root/autodl-tmp/struct_self_consist_ie/output/statistical_hardening/i8_bootstrap_tests.json\\nTotal: 21.3s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 22.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-18T06:53:58.326556+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/bin/activate && python -c \"\nimport json\n\nOUT = '/root/autodl-tmp/struct_self_consist_ie/output/statistical_hardening'\n\n# Merge W1 partial + fewnerd\nwith open(f'{OUT}/w1_partial.json') as f:\n    w1 = json.load(f)\nwith open(f'{OUT}/w1_fewnerd.json') as f:\n    fn = json.load(f)\n\nfn_data = fn['fewnerd_n8']\nw1['fewnerd_n8'] = {\n    'seeds': [42], 'n_seeds': 1,\n    'n_instances': {'42': fn_data['n_instances']},\n    'greedy_f1': {'mean': fn_data['greedy_f1'], 'std': 0.0, 'per_seed': {'42': fn_data['greedy_f1']}},\n    'oracle_f1': {'mean': fn_data['oracle_f1'], 'std': 0.0, 'per_seed': {'42': fn_data['oracle_f1']}},\n    'headroom_pp': {'mean': fn_data['headroom_pp'], 'std': 0.0, 'per_seed': {'42': fn_data['headroom_pp']}},\n    'lp_sel_f1': {'mean': fn_data['lp_sel_f1'], 'std': 0.0, 'per_seed': {'42': fn_data['lp_sel_f1']}},\n    'lp_delta_pp': {'mean': fn_data['lp_delta_pp'], 'std': 0.0, 'per_seed': {'42': fn_data['lp_delta_pp']}},\n}\n\nwith open(f'{OUT}/w1_table3_multiseed.json', 'w') as f:\n    json.dump(w1, f, indent=2)\nprint('W1 merged')\n\n# Read I8 for SJ/EM details\nwith open(f'{OUT}/i8_bootstrap_tests.json') as f:\n    i8 = json.load(f)\nfor ds, ds_r in i8.items():\n    print(f'\\\\nI8 {ds}:')\n    for sig, r in ds_r.items():\n        print(f'  {sig}: D={r[\\\"mean_delta_pp\\\"]:+.2f}pp CI=[{r[\\\"ci_95\\\"][0]:+.2f},{r[\\\"ci_95\\\"][1]:+.2f}] p={r[\\\"p_value\\\"]:.4f}')\n\" 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/bin/activate && python -c \"\nimport json\n\nOUT = '/root/autodl-tmp/struct_self_consist_ie/output/statistical_hardening'\n\n# Merge W1 partial + fewnerd\nwith open(f'{OUT}/w1_partial.json') as f:\n    w1 = json.load(f)\nwith open(f'{OUT}/w1_fewnerd.json') as f:\n    fn = json.load(f)\n\nfn_data = fn['fewnerd_n8']\nw1['fewnerd_n8'] = {\n    'seeds': [42], 'n_seeds': 1,\n    'n_instances': {'42': fn_data['n_instances']},\n    'greedy_f1': {'mean': fn_data['greedy_f1'], 'std': 0.0, 'per_seed': {'42': fn_data['greedy_f1']}},\n    'oracle_f1': {'mean': fn_data['oracle_f1'], 'std': 0.0, 'per_seed': {'42': fn_data['oracle_f1']}},\n    'headroom_pp': {'mean': fn_data['headroom_pp'], 'std': 0.0, 'per_seed': {'42': fn_data['headroom_pp']}},\n    'lp_sel_f1': {'mean': fn_data['lp_sel_f1'], 'std': 0.0, 'per_seed': {'42': fn_data['lp_sel_f1']}},\n    'lp_delta_pp': {'mean': fn_data['lp_delta_pp'], 'std': 0.0, 'per_seed': {'42': fn_data['lp_delta_pp']}},\n}\n\nwith open(f'{OUT}/w1_table3_multiseed.json', 'w') as f:\n    json.dump(w1, f, indent=2)\nprint('W1 merged')\n\n# Read I8 for SJ/EM details\nwith open(f'{OUT}/i8_bootstrap_tests.json') as f:\n    i8 = json.load(f)\nfor ds, ds_r in i8.items():\n    print(f'\\\\nI8 {ds}:')\n    for sig, r in ds_r.items():\n        print(f'  {sig}: D={r[\\\"mean_delta_pp\\\"]:+.2f}pp CI=[{r[\\\"ci_95\\\"][0]:+.2f},{r[\\\"ci_95\\\"][1]:+.2f}] p={r[\\\"p_value\\\"]:.4f}')\n\" 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-18T06:53:58.326710+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"W1 merged\\n\\nI8 scierc_n8:\\n  LP: D=+0.61pp CI=[-0.77,+1.99] p=0.1930\\n  SJ: D=+0.11pp CI=[-1.30,+1.52] p=0.4407\\n  EM: D=-0.77pp CI=[-2.28,+0.78] p=0.8363\\n  oracle: D=+13.19pp CI=[+11.44,+15.05] p=0.0000\\n\\nI8 conll_n8:\\n  LP: D=-1.05pp CI=[-1.45,-0.66] p=1.0000\\n  SJ: D=-0.89pp CI=[-1.42,-0.38] p=0.9996\\n  EM: D=-1.07pp CI=[-1.60,-0.55] p=1.0000\\n  oracle: D=+4.04pp CI=[+3.46,+4.64] p=0.0000\\n\\nI8 fewnerd_n8:\\n  LP: D=+1.36pp CI=[+1.18,+1.53] p=0.0000\\n  oracle: D=+12.40pp CI=[+12.12,+12.69] p=0.0000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-18T06:53:58.326848+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/statistical_hardening/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/statistical_hardening/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-18T06:53:58.326976+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 48\\ndrwxr-xr-x   2 root root 4096 May 18 14:53 .\\ndrwxr-xr-x 129 root root 8192 May 18 14:49 ..\\n-rw-r--r--   1 root root 2432 May 18 14:53 i8_bootstrap_tests.json\\n-rw-r--r--   1 root root 2313 May 18 14:52 i9_per_type_heterogeneity.json\\n-rw-r--r--   1 root root  729 May 18 14:52 w1_fewnerd.json\\n-rw-r--r--   1 root root 5813 May 18 14:52 w1_partial.json\\n-rw-r--r--   1 root root 6627 May 18 14:53 w1_table3_multiseed.json\\n-rw-r--r--   1 root root 1864 May 18 14:52 w2_icc_permutation.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_statistical_hardening_20260518T064531",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83 · 2026-05-18T06:53:58.327161+00:00_
+
+All 4 output files generated. Here's the complete summary:
+
+## 统计加固结果汇总
+
+### W1: Table 3 multi-seed (mean ± std)
+| Dataset | Seeds | Greedy F1 | LP Sel F1 | LP Δ (pp) | Oracle F1 |
+|---------|-------|-----------|-----------|-----------|-----------|
+| SciERC N=8 | 3 | 0.6458±0.0020 | 0.6462±0.0034 | +0.04±0.48 | 0.8198±0.0029 |
+| SciERC N=16 | 3 | 0.6441±0.0002 | 0.6488±0.0070 | +0.47±0.72 | 0.8370* |
+| CoNLL N=8 | 1 | 0.9079 | 0.8974 | -1.05 | 0.9483 |
+| Few-NERD N=8 | 1 | 0.7478 | 0.7614 | +1.36 | 0.8719 |
+
+### W2: ICC + Permutation Test (SciERC 6 entity types)
+- **ICC = -0.0038** (near zero, types are essentially independent)
+- **Permutation p = 0.2471** (observed ρ = 0.6000, not significant with only 6 types)
+- Effective df ≈ k-1 = 5
+
+### I8: Paired Bootstrap (LP selection vs Greedy)
+| Dataset | LP Δ (pp) | 95% CI | p-value |
+|---------|-----------|--------|---------|
+| SciERC N=8 | +0.61 | [-0.77, +1.99] | 0.1930 |
+| CoNLL N=8 | -1.05 | [-1.45, -0.66] | 1.0000 |
+| Few-NERD N=8 | **+1.36** | [+1.18, +1.53] | **0.0000** |
+
+- SciERC: LP gain positive but not significant (p=0.19)
+- CoNLL: LP hurts (high-accuracy regime, greedy already strong)
+- Few-NERD: LP gain highly significant (p<0.001, large dataset)
+
+### I9: Per-Type LP Heterogeneity (SciERC)
+| Entity Type | n | LP Δ (pp) | Bootstrap p |
+|------------|---|-----------|-------------|
+| Material | 127 | +2.47 | 0.17 |
+| Task | 196 | +0.97 | 0.32 |
+| Metric | 54 | +0.62 | 0.46 |
+| Method | 281 | +0.51 | 0.30 |
+| Generic | 202 | +0.06 | 0.49 |
+| OtherScientificTerm | 296 | -0.42 | 0.62 |
+
+- **Kruskal-Wallis p = 0.7962** (no significant heterogeneity across types)
+- Highest gain: Material (+2.47pp), lowest: OtherScientificTerm (-0.42pp)
+
+All results saved to `output/statistical_hardening/`.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_exp_statistical_hardening_20260518T064531"
+}
+```
+
+</details>
+
+---

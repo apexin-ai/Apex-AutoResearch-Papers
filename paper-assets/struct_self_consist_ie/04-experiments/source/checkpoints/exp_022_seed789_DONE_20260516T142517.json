@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp_022_seed789",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T10:08:27.375Z",
+    "updated_at": "2026-05-16T14:25:17.461Z",
+    "hypothesis": "3rd seed SciERC inference (seed=789) with ft_002_v2 (Qwen3-8B). N=8, T=1.0, joint NER+RE, logprobs collected. Complements seed42 (exp_012_rerun_1024) and seed123/456 for multi-seed analysis.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 789 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_022_seed789/",
+      "server": "autodl-5090",
+      "data_path": "data/scierc/processed_data",
+      "data_count": 551,
+      "model_name": "Qwen3-8B (qwen3-8b-scierc-merged-v2)",
+      "seed": 789,
+      "checkpoint_path": "checkpoints/qwen3-8b-scierc-merged-v2",
+      "log_path": "output/exp_022_seed789/run.log",
+      "gpu": "cuda:0",
+      "pid": 286743,
+      "account": "root",
+      "backend": "tmux",
+      "tmux_session": "exp_022_seed789"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-16T14:25:17.461Z"
+  },
+  "timestamp": "2026-05-16T14:25:17.688526+00:00",
+  "trigger": "update_registry"
+}

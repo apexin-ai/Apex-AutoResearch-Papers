@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp_fewnerd_pretrained_n16_s42",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T05:30:50.992Z",
+    "updated_at": "2026-05-22T15:20:02.541Z",
+    "hypothesis": "Pretrained N-scaling: FewNERD N=16 with Qwen2.5-7B-Instruct. Fills pretrained N-scaling curve (N=8/16/32) for FewNERD. FewNERD pretrained N=8 showed +3.90pp MV gain. Tests monotonic scaling.",
+    "spec": {
+      "command": "python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_pretrained_n16_seed42/",
+      "server": "autodl-5090-c",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "392445",
+      "log_path": "~/runs/struct_self_consist_ie/exp_fewnerd_pretrained_n16_s42.log",
+      "submitted_at": "2026-05-22T05:31:03.030Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_count": 37648,
+      "data_path": "data/fewnerd/",
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-22T15:20:03.548798+00:00",
+  "trigger": "update_registry"
+}

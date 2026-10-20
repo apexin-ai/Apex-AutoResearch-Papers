@@ -1,0 +1,86 @@
+{
+  "exp_id": "exp_14b_inference_fewnerd",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-20T14:36:27.954Z",
+    "updated_at": "2026-05-21T07:51:33.030Z",
+    "hypothesis": "14B Qwen2.5 inference on FewNERD (N∈{1,2,4,8}): primary dataset should show oracle scaling law F1(N)=a-b*N^(-c) consistent at 14B scale, filling the scaling curve between 7B and 32B. N=16 cut per Director decision.",
+    "notes": "2026-05-21T00:50 RESTORED to RUNNING per Director. PID 252310 confirmed alive by Reviewer (cuda:0 98% util, elapsed 16min). 5th false-negative misdiagnosis. N=1 greedy_f1=0.7985, N=2 greedy_f1=0.7985/oracle=0.8086, N=4 greedy_f1=0.7984/oracle=0.8544. kill_after_n8.sh active (PID 224789).",
+    "spec": {
+      "server": "autodl-5090-c",
+      "pid": 252310,
+      "gpu": "cuda:0",
+      "model_name": "Qwen2.5-14B-Instruct",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "N/A"
+    },
+    "server": "autodl-5090-c",
+    "gpu": "cuda:0",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T00:46:56.565632+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T07:17:12.232308+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "reproduce": {
+      "finished_at": "2026-05-21T07:17:01.438Z"
+    },
+    "failure_reason": "",
+    "completed_at": "2026-05-21T07:17:05.380Z",
+    "metrics": {
+      "fewnerd_n1": {
+        "greedy_f1": 0.7985,
+        "oracle_f1": 0.7541,
+        "oracle_headroom": -0.044,
+        "verdict": "FAIL"
+      },
+      "fewnerd_n2": {
+        "greedy_f1": 0.7985,
+        "oracle_f1": 0.8086,
+        "oracle_headroom": 0.01,
+        "soft_jaccard_rho_full": 0.205,
+        "rho_advantage": -0.006,
+        "structural_beats_surface": false,
+        "verdict": "FAIL"
+      },
+      "fewnerd_n4": {
+        "greedy_f1": 0.7984,
+        "oracle_f1": 0.8544,
+        "oracle_headroom": 0.056,
+        "soft_jaccard_rho_full": 0.314,
+        "rho_advantage": 0.042,
+        "structural_beats_surface": true,
+        "verdict": "MARGINAL"
+      },
+      "fewnerd_n8": {
+        "greedy_f1": 0.7984,
+        "oracle_f1": 0.8791,
+        "oracle_headroom": 0.081,
+        "soft_jaccard_rho_full": 0.324,
+        "rho_advantage": 0.083,
+        "structural_beats_surface": true,
+        "verdict": "MARGINAL"
+      },
+      "cross_domain_scierc_conll": "completed but expected poor (cross-domain)",
+      "n16_status": "cut per Director decision, kill_after_n8.sh executed"
+    },
+    "checkpoint_path": "output/14b_final_inference/"
+  },
+  "timestamp": "2026-05-21T07:51:33.477750+00:00",
+  "trigger": "update_registry"
+}

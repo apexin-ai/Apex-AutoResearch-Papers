@@ -1,0 +1,28 @@
+{
+  "exp_id": "e1_component_wise_re_sj",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:15:17.262Z",
+    "updated_at": "2026-05-14T09:22:17.647Z",
+    "spec": {
+      "hypothesis": "RE SJ 乘性惩罚是 root cause：分解后 head_sj ρ ≈ NER ρ (~0.38)，tail_sj 和乘性组合拖低整体 ρ",
+      "model_name": "n/a (cpu analysis)",
+      "data_path": "output/mvp_pilot_004/samples.jsonl",
+      "data_count": 397,
+      "server": "autodl-5090",
+      "seed": 42,
+      "parent": "mvp_pilot_004",
+      "method": "Component-wise decomposition: head_sj, tail_sj, type_match 分别计算 Spearman ρ vs per-instance RE F1",
+      "command": "python3 code/analyze_component_wise_re.py",
+      "checkpoint_path": "n/a",
+      "log_path": "output/mvp_pilot_004/e1_component_decomposition.json"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-14T09:22:17.670311+00:00",
+  "trigger": "update_registry"
+}

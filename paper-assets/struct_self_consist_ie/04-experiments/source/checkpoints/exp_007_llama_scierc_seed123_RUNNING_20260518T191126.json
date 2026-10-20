@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp_007_llama_scierc_seed123",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:10:26.278Z",
+    "updated_at": "2026-05-18T19:11:26.153Z",
+    "name": "LLaMA-3.1-8B SciERC NER inference seed=123",
+    "hypothesis": "Structural consistency signals (SJ, FK) correlate with entity F1 for LLaMA-8B on SciERC at seed=123, and DGS selection improves over greedy baseline",
+    "spec": {
+      "command": "python3 code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 123 --num_test 9999 --collect_logprobs --output_dir output/exp_018_llama_scierc_seed123",
+      "server": "autodl-5090",
+      "data_path": "data/scierc/processed_data",
+      "data_count": 551,
+      "model_name": "LLaMA-3.1-8B-Instruct (SciERC LoRA fine-tuned)",
+      "seed": 123,
+      "checkpoint_source": "checkpoints/llama3.1-8b-scierc-merged",
+      "checkpoint_path": "checkpoints/llama3.1-8b-scierc-lora",
+      "log_path": "output/exp_018_llama_scierc_seed123/report.json"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-18T19:11:26.417319+00:00",
+  "trigger": "update_registry"
+}

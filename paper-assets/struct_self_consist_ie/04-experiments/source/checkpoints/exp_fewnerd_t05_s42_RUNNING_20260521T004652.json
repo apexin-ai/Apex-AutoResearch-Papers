@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp_fewnerd_t05_s42",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T22:41:05.687Z",
+    "updated_at": "2026-05-21T00:46:51.268Z",
+    "hypothesis": "FewNERD temperature ablation (T=0.5): test how lower temperature affects degeneracy rate and SC diagnostic cascade on FewNERD, complementing SciERC T-ablation data. N=8, Qwen3-8B-FT, seed=42. Lower T should reduce sampling diversity, potentially increasing degeneracy while improving per-sample quality.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 0.5 --seed 42 --collect_logprobs --output_dir output/fewnerd_t05_s42/",
+      "server": "autodl-5090-b",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/test.json",
+      "data_count": 37648,
+      "model_name": "qwen3-8b-fewnerd-exp021-merged (Qwen3-8B-FT)",
+      "seed": 42,
+      "gpu": "cuda:0",
+      "tmux_session": "fewnerd_t05",
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/logs/fewnerd_t05_s42.log",
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_t05_s42/"
+    },
+    "metrics": {
+      "greedy_f1": 0.7884,
+      "oracle_f1": 0.8569,
+      "oracle_headroom": 0.0685,
+      "sample_f1_mean": 0.7154,
+      "degeneracy_rate": 0.146,
+      "fleiss_kappa_mean": 0.6332,
+      "soft_jaccard_mean": 0.8653,
+      "rho_SJ_F1_full": 0.2667,
+      "rho_SJ_F1_conditional": 0.2988,
+      "rho_fleiss_F1_full": 0.2231,
+      "rho_fleiss_F1_conditional": 0.2338,
+      "rho_logprob_F1_full": 0.3558,
+      "rho_logprob_F1_conditional": 0.3025,
+      "structural_beats_surface": true,
+      "rho_advantage": 0.0435
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T00:46:52.036354+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1154 @@
+{
+  "fewnerd": {
+    "T=0.5": {
+      "notes": [
+        "s456 (exp_fewnerd_t05_s456): RUNNING"
+      ],
+      "n_seeds_from_registry": 2,
+      "seed_ids": {
+        "s42": "exp_fewnerd_t05_s42",
+        "s123": "exp_fewnerd_t05_s123"
+      },
+      "greedy_f1": {
+        "mean": 0.7887,
+        "std": 0.0004,
+        "values": {
+          "s42": 0.7884,
+          "s123": 0.789
+        },
+        "n": 2
+      },
+      "oracle_f1": {
+        "mean": 0.8604,
+        "std": 0.005,
+        "values": {
+          "s42": 0.8569,
+          "s123": 0.864
+        },
+        "n": 2
+      },
+      "oracle_headroom": {
+        "mean": 0.0718,
+        "std": 0.0046,
+        "values": {
+          "s42": 0.0685,
+          "s123": 0.075
+        },
+        "n": 2
+      },
+      "degeneracy_pct": {
+        "mean": 14.05,
+        "std": 0.7778,
+        "values": {
+          "s42": 14.6,
+          "s123": 13.5
+        },
+        "n": 2
+      },
+      "fleiss_kappa_mean": {
+        "mean": 0.6332,
+        "std": 0.0,
+        "values": {
+          "s42": 0.6332
+        },
+        "n": 1
+      },
+      "soft_jaccard_mean": {
+        "mean": 0.8653,
+        "std": 0.0,
+        "values": {
+          "s42": 0.8653
+        },
+        "n": 1
+      },
+      "rho_SJ_F1": {
+        "mean": 0.3084,
+        "std": 0.0589,
+        "values": {
+          "s42": 0.2667,
+          "s123": 0.35
+        },
+        "n": 2
+      },
+      "rho_FK_F1": {
+        "mean": 0.2591,
+        "std": 0.0508,
+        "values": {
+          "s42": 0.2231,
+          "s123": 0.295
+        },
+        "n": 2
+      },
+      "rho_advantage": {
+        "mean": 0.0493,
+        "std": 0.0081,
+        "values": {
+          "s42": 0.0435,
+          "s123": 0.055
+        },
+        "n": 2
+      },
+      "n_seeds": 2,
+      "verdict": {
+        "s123": "MARGINAL"
+      }
+    },
+    "T=0.8": {
+      "n_seeds_from_registry": 3,
+      "seed_ids": {
+        "s42": "exp_fewnerd_t08_s42",
+        "s123": "exp_fewnerd_t08_s123",
+        "s456": "exp_fewnerd_t08_s456"
+      },
+      "greedy_f1": {
+        "mean": 0.7885,
+        "std": 0.0005,
+        "values": {
+          "s42": 0.7884,
+          "s123": 0.789,
+          "s456": 0.788
+        },
+        "n": 3
+      },
+      "oracle_f1": {
+        "mean": 0.8787,
+        "std": 0.0047,
+        "values": {
+          "s42": 0.875,
+          "s123": 0.884,
+          "s456": 0.877
+        },
+        "n": 3
+      },
+      "oracle_headroom": {
+        "mean": 0.0899,
+        "std": 0.0045,
+        "values": {
+          "s42": 0.0866,
+          "s123": 0.095,
+          "s456": 0.088
+        },
+        "n": 3
+      },
+      "degeneracy_pct": {
+        "mean": 17.3233,
+        "std": 1.44,
+        "values": {
+          "s42": 18.97,
+          "s123": 16.7,
+          "s456": 16.3
+        },
+        "n": 3
+      },
+      "fleiss_kappa_mean": {
+        "mean": 0.4439,
+        "std": 0.0,
+        "values": {
+          "s42": 0.4439
+        },
+        "n": 1
+      },
+      "soft_jaccard_mean": {
+        "mean": 0.7572,
+        "std": 0.0,
+        "values": {
+          "s42": 0.7572
+        },
+        "n": 1
+      },
+      "rho_SJ_F1": {
+        "mean": 0.2901,
+        "std": 0.0727,
+        "values": {
+          "s42": 0.2062,
+          "s123": 0.336,
+          "s456": 0.328
+        },
+        "n": 3
+      },
+      "rho_FK_F1": {
+        "mean": 0.1756,
+        "std": 0.0629,
+        "values": {
+          "s42": 0.1038,
+          "s123": 0.221,
+          "s456": 0.202
+        },
+        "n": 3
+      },
+      "rho_advantage": {
+        "mean": 0.1148,
+        "std": 0.0118,
+        "values": {
+          "s42": 0.1024,
+          "s123": 0.116,
+          "s456": 0.126
+        },
+        "n": 3
+      },
+      "n_seeds": 3,
+      "verdict": {
+        "s123": "MARGINAL",
+        "s456": "MARGINAL"
+      }
+    },
+    "T=1.0": {
+      "notes": [
+        "WARNING: exp_021_fewnerd_full uses different eval pipeline (greedy_macro_f1 vs greedy_f1). NOT directly comparable to T-ablation series."
+      ],
+      "n_seeds_from_registry": 1,
+      "seed_ids": {
+        "s42": "exp_021_fewnerd_full"
+      },
+      "greedy_f1": {
+        "mean": 0.7478,
+        "std": 0.0,
+        "values": {
+          "s42": 0.7478
+        },
+        "n": 1
+      },
+      "oracle_f1": {
+        "mean": 0.8719,
+        "std": 0.0,
+        "values": {
+          "s42": 0.8719
+        },
+        "n": 1
+      },
+      "oracle_headroom": {
+        "mean": 0.124,
+        "std": 0.0,
+        "values": {
+          "s42": 0.124
+        },
+        "n": 1
+      },
+      "degeneracy_pct": {
+        "mean": 10.1,
+        "std": 0.0,
+        "values": {
+          "s42": 10.1
+        },
+        "n": 1
+      },
+      "fleiss_kappa_mean": {
+        "mean": null,
+        "std": null,
+        "values": {},
+        "n": 0
+      },
+      "soft_jaccard_mean": {
+        "mean": null,
+        "std": null,
+        "values": {},
+        "n": 0
+      },
+      "rho_SJ_F1": {
+        "mean": 0.3002,
+        "std": 0.0,
+        "values": {
+          "s42": 0.3002
+        },
+        "n": 1
+      },
+      "rho_FK_F1": {
+        "mean": 0.3132,
+        "std": 0.0,
+        "values": {
+          "s42": 0.3132
+        },
+        "n": 1
+      },
+      "rho_advantage": {
+        "mean": -0.013,
+        "std": 0.0,
+        "values": {
+          "s42": -0.013
+        },
+        "n": 1
+      },
+      "n_seeds": 1,
+      "verdict": {}
+    },
+    "T=1.2": {
+      "notes": [
+        "s456 (exp_fewnerd_t12_s456): RUNNING"
+      ],
+      "n_seeds_from_registry": 2,
+      "seed_ids": {
+        "s42": "exp_fewnerd_t12_s42",
+        "s123": "exp_fewnerd_t12_s123"
+      },
+      "greedy_f1": {
+        "mean": 0.7889,
+        "std": 0.0001,
+        "values": {
+          "s42": 0.7888,
+          "s123": 0.789
+        },
+        "n": 2
+      },
+      "oracle_f1": {
+        "mean": 0.881,
+        "std": 0.0085,
+        "values": {
+          "s42": 0.875,
+          "s123": 0.887
+        },
+        "n": 2
+      },
+      "oracle_headroom": {
+        "mean": 0.0921,
+        "std": 0.0083,
+        "values": {
+          "s42": 0.0862,
+          "s123": 0.098
+        },
+        "n": 2
+      },
+      "degeneracy_pct": {
+        "mean": 26.44,
+        "std": 2.4607,
+        "values": {
+          "s42": 28.18,
+          "s123": 24.7
+        },
+        "n": 2
+      },
+      "fleiss_kappa_mean": {
+        "mean": 0.283,
+        "std": 0.0,
+        "values": {
+          "s42": 0.283
+        },
+        "n": 1
+      },
+      "soft_jaccard_mean": {
+        "mean": 0.5894,
+        "std": 0.0,
+        "values": {
+          "s42": 0.5894
+        },
+        "n": 1
+      },
+      "rho_SJ_F1": {
+        "mean": 0.2105,
+        "std": 0.1054,
+        "values": {
+          "s42": 0.136,
+          "s123": 0.285
+        },
+        "n": 2
+      },
+      "rho_FK_F1": {
+        "mean": 0.1118,
+        "std": 0.0725,
+        "values": {
+          "s42": 0.0605,
+          "s123": 0.163
+        },
+        "n": 2
+      },
+      "rho_advantage": {
+        "mean": 0.0988,
+        "std": 0.0329,
+        "values": {
+          "s42": 0.0755,
+          "s123": 0.122
+        },
+        "n": 2
+      },
+      "n_seeds": 2,
+      "verdict": {
+        "s123": "FAIL"
+      }
+    }
+  },
+  "conll": {
+    "T=0.5": {
+      "n_seeds_from_registry": 3,
+      "seed_ids": {
+        "s42": "exp_conll_t05_s42",
+        "s123": "exp_conll_t05_s123",
+        "s456": "exp_conll_t05_s456"
+      },
+      "greedy_f1": {
+        "mean": 0.9077,
+        "std": 0.0005,
+        "values": {
+          "s42": 0.9083,
+          "s123": 0.9073,
+          "s456": 0.9075
+        },
+        "n": 3
+      },
+      "oracle_f1": {
+        "mean": 0.9355,
+        "std": 0.0019,
+        "values": {
+          "s42": 0.9376,
+          "s123": 0.9351,
+          "s456": 0.9338
+        },
+        "n": 3
+      },
+      "oracle_headroom": {
+        "mean": 0.0278,
+        "std": 0.0016,
+        "values": {
+          "s42": 0.0294,
+          "s123": 0.0278,
+          "s456": 0.0263
+        },
+        "n": 3
+      },
+      "degeneracy_pct": {
+        "mean": 5.5867,
+        "std": 0.0757,
+        "values": {
+          "s42": 5.64,
+          "s123": 5.5,
+          "s456": 5.62
+        },
+        "n": 3
+      },
+      "fleiss_kappa_mean": {
+        "mean": 0.8928,
+        "std": 0.0038,
+        "values": {
+          "s42": 0.8958,
+          "s123": 0.8941,
+          "s456": 0.8885
+        },
+        "n": 3
+      },
+      "soft_jaccard_mean": {
+        "mean": 0.9546,
+        "std": 0.0008,
+        "values": {
+          "s123": 0.954,
+          "s456": 0.9551
+        },
+        "n": 2
+      },
+      "rho_SJ_F1": {
+        "mean": 0.446,
+        "std": 0.0202,
+        "values": {
+          "s42": 0.4228,
+          "s123": 0.4602,
+          "s456": 0.4549
+        },
+        "n": 3
+      },
+      "rho_FK_F1": {
+        "mean": 0.4517,
+        "std": 0.0017,
+        "values": {
+          "s123": 0.4529,
+          "s456": 0.4505
+        },
+        "n": 2
+      },
+      "rho_advantage": {
+        "mean": 0.0058,
+        "std": 0.002,
+        "values": {
+          "s123": 0.0072,
+          "s456": 0.0044
+        },
+        "n": 2
+      },
+      "n_seeds": 3,
+      "verdict": {
+        "s42": "PASS",
+        "s123": "PASS",
+        "s456": "PASS"
+      }
+    },
+    "T=0.8": {
+      "n_seeds_from_registry": 3,
+      "seed_ids": {
+        "s42": "exp_conll_t_ablation_t08",
+        "s123": "exp_conll_t08_s123",
+        "s456": "exp_conll_t08_s456"
+      },
+      "greedy_f1": {
+        "mean": 0.9067,
+        "std": 0.0003,
+        "values": {
+          "s42": 0.9069,
+          "s123": 0.9068,
+          "s456": 0.9064
+        },
+        "n": 3
+      },
+      "oracle_f1": {
+        "mean": 0.9446,
+        "std": 0.0034,
+        "values": {
+          "s42": 0.9464,
+          "s123": 0.9466,
+          "s456": 0.9407
+        },
+        "n": 3
+      },
+      "oracle_headroom": {
+        "mean": 0.0379,
+        "std": 0.0031,
+        "values": {
+          "s42": 0.0396,
+          "s123": 0.0398,
+          "s456": 0.0343
+        },
+        "n": 3
+      },
+      "degeneracy_pct": {
+        "mean": 6.32,
+        "std": 0.2364,
+        "values": {
+          "s42": 6.57,
+          "s123": 6.1,
+          "s456": 6.29
+        },
+        "n": 3
+      },
+      "fleiss_kappa_mean": {
+        "mean": 0.8225,
+        "std": 0.0024,
+        "values": {
+          "s42": 0.8199,
+          "s123": 0.8246,
+          "s456": 0.8229
+        },
+        "n": 3
+      },
+      "soft_jaccard_mean": {
+        "mean": 0.9217,
+        "std": 0.0023,
+        "values": {
+          "s123": 0.9201,
+          "s456": 0.9233
+        },
+        "n": 2
+      },
+      "rho_SJ_F1": {
+        "mean": 0.474,
+        "std": 0.021,
+        "values": {
+          "s42": 0.4498,
+          "s123": 0.4846,
+          "s456": 0.4877
+        },
+        "n": 3
+      },
+      "rho_FK_F1": {
+        "mean": 0.463,
+        "std": 0.0246,
+        "values": {
+          "s42": 0.4352,
+          "s123": 0.4718,
+          "s456": 0.4819
+        },
+        "n": 3
+      },
+      "rho_advantage": {
+        "mean": 0.0111,
+        "std": 0.0046,
+        "values": {
+          "s42": 0.0146,
+          "s123": 0.0128,
+          "s456": 0.0058
+        },
+        "n": 3
+      },
+      "n_seeds": 3,
+      "verdict": {
+        "s42": "PASS",
+        "s123": "PASS",
+        "s456": "PASS"
+      }
+    },
+    "T=1.0": {
+      "n_seeds_from_registry": 1,
+      "seed_ids": {
+        "s42": "exp_conll_t10_s42"
+      },
+      "greedy_f1": {
+        "mean": 0.9077,
+        "std": 0.0,
+        "values": {
+          "s42": 0.9077
+        },
+        "n": 1
+      },
+      "oracle_f1": {
+        "mean": 0.9503,
+        "std": 0.0,
+        "values": {
+          "s42": 0.9503
+        },
+        "n": 1
+      },
+      "oracle_headroom": {
+        "mean": 0.0426,
+        "std": 0.0,
+        "values": {
+          "s42": 0.0426
+        },
+        "n": 1
+      },
+      "degeneracy_pct": {
+        "mean": 7.53,
+        "std": 0.0,
+        "values": {
+          "s42": 7.53
+        },
+        "n": 1
+      },
+      "fleiss_kappa_mean": {
+        "mean": 0.772,
+        "std": 0.0,
+        "values": {
+          "s42": 0.772
+        },
+        "n": 1
+      },
+      "soft_jaccard_mean": {
+        "mean": 0.895,
+        "std": 0.0,
+        "values": {
+          "s42": 0.895
+        },
+        "n": 1
+      },
+      "rho_SJ_F1": {
+        "mean": 0.4249,
+        "std": 0.0,
+        "values": {
+          "s42": 0.4249
+        },
+        "n": 1
+      },
+      "rho_FK_F1": {
+        "mean": 0.4037,
+        "std": 0.0,
+        "values": {
+          "s42": 0.4037
+        },
+        "n": 1
+      },
+      "rho_advantage": {
+        "mean": 0.0212,
+        "std": 0.0,
+        "values": {
+          "s42": 0.0212
+        },
+        "n": 1
+      },
+      "n_seeds": 1,
+      "verdict": {
+        "s42": "PASS"
+      }
+    },
+    "T=1.2": {
+      "n_seeds_from_registry": 3,
+      "seed_ids": {
+        "s42": "exp_conll_t_ablation_t12",
+        "s123": "exp_conll_t12_s123",
+        "s456": "exp_conll_t12_s456"
+      },
+      "greedy_f1": {
+        "mean": 0.9071,
+        "std": 0.0001,
+        "values": {
+          "s42": 0.9071,
+          "s123": 0.9072,
+          "s456": 0.9071
+        },
+        "n": 3
+      },
+      "oracle_f1": {
+        "mean": 0.9505,
+        "std": 0.005,
+        "values": {
+          "s42": 0.9514,
+          "s123": 0.955,
+          "s456": 0.9452
+        },
+        "n": 3
+      },
+      "oracle_headroom": {
+        "mean": 0.0434,
+        "std": 0.0049,
+        "values": {
+          "s42": 0.0443,
+          "s123": 0.0478,
+          "s456": 0.0381
+        },
+        "n": 3
+      },
+      "degeneracy_pct": {
+        "mean": 8.8867,
+        "std": 0.4772,
+        "values": {
+          "s42": 9.22,
+          "s123": 9.1,
+          "s456": 8.34
+        },
+        "n": 3
+      },
+      "fleiss_kappa_mean": {
+        "mean": 0.6924,
+        "std": 0.022,
+        "values": {
+          "s42": 0.7092,
+          "s123": 0.6675,
+          "s456": 0.7005
+        },
+        "n": 3
+      },
+      "soft_jaccard_mean": {
+        "mean": 0.8404,
+        "std": 0.0154,
+        "values": {
+          "s123": 0.8295,
+          "s456": 0.8513
+        },
+        "n": 2
+      },
+      "rho_SJ_F1": {
+        "mean": 0.4325,
+        "std": 0.0242,
+        "values": {
+          "s42": 0.4071,
+          "s123": 0.4352,
+          "s456": 0.4553
+        },
+        "n": 3
+      },
+      "rho_FK_F1": {
+        "mean": 0.4053,
+        "std": 0.0253,
+        "values": {
+          "s42": 0.3786,
+          "s123": 0.4086,
+          "s456": 0.4288
+        },
+        "n": 3
+      },
+      "rho_advantage": {
+        "mean": 0.0272,
+        "std": 0.0011,
+        "values": {
+          "s42": 0.0285,
+          "s123": 0.0266,
+          "s456": 0.0265
+        },
+        "n": 3
+      },
+      "n_seeds": 3,
+      "verdict": {
+        "s42": "PASS",
+        "s123": "PASS",
+        "s456": "PASS"
+      }
+    }
+  },
+  "scierc": {
+    "T=0.5": {
+      "notes": [
+        "s42 data from exp_026_T_ablation/analysis_summary.md (NER metrics)"
+      ],
+      "n_seeds_from_registry": 2,
+      "seed_ids": {
+        "s123": "exp_scierc_t05_s123",
+        "s456": "exp_scierc_t05_s456"
+      },
+      "greedy_f1": {
+        "mean": 0.663,
+        "std": 0.0021,
+        "values": {
+          "s123": 0.665,
+          "s456": 0.663,
+          "s42": 0.6609
+        },
+        "n": 3
+      },
+      "oracle_f1": {
+        "mean": 0.744,
+        "std": 0.0017,
+        "values": {
+          "s123": 0.743,
+          "s456": 0.746,
+          "s42": 0.743
+        },
+        "n": 3
+      },
+      "oracle_headroom": {
+        "mean": 0.081,
+        "std": 0.0027,
+        "values": {
+          "s123": 0.078,
+          "s456": 0.083,
+          "s42": 0.0821
+        },
+        "n": 3
+      },
+      "degeneracy_pct": {
+        "mean": 10.2,
+        "std": 0.1732,
+        "values": {
+          "s123": 10.0,
+          "s456": 10.3,
+          "s42": 10.3
+        },
+        "n": 3
+      },
+      "fleiss_kappa_mean": {
+        "mean": 0.5715,
+        "std": 0.0,
+        "values": {
+          "s42": 0.5715
+        },
+        "n": 1
+      },
+      "soft_jaccard_mean": {
+        "mean": 0.8295,
+        "std": 0.0,
+        "values": {
+          "s42": 0.8295
+        },
+        "n": 1
+      },
+      "rho_SJ_F1": {
+        "mean": 0.3276,
+        "std": 0.0066,
+        "values": {
+          "s123": 0.322,
+          "s456": 0.326,
+          "s42": 0.3349
+        },
+        "n": 3
+      },
+      "rho_FK_F1": {
+        "mean": 0.278,
+        "std": 0.015,
+        "values": {
+          "s123": 0.295,
+          "s456": 0.272,
+          "s42": 0.2669
+        },
+        "n": 3
+      },
+      "rho_advantage": {
+        "mean": 0.04,
+        "std": 0.0198,
+        "values": {
+          "s123": 0.026,
+          "s456": 0.054
+        },
+        "n": 2
+      },
+      "n_seeds": 3,
+      "verdict": {
+        "s123": "MARGINAL",
+        "s456": "MARGINAL"
+      }
+    },
+    "T=0.8": {
+      "notes": [
+        "s42 data from exp_026_T_ablation/analysis_summary.md (NER metrics)"
+      ],
+      "n_seeds_from_registry": 2,
+      "seed_ids": {
+        "s123": "exp_scierc_t08_s123",
+        "s456": "exp_scierc_t08_s456"
+      },
+      "greedy_f1": {
+        "mean": 0.6618,
+        "std": 0.0023,
+        "values": {
+          "s123": 0.662,
+          "s456": 0.664,
+          "s42": 0.6595
+        },
+        "n": 3
+      },
+      "oracle_f1": {
+        "mean": 0.7724,
+        "std": 0.0032,
+        "values": {
+          "s123": 0.773,
+          "s456": 0.769,
+          "s42": 0.7753
+        },
+        "n": 3
+      },
+      "oracle_headroom": {
+        "mean": 0.1103,
+        "std": 0.0054,
+        "values": {
+          "s123": 0.11,
+          "s456": 0.105,
+          "s42": 0.1158
+        },
+        "n": 3
+      },
+      "degeneracy_pct": {
+        "mean": 11.5,
+        "std": 0.3606,
+        "values": {
+          "s123": 11.2,
+          "s456": 11.9,
+          "s42": 11.4
+        },
+        "n": 3
+      },
+      "fleiss_kappa_mean": {
+        "mean": 0.4517,
+        "std": 0.0,
+        "values": {
+          "s42": 0.4517
+        },
+        "n": 1
+      },
+      "soft_jaccard_mean": {
+        "mean": 0.756,
+        "std": 0.0,
+        "values": {
+          "s42": 0.756
+        },
+        "n": 1
+      },
+      "rho_SJ_F1": {
+        "mean": 0.3761,
+        "std": 0.0123,
+        "values": {
+          "s123": 0.382,
+          "s456": 0.362,
+          "s42": 0.3843
+        },
+        "n": 3
+      },
+      "rho_FK_F1": {
+        "mean": 0.2718,
+        "std": 0.027,
+        "values": {
+          "s123": 0.298,
+          "s456": 0.244,
+          "s42": 0.2733
+        },
+        "n": 3
+      },
+      "rho_advantage": {
+        "mean": 0.101,
+        "std": 0.024,
+        "values": {
+          "s123": 0.084,
+          "s456": 0.118
+        },
+        "n": 2
+      },
+      "n_seeds": 3,
+      "verdict": {
+        "s123": "MARGINAL",
+        "s456": "MARGINAL"
+      }
+    },
+    "T=1.0": {
+      "notes": [
+        "s42 data from exp_026_T_ablation/analysis_summary.md (NER metrics)"
+      ],
+      "n_seeds_from_registry": 3,
+      "seed_ids": {
+        "s42": "exp_026_t10_seed42",
+        "s123": "exp_026_t10_seed123",
+        "s456": "exp_026_t10_seed456"
+      },
+      "greedy_f1": {
+        "mean": 0.6624,
+        "std": 0.0008,
+        "values": {
+          "s42": 0.6617,
+          "s123": 0.6633,
+          "s456": 0.6621
+        },
+        "n": 3
+      },
+      "oracle_f1": {
+        "mean": 0.7776,
+        "std": 0.0022,
+        "values": {
+          "s42": 0.7798,
+          "s123": 0.7777,
+          "s456": 0.7754
+        },
+        "n": 3
+      },
+      "oracle_headroom": {
+        "mean": 0.1153,
+        "std": 0.0025,
+        "values": {
+          "s42": 0.1181,
+          "s123": 0.1144,
+          "s456": 0.1133
+        },
+        "n": 3
+      },
+      "degeneracy_pct": {
+        "mean": 12.82,
+        "std": 0.2022,
+        "values": {
+          "s42": 12.9,
+          "s123": 12.59,
+          "s456": 12.97
+        },
+        "n": 3
+      },
+      "fleiss_kappa_mean": {
+        "mean": 0.3933,
+        "std": 0.0,
+        "values": {
+          "s42": 0.3933
+        },
+        "n": 1
+      },
+      "soft_jaccard_mean": {
+        "mean": 0.6963,
+        "std": 0.0,
+        "values": {
+          "s42": 0.6963
+        },
+        "n": 1
+      },
+      "rho_SJ_F1": {
+        "mean": 0.3776,
+        "std": 0.0164,
+        "values": {
+          "s42": 0.3598,
+          "s123": 0.3809,
+          "s456": 0.3921
+        },
+        "n": 3
+      },
+      "rho_FK_F1": {
+        "mean": 0.2665,
+        "std": 0.0,
+        "values": {
+          "s42": 0.2665
+        },
+        "n": 1
+      },
+      "rho_advantage": {
+        "mean": null,
+        "std": null,
+        "values": {},
+        "n": 0
+      },
+      "n_seeds": 3,
+      "verdict": {}
+    },
+    "T=1.2": {
+      "notes": [
+        "s42 data from exp_026_T_ablation/analysis_summary.md (NER metrics)"
+      ],
+      "n_seeds_from_registry": 2,
+      "seed_ids": {
+        "s123": "exp_scierc_t12_s123",
+        "s456": "exp_scierc_t12_s456"
+      },
+      "greedy_f1": {
+        "mean": 0.6632,
+        "std": 0.0008,
+        "values": {
+          "s123": 0.664,
+          "s456": 0.663,
+          "s42": 0.6625
+        },
+        "n": 3
+      },
+      "oracle_f1": {
+        "mean": 0.7856,
+        "std": 0.0032,
+        "values": {
+          "s123": 0.788,
+          "s456": 0.782,
+          "s42": 0.7868
+        },
+        "n": 3
+      },
+      "oracle_headroom": {
+        "mean": 0.1224,
+        "std": 0.003,
+        "values": {
+          "s123": 0.124,
+          "s456": 0.119,
+          "s42": 0.1243
+        },
+        "n": 3
+      },
+      "degeneracy_pct": {
+        "mean": 13.9333,
+        "std": 0.1528,
+        "values": {
+          "s123": 13.9,
+          "s456": 14.1,
+          "s42": 13.8
+        },
+        "n": 3
+      },
+      "fleiss_kappa_mean": {
+        "mean": 0.3516,
+        "std": 0.0,
+        "values": {
+          "s42": 0.3516
+        },
+        "n": 1
+      },
+      "soft_jaccard_mean": {
+        "mean": 0.6469,
+        "std": 0.0,
+        "values": {
+          "s42": 0.6469
+        },
+        "n": 1
+      },
+      "rho_SJ_F1": {
+        "mean": 0.3801,
+        "std": 0.0373,
+        "values": {
+          "s123": 0.346,
+          "s456": 0.42,
+          "s42": 0.3743
+        },
+        "n": 3
+      },
+      "rho_FK_F1": {
+        "mean": 0.2825,
+        "std": 0.0521,
+        "values": {
+          "s123": 0.223,
+          "s456": 0.32,
+          "s42": 0.3044
+        },
+        "n": 3
+      },
+      "rho_advantage": {
+        "mean": 0.1115,
+        "std": 0.0177,
+        "values": {
+          "s123": 0.124,
+          "s456": 0.099
+        },
+        "n": 2
+      },
+      "n_seeds": 3,
+      "verdict": {
+        "s123": "MARGINAL",
+        "s456": "PASS"
+      }
+    }
+  }
+}

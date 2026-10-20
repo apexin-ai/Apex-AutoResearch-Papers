@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_entity_consensus",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:59:50.628Z",
+    "updated_at": "2026-05-18T20:01:40.869Z",
+    "hypothesis": "Constructing new output from N samples using entity frequency thresholds and LP-weighted decisions can capture complementary information that single-sample selection misses",
+    "spec": {
+      "command": "python3 code/entity_consensus.py",
+      "server": "autodl-5090",
+      "data_path": "/root/struct_self_consist_ie/data/",
+      "data_count": "all datasets",
+      "model_name": "Qwen3-8B",
+      "seed": 42
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/struct_self_consist_ie/output/entity_consensus_results.json",
+    "log_path": "/root/struct_self_consist_ie/output/entity_consensus_results.json",
+    "completed_at": "2026-05-18T20:01:40.869Z"
+  },
+  "timestamp": "2026-05-18T20:01:41.122720+00:00",
+  "trigger": "update_registry"
+}

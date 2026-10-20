@@ -1,0 +1,1914 @@
+# paper research lit batch1
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 57
+- **Recorded user turns:** 0
+- **Tool calls:** 28
+- **Original source:** `logs/chats/worker_paper_research_lit_batch1_20260514T174854.jsonl`
+- **Structured JSON:** [`4377ceae8622aabdf510.json`](../../sessions/43/4377ceae8622aabdf510.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+57 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T17:52:31.835982+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/literature_map.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/literature_map.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T17:52:31.836450+00:00_
+
+1	meta:
+2	  last_updated: '2026-05-14T15:47:22.191Z'
+3	  total_papers: 8
+4	categories: []
+5	papers:
+6	  wang2023selfconsistency:
+7	    title: Self-Consistency Improves Chain of Thought Reasoning in Language Models
+8	    authors:
+9	    - Xuezhi Wang
+10	    - Jason Wei
+11	    - Dale Schuurmans
+12	    - Quoc Le
+13	    - Ed Chi
+14	    - Sharan Narang
+15	    - Aakanksha Chowdhery
+16	    - Denny Zhou
+17	    year: 2023
+18	    venue: ICLR 2023
+19	    url: https://arxiv.org/abs/2203.11171
+20	    doi: ''
+21	    bibtex_key: wang2023selfconsistency
+22	    category: self_consistency_reasoning
+23	    role: foundation
+24	    relevance: 'Foundation paper: introduces self-consistency voting over diverse
+25	      reasoning paths. We extend this paradigm from closed-form answers to structured
+26	      IE outputs.'
+27	    abstract: ''
+28	    semantic_scholar_id: ''
+29	    verified: true
+30	    added_by: paper-research:cluster1
+31	    added_at: '2026-05-14T15:47:22.188Z'
+32	  taubenfeld2025cisc:
+33	    title: Confidence Improves Self-Consistency in LLMs
+34	    authors:
+35	    - Amir Taubenfeld
+36	    - Tom Sheffer
+37	    - Eran Ofek
+38	    - Amir Feder
+39	    - Ariel Goldstein
+40	    - Zorik Gekhman
+41	    - Gal Yona
+42	    year: 2025
+43	    venue: ACL Findings 2025
+44	    url: https://arxiv.org/abs/2502.06233
+45	    doi: 10.18653/v1/2025.findings-acl.1030
+46	    bibtex_key: taubenfeld2025cisc
+47	    category: self_consistency_reasoning
+48	    role: direct-competitor
+49	    relevance: 'CISC: confidence-weighted majority vote reduces required samples by
+50	      40%. Direct competitor — we address the same "strong predictor, weak selector"
+51	      gap but for structured outputs.'
+52	    abstract: ''
+53	    semantic_scholar_id: ''
+54	    verified: true
+55	    added_by: paper-research:cluster1
+56	    added_at: '2026-05-14T15:47:22.188Z'
+57	  kang2025selfcertainty:
+58	    title: Scalable Best-of-N Selection for Large Language Models via Self-Certainty
+59	    authors:
+60	    - Zhewei Kang
+6
+…[truncated 4987 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T17:52:31.836670+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-14T17:52:31.836821+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T17:52:31.836994+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Nédellec Xia \"Consistency accuracy correlation\" LLM entity relation extraction plant-health PMC12888769"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Nédellec Xia \"Consistency accuracy correlation\" LLM entity relation extraction plant-health PMC12888769"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-14T17:52:31.837159+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "CoCoA Vashurin \"Combining Confidence and Consistency\" LLM uncertainty arXiv 2502.04964"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "CoCoA Vashurin \"Combining Confidence and Consistency\" LLM uncertainty arXiv 2502.04964"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-14T17:52:31.837366+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Vashurin arXiv 2510.20460 VCE MSP self-consistency CoCoA evaluation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Vashurin arXiv 2510.20460 VCE MSP self-consistency CoCoA evaluation"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-14T17:52:31.837526+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Geng \"Survey of Confidence Estimation and Calibration in Large Language Models\" NAACL 2024 arXiv 2311.08298"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Geng \"Survey of Confidence Estimation and Calibration in Large Language Models\" NAACL 2024 arXiv 2311.08298"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T17:52:31.837741+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Feng \"Know Your Limits Survey Abstention Large Language Models\" TACL 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Feng \"Know Your Limits Survey Abstention Large Language Models\" TACL 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T17:52:31.837884+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Uncertainty Quantification\" survey LLM ACL Findings 2025 comprehensive"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Uncertainty Quantification\" survey LLM ACL Findings 2025 comprehensive"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T17:52:31.838012+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2503.15850 \"Uncertainty Quantification and Confidence Calibration\" LLM survey 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2503.15850 \"Uncertainty Quantification and Confidence Calibration\" LLM survey 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T17:52:31.838226+00:00_
+
+Web search results for query: "Nédellec Xia "Consistency accuracy correlation" LLM entity relation extraction plant-health PMC12888769"
+
+Links: [{"title":"Consistency–accuracy correlation in hard-prompted LLMs for entity and relation extraction: empirical findings from plant-health data - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12888769/"},{"title":"GitHub - quqxui/Awesome-LLM4IE-Papers: Awesome papers about generative Information Extraction (IE) using Large Language Models (LLMs) · GitHub","url":"https://github.com/quqxui/Awesome-LLM4IE-Papers"},{"title":"Paper Digest: Recent Papers on Relation Extraction – Resources | Paper Digest","url":"https://resources.paperdigest.org/2020/04/recent-papers-on-relation-extraction/"},{"title":"A survey on cutting-edge relation extraction techniques based on language models","url":"https://arxiv.org/html/2411.18157v1"},{"title":"Clinical named entity recognition and relation extraction using natural language processing of medical free text: A systematic review - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S1386505623001405"},{"title":"EMNLP-IJCNLP 2019 BioNLP-OST 2019 Proceedings of ...","url":"https://aclanthology.org/D19-57.pdf"},{"title":"Benchmarking LLM-based Information Extraction Tools for Medical Documents | medRxiv","url":"https://www.medrxiv.org/content/10.64898/2026.01.19.26344287v1.full"},{"title":"Revisiting Relation Extraction in the era of Large Language ...","url":"https://aclanthology.org/2023.acl-long.868.pdf"},{"title":"Clinical named entity recognition and relation extraction using natural language processing of medical free text: A systematic review - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/37295138/"},{"title":"GitHub - kaisugi/entity-related-papers: Named Entity Recognition, Entity Linking, and more · GitHub","url":"https://github.com/kaisugi/entity-related-papers"}]
+
+Perfect! I found the paper you were searching for. Here are the results:
+
+## Search Results
+
+
+…[truncated 1175 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T17:52:31.838466+00:00_
+
+Web search results for query: "CoCoA Vashurin "Combining Confidence and Consistency" LLM uncertainty arXiv 2502.04964"
+
+Links: [{"title":"[2502.04964] Uncertainty Quantification for LLMs through Minimum Bayes Risk: Bridging Confidence and Consistency","url":"https://arxiv.org/abs/2502.04964"},{"title":"CoCoA: A Generalized Approach to Uncertainty Quantification by Integrating Confidence and Consistency of LLM Outputs","url":"https://arxiv.org/html/2502.04964v1"},{"title":"CoCoA: A Minimum Bayes Risk Framework Bridging Confidence and Consistency for Uncertainty Quantification in LLMs","url":"https://arxiv.org/html/2502.04964"},{"title":"CoCoA: A Generalized Approach to Uncertainty Quantification","url":"https://arxiv.org/pdf/2502.04964v2"},{"title":"(PDF) CoCoA: A Generalized Approach to Uncertainty Quantification by Integrating Confidence and Consistency of LLM Outputs","url":"https://www.researchgate.net/publication/388847488_CoCoA_A_Generalized_Approach_to_Uncertainty_Quantification_by_Integrating_Confidence_and_Consistency_of_LLM_Outputs"},{"title":"[2502.04964v3] Uncertainty Quantification for LLMs through Minimum Bayes Risk: Bridging Confidence and Consistency","url":"https://arxiv.org/abs/2502.04964v3"},{"title":"Systematic Evaluation of Uncertainty Estimation Methods in Large Language Models","url":"https://arxiv.org/html/2510.20460v1"},{"title":"[Literature Review] CoCoA: A Generalized Approach to Uncertainty Quantification by Integrating Confidence and Consistency of LLM Outputs","url":"https://www.themoonlight.io/en/review/cocoa-a-generalized-approach-to-uncertainty-quantification-by-integrating-confidence-and-consistency-of-llm-outputs"},{"title":"CoCoA: A Minimum Bayes Risk Framework Bridging Confidence and Consistency for Uncertainty Quantification in LLMs | OpenReview","url":"https://openreview.net/forum?id=H1NGlLNaVC"},{"title":"Computer Science Feb 2025","url":"https://arxiv.org/list/cs/2025-02?skip=2275&show=2000"}]
+
+I found the paper! Here's inform
+…[truncated 1413 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T17:52:31.838632+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Kuhn \"Semantic Uncertainty Linguistic Invariances\" ICLR 2023 uncertainty estimation NLG"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Kuhn \"Semantic Uncertainty Linguistic Invariances\" ICLR 2023 uncertainty estimation NLG"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T17:52:31.838769+00:00_
+
+Web search results for query: "Feng "Know Your Limits Survey Abstention Large Language Models" TACL 2025"
+
+No links found.
+
+I wasn't able to find results for that specific quoted query. The search didn't return any matching results for a paper with that exact title and authors from TACL 2025.
+
+This could be because:
+- The paper title or author name might be slightly different than quoted
+- The paper may not be publicly indexed yet or available online
+- The publication venue, year, or other details might be different
+
+Would you like me to try a modified search with different keywords or parameters? For example, I could search for:
+- Just the author's last name "Feng" with "abstention" and "language models"
+- The approximate topic without exact quotation marks
+- A different variation of the title
+
+Let me know how you'd like to proceed!
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-14T17:52:31.838901+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Kadavath \"Language Models Mostly Know What They Know\" 2022 Anthropic"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Kadavath \"Language Models Mostly Know What They Know\" 2022 Anthropic"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T17:52:31.839024+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Guo \"On Calibration of Modern Neural Networks\" ICML 2017"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Guo \"On Calibration of Modern Neural Networks\" ICML 2017"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T17:52:31.839189+00:00_
+
+Web search results for query: "Vashurin arXiv 2510.20460 VCE MSP self-consistency CoCoA evaluation"
+
+Links: [{"title":"Systematic Evaluation of Uncertainty Estimation Methods in Large Language Models","url":"https://arxiv.org/html/2510.20460v1"},{"title":"[2510.20460] Systematic Evaluation of Uncertainty Estimation Methods in Large Language Models","url":"https://arxiv.org/abs/2510.20460"},{"title":"CoCoA: A Generalized Approach to Uncertainty Quantification by Integrating Confidence and Consistency of LLM Outputs","url":"https://arxiv.org/html/2502.04964v1"},{"title":"[Literature Review] CoCoA: A Generalized Approach to Uncertainty Quantification by Integrating Confidence and Consistency of LLM Outputs","url":"https://www.themoonlight.io/en/review/cocoa-a-generalized-approach-to-uncertainty-quantification-by-integrating-confidence-and-consistency-of-llm-outputs"},{"title":"[2502.04964] Uncertainty Quantification for LLMs through Minimum Bayes Risk: Bridging Confidence and Consistency","url":"https://arxiv.org/abs/2502.04964"},{"title":"Towards Label-Free Biological Reasoning Synthetic Dataset Creation via Uncertainty Filtering","url":"https://arxiv.org/html/2510.05871"},{"title":"[2510.23892] Learning-based Spectral Regression for Cocoa Bean Physicochemical Property Prediction","url":"https://arxiv.org/abs/2510.23892"},{"title":"[2510.22785] Self-Calibrated Consistency can Fight Back for Adversarial Robustness in Vision-Language Models","url":"https://arxiv.org/abs/2510.22785"},{"title":"[2510.13089] Evaluation of Statistical Consistency in Synthetic Turbulence under Wavenumber Bounds","url":"https://arxiv.org/abs/2510.13089"},{"title":"Certified Self-Consistency: Statistical Guarantees and Test-Time Training for Reliable Reasoning in LLMs","url":"https://arxiv.org/html/2510.17472v2"}]
+
+Based on the search results, I found relevant information about arXiv paper 2510.20460 by Vashurin and colleagues.
+
+## Overview
+
+The paper systematically evaluates four approaches f
+…[truncated 1263 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T17:52:31.839384+00:00_
+
+Web search results for query: "Geng "Survey of Confidence Estimation and Calibration in Large Language Models" NAACL 2024 arXiv 2311.08298"
+
+Links: [{"title":"A Survey of Confidence Estimation and Calibration in Large Language Models - ACL Anthology","url":"https://aclanthology.org/2024.naacl-long.366/"},{"title":"A Survey of Confidence Estimation and Calibration in ...","url":"https://aclanthology.org/2024.naacl-long.366.pdf"},{"title":"[2311.08298] A Survey of Confidence Estimation and Calibration in Large Language Models","url":"https://arxiv.org/abs/2311.08298"},{"title":"A Survey of Confidence Estimation and Calibration in Large Language Models","url":"https://www.researchgate.net/publication/382633391_A_Survey_of_Confidence_Estimation_and_Calibration_in_Large_Language_Models"},{"title":"[PDF] A Survey of Confidence Estimation and Calibration in Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/A-Survey-of-Confidence-Estimation-and-Calibration-Geng-Cai/6aa6003c7d7b3d275ae981aa6200014968c32430"},{"title":"Noise-AwAre Verbal Confidence Calibration for Robust Large Language Models in RAG Systems","url":"https://arxiv.org/html/2601.11004"},{"title":"A Survey of Confidence Estimation and Calibration ...","url":"https://lingo.iitgn.ac.in/nlpexplorer/paper/2024.naacl-long.366"},{"title":"LLM Confidence and Calibration: A Survey of What the Research Actually Shows - Beancount.io","url":"https://beancount.io/bean-labs/research-logs/2026/07/09/confidence-estimation-calibration-llms-survey"},{"title":"Accepted Papers - NAACL-HLT 2024","url":"https://2024.naacl.org/program/accepted_papers/"},{"title":"A Survey of Uncertainty Estimation Methods on Large ...","url":"https://aclanthology.org/2025.findings-acl.1101.pdf"}]
+
+I found the paper you're looking for. Here's the information about it:
+
+**"A Survey of Confidence Estimation and Calibration in Large Language Models"** by Jiahui Geng, Fengyu Cai, Yuxia Wang, Heinz Koeppl, Preslav Nakov,
+…[truncated 942 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-14T17:52:31.839537+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Desai Durrett \"Calibration of Pre-trained Transformers\" EMNLP 2020"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Desai Durrett \"Calibration of Pre-trained Transformers\" EMNLP 2020"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T17:52:31.839669+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2406.15927 \"Semantic Entropy Probes\" 2024 uncertainty estimation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2406.15927 \"Semantic Entropy Probes\" 2024 uncertainty estimation"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T17:52:31.839817+00:00_
+
+Web search results for query: ""Uncertainty Quantification" survey LLM ACL Findings 2025 comprehensive"
+
+Links: [{"title":"A Survey of Uncertainty Estimation Methods on Large Language Models - ACL Anthology","url":"https://aclanthology.org/2025.findings-acl.1101/"},{"title":"A Survey of Uncertainty Estimation Methods on Large ...","url":"https://aclanthology.org/2025.findings-acl.1101.pdf"},{"title":"MAQA: Evaluating Uncertainty Quantification in LLMs ...","url":"https://aclanthology.org/2025.findings-naacl.325.pdf"},{"title":"Spurious Interactions with Response Length Bias Results","url":"https://aclanthology.org/2025.acl-short.60.pdf"},{"title":"Accepted Findings Papers - ACL 2025","url":"https://2025.aclweb.org/program/find_papers/"},{"title":"Uncertainty Quantification and Confidence Calibration in Large Language Models: A Survey | Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.2","url":"https://dl.acm.org/doi/10.1145/3711896.3736569"},{"title":"Beyond Semantic Entropy: Boosting LLM Uncertainty ...","url":"https://aclanthology.org/2025.findings-acl.234.pdf"},{"title":"Beyond Semantic Entropy: Boosting LLM Uncertainty Quantification with Pairwise Semantic Similarity - ACL Anthology","url":"https://aclanthology.org/2025.findings-acl.234/"},{"title":"Revisiting Uncertainty Quantification Evaluation in Language Models: Spurious Interactions with Response Length Bias Results - ACL Anthology","url":"https://aclanthology.org/2025.acl-short.60/"},{"title":"MAQA: Evaluating Uncertainty Quantification in LLMs Regarding Data Uncertainty - ACL Anthology","url":"https://aclanthology.org/2025.findings-naacl.325/"}]
+
+Based on the web search results, I found several highly relevant papers on Uncertainty Quantification in LLMs from ACL Findings 2025:
+
+## Key Survey Paper
+
+A Survey of Uncertainty Estimation Methods on Large Language Models was published in Findings of the Association for Computational Linguistics: ACL 2025. This survey pres
+…[truncated 1513 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T17:52:31.839983+00:00_
+
+Web search results for query: "arXiv 2503.15850 "Uncertainty Quantification and Confidence Calibration" LLM survey 2025"
+
+Links: [{"title":"[2503.15850] Uncertainty Quantification and Confidence Calibration in Large Language Models: A Survey","url":"https://arxiv.org/abs/2503.15850"},{"title":"Uncertainty Quantification and Confidence Calibration in ...","url":"https://arxiv.org/pdf/2503.15850"},{"title":"[2503.15850v1] Uncertainty Quantification and Confidence Calibration in Large Language Models: A Survey","url":"http://arxiv.org/abs/2503.15850v1"},{"title":"[2503.15850v2] Uncertainty Quantification and Confidence Calibration in Large Language Models: A Survey","url":"http://arxiv.org/abs/2503.15850v2"},{"title":"Uncertainty Quantification and Confidence Calibration in Large Language Models: A Survey","url":"https://arxiv.org/html/2503.15850"},{"title":"arXiv:2503.15850v1 [cs.CL] 20 Mar 2025","url":"https://arxiv.org/pdf/2503.15850v1"},{"title":"Language Model Uncertainty Quantification with Attention Chain","url":"https://arxiv.org/html/2503.19168"},{"title":"Benchmarking Uncertainty Calibration in Large Language Model Long-Form Question Answering","url":"https://arxiv.org/html/2602.00279"},{"title":"Uncertainty Estimation by Human Perception versus Neural Models","url":"https://arxiv.org/html/2506.15850"},{"title":"Uncertainty Distillation: Teaching Language Models to Express Semantic Confidence","url":"https://arxiv.org/html/2503.14749"}]
+
+I found the arXiv paper you were looking for! Here's what I found:
+
+## arXiv 2503.15850: Uncertainty Quantification and Confidence Calibration in Large Language Models: A Survey
+
+This survey was authored by Xiaoou Liu, Tiejin Chen, Longchao Da, Chacha Chen, Zhen Lin, and Hua Wei, with the latest version submitted on June 3, 2025.
+
+### Key Focus Areas
+
+The survey covers how uncertainty quantification (UQ) enhances trustworthiness by estimating confidence in outputs, enabling risk mitigation and selective prediction.
+
+### Main 
+…[truncated 772 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T17:52:31.840181+00:00_
+
+Web search results for query: "Kadavath "Language Models Mostly Know What They Know" 2022 Anthropic"
+
+Links: [{"title":"[2207.05221] Language Models (Mostly) Know What They Know","url":"https://arxiv.org/abs/2207.05221"},{"title":"[PDF] Language Models (Mostly) Know What They Know | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Language-Models-(Mostly)-Know-What-They-Know-Kadavath-Conerly/142ebbf4760145f591166bde2564ac70c001e927"},{"title":"(PDF) Language Models (Mostly) Know What They Know (2022) | Saurav Kadavath | 413 Citations","url":"https://scispace.com/papers/language-models-mostly-know-what-they-know-zkg0pou4"},{"title":"Language Models (Mostly) Know What They Know \\ Anthropic","url":"https://www.anthropic.com/research/language-models-mostly-know-what-they-know"},{"title":"(PDF) Language Models (Mostly) Know What They Know","url":"https://www.researchgate.net/publication/361949621_Language_Models_Mostly_Know_What_They_Know"},{"title":"Language Models (Mostly) Know What They Know","url":"https://arxiv.org/pdf/2207.05221"},{"title":"Language Models (Mostly) Know What They Know | alphaXiv","url":"https://www.alphaxiv.org/overview/2207.05221v4"},{"title":"ml-papers/papers/2022/220711 Language Models (Mostly) Know What They Know.md at main · rosinality/ml-papers","url":"https://github.com/rosinality/ml-papers/blob/main/papers/2022/220711%20Language%20Models%20(Mostly)%20Know%20What%20They%20Know.md"},{"title":"Language Models (Mostly) Know What They Know - ADS","url":"https://ui.adsabs.harvard.edu/abs/2022arXiv220705221K/abstract"},{"title":"Language Models (Mostly) Know What They Know","url":"https://bibbase.org/network/publication/kadavath-conerly-askell-henighan-drain-perez-schiefer-hatfielddodds-etal-languagemodelsmostlyknowwhattheyknow-2022"}]
+
+The search results successfully found the paper you're looking for. Here's what I found:
+
+"Language Models (Mostly) Know What They Know" is a 2022 paper by Saurav Kadavath, Tom Conerly, Amanda Askell
+…[truncated 1025 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T17:52:31.840374+00:00_
+
+Web search results for query: "Kuhn "Semantic Uncertainty Linguistic Invariances" ICLR 2023 uncertainty estimation NLG"
+
+Links: [{"title":"[2302.09664] Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation","url":"https://arxiv.org/abs/2302.09664"},{"title":"semantic uncertainty: linguistic invariances","url":"https://openreview.net/pdf?id=VD-AYtP0dve"},{"title":"Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation | OpenReview","url":"https://openreview.net/forum?id=VD-AYtP0dve"},{"title":"(PDF) Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation","url":"https://www.researchgate.net/publication/368664708_Semantic_Uncertainty_Linguistic_Invariances_for_Uncertainty_Estimation_in_Natural_Language_Generation"},{"title":"Semantic Uncertainty: Linguistic Invariances for","url":"https://sebastianfarquhar.com/assets/papers/kuhnSemantic2023.pdf"},{"title":"Paper page - Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation","url":"https://huggingface.co/papers/2302.09664"},{"title":"[PDF] Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Semantic-Uncertainty:-Linguistic-Invariances-for-in-Kuhn-Gal/507465f8d46489a68a527cb5304d76bdb6c31ed9"},{"title":"Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation [Quick Review]","url":"https://liner.com/review/semantic-uncertainty-linguistic-invariances-for-uncertainty-estimation-in-natural-language"},{"title":"GitHub - lorenzkuhn/semantic_uncertainty · GitHub","url":"https://github.com/lorenzkuhn/semantic_uncertainty"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/b94d8b035e2183e47afef9e2f299ba47-Paper-C
+…[truncated 1536 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T17:52:31.840559+00:00_
+
+Web search results for query: "Guo "On Calibration of Modern Neural Networks" ICML 2017"
+
+Links: [{"title":"On Calibration of Modern Neural Networks","url":"https://proceedings.mlr.press/v70/guo17a/guo17a.pdf"},{"title":"[1706.04599] On Calibration of Modern Neural Networks","url":"https://arxiv.org/abs/1706.04599"},{"title":"On Calibration of Modern Neural Networks","url":"https://github.com/vlgiitr/papers_we_read/blob/master/summaries/Calibration_of_Neural_Nets.md"},{"title":"On Calibration of Modern Neural Networks Chuan Guo Kilian Q. Weinberger","url":"https://fernandoperezc.github.io/Advanced-Topics-in-Machine-Learning-and-Data-Science/Fluri.pdf"},{"title":"Guo, C., Pleiss, G., Sun Y. and Weinberger, K.Q. (2017）On Calibration of Modern Neural Networks. Proceedings of the 34th International Conference on Machine Learning, Sydney, Vol. 70, 1321-1330. - References - Scientific Research Publishing","url":"https://www.scirp.org/(S(czeh4tfqyw2orz553k1w0r45))/reference/referencespapers?referenceid=3648829"},{"title":"[PDF] On Calibration of Modern Neural Networks | Semantic Scholar","url":"https://www.semanticscholar.org/paper/On-Calibration-of-Modern-Neural-Networks-Guo-Pleiss/d65ce2b8300541414bfe51d03906fca72e93523c"},{"title":"\"On Calibration of Modern Neural Networks\", Guo et al. • David Stutz","url":"https://davidstutz.de/on-calibration-of-modern-neural-networks-guo-et-al/"},{"title":"On Calibration of Modern Neural Networks | Request PDF","url":"https://www.researchgate.net/publication/317591245_On_Calibration_of_Modern_Neural_Networks"},{"title":"On calibration of modern neural networks | Proceedings of the 34th International Conference on Machine Learning - Volume 70","url":"https://dl.acm.org/doi/10.5555/3305381.3305518"},{"title":"(Open Access) On Calibration of Modern Neural Networks (2017) | Chuan Guo | 4418 Citations","url":"https://scispace.com/papers/on-calibration-of-modern-neural-networks-5cc9ha8ohx"}]
+
+I found the paper you're looking for! Here are
+…[truncated 1326 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T17:52:31.840737+00:00_
+
+Web search results for query: "Desai Durrett "Calibration of Pre-trained Transformers" EMNLP 2020"
+
+Links: [{"title":"Calibration of Pre-trained Transformers - ACL Anthology","url":"https://aclanthology.org/2020.emnlp-main.21/"},{"title":"GitHub - shreydesai/calibration: Code and datasets for the EMNLP 2020 paper \"Calibration of Pre-trained Transformers\"","url":"https://github.com/shreydesai/calibration"},{"title":"[PDF] Calibration of Pre-trained Transformers | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Calibration-of-Pre-trained-Transformers-Desai-Durrett/52f47e781852a77abedada48cfa971b24c919dde"},{"title":"EMNLP2020: Calibration of Pre-trained Transformers","url":"https://virtual.2020.emnlp.org/paper_main.2615.html"},{"title":"[2003.07892] Calibration of Pre-trained Transformers","url":"https://arxiv.org/abs/2003.07892"},{"title":"Calibration of Pre-trained Transformers","url":"https://aclanthology.org/2020.emnlp-main.21.pdf"},{"title":"Calibration of Pre-trained Transformers","url":"https://www.researchgate.net/publication/347234369_Calibration_of_Pre-trained_Transformers"},{"title":"Calibration of Pre-trained Transformers - ADS","url":"https://ui.adsabs.harvard.edu/abs/2020arXiv200307892D/abstract"},{"title":"Calibration of Pre-trained Transformers Shrey Desai and Greg Durrett","url":"https://arxiv.org/pdf/2003.07892"},{"title":"[2003.07892v3] Calibration of Pre-trained Transformers","url":"https://arxiv.org/abs/2003.07892v3"}]
+
+I found the paper you were searching for. Here are the key details:
+
+## Publication Information
+
+The paper "Calibration of Pre-trained Transformers" was authored by Shrey Desai and Greg Durrett and published in the Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP), pages 295–302.
+
+## Research Overview
+
+The paper investigates whether pre-trained Transformers are calibrated—specifically, whether their posterior probabilities provide an accurate empirical measure of how lik
+…[truncated 801 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T17:52:31.840933+00:00_
+
+Web search results for query: "arXiv 2406.15927 "Semantic Entropy Probes" 2024 uncertainty estimation"
+
+Links: [{"title":"[2406.15927] Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs","url":"https://arxiv.org/abs/2406.15927"},{"title":"Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs","url":"https://arxiv.org/pdf/2406.15927"},{"title":"[2406.15927v1] Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs","url":"https://arxiv.org/abs/2406.15927v1"},{"title":"Paper page - Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs","url":"https://huggingface.co/papers/2406.15927"},{"title":"Semantic Entropy Probes for Hallucination Detection in LLMs","url":"https://www.emergentmind.com/papers/2406.15927"},{"title":"GitHub - OATML/semantic-entropy-probes · GitHub","url":"https://github.com/OATML/semantic-entropy-probes"},{"title":"Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs | Request PDF","url":"https://www.researchgate.net/publication/381666455_Semantic_Entropy_Probes_Robust_and_Cheap_Hallucination_Detection_in_LLMs"},{"title":"Efficient Hallucination Detection: Adaptive Bayesian Estimation of Semantic Entropy with Guided Semantic Exploration","url":"https://arxiv.org/html/2603.22812v1"},{"title":"Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs | alphaXiv","url":"https://www.alphaxiv.org/abs/2406.15927v1"},{"title":"Encoding Semantic Uncertainty in the Latent Space of LLMs","url":"https://openreview.net/pdf?id=BbZKxrZCNn"}]
+
+I found comprehensive information about arXiv paper 2406.15927 on "Semantic Entropy Probes." Here's what the search revealed:
+
+## Overview
+
+The paper proposes semantic entropy probes (SEPs), a cheap and reliable method for uncertainty quantification in Large Language Models (LLMs), authored by Jannik Kossen, Jiatong Han, Muhammed Razzak, Lisa Schut, Shreshth Malik, and Yarin Gal.
+
+## Problem Context
+
+Recent w
+…[truncated 1110 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-14T17:52:31.841145+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Feng \"Know Your Limits\" abstention large language models survey arXiv 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Feng \"Know Your Limits\" abstention large language models survey arXiv 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-14T17:52:31.841284+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"A Survey of Uncertainty Estimation Methods\" ACL Findings 2025 authors LLM"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"A Survey of Uncertainty Estimation Methods\" ACL Findings 2025 authors LLM"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T17:52:31.841411+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Nédellec Xia \"Genomics Informatics\" 2026 consistency accuracy plant-health DOI"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Nédellec Xia \"Genomics Informatics\" 2026 consistency accuracy plant-health DOI"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-14T17:52:31.841533+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Vashurin \"Systematic Evaluation of Uncertainty Estimation Methods\" arXiv 2510.20460 authors 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Vashurin \"Systematic Evaluation of Uncertainty Estimation Methods\" arXiv 2510.20460 authors 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T17:52:31.841652+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Kuhn 2023 \"Semantic Uncertainty\" ICLR authors full list Gal Farquhar"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Kuhn 2023 \"Semantic Uncertainty\" ICLR authors full list Gal Farquhar"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-14T17:52:31.841768+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Kadavath 2022 \"Language Models Mostly Know What They Know\" full author list arXiv 2207.05221"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Kadavath 2022 \"Language Models Mostly Know What They Know\" full author list arXiv 2207.05221"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T17:52:31.841881+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "verbalized confidence calibration LLM 2024 2025 Xiong Tian arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "verbalized confidence calibration LLM 2024 2025 Xiong Tian arXiv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T17:52:31.842029+00:00_
+
+Web search results for query: ""A Survey of Uncertainty Estimation Methods" ACL Findings 2025 authors LLM"
+
+Links: [{"title":"A Survey of Uncertainty Estimation Methods on Large Language Models - ACL Anthology","url":"https://aclanthology.org/2025.findings-acl.1101/"},{"title":"A Survey of Uncertainty Estimation Methods on Large ...","url":"https://aclanthology.org/2025.findings-acl.1101.pdf"},{"title":"[Quick Review] A Survey of Uncertainty Estimation Methods on Large Language Models","url":"https://liner.com/review/survey-uncertainty-estimation-methods-on-large-language-models"},{"title":"Why Uncertainty Estimation Methods Fall Short in RAG: An Axiomatic Analysis - ACL Anthology","url":"https://aclanthology.org/2025.findings-acl.852/"},{"title":"Accepted Findings Papers - ACL 2025","url":"https://2025.aclweb.org/program/find_papers/"},{"title":"Quantifying Uncertainty in Natural Language Explanations of Large Language Models for Question Answering - ACL Anthology","url":"https://aclanthology.org/2025.findings-emnlp.1362/"},{"title":"Reconsidering LLM Uncertainty Estimation Methods in the Wild - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.1429/"},{"title":"Efficient Nearest Neighbor based Uncertainty Estimation for Natural Language Processing Tasks - ACL Anthology","url":"https://aclanthology.org/2025.findings-naacl.246/"},{"title":"Towards Harmonized Uncertainty Estimation for Large Language Models - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.1118/"},{"title":"MAQA: Evaluating Uncertainty Quantification in LLMs Regarding Data Uncertainty - ACL Anthology","url":"https://aclanthology.org/2025.findings-naacl.325/"}]
+
+Based on the search results, I found the paper you were looking for:
+
+The paper "A Survey of Uncertainty Estimation Methods on Large Language Models" is authored by Zhiqiu Xia, Jinxuan Xu, Yuqian Zhang, and Hang Liu. It was published in Findings of the Association for Computational Linguistics: ACL 2025, pages 21381–213
+…[truncated 553 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T17:52:31.842233+00:00_
+
+Web search results for query: "Feng "Know Your Limits" abstention large language models survey arXiv 2025"
+
+Links: [{"title":"[2407.18418] Know Your Limits: A Survey of Abstention in Large Language Models","url":"https://arxiv.org/abs/2407.18418"},{"title":"Know Your Limits: A Survey of Abstention in Large Language Models | Transactions of the Association for Computational Linguistics | MIT Press","url":"https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00754/131566/Know-Your-Limits-A-Survey-of-Abstention-in-Large"},{"title":"Know Your Limits: A Survey of Abstention in Large Language Models - ACL Anthology","url":"https://aclanthology.org/2025.tacl-1.26/"},{"title":"Know Your Limits: A Survey of Abstention in Large Language Models","url":"https://arxiv.org/html/2407.18418v2"},{"title":"Know Your Limits: A Survey of Abstention in Large Language Models | Request PDF","url":"https://www.researchgate.net/publication/393331033_Know_Your_Limits_A_Survey_of_Abstention_in_Large_Language_Models"},{"title":"Know Your Limits: A Survey of Abstention in Large Language Models Bingbing Wen1","url":"https://arxiv.org/pdf/2407.18418"},{"title":"Know Your Limits: A Survey of Abstention in Large Language Models Bingbing Wen1","url":"https://aclanthology.org/2025.tacl-1.26.pdf"},{"title":"Know Your Limits: A Survey of Abstention in Large Language Models - Paper Detail","url":"https://deeplearn.org/arxiv/516371/know-your-limits:-a-survey-of-abstention-in-large-language-models"},{"title":"@article{wen-etal-2025-know,","url":"https://aclanthology.org/2025.tacl-1.26.bib"},{"title":"Know Your Limits: A Survey of Abstention in Large Language Models | alphaXiv","url":"https://www.alphaxiv.org/overview/2407.18418"}]
+
+Based on the search results, I found the paper "Know Your Limits: A Survey of Abstention in Large Language Models."
+
+The paper was submitted on July 25, 2024, with the most recent version (v3) revised on February 12, 2025. The authors are Bingbing Wen, Jihan Yao, Shangbin Fen
+…[truncated 667 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T17:52:31.842414+00:00_
+
+Web search results for query: "Nédellec Xia "Genomics Informatics" 2026 consistency accuracy plant-health DOI"
+
+Links: [{"title":"Plant Genomics - Biomedical Informatics - Library Guides at UChicago","url":"https://guides.lib.uchicago.edu/c.php?g=297925&p=1987954"},{"title":"Genomics and Informatics, Conjoined Tools Vital for Understanding and Protecting Plant Health | Phytopathology®","url":"https://apsjournals.apsnet.org/doi/10.1094/PHYTO-10-21-0418-RVW"},{"title":"Genomics‐based plant disease resistance prediction using machine learning - Upadhyaya - 2024 - Plant Pathology - Wiley Online Library","url":"https://bsppjournals.onlinelibrary.wiley.com/doi/full/10.1111/ppa.13988"},{"title":"Integrated Molecular and Bioinformatics Approaches for Disease-Related Genes in Plants","url":"https://www.mdpi.com/2223-7747/12/13/2454"},{"title":"Expanding genomic prediction in plant breeding: harnessing big data, machine learning, and advanced software - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S1360138524003455"},{"title":"Expanding genomic prediction in plant breeding","url":"https://pubmed.ncbi.nlm.nih.gov/39890501/"},{"title":"Precision breeding in a changing climate: unlocking resilience through omics and gene editing | Functional & Integrative Genomics | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10142-025-01796-7"},{"title":"Integrated Molecular and Bioinformatics Approaches for Disease-Related Genes in Plants - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/37447014/"},{"title":"Expanding genomic prediction in plant breeding: harnessing big data, machine learning, and advanced software: Trends in Plant Science","url":"https://www.cell.com/trends/plant-science/fulltext/S1360-1385(24)00345-5"},{"title":"review of multimodal deep learning methods for genomic-enabled prediction in plant breeding | Genetics | Oxford Academic","url":"https://academic.oup.com/genetics/article/228/4/iyae161/7876340"}]
+
+The web search 
+…[truncated 950 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-14T17:52:31.842588+00:00_
+
+Web search results for query: "Vashurin "Systematic Evaluation of Uncertainty Estimation Methods" arXiv 2510.20460 authors 2025"
+
+Links: [{"title":"[2510.20460] Systematic Evaluation of Uncertainty Estimation Methods in Large Language Models","url":"https://arxiv.org/abs/2510.20460"},{"title":"Systematic Evaluation of Uncertainty Estimation Methods in Large Language Models","url":"https://arxiv.org/html/2510.20460"},{"title":"Uncertainty Estimation in Large Language Models","url":"https://www.emergentmind.com/papers/2510.20460"},{"title":"(PDF) Systematic Evaluation of Uncertainty Estimation Methods in Large Language Models","url":"https://www.researchgate.net/publication/396847893_Systematic_Evaluation_of_Uncertainty_Estimation_Methods_in_Large_Language_Models"},{"title":"[2406.15627] Benchmarking Uncertainty Quantification Methods for Large Language Models with LM-Polygraph","url":"https://arxiv.org/abs/2406.15627"},{"title":"Addressing Pitfalls in the Evaluation of Uncertainty Estimation Methods","url":"https://arxiv.org/pdf/2510.02279"},{"title":"[2510.02279] Addressing Pitfalls in the Evaluation of Uncertainty Estimation Methods for Natural Language Generation","url":"https://arxiv.org/abs/2510.02279"},{"title":"UNCERTAINTY-LINE: Length-Invariant Estimation of Uncertainty for Large Language Models - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.400/"},{"title":"[2505.19060] UNCERTAINTY-LINE: Length-Invariant Estimation of Uncertainty for Large Language Models","url":"https://arxiv.org/abs/2505.19060"},{"title":"Roman Vashurin","url":"https://scholar.google.com/citations?user=kSBEtc0AAAAJ&hl=ru"}]
+
+I found the paper for you. Based on the search results, here's the information about arXiv paper 2510.20460:
+
+**Title:** Systematic Evaluation of Uncertainty Estimation Methods in Large Language Models
+
+**Publication Date:** Published October 23, 2025
+
+**Summary:** The paper addresses how large language models produce outputs with varying levels of un
+…[truncated 728 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T17:52:31.842754+00:00_
+
+Web search results for query: "Kuhn 2023 "Semantic Uncertainty" ICLR authors full list Gal Farquhar"
+
+Links: [{"title":"[2302.09664] Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation","url":"https://arxiv.org/abs/2302.09664"},{"title":"(PDF) Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation","url":"https://www.researchgate.net/publication/368664708_Semantic_Uncertainty_Linguistic_Invariances_for_Uncertainty_Estimation_in_Natural_Language_Generation"},{"title":"[PDF] Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Semantic-Uncertainty:-Linguistic-Invariances-for-in-Kuhn-Gal/507465f8d46489a68a527cb5304d76bdb6c31ed9"},{"title":"Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation [Quick Review]","url":"https://liner.com/review/semantic-uncertainty-linguistic-invariances-for-uncertainty-estimation-in-natural-language"},{"title":"Semantic Uncertainty: Linguistic Invariances for","url":"https://sebastianfarquhar.com/assets/papers/kuhnSemantic2023.pdf"},{"title":"Paper page - Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation","url":"https://huggingface.co/papers/2302.09664"},{"title":"ICLR Oral Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation","url":"https://iclr.cc/virtual/2023/oral/12609"},{"title":"Lorenz Kuhn","url":"https://lorenzkuhn.com/"},{"title":"Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation | OpenReview","url":"https://openreview.net/forum?id=VD-AYtP0dve"},{"title":"Published as a conference paper at ICLR 2023","url":"https://openreview.net/pdf?id=VD-AYtP0dve"}]
+
+Based on the search results, the paper "Semantic Uncertainty: Lingui
+…[truncated 581 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-14T17:52:31.842931+00:00_
+
+Web search results for query: "Kadavath 2022 "Language Models Mostly Know What They Know" full author list arXiv 2207.05221"
+
+Links: [{"title":"[2207.05221] Language Models (Mostly) Know What They Know","url":"https://arxiv.org/abs/2207.05221"},{"title":"Language Models (Mostly) Know What They Know","url":"https://arxiv.org/pdf/2207.05221"},{"title":"[PDF] Language Models (Mostly) Know What They Know | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Language-Models-(Mostly)-Know-What-They-Know-Kadavath-Conerly/142ebbf4760145f591166bde2564ac70c001e927"},{"title":"(PDF) Language Models (Mostly) Know What They Know (2022) | Saurav Kadavath | 413 Citations","url":"https://scispace.com/papers/language-models-mostly-know-what-they-know-zkg0pou4"},{"title":"Language Models (Mostly) Know What They Know - ADS","url":"https://ui.adsabs.harvard.edu/abs/2022arXiv220705221K/abstract"},{"title":"(PDF) Language Models (Mostly) Know What They Know","url":"https://www.researchgate.net/publication/361949621_Language_Models_Mostly_Know_What_They_Know"},{"title":"Language Models (Mostly) Know What They Know","url":"https://bibbase.org/network/publication/kadavath-conerly-askell-henighan-drain-perez-schiefer-hatfielddodds-etal-languagemodelsmostlyknowwhattheyknow-2022"},{"title":"Language Models (Mostly) Know What They Know | BibSonomy","url":"https://www.bibsonomy.org/bibtex/2683f0b3b83a56dc82614c7e4257c3b6d/lumeng"},{"title":"[2207.05221] Language Models (Mostly) Know What They Know – Papiers","url":"https://papiers.ai/2207.05221"},{"title":"Reward Collapse in Aligning Large Language Models | Journal of Data Science | School of Statistics, Renmin University of China","url":"https://jds-online.org/journal/JDS/article/1449/info"}]
+
+Based on the search results, I found the full author list for the paper "Language Models (Mostly) Know What They Know" (arXiv 2207.05221) published in 2022.
+
+The authors are: Saurav Kadavath, Tom Conerly, Amanda Askell, Tom Henighan, Dawn Drain
+…[truncated 560 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T17:52:31.843104+00:00_
+
+Web search results for query: "verbalized confidence calibration LLM 2024 2025 Xiong Tian arXiv"
+
+Links: [{"title":"Calibrating LLM Confidence with Semantic Steering: A Multi-Prompt Aggregation Framework","url":"https://arxiv.org/html/2503.02863v1"},{"title":"On Verbalized Confidence Scores for LLMs Daniel Yang∗ ETH Zurich","url":"https://arxiv.org/pdf/2412.14737"},{"title":"Calibrating Verbalized Probabilities for Large Language Models","url":"https://arxiv.org/html/2410.06707v1"},{"title":"ADVICE: Answer-Dependent Verbalized Confidence Estimation","url":"https://arxiv.org/html/2510.10913"},{"title":"Are LLM Decisions Faithful to Verbal Confidence? Jiawei Wang Yanfei Zhou","url":"https://arxiv.org/pdf/2601.07767"},{"title":"[2306.13063] Can LLMs Express Their Uncertainty? An Empirical Evaluation of Confidence Elicitation in LLMs","url":"https://arxiv.org/abs/2306.13063"},{"title":"CALIBRATING VERBALIZED CONFIDENCE WITH SELF- GENERATED DISTRACTORS Victor Wang","url":"https://www.arxiv.org/pdf/2509.25532"},{"title":"On Verbalized Confidence Scores for LLMs","url":"https://arxiv.org/html/2412.14737v2"},{"title":"Calibrating LLM Confidence with Semantic Steering: A Multi-Prompt","url":"https://arxiv.org/pdf/2503.02863v1"},{"title":"Unsupervised Confidence Calibration for Reasoning LLMs from a Single Generation","url":"https://arxiv.org/html/2604.19444"}]
+
+Based on the web search results, I found several relevant papers on verbalized confidence calibration for LLMs. Here are the key findings:
+
+## Key Papers and Authors
+
+The work by Xiong et al. (2023) proposed a unified framework for verbalized confidence elicitation comprising Prompting, Sampling and Aggregation phases. Xiong's paper "Can LLMs Express Their Uncertainty? An Empirical Evaluation of Confidence Elicitation in LLMs" focuses on empowering large language models to accurately express confidence in their answers.
+
+Tian et al. (2023) and Lin et al. (2022a) observe well-calibrated verbalized confidence scores, wh
+…[truncated 1183 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-14T17:52:31.843318+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "PMC12888769 Nédellec Xia DOI journal venue 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "PMC12888769 Nédellec Xia DOI journal venue 2026"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-14T17:52:31.843452+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2510.20460 \"Systematic Evaluation of Uncertainty Estimation\" full author list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2510.20460 \"Systematic Evaluation of Uncertainty Estimation\" full author list"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-14T17:52:31.843574+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Xiong \"Can LLMs Express Their Uncertainty\" arXiv 2306.13063 ICLR 2024 authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Xiong \"Can LLMs Express Their Uncertainty\" arXiv 2306.13063 ICLR 2024 authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-14T17:52:31.843694+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2503.15850 \"Uncertainty Quantification and Confidence Calibration\" venue KDD 2025 authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2503.15850 \"Uncertainty Quantification and Confidence Calibration\" venue KDD 2025 authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-14T17:52:31.843811+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "CoCoA Vashurin NeurIPS 2025 venue accepted"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "CoCoA Vashurin NeurIPS 2025 venue accepted"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T17:52:31.843938+00:00_
+
+Web search results for query: "arXiv 2510.20460 "Systematic Evaluation of Uncertainty Estimation" full author list"
+
+Links: [{"title":"[2510.20460] Systematic Evaluation of Uncertainty Estimation Methods in Large Language Models","url":"https://arxiv.org/abs/2510.20460"},{"title":"Systematic Evaluation of Uncertainty Estimation Methods in Large Language Models","url":"https://arxiv.org/html/2510.20460"},{"title":"(PDF) Systematic Evaluation of Uncertainty Estimation Methods in Large Language Models","url":"https://www.researchgate.net/publication/396847893_Systematic_Evaluation_of_Uncertainty_Estimation_Methods_in_Large_Language_Models"}]
+
+The full author list for arXiv paper 2510.20460 "Systematic Evaluation of Uncertainty Estimation Methods in Large Language Models" is: Christian Hobelsberger, Theresa Winner, Andreas Nawroth, Oliver Mitevski, and Anna-Carolina Haensch.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-14T17:52:31.844098+00:00_
+
+Web search results for query: "PMC12888769 Nédellec Xia DOI journal venue 2026"
+
+Links: [{"title":"Consistency–accuracy correlation in hard-prompted LLMs for entity and relation extraction: empirical findings from plant-health data - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12888769/"},{"title":"Promoting Interdisciplinary Learning With Generative AI Through Self‐Regulated Scaffolding - Xia - 2026 - Journal of Computer Assisted Learning - Wiley Online Library","url":"https://onlinelibrary.wiley.com/doi/10.1002/jcal.70214?af=R"},{"title":"Social insurance contributions and corporate financialization: evidence from China’s social insurance law: Applied Economics: Vol 0, No 0 - Get Access","url":"https://www.tandfonline.com/doi/full/10.1080/00036846.2026.2652066"},{"title":"Proceedings of the ACM Web Conference 2026 | ACM Conferences","url":"https://dl.acm.org/doi/proceedings/10.1145/3774904"},{"title":"How Imprints Transcend Era and Terra: A Study of Firms' Controversial History and Present‐Day Foreign Market Entry - Qiao - 2026 - Journal of Management Studies - Wiley Online Library","url":"https://onlinelibrary.wiley.com/doi/10.1111/joms.13187"},{"title":"Transactions on Machine Learning Research","url":"https://jmlr.org/tmlr/"},{"title":"David Piché, Intuition et présence selon Hervé de Nédellec, Édition critique du Quodlibet IV, 11 - PhilPapers","url":"https://philpapers.org/rec/PICIEP"},{"title":"Frontiers in Reproductive Health | Assisted Reproduction","url":"https://www.frontiersin.org/journals/reproductive-health/sections/assisted-reproduction/articles?publication-date=01%2F01%2F2007-30%2F03%2F2026"},{"title":"ICML 2026 Call for Papers","url":"https://icml.cc/Conferences/2026/CallForPapers"},{"title":"Computer Vision and Pattern Recognition Jun 2025","url":"https://www.arxiv.org/list/cs.CV/2025-06?skip=1950&show=1000"}]
+
+Based on the search results, I found the article you're looking for:
+
+The PMC12888769 article is titled "Consistency–accuracy corr
+…[truncated 550 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T17:52:31.844298+00:00_
+
+Web search results for query: "Xiong "Can LLMs Express Their Uncertainty" arXiv 2306.13063 ICLR 2024 authors"
+
+Links: [{"title":"[2306.13063] Can LLMs Express Their Uncertainty? An Empirical Evaluation of Confidence Elicitation in LLMs","url":"https://arxiv.org/abs/2306.13063"},{"title":"[ICLR] Can LLMs Express Their Uncertainty? An Empirical Evaluation of Confidence Elicitation in LLMs - Walker_V's Notebook","url":"https://victorwang712.github.io/Note/science_research/papers/arXiv_2306_13063/"},{"title":"can llms express their uncertainty? an empirical evaluation ...","url":"https://arxiv.org/pdf/2306.13063"},{"title":"Can LLMs Express Their Uncertainty? An Empirical Evaluation of Confidence Elicitation in LLMs","url":"https://arxiv.org/html/2306.13063v2"},{"title":"[PDF] Can LLMs Express Their Uncertainty? An Empirical Evaluation of Confidence Elicitation in LLMs | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Can-LLMs-Express-Their-Uncertainty-An-Empirical-of-Xiong-Hu/8f7297454d7f44365b9bcda5ebb9439a43daf5e6"},{"title":"CAN LARGE LANGUAGE MODELS EXPRESS UNCER","url":"https://openreview.net/pdf/b2e5dd61b989974bf1969518d31f07e0b1f9109e.pdf"},{"title":"Can LLMs Express Their Uncertainty? An Empirical Evaluation of Confidence Elicitation in LLMs - ADS","url":"https://ui.adsabs.harvard.edu/abs/2023arXiv230613063X/abstract"},{"title":"[2306.13063] Can LLMs Express Their Uncertainty? An Empirical Evaluation of Confidence Elicitation in LLMs","url":"https://ar5iv.labs.arxiv.org/html/2306.13063"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2503.02623"},{"title":"Published as a conference paper at ICLR 2025 DO LLMS ESTIMATE UNCERTAINTY WELL","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/ef472869c217bf693f2d9bbde66a6b07-Paper-Conference.pdf"}]
+
+Based on the search results, I found the information about the paper. Here are the authors of "Can LLMs Express Their Uncertainty? An Empirical Evaluation of 
+…[truncated 422 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-14T17:52:31.844602+00:00_
+
+Web search results for query: "arXiv 2503.15850 "Uncertainty Quantification and Confidence Calibration" venue KDD 2025 authors"
+
+Links: [{"title":"[2503.15850] Uncertainty Quantification and Confidence Calibration in Large Language Models: A Survey","url":"https://arxiv.org/abs/2503.15850"},{"title":"Uncertainty Quantification and Confidence Calibration in ...","url":"https://arxiv.org/pdf/2503.15850"},{"title":"Uncertainty Quantification and Confidence Calibration in Large Language Models: A Survey","url":"https://arxiv.org/html/2503.15850"},{"title":"[2503.15850v1] Uncertainty Quantification and Confidence Calibration in Large Language Models: A Survey","url":"http://arxiv.org/abs/2503.15850v1"},{"title":"[2503.15850v2] Uncertainty Quantification and Confidence Calibration in Large Language Models: A Survey","url":"http://arxiv.org/abs/2503.15850v2"},{"title":"arXiv:2503.15850v1 [cs.CL] 20 Mar 2025","url":"https://arxiv.org/pdf/2503.15850v1"},{"title":"Uncertainty Quantification and Confidence Calibration in Large","url":"https://xiao0o0o.github.io/2025KDD_tutorial/survey.pdf"},{"title":"Uncertainty Quantification and Confidence Calibration in Large Language Models: A Survey | Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.2","url":"https://dl.acm.org/doi/abs/10.1145/3711896.3736569"},{"title":"A Survey on Uncertainty Quantification Methods for Deep Learning","url":"https://arxiv.org/html/2302.13425v7"},{"title":"[2506.15850] Uncertainty Estimation by Human Perception versus Neural Models","url":"https://arxiv.org/abs/2506.15850"}]
+
+Based on the search results, here is the information about arXiv paper 2503.15850:
+
+**Title:** Uncertainty Quantification and Confidence Calibration in Large Language Models: A Survey
+
+**Venue:** KDD '25, August 3–7, 2025, Toronto, ON, Canada
+
+**Authors:** Xiaoou Liu, Tiejin Chen, Longchao Da, Chacha Chen, Zhen Lin, Hua Wei
+
+**Submission Information:** Submitted on 20 Mar 2025 (v1), last revised 
+…[truncated 132 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-14T17:52:31.844893+00:00_
+
+Web search results for query: "CoCoA Vashurin NeurIPS 2025 venue accepted"
+
+Links: [{"title":"NeurIPS 2025 Accepted Paper List - Paper Copilot","url":"https://papercopilot.com/paper-list/neurips-paper-list/neurips-2025-paper-list/"},{"title":"NeurIPS Poster CoCoA: A Minimum Bayes Risk Framework Bridging Confidence and Consistency for Uncertainty Quantification in LLMs","url":"https://neurips.cc/virtual/2025/loc/san-diego/poster/118918"},{"title":"2025 Dates and Deadlines","url":"https://neurips.cc/Conferences/2025/Dates"},{"title":"NeurIPS: Neural Information Processing Systems 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=2212"},{"title":"NeurIPS 2026","url":"https://neurips.cc/"},{"title":"Venues - NeurIPS","url":"https://openreview.net/venue?id=NeurIPS.cc"},{"title":"NeurIPS 2025 Accepted Paper List: Position Track - Paper Copilot","url":"https://papercopilot.com/paper-list/neurips-paper-list/neurips-2025-paper-list-position-track/"},{"title":"NeurIPS 2025 Workshops","url":"https://neurips.cc/virtual/2025/loc/san-diego/events/workshop"},{"title":"2025 Conference","url":"https://neurips.cc/Conferences/2025"},{"title":"NeurIPS.2025 - Oral | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/NeurIPS.2025?group=Oral"}]
+
+Based on the search results, I found information about the CoCoA paper at NeurIPS 2025:
+
+CoCoA is a paper by Roman Vashurin and colleagues that presents a unified framework integrating model confidence with output consistency for uncertainty quantification. The paper was accepted to NeurIPS 2025 and was evaluated across diverse tasks including question answering, abstractive text summarization, and machine translation.
+
+The paper addresses uncertainty quantification for Large Language Models, focusing on two major approaches: information-based methods that estimate model confidence from token-level probabilities, and consistency-based methods that assess semantic agreement among multiple outputs.
+
+NeurIPS 2025
+…[truncated 211 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-14T17:52:31.845327+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat << 'PYEOF' > /tmp/update_litmap.py\nimport yaml\nfrom datetime import datetime, timezone\n\nyaml_path = \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/literature_map.yaml\"\n\nwith open(yaml_path, 'r') as f:\n    data = yaml.safe_load(f)\n\nnow = datetime.now(timezone.utc).strftime(\"%Y-%m-%dT%H:%M:%S.000Z\")\n\nnew_papers = {\n    # === Cluster 1: consistency_structured_ie ===\n    \"nedellec2026consistency\": {\n        \"title\": \"Consistency-accuracy correlation in hard-prompted LLMs for entity and relation extraction: empirical findings from plant-health data\",\n        \"authors\": [\"Claire Nédellec\", \"Jingbo Xia\"],\n        \"year\": 2026,\n        \"venue\": \"Genomics & Informatics\",\n        \"url\": \"https://pmc.ncbi.nlm.nih.gov/articles/PMC12888769/\",\n        \"doi\": \"10.1186/s44342-025-00063-2\",\n        \"bibtex_key\": \"nedellec2026consistency\",\n        \"category\": \"consistency_structured_ie\",\n        \"role\": \"direct-competitor\",\n        \"relevance\": \"Most direct competitor: systematically measures consistency-accuracy correlation for LLM-based entity and relation extraction on plant-health data, validating consistency as a reliability signal for structured IE.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n    \"vashurin2025cocoa\": {\n        \"title\": \"Uncertainty Quantification for LLMs through Minimum Bayes Risk: Bridging Confidence and Consistency\",\n        \"authors\": [\"Roman Vashurin\", \"Maiya Goloburda\", \"Albina Ilina\", \"Aleksandr Rubashevskii\", \"Preslav Nakov\", \"Artem Shelmanov\", \"Maxim Panov\"],\n        \"year\": 2025,\n        \"venue\": \"NeurIPS 2025\",\n        \"url\": \"https://arxiv.org/abs/2502.04964\",\n        \"doi\": \"\",\n        \"bibtex_key\": \"vashurin2025cocoa\",\n        \"category\": \"consistency_structured_ie\",\n        \"role\": \"background\",\n        \"relevance\": \"CoCoA framework unifies token-level confidence and sample-level consistency via MBR for uncertainty quantification. Provides theoretical grounding for our dual-signal approach in structured IE.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n    \"hobelsberger2025systematic\": {\n        \"title\": \"Systematic Evaluation of Uncertainty Estimation Methods in Large Language Models\",\n        \"authors\": [\"Christian Hobelsberger\", \"Theresa Winner\", \"Andreas Nawroth\", \"Oliver Mitevski\", \"Anna-Carolina Haensch\"],\n        \"year\": 2025,\n        \"venue\": \"arXiv preprint\",\n        \"url\": \"https://arxiv.org/abs/2510.20460\",\n        \"doi\": \"\",\n        \"bibtex_key\": \"hobelsberger2025systematic\",\n        \"category\": \"consistency_structured_ie\",\n        \"role\": \"background\",\n        \"relevance\": \"Systematic comparison of VCE, MSP, self-consistency, and CoCoA for LLM uncertainty estimation. Shows hybrid CoCoA yields best calibration, supporting our multi-signal aggregation design.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n\n    # === Cluster 2: confidence_surveys ===\n    \"geng2024confidence\": {\n        \"title\": \"A Survey of Confidence Estimation and Calibration in Large Language Models\",\n        \"authors\": [\"Jiahui Geng\", \"Fengyu Cai\", \"Yuxia Wang\", \"Heinz Koeppl\", \"Preslav Nakov\", \"Iryna Gurevych\"],\n        \"year\": 2024,\n        \"venue\": \"NAACL 2024\",\n        \"url\": \"https://arxiv.org/abs/2311.08298\",\n        \"doi\": \"10.18653/v1/2024.naacl-long.366\",\n        \"bibtex_key\": \"geng2024confidence\",\n        \"category\": \"confidence_surveys\",\n        \"role\": \"survey\",\n        \"relevance\": \"Comprehensive survey of LLM confidence estimation and calibration techniques. Provides taxonomic context for positioning our consistency-based confidence approach within the broader landscape.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n    \"wen2025know\": {\n        \"title\": \"Know Your Limits: A Survey of Abstention in Large Language Models\",\n        \"authors\": [\"Bingbing Wen\", \"Jihan Yao\", \"Shangbin Feng\", \"Chenjun Xu\", \"Yulia Tsvetkov\", \"Bill Howe\", \"Lucy Lu Wang\"],\n        \"year\": 2025,\n        \"venue\": \"TACL 2025\",\n        \"url\": \"https://arxiv.org/abs/2407.18418\",\n        \"doi\": \"10.1162/tacl_a_00754\",\n        \"bibtex_key\": \"wen2025know\",\n        \"category\": \"confidence_surveys\",\n        \"role\": \"survey\",\n        \"relevance\": \"Survey on LLM abstention from query, model, and human-values perspectives. Our consistency-based filtering can be viewed as a structured-IE-specific abstention mechanism.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n    \"xia2025survey\": {\n        \"title\": \"A Survey of Uncertainty Estimation Methods on Large Language Models\",\n        \"authors\": [\"Zhiqiu Xia\", \"Jinxuan Xu\", \"Yuqian Zhang\", \"Hang Liu\"],\n        \"year\": 2025,\n        \"venue\": \"ACL Findings 2025\",\n        \"url\": \"https://aclanthology.org/2025.findings-acl.1101/\",\n        \"doi\": \"\",\n        \"bibtex_key\": \"xia2025survey\",\n        \"category\": \"confidence_surveys\",\n        \"role\": \"survey\",\n        \"relevance\": \"Most comprehensive LLM uncertainty estimation survey with novel taxonomy (verbalizing, latent, consistency-based, semantic clustering). Directly contextualizes our method within the consistency-based branch.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n    \"liu2025uqcalibration\": {\n        \"title\": \"Uncertainty Quantification and Confidence Calibration in Large Language Models: A Survey\",\n        \"authors\": [\"Xiaoou Liu\", \"Tiejin Chen\", \"Longchao Da\", \"Chacha Chen\", \"Zhen Lin\", \"Hua Wei\"],\n        \"year\": 2025,\n        \"venue\": \"KDD 2025\",\n        \"url\": \"https://arxiv.org/abs/2503.15850\",\n        \"doi\": \"10.1145/3711896.3736569\",\n        \"bibtex_key\": \"liu2025uqcalibration\",\n        \"category\": \"confidence_surveys\",\n        \"role\": \"survey\",\n        \"relevance\": \"Survey analyzing UQ through input, reasoning, parameter, and prediction uncertainty dimensions. Complements other surveys with focus on calibration techniques applicable to our structured IE setting.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n\n    # === Cluster 3: uncertainty_calibration ===\n    \"kuhn2023semantic\": {\n        \"title\": \"Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation\",\n        \"authors\": [\"Lorenz Kuhn\", \"Yarin Gal\", \"Sebastian Farquhar\"],\n        \"year\": 2023,\n        \"venue\": \"ICLR 2023\",\n        \"url\": \"https://arxiv.org/abs/2302.09664\",\n        \"doi\": \"\",\n        \"bibtex_key\": \"kuhn2023semantic\",\n        \"category\": \"uncertainty_calibration\",\n        \"role\": \"foundation\",\n        \"relevance\": \"Introduces semantic entropy for NLG uncertainty estimation by clustering semantically equivalent outputs. Foundation for our structured consistency metric that operates at the semantic level of IE triples.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n    \"kadavath2022language\": {\n        \"title\": \"Language Models (Mostly) Know What They Know\",\n        \"authors\": [\"Saurav Kadavath\", \"Tom Conerly\", \"Amanda Askell\", \"Tom Henighan\", \"Dawn Drain\", \"Ethan Perez\", \"Nicholas Schiefer\", \"Zac Hatfield-Dodds\", \"Nova DasSarma\", \"Eli Tran-Johnson\", \"Scott Johnston\", \"Sheer El-Showk\", \"Andy Jones\", \"Nelson Elhage\", \"Tristan Hume\", \"Anna Chen\", \"Yuntao Bai\", \"Sam Bowman\", \"Stanislav Fort\", \"Deep Ganguli\", \"Danny Hernandez\", \"Josh Jacobson\", \"Jackson Kernion\", \"Shauna Kravec\", \"Liane Lovitt\", \"Kamal Ndousse\", \"Catherine Olsson\", \"Sam Ringer\", \"Dario Amodei\", \"Tom Brown\", \"Jack Clark\", \"Nicholas Joseph\", \"Ben Mann\", \"Sam McCandlish\", \"Chris Olah\", \"Jared Kaplan\"],\n        \"year\": 2022,\n        \"venue\": \"arXiv preprint\",\n        \"url\": \"https://arxiv.org/abs/2207.05221\",\n        \"doi\": \"\",\n        \"bibtex_key\": \"kadavath2022language\",\n        \"category\": \"uncertainty_calibration\",\n        \"role\": \"foundation\",\n        \"relevance\": \"Demonstrates LLMs can self-evaluate correctness via P(True) probing. Foundation for using model self-knowledge as a confidence signal, which we extend to structured IE output quality estimation.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n    \"guo2017calibration\": {\n        \"title\": \"On Calibration of Modern Neural Networks\",\n        \"authors\": [\"Chuan Guo\", \"Geoff Pleiss\", \"Yu Sun\", \"Kilian Q. Weinberger\"],\n        \"year\": 2017,\n        \"venue\": \"ICML 2017\",\n        \"url\": \"https://arxiv.org/abs/1706.04599\",\n        \"doi\": \"\",\n        \"bibtex_key\": \"guo2017calibration\",\n        \"category\": \"uncertainty_calibration\",\n        \"role\": \"foundation\",\n        \"relevance\": \"Seminal work showing modern neural networks are miscalibrated and proposing temperature scaling. Foundational reference for all calibration work including our LLM confidence calibration for IE.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n    \"desai2020calibration\": {\n        \"title\": \"Calibration of Pre-trained Transformers\",\n        \"authors\": [\"Shrey Desai\", \"Greg Durrett\"],\n        \"year\": 2020,\n        \"venue\": \"EMNLP 2020\",\n        \"url\": \"https://arxiv.org/abs/2003.07892\",\n        \"doi\": \"10.18653/v1/2020.emnlp-main.21\",\n        \"bibtex_key\": \"desai2020calibration\",\n        \"category\": \"uncertainty_calibration\",\n        \"role\": \"foundation\",\n        \"relevance\": \"Shows pre-trained transformers (BERT, RoBERTa) are well-calibrated in-domain but degrade OOD. Bridges classical calibration to the transformer era, motivating our LLM-specific calibration analysis.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n    \"kossen2024semantic\": {\n        \"title\": \"Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs\",\n        \"authors\": [\"Jannik Kossen\", \"Jiatong Han\", \"Muhammed Razzak\", \"Lisa Schut\", \"Shreshth Malik\", \"Yarin Gal\"],\n        \"year\": 2024,\n        \"venue\": \"arXiv preprint\",\n        \"url\": \"https://arxiv.org/abs/2406.15927\",\n        \"doi\": \"\",\n        \"bibtex_key\": \"kossen2024semantic\",\n        \"category\": \"uncertainty_calibration\",\n        \"role\": \"background\",\n        \"relevance\": \"Proposes lightweight probes to approximate semantic entropy from hidden states of a single generation, reducing cost to near-zero. Relevant to our goal of efficient uncertainty estimation for structured IE.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n    \"xiong2024verbalized\": {\n        \"title\": \"Can LLMs Express Their Uncertainty? An Empirical Evaluation of Confidence Elicitation in LLMs\",\n        \"authors\": [\"Miao Xiong\", \"Zhiyuan Hu\", \"Xinyang Lu\", \"Yifei Li\", \"Jie Fu\", \"Junxian He\", \"Bryan Hooi\"],\n        \"year\": 2024,\n        \"venue\": \"ICLR 2024\",\n        \"url\": \"https://arxiv.org/abs/2306.13063\",\n        \"doi\": \"\",\n        \"bibtex_key\": \"xiong2024verbalized\",\n        \"category\": \"uncertainty_calibration\",\n        \"role\": \"background\",\n        \"relevance\": \"Systematic evaluation of verbalized confidence elicitation via prompting, sampling, and aggregation. Directly relevant to our use of LLM-expressed confidence as a signal for structured IE quality.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n}\n\n# Add new papers\nfor key, paper in new_papers.items():\n    if key in data['papers']:\n        print(f\"SKIP (exists): {key}\")\n    else:\n        data['papers'][key] = paper\n        print(f\"ADDED: {key}\")\n\n# Update meta\ndata['meta']['total_papers'] = len(data['papers'])\ndata['meta']['last_updated'] = now\n\n# Custom representer to handle multiline strings and booleans\nclass CustomDumper(yaml.SafeDumper):\n    pass\n\ndef str_representer(dumper, data):\n    if '\\n' in data:\n        return dumper.represent_scalar('tag:yaml.org,2002:str', data, style='|')\n    if len(data) > 80:\n        return dumper.represent_scalar('tag:yaml.org,2002:str', data, style=\"'\")\n    return dumper.represent_scalar('tag:yaml.org,2002:str', data)\n\nCustomDumper.add_representer(str, str_representer)\n\nwith open(yaml_path, 'w') as f:\n    yaml.dump(data, f, Dumper=CustomDumper, default_flow_style=False, allow_unicode=True, sort_keys=False, width=120)\n\nprint(f\"\\nTotal papers: {data['meta']['total_papers']}\")\nPYEOF\npython3 /tmp/update_litmap.py",
+  "description": "Add 13 papers to literature_map.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat << 'PYEOF' > /tmp/update_litmap.py\nimport yaml\nfrom datetime import datetime, timezone\n\nyaml_path = \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/literature_map.yaml\"\n\nwith open(yaml_path, 'r') as f:\n    data = yaml.safe_load(f)\n\nnow = datetime.now(timezone.utc).strftime(\"%Y-%m-%dT%H:%M:%S.000Z\")\n\nnew_papers = {\n    # === Cluster 1: consistency_structured_ie ===\n    \"nedellec2026consistency\": {\n        \"title\": \"Consistency-accuracy correlation in hard-prompted LLMs for entity and relation extraction: empirical findings from plant-health data\",\n        \"authors\": [\"Claire Nédellec\", \"Jingbo Xia\"],\n        \"year\": 2026,\n        \"venue\": \"Genomics & Informatics\",\n        \"url\": \"https://pmc.ncbi.nlm.nih.gov/articles/PMC12888769/\",\n        \"doi\": \"10.1186/s44342-025-00063-2\",\n        \"bibtex_key\": \"nedellec2026consistency\",\n        \"category\": \"consistency_structured_ie\",\n        \"role\": \"direct-competitor\",\n        \"relevance\": \"Most direct competitor: systematically measures consistency-accuracy correlation for LLM-based entity and relation extraction on plant-health data, validating consistency as a reliability signal for structured IE.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n    \"vashurin2025cocoa\": {\n        \"title\": \"Uncertainty Quantification for LLMs through Minimum Bayes Risk: Bridging Confidence and Consistency\",\n        \"authors\": [\"Roman Vashurin\", \"Maiya Goloburda\", \"Albina Ilina\", \"Aleksandr Rubashevskii\", \"Preslav Nakov\", \"Artem Shelmanov\", \"Maxim Panov\"],\n        \"year\": 2025,\n        \"venue\": \"NeurIPS 2025\",\n        \"url\": \"https://arxiv.org/abs/2502.04964\",\n        \"doi\": \"\",\n        \"bibtex_key\": \"vashurin2025cocoa\",\n        \"category\": \"consistency_structured_ie\",\n        \"role\": \"background\",\n        \"relevance\": \"CoCoA framework unifies token-level confidence and sample-level consistency via MBR for uncertainty quantification. Provides theoretical grounding for our dual-signal approach in structured IE.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n    \"hobelsberger2025systematic\": {\n        \"title\": \"Systematic Evaluation of Uncertainty Estimation Methods in Large Language Models\",\n        \"authors\": [\"Christian Hobelsberger\", \"Theresa Winner\", \"Andreas Nawroth\", \"Oliver Mitevski\", \"Anna-Carolina Haensch\"],\n        \"year\": 2025,\n        \"venue\": \"arXiv preprint\",\n        \"url\": \"https://arxiv.org/abs/2510.20460\",\n        \"doi\": \"\",\n        \"bibtex_key\": \"hobelsberger2025systematic\",\n        \"category\": \"consistency_structured_ie\",\n        \"role\": \"background\",\n        \"relevance\": \"Systematic comparison of VCE, MSP, self-consistency, and CoCoA for LLM uncertainty estimation. Shows hybrid CoCoA yields best calibration, supporting our multi-signal aggregation design.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n\n    # === Cluster 2: confidence_surveys ===\n    \"geng2024confidence\": {\n        \"title\": \"A Survey of Confidence Estimation and Calibration in Large Language Models\",\n        \"authors\": [\"Jiahui Geng\", \"Fengyu Cai\", \"Yuxia Wang\", \"Heinz Koeppl\", \"Preslav Nakov\", \"Iryna Gurevych\"],\n        \"year\": 2024,\n        \"venue\": \"NAACL 2024\",\n        \"url\": \"https://arxiv.org/abs/2311.08298\",\n        \"doi\": \"10.18653/v1/2024.naacl-long.366\",\n        \"bibtex_key\": \"geng2024confidence\",\n        \"category\": \"confidence_surveys\",\n        \"role\": \"survey\",\n        \"relevance\": \"Comprehensive survey of LLM confidence estimation and calibration techniques. Provides taxonomic context for positioning our consistency-based confidence approach within the broader landscape.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n    \"wen2025know\": {\n        \"title\": \"Know Your Limits: A Survey of Abstention in Large Language Models\",\n        \"authors\": [\"Bingbing Wen\", \"Jihan Yao\", \"Shangbin Feng\", \"Chenjun Xu\", \"Yulia Tsvetkov\", \"Bill Howe\", \"Lucy Lu Wang\"],\n        \"year\": 2025,\n        \"venue\": \"TACL 2025\",\n        \"url\": \"https://arxiv.org/abs/2407.18418\",\n        \"doi\": \"10.1162/tacl_a_00754\",\n        \"bibtex_key\": \"wen2025know\",\n        \"category\": \"confidence_surveys\",\n        \"role\": \"survey\",\n        \"relevance\": \"Survey on LLM abstention from query, model, and human-values perspectives. Our consistency-based filtering can be viewed as a structured-IE-specific abstention mechanism.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n    \"xia2025survey\": {\n        \"title\": \"A Survey of Uncertainty Estimation Methods on Large Language Models\",\n        \"authors\": [\"Zhiqiu Xia\", \"Jinxuan Xu\", \"Yuqian Zhang\", \"Hang Liu\"],\n        \"year\": 2025,\n        \"venue\": \"ACL Findings 2025\",\n        \"url\": \"https://aclanthology.org/2025.findings-acl.1101/\",\n        \"doi\": \"\",\n        \"bibtex_key\": \"xia2025survey\",\n        \"category\": \"confidence_surveys\",\n        \"role\": \"survey\",\n        \"relevance\": \"Most comprehensive LLM uncertainty estimation survey with novel taxonomy (verbalizing, latent, consistency-based, semantic clustering). Directly contextualizes our method within the consistency-based branch.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n    \"liu2025uqcalibration\": {\n        \"title\": \"Uncertainty Quantification and Confidence Calibration in Large Language Models: A Survey\",\n        \"authors\": [\"Xiaoou Liu\", \"Tiejin Chen\", \"Longchao Da\", \"Chacha Chen\", \"Zhen Lin\", \"Hua Wei\"],\n        \"year\": 2025,\n        \"venue\": \"KDD 2025\",\n        \"url\": \"https://arxiv.org/abs/2503.15850\",\n        \"doi\": \"10.1145/3711896.3736569\",\n        \"bibtex_key\": \"liu2025uqcalibration\",\n        \"category\": \"confidence_surveys\",\n        \"role\": \"survey\",\n        \"relevance\": \"Survey analyzing UQ through input, reasoning, parameter, and prediction uncertainty dimensions. Complements other surveys with focus on calibration techniques applicable to our structured IE setting.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n\n    # === Cluster 3: uncertainty_calibration ===\n    \"kuhn2023semantic\": {\n        \"title\": \"Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation\",\n        \"authors\": [\"Lorenz Kuhn\", \"Yarin Gal\", \"Sebastian Farquhar\"],\n        \"year\": 2023,\n        \"venue\": \"ICLR 2023\",\n        \"url\": \"https://arxiv.org/abs/2302.09664\",\n        \"doi\": \"\",\n        \"bibtex_key\": \"kuhn2023semantic\",\n        \"category\": \"uncertainty_calibration\",\n        \"role\": \"foundation\",\n        \"relevance\": \"Introduces semantic entropy for NLG uncertainty estimation by clustering semantically equivalent outputs. Foundation for our structured consistency metric that operates at the semantic level of IE triples.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n    \"kadavath2022language\": {\n        \"title\": \"Language Models (Mostly) Know What They Know\",\n        \"authors\": [\"Saurav Kadavath\", \"Tom Conerly\", \"Amanda Askell\", \"Tom Henighan\", \"Dawn Drain\", \"Ethan Perez\", \"Nicholas Schiefer\", \"Zac Hatfield-Dodds\", \"Nova DasSarma\", \"Eli Tran-Johnson\", \"Scott Johnston\", \"Sheer El-Showk\", \"Andy Jones\", \"Nelson Elhage\", \"Tristan Hume\", \"Anna Chen\", \"Yuntao Bai\", \"Sam Bowman\", \"Stanislav Fort\", \"Deep Ganguli\", \"Danny Hernandez\", \"Josh Jacobson\", \"Jackson Kernion\", \"Shauna Kravec\", \"Liane Lovitt\", \"Kamal Ndousse\", \"Catherine Olsson\", \"Sam Ringer\", \"Dario Amodei\", \"Tom Brown\", \"Jack Clark\", \"Nicholas Joseph\", \"Ben Mann\", \"Sam McCandlish\", \"Chris Olah\", \"Jared Kaplan\"],\n        \"year\": 2022,\n        \"venue\": \"arXiv preprint\",\n        \"url\": \"https://arxiv.org/abs/2207.05221\",\n        \"doi\": \"\",\n        \"bibtex_key\": \"kadavath2022language\",\n        \"category\": \"uncertainty_calibration\",\n        \"role\": \"foundation\",\n        \"relevance\": \"Demonstrates LLMs can self-evaluate correctness via P(True) probing. Foundation for using model self-knowledge as a confidence signal, which we extend to structured IE output quality estimation.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n    \"guo2017calibration\": {\n        \"title\": \"On Calibration of Modern Neural Networks\",\n        \"authors\": [\"Chuan Guo\", \"Geoff Pleiss\", \"Yu Sun\", \"Kilian Q. Weinberger\"],\n        \"year\": 2017,\n        \"venue\": \"ICML 2017\",\n        \"url\": \"https://arxiv.org/abs/1706.04599\",\n        \"doi\": \"\",\n        \"bibtex_key\": \"guo2017calibration\",\n        \"category\": \"uncertainty_calibration\",\n        \"role\": \"foundation\",\n        \"relevance\": \"Seminal work showing modern neural networks are miscalibrated and proposing temperature scaling. Foundational reference for all calibration work including our LLM confidence calibration for IE.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n    \"desai2020calibration\": {\n        \"title\": \"Calibration of Pre-trained Transformers\",\n        \"authors\": [\"Shrey Desai\", \"Greg Durrett\"],\n        \"year\": 2020,\n        \"venue\": \"EMNLP 2020\",\n        \"url\": \"https://arxiv.org/abs/2003.07892\",\n        \"doi\": \"10.18653/v1/2020.emnlp-main.21\",\n        \"bibtex_key\": \"desai2020calibration\",\n        \"category\": \"uncertainty_calibration\",\n        \"role\": \"foundation\",\n        \"relevance\": \"Shows pre-trained transformers (BERT, RoBERTa) are well-calibrated in-domain but degrade OOD. Bridges classical calibration to the transformer era, motivating our LLM-specific calibration analysis.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n    \"kossen2024semantic\": {\n        \"title\": \"Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs\",\n        \"authors\": [\"Jannik Kossen\", \"Jiatong Han\", \"Muhammed Razzak\", \"Lisa Schut\", \"Shreshth Malik\", \"Yarin Gal\"],\n        \"year\": 2024,\n        \"venue\": \"arXiv preprint\",\n        \"url\": \"https://arxiv.org/abs/2406.15927\",\n        \"doi\": \"\",\n        \"bibtex_key\": \"kossen2024semantic\",\n        \"category\": \"uncertainty_calibration\",\n        \"role\": \"background\",\n        \"relevance\": \"Proposes lightweight probes to approximate semantic entropy from hidden states of a single generation, reducing cost to near-zero. Relevant to our goal of efficient uncertainty estimation for structured IE.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n    \"xiong2024verbalized\": {\n        \"title\": \"Can LLMs Express Their Uncertainty? An Empirical Evaluation of Confidence Elicitation in LLMs\",\n        \"authors\": [\"Miao Xiong\", \"Zhiyuan Hu\", \"Xinyang Lu\", \"Yifei Li\", \"Jie Fu\", \"Junxian He\", \"Bryan Hooi\"],\n        \"year\": 2024,\n        \"venue\": \"ICLR 2024\",\n        \"url\": \"https://arxiv.org/abs/2306.13063\",\n        \"doi\": \"\",\n        \"bibtex_key\": \"xiong2024verbalized\",\n        \"category\": \"uncertainty_calibration\",\n        \"role\": \"background\",\n        \"relevance\": \"Systematic evaluation of verbalized confidence elicitation via prompting, sampling, and aggregation. Directly relevant to our use of LLM-expressed confidence as a signal for structured IE quality.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch1\",\n        \"added_at\": now,\n    },\n}\n\n# Add new papers\nfor key, paper in new_papers.items():\n    if key in data['papers']:\n        print(f\"SKIP (exists): {key}\")\n    else:\n        data['papers'][key] = paper\n        print(f\"ADDED: {key}\")\n\n# Update meta\ndata['meta']['total_papers'] = len(data['papers'])\ndata['meta']['last_updated'] = now\n\n# Custom representer to handle multiline strings and booleans\nclass CustomDumper(yaml.SafeDumper):\n    pass\n\ndef str_representer(dumper, data):\n    if '\\n' in data:\n        return dumper.represent_scalar('tag:yaml.org,2002:str', data, style='|')\n    if len(data) > 80:\n        return dumper.represent_scalar('tag:yaml.org,2002:str', data, style=\"'\")\n    return dumper.represent_scalar('tag:yaml.org,2002:str', data)\n\nCustomDumper.add_representer(str, str_representer)\n\nwith open(yaml_path, 'w') as f:\n    yaml.dump(data, f, Dumper=CustomDumper, default_flow_style=False, allow_unicode=True, sort_keys=False, width=120)\n\nprint(f\"\\nTotal papers: {data['meta']['total_papers']}\")\nPYEOF\npython3 /tmp/update_litmap.py",
+    "description": "Add 13 papers to literature_map.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-14T17:52:31.845643+00:00_
+
+ADDED: nedellec2026consistency
+ADDED: vashurin2025cocoa
+ADDED: hobelsberger2025systematic
+ADDED: geng2024confidence
+ADDED: wen2025know
+ADDED: xia2025survey
+ADDED: liu2025uqcalibration
+ADDED: kuhn2023semantic
+ADDED: kadavath2022language
+ADDED: guo2017calibration
+ADDED: desai2020calibration
+ADDED: kossen2024semantic
+ADDED: xiong2024verbalized
+
+Total papers: 21
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-14T17:52:31.845795+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/literature_map.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/literature_map.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-14T17:52:31.846050+00:00_
+
+1	meta:
+2	  last_updated: '2026-05-14T17:52:10.000Z'
+3	  total_papers: 21
+4	categories: []
+5	papers:
+6	  wang2023selfconsistency:
+7	    title: Self-Consistency Improves Chain of Thought Reasoning in Language Models
+8	    authors:
+9	    - Xuezhi Wang
+10	    - Jason Wei
+11	    - Dale Schuurmans
+12	    - Quoc Le
+13	    - Ed Chi
+14	    - Sharan Narang
+15	    - Aakanksha Chowdhery
+16	    - Denny Zhou
+17	    year: 2023
+18	    venue: ICLR 2023
+19	    url: https://arxiv.org/abs/2203.11171
+20	    doi: ''
+21	    bibtex_key: wang2023selfconsistency
+22	    category: self_consistency_reasoning
+23	    role: foundation
+24	    relevance: 'Foundation paper: introduces self-consistency voting over diverse reasoning paths. We extend this paradigm
+25	      from closed-form answers to structured IE outputs.'
+26	    abstract: ''
+27	    semantic_scholar_id: ''
+28	    verified: true
+29	    added_by: paper-research:cluster1
+30	    added_at: '2026-05-14T15:47:22.188Z'
+31	  taubenfeld2025cisc:
+32	    title: Confidence Improves Self-Consistency in LLMs
+33	    authors:
+34	    - Amir Taubenfeld
+35	    - Tom Sheffer
+36	    - Eran Ofek
+37	    - Amir Feder
+38	    - Ariel Goldstein
+39	    - Zorik Gekhman
+40	    - Gal Yona
+41	    year: 2025
+42	    venue: ACL Findings 2025
+43	    url: https://arxiv.org/abs/2502.06233
+44	    doi: 10.18653/v1/2025.findings-acl.1030
+45	    bibtex_key: taubenfeld2025cisc
+46	    category: self_consistency_reasoning
+47	    role: direct-competitor
+48	    relevance: 'CISC: confidence-weighted majority vote reduces required samples by 40%. Direct competitor — we address the
+49	      same "strong predictor, weak selector" gap but for structured outputs.'
+50	    abstract: ''
+51	    semantic_scholar_id: ''
+52	    verified: true
+53	    added_by: paper-research:cluster1
+54	    added_at: '2026-05-14T15:47:22.188Z'
+55	  kang2025selfcertainty:
+56	    title: Scalable Best-of-N Selection for Large Language Models via Self-Certainty
+57	    authors:
+58	    - Zhewei Kang
+59	    - Xuandong 
+…[truncated 16923 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch1_20260514T174854",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57 · 2026-05-14T17:52:31.846274+00:00_
+
+已完成。13 篇论文全部添加到 `literature_map.yaml`，总数从 8 → 21。
+
+各 cluster 完成情况：
+
+| Cluster | 目标 | 实际添加 | 论文 |
+|---------|------|---------|------|
+| consistency_structured_ie | 3 | 3 | nedellec2026consistency, vashurin2025cocoa, hobelsberger2025systematic |
+| confidence_surveys | 2+2 | 4 | geng2024confidence, wen2025know, xia2025survey, liu2025uqcalibration |
+| uncertainty_calibration | 6 | 6 | kuhn2023semantic, kadavath2022language, guo2017calibration, desai2020calibration, kossen2024semantic, xiong2024verbalized |
+
+两点注意：
+- arXiv 2510.20460 的实际第一作者是 **Hobelsberger** 而非 Vashurin（WebSearch 确认），bibtex_key 已相应调整
+- "Feng et al. TACL 2025" 的实际第一作者是 **Bingbing Wen**（Shangbin Feng 是第三作者），bibtex_key 用 `wen2025know`
+
+全部 13 篇均经 WebSearch 验证，`verified: true`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_paper_research_lit_batch1_20260514T174854"
+}
+```
+
+</details>
+
+---

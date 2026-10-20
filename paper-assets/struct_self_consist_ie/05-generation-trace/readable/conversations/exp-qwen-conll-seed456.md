@@ -1,0 +1,7011 @@
+# exp qwen conll seed456
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 241
+- **Recorded user turns:** 0
+- **Tool calls:** 120
+- **Original source:** `logs/chats/worker_exp_qwen_conll_seed456_20260518T092856.jsonl`
+- **Structured JSON:** [`d2b6faff077f2126d3e0.json`](../../sessions/d2/d2b6faff077f2126d3e0.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+241 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T09:44:40.206464+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T09:44:40.206818+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T09:44:40.206995+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll*/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "a100",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll*/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-18T09:44:40.207123+00:00_
+
+Error executing tool ssh_read_only: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-18T09:44:40.207274+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/code/ -name \"*.py\" -o -name \"*.sh\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "a100",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/code/ -name \"*.py\" -o -name \"*.sh\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T09:44:40.207399+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T09:44:40.207515+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "a100",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T09:44:40.207628+00:00_
+
+Error executing tool ssh_read_only: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T09:44:40.207770+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-18T09:44:40.207885+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-21071",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-21071",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-18T09:44:40.208060+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"adalp_analysis_results.json\\nanalysis_epsilon_sweep\\nanalysis_fk_bootstrap_ci.json\\nanalysis_fk_bootstrap_per_instance.json\\nanalysis_lp_range_cdf.json\\nanalysis_lp_range_cdf_n16_3seed.json\\nanalysis_multiseed_selection_f1.json\\nanalysis_round8\\nanalysis_scierc_n16_3seed_selection_f1.json\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\nanalysis_unified_rho_full.json\\nbootstrap_ci_nscaling\\nbootstrap_ci_summary.json\\nbootstrap_ci_tables.tex\\ncalibration_baseline_results.json\\nconditional_filter_diagnosis.json\\nd108_greedy_f1\\nd108_lp_vc_combination\\nd108_mbr_within_rho\\nd108_q4q5\\nd110_4b_degeneracy\\nd112_disk_cleanup\\nd112_hybrid_strategy\\nd112_mf3_random_single\\nd112_table2_fix\\nd114_auroc_investigation\\ndals_analysis.json\\ndals_hardening_results.json\\ndeberta_verifier\\ndeberta_verifier_5fold\\nexp001_n16_seed123\\nexp001_n16_seed123_200only\\nexp001_n16_seed123_200only_backup\\nexp001_n16_seed123_full\\nexp001_n16_seed123_run.log\\nexp001_n16_seed42\\nexp001_n16_seed42_200only_backup\\nexp001_n16_seed42_run.log\\nexp001_n16_seed456\\nexp001_n16_seed456_200only\\nexp001_n16_seed456_run.log\\nexp001_seed123_t10_full\\nexp001_seed123_t10_full.log\\nexp001_seed456_t10_full\\nexp001_seed456_t10_full.log\\nexp002_conll2003\\nexp003_wnut17_dryrun\\nexp003_wnut17_eval\\nexp003_wnut17_eval.log\\nexp003_wnut17_pilot\\nexp003_wnut17_pilot.log\\nexp004_re_diagnostic\\nexp004v2_re_diagnostic\\nexp007_llama_dryrun\\nexp007_llama_inference\\nexp008_re_n16\\nexp008_re_n16_200only\\nexp008_re_n16_t10_full\\nexp008_re_n16_t10_full.log\\nexp009_stratification_results.json\\nexp010_selection_curves\\nexp016_signal_ensemble\\nexp018_3seed_5signal_results.json\\nexp_001_seed123_v2\\nexp_001_seed123_v2_r1024\\nexp_001_seed42_v2\\nexp_001_seed42_v2_r1024\\nexp_001_seed456_v2\\nexp_001_seed456_v2_ner\\nexp_001_seed456_v2_ner.log\\nexp_001_seed456_v2_ne
+…[truncated 3392 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T09:44:40.208301+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"adalp_analysis_results.json\\nanalysis_epsilon_sweep\\nanalysis_fk_bootstrap_ci.json\\nanalysis_fk_bootstrap_per_instance.json\\nanalysis_lp_range_cdf.json\\nanalysis_lp_range_cdf_n16_3seed.json\\nanalysis_multiseed_selection_f1.json\\nanalysis_round8\\nanalysis_scierc_n16_3seed_selection_f1.json\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\nanalysis_unified_rho_full.json\\nbootstrap_ci_nscaling\\nbootstrap_ci_summary.json\\nbootstrap_ci_tables.tex\\ncalibration_baseline_results.json\\nconditional_filter_diagnosis.json\\nd108_greedy_f1\\nd108_lp_vc_combination\\nd108_mbr_within_rho\\nd108_q4q5\\nd110_4b_degeneracy\\nd112_disk_cleanup\\nd112_hybrid_strategy\\nd112_mf3_random_single\\nd112_table2_fix\\nd114_auroc_investigation\\ndals_analysis.json\\ndals_hardening_results.json\\ndeberta_verifier\\ndeberta_verifier_5fold\\nexp001_n16_seed123\\nexp001_n16_seed123_200only\\nexp001_n16_seed123_200only_backup\\nexp001_n16_seed123_full\\nexp001_n16_seed123_run.log\\nexp001_n16_seed42\\nexp001_n16_seed42_200only_backup\\nexp001_n16_seed42_run.log\\nexp001_n16_seed456\\nexp001_n16_seed456_200only\\nexp001_n16_seed456_run.log\\nexp001_seed123_t10_full\\nexp001_seed123_t10_full.log\\nexp001_seed456_t10_full\\nexp001_seed456_t10_full.log\\nexp002_conll2003\\nexp003_wnut17_dryrun\\nexp003_wnut17_eval\\nexp003_wnut17_eval.log\\nexp003_wnut17_pilot\\nexp003_wnut17_pilot.log\\nexp004_re_diagnostic\\nexp004v2_re_diagnostic\\nexp007_llama_dryrun\\nexp007_llama_inference\\nexp008_re_n16\\nexp008_re_n16_200only\\nexp008_re_n16_t10_full\\nexp008_re_n16_t10_full.log\\nexp009_stratification_results.json\\nexp010_selection_curves\\nexp016_signal_ensemble\\nexp018_3seed_5signal_results.json\\nexp_001_seed123_v2\\nexp_001_seed123_v2_r1024\\nexp_001_seed42_v2\\nexp_001_seed42_v2_r1024\\nexp_001_seed456_v2\\nexp_001_seed456_v2_ner\\nexp_001_seed456_v2_ner.log\\nexp_001_seed456_v2_ne
+…[truncated 3392 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T09:44:40.208477+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T09:44:40.208613+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp002_5signal_report.json\\nreport.json\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T09:44:40.208800+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T09:44:40.208939+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"report.json\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T09:44:40.209073+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T09:44:40.209258+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"report.json\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T09:44:40.209388+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/code/ -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/code/ -name \"*.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T09:44:40.209595+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/data_utils.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_to_llamafactory.py\\n/root/autodl-tmp/struct_self_consist_ie/code/evaluation.py\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py\\n/root/autodl-tmp/struct_self_consist_ie/code/sampling.py\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_eval.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_diagnose.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_realign_eval.py\\n/root/autodl-tmp/struct_self_consist_ie/code/mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_wnut17.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/extract_logprobs.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exact_match_voting.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_postprocess.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py\\n/root/autodl-tmp/struct_self_consist_ie/code/diagnose_logprob_rho.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp002_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/run_mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp015_unified.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp004_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_component_wise_re.py\\n/root/a
+…[truncated 6423 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T09:44:40.209823+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T09:44:40.210032+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"conll2003\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 3453,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.9073813708260106,\\n  \\\"oracle_f1\\\": 0.9468066491688538,\\n  \\\"oracle_headroom\\\": 0.03942527834284326,\\n  \\\"fleiss_kappa_mean\\\": 0.7284840293576018,\\n  \\\"soft_jaccard_mean\\\": 0.8777172389361848,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.3998050918732712,\\n    \\\"p_value\\\": 2.6472486805154954e-106,\\n    \\\"n\\\": 2756\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.4356610503717829,\\n    \\\"p_value\\\": 4.712009758299203e-128,\\n    \\\"n\\\": 2756\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.40643364398993165,\\n    \\\"p_value\\\": 5.525463222198252e-107,\\n    \\\"n\\\": 2676\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.4510755391952453,\\n    \\\"p_value\\\": 2.7626102631204855e-134,\\n    \\\"n\\\": 2676\\n  },\\n  \\\"n_gold_empty_filtered\\\": 697,\\n  \\\"n_all_samples_f1_zero_filtered\\\": 80,\\n  \\\"structural_beats_surface\\\": true,\\n  \\\"rho_advantage\\\": 0.0358559584985117,\\n  \\\"sample_f1_mean\\\": 0.8665338062650665,\\n  \\\"sample_f1_std\\\": 0.28834706156077533,\\n  \\\"sample_f1_pct_zero\\\": 7.6333454281567485,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.3156601023930858,\\n      \\\"p_rho\\\": 8.156803289565863e-65,\\n      \\\"tau\\\": 0.2469486155456406,\\n      \\\"p_tau\\\": 7.086613317321255e-61,\\n      \\\"auroc\\\": 0.5,\\n      \\\"n\\\": 2756\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.35617833423357953,\\n      \\\"p_rho\\\": 7.289470034318509e-81,\\n      \\\"tau\\\": 0.2803953535836351,\\n      \\\"p_tau\\\": 3.8049607562442955e-75,\\n      \\\"auroc
+…[truncated 322 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T09:44:40.210229+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -5 /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -5 /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T09:44:40.210625+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"conll2003_test_00000\\\", \\\"text\\\": \\\"SOCCER - JAPAN GET LUCKY WIN , CHINA IN SURPRISE DEFEAT .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"PER\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [{\\\"head\\\": \\\"JAPAN\\\", \\\"tail\\\": \\\"CHINA\\\", \\\"type\\\": \\\"DEFEAT\\\", \\\"head_start\\\": 9, \\\"head_end\\\": 14, \\\"tail_start\\\": 31, \\\"tail_end\\\": 36}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -8.094252856627776, \\\"n_tokens\\\": 120, \\\"mean_logprob\\\": -0.0674521071385648}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -4.469490054730798, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.06670880678702684}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -12.203311816377365, \\\"n_tokens\\\": 67, \\\"mean_logprob\\\": -0.18213898233399053}, {\\\"entities\\\": [{\\\"text\\\": \\\"JAPAN\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 9, \\\"end\\\": 14}, {\\\"text\\\": \\\"CHINA\\\", \\\"type\\\": \\\"LOC\\\", \\\"start\\\": 31, \\\"end\\\": 36}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cum
+…[truncated 9279 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T09:44:40.210797+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"adapter_config.json\" -path \"*conll*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"adapter_config.json\" -path \"*conll*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T09:44:40.210940+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora/checkpoint-200/adapter_config.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora/checkpoint-400/adapter_config.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora/checkpoint-3600/adapter_config.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora/checkpoint-3800/adapter_config.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora/checkpoint-4000/adapter_config.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora/checkpoint-4200/adapter_config.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora/checkpoint-4390/adapter_config.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora/adapter_config.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/checkpoint-3600/adapter_config.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/checkpoint-3800/adapter_config.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/checkpoint-4000/adapter_config.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/checkpoint-4200/adapter_config.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/checkpoint-4390/adapter_config.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora/adapter_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T09:44:40.211076+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -100 /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -100 /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T09:44:40.211297+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Multi-sample inference module for structured IE with vLLM + XGrammar constrained decoding.\\n\\nProvides VLLMSampler for batch sampling, prompt construction for UIE tasks,\\nand a full pipeline that produces SampledInstance dicts.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport json\\nimport os\\nfrom typing import Any\\n\\n\\n# ---------------------------------------------------------------------------\\n# UIE JSON schema for XGrammar constrained decoding\\n# ---------------------------------------------------------------------------\\n\\nUIE_JSON_SCHEMA: dict[str, Any] = {\\n    \\\"type\\\": \\\"object\\\",\\n    \\\"properties\\\": {\\n        \\\"entities\\\": {\\n            \\\"type\\\": \\\"array\\\",\\n            \\\"items\\\": {\\n                \\\"type\\\": \\\"object\\\",\\n                \\\"properties\\\": {\\n                    \\\"text\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"type\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"end\\\": {\\\"type\\\": \\\"integer\\\"},\\n                },\\n                \\\"required\\\": [\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"],\\n            },\\n        },\\n        \\\"relations\\\": {\\n            \\\"type\\\": \\\"array\\\",\\n            \\\"items\\\": {\\n                \\\"type\\\": \\\"object\\\",\\n                \\\"properties\\\": {\\n                    \\\"head\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"tail\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"type\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"head_start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"head_end\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"tail_start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"tail_end\\
+…[truncated 2693 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-18T09:44:40.211468+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/exp002_5signal_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/exp002_5signal_report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-18T09:44:40.211599+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/code/ -name \"*.sh\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/code/ -name \"*.sh\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-18T09:44:40.211798+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"conll2003\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_total\\\": 3453,\\n  \\\"n_valid\\\": 2756,\\n  \\\"n_conditional\\\": 2676,\\n  \\\"median_f1_full\\\": 1.0,\\n  \\\"median_f1_cond\\\": 1.0,\\n  \\\"signals\\\": {\\n    \\\"soft_jaccard\\\": {\\n      \\\"full\\\": {\\n        \\\"rho\\\": 0.4356610503717829,\\n        \\\"p_rho\\\": 4.712009758299203e-128,\\n        \\\"tau\\\": 0.3850786940766064,\\n        \\\"p_tau\\\": 3.8877862209313776e-120,\\n        \\\"auroc\\\": 0.8007622233076959,\\n        \\\"n\\\": 2756\\n      },\\n      \\\"cond\\\": {\\n        \\\"rho\\\": 0.4510755391952453,\\n        \\\"p_rho\\\": 2.7626102631204855e-134,\\n        \\\"tau\\\": 0.40005933005846683,\\n        \\\"p_tau\\\": 1.5183288191844627e-124,\\n        \\\"auroc\\\": 0.8261997893370971,\\n        \\\"n\\\": 2676\\n      }\\n    },\\n    \\\"fleiss_kappa\\\": {\\n      \\\"full\\\": {\\n        \\\"rho\\\": 0.3998050918732712,\\n        \\\"p_rho\\\": 2.6472486805154954e-106,\\n        \\\"tau\\\": 0.3567903450635563,\\n        \\\"p_tau\\\": 2.1586667510232012e-103,\\n        \\\"auroc\\\": 0.7741354615976885,\\n        \\\"n\\\": 2756\\n      },\\n      \\\"cond\\\": {\\n        \\\"rho\\\": 0.40643364398993165,\\n        \\\"p_rho\\\": 5.525463222198252e-107,\\n        \\\"tau\\\": 0.3625044988544651,\\n        \\\"p_tau\\\": 1.379729294317572e-102,\\n        \\\"auroc\\\": 0.7929192506766966,\\n        \\\"n\\\": 2676\\n      }\\n    },\\n    \\\"mean_logprob\\\": {\\n      \\\"full\\\": {\\n        \\\"rho\\\": 0.3156601023930858,\\n        \\\"p_rho\\\": 8.156803289565863e-65,\\n        \\\"tau\\\": 0.2469486155456406,\\n        \\\"p_tau\\\": 7.086613317321255e-61,\\n        \\\"auroc\\\": 0.7532331937855711,\\n        \\\"n\\\": 2756\\n      },\\n      \\\"cond\\\": {\\n        \\\"rho\\\": 0.35617833423357953,\\n        \\\"p_rho\\\": 7.289470034318509e-81,\\n        \\\"t
+…[truncated 2956 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T09:44:40.211956+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-18T09:44:40.212077+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -200 /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -200 /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-18T09:44:40.212326+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Multi-sample inference module for structured IE with vLLM + XGrammar constrained decoding.\\n\\nProvides VLLMSampler for batch sampling, prompt construction for UIE tasks,\\nand a full pipeline that produces SampledInstance dicts.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport json\\nimport os\\nfrom typing import Any\\n\\n\\n# ---------------------------------------------------------------------------\\n# UIE JSON schema for XGrammar constrained decoding\\n# ---------------------------------------------------------------------------\\n\\nUIE_JSON_SCHEMA: dict[str, Any] = {\\n    \\\"type\\\": \\\"object\\\",\\n    \\\"properties\\\": {\\n        \\\"entities\\\": {\\n            \\\"type\\\": \\\"array\\\",\\n            \\\"items\\\": {\\n                \\\"type\\\": \\\"object\\\",\\n                \\\"properties\\\": {\\n                    \\\"text\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"type\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"end\\\": {\\\"type\\\": \\\"integer\\\"},\\n                },\\n                \\\"required\\\": [\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"],\\n            },\\n        },\\n        \\\"relations\\\": {\\n            \\\"type\\\": \\\"array\\\",\\n            \\\"items\\\": {\\n                \\\"type\\\": \\\"object\\\",\\n                \\\"properties\\\": {\\n                    \\\"head\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"tail\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"type\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"head_start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"head_end\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"tail_start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"tail_end\\
+…[truncated 6736 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-18T09:44:40.212499+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -300 /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -300 /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-18T09:44:40.212777+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"MVP pilot experiment script for structured self-consistency IE.\\n\\nIntegrates data loading, vLLM sampling, consistency scoring, and evaluation\\ninto a single CLI-driven pipeline. Outputs a verdict (PASS/MARGINAL/FAIL)\\nbased on the correlation between structural consistency and per-instance F1.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport sys\\n\\nimport numpy as np\\n\\nfrom data_utils import load_scierc, load_ace05, load_conll2003, load_wnut17, load_fewnerd\\nfrom sampling import (\\n    VLLMSampler,\\n    run_sampling_pipeline,\\n    save_sampled_results,\\n    load_sampled_results,\\n    realign_spans,\\n    SCIERC_SCHEMA_HINT,\\n    CONLL2003_SCHEMA_HINT,\\n    WNUT17_SCHEMA_HINT,\\n    FEWNERD_SCHEMA_HINT,\\n)\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import (\\n    per_instance_f1,\\n    compute_ner_f1,\\n    compute_re_f1,\\n    compute_eae_f1,\\n    spearman_correlation,\\n    kendall_correlation,\\n    compute_auroc,\\n    compute_sample_f1_distribution,\\n)\\n\\n\\ndef parse_args() -> argparse.Namespace:\\n    \\\"\\\"\\\"Parse command-line arguments.\\\"\\\"\\\"\\n    p = argparse.ArgumentParser(description=\\\"MVP pilot for structured self-consistency IE\\\")\\n    p.add_argument(\\\"--model_path\\\", type=str, required=True, help=\\\"Path to the fine-tuned model\\\")\\n    p.add_argument(\\\"--data_dir\\\", type=str, required=True, help=\\\"Dataset directory (SciERC or ACE05)\\\")\\n    p.add_argument(\\\"--dataset\\\", type=str, default=\\\"scierc\\\", choices=[\\\"scierc\\\", \\\"ace05\\\", \\\"conll2003\\\", \\\"wnut17\\\", \\\"fewnerd\\\"],\\n                   help=\\\"Dataset name (default: scierc)\\\")\\n    p.add_argument(\\\"--subtask\\\", type=str, default=\\\"ner\\\", choices=[\\\"ner\\\", \\\"re\\\", \\\"eae\\\", \\\"joint\\\"],\\n                   help=\\
+…[truncated 7252 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-18T09:44:40.212936+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-18T09:44:40.213073+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -200 /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -200 /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-18T09:44:40.213218+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"691 /root/autodl-tmp/struct_self_consist_ie/code/sampling.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-18T09:44:40.213426+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def realign_spans(extraction: dict, source_text: str) -> dict:\\n    \\\"\\\"\\\"Post-process extraction output to fix hallucinated character offsets.\\n\\n    For each entity/relation argument, search for the predicted text in the\\n    source text and replace start/end with the actual character positions.\\n    When multiple matches exist, pick the one closest to the model-predicted offset.\\n\\n    Args:\\n        extraction: Parsed Extraction dict with entities/relations/events.\\n        source_text: The original input text.\\n\\n    Returns:\\n        New Extraction dict with corrected offsets.\\n    \\\"\\\"\\\"\\n    import copy\\n    result = copy.deepcopy(extraction)\\n\\n    for ent in result.get(\\\"entities\\\", []):\\n        span = _find_closest_span(ent[\\\"text\\\"], source_text, ent[\\\"start\\\"])\\n        if span is not None:\\n            ent[\\\"start\\\"], ent[\\\"end\\\"] = span\\n\\n    for rel in result.get(\\\"relations\\\", []):\\n        head_span = _find_closest_span(rel[\\\"head\\\"], source_text, rel[\\\"head_start\\\"])\\n        if head_span is not None:\\n            rel[\\\"head_start\\\"], rel[\\\"head_end\\\"] = head_span\\n        tail_span = _find_closest_span(rel[\\\"tail\\\"], source_text, rel[\\\"tail_start\\\"])\\n        if tail_span is not None:\\n            rel[\\\"tail_start\\\"], rel[\\\"tail_end\\\"] = tail_span\\n\\n    for event in result.get(\\\"events\\\", []):\\n        trigger = event.get(\\\"trigger\\\")\\n        if trigger:\\n            span = _find_closest_span(trigger[\\\"text\\\"], source_text, trigger[\\\"start\\\"])\\n            if span is not None:\\n                trigger[\\\"start\\\"], trigger[\\\"end\\\"] = span\\n        for arg in event.get(\\\"arguments\\\", []):\\n            span = _find_closest_span(arg[\\\"text\\\"], source_text, arg[\\\"start\\\"])\\n            if span is not None:\\n                arg[\\\"start\\\"], arg[\\\"en
+…[truncated 6063 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-18T09:44:40.213613+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora/checkpoint-400/adapter_config.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora/checkpoint-400/adapter_config.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-18T09:44:40.213773+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"alpha_pattern\\\": {},\\n  \\\"auto_mapping\\\": null,\\n  \\\"base_model_name_or_path\\\": \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\",\\n  \\\"bias\\\": \\\"none\\\",\\n  \\\"corda_config\\\": null,\\n  \\\"eva_config\\\": null,\\n  \\\"exclude_modules\\\": null,\\n  \\\"fan_in_fan_out\\\": false,\\n  \\\"inference_mode\\\": true,\\n  \\\"init_lora_weights\\\": true,\\n  \\\"layer_replication\\\": null,\\n  \\\"layers_pattern\\\": null,\\n  \\\"layers_to_transform\\\": null,\\n  \\\"loftq_config\\\": {},\\n  \\\"lora_alpha\\\": 64,\\n  \\\"lora_bias\\\": false,\\n  \\\"lora_dropout\\\": 0.0,\\n  \\\"megatron_config\\\": null,\\n  \\\"megatron_core\\\": \\\"megatron.core\\\",\\n  \\\"modules_to_save\\\": null,\\n  \\\"peft_type\\\": \\\"LORA\\\",\\n  \\\"qalora_group_size\\\": 16,\\n  \\\"r\\\": 32,\\n  \\\"rank_pattern\\\": {},\\n  \\\"revision\\\": null,\\n  \\\"target_modules\\\": [\\n    \\\"down_proj\\\",\\n    \\\"q_proj\\\",\\n    \\\"k_proj\\\",\\n    \\\"up_proj\\\",\\n    \\\"v_proj\\\",\\n    \\\"gate_proj\\\",\\n    \\\"o_proj\\\"\\n  ],\\n  \\\"target_parameters\\\": null,\\n  \\\"task_type\\\": \\\"CAUSAL_LM\\\",\\n  \\\"trainable_token_indices\\\": null,\\n  \\\"use_dora\\\": false,\\n  \\\"use_qalora\\\": false,\\n  \\\"use_rslora\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-18T09:44:40.213912+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/data -type d -name \"*conll*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/data -type d -name \"*conll*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-18T09:44:40.214038+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/data/conll2003\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-18T09:44:40.214171+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-18T09:44:40.214298+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3453 /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-18T09:44:40.214413+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -r \"CONLL2003_SCHEMA_HINT\" /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -r \"CONLL2003_SCHEMA_HINT\" /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-18T09:44:40.214530+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"CONLL2003_SCHEMA_HINT = (\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-18T09:44:40.214659+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"merged\" -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"merged\" -type d",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-18T09:44:40.214775+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-18T09:44:40.214887+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora/ -maxdepth 1 -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora/ -maxdepth 1 -type d",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-18T09:44:40.215010+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora/\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora/checkpoint-200\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora/checkpoint-400\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-18T09:44:40.215138+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-18T09:44:40.215263+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"checkpoint-200\\ncheckpoint-400\\ntrainer_log.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-18T09:44:40.215393+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-18T09:44:40.215510+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-18T09:44:40.215623+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -30 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -30 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-18T09:44:40.215775+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 3453 test instances from conll2003\\nINFO 05-15 02:12:32 [utils.py:233] non-default args: {'max_model_len': 4096, 'disable_log_stats': True, 'model': 'checkpoints/qwen3-8b-conll2003-merged'}\\nINFO 05-15 02:12:32 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\nINFO 05-15 02:12:32 [model.py:1582] Using max model len 4096\\nINFO 05-15 02:12:32 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=8192.\\nINFO 05-15 02:12:32 [vllm.py:775] Asynchronous scheduling is enabled.\\n(EngineCore pid=101436) INFO 05-15 02:12:33 [core.py:103] Initializing a V1 LLM engine (v0.18.1) with config: model='checkpoints/qwen3-8b-conll2003-merged', speculative_config=None, tokenizer='checkpoints/qwen3-8b-conll2003-merged', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=checkpoints/qwen3-8b-conll2003-merged, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode
+…[truncated 5057 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-18T09:44:40.215939+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-18T09:44:40.216063+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-18T09:44:40.216197+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"CONLL2003_SCHEMA_HINT\" /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"CONLL2003_SCHEMA_HINT\" /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-18T09:44:40.216319+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"290:CONLL2003_SCHEMA_HINT = (\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-18T09:44:40.216430+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -30 /root/autodl-tmp/struct_self_consist_ie/code/analyze_exp002_conll2003.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -30 /root/autodl-tmp/struct_self_consist_ie/code/analyze_exp002_conll2003.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-18T09:44:40.216559+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp-002: 5-signal analysis for CoNLL-2003 NER (cross-dataset validation).\\n\\nComputes: soft_jaccard, fleiss_kappa, mean_logprob, exact_match_rate, entity_voting_conf\\nMetrics: Spearman rho, Kendall tau, AUROC, bootstrap 95% CI\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nfrom collections import Counter\\n\\nimport numpy as np\\nfrom scipy.stats import spearmanr, kendalltau\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import per_instance_f1\\n\\nDATA_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\\"\\nOUTPUT_DIR = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003\\\"\\nSUBTASK = \\\"ner\\\"\\n\\n\\ndef load_data(path):\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                instances.append(json.loads(line))\\n    return instances\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-18T09:44:40.216722+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/checkpoints/ -maxdepth 1 -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/checkpoints/ -maxdepth 1 -type d",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-18T09:44:40.216855+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-scierc-lora\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-scierc-lora\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.2-3b-scierc-lora\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-rank8\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-5epoch-lora\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-3epoch-merged\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-lora\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-3epoch-lora\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-merged\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-18T09:44:40.216977+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/ -maxdepth 3 -type d -name \"*qwen*merged*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/ -maxdepth 3 -type d -name \"*qwen*merged*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-18T09:44:40.217103+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/ -maxdepth 3 -type d -name \"*merged*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/ -maxdepth 3 -type d -name \"*merged*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-18T09:44:40.217246+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-3epoch-merged\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-merged\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-18T09:44:40.217373+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-3epoch-merged\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-merged\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-18T09:44:40.217514+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-18T09:44:40.217639+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"LICENSE\\nREADME.md\\nconfig.json\\nconfiguration.json\\ngeneration_config.json\\nmerges.txt\\nmodel-00001-of-00005.safetensors\\nmodel-00002-of-00005.safetensors\\nmodel-00003-of-00005.safetensors\\nmodel-00004-of-00005.safetensors\\nmodel-00005-of-00005.safetensors\\nmodel.safetensors.index.json\\ntokenizer.json\\ntokenizer_config.json\\nvocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-18T09:44:40.217754+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-18T09:44:40.218037+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Multi-sample inference module for structured IE with vLLM + XGrammar constrained decoding.\\n\\nProvides VLLMSampler for batch sampling, prompt construction for UIE tasks,\\nand a full pipeline that produces SampledInstance dicts.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport json\\nimport os\\nfrom typing import Any\\n\\n\\n# ---------------------------------------------------------------------------\\n# UIE JSON schema for XGrammar constrained decoding\\n# ---------------------------------------------------------------------------\\n\\nUIE_JSON_SCHEMA: dict[str, Any] = {\\n    \\\"type\\\": \\\"object\\\",\\n    \\\"properties\\\": {\\n        \\\"entities\\\": {\\n            \\\"type\\\": \\\"array\\\",\\n            \\\"items\\\": {\\n                \\\"type\\\": \\\"object\\\",\\n                \\\"properties\\\": {\\n                    \\\"text\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"type\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"end\\\": {\\\"type\\\": \\\"integer\\\"},\\n                },\\n                \\\"required\\\": [\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"],\\n            },\\n        },\\n        \\\"relations\\\": {\\n            \\\"type\\\": \\\"array\\\",\\n            \\\"items\\\": {\\n                \\\"type\\\": \\\"object\\\",\\n                \\\"properties\\\": {\\n                    \\\"head\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"tail\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"type\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"head_start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"head_end\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"tail_start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"tail_end\\
+…[truncated 7664 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-18T09:44:40.218242+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -310 /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -310 /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-18T09:44:40.218561+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Multi-sample inference module for structured IE with vLLM + XGrammar constrained decoding.\\n\\nProvides VLLMSampler for batch sampling, prompt construction for UIE tasks,\\nand a full pipeline that produces SampledInstance dicts.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport json\\nimport os\\nfrom typing import Any\\n\\n\\n# ---------------------------------------------------------------------------\\n# UIE JSON schema for XGrammar constrained decoding\\n# ---------------------------------------------------------------------------\\n\\nUIE_JSON_SCHEMA: dict[str, Any] = {\\n    \\\"type\\\": \\\"object\\\",\\n    \\\"properties\\\": {\\n        \\\"entities\\\": {\\n            \\\"type\\\": \\\"array\\\",\\n            \\\"items\\\": {\\n                \\\"type\\\": \\\"object\\\",\\n                \\\"properties\\\": {\\n                    \\\"text\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"type\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"end\\\": {\\\"type\\\": \\\"integer\\\"},\\n                },\\n                \\\"required\\\": [\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"],\\n            },\\n        },\\n        \\\"relations\\\": {\\n            \\\"type\\\": \\\"array\\\",\\n            \\\"items\\\": {\\n                \\\"type\\\": \\\"object\\\",\\n                \\\"properties\\\": {\\n                    \\\"head\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"tail\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"type\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"head_start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"head_end\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"tail_start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"tail_end\\
+…[truncated 8058 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-18T09:44:40.218724+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -20 /root/autodl-tmp/struct_self_consist_ie/code/exp017_full_signal_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -20 /root/autodl-tmp/struct_self_consist_ie/code/exp017_full_signal_analysis.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-18T09:44:40.218863+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp_017 LLaMA CoNLL N=8: full signal analysis.\\nComputes: CF1 gold-filtered degeneracy, selection F1, LP range, QE metrics.\\n\\\"\\\"\\\"\\nimport json\\nimport sys\\nimport time\\nfrom collections import Counter\\n\\nimport numpy as np\\nfrom scipy.stats import spearmanr\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import _ner_soft_jaccard_pair, _extract_surface_keys\\nfrom evaluation import per_instance_f1\\n\\nDATA_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\\\"\\nSUBTASK = \\\"ner\\\"\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-18T09:44:40.219026+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-18T09:44:40.219164+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "df -h /root/autodl-tmp/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "df -h /root/autodl-tmp/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-18T09:44:40.219296+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA GeForce RTX 5090, 30194 MiB, 32607 MiB, 92 %\\n1, NVIDIA GeForce RTX 5090, 2 MiB, 32607 MiB, 100 %\\n2, NVIDIA GeForce RTX 5090, 2 MiB, 32607 MiB, 100 %\\n3, NVIDIA GeForce RTX 5090, 2 MiB, 32607 MiB, 100 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-18T09:44:40.219416+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\n/dev/md0        250G  160G   91G  64% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-18T09:44:40.219532+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -5 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -5 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-18T09:44:40.219656+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Verdict:        PASS\\n  Note:           MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\n============================================================\\n\\nReport saved to output/exp_002_conll_n16/report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-18T09:44:40.219802+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/data/conll2003/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/data/conll2003/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-18T09:44:40.219918+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"exp_002_conll_n16\" /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"exp_002_conll_n16\" /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-18T09:44:40.220038+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"dev.json\\nllmfactory_dev.json\\nllmfactory_train.json\\ntest.json\\ntrain.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-18T09:44:40.220192+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"49:Sampling complete. Saved to output/exp_002_conll_n16/samples.jsonl\\n87:Report saved to output/exp_002_conll_n16/report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-18T09:44:40.220344+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -3 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -3 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-18T09:44:40.220469+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 3453 test instances from conll2003\\nINFO 05-15 02:12:32 [utils.py:233] non-default args: {'max_model_len': 4096, 'disable_log_stats': True, 'model': 'checkpoints/qwen3-8b-conll2003-merged'}\\nINFO 05-15 02:12:32 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-18T09:44:40.220584+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep \"Namespace\\|args\\|seed\\|n_samples\\|temperature\\|model_path\\|use_train\" /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep \"Namespace\\|args\\|seed\\|n_samples\\|temperature\\|model_path\\|use_train\" /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-18T09:44:40.220707+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-18T09:44:40.220831+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep \"Namespace\" /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep \"Namespace\" /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-18T09:44:40.220946+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-18T09:44:40.221072+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep \"seed\" /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep \"seed\" /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-18T09:44:40.221259+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"(EngineCore pid=101436) INFO 05-15 02:12:33 [core.py:103] Initializing a V1 LLM engine (v0.18.1) with config: model='checkpoints/qwen3-8b-conll2003-merged', speculative_config=None, tokenizer='checkpoints/qwen3-8b-conll2003-merged', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=checkpoints/qwen3-8b-conll2003-merged, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': &lt;CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'splitting_ops': ['vllm::unified_attention', 'vllm::unified_attention_with_output', 'vllm::unified_mla_attention', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::linear_attention', 'vllm::plamo2_mamba_mixer', 'vllm::gdn_attention_core', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::
+…[truncated 1378 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-18T09:44:40.221433+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/code/exp017_full_signal_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/code/exp017_full_signal_analysis.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-18T09:44:40.221565+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"212 /root/autodl-tmp/struct_self_consist_ie/code/exp017_full_signal_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-18T09:44:40.221682+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/exp017_full_signal_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/exp017_full_signal_analysis.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-18T09:44:40.221944+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp_017 LLaMA CoNLL N=8: full signal analysis.\\nComputes: CF1 gold-filtered degeneracy, selection F1, LP range, QE metrics.\\n\\\"\\\"\\\"\\nimport json\\nimport sys\\nimport time\\nfrom collections import Counter\\n\\nimport numpy as np\\nfrom scipy.stats import spearmanr\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import _ner_soft_jaccard_pair, _extract_surface_keys\\nfrom evaluation import per_instance_f1\\n\\nDATA_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\\\"\\nSUBTASK = \\\"ner\\\"\\n\\n\\ndef load_data(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f if line.strip()]\\n\\n\\ndef compute_sample_sj_scores(inst):\\n    samples = inst[\\\"samples\\\"]\\n    N = len(samples)\\n    matrix = np.zeros((N, N))\\n    for i in range(N):\\n        for j in range(i + 1, N):\\n            s = _ner_soft_jaccard_pair(samples[i].get(\\\"entities\\\", []), samples[j].get(\\\"entities\\\", []))\\n            matrix[i][j] = s\\n            matrix[j][i] = s\\n    np.fill_diagonal(matrix, 1.0)\\n    return [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\\n\\n\\ndef compute_sample_surface_scores(inst):\\n    samples = inst[\\\"samples\\\"]\\n    N = len(samples)\\n    key_sets = [frozenset(_extract_surface_keys(s, SUBTASK)) for s in samples]\\n    matrix = np.zeros((N, N))\\n    for i in range(N):\\n        for j in range(i + 1, N):\\n            union = len(key_sets[i] | key_sets[j])\\n            inter = len(key_sets[i] & key_sets[j])\\n            s = inter / union if union > 0 else 1.0\\n            matrix[i][j] = s\\n            matrix[j][i] = s\\n    np.fill_diagonal(matrix, 1.0)\\n    fk_scores = [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\\n    return fk_scores, key_sets\\n\\n\\ndef
+…[truncated 6670 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-18T09:44:40.222158+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tmux ls",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tmux ls",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-18T09:44:40.222299+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-18T09:44:40.222427+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tmux ls 2>&1 || echo \"no tmux sessions\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tmux ls 2>&1 || echo \"no tmux sessions\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-18T09:44:40.222553+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp_011_ood_conll_to_scierc: 1 windows (created Fri May 15 19:48:36 2026)\\nexp_017_llama_conll_n16_r1024: 1 windows (created Fri May 15 18:38:42 2026)\\nexp_017_llama_conll_n16_s456_r1024: 1 windows (created Fri May 15 18:38:44 2026)\\nfewnerd_s456: 1 windows (created Mon May 18 17:31:50 2026)\\nllama_fewnerd: 1 windows (created Mon May 18 17:31:45 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-18T09:44:40.222731+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat > /root/autodl-tmp/struct_self_consist_ie/code/conll_seed456_analysis.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Qwen CoNLL seed=456: full signal analysis.\nComputes: CF1 gold-filtered degeneracy, selection F1, LP range.\n\"\"\"\nimport json\nimport sys\nimport time\nfrom collections import Counter\n\nimport numpy as np\nfrom scipy.stats import spearmanr\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom consistency import _ner_soft_jaccard_pair, _extract_surface_keys\nfrom evaluation import per_instance_f1\n\nDATA_PATH = \"/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/samples.jsonl\"\nSUBTASK = \"ner\"\n\n\ndef load_data(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f if line.strip()]\n\n\ndef compute_sample_sj_scores(inst):\n    samples = inst[\"samples\"]\n    N = len(samples)\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            s = _ner_soft_jaccard_pair(samples[i].get(\"entities\", []), samples[j].get(\"entities\", []))\n            matrix[i][j] = s\n            matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    return [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\n\n\ndef compute_sample_surface_scores(inst):\n    samples = inst[\"samples\"]\n    N = len(samples)\n    key_sets = [frozenset(_extract_surface_keys(s, SUBTASK)) for s in samples]\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            union = len(key_sets[i] | key_sets[j])\n            inter = len(key_sets[i] & key_sets[j])\n            s = inter / union if union > 0 else 1.0\n            matrix[i][j] = s\n            matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    fk_scores = [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\n    return fk_scores, key_sets\n\n\ndef compute_sample_voting_conf(key_sets, N):\n    all_keys_count = Counter()\n    for ks in key_sets:\n        for key in ks:\n            all_keys_count[key] += 1\n    scores = []\n    for ks in key_sets:\n        if not ks:\n            scores.append(0.0)\n        else:\n            fracs = [all_keys_count[key] / N for key in ks]\n            scores.append(float(np.mean(fracs)))\n    return scores\n\n\ndef compute_sample_em_scores(key_sets):\n    N = len(key_sets)\n    return [float(sum(1 for j in range(N) if j != k and key_sets[k] == key_sets[j])) for k in range(N)]\n\n\ndef compute_sample_logprobs(inst):\n    lps = []\n    for s in inst[\"samples\"]:\n        lp = s.get(\"mean_logprob\")\n        if lp is None:\n            lp = s.get(\"cumulative_logprob\", -999) / max(s.get(\"n_tokens\", 1), 1)\n        lps.append(lp)\n    return lps\n\n\ndef main():\n    t0 = time.time()\n    data = load_data(DATA_PATH)\n    N_per = len(data[0][\"samples\"])\n    print(f\"Loaded {len(data)} instances, N={N_per}\")\n\n    gold_filtered = [inst for inst in data if len(inst[\"gold\"].get(\"entities\", [])) > 0]\n    n_gf = len(gold_filtered)\n    print(f\"Gold-filtered: {n_gf}\")\n\n    n_constant_f1 = 0\n    all_greedy_f1 = []\n    all_oracle_f1 = []\n    all_random_f1 = []\n    signal_sel_f1 = {sig: [] for sig in [\"SJ\", \"FK\", \"VC\", \"EM\", \"LP\"]}\n    lp_ranges = []\n\n    for idx, inst in enumerate(gold_filtered):\n        samples = inst[\"samples\"]\n        gold = inst[\"gold\"]\n        greedy = inst.get(\"greedy\", samples[0])\n\n        g_f1 = per_instance_f1(greedy, gold, subtask=SUBTASK)\n        sample_f1s = [per_instance_f1(s, gold, subtask=SUBTASK) for s in samples]\n\n        all_greedy_f1.append(g_f1)\n        all_oracle_f1.append(max(sample_f1s))\n        all_random_f1.append(float(np.mean(sample_f1s)))\n\n        if len(set(round(f, 10) for f in sample_f1s)) == 1:\n            n_constant_f1 += 1\n\n        sj_scores = compute_sample_sj_scores(inst)\n        fk_scores, key_sets = compute_sample_surface_scores(inst)\n        vc_scores = compute_sample_voting_conf(key_sets, N_per)\n        em_scores = compute_sample_em_scores(key_sets)\n        lp_scores = compute_sample_logprobs(inst)\n\n        all_scores = {\"SJ\": sj_scores, \"FK\": fk_scores, \"VC\": vc_scores,\n                      \"EM\": em_scores, \"LP\": lp_scores}\n\n        for sig in signal_sel_f1:\n            chosen = int(np.argmax(all_scores[sig]))\n            signal_sel_f1[sig].append(sample_f1s[chosen])\n\n        valid_lps = [lp for lp in lp_scores if np.isfinite(lp) and lp > -900]\n        if len(valid_lps) >= 2:\n            lp_ranges.append(max(valid_lps) - min(valid_lps))\n\n        if (idx + 1) % 500 == 0:\n            print(f\"  processed {idx+1}/{n_gf}\")\n\n    elapsed = time.time() - t0\n    print(f\"Done in {elapsed:.1f}s\")\n\n    degeneracy_cf1 = n_constant_f1 / n_gf\n\n    greedy_arr = np.array(all_greedy_f1)\n    oracle_arr = np.array(all_oracle_f1)\n    random_arr = np.array(all_random_f1)\n\n    result = {\n        \"dataset\": \"conll2003\",\n        \"model\": \"qwen3-8b\",\n        \"seed\": 456,\n        \"N\": N_per,\n        \"n_total\": len(data),\n        \"n_gold_filtered\": n_gf,\n        \"degeneracy_cf1_gold_filtered\": round(degeneracy_cf1, 4),\n        \"n_constant_f1\": n_constant_f1,\n        \"greedy_f1\": round(float(greedy_arr.mean()), 4),\n        \"oracle_f1\": round(float(oracle_arr.mean()), 4),\n        \"random_f1\": round(float(random_arr.mean()), 4),\n        \"headroom_pp\": round(float((oracle_arr.mean() - greedy_arr.mean()) * 100), 2),\n        \"selection_f1\": {},\n        \"lp_range\": {\n            \"mean\": round(float(np.mean(lp_ranges)), 4),\n            \"std\": round(float(np.std(lp_ranges)), 4),\n            \"median\": round(float(np.median(lp_ranges)), 4),\n            \"n_valid\": len(lp_ranges),\n        },\n    }\n\n    for sig in [\"SJ\", \"FK\", \"VC\", \"EM\", \"LP\"]:\n        arr = np.array(signal_sel_f1[sig])\n        delta = float(arr.mean() - greedy_arr.mean())\n        result[\"selection_f1\"][sig] = {\n            \"f1\": round(float(arr.mean()), 4),\n            \"delta_vs_greedy\": round(delta, 4),\n            \"delta_pp\": round(delta * 100, 2),\n        }\n\n    print(f\"\\n=== Qwen CoNLL seed=456 N={N_per} Full Signal Analysis ===\")\n    print(f\"Instances: {len(data)} total, {n_gf} gold-filtered\")\n    print(f\"Degeneracy (CF1 gold-filtered): {degeneracy_cf1:.4f} ({n_constant_f1}/{n_gf})\")\n    print(f\"Greedy F1: {greedy_arr.mean():.4f}\")\n    print(f\"Oracle F1: {oracle_arr.mean():.4f}\")\n    print(f\"Random F1: {random_arr.mean():.4f}\")\n    print(f\"Headroom: {(oracle_arr.mean() - greedy_arr.mean())*100:.2f}pp\")\n    print(f\"\\nSelection F1:\")\n    for sig in [\"SJ\", \"FK\", \"VC\", \"EM\", \"LP\"]:\n        sf = result[\"selection_f1\"][sig]\n        print(f\"  {sig:>3}: {sf['f1']:.4f}  (delta={sf['delta_pp']:+.2f}pp)\")\n    print(f\"\\nLP Range: mean={result['lp_range']['mean']:.4f}, std={result['lp_range']['std']:.4f}, median={result['lp_range']['median']:.4f}\")\n\n    out_path = \"/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/full_signal_analysis.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(result, f, indent=2)\n    print(f\"\\nSaved: {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Analysis script written\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat > /root/autodl-tmp/struct_self_consist_ie/code/conll_seed456_analysis.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Qwen CoNLL seed=456: full signal analysis.\nComputes: CF1 gold-filtered degeneracy, selection F1, LP range.\n\"\"\"\nimport json\nimport sys\nimport time\nfrom collections import Counter\n\nimport numpy as np\nfrom scipy.stats import spearmanr\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom consistency import _ner_soft_jaccard_pair, _extract_surface_keys\nfrom evaluation import per_instance_f1\n\nDATA_PATH = \"/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/samples.jsonl\"\nSUBTASK = \"ner\"\n\n\ndef load_data(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f if line.strip()]\n\n\ndef compute_sample_sj_scores(inst):\n    samples = inst[\"samples\"]\n    N = len(samples)\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            s = _ner_soft_jaccard_pair(samples[i].get(\"entities\", []), samples[j].get(\"entities\", []))\n            matrix[i][j] = s\n            matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    return [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\n\n\ndef compute_sample_surface_scores(inst):\n    samples = inst[\"samples\"]\n    N = len(samples)\n    key_sets = [frozenset(_extract_surface_keys(s, SUBTASK)) for s in samples]\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            union = len(key_sets[i] | key_sets[j])\n            inter = len(key_sets[i] & key_sets[j])\n            s = inter / union if union > 0 else 1.0\n            matrix[i][j] = s\n            matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    fk_scores = [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\n    return fk_scores, key_sets\n\n\ndef compute_sample_voting_conf(key_sets, N):\n    all_keys_count = Counter()\n    for ks in key_sets:\n        for key in ks:\n            all_keys_count[key] += 1\n    scores = []\n    for ks in key_sets:\n        if not ks:\n            scores.append(0.0)\n        else:\n            fracs = [all_keys_count[key] / N for key in ks]\n            scores.append(float(np.mean(fracs)))\n    return scores\n\n\ndef compute_sample_em_scores(key_sets):\n    N = len(key_sets)\n    return [float(sum(1 for j in range(N) if j != k and key_sets[k] == key_sets[j])) for k in range(N)]\n\n\ndef compute_sample_logprobs(inst):\n    lps = []\n    for s in inst[\"samples\"]:\n        lp = s.get(\"mean_logprob\")\n        if lp is None:\n            lp = s.get(\"cumulative_logprob\", -999) / max(s.get(\"n_tokens\", 1), 1)\n        lps.append(lp)\n    return lps\n\n\ndef main():\n    t0 = time.time()\n    data = load_data(DATA_PATH)\n    N_per = len(data[0][\"samples\"])\n    print(f\"Loaded {len(data)} instances, N={N_per}\")\n\n    gold_filtered = [inst for inst in data if len(inst[\"gold\"].get(\"entities\", [])) > 0]\n    n_gf = len(gold_filtered)\n    print(f\"Gold-filtered: {n_gf}\")\n\n    n_constant_f1 = 0\n    all_greedy_f1 = []\n    all_oracle_f1 = []\n    all_random_f1 = []\n    signal_sel_f1 = {sig: [] for sig in [\"SJ\", \"FK\", \"VC\", \"EM\", \"LP\"]}\n    lp_ranges = []\n\n    for idx, inst in enumerate(gold_filtered):\n        samples = inst[\"samples\"]\n        gold = inst[\"gold\"]\n        greedy = inst.get(\"greedy\", samples[0])\n\n        g_f1 = per_instance_f1(greedy, gold, subtask=SUBTASK)\n        sample_f1s = [per_instance_f1(s, gold, subtask=SUBTASK) for s in samples]\n\n        all_greedy_f1.append(g_f1)\n        all_oracle_f1.append(max(sample_f1s))\n        all_random_f1.append(float(np.mean(sample_f1s)))\n\n        if len(set(round(f, 10) for f in sample_f1s)) == 1:\n            n_constant_f1 += 1\n\n        sj_scores = compute_sample_sj_scores(inst)\n        fk_scores, key_sets = compute_sample_surface_scores(inst)\n        vc_scores = compute_sample_voting_conf(key_sets, N_per)\n        em_scores = compute_sample_em_scores(key_sets)\n        lp_scores = compute_sample_logprobs(inst)\n\n        all_scores = {\"SJ\": sj_scores, \"FK\": fk_scores, \"VC\": vc_scores,\n                      \"EM\": em_scores, \"LP\": lp_scores}\n\n        for sig in signal_sel_f1:\n            chosen = int(np.argmax(all_scores[sig]))\n            signal_sel_f1[sig].append(sample_f1s[chosen])\n\n        valid_lps = [lp for lp in lp_scores if np.isfinite(lp) and lp > -900]\n        if len(valid_lps) >= 2:\n            lp_ranges.append(max(valid_lps) - min(valid_lps))\n\n        if (idx + 1) % 500 == 0:\n            print(f\"  processed {idx+1}/{n_gf}\")\n\n    elapsed = time.time() - t0\n    print(f\"Done in {elapsed:.1f}s\")\n\n    degeneracy_cf1 = n_constant_f1 / n_gf\n\n    greedy_arr = np.array(all_greedy_f1)\n    oracle_arr = np.array(all_oracle_f1)\n    random_arr = np.array(all_random_f1)\n\n    result = {\n        \"dataset\": \"conll2003\",\n        \"model\": \"qwen3-8b\",\n        \"seed\": 456,\n        \"N\": N_per,\n        \"n_total\": len(data),\n        \"n_gold_filtered\": n_gf,\n        \"degeneracy_cf1_gold_filtered\": round(degeneracy_cf1, 4),\n        \"n_constant_f1\": n_constant_f1,\n        \"greedy_f1\": round(float(greedy_arr.mean()), 4),\n        \"oracle_f1\": round(float(oracle_arr.mean()), 4),\n        \"random_f1\": round(float(random_arr.mean()), 4),\n        \"headroom_pp\": round(float((oracle_arr.mean() - greedy_arr.mean()) * 100), 2),\n        \"selection_f1\": {},\n        \"lp_range\": {\n            \"mean\": round(float(np.mean(lp_ranges)), 4),\n            \"std\": round(float(np.std(lp_ranges)), 4),\n            \"median\": round(float(np.median(lp_ranges)), 4),\n            \"n_valid\": len(lp_ranges),\n        },\n    }\n\n    for sig in [\"SJ\", \"FK\", \"VC\", \"EM\", \"LP\"]:\n        arr = np.array(signal_sel_f1[sig])\n        delta = float(arr.mean() - greedy_arr.mean())\n        result[\"selection_f1\"][sig] = {\n            \"f1\": round(float(arr.mean()), 4),\n            \"delta_vs_greedy\": round(delta, 4),\n            \"delta_pp\": round(delta * 100, 2),\n        }\n\n    print(f\"\\n=== Qwen CoNLL seed=456 N={N_per} Full Signal Analysis ===\")\n    print(f\"Instances: {len(data)} total, {n_gf} gold-filtered\")\n    print(f\"Degeneracy (CF1 gold-filtered): {degeneracy_cf1:.4f} ({n_constant_f1}/{n_gf})\")\n    print(f\"Greedy F1: {greedy_arr.mean():.4f}\")\n    print(f\"Oracle F1: {oracle_arr.mean():.4f}\")\n    print(f\"Random F1: {random_arr.mean():.4f}\")\n    print(f\"Headroom: {(oracle_arr.mean() - greedy_arr.mean())*100:.2f}pp\")\n    print(f\"\\nSelection F1:\")\n    for sig in [\"SJ\", \"FK\", \"VC\", \"EM\", \"LP\"]:\n        sf = result[\"selection_f1\"][sig]\n        print(f\"  {sig:>3}: {sf['f1']:.4f}  (delta={sf['delta_pp']:+.2f}pp)\")\n    print(f\"\\nLP Range: mean={result['lp_range']['mean']:.4f}, std={result['lp_range']['std']:.4f}, median={result['lp_range']['median']:.4f}\")\n\n    out_path = \"/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/full_signal_analysis.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(result, f, indent=2)\n    print(f\"\\nSaved: {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Analysis script written\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-18T09:44:40.222920+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Analysis script written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-18T09:44:40.223062+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat > /root/autodl-tmp/struct_self_consist_ie/run_conll_seed456.sh << 'SHEOF'\n#!/bin/bash\nset -e\ncd /root/autodl-tmp/struct_self_consist_ie\nsource /root/miniconda3/bin/activate\nexport CUDA_VISIBLE_DEVICES=3\n\necho \"=== Step 1: Merge LoRA adapter ===\"\npython3 -c \"\nimport torch\nfrom peft import PeftModel\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nbase = '/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B'\nadapter = 'checkpoints/qwen3-8b-conll2003-lora/checkpoint-400'\nout = 'checkpoints/qwen3-8b-conll2003-merged'\n\nprint('Loading base model...')\nmodel = AutoModelForCausalLM.from_pretrained(base, torch_dtype=torch.bfloat16)\nprint('Loading adapter...')\nmodel = PeftModel.from_pretrained(model, adapter)\nprint('Merging...')\nmodel = model.merge_and_unload()\nprint('Saving merged model...')\nmodel.save_pretrained(out)\ntokenizer = AutoTokenizer.from_pretrained(base, trust_remote_code=True)\ntokenizer.save_pretrained(out)\nprint('Merge complete')\n\"\n\necho \"=== Step 2: Run inference seed=456 ===\"\npython code/run_mvp_pilot.py \\\n  --model_path checkpoints/qwen3-8b-conll2003-merged \\\n  --data_dir data/conll2003 \\\n  --dataset conll2003 \\\n  --subtask ner \\\n  --n_samples 8 \\\n  --temperature 1.0 \\\n  --seed 456 \\\n  --collect_logprobs \\\n  --output_dir output/exp_002_conll_n8_seed456\n\necho \"=== Step 3: Verify output ===\"\nLINES=$(wc -l < output/exp_002_conll_n8_seed456/samples.jsonl)\necho \"Output lines: $LINES (expected ~3453)\"\nif [ \"$LINES\" -lt 3400 ]; then\n  echo \"ERROR: Output incomplete! Only $LINES lines.\"\n  exit 1\nfi\n\necho \"=== Step 4: Run analysis ===\"\npython code/conll_seed456_analysis.py\n\necho \"=== Step 5: Cleanup merged model (save disk) ===\"\nrm -rf checkpoints/qwen3-8b-conll2003-merged\necho \"Cleaned up merged model\"\n\necho \"=== ALL DONE ===\"\nSHEOF\nchmod +x /root/autodl-tmp/struct_self_consist_ie/run_conll_seed456.sh\necho \"Runner script written\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat > /root/autodl-tmp/struct_self_consist_ie/run_conll_seed456.sh << 'SHEOF'\n#!/bin/bash\nset -e\ncd /root/autodl-tmp/struct_self_consist_ie\nsource /root/miniconda3/bin/activate\nexport CUDA_VISIBLE_DEVICES=3\n\necho \"=== Step 1: Merge LoRA adapter ===\"\npython3 -c \"\nimport torch\nfrom peft import PeftModel\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nbase = '/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B'\nadapter = 'checkpoints/qwen3-8b-conll2003-lora/checkpoint-400'\nout = 'checkpoints/qwen3-8b-conll2003-merged'\n\nprint('Loading base model...')\nmodel = AutoModelForCausalLM.from_pretrained(base, torch_dtype=torch.bfloat16)\nprint('Loading adapter...')\nmodel = PeftModel.from_pretrained(model, adapter)\nprint('Merging...')\nmodel = model.merge_and_unload()\nprint('Saving merged model...')\nmodel.save_pretrained(out)\ntokenizer = AutoTokenizer.from_pretrained(base, trust_remote_code=True)\ntokenizer.save_pretrained(out)\nprint('Merge complete')\n\"\n\necho \"=== Step 2: Run inference seed=456 ===\"\npython code/run_mvp_pilot.py \\\n  --model_path checkpoints/qwen3-8b-conll2003-merged \\\n  --data_dir data/conll2003 \\\n  --dataset conll2003 \\\n  --subtask ner \\\n  --n_samples 8 \\\n  --temperature 1.0 \\\n  --seed 456 \\\n  --collect_logprobs \\\n  --output_dir output/exp_002_conll_n8_seed456\n\necho \"=== Step 3: Verify output ===\"\nLINES=$(wc -l < output/exp_002_conll_n8_seed456/samples.jsonl)\necho \"Output lines: $LINES (expected ~3453)\"\nif [ \"$LINES\" -lt 3400 ]; then\n  echo \"ERROR: Output incomplete! Only $LINES lines.\"\n  exit 1\nfi\n\necho \"=== Step 4: Run analysis ===\"\npython code/conll_seed456_analysis.py\n\necho \"=== Step 5: Cleanup merged model (save disk) ===\"\nrm -rf checkpoints/qwen3-8b-conll2003-merged\necho \"Cleaned up merged model\"\n\necho \"=== ALL DONE ===\"\nSHEOF\nchmod +x /root/autodl-tmp/struct_self_consist_ie/run_conll_seed456.sh\necho \"Runner script written\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-18T09:44:40.223222+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Runner script written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-18T09:44:40.223352+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tmux new-session -d -s conll_s456 \"bash /root/autodl-tmp/struct_self_consist_ie/run_conll_seed456.sh 2>&1 | tee /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log\" && echo \"tmux session conll_s456 started\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tmux new-session -d -s conll_s456 \"bash /root/autodl-tmp/struct_self_consist_ie/run_conll_seed456.sh 2>&1 | tee /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log\" && echo \"tmux session conll_s456 started\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-18T09:44:40.223479+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"tmux session conll_s456 started\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-18T09:44:40.223619+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "sleep 30 && tail -20 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log 2>/dev/null || echo \"Log not yet available\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "sleep 30 && tail -20 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log 2>/dev/null || echo \"Log not yet available\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-18T09:44:40.223741+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'sleep 30 && tail -20 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log 2>/dev/null || echo \\\"Log not yet available\\\"'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-18T09:44:40.223858+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -20 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -20 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-18T09:44:40.223986+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Step 1: Merge LoRA adapter ===\\n`torch_dtype` is deprecated! Use `dtype` instead!\\nLoading base model...\\n\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:00<00:00, 227.77it/s]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-18T09:44:40.224146+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "sleep 60 && tail -30 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "sleep 60 && tail -30 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-18T09:44:40.224279+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'sleep 60 && tail -30 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log 2>/dev/null'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-18T09:44:40.224396+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-18T09:44:40.224591+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"(EngineCore pid=139679) &lt;frozen importlib._bootstrap_external>:1297: FutureWarning: The cuda.nvrtc module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.nvrtc module instead.\\n(EngineCore pid=139679) \\rLoading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]\\n(EngineCore pid=139679) \\rLoading safetensors checkpoint shards:  25% Completed | 1/4 [00:00<00:02,  1.39it/s]\\n(EngineCore pid=139679) \\rLoading safetensors checkpoint shards:  50% Completed | 2/4 [00:01<00:01,  1.31it/s]\\n(EngineCore pid=139679) \\rLoading safetensors checkpoint shards:  75% Completed | 3/4 [00:02<00:00,  1.31it/s]\\n(EngineCore pid=139679) \\rLoading safetensors checkpoint shards: 100% Completed | 4/4 [00:02<00:00,  1.72it/s]\\n(EngineCore pid=139679) \\rLoading safetensors checkpoint shards: 100% Completed | 4/4 [00:02<00:00,  1.55it/s]\\n(EngineCore pid=139679) \\n(EngineCore pid=139679) INFO 05-18 17:34:54 [default_loader.py:384] Loading weights took 2.61 seconds\\n(EngineCore pid=139679) INFO 05-18 17:34:54 [gpu_model_runner.py:4566] Model loading took 15.27 GiB memory and 3.152765 seconds\\n(EngineCore pid=139679) INFO 05-18 17:34:57 [backends.py:988] Using cache directory: /root/.cache/vllm/torch_compile_cache/9ba1a91839/rank_0_0/backbone for vLLM's torch.compile\\n(EngineCore pid=139679) INFO 05-18 17:34:57 [backends.py:1048] Dynamo bytecode transform time: 2.45 s\\n(EngineCore pid=139679) INFO 05-18 17:34:59 [backends.py:284] Directly load the compiled graph(s) for compile range (1, 8192) from the cache, took 1.437 s\\n(EngineCore pid=139679) INFO 05-18 17:34:59 [monitor.py:48] torch.compile took 4.58 s in total\\n(EngineCore pid=139679) INFO 05-18 17:34:59 [decorators.py:296] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/d03ce3cf20c50cf572dab934505b93ce63da72dd614adee5490c0d5638cc72fa/rank_0_0/model\\n(Eng
+…[truncated 6381 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-18T09:44:40.224772+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -5 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -5 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-18T09:44:40.224945+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"(EngineCore pid=139679) INFO 05-18 17:35:06 [gpu_worker.py:617] CUDA graph pool memory: 0.39 GiB (actual), 0.55 GiB (estimated), difference: 0.16 GiB (42.4%).\\n(EngineCore pid=139679) INFO 05-18 17:35:06 [core.py:281] init engine (profile, create kv cache, warmup model) took 12.13 seconds\\nINFO 05-18 17:35:07 [llm.py:391] Supported tasks: ['generate']\\n\\rRendering prompts:   0%|          | 0/3453 [00:00<?, ?it/s]\\rRendering prompts:   1%|          | 37/3453 [00:00<00:09, 368.89it/s]\\rRendering prompts:   3%|▎         | 95/3453 [00:00<00:06, 489.33it/s]\\rRendering prompts:   4%|▍         | 153/3453 [00:00<00:06, 526.91it/s]\\rRendering prompts:   6%|▌         | 206/3453 [00:00<00:13, 236.42it/s]\\rRendering prompts:   8%|▊         | 261/3453 [00:00<00:10, 298.50it/s]\\rRendering prompts:   9%|▉         | 317/3453 [00:00<00:08, 355.26it/s]\\rRendering prompts:  11%|█         | 375/3453 [00:01<00:07, 407.64it/s]\\rRendering prompts:  13%|█▎        | 432/3453 [00:01<00:06, 448.00it/s]\\rRendering prompts:  14%|█▍        | 490/3453 [00:01<00:06, 481.58it/s]\\rRendering prompts:  16%|█▌        | 548/3453 [00:01<00:05, 507.33it/s]\\rRendering prompts:  18%|█▊        | 605/3453 [00:01<00:05, 523.02it/s]\\rRendering prompts:  19%|█▉        | 661/3453 [00:01<00:05, 531.78it/s]\\rRendering prompts:  21%|██        | 717/3453 [00:01<00:05, 539.38it/s]\\rRendering prompts:  22%|██▏       | 773/3453 [00:01<00:04, 544.89it/s]\\rRendering prompts:  24%|██▍       | 829/3453 [00:01<00:04, 545.11it/s]\\rRendering prompts:  26%|██▌       | 885/3453 [00:01<00:04, 546.87it/s]\\rRendering prompts:  27%|██▋       | 941/3453 [00:02<00:04, 545.51it/s]\\rRendering prompts:  29%|██▉       | 996/3453 [00:02<00:04, 545.21it/s]\\rRendering prompts:  30%|███       | 1052/3453 [00:02<00:04, 547.49it/s]\\rRendering prompts:  32%|███▏      | 1108/3453 [00:02<00:04, 550.81it/s]\\rRendering prompts:  34%|███▎      | 1165/3453 [00:02<00:04, 5
+…[truncated 3836 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121 · 2026-05-18T09:44:40.225153+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "sleep 600 && tail -10 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "sleep 600 && tail -10 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-18T09:44:40.225301+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'sleep 600 && tail -10 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log 2>/dev/null'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-18T09:44:40.225423+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -10 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -10 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-18T09:44:40.225603+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"(EngineCore pid=139679) INFO 05-18 17:35:02 [kv_cache_utils.py:1316] GPU KV cache size: 87,136 tokens\\n(EngineCore pid=139679) INFO 05-18 17:35:02 [kv_cache_utils.py:1321] Maximum concurrency for 4,096 tokens per request: 21.27x\\n(EngineCore pid=139679) \\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   4%|▍         | 2/51 [00:00<00:02, 17.08it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   8%|▊         | 4/51 [00:00<00:02, 17.18it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  12%|█▏        | 6/51 [00:00<00:02, 16.96it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▌        | 8/51 [00:00<00:02, 16.91it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  20%|█▉        | 10/51 [00:00<00:02, 17.32it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  24%|██▎       | 12/51 [00:00<00:02, 17.50it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  27%|██▋       | 14/51 [00:00<00:02, 17.96it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  31%|███▏      | 16/51 [00:00<00:01, 18.24it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  37%|███▋      | 19/51 [00:01<00:01, 19.20it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  43%|████▎     | 22/51 [00:01<00:01, 20.19it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  49%|████▉     | 25/51 [00:01<00:01, 21.23it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  55%|█████▍    | 28/51 [00:01<00:01, 22.19it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  61%|██████    | 31/51 [00:01<00:00, 21.24it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  67%|██████▋   | 34/51 [00:01<00:00, 22.25it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  73%|███████▎  | 37/51 [00:01<00:00,
+…[truncated 6346 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125 · 2026-05-18T09:44:40.225779+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -3 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -3 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-18T09:44:40.225965+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"INFO 05-18 17:35:07 [llm.py:391] Supported tasks: ['generate']\\n\\rRendering prompts:   0%|          | 0/3453 [00:00<?, ?it/s]\\rRendering prompts:   1%|          | 37/3453 [00:00<00:09, 368.89it/s]\\rRendering prompts:   3%|▎         | 95/3453 [00:00<00:06, 489.33it/s]\\rRendering prompts:   4%|▍         | 153/3453 [00:00<00:06, 526.91it/s]\\rRendering prompts:   6%|▌         | 206/3453 [00:00<00:13, 236.42it/s]\\rRendering prompts:   8%|▊         | 261/3453 [00:00<00:10, 298.50it/s]\\rRendering prompts:   9%|▉         | 317/3453 [00:00<00:08, 355.26it/s]\\rRendering prompts:  11%|█         | 375/3453 [00:01<00:07, 407.64it/s]\\rRendering prompts:  13%|█▎        | 432/3453 [00:01<00:06, 448.00it/s]\\rRendering prompts:  14%|█▍        | 490/3453 [00:01<00:06, 481.58it/s]\\rRendering prompts:  16%|█▌        | 548/3453 [00:01<00:05, 507.33it/s]\\rRendering prompts:  18%|█▊        | 605/3453 [00:01<00:05, 523.02it/s]\\rRendering prompts:  19%|█▉        | 661/3453 [00:01<00:05, 531.78it/s]\\rRendering prompts:  21%|██        | 717/3453 [00:01<00:05, 539.38it/s]\\rRendering prompts:  22%|██▏       | 773/3453 [00:01<00:04, 544.89it/s]\\rRendering prompts:  24%|██▍       | 829/3453 [00:01<00:04, 545.11it/s]\\rRendering prompts:  26%|██▌       | 885/3453 [00:01<00:04, 546.87it/s]\\rRendering prompts:  27%|██▋       | 941/3453 [00:02<00:04, 545.51it/s]\\rRendering prompts:  29%|██▉       | 996/3453 [00:02<00:04, 545.21it/s]\\rRendering prompts:  30%|███       | 1052/3453 [00:02<00:04, 547.49it/s]\\rRendering prompts:  32%|███▏      | 1108/3453 [00:02<00:04, 550.81it/s]\\rRendering prompts:  34%|███▎      | 1165/3453 [00:02<00:04, 553.67it/s]\\rRendering prompts:  35%|███▌      | 1221/3453 [00:02<00:04, 555.02it/s]\\rRendering prompts:  37%|███▋      | 1278/3453 [00:02<00:03, 556.95it/s]\\rRendering prompts:  39%|███▊      | 1335/3453 [00:02<00:03, 558.09it/s]\\rRendering prompts:  40%|████      | 1392/3453 [00:02<00:03
+…[truncated 6376 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127 · 2026-05-18T09:44:40.226159+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "sleep 300 && echo \"CHECK:\" && tail -5 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "sleep 300 && echo \"CHECK:\" && tail -5 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-18T09:44:40.226300+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'sleep 300 && echo \\\"CHECK:\\\" && tail -5 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log 2>/dev/null'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-18T09:44:40.226427+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -5 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -5 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-18T09:44:40.226609+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"(EngineCore pid=139679) INFO 05-18 17:35:06 [gpu_worker.py:617] CUDA graph pool memory: 0.39 GiB (actual), 0.55 GiB (estimated), difference: 0.16 GiB (42.4%).\\n(EngineCore pid=139679) INFO 05-18 17:35:06 [core.py:281] init engine (profile, create kv cache, warmup model) took 12.13 seconds\\nINFO 05-18 17:35:07 [llm.py:391] Supported tasks: ['generate']\\n\\rRendering prompts:   0%|          | 0/3453 [00:00<?, ?it/s]\\rRendering prompts:   1%|          | 37/3453 [00:00<00:09, 368.89it/s]\\rRendering prompts:   3%|▎         | 95/3453 [00:00<00:06, 489.33it/s]\\rRendering prompts:   4%|▍         | 153/3453 [00:00<00:06, 526.91it/s]\\rRendering prompts:   6%|▌         | 206/3453 [00:00<00:13, 236.42it/s]\\rRendering prompts:   8%|▊         | 261/3453 [00:00<00:10, 298.50it/s]\\rRendering prompts:   9%|▉         | 317/3453 [00:00<00:08, 355.26it/s]\\rRendering prompts:  11%|█         | 375/3453 [00:01<00:07, 407.64it/s]\\rRendering prompts:  13%|█▎        | 432/3453 [00:01<00:06, 448.00it/s]\\rRendering prompts:  14%|█▍        | 490/3453 [00:01<00:06, 481.58it/s]\\rRendering prompts:  16%|█▌        | 548/3453 [00:01<00:05, 507.33it/s]\\rRendering prompts:  18%|█▊        | 605/3453 [00:01<00:05, 523.02it/s]\\rRendering prompts:  19%|█▉        | 661/3453 [00:01<00:05, 531.78it/s]\\rRendering prompts:  21%|██        | 717/3453 [00:01<00:05, 539.38it/s]\\rRendering prompts:  22%|██▏       | 773/3453 [00:01<00:04, 544.89it/s]\\rRendering prompts:  24%|██▍       | 829/3453 [00:01<00:04, 545.11it/s]\\rRendering prompts:  26%|██▌       | 885/3453 [00:01<00:04, 546.87it/s]\\rRendering prompts:  27%|██▋       | 941/3453 [00:02<00:04, 545.51it/s]\\rRendering prompts:  29%|██▉       | 996/3453 [00:02<00:04, 545.21it/s]\\rRendering prompts:  30%|███       | 1052/3453 [00:02<00:04, 547.49it/s]\\rRendering prompts:  32%|███▏      | 1108/3453 [00:02<00:04, 550.81it/s]\\rRendering prompts:  34%|███▎      | 1165/3453 [00:02<00:04, 5
+…[truncated 6372 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 131 · 2026-05-18T09:44:40.226784+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -3 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -3 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-18T09:44:40.226968+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"INFO 05-18 17:35:07 [llm.py:391] Supported tasks: ['generate']\\n\\rRendering prompts:   0%|          | 0/3453 [00:00<?, ?it/s]\\rRendering prompts:   1%|          | 37/3453 [00:00<00:09, 368.89it/s]\\rRendering prompts:   3%|▎         | 95/3453 [00:00<00:06, 489.33it/s]\\rRendering prompts:   4%|▍         | 153/3453 [00:00<00:06, 526.91it/s]\\rRendering prompts:   6%|▌         | 206/3453 [00:00<00:13, 236.42it/s]\\rRendering prompts:   8%|▊         | 261/3453 [00:00<00:10, 298.50it/s]\\rRendering prompts:   9%|▉         | 317/3453 [00:00<00:08, 355.26it/s]\\rRendering prompts:  11%|█         | 375/3453 [00:01<00:07, 407.64it/s]\\rRendering prompts:  13%|█▎        | 432/3453 [00:01<00:06, 448.00it/s]\\rRendering prompts:  14%|█▍        | 490/3453 [00:01<00:06, 481.58it/s]\\rRendering prompts:  16%|█▌        | 548/3453 [00:01<00:05, 507.33it/s]\\rRendering prompts:  18%|█▊        | 605/3453 [00:01<00:05, 523.02it/s]\\rRendering prompts:  19%|█▉        | 661/3453 [00:01<00:05, 531.78it/s]\\rRendering prompts:  21%|██        | 717/3453 [00:01<00:05, 539.38it/s]\\rRendering prompts:  22%|██▏       | 773/3453 [00:01<00:04, 544.89it/s]\\rRendering prompts:  24%|██▍       | 829/3453 [00:01<00:04, 545.11it/s]\\rRendering prompts:  26%|██▌       | 885/3453 [00:01<00:04, 546.87it/s]\\rRendering prompts:  27%|██▋       | 941/3453 [00:02<00:04, 545.51it/s]\\rRendering prompts:  29%|██▉       | 996/3453 [00:02<00:04, 545.21it/s]\\rRendering prompts:  30%|███       | 1052/3453 [00:02<00:04, 547.49it/s]\\rRendering prompts:  32%|███▏      | 1108/3453 [00:02<00:04, 550.81it/s]\\rRendering prompts:  34%|███▎      | 1165/3453 [00:02<00:04, 553.67it/s]\\rRendering prompts:  35%|███▌      | 1221/3453 [00:02<00:04, 555.02it/s]\\rRendering prompts:  37%|███▋      | 1278/3453 [00:02<00:03, 556.95it/s]\\rRendering prompts:  39%|███▊      | 1335/3453 [00:02<00:03, 558.09it/s]\\rRendering prompts:  40%|████      | 1392/3453 [00:02<00:03
+…[truncated 6376 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133 · 2026-05-18T09:44:40.227182+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -2 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -2 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 134 · 2026-05-18T09:44:40.227391+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rRendering prompts:   0%|          | 0/3453 [00:00<?, ?it/s]\\rRendering prompts:   1%|          | 37/3453 [00:00<00:09, 368.89it/s]\\rRendering prompts:   3%|▎         | 95/3453 [00:00<00:06, 489.33it/s]\\rRendering prompts:   4%|▍         | 153/3453 [00:00<00:06, 526.91it/s]\\rRendering prompts:   6%|▌         | 206/3453 [00:00<00:13, 236.42it/s]\\rRendering prompts:   8%|▊         | 261/3453 [00:00<00:10, 298.50it/s]\\rRendering prompts:   9%|▉         | 317/3453 [00:00<00:08, 355.26it/s]\\rRendering prompts:  11%|█         | 375/3453 [00:01<00:07, 407.64it/s]\\rRendering prompts:  13%|█▎        | 432/3453 [00:01<00:06, 448.00it/s]\\rRendering prompts:  14%|█▍        | 490/3453 [00:01<00:06, 481.58it/s]\\rRendering prompts:  16%|█▌        | 548/3453 [00:01<00:05, 507.33it/s]\\rRendering prompts:  18%|█▊        | 605/3453 [00:01<00:05, 523.02it/s]\\rRendering prompts:  19%|█▉        | 661/3453 [00:01<00:05, 531.78it/s]\\rRendering prompts:  21%|██        | 717/3453 [00:01<00:05, 539.38it/s]\\rRendering prompts:  22%|██▏       | 773/3453 [00:01<00:04, 544.89it/s]\\rRendering prompts:  24%|██▍       | 829/3453 [00:01<00:04, 545.11it/s]\\rRendering prompts:  26%|██▌       | 885/3453 [00:01<00:04, 546.87it/s]\\rRendering prompts:  27%|██▋       | 941/3453 [00:02<00:04, 545.51it/s]\\rRendering prompts:  29%|██▉       | 996/3453 [00:02<00:04, 545.21it/s]\\rRendering prompts:  30%|███       | 1052/3453 [00:02<00:04, 547.49it/s]\\rRendering prompts:  32%|███▏      | 1108/3453 [00:02<00:04, 550.81it/s]\\rRendering prompts:  34%|███▎      | 1165/3453 [00:02<00:04, 553.67it/s]\\rRendering prompts:  35%|███▌      | 1221/3453 [00:02<00:04, 555.02it/s]\\rRendering prompts:  37%|███▋      | 1278/3453 [00:02<00:03, 556.95it/s]\\rRendering prompts:  39%|███▊      | 1335/3453 [00:02<00:03, 558.09it/s]\\rRendering prompts:  40%|████      | 1392/3453 [00:02<00:03, 558.99it/s]\\rRendering prompts:  42%|████▏     | 1449/3453 [00
+…[truncated 6374 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 135 · 2026-05-18T09:44:40.227576+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -2 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -2 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-18T09:44:40.227764+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rRendering prompts:   0%|          | 0/3453 [00:00<?, ?it/s]\\rRendering prompts:   1%|          | 37/3453 [00:00<00:09, 368.89it/s]\\rRendering prompts:   3%|▎         | 95/3453 [00:00<00:06, 489.33it/s]\\rRendering prompts:   4%|▍         | 153/3453 [00:00<00:06, 526.91it/s]\\rRendering prompts:   6%|▌         | 206/3453 [00:00<00:13, 236.42it/s]\\rRendering prompts:   8%|▊         | 261/3453 [00:00<00:10, 298.50it/s]\\rRendering prompts:   9%|▉         | 317/3453 [00:00<00:08, 355.26it/s]\\rRendering prompts:  11%|█         | 375/3453 [00:01<00:07, 407.64it/s]\\rRendering prompts:  13%|█▎        | 432/3453 [00:01<00:06, 448.00it/s]\\rRendering prompts:  14%|█▍        | 490/3453 [00:01<00:06, 481.58it/s]\\rRendering prompts:  16%|█▌        | 548/3453 [00:01<00:05, 507.33it/s]\\rRendering prompts:  18%|█▊        | 605/3453 [00:01<00:05, 523.02it/s]\\rRendering prompts:  19%|█▉        | 661/3453 [00:01<00:05, 531.78it/s]\\rRendering prompts:  21%|██        | 717/3453 [00:01<00:05, 539.38it/s]\\rRendering prompts:  22%|██▏       | 773/3453 [00:01<00:04, 544.89it/s]\\rRendering prompts:  24%|██▍       | 829/3453 [00:01<00:04, 545.11it/s]\\rRendering prompts:  26%|██▌       | 885/3453 [00:01<00:04, 546.87it/s]\\rRendering prompts:  27%|██▋       | 941/3453 [00:02<00:04, 545.51it/s]\\rRendering prompts:  29%|██▉       | 996/3453 [00:02<00:04, 545.21it/s]\\rRendering prompts:  30%|███       | 1052/3453 [00:02<00:04, 547.49it/s]\\rRendering prompts:  32%|███▏      | 1108/3453 [00:02<00:04, 550.81it/s]\\rRendering prompts:  34%|███▎      | 1165/3453 [00:02<00:04, 553.67it/s]\\rRendering prompts:  35%|███▌      | 1221/3453 [00:02<00:04, 555.02it/s]\\rRendering prompts:  37%|███▋      | 1278/3453 [00:02<00:03, 556.95it/s]\\rRendering prompts:  39%|███▊      | 1335/3453 [00:02<00:03, 558.09it/s]\\rRendering prompts:  40%|████      | 1392/3453 [00:02<00:03, 558.99it/s]\\rRendering prompts:  42%|████▏     | 1449/3453 [00
+…[truncated 6374 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 137 · 2026-05-18T09:44:40.227937+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -2 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -2 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 138 · 2026-05-18T09:44:40.228123+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rRendering prompts:   0%|          | 0/3453 [00:00<?, ?it/s]\\rRendering prompts:   1%|          | 37/3453 [00:00<00:09, 368.89it/s]\\rRendering prompts:   3%|▎         | 95/3453 [00:00<00:06, 489.33it/s]\\rRendering prompts:   4%|▍         | 153/3453 [00:00<00:06, 526.91it/s]\\rRendering prompts:   6%|▌         | 206/3453 [00:00<00:13, 236.42it/s]\\rRendering prompts:   8%|▊         | 261/3453 [00:00<00:10, 298.50it/s]\\rRendering prompts:   9%|▉         | 317/3453 [00:00<00:08, 355.26it/s]\\rRendering prompts:  11%|█         | 375/3453 [00:01<00:07, 407.64it/s]\\rRendering prompts:  13%|█▎        | 432/3453 [00:01<00:06, 448.00it/s]\\rRendering prompts:  14%|█▍        | 490/3453 [00:01<00:06, 481.58it/s]\\rRendering prompts:  16%|█▌        | 548/3453 [00:01<00:05, 507.33it/s]\\rRendering prompts:  18%|█▊        | 605/3453 [00:01<00:05, 523.02it/s]\\rRendering prompts:  19%|█▉        | 661/3453 [00:01<00:05, 531.78it/s]\\rRendering prompts:  21%|██        | 717/3453 [00:01<00:05, 539.38it/s]\\rRendering prompts:  22%|██▏       | 773/3453 [00:01<00:04, 544.89it/s]\\rRendering prompts:  24%|██▍       | 829/3453 [00:01<00:04, 545.11it/s]\\rRendering prompts:  26%|██▌       | 885/3453 [00:01<00:04, 546.87it/s]\\rRendering prompts:  27%|██▋       | 941/3453 [00:02<00:04, 545.51it/s]\\rRendering prompts:  29%|██▉       | 996/3453 [00:02<00:04, 545.21it/s]\\rRendering prompts:  30%|███       | 1052/3453 [00:02<00:04, 547.49it/s]\\rRendering prompts:  32%|███▏      | 1108/3453 [00:02<00:04, 550.81it/s]\\rRendering prompts:  34%|███▎      | 1165/3453 [00:02<00:04, 553.67it/s]\\rRendering prompts:  35%|███▌      | 1221/3453 [00:02<00:04, 555.02it/s]\\rRendering prompts:  37%|███▋      | 1278/3453 [00:02<00:03, 556.95it/s]\\rRendering prompts:  39%|███▊      | 1335/3453 [00:02<00:03, 558.09it/s]\\rRendering prompts:  40%|████      | 1392/3453 [00:02<00:03, 558.99it/s]\\rRendering prompts:  42%|████▏     | 1449/3453 [00
+…[truncated 6374 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 139 · 2026-05-18T09:44:40.228328+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 140 · 2026-05-18T09:44:40.228524+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/27624 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/27624 [00:04<4:26:56,  1.72it/s, est. speed input: 220.70 toks/s, output: 24.14 toks/s]\\rProcessed prompts:   0%|          | 32/27624 [00:05<1:02:01,  7.41it/s, est. speed input: 823.15 toks/s, output: 83.21 toks/s]\\rProcessed prompts:   0%|          | 40/27624 [00:05<50:34,  9.09it/s, est. speed input: 967.18 toks/s, output: 129.42 toks/s] \\rProcessed prompts:   0%|          | 64/27624 [00:05<25:10, 18.25it/s, est. speed input: 1506.28 toks/s, output: 276.80 toks/s]\\rProcessed prompts:   0%|          | 80/27624 [00:06<17:55, 25.61it/s, est. speed input: 1847.43 toks/s, output: 382.09 toks/s]\\rProcessed prompts:   0%|          | 88/27624 [00:07<28:08, 16.30it/s, est. speed input: 1709.48 toks/s, output: 390.73 toks/s]\\rProcessed prompts:   0%|          | 112/27624 [00:07<16:54, 27.11it/s, est. speed input: 2156.31 toks/s, output: 598.26 toks/s]\\rProcessed prompts:   0%|          | 120/27624 [00:07<14:55, 30.71it/s, est. speed input: 2279.20 toks/s, output: 663.84 toks/s]\\rProcessed prompts:   0%|          | 136/27624 [00:08<15:18, 29.92it/s, est. speed input: 2404.54 toks/s, output: 726.92 toks/s]\\rProcessed prompts:   1%|          | 152/27624 [00:08<12:00, 38.10it/s, est. speed input: 2627.21 toks/s, output: 812.67 toks/s]\\rProcessed prompts:   1%|          | 168/27624 [00:08<11:47, 38.82it/s, est. speed input: 2760.90 toks/s, output: 831.15 toks/s]\\rProcessed prompts:   1%|          | 176/27624 [00:08<11:34, 39.54it/s, est. speed input: 2837.90 toks/s, output: 880.06 toks/s]\\rProcessed prompts:   1%|          | 192/27624 [00:09<10:18, 44.32it/s, est. speed input: 3020.59 toks/s, output: 1001.39 toks/s]\\rProcessed prompts:   1%|          | 200/27624 [00:09<10:32, 43.39it/s, est. speed input: 3080.51 toks/s, output: 1040.26 toks/s]\\rProcessed p
+…[truncated 6326 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 141 · 2026-05-18T09:44:40.228707+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 142 · 2026-05-18T09:44:40.228902+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/27624 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/27624 [00:04<4:26:56,  1.72it/s, est. speed input: 220.70 toks/s, output: 24.14 toks/s]\\rProcessed prompts:   0%|          | 32/27624 [00:05<1:02:01,  7.41it/s, est. speed input: 823.15 toks/s, output: 83.21 toks/s]\\rProcessed prompts:   0%|          | 40/27624 [00:05<50:34,  9.09it/s, est. speed input: 967.18 toks/s, output: 129.42 toks/s] \\rProcessed prompts:   0%|          | 64/27624 [00:05<25:10, 18.25it/s, est. speed input: 1506.28 toks/s, output: 276.80 toks/s]\\rProcessed prompts:   0%|          | 80/27624 [00:06<17:55, 25.61it/s, est. speed input: 1847.43 toks/s, output: 382.09 toks/s]\\rProcessed prompts:   0%|          | 88/27624 [00:07<28:08, 16.30it/s, est. speed input: 1709.48 toks/s, output: 390.73 toks/s]\\rProcessed prompts:   0%|          | 112/27624 [00:07<16:54, 27.11it/s, est. speed input: 2156.31 toks/s, output: 598.26 toks/s]\\rProcessed prompts:   0%|          | 120/27624 [00:07<14:55, 30.71it/s, est. speed input: 2279.20 toks/s, output: 663.84 toks/s]\\rProcessed prompts:   0%|          | 136/27624 [00:08<15:18, 29.92it/s, est. speed input: 2404.54 toks/s, output: 726.92 toks/s]\\rProcessed prompts:   1%|          | 152/27624 [00:08<12:00, 38.10it/s, est. speed input: 2627.21 toks/s, output: 812.67 toks/s]\\rProcessed prompts:   1%|          | 168/27624 [00:08<11:47, 38.82it/s, est. speed input: 2760.90 toks/s, output: 831.15 toks/s]\\rProcessed prompts:   1%|          | 176/27624 [00:08<11:34, 39.54it/s, est. speed input: 2837.90 toks/s, output: 880.06 toks/s]\\rProcessed prompts:   1%|          | 192/27624 [00:09<10:18, 44.32it/s, est. speed input: 3020.59 toks/s, output: 1001.39 toks/s]\\rProcessed prompts:   1%|          | 200/27624 [00:09<10:32, 43.39it/s, est. speed input: 3080.51 toks/s, output: 1040.26 toks/s]\\rProcessed p
+…[truncated 6326 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 143 · 2026-05-18T09:44:40.229091+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -c \"Processed prompts\" /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -c \"Processed prompts\" /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 144 · 2026-05-18T09:44:40.229246+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 145 · 2026-05-18T09:44:40.229388+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 146 · 2026-05-18T09:44:40.229579+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/27624 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/27624 [00:04<4:26:56,  1.72it/s, est. speed input: 220.70 toks/s, output: 24.14 toks/s]\\rProcessed prompts:   0%|          | 32/27624 [00:05<1:02:01,  7.41it/s, est. speed input: 823.15 toks/s, output: 83.21 toks/s]\\rProcessed prompts:   0%|          | 40/27624 [00:05<50:34,  9.09it/s, est. speed input: 967.18 toks/s, output: 129.42 toks/s] \\rProcessed prompts:   0%|          | 64/27624 [00:05<25:10, 18.25it/s, est. speed input: 1506.28 toks/s, output: 276.80 toks/s]\\rProcessed prompts:   0%|          | 80/27624 [00:06<17:55, 25.61it/s, est. speed input: 1847.43 toks/s, output: 382.09 toks/s]\\rProcessed prompts:   0%|          | 88/27624 [00:07<28:08, 16.30it/s, est. speed input: 1709.48 toks/s, output: 390.73 toks/s]\\rProcessed prompts:   0%|          | 112/27624 [00:07<16:54, 27.11it/s, est. speed input: 2156.31 toks/s, output: 598.26 toks/s]\\rProcessed prompts:   0%|          | 120/27624 [00:07<14:55, 30.71it/s, est. speed input: 2279.20 toks/s, output: 663.84 toks/s]\\rProcessed prompts:   0%|          | 136/27624 [00:08<15:18, 29.92it/s, est. speed input: 2404.54 toks/s, output: 726.92 toks/s]\\rProcessed prompts:   1%|          | 152/27624 [00:08<12:00, 38.10it/s, est. speed input: 2627.21 toks/s, output: 812.67 toks/s]\\rProcessed prompts:   1%|          | 168/27624 [00:08<11:47, 38.82it/s, est. speed input: 2760.90 toks/s, output: 831.15 toks/s]\\rProcessed prompts:   1%|          | 176/27624 [00:08<11:34, 39.54it/s, est. speed input: 2837.90 toks/s, output: 880.06 toks/s]\\rProcessed prompts:   1%|          | 192/27624 [00:09<10:18, 44.32it/s, est. speed input: 3020.59 toks/s, output: 1001.39 toks/s]\\rProcessed prompts:   1%|          | 200/27624 [00:09<10:32, 43.39it/s, est. speed input: 3080.51 toks/s, output: 1040.26 toks/s]\\rProcessed p
+…[truncated 6325 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 147 · 2026-05-18T09:44:40.229752+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 148 · 2026-05-18T09:44:40.229945+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/27624 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/27624 [00:04<4:26:56,  1.72it/s, est. speed input: 220.70 toks/s, output: 24.14 toks/s]\\rProcessed prompts:   0%|          | 32/27624 [00:05<1:02:01,  7.41it/s, est. speed input: 823.15 toks/s, output: 83.21 toks/s]\\rProcessed prompts:   0%|          | 40/27624 [00:05<50:34,  9.09it/s, est. speed input: 967.18 toks/s, output: 129.42 toks/s] \\rProcessed prompts:   0%|          | 64/27624 [00:05<25:10, 18.25it/s, est. speed input: 1506.28 toks/s, output: 276.80 toks/s]\\rProcessed prompts:   0%|          | 80/27624 [00:06<17:55, 25.61it/s, est. speed input: 1847.43 toks/s, output: 382.09 toks/s]\\rProcessed prompts:   0%|          | 88/27624 [00:07<28:08, 16.30it/s, est. speed input: 1709.48 toks/s, output: 390.73 toks/s]\\rProcessed prompts:   0%|          | 112/27624 [00:07<16:54, 27.11it/s, est. speed input: 2156.31 toks/s, output: 598.26 toks/s]\\rProcessed prompts:   0%|          | 120/27624 [00:07<14:55, 30.71it/s, est. speed input: 2279.20 toks/s, output: 663.84 toks/s]\\rProcessed prompts:   0%|          | 136/27624 [00:08<15:18, 29.92it/s, est. speed input: 2404.54 toks/s, output: 726.92 toks/s]\\rProcessed prompts:   1%|          | 152/27624 [00:08<12:00, 38.10it/s, est. speed input: 2627.21 toks/s, output: 812.67 toks/s]\\rProcessed prompts:   1%|          | 168/27624 [00:08<11:47, 38.82it/s, est. speed input: 2760.90 toks/s, output: 831.15 toks/s]\\rProcessed prompts:   1%|          | 176/27624 [00:08<11:34, 39.54it/s, est. speed input: 2837.90 toks/s, output: 880.06 toks/s]\\rProcessed prompts:   1%|          | 192/27624 [00:09<10:18, 44.32it/s, est. speed input: 3020.59 toks/s, output: 1001.39 toks/s]\\rProcessed prompts:   1%|          | 200/27624 [00:09<10:32, 43.39it/s, est. speed input: 3080.51 toks/s, output: 1040.26 toks/s]\\rProcessed p
+…[truncated 6326 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 149 · 2026-05-18T09:44:40.230122+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 150 · 2026-05-18T09:44:40.230343+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/27624 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/27624 [00:04<4:26:56,  1.72it/s, est. speed input: 220.70 toks/s, output: 24.14 toks/s]\\rProcessed prompts:   0%|          | 32/27624 [00:05<1:02:01,  7.41it/s, est. speed input: 823.15 toks/s, output: 83.21 toks/s]\\rProcessed prompts:   0%|          | 40/27624 [00:05<50:34,  9.09it/s, est. speed input: 967.18 toks/s, output: 129.42 toks/s] \\rProcessed prompts:   0%|          | 64/27624 [00:05<25:10, 18.25it/s, est. speed input: 1506.28 toks/s, output: 276.80 toks/s]\\rProcessed prompts:   0%|          | 80/27624 [00:06<17:55, 25.61it/s, est. speed input: 1847.43 toks/s, output: 382.09 toks/s]\\rProcessed prompts:   0%|          | 88/27624 [00:07<28:08, 16.30it/s, est. speed input: 1709.48 toks/s, output: 390.73 toks/s]\\rProcessed prompts:   0%|          | 112/27624 [00:07<16:54, 27.11it/s, est. speed input: 2156.31 toks/s, output: 598.26 toks/s]\\rProcessed prompts:   0%|          | 120/27624 [00:07<14:55, 30.71it/s, est. speed input: 2279.20 toks/s, output: 663.84 toks/s]\\rProcessed prompts:   0%|          | 136/27624 [00:08<15:18, 29.92it/s, est. speed input: 2404.54 toks/s, output: 726.92 toks/s]\\rProcessed prompts:   1%|          | 152/27624 [00:08<12:00, 38.10it/s, est. speed input: 2627.21 toks/s, output: 812.67 toks/s]\\rProcessed prompts:   1%|          | 168/27624 [00:08<11:47, 38.82it/s, est. speed input: 2760.90 toks/s, output: 831.15 toks/s]\\rProcessed prompts:   1%|          | 176/27624 [00:08<11:34, 39.54it/s, est. speed input: 2837.90 toks/s, output: 880.06 toks/s]\\rProcessed prompts:   1%|          | 192/27624 [00:09<10:18, 44.32it/s, est. speed input: 3020.59 toks/s, output: 1001.39 toks/s]\\rProcessed prompts:   1%|          | 200/27624 [00:09<10:32, 43.39it/s, est. speed input: 3080.51 toks/s, output: 1040.26 toks/s]\\rProcessed p
+…[truncated 6326 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 151 · 2026-05-18T09:44:40.230525+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 152 · 2026-05-18T09:44:40.230719+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/27624 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/27624 [00:04<4:26:56,  1.72it/s, est. speed input: 220.70 toks/s, output: 24.14 toks/s]\\rProcessed prompts:   0%|          | 32/27624 [00:05<1:02:01,  7.41it/s, est. speed input: 823.15 toks/s, output: 83.21 toks/s]\\rProcessed prompts:   0%|          | 40/27624 [00:05<50:34,  9.09it/s, est. speed input: 967.18 toks/s, output: 129.42 toks/s] \\rProcessed prompts:   0%|          | 64/27624 [00:05<25:10, 18.25it/s, est. speed input: 1506.28 toks/s, output: 276.80 toks/s]\\rProcessed prompts:   0%|          | 80/27624 [00:06<17:55, 25.61it/s, est. speed input: 1847.43 toks/s, output: 382.09 toks/s]\\rProcessed prompts:   0%|          | 88/27624 [00:07<28:08, 16.30it/s, est. speed input: 1709.48 toks/s, output: 390.73 toks/s]\\rProcessed prompts:   0%|          | 112/27624 [00:07<16:54, 27.11it/s, est. speed input: 2156.31 toks/s, output: 598.26 toks/s]\\rProcessed prompts:   0%|          | 120/27624 [00:07<14:55, 30.71it/s, est. speed input: 2279.20 toks/s, output: 663.84 toks/s]\\rProcessed prompts:   0%|          | 136/27624 [00:08<15:18, 29.92it/s, est. speed input: 2404.54 toks/s, output: 726.92 toks/s]\\rProcessed prompts:   1%|          | 152/27624 [00:08<12:00, 38.10it/s, est. speed input: 2627.21 toks/s, output: 812.67 toks/s]\\rProcessed prompts:   1%|          | 168/27624 [00:08<11:47, 38.82it/s, est. speed input: 2760.90 toks/s, output: 831.15 toks/s]\\rProcessed prompts:   1%|          | 176/27624 [00:08<11:34, 39.54it/s, est. speed input: 2837.90 toks/s, output: 880.06 toks/s]\\rProcessed prompts:   1%|          | 192/27624 [00:09<10:18, 44.32it/s, est. speed input: 3020.59 toks/s, output: 1001.39 toks/s]\\rProcessed prompts:   1%|          | 200/27624 [00:09<10:32, 43.39it/s, est. speed input: 3080.51 toks/s, output: 1040.26 toks/s]\\rProcessed p
+…[truncated 6326 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 153 · 2026-05-18T09:44:40.230894+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 154 · 2026-05-18T09:44:40.231087+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/27624 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/27624 [00:04<4:26:56,  1.72it/s, est. speed input: 220.70 toks/s, output: 24.14 toks/s]\\rProcessed prompts:   0%|          | 32/27624 [00:05<1:02:01,  7.41it/s, est. speed input: 823.15 toks/s, output: 83.21 toks/s]\\rProcessed prompts:   0%|          | 40/27624 [00:05<50:34,  9.09it/s, est. speed input: 967.18 toks/s, output: 129.42 toks/s] \\rProcessed prompts:   0%|          | 64/27624 [00:05<25:10, 18.25it/s, est. speed input: 1506.28 toks/s, output: 276.80 toks/s]\\rProcessed prompts:   0%|          | 80/27624 [00:06<17:55, 25.61it/s, est. speed input: 1847.43 toks/s, output: 382.09 toks/s]\\rProcessed prompts:   0%|          | 88/27624 [00:07<28:08, 16.30it/s, est. speed input: 1709.48 toks/s, output: 390.73 toks/s]\\rProcessed prompts:   0%|          | 112/27624 [00:07<16:54, 27.11it/s, est. speed input: 2156.31 toks/s, output: 598.26 toks/s]\\rProcessed prompts:   0%|          | 120/27624 [00:07<14:55, 30.71it/s, est. speed input: 2279.20 toks/s, output: 663.84 toks/s]\\rProcessed prompts:   0%|          | 136/27624 [00:08<15:18, 29.92it/s, est. speed input: 2404.54 toks/s, output: 726.92 toks/s]\\rProcessed prompts:   1%|          | 152/27624 [00:08<12:00, 38.10it/s, est. speed input: 2627.21 toks/s, output: 812.67 toks/s]\\rProcessed prompts:   1%|          | 168/27624 [00:08<11:47, 38.82it/s, est. speed input: 2760.90 toks/s, output: 831.15 toks/s]\\rProcessed prompts:   1%|          | 176/27624 [00:08<11:34, 39.54it/s, est. speed input: 2837.90 toks/s, output: 880.06 toks/s]\\rProcessed prompts:   1%|          | 192/27624 [00:09<10:18, 44.32it/s, est. speed input: 3020.59 toks/s, output: 1001.39 toks/s]\\rProcessed prompts:   1%|          | 200/27624 [00:09<10:32, 43.39it/s, est. speed input: 3080.51 toks/s, output: 1040.26 toks/s]\\rProcessed p
+…[truncated 6326 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 155 · 2026-05-18T09:44:40.231292+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 156 · 2026-05-18T09:44:40.231489+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/27624 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/27624 [00:04<4:26:56,  1.72it/s, est. speed input: 220.70 toks/s, output: 24.14 toks/s]\\rProcessed prompts:   0%|          | 32/27624 [00:05<1:02:01,  7.41it/s, est. speed input: 823.15 toks/s, output: 83.21 toks/s]\\rProcessed prompts:   0%|          | 40/27624 [00:05<50:34,  9.09it/s, est. speed input: 967.18 toks/s, output: 129.42 toks/s] \\rProcessed prompts:   0%|          | 64/27624 [00:05<25:10, 18.25it/s, est. speed input: 1506.28 toks/s, output: 276.80 toks/s]\\rProcessed prompts:   0%|          | 80/27624 [00:06<17:55, 25.61it/s, est. speed input: 1847.43 toks/s, output: 382.09 toks/s]\\rProcessed prompts:   0%|          | 88/27624 [00:07<28:08, 16.30it/s, est. speed input: 1709.48 toks/s, output: 390.73 toks/s]\\rProcessed prompts:   0%|          | 112/27624 [00:07<16:54, 27.11it/s, est. speed input: 2156.31 toks/s, output: 598.26 toks/s]\\rProcessed prompts:   0%|          | 120/27624 [00:07<14:55, 30.71it/s, est. speed input: 2279.20 toks/s, output: 663.84 toks/s]\\rProcessed prompts:   0%|          | 136/27624 [00:08<15:18, 29.92it/s, est. speed input: 2404.54 toks/s, output: 726.92 toks/s]\\rProcessed prompts:   1%|          | 152/27624 [00:08<12:00, 38.10it/s, est. speed input: 2627.21 toks/s, output: 812.67 toks/s]\\rProcessed prompts:   1%|          | 168/27624 [00:08<11:47, 38.82it/s, est. speed input: 2760.90 toks/s, output: 831.15 toks/s]\\rProcessed prompts:   1%|          | 176/27624 [00:08<11:34, 39.54it/s, est. speed input: 2837.90 toks/s, output: 880.06 toks/s]\\rProcessed prompts:   1%|          | 192/27624 [00:09<10:18, 44.32it/s, est. speed input: 3020.59 toks/s, output: 1001.39 toks/s]\\rProcessed prompts:   1%|          | 200/27624 [00:09<10:32, 43.39it/s, est. speed input: 3080.51 toks/s, output: 1040.26 toks/s]\\rProcessed p
+…[truncated 6326 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 157 · 2026-05-18T09:44:40.231695+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 158 · 2026-05-18T09:44:40.231827+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 159 · 2026-05-18T09:44:40.231945+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -50 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -50 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 160 · 2026-05-18T09:44:40.232118+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:00<00:00, 227.77it/s]\\nLoading adapter...\\nMerging...\\nSaving merged model...\\nMerge complete\\n=== Step 2: Run inference seed=456 ===\\nLoaded 3453 test instances from conll2003 [index 0:None]\\nINFO 05-18 17:34:47 [utils.py:233] non-default args: {'max_model_len': 4096, 'disable_log_stats': True, 'model': 'checkpoints/qwen3-8b-conll2003-merged'}\\nINFO 05-18 17:34:47 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\nINFO 05-18 17:34:47 [model.py:1582] Using max model len 4096\\nINFO 05-18 17:34:47 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=8192.\\nINFO 05-18 17:34:47 [vllm.py:775] Asynchronous scheduling is enabled.\\n(EngineCore pid=139679) INFO 05-18 17:34:48 [core.py:103] Initializing a V1 LLM engine (v0.18.1) with config: model='checkpoints/qwen3-8b-conll2003-merged', speculative_config=None, tokenizer='checkpoints/qwen3-8b-conll2003-merged', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_trac
+…[truncated 6293 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 161 · 2026-05-18T09:44:40.232312+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:ScheduleWakeup",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:ScheduleWakeup",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 162 · 2026-05-18T09:44:40.232436+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 163 · 2026-05-18T09:44:40.232565+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -5 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -5 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 164 · 2026-05-18T09:44:40.232746+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"(EngineCore pid=139679) INFO 05-18 17:35:06 [gpu_worker.py:617] CUDA graph pool memory: 0.39 GiB (actual), 0.55 GiB (estimated), difference: 0.16 GiB (42.4%).\\n(EngineCore pid=139679) INFO 05-18 17:35:06 [core.py:281] init engine (profile, create kv cache, warmup model) took 12.13 seconds\\nINFO 05-18 17:35:07 [llm.py:391] Supported tasks: ['generate']\\n\\rRendering prompts:   0%|          | 0/3453 [00:00<?, ?it/s]\\rRendering prompts:   1%|          | 37/3453 [00:00<00:09, 368.89it/s]\\rRendering prompts:   3%|▎         | 95/3453 [00:00<00:06, 489.33it/s]\\rRendering prompts:   4%|▍         | 153/3453 [00:00<00:06, 526.91it/s]\\rRendering prompts:   6%|▌         | 206/3453 [00:00<00:13, 236.42it/s]\\rRendering prompts:   8%|▊         | 261/3453 [00:00<00:10, 298.50it/s]\\rRendering prompts:   9%|▉         | 317/3453 [00:00<00:08, 355.26it/s]\\rRendering prompts:  11%|█         | 375/3453 [00:01<00:07, 407.64it/s]\\rRendering prompts:  13%|█▎        | 432/3453 [00:01<00:06, 448.00it/s]\\rRendering prompts:  14%|█▍        | 490/3453 [00:01<00:06, 481.58it/s]\\rRendering prompts:  16%|█▌        | 548/3453 [00:01<00:05, 507.33it/s]\\rRendering prompts:  18%|█▊        | 605/3453 [00:01<00:05, 523.02it/s]\\rRendering prompts:  19%|█▉        | 661/3453 [00:01<00:05, 531.78it/s]\\rRendering prompts:  21%|██        | 717/3453 [00:01<00:05, 539.38it/s]\\rRendering prompts:  22%|██▏       | 773/3453 [00:01<00:04, 544.89it/s]\\rRendering prompts:  24%|██▍       | 829/3453 [00:01<00:04, 545.11it/s]\\rRendering prompts:  26%|██▌       | 885/3453 [00:01<00:04, 546.87it/s]\\rRendering prompts:  27%|██▋       | 941/3453 [00:02<00:04, 545.51it/s]\\rRendering prompts:  29%|██▉       | 996/3453 [00:02<00:04, 545.21it/s]\\rRendering prompts:  30%|███       | 1052/3453 [00:02<00:04, 547.49it/s]\\rRendering prompts:  32%|███▏      | 1108/3453 [00:02<00:04, 550.81it/s]\\rRendering prompts:  34%|███▎      | 1165/3453 [00:02<00:04, 5
+…[truncated 6373 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 165 · 2026-05-18T09:44:40.232923+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "sleep 120 && echo \"ready to check\"",
+  "description": "Wait 2 minutes before checking inference progress",
+  "timeout": "150000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "sleep 120 && echo \"ready to check\"",
+    "description": "Wait 2 minutes before checking inference progress",
+    "timeout": "150000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 166 · 2026-05-18T09:44:40.233058+00:00_
+
+&lt;tool_use_error>Blocked: sleep 120 followed by: echo "ready to check". To wait for a condition, use Monitor with an until-loop (e.g. `until &lt;check>; do sleep 2; done`). To wait for a command you started, use run_in_background: true. Do not chain shorter sleeps to work around this block.&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 167 · 2026-05-18T09:44:40.233199+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -3 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -3 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 168 · 2026-05-18T09:44:40.233383+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"INFO 05-18 17:35:07 [llm.py:391] Supported tasks: ['generate']\\n\\rRendering prompts:   0%|          | 0/3453 [00:00<?, ?it/s]\\rRendering prompts:   1%|          | 37/3453 [00:00<00:09, 368.89it/s]\\rRendering prompts:   3%|▎         | 95/3453 [00:00<00:06, 489.33it/s]\\rRendering prompts:   4%|▍         | 153/3453 [00:00<00:06, 526.91it/s]\\rRendering prompts:   6%|▌         | 206/3453 [00:00<00:13, 236.42it/s]\\rRendering prompts:   8%|▊         | 261/3453 [00:00<00:10, 298.50it/s]\\rRendering prompts:   9%|▉         | 317/3453 [00:00<00:08, 355.26it/s]\\rRendering prompts:  11%|█         | 375/3453 [00:01<00:07, 407.64it/s]\\rRendering prompts:  13%|█▎        | 432/3453 [00:01<00:06, 448.00it/s]\\rRendering prompts:  14%|█▍        | 490/3453 [00:01<00:06, 481.58it/s]\\rRendering prompts:  16%|█▌        | 548/3453 [00:01<00:05, 507.33it/s]\\rRendering prompts:  18%|█▊        | 605/3453 [00:01<00:05, 523.02it/s]\\rRendering prompts:  19%|█▉        | 661/3453 [00:01<00:05, 531.78it/s]\\rRendering prompts:  21%|██        | 717/3453 [00:01<00:05, 539.38it/s]\\rRendering prompts:  22%|██▏       | 773/3453 [00:01<00:04, 544.89it/s]\\rRendering prompts:  24%|██▍       | 829/3453 [00:01<00:04, 545.11it/s]\\rRendering prompts:  26%|██▌       | 885/3453 [00:01<00:04, 546.87it/s]\\rRendering prompts:  27%|██▋       | 941/3453 [00:02<00:04, 545.51it/s]\\rRendering prompts:  29%|██▉       | 996/3453 [00:02<00:04, 545.21it/s]\\rRendering prompts:  30%|███       | 1052/3453 [00:02<00:04, 547.49it/s]\\rRendering prompts:  32%|███▏      | 1108/3453 [00:02<00:04, 550.81it/s]\\rRendering prompts:  34%|███▎      | 1165/3453 [00:02<00:04, 553.67it/s]\\rRendering prompts:  35%|███▌      | 1221/3453 [00:02<00:04, 555.02it/s]\\rRendering prompts:  37%|███▋      | 1278/3453 [00:02<00:03, 556.95it/s]\\rRendering prompts:  39%|███▊      | 1335/3453 [00:02<00:03, 558.09it/s]\\rRendering prompts:  40%|████      | 1392/3453 [00:02<00:03
+…[truncated 6376 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 169 · 2026-05-18T09:44:40.233557+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -2 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -2 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 170 · 2026-05-18T09:44:40.233745+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rRendering prompts:   0%|          | 0/3453 [00:00<?, ?it/s]\\rRendering prompts:   1%|          | 37/3453 [00:00<00:09, 368.89it/s]\\rRendering prompts:   3%|▎         | 95/3453 [00:00<00:06, 489.33it/s]\\rRendering prompts:   4%|▍         | 153/3453 [00:00<00:06, 526.91it/s]\\rRendering prompts:   6%|▌         | 206/3453 [00:00<00:13, 236.42it/s]\\rRendering prompts:   8%|▊         | 261/3453 [00:00<00:10, 298.50it/s]\\rRendering prompts:   9%|▉         | 317/3453 [00:00<00:08, 355.26it/s]\\rRendering prompts:  11%|█         | 375/3453 [00:01<00:07, 407.64it/s]\\rRendering prompts:  13%|█▎        | 432/3453 [00:01<00:06, 448.00it/s]\\rRendering prompts:  14%|█▍        | 490/3453 [00:01<00:06, 481.58it/s]\\rRendering prompts:  16%|█▌        | 548/3453 [00:01<00:05, 507.33it/s]\\rRendering prompts:  18%|█▊        | 605/3453 [00:01<00:05, 523.02it/s]\\rRendering prompts:  19%|█▉        | 661/3453 [00:01<00:05, 531.78it/s]\\rRendering prompts:  21%|██        | 717/3453 [00:01<00:05, 539.38it/s]\\rRendering prompts:  22%|██▏       | 773/3453 [00:01<00:04, 544.89it/s]\\rRendering prompts:  24%|██▍       | 829/3453 [00:01<00:04, 545.11it/s]\\rRendering prompts:  26%|██▌       | 885/3453 [00:01<00:04, 546.87it/s]\\rRendering prompts:  27%|██▋       | 941/3453 [00:02<00:04, 545.51it/s]\\rRendering prompts:  29%|██▉       | 996/3453 [00:02<00:04, 545.21it/s]\\rRendering prompts:  30%|███       | 1052/3453 [00:02<00:04, 547.49it/s]\\rRendering prompts:  32%|███▏      | 1108/3453 [00:02<00:04, 550.81it/s]\\rRendering prompts:  34%|███▎      | 1165/3453 [00:02<00:04, 553.67it/s]\\rRendering prompts:  35%|███▌      | 1221/3453 [00:02<00:04, 555.02it/s]\\rRendering prompts:  37%|███▋      | 1278/3453 [00:02<00:03, 556.95it/s]\\rRendering prompts:  39%|███▊      | 1335/3453 [00:02<00:03, 558.09it/s]\\rRendering prompts:  40%|████      | 1392/3453 [00:02<00:03, 558.99it/s]\\rRendering prompts:  42%|████▏     | 1449/3453 [00
+…[truncated 6375 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 171 · 2026-05-18T09:44:40.233925+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 172 · 2026-05-18T09:44:40.234122+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/27624 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/27624 [00:04<4:26:56,  1.72it/s, est. speed input: 220.70 toks/s, output: 24.14 toks/s]\\rProcessed prompts:   0%|          | 32/27624 [00:05<1:02:01,  7.41it/s, est. speed input: 823.15 toks/s, output: 83.21 toks/s]\\rProcessed prompts:   0%|          | 40/27624 [00:05<50:34,  9.09it/s, est. speed input: 967.18 toks/s, output: 129.42 toks/s] \\rProcessed prompts:   0%|          | 64/27624 [00:05<25:10, 18.25it/s, est. speed input: 1506.28 toks/s, output: 276.80 toks/s]\\rProcessed prompts:   0%|          | 80/27624 [00:06<17:55, 25.61it/s, est. speed input: 1847.43 toks/s, output: 382.09 toks/s]\\rProcessed prompts:   0%|          | 88/27624 [00:07<28:08, 16.30it/s, est. speed input: 1709.48 toks/s, output: 390.73 toks/s]\\rProcessed prompts:   0%|          | 112/27624 [00:07<16:54, 27.11it/s, est. speed input: 2156.31 toks/s, output: 598.26 toks/s]\\rProcessed prompts:   0%|          | 120/27624 [00:07<14:55, 30.71it/s, est. speed input: 2279.20 toks/s, output: 663.84 toks/s]\\rProcessed prompts:   0%|          | 136/27624 [00:08<15:18, 29.92it/s, est. speed input: 2404.54 toks/s, output: 726.92 toks/s]\\rProcessed prompts:   1%|          | 152/27624 [00:08<12:00, 38.10it/s, est. speed input: 2627.21 toks/s, output: 812.67 toks/s]\\rProcessed prompts:   1%|          | 168/27624 [00:08<11:47, 38.82it/s, est. speed input: 2760.90 toks/s, output: 831.15 toks/s]\\rProcessed prompts:   1%|          | 176/27624 [00:08<11:34, 39.54it/s, est. speed input: 2837.90 toks/s, output: 880.06 toks/s]\\rProcessed prompts:   1%|          | 192/27624 [00:09<10:18, 44.32it/s, est. speed input: 3020.59 toks/s, output: 1001.39 toks/s]\\rProcessed prompts:   1%|          | 200/27624 [00:09<10:32, 43.39it/s, est. speed input: 3080.51 toks/s, output: 1040.26 toks/s]\\rProcessed p
+…[truncated 6327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 173 · 2026-05-18T09:44:40.234329+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 174 · 2026-05-18T09:44:40.234527+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/27624 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/27624 [00:04<4:26:56,  1.72it/s, est. speed input: 220.70 toks/s, output: 24.14 toks/s]\\rProcessed prompts:   0%|          | 32/27624 [00:05<1:02:01,  7.41it/s, est. speed input: 823.15 toks/s, output: 83.21 toks/s]\\rProcessed prompts:   0%|          | 40/27624 [00:05<50:34,  9.09it/s, est. speed input: 967.18 toks/s, output: 129.42 toks/s] \\rProcessed prompts:   0%|          | 64/27624 [00:05<25:10, 18.25it/s, est. speed input: 1506.28 toks/s, output: 276.80 toks/s]\\rProcessed prompts:   0%|          | 80/27624 [00:06<17:55, 25.61it/s, est. speed input: 1847.43 toks/s, output: 382.09 toks/s]\\rProcessed prompts:   0%|          | 88/27624 [00:07<28:08, 16.30it/s, est. speed input: 1709.48 toks/s, output: 390.73 toks/s]\\rProcessed prompts:   0%|          | 112/27624 [00:07<16:54, 27.11it/s, est. speed input: 2156.31 toks/s, output: 598.26 toks/s]\\rProcessed prompts:   0%|          | 120/27624 [00:07<14:55, 30.71it/s, est. speed input: 2279.20 toks/s, output: 663.84 toks/s]\\rProcessed prompts:   0%|          | 136/27624 [00:08<15:18, 29.92it/s, est. speed input: 2404.54 toks/s, output: 726.92 toks/s]\\rProcessed prompts:   1%|          | 152/27624 [00:08<12:00, 38.10it/s, est. speed input: 2627.21 toks/s, output: 812.67 toks/s]\\rProcessed prompts:   1%|          | 168/27624 [00:08<11:47, 38.82it/s, est. speed input: 2760.90 toks/s, output: 831.15 toks/s]\\rProcessed prompts:   1%|          | 176/27624 [00:08<11:34, 39.54it/s, est. speed input: 2837.90 toks/s, output: 880.06 toks/s]\\rProcessed prompts:   1%|          | 192/27624 [00:09<10:18, 44.32it/s, est. speed input: 3020.59 toks/s, output: 1001.39 toks/s]\\rProcessed prompts:   1%|          | 200/27624 [00:09<10:32, 43.39it/s, est. speed input: 3080.51 toks/s, output: 1040.26 toks/s]\\rProcessed p
+…[truncated 6327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 175 · 2026-05-18T09:44:40.234692+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 176 · 2026-05-18T09:44:40.234885+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/27624 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/27624 [00:04<4:26:56,  1.72it/s, est. speed input: 220.70 toks/s, output: 24.14 toks/s]\\rProcessed prompts:   0%|          | 32/27624 [00:05<1:02:01,  7.41it/s, est. speed input: 823.15 toks/s, output: 83.21 toks/s]\\rProcessed prompts:   0%|          | 40/27624 [00:05<50:34,  9.09it/s, est. speed input: 967.18 toks/s, output: 129.42 toks/s] \\rProcessed prompts:   0%|          | 64/27624 [00:05<25:10, 18.25it/s, est. speed input: 1506.28 toks/s, output: 276.80 toks/s]\\rProcessed prompts:   0%|          | 80/27624 [00:06<17:55, 25.61it/s, est. speed input: 1847.43 toks/s, output: 382.09 toks/s]\\rProcessed prompts:   0%|          | 88/27624 [00:07<28:08, 16.30it/s, est. speed input: 1709.48 toks/s, output: 390.73 toks/s]\\rProcessed prompts:   0%|          | 112/27624 [00:07<16:54, 27.11it/s, est. speed input: 2156.31 toks/s, output: 598.26 toks/s]\\rProcessed prompts:   0%|          | 120/27624 [00:07<14:55, 30.71it/s, est. speed input: 2279.20 toks/s, output: 663.84 toks/s]\\rProcessed prompts:   0%|          | 136/27624 [00:08<15:18, 29.92it/s, est. speed input: 2404.54 toks/s, output: 726.92 toks/s]\\rProcessed prompts:   1%|          | 152/27624 [00:08<12:00, 38.10it/s, est. speed input: 2627.21 toks/s, output: 812.67 toks/s]\\rProcessed prompts:   1%|          | 168/27624 [00:08<11:47, 38.82it/s, est. speed input: 2760.90 toks/s, output: 831.15 toks/s]\\rProcessed prompts:   1%|          | 176/27624 [00:08<11:34, 39.54it/s, est. speed input: 2837.90 toks/s, output: 880.06 toks/s]\\rProcessed prompts:   1%|          | 192/27624 [00:09<10:18, 44.32it/s, est. speed input: 3020.59 toks/s, output: 1001.39 toks/s]\\rProcessed prompts:   1%|          | 200/27624 [00:09<10:32, 43.39it/s, est. speed input: 3080.51 toks/s, output: 1040.26 toks/s]\\rProcessed p
+…[truncated 6327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 177 · 2026-05-18T09:44:40.235056+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 178 · 2026-05-18T09:44:40.235273+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/27624 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/27624 [00:04<4:26:56,  1.72it/s, est. speed input: 220.70 toks/s, output: 24.14 toks/s]\\rProcessed prompts:   0%|          | 32/27624 [00:05<1:02:01,  7.41it/s, est. speed input: 823.15 toks/s, output: 83.21 toks/s]\\rProcessed prompts:   0%|          | 40/27624 [00:05<50:34,  9.09it/s, est. speed input: 967.18 toks/s, output: 129.42 toks/s] \\rProcessed prompts:   0%|          | 64/27624 [00:05<25:10, 18.25it/s, est. speed input: 1506.28 toks/s, output: 276.80 toks/s]\\rProcessed prompts:   0%|          | 80/27624 [00:06<17:55, 25.61it/s, est. speed input: 1847.43 toks/s, output: 382.09 toks/s]\\rProcessed prompts:   0%|          | 88/27624 [00:07<28:08, 16.30it/s, est. speed input: 1709.48 toks/s, output: 390.73 toks/s]\\rProcessed prompts:   0%|          | 112/27624 [00:07<16:54, 27.11it/s, est. speed input: 2156.31 toks/s, output: 598.26 toks/s]\\rProcessed prompts:   0%|          | 120/27624 [00:07<14:55, 30.71it/s, est. speed input: 2279.20 toks/s, output: 663.84 toks/s]\\rProcessed prompts:   0%|          | 136/27624 [00:08<15:18, 29.92it/s, est. speed input: 2404.54 toks/s, output: 726.92 toks/s]\\rProcessed prompts:   1%|          | 152/27624 [00:08<12:00, 38.10it/s, est. speed input: 2627.21 toks/s, output: 812.67 toks/s]\\rProcessed prompts:   1%|          | 168/27624 [00:08<11:47, 38.82it/s, est. speed input: 2760.90 toks/s, output: 831.15 toks/s]\\rProcessed prompts:   1%|          | 176/27624 [00:08<11:34, 39.54it/s, est. speed input: 2837.90 toks/s, output: 880.06 toks/s]\\rProcessed prompts:   1%|          | 192/27624 [00:09<10:18, 44.32it/s, est. speed input: 3020.59 toks/s, output: 1001.39 toks/s]\\rProcessed prompts:   1%|          | 200/27624 [00:09<10:32, 43.39it/s, est. speed input: 3080.51 toks/s, output: 1040.26 toks/s]\\rProcessed p
+…[truncated 6327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 179 · 2026-05-18T09:44:40.235437+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 180 · 2026-05-18T09:44:40.235629+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/27624 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/27624 [00:04<4:26:56,  1.72it/s, est. speed input: 220.70 toks/s, output: 24.14 toks/s]\\rProcessed prompts:   0%|          | 32/27624 [00:05<1:02:01,  7.41it/s, est. speed input: 823.15 toks/s, output: 83.21 toks/s]\\rProcessed prompts:   0%|          | 40/27624 [00:05<50:34,  9.09it/s, est. speed input: 967.18 toks/s, output: 129.42 toks/s] \\rProcessed prompts:   0%|          | 64/27624 [00:05<25:10, 18.25it/s, est. speed input: 1506.28 toks/s, output: 276.80 toks/s]\\rProcessed prompts:   0%|          | 80/27624 [00:06<17:55, 25.61it/s, est. speed input: 1847.43 toks/s, output: 382.09 toks/s]\\rProcessed prompts:   0%|          | 88/27624 [00:07<28:08, 16.30it/s, est. speed input: 1709.48 toks/s, output: 390.73 toks/s]\\rProcessed prompts:   0%|          | 112/27624 [00:07<16:54, 27.11it/s, est. speed input: 2156.31 toks/s, output: 598.26 toks/s]\\rProcessed prompts:   0%|          | 120/27624 [00:07<14:55, 30.71it/s, est. speed input: 2279.20 toks/s, output: 663.84 toks/s]\\rProcessed prompts:   0%|          | 136/27624 [00:08<15:18, 29.92it/s, est. speed input: 2404.54 toks/s, output: 726.92 toks/s]\\rProcessed prompts:   1%|          | 152/27624 [00:08<12:00, 38.10it/s, est. speed input: 2627.21 toks/s, output: 812.67 toks/s]\\rProcessed prompts:   1%|          | 168/27624 [00:08<11:47, 38.82it/s, est. speed input: 2760.90 toks/s, output: 831.15 toks/s]\\rProcessed prompts:   1%|          | 176/27624 [00:08<11:34, 39.54it/s, est. speed input: 2837.90 toks/s, output: 880.06 toks/s]\\rProcessed prompts:   1%|          | 192/27624 [00:09<10:18, 44.32it/s, est. speed input: 3020.59 toks/s, output: 1001.39 toks/s]\\rProcessed prompts:   1%|          | 200/27624 [00:09<10:32, 43.39it/s, est. speed input: 3080.51 toks/s, output: 1040.26 toks/s]\\rProcessed p
+…[truncated 6327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 181 · 2026-05-18T09:44:40.235792+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 182 · 2026-05-18T09:44:40.235983+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/27624 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/27624 [00:04<4:26:56,  1.72it/s, est. speed input: 220.70 toks/s, output: 24.14 toks/s]\\rProcessed prompts:   0%|          | 32/27624 [00:05<1:02:01,  7.41it/s, est. speed input: 823.15 toks/s, output: 83.21 toks/s]\\rProcessed prompts:   0%|          | 40/27624 [00:05<50:34,  9.09it/s, est. speed input: 967.18 toks/s, output: 129.42 toks/s] \\rProcessed prompts:   0%|          | 64/27624 [00:05<25:10, 18.25it/s, est. speed input: 1506.28 toks/s, output: 276.80 toks/s]\\rProcessed prompts:   0%|          | 80/27624 [00:06<17:55, 25.61it/s, est. speed input: 1847.43 toks/s, output: 382.09 toks/s]\\rProcessed prompts:   0%|          | 88/27624 [00:07<28:08, 16.30it/s, est. speed input: 1709.48 toks/s, output: 390.73 toks/s]\\rProcessed prompts:   0%|          | 112/27624 [00:07<16:54, 27.11it/s, est. speed input: 2156.31 toks/s, output: 598.26 toks/s]\\rProcessed prompts:   0%|          | 120/27624 [00:07<14:55, 30.71it/s, est. speed input: 2279.20 toks/s, output: 663.84 toks/s]\\rProcessed prompts:   0%|          | 136/27624 [00:08<15:18, 29.92it/s, est. speed input: 2404.54 toks/s, output: 726.92 toks/s]\\rProcessed prompts:   1%|          | 152/27624 [00:08<12:00, 38.10it/s, est. speed input: 2627.21 toks/s, output: 812.67 toks/s]\\rProcessed prompts:   1%|          | 168/27624 [00:08<11:47, 38.82it/s, est. speed input: 2760.90 toks/s, output: 831.15 toks/s]\\rProcessed prompts:   1%|          | 176/27624 [00:08<11:34, 39.54it/s, est. speed input: 2837.90 toks/s, output: 880.06 toks/s]\\rProcessed prompts:   1%|          | 192/27624 [00:09<10:18, 44.32it/s, est. speed input: 3020.59 toks/s, output: 1001.39 toks/s]\\rProcessed prompts:   1%|          | 200/27624 [00:09<10:32, 43.39it/s, est. speed input: 3080.51 toks/s, output: 1040.26 toks/s]\\rProcessed p
+…[truncated 6327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 183 · 2026-05-18T09:44:40.236153+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 184 · 2026-05-18T09:44:40.236356+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/27624 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/27624 [00:04<4:26:56,  1.72it/s, est. speed input: 220.70 toks/s, output: 24.14 toks/s]\\rProcessed prompts:   0%|          | 32/27624 [00:05<1:02:01,  7.41it/s, est. speed input: 823.15 toks/s, output: 83.21 toks/s]\\rProcessed prompts:   0%|          | 40/27624 [00:05<50:34,  9.09it/s, est. speed input: 967.18 toks/s, output: 129.42 toks/s] \\rProcessed prompts:   0%|          | 64/27624 [00:05<25:10, 18.25it/s, est. speed input: 1506.28 toks/s, output: 276.80 toks/s]\\rProcessed prompts:   0%|          | 80/27624 [00:06<17:55, 25.61it/s, est. speed input: 1847.43 toks/s, output: 382.09 toks/s]\\rProcessed prompts:   0%|          | 88/27624 [00:07<28:08, 16.30it/s, est. speed input: 1709.48 toks/s, output: 390.73 toks/s]\\rProcessed prompts:   0%|          | 112/27624 [00:07<16:54, 27.11it/s, est. speed input: 2156.31 toks/s, output: 598.26 toks/s]\\rProcessed prompts:   0%|          | 120/27624 [00:07<14:55, 30.71it/s, est. speed input: 2279.20 toks/s, output: 663.84 toks/s]\\rProcessed prompts:   0%|          | 136/27624 [00:08<15:18, 29.92it/s, est. speed input: 2404.54 toks/s, output: 726.92 toks/s]\\rProcessed prompts:   1%|          | 152/27624 [00:08<12:00, 38.10it/s, est. speed input: 2627.21 toks/s, output: 812.67 toks/s]\\rProcessed prompts:   1%|          | 168/27624 [00:08<11:47, 38.82it/s, est. speed input: 2760.90 toks/s, output: 831.15 toks/s]\\rProcessed prompts:   1%|          | 176/27624 [00:08<11:34, 39.54it/s, est. speed input: 2837.90 toks/s, output: 880.06 toks/s]\\rProcessed prompts:   1%|          | 192/27624 [00:09<10:18, 44.32it/s, est. speed input: 3020.59 toks/s, output: 1001.39 toks/s]\\rProcessed prompts:   1%|          | 200/27624 [00:09<10:32, 43.39it/s, est. speed input: 3080.51 toks/s, output: 1040.26 toks/s]\\rProcessed p
+…[truncated 6327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 185 · 2026-05-18T09:44:40.236515+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 186 · 2026-05-18T09:44:40.236706+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/27624 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/27624 [00:04<4:26:56,  1.72it/s, est. speed input: 220.70 toks/s, output: 24.14 toks/s]\\rProcessed prompts:   0%|          | 32/27624 [00:05<1:02:01,  7.41it/s, est. speed input: 823.15 toks/s, output: 83.21 toks/s]\\rProcessed prompts:   0%|          | 40/27624 [00:05<50:34,  9.09it/s, est. speed input: 967.18 toks/s, output: 129.42 toks/s] \\rProcessed prompts:   0%|          | 64/27624 [00:05<25:10, 18.25it/s, est. speed input: 1506.28 toks/s, output: 276.80 toks/s]\\rProcessed prompts:   0%|          | 80/27624 [00:06<17:55, 25.61it/s, est. speed input: 1847.43 toks/s, output: 382.09 toks/s]\\rProcessed prompts:   0%|          | 88/27624 [00:07<28:08, 16.30it/s, est. speed input: 1709.48 toks/s, output: 390.73 toks/s]\\rProcessed prompts:   0%|          | 112/27624 [00:07<16:54, 27.11it/s, est. speed input: 2156.31 toks/s, output: 598.26 toks/s]\\rProcessed prompts:   0%|          | 120/27624 [00:07<14:55, 30.71it/s, est. speed input: 2279.20 toks/s, output: 663.84 toks/s]\\rProcessed prompts:   0%|          | 136/27624 [00:08<15:18, 29.92it/s, est. speed input: 2404.54 toks/s, output: 726.92 toks/s]\\rProcessed prompts:   1%|          | 152/27624 [00:08<12:00, 38.10it/s, est. speed input: 2627.21 toks/s, output: 812.67 toks/s]\\rProcessed prompts:   1%|          | 168/27624 [00:08<11:47, 38.82it/s, est. speed input: 2760.90 toks/s, output: 831.15 toks/s]\\rProcessed prompts:   1%|          | 176/27624 [00:08<11:34, 39.54it/s, est. speed input: 2837.90 toks/s, output: 880.06 toks/s]\\rProcessed prompts:   1%|          | 192/27624 [00:09<10:18, 44.32it/s, est. speed input: 3020.59 toks/s, output: 1001.39 toks/s]\\rProcessed prompts:   1%|          | 200/27624 [00:09<10:32, 43.39it/s, est. speed input: 3080.51 toks/s, output: 1040.26 toks/s]\\rProcessed p
+…[truncated 6326 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 187 · 2026-05-18T09:44:40.236871+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 188 · 2026-05-18T09:44:40.237077+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/27624 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/27624 [00:04<4:26:56,  1.72it/s, est. speed input: 220.70 toks/s, output: 24.14 toks/s]\\rProcessed prompts:   0%|          | 32/27624 [00:05<1:02:01,  7.41it/s, est. speed input: 823.15 toks/s, output: 83.21 toks/s]\\rProcessed prompts:   0%|          | 40/27624 [00:05<50:34,  9.09it/s, est. speed input: 967.18 toks/s, output: 129.42 toks/s] \\rProcessed prompts:   0%|          | 64/27624 [00:05<25:10, 18.25it/s, est. speed input: 1506.28 toks/s, output: 276.80 toks/s]\\rProcessed prompts:   0%|          | 80/27624 [00:06<17:55, 25.61it/s, est. speed input: 1847.43 toks/s, output: 382.09 toks/s]\\rProcessed prompts:   0%|          | 88/27624 [00:07<28:08, 16.30it/s, est. speed input: 1709.48 toks/s, output: 390.73 toks/s]\\rProcessed prompts:   0%|          | 112/27624 [00:07<16:54, 27.11it/s, est. speed input: 2156.31 toks/s, output: 598.26 toks/s]\\rProcessed prompts:   0%|          | 120/27624 [00:07<14:55, 30.71it/s, est. speed input: 2279.20 toks/s, output: 663.84 toks/s]\\rProcessed prompts:   0%|          | 136/27624 [00:08<15:18, 29.92it/s, est. speed input: 2404.54 toks/s, output: 726.92 toks/s]\\rProcessed prompts:   1%|          | 152/27624 [00:08<12:00, 38.10it/s, est. speed input: 2627.21 toks/s, output: 812.67 toks/s]\\rProcessed prompts:   1%|          | 168/27624 [00:08<11:47, 38.82it/s, est. speed input: 2760.90 toks/s, output: 831.15 toks/s]\\rProcessed prompts:   1%|          | 176/27624 [00:08<11:34, 39.54it/s, est. speed input: 2837.90 toks/s, output: 880.06 toks/s]\\rProcessed prompts:   1%|          | 192/27624 [00:09<10:18, 44.32it/s, est. speed input: 3020.59 toks/s, output: 1001.39 toks/s]\\rProcessed prompts:   1%|          | 200/27624 [00:09<10:32, 43.39it/s, est. speed input: 3080.51 toks/s, output: 1040.26 toks/s]\\rProcessed p
+…[truncated 6327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 189 · 2026-05-18T09:44:40.237261+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 190 · 2026-05-18T09:44:40.237454+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/27624 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/27624 [00:04<4:26:56,  1.72it/s, est. speed input: 220.70 toks/s, output: 24.14 toks/s]\\rProcessed prompts:   0%|          | 32/27624 [00:05<1:02:01,  7.41it/s, est. speed input: 823.15 toks/s, output: 83.21 toks/s]\\rProcessed prompts:   0%|          | 40/27624 [00:05<50:34,  9.09it/s, est. speed input: 967.18 toks/s, output: 129.42 toks/s] \\rProcessed prompts:   0%|          | 64/27624 [00:05<25:10, 18.25it/s, est. speed input: 1506.28 toks/s, output: 276.80 toks/s]\\rProcessed prompts:   0%|          | 80/27624 [00:06<17:55, 25.61it/s, est. speed input: 1847.43 toks/s, output: 382.09 toks/s]\\rProcessed prompts:   0%|          | 88/27624 [00:07<28:08, 16.30it/s, est. speed input: 1709.48 toks/s, output: 390.73 toks/s]\\rProcessed prompts:   0%|          | 112/27624 [00:07<16:54, 27.11it/s, est. speed input: 2156.31 toks/s, output: 598.26 toks/s]\\rProcessed prompts:   0%|          | 120/27624 [00:07<14:55, 30.71it/s, est. speed input: 2279.20 toks/s, output: 663.84 toks/s]\\rProcessed prompts:   0%|          | 136/27624 [00:08<15:18, 29.92it/s, est. speed input: 2404.54 toks/s, output: 726.92 toks/s]\\rProcessed prompts:   1%|          | 152/27624 [00:08<12:00, 38.10it/s, est. speed input: 2627.21 toks/s, output: 812.67 toks/s]\\rProcessed prompts:   1%|          | 168/27624 [00:08<11:47, 38.82it/s, est. speed input: 2760.90 toks/s, output: 831.15 toks/s]\\rProcessed prompts:   1%|          | 176/27624 [00:08<11:34, 39.54it/s, est. speed input: 2837.90 toks/s, output: 880.06 toks/s]\\rProcessed prompts:   1%|          | 192/27624 [00:09<10:18, 44.32it/s, est. speed input: 3020.59 toks/s, output: 1001.39 toks/s]\\rProcessed prompts:   1%|          | 200/27624 [00:09<10:32, 43.39it/s, est. speed input: 3080.51 toks/s, output: 1040.26 toks/s]\\rProcessed p
+…[truncated 6327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 191 · 2026-05-18T09:44:40.237619+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 192 · 2026-05-18T09:44:40.237810+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/27624 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/27624 [00:04<4:26:56,  1.72it/s, est. speed input: 220.70 toks/s, output: 24.14 toks/s]\\rProcessed prompts:   0%|          | 32/27624 [00:05<1:02:01,  7.41it/s, est. speed input: 823.15 toks/s, output: 83.21 toks/s]\\rProcessed prompts:   0%|          | 40/27624 [00:05<50:34,  9.09it/s, est. speed input: 967.18 toks/s, output: 129.42 toks/s] \\rProcessed prompts:   0%|          | 64/27624 [00:05<25:10, 18.25it/s, est. speed input: 1506.28 toks/s, output: 276.80 toks/s]\\rProcessed prompts:   0%|          | 80/27624 [00:06<17:55, 25.61it/s, est. speed input: 1847.43 toks/s, output: 382.09 toks/s]\\rProcessed prompts:   0%|          | 88/27624 [00:07<28:08, 16.30it/s, est. speed input: 1709.48 toks/s, output: 390.73 toks/s]\\rProcessed prompts:   0%|          | 112/27624 [00:07<16:54, 27.11it/s, est. speed input: 2156.31 toks/s, output: 598.26 toks/s]\\rProcessed prompts:   0%|          | 120/27624 [00:07<14:55, 30.71it/s, est. speed input: 2279.20 toks/s, output: 663.84 toks/s]\\rProcessed prompts:   0%|          | 136/27624 [00:08<15:18, 29.92it/s, est. speed input: 2404.54 toks/s, output: 726.92 toks/s]\\rProcessed prompts:   1%|          | 152/27624 [00:08<12:00, 38.10it/s, est. speed input: 2627.21 toks/s, output: 812.67 toks/s]\\rProcessed prompts:   1%|          | 168/27624 [00:08<11:47, 38.82it/s, est. speed input: 2760.90 toks/s, output: 831.15 toks/s]\\rProcessed prompts:   1%|          | 176/27624 [00:08<11:34, 39.54it/s, est. speed input: 2837.90 toks/s, output: 880.06 toks/s]\\rProcessed prompts:   1%|          | 192/27624 [00:09<10:18, 44.32it/s, est. speed input: 3020.59 toks/s, output: 1001.39 toks/s]\\rProcessed prompts:   1%|          | 200/27624 [00:09<10:32, 43.39it/s, est. speed input: 3080.51 toks/s, output: 1040.26 toks/s]\\rProcessed p
+…[truncated 6327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 193 · 2026-05-18T09:44:40.237972+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 194 · 2026-05-18T09:44:40.238178+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/27624 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/27624 [00:04<4:26:56,  1.72it/s, est. speed input: 220.70 toks/s, output: 24.14 toks/s]\\rProcessed prompts:   0%|          | 32/27624 [00:05<1:02:01,  7.41it/s, est. speed input: 823.15 toks/s, output: 83.21 toks/s]\\rProcessed prompts:   0%|          | 40/27624 [00:05<50:34,  9.09it/s, est. speed input: 967.18 toks/s, output: 129.42 toks/s] \\rProcessed prompts:   0%|          | 64/27624 [00:05<25:10, 18.25it/s, est. speed input: 1506.28 toks/s, output: 276.80 toks/s]\\rProcessed prompts:   0%|          | 80/27624 [00:06<17:55, 25.61it/s, est. speed input: 1847.43 toks/s, output: 382.09 toks/s]\\rProcessed prompts:   0%|          | 88/27624 [00:07<28:08, 16.30it/s, est. speed input: 1709.48 toks/s, output: 390.73 toks/s]\\rProcessed prompts:   0%|          | 112/27624 [00:07<16:54, 27.11it/s, est. speed input: 2156.31 toks/s, output: 598.26 toks/s]\\rProcessed prompts:   0%|          | 120/27624 [00:07<14:55, 30.71it/s, est. speed input: 2279.20 toks/s, output: 663.84 toks/s]\\rProcessed prompts:   0%|          | 136/27624 [00:08<15:18, 29.92it/s, est. speed input: 2404.54 toks/s, output: 726.92 toks/s]\\rProcessed prompts:   1%|          | 152/27624 [00:08<12:00, 38.10it/s, est. speed input: 2627.21 toks/s, output: 812.67 toks/s]\\rProcessed prompts:   1%|          | 168/27624 [00:08<11:47, 38.82it/s, est. speed input: 2760.90 toks/s, output: 831.15 toks/s]\\rProcessed prompts:   1%|          | 176/27624 [00:08<11:34, 39.54it/s, est. speed input: 2837.90 toks/s, output: 880.06 toks/s]\\rProcessed prompts:   1%|          | 192/27624 [00:09<10:18, 44.32it/s, est. speed input: 3020.59 toks/s, output: 1001.39 toks/s]\\rProcessed prompts:   1%|          | 200/27624 [00:09<10:32, 43.39it/s, est. speed input: 3080.51 toks/s, output: 1040.26 toks/s]\\rProcessed p
+…[truncated 6327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 195 · 2026-05-18T09:44:40.238343+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 196 · 2026-05-18T09:44:40.238533+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/27624 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/27624 [00:04<4:26:56,  1.72it/s, est. speed input: 220.70 toks/s, output: 24.14 toks/s]\\rProcessed prompts:   0%|          | 32/27624 [00:05<1:02:01,  7.41it/s, est. speed input: 823.15 toks/s, output: 83.21 toks/s]\\rProcessed prompts:   0%|          | 40/27624 [00:05<50:34,  9.09it/s, est. speed input: 967.18 toks/s, output: 129.42 toks/s] \\rProcessed prompts:   0%|          | 64/27624 [00:05<25:10, 18.25it/s, est. speed input: 1506.28 toks/s, output: 276.80 toks/s]\\rProcessed prompts:   0%|          | 80/27624 [00:06<17:55, 25.61it/s, est. speed input: 1847.43 toks/s, output: 382.09 toks/s]\\rProcessed prompts:   0%|          | 88/27624 [00:07<28:08, 16.30it/s, est. speed input: 1709.48 toks/s, output: 390.73 toks/s]\\rProcessed prompts:   0%|          | 112/27624 [00:07<16:54, 27.11it/s, est. speed input: 2156.31 toks/s, output: 598.26 toks/s]\\rProcessed prompts:   0%|          | 120/27624 [00:07<14:55, 30.71it/s, est. speed input: 2279.20 toks/s, output: 663.84 toks/s]\\rProcessed prompts:   0%|          | 136/27624 [00:08<15:18, 29.92it/s, est. speed input: 2404.54 toks/s, output: 726.92 toks/s]\\rProcessed prompts:   1%|          | 152/27624 [00:08<12:00, 38.10it/s, est. speed input: 2627.21 toks/s, output: 812.67 toks/s]\\rProcessed prompts:   1%|          | 168/27624 [00:08<11:47, 38.82it/s, est. speed input: 2760.90 toks/s, output: 831.15 toks/s]\\rProcessed prompts:   1%|          | 176/27624 [00:08<11:34, 39.54it/s, est. speed input: 2837.90 toks/s, output: 880.06 toks/s]\\rProcessed prompts:   1%|          | 192/27624 [00:09<10:18, 44.32it/s, est. speed input: 3020.59 toks/s, output: 1001.39 toks/s]\\rProcessed prompts:   1%|          | 200/27624 [00:09<10:32, 43.39it/s, est. speed input: 3080.51 toks/s, output: 1040.26 toks/s]\\rProcessed p
+…[truncated 6327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 197 · 2026-05-18T09:44:40.238694+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 198 · 2026-05-18T09:44:40.238886+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/27624 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/27624 [00:04<4:26:56,  1.72it/s, est. speed input: 220.70 toks/s, output: 24.14 toks/s]\\rProcessed prompts:   0%|          | 32/27624 [00:05<1:02:01,  7.41it/s, est. speed input: 823.15 toks/s, output: 83.21 toks/s]\\rProcessed prompts:   0%|          | 40/27624 [00:05<50:34,  9.09it/s, est. speed input: 967.18 toks/s, output: 129.42 toks/s] \\rProcessed prompts:   0%|          | 64/27624 [00:05<25:10, 18.25it/s, est. speed input: 1506.28 toks/s, output: 276.80 toks/s]\\rProcessed prompts:   0%|          | 80/27624 [00:06<17:55, 25.61it/s, est. speed input: 1847.43 toks/s, output: 382.09 toks/s]\\rProcessed prompts:   0%|          | 88/27624 [00:07<28:08, 16.30it/s, est. speed input: 1709.48 toks/s, output: 390.73 toks/s]\\rProcessed prompts:   0%|          | 112/27624 [00:07<16:54, 27.11it/s, est. speed input: 2156.31 toks/s, output: 598.26 toks/s]\\rProcessed prompts:   0%|          | 120/27624 [00:07<14:55, 30.71it/s, est. speed input: 2279.20 toks/s, output: 663.84 toks/s]\\rProcessed prompts:   0%|          | 136/27624 [00:08<15:18, 29.92it/s, est. speed input: 2404.54 toks/s, output: 726.92 toks/s]\\rProcessed prompts:   1%|          | 152/27624 [00:08<12:00, 38.10it/s, est. speed input: 2627.21 toks/s, output: 812.67 toks/s]\\rProcessed prompts:   1%|          | 168/27624 [00:08<11:47, 38.82it/s, est. speed input: 2760.90 toks/s, output: 831.15 toks/s]\\rProcessed prompts:   1%|          | 176/27624 [00:08<11:34, 39.54it/s, est. speed input: 2837.90 toks/s, output: 880.06 toks/s]\\rProcessed prompts:   1%|          | 192/27624 [00:09<10:18, 44.32it/s, est. speed input: 3020.59 toks/s, output: 1001.39 toks/s]\\rProcessed prompts:   1%|          | 200/27624 [00:09<10:32, 43.39it/s, est. speed input: 3080.51 toks/s, output: 1040.26 toks/s]\\rProcessed p
+…[truncated 6327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 199 · 2026-05-18T09:44:40.239049+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 200 · 2026-05-18T09:44:40.239261+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/27624 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/27624 [00:04<4:26:56,  1.72it/s, est. speed input: 220.70 toks/s, output: 24.14 toks/s]\\rProcessed prompts:   0%|          | 32/27624 [00:05<1:02:01,  7.41it/s, est. speed input: 823.15 toks/s, output: 83.21 toks/s]\\rProcessed prompts:   0%|          | 40/27624 [00:05<50:34,  9.09it/s, est. speed input: 967.18 toks/s, output: 129.42 toks/s] \\rProcessed prompts:   0%|          | 64/27624 [00:05<25:10, 18.25it/s, est. speed input: 1506.28 toks/s, output: 276.80 toks/s]\\rProcessed prompts:   0%|          | 80/27624 [00:06<17:55, 25.61it/s, est. speed input: 1847.43 toks/s, output: 382.09 toks/s]\\rProcessed prompts:   0%|          | 88/27624 [00:07<28:08, 16.30it/s, est. speed input: 1709.48 toks/s, output: 390.73 toks/s]\\rProcessed prompts:   0%|          | 112/27624 [00:07<16:54, 27.11it/s, est. speed input: 2156.31 toks/s, output: 598.26 toks/s]\\rProcessed prompts:   0%|          | 120/27624 [00:07<14:55, 30.71it/s, est. speed input: 2279.20 toks/s, output: 663.84 toks/s]\\rProcessed prompts:   0%|          | 136/27624 [00:08<15:18, 29.92it/s, est. speed input: 2404.54 toks/s, output: 726.92 toks/s]\\rProcessed prompts:   1%|          | 152/27624 [00:08<12:00, 38.10it/s, est. speed input: 2627.21 toks/s, output: 812.67 toks/s]\\rProcessed prompts:   1%|          | 168/27624 [00:08<11:47, 38.82it/s, est. speed input: 2760.90 toks/s, output: 831.15 toks/s]\\rProcessed prompts:   1%|          | 176/27624 [00:08<11:34, 39.54it/s, est. speed input: 2837.90 toks/s, output: 880.06 toks/s]\\rProcessed prompts:   1%|          | 192/27624 [00:09<10:18, 44.32it/s, est. speed input: 3020.59 toks/s, output: 1001.39 toks/s]\\rProcessed prompts:   1%|          | 200/27624 [00:09<10:32, 43.39it/s, est. speed input: 3080.51 toks/s, output: 1040.26 toks/s]\\rProcessed p
+…[truncated 6327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 201 · 2026-05-18T09:44:40.239424+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -5 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -5 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 202 · 2026-05-18T09:44:40.239611+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"(EngineCore pid=139679) INFO 05-18 17:35:06 [gpu_worker.py:617] CUDA graph pool memory: 0.39 GiB (actual), 0.55 GiB (estimated), difference: 0.16 GiB (42.4%).\\n(EngineCore pid=139679) INFO 05-18 17:35:06 [core.py:281] init engine (profile, create kv cache, warmup model) took 12.13 seconds\\nINFO 05-18 17:35:07 [llm.py:391] Supported tasks: ['generate']\\n\\rRendering prompts:   0%|          | 0/3453 [00:00<?, ?it/s]\\rRendering prompts:   1%|          | 37/3453 [00:00<00:09, 368.89it/s]\\rRendering prompts:   3%|▎         | 95/3453 [00:00<00:06, 489.33it/s]\\rRendering prompts:   4%|▍         | 153/3453 [00:00<00:06, 526.91it/s]\\rRendering prompts:   6%|▌         | 206/3453 [00:00<00:13, 236.42it/s]\\rRendering prompts:   8%|▊         | 261/3453 [00:00<00:10, 298.50it/s]\\rRendering prompts:   9%|▉         | 317/3453 [00:00<00:08, 355.26it/s]\\rRendering prompts:  11%|█         | 375/3453 [00:01<00:07, 407.64it/s]\\rRendering prompts:  13%|█▎        | 432/3453 [00:01<00:06, 448.00it/s]\\rRendering prompts:  14%|█▍        | 490/3453 [00:01<00:06, 481.58it/s]\\rRendering prompts:  16%|█▌        | 548/3453 [00:01<00:05, 507.33it/s]\\rRendering prompts:  18%|█▊        | 605/3453 [00:01<00:05, 523.02it/s]\\rRendering prompts:  19%|█▉        | 661/3453 [00:01<00:05, 531.78it/s]\\rRendering prompts:  21%|██        | 717/3453 [00:01<00:05, 539.38it/s]\\rRendering prompts:  22%|██▏       | 773/3453 [00:01<00:04, 544.89it/s]\\rRendering prompts:  24%|██▍       | 829/3453 [00:01<00:04, 545.11it/s]\\rRendering prompts:  26%|██▌       | 885/3453 [00:01<00:04, 546.87it/s]\\rRendering prompts:  27%|██▋       | 941/3453 [00:02<00:04, 545.51it/s]\\rRendering prompts:  29%|██▉       | 996/3453 [00:02<00:04, 545.21it/s]\\rRendering prompts:  30%|███       | 1052/3453 [00:02<00:04, 547.49it/s]\\rRendering prompts:  32%|███▏      | 1108/3453 [00:02<00:04, 550.81it/s]\\rRendering prompts:  34%|███▎      | 1165/3453 [00:02<00:04, 5
+…[truncated 6375 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 203 · 2026-05-18T09:44:40.239789+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -c \"Processed prompts: 100%\" /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -c \"Processed prompts: 100%\" /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 204 · 2026-05-18T09:44:40.239920+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 205 · 2026-05-18T09:44:40.240060+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -3 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -3 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 206 · 2026-05-18T09:44:40.240269+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/27624 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/27624 [00:04<4:26:56,  1.72it/s, est. speed input: 220.70 toks/s, output: 24.14 toks/s]\\rProcessed prompts:   0%|          | 32/27624 [00:05<1:02:01,  7.41it/s, est. speed input: 823.15 toks/s, output: 83.21 toks/s]\\rProcessed prompts:   0%|          | 40/27624 [00:05<50:34,  9.09it/s, est. speed input: 967.18 toks/s, output: 129.42 toks/s] \\rProcessed prompts:   0%|          | 64/27624 [00:05<25:10, 18.25it/s, est. speed input: 1506.28 toks/s, output: 276.80 toks/s]\\rProcessed prompts:   0%|          | 80/27624 [00:06<17:55, 25.61it/s, est. speed input: 1847.43 toks/s, output: 382.09 toks/s]\\rProcessed prompts:   0%|          | 88/27624 [00:07<28:08, 16.30it/s, est. speed input: 1709.48 toks/s, output: 390.73 toks/s]\\rProcessed prompts:   0%|          | 112/27624 [00:07<16:54, 27.11it/s, est. speed input: 2156.31 toks/s, output: 598.26 toks/s]\\rProcessed prompts:   0%|          | 120/27624 [00:07<14:55, 30.71it/s, est. speed input: 2279.20 toks/s, output: 663.84 toks/s]\\rProcessed prompts:   0%|          | 136/27624 [00:08<15:18, 29.92it/s, est. speed input: 2404.54 toks/s, output: 726.92 toks/s]\\rProcessed prompts:   1%|          | 152/27624 [00:08<12:00, 38.10it/s, est. speed input: 2627.21 toks/s, output: 812.67 toks/s]\\rProcessed prompts:   1%|          | 168/27624 [00:08<11:47, 38.82it/s, est. speed input: 2760.90 toks/s, output: 831.15 toks/s]\\rProcessed prompts:   1%|          | 176/27624 [00:08<11:34, 39.54it/s, est. speed input: 2837.90 toks/s, output: 880.06 toks/s]\\rProcessed prompts:   1%|          | 192/27624 [00:09<10:18, 44.32it/s, est. speed input: 3020.59 toks/s, output: 1001.39 toks/s]\\rProcessed prompts:   1%|          | 200/27624 [00:09<10:32, 43.39it/s, est. speed input: 3080.51 toks/s, output: 1040.26 toks/s]\\rProcessed p
+…[truncated 6329 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 207 · 2026-05-18T09:44:40.240436+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 208 · 2026-05-18T09:44:40.240617+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/3453 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   1%|          | 34/3453 [00:00<00:11, 291.52it/s, est. speed input: 40596.76 toks/s, output: 4081.52 toks/s]\\rProcessed prompts:   3%|▎         | 100/3453 [00:00<00:12, 274.70it/s, est. speed input: 39237.74 toks/s, output: 8118.65 toks/s]\\rProcessed prompts:   4%|▎         | 128/3453 [00:01<00:45, 73.02it/s, est. speed input: 13084.91 toks/s, output: 2768.40 toks/s] \\rProcessed prompts:   4%|▍         | 145/3453 [00:01<00:48, 67.78it/s, est. speed input: 12105.02 toks/s, output: 2908.37 toks/s]\\rProcessed prompts:   5%|▍         | 162/3453 [00:01<00:45, 72.12it/s, est. speed input: 12225.04 toks/s, output: 3227.37 toks/s]\\rProcessed prompts:   5%|▌         | 180/3453 [00:02<00:43, 75.81it/s, est. speed input: 12275.67 toks/s, output: 3469.56 toks/s]\\rProcessed prompts:   6%|▌         | 198/3453 [00:02<00:39, 81.50it/s, est. speed input: 12482.46 toks/s, output: 3695.55 toks/s]\\rProcessed prompts:   6%|▌         | 209/3453 [00:02<00:38, 84.89it/s, est. speed input: 12602.18 toks/s, output: 3850.00 toks/s]\\rProcessed prompts:   6%|▋         | 220/3453 [00:02<00:41, 77.05it/s, est. speed input: 12294.77 toks/s, output: 3831.35 toks/s]\\rProcessed prompts:   7%|▋         | 229/3453 [00:03<01:06, 48.84it/s, est. speed input: 10870.72 toks/s, output: 3418.96 toks/s]\\rProcessed prompts:   7%|▋         | 236/3453 [00:03<01:06, 48.62it/s, est. speed input: 10669.20 toks/s, output: 3331.79 toks/s]\\rProcessed prompts:   7%|▋         | 243/3453 [00:03<01:08, 46.56it/s, est. speed input: 10416.43 toks/s, output: 3251.01 toks/s]\\rProcessed prompts:   7%|▋         | 249/3453 [00:03<01:05, 48.56it/s, est. speed input: 10346.44 toks/s, output: 3192.37 toks/s]\\rProcessed prompts:   7%|▋         | 255/3453 [00:03<01:34, 33.85it/s, est. speed input: 9580.07 toks/s, output: 2959.44 to
+…[truncated 6327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 209 · 2026-05-18T09:44:40.240773+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 210 · 2026-05-18T09:44:40.240954+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/3453 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   1%|          | 34/3453 [00:00<00:11, 291.52it/s, est. speed input: 40596.76 toks/s, output: 4081.52 toks/s]\\rProcessed prompts:   3%|▎         | 100/3453 [00:00<00:12, 274.70it/s, est. speed input: 39237.74 toks/s, output: 8118.65 toks/s]\\rProcessed prompts:   4%|▎         | 128/3453 [00:01<00:45, 73.02it/s, est. speed input: 13084.91 toks/s, output: 2768.40 toks/s] \\rProcessed prompts:   4%|▍         | 145/3453 [00:01<00:48, 67.78it/s, est. speed input: 12105.02 toks/s, output: 2908.37 toks/s]\\rProcessed prompts:   5%|▍         | 162/3453 [00:01<00:45, 72.12it/s, est. speed input: 12225.04 toks/s, output: 3227.37 toks/s]\\rProcessed prompts:   5%|▌         | 180/3453 [00:02<00:43, 75.81it/s, est. speed input: 12275.67 toks/s, output: 3469.56 toks/s]\\rProcessed prompts:   6%|▌         | 198/3453 [00:02<00:39, 81.50it/s, est. speed input: 12482.46 toks/s, output: 3695.55 toks/s]\\rProcessed prompts:   6%|▌         | 209/3453 [00:02<00:38, 84.89it/s, est. speed input: 12602.18 toks/s, output: 3850.00 toks/s]\\rProcessed prompts:   6%|▋         | 220/3453 [00:02<00:41, 77.05it/s, est. speed input: 12294.77 toks/s, output: 3831.35 toks/s]\\rProcessed prompts:   7%|▋         | 229/3453 [00:03<01:06, 48.84it/s, est. speed input: 10870.72 toks/s, output: 3418.96 toks/s]\\rProcessed prompts:   7%|▋         | 236/3453 [00:03<01:06, 48.62it/s, est. speed input: 10669.20 toks/s, output: 3331.79 toks/s]\\rProcessed prompts:   7%|▋         | 243/3453 [00:03<01:08, 46.56it/s, est. speed input: 10416.43 toks/s, output: 3251.01 toks/s]\\rProcessed prompts:   7%|▋         | 249/3453 [00:03<01:05, 48.56it/s, est. speed input: 10346.44 toks/s, output: 3192.37 toks/s]\\rProcessed prompts:   7%|▋         | 255/3453 [00:03<01:34, 33.85it/s, est. speed input: 9580.07 toks/s, output: 2959.44 to
+…[truncated 6327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 211 · 2026-05-18T09:44:40.241143+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 212 · 2026-05-18T09:44:40.241335+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/3453 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   1%|          | 34/3453 [00:00<00:11, 291.52it/s, est. speed input: 40596.76 toks/s, output: 4081.52 toks/s]\\rProcessed prompts:   3%|▎         | 100/3453 [00:00<00:12, 274.70it/s, est. speed input: 39237.74 toks/s, output: 8118.65 toks/s]\\rProcessed prompts:   4%|▎         | 128/3453 [00:01<00:45, 73.02it/s, est. speed input: 13084.91 toks/s, output: 2768.40 toks/s] \\rProcessed prompts:   4%|▍         | 145/3453 [00:01<00:48, 67.78it/s, est. speed input: 12105.02 toks/s, output: 2908.37 toks/s]\\rProcessed prompts:   5%|▍         | 162/3453 [00:01<00:45, 72.12it/s, est. speed input: 12225.04 toks/s, output: 3227.37 toks/s]\\rProcessed prompts:   5%|▌         | 180/3453 [00:02<00:43, 75.81it/s, est. speed input: 12275.67 toks/s, output: 3469.56 toks/s]\\rProcessed prompts:   6%|▌         | 198/3453 [00:02<00:39, 81.50it/s, est. speed input: 12482.46 toks/s, output: 3695.55 toks/s]\\rProcessed prompts:   6%|▌         | 209/3453 [00:02<00:38, 84.89it/s, est. speed input: 12602.18 toks/s, output: 3850.00 toks/s]\\rProcessed prompts:   6%|▋         | 220/3453 [00:02<00:41, 77.05it/s, est. speed input: 12294.77 toks/s, output: 3831.35 toks/s]\\rProcessed prompts:   7%|▋         | 229/3453 [00:03<01:06, 48.84it/s, est. speed input: 10870.72 toks/s, output: 3418.96 toks/s]\\rProcessed prompts:   7%|▋         | 236/3453 [00:03<01:06, 48.62it/s, est. speed input: 10669.20 toks/s, output: 3331.79 toks/s]\\rProcessed prompts:   7%|▋         | 243/3453 [00:03<01:08, 46.56it/s, est. speed input: 10416.43 toks/s, output: 3251.01 toks/s]\\rProcessed prompts:   7%|▋         | 249/3453 [00:03<01:05, 48.56it/s, est. speed input: 10346.44 toks/s, output: 3192.37 toks/s]\\rProcessed prompts:   7%|▋         | 255/3453 [00:03<01:34, 33.85it/s, est. speed input: 9580.07 toks/s, output: 2959.44 to
+…[truncated 6327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 213 · 2026-05-18T09:44:40.241499+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 214 · 2026-05-18T09:44:40.241681+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/3453 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   1%|          | 34/3453 [00:00<00:11, 291.52it/s, est. speed input: 40596.76 toks/s, output: 4081.52 toks/s]\\rProcessed prompts:   3%|▎         | 100/3453 [00:00<00:12, 274.70it/s, est. speed input: 39237.74 toks/s, output: 8118.65 toks/s]\\rProcessed prompts:   4%|▎         | 128/3453 [00:01<00:45, 73.02it/s, est. speed input: 13084.91 toks/s, output: 2768.40 toks/s] \\rProcessed prompts:   4%|▍         | 145/3453 [00:01<00:48, 67.78it/s, est. speed input: 12105.02 toks/s, output: 2908.37 toks/s]\\rProcessed prompts:   5%|▍         | 162/3453 [00:01<00:45, 72.12it/s, est. speed input: 12225.04 toks/s, output: 3227.37 toks/s]\\rProcessed prompts:   5%|▌         | 180/3453 [00:02<00:43, 75.81it/s, est. speed input: 12275.67 toks/s, output: 3469.56 toks/s]\\rProcessed prompts:   6%|▌         | 198/3453 [00:02<00:39, 81.50it/s, est. speed input: 12482.46 toks/s, output: 3695.55 toks/s]\\rProcessed prompts:   6%|▌         | 209/3453 [00:02<00:38, 84.89it/s, est. speed input: 12602.18 toks/s, output: 3850.00 toks/s]\\rProcessed prompts:   6%|▋         | 220/3453 [00:02<00:41, 77.05it/s, est. speed input: 12294.77 toks/s, output: 3831.35 toks/s]\\rProcessed prompts:   7%|▋         | 229/3453 [00:03<01:06, 48.84it/s, est. speed input: 10870.72 toks/s, output: 3418.96 toks/s]\\rProcessed prompts:   7%|▋         | 236/3453 [00:03<01:06, 48.62it/s, est. speed input: 10669.20 toks/s, output: 3331.79 toks/s]\\rProcessed prompts:   7%|▋         | 243/3453 [00:03<01:08, 46.56it/s, est. speed input: 10416.43 toks/s, output: 3251.01 toks/s]\\rProcessed prompts:   7%|▋         | 249/3453 [00:03<01:05, 48.56it/s, est. speed input: 10346.44 toks/s, output: 3192.37 toks/s]\\rProcessed prompts:   7%|▋         | 255/3453 [00:03<01:34, 33.85it/s, est. speed input: 9580.07 toks/s, output: 2959.44 to
+…[truncated 6328 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 215 · 2026-05-18T09:44:40.241837+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 216 · 2026-05-18T09:44:40.242015+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/3453 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   1%|          | 34/3453 [00:00<00:11, 291.52it/s, est. speed input: 40596.76 toks/s, output: 4081.52 toks/s]\\rProcessed prompts:   3%|▎         | 100/3453 [00:00<00:12, 274.70it/s, est. speed input: 39237.74 toks/s, output: 8118.65 toks/s]\\rProcessed prompts:   4%|▎         | 128/3453 [00:01<00:45, 73.02it/s, est. speed input: 13084.91 toks/s, output: 2768.40 toks/s] \\rProcessed prompts:   4%|▍         | 145/3453 [00:01<00:48, 67.78it/s, est. speed input: 12105.02 toks/s, output: 2908.37 toks/s]\\rProcessed prompts:   5%|▍         | 162/3453 [00:01<00:45, 72.12it/s, est. speed input: 12225.04 toks/s, output: 3227.37 toks/s]\\rProcessed prompts:   5%|▌         | 180/3453 [00:02<00:43, 75.81it/s, est. speed input: 12275.67 toks/s, output: 3469.56 toks/s]\\rProcessed prompts:   6%|▌         | 198/3453 [00:02<00:39, 81.50it/s, est. speed input: 12482.46 toks/s, output: 3695.55 toks/s]\\rProcessed prompts:   6%|▌         | 209/3453 [00:02<00:38, 84.89it/s, est. speed input: 12602.18 toks/s, output: 3850.00 toks/s]\\rProcessed prompts:   6%|▋         | 220/3453 [00:02<00:41, 77.05it/s, est. speed input: 12294.77 toks/s, output: 3831.35 toks/s]\\rProcessed prompts:   7%|▋         | 229/3453 [00:03<01:06, 48.84it/s, est. speed input: 10870.72 toks/s, output: 3418.96 toks/s]\\rProcessed prompts:   7%|▋         | 236/3453 [00:03<01:06, 48.62it/s, est. speed input: 10669.20 toks/s, output: 3331.79 toks/s]\\rProcessed prompts:   7%|▋         | 243/3453 [00:03<01:08, 46.56it/s, est. speed input: 10416.43 toks/s, output: 3251.01 toks/s]\\rProcessed prompts:   7%|▋         | 249/3453 [00:03<01:05, 48.56it/s, est. speed input: 10346.44 toks/s, output: 3192.37 toks/s]\\rProcessed prompts:   7%|▋         | 255/3453 [00:03<01:34, 33.85it/s, est. speed input: 9580.07 toks/s, output: 2959.44 to
+…[truncated 6327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 217 · 2026-05-18T09:44:40.242192+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 218 · 2026-05-18T09:44:40.242379+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/3453 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   1%|          | 34/3453 [00:00<00:11, 291.52it/s, est. speed input: 40596.76 toks/s, output: 4081.52 toks/s]\\rProcessed prompts:   3%|▎         | 100/3453 [00:00<00:12, 274.70it/s, est. speed input: 39237.74 toks/s, output: 8118.65 toks/s]\\rProcessed prompts:   4%|▎         | 128/3453 [00:01<00:45, 73.02it/s, est. speed input: 13084.91 toks/s, output: 2768.40 toks/s] \\rProcessed prompts:   4%|▍         | 145/3453 [00:01<00:48, 67.78it/s, est. speed input: 12105.02 toks/s, output: 2908.37 toks/s]\\rProcessed prompts:   5%|▍         | 162/3453 [00:01<00:45, 72.12it/s, est. speed input: 12225.04 toks/s, output: 3227.37 toks/s]\\rProcessed prompts:   5%|▌         | 180/3453 [00:02<00:43, 75.81it/s, est. speed input: 12275.67 toks/s, output: 3469.56 toks/s]\\rProcessed prompts:   6%|▌         | 198/3453 [00:02<00:39, 81.50it/s, est. speed input: 12482.46 toks/s, output: 3695.55 toks/s]\\rProcessed prompts:   6%|▌         | 209/3453 [00:02<00:38, 84.89it/s, est. speed input: 12602.18 toks/s, output: 3850.00 toks/s]\\rProcessed prompts:   6%|▋         | 220/3453 [00:02<00:41, 77.05it/s, est. speed input: 12294.77 toks/s, output: 3831.35 toks/s]\\rProcessed prompts:   7%|▋         | 229/3453 [00:03<01:06, 48.84it/s, est. speed input: 10870.72 toks/s, output: 3418.96 toks/s]\\rProcessed prompts:   7%|▋         | 236/3453 [00:03<01:06, 48.62it/s, est. speed input: 10669.20 toks/s, output: 3331.79 toks/s]\\rProcessed prompts:   7%|▋         | 243/3453 [00:03<01:08, 46.56it/s, est. speed input: 10416.43 toks/s, output: 3251.01 toks/s]\\rProcessed prompts:   7%|▋         | 249/3453 [00:03<01:05, 48.56it/s, est. speed input: 10346.44 toks/s, output: 3192.37 toks/s]\\rProcessed prompts:   7%|▋         | 255/3453 [00:03<01:34, 33.85it/s, est. speed input: 9580.07 toks/s, output: 2959.44 to
+…[truncated 6328 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 219 · 2026-05-18T09:44:40.242541+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 220 · 2026-05-18T09:44:40.242723+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/3453 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   1%|          | 34/3453 [00:00<00:11, 291.52it/s, est. speed input: 40596.76 toks/s, output: 4081.52 toks/s]\\rProcessed prompts:   3%|▎         | 100/3453 [00:00<00:12, 274.70it/s, est. speed input: 39237.74 toks/s, output: 8118.65 toks/s]\\rProcessed prompts:   4%|▎         | 128/3453 [00:01<00:45, 73.02it/s, est. speed input: 13084.91 toks/s, output: 2768.40 toks/s] \\rProcessed prompts:   4%|▍         | 145/3453 [00:01<00:48, 67.78it/s, est. speed input: 12105.02 toks/s, output: 2908.37 toks/s]\\rProcessed prompts:   5%|▍         | 162/3453 [00:01<00:45, 72.12it/s, est. speed input: 12225.04 toks/s, output: 3227.37 toks/s]\\rProcessed prompts:   5%|▌         | 180/3453 [00:02<00:43, 75.81it/s, est. speed input: 12275.67 toks/s, output: 3469.56 toks/s]\\rProcessed prompts:   6%|▌         | 198/3453 [00:02<00:39, 81.50it/s, est. speed input: 12482.46 toks/s, output: 3695.55 toks/s]\\rProcessed prompts:   6%|▌         | 209/3453 [00:02<00:38, 84.89it/s, est. speed input: 12602.18 toks/s, output: 3850.00 toks/s]\\rProcessed prompts:   6%|▋         | 220/3453 [00:02<00:41, 77.05it/s, est. speed input: 12294.77 toks/s, output: 3831.35 toks/s]\\rProcessed prompts:   7%|▋         | 229/3453 [00:03<01:06, 48.84it/s, est. speed input: 10870.72 toks/s, output: 3418.96 toks/s]\\rProcessed prompts:   7%|▋         | 236/3453 [00:03<01:06, 48.62it/s, est. speed input: 10669.20 toks/s, output: 3331.79 toks/s]\\rProcessed prompts:   7%|▋         | 243/3453 [00:03<01:08, 46.56it/s, est. speed input: 10416.43 toks/s, output: 3251.01 toks/s]\\rProcessed prompts:   7%|▋         | 249/3453 [00:03<01:05, 48.56it/s, est. speed input: 10346.44 toks/s, output: 3192.37 toks/s]\\rProcessed prompts:   7%|▋         | 255/3453 [00:03<01:34, 33.85it/s, est. speed input: 9580.07 toks/s, output: 2959.44 to
+…[truncated 6328 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 221 · 2026-05-18T09:44:40.242876+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 222 · 2026-05-18T09:44:40.243057+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/3453 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   1%|          | 34/3453 [00:00<00:11, 291.52it/s, est. speed input: 40596.76 toks/s, output: 4081.52 toks/s]\\rProcessed prompts:   3%|▎         | 100/3453 [00:00<00:12, 274.70it/s, est. speed input: 39237.74 toks/s, output: 8118.65 toks/s]\\rProcessed prompts:   4%|▎         | 128/3453 [00:01<00:45, 73.02it/s, est. speed input: 13084.91 toks/s, output: 2768.40 toks/s] \\rProcessed prompts:   4%|▍         | 145/3453 [00:01<00:48, 67.78it/s, est. speed input: 12105.02 toks/s, output: 2908.37 toks/s]\\rProcessed prompts:   5%|▍         | 162/3453 [00:01<00:45, 72.12it/s, est. speed input: 12225.04 toks/s, output: 3227.37 toks/s]\\rProcessed prompts:   5%|▌         | 180/3453 [00:02<00:43, 75.81it/s, est. speed input: 12275.67 toks/s, output: 3469.56 toks/s]\\rProcessed prompts:   6%|▌         | 198/3453 [00:02<00:39, 81.50it/s, est. speed input: 12482.46 toks/s, output: 3695.55 toks/s]\\rProcessed prompts:   6%|▌         | 209/3453 [00:02<00:38, 84.89it/s, est. speed input: 12602.18 toks/s, output: 3850.00 toks/s]\\rProcessed prompts:   6%|▋         | 220/3453 [00:02<00:41, 77.05it/s, est. speed input: 12294.77 toks/s, output: 3831.35 toks/s]\\rProcessed prompts:   7%|▋         | 229/3453 [00:03<01:06, 48.84it/s, est. speed input: 10870.72 toks/s, output: 3418.96 toks/s]\\rProcessed prompts:   7%|▋         | 236/3453 [00:03<01:06, 48.62it/s, est. speed input: 10669.20 toks/s, output: 3331.79 toks/s]\\rProcessed prompts:   7%|▋         | 243/3453 [00:03<01:08, 46.56it/s, est. speed input: 10416.43 toks/s, output: 3251.01 toks/s]\\rProcessed prompts:   7%|▋         | 249/3453 [00:03<01:05, 48.56it/s, est. speed input: 10346.44 toks/s, output: 3192.37 toks/s]\\rProcessed prompts:   7%|▋         | 255/3453 [00:03<01:34, 33.85it/s, est. speed input: 9580.07 toks/s, output: 2959.44 to
+…[truncated 6328 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 223 · 2026-05-18T09:44:40.243240+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -c \"Processed prompts: 100%\" /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -c \"Processed prompts: 100%\" /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 224 · 2026-05-18T09:44:40.243370+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 225 · 2026-05-18T09:44:40.243498+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -c \"Processed prompts: 100%\" /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -c \"Processed prompts: 100%\" /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 226 · 2026-05-18T09:44:40.243619+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 227 · 2026-05-18T09:44:40.243733+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -c \"Processed prompts: 100%\" /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -c \"Processed prompts: 100%\" /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 228 · 2026-05-18T09:44:40.243849+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 229 · 2026-05-18T09:44:40.243978+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 230 · 2026-05-18T09:44:40.244100+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 56848\\ndrwxr-xr-x   2 root root       58 May 18 17:44 .\\ndrwxr-xr-x 133 root root    12288 May 18 17:34 ..\\n-rw-r--r--   1 root root     1745 May 18 17:44 report.json\\n-rw-r--r--   1 root root 58189867 May 18 17:44 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 231 · 2026-05-18T09:44:40.244237+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/samples.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/samples.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 232 · 2026-05-18T09:44:40.244356+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3453 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 233 · 2026-05-18T09:44:40.244480+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/report.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/report.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 234 · 2026-05-18T09:44:40.244636+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"conll2003\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 3453,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.9068235707385615,\\n  \\\"oracle_f1\\\": 0.9434391118104729,\\n  \\\"oracle_headroom\\\": 0.03661554107191145,\\n  \\\"fleiss_kappa_mean\\\": 0.7692705391112016,\\n  \\\"soft_jaccard_mean\\\": 0.8918462440057409,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.4609926896901301,\\n    \\\"p_value\\\": 4.403906911678512e-145,\\n    \\\"n\\\": 2756\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.4799625004021064,\\n    \\\"p_value\\\": 8.225168125109777e-159,\\n    \\\"n\\\": 2756\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.4207167411612877,\\n    \\\"p_value\\\": 1.0881248313103324e-112,\\n    \\\"n\\\": 2615\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.44895180621821146,\\n    \\\"p_value\\\": 6.6318926415485244e-130,\\n    \\\"n\\\": 2615\\n  },\\n  \\\"n_gold_empty_filtered\\\": 697,\\n  \\\"n_greedy_f1_zero_filtered\\\": 141,\\n  \\\"structural_beats_surface\\\": true,\\n  \\\"rho_advantage\\\": 0.018969810711976343,\\n  \\\"sample_f1_mean\\\": 0.8742741208318807,\\n  \\\"sample_f1_std\\\": 0.2789924366222873,\\n  \\\"sample_f1_pct_zero\\\": 7.0165094339622645,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.3176858005776929,\\n      \\\"p_rho\\\": 1.1376255833530446e-65,\\n      \\\"tau\\\": 0.24742952227781584,\\n      \\\"p_tau\\\": 4.0088428572369626e-61,\\n      \\\"auroc\\\": 0.7545209065612185,\\n      \\\"n\\\": 2756\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.36898404788107225,\\n      \\\"p_rho\\\": 3.8235711722289676e-85,\\n      \\\"tau\\\": 0.29209251323992863,\\n      \\\"p_tau\\\": 7.754764832391811e-79,\\
+…[truncated 353 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 235 · 2026-05-18T09:44:40.244801+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/full_signal_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/full_signal_analysis.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 236 · 2026-05-18T09:44:40.244927+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 891 May 18 17:44 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/full_signal_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 237 · 2026-05-18T09:44:40.245040+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/full_signal_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n8_seed456/full_signal_analysis.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 238 · 2026-05-18T09:44:40.245216+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"conll2003\\\",\\n  \\\"model\\\": \\\"qwen3-8b\\\",\\n  \\\"seed\\\": 456,\\n  \\\"N\\\": 8,\\n  \\\"n_total\\\": 3453,\\n  \\\"n_gold_filtered\\\": 2756,\\n  \\\"degeneracy_cf1_gold_filtered\\\": 0.6288,\\n  \\\"n_constant_f1\\\": 1733,\\n  \\\"greedy_f1\\\": 0.907,\\n  \\\"oracle_f1\\\": 0.9453,\\n  \\\"random_f1\\\": 0.8743,\\n  \\\"headroom_pp\\\": 3.84,\\n  \\\"selection_f1\\\": {\\n    \\\"SJ\\\": {\\n      \\\"f1\\\": 0.9025,\\n      \\\"delta_vs_greedy\\\": -0.0045,\\n      \\\"delta_pp\\\": -0.45\\n    },\\n    \\\"FK\\\": {\\n      \\\"f1\\\": 0.9018,\\n      \\\"delta_vs_greedy\\\": -0.0051,\\n      \\\"delta_pp\\\": -0.51\\n    },\\n    \\\"VC\\\": {\\n      \\\"f1\\\": 0.9001,\\n      \\\"delta_vs_greedy\\\": -0.0068,\\n      \\\"delta_pp\\\": -0.68\\n    },\\n    \\\"EM\\\": {\\n      \\\"f1\\\": 0.8996,\\n      \\\"delta_vs_greedy\\\": -0.0073,\\n      \\\"delta_pp\\\": -0.73\\n    },\\n    \\\"LP\\\": {\\n      \\\"f1\\\": 0.8997,\\n      \\\"delta_vs_greedy\\\": -0.0073,\\n      \\\"delta_pp\\\": -0.73\\n    }\\n  },\\n  \\\"lp_range\\\": {\\n    \\\"mean\\\": 0.0579,\\n    \\\"std\\\": 0.0528,\\n    \\\"median\\\": 0.0501,\\n    \\\"n_valid\\\": 2756\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 239 · 2026-05-18T09:44:40.245362+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -d /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -d /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 240 · 2026-05-18T09:44:40.245483+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 241 · 2026-05-18T09:44:40.245632+00:00_
+
+Merged model cleaned up. Everything complete. Here's the comparison summary:
+
+## CoNLL seed=456 vs seed=42
+
+| Metric | seed=456 | seed=42 |
+|--------|----------|---------|
+| **greedy_f1** | 0.9068 | 0.9079 |
+| **oracle_f1** | 0.9453 | 0.9468 |
+| **headroom** | 3.84pp | 3.89pp |
+| **degen (CF1 gold-filtered)** | 62.9% | 59.1% |
+
+**Selection F1 (all signals below greedy):**
+
+| Signal | seed=456 F1 | seed=456 delta | seed=42 delta |
+|--------|-------------|----------------|---------------|
+| SJ | 0.9025 | **-0.45pp** | -0.57pp |
+| FK | 0.9018 | **-0.51pp** | -0.65pp |
+| VC | 0.9001 | **-0.68pp** | -0.82pp |
+| EM | 0.8996 | **-0.73pp** | -0.89pp |
+| LP | 0.8997 | **-0.73pp** | -1.05pp |
+
+**Summary line:**
+```
+seed=456: greedy_f1=0.9068, LP_sel_f1=0.8997, LP_delta=-0.73pp, degen=62.9%
+vs seed=42: greedy_f1=0.9079, LP_delta=-1.05pp, degen=59.1%
+```
+
+**Conclusion:** The LP negative result is confirmed robust across seeds. At seed=456, LP delta is -0.73pp (vs -1.05pp at seed=42). All 5 signals are negative vs greedy on CoNLL, with degeneracy even higher (62.9% vs 59.1%). The negative LP delta is smaller in magnitude but still clearly negative. Self-consistency selection cannot beat greedy on CoNLL regardless of seed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_exp_qwen_conll_seed456_20260518T092856"
+}
+```
+
+</details>
+
+---

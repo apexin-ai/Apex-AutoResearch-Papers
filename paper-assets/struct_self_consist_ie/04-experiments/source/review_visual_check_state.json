@@ -1,0 +1,17 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T22:31:20.896765+00:00",
+  "completed_at": "2026-05-25T22:36:21.116592+00:00",
+  "findings": [
+    {
+      "severity": "info",
+      "dimension": "agent_error",
+      "message": "[ERROR] Agent timed out after 300s"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 0,
+    "info": 1
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_hidden_state_probe",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:07:00.977Z",
+    "updated_at": "2026-05-21T02:07:24.400Z",
+    "hypothesis": "Entity quality information (in_gold vs not) is encoded in the fine-tuned model's last-layer hidden states at entity token positions. If probe AUROC ≈ MV AUROC (0.87), the signal exists in representation but ESJ prompt-based reading (AUROC=0.51) fails to access it — a prompt interface failure. If probe AUROC ≈ 0.51, the information is genuinely absent from single-sample representations."
+  },
+  "timestamp": "2026-05-21T02:07:25.074330+00:00",
+  "trigger": "update_registry"
+}

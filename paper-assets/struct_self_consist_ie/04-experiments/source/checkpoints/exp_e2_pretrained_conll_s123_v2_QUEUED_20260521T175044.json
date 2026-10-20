@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_e2_pretrained_conll_s123_v2",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T17:50:04.670Z",
+    "updated_at": "2026-05-21T17:50:44.219Z",
+    "hypothesis": "E2 pretrained baseline CoNLL s123 v2: Qwen2.5-7B-Instruct (unfinetuned) on CoNLL SC pipeline N=8 T=1.0 seed=123. Cross-validation seed for E2 pretrained CoNLL baseline."
+  },
+  "timestamp": "2026-05-21T17:50:44.820513+00:00",
+  "trigger": "update_registry"
+}

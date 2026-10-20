@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp_a3_ace05_re",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:15:17.438Z",
+    "updated_at": "2026-05-20T21:03:46.444Z",
+    "hypothesis": "Cross-task universality: SC diagnostic cascade on ACE05 Relation Extraction. Closest extension to NER—same structured prediction paradigm, different output structure (entity pairs + relation types). Qwen2.5-7B-Instruct few-shot prompt. If correlation-selection gap exists for RE, the framework covers multiple IE sub-tasks.",
+    "spec": {
+      "hypothesis": "The SC diagnostic cascade (degeneracy, agreement, LP-quality gap) generalizes from NER to Relation Extraction, with failure modes F1-F4 exhibiting analogous distributions on RE because both are span-based structured prediction tasks sharing the same underlying model uncertainty structure.",
+      "model_name": "Qwen2.5-7B-Instruct",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/re_test_instances.jsonl",
+      "data_count": 397,
+      "server": "autodl-5090-c",
+      "seed": 42,
+      "command": "CUDA_VISIBLE_DEVICES=1 python3 experiments/re_sc/run_re_sc.py --model-path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data data/re_test_instances.jsonl --output-dir output/re_sc --n-samples 8 --temperature 1.0",
+      "method": "SC diagnostic cascade on RE (few-shot, N=8, T=1.0, XGrammar constrained decoding)",
+      "parent": null,
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/re_sc/",
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/logs/re_sc.log"
+    },
+    "server": "autodl-5090-c",
+    "gpu": "cuda:1",
+    "conclusion": "success",
+    "completed_at": "2026-05-20T21:03:46.444Z"
+  },
+  "timestamp": "2026-05-20T21:03:46.819574+00:00",
+  "trigger": "update_registry"
+}

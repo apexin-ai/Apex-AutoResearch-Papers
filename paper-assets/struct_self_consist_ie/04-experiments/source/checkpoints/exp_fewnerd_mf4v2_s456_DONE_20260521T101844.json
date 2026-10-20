@@ -1,0 +1,39 @@
+{
+  "exp_id": "exp_fewnerd_mf4v2_s456",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T10:16:50.798Z",
+    "updated_at": "2026-05-21T10:18:44.434Z",
+    "spec": {
+      "server": "autodl-5090",
+      "data_path": "data/fewnerd/",
+      "data_count": 32565,
+      "model_name": "qwen3-8b-fewnerd-exp021-merged",
+      "seed": 456,
+      "command": "python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed456/"
+    },
+    "checkpoint_path": "output/fewnerd_mf4v2_seed456/",
+    "log_path": "~/runs/struct_self_consist_ie/exp_fewnerd_mf4v2_s456.log",
+    "conclusion": "success",
+    "metrics": {
+      "greedy_f1": 0.7889,
+      "oracle_f1": 0.881,
+      "oracle_headroom": 0.0921,
+      "fleiss_kappa_mean": 0.3557,
+      "soft_jaccard_mean": 0.6848,
+      "sample_f1_mean": 0.6435,
+      "rho_softjaccard_full": 0.3133,
+      "rho_fleiss_full": 0.1647,
+      "rho_logprob_full": 0.245,
+      "verdict": "MARGINAL"
+    },
+    "hypothesis": "MF4v2 pipeline (N=8, T=1.0, logprobs) on FewNERD with seed 456 produces consistent SC diagnostic signals (structural agreement > logprob baseline for quality estimation), validating cross-seed stability of the structured self-consistency framework on fine-grained NER.",
+    "completed_at": "2026-05-21T10:18:44.434Z"
+  },
+  "timestamp": "2026-05-21T10:18:44.894709+00:00",
+  "trigger": "update_registry"
+}

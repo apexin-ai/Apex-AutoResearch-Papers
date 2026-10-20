@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp_fewnerd_mf4_v2_s42",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T05:33:24.304Z",
+    "updated_at": "2026-05-21T06:55:33.621Z",
+    "hypothesis": "MF4 pipeline fix v2: FewNERD N=8 T=1.0 seed=42 using run_mvp_pilot.py (greedy_f1/micro-F1). Replaces exp_021 which used incompatible greedy_macro_f1. 3-seed statistical power.",
+    "spec": {
+      "command": "python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed42/",
+      "server": "autodl-5090-b",
+      "gpu": "cuda:0",
+      "pid": 320158,
+      "log_path": "~/runs/struct_self_consist_ie/exp_fewnerd_mf4_v2_s42.log",
+      "submitted_at": "2026-05-21T05:33:33.770Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/fewnerd/test.json",
+      "data_count": 37648,
+      "model_name": "qwen3-8b-fewnerd-exp021-merged",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-21T06:55:34.077780+00:00",
+  "trigger": "update_registry"
+}

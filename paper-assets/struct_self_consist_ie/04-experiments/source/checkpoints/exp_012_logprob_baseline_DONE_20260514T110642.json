@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_012_logprob_baseline",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T10:53:16.166Z",
+    "updated_at": "2026-05-14T11:06:42.542Z",
+    "spec": {
+      "hypothesis": "Log-probability baseline: mean sequence log-prob correlates with F1 as well as or better than SJ, exposing whether SJ has unique value",
+      "model_name": "qwen3-8b-scierc-merged-v2",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/test.jsonl",
+      "data_count": 551,
+      "server": "autodl-5090",
+      "seed": 42,
+      "parent": "mvp_pilot_004",
+      "method": "vLLM forward pass to extract sequence log-probs, then Spearman rho + AUROC + Kendall tau vs F1",
+      "command": "python3 code/extract_logprobs.py",
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2",
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/analysis_report.json"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T11:06:42.542Z"
+  },
+  "timestamp": "2026-05-14T11:06:42.573805+00:00",
+  "trigger": "update_registry"
+}

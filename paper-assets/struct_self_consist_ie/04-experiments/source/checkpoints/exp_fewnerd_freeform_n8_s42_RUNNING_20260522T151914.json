@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp_fewnerd_freeform_n8_s42",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T10:59:53.518Z",
+    "updated_at": "2026-05-22T15:19:13.649Z",
+    "hypothesis": "R35-W6 free-form decoding ablation: FewNERD N=8 T=1.0 seed=42 without grammar constraints. FewNERD has lowest degeneracy (12% at N=8). If free-form degeneracy remains low (~12%), confirms degeneracy is model-intrinsic, not a constrained decoding artifact. Complements CoNLL free-form ablation (59.3% vs 56.7% constrained).",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --use_grammar false --collect_logprobs --output_dir output/fewnerd_freeform_n8_seed42",
+      "server": "autodl-5090",
+      "data_path": "data/fewnerd",
+      "data_count": 37648,
+      "model_name": "qwen3-8b-fewnerd-exp021-merged",
+      "seed": 42
+    },
+    "metrics": {
+      "greedy_f1": 0.7913,
+      "mv_strict_f1": 0.7586,
+      "mv_delta_pp": -3.26,
+      "lp_f1": 0.7922,
+      "lp_delta_pp": 0.09,
+      "degeneracy_rate": 0.091,
+      "n_instances": 32565,
+      "vs_constrained": {
+        "greedy_f1_delta": "+0.00pp",
+        "mv_delta_change": "+0.01pp (identical)",
+        "lp_delta_change": "+0.02pp (identical)",
+        "degen_delta": "0.0pp (identical)"
+      },
+      "note": "Freeform ≈ constrained on FewNERD. All deltas <0.02pp. Degeneracy 9.1% both. Fine-grained entity types constrain output space enough that grammar constraints have no additional effect."
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T15:19:14.220384+00:00",
+  "trigger": "update_registry"
+}

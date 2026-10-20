@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_adaptive_temperature",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:59:52.771Z",
+    "updated_at": "2026-05-18T20:01:42.646Z",
+    "hypothesis": "Adjusting sampling temperature based on instance-level confidence indicators can improve output diversity-quality tradeoff",
+    "spec": {
+      "command": "python3 code/adaptive_temperature.py",
+      "server": "autodl-5090",
+      "data_path": "/root/struct_self_consist_ie/data/",
+      "data_count": "all datasets",
+      "model_name": "Qwen3-8B",
+      "seed": 42
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/struct_self_consist_ie/output/adaptive_temperature_results.json",
+    "log_path": "/root/struct_self_consist_ie/output/adaptive_temperature_results.json",
+    "completed_at": "2026-05-18T20:01:42.646Z"
+  },
+  "timestamp": "2026-05-18T20:01:42.909650+00:00",
+  "trigger": "update_registry"
+}

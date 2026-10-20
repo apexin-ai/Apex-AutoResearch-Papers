@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp_scierc_n8_s123",
+  "project": "struct_self_consist_ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:01:40.010Z",
+    "updated_at": "2026-05-22T11:27:17.744Z",
+    "hypothesis": "R35-N2 SciERC validation: SciERC N=8 T=1.0 seed=123 finetuned model. Second seed to upgrade SciERC from tentative to validated status. Uses unified run_mvp_pilot.py pipeline (micro-F1). SciERC N=8 seed=42 showed MV Δ=-0.74pp. Tests reproducibility across seeds.",
+    "server": "autodl-5090",
+    "gpu": "cuda:0"
+  },
+  "timestamp": "2026-05-22T11:27:18.697204+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,5 @@
+model,family,size_b,dataset,regime,n_seeds,greedy_f1,oracle_f1,headroom_pp,degen_pct,lp_rho,lp_delta_pp,constr_delta_pp
+LLaMA-3.1-8B,LLaMA,8,FewNERD,fine-tuned,3,0.7842,0.8843,10.01,23.36,,0.36,
+Qwen3-8B,Qwen3,8,FewNERD,fine-tuned,4,0.7481,0.8739,12.58,12.69,,1.38,
+Qwen3-4B,Qwen3,4,SciERC,fine-tuned,1,0.6622,0.7925,13.03,10.4,,,
+Qwen2.5-72B,Qwen2.5,72,SciERC,zero-shot,1,0.399,0.549,15.0,,,,

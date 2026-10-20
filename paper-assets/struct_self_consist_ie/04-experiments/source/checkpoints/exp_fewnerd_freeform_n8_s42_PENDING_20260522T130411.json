@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_fewnerd_freeform_n8_s42",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T10:59:53.518Z",
+    "updated_at": "2026-05-22T13:04:10.706Z",
+    "hypothesis": "R35-W6 free-form decoding ablation: FewNERD N=8 T=1.0 seed=42 without grammar constraints. FewNERD has lowest degeneracy (12% at N=8). If free-form degeneracy remains low (~12%), confirms degeneracy is model-intrinsic, not a constrained decoding artifact. Complements CoNLL free-form ablation (59.3% vs 56.7% constrained)."
+  },
+  "timestamp": "2026-05-22T13:04:11.360115+00:00",
+  "trigger": "update_registry"
+}

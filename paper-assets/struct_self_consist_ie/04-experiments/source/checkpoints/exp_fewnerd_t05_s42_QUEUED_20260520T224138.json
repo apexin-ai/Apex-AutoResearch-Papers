@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_fewnerd_t05_s42",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T22:41:05.687Z",
+    "updated_at": "2026-05-20T22:41:38.228Z",
+    "hypothesis": "FewNERD temperature ablation (T=0.5): test how lower temperature affects degeneracy rate and SC diagnostic cascade on FewNERD, complementing SciERC T-ablation data. N=8, Qwen3-8B-FT, seed=42. Lower T should reduce sampling diversity, potentially increasing degeneracy while improving per-sample quality."
+  },
+  "timestamp": "2026-05-20T22:41:38.623414+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp_qwen3_4b_scierc_finetune_v3",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:24:45.518Z",
+    "updated_at": "2026-05-15T19:24:45.518Z",
+    "spec": {
+      "hypothesis": "Scale ablation: Qwen3-4B SciERC NER LoRA fine-tune (v3, clean restart). Same LoRA config as CoNLL 4B.",
+      "server": "autodl-5090",
+      "data_path": "data/scierc/processed_data",
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "gpu": "cuda:2",
+      "plan_id": "D096",
+      "parent": "exp_qwen3_4b_scierc_finetune_v2"
+    }
+  },
+  "timestamp": "2026-05-15T19:24:46.276365+00:00",
+  "trigger": "update_registry"
+}

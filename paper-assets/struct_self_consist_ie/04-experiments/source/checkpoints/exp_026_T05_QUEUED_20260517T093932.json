@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_026_T05",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T09:38:28.066Z",
+    "updated_at": "2026-05-17T09:39:32.238Z",
+    "hypothesis": "T=0.5 will increase degeneracy rate (more deterministic outputs) and compress LP range on SciERC, reducing selection headroom. Maps the low-temperature end of the degeneracy-temperature frontier, validating that degeneracy is regime-dependent on sampling temperature."
+  },
+  "timestamp": "2026-05-17T09:39:32.504632+00:00",
+  "trigger": "update_registry"
+}

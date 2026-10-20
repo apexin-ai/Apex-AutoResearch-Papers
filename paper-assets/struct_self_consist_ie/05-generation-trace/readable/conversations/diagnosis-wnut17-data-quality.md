@@ -1,0 +1,2650 @@
+# diagnosis wnut17 data quality
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 89
+- **Recorded user turns:** 0
+- **Tool calls:** 44
+- **Original source:** `logs/chats/worker_diagnosis_wnut17_data_quality_20260514T140815.jsonl`
+- **Structured JSON:** [`1d289ee19afb4b478640.json`](../../sessions/1d/1d289ee19afb4b478640.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+89 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T14:15:14.602856+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T14:15:14.603232+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T14:15:14.603434+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ps aux | grep run_mvp_pilot | grep -v grep",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ps aux | grep run_mvp_pilot | grep -v grep",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-14T14:15:14.603579+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T14:15:14.603709+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T14:15:14.603838+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4684\\ndrwxr-xr-x  2 root root      58 May 14 21:50 .\\ndrwxr-xr-x 32 root root    4096 May 14 21:54 ..\\n-rw-r--r--  1 root root    1789 May 14 21:50 report.json\\n-rw-r--r--  1 root root 4786525 May 14 21:50 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-14T14:15:14.603988+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T14:15:14.604199+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"wnut17\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 16,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 1287,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.52316715542522,\\n  \\\"oracle_f1\\\": 0.6637217007178353,\\n  \\\"oracle_headroom\\\": 0.14055454529261535,\\n  \\\"fleiss_kappa_mean\\\": 0.7002625416298626,\\n  \\\"soft_jaccard_mean\\\": 0.8844110439882366,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.12498639982700602,\\n    \\\"p_value\\\": 0.0010101389238927497,\\n    \\\"n\\\": 689\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.08883161050304318,\\n    \\\"p_value\\\": 0.019695320766242228,\\n    \\\"n\\\": 689\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.16863345538503793,\\n    \\\"p_value\\\": 0.0019847067973992236,\\n    \\\"n\\\": 334\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.2884389703925184,\\n    \\\"p_value\\\": 8.044470580733825e-08,\\n    \\\"n\\\": 334\\n  },\\n  \\\"n_gold_empty_filtered\\\": 598,\\n  \\\"n_greedy_f1_zero_filtered\\\": 355,\\n  \\\"structural_beats_surface\\\": false,\\n  \\\"rho_advantage\\\": -0.036154789323962835,\\n  \\\"sample_f1_mean\\\": 0.4007648977651592,\\n  \\\"sample_f1_std\\\": 0.45324774277971985,\\n  \\\"sample_f1_pct_zero\\\": 53.68287373004354,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": -0.4094891030514717,\\n      \\\"p_rho\\\": 3.0724001673695786e-29,\\n      \\\"tau\\\": -0.2984555640667542,\\n      \\\"p_tau\\\": 3.0647533023775854e-24,\\n      \\\"auroc\\\": 0.21888336004048242,\\n      \\\"n\\\": 689\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.35011390590805674,\\n      \\\"p_rho\\\": 4.575598794556641e-11,\\n      \\\"tau\\\": 0.2722466231418909,\\n      \\\"p_tau\\\": 1.373591283647736e-10,\\n      \\\"a
+…[truncated 407 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T14:15:14.604374+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -5 /root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -5 /root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T14:15:14.604727+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"wnut17_test_00000\\\", \\\"text\\\": \\\"& gt ; * The soldier was killed when another avalanche hit an army barracks in the northern area of Sonmarg , said a military spokesman .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Sonmarg\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 100, \\\"end\\\": 107}], \\\"relations\\\": [], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Sonmarg\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 100, \\\"end\\\": 107}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.8117975827624946, \\\"n_tokens\\\": 41, \\\"mean_logprob\\\": -0.06858042884786572}, {\\\"entities\\\": [{\\\"text\\\": \\\"Sonmarg\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 100, \\\"end\\\": 107}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.8036625876410355, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.06675387113431037}, {\\\"entities\\\": [{\\\"text\\\": \\\"Sonmarg\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 100, \\\"end\\\": 107}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.9294885393294976, \\\"n_tokens\\\": 42, \\\"mean_logprob\\\": -0.0697497271268928}, {\\\"entities\\\": [{\\\"text\\\": \\\"Sonmarg\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 100, \\\"end\\\": 107}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -3.6367713985114847, \\\"n_tokens\\\": 43, \\\"mean_logprob\\\": -0.08457607903515081}, {\\\"entities\\\": [{\\\"text\\\": \\\"Sonmarg\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 100, \\\"end\\\": 107}], \\\"relations\\\": [], \\\"events\\\": [], \\\"cumulative_logprob\\\": -2.803462571783257, \\\"n_tokens\\\": 41, \\\"mean_logprob\\\": -0.06837713589715261}, {\\\"entities\\\": [{\\\"text\\\": \\\"Sonmarg\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 100, \\\"end\\\": 107}], \\\"re
+…[truncated 8859 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T14:15:14.604917+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/code/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/code/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T14:15:14.605081+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\n_backup_cond_fix\\nanalyze_component_wise_re.py\\nanalyze_entity_voting.py\\nanalyze_exact_match_voting.py\\nanalyze_exp002_conll2003.py\\nanalyze_exp004_re_diagnostic.py\\nanalyze_exp015_unified.py\\nanalyze_exp016_ensemble.py\\nanalyze_logprob_baseline.py\\nconsistency.py\\nconvert_conll2003.py\\nconvert_to_llamafactory.py\\nconvert_wnut17.py\\ndata_utils.py\\ndiagnose_logprob_rho.py\\nevaluation.py\\nexp001_postprocess.py\\nextract_logprobs.py\\ngate0_diagnose.py\\ngate0_eval.py\\ngate0_realign_eval.py\\nmvp_pilot.py\\nrun_mvp_pilot.py\\nsampling.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T14:15:14.605235+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/data/wnut17/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/data/wnut17/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T14:15:14.605362+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"dev.json\\nllmfactory_dev.json\\nllmfactory_train.json\\ntest.json\\ntrain.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T14:15:14.605525+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/convert_wnut17.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/convert_wnut17.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T14:15:14.605756+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Convert WNUT-17 CoNLL NER data to UIE char-offset JSON format.\\n\\nInput: Raw CoNLL files from emerging_entities_17 repo\\nOutput: {train,dev,test}.json in UIE format + llmfactory_train.json in sharegpt format\\n\\nEntity types: corporation, creative-work, group, location, person, product\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nfrom collections import Counter\\n\\nRAW_DIR = \\\"/root/autodl-tmp/.hf_cache/wnut17_raw\\\"\\nDATA_DIR = \\\"/root/autodl-tmp/struct_self_consist_ie/data/wnut17\\\"\\n\\nVALID_TYPES = {\\\"corporation\\\", \\\"creative-work\\\", \\\"group\\\", \\\"location\\\", \\\"person\\\", \\\"product\\\"}\\n\\nWNUT17_SCHEMA_HINT = (\\n    \\\"Entity types: corporation, creative-work, group, location, person, product\\\"\\n)\\n\\nPROMPT_TEMPLATE = (\\n    \\\"Extract all structured information (entities and relations) from the \\\"\\n    \\\"following text. Output a JSON object.\\\\n\\\\n\\\"\\n    \\\"Text: {text}\\\\n\\\"\\n    \\\"{schema_hint}\\\\n\\\\n\\\"\\n    'Output format: {{\\\"entities\\\": [...], \\\"relations\\\": [...], \\\"events\\\": []}}\\\\n'\\n    \\\"For relations, head is the subject entity and tail is the object entity.\\\"\\n)\\n\\n\\ndef read_conll(path):\\n    \\\"\\\"\\\"Read CoNLL file, return list of (tokens, tags) per sentence.\\\"\\\"\\\"\\n    sentences = []\\n    tokens, tags = [], []\\n    with open(path, \\\"r\\\", encoding=\\\"utf-8\\\") as f:\\n        for line in f:\\n            line = line.rstrip(\\\"\\\\n\\\")\\n            if not line or line.isspace():\\n                if tokens:\\n                    sentences.append((tokens, tags))\\n                    tokens, tags = [], []\\n                continue\\n            parts = line.split(\\\"\\\\t\\\")\\n            if len(parts) >= 2:\\n                tokens.append(parts[0])\\n                tags.append(parts[1])\\n    if tokens:\\n        sentences.append((tokens, tags))\\
+…[truncated 6168 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T14:15:14.605913+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -20 /root/autodl-tmp/struct_self_consist_ie/data/wnut17/test.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -20 /root/autodl-tmp/struct_self_consist_ie/data/wnut17/test.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T14:15:14.606194+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"wnut17_test_00000\\\", \\\"text\\\": \\\"& gt ; * The soldier was killed when another avalanche hit an army barracks in the northern area of Sonmarg , said a military spokesman .\\\", \\\"entities\\\": [{\\\"text\\\": \\\"Sonmarg\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 100, \\\"end\\\": 107}], \\\"relations\\\": [], \\\"events\\\": []}\\n{\\\"id\\\": \\\"wnut17_test_00001\\\", \\\"text\\\": \\\"& gt ; * Police last week evacuated 80 villagers from Waltengoo Nar where dozens were killed after a series of avalanches hit the area in 2005 in the south of the territory .\\\", \\\"entities\\\": [{\\\"text\\\": \\\"Waltengoo Nar\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 54, \\\"end\\\": 67}], \\\"relations\\\": [], \\\"events\\\": []}\\n{\\\"id\\\": \\\"wnut17_test_00002\\\", \\\"text\\\": \\\"& gt ; * The army on Thursday recovered the bodies of ten of its men who were killed in an avalanche the previous day .\\\", \\\"entities\\\": [], \\\"relations\\\": [], \\\"events\\\": []}\\n{\\\"id\\\": \\\"wnut17_test_00003\\\", \\\"text\\\": \\\"& gt ; * The four civilians killed included two children of a family whose house was hit by a separate avalanche , also on Wednesday , a police spokesman said .\\\", \\\"entities\\\": [], \\\"relations\\\": [], \\\"events\\\": []}\\n{\\\"id\\\": \\\"wnut17_test_00004\\\", \\\"text\\\": \\\"The bodies of the soldiers were recovered after the concerted efforts of the Avalanche Rescue Teams ( ART ) , which is equipped to work in inhospitable terrain and weather conditions .\\\", \\\"entities\\\": [{\\\"text\\\": \\\"Avalanche Rescue Teams\\\", \\\"type\\\": \\\"group\\\", \\\"start\\\": 77, \\\"end\\\": 99}, {\\\"text\\\": \\\"ART\\\", \\\"type\\\": \\\"group\\\", \\\"start\\\": 102, \\\"end\\\": 105}], \\\"relations\\\": [], \\\"events\\\": []}\\n{\\\"id\\\": \\\"wnut17_test_00005\\\", \\\"text\\\": \\\"& gt ; * Arrangements are in place to carry 
+…[truncated 4522 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T14:15:14.606365+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T14:15:14.606634+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluation module for structured self-consistency IE experiments.\\n\\nProvides strict-match NER/EAE evaluation, per-instance F1 computation,\\ncorrelation analysis, and summary report generation.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport statistics\\nfrom typing import Any\\n\\nfrom scipy.stats import kendalltau, spearmanr\\n\\n\\n# ---------------------------------------------------------------------------\\n# NER evaluation (strict match)\\n# ---------------------------------------------------------------------------\\n\\ndef entity_strict_match(\\n    pred_entities: list[dict],\\n    gold_entities: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Compute strict entity match counts.\\n\\n    Strict match requires exact span (start, end) AND exact type.\\n\\n    Args:\\n        pred_entities: Predicted entity dicts with keys text, type, start, end.\\n        gold_entities: Gold entity dicts with the same schema.\\n\\n    Returns:\\n        (tp, fp, fn) counts.\\n    \\\"\\\"\\\"\\n    pred_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    return tp, fp, fn\\n\\n\\ndef compute_ner_f1(\\n    predictions: list[dict],\\n    golds: list[dict],\\n) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute micro-averaged NER precision, recall, and F1.\\n\\n    Args:\\n        predictions: List of Extraction dicts (one per instance).\\n        golds: List of Extraction dicts (one per instance), aligned with predictions.\\n\\n    Returns:\\n        Dict with keys \\\"precision\\\", \\\"recall\\\", \\\"f1\\\".\\n    \\\"\\\"\\\"\\n    total_tp = total_fp = total_fn = 0\\n    for pred, gold in zip(predictions, golds):\\n        tp, fp, fn = entity_
+…[truncated 7194 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T14:15:14.606792+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/data_utils.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/data_utils.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T14:15:14.607051+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Data processing utilities for structured self-consistency IE experiments.\\n\\nHandles loading, converting, and splitting datasets into the unified UIE JSON format.\\nSupported datasets: SciERC (fully implemented), ACE05 (interface only).\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport json\\nimport os\\nimport random\\nfrom typing import Any, TypedDict\\n\\n\\n# ---------------------------------------------------------------------------\\n# Shared type definitions (UIE JSON format)\\n# ---------------------------------------------------------------------------\\n\\nclass Entity(TypedDict):\\n    text: str\\n    type: str\\n    start: int\\n    end: int\\n\\n\\nclass Relation(TypedDict):\\n    head: str\\n    tail: str\\n    type: str\\n    head_start: int\\n    head_end: int\\n    tail_start: int\\n    tail_end: int\\n\\n\\nclass EventArgument(TypedDict):\\n    text: str\\n    role: str\\n    start: int\\n    end: int\\n\\n\\nclass Trigger(TypedDict):\\n    text: str\\n    type: str\\n    start: int\\n    end: int\\n\\n\\nclass Event(TypedDict):\\n    trigger: Trigger\\n    arguments: list[EventArgument]\\n\\n\\nclass Extraction(TypedDict, total=False):\\n    entities: list[Entity]\\n    relations: list[Relation]\\n    events: list[Event]\\n\\n\\nclass Instance(TypedDict, total=False):\\n    id: str\\n    text: str\\n    entities: list[Entity]\\n    relations: list[Relation]\\n    events: list[Event]\\n\\n\\n# ---------------------------------------------------------------------------\\n# SciERC\\n# ---------------------------------------------------------------------------\\n\\ndef _token_offsets(tokens: list[str]) -> list[tuple[int, int]]:\\n    \\\"\\\"\\\"Compute (char_start, char_end) for each token when joined by single spaces.\\\"\\\"\\\"\\n    offsets = []\\n    pos = 0\\n    for tok in tokens:\\n        offsets.append((pos, pos + len(tok)))\\n        pos += len(tok) + 1 
+…[truncated 7105 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T14:15:14.607279+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T14:15:14.607564+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"MVP pilot experiment script for structured self-consistency IE.\\n\\nIntegrates data loading, vLLM sampling, consistency scoring, and evaluation\\ninto a single CLI-driven pipeline. Outputs a verdict (PASS/MARGINAL/FAIL)\\nbased on the correlation between structural consistency and per-instance F1.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport sys\\n\\nimport numpy as np\\n\\nfrom data_utils import load_scierc, load_ace05, load_conll2003, load_wnut17\\nfrom sampling import (\\n    VLLMSampler,\\n    run_sampling_pipeline,\\n    save_sampled_results,\\n    load_sampled_results,\\n    realign_spans,\\n    SCIERC_SCHEMA_HINT,\\n    CONLL2003_SCHEMA_HINT,\\n    WNUT17_SCHEMA_HINT,\\n)\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import (\\n    per_instance_f1,\\n    compute_ner_f1,\\n    compute_re_f1,\\n    compute_eae_f1,\\n    spearman_correlation,\\n    kendall_correlation,\\n    compute_auroc,\\n    compute_sample_f1_distribution,\\n)\\n\\n\\ndef parse_args() -> argparse.Namespace:\\n    \\\"\\\"\\\"Parse command-line arguments.\\\"\\\"\\\"\\n    p = argparse.ArgumentParser(description=\\\"MVP pilot for structured self-consistency IE\\\")\\n    p.add_argument(\\\"--model_path\\\", type=str, required=True, help=\\\"Path to the fine-tuned model\\\")\\n    p.add_argument(\\\"--data_dir\\\", type=str, required=True, help=\\\"Dataset directory (SciERC or ACE05)\\\")\\n    p.add_argument(\\\"--dataset\\\", type=str, default=\\\"scierc\\\", choices=[\\\"scierc\\\", \\\"ace05\\\", \\\"conll2003\\\", \\\"wnut17\\\"],\\n                   help=\\\"Dataset name (default: scierc)\\\")\\n    p.add_argument(\\\"--subtask\\\", type=str, default=\\\"ner\\\", choices=[\\\"ner\\\", \\\"re\\\", \\\"eae\\\", \\\"joint\\\"],\\n                   help=\\\"Subtask (default: ner)\\\")\\n    p.add_argument(\\\"--s
+…[truncated 7396 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T14:15:14.607726+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/data/wnut17/test.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/data/wnut17/test.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T14:15:14.607858+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1287 /root/autodl-tmp/struct_self_consist_ie/data/wnut17/test.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-14T14:15:14.607980+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -3 /root/autodl-tmp/struct_self_consist_ie/data/wnut17/train.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -3 /root/autodl-tmp/struct_self_consist_ie/data/wnut17/train.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-14T14:15:14.608098+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -3 /root/autodl-tmp/struct_self_consist_ie/data/wnut17/llmfactory_train.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -3 /root/autodl-tmp/struct_self_consist_ie/data/wnut17/llmfactory_train.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T14:15:14.608267+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"wnut17_train_00000\\\", \\\"text\\\": \\\"@paulwalk It 's the view from where I 'm living for two weeks . Empire State Building = ESB . Pretty bad storm here last evening .\\\", \\\"entities\\\": [{\\\"text\\\": \\\"Empire State Building\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 64, \\\"end\\\": 85}, {\\\"text\\\": \\\"ESB\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 88, \\\"end\\\": 91}], \\\"relations\\\": [], \\\"events\\\": []}\\n{\\\"id\\\": \\\"wnut17_train_00001\\\", \\\"text\\\": \\\"From Green Newsfeed : AHFA extends deadline for Sage Award to Nov . 5 http://tinyurl.com/24agj38\\\", \\\"entities\\\": [{\\\"text\\\": \\\"AHFA\\\", \\\"type\\\": \\\"group\\\", \\\"start\\\": 22, \\\"end\\\": 26}], \\\"relations\\\": [], \\\"events\\\": []}\\n{\\\"id\\\": \\\"wnut17_train_00002\\\", \\\"text\\\": \\\"Pxleyes Top 50 Photography Contest Pictures of August 2010 ... http://bit.ly/bgCyZ0 #photography\\\", \\\"entities\\\": [{\\\"text\\\": \\\"Pxleyes\\\", \\\"type\\\": \\\"corporation\\\", \\\"start\\\": 0, \\\"end\\\": 7}], \\\"relations\\\": [], \\\"events\\\": []}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T14:15:14.608405+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"conversations\\\": [\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T14:15:14.608576+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T14:15:14.608877+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Multi-sample inference module for structured IE with vLLM + XGrammar constrained decoding.\\n\\nProvides VLLMSampler for batch sampling, prompt construction for UIE tasks,\\nand a full pipeline that produces SampledInstance dicts.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport json\\nimport os\\nfrom typing import Any\\n\\n\\n# ---------------------------------------------------------------------------\\n# UIE JSON schema for XGrammar constrained decoding\\n# ---------------------------------------------------------------------------\\n\\nUIE_JSON_SCHEMA: dict[str, Any] = {\\n    \\\"type\\\": \\\"object\\\",\\n    \\\"properties\\\": {\\n        \\\"entities\\\": {\\n            \\\"type\\\": \\\"array\\\",\\n            \\\"items\\\": {\\n                \\\"type\\\": \\\"object\\\",\\n                \\\"properties\\\": {\\n                    \\\"text\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"type\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"end\\\": {\\\"type\\\": \\\"integer\\\"},\\n                },\\n                \\\"required\\\": [\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"],\\n            },\\n        },\\n        \\\"relations\\\": {\\n            \\\"type\\\": \\\"array\\\",\\n            \\\"items\\\": {\\n                \\\"type\\\": \\\"object\\\",\\n                \\\"properties\\\": {\\n                    \\\"head\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"tail\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"type\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"head_start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"head_end\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"tail_start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"tail_end\\
+…[truncated 7659 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T14:15:14.609072+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*.log\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"*.log\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T14:15:14.609241+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_001_train.log\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log\\n/root/autodl-tmp/struct_self_consist_ie/logs/train_conll2003.log\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_200only/run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval.log\\n/root/autodl-tmp/struct_self_consist_ie/ft_002_train.log\\n/root/autodl-tmp/struct_self_consist_ie/mvp_pilot.log\\n/root/autodl-tmp/struct_self_consist_ie/ft_002v2_train.log\\n/root/autodl-tmp/struct_self_consist_ie/mvp_pilot_003.log\\n/root/autodl-tmp/struct_self_consist_ie/mvp_pilot_004.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T14:15:14.609374+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-merged/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-merged/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T14:15:14.609501+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"added_tokens.json\\nchat_template.jinja\\nconfig.json\\ngeneration_config.json\\nmerges.txt\\nmodel-00001-of-00004.safetensors\\nmodel-00002-of-00004.safetensors\\nmodel-00003-of-00004.safetensors\\nmodel-00004-of-00004.safetensors\\nmodel.safetensors.index.json\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\nvocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-14T14:15:14.609660+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"WNUT17_SCHEMA_HINT\\|build_uie_prompt\\|PROMPT_TEMPLATE\\|use_train_format\\|TRAIN_PROMPT\" /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"WNUT17_SCHEMA_HINT\\|build_uie_prompt\\|PROMPT_TEMPLATE\\|use_train_format\\|TRAIN_PROMPT\" /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T14:15:14.609791+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-14T14:15:14.609911+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -50 /root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -50 /root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T14:15:14.610216+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n&lt;/think>\\n\\n{\\\"entities\\\": [], \\\"relations\\\": [], \\\"events\\\": []}<|im_end|>\\n\\n[INFO|2026-05-14 20:07:16] llamafactory.model.model_utils.kv_cache:143 >> KV cache is disabled during training.\\n[WARNING|logging.py:328] 2026-05-14 20:07:17,140 >> `torch_dtype` is deprecated! Use `dtype` instead!\\n[INFO|modeling_utils.py:1169] 2026-05-14 20:07:17,140 >> loading weights file /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/model.safetensors.index.json\\n[INFO|modeling_utils.py:1243] 2026-05-14 20:07:17,140 >> Will use dtype=torch.bfloat16 as defined in model's config object\\n[INFO|modeling_utils.py:2341] 2026-05-14 20:07:17,141 >> Instantiating Qwen3ForCausalLM model under default dtype torch.bfloat16.\\n[INFO|configuration_utils.py:986] 2026-05-14 20:07:17,142 >> Generate config GenerationConfig {\\n  \\\"bos_token_id\\\": 151643,\\n  \\\"eos_token_id\\\": 151645,\\n  \\\"use_cache\\\": false\\n}\\n\\n\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.26it/s]\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.26it/s]\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.27it/s]\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:02<00:00,  1.38it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.80it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.54it/s]\\n[INFO|configuration_utils.py:939] 2026-05-14 20:07:20,647 >> loading configuration file /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/generation_config.json\\n[INFO|configuration_utils.py:986] 2026-05-14 20:07:20,647 >> Generate config GenerationConfig {\\n  \\\"bos_token_id\\\": 151643,\\n  \\\"do_sample\\\": true,\\n  \\\"eos_token_id\\\": [\\n    151645,\\n    151643\\n  ],\\n  \\\"pad_token_id\\\": 151643,\\n  \\\"temperature\\\": 0.6,\\n  \\\"top_k\\\": 20,\\n  \\\"top_p\\\": 0.95\\n}\\n\\n[INF
+…[truncated 6567 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-14T14:15:14.610420+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"train_loss\\|eval_loss\\|epoch\\|eval_f1\\|eval_precision\\|eval_recall\" /root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"train_loss\\|eval_loss\\|epoch\\|eval_f1\\|eval_precision\\|eval_recall\" /root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T14:15:14.610556+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-14T14:15:14.610728+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"WNUT17_SCHEMA_HINT\\|def build_uie_prompt\\|TRAIN_PROMPT_TEMPLATE\\|PROMPT_TEMPLATE\" /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"WNUT17_SCHEMA_HINT\\|def build_uie_prompt\\|TRAIN_PROMPT_TEMPLATE\\|PROMPT_TEMPLATE\" /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T14:15:14.610857+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-14T14:15:14.610976+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"train_loss\\|eval_loss\" /root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"train_loss\\|eval_loss\" /root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T14:15:14.611096+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-14T14:15:14.611270+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && grep -n 'WNUT17_SCHEMA_HINT\\|def build_uie_prompt\\|TRAIN_PROMPT_TEMPLATE\\|PROMPT_TEMPLATE' code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && grep -n 'WNUT17_SCHEMA_HINT\\|def build_uie_prompt\\|TRAIN_PROMPT_TEMPLATE\\|PROMPT_TEMPLATE' code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T14:15:14.611398+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"275:WNUT17_SCHEMA_HINT = (\\n280:def build_uie_prompt(text: str, subtask: str = \\\"ner\\\", schema_hint: str = \\\"\\\", use_train_format: bool = True) -> str:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-14T14:15:14.611516+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && grep 'train_loss\\|eval_loss' checkpoints/wnut17_train.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && grep 'train_loss\\|eval_loss' checkpoints/wnut17_train.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T14:15:14.611635+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: \\\"cd /root/autodl-tmp/struct_self_consist_ie && grep 'train_loss\\\\\\\\|eval_loss' checkpoints/wnut17_train.log\\\"\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-14T14:15:14.611756+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "sed -n '270,340p' /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "sed -n '270,340p' /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-14T14:15:14.611873+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-14T14:15:14.611985+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -E '(train_loss|eval_loss|\"loss\")' /root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -E '(train_loss|eval_loss|\"loss\")' /root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-14T14:15:14.612100+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-14T14:15:14.612313+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nlines = open('code/sampling.py').readlines()\nfor line in lines[270:340]:\n    print(line, end='')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nlines = open('code/sampling.py').readlines()\nfor line in lines[270:340]:\n    print(line, end='')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-14T14:15:14.612453+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \\\"\\\\nlines = open(\\\\'code/sampling.py\\\\').readlines()\\\\nfor line in lines[270:340]:\\\\n    print(line, end=\\\\'\\\\')\\\\n\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-14T14:15:14.612569+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -E 'loss|epoch' /root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log | tail -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -E 'loss|epoch' /root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log | tail -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-14T14:15:14.612686+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-14T14:15:14.612810+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nlines = open('code/sampling.py').readlines()\nfor line in lines[270:350]:\n    print(line, end='')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nlines = open('code/sampling.py').readlines()\nfor line in lines[270:350]:\n    print(line, end='')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-14T14:15:14.613007+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"CONLL2003_SCHEMA_HINT = (\\n    'Entity types: PER, ORG, LOC, MISC'\\n)\\n\\nWNUT17_SCHEMA_HINT = (\\n    'Entity types: corporation, creative-work, group, location, person, product'\\n)\\n\\n\\ndef build_uie_prompt(text: str, subtask: str = \\\"ner\\\", schema_hint: str = \\\"\\\", use_train_format: bool = True) -> str:\\n    \\\"\\\"\\\"Build a UIE extraction prompt.\\n\\n    Args:\\n        text: Input sentence / passage.\\n        subtask: \\\"ner\\\" (entities only), \\\"eae\\\" (events), or \\\"full\\\" (all).\\n        schema_hint: Optional schema description (e.g. entity type list).\\n        use_train_format: If True, use the train-aligned template (ignores subtask).\\n\\n    Returns:\\n        Formatted prompt string.\\n    \\\"\\\"\\\"\\n    if use_train_format:\\n        schema_line = f\\\"{schema_hint}\\\\n\\\" if schema_hint else \\\"\\\"\\n        return _TRAIN_ALIGNED_TEMPLATE.format(text=text, schema_line=schema_line)\\n\\n    schema_line = f\\\"Schema: {schema_hint}\\\\n\\\" if schema_hint else \\\"\\\"\\n\\n    if subtask == \\\"ner\\\":\\n        template = _NER_TEMPLATE\\n    elif subtask == \\\"re\\\":\\n        template = _RE_TEMPLATE\\n    elif subtask == \\\"eae\\\":\\n        template = _EAE_TEMPLATE\\n    elif subtask == \\\"full\\\":\\n        template = _FULL_TEMPLATE\\n    else:\\n        raise ValueError(f\\\"subtask must be 'ner', 're', 'eae', or 'full', got '{subtask}'\\\")\\n\\n    return template.format(text=text, schema_line=schema_line)\\n\\n\\n# ---------------------------------------------------------------------------\\n# Output parsing\\n# ---------------------------------------------------------------------------\\n\\ndef parse_extraction_output(raw_output: str) -> dict[str, Any]:\\n    \\\"\\\"\\\"Parse a model output string into an Extraction dict.\\n\\n    Handles JSON parsing (XGrammar guarantees valid JSON, but we still guard),\\n    field validation, and type coer
+…[truncated 1214 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-14T14:15:14.613197+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-14T14:15:14.613359+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"268 /root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-14T14:15:14.613499+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nlines = open('/root/autodl-tmp/struct_self_consist_ie/code/sampling.py').readlines()\nfor line in lines[250:270]:\n    print(line, end='')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nlines = open('/root/autodl-tmp/struct_self_consist_ie/code/sampling.py').readlines()\nfor line in lines[250:270]:\n    print(line, end='')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-14T14:15:14.613657+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"\\\\nOutput:\\\"\\n)\\n\\n_TRAIN_ALIGNED_TEMPLATE = (\\n    \\\"Extract all structured information (entities and relations) from the following text. \\\"\\n    \\\"Output a JSON object.\\\\n\\\\n\\\"\\n    \\\"Text: {text}\\\\n\\\"\\n    \\\"{schema_line}\\\"\\n    \\\"\\\\nOutput format: \\\"\\n    '{{\\\"entities\\\": [{{\\\"text\\\": \\\"...\\\", \\\"type\\\": \\\"...\\\", \\\"start\\\": &lt;int>, \\\"end\\\": &lt;int>}}], '\\n    '\\\"relations\\\": [{{\\\"head\\\": \\\"...\\\", \\\"tail\\\": \\\"...\\\", \\\"type\\\": \\\"...\\\", '\\n    '\\\"head_start\\\": &lt;int>, \\\"head_end\\\": &lt;int>, \\\"tail_start\\\": &lt;int>, \\\"tail_end\\\": &lt;int>}}], '\\n    '\\\"events\\\": []}}'\\n)\\n\\nSCIERC_SCHEMA_HINT = (\\n    \\\"Entity types: Generic, Material, Method, Metric, OtherScientificTerm, Task\\\\n\\\"\\n    \\\"Relation types: COMPARE, CONJUNCTION, EVALUATE-FOR, FEATURE-OF, HYPONYM-OF, PART-OF, USED-FOR\\\"\\n)\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-14T14:15:14.613788+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\n# Search for _TRAIN_ALIGNED_TEMPLATE definition\nlines = open('/root/autodl-tmp/struct_self_consist_ie/code/sampling.py').readlines()\nfor i, line in enumerate(lines):\n    if '_TRAIN_ALIGNED' in line or '_NER_TEMPLATE' in line:\n        print(f'{i}: {line}', end='')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\n# Search for _TRAIN_ALIGNED_TEMPLATE definition\nlines = open('/root/autodl-tmp/struct_self_consist_ie/code/sampling.py').readlines()\nfor i, line in enumerate(lines):\n    if '_TRAIN_ALIGNED' in line or '_NER_TEMPLATE' in line:\n        print(f'{i}: {line}', end='')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-14T14:15:14.613916+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"212: _NER_TEMPLATE = (\\n253: _TRAIN_ALIGNED_TEMPLATE = (\\n293:         return _TRAIN_ALIGNED_TEMPLATE.format(text=text, schema_line=schema_line)\\n298:         template = _NER_TEMPLATE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-14T14:15:14.614034+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/checkpoints/ -name \"trainer_state*\" -o -name \"training_args*\" | head -10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/checkpoints/ -name \"trainer_state*\" -o -name \"training_args*\" | head -10",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-14T14:15:14.614183+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora/checkpoint-200/training_args.bin\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora/checkpoint-200/trainer_state.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora/checkpoint-300/training_args.bin\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora/checkpoint-300/trainer_state.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora/checkpoint-351/training_args.bin\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora/checkpoint-351/trainer_state.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora/training_args.bin\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora/trainer_state.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2/checkpoint-400/training_args.bin\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2/checkpoint-400/trainer_state.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-14T14:15:14.614378+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/checkpoints/ -path \"*wnut*\" -name \"trainer_state.json\" 2>/dev/null | head -5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/checkpoints/ -path \"*wnut*\" -name \"trainer_state.json\" 2>/dev/null | head -5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-14T14:15:14.614515+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora/checkpoint-400/trainer_state.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora/checkpoint-600/trainer_state.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora/checkpoint-800/trainer_state.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora/checkpoint-1000/trainer_state.json\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora/checkpoint-1065/trainer_state.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-14T14:15:14.614650+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python3 << 'PYEOF'\nimport json\nfrom collections import Counter\n\n# Load samples\nsamples = []\nwith open(\"output/exp003_wnut17_eval/samples.jsonl\") as f:\n    for line in f:\n        if line.strip():\n            samples.append(json.loads(line))\n\nprint(f\"Total instances: {len(samples)}\")\n\n# Compute per-instance F1\ndef entity_f1(pred_ents, gold_ents):\n    pred_set = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in pred_ents}\n    gold_set = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in gold_ents}\n    tp = len(pred_set & gold_set)\n    fp = len(pred_set - gold_set)\n    fn = len(gold_set - pred_set)\n    if tp + fp == 0: p = 0\n    else: p = tp / (tp + fp)\n    if tp + fn == 0: r = 0\n    else: r = tp / (tp + fn)\n    if p + r == 0: return 0.0\n    return 2 * p * r / (p + r)\n\n# Categorize\ngold_empty_count = 0\nf1_zero_with_gold = 0\nf1_zero_model_empty = 0\nf1_zero_type_mismatch = 0\nf1_zero_span_mismatch = 0\nf1_zero_both_mismatch = 0\nf1_positive = 0\n\nf1_zero_examples = []\n\nfor inst in samples:\n    gold = inst[\"gold\"]\n    greedy = inst[\"greedy\"]\n    gold_ents = gold.get(\"entities\", [])\n    greedy_ents = greedy.get(\"entities\", [])\n    \n    if len(gold_ents) == 0:\n        gold_empty_count += 1\n        continue\n    \n    f1 = entity_f1(greedy_ents, gold_ents)\n    \n    if f1 == 0:\n        f1_zero_with_gold += 1\n        if len(greedy_ents) == 0:\n            f1_zero_model_empty += 1\n        else:\n            # Check what kind of mismatch\n            gold_set = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in gold_ents}\n            pred_set = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in greedy_ents}\n            # Check span-only match (ignoring type)\n            gold_spans = {(e[\"start\"], e[\"end\"]) for e in gold_ents}\n            pred_spans = {(e[\"start\"], e[\"end\"]) for e in greedy_ents}\n            span_overlap = gold_spans & pred_spans\n            # Check type-only match (ignoring span)\n            gold_types = Counter(e[\"type\"] for e in gold_ents)\n            pred_types = Counter(e[\"type\"] for e in greedy_ents)\n            \n            if span_overlap:\n                f1_zero_type_mismatch += 1\n            else:\n                f1_zero_span_mismatch += 1\n        \n        if len(f1_zero_examples) < 15:\n            f1_zero_examples.append({\n                \"id\": inst[\"id\"],\n                \"text\": inst[\"text\"][:120],\n                \"gold_ents\": gold_ents,\n                \"greedy_ents\": greedy_ents[:5],\n                \"n_greedy\": len(greedy_ents),\n            })\n    else:\n        f1_positive += 1\n\nprint(f\"\\n--- Instance Breakdown ---\")\nprint(f\"Gold empty: {gold_empty_count}\")\nprint(f\"F1=0 (gold non-empty): {f1_zero_with_gold}\")\nprint(f\"  - model output empty: {f1_zero_model_empty}\")\nprint(f\"  - span mismatch (model predicted but wrong spans): {f1_zero_span_mismatch}\")\nprint(f\"  - type mismatch (correct span but wrong type): {f1_zero_type_mismatch}\")\nprint(f\"F1>0: {f1_positive}\")\n\nprint(f\"\\n--- F1=0 Examples (first 15) ---\")\nfor ex in f1_zero_examples:\n    print(f\"\\n[{ex['id']}] {ex['text']}...\")\n    print(f\"  GOLD ({len(ex['gold_ents'])}): {json.dumps(ex['gold_ents'], ensure_ascii=False)}\")\n    print(f\"  PRED ({ex['n_greedy']}): {json.dumps(ex['greedy_ents'], ensure_ascii=False)}\")\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python3 << 'PYEOF'\nimport json\nfrom collections import Counter\n\n# Load samples\nsamples = []\nwith open(\"output/exp003_wnut17_eval/samples.jsonl\") as f:\n    for line in f:\n        if line.strip():\n            samples.append(json.loads(line))\n\nprint(f\"Total instances: {len(samples)}\")\n\n# Compute per-instance F1\ndef entity_f1(pred_ents, gold_ents):\n    pred_set = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in pred_ents}\n    gold_set = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in gold_ents}\n    tp = len(pred_set & gold_set)\n    fp = len(pred_set - gold_set)\n    fn = len(gold_set - pred_set)\n    if tp + fp == 0: p = 0\n    else: p = tp / (tp + fp)\n    if tp + fn == 0: r = 0\n    else: r = tp / (tp + fn)\n    if p + r == 0: return 0.0\n    return 2 * p * r / (p + r)\n\n# Categorize\ngold_empty_count = 0\nf1_zero_with_gold = 0\nf1_zero_model_empty = 0\nf1_zero_type_mismatch = 0\nf1_zero_span_mismatch = 0\nf1_zero_both_mismatch = 0\nf1_positive = 0\n\nf1_zero_examples = []\n\nfor inst in samples:\n    gold = inst[\"gold\"]\n    greedy = inst[\"greedy\"]\n    gold_ents = gold.get(\"entities\", [])\n    greedy_ents = greedy.get(\"entities\", [])\n    \n    if len(gold_ents) == 0:\n        gold_empty_count += 1\n        continue\n    \n    f1 = entity_f1(greedy_ents, gold_ents)\n    \n    if f1 == 0:\n        f1_zero_with_gold += 1\n        if len(greedy_ents) == 0:\n            f1_zero_model_empty += 1\n        else:\n            # Check what kind of mismatch\n            gold_set = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in gold_ents}\n            pred_set = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in greedy_ents}\n            # Check span-only match (ignoring type)\n            gold_spans = {(e[\"start\"], e[\"end\"]) for e in gold_ents}\n            pred_spans = {(e[\"start\"], e[\"end\"]) for e in greedy_ents}\n            span_overlap = gold_spans & pred_spans\n            # Check type-only match (ignoring span)\n            gold_types = Counter(e[\"type\"] for e in gold_ents)\n            pred_types = Counter(e[\"type\"] for e in greedy_ents)\n            \n            if span_overlap:\n                f1_zero_type_mismatch += 1\n            else:\n                f1_zero_span_mismatch += 1\n        \n        if len(f1_zero_examples) < 15:\n            f1_zero_examples.append({\n                \"id\": inst[\"id\"],\n                \"text\": inst[\"text\"][:120],\n                \"gold_ents\": gold_ents,\n                \"greedy_ents\": greedy_ents[:5],\n                \"n_greedy\": len(greedy_ents),\n            })\n    else:\n        f1_positive += 1\n\nprint(f\"\\n--- Instance Breakdown ---\")\nprint(f\"Gold empty: {gold_empty_count}\")\nprint(f\"F1=0 (gold non-empty): {f1_zero_with_gold}\")\nprint(f\"  - model output empty: {f1_zero_model_empty}\")\nprint(f\"  - span mismatch (model predicted but wrong spans): {f1_zero_span_mismatch}\")\nprint(f\"  - type mismatch (correct span but wrong type): {f1_zero_type_mismatch}\")\nprint(f\"F1>0: {f1_positive}\")\n\nprint(f\"\\n--- F1=0 Examples (first 15) ---\")\nfor ex in f1_zero_examples:\n    print(f\"\\n[{ex['id']}] {ex['text']}...\")\n    print(f\"  GOLD ({len(ex['gold_ents'])}): {json.dumps(ex['gold_ents'], ensure_ascii=False)}\")\n    print(f\"  PRED ({ex['n_greedy']}): {json.dumps(ex['greedy_ents'], ensure_ascii=False)}\")\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-14T14:15:14.614902+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total instances: 1287\\n\\n--- Instance Breakdown ---\\nGold empty: 598\\nF1=0 (gold non-empty): 355\\n  - model output empty: 260\\n  - span mismatch (model predicted but wrong spans): 49\\n  - type mismatch (correct span but wrong type): 46\\nF1>0: 334\\n\\n--- F1=0 Examples (first 15) ---\\n\\n[wnut17_test_00006] Visuals of the avalanche site in Gurez sector ....\\n  GOLD (1): [{\\\"text\\\": \\\"Gurez sector\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 33, \\\"end\\\": 45}]\\n  PRED (1): [{\\\"text\\\": \\\"Gurez\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 33, \\\"end\\\": 38}]\\n\\n[wnut17_test_00007] ( Source : ANI ) Visuals of the avalanche site in Gurez sector ....\\n  GOLD (2): [{\\\"text\\\": \\\"ANI\\\", \\\"type\\\": \\\"group\\\", \\\"start\\\": 11, \\\"end\\\": 14}, {\\\"text\\\": \\\"Gurez sector\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 50, \\\"end\\\": 62}]\\n  PRED (1): [{\\\"text\\\": \\\"Gurez\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 50, \\\"end\\\": 55}]\\n\\n[wnut17_test_00008] ( Source : ANI )...\\n  GOLD (1): [{\\\"text\\\": \\\"ANI\\\", \\\"type\\\": \\\"group\\\", \\\"start\\\": 11, \\\"end\\\": 14}]\\n  PRED (0): []\\n\\n[wnut17_test_00009] “ Arrangements are in place to carry the mortal remains of the martyrs to their native places immediately after weather ...\\n  GOLD (1): [{\\\"text\\\": \\\"Rajesh Kalia\\\", \\\"type\\\": \\\"person\\\", \\\"start\\\": 164, \\\"end\\\": 176}]\\n  PRED (1): [{\\\"text\\\": \\\"Colonel Rajesh Kalia\\\", \\\"type\\\": \\\"person\\\", \\\"start\\\": 156, \\\"end\\\": 176}]\\n\\n[wnut17_test_00010] Watch What Else is Making News...\\n  GOLD (1): [{\\\"text\\\": \\\"What Else is Making News\\\", \\\"type\\\": \\\"creative-work\\\", \\\"start\\\": 6, \\\"end\\\": 30}]\\n  PRED (0): []\\n\\n[wnut17_test_00012] Unfortunately , three soldiers could not be saved whose bodies were retrieved on January 26 by the ARTs that w
+…[truncated 2798 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-14T14:15:14.615116+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python3 << 'PYEOF'\nimport json\nfrom collections import Counter\n\n# 1. Check training data distribution\ntrain_data = []\nwith open(\"data/wnut17/train.json\") as f:\n    for line in f:\n        if line.strip():\n            train_data.append(json.loads(line))\n\ntrain_empty = sum(1 for d in train_data if len(d.get(\"entities\", [])) == 0)\ntrain_total = len(train_data)\nprint(f\"=== Training Data ===\")\nprint(f\"Total: {train_total}, Empty: {train_empty} ({100*train_empty/train_total:.1f}%)\")\n\n# Entity type distribution in train\ntrain_types = Counter()\nfor d in train_data:\n    for e in d.get(\"entities\", []):\n        train_types[e[\"type\"]] += 1\nprint(f\"Train entity types: {dict(train_types.most_common())}\")\n\n# 2. Check test data distribution\ntest_data = []\nwith open(\"data/wnut17/test.json\") as f:\n    for line in f:\n        if line.strip():\n            test_data.append(json.loads(line))\ntest_empty = sum(1 for d in test_data if len(d.get(\"entities\", [])) == 0)\nprint(f\"\\n=== Test Data ===\")\nprint(f\"Total: {len(test_data)}, Empty: {test_empty} ({100*test_empty/len(test_data):.1f}%)\")\n\ntest_types = Counter()\nfor d in test_data:\n    for e in d.get(\"entities\", []):\n        test_types[e[\"type\"]] += 1\nprint(f\"Test entity types: {dict(test_types.most_common())}\")\n\n# 3. Check what model predicts on gold_empty instances\nsamples = []\nwith open(\"output/exp003_wnut17_eval/samples.jsonl\") as f:\n    for line in f:\n        if line.strip():\n            samples.append(json.loads(line))\n\ngold_empty_pred_empty = 0\ngold_empty_pred_nonempty = 0\nfor inst in samples:\n    gold_ents = inst[\"gold\"].get(\"entities\", [])\n    greedy_ents = inst[\"greedy\"].get(\"entities\", [])\n    if len(gold_ents) == 0:\n        if len(greedy_ents) == 0:\n            gold_empty_pred_empty += 1\n        else:\n            gold_empty_pred_nonempty += 1\n\nprint(f\"\\n=== Gold Empty Instances ({gold_empty_pred_empty + gold_empty_pred_nonempty}) ===\")\nprint(f\"Model also empty: {gold_empty_pred_empty}\")\nprint(f\"Model has predictions: {gold_empty_pred_nonempty}\")\n\n# 4. Among gold non-empty instances where model is empty: check entity types in gold\nempty_pred_gold_types = Counter()\nnonempty_gold_count = 0\nfor inst in samples:\n    gold_ents = inst[\"gold\"].get(\"entities\", [])\n    greedy_ents = inst[\"greedy\"].get(\"entities\", [])\n    if len(gold_ents) > 0 and len(greedy_ents) == 0:\n        nonempty_gold_count += 1\n        for e in gold_ents:\n            empty_pred_gold_types[e[\"type\"]] += 1\n\nprint(f\"\\n=== Gold Types in Empty-Pred Instances (n={nonempty_gold_count}) ===\")\nfor t, c in empty_pred_gold_types.most_common():\n    print(f\"  {t}: {c}\")\n\n# 5. Check how many gold non-empty have ONLY 1 entity\nsingle_entity_empty_pred = 0\nmulti_entity_empty_pred = 0\nfor inst in samples:\n    gold_ents = inst[\"gold\"].get(\"entities\", [])\n    greedy_ents = inst[\"greedy\"].get(\"entities\", [])\n    if len(gold_ents) > 0 and len(greedy_ents) == 0:\n        if len(gold_ents) == 1:\n            single_entity_empty_pred += 1\n        else:\n            multi_entity_empty_pred += 1\n\nprint(f\"\\n=== Entity Count in Empty-Pred Instances ===\")\nprint(f\"  Single entity gold: {single_entity_empty_pred}\")\nprint(f\"  Multi entity gold: {multi_entity_empty_pred}\")\n\n# 6. Compare with SciERC training data stats\nprint(f\"\\n=== Train Data Entity Count Distribution ===\")\ntrain_ent_counts = Counter(len(d.get(\"entities\", [])) for d in train_data)\nfor k in sorted(train_ent_counts.keys()):\n    print(f\"  {k} entities: {train_ent_counts[k]} instances\")\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python3 << 'PYEOF'\nimport json\nfrom collections import Counter\n\n# 1. Check training data distribution\ntrain_data = []\nwith open(\"data/wnut17/train.json\") as f:\n    for line in f:\n        if line.strip():\n            train_data.append(json.loads(line))\n\ntrain_empty = sum(1 for d in train_data if len(d.get(\"entities\", [])) == 0)\ntrain_total = len(train_data)\nprint(f\"=== Training Data ===\")\nprint(f\"Total: {train_total}, Empty: {train_empty} ({100*train_empty/train_total:.1f}%)\")\n\n# Entity type distribution in train\ntrain_types = Counter()\nfor d in train_data:\n    for e in d.get(\"entities\", []):\n        train_types[e[\"type\"]] += 1\nprint(f\"Train entity types: {dict(train_types.most_common())}\")\n\n# 2. Check test data distribution\ntest_data = []\nwith open(\"data/wnut17/test.json\") as f:\n    for line in f:\n        if line.strip():\n            test_data.append(json.loads(line))\ntest_empty = sum(1 for d in test_data if len(d.get(\"entities\", [])) == 0)\nprint(f\"\\n=== Test Data ===\")\nprint(f\"Total: {len(test_data)}, Empty: {test_empty} ({100*test_empty/len(test_data):.1f}%)\")\n\ntest_types = Counter()\nfor d in test_data:\n    for e in d.get(\"entities\", []):\n        test_types[e[\"type\"]] += 1\nprint(f\"Test entity types: {dict(test_types.most_common())}\")\n\n# 3. Check what model predicts on gold_empty instances\nsamples = []\nwith open(\"output/exp003_wnut17_eval/samples.jsonl\") as f:\n    for line in f:\n        if line.strip():\n            samples.append(json.loads(line))\n\ngold_empty_pred_empty = 0\ngold_empty_pred_nonempty = 0\nfor inst in samples:\n    gold_ents = inst[\"gold\"].get(\"entities\", [])\n    greedy_ents = inst[\"greedy\"].get(\"entities\", [])\n    if len(gold_ents) == 0:\n        if len(greedy_ents) == 0:\n            gold_empty_pred_empty += 1\n        else:\n            gold_empty_pred_nonempty += 1\n\nprint(f\"\\n=== Gold Empty Instances ({gold_empty_pred_empty + gold_empty_pred_nonempty}) ===\")\nprint(f\"Model also empty: {gold_empty_pred_empty}\")\nprint(f\"Model has predictions: {gold_empty_pred_nonempty}\")\n\n# 4. Among gold non-empty instances where model is empty: check entity types in gold\nempty_pred_gold_types = Counter()\nnonempty_gold_count = 0\nfor inst in samples:\n    gold_ents = inst[\"gold\"].get(\"entities\", [])\n    greedy_ents = inst[\"greedy\"].get(\"entities\", [])\n    if len(gold_ents) > 0 and len(greedy_ents) == 0:\n        nonempty_gold_count += 1\n        for e in gold_ents:\n            empty_pred_gold_types[e[\"type\"]] += 1\n\nprint(f\"\\n=== Gold Types in Empty-Pred Instances (n={nonempty_gold_count}) ===\")\nfor t, c in empty_pred_gold_types.most_common():\n    print(f\"  {t}: {c}\")\n\n# 5. Check how many gold non-empty have ONLY 1 entity\nsingle_entity_empty_pred = 0\nmulti_entity_empty_pred = 0\nfor inst in samples:\n    gold_ents = inst[\"gold\"].get(\"entities\", [])\n    greedy_ents = inst[\"greedy\"].get(\"entities\", [])\n    if len(gold_ents) > 0 and len(greedy_ents) == 0:\n        if len(gold_ents) == 1:\n            single_entity_empty_pred += 1\n        else:\n            multi_entity_empty_pred += 1\n\nprint(f\"\\n=== Entity Count in Empty-Pred Instances ===\")\nprint(f\"  Single entity gold: {single_entity_empty_pred}\")\nprint(f\"  Multi entity gold: {multi_entity_empty_pred}\")\n\n# 6. Compare with SciERC training data stats\nprint(f\"\\n=== Train Data Entity Count Distribution ===\")\ntrain_ent_counts = Counter(len(d.get(\"entities\", [])) for d in train_data)\nfor k in sorted(train_ent_counts.keys()):\n    print(f\"  {k} entities: {train_ent_counts[k]} instances\")\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-14T14:15:14.615325+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Training Data ===\\nTotal: 3394, Empty: 2166 (63.8%)\\nTrain entity types: {'person': 660, 'location': 548, 'group': 264, 'corporation': 221, 'product': 142, 'creative-work': 140}\\n\\n=== Test Data ===\\nTotal: 1287, Empty: 598 (46.5%)\\nTest entity types: {'person': 429, 'group': 165, 'location': 150, 'creative-work': 142, 'product': 127, 'corporation': 66}\\n\\n=== Gold Empty Instances (598) ===\\nModel also empty: 579\\nModel has predictions: 19\\n\\n=== Gold Types in Empty-Pred Instances (n=260) ===\\n  person: 128\\n  group: 61\\n  product: 52\\n  creative-work: 42\\n  corporation: 24\\n  location: 21\\n\\n=== Entity Count in Empty-Pred Instances ===\\n  Single entity gold: 211\\n  Multi entity gold: 49\\n\\n=== Train Data Entity Count Distribution ===\\n  0 entities: 2166 instances\\n  1 entities: 755 instances\\n  2 entities: 286 instances\\n  3 entities: 129 instances\\n  4 entities: 40 instances\\n  5 entities: 8 instances\\n  6 entities: 9 instances\\n  7 entities: 1 instances\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-14T14:15:14.615461+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\n# Read last checkpoint trainer_state\nwith open('/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora/checkpoint-1065/trainer_state.json') as f:\n    state = json.load(f)\n# Print last few log entries\nfor entry in state.get('log_history', [])[-10:]:\n    print(json.dumps(entry))\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\n# Read last checkpoint trainer_state\nwith open('/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora/checkpoint-1065/trainer_state.json') as f:\n    state = json.load(f)\n# Print last few log entries\nfor entry in state.get('log_history', [])[-10:]:\n    print(json.dumps(entry))\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-14T14:15:14.615629+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"epoch\\\": 4.603417796110784, \\\"grad_norm\\\": 0.38120073080062866, \\\"learning_rate\\\": 3.950528574579415e-06, \\\"loss\\\": 0.0244, \\\"step\\\": 980}\\n{\\\"epoch\\\": 4.650559811431939, \\\"grad_norm\\\": 0.34149065613746643, \\\"learning_rate\\\": 3.089703021210033e-06, \\\"loss\\\": 0.0236, \\\"step\\\": 990}\\n{\\\"epoch\\\": 4.697701826753094, \\\"grad_norm\\\": 0.23879896104335785, \\\"learning_rate\\\": 2.333085148854708e-06, \\\"loss\\\": 0.0222, \\\"step\\\": 1000}\\n{\\\"epoch\\\": 4.697701826753094, \\\"eval_loss\\\": 0.08958934992551804, \\\"eval_runtime\\\": 22.2511, \\\"eval_samples_per_second\\\": 45.346, \\\"eval_steps_per_second\\\": 11.37, \\\"step\\\": 1000}\\n{\\\"epoch\\\": 4.744843842074249, \\\"grad_norm\\\": 0.21020999550819397, \\\"learning_rate\\\": 1.6814885490135102e-06, \\\"loss\\\": 0.0211, \\\"step\\\": 1010}\\n{\\\"epoch\\\": 4.791985857395404, \\\"grad_norm\\\": 0.39136484265327454, \\\"learning_rate\\\": 1.1356138837702702e-06, \\\"loss\\\": 0.0215, \\\"step\\\": 1020}\\n{\\\"epoch\\\": 4.839127872716559, \\\"grad_norm\\\": 0.12568774819374084, \\\"learning_rate\\\": 6.960481323703638e-07, \\\"loss\\\": 0.0189, \\\"step\\\": 1030}\\n{\\\"epoch\\\": 4.886269888037713, \\\"grad_norm\\\": 0.19529086351394653, \\\"learning_rate\\\": 3.632639600416932e-07, \\\"loss\\\": 0.0246, \\\"step\\\": 1040}\\n{\\\"epoch\\\": 4.933411903358868, \\\"grad_norm\\\": 0.20469218492507935, \\\"learning_rate\\\": 1.376192097375495e-07, \\\"loss\\\": 0.0212, \\\"step\\\": 1050}\\n{\\\"epoch\\\": 4.980553918680023, \\\"grad_norm\\\": 0.36580201983451843, \\\"learning_rate\\\": 1.9356517347990378e-08, \\\"loss\\\": 0.0256, \\\"step\\\": 1060}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-14T14:15:14.615826+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python3 << 'PYEOF'\nimport json\nimport numpy as np\n\n# Load samples\nsamples = []\nwith open(\"output/exp003_wnut17_eval/samples.jsonl\") as f:\n    for line in f:\n        if line.strip():\n            samples.append(json.loads(line))\n\n# Compute per-instance F1\ndef entity_f1(pred_ents, gold_ents):\n    pred_set = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in pred_ents}\n    gold_set = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in gold_ents}\n    tp = len(pred_set & gold_set)\n    fp = len(pred_set - gold_set)\n    fn = len(gold_set - pred_set)\n    if tp + fp == 0: p = 0\n    else: p = tp / (tp + fp)\n    if tp + fn == 0: r = 0\n    else: r = tp / (tp + fn)\n    if p + r == 0: return 0.0\n    return 2 * p * r / (p + r)\n\n# Analyze logprob pattern\nempty_pred_lps = []\nnonempty_pred_f1_zero_lps = []\nnonempty_pred_f1_pos_lps = []\nf1_pos_lps_and_f1s = []\n\nfor inst in samples:\n    gold_ents = inst[\"gold\"].get(\"entities\", [])\n    greedy_ents = inst[\"greedy\"].get(\"entities\", [])\n    if len(gold_ents) == 0:\n        continue  # Skip gold empty\n    \n    # Get greedy logprob\n    greedy_lp = inst[\"greedy\"].get(\"mean_logprob\", None)\n    if greedy_lp is None:\n        continue\n    \n    f1 = entity_f1(greedy_ents, gold_ents)\n    \n    if len(greedy_ents) == 0:\n        empty_pred_lps.append(greedy_lp)\n    elif f1 == 0:\n        nonempty_pred_f1_zero_lps.append(greedy_lp)\n    else:\n        nonempty_pred_f1_pos_lps.append(greedy_lp)\n        f1_pos_lps_and_f1s.append((greedy_lp, f1))\n\nprint(\"=== Logprob Analysis (gold non-empty only) ===\")\nprint(f\"Empty predictions (n={len(empty_pred_lps)}): mean_lp={np.mean(empty_pred_lps):.4f}, std={np.std(empty_pred_lps):.4f}\")\nprint(f\"Non-empty pred, F1=0 (n={len(nonempty_pred_f1_zero_lps)}): mean_lp={np.mean(nonempty_pred_f1_zero_lps):.4f}, std={np.std(nonempty_pred_f1_zero_lps):.4f}\")\nprint(f\"Non-empty pred, F1>0 (n={len(nonempty_pred_f1_pos_lps)}): mean_lp={np.mean(nonempty_pred_f1_pos_lps):.4f}, std={np.std(nonempty_pred_f1_pos_lps):.4f}\")\n\n# Now check: does the model also output empty for SAMPLES (T=1.0)?\n# How many instances have ALL 16 samples empty vs some non-empty\nall_samples_empty = 0\nsome_samples_nonempty = 0\nsamples_entity_rate = []\n\nfor inst in samples:\n    gold_ents = inst[\"gold\"].get(\"entities\", [])\n    if len(gold_ents) == 0:\n        continue\n    \n    n_empty = sum(1 for s in inst[\"samples\"] if len(s.get(\"entities\", [])) == 0)\n    n_total = len(inst[\"samples\"])\n    samples_entity_rate.append(1 - n_empty / n_total)\n    \n    if n_empty == n_total:\n        all_samples_empty += 1\n    else:\n        some_samples_nonempty += 1\n\nprint(f\"\\n=== Sample Diversity (gold non-empty, n_samples=16) ===\")\nprint(f\"All 16 samples empty: {all_samples_empty}\")\nprint(f\"Some samples non-empty: {some_samples_nonempty}\")\nprint(f\"Mean entity prediction rate across samples: {np.mean(samples_entity_rate):.4f}\")\n\n# Among the 260 empty-greedy instances, how many have at least one non-empty sample?\nempty_greedy_some_sample = 0\nempty_greedy_all_sample_empty = 0\nfor inst in samples:\n    gold_ents = inst[\"gold\"].get(\"entities\", [])\n    greedy_ents = inst[\"greedy\"].get(\"entities\", [])\n    if len(gold_ents) == 0 or len(greedy_ents) > 0:\n        continue\n    \n    n_empty = sum(1 for s in inst[\"samples\"] if len(s.get(\"entities\", [])) == 0)\n    if n_empty == len(inst[\"samples\"]):\n        empty_greedy_all_sample_empty += 1\n    else:\n        empty_greedy_some_sample += 1\n\nprint(f\"\\n=== Among 260 empty-greedy instances ===\")\nprint(f\"All samples also empty: {empty_greedy_all_sample_empty}\")\nprint(f\"Some samples non-empty: {empty_greedy_some_sample}\")\n\n# Check SJ and FK for these subgroups\nprint(f\"\\n=== Soft Jaccard in subgroups ===\")\n# For instances where greedy is empty\nfor inst in samples[:5]:\n    gold_ents = inst[\"gold\"].get(\"entities\", [])\n    greedy_ents = inst[\"greedy\"].get(\"entities\", [])\n    if len(gold_ents) > 0 and len(greedy_ents) == 0:\n        n_empty_samples = sum(1 for s in inst[\"samples\"] if len(s.get(\"entities\", [])) == 0)\n        print(f\"  [{inst['id']}] gold:{len(gold_ents)} pred:0 sample_empty:{n_empty_samples}/16\")\n        break\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python3 << 'PYEOF'\nimport json\nimport numpy as np\n\n# Load samples\nsamples = []\nwith open(\"output/exp003_wnut17_eval/samples.jsonl\") as f:\n    for line in f:\n        if line.strip():\n            samples.append(json.loads(line))\n\n# Compute per-instance F1\ndef entity_f1(pred_ents, gold_ents):\n    pred_set = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in pred_ents}\n    gold_set = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in gold_ents}\n    tp = len(pred_set & gold_set)\n    fp = len(pred_set - gold_set)\n    fn = len(gold_set - pred_set)\n    if tp + fp == 0: p = 0\n    else: p = tp / (tp + fp)\n    if tp + fn == 0: r = 0\n    else: r = tp / (tp + fn)\n    if p + r == 0: return 0.0\n    return 2 * p * r / (p + r)\n\n# Analyze logprob pattern\nempty_pred_lps = []\nnonempty_pred_f1_zero_lps = []\nnonempty_pred_f1_pos_lps = []\nf1_pos_lps_and_f1s = []\n\nfor inst in samples:\n    gold_ents = inst[\"gold\"].get(\"entities\", [])\n    greedy_ents = inst[\"greedy\"].get(\"entities\", [])\n    if len(gold_ents) == 0:\n        continue  # Skip gold empty\n    \n    # Get greedy logprob\n    greedy_lp = inst[\"greedy\"].get(\"mean_logprob\", None)\n    if greedy_lp is None:\n        continue\n    \n    f1 = entity_f1(greedy_ents, gold_ents)\n    \n    if len(greedy_ents) == 0:\n        empty_pred_lps.append(greedy_lp)\n    elif f1 == 0:\n        nonempty_pred_f1_zero_lps.append(greedy_lp)\n    else:\n        nonempty_pred_f1_pos_lps.append(greedy_lp)\n        f1_pos_lps_and_f1s.append((greedy_lp, f1))\n\nprint(\"=== Logprob Analysis (gold non-empty only) ===\")\nprint(f\"Empty predictions (n={len(empty_pred_lps)}): mean_lp={np.mean(empty_pred_lps):.4f}, std={np.std(empty_pred_lps):.4f}\")\nprint(f\"Non-empty pred, F1=0 (n={len(nonempty_pred_f1_zero_lps)}): mean_lp={np.mean(nonempty_pred_f1_zero_lps):.4f}, std={np.std(nonempty_pred_f1_zero_lps):.4f}\")\nprint(f\"Non-empty pred, F1>0 (n={len(nonempty_pred_f1_pos_lps)}): mean_lp={np.mean(nonempty_pred_f1_pos_lps):.4f}, std={np.std(nonempty_pred_f1_pos_lps):.4f}\")\n\n# Now check: does the model also output empty for SAMPLES (T=1.0)?\n# How many instances have ALL 16 samples empty vs some non-empty\nall_samples_empty = 0\nsome_samples_nonempty = 0\nsamples_entity_rate = []\n\nfor inst in samples:\n    gold_ents = inst[\"gold\"].get(\"entities\", [])\n    if len(gold_ents) == 0:\n        continue\n    \n    n_empty = sum(1 for s in inst[\"samples\"] if len(s.get(\"entities\", [])) == 0)\n    n_total = len(inst[\"samples\"])\n    samples_entity_rate.append(1 - n_empty / n_total)\n    \n    if n_empty == n_total:\n        all_samples_empty += 1\n    else:\n        some_samples_nonempty += 1\n\nprint(f\"\\n=== Sample Diversity (gold non-empty, n_samples=16) ===\")\nprint(f\"All 16 samples empty: {all_samples_empty}\")\nprint(f\"Some samples non-empty: {some_samples_nonempty}\")\nprint(f\"Mean entity prediction rate across samples: {np.mean(samples_entity_rate):.4f}\")\n\n# Among the 260 empty-greedy instances, how many have at least one non-empty sample?\nempty_greedy_some_sample = 0\nempty_greedy_all_sample_empty = 0\nfor inst in samples:\n    gold_ents = inst[\"gold\"].get(\"entities\", [])\n    greedy_ents = inst[\"greedy\"].get(\"entities\", [])\n    if len(gold_ents) == 0 or len(greedy_ents) > 0:\n        continue\n    \n    n_empty = sum(1 for s in inst[\"samples\"] if len(s.get(\"entities\", [])) == 0)\n    if n_empty == len(inst[\"samples\"]):\n        empty_greedy_all_sample_empty += 1\n    else:\n        empty_greedy_some_sample += 1\n\nprint(f\"\\n=== Among 260 empty-greedy instances ===\")\nprint(f\"All samples also empty: {empty_greedy_all_sample_empty}\")\nprint(f\"Some samples non-empty: {empty_greedy_some_sample}\")\n\n# Check SJ and FK for these subgroups\nprint(f\"\\n=== Soft Jaccard in subgroups ===\")\n# For instances where greedy is empty\nfor inst in samples[:5]:\n    gold_ents = inst[\"gold\"].get(\"entities\", [])\n    greedy_ents = inst[\"greedy\"].get(\"entities\", [])\n    if len(gold_ents) > 0 and len(greedy_ents) == 0:\n        n_empty_samples = sum(1 for s in inst[\"samples\"] if len(s.get(\"entities\", [])) == 0)\n        print(f\"  [{inst['id']}] gold:{len(gold_ents)} pred:0 sample_empty:{n_empty_samples}/16\")\n        break\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-14T14:15:14.616003+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Logprob Analysis (gold non-empty only) ===\\nEmpty predictions (n=260): mean_lp=-0.0070, std=0.0108\\nNon-empty pred, F1=0 (n=95): mean_lp=-0.0540, std=0.0255\\nNon-empty pred, F1>0 (n=334): mean_lp=-0.0464, std=0.0210\\n\\n=== Sample Diversity (gold non-empty, n_samples=16) ===\\nAll 16 samples empty: 155\\nSome samples non-empty: 534\\nMean entity prediction rate across samples: 0.6155\\n\\n=== Among 260 empty-greedy instances ===\\nAll samples also empty: 155\\nSome samples non-empty: 105\\n\\n=== Soft Jaccard in subgroups ===\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.65}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-14T14:15:14.616150+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\n# Check eval loss history\nwith open('/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora/checkpoint-1065/trainer_state.json') as f:\n    state = json.load(f)\n\nfor entry in state.get('log_history', []):\n    if 'eval_loss' in entry:\n        print(json.dumps(entry))\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\n# Check eval loss history\nwith open('/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora/checkpoint-1065/trainer_state.json') as f:\n    state = json.load(f)\n\nfor entry in state.get('log_history', []):\n    if 'eval_loss' in entry:\n        print(json.dumps(entry))\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-14T14:15:14.616303+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"epoch\\\": 0.9428403064230996, \\\"eval_loss\\\": 0.08797132968902588, \\\"eval_runtime\\\": 22.5408, \\\"eval_samples_per_second\\\": 44.763, \\\"eval_steps_per_second\\\": 11.224, \\\"step\\\": 200}\\n{\\\"epoch\\\": 1.8815556865055982, \\\"eval_loss\\\": 0.08571828156709671, \\\"eval_runtime\\\": 22.1923, \\\"eval_samples_per_second\\\": 45.466, \\\"eval_steps_per_second\\\": 11.4, \\\"step\\\": 400}\\n{\\\"epoch\\\": 2.820271066588097, \\\"eval_loss\\\": 0.07722805440425873, \\\"eval_runtime\\\": 22.207, \\\"eval_samples_per_second\\\": 45.436, \\\"eval_steps_per_second\\\": 11.393, \\\"step\\\": 600}\\n{\\\"epoch\\\": 3.758986446670595, \\\"eval_loss\\\": 0.07882522791624069, \\\"eval_runtime\\\": 22.2539, \\\"eval_samples_per_second\\\": 45.34, \\\"eval_steps_per_second\\\": 11.369, \\\"step\\\": 800}\\n{\\\"epoch\\\": 4.697701826753094, \\\"eval_loss\\\": 0.08958934992551804, \\\"eval_runtime\\\": 22.2511, \\\"eval_samples_per_second\\\": 45.346, \\\"eval_steps_per_second\\\": 11.37, \\\"step\\\": 1000}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-14T14:15:14.616505+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python3 << 'PYEOF'\nimport json\n\n# Verify: what does the llmfactory training data look like for empty instances?\nwith open(\"data/wnut17/llmfactory_train.json\") as f:\n    train_sf = json.load(f)\n\n# Check an empty-gold instance\nempty_count = 0\nfor inst in train_sf:\n    gpt_val = inst[\"conversations\"][1][\"value\"]\n    parsed = json.loads(gpt_val)\n    if len(parsed.get(\"entities\", [])) == 0:\n        empty_count += 1\n        if empty_count <= 2:\n            print(f\"=== Empty training instance {empty_count} ===\")\n            print(f\"Human: {inst['conversations'][0]['value'][:200]}\")\n            print(f\"GPT: {gpt_val}\")\n            print()\n\nprint(f\"Total empty training instances: {empty_count}/{len(train_sf)} ({100*empty_count/len(train_sf):.1f}%)\")\n\n# Check a non-empty instance for format comparison\nfor inst in train_sf:\n    gpt_val = inst[\"conversations\"][1][\"value\"]\n    parsed = json.loads(gpt_val)\n    if len(parsed.get(\"entities\", [])) > 0:\n        print(f\"\\n=== Non-empty training instance ===\")\n        print(f\"Human: {inst['conversations'][0]['value'][:300]}\")\n        print(f\"GPT: {gpt_val[:300]}\")\n        break\n\n# Also check test prompt vs train prompt format\n# The inference uses _TRAIN_ALIGNED_TEMPLATE, check the difference\nprint(f\"\\n=== Prompt format comparison ===\")\ntrain_prompt_sample = inst[\"conversations\"][0][\"value\"]\n# The inference prompt:\nWNUT17_SCHEMA_HINT = 'Entity types: corporation, creative-work, group, location, person, product'\nschema_line = f\"{WNUT17_SCHEMA_HINT}\\n\"\ninfer_prompt = (\n    \"Extract all structured information (entities and relations) from the following text. \"\n    \"Output a JSON object.\\n\\n\"\n    \"Text: SAMPLE_TEXT\\n\"\n    f\"{schema_line}\"\n    \"\\nOutput format: \"\n    '{\"entities\": [{\"text\": \"...\", \"type\": \"...\", \"start\": &lt;int>, \"end\": &lt;int>}], '\n    '\"relations\": [{\"head\": \"...\", \"tail\": \"...\", \"type\": \"...\", '\n    '\"head_start\": &lt;int>, \"head_end\": &lt;int>, \"tail_start\": &lt;int>, \"tail_end\": &lt;int>}], '\n    '\"events\": []}'\n)\nprint(f\"TRAIN prompt (first instance):\\n{train_prompt_sample[:400]}\")\nprint(f\"\\nINFER prompt template:\\n{infer_prompt[:400]}\")\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python3 << 'PYEOF'\nimport json\n\n# Verify: what does the llmfactory training data look like for empty instances?\nwith open(\"data/wnut17/llmfactory_train.json\") as f:\n    train_sf = json.load(f)\n\n# Check an empty-gold instance\nempty_count = 0\nfor inst in train_sf:\n    gpt_val = inst[\"conversations\"][1][\"value\"]\n    parsed = json.loads(gpt_val)\n    if len(parsed.get(\"entities\", [])) == 0:\n        empty_count += 1\n        if empty_count <= 2:\n            print(f\"=== Empty training instance {empty_count} ===\")\n            print(f\"Human: {inst['conversations'][0]['value'][:200]}\")\n            print(f\"GPT: {gpt_val}\")\n            print()\n\nprint(f\"Total empty training instances: {empty_count}/{len(train_sf)} ({100*empty_count/len(train_sf):.1f}%)\")\n\n# Check a non-empty instance for format comparison\nfor inst in train_sf:\n    gpt_val = inst[\"conversations\"][1][\"value\"]\n    parsed = json.loads(gpt_val)\n    if len(parsed.get(\"entities\", [])) > 0:\n        print(f\"\\n=== Non-empty training instance ===\")\n        print(f\"Human: {inst['conversations'][0]['value'][:300]}\")\n        print(f\"GPT: {gpt_val[:300]}\")\n        break\n\n# Also check test prompt vs train prompt format\n# The inference uses _TRAIN_ALIGNED_TEMPLATE, check the difference\nprint(f\"\\n=== Prompt format comparison ===\")\ntrain_prompt_sample = inst[\"conversations\"][0][\"value\"]\n# The inference prompt:\nWNUT17_SCHEMA_HINT = 'Entity types: corporation, creative-work, group, location, person, product'\nschema_line = f\"{WNUT17_SCHEMA_HINT}\\n\"\ninfer_prompt = (\n    \"Extract all structured information (entities and relations) from the following text. \"\n    \"Output a JSON object.\\n\\n\"\n    \"Text: SAMPLE_TEXT\\n\"\n    f\"{schema_line}\"\n    \"\\nOutput format: \"\n    '{\"entities\": [{\"text\": \"...\", \"type\": \"...\", \"start\": &lt;int>, \"end\": &lt;int>}], '\n    '\"relations\": [{\"head\": \"...\", \"tail\": \"...\", \"type\": \"...\", '\n    '\"head_start\": &lt;int>, \"head_end\": &lt;int>, \"tail_start\": &lt;int>, \"tail_end\": &lt;int>}], '\n    '\"events\": []}'\n)\nprint(f\"TRAIN prompt (first instance):\\n{train_prompt_sample[:400]}\")\nprint(f\"\\nINFER prompt template:\\n{infer_prompt[:400]}\")\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-14T14:15:14.616705+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Empty training instance 1 ===\\nHuman: Extract all structured information (entities and relations) from the following text. Output a JSON object.\\n\\nText: today is my last day at the office .\\nEntity types: corporation, creative-work, group, \\nGPT: {\\\"entities\\\": [], \\\"relations\\\": [], \\\"events\\\": []}\\n\\n=== Empty training instance 2 ===\\nHuman: Extract all structured information (entities and relations) from the following text. Output a JSON object.\\n\\nText: 27 followers ! 30 followers is my goal for today !\\nEntity types: corporation, creative\\nGPT: {\\\"entities\\\": [], \\\"relations\\\": [], \\\"events\\\": []}\\n\\nTotal empty training instances: 2166/3394 (63.8%)\\n\\n=== Non-empty training instance ===\\nHuman: Extract all structured information (entities and relations) from the following text. Output a JSON object.\\n\\nText: @paulwalk It 's the view from where I 'm living for two weeks . Empire State Building = ESB . Pretty bad storm here last evening .\\nEntity types: corporation, creative-work, group, locati\\nGPT: {\\\"entities\\\": [{\\\"text\\\": \\\"Empire State Building\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 64, \\\"end\\\": 85}, {\\\"text\\\": \\\"ESB\\\", \\\"type\\\": \\\"location\\\", \\\"start\\\": 88, \\\"end\\\": 91}], \\\"relations\\\": [], \\\"events\\\": []}\\n\\n=== Prompt format comparison ===\\nTRAIN prompt (first instance):\\nExtract all structured information (entities and relations) from the following text. Output a JSON object.\\n\\nText: @paulwalk It 's the view from where I 'm living for two weeks . Empire State Building = ESB . Pretty bad storm here last evening .\\nEntity types: corporation, creative-work, group, location, person, product\\n\\nOutput format: {\\\"entities\\\": [...], \\\"relations\\\": [...], \\\"events\\\": []}\\nFor relati\\n\\nINFER prompt template:\\nExtract all structured information (entities and relations) from
+…[truncated 552 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-14T14:15:14.616908+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/",
+  "description": "Check artifacts directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/",
+    "description": "Check artifacts directory exists"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-14T14:15:14.617045+00:00_
+
+__pycache__
+_project
+analyze_exp004_re_diagnostic.py
+analyze_exp015_metrics_expansion.py
+analyze_exp016_ensemble.py
+consistency.py
+data_utils.py
+dream_reports
+evaluation.py
+exp-001
+exp-015
+exp001_postprocess.py
+exp005_temperature
+exp_001
+exp_001_ner_n16_scierc
+exp_002
+exp_004_re_diagnostic
+exp_005
+exp_012_logprob_baseline
+exp_015_metrics_expansion
+exp_016_signal_ensemble
+ft_001
+ft_002
+manifest.yaml
+mvp_pilot.py
+mvp_pilot_001
+mvp_pilot_004
+review_issues.yaml
+review_reports
+run_mvp_pilot.py
+sampling.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-14T14:15:14.617212+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/wnut17_diagnosis_report.md",
+  "content": "# WNUT-17 数据质量诊断报告 (exp_003)\n\n## 概要\n\n**根因：训练数据空实例比例过高（63.8%），导致模型过度倾向于预测\"无实体\"。**\n\n这不是数据转换 bug，而是训练数据构造策略问题叠加 WNUT-17 固有难度。\n\n---\n\n## 方向 1：数据格式转换检查\n\n### 转换脚本 (convert_wnut17.py)\n- BIO→span 转换逻辑正确，与标准 BIO 解码一致\n- Entity type mapping 正确：6 types (corporation, creative-work, group, location, person, product)\n- Char offset 计算正确（基于 space-joined tokens）\n- 脚本内含 validation：检查 text[start:end] == entity_text\n\n### 数据格式\n- test.json: JSONL 格式，1287 行，`load_uie_jsonl()` 正常加载\n- train.json: JSONL 格式，3394 行\n\n### Prompt 模板差异（次要问题）\n训练与推理 prompt 有轻微不一致：\n- **训练**: `Output format: {\"entities\": [...], \"relations\": [...], \"events\": []}` + `For relations, head is the subject entity...`\n- **推理**: `Output format: {\"entities\": [{\"text\": \"...\", \"type\": \"...\", \"start\": &lt;int>, \"end\": &lt;int>}], ...}`（无 relations 说明行）\n\n影响有限，因为模型理解核心指令，且 XGrammar 约束解码保证输出格式。\n\n**结论：数据转换本身无 bug。**\n\n---\n\n## 方向 2：Greedy 输出抽查\n\n### F1=0 实例分类（共 355 个，金标非空）\n\n| 类别 | 数量 | 占比 | 说明 |\n|------|------|------|------|\n| 模型输出为空 | 260 | 73.2% | **主要失败模式** |\n| Span 边界不匹配 | 49 | 13.8% | 模型预测了实体但位置偏移 |\n| Type 不匹配 | 46 | 13.0% | 位置正确但类型错误 |\n\n### 典型案例\n\n**模型输出空（260 例）：**\n- `\"( Source : ANI )\"` → gold: ANI (group), pred: 空\n- `\"Watch What Else is Making News\"` → gold: What Else is Making News (creative-work), pred: 空\n- `\"Wow , / r / news totally kicked...\"` → gold: /r/news (group), /r/politics (group), pred: 空\n- `\"they changed all the topics to Zlatan\"` → gold: Zlatan (product), pred: 空\n- `\"Bhangra is Punjabi\"` → gold: Bhangra (person), Punjabi (location), pred: 空\n\n**Span 边界错误（49 例）：**\n- gold `Gurez sector` (33-45) → pred `Gurez` (33-38)：漏标 \"sector\"\n- gold `Rajesh Kalia` (164-176) → pred `Colonel Rajesh Kalia` (156-176)：多标 title\n- gold `Chad` (6-10) → pred `Rip Chad` (2-10)\n\n**Type 错误（46 例）：**\n- gold `Zlatan` = product → pred `Zlatan` = person（合理歧义）\n- 部分 WNUT-17 金标本身有争议（如 `Bhangra` 标为 person 而非 creative-work）\n\n---\n\n## 方向 3：Gold Empty 实例处理\n\n### 数据分布\n\n| | 训练集 | 测试集 |\n|---|---|---|\n| 总实例数 | 3394 | 1287 |\n| 空实体实例 | 2166 (63.8%) | 598 (46.5%) |\n| 有实体实例 | 1228 (36.2%) | 689 (53.5%) |\n\n### 评估处理\n\nreport.json 中 `n_gold_empty_filtered: 598` 表明评估代码**正确过滤**了 gold empty 实例：\n- \"full\" 集 n=689（排除 gold empty）\n- \"conditional\" 集 n=334（进一步排除 greedy F1=0 的）\n\n### 模型在 gold empty 实例上的行为\n- 598 个 gold empty 实例中，579 个模型也输出空（96.8%）\n- 仅 19 个产生了假阳性预测\n\n**结论：gold empty 处理正确，不是 bug。但 63.8% 训练 empty 率导致模型习得过强的\"空输出\"先验。**\n\n---\n\n## 方向 4：Train/Eval Loss vs 推理 F1 差距\n\n### 训练日志\n\n| Epoch | Train Loss | Eval Loss |\n|-------|-----------|-----------|\n| ~1 | 0.2080 | 0.0880 |\n| ~2 | 0.0470 | 0.0857 |\n| ~3 | 0.0300 | **0.0772** (最佳) |\n| ~4 | 0.0240 | 0.0788 |\n| ~5 | 0.0210 | 0.0896 (回升) |\n\n- 模型用最终 checkpoint（epoch 5, step 1065），但 epoch 3 的 eval loss 最低\n- Eval loss 在 epoch 5 回升 → 轻微过拟合\n- 训练使用 LoRA（87M trainable / 8.3B total = 1.05%），5 epochs，batch 16\n\n### 关键问题\n- **训练的 eval set = dev set**（1009 实例），与 test set（1287 实例）是不同数据切分\n- 模型确实是在 WNUT-17 上训练的（非 SciERC zero-shot）\n- Eval loss 低（0.077-0.089）但推理 F1 仅 0.525 → loss 被大量空实例拉低（空实例 loss 很小，只需输出 `{\"entities\": [], ...}`）\n\n---\n\n## Logprob 反向相关解释\n\n| 子集 | Mean Logprob | 说明 |\n|------|-------------|------|\n| 空预测（n=260） | **-0.007** | 极高置信 |\n| 非空预测 F1=0（n=95） | -0.054 | 中等置信 |\n| 非空预测 F1>0（n=334） | -0.046 | 中等置信 |\n\n**机制**：模型预测空输出时置信度最高（logprob 接近 0），因为训练数据中 63.8% 是空实例。在 gold 非空的 689 实例中：\n- 高 logprob → 很可能是空预测 → F1=0 → **负相关 (rho = -0.41)**\n- 在 conditional 集（F1>0, n=334）中，logprob rho = +0.35 → 模型对非空预测的置信度确实有区分力\n\n### SJ 高但 rho 低的原因\n- 155 个实例：16 个 sample 全部为空 → SJ = 1.0 但 F1 = 0\n- 这些高一致性 + 零 F1 的点拉平了整体相关性\n- Conditional 集 SJ rho = 0.288，显著高于 full 集的 0.089\n\n---\n\n## 根因判断\n\n**主因：训练数据空实例过多（63.8%）— 数据构造策略问题，非转换 bug。**\n\n| 因素 | 类别 | 影响程度 |\n|------|------|---------|\n| 训练集 63.8% 空实例 | 数据策略 | **致命** — 导致 73% 的 F1=0 |\n| WNUT-17 社交媒体噪声 | 方法边界 | 中等 — 导致 27% 的 F1=0 |\n| Prompt 模板微小差异 | 次要 bug | 轻微 |\n| Epoch 5 轻微过拟合 | 训练策略 | 轻微 |\n\n---\n\n## 修复建议\n\n### P0：降低训练空实例比例\n将空实例从 63.8% 下采样到 ≤25%（保留 ~400 个空实例 + 1228 个有实体 = 空占比 24.6%），重新训练。这是最直接的修复。\n\n### P1：使用 best checkpoint\n训练时加 `save_best_model=True`（按 eval_loss），或手动使用 epoch 3 的 checkpoint（step 600, eval_loss=0.077）而非最终的 epoch 5。\n\n### P2：评估指标选择\n对于 WNUT-17 这类 high-empty-rate 数据集，使用 conditional 指标（排除 F1=0）作为主信号，full 指标仅作参考。当前 conditional SJ rho = 0.288, logprob rho = 0.350 表明方法在非空预测上有效。\n\n### P3：金标质量 review\nWNUT-17 存在标注噪声（如 `Bhangra` = person, `Zlatan` = product），但这是数据集固有问题，非我方可控。\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/wnut17_diagnosis_report.md",
+    "content": "# WNUT-17 数据质量诊断报告 (exp_003)\n\n## 概要\n\n**根因：训练数据空实例比例过高（63.8%），导致模型过度倾向于预测\"无实体\"。**\n\n这不是数据转换 bug，而是训练数据构造策略问题叠加 WNUT-17 固有难度。\n\n---\n\n## 方向 1：数据格式转换检查\n\n### 转换脚本 (convert_wnut17.py)\n- BIO→span 转换逻辑正确，与标准 BIO 解码一致\n- Entity type mapping 正确：6 types (corporation, creative-work, group, location, person, product)\n- Char offset 计算正确（基于 space-joined tokens）\n- 脚本内含 validation：检查 text[start:end] == entity_text\n\n### 数据格式\n- test.json: JSONL 格式，1287 行，`load_uie_jsonl()` 正常加载\n- train.json: JSONL 格式，3394 行\n\n### Prompt 模板差异（次要问题）\n训练与推理 prompt 有轻微不一致：\n- **训练**: `Output format: {\"entities\": [...], \"relations\": [...], \"events\": []}` + `For relations, head is the subject entity...`\n- **推理**: `Output format: {\"entities\": [{\"text\": \"...\", \"type\": \"...\", \"start\": &lt;int>, \"end\": &lt;int>}], ...}`（无 relations 说明行）\n\n影响有限，因为模型理解核心指令，且 XGrammar 约束解码保证输出格式。\n\n**结论：数据转换本身无 bug。**\n\n---\n\n## 方向 2：Greedy 输出抽查\n\n### F1=0 实例分类（共 355 个，金标非空）\n\n| 类别 | 数量 | 占比 | 说明 |\n|------|------|------|------|\n| 模型输出为空 | 260 | 73.2% | **主要失败模式** |\n| Span 边界不匹配 | 49 | 13.8% | 模型预测了实体但位置偏移 |\n| Type 不匹配 | 46 | 13.0% | 位置正确但类型错误 |\n\n### 典型案例\n\n**模型输出空（260 例）：**\n- `\"( Source : ANI )\"` → gold: ANI (group), pred: 空\n- `\"Watch What Else is Making News\"` → gold: What Else is Making News (creative-work), pred: 空\n- `\"Wow , / r / news totally kicked...\"` → gold: /r/news (group), /r/politics (group), pred: 空\n- `\"they changed all the topics to Zlatan\"` → gold: Zlatan (product), pred: 空\n- `\"Bhangra is Punjabi\"` → gold: Bhangra (person), Punjabi (location), pred: 空\n\n**Span 边界错误（49 例）：**\n- gold `Gurez sector` (33-45) → pred `Gurez` (33-38)：漏标 \"sector\"\n- gold `Rajesh Kalia` (164-176) → pred `Colonel Rajesh Kalia` (156-176)：多标 title\n- gold `Chad` (6-10) → pred `Rip Chad` (2-10)\n\n**Type 错误（46 例）：**\n- gold `Zlatan` = product → pred `Zlatan` = person（合理歧义）\n- 部分 WNUT-17 金标本身有争议（如 `Bhangra` 标为 person 而非 creative-work）\n\n---\n\n## 方向 3：Gold Empty 实例处理\n\n### 数据分布\n\n| | 训练集 | 测试集 |\n|---|---|---|\n| 总实例数 | 3394 | 1287 |\n| 空实体实例 | 2166 (63.8%) | 598 (46.5%) |\n| 有实体实例 | 1228 (36.2%) | 689 (53.5%) |\n\n### 评估处理\n\nreport.json 中 `n_gold_empty_filtered: 598` 表明评估代码**正确过滤**了 gold empty 实例：\n- \"full\" 集 n=689（排除 gold empty）\n- \"conditional\" 集 n=334（进一步排除 greedy F1=0 的）\n\n### 模型在 gold empty 实例上的行为\n- 598 个 gold empty 实例中，579 个模型也输出空（96.8%）\n- 仅 19 个产生了假阳性预测\n\n**结论：gold empty 处理正确，不是 bug。但 63.8% 训练 empty 率导致模型习得过强的\"空输出\"先验。**\n\n---\n\n## 方向 4：Train/Eval Loss vs 推理 F1 差距\n\n### 训练日志\n\n| Epoch | Train Loss | Eval Loss |\n|-------|-----------|-----------|\n| ~1 | 0.2080 | 0.0880 |\n| ~2 | 0.0470 | 0.0857 |\n| ~3 | 0.0300 | **0.0772** (最佳) |\n| ~4 | 0.0240 | 0.0788 |\n| ~5 | 0.0210 | 0.0896 (回升) |\n\n- 模型用最终 checkpoint（epoch 5, step 1065），但 epoch 3 的 eval loss 最低\n- Eval loss 在 epoch 5 回升 → 轻微过拟合\n- 训练使用 LoRA（87M trainable / 8.3B total = 1.05%），5 epochs，batch 16\n\n### 关键问题\n- **训练的 eval set = dev set**（1009 实例），与 test set（1287 实例）是不同数据切分\n- 模型确实是在 WNUT-17 上训练的（非 SciERC zero-shot）\n- Eval loss 低（0.077-0.089）但推理 F1 仅 0.525 → loss 被大量空实例拉低（空实例 loss 很小，只需输出 `{\"entities\": [], ...}`）\n\n---\n\n## Logprob 反向相关解释\n\n| 子集 | Mean Logprob | 说明 |\n|------|-------------|------|\n| 空预测（n=260） | **-0.007** | 极高置信 |\n| 非空预测 F1=0（n=95） | -0.054 | 中等置信 |\n| 非空预测 F1>0（n=334） | -0.046 | 中等置信 |\n\n**机制**：模型预测空输出时置信度最高（logprob 接近 0），因为训练数据中 63.8% 是空实例。在 gold 非空的 689 实例中：\n- 高 logprob → 很可能是空预测 → F1=0 → **负相关 (rho = -0.41)**\n- 在 conditional 集（F1>0, n=334）中，logprob rho = +0.35 → 模型对非空预测的置信度确实有区分力\n\n### SJ 高但 rho 低的原因\n- 155 个实例：16 个 sample 全部为空 → SJ = 1.0 但 F1 = 0\n- 这些高一致性 + 零 F1 的点拉平了整体相关性\n- Conditional 集 SJ rho = 0.288，显著高于 full 集的 0.089\n\n---\n\n## 根因判断\n\n**主因：训练数据空实例过多（63.8%）— 数据构造策略问题，非转换 bug。**\n\n| 因素 | 类别 | 影响程度 |\n|------|------|---------|\n| 训练集 63.8% 空实例 | 数据策略 | **致命** — 导致 73% 的 F1=0 |\n| WNUT-17 社交媒体噪声 | 方法边界 | 中等 — 导致 27% 的 F1=0 |\n| Prompt 模板微小差异 | 次要 bug | 轻微 |\n| Epoch 5 轻微过拟合 | 训练策略 | 轻微 |\n\n---\n\n## 修复建议\n\n### P0：降低训练空实例比例\n将空实例从 63.8% 下采样到 ≤25%（保留 ~400 个空实例 + 1228 个有实体 = 空占比 24.6%），重新训练。这是最直接的修复。\n\n### P1：使用 best checkpoint\n训练时加 `save_best_model=True`（按 eval_loss），或手动使用 epoch 3 的 checkpoint（step 600, eval_loss=0.077）而非最终的 epoch 5。\n\n### P2：评估指标选择\n对于 WNUT-17 这类 high-empty-rate 数据集，使用 conditional 指标（排除 F1=0）作为主信号，full 指标仅作参考。当前 conditional SJ rho = 0.288, logprob rho = 0.350 表明方法在非空预测上有效。\n\n### P3：金标质量 review\nWNUT-17 存在标注噪声（如 `Bhangra` = person, `Zlatan` = product），但这是数据集固有问题，非我方可控。\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-14T14:15:14.617505+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/wnut17_diagnosis_report.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-14T14:15:14.617652+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "wnut17_diagnosis_report",
+  "type": "report",
+  "description": "WNUT-17 数据质量诊断报告：根因为训练数据63.8%空实例导致模型过度预测空输出",
+  "project": "struct_self_consist_ie",
+  "exp_id": "exp_003",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/wnut17_diagnosis_report.md",
+  "tags": "['wnut17', 'diagnosis', 'data-quality', 'empty-bias']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "wnut17_diagnosis_report",
+    "type": "report",
+    "description": "WNUT-17 数据质量诊断报告：根因为训练数据63.8%空实例导致模型过度预测空输出",
+    "project": "struct_self_consist_ie",
+    "exp_id": "exp_003",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/wnut17_diagnosis_report.md",
+    "tags": "['wnut17', 'diagnosis', 'data-quality', 'empty-bias']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-14T14:15:14.617809+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_f030d5\", \"name\": \"wnut17_diagnosis_report\", \"type\": \"report\", \"description\": \"WNUT-17 数据质量诊断报告：根因为训练数据63.8%空实例导致模型过度预测空输出\", \"path\": \"projects/struct_self_consist_ie/artifacts/exp_003/report/wnut17_diagnosis_report.md\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": \"exp_003\", \"skill\": \"\", \"created_at\": \"2026-05-14T14:15:05.022681+00:00\", \"tags\": [\"wnut17\", \"diagnosis\", \"data-quality\", \"empty-bias\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 89 · 2026-05-14T14:15:14.617975+00:00_
+
+诊断完成。
+
+**根因：训练数据 63.8% 空实例**（2166/3394 无实体），模型习得过强的"空输出"先验。
+
+核心数据：
+- 355 个 F1=0 实例中 **260 个（73%）模型直接输出空**
+- 空预测的 mean_logprob = -0.007（极高置信），非空预测 = -0.05 → 这直接解释了 logprob rho = -0.41（反向相关）
+- 155 个实例 16 个 sample 全空（SJ=1.0, F1=0）→ 解释了 SJ rho ≈ 0.09
+- Conditional 集（F1>0）上 SJ rho=0.288, logprob rho=0.350 → 方法在非空预测上有效
+
+**不是数据转换 bug**，数据转换逻辑正确。
+
+**修复建议**：P0 — 将训练空实例从 63.8% 下采样到 ≤25% 后重训；P1 — 使用 epoch 3 checkpoint（eval_loss 最低 0.077）替代 epoch 5。
+
+报告已写入 `artifacts/wnut17_diagnosis_report.md` 并注册。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_diagnosis_wnut17_data_quality_20260514T140815"
+}
+```
+
+</details>
+
+---

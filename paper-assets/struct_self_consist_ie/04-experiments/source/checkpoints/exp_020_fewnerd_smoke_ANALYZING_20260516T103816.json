@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp_020_fewnerd_smoke",
+  "project": "struct_self_consist_ie",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T10:29:25.272Z",
+    "updated_at": "2026-05-16T10:38:16.685Z",
+    "spec": {
+      "command": "llamafactory-cli train train_config_fewnerd.yaml",
+      "server": "autodl-5090",
+      "data_path": "data/fewnerd/llmfactory_train.json",
+      "data_count": 131767,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "description": "1-epoch LoRA fine-tune on Few-NERD SUPERVISED (coarse 8-type NER) + N=8 pilot inference",
+      "lora_rank": 16,
+      "gpu": "cuda:1"
+    },
+    "hypothesis": "1-epoch LoRA (r16) fine-tune Qwen3-8B on Few-NERD INTRA coarse 8-type (131k train), then N=8 T=1.0 pilot inference on 200 test instances. Re-started training 2026-05-16 18:29 CST on cuda:1, PID 288683. ETA ~22:55 CST."
+  },
+  "timestamp": "2026-05-16T10:38:16.903867+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp_fewnerd_pretrained_n32_s42",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:12:53.761Z",
+    "updated_at": "2026-05-22T15:49:32.212Z",
+    "hypothesis": "Pretrained N-scaling: FewNERD N=32 with Qwen2.5-7B-Instruct (unfinetuned). FewNERD pretrained showed +3.90pp MV gain at N=8. Tests whether pretrained MV advantage scales with N and whether the pretrained-vs-finetuned direction flip persists at 4× budget. Complements CoNLL/SciERC pretrained N=32 for cross-dataset generalization evidence.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 32 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_pretrained_n32_seed42/\"",
+      "server": "autodl-5090-c",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "387491",
+      "log_path": "~/runs/struct_self_consist_ie/exp_fewnerd_pretrained_n32_s42.log",
+      "submitted_at": "2026-05-22T04:13:16.155Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/fewnerd/",
+      "data_count": 37648,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "n_samples": 32,
+      "checkpoint_path": "output/fewnerd_pretrained_n32_seed42/",
+      "wall_clock_seconds": 41776.1,
+      "gpu_hours": 11.6
+    },
+    "conclusion": "failed",
+    "metrics": {
+      "kill_reason": "UnicodeEncodeError crash prevention: no incremental save, save stage would crash after 16h inference. Killed at 70% to avoid 5h GPU waste.",
+      "progress_at_kill": "70% (838K/1.2M prompts, ~11h elapsed)",
+      "fix_status": "sampling.py errors='replace' already deployed on autodl-5090-c"
+    },
+    "completed_at": "2026-05-22T15:49:32.212Z"
+  },
+  "timestamp": "2026-05-22T15:49:32.815030+00:00",
+  "trigger": "update_registry"
+}

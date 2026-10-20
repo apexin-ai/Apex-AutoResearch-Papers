@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_14b_inference_conll",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:36:26.315Z",
+    "updated_at": "2026-05-20T15:11:25.726Z",
+    "hypothesis": "14B Qwen2.5 inference on CoNLL (N∈{1,2,4,8,16}): high-resource dataset should show higher degeneracy at 14B scale, consistent with 7B pattern where construction gain is negative.",
+    "reproduce": {
+      "finished_at": "2026-05-20T14:49:00.238Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "killed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T14:49:09.529266+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-20T15:11:26.070299+00:00",
+  "trigger": "update_registry"
+}

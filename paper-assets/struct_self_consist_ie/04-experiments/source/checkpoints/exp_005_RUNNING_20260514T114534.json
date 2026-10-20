@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp_005",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T11:45:16.360Z",
+    "updated_at": "2026-05-14T11:45:34.333Z",
+    "spec": {
+      "hypothesis": "Temperature sensitivity: systematic comparison of T=0.7 vs T=1.0 on all 5 confidence signals",
+      "method": "CPU-only analysis from checkpoint metrics (pilot_004 T=1.0, pilot_005 T=0.7, exp_012/013/014)",
+      "data_count": 551,
+      "model_name": "Qwen3-8B-SciERC-LoRA-v2",
+      "data_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp005_temperature/",
+      "server": "local",
+      "seed": 42,
+      "parent": "mvp_pilot_004,mvp_pilot_005",
+      "command": "python3 analyze_exp005_temperature.py",
+      "checkpoint_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp005_temperature/",
+      "log_path": "N/A",
+      "checkpoint_source": "pilot_004+pilot_005 checkpoint metrics",
+      "eval_data": "SciERC test set (n=551)"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T11:45:34.370764+00:00",
+  "trigger": "update_registry"
+}

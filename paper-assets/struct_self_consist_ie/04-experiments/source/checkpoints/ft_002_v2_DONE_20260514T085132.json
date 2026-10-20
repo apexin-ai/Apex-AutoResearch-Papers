@@ -1,0 +1,57 @@
+{
+  "exp_id": "ft_002_v2",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:28:40.861Z",
+    "updated_at": "2026-05-14T08:51:32.405Z",
+    "spec": {
+      "hypothesis": "Extended training (5 epochs, LoRA r=32) with OOM fix improves RE F1 above 40% threshold",
+      "model_name": "Qwen/Qwen3-8B",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/llmfactory_train.json",
+      "data_count": 1861,
+      "server": "autodl-5090",
+      "seed": 42,
+      "parent": "ft_001",
+      "method": "LoRA r=32 alpha=64, 5 epochs, batch=2 grad_accum=8 gradient_checkpointing=true",
+      "gpu": "cuda:1",
+      "pid": 24947,
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/ft_002v2_train.log",
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2",
+      "command": "CUDA_VISIBLE_DEVICES=1 llamafactory-cli train train_config_v2.yaml"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "epoch": 5,
+      "train_loss": 0.0806,
+      "eval_loss": 0.089,
+      "train_runtime": "28m41s",
+      "train_samples_per_second": 5.407,
+      "train_steps_per_second": 0.34,
+      "total_steps": 585,
+      "checkpoints": [
+        "checkpoint-400",
+        "checkpoint-500",
+        "checkpoint-585"
+      ],
+      "gate0_final_ner_f1": 0.6615,
+      "gate0_final_re_f1": 0.4177,
+      "gate0_final_parse_failures": 0,
+      "gate0_final_ner_pass": true,
+      "gate0_final_re_pass": true,
+      "gate0_final_pass": true,
+      "gate0_ckpt400_ner_f1": 0.6475,
+      "gate0_ckpt400_re_f1": 0.3793,
+      "gate0_ckpt400_parse_failures": 0,
+      "gate0_ckpt400_verdict": "FAIL",
+      "gate0_ckpt400_re_sample_f1_pct_zero": 58.8,
+      "gate0_ckpt400_warning": ">30% samples F1=0"
+    },
+    "completed_at": "2026-05-14T08:51:32.405Z"
+  },
+  "timestamp": "2026-05-14T08:51:32.465420+00:00",
+  "trigger": "update_registry"
+}

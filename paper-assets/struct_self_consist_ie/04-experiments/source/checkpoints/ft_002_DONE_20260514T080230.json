@@ -1,0 +1,30 @@
+{
+  "exp_id": "ft_002",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:39:18.640Z",
+    "updated_at": "2026-05-14T08:02:30.390Z",
+    "spec": {
+      "hypothesis": "Extended training (5 epochs, LoRA r=32) improves RE F1 above 40% threshold",
+      "model_name": "qwen3-8b-scierc-lora-v2",
+      "data_path": "unknown",
+      "data_count": 0,
+      "server": "autodl-5090",
+      "seed": 42,
+      "parent": "ft_001",
+      "method": "LoRA r=32 alpha=64, 5 epochs",
+      "command": "llamafactory train_config_v2 (exact command unknown)",
+      "gpu": "cuda:1",
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2/",
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2/trainer_log.jsonl"
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-14T08:02:30.390Z"
+  },
+  "timestamp": "2026-05-14T08:02:30.406277+00:00",
+  "trigger": "update_registry"
+}

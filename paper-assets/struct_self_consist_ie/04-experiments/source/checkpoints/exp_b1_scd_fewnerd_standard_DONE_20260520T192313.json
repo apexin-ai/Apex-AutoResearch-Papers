@@ -1,0 +1,51 @@
+{
+  "exp_id": "exp_b1_scd_fewnerd_standard",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:17:37.804Z",
+    "updated_at": "2026-05-20T19:23:12.592Z",
+    "hypothesis": "Standard Self-Consistency Distillation on FewNERD: fine-tune Qwen3-8B-FT with theta2n construction pseudo-labels (32,565 instances) mixed 1:1 with gold data. Greedy F1 after SCD should approach N=8 construction F1 (0.764 vs current 0.748). Transductive setting: pseudo-labels from test set SC outputs.",
+    "spec": {
+      "command": "llamafactory-cli train train_config_scd_fewnerd_s42.yaml",
+      "server": "autodl-5090-b",
+      "gpu_ids": [
+        0
+      ],
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/scd_fewnerd_theta2n_s42.jsonl",
+      "data_count": 32565,
+      "model_name": "Qwen3-8B-FT",
+      "seed": 42,
+      "pid": 207109,
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-scd-lora/"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T19:13:25.333Z"
+    },
+    "failure_reason": "RETRACTED: cron false positive — training completed successfully (4706/4706 steps, train_loss=0.023, eval_loss=0.0329). Original: process dead 5× with no sentinel/W&B",
+    "conclusion": "success",
+    "completed_at": "2026-05-20T19:13:26.395Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T19:13:35.804759+00:00"
+        }
+      ]
+    },
+    "notes": "训练正常完成。Cron 误判 failed（无 W&B sentinel，已知模式：LLaMA-Factory 未配 report_to: wandb）。4706/4706 steps, train_loss=0.023, eval_loss=0.0329, 7h08m。Checkpoint: /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-scd-lora/。Worker eval:exp_b1_scd_fewnerd_standard 已派出，在 autodl-5090-b:cuda:1 跑 greedy inference 验证 F1。",
+    "metrics": {
+      "train_loss": 0.023,
+      "eval_loss": 0.0329,
+      "steps": 4706,
+      "epochs": 2,
+      "train_runtime_hours": 7.14
+    }
+  },
+  "timestamp": "2026-05-20T19:23:13.003900+00:00",
+  "trigger": "update_registry"
+}

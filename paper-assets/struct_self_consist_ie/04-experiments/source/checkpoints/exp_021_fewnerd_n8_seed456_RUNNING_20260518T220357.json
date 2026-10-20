@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp_021_fewnerd_n8_seed456",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:03:17.992Z",
+    "updated_at": "2026-05-18T22:03:56.743Z",
+    "hypothesis": "Multi-seed replication (seed=456) of Qwen3-8B FewNERD N=8 SCS inference to validate structural consistency signal on fine-grained NER dataset.",
+    "spec": {
+      "command": "python scs_inference.py --dataset fewnerd --seed 456 --n_samples 8 --temperature 1.0",
+      "server": "autodl-5090",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/fewnerd",
+      "data_count": 37648,
+      "model_name": "Qwen3-8B",
+      "seed": 456,
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed456",
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed456_run.log"
+    }
+  },
+  "timestamp": "2026-05-18T22:03:57.014445+00:00",
+  "trigger": "update_registry"
+}

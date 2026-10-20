@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_013_exact_match_voting",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T10:53:18.753Z",
+    "updated_at": "2026-05-14T11:18:09.026Z",
+    "spec": {
+      "hypothesis": "Exact-match voting rate (fraction of N samples producing identical entity/relation sets) correlates with F1",
+      "model_name": "ft_002_v2",
+      "data_path": "output/mvp_pilot_004/samples.jsonl",
+      "data_count": 551,
+      "server": "autodl-5090",
+      "seed": 0,
+      "parent": "mvp_pilot_004",
+      "method": "Count exact-match duplicates across N=8 samples, compute rho(exact_match_rate, F1)",
+      "command": "python code/analyze_exact_match_voting.py",
+      "checkpoint_path": "N/A",
+      "log_path": "output/mvp_pilot_004/exp013_exact_match_report.json"
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-14T11:18:09.026Z"
+  },
+  "timestamp": "2026-05-14T11:18:09.057251+00:00",
+  "trigger": "update_registry"
+}

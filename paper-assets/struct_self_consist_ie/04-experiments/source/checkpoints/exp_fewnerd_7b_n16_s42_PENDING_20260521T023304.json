@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_fewnerd_7b_n16_s42",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:32:29.897Z",
+    "updated_at": "2026-05-21T02:33:04.179Z",
+    "hypothesis": "FewNERD N=16 with Qwen2.5-7B: extending N-scaling curve to N=16 for 7B model. At N=8 the 7B model shows diminishing oracle gains; N=16 tests whether the plateau continues or breaks, providing a critical data point for the N-scaling law F1(N)=a-b*N^(-c) at the 7B scale."
+  },
+  "timestamp": "2026-05-21T02:33:04.583729+00:00",
+  "trigger": "update_registry"
+}

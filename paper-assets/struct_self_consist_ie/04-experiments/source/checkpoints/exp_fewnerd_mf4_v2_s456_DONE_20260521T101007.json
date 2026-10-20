@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp_fewnerd_mf4_v2_s456",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T05:34:07.139Z",
+    "updated_at": "2026-05-21T10:10:07.222Z",
+    "hypothesis": "MF4 pipeline fix v2: FewNERD N=8 T=1.0 seed=456 using run_mvp_pilot.py (greedy_f1/micro-F1). Third seed completing 3-seed set for statistical power.",
+    "spec": {
+      "command": "bash -c \"...\"",
+      "server": "autodl-5090-b",
+      "gpu": "cuda:2",
+      "pid": "334423",
+      "log_path": "~/runs/struct_self_consist_ie/exp_fewnerd_mf4_v2_s456.log",
+      "submitted_at": "2026-05-21T08:33:57.773Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/fewnerd/",
+      "data_count": 32565,
+      "model_name": "qwen3-8b-fewnerd-exp021-merged",
+      "seed": 456,
+      "checkpoint_path": "LOST - server shutdown",
+      "kill_reason": "5090-b server shutdown by user",
+      "wall_clock_seconds": 5769.4,
+      "gpu_hours": 1.6
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-21T10:10:07.222Z"
+  },
+  "timestamp": "2026-05-21T10:10:07.669812+00:00",
+  "trigger": "update_registry"
+}

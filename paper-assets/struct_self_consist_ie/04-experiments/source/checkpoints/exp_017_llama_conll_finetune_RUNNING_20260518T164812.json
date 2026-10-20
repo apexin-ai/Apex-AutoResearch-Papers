@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp_017_llama_conll_finetune",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:47:36.156Z",
+    "updated_at": "2026-05-18T16:48:12.602Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 llamafactory-cli train train_config_llama_conll2003_3ep.yaml\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "674921",
+      "log_path": "~/runs/struct_self_consist_ie/exp_017_llama_conll_finetune.log",
+      "submitted_at": "2026-05-18T16:47:35.786Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/conll2003/llmfactory_train.json",
+      "data_count": 14037,
+      "model_name": "Meta-Llama-3.1-8B-Instruct",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora-3ep",
+      "checkpoint_source": "Meta-Llama-3.1-8B-Instruct (base model, LoRA from scratch)",
+      "eval_data": "conll2003_uie_dev"
+    },
+    "hypothesis": "LLaMA fine-tuned on CoNLL-2003 NER with LoRA r=32 produces structural self-consistency patterns (degeneracy, LP-F1 alignment) consistent with Qwen3, providing cross-model generalization evidence",
+    "parent": "exp_llama_fewnerd_lora"
+  },
+  "timestamp": "2026-05-18T16:48:12.859117+00:00",
+  "trigger": "update_registry"
+}

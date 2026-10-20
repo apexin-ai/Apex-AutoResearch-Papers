@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp_frontier_sc_gpt55_fewnerd_v2",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T04:48:24.698Z",
+    "updated_at": "2026-05-21T08:36:36.829Z",
+    "hypothesis": "Frontier model GPT-5.5 on FewNERD SC (200 instances, N=8, T=1.0): if correlation-selection gap persists in frontier models, the finding is fundamental and not a model capability limitation. Previous attempt failed due to API credit exhaustion.",
+    "parent": "exp_b_frontier_sc_fewnerd",
+    "spec": {
+      "command": "python -u code/run_frontier_sc.py --model gpt-5.5 --base_url http://47.94.22.126/v1 --n_instances 200 --n_samples 8 --temperature 1.0 --seed 42 --max_workers 4",
+      "server": "autodl-5090-c",
+      "data_path": "data/fewnerd/test.json",
+      "data_count": 200,
+      "model_name": "gpt-5.5",
+      "seed": 42,
+      "checkpoint_source": "openai/gpt-5.5 (API)",
+      "eval_data": "fewnerd test set (200 instances)",
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_gpt55_fewnerd_v2/",
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/logs/frontier_sc_gpt55_fewnerd_v2.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "greedy_f1": 0.6382,
+      "mv_f1": 0.6521,
+      "oracle_f1": 0.7203,
+      "degeneracy_rate": 0.5,
+      "rho_agreement": 0.3551,
+      "rho_fk": 0.3515,
+      "rho_sj": 0.3461,
+      "instances": 200
+    },
+    "completed_at": "2026-05-21T08:36:36.829Z"
+  },
+  "timestamp": "2026-05-21T08:36:37.270257+00:00",
+  "trigger": "update_registry"
+}

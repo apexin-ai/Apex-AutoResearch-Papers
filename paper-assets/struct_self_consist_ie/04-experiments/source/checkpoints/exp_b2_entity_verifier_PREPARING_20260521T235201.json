@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp_b2_entity_verifier",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:13:41.037Z",
+    "updated_at": "2026-05-21T23:52:00.772Z",
+    "hypothesis": "An XGBoost/LightGBM entity-level verifier trained on agreement_count, VC, LP features can predict whether entity candidates are in gold annotations, enabling post-hoc filtering or score-weighted construction that improves over greedy baseline, with cross-dataset generalization from CoNLL+SciERC to FewNERD+WNUT.",
+    "metrics": {
+      "oof_auc": 0.9233,
+      "oof_path_a_f1_delta": 0.003,
+      "oof_path_b_f1_delta": -0.0157,
+      "oof_greedy_f1": 0.8216,
+      "oof_path_a_f1": 0.8246,
+      "oof_majority_vote_f1": 0.8048,
+      "leakage_pct": 91,
+      "original_delta_pp": 3.62,
+      "oof_delta_pp": 0.3,
+      "per_dataset": {
+        "scierc": "+1.28pp",
+        "conll": "+0.55pp",
+        "fewnerd": "+0.02pp"
+      },
+      "verdict": "B2 verifier gain was 91% leakage. OOF Path A +0.30pp not significant. NOT suitable for paper §5.",
+      "n_inverse_scaling_validation": {
+        "subset_n": 4351,
+        "full_n": 32565,
+        "subset_greedy_f1": 0.7926,
+        "full_greedy_f1": 0.7913,
+        "verdict": "Not a bug. Representative subset. Paper should note subset size."
+      }
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-21T23:52:01.307289+00:00",
+  "trigger": "update_registry"
+}

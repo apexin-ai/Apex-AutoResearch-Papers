@@ -1,0 +1,50 @@
+{
+  "exp_id": "exp_cross_model_consistency",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T09:30:47.928Z",
+    "updated_at": "2026-05-20T11:44:17.795Z",
+    "hypothesis": "Pooling samples from two different fine-tuned models (Qwen3-8B + LLaMA-8B) for entity construction significantly outperforms single-model construction because cross-model diversity breaks model-specific mode collapse, reducing degeneracy and providing complementary error patterns that improve consensus quality.",
+    "metrics": {
+      "dataset": "SciERC",
+      "model_a": "Qwen3-8B FT",
+      "model_b": "LLaMA-8B FT",
+      "pure_qwen": {
+        "degen": 0.1,
+        "greedy_f1": 0.7478,
+        "uniform_f1": 0.7499,
+        "vc_f1": 0.7448,
+        "uni_delta_pp": "+0.21",
+        "vc_delta_pp": "-0.30"
+      },
+      "pure_llama": {
+        "degen": 0.234,
+        "greedy_f1": 0.7841,
+        "uniform_f1": 0.7873,
+        "vc_f1": 0.7869,
+        "uni_delta_pp": "+0.33",
+        "vc_delta_pp": "+0.28"
+      },
+      "mixed_4q4l": {
+        "degen": 0.116,
+        "uniform_f1": 0.7916,
+        "vc_f1": 0.7898,
+        "uni_delta_vs_qwen_greedy_pp": "+4.37",
+        "vc_delta_vs_qwen_greedy_pp": "+4.20",
+        "mixed_vs_pure_llama_uniform_pp": "+0.42",
+        "mixed_vs_pure_llama_uniform_p": 0,
+        "mixed_vs_pure_llama_uniform_ci": "[0.27, 0.58]",
+        "mixed_vs_pure_llama_vc_pp": "+0.29",
+        "mixed_vs_pure_llama_vc_p": 0.0001
+      }
+    },
+    "conclusion": "killed",
+    "notes": "B5 cross-model consistency on SciERC NER. Mixed pool (4 Qwen + 4 LLaMA) significantly outperforms pure LLaMA construction (+0.42pp uniform, p=0.000, CI [0.27,0.58]). Cross-model diversity reduces degeneracy (11.6% vs LLaMA 23.4%). Most of the +4.37pp ΔF1 vs Qwen greedy comes from LLaMA being stronger (greedy 0.784 vs 0.748), but the +0.42pp vs pure LLaMA is genuine cross-model diversity gain. Supports diversity hypothesis: different models make complementary errors → better consensus."
+  },
+  "timestamp": "2026-05-20T11:44:18.155907+00:00",
+  "trigger": "update_registry"
+}

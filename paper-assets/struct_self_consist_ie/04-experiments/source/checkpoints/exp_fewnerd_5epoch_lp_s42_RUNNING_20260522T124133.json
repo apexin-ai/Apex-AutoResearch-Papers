@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp_fewnerd_5epoch_lp_s42",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:29:05.006Z",
+    "updated_at": "2026-05-22T12:41:32.802Z",
+    "hypothesis": "FewNERD 5-epoch checkpoint with LP selection will show improved F1 over majority voting, similar to the 3-epoch results, validating that LP selection is robust across training epochs",
+    "server": "autodl-5090",
+    "gpu": "cuda:3",
+    "spec": {
+      "command": "python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-5epoch-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_5epoch_lp_seed42/",
+      "server": "autodl-5090",
+      "gpu": "cuda:3",
+      "pid": "137895",
+      "data_path": "data/fewnerd/",
+      "data_count": 37648,
+      "model_name": "qwen3-8b-fewnerd-5epoch-merged",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/qwen3-8b-fewnerd-5epoch-merged",
+      "log_path": "/tmp/exp_fewnerd_5epoch_lp_s42.log"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-22T12:41:33.795064+00:00",
+  "trigger": "update_registry"
+}

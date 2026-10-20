@@ -1,0 +1,53 @@
+{
+  "exp_id": "exp_conll_pretrained_n16_s42",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:13:20.987Z",
+    "updated_at": "2026-05-22T10:12:07.173Z",
+    "hypothesis": "Pretrained N-scaling: CoNLL N=16 with Qwen2.5-7B-Instruct (unfinetuned). Fills the N=16 gap in pretrained CoNLL N-scaling curve (N=8 +3.01pp, N=32 +3.21pp). Tests whether pretrained MV gain scales monotonically with N.",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/conll_pretrained_n16_seed42/'",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "118033",
+      "log_path": "~/runs/struct_self_consist_ie/exp_conll_pretrained_n16_s42.log",
+      "submitted_at": "2026-05-22T07:33:36.117Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/conll2003/",
+      "data_count": 3453,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_path": "output/conll_pretrained_n16_seed42/",
+      "wall_clock_seconds": 8614.2,
+      "gpu_hours": 2.39
+    },
+    "server": "autodl-5090",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "autodl-5090",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-22T09:18:23.189Z"
+    },
+    "metrics": {
+      "greedy_f1": 0.5986,
+      "mv_strict_f1": 0.632,
+      "mv_delta_strict_pp": 3.34,
+      "oracle_f1": 0.7282,
+      "degeneracy_rate": 0.255,
+      "alpha_crit_eff_strict": 0.402
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-22T09:57:10.361Z"
+  },
+  "timestamp": "2026-05-22T10:12:07.718116+00:00",
+  "trigger": "update_registry"
+}

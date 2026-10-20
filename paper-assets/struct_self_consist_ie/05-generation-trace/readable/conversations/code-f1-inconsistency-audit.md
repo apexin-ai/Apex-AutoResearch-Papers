@@ -1,0 +1,2164 @@
+# code f1 inconsistency audit
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 73
+- **Recorded user turns:** 0
+- **Tool calls:** 36
+- **Original source:** `logs/chats/worker_code_f1_inconsistency_audit_20260518T175553.jsonl`
+- **Structured JSON:** [`fc06eb9ecaaa26cc7548.json`](../../sessions/fc/fc06eb9ecaaa26cc7548.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+73 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T18:03:57.548785+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T18:03:57.549113+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T18:03:57.549335+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_full_validation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_full_validation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-18T18:03:57.549474+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/entity_consensus.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/entity_consensus.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-18T18:03:57.549897+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"DGS full validation across datasets with statistical significance testing.\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom evaluation import entity_strict_match\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(\\n        description=\\\"DGS full validation with bootstrap CI and permutation test\\\"\\n    )\\n    p.add_argument(\\n        \\\"--datasets\\\", nargs=\\\"+\\\", required=True,\\n        help=\\\"name:path pairs, e.g. SciERC:/path/to/samples.jsonl\\\",\\n    )\\n    p.add_argument(\\\"--n-samples\\\", type=int, default=8)\\n    p.add_argument(\\\"--n-bootstrap\\\", type=int, default=10000)\\n    p.add_argument(\\\"--n-permutations\\\", type=int, default=10000)\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--output\\\", type=str, default=None, help=\\\"Output JSON path\\\")\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"Print config and exit\\\")\\n    return p.parse_args()\\n\\n\\ndef load_instances(path, n_samples=8):\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            inst = json.loads(line)\\n            inst[\\\"samples\\\"] = inst[\\\"samples\\\"][:n_samples]\\n            instances.append(inst)\\n    return instances\\n\\n\\ndef per_instance_entity_f1(pred_entities, gold_entities):\\n    tp, fp, fn = entity_strict_match(pred_entities, gold_entities)\\n    if tp + fp == 0 and tp + fn == 0:\\n        return 1.0\\n    if tp == 0:\\n        return 0.0\\n    p = tp / (tp + fp)\\n    r = tp / (tp + fn)\\n    return 2 * p * r / (p + r)\\n\\n\\ndef dgs_select(inst, n_samples=8):\\n    gold_ents = inst[\\\"gold\\\"][\\\"entities\\\"]\\n    samples = inst[\\\"samples\\\"][:n_samples]\\n    greedy = inst[\\\"greedy\\\"]\\n\\n    sample_f1s
+…[truncated 7507 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T18:03:57.550406+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Entity Consensus Construction evaluation.\\n\\nConstructs consensus entity sets from N samples using frequency-based\\nthresholds with LP-weighted decisions for medium-confidence entities.\\nEvaluates against gold using span-based (start, end, type) F1.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nimport statistics\\nfrom collections import Counter, defaultdict\\n\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom evaluation import entity_strict_match\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\n\\nDATASETS = {\\n    \\\"SciERC\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\",\\n        \\\"gold_filter\\\": True,\\n    },\\n    \\\"CoNLL\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_002_conll_n16_r1024/samples.jsonl\\\",\\n        \\\"gold_filter\\\": True,\\n    },\\n    \\\"FewNERD\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_027_fewnerd_n16/samples.jsonl\\\",\\n        \\\"gold_filter\\\": True,\\n    },\\n}\\n\\nTHRESHOLDS = [\\n    {\\\"high\\\": 0.5, \\\"medium\\\": 0.1},\\n    {\\\"high\\\": 0.6, \\\"medium\\\": 0.2},\\n    {\\\"high\\\": 0.7, \\\"medium\\\": 0.3},\\n    {\\\"high\\\": 0.8, \\\"medium\\\": 0.4},\\n]\\n\\n\\ndef load_data(path, gold_filter=True):\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            obj = json.loads(line)\\n            if gold_filter and len(obj[\\\"gold\\\"][\\\"entities\\\"]) == 0:\\n                continue\\n            instances.append(obj)\\n    return instances\\n\\n\\ndef span_set(entities):\\n    return set((e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in entities)\\n\\n\\ndef entity_f1(pred_entities, gold_entities):\\n    pred = span_set(pred_entities)\\n    gold = span_set(gold_entities)\\n    if len(pred) == 0 and len(gold) == 0:\\n        return 1.0
+…[truncated 7380 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T18:03:57.550679+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/ccs_selection.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/ccs_selection.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T18:03:57.551104+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Cascaded Conditional Selection (CCS) evaluation.\\n\\nThree-stage cascade:\\n  Stage 1 (degeneracy gate): constant-F1 instances -> greedy\\n  Stage 2 (LP range gate): non-degenerate + LP range < dataset median -> entity majority vote\\n  Stage 3 (LP selection): non-degenerate + LP range >= median -> LP selection (argmax mean_logprob)\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport numpy as np\\nfrom collections import Counter\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\n\\nDATASETS = [\\n    (f\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\", \\\"SciERC\\\", 8),\\n    (f\\\"{BASE}/output/exp_002_conll_n16_r1024/samples.jsonl\\\", \\\"CoNLL\\\", 8),\\n    (f\\\"{BASE}/output/exp_027_fewnerd_n16/samples.jsonl\\\", \\\"FewNERD\\\", 8),\\n]\\n\\nN_BOOTSTRAP = 2000\\nBOOTSTRAP_SEED = 42\\n\\n\\ndef entity_set(entities):\\n    return set((e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in entities)\\n\\n\\ndef compute_f1(pred_entities, gold_entities):\\n    pred_set = entity_set(pred_entities)\\n    gold_set = entity_set(gold_entities)\\n    if len(gold_set) == 0 and len(pred_set) == 0:\\n        return 1.0\\n    if len(gold_set) == 0 or len(pred_set) == 0:\\n        return 0.0\\n    tp = len(pred_set & gold_set)\\n    p = tp / len(pred_set)\\n    r = tp / len(gold_set)\\n    if p + r == 0:\\n        return 0.0\\n    return 2 * p * r / (p + r)\\n\\n\\ndef majority_vote_entities(samples, n_samples):\\n    threshold = n_samples / 2.0\\n    counter = Counter()\\n    span_to_entity = {}\\n    for s in samples:\\n        seen = set()\\n        for e in s.get(\\\"entities\\\", []):\\n            key = (e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"])\\n            if key not in seen:\\n                counter[key] += 1\\n                seen.add(key)\\n            if key not in span_to_entity:\\n                span_to_entity[key] = e\\n    consens
+…[truncated 7351 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T18:03:57.551446+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T18:03:57.551838+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluation module for structured self-consistency IE experiments.\\n\\nProvides strict-match NER/EAE evaluation, per-instance F1 computation,\\ncorrelation analysis, and summary report generation.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport statistics\\nfrom typing import Any\\n\\nfrom scipy.stats import kendalltau, spearmanr\\n\\n\\n# ---------------------------------------------------------------------------\\n# NER evaluation (strict match)\\n# ---------------------------------------------------------------------------\\n\\ndef entity_strict_match(\\n    pred_entities: list[dict],\\n    gold_entities: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Compute strict entity match counts.\\n\\n    Strict match requires exact span (start, end) AND exact type.\\n\\n    Args:\\n        pred_entities: Predicted entity dicts with keys text, type, start, end.\\n        gold_entities: Gold entity dicts with the same schema.\\n\\n    Returns:\\n        (tp, fp, fn) counts.\\n    \\\"\\\"\\\"\\n    pred_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    return tp, fp, fn\\n\\n\\ndef compute_ner_f1(\\n    predictions: list[dict],\\n    golds: list[dict],\\n) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute micro-averaged NER precision, recall, and F1.\\n\\n    Args:\\n        predictions: List of Extraction dicts (one per instance).\\n        golds: List of Extraction dicts (one per instance), aligned with predictions.\\n\\n    Returns:\\n        Dict with keys \\\"precision\\\", \\\"recall\\\", \\\"f1\\\".\\n    \\\"\\\"\\\"\\n    total_tp = total_fp = total_fn = 0\\n    for pred, gold in zip(predictions, golds):\\n        tp, fp, fn = entity_
+…[truncated 7193 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T18:03:57.552073+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def analyze_dataset\" /root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_full_validation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"def analyze_dataset\" /root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_full_validation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T18:03:57.552303+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"147:def analyze_dataset(instances, name, n_samples, n_boot, n_perm, seed):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T18:03:57.552560+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -220 /root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_full_validation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -220 /root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_full_validation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-18T18:03:57.552751+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -200 /root/autodl-tmp/struct_self_consist_ie/code/entity_consensus.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -200 /root/autodl-tmp/struct_self_consist_ie/code/entity_consensus.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-18T18:03:57.553000+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"DGS full validation across datasets with statistical significance testing.\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom evaluation import entity_strict_match\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(\\n        description=\\\"DGS full validation with bootstrap CI and permutation test\\\"\\n    )\\n    p.add_argument(\\n        \\\"--datasets\\\", nargs=\\\"+\\\", required=True,\\n        help=\\\"name:path pairs, e.g. SciERC:/path/to/samples.jsonl\\\",\\n    )\\n    p.add_argument(\\\"--n-samples\\\", type=int, default=8)\\n    p.add_argument(\\\"--n-bootstrap\\\", type=int, default=10000)\\n    p.add_argument(\\\"--n-permutations\\\", type=int, default=10000)\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--output\\\", type=str, default=None, help=\\\"Output JSON path\\\")\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"Print config and exit\\\")\\n    return p.parse_args()\\n\\n\\ndef load_instances(path, n_samples=8):\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            inst = json.loads(line)\\n            inst[\\\"samples\\\"] = inst[\\\"samples\\\"][:n_samples]\\n            instances.append(inst)\\n    return instances\\n\\n\\ndef per_instance_entity_f1(pred_entities, gold_entities):\\n    tp, fp, fn = entity_strict_match(pred_entities, gold_entities)\\n    if tp + fp == 0 and tp + fn == 0:\\n        return 1.0\\n    if tp == 0:\\n        return 0.0\\n    p = tp / (tp + fp)\\n    r = tp / (tp + fn)\\n    return 2 * p * r / (p + r)\\n\\n\\ndef dgs_select(inst, n_samples=8):\\n    gold_ents = inst[\\\"gold\\\"][\\\"entities\\\"]\\n    samples = inst[\\\"samples\\\"][:n_samples]\\n    greedy = inst[\\\"greedy\\\"]\\n\\n    sample_f1s
+…[truncated 6915 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T18:03:57.553314+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Entity Consensus Construction evaluation.\\n\\nConstructs consensus entity sets from N samples using frequency-based\\nthresholds with LP-weighted decisions for medium-confidence entities.\\nEvaluates against gold using span-based (start, end, type) F1.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nimport statistics\\nfrom collections import Counter, defaultdict\\n\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom evaluation import entity_strict_match\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\n\\nDATASETS = {\\n    \\\"SciERC\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\",\\n        \\\"gold_filter\\\": True,\\n    },\\n    \\\"CoNLL\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_002_conll_n16_r1024/samples.jsonl\\\",\\n        \\\"gold_filter\\\": True,\\n    },\\n    \\\"FewNERD\\\": {\\n        \\\"path\\\": f\\\"{BASE}/output/exp_027_fewnerd_n16/samples.jsonl\\\",\\n        \\\"gold_filter\\\": True,\\n    },\\n}\\n\\nTHRESHOLDS = [\\n    {\\\"high\\\": 0.5, \\\"medium\\\": 0.1},\\n    {\\\"high\\\": 0.6, \\\"medium\\\": 0.2},\\n    {\\\"high\\\": 0.7, \\\"medium\\\": 0.3},\\n    {\\\"high\\\": 0.8, \\\"medium\\\": 0.4},\\n]\\n\\n\\ndef load_data(path, gold_filter=True):\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            obj = json.loads(line)\\n            if gold_filter and len(obj[\\\"gold\\\"][\\\"entities\\\"]) == 0:\\n                continue\\n            instances.append(obj)\\n    return instances\\n\\n\\ndef span_set(entities):\\n    return set((e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in entities)\\n\\n\\ndef entity_f1(pred_entities, gold_entities):\\n    pred = span_set(pred_entities)\\n    gold = span_set(gold_entities)\\n    if len(pred) == 0 and len(gold) == 0:\\n        return 1.0
+…[truncated 5171 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T18:03:57.553568+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat << 'PYEOF' > /root/autodl-tmp/struct_self_consist_ie/code/debug_greedy_diff.py\n#!/usr/bin/env python3\n\"\"\"Diagnostic: compare greedy F1 computation across three scripts' logic.\"\"\"\nimport json\nimport sys\nimport os\n\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\nfrom evaluation import entity_strict_match\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\nSCIERC_PATH = f\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\"\n\n# Load ALL instances\nall_instances = []\nwith open(SCIERC_PATH) as f:\n    for line in f:\n        all_instances.append(json.loads(line))\n\nprint(f\"Total instances in file: {len(all_instances)}\")\n\n# Check how many have empty gold\nempty_gold = [inst for inst in all_instances if len(inst[\"gold\"][\"entities\"]) == 0]\nnon_empty_gold = [inst for inst in all_instances if len(inst[\"gold\"][\"entities\"]) > 0]\nprint(f\"Empty gold: {len(empty_gold)}\")\nprint(f\"Non-empty gold (gold_filter=True): {len(non_empty_gold)}\")\n\n# --- F1 functions from each script ---\n\n# analysis_dgs_full_validation.py style (uses entity_strict_match)\ndef f1_dgs_style(pred_entities, gold_entities):\n    tp, fp, fn = entity_strict_match(pred_entities, gold_entities)\n    if tp + fp == 0 and tp + fn == 0:\n        return 1.0\n    if tp == 0:\n        return 0.0\n    p = tp / (tp + fp)\n    r = tp / (tp + fn)\n    return 2 * p * r / (p + r)\n\n# entity_consensus.py style\ndef f1_consensus_style(pred_entities, gold_entities):\n    pred = set((e[\"start\"], e[\"end\"], e[\"type\"]) for e in pred_entities)\n    gold = set((e[\"start\"], e[\"end\"], e[\"type\"]) for e in gold_entities)\n    if len(pred) == 0 and len(gold) == 0:\n        return 1.0\n    if len(pred) == 0 or len(gold) == 0:\n        return 0.0\n    tp = len(pred & gold)\n    if tp == 0:\n        return 0.0\n    p = tp / len(pred)\n    r = tp / len(gold)\n    return 2 * p * r / (p + r)\n\n# ccs_selection.py style\ndef f1_ccs_style(pred_entities, gold_entities):\n    pred_set = set((e[\"start\"], e[\"end\"], e[\"type\"]) for e in pred_entities)\n    gold_set = set((e[\"start\"], e[\"end\"], e[\"type\"]) for e in gold_entities)\n    if len(gold_set) == 0 and len(pred_set) == 0:\n        return 1.0\n    if len(gold_set) == 0 or len(pred_set) == 0:\n        return 0.0\n    tp = len(pred_set & gold_set)\n    p = tp / len(pred_set)\n    r = tp / len(gold_set)\n    if p + r == 0:\n        return 0.0\n    return 2 * p * r / (p + r)\n\n# --- Test 1: Are the F1 functions equivalent on all instances? ---\nprint(\"\\n=== Test 1: F1 function equivalence ===\")\ndiffs = []\nfor i, inst in enumerate(all_instances):\n    pred = inst[\"greedy\"][\"entities\"]\n    gold = inst[\"gold\"][\"entities\"]\n    f1_a = f1_dgs_style(pred, gold)\n    f1_b = f1_consensus_style(pred, gold)\n    f1_c = f1_ccs_style(pred, gold)\n    if abs(f1_a - f1_b) > 1e-10 or abs(f1_a - f1_c) > 1e-10:\n        diffs.append((i, inst.get(\"id\", \"?\"), f1_a, f1_b, f1_c,\n                       len(pred), len(gold)))\n\nif diffs:\n    print(f\"Found {len(diffs)} instances with different F1:\")\n    for idx, iid, a, b, c, np_, ng in diffs[:10]:\n        print(f\"  idx={idx} id={iid} dgs={a:.6f} cons={b:.6f} ccs={c:.6f} \"\n              f\"n_pred={np_} n_gold={ng}\")\nelse:\n    print(\"All three F1 functions produce identical results on all instances.\")\n\n# --- Test 2: Gold filter effect ---\nprint(\"\\n=== Test 2: Gold filter effect on greedy F1 ===\")\n\n# Without gold_filter (analysis_dgs style)\nall_f1s = [f1_dgs_style(inst[\"greedy\"][\"entities\"], inst[\"gold\"][\"entities\"])\n           for inst in all_instances]\nmean_all = sum(all_f1s) / len(all_f1s)\nprint(f\"No gold_filter ({len(all_instances)} inst): mean greedy F1 = {mean_all:.6f}\")\n\n# With gold_filter (consensus/ccs style)\nfiltered_f1s = [f1_dgs_style(inst[\"greedy\"][\"entities\"], inst[\"gold\"][\"entities\"])\n                for inst in non_empty_gold]\nmean_filtered = sum(filtered_f1s) / len(filtered_f1s)\nprint(f\"With gold_filter ({len(non_empty_gold)} inst): mean greedy F1 = {mean_filtered:.6f}\")\n\n# --- Test 3: What F1 do empty-gold instances contribute? ---\nprint(\"\\n=== Test 3: Empty gold instances ===\")\nfor inst in empty_gold[:5]:\n    pred = inst[\"greedy\"][\"entities\"]\n    gold = inst[\"gold\"][\"entities\"]\n    f1 = f1_dgs_style(pred, gold)\n    print(f\"  id={inst.get('id','?')} n_pred={len(pred)} n_gold={len(gold)} f1={f1:.4f}\")\n\n# --- Test 4: Check N=8 truncation effect ---\nprint(\"\\n=== Test 4: N=8 truncation vs full samples (greedy unaffected) ===\")\nn_samples_counts = [len(inst[\"samples\"]) for inst in all_instances]\nprint(f\"Samples per instance: min={min(n_samples_counts)} max={max(n_samples_counts)} \"\n      f\"mean={sum(n_samples_counts)/len(n_samples_counts):.1f}\")\n\n# --- Test 5: Reproduce the exact numbers ---\nprint(\"\\n=== Test 5: Reproduce exact greedy F1 values ===\")\n\n# analysis_dgs style: load all, compute macro greedy F1\n# But we need to check if it's called with gold_filter path\n# Check the actual calling convention\nimport numpy as np\narr = np.array(all_f1s)\nprint(f\"analysis_dgs (no filter, {len(all_f1s)} inst): {arr.mean():.4f}\")\n\narr2 = np.array(filtered_f1s)\nprint(f\"consensus/ccs (gold_filter, {len(filtered_f1s)} inst): {arr2.mean():.4f}\")\nPYEOF\ncd /root/autodl-tmp/struct_self_consist_ie && python code/debug_greedy_diff.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat << 'PYEOF' > /root/autodl-tmp/struct_self_consist_ie/code/debug_greedy_diff.py\n#!/usr/bin/env python3\n\"\"\"Diagnostic: compare greedy F1 computation across three scripts' logic.\"\"\"\nimport json\nimport sys\nimport os\n\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\nfrom evaluation import entity_strict_match\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\nSCIERC_PATH = f\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\"\n\n# Load ALL instances\nall_instances = []\nwith open(SCIERC_PATH) as f:\n    for line in f:\n        all_instances.append(json.loads(line))\n\nprint(f\"Total instances in file: {len(all_instances)}\")\n\n# Check how many have empty gold\nempty_gold = [inst for inst in all_instances if len(inst[\"gold\"][\"entities\"]) == 0]\nnon_empty_gold = [inst for inst in all_instances if len(inst[\"gold\"][\"entities\"]) > 0]\nprint(f\"Empty gold: {len(empty_gold)}\")\nprint(f\"Non-empty gold (gold_filter=True): {len(non_empty_gold)}\")\n\n# --- F1 functions from each script ---\n\n# analysis_dgs_full_validation.py style (uses entity_strict_match)\ndef f1_dgs_style(pred_entities, gold_entities):\n    tp, fp, fn = entity_strict_match(pred_entities, gold_entities)\n    if tp + fp == 0 and tp + fn == 0:\n        return 1.0\n    if tp == 0:\n        return 0.0\n    p = tp / (tp + fp)\n    r = tp / (tp + fn)\n    return 2 * p * r / (p + r)\n\n# entity_consensus.py style\ndef f1_consensus_style(pred_entities, gold_entities):\n    pred = set((e[\"start\"], e[\"end\"], e[\"type\"]) for e in pred_entities)\n    gold = set((e[\"start\"], e[\"end\"], e[\"type\"]) for e in gold_entities)\n    if len(pred) == 0 and len(gold) == 0:\n        return 1.0\n    if len(pred) == 0 or len(gold) == 0:\n        return 0.0\n    tp = len(pred & gold)\n    if tp == 0:\n        return 0.0\n    p = tp / len(pred)\n    r = tp / len(gold)\n    return 2 * p * r / (p + r)\n\n# ccs_selection.py style\ndef f1_ccs_style(pred_entities, gold_entities):\n    pred_set = set((e[\"start\"], e[\"end\"], e[\"type\"]) for e in pred_entities)\n    gold_set = set((e[\"start\"], e[\"end\"], e[\"type\"]) for e in gold_entities)\n    if len(gold_set) == 0 and len(pred_set) == 0:\n        return 1.0\n    if len(gold_set) == 0 or len(pred_set) == 0:\n        return 0.0\n    tp = len(pred_set & gold_set)\n    p = tp / len(pred_set)\n    r = tp / len(gold_set)\n    if p + r == 0:\n        return 0.0\n    return 2 * p * r / (p + r)\n\n# --- Test 1: Are the F1 functions equivalent on all instances? ---\nprint(\"\\n=== Test 1: F1 function equivalence ===\")\ndiffs = []\nfor i, inst in enumerate(all_instances):\n    pred = inst[\"greedy\"][\"entities\"]\n    gold = inst[\"gold\"][\"entities\"]\n    f1_a = f1_dgs_style(pred, gold)\n    f1_b = f1_consensus_style(pred, gold)\n    f1_c = f1_ccs_style(pred, gold)\n    if abs(f1_a - f1_b) > 1e-10 or abs(f1_a - f1_c) > 1e-10:\n        diffs.append((i, inst.get(\"id\", \"?\"), f1_a, f1_b, f1_c,\n                       len(pred), len(gold)))\n\nif diffs:\n    print(f\"Found {len(diffs)} instances with different F1:\")\n    for idx, iid, a, b, c, np_, ng in diffs[:10]:\n        print(f\"  idx={idx} id={iid} dgs={a:.6f} cons={b:.6f} ccs={c:.6f} \"\n              f\"n_pred={np_} n_gold={ng}\")\nelse:\n    print(\"All three F1 functions produce identical results on all instances.\")\n\n# --- Test 2: Gold filter effect ---\nprint(\"\\n=== Test 2: Gold filter effect on greedy F1 ===\")\n\n# Without gold_filter (analysis_dgs style)\nall_f1s = [f1_dgs_style(inst[\"greedy\"][\"entities\"], inst[\"gold\"][\"entities\"])\n           for inst in all_instances]\nmean_all = sum(all_f1s) / len(all_f1s)\nprint(f\"No gold_filter ({len(all_instances)} inst): mean greedy F1 = {mean_all:.6f}\")\n\n# With gold_filter (consensus/ccs style)\nfiltered_f1s = [f1_dgs_style(inst[\"greedy\"][\"entities\"], inst[\"gold\"][\"entities\"])\n                for inst in non_empty_gold]\nmean_filtered = sum(filtered_f1s) / len(filtered_f1s)\nprint(f\"With gold_filter ({len(non_empty_gold)} inst): mean greedy F1 = {mean_filtered:.6f}\")\n\n# --- Test 3: What F1 do empty-gold instances contribute? ---\nprint(\"\\n=== Test 3: Empty gold instances ===\")\nfor inst in empty_gold[:5]:\n    pred = inst[\"greedy\"][\"entities\"]\n    gold = inst[\"gold\"][\"entities\"]\n    f1 = f1_dgs_style(pred, gold)\n    print(f\"  id={inst.get('id','?')} n_pred={len(pred)} n_gold={len(gold)} f1={f1:.4f}\")\n\n# --- Test 4: Check N=8 truncation effect ---\nprint(\"\\n=== Test 4: N=8 truncation vs full samples (greedy unaffected) ===\")\nn_samples_counts = [len(inst[\"samples\"]) for inst in all_instances]\nprint(f\"Samples per instance: min={min(n_samples_counts)} max={max(n_samples_counts)} \"\n      f\"mean={sum(n_samples_counts)/len(n_samples_counts):.1f}\")\n\n# --- Test 5: Reproduce the exact numbers ---\nprint(\"\\n=== Test 5: Reproduce exact greedy F1 values ===\")\n\n# analysis_dgs style: load all, compute macro greedy F1\n# But we need to check if it's called with gold_filter path\n# Check the actual calling convention\nimport numpy as np\narr = np.array(all_f1s)\nprint(f\"analysis_dgs (no filter, {len(all_f1s)} inst): {arr.mean():.4f}\")\n\narr2 = np.array(filtered_f1s)\nprint(f\"consensus/ccs (gold_filter, {len(filtered_f1s)} inst): {arr2.mean():.4f}\")\nPYEOF\ncd /root/autodl-tmp/struct_self_consist_ie && python code/debug_greedy_diff.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T18:03:57.553876+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat << \\\\'PYEOF\\\\' > /root/autodl-tmp/struct_self_consist_ie/code/debug_greedy_diff.py\\\\n#!/usr/bin/env python3\\\\n\\\"\\\"\\\"Diagnostic: compare greedy F1 computation across three scripts\\\\' logic.\\\"\\\"\\\"\\\\nimport json\\\\nimport sys\\\\nimport os\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom evaluation import entity_strict_match\\\\n\\\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\\\nSCIERC_PATH = f\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\"\\\\n\\\\n# Load ALL instances\\\\nall_instances = []\\\\nwith open(SCIERC_PATH) as f:\\\\n    for line in f:\\\\n        all_instances.append(json.loads(line))\\\\n\\\\nprint(f\\\"Total instances in file: {len(all_instances)}\\\")\\\\n\\\\n# Check how many have empty gold\\\\nempty_gold = [inst for inst in all_instances if len(inst[\\\"gold\\\"][\\\"entities\\\"]) == 0]\\\\nnon_empty_gold = [inst for inst in all_instances if len(inst[\\\"gold\\\"][\\\"entities\\\"]) > 0]\\\\nprint(f\\\"Empty gold: {len(empty_gold)}\\\")\\\\nprint(f\\\"Non-empty gold (gold_filter=True): {len(non_empty_gold)}\\\")\\\\n\\\\n# --- F1 functions from each script ---\\\\n\\\\n# analysis_dgs_full_validation.py style (uses entity_strict_match)\\\\ndef f1_dgs_style(pred_entities, gold_entities):\\\\n    tp, fp, fn = entity_strict_match(pred_entities, gold_entities)\\\\n    if tp + fp == 0 and tp + fn == 0:\\\\n        return 1.0\\\\n    if tp == 0:\\\\n        return 0.0\\\\n    p = tp / (tp + fp)\\\\n    r = tp / (tp + fn)\\\\n    return 2 * p * r / (p + r)\\\\n\\\\n# entity_consensus.py style\\\\ndef f1_consensus_style(pred_entities, gold_entities):\\\\n    pred = set((e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities)\\\\n    gold = set((e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities)\\\\n    if len(pred) == 0 and len
+…[truncated 4381 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T18:03:57.554077+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json, sys, os, numpy as np\nsys.path.insert(0, 'code')\nfrom evaluation import entity_strict_match\n\nBASE = '/root/autodl-tmp/struct_self_consist_ie'\nSCIERC = f'{BASE}/output/exp_012_rerun_1024/samples.jsonl'\n\nall_inst = []\nwith open(SCIERC) as f:\n    for line in f:\n        all_inst.append(json.loads(line))\n\nprint(f'Total: {len(all_inst)}')\nempty_g = [x for x in all_inst if len(x['gold']['entities'])==0]\nnon_empty = [x for x in all_inst if len(x['gold']['entities'])>0]\nprint(f'Empty gold: {len(empty_g)}, Non-empty: {len(non_empty)}')\n\ndef f1_via_match(pred, gold):\n    tp,fp,fn = entity_strict_match(pred, gold)\n    if tp+fp==0 and tp+fn==0: return 1.0\n    if tp==0: return 0.0\n    p=tp/(tp+fp); r=tp/(tp+fn)\n    return 2*p*r/(p+r)\n\ndef f1_set(pred_e, gold_e):\n    ps = set((e['start'],e['end'],e['type']) for e in pred_e)\n    gs = set((e['start'],e['end'],e['type']) for e in gold_e)\n    if len(ps)==0 and len(gs)==0: return 1.0\n    if len(ps)==0 or len(gs)==0: return 0.0\n    tp = len(ps&gs)\n    if tp==0: return 0.0\n    p=tp/len(ps); r=tp/len(gs)\n    return 2*p*r/(p+r)\n\n# Check F1 function equivalence\ndiffs=0\nfor inst in all_inst:\n    a=f1_via_match(inst['greedy']['entities'], inst['gold']['entities'])\n    b=f1_set(inst['greedy']['entities'], inst['gold']['entities'])\n    if abs(a-b)>1e-10: diffs+=1\nprint(f'F1 function diffs: {diffs}')\n\n# Gold filter effect\nall_f1 = [f1_set(x['greedy']['entities'], x['gold']['entities']) for x in all_inst]\nfilt_f1 = [f1_set(x['greedy']['entities'], x['gold']['entities']) for x in non_empty]\nprint(f'No filter ({len(all_f1)}): mean={np.mean(all_f1):.6f}')\nprint(f'Gold filter ({len(filt_f1)}): mean={np.mean(filt_f1):.6f}')\n\n# Empty gold instances\nfor inst in empty_g[:5]:\n    pr = inst['greedy']['entities']\n    print(f'  empty gold: id={inst.get(\\\"id\\\",\\\"?\\\")} n_pred={len(pr)} f1={f1_set(pr,[]):.4f}')\n\n# Sample counts\nns = [len(x['samples']) for x in all_inst]\nprint(f'Samples per inst: min={min(ns)} max={max(ns)}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json, sys, os, numpy as np\nsys.path.insert(0, 'code')\nfrom evaluation import entity_strict_match\n\nBASE = '/root/autodl-tmp/struct_self_consist_ie'\nSCIERC = f'{BASE}/output/exp_012_rerun_1024/samples.jsonl'\n\nall_inst = []\nwith open(SCIERC) as f:\n    for line in f:\n        all_inst.append(json.loads(line))\n\nprint(f'Total: {len(all_inst)}')\nempty_g = [x for x in all_inst if len(x['gold']['entities'])==0]\nnon_empty = [x for x in all_inst if len(x['gold']['entities'])>0]\nprint(f'Empty gold: {len(empty_g)}, Non-empty: {len(non_empty)}')\n\ndef f1_via_match(pred, gold):\n    tp,fp,fn = entity_strict_match(pred, gold)\n    if tp+fp==0 and tp+fn==0: return 1.0\n    if tp==0: return 0.0\n    p=tp/(tp+fp); r=tp/(tp+fn)\n    return 2*p*r/(p+r)\n\ndef f1_set(pred_e, gold_e):\n    ps = set((e['start'],e['end'],e['type']) for e in pred_e)\n    gs = set((e['start'],e['end'],e['type']) for e in gold_e)\n    if len(ps)==0 and len(gs)==0: return 1.0\n    if len(ps)==0 or len(gs)==0: return 0.0\n    tp = len(ps&gs)\n    if tp==0: return 0.0\n    p=tp/len(ps); r=tp/len(gs)\n    return 2*p*r/(p+r)\n\n# Check F1 function equivalence\ndiffs=0\nfor inst in all_inst:\n    a=f1_via_match(inst['greedy']['entities'], inst['gold']['entities'])\n    b=f1_set(inst['greedy']['entities'], inst['gold']['entities'])\n    if abs(a-b)>1e-10: diffs+=1\nprint(f'F1 function diffs: {diffs}')\n\n# Gold filter effect\nall_f1 = [f1_set(x['greedy']['entities'], x['gold']['entities']) for x in all_inst]\nfilt_f1 = [f1_set(x['greedy']['entities'], x['gold']['entities']) for x in non_empty]\nprint(f'No filter ({len(all_f1)}): mean={np.mean(all_f1):.6f}')\nprint(f'Gold filter ({len(filt_f1)}): mean={np.mean(filt_f1):.6f}')\n\n# Empty gold instances\nfor inst in empty_g[:5]:\n    pr = inst['greedy']['entities']\n    print(f'  empty gold: id={inst.get(\\\"id\\\",\\\"?\\\")} n_pred={len(pr)} f1={f1_set(pr,[]):.4f}')\n\n# Sample counts\nns = [len(x['samples']) for x in all_inst]\nprint(f'Samples per inst: min={min(ns)} max={max(ns)}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T18:03:57.554316+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \\\"\\\\nimport json, sys, os, numpy as np\\\\nsys.path.insert(0, \\\\'code\\\\')\\\\nfrom evaluation import entity_strict_match\\\\n\\\\nBASE = \\\\'/root/autodl-tmp/struct_self_consist_ie\\\\'\\\\nSCIERC = f\\\\'{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\\'\\\\n\\\\nall_inst = []\\\\nwith open(SCIERC) as f:\\\\n    for line in f:\\\\n        all_inst.append(json.loads(line))\\\\n\\\\nprint(f\\\\'Total: {len(all_inst)}\\\\')\\\\nempty_g = [x for x in all_inst if len(x[\\\\'gold\\\\'][\\\\'entities\\\\'])==0]\\\\nnon_empty = [x for x in all_inst if len(x[\\\\'gold\\\\'][\\\\'entities\\\\'])>0]\\\\nprint(f\\\\'Empty gold: {len(empty_g)}, Non-empty: {len(non_empty)}\\\\')\\\\n\\\\ndef f1_via_match(pred, gold):\\\\n    tp,fp,fn = entity_strict_match(pred, gold)\\\\n    if tp+fp==0 and tp+fn==0: return 1.0\\\\n    if tp==0: return 0.0\\\\n    p=tp/(tp+fp); r=tp/(tp+fn)\\\\n    return 2*p*r/(p+r)\\\\n\\\\ndef f1_set(pred_e, gold_e):\\\\n    ps = set((e[\\\\'start\\\\'],e[\\\\'end\\\\'],e[\\\\'type\\\\']) for e in pred_e)\\\\n    gs = set((e[\\\\'start\\\\'],e[\\\\'end\\\\'],e[\\\\'type\\\\']) for e in gold_e)\\\\n    if len(ps)==0 and len(gs)==0: return 1.0\\\\n    if len(ps)==0 or len(gs)==0: return 0.0\\\\n    tp = len(ps&gs)\\\\n    if tp==0: return 0.0\\\\n    p=tp/len(ps); r=tp/len(gs)\\\\n    return 2*p*r/(p+r)\\\\n\\\\n# Check F1 function equivalence\\\\ndiffs=0\\\\nfor inst in all_inst:\\\\n    a=f1_via_match(inst[\\\\'greedy\\\\'][\\\\'entities\\\\'], inst[\\\\'gold\\\\'][\\\\'entities\\\\'])\\\\n    b=f1_set(inst[\\\\'greedy\\\\'][\\\\'entities\\\\'], inst[\\\\'gold\\\\'][\\\\'entities\\\\'])\\\\n    if abs(a-b)>1e-10: diffs+=1\\\\nprint(f\\\\'F1 function diffs: {diffs}\\\\')\\\\n\\\\n# Gold filter effect\\\\nall_f1 = [f1_set(x[\\\\'greedy\\\\'][\\\\'entities\\\\'], x[\\\\'gold\\\\'][\\\\'e
+…[truncated 891 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T18:03:57.554490+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/miniconda3/bin/python*",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/miniconda3/bin/python*",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-18T18:03:57.554620+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /usr -name \"python*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /usr -name \"python*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-18T18:03:57.554754+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3\\n/root/miniconda3/bin/python3-config\\n/root/miniconda3/bin/python3.1\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T18:03:57.554881+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/usr/share/vim/vim82/autoload/python3complete.vim\\n/usr/share/vim/vim82/autoload/pythoncomplete.vim\\n/usr/share/vim/vim82/ftplugin/python.vim\\n/usr/share/vim/vim82/indent/python.vim\\n/usr/share/vim/vim82/syntax/python.vim\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T18:03:57.555006+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python -c \"\nimport json, sys, os, numpy as np\nsys.path.insert(0, 'code')\nfrom evaluation import entity_strict_match\n\nBASE = '/root/autodl-tmp/struct_self_consist_ie'\nSCIERC = BASE + '/output/exp_012_rerun_1024/samples.jsonl'\n\nall_inst = []\nwith open(SCIERC) as f:\n    for line in f:\n        all_inst.append(json.loads(line))\n\nprint('Total:', len(all_inst))\nempty_g = [x for x in all_inst if len(x['gold']['entities'])==0]\nnon_empty = [x for x in all_inst if len(x['gold']['entities'])>0]\nprint('Empty gold:', len(empty_g), 'Non-empty:', len(non_empty))\n\ndef f1_calc(pred_e, gold_e):\n    ps = set((e['start'],e['end'],e['type']) for e in pred_e)\n    gs = set((e['start'],e['end'],e['type']) for e in gold_e)\n    if len(ps)==0 and len(gs)==0: return 1.0\n    if len(ps)==0 or len(gs)==0: return 0.0\n    tp = len(ps & gs)\n    if tp==0: return 0.0\n    p=tp/len(ps); r=tp/len(gs)\n    return 2*p*r/(p+r)\n\nall_f1 = [f1_calc(x['greedy']['entities'], x['gold']['entities']) for x in all_inst]\nfilt_f1 = [f1_calc(x['greedy']['entities'], x['gold']['entities']) for x in non_empty]\nprint('No filter (%d): mean=%.6f' % (len(all_f1), np.mean(all_f1)))\nprint('Gold filter (%d): mean=%.6f' % (len(filt_f1), np.mean(filt_f1)))\n\nfor inst in empty_g[:10]:\n    pr = inst['greedy']['entities']\n    print('  empty_gold: id=%s n_pred=%d f1=%.4f' % (inst.get('id','?'), len(pr), f1_calc(pr, [])))\n\nns = [len(x['samples']) for x in all_inst]\nprint('Samples per inst: min=%d max=%d' % (min(ns), max(ns)))\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python -c \"\nimport json, sys, os, numpy as np\nsys.path.insert(0, 'code')\nfrom evaluation import entity_strict_match\n\nBASE = '/root/autodl-tmp/struct_self_consist_ie'\nSCIERC = BASE + '/output/exp_012_rerun_1024/samples.jsonl'\n\nall_inst = []\nwith open(SCIERC) as f:\n    for line in f:\n        all_inst.append(json.loads(line))\n\nprint('Total:', len(all_inst))\nempty_g = [x for x in all_inst if len(x['gold']['entities'])==0]\nnon_empty = [x for x in all_inst if len(x['gold']['entities'])>0]\nprint('Empty gold:', len(empty_g), 'Non-empty:', len(non_empty))\n\ndef f1_calc(pred_e, gold_e):\n    ps = set((e['start'],e['end'],e['type']) for e in pred_e)\n    gs = set((e['start'],e['end'],e['type']) for e in gold_e)\n    if len(ps)==0 and len(gs)==0: return 1.0\n    if len(ps)==0 or len(gs)==0: return 0.0\n    tp = len(ps & gs)\n    if tp==0: return 0.0\n    p=tp/len(ps); r=tp/len(gs)\n    return 2*p*r/(p+r)\n\nall_f1 = [f1_calc(x['greedy']['entities'], x['gold']['entities']) for x in all_inst]\nfilt_f1 = [f1_calc(x['greedy']['entities'], x['gold']['entities']) for x in non_empty]\nprint('No filter (%d): mean=%.6f' % (len(all_f1), np.mean(all_f1)))\nprint('Gold filter (%d): mean=%.6f' % (len(filt_f1), np.mean(filt_f1)))\n\nfor inst in empty_g[:10]:\n    pr = inst['greedy']['entities']\n    print('  empty_gold: id=%s n_pred=%d f1=%.4f' % (inst.get('id','?'), len(pr), f1_calc(pr, [])))\n\nns = [len(x['samples']) for x in all_inst]\nprint('Samples per inst: min=%d max=%d' % (min(ns), max(ns)))\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T18:03:57.555177+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total: 551\\nEmpty gold: 22 Non-empty: 529\\nNo filter (551): mean=0.643620\\nGold filter (529): mean=0.643922\\n  empty_gold: id=C94-1091_sent000 n_pred=2 f1=0.0000\\n  empty_gold: id=INTERSPEECH_2008_20_abs_sent001 n_pred=0 f1=1.0000\\n  empty_gold: id=INTERSPEECH_2008_20_abs_sent002 n_pred=0 f1=1.0000\\n  empty_gold: id=INTERSPEECH_2008_20_abs_sent003 n_pred=1 f1=0.0000\\n  empty_gold: id=P06-3007_sent001 n_pred=1 f1=0.0000\\n  empty_gold: id=P06-3007_sent004 n_pred=0 f1=1.0000\\n  empty_gold: id=NIPS_2002_18_abs_sent004 n_pred=0 f1=1.0000\\n  empty_gold: id=H01-1042_sent002 n_pred=2 f1=0.0000\\n  empty_gold: id=H01-1042_sent009 n_pred=0 f1=1.0000\\n  empty_gold: id=H01-1042_sent010 n_pred=0 f1=1.0000\\nSamples per inst: min=8 max=8\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T18:03:57.555374+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"samples.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"samples.jsonl\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T18:03:57.555583+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2_ckpt400/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_con
+…[truncated 6390 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-18T18:03:57.555730+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -r \"exp_012\" /root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_full_validation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -r \"exp_012\" /root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_full_validation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T18:03:57.555858+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-18T18:03:57.556021+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python -c \"\nimport json, sys\nsys.path.insert(0, 'code')\nfrom evaluation import entity_strict_match\n\nBASE = '/root/autodl-tmp/struct_self_consist_ie'\nSCIERC = BASE + '/output/exp_012_rerun_1024/samples.jsonl'\n\nall_inst = []\nwith open(SCIERC) as f:\n    for line in f:\n        all_inst.append(json.loads(line))\n\nnon_empty = [x for x in all_inst if len(x['gold']['entities'])>0]\n\n# Micro F1 (no filter)\ntp_all = fp_all = fn_all = 0\nfor inst in all_inst:\n    tp, fp, fn = entity_strict_match(inst['greedy']['entities'], inst['gold']['entities'])\n    tp_all += tp; fp_all += fp; fn_all += fn\np = tp_all/(tp_all+fp_all) if tp_all+fp_all>0 else 0\nr = tp_all/(tp_all+fn_all) if tp_all+fn_all>0 else 0\nmicro_all = 2*p*r/(p+r) if p+r>0 else 0\nprint('Micro F1 no filter (%d): %.6f' % (len(all_inst), micro_all))\n\n# Micro F1 (gold filter)\ntp_f = fp_f = fn_f = 0\nfor inst in non_empty:\n    tp, fp, fn = entity_strict_match(inst['greedy']['entities'], inst['gold']['entities'])\n    tp_f += tp; fp_f += fp; fn_f += fn\np2 = tp_f/(tp_f+fp_f) if tp_f+fp_f>0 else 0\nr2 = tp_f/(tp_f+fn_f) if tp_f+fn_f>0 else 0\nmicro_filt = 2*p2*r2/(p2+r2) if p2+r2>0 else 0\nprint('Micro F1 gold filter (%d): %.6f' % (len(non_empty), micro_filt))\n\n# Also check: what does the existing output say?\nimport os\nout_dgs = BASE + '/output/dgs_full_validation_results.json'\nif os.path.exists(out_dgs):\n    with open(out_dgs) as f:\n        d = json.load(f)\n    if 'datasets' in d:\n        for name, ds in d['datasets'].items():\n            if 'SciERC' in name:\n                print('DGS output for %s:' % name)\n                print('  n_instances:', ds.get('n_instances'))\n                if 'macro' in ds:\n                    print('  macro greedy:', ds['macro'].get('greedy', {}).get('mean'))\n                if 'micro' in ds:\n                    print('  micro greedy:', ds['micro'].get('greedy'))\n\n# Check consensus output\nout_cons = BASE + '/output/entity_consensus_results.json'\nif os.path.exists(out_cons):\n    with open(out_cons) as f:\n        d = json.load(f)\n    for name in d:\n        if 'SciERC' in name or 'scierc' in name.lower():\n            print('Consensus output for %s:' % name)\n            print('  n_instances:', d[name].get('n_instances'))\n            if 'baselines' in d[name]:\n                print('  greedy:', d[name]['baselines'].get('greedy'))\n\n# Check CCS output\nout_ccs = BASE + '/output/ccs_selection_results.json'\nif os.path.exists(out_ccs):\n    with open(out_ccs) as f:\n        d = json.load(f)\n    if 'datasets' in d:\n        for name in d['datasets']:\n            if 'SciERC' in name:\n                print('CCS output for %s:' % name)\n                r = d['datasets'][name]\n                print('  n_instances:', r.get('n_instances'))\n                print('  greedy_f1:', r.get('greedy_f1'))\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python -c \"\nimport json, sys\nsys.path.insert(0, 'code')\nfrom evaluation import entity_strict_match\n\nBASE = '/root/autodl-tmp/struct_self_consist_ie'\nSCIERC = BASE + '/output/exp_012_rerun_1024/samples.jsonl'\n\nall_inst = []\nwith open(SCIERC) as f:\n    for line in f:\n        all_inst.append(json.loads(line))\n\nnon_empty = [x for x in all_inst if len(x['gold']['entities'])>0]\n\n# Micro F1 (no filter)\ntp_all = fp_all = fn_all = 0\nfor inst in all_inst:\n    tp, fp, fn = entity_strict_match(inst['greedy']['entities'], inst['gold']['entities'])\n    tp_all += tp; fp_all += fp; fn_all += fn\np = tp_all/(tp_all+fp_all) if tp_all+fp_all>0 else 0\nr = tp_all/(tp_all+fn_all) if tp_all+fn_all>0 else 0\nmicro_all = 2*p*r/(p+r) if p+r>0 else 0\nprint('Micro F1 no filter (%d): %.6f' % (len(all_inst), micro_all))\n\n# Micro F1 (gold filter)\ntp_f = fp_f = fn_f = 0\nfor inst in non_empty:\n    tp, fp, fn = entity_strict_match(inst['greedy']['entities'], inst['gold']['entities'])\n    tp_f += tp; fp_f += fp; fn_f += fn\np2 = tp_f/(tp_f+fp_f) if tp_f+fp_f>0 else 0\nr2 = tp_f/(tp_f+fn_f) if tp_f+fn_f>0 else 0\nmicro_filt = 2*p2*r2/(p2+r2) if p2+r2>0 else 0\nprint('Micro F1 gold filter (%d): %.6f' % (len(non_empty), micro_filt))\n\n# Also check: what does the existing output say?\nimport os\nout_dgs = BASE + '/output/dgs_full_validation_results.json'\nif os.path.exists(out_dgs):\n    with open(out_dgs) as f:\n        d = json.load(f)\n    if 'datasets' in d:\n        for name, ds in d['datasets'].items():\n            if 'SciERC' in name:\n                print('DGS output for %s:' % name)\n                print('  n_instances:', ds.get('n_instances'))\n                if 'macro' in ds:\n                    print('  macro greedy:', ds['macro'].get('greedy', {}).get('mean'))\n                if 'micro' in ds:\n                    print('  micro greedy:', ds['micro'].get('greedy'))\n\n# Check consensus output\nout_cons = BASE + '/output/entity_consensus_results.json'\nif os.path.exists(out_cons):\n    with open(out_cons) as f:\n        d = json.load(f)\n    for name in d:\n        if 'SciERC' in name or 'scierc' in name.lower():\n            print('Consensus output for %s:' % name)\n            print('  n_instances:', d[name].get('n_instances'))\n            if 'baselines' in d[name]:\n                print('  greedy:', d[name]['baselines'].get('greedy'))\n\n# Check CCS output\nout_ccs = BASE + '/output/ccs_selection_results.json'\nif os.path.exists(out_ccs):\n    with open(out_ccs) as f:\n        d = json.load(f)\n    if 'datasets' in d:\n        for name in d['datasets']:\n            if 'SciERC' in name:\n                print('CCS output for %s:' % name)\n                r = d['datasets'][name]\n                print('  n_instances:', r.get('n_instances'))\n                print('  greedy_f1:', r.get('greedy_f1'))\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T18:03:57.556200+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Micro F1 no filter (551): 0.663281\\nMicro F1 gold filter (529): 0.666267\\nConsensus output for SciERC:\\n  n_instances: 529\\n  greedy: {'mean': 0.6439219990259687, 'ci_lo': 0.6173592213289757, 'ci_hi': 0.6692870456575559}\\nCCS output for SciERC:\\n  n_instances: 529\\n  greedy_f1: {'mean': 0.6439219990259687, 'ci_lo': 0.6173592213289757, 'ci_hi': 0.6692870456575559}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-18T18:03:57.556368+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"*dgs*\" -o -name \"*validation*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"*dgs*\" -o -name \"*validation*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-18T18:03:57.556505+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/dgs_selection_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-18T18:03:57.556626+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/*.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/*.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-18T18:03:57.556780+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root   4767 May 17 22:19 /root/autodl-tmp/struct_self_consist_ie/output/adalp_analysis_results.json\\n-rw-r--r-- 1 root root   3142 May 19 01:53 /root/autodl-tmp/struct_self_consist_ie/output/adaptive_temperature_results.json\\n-rw-r--r-- 1 root root   7926 May 15 20:56 /root/autodl-tmp/struct_self_consist_ie/output/analysis_fk_bootstrap_ci.json\\n-rw-r--r-- 1 root root   5824 May 15 21:16 /root/autodl-tmp/struct_self_consist_ie/output/analysis_fk_bootstrap_per_instance.json\\n-rw-r--r-- 1 root root 150381 May 15 21:15 /root/autodl-tmp/struct_self_consist_ie/output/analysis_lp_range_cdf.json\\n-rw-r--r-- 1 root root   3197 May 15 21:15 /root/autodl-tmp/struct_self_consist_ie/output/analysis_lp_range_cdf_n16_3seed.json\\n-rw-r--r-- 1 root root   1852 May 19 00:30 /root/autodl-tmp/struct_self_consist_ie/output/analysis_mbr_selection.json\\n-rw-r--r-- 1 root root  10542 May 15 20:46 /root/autodl-tmp/struct_self_consist_ie/output/analysis_multiseed_selection_f1.json\\n-rw-r--r-- 1 root root  20864 May 15 21:14 /root/autodl-tmp/struct_self_consist_ie/output/analysis_scierc_n16_3seed_selection_f1.json\\n-rw-r--r-- 1 root root  30781 May 15 21:26 /root/autodl-tmp/struct_self_consist_ie/output/analysis_scierc_n16_3seed_selection_f1_merged.json\\n-rw-r--r-- 1 root root   9919 May 15 21:26 /root/autodl-tmp/struct_self_consist_ie/output/analysis_scierc_re_n16_3seed_selection_f1.json\\n-rw-r--r-- 1 root root   7621 May 15 22:57 /root/autodl-tmp/struct_self_consist_ie/output/analysis_unified_rho_full.json\\n-rw-r--r-- 1 root root  18675 May 15 06:05 /root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_summary.json\\n-rw-r--r-- 1 root root  23857 May 17 22:20 /root/autodl-tmp/struct_self_consist_ie/output/calibration_baseline_results.json\\n-rw-r--r-- 1 root root   5228 May 19 01:36 /root/autodl-tmp/struct_self_consist_ie/output/ccs_selection_results.json\\n-rw-r--r-- 1 root root   2098 May 14 20:48 
+…[truncated 3570 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-18T18:03:57.556923+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python -c \"\nimport json\nwith open('output/dgs_selection_results.json') as f:\n    d = json.load(f)\nif 'datasets' in d:\n    for name, ds in d['datasets'].items():\n        if 'SciERC' in name or 'scierc' in name.lower():\n            print('DGS output for %s:' % name)\n            print('  n_instances:', ds.get('n_instances'))\n            if 'macro' in ds:\n                print('  macro greedy:', ds['macro'].get('greedy'))\n            if 'micro' in ds:\n                print('  micro greedy:', ds['micro'].get('greedy'))\n            print('  greedy_f1 direct:', ds.get('greedy_f1'))\nelse:\n    # Maybe top-level structure\n    for k in list(d.keys())[:5]:\n        print(k, ':', str(d[k])[:200])\n    if 'SciERC' in d:\n        print('SciERC full:', json.dumps(d['SciERC'], indent=2)[:500])\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python -c \"\nimport json\nwith open('output/dgs_selection_results.json') as f:\n    d = json.load(f)\nif 'datasets' in d:\n    for name, ds in d['datasets'].items():\n        if 'SciERC' in name or 'scierc' in name.lower():\n            print('DGS output for %s:' % name)\n            print('  n_instances:', ds.get('n_instances'))\n            if 'macro' in ds:\n                print('  macro greedy:', ds['macro'].get('greedy'))\n            if 'micro' in ds:\n                print('  micro greedy:', ds['micro'].get('greedy'))\n            print('  greedy_f1 direct:', ds.get('greedy_f1'))\nelse:\n    # Maybe top-level structure\n    for k in list(d.keys())[:5]:\n        print(k, ':', str(d[k])[:200])\n    if 'SciERC' in d:\n        print('SciERC full:', json.dumps(d['SciERC'], indent=2)[:500])\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-18T18:03:57.557075+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DGS output for SciERC:\\n  n_instances: None\\n  greedy_f1 direct: None\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-18T18:03:57.557230+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python -c \"\nimport json\nwith open('output/dgs_selection_results.json') as f:\n    d = json.load(f)\n# Print top-level keys and SciERC entry\nfor k in d:\n    print('Key:', k)\nif 'datasets' in d:\n    for name in d['datasets']:\n        print('Dataset:', name)\n        ds = d['datasets'][name]\n        for k2 in ds:\n            val = ds[k2]\n            if isinstance(val, (int, float, str)):\n                print('  %s: %s' % (k2, val))\n            elif isinstance(val, dict):\n                print('  %s: %s' % (k2, {kk: vv for kk, vv in list(val.items())[:3]}))\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python -c \"\nimport json\nwith open('output/dgs_selection_results.json') as f:\n    d = json.load(f)\n# Print top-level keys and SciERC entry\nfor k in d:\n    print('Key:', k)\nif 'datasets' in d:\n    for name in d['datasets']:\n        print('Dataset:', name)\n        ds = d['datasets'][name]\n        for k2 in ds:\n            val = ds[k2]\n            if isinstance(val, (int, float, str)):\n                print('  %s: %s' % (k2, val))\n            elif isinstance(val, dict):\n                print('  %s: %s' % (k2, {kk: vv for kk, vv in list(val.items())[:3]}))\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-18T18:03:57.557392+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Key: metadata\\nKey: datasets\\nKey: summary\\nDataset: SciERC\\n  n_instances_total: 551\\n  n_instances_used: 529\\n  n_gold_nonempty: 529\\n  n_filtered_out: 22\\n  n_degenerate: 98\\n  n_nondegenerate: 431\\n  degen_pct: 18.5\\n  greedy: {'mean': 0.641721305493128, 'ci_lo': 0.6155417046721395, 'ci_hi': 0.667159947555811}\\n  lp_all: {'mean': 0.6402520919534153, 'ci_lo': 0.6144136476839691, 'ci_hi': 0.665545785867147}\\n  gated: {'mean': 0.6399771306198528, 'ci_lo': 0.6141215274958186, 'ci_hi': 0.6652288060605641}\\n  oracle: {'mean': 0.77853160806847, 'ci_lo': 0.7561625729867696, 'ci_hi': 0.799798751972665}\\n  delta_gated_minus_greedy: {'delta': -0.0017441748732752841, 'ci_lo': -0.015437996156332567, 'ci_hi': 0.012204006749764629}\\n  delta_gated_minus_lp: {'delta': -0.0002749613335624677, 'ci_lo': -0.0008248840006874758, 'ci_hi': 0.0}\\n  degenerate: {'greedy_eq_gated': {'mean': 0.6255830903790087, 'ci_lo': 0.5449465500485908, 'ci_hi': 0.7046404275996112}, 'oracle': {'mean': 0.6270673204346673, 'ci_lo': 0.5466759431045145, 'ci_hi': 0.7056873398710134}}\\n  nondegenerate: {'greedy': {'mean': 0.645390783639726, 'ci_lo': 0.6197277488597265, 'ci_hi': 0.6718228460346652}, 'lp': {'mean': 0.6432500214402767, 'ci_lo': 0.6171912902771372, 'ci_hi': 0.6690496343048546}, 'oracle': {'mean': 0.8129712836789403, 'ci_lo': 0.7949115334266147, 'ci_hi': 0.8314804878029937}}\\nDataset: CoNLL\\n  n_instances_total: 3453\\n  n_instances_used: 2756\\n  n_gold_nonempty: 2756\\n  n_filtered_out: 697\\n  n_degenerate: 1597\\n  n_nondegenerate: 1159\\n  degen_pct: 57.9\\n  greedy: {'mean': 0.9069619201150406, 'ci_lo': 0.8976105091489706, 'ci_hi': 0.9158281466155198}\\n  lp_all: {'mean': 0.8988964753682902, 'ci_lo': 0.8891507200010481, 'ci_hi': 0.9082347494759536}\\n  gated: {'mean': 0.8988964753682902, 'ci_lo': 0.8891507200010481, 'ci_hi': 0.9082347494759536}\\n  oracle: {'mean': 0.949353771212531, 'ci_lo': 0.9423720882485339, 'ci_
+…[truncated 2195 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-18T18:03:57.557583+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -rl \"dgs_selection_results\" /root/autodl-tmp/struct_self_consist_ie/code/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -rl \"dgs_selection_results\" /root/autodl-tmp/struct_self_consist_ie/code/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-18T18:03:57.557717+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/analysis_degen_gated_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_gold_filter.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-18T18:03:57.557841+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -rl \"gated\" /root/autodl-tmp/struct_self_consist_ie/code/*.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -rl \"gated\" /root/autodl-tmp/struct_self_consist_ie/code/*.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-18T18:03:57.557970+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/analysis_d140_oracle_gated.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_degen_gated_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_ablation.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_gold_filter.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_n16_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_re_n16_selection.py\\n/root/autodl-tmp/struct_self_consist_ie/code/d140_oracle_gated_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/dals_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/dals_fixed_tau_evaluation.py\\n/root/autodl-tmp/struct_self_consist_ie/code/plot_selection_gap_3seed.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-18T18:03:57.558111+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_gold_filter.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_gold_filter.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-18T18:03:57.558364+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"DGS selection analysis with gold_filter=True (skip instances with empty gold entities).\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nimport numpy as np\\n\\ndef entity_set(entities):\\n    return set((e['start'], e['end'], e['type']) for e in entities)\\n\\ndef compute_f1(pred_entities, gold_entities):\\n    pred_set = entity_set(pred_entities)\\n    gold_set = entity_set(gold_entities)\\n    if len(gold_set) == 0 and len(pred_set) == 0:\\n        return 1.0\\n    if len(gold_set) == 0 or len(pred_set) == 0:\\n        return 0.0\\n    tp = len(pred_set & gold_set)\\n    p = tp / len(pred_set)\\n    r = tp / len(gold_set)\\n    if p + r == 0:\\n        return 0.0\\n    return 2 * p * r / (p + r)\\n\\ndef analyze_dataset(path, name, n_samples=8, gold_filter=True):\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            instances.append(json.loads(line))\\n\\n    n_total = len(instances)\\n    n_gold_nonempty = sum(1 for inst in instances if inst['gold']['entities'])\\n    n_filtered_out = 0\\n\\n    greedy_f1s, lp_f1s, gated_f1s, oracle_f1s = [], [], [], []\\n    degen_greedy, degen_oracle = [], []\\n    nondegen_greedy, nondegen_lp, nondegen_oracle = [], [], []\\n    n_degen = 0\\n\\n    for inst in instances:\\n        gold_ents = inst['gold']['entities']\\n        if gold_filter and not gold_ents:\\n            n_filtered_out += 1\\n            continue\\n\\n        samples = inst['samples'][:n_samples]\\n        greedy = inst['greedy']\\n\\n        sample_f1s = [compute_f1(s['entities'], gold_ents) for s in samples]\\n        greedy_f1 = compute_f1(greedy['entities'], gold_ents)\\n        oracle_f1 = max(sample_f1s)\\n\\n        lp_idx = max(range(len(samples)), key=lambda i: samples[i]['mean_logprob'])\\n        lp_f1 = sample_f1s[lp_idx]\\n\\n        is_degen = len(set(round(f, 10) for f in sample_f1s)) == 1\\n\\n        if is_d
+…[truncated 6740 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-18T18:03:57.558571+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python -c \"\nimport json\nimport numpy as np\n\n# Read full dataset paths from analysis_dgs_gold_filter.py\n# It uses exp001_n16_seed42 for SciERC\npath_old = 'output/exp001_n16_seed42/samples.jsonl'\npath_new = 'output/exp_012_rerun_1024/samples.jsonl'\n\ndef load_filtered(path):\n    insts = []\n    with open(path) as f:\n        for line in f:\n            obj = json.loads(line)\n            if obj['gold']['entities']:\n                insts.append(obj)\n    return insts\n\ndef f1(pred_e, gold_e):\n    ps = set((e['start'],e['end'],e['type']) for e in pred_e)\n    gs = set((e['start'],e['end'],e['type']) for e in gold_e)\n    if len(ps)==0 and len(gs)==0: return 1.0\n    if len(ps)==0 or len(gs)==0: return 0.0\n    tp = len(ps & gs)\n    if tp==0: return 0.0\n    p=tp/len(ps); r=tp/len(gs)\n    return 2*p*r/(p+r)\n\nold = load_filtered(path_old)\nnew = load_filtered(path_new)\n\nold_f1s = [f1(x['greedy']['entities'], x['gold']['entities']) for x in old]\nnew_f1s = [f1(x['greedy']['entities'], x['gold']['entities']) for x in new]\n\nprint('exp001_n16_seed42 (%d inst): greedy=%.6f' % (len(old), np.mean(old_f1s)))\nprint('exp_012_rerun_1024 (%d inst): greedy=%.6f' % (len(new), np.mean(new_f1s)))\nprint()\nprint('0.6417 match? exp001_n16_seed42 = %.4f' % np.mean(old_f1s))\nprint('0.6439 match? exp_012_rerun_1024 = %.4f' % np.mean(new_f1s))\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python -c \"\nimport json\nimport numpy as np\n\n# Read full dataset paths from analysis_dgs_gold_filter.py\n# It uses exp001_n16_seed42 for SciERC\npath_old = 'output/exp001_n16_seed42/samples.jsonl'\npath_new = 'output/exp_012_rerun_1024/samples.jsonl'\n\ndef load_filtered(path):\n    insts = []\n    with open(path) as f:\n        for line in f:\n            obj = json.loads(line)\n            if obj['gold']['entities']:\n                insts.append(obj)\n    return insts\n\ndef f1(pred_e, gold_e):\n    ps = set((e['start'],e['end'],e['type']) for e in pred_e)\n    gs = set((e['start'],e['end'],e['type']) for e in gold_e)\n    if len(ps)==0 and len(gs)==0: return 1.0\n    if len(ps)==0 or len(gs)==0: return 0.0\n    tp = len(ps & gs)\n    if tp==0: return 0.0\n    p=tp/len(ps); r=tp/len(gs)\n    return 2*p*r/(p+r)\n\nold = load_filtered(path_old)\nnew = load_filtered(path_new)\n\nold_f1s = [f1(x['greedy']['entities'], x['gold']['entities']) for x in old]\nnew_f1s = [f1(x['greedy']['entities'], x['gold']['entities']) for x in new]\n\nprint('exp001_n16_seed42 (%d inst): greedy=%.6f' % (len(old), np.mean(old_f1s)))\nprint('exp_012_rerun_1024 (%d inst): greedy=%.6f' % (len(new), np.mean(new_f1s)))\nprint()\nprint('0.6417 match? exp001_n16_seed42 = %.4f' % np.mean(old_f1s))\nprint('0.6439 match? exp_012_rerun_1024 = %.4f' % np.mean(new_f1s))\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-18T18:03:57.558722+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp001_n16_seed42 (529 inst): greedy=0.641721\\nexp_012_rerun_1024 (529 inst): greedy=0.643922\\n\\n0.6417 match? exp001_n16_seed42 = 0.6417\\n0.6439 match? exp_012_rerun_1024 = 0.6439\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-18T18:03:57.558890+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"datasets\\|samples.jsonl\\|exp_\\|exp0\" /root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_gold_filter.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"datasets\\|samples.jsonl\\|exp_\\|exp0\" /root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_gold_filter.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-18T18:03:57.559018+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-18T18:03:57.559163+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"samples.jsonl\\|DATASETS\\|path\" /root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_full_validation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"samples.jsonl\\|DATASETS\\|path\" /root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_full_validation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-18T18:03:57.559295+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-18T18:03:57.559414+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"samples.jsonl\" /root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_gold_filter.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"samples.jsonl\" /root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_gold_filter.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-18T18:03:57.559537+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"114:    ('/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl', 'SciERC', 8),\\n115:    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/samples.jsonl', 'CoNLL', 8),\\n116:    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/samples.jsonl', 'FewNERD', 8),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-18T18:03:57.559655+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"samples.jsonl\" /root/autodl-tmp/struct_self_consist_ie/code/entity_consensus.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"samples.jsonl\" /root/autodl-tmp/struct_self_consist_ie/code/entity_consensus.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-18T18:03:57.559778+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"24:        \\\"path\\\": f\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\",\\n28:        \\\"path\\\": f\\\"{BASE}/output/exp_002_conll_n16_r1024/samples.jsonl\\\",\\n32:        \\\"path\\\": f\\\"{BASE}/output/exp_027_fewnerd_n16/samples.jsonl\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-18T18:03:57.559895+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"samples.jsonl\" /root/autodl-tmp/struct_self_consist_ie/code/ccs_selection.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"samples.jsonl\" /root/autodl-tmp/struct_self_consist_ie/code/ccs_selection.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-18T18:03:57.560018+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"18:    (f\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\", \\\"SciERC\\\", 8),\\n19:    (f\\\"{BASE}/output/exp_002_conll_n16_r1024/samples.jsonl\\\", \\\"CoNLL\\\", 8),\\n20:    (f\\\"{BASE}/output/exp_027_fewnerd_n16/samples.jsonl\\\", \\\"FewNERD\\\", 8),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-18T18:03:57.560204+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && sed -i \"s|output/exp001_n16_seed42/samples.jsonl|output/exp_012_rerun_1024/samples.jsonl|\" code/analysis_dgs_gold_filter.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && sed -i \"s|output/exp001_n16_seed42/samples.jsonl|output/exp_012_rerun_1024/samples.jsonl|\" code/analysis_dgs_gold_filter.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-18T18:03:57.560343+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-18T18:03:57.560462+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"samples.jsonl\" /root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_gold_filter.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"samples.jsonl\" /root/autodl-tmp/struct_self_consist_ie/code/analysis_dgs_gold_filter.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-18T18:03:57.560585+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"114:    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl', 'SciERC', 8),\\n115:    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/samples.jsonl', 'CoNLL', 8),\\n116:    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/samples.jsonl', 'FewNERD', 8),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-18T18:03:57.560721+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && sed -i '1 a\\# FIX(2026-05-18): SciERC data path corrected from exp001_n16_seed42 to exp_012_rerun_1024\\n# to match entity_consensus.py and ccs_selection.py (resolves 0.22pp greedy F1 discrepancy)' code/analysis_dgs_gold_filter.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && sed -i '1 a\\# FIX(2026-05-18): SciERC data path corrected from exp001_n16_seed42 to exp_012_rerun_1024\\n# to match entity_consensus.py and ccs_selection.py (resolves 0.22pp greedy F1 discrepancy)' code/analysis_dgs_gold_filter.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-18T18:03:57.560845+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-18T18:03:57.560976+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python code/analysis_dgs_gold_filter.py 2>&1",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python code/analysis_dgs_gold_filter.py 2>&1",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-18T18:03:57.561163+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n==========================================================================================\\nDGS Selection Results (gold_filter=True)\\n==========================================================================================\\n\\n--- SciERC ---\\nTotal: 551, Gold-nonempty: 529, Used: 529, Filtered: 22\\nDegenerate: 94 (17.8%), Non-degenerate: 435 (82.2%)\\n  Greedy: 0.6439  LP-all: 0.6501  DGS: 0.6513  Oracle: 0.7758\\n  DGS-Greedy: +0.0074  DGS-LP: +0.0013\\n\\n--- CoNLL ---\\nTotal: 3453, Gold-nonempty: 2756, Used: 2756, Filtered: 697\\nDegenerate: 1597 (57.9%), Non-degenerate: 1159 (42.1%)\\n  Greedy: 0.9070  LP-all: 0.8989  DGS: 0.8989  Oracle: 0.9494\\n  DGS-Greedy: -0.0081  DGS-LP: +0.0000\\n\\n--- FewNERD ---\\nTotal: 5000, Gold-nonempty: 4351, Used: 4351, Filtered: 649\\nDegenerate: 628 (14.4%), Non-degenerate: 3723 (85.6%)\\n  Greedy: 0.7478  LP-all: 0.7610  DGS: 0.7615  Oracle: 0.8686\\n  DGS-Greedy: +0.0137  DGS-LP: +0.0005\\n\\n==========================================================================================\\nCOMPARISON: old (no gold filter) vs new (gold_filter=True)\\n==========================================================================================\\nDataset      Metric              Old        New      Delta\\n--------------------------------------------------------\\nSciERC       Greedy           0.6417     0.6439    +0.0022\\nSciERC       LP-all           0.6403     0.6501    +0.0098\\nSciERC       DGS              0.6400     0.6513    +0.0113\\nSciERC       Oracle           0.7785     0.7758    -0.0027\\nSciERC       Degen%            18.5%      17.8%      -0.7%\\n\\nCoNLL        Greedy           0.9070     0.9070    -0.0000\\nCoNLL        LP-all           0.8989     0.8989    -0.0000\\nCoNLL        DGS              0.8989     0.8989    -0.0000\\nCoNLL        Oracle           0.9494     0.9494    -0.0000\\nCoNLL        Degen%            57.9%      57.9%      +0.0%\\n\\nFe
+…[truncated 1374 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-18T18:03:57.561374+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python code/entity_consensus.py 2>&1",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python code/entity_consensus.py 2>&1",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-18T18:03:57.561529+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python code/ccs_selection.py 2>&1",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python code/ccs_selection.py 2>&1",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-18T18:03:57.561675+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\nProcessing SciERC...\\n  Instances: 529 (N=8)\\n  Greedy               0.6439  [0.6174, 0.6693]\\n  LP Selection         0.6501  [0.6247, 0.6743]\\n  Majority Vote        0.6292  [0.6024, 0.6543]\\n  Oracle               0.7758  [0.7535, 0.7968]\\n  Consensus(high=0.5_medium=0.1): 0.6326  [0.6075, 0.6571]\\n  Consensus(high=0.6_medium=0.2): 0.6444  [0.6183, 0.6677]\\n  Consensus(high=0.7_medium=0.3): 0.6358  [0.6085, 0.6610]\\n  Consensus(high=0.8_medium=0.4): 0.6179  [0.5890, 0.6448]\\n\\nProcessing CoNLL...\\n  Instances: 2756 (N=16)\\n  Greedy               0.9070  [0.8974, 0.9159]\\n  LP Selection         0.8978  [0.8881, 0.9073]\\n  Majority Vote        0.8959  [0.8859, 0.9052]\\n  Oracle               0.9571  [0.9505, 0.9634]\\n  Consensus(high=0.5_medium=0.1): 0.8979  [0.8882, 0.9070]\\n  Consensus(high=0.6_medium=0.2): 0.9015  [0.8919, 0.9104]\\n  Consensus(high=0.7_medium=0.3): 0.8942  [0.8845, 0.9038]\\n  Consensus(high=0.8_medium=0.4): 0.8833  [0.8724, 0.8932]\\n\\nProcessing FewNERD...\\n  Instances: 4351 (N=16)\\n  Greedy               0.7478  [0.7375, 0.7577]\\n  LP Selection         0.7666  [0.7567, 0.7763]\\n  Majority Vote        0.6988  [0.6877, 0.7093]\\n  Oracle               0.9020  [0.8954, 0.9084]\\n  Consensus(high=0.5_medium=0.1): 0.7583  [0.7485, 0.7676]\\n  Consensus(high=0.6_medium=0.2): 0.7537  [0.7439, 0.7630]\\n  Consensus(high=0.7_medium=0.3): 0.7253  [0.7142, 0.7352]\\n  Consensus(high=0.8_medium=0.4): 0.6780  [0.6668, 0.6889]\\n\\nJSON saved to /root/autodl-tmp/struct_self_consist_ie/output/entity_consensus_results.json\\nReport saved to /root/autodl-tmp/struct_self_consist_ie/output/entity_consensus_report.md\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.74}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-18T18:03:57.561826+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Processing SciERC...\\n  N=529, median_lp_range=0.042720\\n  Stages: {'stage1_greedy': 94, 'stage2_mv': 217, 'stage3_lp': 218}\\n  Greedy=0.6439  LP=0.6501  DGS=0.6513  CCS=0.6501  Oracle=0.7758\\n  CCS-Greedy: +0.0061 [-0.0070, +0.0200]\\nProcessing CoNLL...\\n  N=2756, median_lp_range=0.086985\\n  Stages: {'stage1_greedy': 1597, 'stage2_mv': 579, 'stage3_lp': 580}\\n  Greedy=0.9070  LP=0.8989  DGS=0.8989  CCS=0.8964  Oracle=0.9494\\n  CCS-Greedy: -0.0105 [-0.0149, -0.0062]\\nProcessing FewNERD...\\n  N=4351, median_lp_range=0.073992\\n  Stages: {'stage1_greedy': 628, 'stage2_mv': 1861, 'stage3_lp': 1862}\\n  Greedy=0.7478  LP=0.7610  DGS=0.7615  CCS=0.7277  Oracle=0.8686\\n  CCS-Greedy: -0.0201 [-0.0259, -0.0143]\\n\\nJSON saved to /root/autodl-tmp/struct_self_consist_ie/output/ccs_selection_results.json\\nReport saved to /root/autodl-tmp/struct_self_consist_ie/output/ccs_selection_report.md\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-18T18:03:57.562001+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python -c \"\nimport json\n\naudit = {\n    'audit_date': '2026-05-18',\n    'root_cause': {\n        'summary': 'analysis_dgs_gold_filter.py used stale SciERC data path (exp001_n16_seed42) while entity_consensus.py and ccs_selection.py used the current path (exp_012_rerun_1024)',\n        'affected_script': 'code/analysis_dgs_gold_filter.py',\n        'affected_dataset': 'SciERC',\n        'stale_path': 'output/exp001_n16_seed42/samples.jsonl',\n        'correct_path': 'output/exp_012_rerun_1024/samples.jsonl',\n        'discrepancy_pp': 0.22,\n        'other_datasets_affected': False,\n        'note': 'CoNLL and FewNERD paths were already consistent across all scripts'\n    },\n    'fix': {\n        'action': 'Updated SciERC data path in analysis_dgs_gold_filter.py from exp001_n16_seed42 to exp_012_rerun_1024',\n        'verification': 'Re-ran all three scripts; greedy F1 now matches across all scripts and datasets'\n    },\n    'verified_greedy_f1': {\n        'SciERC': {\n            'analysis_dgs_gold_filter': 0.6439,\n            'entity_consensus': 0.6439,\n            'ccs_selection': 0.6439,\n            'n_instances': 529,\n            'gold_filter': True,\n            'consistent': True\n        },\n        'CoNLL': {\n            'analysis_dgs_gold_filter': 0.9070,\n            'entity_consensus': 0.9070,\n            'ccs_selection': 0.9070,\n            'n_instances': 2756,\n            'gold_filter': True,\n            'consistent': True\n        },\n        'FewNERD': {\n            'analysis_dgs_gold_filter': 0.7478,\n            'entity_consensus': 0.7478,\n            'ccs_selection': 0.7478,\n            'n_instances': 4351,\n            'gold_filter': True,\n            'consistent': True\n        }\n    },\n    'full_results_after_fix': {\n        'dgs_selection': {\n            'SciERC': {'greedy': 0.6439, 'lp': 0.6501, 'dgs': 0.6513, 'oracle': 0.7758, 'n': 529, 'degen_pct': 17.8},\n            'CoNLL': {'greedy': 0.9070, 'lp': 0.8989, 'dgs': 0.8989, 'oracle': 0.9494, 'n': 2756, 'degen_pct': 57.9},\n            'FewNERD': {'greedy': 0.7478, 'lp': 0.7610, 'dgs': 0.7615, 'oracle': 0.8686, 'n': 4351, 'degen_pct': 14.4}\n        },\n        'entity_consensus': {\n            'SciERC': {'greedy': 0.6439, 'lp': 0.6501, 'mv': 0.6292, 'oracle': 0.7758, 'n': 529},\n            'CoNLL': {'greedy': 0.9070, 'lp': 0.8978, 'mv': 0.8959, 'oracle': 0.9571, 'n': 2756},\n            'FewNERD': {'greedy': 0.7478, 'lp': 0.7666, 'mv': 0.6988, 'oracle': 0.9020, 'n': 4351}\n        },\n        'ccs_selection': {\n            'SciERC': {'greedy': 0.6439, 'lp': 0.6501, 'dgs': 0.6513, 'ccs': 0.6501, 'oracle': 0.7758, 'n': 529},\n            'CoNLL': {'greedy': 0.9070, 'lp': 0.8989, 'dgs': 0.8989, 'ccs': 0.8964, 'oracle': 0.9494, 'n': 2756},\n            'FewNERD': {'greedy': 0.7478, 'lp': 0.7610, 'dgs': 0.7615, 'ccs': 0.7277, 'oracle': 0.8686, 'n': 4351}\n        }\n    },\n    'secondary_note': 'entity_consensus.py does not truncate samples to N=8 (uses all available samples, e.g. N=16 for CoNLL/FewNERD). This affects LP/MV/Oracle metrics but NOT greedy F1.'\n}\n\nwith open('output/f1_audit_results.json', 'w') as f:\n    json.dump(audit, f, indent=2)\nprint('Written to output/f1_audit_results.json')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python -c \"\nimport json\n\naudit = {\n    'audit_date': '2026-05-18',\n    'root_cause': {\n        'summary': 'analysis_dgs_gold_filter.py used stale SciERC data path (exp001_n16_seed42) while entity_consensus.py and ccs_selection.py used the current path (exp_012_rerun_1024)',\n        'affected_script': 'code/analysis_dgs_gold_filter.py',\n        'affected_dataset': 'SciERC',\n        'stale_path': 'output/exp001_n16_seed42/samples.jsonl',\n        'correct_path': 'output/exp_012_rerun_1024/samples.jsonl',\n        'discrepancy_pp': 0.22,\n        'other_datasets_affected': False,\n        'note': 'CoNLL and FewNERD paths were already consistent across all scripts'\n    },\n    'fix': {\n        'action': 'Updated SciERC data path in analysis_dgs_gold_filter.py from exp001_n16_seed42 to exp_012_rerun_1024',\n        'verification': 'Re-ran all three scripts; greedy F1 now matches across all scripts and datasets'\n    },\n    'verified_greedy_f1': {\n        'SciERC': {\n            'analysis_dgs_gold_filter': 0.6439,\n            'entity_consensus': 0.6439,\n            'ccs_selection': 0.6439,\n            'n_instances': 529,\n            'gold_filter': True,\n            'consistent': True\n        },\n        'CoNLL': {\n            'analysis_dgs_gold_filter': 0.9070,\n            'entity_consensus': 0.9070,\n            'ccs_selection': 0.9070,\n            'n_instances': 2756,\n            'gold_filter': True,\n            'consistent': True\n        },\n        'FewNERD': {\n            'analysis_dgs_gold_filter': 0.7478,\n            'entity_consensus': 0.7478,\n            'ccs_selection': 0.7478,\n            'n_instances': 4351,\n            'gold_filter': True,\n            'consistent': True\n        }\n    },\n    'full_results_after_fix': {\n        'dgs_selection': {\n            'SciERC': {'greedy': 0.6439, 'lp': 0.6501, 'dgs': 0.6513, 'oracle': 0.7758, 'n': 529, 'degen_pct': 17.8},\n            'CoNLL': {'greedy': 0.9070, 'lp': 0.8989, 'dgs': 0.8989, 'oracle': 0.9494, 'n': 2756, 'degen_pct': 57.9},\n            'FewNERD': {'greedy': 0.7478, 'lp': 0.7610, 'dgs': 0.7615, 'oracle': 0.8686, 'n': 4351, 'degen_pct': 14.4}\n        },\n        'entity_consensus': {\n            'SciERC': {'greedy': 0.6439, 'lp': 0.6501, 'mv': 0.6292, 'oracle': 0.7758, 'n': 529},\n            'CoNLL': {'greedy': 0.9070, 'lp': 0.8978, 'mv': 0.8959, 'oracle': 0.9571, 'n': 2756},\n            'FewNERD': {'greedy': 0.7478, 'lp': 0.7666, 'mv': 0.6988, 'oracle': 0.9020, 'n': 4351}\n        },\n        'ccs_selection': {\n            'SciERC': {'greedy': 0.6439, 'lp': 0.6501, 'dgs': 0.6513, 'ccs': 0.6501, 'oracle': 0.7758, 'n': 529},\n            'CoNLL': {'greedy': 0.9070, 'lp': 0.8989, 'dgs': 0.8989, 'ccs': 0.8964, 'oracle': 0.9494, 'n': 2756},\n            'FewNERD': {'greedy': 0.7478, 'lp': 0.7610, 'dgs': 0.7615, 'ccs': 0.7277, 'oracle': 0.8686, 'n': 4351}\n        }\n    },\n    'secondary_note': 'entity_consensus.py does not truncate samples to N=8 (uses all available samples, e.g. N=16 for CoNLL/FewNERD). This affects LP/MV/Oracle metrics but NOT greedy F1.'\n}\n\nwith open('output/f1_audit_results.json', 'w') as f:\n    json.dump(audit, f, indent=2)\nprint('Written to output/f1_audit_results.json')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-18T18:03:57.562190+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Written to output/f1_audit_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73 · 2026-05-18T18:03:57.562374+00:00_
+
+## 排查完成
+
+### 根因
+`analysis_dgs_gold_filter.py` 第 114 行的 SciERC 数据路径指向旧实验 `exp001_n16_seed42/samples.jsonl`，而 `entity_consensus.py` 和 `ccs_selection.py` 使用当前实验 `exp_012_rerun_1024/samples.jsonl`。F1 计算逻辑和 gold_filter 实现在三个脚本中等价，唯一差异就是数据源。
+
+### 修复
+- 将 `analysis_dgs_gold_filter.py` 的 SciERC 路径从 `exp001_n16_seed42` 改为 `exp_012_rerun_1024`
+- CoNLL 和 FewNERD 路径本来就一致，无需修改
+
+### 验证结果（三个脚本完全一致）
+| Dataset | Greedy F1 | N |
+|---------|-----------|---|
+| SciERC | 0.6439 | 529 |
+| CoNLL | 0.9070 | 2756 |
+| FewNERD | 0.7478 | 4351 |
+
+### 附注
+`entity_consensus.py` 未对 samples 截断到 N=8（CoNLL/FewNERD 用全部 16 个 samples），影响 LP/MV/Oracle 指标但不影响 Greedy F1。
+
+审计结果已写入 `output/f1_audit_results.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_f1_inconsistency_audit_20260518T175553"
+}
+```
+
+</details>
+
+---

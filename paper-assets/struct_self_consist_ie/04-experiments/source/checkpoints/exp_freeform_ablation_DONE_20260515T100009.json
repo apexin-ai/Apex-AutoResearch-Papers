@@ -1,0 +1,50 @@
+{
+  "exp_id": "exp_freeform_ablation",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:42:22.868Z",
+    "updated_at": "2026-05-15T10:00:09.238Z",
+    "spec": {
+      "command": "python run_freeform_inference.py --seed 42 --num_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir results/exp_freeform_ablation",
+      "server": "autodl-5090",
+      "gpu": "cuda:0",
+      "pid": "169042",
+      "log_path": "~/runs/struct_self_consist_ie/exp_freeform_ablation.log",
+      "submitted_at": "2026-05-15T09:42:30.236Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "hypothesis": "Free-form decoding recovers logprob variance and selection ability lost under constrained decoding",
+      "plan_id": "exp-018",
+      "data_path": "data/scierc/processed_data",
+      "data_count": 551,
+      "model_name": "qwen3-8b-scierc-merged-v2",
+      "seed": 42,
+      "tmux_session": "exp_freeform_ablation",
+      "wall_clock_seconds": 1059.0,
+      "gpu_hours": 0.29
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "lp_std_ratio_free_vs_constrained": 0.97,
+      "lp_range_ratio": 0.96,
+      "tied_fraction_constrained": 0.597,
+      "tied_fraction_freeform": 0.577,
+      "ner_selection_gap_constrained": 0.0059,
+      "ner_selection_gap_freeform": 0.0018,
+      "re_selection_gap_constrained": -0.0068,
+      "re_selection_gap_freeform": 0.0169,
+      "parse_rate": 0.9995,
+      "ner_vc_rho_constrained": 0.3792,
+      "ner_vc_rho_freeform": 0.4089
+    },
+    "checkpoint_path": "N/A (inference-only experiment)",
+    "completed_at": "2026-05-15T10:00:09.238Z"
+  },
+  "timestamp": "2026-05-15T10:00:09.402892+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_qwen25_72b_zeroshot",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:19:28.597Z",
+    "updated_at": "2026-05-19T06:47:24.504Z",
+    "hypothesis": "The correlation-selection gap persists in zero-shot settings at 72B scale. Qwen2.5-72B-Instruct without fine-tuning should exhibit similar structured self-consistency phenomena on SciERC/CoNLL/FewNERD: oracle headroom exists, QE signals correlate with quality, but instance-level selection fails. This tests generalization beyond fine-tuned models."
+  },
+  "timestamp": "2026-05-19T06:47:24.800366+00:00",
+  "trigger": "update_registry"
+}

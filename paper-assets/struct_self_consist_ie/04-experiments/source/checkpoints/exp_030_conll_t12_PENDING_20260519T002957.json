@@ -1,0 +1,18 @@
+{
+  "exp_id": "exp_030_conll_t12",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T20:24:47.839Z",
+    "updated_at": "2026-05-19T00:29:57.546Z",
+    "hypothesis": "CoNLL T=1.2 temperature ablation: test if higher temperature reduces degeneracy on CoNLL as observed on SciERC",
+    "conclusion": "killed",
+    "failure_reason": "数据不可用于论文：N不一致(N=8 vs T=1.0基准的N=16)。Director决定不重跑——SciERC T消融(T=0.5/0.8/1.0/1.2, 551inst, N=8)已够用，论文温度消融用SciERC单数据集。",
+    "notes": "T=1.2 ablation not in paper scope, SciERC T=1.2 sufficient"
+  },
+  "timestamp": "2026-05-19T00:29:57.825891+00:00",
+  "trigger": "update_registry"
+}

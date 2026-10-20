@@ -1,0 +1,44 @@
+{
+  "exp_id": "exp_conll_t08_s456",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:43:51.393Z",
+    "updated_at": "2026-05-21T01:59:37.027Z",
+    "hypothesis": "CoNLL temperature ablation (T=0.8, seed=456): third seed complementing seed=42+123 for 3-seed statistical power. N=8, Qwen3-8B-FT, CoNLL-2003.",
+    "parent": "exp_conll_t08_s123",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --n_samples 8 --temperature 0.8 --seed 456 --output_dir output/exp_conll_t08_seed456",
+      "server": "autodl-5090-c",
+      "data_path": "data/conll2003",
+      "data_count": 3453,
+      "model_name": "qwen3-8b-conll2003-merged",
+      "seed": 456,
+      "pid": 254524,
+      "gpu": "cuda:2",
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_t08_seed456.log",
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_t08_seed456/",
+      "checkpoint_source": "checkpoints/qwen3-8b-conll2003-merged",
+      "eval_data": "data/conll2003"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "greedy_f1": 0.9064,
+      "oracle_f1": 0.9407,
+      "oracle_headroom": 0.0343,
+      "fleiss_kappa_mean": 0.8229,
+      "soft_jaccard_mean": 0.9233,
+      "rho_SJ_F1_full": 0.4877,
+      "rho_SJ_F1_conditional": 0.4756,
+      "degeneracy_rate_pct": 6.29,
+      "rho_advantage": 0.0058,
+      "verdict": "PASS"
+    },
+    "completed_at": "2026-05-21T01:59:37.027Z"
+  },
+  "timestamp": "2026-05-21T01:59:37.448412+00:00",
+  "trigger": "update_registry"
+}

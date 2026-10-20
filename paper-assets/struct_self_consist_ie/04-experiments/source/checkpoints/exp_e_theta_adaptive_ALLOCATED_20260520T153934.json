@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_e_theta_adaptive",
+  "project": "struct_self_consist_ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:31:49.319Z",
+    "updated_at": "2026-05-20T15:39:34.022Z",
+    "hypothesis": "Threshold-Adaptive SC: N inverse scaling (D191) proves θ choice determines scaling direction. A learned θ predictor (input: degeneracy_level, lp_variance, N, dataset, model) can select per-instance optimal θ, closing the gap between fixed θ=0.5 and oracle θ. Leave-one-config-out CV on 16 configs from existing N=8/16 data. 5 variants: LogReg/MLP × feature subsets + degeneracy-only baseline."
+  },
+  "timestamp": "2026-05-20T15:39:34.382833+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,22 @@
+{
+  "exp_id": "exp_017_llama_conll_n16_s456_r1024",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:17:04.572Z",
+    "updated_at": "2026-05-14T22:17:04.572Z",
+    "spec": {
+      "hypothesis": "D054 rerun: max_tokens=1024. Verify truncation impact on LLaMA CoNLL N=16 seed456.",
+      "parent": "exp_017_llama_conll_n16_s456",
+      "model_name": "llama3.1-8b-conll2003-merged",
+      "dataset": "CoNLL-2003",
+      "seed": 456,
+      "server": "autodl-5090"
+    }
+  },
+  "timestamp": "2026-05-14T22:17:04.704667+00:00",
+  "trigger": "update_registry"
+}

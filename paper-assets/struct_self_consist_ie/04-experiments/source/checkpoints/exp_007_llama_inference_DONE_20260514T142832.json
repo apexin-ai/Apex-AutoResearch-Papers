@@ -1,0 +1,74 @@
+{
+  "exp_id": "exp_007_llama_inference",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:54:48.055Z",
+    "updated_at": "2026-05-14T14:28:32.909Z",
+    "spec": {
+      "command": "python run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp007_llama_inference/",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "75172",
+      "log_path": "~/runs/struct_self_consist_ie/exp_007_llama_inference.log",
+      "submitted_at": "2026-05-14T13:54:47.962Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/scierc/processed_data",
+      "data_count": 551,
+      "model_name": "Meta-Llama-3.1-8B-Instruct (LoRA fine-tuned on SciERC)",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/llama3.1-8b-scierc-merged",
+      "description": "LLaMA-3.1-8B SciERC joint inference (NER+RE) with 8 samples, T=1.0, logprobs collected.",
+      "wall_clock_seconds": 1038.5,
+      "gpu_hours": 0.29
+    },
+    "log_path": "output/exp007_llama_inference/",
+    "checkpoint_path": "N/A",
+    "metrics": {
+      "ner": {
+        "greedy_f1": 0.66,
+        "oracle_f1": 0.781,
+        "headroom": 0.121,
+        "rho_fk": 0.327,
+        "rho_sj": 0.363,
+        "rho_fk_cond": 0.226,
+        "rho_sj_cond": 0.311,
+        "rho_logprob": 0.183,
+        "rho_logprob_cond": 0.109,
+        "structural_beats_surface": true,
+        "sample_f1_pct_zero": 11.6
+      },
+      "re": {
+        "greedy_f1": 0.434,
+        "oracle_f1": 0.568,
+        "headroom": 0.135,
+        "rho_fk": 0.305,
+        "rho_sj": 0.299,
+        "rho_fk_cond": 0.259,
+        "rho_sj_cond": 0.405,
+        "rho_logprob": 0.288,
+        "rho_logprob_cond": 0.092,
+        "structural_beats_surface": false,
+        "sample_f1_pct_zero": 41.2
+      },
+      "n_instances": 551,
+      "N": 8,
+      "T": 1,
+      "seed": 42,
+      "model": "LLaMA-3.1-8B-Instruct",
+      "verdict": "FAIL",
+      "verdict_note": "RE rho_sj_full=0.299 < 0.40; >30% RE samples F1=0"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T14:12:06.442Z"
+  },
+  "timestamp": "2026-05-14T14:28:32.985045+00:00",
+  "trigger": "update_registry"
+}

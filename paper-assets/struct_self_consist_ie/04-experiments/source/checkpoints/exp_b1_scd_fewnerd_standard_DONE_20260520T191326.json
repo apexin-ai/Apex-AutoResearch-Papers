@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp_b1_scd_fewnerd_standard",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:17:37.804Z",
+    "updated_at": "2026-05-20T19:13:26.395Z",
+    "hypothesis": "Standard Self-Consistency Distillation on FewNERD: fine-tune Qwen3-8B-FT with theta2n construction pseudo-labels (32,565 instances) mixed 1:1 with gold data. Greedy F1 after SCD should approach N=8 construction F1 (0.764 vs current 0.748). Transductive setting: pseudo-labels from test set SC outputs.",
+    "spec": {
+      "command": "llamafactory-cli train train_config_scd_fewnerd_s42.yaml",
+      "server": "autodl-5090-b",
+      "gpu_ids": [
+        0
+      ],
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/scd_fewnerd_theta2n_s42.jsonl",
+      "data_count": 32565,
+      "model_name": "Qwen3-8B-FT",
+      "seed": 42,
+      "pid": 207109
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T19:13:25.333Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-20T19:13:26.395Z"
+  },
+  "timestamp": "2026-05-20T19:13:26.774522+00:00",
+  "trigger": "update_registry"
+}

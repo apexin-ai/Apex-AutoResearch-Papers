@@ -1,0 +1,5948 @@
+# exp 010 selection curves
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 183
+- **Recorded user turns:** 0
+- **Tool calls:** 91
+- **Original source:** `logs/chats/worker_exp_010_selection_curves_20260514T144948.jsonl`
+- **Structured JSON:** [`92be865c848eb64a7dab.json`](../../sessions/92/92be865c848eb64a7dab.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+183 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T15:03:06.137106+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "subagent_type": "Explore",
+  "description": "Find experiment data files",
+  "prompt": "Search the project directory /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ for experimental output data. I need to find:\n1. exp_001_ner_n16_scierc - SciERC NER N=16 sampling data\n2. exp_008_re_n16 - SciERC RE N=16 sampling data  \n3. exp_002 - CoNLL-2003 NER N=8 sampling data\n\nLook in:\n- artifacts/ directory\n- Any output/ directory\n- Any subdirectories that might contain per-sample prediction results\n\nSearch broadly - look for files matching patterns like *exp_001*, *exp_008*, *exp_002*, *n16*, *n8*, *scierc*, *conll*, *samples*, *predictions*, etc. Also check for any registry files that might document where outputs are stored."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Agent",
+  "tool_args": {
+    "subagent_type": "Explore",
+    "description": "Find experiment data files",
+    "prompt": "Search the project directory /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ for experimental output data. I need to find:\n1. exp_001_ner_n16_scierc - SciERC NER N=16 sampling data\n2. exp_008_re_n16 - SciERC RE N=16 sampling data  \n3. exp_002 - CoNLL-2003 NER N=8 sampling data\n\nLook in:\n- artifacts/ directory\n- Any output/ directory\n- Any subdirectories that might contain per-sample prediction results\n\nSearch broadly - look for files matching patterns like *exp_001*, *exp_008*, *exp_002*, *n16*, *n8*, *scierc*, *conll*, *samples*, *predictions*, etc. Also check for any registry files that might document where outputs are stored."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-14T15:03:06.137511+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -type f -name \"*.json\" -o -name \"*.csv\" -o -name \"*.pkl\" -o -name \"*.txt\" | head -50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -type f -name \"*.json\" -o -name \"*.csv\" -o -name \"*.pkl\" -o -name \"*.txt\" | head -50"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-14T15:03:06.137692+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_code_sampling_and_main_20260514T042643_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_read_exp016_and_seed123_results_20260514T122622_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_exp_013_014_voting_baselines_20260514T111404_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_bugfix_auroc_binarization_20260514T142457_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_code_consistency_module_20260514T042604_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_check_bjb1_21071_status_20260514T142748_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_ops_autodl_process_check_20260514T142740_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_gpu_gpu5090x2_fix_and_rerun_full_20260514T124323_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_code_wnut17_data_prep_20260514T100828_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_code_e3_n16_prep_20260514T092556_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_code_add_re_subtask_20260514T050825_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_run_wnut_lora_merge_pilot_20260514T133121_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_diagnose_autodl-5090-full-audit_20260514T1334
+…[truncated 5724 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-14T15:03:06.137852+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-14T15:03:06.137987+00:00_
+
+total 240
+drwxr-xr-x  9 ubuntu ubuntu  4096 May 14 14:39 .
+drwxrwxr-x  4 ubuntu ubuntu  4096 May 14 04:20 ..
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 14 04:20 .claude
+-rw-r--r--  1 ubuntu ubuntu 12794 May 14 14:48 AGENTS.md
+-rw-r--r--  1 ubuntu ubuntu     0 May 14 04:23 ROADMAP.lock
+-rw-------  1 ubuntu ubuntu  5344 May 14 14:33 ROADMAP.md
+drwxr-xr-x 22 ubuntu ubuntu  4096 May 14 14:31 artifacts
+drwxr-xr-x  2 ubuntu ubuntu 20480 May 14 14:39 checkpoints
+-rw-r--r--  1 ubuntu ubuntu     0 May 14 04:23 decisions.lock
+-rw-------  1 ubuntu ubuntu 36649 May 14 14:33 decisions.yaml
+drwxr-xr-x  2 ubuntu ubuntu  4096 May 14 04:20 docs
+-rwxr-xr-x  1 ubuntu ubuntu     0 May 14 09:33 dream_registry.lock
+-rw-------  1 ubuntu ubuntu  2180 May 14 12:06 dream_registry.yaml
+-rw-r--r--  1 ubuntu ubuntu  2185 May 14 12:06 dream_registry.yaml.bak
+-rw-r--r--  1 ubuntu ubuntu     0 May 14 11:49 experiment_plan.lock
+-rw-------  1 ubuntu ubuntu  7217 May 14 14:39 experiment_plan.yaml
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 14 13:35 figures
+drwxr-xr-x  4 ubuntu ubuntu  4096 May 14 04:25 logs
+-rw-r--r--  1 ubuntu ubuntu  6425 May 14 14:28 memory.md
+-rw-r--r--  1 ubuntu ubuntu 15176 May 14 12:28 paper_framing.md
+-rw-r--r--  1 ubuntu ubuntu     0 May 14 06:04 registry.lock
+-rw-------  1 ubuntu ubuntu 61076 May 14 14:39 registry.yaml
+-rw-r--r--  1 ubuntu ubuntu  1132 May 14 14:39 report.md
+-rwxr-xr-x  1 ubuntu ubuntu     0 May 14 04:21 study_status.lock
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 14 12:47 task_context
+-rw-r--r--  1 ubuntu ubuntu 23423 May 14 14:28 writing_plan.yaml
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-14T15:03:06.138159+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T15:03:06.138307+00:00_
+
+total 332
+drwxr-xr-x 22 ubuntu ubuntu  4096 May 14 14:31 .
+drwxr-xr-x  9 ubuntu ubuntu  4096 May 14 14:39 ..
+drwxr-xr-x  2 ubuntu ubuntu  4096 May 14 05:09 __pycache__
+drwxr-xr-x  6 ubuntu ubuntu  4096 May 14 13:38 _project
+-rw-r--r--  1 ubuntu ubuntu 25806 May 14 11:49 analyze_exp004_re_diagnostic.py
+-rw-r--r--  1 ubuntu ubuntu 21562 May 14 11:47 analyze_exp015_metrics_expansion.py
+-rw-r--r--  1 ubuntu ubuntu 31742 May 14 12:14 analyze_exp016_ensemble.py
+-rw-r--r--  1 ubuntu ubuntu  3459 May 14 14:31 auroc_bug_diagnosis.md
+-rw-r--r--  1 ubuntu ubuntu  2183 May 14 14:29 autodl_process_check.md
+-rw-r--r--  1 ubuntu ubuntu  2274 May 14 14:28 bjb1_status_report.md
+-rw-r--r--  1 ubuntu ubuntu 13271 May 14 05:50 consistency.py
+-rw-r--r--  1 ubuntu ubuntu  9089 May 14 04:26 data_utils.py
+drwxr-xr-x  4 ubuntu ubuntu  4096 May 14 12:06 dream_reports
+-rw-r--r--  1 ubuntu ubuntu 14119 May 14 11:43 evaluation.py
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 14 12:51 exp-001
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 14 11:49 exp-015
+-rw-r--r--  1 ubuntu ubuntu  9941 May 14 11:48 exp001_postprocess.py
+drwxr-xr-x  2 ubuntu ubuntu  4096 May 14 11:44 exp005_temperature
+drwxr-xr-x  4 ubuntu ubuntu  4096 May 14 12:52 exp_001
+drwxr-xr-x  4 ubuntu ubuntu  4096 May 14 11:56 exp_001_ner_n16_scierc
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 14 12:41 exp_002
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 14 14:15 exp_003
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 14 11:50 exp_004_re_diagnostic
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 14 11:45 exp_005
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 14 11:07 exp_012_logprob_baseline
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 14 11:47 exp_015_metrics_expansion
+drwxr-xr-x  5 ubuntu ubuntu  4096 May 14 12:16 exp_016_signal_ensemble
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 14 06:57 ft_001
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 14 07:44 ft_002
+-rw-r--r--  1 ubuntu ubuntu 18107 May 14 14:30 manifest.yaml
+-rw-r--r--  1 ubuntu ubuntu 11096 May 14 07:46 mvp_pilot.py
+drwxr-xr-x  3 ubuntu ubuntu  4096 Ma
+…[truncated 410 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-14T15:03:06.138460+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc -type f | head -30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc -type f | head -30"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T15:03:06.138588+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc/data/exp001_n16_samples_pointer.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc/report/exp001_all_signals_summary.txt
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T15:03:06.138720+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_002 -type f | head -30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_002 -type f | head -30"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T15:03:06.138837+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_002/report/exp002_report_content.json
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T15:03:06.138960+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts -name \"*exp_008*\" -o -name \"*RE*\" -type f | grep -E \"(exp_008|re_n16)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts -name \"*exp_008*\" -o -name \"*RE*\" -type f | grep -E \"(exp_008|re_n16)\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T15:03:06.139074+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T15:03:06.139219+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/ | grep -i \"exp_0\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/ | grep -i \"exp_0\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T15:03:06.139338+00:00_
+
+drwxr-xr-x  4 ubuntu ubuntu  4096 May 14 12:52 exp_001
+drwxr-xr-x  4 ubuntu ubuntu  4096 May 14 11:56 exp_001_ner_n16_scierc
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 14 12:41 exp_002
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 14 14:15 exp_003
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 14 11:50 exp_004_re_diagnostic
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 14 11:45 exp_005
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 14 11:07 exp_012_logprob_baseline
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 14 11:47 exp_015_metrics_expansion
+drwxr-xr-x  5 ubuntu ubuntu  4096 May 14 12:16 exp_016_signal_ensemble
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-14T15:03:06.139461+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/registry.yaml",
+  "limit": "100"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/registry.yaml",
+    "limit": "100"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T15:03:06.139592+00:00_
+
+1	baseline: null
+2	experiments:
+3	  ft_001:
+4	    status: DONE
+5	    retry_count: 0
+6	    created_at: '2026-05-14T06:04:28.030Z'
+7	    updated_at: '2026-05-14T08:27:58.182Z'
+8	    spec:
+9	      hypothesis: Fine-tuned Qwen3-8B on SciERC UIE can achieve NER F1 >= 73 and serve
+10	        as base model for structural consistency MVP
+11	      model_name: Qwen/Qwen3-8B
+12	      data_path: /root/autodl-tmp/struct_self_consist_ie/data/scierc
+13	      data_count: 1861
+14	      server: autodl-5090
+15	      seed: 42
+16	      method: LoRA r=16 alpha=32
+17	      framework: LLaMA Factory 0.9.4
+18	      command: sft training qwen3-8b on scierc with lora
+19	      checkpoint_path: /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora/
+20	      log_path: /root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_001_train.log
+21	      train_loss: 0.1099
+22	      eval_loss: 0.0771
+23	      epoch: 3
+24	      train_runtime: 0:17:49
+25	      note: 'gate0: NER PASS 60.4% / RE FAIL 33.8%'
+26	    conclusion: success
+27	    completed_at: '2026-05-14T06:30:32.889Z'
+28	    metrics:
+29	      train_loss: 0.1099
+30	      eval_loss: 0.0771
+31	      gate0_ner_f1_strict: 0.1143
+32	      gate0_re_f1_strict: 0.0125
+33	      gate0_ner_f1_text: 0.606
+34	      gate0_re_f1_text: 0.3392
+35	      gate0_offset_accuracy: 0.1665
+36	      gate0_parse_failures: 43
+37	      gate0_pass: false
+38	      gate0_realigned_ner_f1: 0.6045
+39	      gate0_realigned_re_f1: 0.338
+40	      gate0_realigned_entity_offset_accuracy: 1
+41	      gate0_realigned_relation_offset_accuracy: 1
+42	      gate0_realigned_ner_pass: true
+43	      gate0_realigned_re_pass: false
+44	      gate0_realigned_pass: false
+45	      gate0_ner_f1_delta_realign: 0.4901
+46	      gate0_re_f1_delta_realign: 0.3255
+47	      verdict_note: 'partial: NER PASS (60.4%) / RE FAIL (33.8% < 40%)'
+48	  mvp_pilot_001:
+49	    status: DONE
+50	    retry_count: 0
+51	    created_at: '2026-05-14T07:39:16.313Z'
+52	    updated_at: '2026-05-14T08:05:34.348Z'
+53	
+…[truncated 1853 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-14T15:03:06.139746+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -n \"exp_00\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/registry.yaml | head -30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -n \"exp_00\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/registry.yaml | head -30"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T15:03:06.139872+00:00_
+
+575:  exp_001_ner_n16_scierc:
+591:      log_path: ~/runs/struct_self_consist_ie/exp_001_ner_n16_scierc.log
+637:  exp_002_ner_conll2003:
+653:      log_path: ~/runs/struct_self_consist_ie/exp_002_ner_conll2003.log
+667:    log_path: ~/runs/struct_self_consist_ie/exp_002_ner_conll2003.log
+669:  exp_003_ner_wnut17:
+723:  exp_007_ner_multi_model:
+735:      log_path: ~/runs/struct_self_consist_ie/exp_007_ner_multi_model.log
+744:      log_file: ~/runs/struct_self_consist_ie/exp_007_ner_multi_model.log
+772:    log_path: ~/runs/struct_self_consist_ie/exp_007_ner_multi_model.log
+773:  exp_007_ner_llama:
+787:  exp_005:
+830:  exp_004_re_diagnostic:
+947:  exp_008_re_n16:
+1025:    failure_reason: superseded by exp_001_ner_n16_seed123 (partial 200 → full 551
+1049:    failure_reason: superseded by exp_001_n16_seed456 (partial 200 → full 551 instances
+1073:  exp_001_n16_seed123:
+1120:  exp_001_n16_seed456:
+1220:  exp_002_merge_conll2003:
+1234:      log_path: ~/runs/struct_self_consist_ie/exp_002_merge_conll2003.log
+1239:  exp_002:
+1290:  exp_001_n16_seed123_full:
+1306:      log_path: ~/runs/struct_self_consist_ie/exp_001_n16_seed123_full.log
+1312:    failure_reason: superseded by exp_001_seed123_t10_full (full 551-instance run
+1314:  exp_001_n16_seed456_full:
+1330:      log_path: ~/runs/struct_self_consist_ie/exp_001_n16_seed456_full.log
+1336:    failure_reason: superseded by exp_001_seed456_t10_full (full 551-instance run
+1338:  exp_008_re_n16_full:
+1354:      log_path: ~/runs/struct_self_consist_ie/exp_008_re_n16_full.log
+1360:    failure_reason: superseded by exp_008_re_n16_t10_full (full 551-instance RE-only
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-14T15:03:06.140009+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "sed -n '575,636p' /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/registry.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "sed -n '575,636p' /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/registry.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T15:03:06.140148+00:00_
+
+  exp_001_ner_n16_scierc:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T11:42:10.898Z'
+    updated_at: '2026-05-14T12:42:49.592Z'
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0
+        python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2
+        --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples
+        16 --temperature 1.0 --seed 42 --output_dir output/exp001_n16_seed42 --num_test
+        9999 --collect_logprobs 2>&1 | tee output/exp001_n16_seed42_run.log"
+      server: autodl-5090
+      gpu:
+      - cuda:0
+      pid: '54357'
+      log_path: ~/runs/struct_self_consist_ie/exp_001_ner_n16_scierc.log
+      submitted_at: '2026-05-14T12:15:46.646Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+    server: autodl-5090
+    gpu: cuda:0
+    account: root
+    reproduce:
+      server: autodl-5090
+      gpu: cuda:0
+      started_at: '2026-05-14T11:43:48.643Z'
+    conclusion: success
+    completed_at: '2026-05-14T11:55:45.664Z'
+    metrics:
+      n_instances: 551
+      ner_n: 529
+      re_n: 397
+      N: 16
+      T: 1
+      seed: 42
+      full_test_set: true
+      ner_voting_conf_rho: 0.399
+      ner_sj_rho: 0.398
+      ner_em_rho: 0.339
+      ner_fk_rho: 0.288
+      ner_logprob_rho: 0.237
+      ner_voting_conf_auroc: 0.704
+      ner_sj_auroc: 0.697
+      ner_cond_em_rho: 0.414
+      ner_cond_sj_rho: 0.349
+      ner_cond_vc_rho: 0.34
+      re_voting_conf_rho: 0.38
+      re_logprob_rho: 0.293
+      re_fk_rho: 0.281
+      re_sj_rho: 0.277
+      re_em_rho: 0.148
+      re_voting_conf_auroc: 0.699
+      re_cond_em_rho: 0.475
+      re_cond_sj_rho: 0.318
+      re_cond_vc_rho: 0.35
+      re_cond_em_auroc: 0.742
+      diagnosis: '551 instances T=1.0: voting_conf best on full set (NER 0.399, RE
+        0.380). EM SURPRISE best on conditional s
+…[truncated 159 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-14T15:03:06.140311+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "sed -n '637,668p' /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/registry.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "sed -n '637,668p' /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/registry.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T15:03:06.140435+00:00_
+
+  exp_002_ner_conll2003:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T11:42:15.223Z'
+    updated_at: '2026-05-14T12:27:35.413Z'
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0
+        python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged
+        --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 8
+        --temperature 1.0 --max_tokens 1024 --output_dir output/exp002_conll2003 --num_test
+        99999 --seed 42 --collect_logprobs 2>&1 | tee /tmp/pilot_conll2003.log"
+      server: autodl-5090
+      gpu:
+      - cuda:0
+      pid: '58208'
+      log_path: ~/runs/struct_self_consist_ie/exp_002_ner_conll2003.log
+      submitted_at: '2026-05-14T12:27:35.337Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+    server: autodl-5090
+    gpu: cuda:1
+    account: root
+    reproduce:
+      server: autodl-5090
+      gpu: cuda:1
+      started_at: '2026-05-14T11:43:49.959Z'
+    conclusion: success
+    checkpoint_path: /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora
+    log_path: ~/runs/struct_self_consist_ie/exp_002_ner_conll2003.log
+    completed_at: '2026-05-14T12:18:04.097Z'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-14T15:03:06.140567+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "sed -n '947,1024p' /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/registry.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "sed -n '947,1024p' /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/registry.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T15:03:06.140696+00:00_
+
+  exp_008_re_n16:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T12:03:06.876Z'
+    updated_at: '2026-05-14T12:43:01.073Z'
+    spec:
+      hypothesis: RE N=16 confirms negative finding with higher statistical power.
+        If rho still <0.30, task-complexity boundary is robust.
+      plan_id: exp-008
+      model_name: qwen3-8b-scierc-merged-v2
+      dataset: SciERC
+      gpu: cuda:2
+      server: gpu-5090-4x-2
+      gpu_budget_hours: 12
+      description: RE N=16 on SciERC to confirm negative finding. Inference with log-prob
+        capture.
+      priority: P1
+      command: python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2
+        --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples
+        16 --temperature 1.0 --seed 42 --collect_logprobs
+      data_path: data/scierc/processed_data
+      data_count: 551
+      seed: 42
+      num_instances: 200
+      partial: true
+      note: Only 200/551 instances due to --num_test default bug. Needs full rerun.
+    metrics:
+      ner:
+        greedy_f1: 0.6635
+        oracle_f1: 0.8208
+        headroom: 0.1572
+        rho_sj_full: 0.377
+        rho_fk_full: 0.2508
+        rho_logprob_full: 0.3153
+        rho_sj_cond: 0.3598
+        rho_fk_cond: 0.2251
+        rho_logprob_cond: 0.2927
+        sj_beats_fk: true
+        rho_advantage: 0.1262
+      re:
+        greedy_f1: 0.4339
+        oracle_f1: 0.6658
+        headroom: 0.2319
+        rho_sj_full: 0.2966
+        rho_fk_full: 0.2871
+        rho_logprob_full: 0.2986
+        rho_sj_cond: 0.3975
+        rho_fk_cond: 0.3774
+        rho_logprob_cond: 0.2745
+        sj_beats_fk: true
+        rho_advantage: 0.0095
+      verdict: FAIL
+    conclusion: success
+    checkpoint_path: N/A
+    log_path: output/exp008_re_n16/
+    completed_at: '2026-05-14T12:28:39.268Z'
+  exp001_seed123:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-14T12:09:45.739Z'
+    updated_at: '2026-05-14T13:46:42.817Z'
+    spec:
+ 
+…[truncated 846 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-14T15:03:06.140846+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc -type f -name \"*.json\" -o -name \"*.pkl\" -o -name \"*.txt\" -o -name \"*.csv\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc -type f -name \"*.json\" -o -name \"*.pkl\" -o -name \"*.txt\" -o -name \"*.csv\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T15:03:06.141015+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc/data/exp001_n16_samples_pointer.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc/report/exp001_all_signals_summary.txt
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-14T15:03:06.141164+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_002 -type f -name \"*.json\" -o -name \"*.pkl\" -o -name \"*.txt\" -o -name \"*.csv\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_002 -type f -name \"*.json\" -o -name \"*.pkl\" -o -name \"*.txt\" -o -name \"*.csv\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T15:03:06.141284+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_002/report/exp002_report_content.json
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-14T15:03:06.141407+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts -type d -name \"*exp_008*\" -o -type d -name \"*re*\" | grep -i exp"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts -type d -name \"*exp_008*\" -o -type d -name \"*re*\" | grep -i exp"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T15:03:06.141532+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_004_re_diagnostic
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_004_re_diagnostic/report
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp-015/report
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp-001/report
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001/report
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_016_signal_ensemble/report
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_012_logprob_baseline/report
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_003/report
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp005_temperature
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_002/report
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_005/report
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc/report
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-14T15:03:06.141663+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context -type f | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context -type f | head -20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T15:03:06.141777+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/agent.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/director.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/reviewer.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/history/director/loop_1.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/history/reviewer/loop_1.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-14T15:03:06.141899+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-14T15:03:06.142083+00:00_
+
+1	- id: art_20260514_8c5ac9
+2	  name: consistency.py
+3	  type: intermediate
+4	  description: 'Core consistency metrics module: Fleiss kappa (surface), structural
+5	    soft Jaccard (span-level Hungarian matching), oracle best-of-N F1, and aggregate
+6	    helper.'
+7	  path: projects/struct_self_consist_ie/artifacts/_project/intermediate/consistency.py
+8	  url: null
+9	  project: struct_self_consist_ie
+10	  exp_id: null
+11	  skill: ''
+12	  created_at: '2026-05-14T04:27:26.880296+00:00'
+13	  tags:
+14	  - consistency
+15	  - metrics
+16	  - core
+17	- id: art_20260514_822db6
+18	  name: data_utils.py
+19	  type: data
+20	  description: SciERC/ACE05 数据处理模块：加载、转 UIE JSON、JSONL I/O、数据集划分
+21	  path: projects/struct_self_consist_ie/artifacts/_project/data/data_utils.py
+22	  url: null
+23	  project: struct_self_consist_ie
+24	  exp_id: null
+25	  skill: ''
+26	  created_at: '2026-05-14T04:30:08.325433+00:00'
+27	  tags:
+28	  - code
+29	  - mvp
+30	  - data-processing
+31	- id: art_20260514_fd59f2
+32	  name: evaluation.py
+33	  type: data
+34	  description: 评估模块：NER/EAE strict F1、per-instance F1、Spearman correlation、汇总报告
+35	  path: projects/struct_self_consist_ie/artifacts/_project/data/evaluation.py
+36	  url: null
+37	  project: struct_self_consist_ie
+38	  exp_id: null
+39	  skill: ''
+40	  created_at: '2026-05-14T04:30:09.120642+00:00'
+41	  tags:
+42	  - code
+43	  - mvp
+44	  - evaluation
+45	- id: art_20260514_e88003
+46	  name: consistency.py
+47	  type: data
+48	  description: 核心一致性度量：Fleiss Kappa (surface)、soft Jaccard (structural, Hungarian
+49	    matching)、oracle best-of-N
+50	  path: projects/struct_self_consist_ie/artifacts/_project/data/consistency.py
+51	  url: null
+52	  project: struct_self_consist_ie
+53	  exp_id: null
+54	  skill: ''
+55	  created_at: '2026-05-14T04:30:12.419423+00:00'
+56	  tags:
+57	  - code
+58	  - mvp
+59	  - core-metric
+60	- id: art_20260514_52a8cf
+61	  name: sampling.py
+62	  type: data
+63	  description: vLLM 批量采样模块：VLLMSampler + XGrammar constrained decoding + prompt 构建
+64	
+…[truncated 17691 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-14T15:03:06.142265+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc/data/exp001_n16_samples_pointer.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc/data/exp001_n16_samples_pointer.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T15:03:06.142387+00:00_
+
+1	Remote path: /root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl (2.5MB, 200 instances x 16 samples + greedy + logprobs)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-14T15:03:06.142510+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc/report/exp001_all_signals_summary.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc/report/exp001_all_signals_summary.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-14T15:03:06.142624+00:00_
+
+1	Remote: /root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/exp001_all_signals_report.json\n\nKey Results:\nNER (n=193): voting_confidence rho=0.401 > soft_jaccard 0.384 > exact_match_rate 0.362 > logprob 0.314 > fleiss_kappa 0.306\nRE (n=155): voting_confidence rho=0.448 > soft_jaccard 0.333 > logprob 0.310 > fleiss_kappa 0.286 > exact_match_rate 0.225\n\nN-scaling (N=8 to N=16):\nRE: all signals improve +0.07 to +0.10\nNER: flat (already saturated at N=8)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-14T15:03:06.142743+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_002/report/exp002_report_content.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_002/report/exp002_report_content.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-14T15:03:06.142865+00:00_
+
+1	{"dataset":"conll2003","subtask":"ner","n_total":3453,"n_valid":2756,"n_conditional":2676,"signals":{"soft_jaccard":{"full":{"rho":0.4357,"tau":0.3851,"auroc":0.8008},"cond":{"rho":0.4511,"tau":0.4001,"auroc":0.8262}},"fleiss_kappa":{"full":{"rho":0.3998,"tau":0.3568,"auroc":0.7741},"cond":{"rho":0.4064,"tau":0.3625,"auroc":0.7929}},"mean_logprob":{"full":{"rho":0.3157,"tau":0.2469,"auroc":0.7532},"cond":{"rho":0.3562,"tau":0.2804,"auroc":0.7953}},"exact_match":{"full":{"rho":0.4507,"tau":0.4002,"auroc":0.8156},"cond":{"rho":0.4799,"tau":0.4296,"auroc":0.8501}},"entity_voting":{"full":{"rho":0.4237,"tau":0.3777,"auroc":0.7889},"cond":{"rho":0.4127,"tau":0.3683,"auroc":0.7968}}},"bootstrap_ci":{"sj_vs_logprob":{"mean_diff":0.1205,"ci_95_low":0.0881,"ci_95_high":0.154,"significant":true},"sj_vs_fleiss_kappa":{"mean_diff":0.0359,"ci_95_low":0.0232,"ci_95_high":0.0492,"significant":true},"sj_vs_exact_match":{"mean_diff":-0.0148,"ci_95_low":-0.0264,"ci_95_high":-0.0033,"significant":true},"sj_vs_entity_voting":{"mean_diff":0.0119,"ci_95_low":-0.0086,"ci_95_high":0.0309,"significant":false}},"key_comparison":{"sj_rho":0.4357,"logprob_rho":0.3157,"sj_wins":true,"delta_rho":0.12,"bootstrap_significant":true},"f1_summary":{"greedy_f1":0.9123,"oracle_f1":0.9543,"voting_f1":0.9141,"oracle_headroom":0.042},"conclusion":"success"}
+2	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-14T15:03:06.143006+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -A 20 \"exp_008_re_n16\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/experiment_plan.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -A 20 \"exp_008_re_n16\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/experiment_plan.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-14T15:03:06.143141+00:00_
+
+  registry_id: exp_008_re_n16
+- id: exp-009
+  name: capability_stratification
+  claim: 2
+  description: 'Stratify instances by difficulty (greedy F1 buckets + independent
+    proxies: sentence length, entity count) for both NER and RE. Verify inverted-U
+    pattern with proper statistical tests and independent stratification variable.
+
+    '
+  priority: P1
+  gpu_budget_hours: 0
+  deps:
+  - exp-001
+  note: CPU-only. Dream flagged inverted-U overclaiming — use independent proxy.
+- id: exp-010
+  name: selection_curves
+  claim: 1
+  description: 'Best-of-N selection curves for N=1,2,4,8,16 comparing all confidence
+    signals. Visualize as line plots (not just tables — Dream flagged table-only presentation).
+
+    '
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-14T15:03:06.143283+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -n \"exp_008\\|exp008\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -n \"exp_008\\|exp008\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-14T15:03:06.143397+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-14T15:03:06.143518+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -type d -name \"*exp*008*\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -type d -name \"*exp*008*\" 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-14T15:03:06.143628+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-14T15:03:06.143746+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -laR /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -laR /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-14T15:03:06.143859+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc/:
+total 16
+drwxr-xr-x  4 ubuntu ubuntu 4096 May 14 11:56 .
+drwxr-xr-x 22 ubuntu ubuntu 4096 May 14 14:31 ..
+drwxr-xr-x  2 ubuntu ubuntu 4096 May 14 11:56 data
+drwxr-xr-x  2 ubuntu ubuntu 4096 May 14 11:56 report
+
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc/data:
+total 12
+drwxr-xr-x 2 ubuntu ubuntu 4096 May 14 11:56 .
+drwxr-xr-x 4 ubuntu ubuntu 4096 May 14 11:56 ..
+-rw-r--r-- 1 ubuntu ubuntu  147 May 14 11:56 exp001_n16_samples_pointer.txt
+
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc/report:
+total 12
+drwxr-xr-x 2 ubuntu ubuntu 4096 May 14 11:56 .
+drwxr-xr-x 4 ubuntu ubuntu 4096 May 14 11:56 ..
+-rw-r--r-- 1 ubuntu ubuntu  474 May 14 11:56 exp001_all_signals_summary.txt
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-14T15:03:06.143993+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -laR /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_002/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -laR /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_002/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-14T15:03:06.144107+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_002/:
+total 12
+drwxr-xr-x  3 ubuntu ubuntu 4096 May 14 12:41 .
+drwxr-xr-x 22 ubuntu ubuntu 4096 May 14 14:31 ..
+drwxr-xr-x  2 ubuntu ubuntu 4096 May 14 12:41 report
+
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_002/report:
+total 12
+drwxr-xr-x 2 ubuntu ubuntu 4096 May 14 12:41 .
+drwxr-xr-x 3 ubuntu ubuntu 4096 May 14 12:41 ..
+-rw-r--r-- 1 ubuntu ubuntu 1340 May 14 12:41 exp002_report_content.json
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-14T15:03:06.144252+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -laR /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -laR /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-14T15:03:06.144368+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001/:
+total 16
+drwxr-xr-x  4 ubuntu ubuntu 4096 May 14 12:52 .
+drwxr-xr-x 22 ubuntu ubuntu 4096 May 14 14:31 ..
+drwxr-xr-x  2 ubuntu ubuntu 4096 May 14 12:52 data
+drwxr-xr-x  2 ubuntu ubuntu 4096 May 14 12:52 report
+
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001/data:
+total 12
+drwxr-xr-x 2 ubuntu ubuntu 4096 May 14 12:52 .
+drwxr-xr-x 4 ubuntu ubuntu 4096 May 14 12:52 ..
+-rw-r--r-- 1 ubuntu ubuntu  248 May 14 12:52 corrected_conditional_metrics_ref.txt
+
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001/report:
+total 12
+drwxr-xr-x 2 ubuntu ubuntu 4096 May 14 12:52 .
+drwxr-xr-x 4 ubuntu ubuntu 4096 May 14 12:52 ..
+-rw-r--r-- 1 ubuntu ubuntu  406 May 14 12:52 conditional_filter_diagnosis.txt
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-14T15:03:06.144493+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts -type d | sort"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts -type d | sort"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-14T15:03:06.144616+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/__pycache__
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/chart
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/intermediate
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/best
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/logs
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/median
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/worst
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T105303
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T105303/best
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T105303/best/_pdf_images
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T105303
+…[truncated 4188 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-14T15:03:06.144763+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -r \"exp_008\\|exp008\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/ 2>/dev/null | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -r \"exp_008\\|exp008\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/ 2>/dev/null | head -20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-14T15:03:06.144891+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-14T15:03:06.145046+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "sed -n '947,1048p' /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/registry.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "sed -n '947,1048p' /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/registry.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-14T15:03:06.145203+00:00_
+
+  exp_008_re_n16:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T12:03:06.876Z'
+    updated_at: '2026-05-14T12:43:01.073Z'
+    spec:
+      hypothesis: RE N=16 confirms negative finding with higher statistical power.
+        If rho still <0.30, task-complexity boundary is robust.
+      plan_id: exp-008
+      model_name: qwen3-8b-scierc-merged-v2
+      dataset: SciERC
+      gpu: cuda:2
+      server: gpu-5090-4x-2
+      gpu_budget_hours: 12
+      description: RE N=16 on SciERC to confirm negative finding. Inference with log-prob
+        capture.
+      priority: P1
+      command: python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2
+        --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples
+        16 --temperature 1.0 --seed 42 --collect_logprobs
+      data_path: data/scierc/processed_data
+      data_count: 551
+      seed: 42
+      num_instances: 200
+      partial: true
+      note: Only 200/551 instances due to --num_test default bug. Needs full rerun.
+    metrics:
+      ner:
+        greedy_f1: 0.6635
+        oracle_f1: 0.8208
+        headroom: 0.1572
+        rho_sj_full: 0.377
+        rho_fk_full: 0.2508
+        rho_logprob_full: 0.3153
+        rho_sj_cond: 0.3598
+        rho_fk_cond: 0.2251
+        rho_logprob_cond: 0.2927
+        sj_beats_fk: true
+        rho_advantage: 0.1262
+      re:
+        greedy_f1: 0.4339
+        oracle_f1: 0.6658
+        headroom: 0.2319
+        rho_sj_full: 0.2966
+        rho_fk_full: 0.2871
+        rho_logprob_full: 0.2986
+        rho_sj_cond: 0.3975
+        rho_fk_cond: 0.3774
+        rho_logprob_cond: 0.2745
+        sj_beats_fk: true
+        rho_advantage: 0.0095
+      verdict: FAIL
+    conclusion: success
+    checkpoint_path: N/A
+    log_path: output/exp008_re_n16/
+    completed_at: '2026-05-14T12:28:39.268Z'
+  exp001_seed123:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-14T12:09:45.739Z'
+    updated_at: '2026-05-14T13:46:42.817Z'
+    spec:
+ 
+…[truncated 1963 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-14T15:03:06.145356+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-14T15:03:06.145495+00:00_
+
+1	# Memory — struct_self_consist_ie
+2	
+3	## 经验教训
+4	
+5	### Offset hallucination
+6	Fine-tuned generative IE 模型输出正确 entity text 但 hallucinate character offsets（准确率仅 16.7%）。必须用 span realignment 后处理修复。
+7	
+8	### Qwen3 think block vs XGrammar
+9	Qwen3 默认输出 `&lt;think>...&lt;/think>` 再接 JSON，但 XGrammar 强制 `{` 为第一个 token。必须在 `apply_chat_template` 中设 `enable_thinking=False`。
+10	
+11	### Train/inference prompt alignment
+12	训练用 unified template "Extract all structured information..."，推理必须用完全一致的 template + schema hints。不对齐会导致模型不识别指令。
+13	
+14	### Parse failures from max_tokens truncation
+15	max_tokens=512 导致 3.7% parse failures。max_tokens=1024 完全消除（0/4408）。
+16	
+17	### submit_training_job 需要 tmux
+18	AutoDL 5090 服务器默认无 tmux。已安装 tmux 3.2a。
+19	
+20	### OOM 修复：batch_size + gradient_checkpointing
+21	Qwen3-8B LoRA r=32 在 RTX 5090 32GB 上 batch_size=4 会 OOM。修复：batch_size=2 + gradient_accumulation_steps=8 + gradient_checkpointing=true。
+22	
+23	### vLLM 不能直接加载 LoRA adapter
+24	vLLM 需要 merged model（有 config.json），必须先 LLaMA Factory export 合并。
+25	
+26	### 训练配置必须保留 best checkpoint
+27	ft_002_v2 的 best eval checkpoint 被 save_total_limit=3 删掉了。未来需 save_total_limit≥5 + load_best_model_at_end=true。
+28	
+29	### E1 否定乘性惩罚假说——RE SJ 问题是根本性的 (2026-05-14)
+30	- head_sj ρ=0.210 远低于 NER ρ_sj=0.383（Δ=-0.173）
+31	- 根因：span-level SJ 对 RE 根本缺乏区分力，不是公式问题
+32	- 方案 B（度量分解）排除，走方案 A（NER-primary + RE 诊断）
+33	
+34	### SJ vs κ 在 NER 和 RE 上表现不对称——核心发现 (2026-05-14)
+35	- **NER**: SJ 一致显著优于 κ（p=7e-20），ρ_sj 稳定 0.36-0.40
+36	- **RE**: SJ ρ_sj 锁死 ~0.24-0.28 (取决于 N 和 T)
+37	
+38	### 温度对 logprob ρ 影响极大——已确认根因 (2026-05-14)
+39	- T=0.7 logprob NER ρ≈0.31 vs T=1.0 ρ≈0.14-0.24
+40	- 温度贡献了 ρ 差异的 74%，实例子集 22%，N 仅 4%
+41	- 机制：T=1.0 使 logprob 分布更宽，噪声稀释 correlation
+42	- **所有信号对比必须固定 T**。论文中 T=1.0 是标准
+43	
+44	### 温度对其他信号影响小 (2026-05-14)
+45	- SJ ρ: T=0.7→T=1.0 变化 ±0.01
+46	- FK: 温度更敏感 (NER +0.06 at T=0.7)
+47	- 推荐 T=1.0 + conditional filtering
+48	
+49	### --num_test 200 默认值 bug (2026-05-14)
+50	run_mvp_pilot.py 默认 --num_test 200，导致多个实验只跑了 200/551 实例。已修复为 9999。
+51	**所有
+…[truncated 3168 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-14T15:03:06.145688+00:00_
+
+Excellent! Now I have comprehensive information. Let me prepare the final summary.
+
+## Summary of Experimental Output Data
+
+Based on my search through the project directory, I found information about the three experiments you requested. Here's what I discovered:
+
+### 1. **exp_001_ner_n16_scierc** (SciERC NER N=16 sampling data)
+
+**Local artifacts location:**
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc/`
+
+**Data structure:**
+- `/data/exp001_n16_samples_pointer.txt` - Points to remote sampling results
+- `/report/exp001_all_signals_summary.txt` - Analysis report with 5-signal correlations
+
+**Remote server location:**
+- `/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl` (2.5MB)
+  - Contains: 200 instances × 16 samples + greedy predictions + logprobs
+  - Note: This is a partial run (200/551 instances due to --num_test default bug)
+
+**Key results:**
+- NER (n=193): voting_confidence ρ=0.401 > soft_jaccard 0.384 > exact_match 0.362 > logprob 0.314 > fleiss_kappa 0.306
+- RE (n=155): voting_confidence ρ=0.448 > soft_jaccard 0.333 > logprob 0.310
+- N-scaling: RE shows +0.07 to +0.10 improvement from N=8 to N=16
+
+---
+
+### 2. **exp_002_ner_conll2003** (CoNLL-2003 NER N=8 sampling data)
+
+**Local artifacts location:**
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_002/`
+
+**Data structure:**
+- `/report/exp002_report_content.json` - Complete 5-signal analysis report
+
+**Report contents (full test set):**
+- Dataset: CoNLL-2003, 3453 total instances, 2756 valid, 2676 conditional
+- Signals analyzed: soft_jaccard, fleiss_kappa, mean_logprob, exact_match, entity_voting
+- **Key finding**: SUCCESS - SJ decisively beats logprob
+  - SJ ρ=0.4357 (full) vs logprob ρ=0.3157 (delta=+0.1205, bootstrap significant)
+  - SJ ρ=0.4511 (conditional) vs logprob ρ=0.3562
+- F1 summary: greedy F1=0.9123, oracle F1=0.9543, voting F1=0.9141
+
+**Remote inference
+…[truncated 1922 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Agent",
+  "elapsed_ms": 8
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-14T15:03:06.145867+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "max_results": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-14T15:03:06.145999+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-14T15:03:06.146144+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-14T15:03:06.146270+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"*.jsonl\" -o -name \"*.json\" -o -name \"*.csv\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"*.jsonl\" -o -name \"*.json\" -o -name \"*.csv\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-14T15:03:06.146421+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 3028\\ndrwxr-xr-x 35 root root    4096 May 14 22:34 .\\ndrwxr-xr-x  7 root root    4096 May 14 22:39 ..\\n-rw-r--r--  1 root root    2098 May 14 20:48 conditional_filter_diagnosis.json\\ndrwxr-xr-x  2 root root      58 May 14 20:54 exp001_n16_seed123\\ndrwxr-xr-x  2 root root      77 May 14 20:13 exp001_n16_seed123_200only\\ndrwxr-xr-x  2 root root      10 May 14 20:43 exp001_n16_seed123_200only_backup\\ndrwxr-xr-x  2 root root      10 May 14 20:44 exp001_n16_seed123_full\\n-rw-r--r--  1 root root  108646 May 14 20:54 exp001_n16_seed123_run.log\\ndrwxr-xr-x  2 root root     146 May 14 20:49 exp001_n16_seed42\\ndrwxr-xr-x  2 root root     119 May 14 19:55 exp001_n16_seed42_200only_backup\\n-rw-r--r--  1 root root  107674 May 14 20:24 exp001_n16_seed42_run.log\\ndrwxr-xr-x  2 root root      10 May 14 20:44 exp001_n16_seed456\\ndrwxr-xr-x  2 root root      77 May 14 20:16 exp001_n16_seed456_200only\\ndrwxr-xr-x  2 root root      58 May 14 21:35 exp001_seed123_t10_full\\n-rw-r--r--  1 root root  108350 May 14 21:35 exp001_seed123_t10_full.log\\ndrwxr-xr-x  2 root root      58 May 14 21:35 exp001_seed456_t10_full\\n-rw-r--r--  1 root root  107921 May 14 21:35 exp001_seed456_t10_full.log\\ndrwxr-xr-x  2 root root      96 May 14 20:39 exp002_conll2003\\ndrwxr-xr-x  2 root root      58 May 14 21:35 exp003_wnut17_dryrun\\ndrwxr-xr-x  2 root root      58 May 14 21:50 exp003_wnut17_eval\\n-rw-r--r--  1 root root  117772 May 14 21:50 exp003_wnut17_eval.log\\ndrwxr-xr-x  2 root root      58 May 14 21:39 exp003_wnut17_pilot\\n-rw-r--r--  1 root root  117114 May 14 21:39 exp003_wnut17_pilot.log\\ndrwxr-xr-x  2 root root     182 May 14 19:48 exp004_re_diagnostic\\ndrwxr-xr-x  2 root root      58 May 14 21:54 exp007_llama_dryrun\\ndrwxr-xr-x  2 root root      58 May 14 21:58 exp007_llama_inference\\ndrwxr-xr-x  2 root root      58 May 14 20:53 exp008_re_n16\\ndrwxr-xr-x  2 root root      77 May 14 20:18 exp008_re_n16_200o
+…[truncated 1513 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-14T15:03:06.146616+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/gate0_results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_samples.json\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_all_predictions.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_realigned_results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_realigned_predictions.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2_ckpt400/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2_ckpt400/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/e1_component_decomposition.json\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/exp013_exact_match_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/exp014_entity_voting_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/analysis_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_015_unified/exp015_unified_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004_re_diagnostic/per_relation_type.
+…[truncated 4706 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-14T15:03:06.146785+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-14T15:03:06.146925+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl\\n     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/samples.jsonl\\n    3453 /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n     551 /root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl\\n     551 /root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/samples.jsonl\\n    5657 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-14T15:03:06.147049+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-14T15:03:06.147429+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\
+…[truncated 9002 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-14T15:03:06.147629+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "python3 -c \"\nimport json\nfor f, name in [\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl', 'exp001_v2'),\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/samples.jsonl', 'exp008_v2'),\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl', 'exp002_conll'),\n]:\n    with open(f) as fh:\n        lines = [json.loads(l) for l in fh]\n    n_samples = [len(d['samples']) for d in lines]\n    has_greedy = sum(1 for d in lines if 'greedy' in d)\n    has_logprobs = sum(1 for d in lines if 'logprobs' in d)\n    has_rels = sum(1 for d in lines if len(d['gold'].get('relations',[])) > 0)\n    print(f'{name}: {len(lines)} instances, samples/inst=[{min(n_samples)},{max(n_samples)}], greedy={has_greedy}, logprobs={has_logprobs}, has_rels={has_rels}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "python3 -c \"\nimport json\nfor f, name in [\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl', 'exp001_v2'),\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/samples.jsonl', 'exp008_v2'),\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl', 'exp002_conll'),\n]:\n    with open(f) as fh:\n        lines = [json.loads(l) for l in fh]\n    n_samples = [len(d['samples']) for d in lines]\n    has_greedy = sum(1 for d in lines if 'greedy' in d)\n    has_logprobs = sum(1 for d in lines if 'logprobs' in d)\n    has_rels = sum(1 for d in lines if len(d['gold'].get('relations',[])) > 0)\n    print(f'{name}: {len(lines)} instances, samples/inst=[{min(n_samples)},{max(n_samples)}], greedy={has_greedy}, logprobs={has_logprobs}, has_rels={has_rels}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-14T15:03:06.147770+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-14T15:03:06.147908+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "python3 -c \"\nimport json\nfor f, name in [\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl', 'exp001_v2'),\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/samples.jsonl', 'exp008_v2'),\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl', 'exp002_conll'),\n]:\n    with open(f) as fh:\n        lines = [json.loads(l) for l in fh]\n    n_samples = [len(d['samples']) for d in lines]\n    has_greedy = sum(1 for d in lines if 'greedy' in d)\n    has_logprobs = sum(1 for d in lines if 'logprobs' in d)\n    has_rels = sum(1 for d in lines if len(d['gold'].get('relations',[])) > 0)\n    print(f'{name}: {len(lines)} instances, samples/inst=[{min(n_samples)},{max(n_samples)}], greedy={has_greedy}, logprobs={has_logprobs}, has_rels={has_rels}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "python3 -c \"\nimport json\nfor f, name in [\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl', 'exp001_v2'),\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/samples.jsonl', 'exp008_v2'),\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl', 'exp002_conll'),\n]:\n    with open(f) as fh:\n        lines = [json.loads(l) for l in fh]\n    n_samples = [len(d['samples']) for d in lines]\n    has_greedy = sum(1 for d in lines if 'greedy' in d)\n    has_logprobs = sum(1 for d in lines if 'logprobs' in d)\n    has_rels = sum(1 for d in lines if len(d['gold'].get('relations',[])) > 0)\n    print(f'{name}: {len(lines)} instances, samples/inst=[{min(n_samples)},{max(n_samples)}], greedy={has_greedy}, logprobs={has_logprobs}, has_rels={has_rels}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-14T15:03:06.148054+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\nimport json\\\\nfor f, name in [\\\\n    (\\\\'/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl\\\\', \\\\'exp001_v2\\\\'),\\\\n    (\\\\'/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/samples.jsonl\\\\', \\\\'exp008_v2\\\\'),\\\\n    (\\\\'/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\\\', \\\\'exp002_conll\\\\'),\\\\n]:\\\\n    with open(f) as fh:\\\\n        lines = [json.loads(l) for l in fh]\\\\n    n_samples = [len(d[\\\\'samples\\\\']) for d in lines]\\\\n    has_greedy = sum(1 for d in lines if \\\\'greedy\\\\' in d)\\\\n    has_logprobs = sum(1 for d in lines if \\\\'logprobs\\\\' in d)\\\\n    has_rels = sum(1 for d in lines if len(d[\\\\'gold\\\\'].get(\\\\'relations\\\\',[])) > 0)\\\\n    print(f\\\\'{name}: {len(lines)} instances, samples/inst=[{min(n_samples)},{max(n_samples)}], greedy={has_greedy}, logprobs={has_logprobs}, has_rels={has_rels}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-14T15:03:06.148223+00:00_
+
+called mcp__agent-ml-research__detect_image
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "tool_args": {
+    "server": "autodl-5090",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-14T15:03:06.148350+00:00_
+
+{"result":"{\n  \"detected\": false,\n  \"status\": \"unknown\",\n  \"skip_base_setup\": false,\n  \"message\": \"No image marker file found. Use traditional env-setup flow.\"\n}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-14T15:03:06.148468+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/miniconda3/bin/python3",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/miniconda3/bin/python3",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-14T15:03:06.148587+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-14T15:03:06.148705+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nfor f, name in [\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl', 'exp001_v2'),\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/samples.jsonl', 'exp008_v2'),\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl', 'exp002_conll'),\n]:\n    with open(f) as fh:\n        lines = [json.loads(l) for l in fh]\n    n_samples = [len(d['samples']) for d in lines]\n    has_greedy = sum(1 for d in lines if 'greedy' in d)\n    has_logprobs = sum(1 for d in lines if 'logprobs' in d)\n    has_rels = sum(1 for d in lines if len(d['gold'].get('relations',[])) > 0)\n    print(f'{name}: {len(lines)} instances, samples/inst=[{min(n_samples)},{max(n_samples)}], greedy={has_greedy}, logprobs={has_logprobs}, has_rels={has_rels}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nfor f, name in [\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl', 'exp001_v2'),\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/samples.jsonl', 'exp008_v2'),\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl', 'exp002_conll'),\n]:\n    with open(f) as fh:\n        lines = [json.loads(l) for l in fh]\n    n_samples = [len(d['samples']) for d in lines]\n    has_greedy = sum(1 for d in lines if 'greedy' in d)\n    has_logprobs = sum(1 for d in lines if 'logprobs' in d)\n    has_rels = sum(1 for d in lines if len(d['gold'].get('relations',[])) > 0)\n    print(f'{name}: {len(lines)} instances, samples/inst=[{min(n_samples)},{max(n_samples)}], greedy={has_greedy}, logprobs={has_logprobs}, has_rels={has_rels}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-14T15:03:06.148834+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp001_v2: 551 instances, samples/inst=[16,16], greedy=551, logprobs=551, has_rels=397\\nexp008_v2: 551 instances, samples/inst=[16,16], greedy=551, logprobs=551, has_rels=397\\nexp002_conll: 3453 instances, samples/inst=[8,8], greedy=3453, logprobs=3453, has_rels=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-14T15:03:06.149031+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/code/ -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/code/ -name \"*.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-14T15:03:06.149206+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/data_utils.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_to_llamafactory.py\\n/root/autodl-tmp/struct_self_consist_ie/code/evaluation.py\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py\\n/root/autodl-tmp/struct_self_consist_ie/code/sampling.py\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_eval.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_diagnose.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_realign_eval.py\\n/root/autodl-tmp/struct_self_consist_ie/code/mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_wnut17.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/extract_logprobs.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exact_match_voting.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/exp001_postprocess.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py\\n/root/autodl-tmp/struct_self_consist_ie/code/diagnose_logprob_rho.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp002_conll2003.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/run_mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp015_unified.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_exp004_re_diagnostic.py\\n/root/autodl-tmp/struct_self_consist_ie/code/_backup_cond_fix/analyze_component_wise_re.py\\n/root/a
+…[truncated 281 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-14T15:03:06.149350+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -80 /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -80 /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-14T15:03:06.149532+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Consistency metrics for structured information extraction with self-consistency.\\n\\nImplements three complementary consistency measures over N sampled extractions:\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\n\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nfrom itertools import combinations\\nfrom typing import TYPE_CHECKING\\n\\nimport numpy as np\\nfrom scipy.optimize import linear_sum_assignment\\n\\nif TYPE_CHECKING:\\n    pass\\n\\n# ---------------------------------------------------------------------------\\n# Type aliases (mirrors shared data format)\\n# ---------------------------------------------------------------------------\\nEntity = dict       # {\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"}\\nRelation = dict     # {\\\"head\\\", \\\"tail\\\", \\\"type\\\", ...}\\nEvent = dict        # {\\\"trigger\\\": {...}, \\\"arguments\\\": [...]}\\nExtraction = dict   # {\\\"entities\\\", \\\"relations\\\", \\\"events\\\"}\\n\\n\\n# ===================================================================\\n# 1. Fleiss' Kappa — surface-level entity agreement\\n# ===================================================================\\n\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\n    \\\"\\\"\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\"\\\"\\\"\\n    if subtask == \\\"ner\\\":\\n        return {(e[\\\"text\\\"], e[\\\"type\\\"]) for e in sample.get(\\\"entities\\\", [])}\\n    elif subtask == \\\"re\\\":\\n        return {(r[\\\"head\\\"], r[\\\"tail\\\"], r[\\\"type\\\"]) for r in sample.get(\\\"relations\\\", [])}\\n    elif subtask == \\\"eae\\\":\\n   
+…[truncated 1601 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-14T15:03:06.149683+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -80 /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -80 /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-14T15:03:06.149849+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluation module for structured self-consistency IE experiments.\\n\\nProvides strict-match NER/EAE evaluation, per-instance F1 computation,\\ncorrelation analysis, and summary report generation.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport statistics\\nfrom typing import Any\\n\\nfrom scipy.stats import kendalltau, spearmanr\\n\\n\\n# ---------------------------------------------------------------------------\\n# NER evaluation (strict match)\\n# ---------------------------------------------------------------------------\\n\\ndef entity_strict_match(\\n    pred_entities: list[dict],\\n    gold_entities: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Compute strict entity match counts.\\n\\n    Strict match requires exact span (start, end) AND exact type.\\n\\n    Args:\\n        pred_entities: Predicted entity dicts with keys text, type, start, end.\\n        gold_entities: Gold entity dicts with the same schema.\\n\\n    Returns:\\n        (tp, fp, fn) counts.\\n    \\\"\\\"\\\"\\n    pred_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    return tp, fp, fn\\n\\n\\ndef compute_ner_f1(\\n    predictions: list[dict],\\n    golds: list[dict],\\n) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute micro-averaged NER precision, recall, and F1.\\n\\n    Args:\\n        predictions: List of Extraction dicts (one per instance).\\n        golds: List of Extraction dicts (one per instance), aligned with predictions.\\n\\n    Returns:\\n        Dict with keys \\\"precision\\\", \\\"recall\\\", \\\"f1\\\".\\n    \\\"\\\"\\\"\\n    total_tp = total_fp = total_fn = 0\\n    for pred, gold in zip(predictions, golds):\\n        tp, fp, fn = entity_
+…[truncated 1140 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-14T15:03:06.149998+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -120 /root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -120 /root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-14T15:03:06.150211+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp-016: Signal Ensemble & Combination Analysis (CPU-only).\\n\\nFour-part analysis:\\n  Part 1: SJ + logprob instance-level correlation (Pearson/Spearman)\\n  Part 2: Linear combination grid search (α sweep)\\n  Part 3: 5-signal logistic regression ensemble (5-fold CV AUROC)\\n  Part 4: Best-of-N selection F1 comparison\\n\\nUsage:\\n    cd /root/autodl-tmp/struct_self_consist_ie\\n    pip install scikit-learn  # if not installed\\n    python code/analyze_exp016_ensemble.py \\\\\\n        --pilot_dir output/mvp_pilot_004 \\\\\\n        --logprob_dir output/exp_012_logprob \\\\\\n        --output_dir output/exp016_signal_ensemble\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nfrom collections import Counter\\nfrom itertools import combinations\\n\\nimport numpy as np\\nfrom scipy.stats import spearmanr, pearsonr\\n\\nsys.path.insert(0, os.path.join(os.path.dirname(__file__), \\\"..\\\"))\\nsys.path.insert(0, os.path.dirname(__file__))\\n\\nfrom consistency import (\\n    compute_all_consistency_scores,\\n    fleiss_kappa_surface,\\n    structural_consistency_soft_jaccard,\\n)\\nfrom evaluation import per_instance_f1\\n\\n\\n# ---------------------------------------------------------------------------\\n# Data loading (reused from exp-015)\\n# ---------------------------------------------------------------------------\\n\\ndef load_samples(path: str) -> list[dict]:\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            line = line.strip()\\n            if line:\\n                instances.append(json.loads(line))\\n    return instances\\n\\n\\ndef load_logprob_instances(logprob_dir: str) -> list[dict] | None:\\n    \\\"\\\"\\\"Load instances with per-sample logprob from samples_with_logprobs.jsonl.\\\"\\\"\\\"\\n    if not logprob_dir or not os.path.isdir(logprob_dir):\\n   
+…[truncated 2872 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-14T15:03:06.150396+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -100 /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -100 /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-14T15:03:06.150573+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        pair_fn = _re_soft_jaccard_pair\\n    else:\\n        pair_fn = _eae_soft_jaccard_pair\\n\\n    field = {\\\"ner\\\": \\\"entities\\\", \\\"re\\\": \\\"relations\\\", \\\"eae\\\": \\\"events\\\"}[subtask]\\n\\n    scores: list[float] = []\\n    for i, j in combinations(range(n), 2):\\n        score = pair_fn(\\n            samples[i].get(field, []),\\n            samples[j].get(field, []),\\n        )\\n        scores.append(score)\\n\\n    return float(np.mean(scores))\\n\\n\\n# ===================================================================\\n# 3. Oracle best-of-N\\n# ===================================================================\\n\\ndef oracle_best_of_n(\\n    samples: list[Extraction],\\n    gold: Extraction,\\n    subtask: str = \\\"ner\\\",\\n) -> tuple[int, float]:\\n    \\\"\\\"\\\"Select the sample with the highest F1 against the gold extraction.\\n\\n    Args:\\n        samples: N extraction dicts.\\n        gold: Gold-standard extraction.\\n        subtask: Passed through to per_instance_f1.\\n\\n    Returns:\\n        (best_index, best_f1). Returns (-1, 0.0) if samples is empty.\\n    \\\"\\\"\\\"\\n    if not samples:\\n        return (-1, 0.0)\\n\\n    # Lazy import to avoid circular dependency with evaluation.py\\n    from evaluation import per_instance_f1\\n\\n    best_idx = -1\\n    best_f1 = -1.0\\n\\n    for idx, sample in enumerate(samples):\\n        f1 = per_instance_f1(sample, gold, subtask=subtask)\\n        if f1 > best_f1:\\n            best_f1 = f1\\n            best_idx = idx\\n\\n    return (best_idx, best_f1)\\n\\n\\n# ===================================================================\\n# Aggregate helper\\n# ===================================================================\\n\\ndef compute_all_consistency_scores(\\n    sampled_instances: list[dict],\\n    subtask: str = \\\"ner\\\",\\n) -> dict:\\n    \\\"\\\"\\\"Compute all consistency metrics for a list of s
+…[truncated 1462 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-14T15:03:06.150728+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def \" /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"def \" /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-14T15:03:06.150865+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"19:def entity_strict_match(\\n42:def compute_ner_f1(\\n71:def _event_argument_tuples(events: list[dict]) -> set[tuple]:\\n84:def relation_strict_match(\\n97:def compute_re_f1(\\n114:def argument_match(\\n138:def compute_eae_f1(\\n167:def per_instance_f1(\\n206:def compute_sample_f1_distribution(\\n271:def spearman_correlation(\\n294:def kendall_correlation(\\n309:def compute_auroc(\\n339:def generate_evaluation_report(\\n420:def _prf(tp: int, fp: int, fn: int) -> dict[str, float]:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-14T15:03:06.150990+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def \\|selection_f1\\|best.of\" /root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"def \\|selection_f1\\|best.of\" /root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-14T15:03:06.151113+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-14T15:03:06.151261+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def \\|selection_f1\\|best.of\" /root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"def \\|selection_f1\\|best.of\" /root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-14T15:03:06.151386+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-14T15:03:06.151551+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "sed -n '167,260p' /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "sed -n '167,260p' /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-14T15:03:06.151682+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-14T15:03:06.151802+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def \" /root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"def \" /root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-14T15:03:06.151930+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"46:def load_samples(path: str) -> list[dict]:\\n56:def load_logprob_instances(logprob_dir: str) -> list[dict] | None:\\n75:def compute_exact_match_rate(instances: list[dict], subtask: str) -> list[float]:\\n98:def compute_voting_confidence(instances: list[dict], subtask: str) -> list[float]:\\n116:def compute_instance_logprob(inst: dict) -> float:\\n126:def compute_all_signals(\\n174:def part1_signal_correlation(\\n227:def part2_linear_combo_grid(\\n284:def part3_logistic_ensemble(\\n375:def part4_best_of_n_selection(\\n403:    def select_by_per_sample_signal(sig_name: str) -> list[float]:\\n410:    def select_by_instance_signal_rerank(\\n634:def main():\\n655:    def save_json(data, filename):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-14T15:03:06.152051+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -n +167 /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -n +167 /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-14T15:03:06.152384+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def per_instance_f1(\\n    pred: dict,\\n    gold: dict,\\n    subtask: str = \\\"ner\\\",\\n) -> float:\\n    \\\"\\\"\\\"Compute F1 for a single instance.\\n\\n    Args:\\n        pred: Predicted Extraction dict.\\n        gold: Gold Extraction dict.\\n        subtask: \\\"ner\\\" for entity matching, \\\"eae\\\" for argument matching.\\n\\n    Returns:\\n        F1 score (float in [0, 1]).\\n    \\\"\\\"\\\"\\n    if subtask == \\\"ner\\\":\\n        tp, fp, fn = entity_strict_match(\\n            pred.get(\\\"entities\\\", []),\\n            gold.get(\\\"entities\\\", []),\\n        )\\n    elif subtask == \\\"re\\\":\\n        tp, fp, fn = relation_strict_match(\\n            pred.get(\\\"relations\\\", []),\\n            gold.get(\\\"relations\\\", []),\\n        )\\n    elif subtask == \\\"eae\\\":\\n        tp, fp, fn = argument_match(\\n            pred.get(\\\"events\\\", []),\\n            gold.get(\\\"events\\\", []),\\n        )\\n    else:\\n        raise ValueError(f\\\"subtask must be 'ner', 're', or 'eae', got '{subtask}'\\\")\\n    return _prf(tp, fp, fn)[\\\"f1\\\"]\\n\\n\\n# ---------------------------------------------------------------------------\\n# Per-sample F1 distribution\\n# ---------------------------------------------------------------------------\\n\\ndef compute_sample_f1_distribution(\\n    sampled_instances: list[dict],\\n    subtask: str = \\\"ner\\\",\\n) -> dict:\\n    \\\"\\\"\\\"Compute per-sample F1 distribution statistics.\\n\\n    For each instance, compute F1 of each of its N samples against gold.\\n    Aggregate into distribution statistics.\\n\\n    Args:\\n        sampled_instances: List of SampledInstance dicts, each containing\\n            \\\"gold\\\" (Extraction) and \\\"samples\\\" (list of Extraction).\\n        subtask: \\\"ner\\\" or \\\"eae\\\".\\n\\n    Returns:\\n        Dict with keys:\\n            - \\\"all_sample_f1s\\\": flat list of all per-sample
+…[truncated 7221 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-14T15:03:06.152603+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -n +375 /root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -n +375 /root/autodl-tmp/struct_self_consist_ie/code/analyze_exp016_ensemble.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-14T15:03:06.152898+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def part4_best_of_n_selection(\\n    filtered_instances: list[dict],\\n    f1_values: list[float],\\n    signals: dict[str, list[float]],\\n    ensemble_scores: list[float] | None,\\n    subtask: str,\\n) -> dict:\\n    n_instances = len(filtered_instances)\\n\\n    # Per-sample F1 for each instance\\n    per_sample_f1s = []\\n    for inst in filtered_instances:\\n        sample_f1s = [per_instance_f1(s, inst[\\\"gold\\\"], subtask=subtask) for s in inst[\\\"samples\\\"]]\\n        per_sample_f1s.append(sample_f1s)\\n\\n    # Greedy F1\\n    greedy_f1s = [per_instance_f1(inst[\\\"greedy\\\"], inst[\\\"gold\\\"], subtask=subtask) for inst in filtered_instances]\\n    greedy_mean = float(np.mean(greedy_f1s))\\n\\n    # Random (average over all samples)\\n    random_f1s = [float(np.mean(sf)) if sf else 0.0 for sf in per_sample_f1s]\\n    random_mean = float(np.mean(random_f1s))\\n\\n    # Oracle (true best)\\n    oracle_f1s = [max(sf) if sf else 0.0 for sf in per_sample_f1s]\\n    oracle_mean = float(np.mean(oracle_f1s))\\n\\n    # Signal-based selection: pick the sample with highest signal value\\n    def select_by_per_sample_signal(sig_name: str) -> list[float]:\\n        \\\"\\\"\\\"For signals computed per-sample (logprob), select best sample.\\\"\\\"\\\"\\n        # Most signals are instance-level, not per-sample\\n        # For instance-level signals, we can't do per-sample selection\\n        # Fall back to using the signal as a quality indicator for the instance\\n        return None\\n\\n    def select_by_instance_signal_rerank(\\n        sig_values: list[float],\\n        per_sample_f1s_: list[list[float]],\\n        instances_: list[dict],\\n        subtask_: str,\\n    ) -> list[float]:\\n        \\\"\\\"\\\"Use instance-level signal to select: pick the sample that maximizes\\n        the consistency signal when other samples are held fixed.\\n\\n        For efficiency, we use a simpler heuristic:\\n  
+…[truncated 7274 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-14T15:03:06.153189+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -n +84 /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -n +84 /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-14T15:03:06.153473+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def relation_strict_match(\\n    pred_relations: list[dict],\\n    gold_relations: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Strict relation match: (head_start, head_end, tail_start, tail_end, type) must all match.\\\"\\\"\\\"\\n    pred_set = {(r[\\\"head_start\\\"], r[\\\"head_end\\\"], r[\\\"tail_start\\\"], r[\\\"tail_end\\\"], r[\\\"type\\\"]) for r in pred_relations}\\n    gold_set = {(r[\\\"head_start\\\"], r[\\\"head_end\\\"], r[\\\"tail_start\\\"], r[\\\"tail_end\\\"], r[\\\"type\\\"]) for r in gold_relations}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    return tp, fp, fn\\n\\n\\ndef compute_re_f1(\\n    predictions: list[dict],\\n    golds: list[dict],\\n) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute micro-averaged RE precision, recall, and F1.\\\"\\\"\\\"\\n    total_tp = total_fp = total_fn = 0\\n    for pred, gold in zip(predictions, golds):\\n        tp, fp, fn = relation_strict_match(\\n            pred.get(\\\"relations\\\", []),\\n            gold.get(\\\"relations\\\", []),\\n        )\\n        total_tp += tp\\n        total_fp += fp\\n        total_fn += fn\\n    return _prf(total_tp, total_fp, total_fn)\\n\\n\\ndef argument_match(\\n    pred_events: list[dict],\\n    gold_events: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Compute event argument match counts.\\n\\n    A correct argument requires trigger span match + trigger type match +\\n    argument role match + argument span match.\\n\\n    Args:\\n        pred_events: Predicted Event dicts.\\n        gold_events: Gold Event dicts.\\n\\n    Returns:\\n        (tp, fp, fn) counts.\\n    \\\"\\\"\\\"\\n    pred_set = _event_argument_tuples(pred_events)\\n    gold_set = _event_argument_tuples(gold_events)\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    return tp, fp, fn\\n\\
+…[truncated 7196 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-14T15:03:06.153649+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"_ner_soft_jaccard_pair\\|_re_soft_jaccard_pair\\|def structural\" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"_ner_soft_jaccard_pair\\|_re_soft_jaccard_pair\\|def structural\" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-14T15:03:06.153788+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-14T15:03:06.153915+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def \" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"def \" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-14T15:03:06.154046+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"35:def _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\n52:def fleiss_kappa_surface(samples: list[Extraction], subtask: str = \\\"ner\\\") -> float:\\n123:def _span_soft_jaccard(s1_start: int, s1_end: int, s2_start: int, s2_end: int) -> float:\\n134:def _ner_soft_jaccard_pair(entities_a: list[Entity], entities_b: list[Entity]) -> float:\\n199:def _re_soft_jaccard_pair(relations_a: list[dict], relations_b: list[dict]) -> float:\\n225:def _eae_soft_jaccard_pair(events_a: list[Event], events_b: list[Event]) -> float:\\n239:    def _flatten(events: list[Event]) -> dict[tuple[str, str], list[dict]]:\\n288:def structural_consistency_soft_jaccard(\\n332:def oracle_best_of_n(\\n369:def compute_all_consistency_scores(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-14T15:03:06.154212+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:TodoWrite",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:TodoWrite",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-14T15:03:06.154342+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-14T15:03:06.154461+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Write exp010 selection curves analysis script', 'status': 'in_progress', 'activeForm': 'Writing exp010 selection curves analysis script'}, {'content': 'Upload and run script on autodl-5090', 'status': 'pending', 'activeForm': 'Uploading and running script on autodl-5090'}, {'content': 'Generate paper-quality figure (PDF+PNG)', 'status': 'pending', 'activeForm': 'Generating paper-quality figure'}, {'content': 'Analyze results and register artifacts', 'status': 'pending', 'activeForm': 'Analyzing results and registering artifacts'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Write exp010 selection curves analysis script', 'status': 'in_progress', 'activeForm': 'Writing exp010 selection curves analysis script'}, {'content': 'Upload and run script on autodl-5090', 'status': 'pending', 'activeForm': 'Uploading and running script on autodl-5090'}, {'content': 'Generate paper-quality figure (PDF+PNG)', 'status': 'pending', 'activeForm': 'Generating paper-quality figure'}, {'content': 'Analyze results and register artifacts', 'status': 'pending', 'activeForm': 'Analyzing results and registering artifacts'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-14T15:03:06.154594+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-14T15:03:06.154722+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -n +123 /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -n +123 /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-14T15:03:06.154965+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def _span_soft_jaccard(s1_start: int, s1_end: int, s2_start: int, s2_end: int) -> float:\\n    \\\"\\\"\\\"Soft Jaccard between two character spans.\\\"\\\"\\\"\\n    overlap = max(0, min(s1_end, s2_end) - max(s1_start, s2_start))\\n    len1 = s1_end - s1_start\\n    len2 = s2_end - s2_start\\n    union = len1 + len2 - overlap\\n    if union <= 0:\\n        return 0.0\\n    return overlap / union\\n\\n\\ndef _ner_soft_jaccard_pair(entities_a: list[Entity], entities_b: list[Entity]) -> float:\\n    \\\"\\\"\\\"Compute type-aware soft Jaccard between two entity lists via Hungarian matching.\\n\\n    Groups entities by type, finds optimal alignment within each group using\\n    span-level soft Jaccard as the similarity, then computes a weighted average.\\n\\n    Args:\\n        entities_a: Entities from sample i.\\n        entities_b: Entities from sample j.\\n\\n    Returns:\\n        Weighted-average soft Jaccard across all type groups.\\n    \\\"\\\"\\\"\\n    if not entities_a and not entities_b:\\n        return 1.0\\n    if not entities_a or not entities_b:\\n        return 0.0\\n\\n    # Group by entity type\\n    types: set[str] = set()\\n    groups_a: dict[str, list[Entity]] = {}\\n    groups_b: dict[str, list[Entity]] = {}\\n\\n    for e in entities_a:\\n        t = e[\\\"type\\\"]\\n        types.add(t)\\n        groups_a.setdefault(t, []).append(e)\\n    for e in entities_b:\\n        t = e[\\\"type\\\"]\\n        types.add(t)\\n        groups_b.setdefault(t, []).append(e)\\n\\n    total_score = 0.0\\n    total_weight = 0\\n\\n    for t in types:\\n        ga = groups_a.get(t, [])\\n        gb = groups_b.get(t, [])\\n        denom = max(len(ga), len(gb))\\n        if denom == 0:\\n            continue\\n\\n        total_weight += denom\\n\\n        if not ga or not gb:\\n            # One side empty — all unmatched, contributes 0\\n            continue\\n\\n        # Cost matrix for Hungarian (we maxim
+…[truncated 7156 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-14T15:03:06.155220+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import matplotlib; print(matplotlib.__version__); import numpy; print(numpy.__version__); import scipy; print(scipy.__version__)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import matplotlib; print(matplotlib.__version__); import numpy; print(numpy.__version__); import scipy; print(scipy.__version__)\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-14T15:03:06.155373+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3.10.5\\n2.2.6\\n1.17.1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121 · 2026-05-14T15:03:06.155580+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/exp010_selection_curves.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"exp-010: Selection Curves — Best-of-N comparison across signals.\n\nGenerates paper-quality figure showing macro F1 vs N for each selection signal.\nSubplots: (a) NER SciERC, (b) RE SciERC, (c) NER CoNLL-2003.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport json\nimport os\nimport sys\nimport time\nfrom collections import Counter\n\nimport numpy as np\n\nsys.path.insert(0, os.path.join(os.path.dirname(__file__), \"../../code\"))\nfrom consistency import (\n    _ner_soft_jaccard_pair,\n    _re_soft_jaccard_pair,\n    _extract_surface_keys,\n)\nfrom evaluation import per_instance_f1\n\n# ── Configuration ──────────────────────────────────────────────────\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\n\nDATASETS = {\n    \"scierc_ner\": {\n        \"path\": f\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\",\n        \"subtask\": \"ner\",\n        \"max_n\": 16,\n        \"title\": \"(a) NER — SciERC\",\n        \"filter_fn\": None,\n    },\n    \"scierc_re\": {\n        \"path\": f\"{BASE}/output/exp_008_re_n16_v2/samples.jsonl\",\n        \"subtask\": \"re\",\n        \"max_n\": 16,\n        \"title\": \"(b) RE — SciERC\",\n        \"filter_fn\": lambda inst: len(inst[\"gold\"].get(\"relations\", [])) > 0,\n    },\n    \"conll_ner\": {\n        \"path\": f\"{BASE}/output/exp002_conll2003/samples.jsonl\",\n        \"subtask\": \"ner\",\n        \"max_n\": 8,\n        \"title\": \"(c) NER — CoNLL-2003\",\n        \"filter_fn\": None,\n    },\n}\n\nN_REPEATS = 10\nSEED = 42\n\nSELECTION_SIGNALS = [\"SJ\", \"FK\", \"logprob\", \"voting_conf\", \"EM\", \"random\", \"oracle\"]\n\nOUTPUT_DIR = f\"{BASE}/output/exp010_selection_curves\"\nFIG_DIR = os.path.join(OUTPUT_DIR, \"figures\")\n\n# ── Data loading ───────────────────────────────────────────────────\n\ndef load_data(path: str) -> list[dict]:\n    instances = []\n    with open(path) as f:\n        for line in f:\n            if line.strip():\n                instances.append(json.loads(line))\n    return instances\n\n\n# ── Precomputation ─────────────────────────────────────────────────\n\ndef precompute_pairwise_sj(instance: dict, subtask: str) -> np.ndarray:\n    samples = instance[\"samples\"]\n    N = len(samples)\n    field = \"entities\" if subtask == \"ner\" else \"relations\"\n    pair_fn = _ner_soft_jaccard_pair if subtask == \"ner\" else _re_soft_jaccard_pair\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            score = pair_fn(samples[i].get(field, []), samples[j].get(field, []))\n            matrix[i][j] = score\n            matrix[j][i] = score\n    np.fill_diagonal(matrix, 1.0)\n    return matrix\n\n\ndef precompute_pairwise_surface(instance: dict, subtask: str) -> np.ndarray:\n    samples = instance[\"samples\"]\n    N = len(samples)\n    key_sets = [_extract_surface_keys(s, subtask) for s in samples]\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            union = len(key_sets[i] | key_sets[j])\n            inter = len(key_sets[i] & key_sets[j])\n            score = inter / union if union > 0 else 1.0\n            matrix[i][j] = score\n            matrix[j][i] = score\n    np.fill_diagonal(matrix, 1.0)\n    return matrix\n\n\ndef precompute_per_sample_f1(instance: dict, subtask: str) -> list[float]:\n    gold = instance[\"gold\"]\n    return [per_instance_f1(s, gold, subtask=subtask) for s in instance[\"samples\"]]\n\n\n# ── Per-sample signal selection ────────────────────────────────────\n\ndef select_best_sample(\n    signal: str,\n    indices: list[int],\n    sj_matrix: np.ndarray,\n    surface_matrix: np.ndarray,\n    logprobs: list[float],\n    surface_keys: list[frozenset],\n    per_sample_f1s: list[float],\n    rng: np.random.Generator,\n) -> int:\n    n_sub = len(indices)\n    if n_sub == 1:\n        return indices[0]\n\n    if signal == \"oracle\":\n        f1s = [per_sample_f1s[i] for i in indices]\n        return indices[int(np.argmax(f1s))]\n\n    if signal == \"random\":\n        return int(rng.choice(indices))\n\n    if signal == \"logprob\":\n        lps = [logprobs[i] for i in indices]\n        return indices[int(np.argmax(lps))]\n\n    if signal == \"SJ\":\n        scores = []\n        for k in indices:\n            others = [j for j in indices if j != k]\n            scores.append(float(np.mean([sj_matrix[k][j] for j in others])))\n        return indices[int(np.argmax(scores))]\n\n    if signal == \"FK\":\n        scores = []\n        for k in indices:\n            others = [j for j in indices if j != k]\n            scores.append(float(np.mean([surface_matrix[k][j] for j in others])))\n        return indices[int(np.argmax(scores))]\n\n    if signal == \"voting_conf\":\n        all_keys_count: Counter = Counter()\n        for i in indices:\n            for key in surface_keys[i]:\n                all_keys_count[key] += 1\n        scores = []\n        for k in indices:\n            keys_k = surface_keys[k]\n            if not keys_k:\n                scores.append(0.0)\n            else:\n                fracs = [all_keys_count[key] / n_sub for key in keys_k]\n                scores.append(float(np.mean(fracs)))\n        return indices[int(np.argmax(scores))]\n\n    if signal == \"EM\":\n        scores = []\n        for k in indices:\n            count = sum(1 for j in indices if j != k and surface_keys[k] == surface_keys[j])\n            scores.append(count)\n        return indices[int(np.argmax(scores))]\n\n    raise ValueError(f\"Unknown signal: {signal}\")\n\n\n# ── Main computation ───────────────────────────────────────────────\n\ndef run_selection_curves(\n    instances: list[dict],\n    subtask: str,\n    max_n: int,\n) -> dict:\n    n_values = [v for v in [1, 2, 4, 8, 16] if v <= max_n]\n    n_inst = len(instances)\n    print(f\"  {n_inst} instances, max_n={max_n}, n_values={n_values}\")\n\n    # ── Precompute ──\n    print(\"  Precomputing pairwise matrices...\")\n    t0 = time.time()\n\n    all_sj = []\n    all_surf = []\n    all_logprobs = []\n    all_surf_keys = []\n    all_f1s = []\n    all_greedy_f1s = []\n\n    for i, inst in enumerate(instances):\n        if (i + 1) % 200 == 0:\n            print(f\"    {i+1}/{n_inst} ({time.time()-t0:.0f}s)\")\n\n        all_sj.append(precompute_pairwise_sj(inst, subtask))\n        all_surf.append(precompute_pairwise_surface(inst, subtask))\n\n        lps = []\n        for s in inst[\"samples\"]:\n            lp = s.get(\"mean_logprob\")\n            if lp is None:\n                lp = s.get(\"cumulative_logprob\", -999) / max(s.get(\"n_tokens\", 1), 1)\n            lps.append(lp)\n        all_logprobs.append(lps)\n\n        all_surf_keys.append(\n            [frozenset(_extract_surface_keys(s, subtask)) for s in inst[\"samples\"]]\n        )\n        all_f1s.append(precompute_per_sample_f1(inst, subtask))\n        all_greedy_f1s.append(\n            per_instance_f1(inst[\"greedy\"], inst[\"gold\"], subtask=subtask)\n        )\n\n    print(f\"  Precomputation: {time.time()-t0:.1f}s\")\n\n    greedy_macro = float(np.mean(all_greedy_f1s))\n\n    # ── Selection curves ──\n    results: dict[int, dict[str, float]] = {}\n    results_std: dict[int, dict[str, float]] = {}\n\n    for n_val in n_values:\n        t1 = time.time()\n        results[n_val] = {}\n        results_std[n_val] = {}\n\n        if n_val == 1:\n            for sig in SELECTION_SIGNALS:\n                f1s = [all_f1s[i][0] for i in range(n_inst)]\n                results[n_val][sig] = float(np.mean(f1s))\n                results_std[n_val][sig] = 0.0\n            results[n_val][\"greedy\"] = greedy_macro\n            results_std[n_val][\"greedy\"] = 0.0\n\n        elif n_val == max_n:\n            rng = np.random.default_rng(SEED)\n            for sig in SELECTION_SIGNALS:\n                f1s = []\n                for i in range(n_inst):\n                    idx = list(range(max_n))\n                    best = select_best_sample(\n                        sig, idx, all_sj[i], all_surf[i],\n                        all_logprobs[i], all_surf_keys[i], all_f1s[i], rng,\n                    )\n                    f1s.append(all_f1s[i][best])\n                results[n_val][sig] = float(np.mean(f1s))\n                results_std[n_val][sig] = 0.0\n            results[n_val][\"greedy\"] = greedy_macro\n            results_std[n_val][\"greedy\"] = 0.0\n\n        else:\n            for sig in SELECTION_SIGNALS:\n                rep_means = []\n                for rep in range(N_REPEATS):\n                    rng = np.random.default_rng(SEED * 1000 + rep)\n                    f1s = []\n                    for i in range(n_inst):\n                        idx = sorted(\n                            rng.choice(max_n, size=n_val, replace=False).tolist()\n                        )\n                        best = select_best_sample(\n                            sig, idx, all_sj[i], all_surf[i],\n                            all_logprobs[i], all_surf_keys[i], all_f1s[i], rng,\n                        )\n                        f1s.append(all_f1s[i][best])\n                    rep_means.append(float(np.mean(f1s)))\n                results[n_val][sig] = float(np.mean(rep_means))\n                results_std[n_val][sig] = float(np.std(rep_means))\n            results[n_val][\"greedy\"] = greedy_macro\n            results_std[n_val][\"greedy\"] = 0.0\n\n        elapsed = time.time() - t1\n        print(f\"    N={n_val}: {elapsed:.1f}s  SJ={results[n_val]['SJ']:.4f}  \"\n              f\"logprob={results[n_val]['logprob']:.4f}  oracle={results[n_val]['oracle']:.4f}\")\n\n    return {\n        \"n_values\": n_values,\n        \"results\": results,\n        \"results_std\": results_std,\n        \"greedy_macro_f1\": greedy_macro,\n        \"n_instances\": n_inst,\n    }\n\n\n# ── Plotting ───────────────────────────────────────────────────────\n\ndef make_figure(all_data: dict[str, dict], fig_path: str):\n    import matplotlib\n    matplotlib.use(\"Agg\")\n    import matplotlib.pyplot as plt\n    from matplotlib.ticker import ScalarFormatter\n\n    STYLES = {\n        \"SJ\":          {\"color\": \"#2066a8\", \"marker\": \"o\", \"ls\": \"-\",  \"lw\": 2.0, \"ms\": 7,  \"label\": \"Soft Jaccard (SJ)\", \"zorder\": 10},\n        \"FK\":          {\"color\": \"#e08214\", \"marker\": \"s\", \"ls\": \"-\",  \"lw\": 2.0, \"ms\": 6,  \"label\": \"Fleiss' κ (FK)\",    \"zorder\": 9},\n        \"logprob\":     {\"color\": \"#1a9641\", \"marker\": \"^\", \"ls\": \"-\",  \"lw\": 2.0, \"ms\": 7,  \"label\": \"Log-prob\",          \"zorder\": 8},\n        \"voting_conf\": {\"color\": \"#d7191c\", \"marker\": \"D\", \"ls\": \"-\",  \"lw\": 2.0, \"ms\": 6,  \"label\": \"Voting Conf.\",      \"zorder\": 7},\n        \"EM\":          {\"color\": \"#7b3294\", \"marker\": \"v\", \"ls\": \"-\",  \"lw\": 1.8, \"ms\": 6,  \"label\": \"Exact Match (EM)\",  \"zorder\": 6},\n        \"random\":      {\"color\": \"#999999\", \"marker\": \"+\", \"ls\": \"--\", \"lw\": 1.5, \"ms\": 7,  \"label\": \"Random\",            \"zorder\": 4},\n        \"oracle\":      {\"color\": \"#08519c\", \"marker\": \"*\", \"ls\": \"--\", \"lw\": 1.5, \"ms\": 9,  \"label\": \"Oracle\",            \"zorder\": 5},\n        \"greedy\":      {\"color\": \"#636363\", \"marker\": \"\",  \"ls\": \":\",  \"lw\": 1.8, \"ms\": 0,  \"label\": \"Greedy (T=0)\",      \"zorder\": 3},\n    }\n\n    PLOT_ORDER = [\"oracle\", \"SJ\", \"FK\", \"voting_conf\", \"logprob\", \"EM\", \"random\", \"greedy\"]\n\n    fig, axes = plt.subplots(1, 3, figsize=(15.5, 4.8), constrained_layout=True)\n\n    dataset_order = [\"scierc_ner\", \"scierc_re\", \"conll_ner\"]\n\n    for ax_idx, ds_key in enumerate(dataset_order):\n        ax = axes[ax_idx]\n        data = all_data[ds_key]\n        n_vals = data[\"n_values\"]\n        results = data[\"results\"]\n        results_std = data[\"results_std\"]\n\n        for sig in PLOT_ORDER:\n            st = STYLES[sig]\n            ys = [results[n][sig] for n in n_vals]\n\n            if sig == \"greedy\":\n                ax.axhline(y=ys[0], color=st[\"color\"], ls=st[\"ls\"], lw=st[\"lw\"],\n                           label=st[\"label\"], zorder=st[\"zorder\"], alpha=0.7)\n            else:\n                stds = [results_std[n].get(sig, 0) for n in n_vals]\n                has_err = any(s > 0 for s in stds)\n                if has_err:\n                    ys_arr = np.array(ys)\n                    stds_arr = np.array(stds)\n                    ax.fill_between(n_vals, ys_arr - stds_arr, ys_arr + stds_arr,\n                                    color=st[\"color\"], alpha=0.10, zorder=st[\"zorder\"] - 1)\n                ax.plot(n_vals, ys, color=st[\"color\"], marker=st[\"marker\"],\n                        ls=st[\"ls\"], lw=st[\"lw\"], ms=st[\"ms\"],\n                        label=st[\"label\"], zorder=st[\"zorder\"],\n                        markeredgecolor=\"white\", markeredgewidth=0.6)\n\n        ax.set_xscale(\"log\", base=2)\n        ax.set_xticks(n_vals)\n        ax.xaxis.set_major_formatter(ScalarFormatter())\n        ax.set_xlabel(\"N (number of samples)\", fontsize=12)\n        if ax_idx == 0:\n            ax.set_ylabel(\"Macro F1\", fontsize=12)\n        ax.tick_params(labelsize=10)\n        ax.grid(True, alpha=0.3, ls=\"--\")\n\n        ds_cfg = DATASETS[ds_key]\n        ax.set_title(ds_cfg[\"title\"], fontsize=13, fontweight=\"bold\")\n\n        y_vals_all = []\n        for n in n_vals:\n            y_vals_all.extend(results[n][sig] for sig in PLOT_ORDER)\n        y_min = min(y_vals_all) - 0.02\n        y_max = max(y_vals_all) + 0.02\n        ax.set_ylim(y_min, y_max)\n\n    handles, labels = axes[0].get_legend_handles_labels()\n    fig.legend(handles, labels, loc=\"lower center\", ncol=4, fontsize=10,\n               bbox_to_anchor=(0.5, -0.12), frameon=True, edgecolor=\"#cccccc\")\n\n    os.makedirs(os.path.dirname(fig_path), exist_ok=True)\n    fig.savefig(fig_path, dpi=300, bbox_inches=\"tight\")\n    png_path = fig_path.replace(\".pdf\", \".png\")\n    fig.savefig(png_path, dpi=300, bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"  Saved: {fig_path}\")\n    print(f\"  Saved: {png_path}\")\n    return fig_path, png_path\n\n\n# ── Main ───────────────────────────────────────────────────────────\n\ndef main():\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n    os.makedirs(FIG_DIR, exist_ok=True)\n\n    all_data = {}\n\n    for ds_key, ds_cfg in DATASETS.items():\n        print(f\"\\n{'='*60}\")\n        print(f\"  Dataset: {ds_key} ({ds_cfg['subtask'].upper()})\")\n        print(f\"{'='*60}\")\n\n        instances = load_data(ds_cfg[\"path\"])\n        if ds_cfg.get(\"filter_fn\"):\n            before = len(instances)\n            instances = [inst for inst in instances if ds_cfg[\"filter_fn\"](inst)]\n            print(f\"  Filtered: {before} → {len(instances)} (instances with gold labels)\")\n\n        data = run_selection_curves(instances, ds_cfg[\"subtask\"], ds_cfg[\"max_n\"])\n        all_data[ds_key] = data\n\n    # ── Generate figure ──\n    print(f\"\\n{'='*60}\")\n    print(\"  Generating figure...\")\n    print(f\"{'='*60}\")\n    fig_path = os.path.join(FIG_DIR, \"fig_selection_curves.pdf\")\n    make_figure(all_data, fig_path)\n\n    # ── Save metrics JSON ──\n    metrics_out = {}\n    for ds_key, data in all_data.items():\n        metrics_out[ds_key] = {\n            \"n_instances\": data[\"n_instances\"],\n            \"greedy_macro_f1\": data[\"greedy_macro_f1\"],\n            \"n_values\": data[\"n_values\"],\n            \"results\": {str(k): v for k, v in data[\"results\"].items()},\n            \"results_std\": {str(k): v for k, v in data[\"results_std\"].items()},\n        }\n    metrics_path = os.path.join(OUTPUT_DIR, \"exp010_metrics.json\")\n    with open(metrics_path, \"w\") as f:\n        json.dump(metrics_out, f, indent=2)\n    print(f\"  Saved: {metrics_path}\")\n\n    # ── Print summary table ──\n    print(f\"\\n{'='*60}\")\n    print(\"  SUMMARY\")\n    print(f\"{'='*60}\")\n    for ds_key, data in all_data.items():\n        print(f\"\\n  {ds_key} (n={data['n_instances']}):\")\n        n_vals = data[\"n_values\"]\n        print(f\"  {'Signal':>15s}\", end=\"\")\n        for n in n_vals:\n            print(f\"  N={n:>2d}\", end=\"\")\n        print(f\"  {'Δ(max-1)':>8s}\")\n        for sig in PLOT_ORDER:\n            print(f\"  {sig:>15s}\", end=\"\")\n            for n in n_vals:\n                print(f\"  {data['results'][n][sig]:.4f}\", end=\"\")\n            delta = data[\"results\"][n_vals[-1]][sig] - data[\"results\"][n_vals[0]][sig]\n            print(f\"  {delta:+.4f}\")\n\n    print(\"\\nDone.\")\n\n\nPLOT_ORDER = [\"oracle\", \"SJ\", \"FK\", \"voting_conf\", \"logprob\", \"EM\", \"random\", \"greedy\"]\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/exp010_selection_curves.py",
+    "content": "#!/usr/bin/env python3\n\"\"\"exp-010: Selection Curves — Best-of-N comparison across signals.\n\nGenerates paper-quality figure showing macro F1 vs N for each selection signal.\nSubplots: (a) NER SciERC, (b) RE SciERC, (c) NER CoNLL-2003.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport json\nimport os\nimport sys\nimport time\nfrom collections import Counter\n\nimport numpy as np\n\nsys.path.insert(0, os.path.join(os.path.dirname(__file__), \"../../code\"))\nfrom consistency import (\n    _ner_soft_jaccard_pair,\n    _re_soft_jaccard_pair,\n    _extract_surface_keys,\n)\nfrom evaluation import per_instance_f1\n\n# ── Configuration ──────────────────────────────────────────────────\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\n\nDATASETS = {\n    \"scierc_ner\": {\n        \"path\": f\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\",\n        \"subtask\": \"ner\",\n        \"max_n\": 16,\n        \"title\": \"(a) NER — SciERC\",\n        \"filter_fn\": None,\n    },\n    \"scierc_re\": {\n        \"path\": f\"{BASE}/output/exp_008_re_n16_v2/samples.jsonl\",\n        \"subtask\": \"re\",\n        \"max_n\": 16,\n        \"title\": \"(b) RE — SciERC\",\n        \"filter_fn\": lambda inst: len(inst[\"gold\"].get(\"relations\", [])) > 0,\n    },\n    \"conll_ner\": {\n        \"path\": f\"{BASE}/output/exp002_conll2003/samples.jsonl\",\n        \"subtask\": \"ner\",\n        \"max_n\": 8,\n        \"title\": \"(c) NER — CoNLL-2003\",\n        \"filter_fn\": None,\n    },\n}\n\nN_REPEATS = 10\nSEED = 42\n\nSELECTION_SIGNALS = [\"SJ\", \"FK\", \"logprob\", \"voting_conf\", \"EM\", \"random\", \"oracle\"]\n\nOUTPUT_DIR = f\"{BASE}/output/exp010_selection_curves\"\nFIG_DIR = os.path.join(OUTPUT_DIR, \"figures\")\n\n# ── Data loading ───────────────────────────────────────────────────\n\ndef load_data(path: str) -> list[dict]:\n    instances = []\n    with open(path) as f:\n        for line in f:\n            if line.strip():\n                instances.append(json.loads(line))\n    return instances\n\n\n# ── Precomputation ─────────────────────────────────────────────────\n\ndef precompute_pairwise_sj(instance: dict, subtask: str) -> np.ndarray:\n    samples = instance[\"samples\"]\n    N = len(samples)\n    field = \"entities\" if subtask == \"ner\" else \"relations\"\n    pair_fn = _ner_soft_jaccard_pair if subtask == \"ner\" else _re_soft_jaccard_pair\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            score = pair_fn(samples[i].get(field, []), samples[j].get(field, []))\n            matrix[i][j] = score\n            matrix[j][i] = score\n    np.fill_diagonal(matrix, 1.0)\n    return matrix\n\n\ndef precompute_pairwise_surface(instance: dict, subtask: str) -> np.ndarray:\n    samples = instance[\"samples\"]\n    N = len(samples)\n    key_sets = [_extract_surface_keys(s, subtask) for s in samples]\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            union = len(key_sets[i] | key_sets[j])\n            inter = len(key_sets[i] & key_sets[j])\n            score = inter / union if union > 0 else 1.0\n            matrix[i][j] = score\n            matrix[j][i] = score\n    np.fill_diagonal(matrix, 1.0)\n    return matrix\n\n\ndef precompute_per_sample_f1(instance: dict, subtask: str) -> list[float]:\n    gold = instance[\"gold\"]\n    return [per_instance_f1(s, gold, subtask=subtask) for s in instance[\"samples\"]]\n\n\n# ── Per-sample signal selection ────────────────────────────────────\n\ndef select_best_sample(\n    signal: str,\n    indices: list[int],\n    sj_matrix: np.ndarray,\n    surface_matrix: np.ndarray,\n    logprobs: list[float],\n    surface_keys: list[frozenset],\n    per_sample_f1s: list[float],\n    rng: np.random.Generator,\n) -> int:\n    n_sub = len(indices)\n    if n_sub == 1:\n        return indices[0]\n\n    if signal == \"oracle\":\n        f1s = [per_sample_f1s[i] for i in indices]\n        return indices[int(np.argmax(f1s))]\n\n    if signal == \"random\":\n        return int(rng.choice(indices))\n\n    if signal == \"logprob\":\n        lps = [logprobs[i] for i in indices]\n        return indices[int(np.argmax(lps))]\n\n    if signal == \"SJ\":\n        scores = []\n        for k in indices:\n            others = [j for j in indices if j != k]\n            scores.append(float(np.mean([sj_matrix[k][j] for j in others])))\n        return indices[int(np.argmax(scores))]\n\n    if signal == \"FK\":\n        scores = []\n        for k in indices:\n            others = [j for j in indices if j != k]\n            scores.append(float(np.mean([surface_matrix[k][j] for j in others])))\n        return indices[int(np.argmax(scores))]\n\n    if signal == \"voting_conf\":\n        all_keys_count: Counter = Counter()\n        for i in indices:\n            for key in surface_keys[i]:\n                all_keys_count[key] += 1\n        scores = []\n        for k in indices:\n            keys_k = surface_keys[k]\n            if not keys_k:\n                scores.append(0.0)\n            else:\n                fracs = [all_keys_count[key] / n_sub for key in keys_k]\n                scores.append(float(np.mean(fracs)))\n        return indices[int(np.argmax(scores))]\n\n    if signal == \"EM\":\n        scores = []\n        for k in indices:\n            count = sum(1 for j in indices if j != k and surface_keys[k] == surface_keys[j])\n            scores.append(count)\n        return indices[int(np.argmax(scores))]\n\n    raise ValueError(f\"Unknown signal: {signal}\")\n\n\n# ── Main computation ───────────────────────────────────────────────\n\ndef run_selection_curves(\n    instances: list[dict],\n    subtask: str,\n    max_n: int,\n) -> dict:\n    n_values = [v for v in [1, 2, 4, 8, 16] if v <= max_n]\n    n_inst = len(instances)\n    print(f\"  {n_inst} instances, max_n={max_n}, n_values={n_values}\")\n\n    # ── Precompute ──\n    print(\"  Precomputing pairwise matrices...\")\n    t0 = time.time()\n\n    all_sj = []\n    all_surf = []\n    all_logprobs = []\n    all_surf_keys = []\n    all_f1s = []\n    all_greedy_f1s = []\n\n    for i, inst in enumerate(instances):\n        if (i + 1) % 200 == 0:\n            print(f\"    {i+1}/{n_inst} ({time.time()-t0:.0f}s)\")\n\n        all_sj.append(precompute_pairwise_sj(inst, subtask))\n        all_surf.append(precompute_pairwise_surface(inst, subtask))\n\n        lps = []\n        for s in inst[\"samples\"]:\n            lp = s.get(\"mean_logprob\")\n            if lp is None:\n                lp = s.get(\"cumulative_logprob\", -999) / max(s.get(\"n_tokens\", 1), 1)\n            lps.append(lp)\n        all_logprobs.append(lps)\n\n        all_surf_keys.append(\n            [frozenset(_extract_surface_keys(s, subtask)) for s in inst[\"samples\"]]\n        )\n        all_f1s.append(precompute_per_sample_f1(inst, subtask))\n        all_greedy_f1s.append(\n            per_instance_f1(inst[\"greedy\"], inst[\"gold\"], subtask=subtask)\n        )\n\n    print(f\"  Precomputation: {time.time()-t0:.1f}s\")\n\n    greedy_macro = float(np.mean(all_greedy_f1s))\n\n    # ── Selection curves ──\n    results: dict[int, dict[str, float]] = {}\n    results_std: dict[int, dict[str, float]] = {}\n\n    for n_val in n_values:\n        t1 = time.time()\n        results[n_val] = {}\n        results_std[n_val] = {}\n\n        if n_val == 1:\n            for sig in SELECTION_SIGNALS:\n                f1s = [all_f1s[i][0] for i in range(n_inst)]\n                results[n_val][sig] = float(np.mean(f1s))\n                results_std[n_val][sig] = 0.0\n            results[n_val][\"greedy\"] = greedy_macro\n            results_std[n_val][\"greedy\"] = 0.0\n\n        elif n_val == max_n:\n            rng = np.random.default_rng(SEED)\n            for sig in SELECTION_SIGNALS:\n                f1s = []\n                for i in range(n_inst):\n                    idx = list(range(max_n))\n                    best = select_best_sample(\n                        sig, idx, all_sj[i], all_surf[i],\n                        all_logprobs[i], all_surf_keys[i], all_f1s[i], rng,\n                    )\n                    f1s.append(all_f1s[i][best])\n                results[n_val][sig] = float(np.mean(f1s))\n                results_std[n_val][sig] = 0.0\n            results[n_val][\"greedy\"] = greedy_macro\n            results_std[n_val][\"greedy\"] = 0.0\n\n        else:\n            for sig in SELECTION_SIGNALS:\n                rep_means = []\n                for rep in range(N_REPEATS):\n                    rng = np.random.default_rng(SEED * 1000 + rep)\n                    f1s = []\n                    for i in range(n_inst):\n                        idx = sorted(\n                            rng.choice(max_n, size=n_val, replace=False).tolist()\n                        )\n                        best = select_best_sample(\n                            sig, idx, all_sj[i], all_surf[i],\n                            all_logprobs[i], all_surf_keys[i], all_f1s[i], rng,\n                        )\n                        f1s.append(all_f1s[i][best])\n                    rep_means.append(float(np.mean(f1s)))\n                results[n_val][sig] = float(np.mean(rep_means))\n                results_std[n_val][sig] = float(np.std(rep_means))\n            results[n_val][\"greedy\"] = greedy_macro\n            results_std[n_val][\"greedy\"] = 0.0\n\n        elapsed = time.time() - t1\n        print(f\"    N={n_val}: {elapsed:.1f}s  SJ={results[n_val]['SJ']:.4f}  \"\n              f\"logprob={results[n_val]['logprob']:.4f}  oracle={results[n_val]['oracle']:.4f}\")\n\n    return {\n        \"n_values\": n_values,\n        \"results\": results,\n        \"results_std\": results_std,\n        \"greedy_macro_f1\": greedy_macro,\n        \"n_instances\": n_inst,\n    }\n\n\n# ── Plotting ───────────────────────────────────────────────────────\n\ndef make_figure(all_data: dict[str, dict], fig_path: str):\n    import matplotlib\n    matplotlib.use(\"Agg\")\n    import matplotlib.pyplot as plt\n    from matplotlib.ticker import ScalarFormatter\n\n    STYLES = {\n        \"SJ\":          {\"color\": \"#2066a8\", \"marker\": \"o\", \"ls\": \"-\",  \"lw\": 2.0, \"ms\": 7,  \"label\": \"Soft Jaccard (SJ)\", \"zorder\": 10},\n        \"FK\":          {\"color\": \"#e08214\", \"marker\": \"s\", \"ls\": \"-\",  \"lw\": 2.0, \"ms\": 6,  \"label\": \"Fleiss' κ (FK)\",    \"zorder\": 9},\n        \"logprob\":     {\"color\": \"#1a9641\", \"marker\": \"^\", \"ls\": \"-\",  \"lw\": 2.0, \"ms\": 7,  \"label\": \"Log-prob\",          \"zorder\": 8},\n        \"voting_conf\": {\"color\": \"#d7191c\", \"marker\": \"D\", \"ls\": \"-\",  \"lw\": 2.0, \"ms\": 6,  \"label\": \"Voting Conf.\",      \"zorder\": 7},\n        \"EM\":          {\"color\": \"#7b3294\", \"marker\": \"v\", \"ls\": \"-\",  \"lw\": 1.8, \"ms\": 6,  \"label\": \"Exact Match (EM)\",  \"zorder\": 6},\n        \"random\":      {\"color\": \"#999999\", \"marker\": \"+\", \"ls\": \"--\", \"lw\": 1.5, \"ms\": 7,  \"label\": \"Random\",            \"zorder\": 4},\n        \"oracle\":      {\"color\": \"#08519c\", \"marker\": \"*\", \"ls\": \"--\", \"lw\": 1.5, \"ms\": 9,  \"label\": \"Oracle\",            \"zorder\": 5},\n        \"greedy\":      {\"color\": \"#636363\", \"marker\": \"\",  \"ls\": \":\",  \"lw\": 1.8, \"ms\": 0,  \"label\": \"Greedy (T=0)\",      \"zorder\": 3},\n    }\n\n    PLOT_ORDER = [\"oracle\", \"SJ\", \"FK\", \"voting_conf\", \"logprob\", \"EM\", \"random\", \"greedy\"]\n\n    fig, axes = plt.subplots(1, 3, figsize=(15.5, 4.8), constrained_layout=True)\n\n    dataset_order = [\"scierc_ner\", \"scierc_re\", \"conll_ner\"]\n\n    for ax_idx, ds_key in enumerate(dataset_order):\n        ax = axes[ax_idx]\n        data = all_data[ds_key]\n        n_vals = data[\"n_values\"]\n        results = data[\"results\"]\n        results_std = data[\"results_std\"]\n\n        for sig in PLOT_ORDER:\n            st = STYLES[sig]\n            ys = [results[n][sig] for n in n_vals]\n\n            if sig == \"greedy\":\n                ax.axhline(y=ys[0], color=st[\"color\"], ls=st[\"ls\"], lw=st[\"lw\"],\n                           label=st[\"label\"], zorder=st[\"zorder\"], alpha=0.7)\n            else:\n                stds = [results_std[n].get(sig, 0) for n in n_vals]\n                has_err = any(s > 0 for s in stds)\n                if has_err:\n                    ys_arr = np.array(ys)\n                    stds_arr = np.array(stds)\n                    ax.fill_between(n_vals, ys_arr - stds_arr, ys_arr + stds_arr,\n                                    color=st[\"color\"], alpha=0.10, zorder=st[\"zorder\"] - 1)\n                ax.plot(n_vals, ys, color=st[\"color\"], marker=st[\"marker\"],\n                        ls=st[\"ls\"], lw=st[\"lw\"], ms=st[\"ms\"],\n                        label=st[\"label\"], zorder=st[\"zorder\"],\n                        markeredgecolor=\"white\", markeredgewidth=0.6)\n\n        ax.set_xscale(\"log\", base=2)\n        ax.set_xticks(n_vals)\n        ax.xaxis.set_major_formatter(ScalarFormatter())\n        ax.set_xlabel(\"N (number of samples)\", fontsize=12)\n        if ax_idx == 0:\n            ax.set_ylabel(\"Macro F1\", fontsize=12)\n        ax.tick_params(labelsize=10)\n        ax.grid(True, alpha=0.3, ls=\"--\")\n\n        ds_cfg = DATASETS[ds_key]\n        ax.set_title(ds_cfg[\"title\"], fontsize=13, fontweight=\"bold\")\n\n        y_vals_all = []\n        for n in n_vals:\n            y_vals_all.extend(results[n][sig] for sig in PLOT_ORDER)\n        y_min = min(y_vals_all) - 0.02\n        y_max = max(y_vals_all) + 0.02\n        ax.set_ylim(y_min, y_max)\n\n    handles, labels = axes[0].get_legend_handles_labels()\n    fig.legend(handles, labels, loc=\"lower center\", ncol=4, fontsize=10,\n               bbox_to_anchor=(0.5, -0.12), frameon=True, edgecolor=\"#cccccc\")\n\n    os.makedirs(os.path.dirname(fig_path), exist_ok=True)\n    fig.savefig(fig_path, dpi=300, bbox_inches=\"tight\")\n    png_path = fig_path.replace(\".pdf\", \".png\")\n    fig.savefig(png_path, dpi=300, bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"  Saved: {fig_path}\")\n    print(f\"  Saved: {png_path}\")\n    return fig_path, png_path\n\n\n# ── Main ───────────────────────────────────────────────────────────\n\ndef main():\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n    os.makedirs(FIG_DIR, exist_ok=True)\n\n    all_data = {}\n\n    for ds_key, ds_cfg in DATASETS.items():\n        print(f\"\\n{'='*60}\")\n        print(f\"  Dataset: {ds_key} ({ds_cfg['subtask'].upper()})\")\n        print(f\"{'='*60}\")\n\n        instances = load_data(ds_cfg[\"path\"])\n        if ds_cfg.get(\"filter_fn\"):\n            before = len(instances)\n            instances = [inst for inst in instances if ds_cfg[\"filter_fn\"](inst)]\n            print(f\"  Filtered: {before} → {len(instances)} (instances with gold labels)\")\n\n        data = run_selection_curves(instances, ds_cfg[\"subtask\"], ds_cfg[\"max_n\"])\n        all_data[ds_key] = data\n\n    # ── Generate figure ──\n    print(f\"\\n{'='*60}\")\n    print(\"  Generating figure...\")\n    print(f\"{'='*60}\")\n    fig_path = os.path.join(FIG_DIR, \"fig_selection_curves.pdf\")\n    make_figure(all_data, fig_path)\n\n    # ── Save metrics JSON ──\n    metrics_out = {}\n    for ds_key, data in all_data.items():\n        metrics_out[ds_key] = {\n            \"n_instances\": data[\"n_instances\"],\n            \"greedy_macro_f1\": data[\"greedy_macro_f1\"],\n            \"n_values\": data[\"n_values\"],\n            \"results\": {str(k): v for k, v in data[\"results\"].items()},\n            \"results_std\": {str(k): v for k, v in data[\"results_std\"].items()},\n        }\n    metrics_path = os.path.join(OUTPUT_DIR, \"exp010_metrics.json\")\n    with open(metrics_path, \"w\") as f:\n        json.dump(metrics_out, f, indent=2)\n    print(f\"  Saved: {metrics_path}\")\n\n    # ── Print summary table ──\n    print(f\"\\n{'='*60}\")\n    print(\"  SUMMARY\")\n    print(f\"{'='*60}\")\n    for ds_key, data in all_data.items():\n        print(f\"\\n  {ds_key} (n={data['n_instances']}):\")\n        n_vals = data[\"n_values\"]\n        print(f\"  {'Signal':>15s}\", end=\"\")\n        for n in n_vals:\n            print(f\"  N={n:>2d}\", end=\"\")\n        print(f\"  {'Δ(max-1)':>8s}\")\n        for sig in PLOT_ORDER:\n            print(f\"  {sig:>15s}\", end=\"\")\n            for n in n_vals:\n                print(f\"  {data['results'][n][sig]:.4f}\", end=\"\")\n            delta = data[\"results\"][n_vals[-1]][sig] - data[\"results\"][n_vals[0]][sig]\n            print(f\"  {delta:+.4f}\")\n\n    print(\"\\nDone.\")\n\n\nPLOT_ORDER = [\"oracle\", \"SJ\", \"FK\", \"voting_conf\", \"logprob\", \"EM\", \"random\", \"greedy\"]\n\nif __name__ == \"__main__\":\n    main()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-14T15:03:06.155963+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/exp010_selection_curves.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-14T15:03:06.156116+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Write exp010 selection curves analysis script', 'status': 'completed', 'activeForm': 'Writing exp010 selection curves analysis script'}, {'content': 'Upload and run script on autodl-5090', 'status': 'in_progress', 'activeForm': 'Uploading and running script on autodl-5090'}, {'content': 'Generate paper-quality figure (PDF+PNG)', 'status': 'pending', 'activeForm': 'Generating paper-quality figure'}, {'content': 'Analyze results and register artifacts', 'status': 'pending', 'activeForm': 'Analyzing results and registering artifacts'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Write exp010 selection curves analysis script', 'status': 'completed', 'activeForm': 'Writing exp010 selection curves analysis script'}, {'content': 'Upload and run script on autodl-5090', 'status': 'in_progress', 'activeForm': 'Uploading and running script on autodl-5090'}, {'content': 'Generate paper-quality figure (PDF+PNG)', 'status': 'pending', 'activeForm': 'Generating paper-quality figure'}, {'content': 'Analyze results and register artifacts', 'status': 'pending', 'activeForm': 'Analyzing results and registering artifacts'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-14T15:03:06.156285+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125 · 2026-05-14T15:03:06.156411+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "scp /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/exp010_selection_curves.py autodl-5090:/root/autodl-tmp/struct_self_consist_ie/code/exp010_selection_curves.py",
+  "description": "Upload script to server",
+  "timeout": "30000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "scp /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/exp010_selection_curves.py autodl-5090:/root/autodl-tmp/struct_self_consist_ie/code/exp010_selection_curves.py",
+    "description": "Upload script to server",
+    "timeout": "30000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-14T15:03:06.156533+00:00_
+
+Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127 · 2026-05-14T15:03:06.156651+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && nohup python3 code/exp010_selection_curves.py > /tmp/exp010.log 2>&1 &\necho \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && nohup python3 code/exp010_selection_curves.py > /tmp/exp010.log 2>&1 &\necho \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-14T15:03:06.156775+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=82945\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 15.68}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-14T15:03:06.156929+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -30 /tmp/exp010.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -30 /tmp/exp010.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-14T15:03:06.157098+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"               FK  0.5978  0.5889  0.6081  0.6141  0.6211  +0.0233\\n      voting_conf  0.5978  0.5922  0.5940  0.5912  0.5853  -0.0125\\n          logprob  0.5978  0.6072  0.6156  0.6194  0.6207  +0.0229\\n               EM  0.5978  0.5889  0.6000  0.6029  0.6060  +0.0082\\n           random  0.5978  0.5837  0.5869  0.5891  0.5948  -0.0029\\n           greedy  0.6185  0.6185  0.6185  0.6185  0.6185  +0.0000\\n\\n  scierc_re (n=397):\\n           Signal  N= 1  N= 2  N= 4  N= 8  N=16  Δ(max-1)\\n           oracle  0.3552  0.4412  0.5148  0.5826  0.6306  +0.2754\\n               SJ  0.3552  0.3601  0.3787  0.3930  0.3973  +0.0422\\n               FK  0.3552  0.3601  0.3787  0.3944  0.3956  +0.0404\\n      voting_conf  0.3552  0.3713  0.3858  0.3979  0.4077  +0.0525\\n          logprob  0.3552  0.3901  0.4022  0.4126  0.4097  +0.0545\\n               EM  0.3552  0.3601  0.3713  0.3811  0.3813  +0.0262\\n           random  0.3552  0.3572  0.3654  0.3628  0.3636  +0.0084\\n           greedy  0.4030  0.4030  0.4030  0.4030  0.4030  +0.0000\\n\\n  conll_ner (n=3453):\\n           Signal  N= 1  N= 2  N= 4  N= 8  Δ(max-1)\\n           oracle  0.6907  0.7281  0.7456  0.7569  +0.0661\\n               SJ  0.6907  0.6921  0.7144  0.7175  +0.0268\\n               FK  0.6907  0.6921  0.7143  0.7174  +0.0267\\n      voting_conf  0.6907  0.7013  0.7142  0.7143  +0.0236\\n          logprob  0.6907  0.7100  0.7150  0.7163  +0.0255\\n               EM  0.6907  0.6921  0.7121  0.7161  +0.0253\\n           random  0.6907  0.6914  0.6921  0.6898  -0.0009\\n           greedy  0.7246  0.7246  0.7246  0.7246  +0.0000\\n\\nDone.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 131 · 2026-05-14T15:03:06.157314+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/figures/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/figures/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-14T15:03:06.157484+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 748\\ndrwxr-xr-x 2 root root     82 May 14 22:58 .\\ndrwxr-xr-x 3 root root     60 May 14 22:58 ..\\n-rw-r--r-- 1 root root  35273 May 14 22:58 fig_selection_curves.pdf\\n-rw-r--r-- 1 root root 727640 May 14 22:58 fig_selection_curves.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133 · 2026-05-14T15:03:06.157612+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -60 /tmp/exp010.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -60 /tmp/exp010.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 134 · 2026-05-14T15:03:06.157768+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  Dataset: scierc_ner (NER)\\n============================================================\\n  551 instances, max_n=16, n_values=[1, 2, 4, 8, 16]\\n  Precomputing pairwise matrices...\\n    200/551 (0s)\\n    400/551 (1s)\\n  Precomputation: 0.8s\\n    N=1: 0.0s  SJ=0.5978  logprob=0.5978  oracle=0.5978\\n    N=2: 0.5s  SJ=0.5889  logprob=0.6072  oracle=0.6608\\n    N=4: 0.6s  SJ=0.6073  logprob=0.6156  oracle=0.7136\\n    N=8: 1.0s  SJ=0.6143  logprob=0.6194  oracle=0.7522\\n    N=16: 0.2s  SJ=0.6204  logprob=0.6207  oracle=0.7867\\n\\n============================================================\\n  Dataset: scierc_re (RE)\\n============================================================\\n  Filtered: 551 → 397 (instances with gold labels)\\n  397 instances, max_n=16, n_values=[1, 2, 4, 8, 16]\\n  Precomputing pairwise matrices...\\n    200/397 (0s)\\n  Precomputation: 0.4s\\n    N=1: 0.0s  SJ=0.3552  logprob=0.3552  oracle=0.3552\\n    N=2: 0.3s  SJ=0.3601  logprob=0.3901  oracle=0.4412\\n    N=4: 0.4s  SJ=0.3787  logprob=0.4022  oracle=0.5148\\n    N=8: 0.7s  SJ=0.3930  logprob=0.4126  oracle=0.5826\\n    N=16: 0.1s  SJ=0.3973  logprob=0.4097  oracle=0.6306\\n\\n============================================================\\n  Dataset: conll_ner (NER)\\n============================================================\\n  3453 instances, max_n=8, n_values=[1, 2, 4, 8]\\n  Precomputing pairwise matrices...\\n    200/3453 (0s)\\n    400/3453 (0s)\\n    600/3453 (0s)\\n    800/3453 (0s)\\n    1000/3453 (0s)\\n    1200/3453 (0s)\\n    1400/3453 (0s)\\n    1600/3453 (0s)\\n    1800/3453 (0s)\\n    2000/3453 (1s)\\n    2200/3453 (1s)\\n    2400/3453 (1s)\\n    2600/3453 (1s)\\n    2800/3453 (1s)\\n    3000/3453 (1s)\\n    3200/3453 (1s)\\n    3400/3453 (1s)\\n  Precomputation: 0.8s\\n    N=1: 0.0s  SJ=0.6907  logprob=0.6907  oracle=0.6907\\n    N=2: 2.8s  SJ
+…[truncated 415 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 135 · 2026-05-14T15:03:06.157943+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/figures/paper && scp autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/figures/fig_selection_curves.png /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.png && scp autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/figures/fig_selection_curves.pdf /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.pdf && scp autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/exp010_metrics.json /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/exp010_metrics.json",
+  "description": "Download figure and metrics from server",
+  "timeout": "30000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/figures/paper && scp autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/figures/fig_selection_curves.png /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.png && scp autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/figures/fig_selection_curves.pdf /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.pdf && scp autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/exp010_metrics.json /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/exp010_metrics.json",
+    "description": "Download figure and metrics from server",
+    "timeout": "30000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-14T15:03:06.158087+00:00_
+
+Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.
+Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.
+Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 137 · 2026-05-14T15:03:06.158254+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 138 · 2026-05-14T15:03:06.158445+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 139 · 2026-05-14T15:03:06.158656+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Write exp010 selection curves analysis script', 'status': 'completed', 'activeForm': 'Writing exp010 selection curves analysis script'}, {'content': 'Upload and run script on autodl-5090', 'status': 'completed', 'activeForm': 'Uploading and running script on autodl-5090'}, {'content': 'Refine figure for paper quality', 'status': 'in_progress', 'activeForm': 'Refining figure for paper quality'}, {'content': 'Analyze results and register artifacts', 'status': 'pending', 'activeForm': 'Analyzing results and registering artifacts'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Write exp010 selection curves analysis script', 'status': 'completed', 'activeForm': 'Writing exp010 selection curves analysis script'}, {'content': 'Upload and run script on autodl-5090', 'status': 'completed', 'activeForm': 'Uploading and running script on autodl-5090'}, {'content': 'Refine figure for paper quality', 'status': 'in_progress', 'activeForm': 'Refining figure for paper quality'}, {'content': 'Analyze results and register artifacts', 'status': 'pending', 'activeForm': 'Analyzing results and registering artifacts'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 140 · 2026-05-14T15:03:06.158819+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 141 · 2026-05-14T15:03:06.158946+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/exp010_metrics.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/exp010_metrics.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 142 · 2026-05-14T15:03:06.159178+00:00_
+
+1	{
+2	  "scierc_ner": {
+3	    "n_instances": 551,
+4	    "greedy_macro_f1": 0.6184616570812792,
+5	    "n_values": [
+6	      1,
+7	      2,
+8	      4,
+9	      8,
+10	      16
+11	    ],
+12	    "results": {
+13	      "1": {
+14	        "SJ": 0.5977879222541335,
+15	        "FK": 0.5977879222541335,
+16	        "logprob": 0.5977879222541335,
+17	        "voting_conf": 0.5977879222541335,
+18	        "EM": 0.5977879222541335,
+19	        "random": 0.5977879222541335,
+20	        "oracle": 0.5977879222541335,
+21	        "greedy": 0.6184616570812792
+22	      },
+23	      "2": {
+24	        "SJ": 0.5888654721552128,
+25	        "FK": 0.5888654721552128,
+26	        "logprob": 0.6072194952794281,
+27	        "voting_conf": 0.5921984886162318,
+28	        "EM": 0.5888654721552128,
+29	        "random": 0.5837181543227514,
+30	        "oracle": 0.6608054374382858,
+31	        "greedy": 0.6184616570812792
+32	      },
+33	      "4": {
+34	        "SJ": 0.6072600802678758,
+35	        "FK": 0.6081217416432279,
+36	        "logprob": 0.6155959383407555,
+37	        "voting_conf": 0.5940175299597656,
+38	        "EM": 0.6000237705113305,
+39	        "random": 0.5868797702624964,
+40	        "oracle": 0.7136497422833241,
+41	        "greedy": 0.6184616570812792
+42	      },
+43	      "8": {
+44	        "SJ": 0.6142659666196156,
+45	        "FK": 0.6141229260842404,
+46	        "logprob": 0.6193845676739962,
+47	        "voting_conf": 0.5911900290993327,
+48	        "EM": 0.6028629256287525,
+49	        "random": 0.5890920216667771,
+50	        "oracle": 0.7521866314762398,
+51	        "greedy": 0.6184616570812792
+52	      },
+53	      "16": {
+54	        "SJ": 0.6204111343029886,
+55	        "FK": 0.6210528801352971,
+56	        "logprob": 0.6207160604293878,
+57	        "voting_conf": 0.5852502458219336,
+58	        "EM": 0.6060213522287825,
+59	        "random": 0.5948468046599505,
+60	        "oracle": 0.7866554095229231,
+61	        "greedy": 0.6184616570812792
+62	      }
+63	    },
+64	    "results_std": {
+65	      "1": {
+66	 
+…[truncated 8038 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 143 · 2026-05-14T15:03:06.159413+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/plot_selection_curves.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"Standalone plotting for exp-010 selection curves. Reads exp010_metrics.json.\"\"\"\n\nimport json\nimport os\nimport sys\n\nimport numpy as np\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nfrom matplotlib.ticker import ScalarFormatter, MultipleLocator\n\nMETRICS_PATH = sys.argv[1] if len(sys.argv) > 1 else \"exp010_metrics.json\"\nOUT_DIR = sys.argv[2] if len(sys.argv) > 2 else \"figures\"\n\nwith open(METRICS_PATH) as f:\n    data = json.load(f)\n\n# ── Style ──────────────────────────────────────────────────────────\n\nplt.rcParams.update({\n    \"font.family\": \"sans-serif\",\n    \"font.sans-serif\": [\"DejaVu Sans\", \"Arial\", \"Helvetica\"],\n    \"font.size\": 11,\n    \"axes.labelsize\": 13,\n    \"axes.titlesize\": 14,\n    \"legend.fontsize\": 10,\n    \"xtick.labelsize\": 11,\n    \"ytick.labelsize\": 11,\n    \"axes.linewidth\": 0.8,\n    \"grid.linewidth\": 0.5,\n    \"lines.linewidth\": 2.0,\n})\n\nSTYLES = {\n    \"SJ\":          {\"color\": \"#1b6ec2\", \"marker\": \"o\", \"ls\": \"-\",  \"lw\": 2.2, \"ms\": 8,  \"zorder\": 10},\n    \"FK\":          {\"color\": \"#e67e22\", \"marker\": \"s\", \"ls\": \"-\",  \"lw\": 2.0, \"ms\": 7,  \"zorder\": 9},\n    \"logprob\":     {\"color\": \"#27ae60\", \"marker\": \"^\", \"ls\": \"-\",  \"lw\": 2.2, \"ms\": 8,  \"zorder\": 8},\n    \"voting_conf\": {\"color\": \"#c0392b\", \"marker\": \"D\", \"ls\": \"-\",  \"lw\": 2.0, \"ms\": 6.5,\"zorder\": 7},\n    \"EM\":          {\"color\": \"#8e44ad\", \"marker\": \"v\", \"ls\": \"-\",  \"lw\": 1.8, \"ms\": 7,  \"zorder\": 6},\n    \"random\":      {\"color\": \"#95a5a6\", \"marker\": \"+\", \"ls\": \"--\", \"lw\": 1.5, \"ms\": 8,  \"zorder\": 4},\n    \"oracle\":      {\"color\": \"#2c3e50\", \"marker\": \"*\", \"ls\": \"--\", \"lw\": 1.6, \"ms\": 10, \"zorder\": 5},\n    \"greedy\":      {\"color\": \"#7f8c8d\", \"marker\": \"\",  \"ls\": \":\",  \"lw\": 2.0, \"ms\": 0,  \"zorder\": 3},\n}\n\nLABELS = {\n    \"SJ\": \"Soft Jaccard\",\n    \"FK\": \"Fleiss' $\\\\kappa$\",\n    \"logprob\": \"Log-prob\",\n    \"voting_conf\": \"Voting Conf.\",\n    \"EM\": \"Exact Match\",\n    \"random\": \"Random\",\n    \"oracle\": \"Oracle\",\n    \"greedy\": \"Greedy ($T$=0)\",\n}\n\nPLOT_ORDER = [\"oracle\", \"SJ\", \"FK\", \"voting_conf\", \"logprob\", \"EM\", \"random\", \"greedy\"]\n\nDATASET_ORDER = [\n    (\"scierc_ner\", \"(a) NER — SciERC\"),\n    (\"scierc_re\",  \"(b) RE — SciERC\"),\n    (\"conll_ner\",  \"(c) NER — CoNLL-2003\"),\n]\n\n# ── Plot ───────────────────────────────────────────────────────────\n\nfig, axes = plt.subplots(1, 3, figsize=(16, 5.2))\nplt.subplots_adjust(left=0.06, right=0.98, top=0.90, bottom=0.22, wspace=0.28)\n\nfor ax_idx, (ds_key, title) in enumerate(DATASET_ORDER):\n    ax = axes[ax_idx]\n    ds = data[ds_key]\n    n_vals = ds[\"n_values\"]\n    results = ds[\"results\"]\n    results_std = ds[\"results_std\"]\n\n    for sig in PLOT_ORDER:\n        st = STYLES[sig]\n        ys = [results[str(n)][sig] for n in n_vals]\n\n        if sig == \"greedy\":\n            ax.axhline(y=ys[0], color=st[\"color\"], ls=st[\"ls\"], lw=st[\"lw\"],\n                        label=LABELS[sig], zorder=st[\"zorder\"], alpha=0.8)\n        else:\n            stds = [results_std[str(n)].get(sig, 0) for n in n_vals]\n            has_err = any(s > 0 for s in stds)\n            if has_err:\n                ys_arr = np.array(ys)\n                stds_arr = np.array(stds)\n                ax.fill_between(n_vals, ys_arr - stds_arr, ys_arr + stds_arr,\n                                color=st[\"color\"], alpha=0.08, zorder=1)\n            ax.plot(n_vals, ys, color=st[\"color\"], marker=st[\"marker\"],\n                    ls=st[\"ls\"], lw=st[\"lw\"], ms=st[\"ms\"],\n                    label=LABELS[sig], zorder=st[\"zorder\"],\n                    markeredgecolor=\"white\", markeredgewidth=0.7,\n                    clip_on=False)\n\n    ax.set_xscale(\"log\", base=2)\n    ax.set_xticks(n_vals)\n    ax.xaxis.set_major_formatter(ScalarFormatter())\n    ax.set_xlabel(\"$N$ (number of samples)\")\n    if ax_idx == 0:\n        ax.set_ylabel(\"Macro F1\")\n\n    ax.set_title(title, fontweight=\"bold\", pad=8)\n    ax.grid(True, alpha=0.25, ls=\"--\", zorder=0)\n    ax.set_xlim(0.85, n_vals[-1] * 1.15)\n\n    # Y-axis: tight range with small padding\n    all_ys = []\n    for sig in PLOT_ORDER:\n        all_ys.extend(results[str(n)][sig] for n in n_vals)\n    y_min = min(all_ys)\n    y_max = max(all_ys)\n    pad = (y_max - y_min) * 0.06\n    ax.set_ylim(y_min - pad, y_max + pad)\n\n    # Minor ticks for Y\n    y_range = y_max - y_min\n    if y_range < 0.15:\n        ax.yaxis.set_minor_locator(MultipleLocator(0.01))\n    else:\n        ax.yaxis.set_minor_locator(MultipleLocator(0.02))\n    ax.tick_params(which=\"minor\", length=2)\n\n    # Annotate instance count\n    ax.text(0.97, 0.03, f\"$n$={ds['n_instances']}\", transform=ax.transAxes,\n            fontsize=9, ha=\"right\", va=\"bottom\", color=\"#666666\")\n\n# Shared legend at bottom\nhandles, labels = axes[0].get_legend_handles_labels()\nfig.legend(handles, labels, loc=\"lower center\", ncol=4, fontsize=10.5,\n           bbox_to_anchor=(0.52, -0.01), frameon=True,\n           edgecolor=\"#cccccc\", fancybox=False,\n           handlelength=2.5, columnspacing=1.8)\n\nos.makedirs(OUT_DIR, exist_ok=True)\npdf_path = os.path.join(OUT_DIR, \"fig_selection_curves.pdf\")\npng_path = os.path.join(OUT_DIR, \"fig_selection_curves.png\")\nfig.savefig(pdf_path, dpi=300, bbox_inches=\"tight\")\nfig.savefig(png_path, dpi=300, bbox_inches=\"tight\")\nplt.close(fig)\nprint(f\"Saved: {pdf_path}\")\nprint(f\"Saved: {png_path}\")\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/plot_selection_curves.py",
+    "content": "#!/usr/bin/env python3\n\"\"\"Standalone plotting for exp-010 selection curves. Reads exp010_metrics.json.\"\"\"\n\nimport json\nimport os\nimport sys\n\nimport numpy as np\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nfrom matplotlib.ticker import ScalarFormatter, MultipleLocator\n\nMETRICS_PATH = sys.argv[1] if len(sys.argv) > 1 else \"exp010_metrics.json\"\nOUT_DIR = sys.argv[2] if len(sys.argv) > 2 else \"figures\"\n\nwith open(METRICS_PATH) as f:\n    data = json.load(f)\n\n# ── Style ──────────────────────────────────────────────────────────\n\nplt.rcParams.update({\n    \"font.family\": \"sans-serif\",\n    \"font.sans-serif\": [\"DejaVu Sans\", \"Arial\", \"Helvetica\"],\n    \"font.size\": 11,\n    \"axes.labelsize\": 13,\n    \"axes.titlesize\": 14,\n    \"legend.fontsize\": 10,\n    \"xtick.labelsize\": 11,\n    \"ytick.labelsize\": 11,\n    \"axes.linewidth\": 0.8,\n    \"grid.linewidth\": 0.5,\n    \"lines.linewidth\": 2.0,\n})\n\nSTYLES = {\n    \"SJ\":          {\"color\": \"#1b6ec2\", \"marker\": \"o\", \"ls\": \"-\",  \"lw\": 2.2, \"ms\": 8,  \"zorder\": 10},\n    \"FK\":          {\"color\": \"#e67e22\", \"marker\": \"s\", \"ls\": \"-\",  \"lw\": 2.0, \"ms\": 7,  \"zorder\": 9},\n    \"logprob\":     {\"color\": \"#27ae60\", \"marker\": \"^\", \"ls\": \"-\",  \"lw\": 2.2, \"ms\": 8,  \"zorder\": 8},\n    \"voting_conf\": {\"color\": \"#c0392b\", \"marker\": \"D\", \"ls\": \"-\",  \"lw\": 2.0, \"ms\": 6.5,\"zorder\": 7},\n    \"EM\":          {\"color\": \"#8e44ad\", \"marker\": \"v\", \"ls\": \"-\",  \"lw\": 1.8, \"ms\": 7,  \"zorder\": 6},\n    \"random\":      {\"color\": \"#95a5a6\", \"marker\": \"+\", \"ls\": \"--\", \"lw\": 1.5, \"ms\": 8,  \"zorder\": 4},\n    \"oracle\":      {\"color\": \"#2c3e50\", \"marker\": \"*\", \"ls\": \"--\", \"lw\": 1.6, \"ms\": 10, \"zorder\": 5},\n    \"greedy\":      {\"color\": \"#7f8c8d\", \"marker\": \"\",  \"ls\": \":\",  \"lw\": 2.0, \"ms\": 0,  \"zorder\": 3},\n}\n\nLABELS = {\n    \"SJ\": \"Soft Jaccard\",\n    \"FK\": \"Fleiss' $\\\\kappa$\",\n    \"logprob\": \"Log-prob\",\n    \"voting_conf\": \"Voting Conf.\",\n    \"EM\": \"Exact Match\",\n    \"random\": \"Random\",\n    \"oracle\": \"Oracle\",\n    \"greedy\": \"Greedy ($T$=0)\",\n}\n\nPLOT_ORDER = [\"oracle\", \"SJ\", \"FK\", \"voting_conf\", \"logprob\", \"EM\", \"random\", \"greedy\"]\n\nDATASET_ORDER = [\n    (\"scierc_ner\", \"(a) NER — SciERC\"),\n    (\"scierc_re\",  \"(b) RE — SciERC\"),\n    (\"conll_ner\",  \"(c) NER — CoNLL-2003\"),\n]\n\n# ── Plot ───────────────────────────────────────────────────────────\n\nfig, axes = plt.subplots(1, 3, figsize=(16, 5.2))\nplt.subplots_adjust(left=0.06, right=0.98, top=0.90, bottom=0.22, wspace=0.28)\n\nfor ax_idx, (ds_key, title) in enumerate(DATASET_ORDER):\n    ax = axes[ax_idx]\n    ds = data[ds_key]\n    n_vals = ds[\"n_values\"]\n    results = ds[\"results\"]\n    results_std = ds[\"results_std\"]\n\n    for sig in PLOT_ORDER:\n        st = STYLES[sig]\n        ys = [results[str(n)][sig] for n in n_vals]\n\n        if sig == \"greedy\":\n            ax.axhline(y=ys[0], color=st[\"color\"], ls=st[\"ls\"], lw=st[\"lw\"],\n                        label=LABELS[sig], zorder=st[\"zorder\"], alpha=0.8)\n        else:\n            stds = [results_std[str(n)].get(sig, 0) for n in n_vals]\n            has_err = any(s > 0 for s in stds)\n            if has_err:\n                ys_arr = np.array(ys)\n                stds_arr = np.array(stds)\n                ax.fill_between(n_vals, ys_arr - stds_arr, ys_arr + stds_arr,\n                                color=st[\"color\"], alpha=0.08, zorder=1)\n            ax.plot(n_vals, ys, color=st[\"color\"], marker=st[\"marker\"],\n                    ls=st[\"ls\"], lw=st[\"lw\"], ms=st[\"ms\"],\n                    label=LABELS[sig], zorder=st[\"zorder\"],\n                    markeredgecolor=\"white\", markeredgewidth=0.7,\n                    clip_on=False)\n\n    ax.set_xscale(\"log\", base=2)\n    ax.set_xticks(n_vals)\n    ax.xaxis.set_major_formatter(ScalarFormatter())\n    ax.set_xlabel(\"$N$ (number of samples)\")\n    if ax_idx == 0:\n        ax.set_ylabel(\"Macro F1\")\n\n    ax.set_title(title, fontweight=\"bold\", pad=8)\n    ax.grid(True, alpha=0.25, ls=\"--\", zorder=0)\n    ax.set_xlim(0.85, n_vals[-1] * 1.15)\n\n    # Y-axis: tight range with small padding\n    all_ys = []\n    for sig in PLOT_ORDER:\n        all_ys.extend(results[str(n)][sig] for n in n_vals)\n    y_min = min(all_ys)\n    y_max = max(all_ys)\n    pad = (y_max - y_min) * 0.06\n    ax.set_ylim(y_min - pad, y_max + pad)\n\n    # Minor ticks for Y\n    y_range = y_max - y_min\n    if y_range < 0.15:\n        ax.yaxis.set_minor_locator(MultipleLocator(0.01))\n    else:\n        ax.yaxis.set_minor_locator(MultipleLocator(0.02))\n    ax.tick_params(which=\"minor\", length=2)\n\n    # Annotate instance count\n    ax.text(0.97, 0.03, f\"$n$={ds['n_instances']}\", transform=ax.transAxes,\n            fontsize=9, ha=\"right\", va=\"bottom\", color=\"#666666\")\n\n# Shared legend at bottom\nhandles, labels = axes[0].get_legend_handles_labels()\nfig.legend(handles, labels, loc=\"lower center\", ncol=4, fontsize=10.5,\n           bbox_to_anchor=(0.52, -0.01), frameon=True,\n           edgecolor=\"#cccccc\", fancybox=False,\n           handlelength=2.5, columnspacing=1.8)\n\nos.makedirs(OUT_DIR, exist_ok=True)\npdf_path = os.path.join(OUT_DIR, \"fig_selection_curves.pdf\")\npng_path = os.path.join(OUT_DIR, \"fig_selection_curves.png\")\nfig.savefig(pdf_path, dpi=300, bbox_inches=\"tight\")\nfig.savefig(png_path, dpi=300, bbox_inches=\"tight\")\nplt.close(fig)\nprint(f\"Saved: {pdf_path}\")\nprint(f\"Saved: {png_path}\")\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 144 · 2026-05-14T15:03:06.159638+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/plot_selection_curves.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 145 · 2026-05-14T15:03:06.159769+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "scp /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/plot_selection_curves.py autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/plot_selection_curves.py",
+  "description": "Upload plot script to server",
+  "timeout": "15000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "scp /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/plot_selection_curves.py autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/plot_selection_curves.py",
+    "description": "Upload plot script to server",
+    "timeout": "15000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 146 · 2026-05-14T15:03:06.159894+00:00_
+
+Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 147 · 2026-05-14T15:03:06.160014+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves && python3 plot_selection_curves.py exp010_metrics.json figures",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves && python3 plot_selection_curves.py exp010_metrics.json figures",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 148 · 2026-05-14T15:03:06.160157+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Saved: figures/fig_selection_curves.pdf\\nSaved: figures/fig_selection_curves.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 149 · 2026-05-14T15:03:06.160291+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "scp autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/figures/fig_selection_curves.png /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.png && scp autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/figures/fig_selection_curves.pdf /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.pdf",
+  "description": "Download revised figure",
+  "timeout": "15000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "scp autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/figures/fig_selection_curves.png /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.png && scp autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/figures/fig_selection_curves.pdf /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.pdf",
+    "description": "Download revised figure",
+    "timeout": "15000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 150 · 2026-05-14T15:03:06.160442+00:00_
+
+Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.
+Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 151 · 2026-05-14T15:03:06.160592+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 152 · 2026-05-14T15:03:06.161325+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 153 · 2026-05-14T15:03:06.161544+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Write exp010 selection curves analysis script', 'status': 'completed', 'activeForm': 'Writing exp010 selection curves analysis script'}, {'content': 'Upload and run script on autodl-5090', 'status': 'completed', 'activeForm': 'Uploading and running script on autodl-5090'}, {'content': 'Refine figure for paper quality', 'status': 'completed', 'activeForm': 'Refining figure for paper quality'}, {'content': 'Analyze results and register artifacts', 'status': 'in_progress', 'activeForm': 'Analyzing results and registering artifacts'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Write exp010 selection curves analysis script', 'status': 'completed', 'activeForm': 'Writing exp010 selection curves analysis script'}, {'content': 'Upload and run script on autodl-5090', 'status': 'completed', 'activeForm': 'Uploading and running script on autodl-5090'}, {'content': 'Refine figure for paper quality', 'status': 'completed', 'activeForm': 'Refining figure for paper quality'}, {'content': 'Analyze results and register artifacts', 'status': 'in_progress', 'activeForm': 'Analyzing results and registering artifacts'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 154 · 2026-05-14T15:03:06.161697+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 155 · 2026-05-14T15:03:06.161826+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_010_selection_curves",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie",
+  "spec": "{'command': 'python3 code/exp010_selection_curves.py', 'server': 'autodl-5090', 'data_path': 'output/exp_001_seed42_v2, output/exp_008_re_n16_v2, output/exp002_conll2003', 'data_count': '551+397+3453 instances', 'model_name': 'qwen3-8b-scierc-merged-v2', 'seed': 42, 'description': 'Best-of-N selection curves: F1 vs N for 7 signals across 3 datasets'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_010_selection_curves",
+    "field": "status",
+    "value": "DONE",
+    "project": "struct_self_consist_ie",
+    "spec": "{'command': 'python3 code/exp010_selection_curves.py', 'server': 'autodl-5090', 'data_path': 'output/exp_001_seed42_v2, output/exp_008_re_n16_v2, output/exp002_conll2003', 'data_count': '551+397+3453 instances', 'model_name': 'qwen3-8b-scierc-merged-v2', 'seed': 42, 'description': 'Best-of-N selection curves: F1 vs N for 7 signals across 3 datasets'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 156 · 2026-05-14T15:03:06.161966+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1423}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 157 · 2026-05-14T15:03:06.162095+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_010_selection_curves",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "struct_self_consist_ie",
+  "spec": "{'command': 'python3 code/exp010_selection_curves.py', 'server': 'autodl-5090', 'data_path': 'output/exp_001_seed42_v2, output/exp_008_re_n16_v2, output/exp002_conll2003', 'data_count': '551+397+3453 instances', 'model_name': 'qwen3-8b-scierc-merged-v2', 'seed': 42, 'description': 'Best-of-N selection curves: F1 vs N for 7 signals across 3 datasets'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_010_selection_curves",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "struct_self_consist_ie",
+    "spec": "{'command': 'python3 code/exp010_selection_curves.py', 'server': 'autodl-5090', 'data_path': 'output/exp_001_seed42_v2, output/exp_008_re_n16_v2, output/exp002_conll2003', 'data_count': '551+397+3453 instances', 'model_name': 'qwen3-8b-scierc-merged-v2', 'seed': 42, 'description': 'Best-of-N selection curves: F1 vs N for 7 signals across 3 datasets'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 158 · 2026-05-14T15:03:06.162277+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1173}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 159 · 2026-05-14T15:03:06.162410+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_010_selection_curves",
+  "field": "status",
+  "value": "PENDING",
+  "project": "struct_self_consist_ie",
+  "spec": "{'command': 'python3 code/exp010_selection_curves.py', 'server': 'autodl-5090', 'data_path': 'output/exp_001_seed42_v2, output/exp_008_re_n16_v2, output/exp002_conll2003', 'data_count': '551+397+3453 instances', 'model_name': 'qwen3-8b-scierc-merged-v2', 'seed': 42, 'description': 'Best-of-N selection curves: F1 vs N for 7 signals across 3 datasets'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_010_selection_curves",
+    "field": "status",
+    "value": "PENDING",
+    "project": "struct_self_consist_ie",
+    "spec": "{'command': 'python3 code/exp010_selection_curves.py', 'server': 'autodl-5090', 'data_path': 'output/exp_001_seed42_v2, output/exp_008_re_n16_v2, output/exp002_conll2003', 'data_count': '551+397+3453 instances', 'model_name': 'qwen3-8b-scierc-merged-v2', 'seed': 42, 'description': 'Best-of-N selection curves: F1 vs N for 7 signals across 3 datasets'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 160 · 2026-05-14T15:03:06.162555+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_010_selection_curves\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T15:01:53.585Z\", \"updated_at\": \"2026-05-14T15:01:53.585Z\", \"spec\": {\"command\": \"python3 code/exp010_selection_curves.py\", \"server\": \"autodl-5090\", \"data_path\": \"output/exp_001_seed42_v2, output/exp_008_re_n16_v2, output/exp002_conll2003\", \"data_count\": \"551+397+3453 instances\", \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 42, \"description\": \"Best-of-N selection curves: F1 vs N for 7 signals across 3 datasets\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4575}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 161 · 2026-05-14T15:03:06.162682+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_010_selection_curves",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "struct_self_consist_ie",
+  "spec": "{'command': 'python3 code/exp010_selection_curves.py', 'server': 'autodl-5090', 'data_path': 'output/exp_001_seed42_v2, output/exp_008_re_n16_v2, output/exp002_conll2003', 'data_count': '551+397+3453 instances', 'model_name': 'qwen3-8b-scierc-merged-v2', 'seed': 42, 'description': 'Best-of-N selection curves: F1 vs N for 7 signals across 3 datasets'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_010_selection_curves",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "struct_self_consist_ie",
+    "spec": "{'command': 'python3 code/exp010_selection_curves.py', 'server': 'autodl-5090', 'data_path': 'output/exp_001_seed42_v2, output/exp_008_re_n16_v2, output/exp002_conll2003', 'data_count': '551+397+3453 instances', 'model_name': 'qwen3-8b-scierc-merged-v2', 'seed': 42, 'description': 'Best-of-N selection curves: F1 vs N for 7 signals across 3 datasets'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 162 · 2026-05-14T15:03:06.162817+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1403}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 163 · 2026-05-14T15:03:06.162939+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_010_selection_curves",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_010_selection_curves",
+    "field": "status",
+    "value": "DONE",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 164 · 2026-05-14T15:03:06.163067+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.1183}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 165 · 2026-05-14T15:03:06.163208+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_010_selection_curves",
+  "field": "conclusion",
+  "value": "success",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_010_selection_curves",
+    "field": "conclusion",
+    "value": "success",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 166 · 2026-05-14T15:03:06.163344+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_010_selection_curves\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T15:01:53.585Z\", \"updated_at\": \"2026-05-14T15:02:08.959Z\", \"spec\": {\"command\": \"python3 code/exp010_selection_curves.py\", \"server\": \"autodl-5090\", \"data_path\": \"output/exp_001_seed42_v2, output/exp_008_re_n16_v2, output/exp002_conll2003\", \"data_count\": \"551+397+3453 instances\", \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 42, \"description\": \"Best-of-N selection curves: F1 vs N for 7 signals across 3 datasets\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1954}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 167 · 2026-05-14T15:03:06.163467+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_010_selection_curves",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_010_selection_curves",
+    "field": "status",
+    "value": "DONE",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 168 · 2026-05-14T15:03:06.163585+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path', 'log_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 0.1161}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 169 · 2026-05-14T15:03:06.163699+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_010_selection_curves",
+  "field": "checkpoint_path",
+  "value": "N/A (analysis only)",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_010_selection_curves",
+    "field": "checkpoint_path",
+    "value": "N/A (analysis only)",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 170 · 2026-05-14T15:03:06.163827+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_010_selection_curves\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T15:01:53.585Z\", \"updated_at\": \"2026-05-14T15:02:17.134Z\", \"spec\": {\"command\": \"python3 code/exp010_selection_curves.py\", \"server\": \"autodl-5090\", \"data_path\": \"output/exp_001_seed42_v2, output/exp_008_re_n16_v2, output/exp002_conll2003\", \"data_count\": \"551+397+3453 instances\", \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 42, \"description\": \"Best-of-N selection curves: F1 vs N for 7 signals across 3 datasets\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"N/A (analysis only)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1876}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 171 · 2026-05-14T15:03:06.163955+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_010_selection_curves",
+  "field": "log_path",
+  "value": "/tmp/exp010.log",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_010_selection_curves",
+    "field": "log_path",
+    "value": "/tmp/exp010.log",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 172 · 2026-05-14T15:03:06.164086+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_010_selection_curves\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T15:01:53.585Z\", \"updated_at\": \"2026-05-14T15:02:17.913Z\", \"spec\": {\"command\": \"python3 code/exp010_selection_curves.py\", \"server\": \"autodl-5090\", \"data_path\": \"output/exp_001_seed42_v2, output/exp_008_re_n16_v2, output/exp002_conll2003\", \"data_count\": \"551+397+3453 instances\", \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 42, \"description\": \"Best-of-N selection curves: F1 vs N for 7 signals across 3 datasets\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"N/A (analysis only)\", \"log_path\": \"/tmp/exp010.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.197}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 173 · 2026-05-14T15:03:06.164230+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_010_selection_curves",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_010_selection_curves",
+    "field": "status",
+    "value": "DONE",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 174 · 2026-05-14T15:03:06.164364+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_010_selection_curves\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T15:01:53.585Z\", \"updated_at\": \"2026-05-14T15:02:22.638Z\", \"spec\": {\"command\": \"python3 code/exp010_selection_curves.py\", \"server\": \"autodl-5090\", \"data_path\": \"output/exp_001_seed42_v2, output/exp_008_re_n16_v2, output/exp002_conll2003\", \"data_count\": \"551+397+3453 instances\", \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 42, \"description\": \"Best-of-N selection curves: F1 vs N for 7 signals across 3 datasets\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"N/A (analysis only)\", \"log_path\": \"/tmp/exp010.log\", \"completed_at\": \"2026-05-14T15:02:22.638Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4821}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 175 · 2026-05-14T15:03:06.164520+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_010_selection_curves",
+  "field": "metrics",
+  "value": "{'scierc_ner': {'n_instances': 551, 'greedy_f1': 0.618, 'N16': {'oracle': 0.787, 'SJ': 0.62, 'FK': 0.621, 'logprob': 0.621, 'voting_conf': 0.585, 'EM': 0.606, 'random': 0.595}, 'N8': {'oracle': 0.752, 'SJ': 0.614, 'FK': 0.614, 'logprob': 0.619, 'voting_conf': 0.591, 'EM': 0.603, 'random': 0.589}, 'N4': {'oracle': 0.714, 'SJ': 0.607, 'FK': 0.608, 'logprob': 0.616, 'voting_conf': 0.594, 'EM': 0.6, 'random': 0.587}}, 'scierc_re': {'n_instances': 397, 'greedy_f1': 0.403, 'N16': {'oracle': 0.631, 'SJ': 0.397, 'FK': 0.396, 'logprob': 0.41, 'voting_conf': 0.408, 'EM': 0.381, 'random': 0.364}, 'N8': {'oracle': 0.583, 'SJ': 0.393, 'FK': 0.394, 'logprob': 0.413, 'voting_conf': 0.398, 'EM': 0.381, 'random': 0.363}}, 'conll_ner': {'n_instances': 3453, 'greedy_f1': 0.725, 'N8': {'oracle': 0.757, 'SJ': 0.718, 'FK': 0.717, 'logprob': 0.716, 'voting_conf': 0.714, 'EM': 0.716, 'random': 0.69}, 'N4': {'oracle': 0.746, 'SJ': 0.714, 'FK': 0.714, 'logprob': 0.715, 'voting_conf': 0.714, 'EM': 0.712, 'random': 0.692}}}",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_010_selection_curves",
+    "field": "metrics",
+    "value": "{'scierc_ner': {'n_instances': 551, 'greedy_f1': 0.618, 'N16': {'oracle': 0.787, 'SJ': 0.62, 'FK': 0.621, 'logprob': 0.621, 'voting_conf': 0.585, 'EM': 0.606, 'random': 0.595}, 'N8': {'oracle': 0.752, 'SJ': 0.614, 'FK': 0.614, 'logprob': 0.619, 'voting_conf': 0.591, 'EM': 0.603, 'random': 0.589}, 'N4': {'oracle': 0.714, 'SJ': 0.607, 'FK': 0.608, 'logprob': 0.616, 'voting_conf': 0.594, 'EM': 0.6, 'random': 0.587}}, 'scierc_re': {'n_instances': 397, 'greedy_f1': 0.403, 'N16': {'oracle': 0.631, 'SJ': 0.397, 'FK': 0.396, 'logprob': 0.41, 'voting_conf': 0.408, 'EM': 0.381, 'random': 0.364}, 'N8': {'oracle': 0.583, 'SJ': 0.393, 'FK': 0.394, 'logprob': 0.413, 'voting_conf': 0.398, 'EM': 0.381, 'random': 0.363}}, 'conll_ner': {'n_instances': 3453, 'greedy_f1': 0.725, 'N8': {'oracle': 0.757, 'SJ': 0.718, 'FK': 0.717, 'logprob': 0.716, 'voting_conf': 0.714, 'EM': 0.716, 'random': 0.69}, 'N4': {'oracle': 0.746, 'SJ': 0.714, 'FK': 0.714, 'logprob': 0.715, 'voting_conf': 0.714, 'EM': 0.712, 'random': 0.692}}}",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 176 · 2026-05-14T15:03:06.164732+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_010_selection_curves\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T15:01:53.585Z\", \"updated_at\": \"2026-05-14T15:02:34.760Z\", \"spec\": {\"command\": \"python3 code/exp010_selection_curves.py\", \"server\": \"autodl-5090\", \"data_path\": \"output/exp_001_seed42_v2, output/exp_008_re_n16_v2, output/exp002_conll2003\", \"data_count\": \"551+397+3453 instances\", \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 42, \"description\": \"Best-of-N selection curves: F1 vs N for 7 signals across 3 datasets\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"N/A (analysis only)\", \"log_path\": \"/tmp/exp010.log\", \"completed_at\": \"2026-05-14T15:02:22.638Z\", \"metrics\": {\"scierc_ner\": {\"n_instances\": 551, \"greedy_f1\": 0.618, \"N16\": {\"oracle\": 0.787, \"SJ\": 0.62, \"FK\": 0.621, \"logprob\": 0.621, \"voting_conf\": 0.585, \"EM\": 0.606, \"random\": 0.595}, \"N8\": {\"oracle\": 0.752, \"SJ\": 0.614, \"FK\": 0.614, \"logprob\": 0.619, \"voting_conf\": 0.591, \"EM\": 0.603, \"random\": 0.589}, \"N4\": {\"oracle\": 0.714, \"SJ\": 0.607, \"FK\": 0.608, \"logprob\": 0.616, \"voting_conf\": 0.594, \"EM\": 0.6, \"random\": 0.587}}, \"scierc_re\": {\"n_instances\": 397, \"greedy_f1\": 0.403, \"N16\": {\"oracle\": 0.631, \"SJ\": 0.397, \"FK\": 0.396, \"logprob\": 0.41, \"voting_conf\": 0.408, \"EM\": 0.381, \"random\": 0.364}, \"N8\": {\"oracle\": 0.583, \"SJ\": 0.393, \"FK\": 0.394, \"logprob\": 0.413, \"voting_conf\": 0.398, \"EM\": 0.381, \"random\": 0.363}}, \"conll_ner\": {\"n_instances\": 3453, \"greedy_f1\": 0.725, \"N8\": {\"oracle\": 0.757, \"SJ\": 0.718, \"FK\": 0.717, \"logprob\": 0.716, \"voting_conf\": 0.714, \"EM\": 0.716, \"random\": 0.69}, \"N4\": {\"oracle\": 0.746, \"SJ\": 0.714, \"FK\": 0.714, \"logprob\": 0.715, \"voting_conf\": 0.714, \"EM\": 0.712, \"random\": 0.692}}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2288
+…[truncated 4 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 177 · 2026-05-14T15:03:06.164893+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "fig_selection_curves",
+  "type": "chart",
+  "description": "Best-of-N selection curves: Macro F1 vs N for 7 signals + oracle/greedy baselines across SciERC NER, SciERC RE, CoNLL-2003 NER. Paper-quality PDF+PNG figure.",
+  "project": "struct_self_consist_ie",
+  "exp_id": "exp_010_selection_curves",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.pdf",
+  "tags": "['paper-figure', 'selection-curves', 'best-of-n', 'n-scaling']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "fig_selection_curves",
+    "type": "chart",
+    "description": "Best-of-N selection curves: Macro F1 vs N for 7 signals + oracle/greedy baselines across SciERC NER, SciERC RE, CoNLL-2003 NER. Paper-quality PDF+PNG figure.",
+    "project": "struct_self_consist_ie",
+    "exp_id": "exp_010_selection_curves",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/figures/paper/fig_selection_curves.pdf",
+    "tags": "['paper-figure', 'selection-curves', 'best-of-n', 'n-scaling']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 178 · 2026-05-14T15:03:06.165045+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_395657\", \"name\": \"fig_selection_curves\", \"type\": \"chart\", \"description\": \"Best-of-N selection curves: Macro F1 vs N for 7 signals + oracle/greedy baselines across SciERC NER, SciERC RE, CoNLL-2003 NER. Paper-quality PDF+PNG figure.\", \"path\": \"projects/struct_self_consist_ie/artifacts/exp_010_selection_curves/chart/fig_selection_curves.pdf\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": \"exp_010_selection_curves\", \"skill\": \"\", \"created_at\": \"2026-05-14T15:02:42.359888+00:00\", \"tags\": [\"paper-figure\", \"selection-curves\", \"best-of-n\", \"n-scaling\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 179 · 2026-05-14T15:03:06.165199+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "exp010_metrics",
+  "type": "data",
+  "description": "Full metrics JSON for exp-010 selection curves: per-(dataset, signal, N) macro F1 with std across 10 subsampling repeats.",
+  "project": "struct_self_consist_ie",
+  "exp_id": "exp_010_selection_curves",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/exp010_metrics.json",
+  "tags": "['metrics', 'selection-curves']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "exp010_metrics",
+    "type": "data",
+    "description": "Full metrics JSON for exp-010 selection curves: per-(dataset, signal, N) macro F1 with std across 10 subsampling repeats.",
+    "project": "struct_self_consist_ie",
+    "exp_id": "exp_010_selection_curves",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp010_selection_curves/exp010_metrics.json",
+    "tags": "['metrics', 'selection-curves']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 180 · 2026-05-14T15:03:06.165347+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_b93338\", \"name\": \"exp010_metrics\", \"type\": \"data\", \"description\": \"Full metrics JSON for exp-010 selection curves: per-(dataset, signal, N) macro F1 with std across 10 subsampling repeats.\", \"path\": \"projects/struct_self_consist_ie/artifacts/exp_010_selection_curves/data/exp010_metrics.json\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": \"exp_010_selection_curves\", \"skill\": \"\", \"created_at\": \"2026-05-14T15:02:44.853460+00:00\", \"tags\": [\"metrics\", \"selection-curves\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 181 · 2026-05-14T15:03:06.165476+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Write exp010 selection curves analysis script', 'status': 'completed', 'activeForm': 'Writing exp010 selection curves analysis script'}, {'content': 'Upload and run script on autodl-5090', 'status': 'completed', 'activeForm': 'Uploading and running script on autodl-5090'}, {'content': 'Refine figure for paper quality', 'status': 'completed', 'activeForm': 'Refining figure for paper quality'}, {'content': 'Analyze results and register artifacts', 'status': 'completed', 'activeForm': 'Analyzing results and registering artifacts'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Write exp010 selection curves analysis script', 'status': 'completed', 'activeForm': 'Writing exp010 selection curves analysis script'}, {'content': 'Upload and run script on autodl-5090', 'status': 'completed', 'activeForm': 'Uploading and running script on autodl-5090'}, {'content': 'Refine figure for paper quality', 'status': 'completed', 'activeForm': 'Refining figure for paper quality'}, {'content': 'Analyze results and register artifacts', 'status': 'completed', 'activeForm': 'Analyzing results and registering artifacts'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 182 · 2026-05-14T15:03:06.165615+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_010_selection_curves_20260514T144948",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 183 · 2026-05-14T15:03:06.165778+00:00_
+
+完成。图表和数据已注册。结果分析：
+
+## 核心发现
+
+**1. 哪个信号 N 增加时 F1 增幅最大？**
+- **NER (SciERC/CoNLL)**: SJ、FK、logprob 几乎并列（Δ≈+0.02~0.03），差距极小
+- **RE (SciERC)**: logprob 最佳（+0.055），voting_conf 次之（+0.053），SJ/FK 相对弱（+0.04）
+
+**2. Saturation point？**
+- 所有信号在 N=8 后增长明显放缓。NER SciERC 从 N=8→16 各信号仅提升 <0.01
+- RE 的 oracle 仍在快速增长（+0.05 from N=8→16），说明不是数据瓶颈，而是信号能力不足
+
+**3. SJ vs logprob gap 随 N 变化**
+- NER: SJ 和 logprob 在 N=16 几乎相同（0.620 vs 0.621）——consistency 和 confidence 信号等价
+- RE: logprob 在所有 N 值持续领先 SJ 约 +0.01~0.02——关系抽取中模型内部信心比跨样本一致性更有效
+
+**4. NER vs RE 的 scaling 差异**
+- RE 的 oracle headroom 远大于 NER（+0.275 vs +0.189），但实际信号只恢复了约 15-20% 的 headroom
+- RE 是更难的任务，信号的绝对改善空间更大，但相对效率低
+
+**5. 一个反常结果**: NER SciERC 的 voting_conf 随 N 增加反而**下降**（0.598→0.585）——在该数据上基于投票置信度的选择不如随机。
+
+**输出文件**:
+- PDF/PNG: `artifacts/exp_010_selection_curves/chart/fig_selection_curves.pdf`
+- 指标: `artifacts/exp_010_selection_curves/data/exp010_metrics.json`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_exp_010_selection_curves_20260514T144948"
+}
+```
+
+</details>
+
+---

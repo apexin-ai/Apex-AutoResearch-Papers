@@ -1,0 +1,1400 @@
+# paper research lit batch2
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 0
+- **Tool calls:** 21
+- **Original source:** `logs/chats/worker_paper_research_lit_batch2_20260514T180832.jsonl`
+- **Structured JSON:** [`ada467a10ce8827474d2.json`](../../sessions/ad/ada467a10ce8827474d2.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+43 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T18:11:07.463142+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/literature_map.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/literature_map.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T18:11:07.463623+00:00_
+
+1	meta:
+2	  last_updated: '2026-05-14T17:52:10.000Z'
+3	  total_papers: 21
+4	categories: []
+5	papers:
+6	  wang2023selfconsistency:
+7	    title: Self-Consistency Improves Chain of Thought Reasoning in Language Models
+8	    authors:
+9	    - Xuezhi Wang
+10	    - Jason Wei
+11	    - Dale Schuurmans
+12	    - Quoc Le
+13	    - Ed Chi
+14	    - Sharan Narang
+15	    - Aakanksha Chowdhery
+16	    - Denny Zhou
+17	    year: 2023
+18	    venue: ICLR 2023
+19	    url: https://arxiv.org/abs/2203.11171
+20	    doi: ''
+21	    bibtex_key: wang2023selfconsistency
+22	    category: self_consistency_reasoning
+23	    role: foundation
+24	    relevance: 'Foundation paper: introduces self-consistency voting over diverse reasoning paths. We extend this paradigm
+25	      from closed-form answers to structured IE outputs.'
+26	    abstract: ''
+27	    semantic_scholar_id: ''
+28	    verified: true
+29	    added_by: paper-research:cluster1
+30	    added_at: '2026-05-14T15:47:22.188Z'
+31	  taubenfeld2025cisc:
+32	    title: Confidence Improves Self-Consistency in LLMs
+33	    authors:
+34	    - Amir Taubenfeld
+35	    - Tom Sheffer
+36	    - Eran Ofek
+37	    - Amir Feder
+38	    - Ariel Goldstein
+39	    - Zorik Gekhman
+40	    - Gal Yona
+41	    year: 2025
+42	    venue: ACL Findings 2025
+43	    url: https://arxiv.org/abs/2502.06233
+44	    doi: 10.18653/v1/2025.findings-acl.1030
+45	    bibtex_key: taubenfeld2025cisc
+46	    category: self_consistency_reasoning
+47	    role: direct-competitor
+48	    relevance: 'CISC: confidence-weighted majority vote reduces required samples by 40%. Direct competitor — we address the
+49	      same "strong predictor, weak selector" gap but for structured outputs.'
+50	    abstract: ''
+51	    semantic_scholar_id: ''
+52	    verified: true
+53	    added_by: paper-research:cluster1
+54	    added_at: '2026-05-14T15:47:22.188Z'
+55	  kang2025selfcertainty:
+56	    title: Scalable Best-of-N Selection for Large Language Models via Self-Certainty
+57	    authors:
+58	    - Zhewei Kang
+59	    - Xuandong 
+…[truncated 17100 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T18:11:07.463835+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-14T18:11:07.463978+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T18:11:07.464163+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Fisch et al 2021 \"Few-Shot Conformal Prediction with Auxiliary Tasks\" NeurIPS"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Fisch et al 2021 \"Few-Shot Conformal Prediction with Auxiliary Tasks\" NeurIPS"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-14T18:11:07.464341+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Angelopoulos et al 2021 \"Uncertainty Sets for Image Classifiers using Conformal Prediction\" ICLR"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Angelopoulos et al 2021 \"Uncertainty Sets for Image Classifiers using Conformal Prediction\" ICLR"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-14T18:11:07.464466+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "conformal prediction NLP sequence labeling 2021 2022 2023 Bates structured prediction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "conformal prediction NLP sequence labeling 2021 2022 2023 Bates structured prediction"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-14T18:11:07.464583+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Xiao Wang 2019 \"Quantifying Uncertainties in Natural Language Processing Tasks\" AAAI"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Xiao Wang 2019 \"Quantifying Uncertainties in Natural Language Processing Tasks\" AAAI"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T18:11:07.464705+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Shelmanov 2021 NER uncertainty active learning ACL EMNLP EACL structured prediction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Shelmanov 2021 NER uncertainty active learning ACL EMNLP EACL structured prediction"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T18:11:07.464819+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "He 2020 NER uncertainty estimation token-level ACL named entity recognition"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "He 2020 NER uncertainty estimation token-level ACL named entity recognition"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T18:11:07.464959+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Lakshminarayanan 2017 \"Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles\" NeurIPS"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Lakshminarayanan 2017 \"Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles\" NeurIPS"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T18:11:07.465087+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Gal Ghahramani 2016 \"Dropout as a Bayesian Approximation\" ICML uncertainty deep learning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Gal Ghahramani 2016 \"Dropout as a Bayesian Approximation\" ICML uncertainty deep learning"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T18:11:07.465266+00:00_
+
+Web search results for query: "Fisch et al 2021 "Few-Shot Conformal Prediction with Auxiliary Tasks" NeurIPS"
+
+Links: [{"title":"Few-Shot Conformal Prediction with Auxiliary Tasks","url":"https://proceedings.mlr.press/v139/fisch21a.html"},{"title":"[2102.08898] Few-shot Conformal Prediction with Auxiliary Tasks","url":"https://arxiv.org/abs/2102.08898"},{"title":"Few-shot Conformal Prediction with Auxiliary Tasks - ADS","url":"https://ui.adsabs.harvard.edu/abs/2021arXiv210208898F/abstract"},{"title":"Few-shot Conformal Prediction with Auxiliary Tasks","url":"https://dspace.mit.edu/handle/1721.1/143522"},{"title":"Few-shot Conformal Prediction with Auxiliary Tasks","url":"https://icml.cc/media/icml-2021/Slides/8739.pdf"},{"title":"[PDF] Few-shot Conformal Prediction with Auxiliary Tasks | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Few-shot-Conformal-Prediction-with-Auxiliary-Tasks-Fisch-Schuster/36a2c27ffa72c05c2a17dc90b7c54e492b88ba01"},{"title":"Neural Conformal Control for Time Series Forecasting","url":"https://arxiv.org/html/2412.18144"},{"title":"GitHub - ajfisch/few-shot-cp: Few-Shot Conformal Prediction","url":"https://github.com/ajfisch/few-shot-cp"},{"title":"few-shot-cp/README.md at master · ajfisch/few-shot-cp","url":"https://github.com/ajfisch/few-shot-cp/blob/master/README.md"},{"title":"Few-shot Conformal Prediction with Auxiliary Tasks","url":"https://arxiv.org/pdf/2102.08898"}]
+
+I found the paper! Here are the key details about "Few-Shot Conformal Prediction with Auxiliary Tasks" by Fisch et al. (2021):
+
+**Publication Details:**
+The paper was published in the Proceedings of the 38th International Conference on Machine Learning (ICML) in 2021, pages 3329-3339. Note: This was published at ICML, not NeurIPS.
+
+**Authors:** Adam Fisch, Tal Schuster, Tommi Jaakkola, and Regina Barzilay
+
+**Main Contribution:**
+The paper develops a novel approach to conformal prediction when the target task has limited data available for training. Conform
+…[truncated 890 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T18:11:07.465415+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Fomicheva 2020 \"Unsupervised Quality Estimation for Neural Machine Translation\" MC dropout ensemble uncertainty NLP"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Fomicheva 2020 \"Unsupervised Quality Estimation for Neural Machine Translation\" MC dropout ensemble uncertainty NLP"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T18:11:07.465580+00:00_
+
+Web search results for query: "Angelopoulos et al 2021 "Uncertainty Sets for Image Classifiers using Conformal Prediction" ICLR"
+
+Links: [{"title":"Uncertainty Sets for Image Classifiers using Conformal Prediction - ADS","url":"https://ui.adsabs.harvard.edu/abs/2020arXiv200914193A/abstract"},{"title":"UNCERTAINTY SETS FOR IMAGE CLASSIFIERS USING CONFORMAL PREDICTION","url":"https://people.eecs.berkeley.edu/~angelopoulos/publications/downloads/conformal-classification.pdf"},{"title":"dblp: Uncertainty Sets for Image Classifiers using Conformal Prediction.","url":"https://dblp.org/rec/conf/iclr/AngelopoulosBJM21.html"},{"title":"GitHub - fahaddalwai/ImplementationConfClassification: Implementation of the experiments in 'Uncertainty Sets for Image Classifiers using Conformal Prediction. Angelopoulos, A. N., et al. (2021).ICLR'","url":"https://github.com/fahaddalwai/ImplementationConfClassification"},{"title":"ICLR 2021 Uncertainty Sets for Image Classifiers using Conformal Prediction Spotlight","url":"https://iclr.cc/virtual/2021/spotlight/3435"},{"title":"Published as a conference paper at ICLR 2025","url":"https://arxiv.org/pdf/2410.01767"},{"title":"Uncertainty Sets for Image Classifiers using Conformal Prediction | OpenReview","url":"https://openreview.net/forum?id=eNdiU_DbM9"},{"title":"[2009.14193] Uncertainty Sets for Image Classifiers using Conformal Prediction","url":"https://arxiv.org/abs/2009.14193"},{"title":"Improving uncertainty quantification of deep classifiers via neighborhood conformal prediction | Proceedings of the Thirty-Seventh AAAI Conference on Artificial Intelligence and Thirty-Fifth Conference on Innovative Applications of Artificial Intelligence and Thirteenth Symposium on Educational Advances in Artificial Intelligence","url":"https://dl.acm.org/doi/10.1609/aaai.v37i6.25936"},{"title":"μ & σ - Conformal classification","url":"https://people.eecs.berkeley.edu/~angelopoulos/blog/posts/conformal-classification/"}]
+
+I found the paper! Here's a s
+…[truncated 1544 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T18:11:07.465756+00:00_
+
+Web search results for query: "conformal prediction NLP sequence labeling 2021 2022 2023 Bates structured prediction"
+
+Links: [{"title":"Conformal Prediction for Natural Language Processing: A Survey","url":"https://aclanthology.org/2024.tacl-1.82.pdf"},{"title":"Published as a conference paper at ICLR 2024 CONFORMAL LANGUAGE MODELING","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/31421b112e5f7faf4fc577b74e45dab2-Paper-Conference.pdf"},{"title":"Conformal Prediction for Natural Language Processing: A Survey | Transactions of the Association for Computational Linguistics | MIT Press","url":"https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00715/125278/Conformal-Prediction-for-Natural-Language"},{"title":"[2107.07511] A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification","url":"https://arxiv.org/abs/2107.07511"},{"title":"Conformal Prediction and Verification of Large Language Model Extractions in","url":"https://ojs.aaai.org/index.php/AAAI-SS/article/download/36929/39067/41006"},{"title":"Conformal Prediction: A Data Perspective","url":"https://arxiv.org/html/2410.06494v2"},{"title":"Conformal Prediction for Risk-Controlled Medical Entity Extraction Across Clinical Domains","url":"https://arxiv.org/html/2603.00924"},{"title":"Conformal Prediction for Text Infilling and Part-of-Speech Prediction","url":"https://nejsds.nestat.org/journal/NEJSDS/article/10/file/pdf"},{"title":"Uncertainty Quantification for Named Entity Recognition via Full-Sequence and Subsequence Conformal Prediction","url":"https://arxiv.org/html/2601.16999"},{"title":"Conformal Prediction: A Data Perspective | ACM Computing Surveys","url":"https://dl.acm.org/doi/10.1145/3736575"}]
+
+Based on the search results, I found several relevant resources on conformal prediction applied to NLP sequence labeling tasks:
+
+## Key Findings
+
+**Survey Papers:**
+A comprehensive survey on Conformal Prediction for Natural Language Processing was published 
+…[truncated 1449 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T18:11:07.465938+00:00_
+
+Web search results for query: "Xiao Wang 2019 "Quantifying Uncertainties in Natural Language Processing Tasks" AAAI"
+
+Links: [{"title":"Quantifying Uncertainties in Natural Language Processing Tasks | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/4719"},{"title":"Quantifying uncertainties in natural language processing tasks | Proceedings of the Thirty-Third AAAI Conference on Artificial Intelligence and Thirty-First Innovative Applications of Artificial Intelligence Conference and Ninth AAAI Symposium on Educational Advances in Artificial Intelligence","url":"https://dl.acm.org/doi/10.1609/aaai.v33i01.33017322"},{"title":"Quantifying Uncertainties in Natural Language Processing Tasks","url":"https://www.researchgate.net/publication/335380068_Quantifying_Uncertainties_in_Natural_Language_Processing_Tasks"},{"title":"Quantifying Uncertainties in Natural Language Processing ...","url":"https://ojs.aaai.org/index.php/AAAI/article/view/4719/4597"},{"title":"[1811.07253] Quantifying Uncertainties in Natural Language Processing Tasks","url":"https://arxiv.org/abs/1811.07253"},{"title":"Managing Uncertainty in NLP: Advanced Techniques and Approaches | SpringerLink","url":"https://link.springer.com/chapter/10.1007/978-3-031-88988-2_5"},{"title":"[1811.07253v1] Quantifying Uncertainties in Natural Language Processing Tasks","url":"https://arxiv.org/abs/1811.07253v1"},{"title":"CUE | Proceedings of the Thirty-Ninth Conference on Uncertainty in Artificial Intelligence","url":"https://dl.acm.org/doi/10.5555/3625834.3625952"},{"title":"Rethinking learning difficulty and uncertainty of samples with a target perturbation-aware bias-variance decomposition | International Journal of Machine Learning and Cybernetics | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s13042-025-02537-9"},{"title":"The Thirty-Third AAAI Conference on Artiﬁcial Intelligence (AAAI-19)","url":"https://www.aaai.o
+…[truncated 1309 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T18:11:07.466109+00:00_
+
+Web search results for query: "Shelmanov 2021 NER uncertainty active learning ACL EMNLP EACL structured prediction"
+
+Links: [{"title":"Active Learning for Sequence Tagging with Deep Pre-trained Models and Bayesian Uncertainty Estimates - ACL Anthology","url":"https://aclanthology.org/2021.eacl-main.145/"},{"title":"Active Learning for Sequence Tagging with Deep Pre- ...","url":"https://aclanthology.org/2021.eacl-main.145.pdf"},{"title":"Re-weighting Tokens: A Simple and Effective Active ...","url":"https://aclanthology.org/2023.findings-emnlp.847.pdf"},{"title":"On the Calibration and Uncertainty of Neural Learning to ...","url":"https://aclanthology.org/2021.eacl-main.12.pdf"},{"title":"CUE | Proceedings of the Thirty-Ninth Conference on Uncertainty in Artificial Intelligence","url":"https://dl.acm.org/doi/10.5555/3625834.3625952"},{"title":"Second Workshop on Uncertainty-Aware NLP @EMNLP 2025","url":"https://uncertainlp.github.io/"},{"title":"Data-efficient Active Learning for Structured Prediction with ...","url":"https://aclanthology.org/2023.findings-emnlp.865.pdf"},{"title":"The Second Workshop on Uncertainty-Aware NLP @ EMNLP 2025 | ACL Member Portal","url":"https://www.aclweb.org/portal/content/second-workshop-uncertainty-aware-nlp-emnlp-2025-1"},{"title":"The 2025 Conference on Empirical Methods in Natural Language Processing - ACL Anthology","url":"https://aclanthology.org/events/emnlp-2025/"},{"title":"ActiveEA: Active Learning for Neural Entity Alignment","url":"https://aclanthology.org/2021.emnlp-main.270.pdf"}]
+
+I found the paper you're looking for! 
+
+The paper is "Active Learning for Sequence Tagging with Deep Pre-trained Models and Bayesian Uncertainty Estimates" by Shelmanov et al., published at EACL 2021 in the Proceedings of the 16th Conference of the European Chapter of the Association for Computational Linguistics (pages 1698–1712).
+
+The research conducts an extensive empirical study of various Bayesian uncertainty estimation methods and Monte C
+…[truncated 523 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T18:11:07.466309+00:00_
+
+Web search results for query: "He 2020 NER uncertainty estimation token-level ACL named entity recognition"
+
+Links: [{"title":"Uncertainty Estimation on Sequential Labeling via Uncertainty Transmission - ACL Anthology","url":"https://aclanthology.org/2024.findings-naacl.180/"},{"title":"Uncertainty Estimation on Sequential Labeling via ... - People","url":"https://people.cs.vt.edu/~clu/Publication/2024/NAACL-Findings-2024-He.pdf"},{"title":"[2311.08726] Uncertainty Estimation on Sequential Labeling via Uncertainty Transmission","url":"https://arxiv.org/abs/2311.08726"},{"title":"A Unified MRC Framework for Named Entity Recognition - ACL Anthology","url":"https://aclanthology.org/2020.acl-main.519/"},{"title":"Improving Low-Resource Named Entity Recognition using Joint Sentence and Token Labeling - ACL Anthology","url":"https://aclanthology.org/2020.acl-main.523/"},{"title":"Are Data Augmentation Methods in Named Entity Recognition Applicable for Uncertainty Estimation?","url":"https://arxiv.org/html/2407.02062"},{"title":"LinkNER: Linking Local Named Entity Recognition Models to Large Language Models using Uncertainty | Proceedings of the ACM Web Conference 2024","url":"https://dl.acm.org/doi/10.1145/3589334.3645414"},{"title":"Uncertainty Estimation on Sequential Labeling via Uncertainty Transmission","url":"https://arxiv.org/html/2311.08726"},{"title":"E-NER: Evidential Deep Learning for Trustworthy Named Entity Recognition - ACL Anthology","url":"https://aclanthology.org/2023.findings-acl.103/"},{"title":"Token-Level Metrics for Detecting Incorrect Gold Annotations in Named Entity Recognition - ACL Anthology","url":"https://aclanthology.org/2025.findings-emnlp.827/"}]
+
+Based on the search results, I found relevant information about uncertainty estimation in Named Entity Recognition at the token level. Here's what I discovered:
+
+The most directly relevant work appears to be "Uncertainty Estimation on Sequential Labeling via Uncertainty Transmission" by He et al., 
+…[truncated 1295 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T18:11:07.466481+00:00_
+
+Web search results for query: "Lakshminarayanan 2017 "Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles" NeurIPS"
+
+Links: [{"title":"[1612.01474] Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles","url":"https://arxiv.org/abs/1612.01474"},{"title":"Simple and scalable predictive uncertainty estimation using deep ensembles | Proceedings of the 31st International Conference on Neural Information Processing Systems","url":"https://dl.acm.org/doi/10.5555/3295222.3295387"},{"title":"Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles","url":"https://arxiv.org/pdf/1612.01474"},{"title":"Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles | Request PDF","url":"https://www.researchgate.net/publication/311430201_Simple_and_Scalable_Predictive_Uncertainty_Estimation_using_Deep_Ensembles"},{"title":"Simple and Scalable Predictive Uncertainty Estimation ...","url":"https://campusai.github.io/papers/uncertainty-estimation-deep-ensembles"},{"title":"Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles","url":"https://papers.nips.cc/paper/7219-simple-and-scalable-predictive-uncertainty-estimation-using-deep-ensembles"},{"title":"Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles","url":"https://proceedings.neurips.cc/paper/2017/hash/9ef2ed4b7fd2c810847ffa5fa85bce38-Abstract.html"},{"title":"Reviews: Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles","url":"https://proceedings.neurips.cc/paper/2017/file/9ef2ed4b7fd2c810847ffa5fa85bce38-Reviews.html"},{"title":"[PDF] Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Simple-and-Scalable-Predictive-Uncertainty-using-Lakshminarayanan-Pritzel/802168a81571dde28f5ddb94d84677bc007afa7b"},{"title":"Paper review & code: Deep Ensembles (NIPS 2017) | by Alberto Arrigoni | Medium","url":"http
+…[truncated 1554 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T18:11:07.466662+00:00_
+
+Web search results for query: "Gal Ghahramani 2016 "Dropout as a Bayesian Approximation" ICML uncertainty deep learning"
+
+Links: [{"title":"Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning","url":"https://proceedings.mlr.press/v48/gal16.html"},{"title":"[1506.02142] Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning","url":"https://arxiv.org/abs/1506.02142"},{"title":"Dropout as a Bayesian approximation | Proceedings of the 33rd International Conference on International Conference on Machine Learning - Volume 48","url":"https://dl.acm.org/doi/10.5555/3045390.3045502"},{"title":"Dropout as a Bayesian Approximation: Insights and Applications Yarin Gal","url":"https://www.cs.ox.ac.uk/people/yarin.gal/website/PDFs/Dropout_as_a_Bayesian_approximation.pdf"},{"title":"[1506.02157] Dropout as a Bayesian Approximation: Appendix","url":"https://arxiv.org/abs/1506.02157"},{"title":"Dropout as a Bayesian Approximation: Representing Model","url":"https://abtinmu.com/assets/files/MCDropout-VIGP.pdf"},{"title":"Gal, Y. and Ghahramani, Z. (2016) Dropout as a Bayesian Approximation Representing Model Uncertainty in Deep Learning. Proceedings of the 33rd International Conference on Machine Learning, Vol. 48, 1050-1059. - References - Scientific Research Publishing","url":"https://www.scirp.org/reference/referencespapers?referenceid=3648830"},{"title":"Bayesian dropout - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S187705092200518X"},{"title":"BibSLEIGH — Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning","url":"https://bibtex.github.io/ICML-2016-GalG.html"},{"title":"Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning","url":"https://www.researchgate.net/publication/277959098_Dropout_as_a_Bayesian_Approximation_Representing_Model_Uncertainty_in_Deep_Learning"}]
+
+Based on the search results, here's information about the p
+…[truncated 1486 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T18:11:07.466837+00:00_
+
+Web search results for query: "Fomicheva 2020 "Unsupervised Quality Estimation for Neural Machine Translation" MC dropout ensemble uncertainty NLP"
+
+Links: [{"title":"Unsupervised Quality Estimation for Neural Machine Translation","url":"https://aclanthology.org/2020.tacl-1.35.pdf"},{"title":"[2005.10608] Unsupervised Quality Estimation for Neural Machine Translation","url":"https://arxiv.org/abs/2005.10608"},{"title":"Unsupervised Quality Estimation for Neural Machine Translation - ACL Anthology","url":"https://aclanthology.org/2020.tacl-1.35/"},{"title":"Unsupervised Quality Estimation for Neural Machine Translation | Transactions of the Association for Computational Linguistics | MIT Press","url":"https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00330/96475/Unsupervised-Quality-Estimation-for-Neural-Machine"},{"title":"[PDF] Unsupervised Quality Estimation for Neural Machine Translation | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Unsupervised-Quality-Estimation-for-Neural-Machine-Fomicheva-Sun/8ae3421420ec57d551ef2f524b48dcc78f9337fc"},{"title":"fairseq/examples/unsupervised_quality_estimation/README.md at main · facebookresearch/fairseq","url":"https://github.com/facebookresearch/fairseq/blob/main/examples/unsupervised_quality_estimation/README.md"},{"title":"(PDF) Unsupervised Quality Estimation for Neural Machine Translation","url":"https://www.researchgate.net/publication/344763694_Unsupervised_Quality_Estimation_for_Neural_Machine_Translation"},{"title":"Unsupervised Quality Estimation for Neural Machine Translation - Tilburg University Research Portal","url":"https://research.tilburguniversity.edu/en/publications/unsupervised-quality-estimation-for-neural-machine-translation-2"},{"title":"Uncertainty Quantification Enhanced Quality Estimation for ...","url":"https://aclanthology.org/2021.findings-emnlp.401.pdf"},{"title":"Unsupervised quality estimation for neural machine translation - White Rose Research Online","url":"https://ep
+…[truncated 1538 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T18:11:07.467024+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Angelopoulos Bates Malik Jordan 2021 \"Uncertainty Sets for Image Classifiers\" ICLR authors full list RAPS"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Angelopoulos Bates Malik Jordan 2021 \"Uncertainty Sets for Image Classifiers\" ICLR authors full list RAPS"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-14T18:11:07.467168+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Shelmanov et al 2021 \"Active Learning for Sequence Tagging\" EACL authors full list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Shelmanov et al 2021 \"Active Learning for Sequence Tagging\" EACL authors full list"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T18:11:07.467294+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Giovannotti 2024 \"Conformal Prediction for Natural Language Processing: A Survey\" TACL authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Giovannotti 2024 \"Conformal Prediction for Natural Language Processing: A Survey\" TACL authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-14T18:11:07.467410+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "E-NER evidential deep learning named entity recognition 2023 uncertainty token-level NER"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "E-NER evidential deep learning named entity recognition 2023 uncertainty token-level NER"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T18:11:07.467559+00:00_
+
+Web search results for query: "Shelmanov et al 2021 "Active Learning for Sequence Tagging" EACL authors full list"
+
+Links: [{"title":"Active Learning for Sequence Tagging with Deep Pre-trained Models and Bayesian Uncertainty Estimates - ACL Anthology","url":"https://aclanthology.org/2021.eacl-main.145/"},{"title":"[2101.08133] Active Learning for Sequence Tagging with Deep Pre-trained Models and Bayesian Uncertainty Estimates","url":"https://arxiv.org/abs/2101.08133"},{"title":"Active Learning for Sequence Tagging with Deep Pre- ...","url":"https://aclanthology.org/2021.eacl-main.145.pdf"},{"title":"Main Conference Accepted Papers - EACL 2021","url":"https://2021.eacl.org/program/accepted/"},{"title":"[2101.08133v2] Active Learning for Sequence Tagging with Deep Pre-trained Models and Bayesian Uncertainty Estimates","url":"https://arxiv.org/abs/2101.08133v2"},{"title":"(PDF) Active Learning for Sequence Tagging with Deep Pre-trained Models and Bayesian Uncertainty Estimates","url":"https://www.researchgate.net/publication/355430342_Active_Learning_for_Sequence_Tagging_with_Deep_Pre-trained_Models_and_Bayesian_Uncertainty_Estimates"},{"title":"Have LLMs Made Active Learning Obsolete? Surveying the NLP Community","url":"https://arxiv.org/html/2503.09701v1"},{"title":"Investigating Multi-source Active Learning for Natural ...","url":"https://aclanthology.org/2023.eacl-main.160.pdf"},{"title":"Aclanthology","url":"https://www.aclweb.org/anthology/2021.eacl-main.145.pdf"},{"title":"Paper page - Active Learning for Sequence Tagging with Deep Pre-trained Models and Bayesian Uncertainty Estimates","url":"https://huggingface.co/papers/2101.08133"}]
+
+Based on the search results, here is the complete list of authors for the paper "Active Learning for Sequence Tagging with Deep Pre-trained Models and Bayesian Uncertainty Estimates" (Shelmanov et al., EACL 2021):
+
+Artem Shelmanov, Dmitri Puzyrev, Lyubov Kupriyanova, Denis Belyakov, Daniil Larionov, Nikita Khromov, Olga Kozlova, 
+…[truncated 343 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T18:11:07.467806+00:00_
+
+Web search results for query: "Angelopoulos Bates Malik Jordan 2021 "Uncertainty Sets for Image Classifiers" ICLR authors full list RAPS"
+
+Links: [{"title":"UNCERTAINTY SETS FOR IMAGE CLASSIFIERS USING CONFORMAL PREDICTION","url":"https://people.eecs.berkeley.edu/~angelopoulos/publications/downloads/conformal-classification.pdf"},{"title":"μ & σ - Conformal classification","url":"https://people.eecs.berkeley.edu/~angelopoulos/blog/posts/conformal-classification/"},{"title":"[2009.14193] Uncertainty Sets for Image Classifiers using Conformal Prediction","url":"https://arxiv.org/abs/2009.14193"},{"title":"Publications - Anastasios Angelopoulos","url":"https://people.eecs.berkeley.edu/~angelopoulos/publications/"},{"title":"Uncertainty Sets for Image Classifiers using Conformal Prediction | OpenReview","url":"https://openreview.net/forum?id=eNdiU_DbM9"},{"title":"UNCERTAINTY SETS FOR IMAGE CLASSIFIERS USING ...","url":"https://openreview.net/pdf?id=eNdiU_DbM9"},{"title":"Uncertainty Sets for Image Classifiers using Conformal Prediction - ADS","url":"https://ui.adsabs.harvard.edu/abs/2020arXiv200914193A/abstract"},{"title":"Theoretical Description Classification : contents — MAPIE 1.3.0 documentation","url":"https://mapie.readthedocs.io/en/latest/theoretical_description_classification.html"},{"title":"Distribution-free, Risk-controlling Prediction Sets | Journal of the ACM","url":"https://dl.acm.org/doi/abs/10.1145/3478535"},{"title":"GitHub - AlaaLab/deep-learning-uncertainty: Literature survey, paper reviews, experimental setups and a collection of implementations for baselines methods for predictive uncertainty estimation in deep learning models.","url":"https://github.com/AlaaLab/deep-learning-uncertainty"}]
+
+Based on the search results, I found the information about the paper "Uncertainty Sets for Image Classifiers using Conformal Prediction":
+
+## Full Author List
+
+The authors are: Anastasios Angelopoulos, Stephen Bates, Jitendra Malik, and Michael I. Jordan.
+
+## P
+…[truncated 664 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T18:11:07.467991+00:00_
+
+Web search results for query: "Giovannotti 2024 "Conformal Prediction for Natural Language Processing: A Survey" TACL authors"
+
+Links: [{"title":"Conformal Prediction for Natural Language Processing: A Survey | Transactions of the Association for Computational Linguistics | MIT Press","url":"https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00715/125278/Conformal-Prediction-for-Natural-Language"},{"title":"Conformal Prediction for Natural Language Processing: A Survey","url":"https://aclanthology.org/2024.tacl-1.82.pdf"},{"title":"Conformal Prediction for Natural Language Processing: A Survey - ACL Anthology","url":"https://aclanthology.org/2024.tacl-1.82/"},{"title":"Conformalizing Machine Translation Evaluation | Transactions of the Association for Computational Linguistics | MIT Press","url":"https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00711/125277/Conformalizing-Machine-Translation-Evaluation"},{"title":"Conformal Prediction for Natural Language Processing: A Survey","url":"https://arxiv.org/html/2405.01976v1"},{"title":"[2405.01976] Conformal Prediction for Natural Language Processing: A Survey","url":"https://arxiv.org/abs/2405.01976"},{"title":"Aclanthology","url":"https://aclanthology.org/2024.tacl-1.82.bib"},{"title":"[2405.01976v1] Conformal Prediction for Natural Language Processing: A Survey","url":"https://arxiv.org/abs/2405.01976v1"},{"title":"Conformal Prediction for Natural Language Processing: A Survey | Request PDF","url":"https://www.researchgate.net/publication/386030579_Conformal_Prediction_for_Natural_Language_Processing_A_Survey"},{"title":"Published as a conference paper at ICLR 2024 CONFORMAL LANGUAGE MODELING","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/31421b112e5f7faf4fc577b74e45dab2-Paper-Conference.pdf"}]
+
+Based on the search results, I found information about the paper "Conformal Prediction for Natural Language Processing: A Survey" published in TACL 2024.
+
+The authors are Margarida Campos, António Fa
+…[truncated 663 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T18:11:07.468205+00:00_
+
+Web search results for query: "E-NER evidential deep learning named entity recognition 2023 uncertainty token-level NER"
+
+Links: [{"title":"[2305.17854] E-NER: Evidential Deep Learning for Trustworthy Named Entity Recognition","url":"https://arxiv.org/abs/2305.17854"},{"title":"E-NER: Evidential Deep Learning for Trustworthy Named Entity Recognition - ACL Anthology","url":"https://aclanthology.org/2023.findings-acl.103/"},{"title":"GitHub - zhzhengit/ENER: E-NER: Evidential Deep Learning for Trustworthy Named Entity Recognition","url":"https://github.com/zhzhengit/ENER"},{"title":"COMPREHENSIVE OVERVIEW OF NAMED ENTITY RECOGNITION:","url":"https://arxiv.org/pdf/2309.14084"},{"title":"E-NER: Evidential Deep Learning for Trustworthy Named Entity Recognition | Request PDF","url":"https://www.researchgate.net/publication/372915667_E-NER_Evidential_Deep_Learning_for_Trustworthy_Named_Entity_Recognition"},{"title":"[Quick Review] E-NER: Evidential Deep Learning for Trustworthy Named Entity Recognition","url":"https://liner.com/review/ener-evidential-deep-learning-for-trustworthy-named-entity-recognition"},{"title":"E-NER: Evidential Deep Learning for Trustworthy Named ...","url":"https://aclanthology.org/2023.findings-acl.103.pdf"},{"title":"Basic architecture of E-NER with different NER paradigms. | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Basic-architecture-of-E-NER-with-different-NER-paradigms_fig1_371136201"},{"title":"LinkNER: Linking Local Named Entity Recognition Models to Large Language Models using Uncertainty | Proceedings of the ACM Web Conference 2024","url":"https://dl.acm.org/doi/10.1145/3589334.3645414"},{"title":"Comprehensive Overview of Named Entity Recognition: Models, Domain-Specific Applications and Challenges","url":"https://arxiv.org/html/2309.14084"}]
+
+I found comprehensive information about E-NER. Here are the search results:
+
+## E-NER: Evidential Deep Learning for Trustworthy Named Entity Recognition
+
+E-NER is a tru
+…[truncated 1495 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T18:11:07.468444+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Xiao Wang 2019 AAAI \"Quantifying Uncertainties\" authors \"Yijun Xiao\" \"William Yang Wang\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Xiao Wang 2019 AAAI \"Quantifying Uncertainties\" authors \"Yijun Xiao\" \"William Yang Wang\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-14T18:11:07.468585+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Zhang et al 2023 E-NER evidential deep learning NER ACL Findings authors full list doi"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Zhang et al 2023 E-NER evidential deep learning NER ACL Findings authors full list doi"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T18:11:07.468706+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Bates et al 2021 \"Distribution-Free Risk-Controlling Prediction Sets\" conformal prediction structured"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Bates et al 2021 \"Distribution-Free Risk-Controlling Prediction Sets\" conformal prediction structured"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T18:11:07.468854+00:00_
+
+Web search results for query: "Xiao Wang 2019 AAAI "Quantifying Uncertainties" authors "Yijun Xiao" "William Yang Wang""
+
+Links: [{"title":"Quantifying Uncertainties in Natural Language Processing Tasks | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/4719"},{"title":"The Thirty-Third AAAI Conference on Artiﬁcial Intelligence (AAAI-19)","url":"https://ojs.aaai.org/index.php/AAAI/article/download/4719/4597"},{"title":"Quantifying Uncertainties in Natural Language Processing Tasks | ScienceGate","url":"https://www.sciencegate.app/document/10.1609/aaai.v33i01.33017322"},{"title":"dblp: Yijun Xiao","url":"https://dblp.org/pid/52/3925.html"},{"title":"Quantifying Uncertainties in Natural Language Processing ...","url":"https://ojs.aaai.org/index.php/AAAI/article/view/4719/4597"},{"title":"Quantifying Uncertainties in Natural Language Processing Tasks","url":"https://www.researchgate.net/publication/335380068_Quantifying_Uncertainties_in_Natural_Language_Processing_Tasks"},{"title":"[1811.07253v1] Quantifying Uncertainties in Natural Language Processing Tasks","url":"https://arxiv.org/abs/1811.07253v1"},{"title":"Quantifying Uncertainties in Natural Language Processing Tasks - ADS","url":"https://ui.adsabs.harvard.edu/abs/2018arXiv181107253X/abstract"},{"title":"[1811.07253] Quantifying Uncertainties in Natural Language Processing Tasks","url":"https://arxiv.org/abs/1811.07253"},{"title":"[PDF] Quantifying Uncertainties in Natural Language Processing Tasks | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Quantifying-Uncertainties-in-Natural-Language-Tasks-Xiao-Wang/0ca98cfa07e963932bd62e18189a25356d5355d2"}]
+
+I found the paper you're looking for! Here are the search results:
+
+The paper "Quantifying Uncertainties in Natural Language Processing Tasks" was authored by Yijun Xiao and William Yang Wang from University of California, Santa Barbara. 
+
+The paper was published at AAAI 2019 with
+…[truncated 616 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-14T18:11:07.469060+00:00_
+
+Web search results for query: "Zhang et al 2023 E-NER evidential deep learning NER ACL Findings authors full list doi"
+
+Links: [{"title":"E-NER: Evidential Deep Learning for Trustworthy Named Entity Recognition - ACL Anthology","url":"https://aclanthology.org/2023.findings-acl.103/"},{"title":"E-NER: Evidential Deep Learning for Trustworthy Named ...","url":"https://aclanthology.org/2023.findings-acl.103.pdf"},{"title":"GitHub - zhzhengit/ENER: E-NER: Evidential Deep Learning for Trustworthy Named Entity Recognition","url":"https://github.com/zhzhengit/ENER"},{"title":"E-NER: Evidential Deep Learning for Trustworthy Named Entity Recognition | Request PDF","url":"https://www.researchgate.net/publication/372915667_E-NER_Evidential_Deep_Learning_for_Trustworthy_Named_Entity_Recognition"},{"title":"[Quick Review] E-NER: Evidential Deep Learning for Trustworthy Named Entity Recognition","url":"https://liner.com/review/ener-evidential-deep-learning-for-trustworthy-named-entity-recognition"},{"title":"LinkNER: Linking Local Named Entity Recognition Models to Large Language Models using Uncertainty | Proceedings of the ACM Web Conference 2024","url":"https://dl.acm.org/doi/10.1145/3589334.3645414"},{"title":"[2305.17854] E-NER: Evidential Deep Learning for Trustworthy Named Entity Recognition","url":"https://arxiv.org/abs/2305.17854"},{"title":"Evidence Retrieval is almost All You Need for Fact ...","url":"https://aclanthology.org/2024.findings-acl.551.pdf"},{"title":"A Survey of Generative Information Extraction","url":"https://aclanthology.org/2025.coling-main.324.pdf"},{"title":"Adversarial Robustness for Large Language NER models ...","url":"https://aclanthology.org/2023.findings-emnlp.830.pdf"}]
+
+Based on the search results, here is the information you requested for the Zhang et al. 2023 E-NER paper:
+
+**Full Author List:**
+Zhen Zhang, Mengting Hu, Shiwan Zhao, Minlie Huang, Haotian Wang, Lemao Liu, Zhirui Zhang, Zhe Liu, and Bingzhe Wu
+
+**Publication Details:**
+- **Tit
+…[truncated 532 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T18:11:07.469289+00:00_
+
+Web search results for query: "Bates et al 2021 "Distribution-Free Risk-Controlling Prediction Sets" conformal prediction structured"
+
+Links: [{"title":"Distribution-free, Risk-controlling Prediction Sets | Journal of the ACM","url":"https://dl.acm.org/doi/10.1145/3478535"},{"title":"Distribution-free, Risk-controlling Prediction Sets | Request PDF","url":"https://www.researchgate.net/publication/357462027_Distribution-free_Risk-controlling_Prediction_Sets"},{"title":"Distribution-free, Risk-controlling Prediction Sets","url":"https://dl.acm.org/doi/fullHtml/10.1145/3478535"},{"title":"Distribution-Free, Risk-Controlling Prediction Sets","url":"https://arxiv.org/pdf/2101.02703"},{"title":"[2101.02703] Distribution-Free, Risk-Controlling Prediction Sets","url":"https://arxiv.org/abs/2101.02703"},{"title":"Distribution-Free, Risk-Controlling Prediction Sets","url":"https://d3qi0qp55mx5f5.cloudfront.net/stat/docs/Statistics_Colloquium/2020-21/Bates__Stephen041221.pdf?mtime=1617641545"},{"title":"[PDF] Distribution-Free, Risk-Controlling Prediction Sets | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Distribution-Free,-Risk-Controlling-Prediction-Sets-Bates-Angelopoulos/e343f1517f038da090a78159363d14cdad5ddc35"},{"title":"Conformal Risk Control | OpenReview","url":"https://openreview.net/forum?id=33XGfHLtZg"},{"title":"[2107.07511] A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification","url":"https://arxiv.org/abs/2107.07511"},{"title":"Conformal Risk Control | Request PDF","url":"https://www.researchgate.net/publication/362489559_Conformal_Risk_Control"}]
+
+I've successfully found information about the Bates et al. 2021 paper on "Distribution-Free Risk-Controlling Prediction Sets" and conformal prediction. Here are the key findings:
+
+## Paper Details
+
+The paper "Distribution-free, Risk-controlling Prediction Sets" was authored by Stephen Bates, Anastasios Angelopoulos, Lihua Lei, Jitendra Malik, and Michael Jorda
+…[truncated 1173 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-14T18:11:07.469488+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"import yaml; print('PyYAML available')\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"import yaml; print('PyYAML available')\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T18:11:07.469616+00:00_
+
+PyYAML available
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-14T18:11:07.469801+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat << 'PYEOF' > /tmp/update_lit_map.py\nimport yaml\nfrom datetime import datetime, timezone\n\nyaml_path = \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/literature_map.yaml\"\n\nwith open(yaml_path, 'r') as f:\n    data = yaml.safe_load(f)\n\nnow = datetime.now(timezone.utc).strftime(\"%Y-%m-%dT%H:%M:%S.000Z\")\n\nnew_papers = {\n    # ====== Cluster: conformal_prediction ======\n    \"fisch2021conformal\": {\n        \"title\": \"Few-Shot Conformal Prediction with Auxiliary Tasks\",\n        \"authors\": [\"Adam Fisch\", \"Tal Schuster\", \"Tommi Jaakkola\", \"Regina Barzilay\"],\n        \"year\": 2021,\n        \"venue\": \"ICML 2021\",\n        \"url\": \"https://arxiv.org/abs/2102.08898\",\n        \"doi\": \"10.5555/3524938.3525234\",\n        \"bibtex_key\": \"fisch2021conformal\",\n        \"category\": \"conformal_prediction\",\n        \"role\": \"foundation\",\n        \"relevance\": \"Adapts conformal prediction to few-shot settings via meta-learning over auxiliary tasks, producing tighter prediction sets with formal coverage guarantees. Foundational for applying CP when calibration data is scarce in IE.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch2\",\n        \"added_at\": now,\n    },\n    \"angelopoulos2021conformal\": {\n        \"title\": \"Uncertainty Sets for Image Classifiers using Conformal Prediction\",\n        \"authors\": [\"Anastasios N. Angelopoulos\", \"Stephen Bates\", \"Jitendra Malik\", \"Michael I. Jordan\"],\n        \"year\": 2021,\n        \"venue\": \"ICLR 2021\",\n        \"url\": \"https://arxiv.org/abs/2009.14193\",\n        \"doi\": \"\",\n        \"bibtex_key\": \"angelopoulos2021conformal\",\n        \"category\": \"conformal_prediction\",\n        \"role\": \"foundation\",\n        \"relevance\": \"Introduces RAPS (Regularized Adaptive Prediction Sets) with finite-sample coverage guarantees. Foundation for conformal prediction methodology we adapt to structured IE output sets.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch2\",\n        \"added_at\": now,\n    },\n    \"bates2021rcps\": {\n        \"title\": \"Distribution-Free, Risk-Controlling Prediction Sets\",\n        \"authors\": [\"Stephen Bates\", \"Anastasios Angelopoulos\", \"Lihua Lei\", \"Jitendra Malik\", \"Michael I. Jordan\"],\n        \"year\": 2021,\n        \"venue\": \"Journal of the ACM 2021\",\n        \"url\": \"https://arxiv.org/abs/2101.02703\",\n        \"doi\": \"10.1145/3478535\",\n        \"bibtex_key\": \"bates2021rcps\",\n        \"category\": \"conformal_prediction\",\n        \"role\": \"background\",\n        \"relevance\": \"Generalizes conformal prediction to control arbitrary monotone losses for set-valued predictors with finite-sample guarantees. Provides the theoretical basis for risk-controlled prediction in structured IE tasks.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch2\",\n        \"added_at\": now,\n    },\n    # ====== Cluster: token_span_uncertainty_ner ======\n    \"xiao2019uncertainty\": {\n        \"title\": \"Quantifying Uncertainties in Natural Language Processing Tasks\",\n        \"authors\": [\"Yijun Xiao\", \"William Yang Wang\"],\n        \"year\": 2019,\n        \"venue\": \"AAAI 2019\",\n        \"url\": \"https://arxiv.org/abs/1811.07253\",\n        \"doi\": \"10.1609/aaai.v33i01.33017322\",\n        \"bibtex_key\": \"xiao2019uncertainty\",\n        \"category\": \"token_span_uncertainty_ner\",\n        \"role\": \"foundation\",\n        \"relevance\": \"Pioneers Bayesian uncertainty quantification for NLP tasks including NER, showing that modeling data and model uncertainty improves both performance and reliability for token-level predictions.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch2\",\n        \"added_at\": now,\n    },\n    \"shelmanov2021active\": {\n        \"title\": \"Active Learning for Sequence Tagging with Deep Pre-trained Models and Bayesian Uncertainty Estimates\",\n        \"authors\": [\"Artem Shelmanov\", \"Dmitri Puzyrev\", \"Lyubov Kupriyanova\", \"Denis Belyakov\", \"Daniil Larionov\", \"Nikita Khromov\", \"Olga Kozlova\", \"Ekaterina Artemova\", \"Dmitry V. Dylov\", \"Alexander Panchenko\"],\n        \"year\": 2021,\n        \"venue\": \"EACL 2021\",\n        \"url\": \"https://arxiv.org/abs/2101.08133\",\n        \"doi\": \"10.18653/v1/2021.eacl-main.145\",\n        \"bibtex_key\": \"shelmanov2021active\",\n        \"category\": \"token_span_uncertainty_ner\",\n        \"role\": \"foundation\",\n        \"relevance\": \"Extensive empirical study of Bayesian uncertainty estimation (MC dropout variants) for sequence tagging with pre-trained models. Establishes best practices for uncertainty-guided active learning in NER.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch2\",\n        \"added_at\": now,\n    },\n    \"zhang2023ener\": {\n        \"title\": \"E-NER: Evidential Deep Learning for Trustworthy Named Entity Recognition\",\n        \"authors\": [\"Zhen Zhang\", \"Mengting Hu\", \"Shiwan Zhao\", \"Minlie Huang\", \"Haotian Wang\", \"Lemao Liu\", \"Zhirui Zhang\", \"Zhe Liu\", \"Bingzhe Wu\"],\n        \"year\": 2023,\n        \"venue\": \"ACL Findings 2023\",\n        \"url\": \"https://arxiv.org/abs/2305.17854\",\n        \"doi\": \"10.18653/v1/2023.findings-acl.103\",\n        \"bibtex_key\": \"zhang2023ener\",\n        \"category\": \"token_span_uncertainty_ner\",\n        \"role\": \"background\",\n        \"relevance\": \"Applies evidential deep learning to NER with uncertainty-guided loss terms, addressing sparse entities and OOV/OOD discrimination. Demonstrates token-level uncertainty estimation across multiple NER paradigms.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch2\",\n        \"added_at\": now,\n    },\n    # ====== Cluster: ensemble_mc_dropout ======\n    \"lakshminarayanan2017ensembles\": {\n        \"title\": \"Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles\",\n        \"authors\": [\"Balaji Lakshminarayanan\", \"Alexander Pritzel\", \"Charles Blundell\"],\n        \"year\": 2017,\n        \"venue\": \"NeurIPS 2017\",\n        \"url\": \"https://arxiv.org/abs/1612.01474\",\n        \"doi\": \"\",\n        \"bibtex_key\": \"lakshminarayanan2017ensembles\",\n        \"category\": \"ensemble_mc_dropout\",\n        \"role\": \"foundation\",\n        \"relevance\": \"Proposes deep ensembles as a simple, scalable alternative to Bayesian NNs for predictive uncertainty estimation. Foundational baseline for ensemble-based uncertainty quantification we compare against.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch2\",\n        \"added_at\": now,\n    },\n    \"gal2016dropout\": {\n        \"title\": \"Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning\",\n        \"authors\": [\"Yarin Gal\", \"Zoubin Ghahramani\"],\n        \"year\": 2016,\n        \"venue\": \"ICML 2016\",\n        \"url\": \"https://arxiv.org/abs/1506.02142\",\n        \"doi\": \"\",\n        \"bibtex_key\": \"gal2016dropout\",\n        \"category\": \"ensemble_mc_dropout\",\n        \"role\": \"foundation\",\n        \"relevance\": \"Establishes theoretical framework casting dropout as approximate Bayesian inference, enabling MC dropout for uncertainty estimation. Foundation for all dropout-based uncertainty methods we build upon.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch2\",\n        \"added_at\": now,\n    },\n    \"fomicheva2020unsupervised\": {\n        \"title\": \"Unsupervised Quality Estimation for Neural Machine Translation\",\n        \"authors\": [\"Marina Fomicheva\", \"Shuo Sun\", \"Lisa Yankovskaya\", \"Frédéric Blain\", \"Francisco Guzmán\", \"Mark Fishel\", \"Nikolaos Aletras\", \"Vishrav Chaudhary\", \"Lucia Specia\"],\n        \"year\": 2020,\n        \"venue\": \"TACL 2020\",\n        \"url\": \"https://arxiv.org/abs/2005.10608\",\n        \"doi\": \"10.1162/tacl_a_00330\",\n        \"bibtex_key\": \"fomicheva2020unsupervised\",\n        \"category\": \"ensemble_mc_dropout\",\n        \"role\": \"background\",\n        \"relevance\": \"Applies MC dropout and ensemble-based uncertainty to NLP (MT quality estimation) without supervision, achieving strong correlation with human judgments. Key precedent for unsupervised uncertainty signals in NLP generation tasks.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch2\",\n        \"added_at\": now,\n    },\n}\n\n# Check for duplicates\nexisting_keys = set(data.get(\"papers\", {}).keys())\nfor key in new_papers:\n    if key in existing_keys:\n        print(f\"WARNING: {key} already exists, skipping\")\n        del new_papers[key]\n\ndata[\"papers\"].update(new_papers)\ndata[\"meta\"][\"total_papers\"] = len(data[\"papers\"])\ndata[\"meta\"][\"last_updated\"] = now\n\nclass LiteralStr(str):\n    pass\n\ndef literal_str_representer(dumper, data):\n    if '\\n' in data:\n        return dumper.represent_scalar('tag:yaml.org,2002:str', data, style='|')\n    return dumper.represent_scalar('tag:yaml.org,2002:str', data)\n\nyaml.add_representer(LiteralStr, literal_str_representer)\n\nwith open(yaml_path, 'w') as f:\n    yaml.dump(data, f, default_flow_style=False, allow_unicode=True, sort_keys=False, width=120)\n\nprint(f\"Done. Total papers: {data['meta']['total_papers']}\")\nprint(f\"Added {len(new_papers)} new papers\")\nfor k in new_papers:\n    print(f\"  + {k} [{new_papers[k]['category']}]\")\nPYEOF\npython3 /tmp/update_lit_map.py",
+  "description": "Append 9 new papers to literature_map.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat << 'PYEOF' > /tmp/update_lit_map.py\nimport yaml\nfrom datetime import datetime, timezone\n\nyaml_path = \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/literature_map.yaml\"\n\nwith open(yaml_path, 'r') as f:\n    data = yaml.safe_load(f)\n\nnow = datetime.now(timezone.utc).strftime(\"%Y-%m-%dT%H:%M:%S.000Z\")\n\nnew_papers = {\n    # ====== Cluster: conformal_prediction ======\n    \"fisch2021conformal\": {\n        \"title\": \"Few-Shot Conformal Prediction with Auxiliary Tasks\",\n        \"authors\": [\"Adam Fisch\", \"Tal Schuster\", \"Tommi Jaakkola\", \"Regina Barzilay\"],\n        \"year\": 2021,\n        \"venue\": \"ICML 2021\",\n        \"url\": \"https://arxiv.org/abs/2102.08898\",\n        \"doi\": \"10.5555/3524938.3525234\",\n        \"bibtex_key\": \"fisch2021conformal\",\n        \"category\": \"conformal_prediction\",\n        \"role\": \"foundation\",\n        \"relevance\": \"Adapts conformal prediction to few-shot settings via meta-learning over auxiliary tasks, producing tighter prediction sets with formal coverage guarantees. Foundational for applying CP when calibration data is scarce in IE.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch2\",\n        \"added_at\": now,\n    },\n    \"angelopoulos2021conformal\": {\n        \"title\": \"Uncertainty Sets for Image Classifiers using Conformal Prediction\",\n        \"authors\": [\"Anastasios N. Angelopoulos\", \"Stephen Bates\", \"Jitendra Malik\", \"Michael I. Jordan\"],\n        \"year\": 2021,\n        \"venue\": \"ICLR 2021\",\n        \"url\": \"https://arxiv.org/abs/2009.14193\",\n        \"doi\": \"\",\n        \"bibtex_key\": \"angelopoulos2021conformal\",\n        \"category\": \"conformal_prediction\",\n        \"role\": \"foundation\",\n        \"relevance\": \"Introduces RAPS (Regularized Adaptive Prediction Sets) with finite-sample coverage guarantees. Foundation for conformal prediction methodology we adapt to structured IE output sets.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch2\",\n        \"added_at\": now,\n    },\n    \"bates2021rcps\": {\n        \"title\": \"Distribution-Free, Risk-Controlling Prediction Sets\",\n        \"authors\": [\"Stephen Bates\", \"Anastasios Angelopoulos\", \"Lihua Lei\", \"Jitendra Malik\", \"Michael I. Jordan\"],\n        \"year\": 2021,\n        \"venue\": \"Journal of the ACM 2021\",\n        \"url\": \"https://arxiv.org/abs/2101.02703\",\n        \"doi\": \"10.1145/3478535\",\n        \"bibtex_key\": \"bates2021rcps\",\n        \"category\": \"conformal_prediction\",\n        \"role\": \"background\",\n        \"relevance\": \"Generalizes conformal prediction to control arbitrary monotone losses for set-valued predictors with finite-sample guarantees. Provides the theoretical basis for risk-controlled prediction in structured IE tasks.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch2\",\n        \"added_at\": now,\n    },\n    # ====== Cluster: token_span_uncertainty_ner ======\n    \"xiao2019uncertainty\": {\n        \"title\": \"Quantifying Uncertainties in Natural Language Processing Tasks\",\n        \"authors\": [\"Yijun Xiao\", \"William Yang Wang\"],\n        \"year\": 2019,\n        \"venue\": \"AAAI 2019\",\n        \"url\": \"https://arxiv.org/abs/1811.07253\",\n        \"doi\": \"10.1609/aaai.v33i01.33017322\",\n        \"bibtex_key\": \"xiao2019uncertainty\",\n        \"category\": \"token_span_uncertainty_ner\",\n        \"role\": \"foundation\",\n        \"relevance\": \"Pioneers Bayesian uncertainty quantification for NLP tasks including NER, showing that modeling data and model uncertainty improves both performance and reliability for token-level predictions.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch2\",\n        \"added_at\": now,\n    },\n    \"shelmanov2021active\": {\n        \"title\": \"Active Learning for Sequence Tagging with Deep Pre-trained Models and Bayesian Uncertainty Estimates\",\n        \"authors\": [\"Artem Shelmanov\", \"Dmitri Puzyrev\", \"Lyubov Kupriyanova\", \"Denis Belyakov\", \"Daniil Larionov\", \"Nikita Khromov\", \"Olga Kozlova\", \"Ekaterina Artemova\", \"Dmitry V. Dylov\", \"Alexander Panchenko\"],\n        \"year\": 2021,\n        \"venue\": \"EACL 2021\",\n        \"url\": \"https://arxiv.org/abs/2101.08133\",\n        \"doi\": \"10.18653/v1/2021.eacl-main.145\",\n        \"bibtex_key\": \"shelmanov2021active\",\n        \"category\": \"token_span_uncertainty_ner\",\n        \"role\": \"foundation\",\n        \"relevance\": \"Extensive empirical study of Bayesian uncertainty estimation (MC dropout variants) for sequence tagging with pre-trained models. Establishes best practices for uncertainty-guided active learning in NER.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch2\",\n        \"added_at\": now,\n    },\n    \"zhang2023ener\": {\n        \"title\": \"E-NER: Evidential Deep Learning for Trustworthy Named Entity Recognition\",\n        \"authors\": [\"Zhen Zhang\", \"Mengting Hu\", \"Shiwan Zhao\", \"Minlie Huang\", \"Haotian Wang\", \"Lemao Liu\", \"Zhirui Zhang\", \"Zhe Liu\", \"Bingzhe Wu\"],\n        \"year\": 2023,\n        \"venue\": \"ACL Findings 2023\",\n        \"url\": \"https://arxiv.org/abs/2305.17854\",\n        \"doi\": \"10.18653/v1/2023.findings-acl.103\",\n        \"bibtex_key\": \"zhang2023ener\",\n        \"category\": \"token_span_uncertainty_ner\",\n        \"role\": \"background\",\n        \"relevance\": \"Applies evidential deep learning to NER with uncertainty-guided loss terms, addressing sparse entities and OOV/OOD discrimination. Demonstrates token-level uncertainty estimation across multiple NER paradigms.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch2\",\n        \"added_at\": now,\n    },\n    # ====== Cluster: ensemble_mc_dropout ======\n    \"lakshminarayanan2017ensembles\": {\n        \"title\": \"Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles\",\n        \"authors\": [\"Balaji Lakshminarayanan\", \"Alexander Pritzel\", \"Charles Blundell\"],\n        \"year\": 2017,\n        \"venue\": \"NeurIPS 2017\",\n        \"url\": \"https://arxiv.org/abs/1612.01474\",\n        \"doi\": \"\",\n        \"bibtex_key\": \"lakshminarayanan2017ensembles\",\n        \"category\": \"ensemble_mc_dropout\",\n        \"role\": \"foundation\",\n        \"relevance\": \"Proposes deep ensembles as a simple, scalable alternative to Bayesian NNs for predictive uncertainty estimation. Foundational baseline for ensemble-based uncertainty quantification we compare against.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch2\",\n        \"added_at\": now,\n    },\n    \"gal2016dropout\": {\n        \"title\": \"Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning\",\n        \"authors\": [\"Yarin Gal\", \"Zoubin Ghahramani\"],\n        \"year\": 2016,\n        \"venue\": \"ICML 2016\",\n        \"url\": \"https://arxiv.org/abs/1506.02142\",\n        \"doi\": \"\",\n        \"bibtex_key\": \"gal2016dropout\",\n        \"category\": \"ensemble_mc_dropout\",\n        \"role\": \"foundation\",\n        \"relevance\": \"Establishes theoretical framework casting dropout as approximate Bayesian inference, enabling MC dropout for uncertainty estimation. Foundation for all dropout-based uncertainty methods we build upon.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch2\",\n        \"added_at\": now,\n    },\n    \"fomicheva2020unsupervised\": {\n        \"title\": \"Unsupervised Quality Estimation for Neural Machine Translation\",\n        \"authors\": [\"Marina Fomicheva\", \"Shuo Sun\", \"Lisa Yankovskaya\", \"Frédéric Blain\", \"Francisco Guzmán\", \"Mark Fishel\", \"Nikolaos Aletras\", \"Vishrav Chaudhary\", \"Lucia Specia\"],\n        \"year\": 2020,\n        \"venue\": \"TACL 2020\",\n        \"url\": \"https://arxiv.org/abs/2005.10608\",\n        \"doi\": \"10.1162/tacl_a_00330\",\n        \"bibtex_key\": \"fomicheva2020unsupervised\",\n        \"category\": \"ensemble_mc_dropout\",\n        \"role\": \"background\",\n        \"relevance\": \"Applies MC dropout and ensemble-based uncertainty to NLP (MT quality estimation) without supervision, achieving strong correlation with human judgments. Key precedent for unsupervised uncertainty signals in NLP generation tasks.\",\n        \"abstract\": \"\",\n        \"semantic_scholar_id\": \"\",\n        \"verified\": True,\n        \"added_by\": \"paper-research:lit_batch2\",\n        \"added_at\": now,\n    },\n}\n\n# Check for duplicates\nexisting_keys = set(data.get(\"papers\", {}).keys())\nfor key in new_papers:\n    if key in existing_keys:\n        print(f\"WARNING: {key} already exists, skipping\")\n        del new_papers[key]\n\ndata[\"papers\"].update(new_papers)\ndata[\"meta\"][\"total_papers\"] = len(data[\"papers\"])\ndata[\"meta\"][\"last_updated\"] = now\n\nclass LiteralStr(str):\n    pass\n\ndef literal_str_representer(dumper, data):\n    if '\\n' in data:\n        return dumper.represent_scalar('tag:yaml.org,2002:str', data, style='|')\n    return dumper.represent_scalar('tag:yaml.org,2002:str', data)\n\nyaml.add_representer(LiteralStr, literal_str_representer)\n\nwith open(yaml_path, 'w') as f:\n    yaml.dump(data, f, default_flow_style=False, allow_unicode=True, sort_keys=False, width=120)\n\nprint(f\"Done. Total papers: {data['meta']['total_papers']}\")\nprint(f\"Added {len(new_papers)} new papers\")\nfor k in new_papers:\n    print(f\"  + {k} [{new_papers[k]['category']}]\")\nPYEOF\npython3 /tmp/update_lit_map.py",
+    "description": "Append 9 new papers to literature_map.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T18:11:07.470024+00:00_
+
+Done. Total papers: 30
+Added 9 new papers
+  + fisch2021conformal [conformal_prediction]
+  + angelopoulos2021conformal [conformal_prediction]
+  + bates2021rcps [conformal_prediction]
+  + xiao2019uncertainty [token_span_uncertainty_ner]
+  + shelmanov2021active [token_span_uncertainty_ner]
+  + zhang2023ener [token_span_uncertainty_ner]
+  + lakshminarayanan2017ensembles [ensemble_mc_dropout]
+  + gal2016dropout [ensemble_mc_dropout]
+  + fomicheva2020unsupervised [ensemble_mc_dropout]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-14T18:11:07.470257+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport yaml\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/literature_map.yaml') as f:\n    d = yaml.safe_load(f)\nprint(f'total_papers: {d[\\\"meta\\\"][\\\"total_papers\\\"]}')\nprint(f'last_updated: {d[\\\"meta\\\"][\\\"last_updated\\\"]}')\nprint()\nfor cluster in ['conformal_prediction', 'token_span_uncertainty_ner', 'ensemble_mc_dropout']:\n    papers = [(k,v) for k,v in d['papers'].items() if v['category'] == cluster]\n    print(f'=== {cluster} ({len(papers)} papers) ===')\n    for k,v in papers:\n        print(f'  {k}: {v[\\\"role\\\"]} | {v[\\\"venue\\\"]} | verified={v[\\\"verified\\\"]}')\n    print()\n\"",
+  "description": "Verify YAML cluster counts and structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport yaml\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/literature_map.yaml') as f:\n    d = yaml.safe_load(f)\nprint(f'total_papers: {d[\\\"meta\\\"][\\\"total_papers\\\"]}')\nprint(f'last_updated: {d[\\\"meta\\\"][\\\"last_updated\\\"]}')\nprint()\nfor cluster in ['conformal_prediction', 'token_span_uncertainty_ner', 'ensemble_mc_dropout']:\n    papers = [(k,v) for k,v in d['papers'].items() if v['category'] == cluster]\n    print(f'=== {cluster} ({len(papers)} papers) ===')\n    for k,v in papers:\n        print(f'  {k}: {v[\\\"role\\\"]} | {v[\\\"venue\\\"]} | verified={v[\\\"verified\\\"]}')\n    print()\n\"",
+    "description": "Verify YAML cluster counts and structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T18:11:07.470425+00:00_
+
+total_papers: 30
+last_updated: 2026-05-14T18:10:52.000Z
+
+=== conformal_prediction (3 papers) ===
+  fisch2021conformal: foundation | ICML 2021 | verified=True
+  angelopoulos2021conformal: foundation | ICLR 2021 | verified=True
+  bates2021rcps: background | Journal of the ACM 2021 | verified=True
+
+=== token_span_uncertainty_ner (3 papers) ===
+  xiao2019uncertainty: foundation | AAAI 2019 | verified=True
+  shelmanov2021active: foundation | EACL 2021 | verified=True
+  zhang2023ener: background | ACL Findings 2023 | verified=True
+
+=== ensemble_mc_dropout (3 papers) ===
+  lakshminarayanan2017ensembles: foundation | NeurIPS 2017 | verified=True
+  gal2016dropout: foundation | ICML 2016 | verified=True
+  fomicheva2020unsupervised: background | TACL 2020 | verified=True
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_lit_batch2_20260514T180832",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-14T18:11:07.470607+00:00_
+
+9 篇论文已写入，3 个 cluster 各 3 篇，total_papers 从 21 → 30。
+
+| Cluster | Key | Venue | Role |
+|---|---|---|---|
+| **conformal_prediction** | `fisch2021conformal` | ICML 2021 | foundation |
+| | `angelopoulos2021conformal` | ICLR 2021 | foundation |
+| | `bates2021rcps` | JACM 2021 | background |
+| **token_span_uncertainty_ner** | `xiao2019uncertainty` | AAAI 2019 | foundation |
+| | `shelmanov2021active` | EACL 2021 | foundation |
+| | `zhang2023ener` | ACL Findings 2023 | background |
+| **ensemble_mc_dropout** | `lakshminarayanan2017ensembles` | NeurIPS 2017 | foundation |
+| | `gal2016dropout` | ICML 2016 | foundation |
+| | `fomicheva2020unsupervised` | TACL 2020 | background |
+
+注意：Fisch et al. 2021 实际发表在 ICML（非 NeurIPS）；token_span_uncertainty_ner 的第三篇用 Zhang et al. 2023 E-NER 替代了未找到的 He et al. 2020。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_paper_research_lit_batch2_20260514T180832"
+}
+```
+
+</details>
+
+---

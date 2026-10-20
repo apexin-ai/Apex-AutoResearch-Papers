@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_fewnerd_5epoch_s42",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T17:59:15.452Z",
+    "updated_at": "2026-05-21T18:18:57.451Z",
+    "hypothesis": "FewNERD 5-epoch epoch confound check seed=42: inference with 5-epoch fine-tuned Qwen3-8B (LoRA r=32 alpha=64) on FewNERD NER, N=8, T=1.0. Tests whether 3→5 epoch change affects degeneracy, MV performance, and signal correlations. If degeneracy increases or MV still fails, epoch count is not the confound.",
+    "spec": {
+      "command": "python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-5epoch-merged --data_dir data/fewnerd/processed_data/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_5epoch_s42/",
+      "server": "autodl-5090",
+      "data_path": "data/fewnerd/processed_data/",
+      "data_count": 37648,
+      "model_name": "qwen3-8b-fewnerd-5epoch-merged",
+      "seed": 42
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T18:18:53.283Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-21T18:18:57.451Z"
+  },
+  "timestamp": "2026-05-21T18:18:57.981904+00:00",
+  "trigger": "update_registry"
+}

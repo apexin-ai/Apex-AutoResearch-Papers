@@ -1,0 +1,20 @@
+See server: autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/loo_sj_cross_dataset/results.json
+
+Summary:
+
+Greedy F1 analysis (Δρ = ρ_full - ρ_loo_k0):
+  Qwen_CoNLL_N8:   ρ_full=0.122 ρ_loo=0.124 Δ=-0.001
+  Qwen_CoNLL_N16:  ρ_full=0.145 ρ_loo=0.141 Δ=+0.005
+  Qwen_SciERC_N8:  ρ_full=0.370 ρ_loo=0.371 Δ=-0.001
+  Qwen_SciERC_N16: ρ_full=0.431 ρ_loo=0.432 Δ=-0.001
+  LLaMA_SciERC_N8: ρ_full=0.355 ρ_loo=0.351 Δ=+0.004
+  LLaMA_SciERC_N16:ρ_full=0.355 ρ_loo=0.350 Δ=+0.005
+
+Per-sample analysis (Δρ = ρ_full_sj - ρ_loo_sj, predicting sample-level F1):
+  N=8 datasets:  Δρ ∈ [0.030, 0.047]
+  N=16 datasets: Δρ ∈ [0.015, 0.026]
+  → Expected slight advantage of full SJ halves with more samples
+
+LOO sensitivity:
+  N=8:  mean_std ∈ [0.022, 0.037], max_range ≤ 0.286
+  N=16: mean_std ∈ [0.012, 0.016], max_range ≤ 0.133

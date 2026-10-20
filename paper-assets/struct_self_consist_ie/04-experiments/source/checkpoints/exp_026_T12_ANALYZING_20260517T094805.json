@@ -1,0 +1,41 @@
+{
+  "exp_id": "exp_026_T12",
+  "project": "struct_self_consist_ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T09:38:31.060Z",
+    "updated_at": "2026-05-17T09:48:04.771Z",
+    "hypothesis": "T=1.2 will decrease degeneracy rate and expand LP range vs T=1.0, but may degrade generation quality (lower greedy F1). Tests whether reducing degeneracy via higher T recovers selection headroom or if quality degradation offsets the benefit.",
+    "server": "autodl-5090",
+    "gpu": "cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "autodl-5090",
+      "gpu": "cuda:3",
+      "started_at": "2026-05-17T09:39:51.733Z",
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.2 --seed 42 --output_dir output/exp_026_T12/ --num_test 9999 --collect_logprobs 2>&1 | tee output/exp_026_T12_run.log\"",
+      "finished_at": "2026-05-17T09:48:04.019Z",
+      "training_hours": 0.14
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.2 --seed 42 --output_dir output/exp_026_T12/ --num_test 9999 --collect_logprobs 2>&1 | tee output/exp_026_T12_run.log\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "381369",
+      "log_path": "~/runs/struct_self_consist_ie/exp_026_T12.log",
+      "submitted_at": "2026-05-17T09:41:39.393Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "381369",
+    "log_path": "~/runs/struct_self_consist_ie/exp_026_T12.log"
+  },
+  "timestamp": "2026-05-17T09:48:05.010821+00:00",
+  "trigger": "update_registry"
+}

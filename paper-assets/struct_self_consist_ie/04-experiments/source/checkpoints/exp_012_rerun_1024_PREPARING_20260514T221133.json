@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_012_rerun_1024",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:11:33.777Z",
+    "updated_at": "2026-05-14T22:11:33.777Z",
+    "spec": {
+      "hypothesis": "Verify if max_tokens=512 truncation inflated Table 1 N=8 SciERC signal values. Rerun with max_tokens=1024 for clean comparison.",
+      "model_name": "qwen3-8b-scierc-merged-v2",
+      "dataset": "SciERC",
+      "parent": "exp_012_logprob_baseline",
+      "data_count": 551,
+      "seed": 42,
+      "server": "autodl-5090"
+    }
+  },
+  "timestamp": "2026-05-14T22:11:33.903379+00:00",
+  "trigger": "update_registry"
+}

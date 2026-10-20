@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_007_llama_scierc_seed123",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:10:26.278Z",
+    "updated_at": "2026-05-18T19:11:03.932Z",
+    "name": "LLaMA-3.1-8B SciERC NER inference seed=123",
+    "hypothesis": "Structural consistency signals (SJ, FK) correlate with entity F1 for LLaMA-8B on SciERC at seed=123, and DGS selection improves over greedy baseline"
+  },
+  "timestamp": "2026-05-18T19:11:04.284256+00:00",
+  "trigger": "update_registry"
+}

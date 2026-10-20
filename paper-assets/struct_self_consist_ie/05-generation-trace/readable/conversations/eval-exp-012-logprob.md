@@ -1,0 +1,4942 @@
+# eval exp 012 logprob
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 165
+- **Recorded user turns:** 0
+- **Tool calls:** 82
+- **Original source:** `logs/chats/worker_eval_exp_012_logprob_20260514T105409.jsonl`
+- **Structured JSON:** [`5cec8649eaa5289b3fd7.json`](../../sessions/5c/5cec8649eaa5289b3fd7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+165 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T11:08:04.576377+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T11:08:04.576732+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T11:08:04.576937+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-14T11:08:04.577105+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 3184\\ndrwxr-xr-x 2 root root     101 May 14 17:21 .\\ndrwxr-xr-x 8 root root    4096 May 14 17:15 ..\\n-rw-r--r-- 1 root root    1687 May 14 17:21 e1_component_decomposition.json\\n-rw-r--r-- 1 root root    2447 May 14 17:02 report.json\\n-rw-r--r-- 1 root root 3245910 May 14 17:02 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T11:08:04.577262+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/sampled_results.json') as f:\n    data = json.load(f)\ninst = data[0]\nprint('Top keys:', list(inst.keys()))\nif 'samples' in inst:\n    s = inst['samples'][0]\n    print('Sample keys:', list(s.keys()))\n    for k,v in s.items():\n        if 'log' in k.lower() or 'prob' in k.lower():\n            print(f'  {k}: {v}')\nprint('Num instances:', len(data))\nprint('Num samples per inst:', len(inst.get('samples',[])))\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/sampled_results.json') as f:\n    data = json.load(f)\ninst = data[0]\nprint('Top keys:', list(inst.keys()))\nif 'samples' in inst:\n    s = inst['samples'][0]\n    print('Sample keys:', list(s.keys()))\n    for k,v in s.items():\n        if 'log' in k.lower() or 'prob' in k.lower():\n            print(f'  {k}: {v}')\nprint('Num instances:', len(data))\nprint('Num samples per inst:', len(inst.get('samples',[])))\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T11:08:04.577410+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-14T11:08:04.577533+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "python3 -c \"\nimport vllm\nprint('vLLM version:', vllm.__version__)\nfrom vllm import SamplingParams\nsp = SamplingParams()\nprint('SamplingParams fields:', [a for a in dir(sp) if not a.startswith('_')])\n\" 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "python3 -c \"\nimport vllm\nprint('vLLM version:', vllm.__version__)\nfrom vllm import SamplingParams\nsp = SamplingParams()\nprint('SamplingParams fields:', [a for a in dir(sp) if not a.startswith('_')])\n\" 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T11:08:04.577653+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T11:08:04.577768+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie",
+  "filters": "{'exp_id': 'exp_012_logprob_baseline'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "struct_self_consist_ie",
+    "filters": "{'exp_id': 'exp_012_logprob_baseline'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T11:08:04.577897+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0349}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T11:08:04.578045+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T11:08:04.578380+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"
+…[truncated 8133 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T11:08:04.578558+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T11:08:04.578692+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"551 /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T11:08:04.578811+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T11:08:04.578978+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"joint\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"ner_greedy_f1\\\": 0.6670644391408114,\\n  \\\"ner_oracle_f1\\\": 0.7755707085680403,\\n  \\\"ner_oracle_headroom\\\": 0.10850626942722896,\\n  \\\"ner_fleiss_kappa_mean\\\": 0.404833077782123,\\n  \\\"ner_soft_jaccard_mean\\\": 0.7007668853280039,\\n  \\\"ner_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2590287670611875,\\n    \\\"p_value\\\": 1.4749617362002596e-09,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.3825183376668469,\\n    \\\"p_value\\\": 7.075136887733191e-20,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.23519998074107282,\\n    \\\"p_value\\\": 8.162404147668711e-08,\\n    \\\"n\\\": 508\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3761747231572503,\\n    \\\"p_value\\\": 1.6016428996438062e-18,\\n    \\\"n\\\": 508\\n  },\\n  \\\"ner_n_gold_empty_filtered\\\": 22,\\n  \\\"ner_n_all_samples_f1_zero_filtered\\\": 21,\\n  \\\"ner_structural_beats_surface\\\": true,\\n  \\\"ner_rho_advantage\\\": 0.1234895706056594,\\n  \\\"ner_sample_f1_mean\\\": 0.6083957210996992,\\n  \\\"ner_sample_f1_std\\\": 0.3173545540187574,\\n  \\\"ner_sample_f1_pct_zero\\\": 12.19281663516068,\\n  \\\"re_greedy_f1\\\": 0.4207896051974013,\\n  \\\"re_oracle_f1\\\": 0.5882352941176471,\\n  \\\"re_oracle_headroom\\\": 0.1674456889202458,\\n  \\\"re_fleiss_kappa_mean\\\": 0.2996385624366326,\\n  \\\"re_soft_jaccard_mean\\\": 0.6113509598733148,\\n  \\\"re_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2782151188817765,\\n    \\\"p_value\\\": 1.7243205365720716e-08,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_full\\
+…[truncated 1175 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T11:08:04.579172+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/e1_component_decomposition.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/e1_component_decomposition.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T11:08:04.579312+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 1687 May 14 17:21 /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/e1_component_decomposition.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T11:08:04.579432+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/code/ -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/code/ -name \"*.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T11:08:04.579558+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/data_utils.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_to_llamafactory.py\\n/root/autodl-tmp/struct_self_consist_ie/code/evaluation.py\\n/root/autodl-tmp/struct_self_consist_ie/code/consistency.py\\n/root/autodl-tmp/struct_self_consist_ie/code/sampling.py\\n/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_eval.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_diagnose.py\\n/root/autodl-tmp/struct_self_consist_ie/code/gate0_realign_eval.py\\n/root/autodl-tmp/struct_self_consist_ie/code/mvp_pilot.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_component_wise_re.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_wnut17.py\\n/root/autodl-tmp/struct_self_consist_ie/code/convert_conll2003.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T11:08:04.579679+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T11:08:04.579797+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 3200\\ndrwxr-xr-x 2 root root      58 May 14 17:19 .\\ndrwxr-xr-x 8 root root    4096 May 14 17:15 ..\\n-rw-r--r-- 1 root root    2455 May 14 17:19 report.json\\n-rw-r--r-- 1 root root 3267076 May 14 17:19 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T11:08:04.579944+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T11:08:04.580270+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Multi-sample inference module for structured IE with vLLM + XGrammar constrained decoding.\\n\\nProvides VLLMSampler for batch sampling, prompt construction for UIE tasks,\\nand a full pipeline that produces SampledInstance dicts.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport json\\nimport os\\nfrom typing import Any\\n\\n\\n# ---------------------------------------------------------------------------\\n# UIE JSON schema for XGrammar constrained decoding\\n# ---------------------------------------------------------------------------\\n\\nUIE_JSON_SCHEMA: dict[str, Any] = {\\n    \\\"type\\\": \\\"object\\\",\\n    \\\"properties\\\": {\\n        \\\"entities\\\": {\\n            \\\"type\\\": \\\"array\\\",\\n            \\\"items\\\": {\\n                \\\"type\\\": \\\"object\\\",\\n                \\\"properties\\\": {\\n                    \\\"text\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"type\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"end\\\": {\\\"type\\\": \\\"integer\\\"},\\n                },\\n                \\\"required\\\": [\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"],\\n            },\\n        },\\n        \\\"relations\\\": {\\n            \\\"type\\\": \\\"array\\\",\\n            \\\"items\\\": {\\n                \\\"type\\\": \\\"object\\\",\\n                \\\"properties\\\": {\\n                    \\\"head\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"tail\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"type\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"head_start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"head_end\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"tail_start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"tail_end\\
+…[truncated 7699 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T11:08:04.580465+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/mvp_pilot.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/mvp_pilot.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T11:08:04.580737+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"MVP pilot experiment: N=8 stochastic sampling + greedy baseline on SciERC test set.\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nimport time\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\n\\nimport numpy as np\\n\\nfrom data_utils import load_uie_jsonl\\nfrom sampling import (\\n    VLLMSampler, build_uie_prompt, parse_extraction_output,\\n    realign_spans, SCIERC_SCHEMA_HINT, UIE_JSON_SCHEMA,\\n)\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import (\\n    compute_ner_f1, compute_re_f1, per_instance_f1,\\n    spearman_correlation, compute_sample_f1_distribution,\\n)\\n\\nMODEL = \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged\\\"\\nTEST_DATA = \\\"/root/autodl-tmp/struct_self_consist_ie/data/test.jsonl\\\"\\nOUTPUT_DIR = \\\"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001\\\"\\n\\ndef main():\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\n\\n    print(f\\\"Loading test data from {TEST_DATA}\\\")\\n    instances = load_uie_jsonl(TEST_DATA)\\n    print(f\\\"Loaded {len(instances)} instances\\\")\\n\\n    print(f\\\"Initializing VLLMSampler with model {MODEL}\\\")\\n    sampler = VLLMSampler(MODEL, tensor_parallel_size=1, max_model_len=2048, gpu_memory_utilization=0.9)\\n\\n    # Build prompts\\n    prompts = [build_uie_prompt(inst[\\\"text\\\"], subtask=\\\"full\\\", schema_hint=SCIERC_SCHEMA_HINT, use_train_format=True) for inst in instances]\\n    chat_prompts = [sampler.format_chat_prompt(p) for p in prompts]\\n    print(f\\\"Built {len(chat_prompts)} chat prompts\\\")\\n\\n    from vllm import SamplingParams\\n    from vllm.sampling_params import StructuredOutputsParams\\n    guided = StructuredOutputsParams(json=UIE_JSON_SCHEMA)\\n\\n    # N=8 stochastic sampling at T=1.0\\n    print(\\\"Starting N=8 stochastic sampling at T=1.0 ...\\\")\\n    t0 = time.time()\\n    stoch_params = Samp
+…[truncated 7235 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-14T11:08:04.580993+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def \" /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"def \" /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T11:08:04.581178+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"97:    def __init__(\\n123:    def _get_tokenizer(self):\\n131:    def format_chat_prompt(self, prompt: str) -> str:\\n140:    def sample(\\n248:def build_uie_prompt(text: str, subtask: str = \\\"ner\\\", schema_hint: str = \\\"\\\", use_train_format: bool = True) -> str:\\n284:def parse_extraction_output(raw_output: str) -> dict[str, Any]:\\n321:def _validate_entities(raw: Any) -> list[dict]:\\n340:def _validate_relations(raw: Any) -> list[dict]:\\n362:def _validate_events(raw: Any) -> list[dict]:\\n402:def _find_closest_span(text: str, source: str, predicted_start: int) -> tuple[int, int] | None:\\n437:def realign_spans(extraction: dict, source_text: str) -> dict:\\n485:def run_sampling_pipeline(\\n577:def save_sampled_results(sampled: list[dict], path: str) -> None:\\n590:def load_sampled_results(path: str) -> list[dict]:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-14T11:08:04.581317+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -200 /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -200 /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T11:08:04.581553+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Multi-sample inference module for structured IE with vLLM + XGrammar constrained decoding.\\n\\nProvides VLLMSampler for batch sampling, prompt construction for UIE tasks,\\nand a full pipeline that produces SampledInstance dicts.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport json\\nimport os\\nfrom typing import Any\\n\\n\\n# ---------------------------------------------------------------------------\\n# UIE JSON schema for XGrammar constrained decoding\\n# ---------------------------------------------------------------------------\\n\\nUIE_JSON_SCHEMA: dict[str, Any] = {\\n    \\\"type\\\": \\\"object\\\",\\n    \\\"properties\\\": {\\n        \\\"entities\\\": {\\n            \\\"type\\\": \\\"array\\\",\\n            \\\"items\\\": {\\n                \\\"type\\\": \\\"object\\\",\\n                \\\"properties\\\": {\\n                    \\\"text\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"type\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"end\\\": {\\\"type\\\": \\\"integer\\\"},\\n                },\\n                \\\"required\\\": [\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"],\\n            },\\n        },\\n        \\\"relations\\\": {\\n            \\\"type\\\": \\\"array\\\",\\n            \\\"items\\\": {\\n                \\\"type\\\": \\\"object\\\",\\n                \\\"properties\\\": {\\n                    \\\"head\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"tail\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"type\\\": {\\\"type\\\": \\\"string\\\"},\\n                    \\\"head_start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"head_end\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"tail_start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                    \\\"tail_end\\
+…[truncated 6548 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T11:08:04.581731+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -n +200 /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -n +200 /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-14T11:08:04.581857+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def \" /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"def \" /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T11:08:04.582163+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"Extract events (triggers and arguments) from the following text. \\\"\\n    \\\"Output a JSON object with the fields: entities, relations, events.\\\\n\\\\n\\\"\\n    \\\"Text: {text}\\\\n\\\"\\n    \\\"{schema_line}\\\"\\n    \\\"\\\\nOutput format: \\\"\\n    '{{\\\"entities\\\": [], \\\"relations\\\": [], '\\n    '\\\"events\\\": [{{\\\"trigger\\\": {{\\\"text\\\": \\\"...\\\", \\\"type\\\": \\\"...\\\", \\\"start\\\": &lt;int>, \\\"end\\\": &lt;int>}}, '\\n    '\\\"arguments\\\": [{{\\\"text\\\": \\\"...\\\", \\\"role\\\": \\\"...\\\", \\\"start\\\": &lt;int>, \\\"end\\\": &lt;int>}}]}}]}}'\\n)\\n\\n_RE_TEMPLATE = (\\n    \\\"Extract all relations (head entity, relation type, tail entity) from the following text. \\\"\\n    \\\"Output a JSON object with the fields: entities, relations, events.\\\\n\\\\n\\\"\\n    \\\"Text: {text}\\\\n\\\"\\n    \\\"{schema_line}\\\"\\n    \\\"\\\\nOutput format: \\\"\\n    '{{\\\"entities\\\": [], '\\n    '\\\"relations\\\": [{{\\\"head\\\": \\\"...\\\", \\\"tail\\\": \\\"...\\\", \\\"type\\\": \\\"...\\\", '\\n    '\\\"head_start\\\": &lt;int>, \\\"head_end\\\": &lt;int>, \\\"tail_start\\\": &lt;int>, \\\"tail_end\\\": &lt;int>}}], '\\n    '\\\"events\\\": []}}'\\n)\\n\\n_FULL_TEMPLATE = (\\n    \\\"Extract all structured information (entities, relations, events) from the following text. \\\"\\n    \\\"Output a JSON object with the fields: entities, relations, events.\\\\n\\\\n\\\"\\n    \\\"Text: {text}\\\\n\\\"\\n    \\\"{schema_line}\\\"\\n    \\\"\\\\nOutput:\\\"\\n)\\n\\n_TRAIN_ALIGNED_TEMPLATE = (\\n    \\\"Extract all structured information (entities and relations) from the following text. \\\"\\n    \\\"Output a JSON object.\\\\n\\\\n\\\"\\n    \\\"Text: {text}\\\\n\\\"\\n    \\\"{schema_line}\\\"\\n    \\\"\\\\nOutput format: \\\"\\n    '{{\\\"entities\\\": [{{\\\"text\\\": \\\"...\\\", \\\"type\\\": \\\"...\\\", \\\"start\\\": &lt;int>, \\\"end\\\": &lt;int>}}], '\\n    '\\\"relations
+…[truncated 7497 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T11:08:04.582438+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"19:def entity_strict_match(\\n42:def compute_ner_f1(\\n71:def _event_argument_tuples(events: list[dict]) -> set[tuple]:\\n84:def relation_strict_match(\\n97:def compute_re_f1(\\n114:def argument_match(\\n138:def compute_eae_f1(\\n167:def per_instance_f1(\\n206:def compute_sample_f1_distribution(\\n271:def spearman_correlation(\\n298:def generate_evaluation_report(\\n379:def _prf(tp: int, fp: int, fn: int) -> dict[str, float]:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T11:08:04.582589+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def \" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"def \" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T11:08:04.582724+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"35:def _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\n52:def fleiss_kappa_surface(samples: list[Extraction], subtask: str = \\\"ner\\\") -> float:\\n123:def _span_soft_jaccard(s1_start: int, s1_end: int, s2_start: int, s2_end: int) -> float:\\n134:def _ner_soft_jaccard_pair(entities_a: list[Entity], entities_b: list[Entity]) -> float:\\n199:def _re_soft_jaccard_pair(relations_a: list[dict], relations_b: list[dict]) -> float:\\n225:def _eae_soft_jaccard_pair(events_a: list[Event], events_b: list[Event]) -> float:\\n239:    def _flatten(events: list[Event]) -> dict[tuple[str, str], list[dict]]:\\n288:def structural_consistency_soft_jaccard(\\n332:def oracle_best_of_n(\\n369:def compute_all_consistency_scores(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-14T11:08:04.582885+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -300 /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -300 /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T11:08:04.583188+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluation module for structured self-consistency IE experiments.\\n\\nProvides strict-match NER/EAE evaluation, per-instance F1 computation,\\ncorrelation analysis, and summary report generation.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport statistics\\nfrom typing import Any\\n\\nfrom scipy.stats import spearmanr\\n\\n\\n# ---------------------------------------------------------------------------\\n# NER evaluation (strict match)\\n# ---------------------------------------------------------------------------\\n\\ndef entity_strict_match(\\n    pred_entities: list[dict],\\n    gold_entities: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Compute strict entity match counts.\\n\\n    Strict match requires exact span (start, end) AND exact type.\\n\\n    Args:\\n        pred_entities: Predicted entity dicts with keys text, type, start, end.\\n        gold_entities: Gold entity dicts with the same schema.\\n\\n    Returns:\\n        (tp, fp, fn) counts.\\n    \\\"\\\"\\\"\\n    pred_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    return tp, fp, fn\\n\\n\\ndef compute_ner_f1(\\n    predictions: list[dict],\\n    golds: list[dict],\\n) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute micro-averaged NER precision, recall, and F1.\\n\\n    Args:\\n        predictions: List of Extraction dicts (one per instance).\\n        golds: List of Extraction dicts (one per instance), aligned with predictions.\\n\\n    Returns:\\n        Dict with keys \\\"precision\\\", \\\"recall\\\", \\\"f1\\\".\\n    \\\"\\\"\\\"\\n    total_tp = total_fp = total_fn = 0\\n    for pred, gold in zip(predictions, golds):\\n        tp, fp, fn = entity_strict_match
+…[truncated 7295 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-14T11:08:04.583394+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/data_utils.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/data_utils.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T11:08:04.583672+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Data processing utilities for structured self-consistency IE experiments.\\n\\nHandles loading, converting, and splitting datasets into the unified UIE JSON format.\\nSupported datasets: SciERC (fully implemented), ACE05 (interface only).\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport json\\nimport os\\nimport random\\nfrom typing import Any, TypedDict\\n\\n\\n# ---------------------------------------------------------------------------\\n# Shared type definitions (UIE JSON format)\\n# ---------------------------------------------------------------------------\\n\\nclass Entity(TypedDict):\\n    text: str\\n    type: str\\n    start: int\\n    end: int\\n\\n\\nclass Relation(TypedDict):\\n    head: str\\n    tail: str\\n    type: str\\n    head_start: int\\n    head_end: int\\n    tail_start: int\\n    tail_end: int\\n\\n\\nclass EventArgument(TypedDict):\\n    text: str\\n    role: str\\n    start: int\\n    end: int\\n\\n\\nclass Trigger(TypedDict):\\n    text: str\\n    type: str\\n    start: int\\n    end: int\\n\\n\\nclass Event(TypedDict):\\n    trigger: Trigger\\n    arguments: list[EventArgument]\\n\\n\\nclass Extraction(TypedDict, total=False):\\n    entities: list[Entity]\\n    relations: list[Relation]\\n    events: list[Event]\\n\\n\\nclass Instance(TypedDict, total=False):\\n    id: str\\n    text: str\\n    entities: list[Entity]\\n    relations: list[Relation]\\n    events: list[Event]\\n\\n\\n# ---------------------------------------------------------------------------\\n# SciERC\\n# ---------------------------------------------------------------------------\\n\\ndef _token_offsets(tokens: list[str]) -> list[tuple[int, int]]:\\n    \\\"\\\"\\\"Compute (char_start, char_end) for each token when joined by single spaces.\\\"\\\"\\\"\\n    offsets = []\\n    pos = 0\\n    for tok in tokens:\\n        offsets.append((pos, pos + len(tok)))\\n        pos += len(tok) + 1 
+…[truncated 7007 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-14T11:08:04.583862+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-14T11:08:04.583994+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/env.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/env.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-14T11:08:04.584289+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"MVP pilot experiment script for structured self-consistency IE.\\n\\nIntegrates data loading, vLLM sampling, consistency scoring, and evaluation\\ninto a single CLI-driven pipeline. Outputs a verdict (PASS/MARGINAL/FAIL)\\nbased on the correlation between structural consistency and per-instance F1.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport sys\\n\\nimport numpy as np\\n\\nfrom data_utils import load_scierc, load_ace05\\nfrom sampling import (\\n    VLLMSampler,\\n    run_sampling_pipeline,\\n    save_sampled_results,\\n    load_sampled_results,\\n    realign_spans,\\n    SCIERC_SCHEMA_HINT,\\n)\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import (\\n    per_instance_f1,\\n    compute_ner_f1,\\n    compute_re_f1,\\n    compute_eae_f1,\\n    spearman_correlation,\\n    compute_sample_f1_distribution,\\n)\\n\\n\\ndef parse_args() -> argparse.Namespace:\\n    \\\"\\\"\\\"Parse command-line arguments.\\\"\\\"\\\"\\n    p = argparse.ArgumentParser(description=\\\"MVP pilot for structured self-consistency IE\\\")\\n    p.add_argument(\\\"--model_path\\\", type=str, required=True, help=\\\"Path to the fine-tuned model\\\")\\n    p.add_argument(\\\"--data_dir\\\", type=str, required=True, help=\\\"Dataset directory (SciERC or ACE05)\\\")\\n    p.add_argument(\\\"--dataset\\\", type=str, default=\\\"scierc\\\", choices=[\\\"scierc\\\", \\\"ace05\\\"],\\n                   help=\\\"Dataset name (default: scierc)\\\")\\n    p.add_argument(\\\"--subtask\\\", type=str, default=\\\"ner\\\", choices=[\\\"ner\\\", \\\"re\\\", \\\"eae\\\", \\\"joint\\\"],\\n                   help=\\\"Subtask (default: ner)\\\")\\n    p.add_argument(\\\"--schema_hint\\\", type=str, default=\\\"\\\",\\n                   help=\\\"Schema hint string (entity/relation types). Auto-set for scierc if empty\\\")\\n    p.add_arg
+…[truncated 7405 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T11:08:04.584464+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"source /etc/network_turbo 2>/dev/null || true\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\nexport HF_HUB_DISABLE_XET=1\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\n[ -f /root/miniconda3/etc/profile.d/conda.sh ] && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-14T11:08:04.584623+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/",
+  "description": "List local project directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/",
+    "description": "List local project directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T11:08:04.584750+00:00_
+
+AGENTS.md
+ROADMAP.lock
+ROADMAP.md
+artifacts
+checkpoints
+decisions.lock
+decisions.yaml
+docs
+dream_registry.lock
+dream_registry.yaml
+dream_registry.yaml.bak
+experiment_plan.yaml
+logs
+memory.md
+paper_framing.md
+registry.lock
+registry.yaml
+report.md
+study_status.lock
+task_context
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-14T11:08:04.585016+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat > /root/autodl-tmp/struct_self_consist_ie/code/extract_logprobs.py << 'PYEOF'\n\"\"\"Extract sequence log-probabilities for structured IE samples.\n\nRe-generates N=8 stochastic samples + 1 greedy with logprobs enabled,\nsaving both parsed structures and per-sample log-probability metadata.\n\"\"\"\n\nimport json\nimport os\nimport sys\nimport time\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\n\nfrom data_utils import load_uie_jsonl\nfrom sampling import (\n    VLLMSampler, build_uie_prompt, parse_extraction_output,\n    realign_spans, SCIERC_SCHEMA_HINT, UIE_JSON_SCHEMA,\n)\n\nMODEL = \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2\"\nTEST_DATA = \"/root/autodl-tmp/struct_self_consist_ie/data/test.jsonl\"\nOUTPUT_DIR = \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob\"\n\n\ndef main():\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n\n    print(f\"Loading test data from {TEST_DATA}\")\n    instances = load_uie_jsonl(TEST_DATA)\n    print(f\"Loaded {len(instances)} instances\")\n\n    print(f\"Initializing VLLMSampler with model {MODEL}\")\n    sampler = VLLMSampler(\n        MODEL, tensor_parallel_size=1, max_model_len=2048, gpu_memory_utilization=0.9\n    )\n\n    prompts = [\n        build_uie_prompt(\n            inst[\"text\"], subtask=\"full\",\n            schema_hint=SCIERC_SCHEMA_HINT, use_train_format=True,\n        )\n        for inst in instances\n    ]\n    chat_prompts = [sampler.format_chat_prompt(p) for p in prompts]\n    print(f\"Built {len(chat_prompts)} chat prompts\")\n\n    from vllm import SamplingParams\n    from vllm.sampling_params import StructuredOutputsParams\n\n    guided = StructuredOutputsParams(json=UIE_JSON_SCHEMA)\n\n    # N=8 stochastic at T=1.0 with logprobs\n    print(\"Starting N=8 stochastic sampling at T=1.0 with logprobs ...\")\n    t0 = time.time()\n    stoch_params = SamplingParams(\n        n=8, temperature=1.0, max_tokens=512,\n        logprobs=1, structured_outputs=guided,\n    )\n    stoch_outputs = sampler.llm.generate(chat_prompts, stoch_params)\n    t_stoch = time.time() - t0\n    print(f\"Stochastic sampling done in {t_stoch:.1f}s\")\n\n    # Greedy at T=0 with logprobs\n    print(\"Starting N=1 greedy decoding at T=0 with logprobs ...\")\n    t0 = time.time()\n    greedy_params = SamplingParams(\n        n=1, temperature=0.0, max_tokens=512,\n        logprobs=1, structured_outputs=guided,\n    )\n    greedy_outputs = sampler.llm.generate(chat_prompts, greedy_params)\n    t_greedy = time.time() - t0\n    print(f\"Greedy decoding done in {t_greedy:.1f}s\")\n\n    # Parse + save with logprob metadata\n    print(\"Parsing outputs and extracting logprobs ...\")\n    results = []\n    for i, inst in enumerate(instances):\n        gold = {\n            \"entities\": inst.get(\"entities\", []),\n            \"relations\": inst.get(\"relations\", []),\n            \"events\": [],\n        }\n\n        samples = []\n        for out in stoch_outputs[i].outputs:\n            parsed = realign_spans(parse_extraction_output(out.text), inst[\"text\"])\n            n_tokens = len(out.token_ids)\n            cum_lp = out.cumulative_logprob if out.cumulative_logprob is not None else 0.0\n            mean_lp = cum_lp / n_tokens if n_tokens > 0 else 0.0\n            samples.append({\n                **parsed,\n                \"cumulative_logprob\": cum_lp,\n                \"n_tokens\": n_tokens,\n                \"mean_logprob\": mean_lp,\n            })\n\n        g_out = greedy_outputs[i].outputs[0]\n        g_parsed = realign_spans(parse_extraction_output(g_out.text), inst[\"text\"])\n        g_ntok = len(g_out.token_ids)\n        g_cum = g_out.cumulative_logprob if g_out.cumulative_logprob is not None else 0.0\n        g_mean = g_cum / g_ntok if g_ntok > 0 else 0.0\n\n        results.append({\n            \"id\": inst.get(\"id\", str(i)),\n            \"text\": inst[\"text\"],\n            \"gold\": gold,\n            \"samples\": samples,\n            \"greedy\": {\n                **g_parsed,\n                \"cumulative_logprob\": g_cum,\n                \"n_tokens\": g_ntok,\n                \"mean_logprob\": g_mean,\n            },\n        })\n\n    output_path = os.path.join(OUTPUT_DIR, \"samples_with_logprobs.jsonl\")\n    with open(output_path, \"w\", encoding=\"utf-8\") as f:\n        for r in results:\n            f.write(json.dumps(r, ensure_ascii=False) + \"\\n\")\n\n    print(f\"\\nSaved {len(results)} instances to {output_path}\")\n    print(f\"Time: stochastic={t_stoch:.1f}s, greedy={t_greedy:.1f}s, total={t_stoch+t_greedy:.1f}s\")\n\n    # Quick sanity check\n    lps = [s[\"mean_logprob\"] for r in results for s in r[\"samples\"]]\n    print(f\"Logprob stats: min={min(lps):.4f}, max={max(lps):.4f}, mean={sum(lps)/len(lps):.4f}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"extract_logprobs.py written OK\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat > /root/autodl-tmp/struct_self_consist_ie/code/extract_logprobs.py << 'PYEOF'\n\"\"\"Extract sequence log-probabilities for structured IE samples.\n\nRe-generates N=8 stochastic samples + 1 greedy with logprobs enabled,\nsaving both parsed structures and per-sample log-probability metadata.\n\"\"\"\n\nimport json\nimport os\nimport sys\nimport time\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\n\nfrom data_utils import load_uie_jsonl\nfrom sampling import (\n    VLLMSampler, build_uie_prompt, parse_extraction_output,\n    realign_spans, SCIERC_SCHEMA_HINT, UIE_JSON_SCHEMA,\n)\n\nMODEL = \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2\"\nTEST_DATA = \"/root/autodl-tmp/struct_self_consist_ie/data/test.jsonl\"\nOUTPUT_DIR = \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob\"\n\n\ndef main():\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n\n    print(f\"Loading test data from {TEST_DATA}\")\n    instances = load_uie_jsonl(TEST_DATA)\n    print(f\"Loaded {len(instances)} instances\")\n\n    print(f\"Initializing VLLMSampler with model {MODEL}\")\n    sampler = VLLMSampler(\n        MODEL, tensor_parallel_size=1, max_model_len=2048, gpu_memory_utilization=0.9\n    )\n\n    prompts = [\n        build_uie_prompt(\n            inst[\"text\"], subtask=\"full\",\n            schema_hint=SCIERC_SCHEMA_HINT, use_train_format=True,\n        )\n        for inst in instances\n    ]\n    chat_prompts = [sampler.format_chat_prompt(p) for p in prompts]\n    print(f\"Built {len(chat_prompts)} chat prompts\")\n\n    from vllm import SamplingParams\n    from vllm.sampling_params import StructuredOutputsParams\n\n    guided = StructuredOutputsParams(json=UIE_JSON_SCHEMA)\n\n    # N=8 stochastic at T=1.0 with logprobs\n    print(\"Starting N=8 stochastic sampling at T=1.0 with logprobs ...\")\n    t0 = time.time()\n    stoch_params = SamplingParams(\n        n=8, temperature=1.0, max_tokens=512,\n        logprobs=1, structured_outputs=guided,\n    )\n    stoch_outputs = sampler.llm.generate(chat_prompts, stoch_params)\n    t_stoch = time.time() - t0\n    print(f\"Stochastic sampling done in {t_stoch:.1f}s\")\n\n    # Greedy at T=0 with logprobs\n    print(\"Starting N=1 greedy decoding at T=0 with logprobs ...\")\n    t0 = time.time()\n    greedy_params = SamplingParams(\n        n=1, temperature=0.0, max_tokens=512,\n        logprobs=1, structured_outputs=guided,\n    )\n    greedy_outputs = sampler.llm.generate(chat_prompts, greedy_params)\n    t_greedy = time.time() - t0\n    print(f\"Greedy decoding done in {t_greedy:.1f}s\")\n\n    # Parse + save with logprob metadata\n    print(\"Parsing outputs and extracting logprobs ...\")\n    results = []\n    for i, inst in enumerate(instances):\n        gold = {\n            \"entities\": inst.get(\"entities\", []),\n            \"relations\": inst.get(\"relations\", []),\n            \"events\": [],\n        }\n\n        samples = []\n        for out in stoch_outputs[i].outputs:\n            parsed = realign_spans(parse_extraction_output(out.text), inst[\"text\"])\n            n_tokens = len(out.token_ids)\n            cum_lp = out.cumulative_logprob if out.cumulative_logprob is not None else 0.0\n            mean_lp = cum_lp / n_tokens if n_tokens > 0 else 0.0\n            samples.append({\n                **parsed,\n                \"cumulative_logprob\": cum_lp,\n                \"n_tokens\": n_tokens,\n                \"mean_logprob\": mean_lp,\n            })\n\n        g_out = greedy_outputs[i].outputs[0]\n        g_parsed = realign_spans(parse_extraction_output(g_out.text), inst[\"text\"])\n        g_ntok = len(g_out.token_ids)\n        g_cum = g_out.cumulative_logprob if g_out.cumulative_logprob is not None else 0.0\n        g_mean = g_cum / g_ntok if g_ntok > 0 else 0.0\n\n        results.append({\n            \"id\": inst.get(\"id\", str(i)),\n            \"text\": inst[\"text\"],\n            \"gold\": gold,\n            \"samples\": samples,\n            \"greedy\": {\n                **g_parsed,\n                \"cumulative_logprob\": g_cum,\n                \"n_tokens\": g_ntok,\n                \"mean_logprob\": g_mean,\n            },\n        })\n\n    output_path = os.path.join(OUTPUT_DIR, \"samples_with_logprobs.jsonl\")\n    with open(output_path, \"w\", encoding=\"utf-8\") as f:\n        for r in results:\n            f.write(json.dumps(r, ensure_ascii=False) + \"\\n\")\n\n    print(f\"\\nSaved {len(results)} instances to {output_path}\")\n    print(f\"Time: stochastic={t_stoch:.1f}s, greedy={t_greedy:.1f}s, total={t_stoch+t_greedy:.1f}s\")\n\n    # Quick sanity check\n    lps = [s[\"mean_logprob\"] for r in results for s in r[\"samples\"]]\n    print(f\"Logprob stats: min={min(lps):.4f}, max={max(lps):.4f}, mean={sum(lps)/len(lps):.4f}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"extract_logprobs.py written OK\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T11:08:04.585249+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"extract_logprobs.py written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-14T11:08:04.585429+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat > /root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py << 'PYEOF'\n\"\"\"Analyze log-probability baseline vs consistency signals.\n\nComputes Spearman rho, Kendall tau, AUROC, and quartile analysis\ncomparing mean_logprob against soft_jaccard and fleiss_kappa.\n\"\"\"\n\nimport json\nimport sys\nimport numpy as np\nfrom scipy.stats import spearmanr, kendalltau\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\n\nfrom consistency import compute_all_consistency_scores\nfrom evaluation import per_instance_f1\n\nDATA_PATH = \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\"\nREPORT_PATH = \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/analysis_report.json\"\n\n\ndef load_data(path):\n    instances = []\n    with open(path) as f:\n        for line in f:\n            if line.strip():\n                instances.append(json.loads(line))\n    return instances\n\n\ndef auroc_simple(scores, labels):\n    \"\"\"Compute AUROC without sklearn dependency.\"\"\"\n    scores = np.array(scores, dtype=float)\n    labels = np.array(labels, dtype=int)\n    if len(set(labels)) < 2:\n        return float('nan')\n    pos = scores[labels == 1]\n    neg = scores[labels == 0]\n    n_pos, n_neg = len(pos), len(neg)\n    if n_pos == 0 or n_neg == 0:\n        return float('nan')\n    count = 0.0\n    for p in pos:\n        count += np.sum(p > neg) + 0.5 * np.sum(p == neg)\n    return count / (n_pos * n_neg)\n\n\ndef corr(x, y, method=\"spearman\"):\n    x, y = np.array(x, dtype=float), np.array(y, dtype=float)\n    mask = np.isfinite(x) & np.isfinite(y)\n    x, y = x[mask], y[mask]\n    if len(x) < 3:\n        return 0.0, 1.0, int(np.sum(mask))\n    if method == \"spearman\":\n        r = spearmanr(x, y)\n    else:\n        r = kendalltau(x, y)\n    return float(r.statistic), float(r.pvalue), len(x)\n\n\ndef analyze_subtask(instances, subtask):\n    \"\"\"Full analysis for one subtask. Returns dict of metrics.\"\"\"\n    # Per-instance greedy F1\n    greedy_f1s = [per_instance_f1(inst[\"greedy\"], inst[\"gold\"], subtask) for inst in instances]\n\n    # Consistency scores\n    consistency = compute_all_consistency_scores(\n        [inst[\"samples\"] for inst in instances], subtask=subtask,\n    )\n    fk = consistency[\"fleiss_kappa\"]\n    sj = consistency[\"soft_jaccard\"]\n\n    # Per-instance mean logprob (avg over N=8 samples)\n    mean_logprobs = [\n        float(np.mean([s[\"mean_logprob\"] for s in inst[\"samples\"]]))\n        for inst in instances\n    ]\n\n    # Greedy logprob\n    greedy_logprobs = [inst[\"greedy\"][\"mean_logprob\"] for inst in instances]\n\n    # Filter: gold-non-empty only (full set)\n    if subtask == \"ner\":\n        valid = [i for i, inst in enumerate(instances) if inst[\"gold\"].get(\"entities\")]\n    else:\n        valid = [i for i, inst in enumerate(instances) if inst[\"gold\"].get(\"relations\")]\n\n    n_gold_empty = len(instances) - len(valid)\n    f1_v = [greedy_f1s[i] for i in valid]\n    fk_v = [fk[i] for i in valid]\n    sj_v = [sj[i] for i in valid]\n    lp_v = [mean_logprobs[i] for i in valid]\n    glp_v = [greedy_logprobs[i] for i in valid]\n\n    # Conditional set: exclude instances where all N sample F1s = 0\n    cond_valid = []\n    for i in valid:\n        inst = instances[i]\n        sample_f1s = [per_instance_f1(s, inst[\"gold\"], subtask) for s in inst[\"samples\"]]\n        if any(f > 0 for f in sample_f1s):\n            cond_valid.append(i)\n    n_all_zero = len(valid) - len(cond_valid)\n\n    f1_c = [greedy_f1s[i] for i in cond_valid]\n    fk_c = [fk[i] for i in cond_valid]\n    sj_c = [sj[i] for i in cond_valid]\n    lp_c = [mean_logprobs[i] for i in cond_valid]\n    glp_c = [greedy_logprobs[i] for i in cond_valid]\n\n    # Compute all metrics\n    signals = {\n        \"soft_jaccard\": (sj_v, sj_c),\n        \"fleiss_kappa\": (fk_v, fk_c),\n        \"mean_logprob\": (lp_v, lp_c),\n        \"greedy_logprob\": (glp_v, glp_c),\n    }\n\n    # Median-split labels for AUROC\n    median_f1_v = float(np.median(f1_v))\n    labels_v = [1 if f > median_f1_v else 0 for f in f1_v]\n    median_f1_c = float(np.median(f1_c))\n    labels_c = [1 if f > median_f1_c else 0 for f in f1_c]\n\n    results = {}\n    for name, (vals_full, vals_cond) in signals.items():\n        rho_f, p_f, n_f = corr(vals_full, f1_v, \"spearman\")\n        tau_f, ptau_f, _ = corr(vals_full, f1_v, \"kendall\")\n        auroc_f = auroc_simple(vals_full, labels_v)\n\n        rho_c, p_c, n_c = corr(vals_cond, f1_c, \"spearman\")\n        tau_c, ptau_c, _ = corr(vals_cond, f1_c, \"kendall\")\n        auroc_c = auroc_simple(vals_cond, labels_c)\n\n        results[name] = {\n            \"full\": {\"rho\": rho_f, \"p_rho\": p_f, \"tau\": tau_f, \"p_tau\": ptau_f, \"auroc\": auroc_f, \"n\": n_f},\n            \"cond\": {\"rho\": rho_c, \"p_rho\": p_c, \"tau\": tau_c, \"p_tau\": ptau_c, \"auroc\": auroc_c, \"n\": n_c},\n        }\n\n    # Quartile analysis on full set\n    sorted_idx = np.argsort(lp_v)\n    q_size = len(sorted_idx) // 4\n    quartiles = []\n    for q in range(4):\n        start = q * q_size\n        end = (q + 1) * q_size if q < 3 else len(sorted_idx)\n        qi = sorted_idx[start:end]\n        qf1 = [f1_v[i] for i in qi]\n        qlp = [lp_v[i] for i in qi]\n        quartiles.append({\n            \"q\": q + 1,\n            \"logprob_range\": [float(min(qlp)), float(max(qlp))],\n            \"mean_f1\": float(np.mean(qf1)),\n            \"n\": len(qi),\n        })\n\n    return {\n        \"n_total\": len(instances),\n        \"n_gold_nonempty\": len(valid),\n        \"n_gold_empty\": n_gold_empty,\n        \"n_conditional\": len(cond_valid),\n        \"n_all_zero_filtered\": n_all_zero,\n        \"median_f1_full\": median_f1_v,\n        \"signals\": results,\n        \"quartiles\": quartiles,\n    }\n\n\ndef print_table(subtask, analysis):\n    \"\"\"Pretty-print the comparison table.\"\"\"\n    print(f\"\\n{'='*80}\")\n    print(f\"  Confidence Signal Comparison ({subtask.upper()}, Full Set, n={analysis['n_gold_nonempty']})\")\n    print(f\"{'='*80}\")\n    print(f\"  {'Signal':<20} | {'ρ_spearman':>10} | {'p-value':>10} | {'τ_kendall':>10} | {'AUROC':>7}\")\n    print(f\"  {'-'*20}-+-{'-'*10}-+-{'-'*10}-+-{'-'*10}-+-{'-'*7}\")\n\n    for name in [\"soft_jaccard\", \"fleiss_kappa\", \"mean_logprob\", \"greedy_logprob\"]:\n        m = analysis[\"signals\"][name][\"full\"]\n        auroc_s = f\"{m['auroc']:.4f}\" if not np.isnan(m['auroc']) else \"N/A\"\n        print(f\"  {name:<20} | {m['rho']:>+10.4f} | {m['p_rho']:>10.2e} | {m['tau']:>+10.4f} | {auroc_s:>7}\")\n\n    print(f\"\\n  Conditional Set (n={analysis['n_conditional']}, filtered {analysis['n_all_zero_filtered']} all-F1=0)\")\n    print(f\"  {'Signal':<20} | {'ρ_spearman':>10} | {'p-value':>10} | {'τ_kendall':>10} | {'AUROC':>7}\")\n    print(f\"  {'-'*20}-+-{'-'*10}-+-{'-'*10}-+-{'-'*10}-+-{'-'*7}\")\n\n    for name in [\"soft_jaccard\", \"fleiss_kappa\", \"mean_logprob\", \"greedy_logprob\"]:\n        m = analysis[\"signals\"][name][\"cond\"]\n        auroc_s = f\"{m['auroc']:.4f}\" if not np.isnan(m['auroc']) else \"N/A\"\n        print(f\"  {name:<20} | {m['rho']:>+10.4f} | {m['p_rho']:>10.2e} | {m['tau']:>+10.4f} | {auroc_s:>7}\")\n\n    print(f\"\\n  Quartile Analysis (by mean_logprob, Full Set):\")\n    for q in analysis[\"quartiles\"]:\n        print(f\"    Q{q['q']} [logprob {q['logprob_range'][0]:.3f}..{q['logprob_range'][1]:.3f}]: \"\n              f\"mean_F1={q['mean_f1']:.4f} (n={q['n']})\")\n\n    sj = analysis[\"signals\"][\"soft_jaccard\"][\"full\"][\"rho\"]\n    lp = analysis[\"signals\"][\"mean_logprob\"][\"full\"][\"rho\"]\n    winner = \"SJ\" if sj > lp else \"LOGPROB\"\n    delta = abs(sj - lp)\n    print(f\"\\n  >>> {winner} WINS (ρ_SJ={sj:+.4f} vs ρ_LP={lp:+.4f}, delta={delta:.4f})\")\n\n\ndef main():\n    print(\"Loading data ...\")\n    instances = load_data(DATA_PATH)\n    print(f\"Loaded {len(instances)} instances\")\n\n    report = {}\n    for subtask in [\"ner\", \"re\"]:\n        analysis = analyze_subtask(instances, subtask)\n        print_table(subtask, analysis)\n        report[subtask] = analysis\n\n    # Save report\n    with open(REPORT_PATH, \"w\") as f:\n        json.dump(report, f, indent=2, default=lambda x: None if isinstance(x, float) and np.isnan(x) else x)\n    print(f\"\\nReport saved to {REPORT_PATH}\")\n\n    # Final verdict\n    ner_sj = report[\"ner\"][\"signals\"][\"soft_jaccard\"][\"full\"][\"rho\"]\n    ner_lp = report[\"ner\"][\"signals\"][\"mean_logprob\"][\"full\"][\"rho\"]\n    re_sj = report[\"re\"][\"signals\"][\"soft_jaccard\"][\"full\"][\"rho\"]\n    re_lp = report[\"re\"][\"signals\"][\"mean_logprob\"][\"full\"][\"rho\"]\n\n    print(f\"\\n{'='*80}\")\n    print(f\"  FINAL VERDICT\")\n    print(f\"{'='*80}\")\n    print(f\"  NER: SJ ρ={ner_sj:+.4f} vs LogProb ρ={ner_lp:+.4f} → {'SJ wins' if ner_sj > ner_lp else 'LogProb wins'}\")\n    print(f\"  RE:  SJ ρ={re_sj:+.4f} vs LogProb ρ={re_lp:+.4f} → {'SJ wins' if re_sj > re_lp else 'LogProb wins'}\")\n\n    if ner_sj > ner_lp:\n        print(\"  => Strong contribution: structural consistency outperforms naive logprob baseline\")\n    else:\n        print(\"  => Needs reframing: logprob baseline is competitive or better\")\n    print(f\"{'='*80}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"analyze_logprob_baseline.py written OK\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat > /root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py << 'PYEOF'\n\"\"\"Analyze log-probability baseline vs consistency signals.\n\nComputes Spearman rho, Kendall tau, AUROC, and quartile analysis\ncomparing mean_logprob against soft_jaccard and fleiss_kappa.\n\"\"\"\n\nimport json\nimport sys\nimport numpy as np\nfrom scipy.stats import spearmanr, kendalltau\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\n\nfrom consistency import compute_all_consistency_scores\nfrom evaluation import per_instance_f1\n\nDATA_PATH = \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\"\nREPORT_PATH = \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/analysis_report.json\"\n\n\ndef load_data(path):\n    instances = []\n    with open(path) as f:\n        for line in f:\n            if line.strip():\n                instances.append(json.loads(line))\n    return instances\n\n\ndef auroc_simple(scores, labels):\n    \"\"\"Compute AUROC without sklearn dependency.\"\"\"\n    scores = np.array(scores, dtype=float)\n    labels = np.array(labels, dtype=int)\n    if len(set(labels)) < 2:\n        return float('nan')\n    pos = scores[labels == 1]\n    neg = scores[labels == 0]\n    n_pos, n_neg = len(pos), len(neg)\n    if n_pos == 0 or n_neg == 0:\n        return float('nan')\n    count = 0.0\n    for p in pos:\n        count += np.sum(p > neg) + 0.5 * np.sum(p == neg)\n    return count / (n_pos * n_neg)\n\n\ndef corr(x, y, method=\"spearman\"):\n    x, y = np.array(x, dtype=float), np.array(y, dtype=float)\n    mask = np.isfinite(x) & np.isfinite(y)\n    x, y = x[mask], y[mask]\n    if len(x) < 3:\n        return 0.0, 1.0, int(np.sum(mask))\n    if method == \"spearman\":\n        r = spearmanr(x, y)\n    else:\n        r = kendalltau(x, y)\n    return float(r.statistic), float(r.pvalue), len(x)\n\n\ndef analyze_subtask(instances, subtask):\n    \"\"\"Full analysis for one subtask. Returns dict of metrics.\"\"\"\n    # Per-instance greedy F1\n    greedy_f1s = [per_instance_f1(inst[\"greedy\"], inst[\"gold\"], subtask) for inst in instances]\n\n    # Consistency scores\n    consistency = compute_all_consistency_scores(\n        [inst[\"samples\"] for inst in instances], subtask=subtask,\n    )\n    fk = consistency[\"fleiss_kappa\"]\n    sj = consistency[\"soft_jaccard\"]\n\n    # Per-instance mean logprob (avg over N=8 samples)\n    mean_logprobs = [\n        float(np.mean([s[\"mean_logprob\"] for s in inst[\"samples\"]]))\n        for inst in instances\n    ]\n\n    # Greedy logprob\n    greedy_logprobs = [inst[\"greedy\"][\"mean_logprob\"] for inst in instances]\n\n    # Filter: gold-non-empty only (full set)\n    if subtask == \"ner\":\n        valid = [i for i, inst in enumerate(instances) if inst[\"gold\"].get(\"entities\")]\n    else:\n        valid = [i for i, inst in enumerate(instances) if inst[\"gold\"].get(\"relations\")]\n\n    n_gold_empty = len(instances) - len(valid)\n    f1_v = [greedy_f1s[i] for i in valid]\n    fk_v = [fk[i] for i in valid]\n    sj_v = [sj[i] for i in valid]\n    lp_v = [mean_logprobs[i] for i in valid]\n    glp_v = [greedy_logprobs[i] for i in valid]\n\n    # Conditional set: exclude instances where all N sample F1s = 0\n    cond_valid = []\n    for i in valid:\n        inst = instances[i]\n        sample_f1s = [per_instance_f1(s, inst[\"gold\"], subtask) for s in inst[\"samples\"]]\n        if any(f > 0 for f in sample_f1s):\n            cond_valid.append(i)\n    n_all_zero = len(valid) - len(cond_valid)\n\n    f1_c = [greedy_f1s[i] for i in cond_valid]\n    fk_c = [fk[i] for i in cond_valid]\n    sj_c = [sj[i] for i in cond_valid]\n    lp_c = [mean_logprobs[i] for i in cond_valid]\n    glp_c = [greedy_logprobs[i] for i in cond_valid]\n\n    # Compute all metrics\n    signals = {\n        \"soft_jaccard\": (sj_v, sj_c),\n        \"fleiss_kappa\": (fk_v, fk_c),\n        \"mean_logprob\": (lp_v, lp_c),\n        \"greedy_logprob\": (glp_v, glp_c),\n    }\n\n    # Median-split labels for AUROC\n    median_f1_v = float(np.median(f1_v))\n    labels_v = [1 if f > median_f1_v else 0 for f in f1_v]\n    median_f1_c = float(np.median(f1_c))\n    labels_c = [1 if f > median_f1_c else 0 for f in f1_c]\n\n    results = {}\n    for name, (vals_full, vals_cond) in signals.items():\n        rho_f, p_f, n_f = corr(vals_full, f1_v, \"spearman\")\n        tau_f, ptau_f, _ = corr(vals_full, f1_v, \"kendall\")\n        auroc_f = auroc_simple(vals_full, labels_v)\n\n        rho_c, p_c, n_c = corr(vals_cond, f1_c, \"spearman\")\n        tau_c, ptau_c, _ = corr(vals_cond, f1_c, \"kendall\")\n        auroc_c = auroc_simple(vals_cond, labels_c)\n\n        results[name] = {\n            \"full\": {\"rho\": rho_f, \"p_rho\": p_f, \"tau\": tau_f, \"p_tau\": ptau_f, \"auroc\": auroc_f, \"n\": n_f},\n            \"cond\": {\"rho\": rho_c, \"p_rho\": p_c, \"tau\": tau_c, \"p_tau\": ptau_c, \"auroc\": auroc_c, \"n\": n_c},\n        }\n\n    # Quartile analysis on full set\n    sorted_idx = np.argsort(lp_v)\n    q_size = len(sorted_idx) // 4\n    quartiles = []\n    for q in range(4):\n        start = q * q_size\n        end = (q + 1) * q_size if q < 3 else len(sorted_idx)\n        qi = sorted_idx[start:end]\n        qf1 = [f1_v[i] for i in qi]\n        qlp = [lp_v[i] for i in qi]\n        quartiles.append({\n            \"q\": q + 1,\n            \"logprob_range\": [float(min(qlp)), float(max(qlp))],\n            \"mean_f1\": float(np.mean(qf1)),\n            \"n\": len(qi),\n        })\n\n    return {\n        \"n_total\": len(instances),\n        \"n_gold_nonempty\": len(valid),\n        \"n_gold_empty\": n_gold_empty,\n        \"n_conditional\": len(cond_valid),\n        \"n_all_zero_filtered\": n_all_zero,\n        \"median_f1_full\": median_f1_v,\n        \"signals\": results,\n        \"quartiles\": quartiles,\n    }\n\n\ndef print_table(subtask, analysis):\n    \"\"\"Pretty-print the comparison table.\"\"\"\n    print(f\"\\n{'='*80}\")\n    print(f\"  Confidence Signal Comparison ({subtask.upper()}, Full Set, n={analysis['n_gold_nonempty']})\")\n    print(f\"{'='*80}\")\n    print(f\"  {'Signal':<20} | {'ρ_spearman':>10} | {'p-value':>10} | {'τ_kendall':>10} | {'AUROC':>7}\")\n    print(f\"  {'-'*20}-+-{'-'*10}-+-{'-'*10}-+-{'-'*10}-+-{'-'*7}\")\n\n    for name in [\"soft_jaccard\", \"fleiss_kappa\", \"mean_logprob\", \"greedy_logprob\"]:\n        m = analysis[\"signals\"][name][\"full\"]\n        auroc_s = f\"{m['auroc']:.4f}\" if not np.isnan(m['auroc']) else \"N/A\"\n        print(f\"  {name:<20} | {m['rho']:>+10.4f} | {m['p_rho']:>10.2e} | {m['tau']:>+10.4f} | {auroc_s:>7}\")\n\n    print(f\"\\n  Conditional Set (n={analysis['n_conditional']}, filtered {analysis['n_all_zero_filtered']} all-F1=0)\")\n    print(f\"  {'Signal':<20} | {'ρ_spearman':>10} | {'p-value':>10} | {'τ_kendall':>10} | {'AUROC':>7}\")\n    print(f\"  {'-'*20}-+-{'-'*10}-+-{'-'*10}-+-{'-'*10}-+-{'-'*7}\")\n\n    for name in [\"soft_jaccard\", \"fleiss_kappa\", \"mean_logprob\", \"greedy_logprob\"]:\n        m = analysis[\"signals\"][name][\"cond\"]\n        auroc_s = f\"{m['auroc']:.4f}\" if not np.isnan(m['auroc']) else \"N/A\"\n        print(f\"  {name:<20} | {m['rho']:>+10.4f} | {m['p_rho']:>10.2e} | {m['tau']:>+10.4f} | {auroc_s:>7}\")\n\n    print(f\"\\n  Quartile Analysis (by mean_logprob, Full Set):\")\n    for q in analysis[\"quartiles\"]:\n        print(f\"    Q{q['q']} [logprob {q['logprob_range'][0]:.3f}..{q['logprob_range'][1]:.3f}]: \"\n              f\"mean_F1={q['mean_f1']:.4f} (n={q['n']})\")\n\n    sj = analysis[\"signals\"][\"soft_jaccard\"][\"full\"][\"rho\"]\n    lp = analysis[\"signals\"][\"mean_logprob\"][\"full\"][\"rho\"]\n    winner = \"SJ\" if sj > lp else \"LOGPROB\"\n    delta = abs(sj - lp)\n    print(f\"\\n  >>> {winner} WINS (ρ_SJ={sj:+.4f} vs ρ_LP={lp:+.4f}, delta={delta:.4f})\")\n\n\ndef main():\n    print(\"Loading data ...\")\n    instances = load_data(DATA_PATH)\n    print(f\"Loaded {len(instances)} instances\")\n\n    report = {}\n    for subtask in [\"ner\", \"re\"]:\n        analysis = analyze_subtask(instances, subtask)\n        print_table(subtask, analysis)\n        report[subtask] = analysis\n\n    # Save report\n    with open(REPORT_PATH, \"w\") as f:\n        json.dump(report, f, indent=2, default=lambda x: None if isinstance(x, float) and np.isnan(x) else x)\n    print(f\"\\nReport saved to {REPORT_PATH}\")\n\n    # Final verdict\n    ner_sj = report[\"ner\"][\"signals\"][\"soft_jaccard\"][\"full\"][\"rho\"]\n    ner_lp = report[\"ner\"][\"signals\"][\"mean_logprob\"][\"full\"][\"rho\"]\n    re_sj = report[\"re\"][\"signals\"][\"soft_jaccard\"][\"full\"][\"rho\"]\n    re_lp = report[\"re\"][\"signals\"][\"mean_logprob\"][\"full\"][\"rho\"]\n\n    print(f\"\\n{'='*80}\")\n    print(f\"  FINAL VERDICT\")\n    print(f\"{'='*80}\")\n    print(f\"  NER: SJ ρ={ner_sj:+.4f} vs LogProb ρ={ner_lp:+.4f} → {'SJ wins' if ner_sj > ner_lp else 'LogProb wins'}\")\n    print(f\"  RE:  SJ ρ={re_sj:+.4f} vs LogProb ρ={re_lp:+.4f} → {'SJ wins' if re_sj > re_lp else 'LogProb wins'}\")\n\n    if ner_sj > ner_lp:\n        print(\"  => Strong contribution: structural consistency outperforms naive logprob baseline\")\n    else:\n        print(\"  => Needs reframing: logprob baseline is competitive or better\")\n    print(f\"{'='*80}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"analyze_logprob_baseline.py written OK\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T11:08:04.585674+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"analyze_logprob_baseline.py written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-14T11:08:04.585846+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /etc/network_turbo && source /root/autodl-tmp/struct_self_consist_ie/env.sh && cd /root/autodl-tmp/struct_self_consist_ie && nohup python3 code/extract_logprobs.py > /tmp/exp012_extract.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /etc/network_turbo && source /root/autodl-tmp/struct_self_consist_ie/env.sh && cd /root/autodl-tmp/struct_self_consist_ie && nohup python3 code/extract_logprobs.py > /tmp/exp012_extract.log 2>&1 & echo \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-14T11:08:04.585992+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_012_logprob_baseline",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "struct_self_consist_ie",
+  "spec": "{'command': 'python3 code/extract_logprobs.py', 'server': 'autodl-5090', 'data_path': '/root/autodl-tmp/struct_self_consist_ie/data/test.jsonl', 'data_count': 551, 'model_name': 'qwen3-8b-scierc-merged-v2', 'seed': 42}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_012_logprob_baseline",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "struct_self_consist_ie",
+    "spec": "{'command': 'python3 code/extract_logprobs.py', 'server': 'autodl-5090', 'data_path': '/root/autodl-tmp/struct_self_consist_ie/data/test.jsonl', 'data_count': 551, 'model_name': 'qwen3-8b-scierc-merged-v2', 'seed': 42}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-14T11:08:04.586226+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /etc/network_turbo && source /root/autodl-tmp/struct_self_consist_ie/env.sh && cd /root/autodl-tmp/struct_self_consist_ie && nohup python3 code/extract_logprobs.py > /tmp/exp012_extract.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=38158\\n设置成功\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\n设置成功\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-14T11:08:04.586397+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.0361}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-14T11:08:04.586556+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_012_logprob_baseline",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_012_logprob_baseline",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-14T11:08:04.586702+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_012_logprob_baseline\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T10:53:16.166Z\", \"updated_at\": \"2026-05-14T11:00:18.687Z\", \"spec\": {\"hypothesis\": \"Log-probability baseline: mean sequence log-prob correlates with F1 as well as or better than SJ, exposing whether SJ has unique value\", \"model_name\": \"ft_002_v2 (qwen3-8b-scierc-merged-v2)\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004\", \"data_count\": 551, \"server\": \"autodl-5090\", \"seed\": 42, \"parent\": \"mvp_pilot_004\", \"method\": \"vLLM forward pass to extract sequence log-probs, then Spearman rho + AUROC + Kendall tau vs F1\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1569}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-14T11:08:04.586828+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -20 /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -20 /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-14T11:08:04.587002+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"(EngineCore pid=38431) INFO 05-14 19:00:07 [decorators.py:627] saved AOT compiled function to /root/.cache/vllm/torch_compile_cache/torch_aot_compile/b4ecbc0c0616edf1ed273c64771100ec287be30fca16117ba49ee83bc2faa9f3/rank_0_0/model\\n(EngineCore pid=38431) INFO 05-14 19:00:07 [monitor.py:48] torch.compile took 9.29 s in total\\n(EngineCore pid=38431) INFO 05-14 19:00:07 [monitor.py:76] Initial profiling/warmup run took 0.17 s\\n(EngineCore pid=38431) INFO 05-14 19:00:08 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=512\\n(EngineCore pid=38431) INFO 05-14 19:00:08 [gpu_model_runner.py:5607] Profiling CUDA graph memory: PIECEWISE=51 (largest=512), FULL=35 (largest=256)\\n(EngineCore pid=38431) INFO 05-14 19:00:09 [gpu_model_runner.py:5686] Estimated CUDA graph memory: 0.45 GiB total\\n(EngineCore pid=38431) INFO 05-14 19:00:09 [gpu_worker.py:456] Available KV cache memory: 11.97 GiB\\n(EngineCore pid=38431) INFO 05-14 19:00:09 [gpu_worker.py:490] In v0.19, CUDA graph memory profiling will be enabled by default (VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1), which more accurately accounts for CUDA graph memory during KV cache allocation. To try it now, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1 and increase --gpu-memory-utilization from 0.9000 to 0.9144 to maintain the same effective KV cache size.\\n(EngineCore pid=38431) INFO 05-14 19:00:09 [kv_cache_utils.py:1316] GPU KV cache size: 87,152 tokens\\n(EngineCore pid=38431) INFO 05-14 19:00:09 [kv_cache_utils.py:1321] Maximum concurrency for 2,048 tokens per request: 42.55x\\n(EngineCore pid=38431) \\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   4%|▍         | 2/51 [00:00<00:02, 17.40it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   8%|▊         | 4/51 [00:00<00:02, 17.47it/s]\\rCapturing CUDA graphs (m
+…[truncated 4520 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-14T11:08:04.587212+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_012_logprob_baseline",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "struct_self_consist_ie",
+  "spec": "{'command': 'python3 code/extract_logprobs.py', 'server': 'autodl-5090', 'data_path': '/root/autodl-tmp/struct_self_consist_ie/data/test.jsonl', 'data_count': 551, 'model_name': 'qwen3-8b-scierc-merged-v2', 'seed': 42}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_012_logprob_baseline",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "struct_self_consist_ie",
+    "spec": "{'command': 'python3 code/extract_logprobs.py', 'server': 'autodl-5090', 'data_path': '/root/autodl-tmp/struct_self_consist_ie/data/test.jsonl', 'data_count': 551, 'model_name': 'qwen3-8b-scierc-merged-v2', 'seed': 42}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-14T11:08:04.587384+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_012_logprob_baseline\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T10:53:16.166Z\", \"updated_at\": \"2026-05-14T11:00:28.712Z\", \"spec\": {\"hypothesis\": \"Log-probability baseline: mean sequence log-prob correlates with F1 as well as or better than SJ, exposing whether SJ has unique value\", \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/test.jsonl\", \"data_count\": 551, \"server\": \"autodl-5090\", \"seed\": 42, \"parent\": \"mvp_pilot_004\", \"method\": \"vLLM forward pass to extract sequence log-probs, then Spearman rho + AUROC + Kendall tau vs F1\", \"command\": \"python3 code/extract_logprobs.py\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1467}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-14T11:08:04.587516+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:Monitor",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:Monitor",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-14T11:08:04.587633+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-14T11:08:04.587762+00:00_
+
+called Monitor
+
+<details open><summary>🔧 Tool call — Monitor</summary>
+
+```json
+{
+  "description": "exp-012 logprob extraction progress",
+  "timeout_ms": "900000",
+  "persistent": "False",
+  "command": "while true; do\n  line=$(ssh autodl-5090 \"tail -3 /tmp/exp012_extract.log 2>/dev/null\" 2>/dev/null)\n  if echo \"$line\" | grep -qE \"Saved|Error|Traceback|FAILED|OOM|Killed\"; then\n    echo \"$line\"\n    break\n  fi\n  progress=$(echo \"$line\" | grep -oE \"[0-9]+%|Stochastic sampling done|Greedy|Parsing\" | tail -1)\n  if [ -n \"$progress\" ]; then\n    echo \"Progress: $progress\"\n  fi\n  sleep 30\ndone"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "Monitor",
+  "tool_args": {
+    "description": "exp-012 logprob extraction progress",
+    "timeout_ms": "900000",
+    "persistent": "False",
+    "command": "while true; do\n  line=$(ssh autodl-5090 \"tail -3 /tmp/exp012_extract.log 2>/dev/null\" 2>/dev/null)\n  if echo \"$line\" | grep -qE \"Saved|Error|Traceback|FAILED|OOM|Killed\"; then\n    echo \"$line\"\n    break\n  fi\n  progress=$(echo \"$line\" | grep -oE \"[0-9]+%|Stochastic sampling done|Greedy|Parsing\" | tail -1)\n  if [ -n \"$progress\" ]; then\n    echo \"Progress: $progress\"\n  fi\n  sleep 30\ndone"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-14T11:08:04.587901+00:00_
+
+Monitor started (task but6grniw, timeout 900000ms). You will be notified on each event. Keep working — do not poll or sleep. Events may arrive while you are waiting for the user — an event is not their reply.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "Monitor",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-14T11:08:04.588097+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -5 /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -5 /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-14T11:08:04.588327+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"INFO 05-14 19:00:14 [llm.py:391] Supported tasks: ['generate']\\nBuilt 551 chat prompts\\nStarting N=8 stochastic sampling at T=1.0 with logprobs ...\\n\\rRendering prompts:   0%|          | 0/551 [00:00<?, ?it/s]\\rRendering prompts:   7%|▋         | 37/551 [00:00<00:01, 365.11it/s]\\rRendering prompts:  17%|█▋        | 92/551 [00:00<00:00, 470.86it/s]\\rRendering prompts:  27%|██▋       | 147/551 [00:00<00:00, 506.08it/s]\\rRendering prompts:  36%|███▌      | 198/551 [00:00<00:01, 234.47it/s]\\rRendering prompts:  46%|████▌     | 253/551 [00:00<00:00, 298.87it/s]\\rRendering prompts:  56%|█████▌    | 308/551 [00:00<00:00, 355.66it/s]\\rRendering prompts:  66%|██████▌   | 363/551 [00:01<00:00, 402.27it/s]\\rRendering prompts:  76%|███████▌  | 418/551 [00:01<00:00, 440.21it/s]\\rRendering prompts:  86%|████████▌ | 474/551 [00:01<00:00, 470.67it/s]\\rRendering prompts:  96%|█████████▌| 530/551 [00:01<00:00, 493.29it/s]\\rRendering prompts: 100%|██████████| 551/551 [00:01<00:00, 410.06it/s]\\n\\rProcessed prompts:   0%|          | 0/4408 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/4408 [00:04<39:17,  1.87it/s, est. speed input: 356.45 toks/s, output: 55.29 toks/s]\\rProcessed prompts:   0%|          | 16/4408 [00:04<16:52,  4.34it/s, est. speed input: 691.31 toks/s, output: 90.71 toks/s]\\rProcessed prompts:   1%|          | 32/4408 [00:07<14:12,  5.14it/s, est. speed input: 846.04 toks/s, output: 133.55 toks/s]\\rProcessed prompts:   1%|          | 40/4408 [00:08<12:39,  5.75it/s, est. speed input: 936.65 toks/s, output: 211.28 toks/s]\\rProcessed prompts:   1%|          | 48/4408 [00:08<09:29,  7.66it/s, est. speed input: 1074.19 toks/s, output: 290.02 toks/s]\\rProcessed prompts:   1%|▏         | 56/4408 [00:08<07:35,  9.55it/s, est. speed input: 1195.25 toks/s, output: 392.91 toks/s]\\rProcessed prompts:   2%|▏         | 72/4408 [00:09<04:49, 14
+…[truncated 3669 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-14T11:08:04.588517+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -2 /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -2 /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-14T11:08:04.588696+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rRendering prompts:   0%|          | 0/551 [00:00<?, ?it/s]\\rRendering prompts:   7%|▋         | 37/551 [00:00<00:01, 365.11it/s]\\rRendering prompts:  17%|█▋        | 92/551 [00:00<00:00, 470.86it/s]\\rRendering prompts:  27%|██▋       | 147/551 [00:00<00:00, 506.08it/s]\\rRendering prompts:  36%|███▌      | 198/551 [00:00<00:01, 234.47it/s]\\rRendering prompts:  46%|████▌     | 253/551 [00:00<00:00, 298.87it/s]\\rRendering prompts:  56%|█████▌    | 308/551 [00:00<00:00, 355.66it/s]\\rRendering prompts:  66%|██████▌   | 363/551 [00:01<00:00, 402.27it/s]\\rRendering prompts:  76%|███████▌  | 418/551 [00:01<00:00, 440.21it/s]\\rRendering prompts:  86%|████████▌ | 474/551 [00:01<00:00, 470.67it/s]\\rRendering prompts:  96%|█████████▌| 530/551 [00:01<00:00, 493.29it/s]\\rRendering prompts: 100%|██████████| 551/551 [00:01<00:00, 410.06it/s]\\n\\rProcessed prompts:   0%|          | 0/4408 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/4408 [00:04<39:17,  1.87it/s, est. speed input: 356.45 toks/s, output: 55.29 toks/s]\\rProcessed prompts:   0%|          | 16/4408 [00:04<16:52,  4.34it/s, est. speed input: 691.31 toks/s, output: 90.71 toks/s]\\rProcessed prompts:   1%|          | 32/4408 [00:07<14:12,  5.14it/s, est. speed input: 846.04 toks/s, output: 133.55 toks/s]\\rProcessed prompts:   1%|          | 40/4408 [00:08<12:39,  5.75it/s, est. speed input: 936.65 toks/s, output: 211.28 toks/s]\\rProcessed prompts:   1%|          | 48/4408 [00:08<09:29,  7.66it/s, est. speed input: 1074.19 toks/s, output: 290.02 toks/s]\\rProcessed prompts:   1%|▏         | 56/4408 [00:08<07:35,  9.55it/s, est. speed input: 1195.25 toks/s, output: 392.91 toks/s]\\rProcessed prompts:   2%|▏         | 72/4408 [00:09<04:49, 14.98it/s, est. speed input: 1472.05 toks/s, output: 554.51 toks/s]\\rProcessed prompts:   2%|▏         | 80/4408 [00:09<04:44, 15.20it/s, est. speed inpu
+…[truncated 5597 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-14T11:08:04.588891+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -2 /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -2 /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-14T11:08:04.589097+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rRendering prompts:   0%|          | 0/551 [00:00<?, ?it/s]\\rRendering prompts:   7%|▋         | 37/551 [00:00<00:01, 365.11it/s]\\rRendering prompts:  17%|█▋        | 92/551 [00:00<00:00, 470.86it/s]\\rRendering prompts:  27%|██▋       | 147/551 [00:00<00:00, 506.08it/s]\\rRendering prompts:  36%|███▌      | 198/551 [00:00<00:01, 234.47it/s]\\rRendering prompts:  46%|████▌     | 253/551 [00:00<00:00, 298.87it/s]\\rRendering prompts:  56%|█████▌    | 308/551 [00:00<00:00, 355.66it/s]\\rRendering prompts:  66%|██████▌   | 363/551 [00:01<00:00, 402.27it/s]\\rRendering prompts:  76%|███████▌  | 418/551 [00:01<00:00, 440.21it/s]\\rRendering prompts:  86%|████████▌ | 474/551 [00:01<00:00, 470.67it/s]\\rRendering prompts:  96%|█████████▌| 530/551 [00:01<00:00, 493.29it/s]\\rRendering prompts: 100%|██████████| 551/551 [00:01<00:00, 410.06it/s]\\n\\rProcessed prompts:   0%|          | 0/4408 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/4408 [00:04<39:17,  1.87it/s, est. speed input: 356.45 toks/s, output: 55.29 toks/s]\\rProcessed prompts:   0%|          | 16/4408 [00:04<16:52,  4.34it/s, est. speed input: 691.31 toks/s, output: 90.71 toks/s]\\rProcessed prompts:   1%|          | 32/4408 [00:07<14:12,  5.14it/s, est. speed input: 846.04 toks/s, output: 133.55 toks/s]\\rProcessed prompts:   1%|          | 40/4408 [00:08<12:39,  5.75it/s, est. speed input: 936.65 toks/s, output: 211.28 toks/s]\\rProcessed prompts:   1%|          | 48/4408 [00:08<09:29,  7.66it/s, est. speed input: 1074.19 toks/s, output: 290.02 toks/s]\\rProcessed prompts:   1%|▏         | 56/4408 [00:08<07:35,  9.55it/s, est. speed input: 1195.25 toks/s, output: 392.91 toks/s]\\rProcessed prompts:   2%|▏         | 72/4408 [00:09<04:49, 14.98it/s, est. speed input: 1472.05 toks/s, output: 554.51 toks/s]\\rProcessed prompts:   2%|▏         | 80/4408 [00:09<04:44, 15.20it/s, est. speed inpu
+…[truncated 6341 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-14T11:08:04.589297+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -3 /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -3 /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-14T11:08:04.589488+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Starting N=8 stochastic sampling at T=1.0 with logprobs ...\\n\\rRendering prompts:   0%|          | 0/551 [00:00<?, ?it/s]\\rRendering prompts:   7%|▋         | 37/551 [00:00<00:01, 365.11it/s]\\rRendering prompts:  17%|█▋        | 92/551 [00:00<00:00, 470.86it/s]\\rRendering prompts:  27%|██▋       | 147/551 [00:00<00:00, 506.08it/s]\\rRendering prompts:  36%|███▌      | 198/551 [00:00<00:01, 234.47it/s]\\rRendering prompts:  46%|████▌     | 253/551 [00:00<00:00, 298.87it/s]\\rRendering prompts:  56%|█████▌    | 308/551 [00:00<00:00, 355.66it/s]\\rRendering prompts:  66%|██████▌   | 363/551 [00:01<00:00, 402.27it/s]\\rRendering prompts:  76%|███████▌  | 418/551 [00:01<00:00, 440.21it/s]\\rRendering prompts:  86%|████████▌ | 474/551 [00:01<00:00, 470.67it/s]\\rRendering prompts:  96%|█████████▌| 530/551 [00:01<00:00, 493.29it/s]\\rRendering prompts: 100%|██████████| 551/551 [00:01<00:00, 410.06it/s]\\n\\rProcessed prompts:   0%|          | 0/4408 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/4408 [00:04<39:17,  1.87it/s, est. speed input: 356.45 toks/s, output: 55.29 toks/s]\\rProcessed prompts:   0%|          | 16/4408 [00:04<16:52,  4.34it/s, est. speed input: 691.31 toks/s, output: 90.71 toks/s]\\rProcessed prompts:   1%|          | 32/4408 [00:07<14:12,  5.14it/s, est. speed input: 846.04 toks/s, output: 133.55 toks/s]\\rProcessed prompts:   1%|          | 40/4408 [00:08<12:39,  5.75it/s, est. speed input: 936.65 toks/s, output: 211.28 toks/s]\\rProcessed prompts:   1%|          | 48/4408 [00:08<09:29,  7.66it/s, est. speed input: 1074.19 toks/s, output: 290.02 toks/s]\\rProcessed prompts:   1%|▏         | 56/4408 [00:08<07:35,  9.55it/s, est. speed input: 1195.25 toks/s, output: 392.91 toks/s]\\rProcessed prompts:   2%|▏         | 72/4408 [00:09<04:49, 14.98it/s, est. speed input: 1472.05 toks/s, output: 554.51 toks/s]\\rProcessed prompts:   2
+…[truncated 6341 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-14T11:08:04.589671+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-14T11:08:04.589861+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/4408 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/4408 [00:04<39:17,  1.87it/s, est. speed input: 356.45 toks/s, output: 55.29 toks/s]\\rProcessed prompts:   0%|          | 16/4408 [00:04<16:52,  4.34it/s, est. speed input: 691.31 toks/s, output: 90.71 toks/s]\\rProcessed prompts:   1%|          | 32/4408 [00:07<14:12,  5.14it/s, est. speed input: 846.04 toks/s, output: 133.55 toks/s]\\rProcessed prompts:   1%|          | 40/4408 [00:08<12:39,  5.75it/s, est. speed input: 936.65 toks/s, output: 211.28 toks/s]\\rProcessed prompts:   1%|          | 48/4408 [00:08<09:29,  7.66it/s, est. speed input: 1074.19 toks/s, output: 290.02 toks/s]\\rProcessed prompts:   1%|▏         | 56/4408 [00:08<07:35,  9.55it/s, est. speed input: 1195.25 toks/s, output: 392.91 toks/s]\\rProcessed prompts:   2%|▏         | 72/4408 [00:09<04:49, 14.98it/s, est. speed input: 1472.05 toks/s, output: 554.51 toks/s]\\rProcessed prompts:   2%|▏         | 80/4408 [00:09<04:44, 15.20it/s, est. speed input: 1550.64 toks/s, output: 624.82 toks/s]\\rProcessed prompts:   2%|▏         | 88/4408 [00:10<05:31, 13.04it/s, est. speed input: 1567.06 toks/s, output: 640.33 toks/s]\\rProcessed prompts:   2%|▏         | 96/4408 [00:12<08:34,  8.38it/s, est. speed input: 1446.93 toks/s, output: 620.28 toks/s]\\rProcessed prompts:   3%|▎         | 112/4408 [00:13<06:47, 10.54it/s, est. speed input: 1554.98 toks/s, output: 775.11 toks/s]\\rProcessed prompts:   3%|▎         | 120/4408 [00:13<05:38, 12.65it/s, est. speed input: 1638.00 toks/s, output: 872.29 toks/s]\\rProcessed prompts:   3%|▎         | 128/4408 [00:14<05:00, 14.26it/s, est. speed input: 1699.51 toks/s, output: 968.41 toks/s]\\rProcessed prompts:   3%|▎         | 136/4408 [00:14<05:10, 13.74it/s, est. speed input: 1730.09 toks/s, output: 989.97 toks/s]\\rProcessed prompts:   3%|▎         | 15
+…[truncated 6326 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-14T11:08:04.590050+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-14T11:08:04.590271+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/4408 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/4408 [00:04<39:17,  1.87it/s, est. speed input: 356.45 toks/s, output: 55.29 toks/s]\\rProcessed prompts:   0%|          | 16/4408 [00:04<16:52,  4.34it/s, est. speed input: 691.31 toks/s, output: 90.71 toks/s]\\rProcessed prompts:   1%|          | 32/4408 [00:07<14:12,  5.14it/s, est. speed input: 846.04 toks/s, output: 133.55 toks/s]\\rProcessed prompts:   1%|          | 40/4408 [00:08<12:39,  5.75it/s, est. speed input: 936.65 toks/s, output: 211.28 toks/s]\\rProcessed prompts:   1%|          | 48/4408 [00:08<09:29,  7.66it/s, est. speed input: 1074.19 toks/s, output: 290.02 toks/s]\\rProcessed prompts:   1%|▏         | 56/4408 [00:08<07:35,  9.55it/s, est. speed input: 1195.25 toks/s, output: 392.91 toks/s]\\rProcessed prompts:   2%|▏         | 72/4408 [00:09<04:49, 14.98it/s, est. speed input: 1472.05 toks/s, output: 554.51 toks/s]\\rProcessed prompts:   2%|▏         | 80/4408 [00:09<04:44, 15.20it/s, est. speed input: 1550.64 toks/s, output: 624.82 toks/s]\\rProcessed prompts:   2%|▏         | 88/4408 [00:10<05:31, 13.04it/s, est. speed input: 1567.06 toks/s, output: 640.33 toks/s]\\rProcessed prompts:   2%|▏         | 96/4408 [00:12<08:34,  8.38it/s, est. speed input: 1446.93 toks/s, output: 620.28 toks/s]\\rProcessed prompts:   3%|▎         | 112/4408 [00:13<06:47, 10.54it/s, est. speed input: 1554.98 toks/s, output: 775.11 toks/s]\\rProcessed prompts:   3%|▎         | 120/4408 [00:13<05:38, 12.65it/s, est. speed input: 1638.00 toks/s, output: 872.29 toks/s]\\rProcessed prompts:   3%|▎         | 128/4408 [00:14<05:00, 14.26it/s, est. speed input: 1699.51 toks/s, output: 968.41 toks/s]\\rProcessed prompts:   3%|▎         | 136/4408 [00:14<05:10, 13.74it/s, est. speed input: 1730.09 toks/s, output: 989.97 toks/s]\\rProcessed prompts:   3%|▎         | 15
+…[truncated 6327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-14T11:08:04.590470+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-14T11:08:04.590662+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/4408 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/4408 [00:04<39:17,  1.87it/s, est. speed input: 356.45 toks/s, output: 55.29 toks/s]\\rProcessed prompts:   0%|          | 16/4408 [00:04<16:52,  4.34it/s, est. speed input: 691.31 toks/s, output: 90.71 toks/s]\\rProcessed prompts:   1%|          | 32/4408 [00:07<14:12,  5.14it/s, est. speed input: 846.04 toks/s, output: 133.55 toks/s]\\rProcessed prompts:   1%|          | 40/4408 [00:08<12:39,  5.75it/s, est. speed input: 936.65 toks/s, output: 211.28 toks/s]\\rProcessed prompts:   1%|          | 48/4408 [00:08<09:29,  7.66it/s, est. speed input: 1074.19 toks/s, output: 290.02 toks/s]\\rProcessed prompts:   1%|▏         | 56/4408 [00:08<07:35,  9.55it/s, est. speed input: 1195.25 toks/s, output: 392.91 toks/s]\\rProcessed prompts:   2%|▏         | 72/4408 [00:09<04:49, 14.98it/s, est. speed input: 1472.05 toks/s, output: 554.51 toks/s]\\rProcessed prompts:   2%|▏         | 80/4408 [00:09<04:44, 15.20it/s, est. speed input: 1550.64 toks/s, output: 624.82 toks/s]\\rProcessed prompts:   2%|▏         | 88/4408 [00:10<05:31, 13.04it/s, est. speed input: 1567.06 toks/s, output: 640.33 toks/s]\\rProcessed prompts:   2%|▏         | 96/4408 [00:12<08:34,  8.38it/s, est. speed input: 1446.93 toks/s, output: 620.28 toks/s]\\rProcessed prompts:   3%|▎         | 112/4408 [00:13<06:47, 10.54it/s, est. speed input: 1554.98 toks/s, output: 775.11 toks/s]\\rProcessed prompts:   3%|▎         | 120/4408 [00:13<05:38, 12.65it/s, est. speed input: 1638.00 toks/s, output: 872.29 toks/s]\\rProcessed prompts:   3%|▎         | 128/4408 [00:14<05:00, 14.26it/s, est. speed input: 1699.51 toks/s, output: 968.41 toks/s]\\rProcessed prompts:   3%|▎         | 136/4408 [00:14<05:10, 13.74it/s, est. speed input: 1730.09 toks/s, output: 989.97 toks/s]\\rProcessed prompts:   3%|▎         | 15
+…[truncated 6325 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-14T11:08:04.590844+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-14T11:08:04.591032+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/4408 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/4408 [00:04<39:17,  1.87it/s, est. speed input: 356.45 toks/s, output: 55.29 toks/s]\\rProcessed prompts:   0%|          | 16/4408 [00:04<16:52,  4.34it/s, est. speed input: 691.31 toks/s, output: 90.71 toks/s]\\rProcessed prompts:   1%|          | 32/4408 [00:07<14:12,  5.14it/s, est. speed input: 846.04 toks/s, output: 133.55 toks/s]\\rProcessed prompts:   1%|          | 40/4408 [00:08<12:39,  5.75it/s, est. speed input: 936.65 toks/s, output: 211.28 toks/s]\\rProcessed prompts:   1%|          | 48/4408 [00:08<09:29,  7.66it/s, est. speed input: 1074.19 toks/s, output: 290.02 toks/s]\\rProcessed prompts:   1%|▏         | 56/4408 [00:08<07:35,  9.55it/s, est. speed input: 1195.25 toks/s, output: 392.91 toks/s]\\rProcessed prompts:   2%|▏         | 72/4408 [00:09<04:49, 14.98it/s, est. speed input: 1472.05 toks/s, output: 554.51 toks/s]\\rProcessed prompts:   2%|▏         | 80/4408 [00:09<04:44, 15.20it/s, est. speed input: 1550.64 toks/s, output: 624.82 toks/s]\\rProcessed prompts:   2%|▏         | 88/4408 [00:10<05:31, 13.04it/s, est. speed input: 1567.06 toks/s, output: 640.33 toks/s]\\rProcessed prompts:   2%|▏         | 96/4408 [00:12<08:34,  8.38it/s, est. speed input: 1446.93 toks/s, output: 620.28 toks/s]\\rProcessed prompts:   3%|▎         | 112/4408 [00:13<06:47, 10.54it/s, est. speed input: 1554.98 toks/s, output: 775.11 toks/s]\\rProcessed prompts:   3%|▎         | 120/4408 [00:13<05:38, 12.65it/s, est. speed input: 1638.00 toks/s, output: 872.29 toks/s]\\rProcessed prompts:   3%|▎         | 128/4408 [00:14<05:00, 14.26it/s, est. speed input: 1699.51 toks/s, output: 968.41 toks/s]\\rProcessed prompts:   3%|▎         | 136/4408 [00:14<05:10, 13.74it/s, est. speed input: 1730.09 toks/s, output: 989.97 toks/s]\\rProcessed prompts:   3%|▎         | 15
+…[truncated 6326 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-14T11:08:04.591227+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-14T11:08:04.591424+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/4408 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/4408 [00:04<39:17,  1.87it/s, est. speed input: 356.45 toks/s, output: 55.29 toks/s]\\rProcessed prompts:   0%|          | 16/4408 [00:04<16:52,  4.34it/s, est. speed input: 691.31 toks/s, output: 90.71 toks/s]\\rProcessed prompts:   1%|          | 32/4408 [00:07<14:12,  5.14it/s, est. speed input: 846.04 toks/s, output: 133.55 toks/s]\\rProcessed prompts:   1%|          | 40/4408 [00:08<12:39,  5.75it/s, est. speed input: 936.65 toks/s, output: 211.28 toks/s]\\rProcessed prompts:   1%|          | 48/4408 [00:08<09:29,  7.66it/s, est. speed input: 1074.19 toks/s, output: 290.02 toks/s]\\rProcessed prompts:   1%|▏         | 56/4408 [00:08<07:35,  9.55it/s, est. speed input: 1195.25 toks/s, output: 392.91 toks/s]\\rProcessed prompts:   2%|▏         | 72/4408 [00:09<04:49, 14.98it/s, est. speed input: 1472.05 toks/s, output: 554.51 toks/s]\\rProcessed prompts:   2%|▏         | 80/4408 [00:09<04:44, 15.20it/s, est. speed input: 1550.64 toks/s, output: 624.82 toks/s]\\rProcessed prompts:   2%|▏         | 88/4408 [00:10<05:31, 13.04it/s, est. speed input: 1567.06 toks/s, output: 640.33 toks/s]\\rProcessed prompts:   2%|▏         | 96/4408 [00:12<08:34,  8.38it/s, est. speed input: 1446.93 toks/s, output: 620.28 toks/s]\\rProcessed prompts:   3%|▎         | 112/4408 [00:13<06:47, 10.54it/s, est. speed input: 1554.98 toks/s, output: 775.11 toks/s]\\rProcessed prompts:   3%|▎         | 120/4408 [00:13<05:38, 12.65it/s, est. speed input: 1638.00 toks/s, output: 872.29 toks/s]\\rProcessed prompts:   3%|▎         | 128/4408 [00:14<05:00, 14.26it/s, est. speed input: 1699.51 toks/s, output: 968.41 toks/s]\\rProcessed prompts:   3%|▎         | 136/4408 [00:14<05:10, 13.74it/s, est. speed input: 1730.09 toks/s, output: 989.97 toks/s]\\rProcessed prompts:   3%|▎         | 15
+…[truncated 6326 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-14T11:08:04.591600+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -3 /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -3 /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-14T11:08:04.591788+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Starting N=8 stochastic sampling at T=1.0 with logprobs ...\\n\\rRendering prompts:   0%|          | 0/551 [00:00<?, ?it/s]\\rRendering prompts:   7%|▋         | 37/551 [00:00<00:01, 365.11it/s]\\rRendering prompts:  17%|█▋        | 92/551 [00:00<00:00, 470.86it/s]\\rRendering prompts:  27%|██▋       | 147/551 [00:00<00:00, 506.08it/s]\\rRendering prompts:  36%|███▌      | 198/551 [00:00<00:01, 234.47it/s]\\rRendering prompts:  46%|████▌     | 253/551 [00:00<00:00, 298.87it/s]\\rRendering prompts:  56%|█████▌    | 308/551 [00:00<00:00, 355.66it/s]\\rRendering prompts:  66%|██████▌   | 363/551 [00:01<00:00, 402.27it/s]\\rRendering prompts:  76%|███████▌  | 418/551 [00:01<00:00, 440.21it/s]\\rRendering prompts:  86%|████████▌ | 474/551 [00:01<00:00, 470.67it/s]\\rRendering prompts:  96%|█████████▌| 530/551 [00:01<00:00, 493.29it/s]\\rRendering prompts: 100%|██████████| 551/551 [00:01<00:00, 410.06it/s]\\n\\rProcessed prompts:   0%|          | 0/4408 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/4408 [00:04<39:17,  1.87it/s, est. speed input: 356.45 toks/s, output: 55.29 toks/s]\\rProcessed prompts:   0%|          | 16/4408 [00:04<16:52,  4.34it/s, est. speed input: 691.31 toks/s, output: 90.71 toks/s]\\rProcessed prompts:   1%|          | 32/4408 [00:07<14:12,  5.14it/s, est. speed input: 846.04 toks/s, output: 133.55 toks/s]\\rProcessed prompts:   1%|          | 40/4408 [00:08<12:39,  5.75it/s, est. speed input: 936.65 toks/s, output: 211.28 toks/s]\\rProcessed prompts:   1%|          | 48/4408 [00:08<09:29,  7.66it/s, est. speed input: 1074.19 toks/s, output: 290.02 toks/s]\\rProcessed prompts:   1%|▏         | 56/4408 [00:08<07:35,  9.55it/s, est. speed input: 1195.25 toks/s, output: 392.91 toks/s]\\rProcessed prompts:   2%|▏         | 72/4408 [00:09<04:49, 14.98it/s, est. speed input: 1472.05 toks/s, output: 554.51 toks/s]\\rProcessed prompts:   2
+…[truncated 6342 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-14T11:08:04.591969+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -3 /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -3 /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-14T11:08:04.592176+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Starting N=8 stochastic sampling at T=1.0 with logprobs ...\\n\\rRendering prompts:   0%|          | 0/551 [00:00<?, ?it/s]\\rRendering prompts:   7%|▋         | 37/551 [00:00<00:01, 365.11it/s]\\rRendering prompts:  17%|█▋        | 92/551 [00:00<00:00, 470.86it/s]\\rRendering prompts:  27%|██▋       | 147/551 [00:00<00:00, 506.08it/s]\\rRendering prompts:  36%|███▌      | 198/551 [00:00<00:01, 234.47it/s]\\rRendering prompts:  46%|████▌     | 253/551 [00:00<00:00, 298.87it/s]\\rRendering prompts:  56%|█████▌    | 308/551 [00:00<00:00, 355.66it/s]\\rRendering prompts:  66%|██████▌   | 363/551 [00:01<00:00, 402.27it/s]\\rRendering prompts:  76%|███████▌  | 418/551 [00:01<00:00, 440.21it/s]\\rRendering prompts:  86%|████████▌ | 474/551 [00:01<00:00, 470.67it/s]\\rRendering prompts:  96%|█████████▌| 530/551 [00:01<00:00, 493.29it/s]\\rRendering prompts: 100%|██████████| 551/551 [00:01<00:00, 410.06it/s]\\n\\rProcessed prompts:   0%|          | 0/4408 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/4408 [00:04<39:17,  1.87it/s, est. speed input: 356.45 toks/s, output: 55.29 toks/s]\\rProcessed prompts:   0%|          | 16/4408 [00:04<16:52,  4.34it/s, est. speed input: 691.31 toks/s, output: 90.71 toks/s]\\rProcessed prompts:   1%|          | 32/4408 [00:07<14:12,  5.14it/s, est. speed input: 846.04 toks/s, output: 133.55 toks/s]\\rProcessed prompts:   1%|          | 40/4408 [00:08<12:39,  5.75it/s, est. speed input: 936.65 toks/s, output: 211.28 toks/s]\\rProcessed prompts:   1%|          | 48/4408 [00:08<09:29,  7.66it/s, est. speed input: 1074.19 toks/s, output: 290.02 toks/s]\\rProcessed prompts:   1%|▏         | 56/4408 [00:08<07:35,  9.55it/s, est. speed input: 1195.25 toks/s, output: 392.91 toks/s]\\rProcessed prompts:   2%|▏         | 72/4408 [00:09<04:49, 14.98it/s, est. speed input: 1472.05 toks/s, output: 554.51 toks/s]\\rProcessed prompts:   2
+…[truncated 6342 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-14T11:08:04.592359+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -3 /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -3 /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-14T11:08:04.592553+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Starting N=8 stochastic sampling at T=1.0 with logprobs ...\\n\\rRendering prompts:   0%|          | 0/551 [00:00<?, ?it/s]\\rRendering prompts:   7%|▋         | 37/551 [00:00<00:01, 365.11it/s]\\rRendering prompts:  17%|█▋        | 92/551 [00:00<00:00, 470.86it/s]\\rRendering prompts:  27%|██▋       | 147/551 [00:00<00:00, 506.08it/s]\\rRendering prompts:  36%|███▌      | 198/551 [00:00<00:01, 234.47it/s]\\rRendering prompts:  46%|████▌     | 253/551 [00:00<00:00, 298.87it/s]\\rRendering prompts:  56%|█████▌    | 308/551 [00:00<00:00, 355.66it/s]\\rRendering prompts:  66%|██████▌   | 363/551 [00:01<00:00, 402.27it/s]\\rRendering prompts:  76%|███████▌  | 418/551 [00:01<00:00, 440.21it/s]\\rRendering prompts:  86%|████████▌ | 474/551 [00:01<00:00, 470.67it/s]\\rRendering prompts:  96%|█████████▌| 530/551 [00:01<00:00, 493.29it/s]\\rRendering prompts: 100%|██████████| 551/551 [00:01<00:00, 410.06it/s]\\n\\rProcessed prompts:   0%|          | 0/4408 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/4408 [00:04<39:17,  1.87it/s, est. speed input: 356.45 toks/s, output: 55.29 toks/s]\\rProcessed prompts:   0%|          | 16/4408 [00:04<16:52,  4.34it/s, est. speed input: 691.31 toks/s, output: 90.71 toks/s]\\rProcessed prompts:   1%|          | 32/4408 [00:07<14:12,  5.14it/s, est. speed input: 846.04 toks/s, output: 133.55 toks/s]\\rProcessed prompts:   1%|          | 40/4408 [00:08<12:39,  5.75it/s, est. speed input: 936.65 toks/s, output: 211.28 toks/s]\\rProcessed prompts:   1%|          | 48/4408 [00:08<09:29,  7.66it/s, est. speed input: 1074.19 toks/s, output: 290.02 toks/s]\\rProcessed prompts:   1%|▏         | 56/4408 [00:08<07:35,  9.55it/s, est. speed input: 1195.25 toks/s, output: 392.91 toks/s]\\rProcessed prompts:   2%|▏         | 72/4408 [00:09<04:49, 14.98it/s, est. speed input: 1472.05 toks/s, output: 554.51 toks/s]\\rProcessed prompts:   2
+…[truncated 6342 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-14T11:08:04.592729+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-14T11:08:04.592927+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/4408 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/4408 [00:04<39:17,  1.87it/s, est. speed input: 356.45 toks/s, output: 55.29 toks/s]\\rProcessed prompts:   0%|          | 16/4408 [00:04<16:52,  4.34it/s, est. speed input: 691.31 toks/s, output: 90.71 toks/s]\\rProcessed prompts:   1%|          | 32/4408 [00:07<14:12,  5.14it/s, est. speed input: 846.04 toks/s, output: 133.55 toks/s]\\rProcessed prompts:   1%|          | 40/4408 [00:08<12:39,  5.75it/s, est. speed input: 936.65 toks/s, output: 211.28 toks/s]\\rProcessed prompts:   1%|          | 48/4408 [00:08<09:29,  7.66it/s, est. speed input: 1074.19 toks/s, output: 290.02 toks/s]\\rProcessed prompts:   1%|▏         | 56/4408 [00:08<07:35,  9.55it/s, est. speed input: 1195.25 toks/s, output: 392.91 toks/s]\\rProcessed prompts:   2%|▏         | 72/4408 [00:09<04:49, 14.98it/s, est. speed input: 1472.05 toks/s, output: 554.51 toks/s]\\rProcessed prompts:   2%|▏         | 80/4408 [00:09<04:44, 15.20it/s, est. speed input: 1550.64 toks/s, output: 624.82 toks/s]\\rProcessed prompts:   2%|▏         | 88/4408 [00:10<05:31, 13.04it/s, est. speed input: 1567.06 toks/s, output: 640.33 toks/s]\\rProcessed prompts:   2%|▏         | 96/4408 [00:12<08:34,  8.38it/s, est. speed input: 1446.93 toks/s, output: 620.28 toks/s]\\rProcessed prompts:   3%|▎         | 112/4408 [00:13<06:47, 10.54it/s, est. speed input: 1554.98 toks/s, output: 775.11 toks/s]\\rProcessed prompts:   3%|▎         | 120/4408 [00:13<05:38, 12.65it/s, est. speed input: 1638.00 toks/s, output: 872.29 toks/s]\\rProcessed prompts:   3%|▎         | 128/4408 [00:14<05:00, 14.26it/s, est. speed input: 1699.51 toks/s, output: 968.41 toks/s]\\rProcessed prompts:   3%|▎         | 136/4408 [00:14<05:10, 13.74it/s, est. speed input: 1730.09 toks/s, output: 989.97 toks/s]\\rProcessed prompts:   3%|▎         | 15
+…[truncated 6328 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-14T11:08:04.593111+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-14T11:08:04.593322+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/4408 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/4408 [00:04<39:17,  1.87it/s, est. speed input: 356.45 toks/s, output: 55.29 toks/s]\\rProcessed prompts:   0%|          | 16/4408 [00:04<16:52,  4.34it/s, est. speed input: 691.31 toks/s, output: 90.71 toks/s]\\rProcessed prompts:   1%|          | 32/4408 [00:07<14:12,  5.14it/s, est. speed input: 846.04 toks/s, output: 133.55 toks/s]\\rProcessed prompts:   1%|          | 40/4408 [00:08<12:39,  5.75it/s, est. speed input: 936.65 toks/s, output: 211.28 toks/s]\\rProcessed prompts:   1%|          | 48/4408 [00:08<09:29,  7.66it/s, est. speed input: 1074.19 toks/s, output: 290.02 toks/s]\\rProcessed prompts:   1%|▏         | 56/4408 [00:08<07:35,  9.55it/s, est. speed input: 1195.25 toks/s, output: 392.91 toks/s]\\rProcessed prompts:   2%|▏         | 72/4408 [00:09<04:49, 14.98it/s, est. speed input: 1472.05 toks/s, output: 554.51 toks/s]\\rProcessed prompts:   2%|▏         | 80/4408 [00:09<04:44, 15.20it/s, est. speed input: 1550.64 toks/s, output: 624.82 toks/s]\\rProcessed prompts:   2%|▏         | 88/4408 [00:10<05:31, 13.04it/s, est. speed input: 1567.06 toks/s, output: 640.33 toks/s]\\rProcessed prompts:   2%|▏         | 96/4408 [00:12<08:34,  8.38it/s, est. speed input: 1446.93 toks/s, output: 620.28 toks/s]\\rProcessed prompts:   3%|▎         | 112/4408 [00:13<06:47, 10.54it/s, est. speed input: 1554.98 toks/s, output: 775.11 toks/s]\\rProcessed prompts:   3%|▎         | 120/4408 [00:13<05:38, 12.65it/s, est. speed input: 1638.00 toks/s, output: 872.29 toks/s]\\rProcessed prompts:   3%|▎         | 128/4408 [00:14<05:00, 14.26it/s, est. speed input: 1699.51 toks/s, output: 968.41 toks/s]\\rProcessed prompts:   3%|▎         | 136/4408 [00:14<05:10, 13.74it/s, est. speed input: 1730.09 toks/s, output: 989.97 toks/s]\\rProcessed prompts:   3%|▎         | 15
+…[truncated 6328 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-14T11:08:04.593501+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-14T11:08:04.593694+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/4408 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/4408 [00:04<39:17,  1.87it/s, est. speed input: 356.45 toks/s, output: 55.29 toks/s]\\rProcessed prompts:   0%|          | 16/4408 [00:04<16:52,  4.34it/s, est. speed input: 691.31 toks/s, output: 90.71 toks/s]\\rProcessed prompts:   1%|          | 32/4408 [00:07<14:12,  5.14it/s, est. speed input: 846.04 toks/s, output: 133.55 toks/s]\\rProcessed prompts:   1%|          | 40/4408 [00:08<12:39,  5.75it/s, est. speed input: 936.65 toks/s, output: 211.28 toks/s]\\rProcessed prompts:   1%|          | 48/4408 [00:08<09:29,  7.66it/s, est. speed input: 1074.19 toks/s, output: 290.02 toks/s]\\rProcessed prompts:   1%|▏         | 56/4408 [00:08<07:35,  9.55it/s, est. speed input: 1195.25 toks/s, output: 392.91 toks/s]\\rProcessed prompts:   2%|▏         | 72/4408 [00:09<04:49, 14.98it/s, est. speed input: 1472.05 toks/s, output: 554.51 toks/s]\\rProcessed prompts:   2%|▏         | 80/4408 [00:09<04:44, 15.20it/s, est. speed input: 1550.64 toks/s, output: 624.82 toks/s]\\rProcessed prompts:   2%|▏         | 88/4408 [00:10<05:31, 13.04it/s, est. speed input: 1567.06 toks/s, output: 640.33 toks/s]\\rProcessed prompts:   2%|▏         | 96/4408 [00:12<08:34,  8.38it/s, est. speed input: 1446.93 toks/s, output: 620.28 toks/s]\\rProcessed prompts:   3%|▎         | 112/4408 [00:13<06:47, 10.54it/s, est. speed input: 1554.98 toks/s, output: 775.11 toks/s]\\rProcessed prompts:   3%|▎         | 120/4408 [00:13<05:38, 12.65it/s, est. speed input: 1638.00 toks/s, output: 872.29 toks/s]\\rProcessed prompts:   3%|▎         | 128/4408 [00:14<05:00, 14.26it/s, est. speed input: 1699.51 toks/s, output: 968.41 toks/s]\\rProcessed prompts:   3%|▎         | 136/4408 [00:14<05:10, 13.74it/s, est. speed input: 1730.09 toks/s, output: 989.97 toks/s]\\rProcessed prompts:   3%|▎         | 15
+…[truncated 6327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-14T11:08:04.593870+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-14T11:08:04.594057+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/4408 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/4408 [00:04<39:17,  1.87it/s, est. speed input: 356.45 toks/s, output: 55.29 toks/s]\\rProcessed prompts:   0%|          | 16/4408 [00:04<16:52,  4.34it/s, est. speed input: 691.31 toks/s, output: 90.71 toks/s]\\rProcessed prompts:   1%|          | 32/4408 [00:07<14:12,  5.14it/s, est. speed input: 846.04 toks/s, output: 133.55 toks/s]\\rProcessed prompts:   1%|          | 40/4408 [00:08<12:39,  5.75it/s, est. speed input: 936.65 toks/s, output: 211.28 toks/s]\\rProcessed prompts:   1%|          | 48/4408 [00:08<09:29,  7.66it/s, est. speed input: 1074.19 toks/s, output: 290.02 toks/s]\\rProcessed prompts:   1%|▏         | 56/4408 [00:08<07:35,  9.55it/s, est. speed input: 1195.25 toks/s, output: 392.91 toks/s]\\rProcessed prompts:   2%|▏         | 72/4408 [00:09<04:49, 14.98it/s, est. speed input: 1472.05 toks/s, output: 554.51 toks/s]\\rProcessed prompts:   2%|▏         | 80/4408 [00:09<04:44, 15.20it/s, est. speed input: 1550.64 toks/s, output: 624.82 toks/s]\\rProcessed prompts:   2%|▏         | 88/4408 [00:10<05:31, 13.04it/s, est. speed input: 1567.06 toks/s, output: 640.33 toks/s]\\rProcessed prompts:   2%|▏         | 96/4408 [00:12<08:34,  8.38it/s, est. speed input: 1446.93 toks/s, output: 620.28 toks/s]\\rProcessed prompts:   3%|▎         | 112/4408 [00:13<06:47, 10.54it/s, est. speed input: 1554.98 toks/s, output: 775.11 toks/s]\\rProcessed prompts:   3%|▎         | 120/4408 [00:13<05:38, 12.65it/s, est. speed input: 1638.00 toks/s, output: 872.29 toks/s]\\rProcessed prompts:   3%|▎         | 128/4408 [00:14<05:00, 14.26it/s, est. speed input: 1699.51 toks/s, output: 968.41 toks/s]\\rProcessed prompts:   3%|▎         | 136/4408 [00:14<05:10, 13.74it/s, est. speed input: 1730.09 toks/s, output: 989.97 toks/s]\\rProcessed prompts:   3%|▎         | 15
+…[truncated 6327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-14T11:08:04.594260+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -3 /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -3 /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-14T11:08:04.594451+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Starting N=8 stochastic sampling at T=1.0 with logprobs ...\\n\\rRendering prompts:   0%|          | 0/551 [00:00<?, ?it/s]\\rRendering prompts:   7%|▋         | 37/551 [00:00<00:01, 365.11it/s]\\rRendering prompts:  17%|█▋        | 92/551 [00:00<00:00, 470.86it/s]\\rRendering prompts:  27%|██▋       | 147/551 [00:00<00:00, 506.08it/s]\\rRendering prompts:  36%|███▌      | 198/551 [00:00<00:01, 234.47it/s]\\rRendering prompts:  46%|████▌     | 253/551 [00:00<00:00, 298.87it/s]\\rRendering prompts:  56%|█████▌    | 308/551 [00:00<00:00, 355.66it/s]\\rRendering prompts:  66%|██████▌   | 363/551 [00:01<00:00, 402.27it/s]\\rRendering prompts:  76%|███████▌  | 418/551 [00:01<00:00, 440.21it/s]\\rRendering prompts:  86%|████████▌ | 474/551 [00:01<00:00, 470.67it/s]\\rRendering prompts:  96%|█████████▌| 530/551 [00:01<00:00, 493.29it/s]\\rRendering prompts: 100%|██████████| 551/551 [00:01<00:00, 410.06it/s]\\n\\rProcessed prompts:   0%|          | 0/4408 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   0%|          | 8/4408 [00:04<39:17,  1.87it/s, est. speed input: 356.45 toks/s, output: 55.29 toks/s]\\rProcessed prompts:   0%|          | 16/4408 [00:04<16:52,  4.34it/s, est. speed input: 691.31 toks/s, output: 90.71 toks/s]\\rProcessed prompts:   1%|          | 32/4408 [00:07<14:12,  5.14it/s, est. speed input: 846.04 toks/s, output: 133.55 toks/s]\\rProcessed prompts:   1%|          | 40/4408 [00:08<12:39,  5.75it/s, est. speed input: 936.65 toks/s, output: 211.28 toks/s]\\rProcessed prompts:   1%|          | 48/4408 [00:08<09:29,  7.66it/s, est. speed input: 1074.19 toks/s, output: 290.02 toks/s]\\rProcessed prompts:   1%|▏         | 56/4408 [00:08<07:35,  9.55it/s, est. speed input: 1195.25 toks/s, output: 392.91 toks/s]\\rProcessed prompts:   2%|▏         | 72/4408 [00:09<04:49, 14.98it/s, est. speed input: 1472.05 toks/s, output: 554.51 toks/s]\\rProcessed prompts:   2
+…[truncated 6340 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-14T11:08:04.594628+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -c \"Stochastic sampling done\\|Greedy decoding done\\|Saved\\|Error\\|Traceback\" /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -c \"Stochastic sampling done\\|Greedy decoding done\\|Saved\\|Error\\|Traceback\" /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-14T11:08:04.594758+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-14T11:08:04.594882+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep \"Saved\" /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep \"Saved\" /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-14T11:08:04.595003+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-14T11:08:04.595148+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep \"Stochastic sampling done\" /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep \"Stochastic sampling done\" /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-14T11:08:04.595277+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-14T11:08:04.595404+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep \"Stochastic\" /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep \"Stochastic\" /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-14T11:08:04.595521+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-14T11:08:04.595632+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep \"done\" /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep \"done\" /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-14T11:08:04.595746+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-14T11:08:04.595882+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep \"Saved\" /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep \"Saved\" /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-14T11:08:04.595996+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-14T11:08:04.596114+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep \"Saved\" /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep \"Saved\" /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-14T11:08:04.596252+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-14T11:08:04.596365+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep \"Saved\" /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep \"Saved\" /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-14T11:08:04.596477+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-14T11:08:04.596585+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep \"Saved\" /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep \"Saved\" /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-14T11:08:04.596696+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-14T11:08:04.596803+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep \"Saved\" /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep \"Saved\" /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-14T11:08:04.596926+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-14T11:08:04.597034+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep \"Saved\" /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep \"Saved\" /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-14T11:08:04.597160+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121 · 2026-05-14T11:08:04.597275+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep \"Saved\" /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep \"Saved\" /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-14T11:08:04.597404+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-14T11:08:04.597514+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep \"Saved\" /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep \"Saved\" /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-14T11:08:04.597626+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125 · 2026-05-14T11:08:04.597761+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep \"Stochastic\" /tmp/exp012_extract.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep \"Stochastic\" /tmp/exp012_extract.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-14T11:08:04.597876+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Stochastic sampling done in 210.3s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127 · 2026-05-14T11:08:04.598058+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-14T11:08:04.598239+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-14T11:08:04.598407+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-14T11:08:04.598525+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 131 · 2026-05-14T11:08:04.598635+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python3 code/analyze_logprob_baseline.py 2>&1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python3 code/analyze_logprob_baseline.py 2>&1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-14T11:08:04.598766+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python3 code/analyze_logprob_baseline.py 2>&1'\\n\\nExit code: 1\\n\\nStdout:\\n\\n  File \\\"/root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py\\\", line 208, in main\\n    analysis = analyze_subtask(instances, subtask)\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py\\\", line 66, in analyze_subtask\\n    consistency = compute_all_consistency_scores(\\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/autodl-tmp/struct_self_consist_ie/code/consistency.py\\\", line 398, in compute_all_consistency_scores\\n    samples = inst[\\\"samples\\\"]\\n              ~~~~^^^^^^^^^^^\\nTypeError: list indices must be integers or slices, not str\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.17}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133 · 2026-05-14T11:08:04.598917+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 134 · 2026-05-14T11:08:04.599033+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 135 · 2026-05-14T11:08:04.599339+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 44}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\", \\\"tail\\\": \\\
+…[truncated 8280 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-14T11:08:04.599656+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Analyze log-probability baseline vs consistency signals.\\n\\nComputes Spearman rho, Kendall tau, AUROC, and quartile analysis\\ncomparing mean_logprob against soft_jaccard and fleiss_kappa.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport sys\\nimport numpy as np\\nfrom scipy.stats import spearmanr, kendalltau\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\n\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import per_instance_f1\\n\\nDATA_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\\"\\nREPORT_PATH = \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/analysis_report.json\\\"\\n\\n\\ndef load_data(path):\\n    instances = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                instances.append(json.loads(line))\\n    return instances\\n\\n\\ndef auroc_simple(scores, labels):\\n    \\\"\\\"\\\"Compute AUROC without sklearn dependency.\\\"\\\"\\\"\\n    scores = np.array(scores, dtype=float)\\n    labels = np.array(labels, dtype=int)\\n    if len(set(labels)) < 2:\\n        return float('nan')\\n    pos = scores[labels == 1]\\n    neg = scores[labels == 0]\\n    n_pos, n_neg = len(pos), len(neg)\\n    if n_pos == 0 or n_neg == 0:\\n        return float('nan')\\n    count = 0.0\\n    for p in pos:\\n        count += np.sum(p > neg) + 0.5 * np.sum(p == neg)\\n    return count / (n_pos * n_neg)\\n\\n\\ndef corr(x, y, method=\\\"spearman\\\"):\\n    x, y = np.array(x, dtype=float), np.array(y, dtype=float)\\n    mask = np.isfinite(x) & np.isfinite(y)\\n    x, y = x[mask], y[mask]\\n    if len(x) < 3:\\n        return 0.0, 1.0, int(np.sum(mask))\\n    if method == \\\"spearman\\\":\\n        r = spearmanr(x, y)\\n    else:\\n        r = kendalltau(x, y)\\n    return float(r.statistic), float(r.pvalue), len(x)\\n\\n\\ndef analyze_subtask(inst
+…[truncated 7394 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 137 · 2026-05-14T11:08:04.599859+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && sed -i 's/\\[inst\\[\"samples\"\\] for inst in instances\\]/instances/' code/analyze_logprob_baseline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && sed -i 's/\\[inst\\[\"samples\"\\] for inst in instances\\]/instances/' code/analyze_logprob_baseline.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 138 · 2026-05-14T11:08:04.599994+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 139 · 2026-05-14T11:08:04.600114+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python3 code/analyze_logprob_baseline.py 2>&1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python3 code/analyze_logprob_baseline.py 2>&1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 140 · 2026-05-14T11:08:04.600303+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading data ...\\nLoaded 551 instances\\n\\n================================================================================\\n  Confidence Signal Comparison (NER, Full Set, n=529)\\n================================================================================\\n  Signal               | ρ_spearman |    p-value |  τ_kendall |   AUROC\\n  ---------------------+------------+------------+------------+--------\\n  soft_jaccard         |    +0.3565 |   2.66e-17 |    +0.2658 |  0.6892\\n  fleiss_kappa         |    +0.2651 |   5.86e-10 |    +0.2027 |  0.6292\\n  mean_logprob         |    +0.1396 |   1.29e-03 |    +0.1006 |  0.5907\\n  greedy_logprob       |    +0.1615 |   1.92e-04 |    +0.1184 |  0.5941\\n\\n  Conditional Set (n=501, filtered 28 all-F1=0)\\n  Signal               | ρ_spearman |    p-value |  τ_kendall |   AUROC\\n  ---------------------+------------+------------+------------+--------\\n  soft_jaccard         |    +0.4120 |   5.91e-22 |    +0.3017 |  0.7060\\n  fleiss_kappa         |    +0.3060 |   2.54e-12 |    +0.2308 |  0.6420\\n  mean_logprob         |    +0.1627 |   2.54e-04 |    +0.1160 |  0.5974\\n  greedy_logprob       |    +0.1690 |   1.45e-04 |    +0.1231 |  0.5955\\n\\n  Quartile Analysis (by mean_logprob, Full Set):\\n    Q1 [logprob -0.153..-0.058]: mean_F1=0.5512 (n=132)\\n    Q2 [logprob -0.057..-0.040]: mean_F1=0.5957 (n=132)\\n    Q3 [logprob -0.040..-0.030]: mean_F1=0.6259 (n=132)\\n    Q4 [logprob -0.030..-0.001]: mean_F1=0.6644 (n=133)\\n\\n  >>> SJ WINS (ρ_SJ=+0.3565 vs ρ_LP=+0.1396, delta=0.2169)\\n\\n================================================================================\\n  Confidence Signal Comparison (RE, Full Set, n=397)\\n================================================================================\\n  Signal               | ρ_spearman |    p-value |  τ_kendall |   AUROC\\n  ---------------------+------------+------------+------------+--------\\n  soft_jaccard
+…[truncated 1808 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 141 · 2026-05-14T11:08:04.600495+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 142 · 2026-05-14T11:08:04.600620+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 143 · 2026-05-14T11:08:04.600734+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_012_logprob_baseline",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie",
+  "spec": "{'checkpoint_path': '/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2', 'log_path': '/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/analysis_report.json'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_012_logprob_baseline",
+    "field": "status",
+    "value": "DONE",
+    "project": "struct_self_consist_ie",
+    "spec": "{'checkpoint_path': '/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2', 'log_path': '/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/analysis_report.json'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 144 · 2026-05-14T11:08:04.600860+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.0367}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 145 · 2026-05-14T11:08:04.601056+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_012_logprob_baseline",
+  "field": "conclusion",
+  "value": "success",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_012_logprob_baseline",
+    "field": "conclusion",
+    "value": "success",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 146 · 2026-05-14T11:08:04.601209+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_012_logprob_baseline\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T10:53:16.166Z\", \"updated_at\": \"2026-05-14T11:06:38.686Z\", \"spec\": {\"hypothesis\": \"Log-probability baseline: mean sequence log-prob correlates with F1 as well as or better than SJ, exposing whether SJ has unique value\", \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/test.jsonl\", \"data_count\": 551, \"server\": \"autodl-5090\", \"seed\": 42, \"parent\": \"mvp_pilot_004\", \"method\": \"vLLM forward pass to extract sequence log-probs, then Spearman rho + AUROC + Kendall tau vs F1\", \"command\": \"python3 code/extract_logprobs.py\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0791}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 147 · 2026-05-14T11:08:04.601343+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_012_logprob_baseline",
+  "field": "status",
+  "value": "DONE",
+  "project": "struct_self_consist_ie",
+  "spec": "{'checkpoint_path': '/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2', 'log_path': '/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/analysis_report.json'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_012_logprob_baseline",
+    "field": "status",
+    "value": "DONE",
+    "project": "struct_self_consist_ie",
+    "spec": "{'checkpoint_path': '/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2', 'log_path': '/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/analysis_report.json'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 148 · 2026-05-14T11:08:04.601482+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_012_logprob_baseline\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T10:53:16.166Z\", \"updated_at\": \"2026-05-14T11:06:42.542Z\", \"spec\": {\"hypothesis\": \"Log-probability baseline: mean sequence log-prob correlates with F1 as well as or better than SJ, exposing whether SJ has unique value\", \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/test.jsonl\", \"data_count\": 551, \"server\": \"autodl-5090\", \"seed\": 42, \"parent\": \"mvp_pilot_004\", \"method\": \"vLLM forward pass to extract sequence log-probs, then Spearman rho + AUROC + Kendall tau vs F1\", \"command\": \"python3 code/extract_logprobs.py\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/analysis_report.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T11:06:42.542Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.157}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 149 · 2026-05-14T11:08:04.601631+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_012_logprob_baseline",
+  "field": "metrics",
+  "value": "{'ner': {'full_set': {'n': 529, 'soft_jaccard': {'rho': 0.3565, 'p': 2.66e-17, 'tau': 0.2658, 'auroc': 0.6892}, 'fleiss_kappa': {'rho': 0.2651, 'p': 5.86e-10, 'tau': 0.2027, 'auroc': 0.6292}, 'mean_logprob': {'rho': 0.1396, 'p': 0.00129, 'tau': 0.1006, 'auroc': 0.5907}, 'greedy_logprob': {'rho': 0.1615, 'p': 0.000192, 'tau': 0.1184, 'auroc': 0.5941}}, 'cond_set': {'n': 501, 'soft_jaccard': {'rho': 0.412, 'tau': 0.3017, 'auroc': 0.706}, 'fleiss_kappa': {'rho': 0.306, 'tau': 0.2308, 'auroc': 0.642}, 'mean_logprob': {'rho': 0.1627, 'tau': 0.116, 'auroc': 0.5974}}, 'winner': 'SJ', 'delta_rho': 0.2169}, 're': {'full_set': {'n': 397, 'soft_jaccard': {'rho': 0.2112, 'p': 2.21e-05, 'tau': 0.1619, 'auroc': 0.5916}, 'fleiss_kappa': {'rho': 0.2528, 'p': 3.32e-07, 'tau': 0.1967, 'auroc': 0.6262}, 'mean_logprob': {'rho': 0.2467, 'p': 6.47e-07, 'tau': 0.1808, 'auroc': 0.6186}, 'greedy_logprob': {'rho': 0.2307, 'p': 3.4e-06, 'tau': 0.1696, 'auroc': 0.6131}}, 'cond_set': {'n': 296, 'soft_jaccard': {'rho': 0.3683, 'tau': 0.2699, 'auroc': 0.6839}, 'fleiss_kappa': {'rho': 0.3168, 'tau': 0.2398, 'auroc': 0.6469}, 'mean_logprob': {'rho': 0.1457, 'tau': 0.1039, 'auroc': 0.5487}}, 'winner_full': 'LOGPROB_marginal', 'winner_cond': 'SJ', 'delta_rho_full': 0.0355, 'delta_rho_cond': 0.2226}}",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_012_logprob_baseline",
+    "field": "metrics",
+    "value": "{'ner': {'full_set': {'n': 529, 'soft_jaccard': {'rho': 0.3565, 'p': 2.66e-17, 'tau': 0.2658, 'auroc': 0.6892}, 'fleiss_kappa': {'rho': 0.2651, 'p': 5.86e-10, 'tau': 0.2027, 'auroc': 0.6292}, 'mean_logprob': {'rho': 0.1396, 'p': 0.00129, 'tau': 0.1006, 'auroc': 0.5907}, 'greedy_logprob': {'rho': 0.1615, 'p': 0.000192, 'tau': 0.1184, 'auroc': 0.5941}}, 'cond_set': {'n': 501, 'soft_jaccard': {'rho': 0.412, 'tau': 0.3017, 'auroc': 0.706}, 'fleiss_kappa': {'rho': 0.306, 'tau': 0.2308, 'auroc': 0.642}, 'mean_logprob': {'rho': 0.1627, 'tau': 0.116, 'auroc': 0.5974}}, 'winner': 'SJ', 'delta_rho': 0.2169}, 're': {'full_set': {'n': 397, 'soft_jaccard': {'rho': 0.2112, 'p': 2.21e-05, 'tau': 0.1619, 'auroc': 0.5916}, 'fleiss_kappa': {'rho': 0.2528, 'p': 3.32e-07, 'tau': 0.1967, 'auroc': 0.6262}, 'mean_logprob': {'rho': 0.2467, 'p': 6.47e-07, 'tau': 0.1808, 'auroc': 0.6186}, 'greedy_logprob': {'rho': 0.2307, 'p': 3.4e-06, 'tau': 0.1696, 'auroc': 0.6131}}, 'cond_set': {'n': 296, 'soft_jaccard': {'rho': 0.3683, 'tau': 0.2699, 'auroc': 0.6839}, 'fleiss_kappa': {'rho': 0.3168, 'tau': 0.2398, 'auroc': 0.6469}, 'mean_logprob': {'rho': 0.1457, 'tau': 0.1039, 'auroc': 0.5487}}, 'winner_full': 'LOGPROB_marginal', 'winner_cond': 'SJ', 'delta_rho_full': 0.0355, 'delta_rho_cond': 0.2226}}",
+    "project": "struct_self_consist_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 150 · 2026-05-14T11:08:04.601859+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_012_logprob_baseline\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T10:53:16.166Z\", \"updated_at\": \"2026-05-14T11:06:52.595Z\", \"spec\": {\"hypothesis\": \"Log-probability baseline: mean sequence log-prob correlates with F1 as well as or better than SJ, exposing whether SJ has unique value\", \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/test.jsonl\", \"data_count\": 551, \"server\": \"autodl-5090\", \"seed\": 42, \"parent\": \"mvp_pilot_004\", \"method\": \"vLLM forward pass to extract sequence log-probs, then Spearman rho + AUROC + Kendall tau vs F1\", \"command\": \"python3 code/extract_logprobs.py\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/analysis_report.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T11:06:42.542Z\", \"metrics\": {\"ner\": {\"full_set\": {\"n\": 529, \"soft_jaccard\": {\"rho\": 0.3565, \"p\": 2.66e-17, \"tau\": 0.2658, \"auroc\": 0.6892}, \"fleiss_kappa\": {\"rho\": 0.2651, \"p\": 5.86e-10, \"tau\": 0.2027, \"auroc\": 0.6292}, \"mean_logprob\": {\"rho\": 0.1396, \"p\": 0.00129, \"tau\": 0.1006, \"auroc\": 0.5907}, \"greedy_logprob\": {\"rho\": 0.1615, \"p\": 0.000192, \"tau\": 0.1184, \"auroc\": 0.5941}}, \"cond_set\": {\"n\": 501, \"soft_jaccard\": {\"rho\": 0.412, \"tau\": 0.3017, \"auroc\": 0.706}, \"fleiss_kappa\": {\"rho\": 0.306, \"tau\": 0.2308, \"auroc\": 0.642}, \"mean_logprob\": {\"rho\": 0.1627, \"tau\": 0.116, \"auroc\": 0.5974}}, \"winner\": \"SJ\", \"delta_rho\": 0.2169}, \"re\": {\"full_set\": {\"n\": 397, \"soft_jaccard\": {\"rho\": 0.2112, \"p\": 2.21e-05, \"tau\": 0.1619, \"auroc\": 0.5916}, \"fleiss_kappa\": {\"rho\": 0.2528, \"p\": 3.32e-07, \"tau\": 0.1967, \"auroc\": 0.6262}, \"mean_logprob\":
+…[truncated 599 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 151 · 2026-05-14T11:08:04.602026+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "exp-012 logprob extraction script",
+  "type": "intermediate",
+  "description": "vLLM script to re-generate N=8 stochastic + 1 greedy samples with logprobs=1, extracting cumulative_logprob per completion",
+  "project": "struct_self_consist_ie",
+  "exp_id": "exp_012_logprob_baseline",
+  "source_path": "/root/autodl-tmp/struct_self_consist_ie/code/extract_logprobs.py",
+  "tags": "['logprob', 'vllm', 'extraction']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "exp-012 logprob extraction script",
+    "type": "intermediate",
+    "description": "vLLM script to re-generate N=8 stochastic + 1 greedy samples with logprobs=1, extracting cumulative_logprob per completion",
+    "project": "struct_self_consist_ie",
+    "exp_id": "exp_012_logprob_baseline",
+    "source_path": "/root/autodl-tmp/struct_self_consist_ie/code/extract_logprobs.py",
+    "tags": "['logprob', 'vllm', 'extraction']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 152 · 2026-05-14T11:08:04.602186+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/struct_self_consist_ie/code/extract_logprobs.py\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 153 · 2026-05-14T11:08:04.602317+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "exp-012 analysis script",
+  "type": "intermediate",
+  "description": "Computes Spearman rho, Kendall tau, AUROC comparing SJ/FK/logprob signals against greedy F1",
+  "project": "struct_self_consist_ie",
+  "exp_id": "exp_012_logprob_baseline",
+  "source_path": "/root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py",
+  "tags": "['logprob', 'analysis', 'correlation']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "exp-012 analysis script",
+    "type": "intermediate",
+    "description": "Computes Spearman rho, Kendall tau, AUROC comparing SJ/FK/logprob signals against greedy F1",
+    "project": "struct_self_consist_ie",
+    "exp_id": "exp_012_logprob_baseline",
+    "source_path": "/root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py",
+    "tags": "['logprob', 'analysis', 'correlation']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 154 · 2026-05-14T11:08:04.602445+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/struct_self_consist_ie/code/analyze_logprob_baseline.py\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 155 · 2026-05-14T11:08:04.602560+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "exp-012 analysis report",
+  "type": "report",
+  "description": "Full comparison of SJ/FK/mean_logprob/greedy_logprob signals: rho, tau, AUROC for NER and RE on full and conditional sets",
+  "project": "struct_self_consist_ie",
+  "exp_id": "exp_012_logprob_baseline",
+  "source_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/analysis_report.json",
+  "tags": "['logprob', 'report', 'baseline-comparison']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "exp-012 analysis report",
+    "type": "report",
+    "description": "Full comparison of SJ/FK/mean_logprob/greedy_logprob signals: rho, tau, AUROC for NER and RE on full and conditional sets",
+    "project": "struct_self_consist_ie",
+    "exp_id": "exp_012_logprob_baseline",
+    "source_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/analysis_report.json",
+    "tags": "['logprob', 'report', 'baseline-comparison']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 156 · 2026-05-14T11:08:04.602683+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/analysis_report.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 157 · 2026-05-14T11:08:04.602797+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "exp-012 samples with logprobs",
+  "type": "data",
+  "description": "551 instances x (8 stochastic + 1 greedy) with cumulative_logprob, n_tokens, mean_logprob per sample",
+  "project": "struct_self_consist_ie",
+  "exp_id": "exp_012_logprob_baseline",
+  "source_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl",
+  "tags": "['logprob', 'data', 'samples']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "exp-012 samples with logprobs",
+    "type": "data",
+    "description": "551 instances x (8 stochastic + 1 greedy) with cumulative_logprob, n_tokens, mean_logprob per sample",
+    "project": "struct_self_consist_ie",
+    "exp_id": "exp_012_logprob_baseline",
+    "source_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl",
+    "tags": "['logprob', 'data', 'samples']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 158 · 2026-05-14T11:08:04.602918+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 159 · 2026-05-14T11:08:04.603062+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/analysis_report.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/analysis_report.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 160 · 2026-05-14T11:08:04.603313+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"ner\\\": {\\n    \\\"n_total\\\": 551,\\n    \\\"n_gold_nonempty\\\": 529,\\n    \\\"n_gold_empty\\\": 22,\\n    \\\"n_conditional\\\": 501,\\n    \\\"n_all_zero_filtered\\\": 28,\\n    \\\"median_f1_full\\\": 0.6666666666666666,\\n    \\\"signals\\\": {\\n      \\\"soft_jaccard\\\": {\\n        \\\"full\\\": {\\n          \\\"rho\\\": 0.3565325519208428,\\n          \\\"p_rho\\\": 2.6630584025369088e-17,\\n          \\\"tau\\\": 0.2657836835394407,\\n          \\\"p_tau\\\": 6.647794397251756e-18,\\n          \\\"auroc\\\": 0.6892111981688529,\\n          \\\"n\\\": 529\\n        },\\n        \\\"cond\\\": {\\n          \\\"rho\\\": 0.4120469334760367,\\n          \\\"p_rho\\\": 5.914759491394964e-22,\\n          \\\"tau\\\": 0.3017489674161096,\\n          \\\"p_tau\\\": 1.3124956005559717e-21,\\n          \\\"auroc\\\": 0.7060124640769802,\\n          \\\"n\\\": 501\\n        }\\n      },\\n      \\\"fleiss_kappa\\\": {\\n        \\\"full\\\": {\\n          \\\"rho\\\": 0.2651050577998432,\\n          \\\"p_rho\\\": 5.859602237137789e-10,\\n          \\\"tau\\\": 0.20273442316972345,\\n          \\\"p_tau\\\": 4.802036629715087e-11,\\n          \\\"auroc\\\": 0.6291780379728262,\\n          \\\"n\\\": 529\\n        },\\n        \\\"cond\\\": {\\n          \\\"rho\\\": 0.3060194865287414,\\n          \\\"p_rho\\\": 2.537977550420891e-12,\\n          \\\"tau\\\": 0.2307818354774394,\\n          \\\"p_tau\\\": 2.7798130476385713e-13,\\n          \\\"auroc\\\": 0.6419726177790694,\\n          \\\"n\\\": 501\\n        }\\n      },\\n      \\\"mean_logprob\\\": {\\n        \\\"full\\\": {\\n          \\\"rho\\\": 0.1396010152197563,\\n          \\\"p_rho\\\": 0.001286366893477423,\\n          \\\"tau\\\": 0.10064101054079479,\\n          \\\"p_tau\\\": 0.0009969869396821928,\\n          \\\"auroc\\\": 0.5906623235613464,\\n          \\\"n\\\": 529\\n        },\\n        \\\"cond\\\": {\\n          \\\"rh
+…[truncated 5858 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 161 · 2026-05-14T11:08:04.603496+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "exp-012 analysis report",
+  "type": "report",
+  "description": "Full comparison of SJ/FK/mean_logprob/greedy_logprob vs greedy F1: Spearman rho, Kendall tau, AUROC for NER (n=529) and RE (n=397), full and conditional sets, quartile analysis",
+  "project": "struct_self_consist_ie",
+  "exp_id": "exp_012_logprob_baseline",
+  "content_filename": "analysis_report.json",
+  "content": "{\"ner\":{\"n_total\":551,\"n_gold_nonempty\":529,\"n_gold_empty\":22,\"n_conditional\":501,\"n_all_zero_filtered\":28,\"median_f1_full\":0.6667,\"signals\":{\"soft_jaccard\":{\"full\":{\"rho\":0.3565,\"p_rho\":2.66e-17,\"tau\":0.2658,\"auroc\":0.6892,\"n\":529},\"cond\":{\"rho\":0.4120,\"p_rho\":5.91e-22,\"tau\":0.3017,\"auroc\":0.7060,\"n\":501}},\"fleiss_kappa\":{\"full\":{\"rho\":0.2651,\"p_rho\":5.86e-10,\"tau\":0.2027,\"auroc\":0.6292,\"n\":529},\"cond\":{\"rho\":0.3060,\"p_rho\":2.54e-12,\"tau\":0.2308,\"auroc\":0.6420,\"n\":501}},\"mean_logprob\":{\"full\":{\"rho\":0.1396,\"p_rho\":0.00129,\"tau\":0.1006,\"auroc\":0.5907,\"n\":529},\"cond\":{\"rho\":0.1627,\"p_rho\":0.000254,\"tau\":0.1160,\"auroc\":0.5974,\"n\":501}},\"greedy_logprob\":{\"full\":{\"rho\":0.1615,\"p_rho\":0.000192,\"tau\":0.1184,\"auroc\":0.5941,\"n\":529},\"cond\":{\"rho\":0.1690,\"p_rho\":0.000145,\"tau\":0.1231,\"auroc\":0.5955,\"n\":501}}},\"quartiles\":[{\"q\":1,\"logprob_range\":[-0.153,-0.058],\"mean_f1\":0.5512,\"n\":132},{\"q\":2,\"logprob_range\":[-0.057,-0.040],\"mean_f1\":0.5957,\"n\":132},{\"q\":3,\"logprob_range\":[-0.040,-0.030],\"mean_f1\":0.6259,\"n\":132},{\"q\":4,\"logprob_range\":[-0.030,-0.001],\"mean_f1\":0.6644,\"n\":133}]},\"re\":{\"n_total\":551,\"n_gold_nonempty\":397,\"n_gold_empty\":154,\"n_conditional\":296,\"n_all_zero_filtered\":101,\"median_f1_full\":0.3333,\"signals\":{\"soft_jaccard\":{\"full\":{\"rho\":0.2112,\"p_rho\":2.21e-05,\"tau\":0.1619,\"auroc\":0.5916,\"n\":397},\"cond\":{\"rho\":0.3683,\"p_rho\":6.12e-11,\"tau\":0.2699,\"auroc\":0.6839,\"n\":296}},\"fleiss_kappa\":{\"full\":{\"rho\":0.2528,\"p_rho\":3.32e-07,\"tau\":0.1967,\"auroc\":0.6262,\"n\":397},\"cond\":{\"rho\":0.3168,\"p_rho\":2.52e-08,\"tau\":0.2398,\"auroc\":0.6469,\"n\":296}},\"mean_logprob\":{\"full\":{\"rho\":0.2467,\"p_rho\":6.47e-07,\"tau\":0.1808,\"auroc\":0.6186,\"n\":397},\"cond\":{\"rho\":0.1457,\"p_rho\":0.0121,\"tau\":0.1039,\"auroc\":0.5487,\"n\":296}},\"greedy_logprob\":{\"full\":{\"rho\":0.2307,\"p_rho\":3.40e-06,\"tau\":0.1696,\"auroc\":0.6131,\"n\":397},\"cond\":{\"rho\":0.1566,\"p_rho\":0.00696,\"tau\":0.1119,\"auroc\":0.5499,\"n\":296}}},\"quartiles\":[{\"q\":1,\"logprob_range\":[-0.153,-0.047],\"mean_f1\":0.2083,\"n\":99},{\"q\":2,\"logprob_range\":[-0.047,-0.037],\"mean_f1\":0.3680,\"n\":99},{\"q\":3,\"logprob_range\":[-0.037,-0.028],\"mean_f1\":0.4430,\"n\":99},{\"q\":4,\"logprob_range\":[-0.028,-0.010],\"mean_f1\":0.4736,\"n\":100}]}}",
+  "tags": "['logprob', 'report', 'baseline-comparison']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "exp-012 analysis report",
+    "type": "report",
+    "description": "Full comparison of SJ/FK/mean_logprob/greedy_logprob vs greedy F1: Spearman rho, Kendall tau, AUROC for NER (n=529) and RE (n=397), full and conditional sets, quartile analysis",
+    "project": "struct_self_consist_ie",
+    "exp_id": "exp_012_logprob_baseline",
+    "content_filename": "analysis_report.json",
+    "content": "{\"ner\":{\"n_total\":551,\"n_gold_nonempty\":529,\"n_gold_empty\":22,\"n_conditional\":501,\"n_all_zero_filtered\":28,\"median_f1_full\":0.6667,\"signals\":{\"soft_jaccard\":{\"full\":{\"rho\":0.3565,\"p_rho\":2.66e-17,\"tau\":0.2658,\"auroc\":0.6892,\"n\":529},\"cond\":{\"rho\":0.4120,\"p_rho\":5.91e-22,\"tau\":0.3017,\"auroc\":0.7060,\"n\":501}},\"fleiss_kappa\":{\"full\":{\"rho\":0.2651,\"p_rho\":5.86e-10,\"tau\":0.2027,\"auroc\":0.6292,\"n\":529},\"cond\":{\"rho\":0.3060,\"p_rho\":2.54e-12,\"tau\":0.2308,\"auroc\":0.6420,\"n\":501}},\"mean_logprob\":{\"full\":{\"rho\":0.1396,\"p_rho\":0.00129,\"tau\":0.1006,\"auroc\":0.5907,\"n\":529},\"cond\":{\"rho\":0.1627,\"p_rho\":0.000254,\"tau\":0.1160,\"auroc\":0.5974,\"n\":501}},\"greedy_logprob\":{\"full\":{\"rho\":0.1615,\"p_rho\":0.000192,\"tau\":0.1184,\"auroc\":0.5941,\"n\":529},\"cond\":{\"rho\":0.1690,\"p_rho\":0.000145,\"tau\":0.1231,\"auroc\":0.5955,\"n\":501}}},\"quartiles\":[{\"q\":1,\"logprob_range\":[-0.153,-0.058],\"mean_f1\":0.5512,\"n\":132},{\"q\":2,\"logprob_range\":[-0.057,-0.040],\"mean_f1\":0.5957,\"n\":132},{\"q\":3,\"logprob_range\":[-0.040,-0.030],\"mean_f1\":0.6259,\"n\":132},{\"q\":4,\"logprob_range\":[-0.030,-0.001],\"mean_f1\":0.6644,\"n\":133}]},\"re\":{\"n_total\":551,\"n_gold_nonempty\":397,\"n_gold_empty\":154,\"n_conditional\":296,\"n_all_zero_filtered\":101,\"median_f1_full\":0.3333,\"signals\":{\"soft_jaccard\":{\"full\":{\"rho\":0.2112,\"p_rho\":2.21e-05,\"tau\":0.1619,\"auroc\":0.5916,\"n\":397},\"cond\":{\"rho\":0.3683,\"p_rho\":6.12e-11,\"tau\":0.2699,\"auroc\":0.6839,\"n\":296}},\"fleiss_kappa\":{\"full\":{\"rho\":0.2528,\"p_rho\":3.32e-07,\"tau\":0.1967,\"auroc\":0.6262,\"n\":397},\"cond\":{\"rho\":0.3168,\"p_rho\":2.52e-08,\"tau\":0.2398,\"auroc\":0.6469,\"n\":296}},\"mean_logprob\":{\"full\":{\"rho\":0.2467,\"p_rho\":6.47e-07,\"tau\":0.1808,\"auroc\":0.6186,\"n\":397},\"cond\":{\"rho\":0.1457,\"p_rho\":0.0121,\"tau\":0.1039,\"auroc\":0.5487,\"n\":296}},\"greedy_logprob\":{\"full\":{\"rho\":0.2307,\"p_rho\":3.40e-06,\"tau\":0.1696,\"auroc\":0.6131,\"n\":397},\"cond\":{\"rho\":0.1566,\"p_rho\":0.00696,\"tau\":0.1119,\"auroc\":0.5499,\"n\":296}}},\"quartiles\":[{\"q\":1,\"logprob_range\":[-0.153,-0.047],\"mean_f1\":0.2083,\"n\":99},{\"q\":2,\"logprob_range\":[-0.047,-0.037],\"mean_f1\":0.3680,\"n\":99},{\"q\":3,\"logprob_range\":[-0.037,-0.028],\"mean_f1\":0.4430,\"n\":99},{\"q\":4,\"logprob_range\":[-0.028,-0.010],\"mean_f1\":0.4736,\"n\":100}]}}",
+    "tags": "['logprob', 'report', 'baseline-comparison']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 162 · 2026-05-14T11:08:04.603650+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'ner': {'n_total': 551, ...1': 0.4736, 'n': 100}]}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 163 · 2026-05-14T11:08:04.603778+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "exp-012 analysis report",
+  "type": "report",
+  "description": "Full comparison of SJ/FK/mean_logprob/greedy_logprob vs greedy F1: Spearman rho, Kendall tau, AUROC for NER (n=529) and RE (n=397). NER: SJ wins decisively (rho=0.3565 vs 0.1396). RE full: logprob marginal (0.2467 vs 0.2112), RE cond: SJ wins (0.3683 vs 0.1457).",
+  "project": "struct_self_consist_ie",
+  "exp_id": "exp_012_logprob_baseline",
+  "content_filename": "analysis_report.json",
+  "content": "See full report on server: /root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/analysis_report.json\n\nKey results:\nNER Full (n=529): SJ rho=0.3565 >> logprob rho=0.1396, AUROC 0.689 vs 0.591\nNER Cond (n=501): SJ rho=0.4120 >> logprob rho=0.1627, AUROC 0.706 vs 0.597\nRE Full (n=397): logprob rho=0.2467 > SJ rho=0.2112 (marginal, delta=0.036), but FK rho=0.2528 beats both\nRE Cond (n=296): SJ rho=0.3683 >> logprob rho=0.1457, AUROC 0.684 vs 0.549\n\nVerdict: SJ wins NER decisively; RE full is mixed but SJ wins conditional set by large margin.",
+  "tags": "['logprob', 'report', 'baseline-comparison']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "exp-012 analysis report",
+    "type": "report",
+    "description": "Full comparison of SJ/FK/mean_logprob/greedy_logprob vs greedy F1: Spearman rho, Kendall tau, AUROC for NER (n=529) and RE (n=397). NER: SJ wins decisively (rho=0.3565 vs 0.1396). RE full: logprob marginal (0.2467 vs 0.2112), RE cond: SJ wins (0.3683 vs 0.1457).",
+    "project": "struct_self_consist_ie",
+    "exp_id": "exp_012_logprob_baseline",
+    "content_filename": "analysis_report.json",
+    "content": "See full report on server: /root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/analysis_report.json\n\nKey results:\nNER Full (n=529): SJ rho=0.3565 >> logprob rho=0.1396, AUROC 0.689 vs 0.591\nNER Cond (n=501): SJ rho=0.4120 >> logprob rho=0.1627, AUROC 0.706 vs 0.597\nRE Full (n=397): logprob rho=0.2467 > SJ rho=0.2112 (marginal, delta=0.036), but FK rho=0.2528 beats both\nRE Cond (n=296): SJ rho=0.3683 >> logprob rho=0.1457, AUROC 0.684 vs 0.549\n\nVerdict: SJ wins NER decisively; RE full is mixed but SJ wins conditional set by large margin.",
+    "tags": "['logprob', 'report', 'baseline-comparison']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 164 · 2026-05-14T11:08:04.603921+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_35d387\", \"name\": \"exp-012 analysis report\", \"type\": \"report\", \"description\": \"Full comparison of SJ/FK/mean_logprob/greedy_logprob vs greedy F1: Spearman rho, Kendall tau, AUROC for NER (n=529) and RE (n=397). NER: SJ wins decisively (rho=0.3565 vs 0.1396). RE full: logprob marginal (0.2467 vs 0.2112), RE cond: SJ wins (0.3683 vs 0.1457).\", \"path\": \"projects/struct_self_consist_ie/artifacts/exp_012_logprob_baseline/report/analysis_report.json\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": \"exp_012_logprob_baseline\", \"skill\": \"\", \"created_at\": \"2026-05-14T11:07:40.540022+00:00\", \"tags\": [\"logprob\", \"report\", \"baseline-comparison\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp_012_logprob_20260514T105409",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 165 · 2026-05-14T11:08:04.604103+00:00_
+
+exp-012 完成。结果汇总：
+
+## exp-012 Logprob Baseline 对比结果
+
+### NER (Full Set, n=529)
+| Signal | ρ_spearman | p-value | τ_kendall | AUROC |
+|---|---|---|---|---|
+| **soft_jaccard** | **+0.3565** | 2.66e-17 | **+0.2658** | **0.6892** |
+| fleiss_kappa | +0.2651 | 5.86e-10 | +0.2027 | 0.6292 |
+| mean_logprob | +0.1396 | 1.29e-03 | +0.1006 | 0.5907 |
+| greedy_logprob | +0.1615 | 1.92e-04 | +0.1184 | 0.5941 |
+
+**NER → SJ 碾压 logprob (ρ delta = +0.217)**
+
+### RE (Full Set, n=397)
+| Signal | ρ_spearman | p-value | τ_kendall | AUROC |
+|---|---|---|---|---|
+| soft_jaccard | +0.2112 | 2.21e-05 | +0.1619 | 0.5916 |
+| **fleiss_kappa** | **+0.2528** | 3.32e-07 | **+0.1967** | **0.6262** |
+| mean_logprob | +0.2467 | 6.47e-07 | +0.1808 | 0.6186 |
+| greedy_logprob | +0.2307 | 3.40e-06 | +0.1696 | 0.6131 |
+
+### RE (Conditional Set, n=296, 过滤101个全零实例)
+| Signal | ρ_spearman | τ_kendall | AUROC |
+|---|---|---|---|
+| **soft_jaccard** | **+0.3683** | **+0.2699** | **0.6839** |
+| fleiss_kappa | +0.3168 | +0.2398 | 0.6469 |
+| mean_logprob | +0.1457 | +0.1039 | 0.5487 |
+| greedy_logprob | +0.1566 | +0.1119 | 0.5499 |
+
+**RE Conditional → SJ 碾压 logprob (ρ delta = +0.223)**
+
+### 结论
+
+- **NER**: SJ 在所有指标上大幅领先 logprob — 强贡献成立
+- **RE Full Set**: logprob 略优于 SJ（ρ 0.247 vs 0.211, delta=0.036），但 FK 以 0.253 胜出，且 AUROC FK 也最高（0.626）
+- **RE Conditional Set**（排除模型完全无法处理的实例后）: SJ 反超 logprob 两倍以上（0.368 vs 0.146）
+
+RE full set 中 logprob 的微弱优势来自 101 个全零实例（模型完全不会抽关系的 instance）——logprob 能区分"模型完全困惑"的情况，但对于模型有能力处理的实例，结构一致性信号远优于 logprob。
+
+**Paper direction: SJ 作为 confidence signal 的独特价值成立。** Logprob 不是竞争对手，而是互补信号——尤其在 RE 上可以考虑 ensemble（SJ + logprob）作为后续工作。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_eval_exp_012_logprob_20260514T105409"
+}
+```
+
+</details>
+
+---

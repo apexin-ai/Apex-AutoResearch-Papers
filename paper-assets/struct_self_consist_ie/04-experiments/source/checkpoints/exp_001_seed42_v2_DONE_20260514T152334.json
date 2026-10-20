@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp_001_seed42_v2",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T14:34:02.350Z",
+    "updated_at": "2026-05-14T15:23:34.091Z",
+    "spec": {
+      "description": "NER N=16 on SciERC, seed=42, ft_002_v2, with logprobs",
+      "hypothesis": "Structural consistency (Fleiss kappa, Soft Jaccard) correlates with per-instance NER F1 on SciERC",
+      "server": "autodl-5090",
+      "data_path": "data/scierc/processed_data",
+      "data_count": 551,
+      "model_name": "ft_002_v2",
+      "seed": 42,
+      "command": "CUDA_VISIBLE_DEVICES=1 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_001_seed42_v2",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "78728",
+      "backend": "tmux",
+      "account": "root",
+      "log_path": "output/exp_001_seed42_v2/run.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "sj_rho_full": 0.428,
+      "sj_rho_cond": 0.369,
+      "structural_gt_surface_delta": 0.147,
+      "verdict": "PASS"
+    },
+    "checkpoint_path": "output/exp_001_seed42_v2/",
+    "completed_at": "2026-05-14T15:23:34.091Z"
+  },
+  "timestamp": "2026-05-14T15:23:34.186492+00:00",
+  "trigger": "update_registry"
+}

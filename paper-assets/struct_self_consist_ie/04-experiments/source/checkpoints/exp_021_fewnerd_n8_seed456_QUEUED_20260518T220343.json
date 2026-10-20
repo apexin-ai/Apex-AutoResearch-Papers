@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_021_fewnerd_n8_seed456",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:03:17.992Z",
+    "updated_at": "2026-05-18T22:03:43.248Z",
+    "hypothesis": "Multi-seed replication (seed=456) of Qwen3-8B FewNERD N=8 SCS inference to validate structural consistency signal on fine-grained NER dataset."
+  },
+  "timestamp": "2026-05-18T22:03:43.513205+00:00",
+  "trigger": "update_registry"
+}

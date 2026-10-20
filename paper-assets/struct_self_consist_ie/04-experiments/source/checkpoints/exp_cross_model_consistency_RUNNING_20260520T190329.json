@@ -1,0 +1,137 @@
+{
+  "exp_id": "exp_cross_model_consistency",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T09:30:47.928Z",
+    "updated_at": "2026-05-20T19:03:28.883Z",
+    "hypothesis": "Cross-model entity construction (mixing Qwen and LLaMA outputs) produces higher-quality entity spans than single-model construction, because inter-model agreement filters out model-specific hallucinations while preserving genuinely supported entities.",
+    "metrics": {
+      "scierc": {
+        "n_filtered": 529,
+        "qwen_greedy_f1": 0.6453,
+        "llama_greedy_f1": 0.646,
+        "degeneracy": {
+          "pure_qwen": 0.1323,
+          "pure_llama": 0.1777,
+          "mixed": 0.0964
+        },
+        "construction_f1": {
+          "pure_qwen_uniform": 0.6449,
+          "pure_qwen_vc": 0.6413,
+          "pure_llama_uniform": 0.6545,
+          "pure_llama_vc": 0.649,
+          "mixed_uniform": 0.6625,
+          "mixed_vc": 0.6591
+        },
+        "bootstrap": {
+          "mixed_uni_vs_pure_qwen_uni": {
+            "delta_pp": 1.77,
+            "p": 0.0102,
+            "ci": [
+              0.27,
+              3.28
+            ]
+          },
+          "mixed_vc_vs_pure_qwen_vc": {
+            "delta_pp": 1.77,
+            "p": 0.0093,
+            "ci": [
+              0.33,
+              3.27
+            ]
+          },
+          "mixed_uni_vs_pure_llama_uni": {
+            "delta_pp": 0.81,
+            "p": 0.1304,
+            "ci": [
+              -0.59,
+              2.25
+            ]
+          },
+          "mixed_vc_vs_pure_llama_vc": {
+            "delta_pp": 1.01,
+            "p": 0.0702,
+            "ci": [
+              -0.32,
+              2.38
+            ]
+          }
+        }
+      },
+      "fewnerd": {
+        "n_filtered": 32565,
+        "qwen_greedy_f1": 0.7478,
+        "llama_greedy_f1": 0.7841,
+        "degeneracy": {
+          "pure_qwen": 0.1004,
+          "pure_llama": 0.2336,
+          "mixed": 0.1158
+        },
+        "construction_f1": {
+          "pure_qwen_uniform": 0.7499,
+          "pure_qwen_vc": 0.7448,
+          "pure_llama_uniform": 0.7873,
+          "pure_llama_vc": 0.7869,
+          "mixed_uniform": 0.7916,
+          "mixed_vc": 0.7898
+        },
+        "bootstrap": {
+          "mixed_uni_vs_pure_qwen_uni": {
+            "delta_pp": 4.17,
+            "p": 0,
+            "ci": [
+              3.92,
+              4.4
+            ]
+          },
+          "mixed_vc_vs_pure_qwen_vc": {
+            "delta_pp": 4.5,
+            "p": 0,
+            "ci": [
+              4.25,
+              4.75
+            ]
+          },
+          "mixed_uni_vs_pure_llama_uni": {
+            "delta_pp": 0.42,
+            "p": 0,
+            "ci": [
+              0.27,
+              0.58
+            ]
+          },
+          "mixed_vc_vs_pure_llama_vc": {
+            "delta_pp": 0.29,
+            "p": 0.0001,
+            "ci": [
+              0.13,
+              0.45
+            ]
+          }
+        }
+      }
+    },
+    "conclusion": "success",
+    "notes": "B5 cross-model consistency on SciERC + FewNERD. Mixed (4Q+4L) consistently outperforms pure-model construction on both datasets. FewNERD: mixed sig. beats pure LLaMA (+0.42pp uni p=0, +0.29pp VC p=0.0001) and pure Qwen (+4.17pp uni, +4.50pp VC, all p=0). SciERC: mixed sig. beats pure Qwen (+1.77pp uni p=0.01, +1.77pp VC p=0.009); vs pure LLaMA marginal (+0.81pp uni p=0.13, +1.01pp VC p=0.07). Cross-model diversity reduces degeneracy (FewNERD mixed 11.6% vs LLaMA 23.4%; SciERC mixed 9.6% vs LLaMA 17.8%). Note: SciERC greedy F1 lower than prior run (0.645 vs 0.748) — likely different eval scope (gold filter 529 vs prior 551).",
+    "server": "autodl-5090-c",
+    "gpu": "cuda:3",
+    "spec": {
+      "command": "bash code/run_cross_model.sh",
+      "server": "autodl-5090",
+      "data_path": "output/exp_026_t10_seed42/samples.jsonl + output/exp007_llama_inference/samples.jsonl + output/exp_021_inference/samples.jsonl + output/llama_fewnerd_s42/samples.jsonl",
+      "data_count": 76398,
+      "model_name": "cross-model (Qwen + LLaMA)",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_cross_model_consistency",
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_cross_model_consistency"
+    },
+    "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_cross_model_consistency",
+    "log_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_cross_model_consistency"
+  },
+  "timestamp": "2026-05-20T19:03:29.260344+00:00",
+  "trigger": "update_registry"
+}

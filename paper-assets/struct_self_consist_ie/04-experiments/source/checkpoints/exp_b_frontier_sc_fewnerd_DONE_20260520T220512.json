@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp_b_frontier_sc_fewnerd",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:15:19.266Z",
+    "updated_at": "2026-05-20T22:05:12.564Z",
+    "hypothesis": "The correlation-selection gap in structured self-consistency (where agreement correlates with accuracy but majority voting fails to improve over greedy) persists even with frontier models (GPT-5.5, Claude Opus 4.6), indicating it is a fundamental structural limitation of entity-level majority voting rather than a model capability issue.",
+    "spec": {
+      "command": "nohup .venv/bin/python -u run_frontier_sc.py --from-hf --n-instances 200 --n-samples 8 --temperature 1.0 --seed 42 --output-dir ./output > frontier_sc.log 2>&1 &",
+      "server": "local",
+      "data_path": "HuggingFace DFKI-SLT/few-nerd supervised test split",
+      "data_count": 200,
+      "model_name": "openai/gpt-5.5 + anthropic/claude-opus-4.6 (via OpenRouter)",
+      "seed": 42,
+      "pid": 1509955,
+      "code_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/experiments/frontier_sc/run_frontier_sc.py",
+      "log_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/experiments/frontier_sc/frontier_sc.log",
+      "checkpoint_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/experiments/frontier_sc/output/",
+      "failure_reason": "entity_set() TypeError - compute_instance_metrics passed full parsed dict instead of entities list"
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-20T22:05:12.564Z"
+  },
+  "timestamp": "2026-05-20T22:05:12.920395+00:00",
+  "trigger": "update_registry"
+}

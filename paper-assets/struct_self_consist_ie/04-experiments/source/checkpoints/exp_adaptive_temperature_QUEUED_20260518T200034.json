@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_adaptive_temperature",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:59:52.771Z",
+    "updated_at": "2026-05-18T20:00:34.680Z",
+    "hypothesis": "Adjusting sampling temperature based on instance-level confidence indicators can improve output diversity-quality tradeoff"
+  },
+  "timestamp": "2026-05-18T20:00:34.940755+00:00",
+  "trigger": "update_registry"
+}

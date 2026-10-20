@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_fewnerd_t05_s456",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T03:11:43.659Z",
+    "updated_at": "2026-05-21T03:15:14.889Z",
+    "hypothesis": "FewNERD temperature ablation (T=0.5, seed=456): third seed complementing seed=42+123 for 3-seed statistical power. N=8, Qwen3-8B-FT."
+  },
+  "timestamp": "2026-05-21T03:15:15.475805+00:00",
+  "trigger": "update_registry"
+}

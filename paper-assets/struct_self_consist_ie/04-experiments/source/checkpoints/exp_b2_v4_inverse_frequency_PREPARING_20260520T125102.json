@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_b2_v4_inverse_frequency",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T12:50:51.737Z",
+    "updated_at": "2026-05-20T12:51:02.036Z",
+    "hypothesis": "Inverse-frequency weighting of entity features (agreement_count, vc, sj normalized by log(1+type_freq)) improves cross-domain generalization by reducing dominance of high-frequency entity types. Two variants: A) replace original features, B) augment as additional features.",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-20T12:51:02.365516+00:00",
+  "trigger": "update_registry"
+}

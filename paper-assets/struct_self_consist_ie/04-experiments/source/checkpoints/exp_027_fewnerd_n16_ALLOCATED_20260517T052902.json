@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp_027_fewnerd_n16",
+  "project": "struct_self_consist_ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T05:28:57.036Z",
+    "updated_at": "2026-05-17T05:29:02.158Z",
+    "spec": {
+      "hypothesis": "LP selection scales with N in low-degeneracy regime: N=16 should yield LP Δ > +2pp (vs N=8 +1.36pp) on Few-NERD (10% degen), because more samples increase oracle headroom while LP ranking remains effective.",
+      "parent": "exp_021_fewnerd_full",
+      "model_name": "Qwen3-8B Few-NERD LoRA merged",
+      "data_path": "data/fewnerd/test.jsonl (subset 5000)",
+      "data_count": 5000,
+      "seed": 42,
+      "server": "autodl-5090",
+      "gpu": "cuda:0,cuda:1,cuda:2,cuda:3"
+    }
+  },
+  "timestamp": "2026-05-17T05:29:02.375404+00:00",
+  "trigger": "update_registry"
+}

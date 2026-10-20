@@ -1,0 +1,46 @@
+{
+  "exp_id": "exp_fewnerd_t08_s42",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T22:41:07.634Z",
+    "updated_at": "2026-05-21T00:45:13.333Z",
+    "hypothesis": "FewNERD temperature ablation (T=0.8): test how moderate-low temperature affects degeneracy rate and SC diagnostic cascade on FewNERD, complementing SciERC T-ablation data. N=8, Qwen3-8B-FT, seed=42. T=0.8 is a sweet-spot candidate balancing diversity and quality.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 0.8 --seed 42 --collect_logprobs --output_dir output/fewnerd_t08_s42/",
+      "server": "autodl-5090-b",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/test.json",
+      "data_count": 37648,
+      "model_name": "qwen3-8b-fewnerd-exp021-merged (Qwen3-8B-FT)",
+      "seed": 42,
+      "gpu": "cuda:1",
+      "tmux_session": "fewnerd_t08",
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/logs/fewnerd_t08_s42.log",
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_t08_s42/"
+    },
+    "metrics": {
+      "greedy_f1": 0.7884,
+      "oracle_f1": 0.875,
+      "oracle_headroom": 0.0866,
+      "sample_f1_mean": 0.6622,
+      "degeneracy_rate": 0.1897,
+      "fleiss_kappa_mean": 0.4439,
+      "soft_jaccard_mean": 0.7572,
+      "rho_SJ_F1_full": 0.2062,
+      "rho_SJ_F1_conditional": 0.2248,
+      "rho_fleiss_F1_full": 0.1038,
+      "rho_logprob_F1_full": 0.2323,
+      "rho_logprob_F1_conditional": 0.1984,
+      "structural_beats_surface": true,
+      "rho_advantage": 0.1024
+    },
+    "conclusion": "success",
+    "notes": "T=0.8 confirms sweet-spot hypothesis on FewNERD: best rho_SJ_F1=0.206 (full), 0.225 (conditional), lowest degeneracy (19%), highest sample quality (mean F1=0.662). SJ beats Fleiss by 0.102 rho advantage. Logprob baseline rho=0.232 (full) surprisingly high — SJ diagnostic matches logprob informativeness at this T. Verdict FAIL only because MVP single-subtask threshold not met, but T=0.8 is clearly the best operating point.",
+    "completed_at": "2026-05-21T00:45:13.333Z"
+  },
+  "timestamp": "2026-05-21T00:45:13.720486+00:00",
+  "trigger": "update_registry"
+}

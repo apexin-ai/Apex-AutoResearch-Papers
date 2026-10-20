@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp_qwen3_4b_conll_scs_inference_v2",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:41:33.501Z",
+    "updated_at": "2026-05-15T19:47:04.213Z",
+    "hypothesis": "CoNLL 4B SCS inference with best checkpoint-4200 (from resume training). Scale ablation: cross-scale evidence for correlation-selection gap. Compare vs v1 (ckpt-3800 baseline: greedy_f1=0.9251, SJ_rho=0.4045).",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-4b-conll2003-merged-ckpt4200 --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_qwen3_4b_conll_scs_inference_v2",
+      "server": "autodl-5090",
+      "data_path": "data/conll2003",
+      "data_count": 3453,
+      "model_name": "Qwen3-4B (LoRA checkpoint-4200 merged)",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/qwen3-4b-conll2003-lora/checkpoint-4200",
+      "gpu": [
+        "cuda:1"
+      ],
+      "checkpoint_path": "checkpoints/qwen3-4b-conll2003-merged-ckpt4200",
+      "log_path": "/tmp/infer_4b_conll_v2.log",
+      "account": "root",
+      "backend": "tmux",
+      "tmux_session": "exp_4b_conll_scs_v2"
+    }
+  },
+  "timestamp": "2026-05-15T19:47:04.415062+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp_013_exact_match_voting",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T10:53:18.753Z",
+    "updated_at": "2026-05-14T10:53:18.753Z",
+    "spec": {
+      "hypothesis": "Exact-match voting rate (fraction of N samples producing identical entity/relation sets) correlates with F1",
+      "model_name": "N/A (reuse pilot_004/005 samples)",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004",
+      "data_count": 551,
+      "server": "autodl-5090",
+      "seed": 42,
+      "parent": "mvp_pilot_004",
+      "method": "Count exact-match duplicates across N=8 samples, compute rho(exact_match_rate, F1)"
+    }
+  },
+  "timestamp": "2026-05-14T10:53:18.778984+00:00",
+  "trigger": "update_registry"
+}

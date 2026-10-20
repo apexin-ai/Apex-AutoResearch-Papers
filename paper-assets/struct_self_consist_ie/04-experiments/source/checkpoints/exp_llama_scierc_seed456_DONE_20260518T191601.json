@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp_llama_scierc_seed456",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:15:27.504Z",
+    "updated_at": "2026-05-18T19:16:00.973Z",
+    "hypothesis": "LLaMA-3.1-8B on SciERC with seed=456 will show consistent 5-signal ranking patterns (SJ/FK > logprob) and DGS selection gains comparable to seed=42 and seed=123, confirming cross-seed stability.",
+    "spec": {
+      "command": "python3 code/analyze_llama_scierc_seed456_5signal.py",
+      "server": "autodl-5090",
+      "data_path": "output/exp_018_llama_scierc_seed456/samples.jsonl",
+      "data_count": 551,
+      "model_name": "LLaMA-3.1-8B-Instruct",
+      "seed": 456,
+      "checkpoint_source": "same as seed123",
+      "eval_data": "SciERC test (551 instances)",
+      "checkpoint_path": "output/exp_018_llama_scierc_seed456/5signal_dgs_report.json",
+      "log_path": "output/exp_018_llama_scierc_seed456/run.log"
+    },
+    "metrics": {
+      "greedy_f1": 0.6457,
+      "oracle_f1": 0.7574,
+      "headroom": 0.1117,
+      "dgs_f1": 0.6454,
+      "degen_pct": 27.6,
+      "rho_SJ_full": 0.3663,
+      "rho_FK_full": 0.3115,
+      "rho_logprob_full": 0.1911,
+      "rho_EM_full": 0.3088,
+      "rho_vc_full": 0.4135,
+      "auroc_SJ_full": 0.7061,
+      "auroc_EM_full": 0.7538,
+      "n_valid": 529,
+      "n_conditional": 478
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-18T19:16:00.973Z"
+  },
+  "timestamp": "2026-05-18T19:16:01.410077+00:00",
+  "trigger": "update_registry"
+}

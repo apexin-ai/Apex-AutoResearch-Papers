@@ -1,0 +1,60 @@
+{
+  "exp_id": "exp_017_llama_conll_finetune",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:47:36.156Z",
+    "updated_at": "2026-05-18T18:30:32.331Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 llamafactory-cli train train_config_llama_conll2003_3ep.yaml\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "674921",
+      "log_path": "~/runs/struct_self_consist_ie/exp_017_llama_conll_finetune.log",
+      "submitted_at": "2026-05-18T16:47:35.786Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/conll2003/llmfactory_train.json",
+      "data_count": 14037,
+      "model_name": "Meta-Llama-3.1-8B-Instruct",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora-3ep",
+      "checkpoint_source": "Meta-Llama-3.1-8B-Instruct (base model, LoRA from scratch)",
+      "eval_data": "conll2003_uie_dev",
+      "wall_clock_seconds": 6176.5,
+      "gpu_hours": 1.72
+    },
+    "hypothesis": "Structural self-consistency QE signals (SJ, FK, VC, EM) show model-agnostic diagnostic power: their Spearman rho with per-instance F1 should be comparable on LLaMA 3.1-8B as on Qwen 2.5-7B for CoNLL-2003 NER, even though degeneracy rates and absolute F1 may differ.",
+    "parent": "exp_llama_fewnerd_lora",
+    "conclusion": "success",
+    "metrics": {
+      "degeneracy_rate": 0.853,
+      "greedy_f1": 0.928,
+      "oracle_f1": 0.951,
+      "headroom": 0.023,
+      "selection_f1": 0.934,
+      "full_rho_SJ": 0.45,
+      "full_rho_FK": 0.443,
+      "full_rho_VC": 0.437,
+      "full_rho_EM": 0.448,
+      "full_rho_LP": 0.273,
+      "full_AUROC_SJ": 0.752,
+      "full_AUROC_EM": 0.753,
+      "full_AUROC_LP": 0.739,
+      "cond_rho_SJ": 0.454,
+      "cond_rho_EM": 0.458,
+      "cond_rho_LP": 0.311,
+      "cond_AUROC_EM": 0.783,
+      "cond_AUROC_LP": 0.804
+    },
+    "completed_at": "2026-05-18T18:30:32.331Z"
+  },
+  "timestamp": "2026-05-18T18:30:32.579681+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_014_entity_majority_voting",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T10:53:21.203Z",
+    "updated_at": "2026-05-14T11:18:09.468Z",
+    "spec": {
+      "hypothesis": "Entity-level majority voting constructs better consensus than SJ-based selection",
+      "model_name": "ft_002_v2",
+      "data_path": "output/mvp_pilot_004/samples.jsonl",
+      "data_count": 551,
+      "server": "autodl-5090",
+      "seed": 0,
+      "parent": "mvp_pilot_004",
+      "method": "Per-entity voting across N=8 samples, construct consensus set, compare F1 vs SJ oracle selection",
+      "command": "python code/analyze_entity_voting.py",
+      "checkpoint_path": "N/A",
+      "log_path": "output/mvp_pilot_004/exp014_entity_voting_report.json"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T11:18:09.468Z"
+  },
+  "timestamp": "2026-05-14T11:18:09.500368+00:00",
+  "trigger": "update_registry"
+}

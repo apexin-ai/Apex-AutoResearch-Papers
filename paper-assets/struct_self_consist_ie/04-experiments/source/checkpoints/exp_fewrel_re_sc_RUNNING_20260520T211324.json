@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_fewrel_re_sc",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:13:10.685Z",
+    "updated_at": "2026-05-20T21:13:23.648Z",
+    "hypothesis": "SC consensus construction improves RE micro-F1 over greedy decoding on FewRel (16 relation types, Wikipedia domain), extending cross-task universality evidence beyond SciERC and DocRED",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python3 experiments/fewrel_re_sc/run_fewrel_re_sc.py --model-path /root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2.5-7B-Instruct --data data/fewrel_re_test_instances.jsonl --output-dir output/fewrel_re_sc --n-samples 8 --temperature 1.0",
+      "server": "autodl-5090",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/fewrel_re_test_instances.jsonl",
+      "data_count": 256,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-20T21:13:24.011773+00:00",
+  "trigger": "update_registry"
+}

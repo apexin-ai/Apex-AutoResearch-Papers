@@ -1,0 +1,72 @@
+{
+  "exp_id": "exp_026_T08",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T09:38:29.602Z",
+    "updated_at": "2026-05-17T10:00:12.248Z",
+    "hypothesis": "T=0.8 will show intermediate degeneracy between T=0.5 and T=1.0, establishing a monotonic degeneracy-temperature relationship. If LP selection improves at T=0.8 vs T=1.0, it identifies the optimal operating point for the selection mechanism.",
+    "server": "autodl-5090",
+    "gpu": "cuda:2",
+    "account": "root",
+    "reproduce": {
+      "server": "autodl-5090",
+      "gpu": "cuda:2",
+      "started_at": "2026-05-17T09:39:50.780Z",
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 0.8 --seed 42 --output_dir output/exp_026_T08/ --num_test 9999 --collect_logprobs 2>&1 | tee output/exp_026_T08_run.log\"",
+      "finished_at": "2026-05-17T09:47:56.543Z",
+      "training_hours": 0.13
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 0.8 --seed 42 --output_dir output/exp_026_T08/ --num_test 9999 --collect_logprobs 2>&1 | tee output/exp_026_T08_run.log\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "380680",
+      "log_path": "output/exp_026_T08_run.log",
+      "submitted_at": "2026-05-17T09:41:20.812Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "output/exp_026_T08/",
+      "wall_clock_seconds": 1131.4,
+      "gpu_hours": 0.31
+    },
+    "pid": "380680",
+    "log_path": "~/runs/struct_self_consist_ie/exp_026_T08.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T09:48:02.635244+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "degeneracy_rate": 0.196,
+      "lp_range_mean": 0.043,
+      "lp_range_std": 0.042,
+      "greedy_f1": 0.616,
+      "oracle_f1": 0.737,
+      "lp_sel_f1": 0.627,
+      "sj_sel_f1": 0.619,
+      "em_sel_f1": 0.611,
+      "vc_sel_f1": 0.603,
+      "sj_rho": 0.378,
+      "fk_rho": 0.34,
+      "lp_rho": 0.212,
+      "vc_rho": 0.352,
+      "sj_auroc": 0.662,
+      "lp_auroc": 0.571
+    },
+    "completed_at": "2026-05-17T10:00:12.248Z"
+  },
+  "timestamp": "2026-05-17T10:00:12.476442+00:00",
+  "trigger": "update_registry"
+}

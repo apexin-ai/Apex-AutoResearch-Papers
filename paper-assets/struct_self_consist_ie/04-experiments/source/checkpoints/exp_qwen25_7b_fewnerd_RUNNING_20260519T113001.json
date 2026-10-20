@@ -1,0 +1,34 @@
+{
+  "exp_id": "exp_qwen25_7b_fewnerd",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:41:43.121Z",
+    "updated_at": "2026-05-19T11:30:00.776Z",
+    "hypothesis": "Qwen2.5-7B QLoRA fine-tuned on FewNERD will produce structurally diverse samples enabling self-consistency-based entity extraction with meaningful LP-weighted consensus signals, comparable to the 14B model but with lower compute cost.",
+    "spec": {
+      "server": "autodl-5090-c",
+      "gpu_ids": [
+        "cuda:2",
+        "cuda:3"
+      ],
+      "command": "nohup bash run_fewnerd_qwen25_7b_pipeline.sh > logs/pipeline_qwen25_7b_fewnerd.log 2>&1 &",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/llmfactory_train.json",
+      "data_count": 131767,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-fewnerd-qlora-s42",
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/logs/pipeline_qwen25_7b_fewnerd.log",
+      "training_config": "train_config_qwen25_7b_fewnerd_s42.yaml",
+      "export_config": "export_config_qwen25_7b_fewnerd.yaml",
+      "pipeline_script": "run_fewnerd_qwen25_7b_pipeline.sh",
+      "method": "QLoRA 4-bit nf4, rank=32, alpha=64, 5 epochs, lr=2e-4, effective_batch=32",
+      "pipeline_phases": "train -> export/merge -> 3-seed N=8 inference (42/123/456) -> signal analysis -> entity construction"
+    }
+  },
+  "timestamp": "2026-05-19T11:30:01.099309+00:00",
+  "trigger": "update_registry"
+}

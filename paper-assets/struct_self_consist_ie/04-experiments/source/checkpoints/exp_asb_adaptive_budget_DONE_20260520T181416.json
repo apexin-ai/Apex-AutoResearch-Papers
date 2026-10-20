@@ -1,0 +1,68 @@
+{
+  "exp_id": "exp_asb_adaptive_budget",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:37:33.233Z",
+    "updated_at": "2026-05-20T18:14:15.894Z",
+    "hypothesis": "Adaptive Sample Budget: extension of E_θ threshold optimization to sample count N. Instance features (degeneracy, LP variance, agreement rate) predict optimal N per instance. Under fixed total budget=8 (average), adaptive allocation outperforms uniform N=8 by allocating more samples to high-uncertainty instances and fewer to degenerate/easy ones.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/autodl-tmp/struct_self_consist_ie/artifacts/experiments/asb/run_asb.py --data_paths /root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl,/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed42/samples.jsonl,/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl --dataset_names FewNERD,SciERC,CoNLL --output_dir /root/autodl-tmp/struct_self_consist_ie/output/exp_asb_adaptive_budget/ --seed 42\"",
+      "server": "autodl-5090",
+      "gpu": [],
+      "pid": "943151",
+      "log_path": "~/runs/struct_self_consist_ie/exp_asb_adaptive_budget.log",
+      "submitted_at": "2026-05-20T17:55:06.477Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "output/exp_asb_adaptive_budget/asb_results.json",
+      "wall_clock_seconds": 215.1,
+      "gpu_hours": 0.0
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T17:58:41.592Z",
+    "metrics": {
+      "fewnerd": {
+        "greedy_f1": 0.7478,
+        "uniform_n8_f1": 0.7277,
+        "adaptive_f1": 0.744,
+        "oracle_f1": 0.7616,
+        "delta_adaptive_uniform": 0.0163,
+        "best_predictor": "MLP",
+        "mean_optimal_n": 4.4,
+        "n_instances": 32565
+      },
+      "scierc": {
+        "greedy_f1": 0.6453,
+        "uniform_n8_f1": 0.6382,
+        "adaptive_f1": 0.6528,
+        "oracle_f1": 0.6658,
+        "delta_adaptive_uniform": 0.0146,
+        "best_predictor": "RF",
+        "mean_optimal_n": 4.29,
+        "n_instances": 529
+      },
+      "conll": {
+        "greedy_f1": 0.907,
+        "uniform_n8_f1": 0.9021,
+        "adaptive_f1": 0.9046,
+        "oracle_f1": 0.9078,
+        "delta_adaptive_uniform": 0.0025,
+        "best_predictor": "MLP",
+        "mean_optimal_n": 3.94,
+        "n_instances": 2756
+      },
+      "top_features": [
+        "degeneracy_rate",
+        "agreement"
+      ],
+      "key_finding": "Most instances optimal N≈4, greedy > uniform N=8 on FewNERD confirms MV harmful on easy instances"
+    }
+  },
+  "timestamp": "2026-05-20T18:14:16.231999+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_selective_prediction",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T02:00:13.989Z",
+    "updated_at": "2026-05-19T02:15:21.704Z",
+    "hypothesis": "QE signals (especially voting_confidence) can drive practical selective prediction: filtering out low-confidence instances yields significant F1 improvement on retained instances, enabling human-AI collaboration for structured IE.",
+    "conclusion": "success",
+    "spec": {
+      "command": "python code/selective_prediction.py",
+      "server": "autodl-5090",
+      "data_path": "output/*/samples_*.json",
+      "data_count": 3,
+      "model_name": "analysis_cpu",
+      "seed": 42,
+      "checkpoint_path": "output/prescriptive_analysis/",
+      "log_path": "output/prescriptive_analysis/"
+    },
+    "completed_at": "2026-05-19T02:15:21.704Z"
+  },
+  "timestamp": "2026-05-19T02:15:21.986212+00:00",
+  "trigger": "update_registry"
+}

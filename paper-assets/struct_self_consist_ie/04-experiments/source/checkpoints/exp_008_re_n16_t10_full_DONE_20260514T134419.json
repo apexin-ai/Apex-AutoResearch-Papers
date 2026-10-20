@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp_008_re_n16_t10_full",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:27:42.867Z",
+    "updated_at": "2026-05-14T13:44:19.577Z",
+    "spec": {
+      "command": "python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs",
+      "server": "autodl-5090",
+      "data_path": "data/scierc/processed_data",
+      "data_count": 551,
+      "model_name": "qwen3-8b-scierc-merged-v2",
+      "seed": 42
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T13:44:18.988Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-14T13:44:19.577Z"
+  },
+  "timestamp": "2026-05-14T13:44:19.648249+00:00",
+  "trigger": "update_registry"
+}

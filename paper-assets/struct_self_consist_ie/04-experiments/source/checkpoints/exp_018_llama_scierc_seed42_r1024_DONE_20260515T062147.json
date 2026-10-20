@@ -1,0 +1,173 @@
+{
+  "exp_id": "exp_018_llama_scierc_seed42_r1024",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T06:09:57.155Z",
+    "updated_at": "2026-05-15T06:21:47.660Z",
+    "spec": {
+      "hypothesis": "D066 fresh rerun: LLaMA SciERC seed=42 with explicit max_tokens=1024. Replaces exp_007_llama_inference for clean 3-seed comparison.",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 42 --max_tokens 1024 --num_test 9999 --collect_logprobs --output_dir output/exp_018_llama_scierc_seed42_r1024\"",
+      "server": "autodl-5090",
+      "seed": 42,
+      "model_name": "LLaMA-3.1-8B-SciERC-merged",
+      "model_path": "checkpoints/llama3.1-8b-scierc-merged",
+      "dataset": "SciERC",
+      "subtask": "joint",
+      "data_path": "data/scierc/processed_data",
+      "data_count": 551,
+      "N": 8,
+      "T": 1,
+      "max_tokens": 1024,
+      "is_new_inference": true,
+      "checkpoint_path": "output/exp_018_llama_scierc_seed42_r1024/",
+      "log_path": "~/runs/struct_self_consist_ie/exp_018_llama_scierc_seed42_r1024.log"
+    },
+    "server": "autodl-5090",
+    "gpu": "cuda:0",
+    "pid": "156809",
+    "log_path": "~/runs/struct_self_consist_ie/exp_018_llama_scierc_seed42_r1024.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 42 --max_tokens 1024 --num_test 9999 --collect_logprobs --output_dir output/exp_018_llama_scierc_seed42_r1024\"",
+      "finished_at": "2026-05-15T06:15:47.963Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T06:15:50.613872+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ner": {
+        "full": {
+          "SJ": {
+            "rho": 0.3096,
+            "tau": 0.2288,
+            "auroc": 0.6683
+          },
+          "FK": {
+            "rho": 0.2352,
+            "tau": 0.1759,
+            "auroc": 0.6069
+          },
+          "logprob": {
+            "rho": 0.1503,
+            "tau": 0.1087,
+            "auroc": 0.5318
+          },
+          "EM": {
+            "rho": 0.2587,
+            "tau": 0.1966,
+            "auroc": 0.7174
+          },
+          "voting_conf": {
+            "rho": 0.4053,
+            "tau": 0.3042,
+            "auroc": 0.6967
+          }
+        },
+        "conditional": {
+          "SJ": {
+            "rho": 0.2718,
+            "tau": null,
+            "auroc": 0.6565
+          },
+          "FK": {
+            "rho": 0.1472,
+            "tau": null,
+            "auroc": 0.5866
+          },
+          "logprob": {
+            "rho": 0.081,
+            "tau": null,
+            "auroc": 0.5129
+          },
+          "EM": {
+            "rho": 0.3165,
+            "tau": null,
+            "auroc": 0.7244
+          },
+          "voting_conf": {
+            "rho": 0.3078,
+            "tau": null,
+            "auroc": 0.6714
+          }
+        },
+        "greedy_f1": 0.6607,
+        "oracle_f1": 0.7781,
+        "n_full": 529,
+        "n_cond": 478
+      },
+      "re": {
+        "full": {
+          "SJ": {
+            "rho": 0.2748,
+            "tau": 0.2102,
+            "auroc": 0.7244
+          },
+          "FK": {
+            "rho": 0.3027,
+            "tau": 0.2337,
+            "auroc": 0.691
+          },
+          "logprob": {
+            "rho": 0.3163,
+            "tau": 0.233,
+            "auroc": 0.6313
+          },
+          "EM": {
+            "rho": 0.1681,
+            "tau": 0.1275,
+            "auroc": 0.7697
+          },
+          "voting_conf": {
+            "rho": 0.384,
+            "tau": 0.2965,
+            "auroc": 0.7337
+          }
+        },
+        "conditional": {
+          "SJ": {
+            "rho": 0.3461,
+            "tau": null,
+            "auroc": 0.7233
+          },
+          "FK": {
+            "rho": 0.1969,
+            "tau": null,
+            "auroc": 0.6684
+          },
+          "logprob": {
+            "rho": 0.0888,
+            "tau": null,
+            "auroc": 0.5556
+          },
+          "EM": {
+            "rho": 0.4969,
+            "tau": null,
+            "auroc": 0.819
+          },
+          "voting_conf": {
+            "rho": 0.3433,
+            "tau": null,
+            "auroc": 0.7003
+          }
+        },
+        "greedy_f1": 0.4319,
+        "oracle_f1": 0.5775,
+        "n_full": 397,
+        "n_cond": 251
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T06:21:47.660Z"
+  },
+  "timestamp": "2026-05-15T06:21:47.823859+00:00",
+  "trigger": "update_registry"
+}

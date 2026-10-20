@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_026_T08",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T09:38:29.602Z",
+    "updated_at": "2026-05-17T09:39:36.966Z",
+    "hypothesis": "T=0.8 will show intermediate degeneracy between T=0.5 and T=1.0, establishing a monotonic degeneracy-temperature relationship. If LP selection improves at T=0.8 vs T=1.0, it identifies the optimal operating point for the selection mechanism."
+  },
+  "timestamp": "2026-05-17T09:39:37.189672+00:00",
+  "trigger": "update_registry"
+}

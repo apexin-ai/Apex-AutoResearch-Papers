@@ -1,0 +1,47 @@
+{
+  "exp_id": "exp_conll_n32_s42",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T03:36:00.871Z",
+    "updated_at": "2026-05-22T04:14:01.866Z",
+    "hypothesis": "N-scaling test: CoNLL N=32 (4× N=8) finetuned model. High-degeneracy regime (~62% at N=8). Tests whether 4× budget reduces degeneracy enough for MV to become positive. If not, demonstrates structural ceiling independent of sample budget. Part of N-scaling suite for R34 C1.",
+    "spec": {
+      "command": "bash -c \"...run_mvp_pilot.py --n_samples 32 --dataset conll2003 --seed 42\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "98095",
+      "log_path": "~/runs/struct_self_consist_ie/exp_conll_n32_s42.log",
+      "submitted_at": "2026-05-22T03:36:24.632Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/conll2003/test.json",
+      "data_count": 3453,
+      "model_name": "qwen3-8b-conll2003-merged",
+      "seed": 42,
+      "n_samples": 32,
+      "checkpoint_path": "checkpoints/qwen3-8b-conll2003-merged",
+      "wall_clock_seconds": 2257.2,
+      "gpu_hours": 0.63
+    },
+    "metrics": {
+      "greedy_f1": 0.912,
+      "mv_strict_f1": 0.9166,
+      "mv_delta_strict_pp": 0.46,
+      "mv_incl_f1": 0.9169,
+      "oracle_f1": 0.969,
+      "degeneracy_rate": 0.405,
+      "alpha_crit_strict": 0.456
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-22T04:14:01.866Z"
+  },
+  "timestamp": "2026-05-22T04:14:02.395722+00:00",
+  "trigger": "update_registry"
+}

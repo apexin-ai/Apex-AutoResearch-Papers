@@ -1,0 +1,1284 @@
+# analysis r8w4 lp range
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 0
+- **Tool calls:** 21
+- **Original source:** `logs/chats/worker_analysis_r8w4_lp_range_20260515T221454.jsonl`
+- **Structured JSON:** [`df61ef2cb5b3f872bb90.json`](../../sessions/df/df61ef2cb5b3f872bb90.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+43 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T22:17:19.699588+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T22:17:19.700103+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T22:17:19.700413+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"samples.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"samples.jsonl\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T22:17:19.700637+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -maxdepth 2 -name \"*seed*\" -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -maxdepth 2 -name \"*seed*\" -type d",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-15T22:17:19.700943+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2_ckpt400/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_con
+…[truncated 3440 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-15T22:17:19.701213+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T22:17:19.701486+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2_r1024\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_full\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only_backup\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_seed123\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner_r1024\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456_r1024\\n/root/autodl-tmp/s
+…[truncated 227 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T22:17:19.701811+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"analysis_epsilon_sweep\\nanalysis_fk_bootstrap_ci.json\\nanalysis_fk_bootstrap_per_instance.json\\nanalysis_lp_range_cdf.json\\nanalysis_lp_range_cdf_n16_3seed.json\\nanalysis_multiseed_selection_f1.json\\nanalysis_round8\\nanalysis_scierc_n16_3seed_selection_f1.json\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\nanalysis_unified_rho_full.json\\nbootstrap_ci_nscaling\\nbootstrap_ci_summary.json\\nbootstrap_ci_tables.tex\\nconditional_filter_diagnosis.json\\nexp001_n16_seed123\\nexp001_n16_seed123_200only\\nexp001_n16_seed123_200only_backup\\nexp001_n16_seed123_full\\nexp001_n16_seed123_run.log\\nexp001_n16_seed42\\nexp001_n16_seed42_200only_backup\\nexp001_n16_seed42_run.log\\nexp001_n16_seed456\\nexp001_n16_seed456_200only\\nexp001_n16_seed456_run.log\\nexp001_seed123_t10_full\\nexp001_seed123_t10_full.log\\nexp001_seed456_t10_full\\nexp001_seed456_t10_full.log\\nexp002_conll2003\\nexp003_wnut17_dryrun\\nexp003_wnut17_eval\\nexp003_wnut17_eval.log\\nexp003_wnut17_pilot\\nexp003_wnut17_pilot.log\\nexp004_re_diagnostic\\nexp004v2_re_diagnostic\\nexp007_llama_dryrun\\nexp007_llama_inference\\nexp008_re_n16\\nexp008_re_n16_200only\\nexp008_re_n16_t10_full\\nexp008_re_n16_t10_full.log\\nexp009_stratification_results.json\\nexp010_selection_curves\\nexp016_signal_ensemble\\nexp018_3seed_5signal_results.json\\nexp_001_seed123_v2\\nexp_001_seed123_v2_r1024\\nexp_001_seed42_v2\\nexp_001_seed42_v2_r1024\\nexp_001_seed456_v2\\nexp_001_seed456_v2_ner\\nexp_001_seed456_v2_ner.log\\nexp_001_seed456_v2_ner_r1024\\nexp_002_conll_n16\\nexp_002_conll_n16.log\\nexp_002_conll_n16_r1024\\nexp_003_wnut17_v2_infer\\nexp_005_v2_temperature\\nexp_006_v2\\nexp_006_v2_run.log\\nexp_007_llama_n16\\nexp_007_llama_n16.log\\nexp_007_llama_n16_r1024\\nexp_007_llama_seed123\\nexp_007_llama_seed456\\nexp_008_re_n16_v2\\nexp_008_re_seed123\\nexp_009_v2\\nexp_009_v2_re_rerun\\nexp_009_v2_r
+…[truncated 1888 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T22:17:19.702120+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2 -name \"config*\" -o -name \"metadata*\" -o -name \"args*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2 -name \"config*\" -o -name \"metadata*\" -o -name \"args*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T22:17:19.702493+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T22:17:19.702701+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T22:17:19.702909+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"all_signals_report.json\\nre_all_signals_report.json\\nreport.json\\nrun.log\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T22:17:19.706052+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T22:17:19.706424+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"report.json\\nrun.log\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T22:17:19.706694+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T22:17:19.706950+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"all_signals_report.json\\nreport.json\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T22:17:19.708389+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -20 /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/run.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -20 /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/run.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T22:17:19.708736+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 551 test instances from scierc\\nINFO 05-14 22:34:56 [utils.py:233] non-default args: {'max_model_len': 4096, 'disable_log_stats': True, 'model': 'checkpoints/qwen3-8b-scierc-merged-v2'}\\nINFO 05-14 22:34:56 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\nINFO 05-14 22:34:56 [model.py:1582] Using max model len 4096\\nINFO 05-14 22:34:56 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=8192.\\nINFO 05-14 22:34:56 [vllm.py:775] Asynchronous scheduling is enabled.\\n(EngineCore pid=79566) INFO 05-14 22:34:57 [core.py:103] Initializing a V1 LLM engine (v0.18.1) with config: model='checkpoints/qwen3-8b-scierc-merged-v2', speculative_config=None, tokenizer='checkpoints/qwen3-8b-scierc-merged-v2', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=checkpoints/qwen3-8b-scierc-merged-v2, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <C
+…[truncated 3765 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T22:17:19.708991+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -20 /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/run.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -20 /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/run.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T22:17:19.709286+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 551 test instances from scierc\\nINFO 05-14 23:40:42 [utils.py:233] non-default args: {'max_model_len': 4096, 'disable_log_stats': True, 'model': 'checkpoints/qwen3-8b-scierc-merged-v2'}\\nINFO 05-14 23:40:42 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\nINFO 05-14 23:40:42 [model.py:1582] Using max model len 4096\\nINFO 05-14 23:40:42 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=8192.\\nINFO 05-14 23:40:42 [vllm.py:775] Asynchronous scheduling is enabled.\\n(EngineCore pid=91694) INFO 05-14 23:40:43 [core.py:103] Initializing a V1 LLM engine (v0.18.1) with config: model='checkpoints/qwen3-8b-scierc-merged-v2', speculative_config=None, tokenizer='checkpoints/qwen3-8b-scierc-merged-v2', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=checkpoints/qwen3-8b-scierc-merged-v2, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <C
+…[truncated 3765 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T22:17:19.709528+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -3 /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -3 /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T22:17:19.710417+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\
+…[truncated 9078 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T22:17:19.710768+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -i \"subtask\\|joint\\|--ner\\|freeform\\|n_samples\\|num_samples\" /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/run.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -i \"subtask\\|joint\\|--ner\\|freeform\\|n_samples\\|num_samples\" /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/run.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T22:17:19.710973+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T22:17:19.711173+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -i \"subtask\\|joint\\|--ner\\|freeform\\|n_samples\\|num_samples\" /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/run.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -i \"subtask\\|joint\\|--ner\\|freeform\\|n_samples\\|num_samples\" /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/run.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T22:17:19.711379+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T22:17:19.711591+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -i \"subtask\\|joint\\|--ner\\|freeform\\|n_samples\\|num_samples\" /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/run.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -i \"subtask\\|joint\\|--ner\\|freeform\\|n_samples\\|num_samples\" /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/run.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T22:17:19.711788+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T22:17:19.711960+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -i \"subtask\" /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/run.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -i \"subtask\" /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/run.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T22:17:19.712155+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Note:           MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T22:17:19.712339+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -i \"subtask\" /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/run.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -i \"subtask\" /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/run.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T22:17:19.712566+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Note:           Joint mode: verdict requires RE ρ_sj ≥ 0.40 AND ρ_sj > ρ_fk AND any subtask headroom ≥ 2pp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T22:17:19.712781+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -i \"subtask\" /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/run.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -i \"subtask\" /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/run.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T22:17:19.712984+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Note:           MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T22:17:19.713233+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T22:17:19.713424+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"report.json\\nrun.log\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T22:17:19.713633+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner_r1024/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner_r1024/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T22:17:19.713843+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T22:17:19.714020+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T22:17:19.714230+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl\\n     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/samples.jsonl\\n     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/samples.jsonl\\n     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/samples.jsonl\\n    2204 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T22:17:19.714524+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json, numpy as np, os\n\ndirs = {\n    'seed42_ner': 'output/exp_001_seed42_v2/samples.jsonl',\n    'seed123_ner': 'output/exp_001_seed123_v2/samples.jsonl',\n    'seed456_joint': 'output/exp_001_seed456_v2/samples.jsonl',\n    'seed456_ner': 'output/exp_001_seed456_v2_ner/samples.jsonl',\n}\n\nresults = {}\nfor name, path in dirs.items():\n    cum_ranges = []\n    mean_ranges = []\n    n_samples_list = []\n    with open(path) as f:\n        for line in f:\n            d = json.loads(line)\n            samples = d['samples']\n            cum_lps = [s['cumulative_logprob'] for s in samples]\n            mean_lps = [s['mean_logprob'] for s in samples]\n            n_samples_list.append(len(samples))\n            if len(cum_lps) >= 2:\n                cum_ranges.append(max(cum_lps) - min(cum_lps))\n                mean_ranges.append(max(mean_lps) - min(mean_lps))\n    cum_ranges = np.array(cum_ranges)\n    mean_ranges = np.array(mean_ranges)\n    results[name] = {\n        'n_instances': len(cum_ranges),\n        'n_samples_per_instance': int(np.median(n_samples_list)),\n        'cumulative_lp_range': {\n            'median': float(np.median(cum_ranges)),\n            'q25': float(np.percentile(cum_ranges, 25)),\n            'q75': float(np.percentile(cum_ranges, 75)),\n            'iqr': float(np.percentile(cum_ranges, 75) - np.percentile(cum_ranges, 25)),\n            'mean': float(np.mean(cum_ranges)),\n            'std': float(np.std(cum_ranges)),\n        },\n        'mean_lp_range': {\n            'median': float(np.median(mean_ranges)),\n            'q25': float(np.percentile(mean_ranges, 25)),\n            'q75': float(np.percentile(mean_ranges, 75)),\n            'iqr': float(np.percentile(mean_ranges, 75) - np.percentile(mean_ranges, 25)),\n            'mean': float(np.mean(mean_ranges)),\n            'std': float(np.std(mean_ranges)),\n        },\n    }\n\n# Print table\nprint('=== Cumulative LP Range (per-instance max-min of sequence log prob) ===')\nprint(f'{\\\"Seed\\\":<18} {\\\"Subtask\\\":<8} {\\\"N\\\":<5} {\\\"Median\\\":<12} {\\\"IQR\\\":<16} {\\\"Mean±Std\\\":<20}')\nprint('-' * 80)\nfor name, r in results.items():\n    c = r['cumulative_lp_range']\n    seed_label = name.split('_')[0]\n    subtask = 'joint' if 'joint' in name else 'ner'\n    print(f'{name:<18} {subtask:<8} {r[\\\"n_instances\\\"]:<5} {c[\\\"median\\\"]:<12.4f} [{c[\\\"q25\\\"]:.4f}, {c[\\\"q75\\\"]:.4f}] {c[\\\"mean\\\"]:.4f}±{c[\\\"std\\\"]:.4f}')\n\nprint()\nprint('=== Mean LP Range (per-instance max-min of mean log prob) ===')\nprint(f'{\\\"Seed\\\":<18} {\\\"Subtask\\\":<8} {\\\"N\\\":<5} {\\\"Median\\\":<12} {\\\"IQR\\\":<16} {\\\"Mean±Std\\\":<20}')\nprint('-' * 80)\nfor name, r in results.items():\n    c = r['mean_lp_range']\n    seed_label = name.split('_')[0]\n    subtask = 'joint' if 'joint' in name else 'ner'\n    print(f'{name:<18} {subtask:<8} {r[\\\"n_instances\\\"]:<5} {c[\\\"median\\\"]:<12.6f} [{c[\\\"q25\\\"]:.6f}, {c[\\\"q75\\\"]:.6f}] {c[\\\"mean\\\"]:.6f}±{c[\\\"std\\\"]:.6f}')\n\n# Relative difference: seed456_joint vs avg of seed42/123\nc42 = results['seed42_ner']['cumulative_lp_range']['median']\nc123 = results['seed123_ner']['cumulative_lp_range']['median']\nc456j = results['seed456_joint']['cumulative_lp_range']['median']\nc456n = results['seed456_ner']['cumulative_lp_range']['median']\navg_ner = (c42 + c123) / 2\nprint(f'\\n=== Relative Difference ===')\nprint(f'Avg NER median (s42,s123): {avg_ner:.4f}')\nprint(f'seed456 joint median:      {c456j:.4f}  -> relative diff = {abs(c456j - avg_ner) / avg_ner * 100:.1f}%')\nprint(f'seed456 ner median:        {c456n:.4f}  -> relative diff = {abs(c456n - avg_ner) / avg_ner * 100:.1f}%')\n\n# Mann-Whitney U test: seed456_joint vs pool of seed42+seed123\nfrom scipy.stats import mannwhitneyu, kruskal\nwith open(dirs['seed42_ner']) as f:\n    r42 = []\n    for line in f:\n        d = json.loads(line)\n        lps = [s['cumulative_logprob'] for s in d['samples']]\n        if len(lps) >= 2: r42.append(max(lps) - min(lps))\nwith open(dirs['seed123_ner']) as f:\n    r123 = []\n    for line in f:\n        d = json.loads(line)\n        lps = [s['cumulative_logprob'] for s in d['samples']]\n        if len(lps) >= 2: r123.append(max(lps) - min(lps))\nwith open(dirs['seed456_joint']) as f:\n    r456j = []\n    for line in f:\n        d = json.loads(line)\n        lps = [s['cumulative_logprob'] for s in d['samples']]\n        if len(lps) >= 2: r456j.append(max(lps) - min(lps))\nwith open(dirs['seed456_ner']) as f:\n    r456n = []\n    for line in f:\n        d = json.loads(line)\n        lps = [s['cumulative_logprob'] for s in d['samples']]\n        if len(lps) >= 2: r456n.append(max(lps) - min(lps))\n\nner_pool = r42 + r123\nu_stat, p_val = mannwhitneyu(r456j, ner_pool, alternative='two-sided')\nprint(f'\\nMann-Whitney U test (seed456_joint vs pool of s42+s123 NER):')\nprint(f'  U = {u_stat:.1f}, p = {p_val:.6f}')\n\nu2, p2 = mannwhitneyu(r456n, ner_pool, alternative='two-sided')\nprint(f'Mann-Whitney U test (seed456_ner vs pool of s42+s123 NER):')\nprint(f'  U = {u2:.1f}, p = {p2:.6f}')\n\n# Kruskal-Wallis across all 3 seeds (NER only)\nh_stat, kw_p = kruskal(r42, r123, r456n)\nprint(f'\\nKruskal-Wallis (3 NER seeds): H = {h_stat:.4f}, p = {kw_p:.6f}')\n\n# Save results\nos.makedirs('output/review_round8', exist_ok=True)\noutput = {\n    'description': 'Per-instance LP range analysis across 3 freeform seeds',\n    'seeds': results,\n    'statistical_tests': {\n        'mannwhitney_seed456joint_vs_ner_pool': {'U': float(u_stat), 'p': float(p_val)},\n        'mannwhitney_seed456ner_vs_ner_pool': {'U': float(u2), 'p': float(p2)},\n        'kruskal_wallis_3ner_seeds': {'H': float(h_stat), 'p': float(kw_p)},\n    },\n    'relative_diff_pct': {\n        'seed456_joint_vs_avg_ner': float(abs(c456j - avg_ner) / avg_ner * 100),\n        'seed456_ner_vs_avg_ner': float(abs(c456n - avg_ner) / avg_ner * 100),\n    }\n}\nwith open('output/review_round8/r8w4_lp_range_analysis.json', 'w') as f:\n    json.dump(output, f, indent=2)\nprint('\\nSaved to output/review_round8/r8w4_lp_range_analysis.json')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json, numpy as np, os\n\ndirs = {\n    'seed42_ner': 'output/exp_001_seed42_v2/samples.jsonl',\n    'seed123_ner': 'output/exp_001_seed123_v2/samples.jsonl',\n    'seed456_joint': 'output/exp_001_seed456_v2/samples.jsonl',\n    'seed456_ner': 'output/exp_001_seed456_v2_ner/samples.jsonl',\n}\n\nresults = {}\nfor name, path in dirs.items():\n    cum_ranges = []\n    mean_ranges = []\n    n_samples_list = []\n    with open(path) as f:\n        for line in f:\n            d = json.loads(line)\n            samples = d['samples']\n            cum_lps = [s['cumulative_logprob'] for s in samples]\n            mean_lps = [s['mean_logprob'] for s in samples]\n            n_samples_list.append(len(samples))\n            if len(cum_lps) >= 2:\n                cum_ranges.append(max(cum_lps) - min(cum_lps))\n                mean_ranges.append(max(mean_lps) - min(mean_lps))\n    cum_ranges = np.array(cum_ranges)\n    mean_ranges = np.array(mean_ranges)\n    results[name] = {\n        'n_instances': len(cum_ranges),\n        'n_samples_per_instance': int(np.median(n_samples_list)),\n        'cumulative_lp_range': {\n            'median': float(np.median(cum_ranges)),\n            'q25': float(np.percentile(cum_ranges, 25)),\n            'q75': float(np.percentile(cum_ranges, 75)),\n            'iqr': float(np.percentile(cum_ranges, 75) - np.percentile(cum_ranges, 25)),\n            'mean': float(np.mean(cum_ranges)),\n            'std': float(np.std(cum_ranges)),\n        },\n        'mean_lp_range': {\n            'median': float(np.median(mean_ranges)),\n            'q25': float(np.percentile(mean_ranges, 25)),\n            'q75': float(np.percentile(mean_ranges, 75)),\n            'iqr': float(np.percentile(mean_ranges, 75) - np.percentile(mean_ranges, 25)),\n            'mean': float(np.mean(mean_ranges)),\n            'std': float(np.std(mean_ranges)),\n        },\n    }\n\n# Print table\nprint('=== Cumulative LP Range (per-instance max-min of sequence log prob) ===')\nprint(f'{\\\"Seed\\\":<18} {\\\"Subtask\\\":<8} {\\\"N\\\":<5} {\\\"Median\\\":<12} {\\\"IQR\\\":<16} {\\\"Mean±Std\\\":<20}')\nprint('-' * 80)\nfor name, r in results.items():\n    c = r['cumulative_lp_range']\n    seed_label = name.split('_')[0]\n    subtask = 'joint' if 'joint' in name else 'ner'\n    print(f'{name:<18} {subtask:<8} {r[\\\"n_instances\\\"]:<5} {c[\\\"median\\\"]:<12.4f} [{c[\\\"q25\\\"]:.4f}, {c[\\\"q75\\\"]:.4f}] {c[\\\"mean\\\"]:.4f}±{c[\\\"std\\\"]:.4f}')\n\nprint()\nprint('=== Mean LP Range (per-instance max-min of mean log prob) ===')\nprint(f'{\\\"Seed\\\":<18} {\\\"Subtask\\\":<8} {\\\"N\\\":<5} {\\\"Median\\\":<12} {\\\"IQR\\\":<16} {\\\"Mean±Std\\\":<20}')\nprint('-' * 80)\nfor name, r in results.items():\n    c = r['mean_lp_range']\n    seed_label = name.split('_')[0]\n    subtask = 'joint' if 'joint' in name else 'ner'\n    print(f'{name:<18} {subtask:<8} {r[\\\"n_instances\\\"]:<5} {c[\\\"median\\\"]:<12.6f} [{c[\\\"q25\\\"]:.6f}, {c[\\\"q75\\\"]:.6f}] {c[\\\"mean\\\"]:.6f}±{c[\\\"std\\\"]:.6f}')\n\n# Relative difference: seed456_joint vs avg of seed42/123\nc42 = results['seed42_ner']['cumulative_lp_range']['median']\nc123 = results['seed123_ner']['cumulative_lp_range']['median']\nc456j = results['seed456_joint']['cumulative_lp_range']['median']\nc456n = results['seed456_ner']['cumulative_lp_range']['median']\navg_ner = (c42 + c123) / 2\nprint(f'\\n=== Relative Difference ===')\nprint(f'Avg NER median (s42,s123): {avg_ner:.4f}')\nprint(f'seed456 joint median:      {c456j:.4f}  -> relative diff = {abs(c456j - avg_ner) / avg_ner * 100:.1f}%')\nprint(f'seed456 ner median:        {c456n:.4f}  -> relative diff = {abs(c456n - avg_ner) / avg_ner * 100:.1f}%')\n\n# Mann-Whitney U test: seed456_joint vs pool of seed42+seed123\nfrom scipy.stats import mannwhitneyu, kruskal\nwith open(dirs['seed42_ner']) as f:\n    r42 = []\n    for line in f:\n        d = json.loads(line)\n        lps = [s['cumulative_logprob'] for s in d['samples']]\n        if len(lps) >= 2: r42.append(max(lps) - min(lps))\nwith open(dirs['seed123_ner']) as f:\n    r123 = []\n    for line in f:\n        d = json.loads(line)\n        lps = [s['cumulative_logprob'] for s in d['samples']]\n        if len(lps) >= 2: r123.append(max(lps) - min(lps))\nwith open(dirs['seed456_joint']) as f:\n    r456j = []\n    for line in f:\n        d = json.loads(line)\n        lps = [s['cumulative_logprob'] for s in d['samples']]\n        if len(lps) >= 2: r456j.append(max(lps) - min(lps))\nwith open(dirs['seed456_ner']) as f:\n    r456n = []\n    for line in f:\n        d = json.loads(line)\n        lps = [s['cumulative_logprob'] for s in d['samples']]\n        if len(lps) >= 2: r456n.append(max(lps) - min(lps))\n\nner_pool = r42 + r123\nu_stat, p_val = mannwhitneyu(r456j, ner_pool, alternative='two-sided')\nprint(f'\\nMann-Whitney U test (seed456_joint vs pool of s42+s123 NER):')\nprint(f'  U = {u_stat:.1f}, p = {p_val:.6f}')\n\nu2, p2 = mannwhitneyu(r456n, ner_pool, alternative='two-sided')\nprint(f'Mann-Whitney U test (seed456_ner vs pool of s42+s123 NER):')\nprint(f'  U = {u2:.1f}, p = {p2:.6f}')\n\n# Kruskal-Wallis across all 3 seeds (NER only)\nh_stat, kw_p = kruskal(r42, r123, r456n)\nprint(f'\\nKruskal-Wallis (3 NER seeds): H = {h_stat:.4f}, p = {kw_p:.6f}')\n\n# Save results\nos.makedirs('output/review_round8', exist_ok=True)\noutput = {\n    'description': 'Per-instance LP range analysis across 3 freeform seeds',\n    'seeds': results,\n    'statistical_tests': {\n        'mannwhitney_seed456joint_vs_ner_pool': {'U': float(u_stat), 'p': float(p_val)},\n        'mannwhitney_seed456ner_vs_ner_pool': {'U': float(u2), 'p': float(p2)},\n        'kruskal_wallis_3ner_seeds': {'H': float(h_stat), 'p': float(kw_p)},\n    },\n    'relative_diff_pct': {\n        'seed456_joint_vs_avg_ner': float(abs(c456j - avg_ner) / avg_ner * 100),\n        'seed456_ner_vs_avg_ner': float(abs(c456n - avg_ner) / avg_ner * 100),\n    }\n}\nwith open('output/review_round8/r8w4_lp_range_analysis.json', 'w') as f:\n    json.dump(output, f, indent=2)\nprint('\\nSaved to output/review_round8/r8w4_lp_range_analysis.json')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T22:17:19.714872+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Cumulative LP Range (per-instance max-min of sequence log prob) ===\\nSeed               Subtask  N     Median       IQR              Mean±Std            \\n--------------------------------------------------------------------------------\\nseed42_ner         ner      551   8.1946       [5.7639, 11.2813] 8.9115±4.5811\\nseed123_ner        ner      551   8.2111       [6.1605, 11.4279] 9.1452±4.7082\\nseed456_joint      joint    551   8.3672       [6.0002, 11.5137] 9.2145±4.7806\\nseed456_ner        ner      551   8.1411       [5.7036, 11.4220] 8.8110±4.3854\\n\\n=== Mean LP Range (per-instance max-min of mean log prob) ===\\nSeed               Subtask  N     Median       IQR              Mean±Std            \\n--------------------------------------------------------------------------------\\nseed42_ner         ner      551   0.054767     [0.036830, 0.098993] 0.076519±0.062653\\nseed123_ner        ner      551   0.060832     [0.036196, 0.103828] 0.079871±0.065323\\nseed456_joint      joint    551   0.058670     [0.035934, 0.101015] 0.077602±0.058962\\nseed456_ner        ner      551   0.059091     [0.035551, 0.104621] 0.081399±0.068998\\n\\n=== Relative Difference ===\\nAvg NER median (s42,s123): 8.2029\\nseed456 joint median:      8.3672  -> relative diff = 2.0%\\nseed456 ner median:        8.1411  -> relative diff = 0.8%\\n\\nMann-Whitney U test (seed456_joint vs pool of s42+s123 NER):\\n  U = 309052.0, p = 0.551316\\nMann-Whitney U test (seed456_ner vs pool of s42+s123 NER):\\n  U = 296559.0, p = 0.441478\\n\\nKruskal-Wallis (3 NER seeds): H = 1.4609, p = 0.481688\\n\\nSaved to output/review_round8/r8w4_lp_range_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.56}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-15T22:17:19.715196+00:00_
+
+分析完成。结果：
+
+### LP Range 分析（Cumulative Log Prob）
+
+| Seed | Subtask | N | Median LP Range | IQR | Mean±Std |
+|------|---------|---|-----------------|-----|----------|
+| 42 | ner | 551 | 8.1946 | [5.76, 11.28] | 8.91±4.58 |
+| 123 | ner | 551 | 8.2111 | [6.16, 11.43] | 9.15±4.71 |
+| 456 | **joint** | 551 | 8.3672 | [6.00, 11.51] | 9.21±4.78 |
+| 456 | ner | 551 | 8.1411 | [5.70, 11.42] | 8.81±4.39 |
+
+### 结论
+
+- Seed 456 (joint) 与 seed 42/123 (ner) 的 LP range **无显著差异**：
+  - 相对差异仅 **2.0%**（远低于 10% 阈值）
+  - Mann-Whitney U 检验 p = 0.551（不显著）
+- Mean LP range 也几乎一致（各 seed 的 median 都在 0.054–0.061 之间）
+- 额外对照：seed 456 的 NER-only 重跑版本与 joint 版本 LP range 也基本一致
+- Kruskal-Wallis 三组 NER seeds 检验 p = 0.482（三组间无差异）
+
+**Joint decoding 未改变 LP range 分布，种子间可比。**
+
+结果已保存到 `output/review_round8/r8w4_lp_range_analysis.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_r8w4_lp_range_20260515T221454"
+}
+```
+
+</details>
+
+---

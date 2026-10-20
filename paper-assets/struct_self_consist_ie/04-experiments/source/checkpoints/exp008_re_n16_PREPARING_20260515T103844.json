@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp008_re_n16",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:09:50.987Z",
+    "updated_at": "2026-05-15T10:38:44.272Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && mkdir -p output/exp008_re_n16 && CUDA_VISIBLE_DEVICES=2 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 42 --output_dir output/exp008_re_n16 --collect_logprobs 2>&1 | tee output/exp008_re_n16/run.log\"",
+      "server": "gpu-5090-4x-2",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "53600",
+      "log_path": "~/runs/struct_self_consist_ie/exp008_re_n16.log",
+      "submitted_at": "2026-05-14T12:15:14.917Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "failure_reason": "Superseded by exp_008_re_n16_v2 (full 551-instance run on autodl-5090)"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T10:38:44.449515+00:00",
+  "trigger": "update_registry"
+}

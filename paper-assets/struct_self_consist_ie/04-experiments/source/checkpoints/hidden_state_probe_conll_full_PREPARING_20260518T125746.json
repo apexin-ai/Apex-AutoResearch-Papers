@@ -1,0 +1,15 @@
+{
+  "exp_id": "hidden_state_probe_conll_full",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T12:57:45.711Z",
+    "updated_at": "2026-05-18T12:57:45.711Z",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-18T12:57:46.349218+00:00",
+  "trigger": "update_registry"
+}

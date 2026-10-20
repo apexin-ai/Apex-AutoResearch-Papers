@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp_freeform_ablation",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:42:22.868Z",
+    "updated_at": "2026-05-15T09:59:49.511Z",
+    "spec": {
+      "command": "python run_freeform_inference.py --seed 42 --num_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir results/exp_freeform_ablation",
+      "server": "autodl-5090",
+      "gpu": "cuda:0",
+      "pid": "169042",
+      "log_path": "~/runs/struct_self_consist_ie/exp_freeform_ablation.log",
+      "submitted_at": "2026-05-15T09:42:30.236Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "hypothesis": "Free-form decoding recovers logprob variance and selection ability lost under constrained decoding",
+      "plan_id": "exp-018",
+      "data_path": "data/scierc/processed_data",
+      "data_count": 551,
+      "model_name": "qwen3-8b-scierc-merged-v2",
+      "seed": 42,
+      "tmux_session": "exp_freeform_ablation"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-15T09:59:49.686658+00:00",
+  "trigger": "update_registry"
+}

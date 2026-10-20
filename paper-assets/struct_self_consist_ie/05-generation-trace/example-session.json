@@ -1,0 +1,191 @@
+{
+  "schema_version": "1.0",
+  "id": "10f9b11cfb796c495677",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "feishu dm oc 4206a99c0a8b5482c9bbd8f23ccc03f0 briefer",
+  "task_key": "feishu_dm_oc_4206a99c0a8b5482c9bbd8f23ccc03f0_briefer",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/feishu_dm_oc_4206a99c0a8b5482c9bbd8f23ccc03f0_briefer.jsonl",
+    "occurrence": 1,
+    "bytes": 94365,
+    "sha256": "97f1278b7f26482c2871d3ba0354f88eafe6e7f8eef2d4127cf5a808a119a145"
+  },
+  "readable_path": "readable/conversations/feishu-dm-oc-4206a99c0a8b5482c9bbd8f23ccc03f0-briefer.md",
+  "paper_title": "When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap",
+  "preview_selection": {
+    "round": 1,
+    "total_source_events": 84,
+    "policy": "First bounded recorded conversation round with user, assistant, tool call, and tool result; 5–70 events and under 160 KB. Not a scientific-quality ranking."
+  },
+  "statistics": {
+    "messages": 8,
+    "user_turns": 1,
+    "tool_calls": 3,
+    "roles": {
+      "user": 1,
+      "tool_call": 3,
+      "tool_result": 3,
+      "assistant": 1
+    }
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T10:18:35.164801+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[飞书用户 曹晓玉 (ou_a16092efd8df34ed21dd488ada1e8840)]: 这项目初始idea是讲什么的，用大白话和我讲清楚"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:dm:oc_4206a99c0a8b5482c9bbd8f23ccc03f0:briefer",
+            "source": "feishu:oc_4206a99c0a8b5482c9bbd8f23ccc03f0"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T10:18:42.136327+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:dm:oc_4206a99c0a8b5482c9bbd8f23ccc03f0:briefer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T10:18:42.799820+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:dm:oc_4206a99c0a8b5482c9bbd8f23ccc03f0:briefer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 663
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T10:18:45.813935+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:dm:oc_4206a99c0a8b5482c9bbd8f23ccc03f0:briefer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "file": "memory.md"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T10:18:46.469741+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\\\", \\\"content\\\": \\\"# Memory — struct_self_consist_ie\\\\n\\\\n## 经验教训\\\\n\\\\n### Offset hallucination\\\\nFine-tuned generative IE 模型输出正确 entity text 但 hallucinate character offsets（准确率仅 16.7%）。必须用 span realignment 后处理修复。\\\\n\\\\n### Qwen3 think block vs XGrammar\\\\nQwen3 默认输出 `<think>...</think>` 再接 JSON，但 XGrammar 强制 `{` 为第一个 token。必须在 `apply_chat_template` 中设 `enable_thinking=False`。\\\\n\\\\n### Train/inference prompt alignment\\\\n训练用 unified template \\\\\\\"Extract all structured information...\\\\\\\"，推理必须用完全一致的 template + schema hints。不对齐会导致模型不识别指令。\\\\n\\\\n### Parse failures from max_tokens truncation\\\\nmax_tokens=512 导致 3.7% parse failures。max_tokens=1024 完全消除（0/4408）。\\\\n\\\\n### submit_training_job 需要 tmux\\\\nAutoDL 5090 服务器默认无 tmux。已安装 tmux 3.2a。\\\\n\\\\n### OOM 修复：batch_size + gradient_checkpointing\\\\nQwen3-8B LoRA r=32 在 RTX 5090 32GB 上 batch_size=4 会 OOM。修复：batch_size=2 + gradient_accumulation_steps=8 + gradient_checkpointing=true。\\\\n\\\\n### vLLM 不能直接加载 LoRA adapter\\\\nvLLM 需要 merged model（有 config.json），必须先 LLaMA Factory export 合并。\\\\n\\\\n### 训练配置必须保留 best checkpoint\\\\nft_002_v2 的 best eval checkpoint 被 save_total_limit=3 删掉了。未来需 save_total_limit≥5 + load_best_model_at_end=true。\\\\n\\\\n### E1 否定乘性惩罚假说——RE SJ 问题是根本性的 (2026-05-14)\\\\n- head_sj ρ=0.210 **远低于** NER ρ_sj=0.383（Δ=-0.173）\\\\n- 每个 component 单独都比乘性组合差——乘法在帮忙不在伤害\\\\n- additive fix 无效（差 0.001）\\\\n- 根因：span-level SJ 对 RE 根本缺乏区分力，不是公式问题\\\\n- 方案 B（度量分解）排除，走方案 A（NER-primary + RE 诊断）\\\\n\\\\n### SJ vs κ 在 NER 和 RE 上表现不对称——核心发现 (2026-05-14)\\\\n- **NER**: SJ 一致显著优于 κ（p=7e-20），ρ_sj 稳定 0.36-0.39\\\\n- **RE**: SJ ρ_sj 锁死 ~0.24，模型质量和温度调参均未改善\\\\n\\\\n### T=0.7 vs T=1.0 效果 (2026-05-14, pilot_005 vs pilot_004)\\\\n- **NER**: ρ_sj 略升 0.383→0.388，无显著影响\\\\n- **RE full**: ρ_sj 反而下降 0.244→0.234（更差）\\\\n- **RE cond**: ρ_sj 显著提升 0.316→0.372（+0.056），SJ>FK 在 full set 也恢复\\\\n- RE pct_zero 几乎不变 44.3→42.4%：zero 的根因是模型能力不是温度\\\\n- Oracle hea\n…[truncated 1183 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:dm:oc_4206a99c0a8b5482c9bbd8f23ccc03f0:briefer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 655
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T10:18:46.470079+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:dm:oc_4206a99c0a8b5482c9bbd8f23ccc03f0:briefer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T10:18:47.138311+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md\\\", \\\"content\\\": \\\"# struct_self_consist_ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 09:34 UTC | 更新原因: MVP 完成，进入 Research 阶段。Narrative A 确定，framing + plan + dream 已触发。\\\\n\\\\n## 核心方向\\\\nStructural self-consistency (soft Jaccard) 作为 IE test-time scaling 的置信度信号。核心发现：entity-level (NER) 上 SJ 显著优于 surface agreement (FK)，但 relational tasks (RE) 因复合错误传播导致信号退化——建立了 consistency-based TTS 的任务复杂度边界。详见 paper_framing.md。\\\\n\\\\n## 当前阶段\\\\n**Research 阶段** — MVP 已完成（2026-05-14），假设部分验证。走 Narrative A：NER-primary + RE diagnostic。\\\\n\\\\n### MVP 结论\\\\n- NER: rho_sj=0.388, SJ>FK +12pp (p=2e-20) → **PASS**\\\\n- RE full: rho_sj=0.234 < 0.30 → **FAIL**\\\\n- RE conditional: rho_sj=0.372, SJ>FK +11.8pp → 强信号（capability-range 内有效）\\\\n- E1 度量分解：乘性假设 REJECTED，RE weakness 是固有属性非设计问题\\\\n\\\\n## 实验计划\\\\n详见 experiment_plan.yaml。覆盖率用 `compute_coverage_matrix()` 查询。\\\\n\\\\n| 优先级 | GPU 预算 | 实验数 | 状态 |\\\\n|--------|---------|--------|------|\\\\n| P0 | 24h | 5 (exp-001~005) | 待 dream 审批 |\\\\n| P1 | 27h | 4 (exp-006~009) | 计划中 |\\\\n| P2 | 5h | 2 (exp-010~011) | 备选 |\\\\n\\\\nP0 关键实验：NER N=16 (exp-001) + CoNLL-2003 (exp-002) + OntoNotes (exp-003) + RE 诊断分析 (exp-004) + 温度敏感性分析 (exp-005)\\\\n\\\\n## 近期任务\\\\n- [x] MVP 验证完成 → complete_mvp()\\\\n- [x] 写 paper_framing.md (Narrative A: NER-primary + RE diagnostic)\\\\n- [x] 写 experiment_plan.yaml (P0/P1/P2 共 11 个实验)\\\\n- [x] 触发 dream_simulate (dream_20260514T093336, full review)\\\\n- [ ] 等待 Dream 完成回调 → 审阅模拟审稿 → 决定是否调整 framing/plan\\\\n- [ ] Dream 通过后批准 P0 实验（exp-001~005 可并行）\\\\n- [ ] Agent 准备 E3 N=16 代码 + E4 多数据集数据调研（进行中）\\\\n- [ ] 更新 pilot_005 registry 为 DONE\\\\n\\\\n## GPU 预算\\\\nautodl-5090: 4× RTX 5090 32GB + gpu-5090-4x-2: 4× RTX 5090 32GB = 8 卡\\\\n当前全部空闲（等待 dream 审批后启动 P0 实验）。\\\\nP0 全量 ~24 GPU-hours，8 卡并行 < 1 天可完成。\\\\n\\\\n## 时间线\\\\n- **目标**: EMNLP 2026 via ARR May, DDL **2026-05-25**（距今 11 天）\\\\n- 备选: ARR August 2026 (2026-08-03)\\\\n- P0 实验: 1-2 天 | 论文写作: 2-3 天 \n…[truncated 1154 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:dm:oc_4206a99c0a8b5482c9bbd8f23ccc03f0:briefer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 668
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T10:19:06.108322+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "大白话版：\n\n**问题**：让大模型做信息抽取（从文本里抠出人名、地名、关系之类的结构化信息）时，模型有时对，有时错。你怎么知道它这次的回答靠不靠谱？\n\n**核心思路**：同一个问题，让模型回答好多遍（比如 8 次、16 次）。如果每次回答的结构高度一致——抠出来的实体、关系都差不多——那大概率是对的；如果每次都不一样，那大概率是瞎猜的。\n\n**关键创新点**：怎么衡量\"多次回答之间的一致性\"？传统方法（比如 Fleiss' Kappa）只看表面文本是否相同。这个项目提出用 **Soft Jaccard（结构化软交集）** 来衡量，它能理解结构层面的相似度，比如两次抽出的实体虽然边界差一两个字符，但本质上是同一个东西。\n\n**已验证的结论**：\n- **实体识别（NER）上效果很好**：Soft Jaccard 的一致性分数和实际准确率的相关性显著优于传统方法（+12个百分点），验证通过。\n- **关系抽取（RE）上不行**：因为关系抽取本身比实体识别复杂得多（错误会层层传播），一致性信号在这类任务上退化了。\n\n所以这篇论文的故事是：**结构化自一致性在简单任务上是很好的置信度信号，但存在任务复杂度的边界**——这本身就是一个有价值的研究发现。目标投 EMNLP 2026。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:dm:oc_4206a99c0a8b5482c9bbd8f23ccc03f0:briefer"
+          },
+          "id": "event-000008"
+        }
+      ],
+      "message_count": 8
+    }
+  ]
+}

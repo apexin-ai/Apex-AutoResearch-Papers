@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_vc_lp_cascade_selection",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T04:44:02.658Z",
+    "updated_at": "2026-05-16T04:44:02.658Z"
+  },
+  "timestamp": "2026-05-16T04:44:02.863439+00:00",
+  "trigger": "update_registry"
+}

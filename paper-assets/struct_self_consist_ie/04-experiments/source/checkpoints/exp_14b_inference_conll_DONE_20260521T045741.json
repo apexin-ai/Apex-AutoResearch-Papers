@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp_14b_inference_conll",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:36:26.315Z",
+    "updated_at": "2026-05-21T04:57:40.651Z",
+    "hypothesis": "14B Qwen2.5 inference on CoNLL (N∈{1,2,4,8}): filling scale curve between 8B (greedy F1=0.907) and 32B. Tests whether 14B shows intermediate behavior in SC diagnostic metrics.",
+    "reproduce": {
+      "finished_at": "2026-05-20T14:49:00.238Z"
+    },
+    "failure_reason": "Director ordered kill: cross-domain 14B inference deemed valueless by Reviewer. Only FewNERD 14B inference retained.",
+    "conclusion": "killed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T14:49:09.529266+00:00"
+        }
+      ]
+    },
+    "server": "autodl-5090-c",
+    "gpu": "cuda:1",
+    "spec": {
+      "server": "autodl-5090-c",
+      "gpu": "cuda:1",
+      "pid": 278145,
+      "model_name": "Qwen2.5-14B-Instruct (base)",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/conll2003/",
+      "data_count": 3453,
+      "seed": 42,
+      "command": "python -u code/run_mvp_pilot.py --model_path Qwen/Qwen2.5-14B-Instruct --data_dir data/conll2003/ --dataset conll2003 --n_samples 8 --temperature 1.0 --seed 42 --enforce_eager --output_dir output/14b_base_inference/conll2003_n1/",
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/logs/14b_conll_inference.log"
+    },
+    "completed_at": "2026-05-21T04:57:40.651Z"
+  },
+  "timestamp": "2026-05-21T04:57:41.095267+00:00",
+  "trigger": "update_registry"
+}

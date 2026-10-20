@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp_a2_degen_regression",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:13:37.615Z",
+    "updated_at": "2026-05-20T10:13:55.891Z",
+    "hypothesis": "Degeneracy rate is primarily driven by task difficulty (dataset entropy ceiling) rather than model capability, with a positive correlation between base F1 and degeneracy — easy tasks with high F1 produce degenerate outputs because the model has already converged.",
+    "metrics": {
+      "n_points": 30,
+      "linear_r2": 0.414,
+      "quadratic_r2": 0.592,
+      "spearman_rho": 0.519,
+      "spearman_p": 0.0033,
+      "linear_coeff": "degen = 129.5 × F1 - 56.9",
+      "key_finding": "degeneracy driven by dataset difficulty (entropy ceiling), not model capability"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T10:13:56.233428+00:00",
+  "trigger": "update_registry"
+}

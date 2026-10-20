@@ -1,0 +1,57 @@
+{
+  "exp_id": "exp_qwen25_72b_zeroshot",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-19T06:19:28.597Z",
+    "updated_at": "2026-05-19T14:25:06.866Z",
+    "hypothesis": "A larger zero-shot model (72B) will show higher greedy F1 and wider oracle-greedy gap than fine-tuned smaller models, because increased capacity enables more diverse valid extractions per stochastic sample, making self-consistency signals (SJ, FK, VC, EM) more informative for quality estimation.",
+    "server": "autodl-5090-b",
+    "gpu": "cuda:0,cuda:1,cuda:2,cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "autodl-5090-b",
+      "gpu": "cuda:0,cuda:1,cuda:2,cuda:3",
+      "started_at": "2026-05-19T06:47:42.658Z",
+      "finished_at": "2026-05-19T14:14:58.577Z",
+      "training_hours": 7.45
+    },
+    "notes": "2026-05-19 12:47 UTC: RECOVERED from false-positive startup recovery failure. 289848/301184 prompts (96.2%). SciERC ✅ (551) CoNLL ✅ (3453) FewNERD ~96%. ETA ~10-15min. PID 59040, 4×5090 100% util. Cron registered.",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-19T12:44:26.198Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "2026-05-19 11:36 UTC: 69.8% complete (210352/301184 prompts). SciERC ✅ CoNLL ✅ FewNERD ~66%. ETA ~1h15m. vLLM PID 59040, 4×5090 100% util."
+      },
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T14:15:08.634709+00:00"
+        }
+      ]
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0,1,2,3 python code/zeroshot_inference_72b.py --datasets scierc conll2003 fewnerd --output-dir output/72b_zeroshot --seed 42",
+      "server": "autodl-5090-b",
+      "data_path": "data/{scierc,conll2003,fewnerd}",
+      "data_count": 41630,
+      "model_name": "Qwen2.5-72B-Instruct-AWQ",
+      "seed": 42,
+      "gpu_ids": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": 59040
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T14:25:07.177407+00:00",
+  "trigger": "update_registry"
+}

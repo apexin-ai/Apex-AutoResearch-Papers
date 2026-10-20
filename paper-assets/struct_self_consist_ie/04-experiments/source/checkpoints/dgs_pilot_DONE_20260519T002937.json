@@ -1,0 +1,18 @@
+{
+  "exp_id": "dgs_pilot",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T17:56:04.572Z",
+    "updated_at": "2026-05-19T00:29:37.275Z",
+    "hypothesis": "Degeneracy-Gated Selection (DGS) validates Two-Condition Theory: using degeneracy rate as gating mechanism to switch between greedy (degenerate) and LP selection (non-degenerate), the improvement direction should follow a monotonic gradient — low degeneracy yields positive delta, high degeneracy yields negative delta.",
+    "conclusion": "killed",
+    "notes": "D154: DGS demoted to explored heuristic, cross-model direction contradiction (D152)",
+    "completed_at": "2026-05-19T00:29:37.275Z"
+  },
+  "timestamp": "2026-05-19T00:29:37.655036+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp_e2_pretrained_fewnerd_s456",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T14:22:41.214Z",
+    "updated_at": "2026-05-21T19:11:49.650Z",
+    "hypothesis": "E2 pre-trained baseline FewNERD seed=456: third seed for pretrained Qwen2.5-7B-Instruct on FewNERD SC pipeline. Completes 3-seed set for statistical power on whether correlation-selection gap is model-intrinsic.",
+    "spec": {
+      "command": "python -u code/run_mvp_pilot.py --model_path Qwen2.5-7B-Instruct --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/e2_pretrained_fewnerd_s456/",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "47635",
+      "data_path": "data/fewnerd/processed_data/",
+      "data_count": 37648,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 456,
+      "backend": "tmux",
+      "note": "Server corrected from 5090-c to 5090 per Director. 82% complete at 18:20 UTC."
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T19:11:45.977Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-21T19:11:49.650Z"
+  },
+  "timestamp": "2026-05-21T19:11:50.141479+00:00",
+  "trigger": "update_registry"
+}

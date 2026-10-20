@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp_e2_pretrained_fewnerd",
+  "project": "struct_self_consist_ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T05:52:06.559Z",
+    "updated_at": "2026-05-21T12:34:33.284Z",
+    "hypothesis": "E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on FewNERD SC pipeline N=8 T=1.0. Tests whether correlation-selection gap exists without task-specific fine-tuning. If gap persists → phenomenon is model-intrinsic, not fine-tuning artifact.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2___5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_fewnerd/\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "8406",
+      "log_path": "~/runs/struct_self_consist_ie/exp_e2_pretrained_fewnerd.log",
+      "submitted_at": "2026-05-21T06:59:29.791Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/fewnerd/",
+      "data_count": 37648,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "pretrained_base",
+      "eval_data": "fewnerd"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T12:34:32.119Z"
+    }
+  },
+  "timestamp": "2026-05-21T12:34:33.885742+00:00",
+  "trigger": "update_registry"
+}

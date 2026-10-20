@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp_007_llama_n16",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:31:44.366Z",
+    "updated_at": "2026-05-14T19:03:27.601Z",
+    "spec": {
+      "hypothesis": "LLaMA SciERC N=16: cross-model N-scaling validation. If SJ rho increases from N=8 (0.363) to N=16, N-scaling is model-agnostic.",
+      "plan_id": "exp-007",
+      "parent": "exp_007_llama_inference",
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=1 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_007_llama_n16",
+      "server": "autodl-5090",
+      "data_path": "data/scierc/processed_data",
+      "data_count": 551,
+      "model_name": "llama3.1-8b-scierc-merged",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/llama3.1-8b-scierc-merged",
+      "eval_data": "data/scierc/processed_data"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T19:03:27.714379+00:00",
+  "trigger": "update_registry"
+}

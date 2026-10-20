@@ -1,0 +1,68 @@
+{
+  "exp_id": "exp_wnut17_qwen25_7b",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:19:33.960Z",
+    "updated_at": "2026-05-19T11:49:07.313Z",
+    "hypothesis": "The correlation-selection gap extends to noisy social media NER (WNUT-17). Unlike formal-domain datasets (SciERC/CoNLL/FewNERD), WNUT-17 has higher surface-level noise which may affect structural signal reliability differently. This tests domain generalization of the diagnostic framework.",
+    "server": "autodl-5090-c",
+    "gpu": "cuda:2,cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "autodl-5090-c",
+      "gpu": "cuda:2,cuda:3",
+      "started_at": "2026-05-19T06:47:45.220Z"
+    },
+    "spec": {
+      "server": "autodl-5090-c",
+      "gpu_ids": [
+        "cuda:2",
+        "cuda:3"
+      ],
+      "command": "bash wait_and_train.sh (screen: exp_wnut17_7b)",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/wnut17/llmfactory_train.json",
+      "data_count": 3404,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "training_config": "train_config_qwen25_7b_wnut17_s42.yaml",
+      "method": "QLoRA 4-bit (bnb nf4), rank=32, alpha=64, all targets",
+      "gpus": "cuda:2,3 (2x5090)",
+      "epochs": 5,
+      "effective_batch_size": 32,
+      "pipeline": "train → export → 3-seed inference (N=8, T=1.0) → signal analysis → entity construction",
+      "checkpoint_source": "self-trained on WNUT-17",
+      "eval_data": "WNUT-17 test set",
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-wnut17-qlora-s42",
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/logs/exp_wnut17_7b_pipeline.log"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "seed42": {
+        "greedy_f1": 0.4524,
+        "construction_f1": 0.4439,
+        "construction_delta_pp": -0.84,
+        "construction_p": 0.95
+      },
+      "seed123": {
+        "greedy_f1": 0.4518,
+        "construction_f1": 0.4579,
+        "construction_delta_pp": 0.61,
+        "construction_p": 0.08
+      },
+      "seed456": {
+        "greedy_f1": 0.4526,
+        "construction_f1": 0.4583,
+        "construction_delta_pp": 0.57,
+        "construction_p": 0.12
+      },
+      "oracle_headroom_pp": "6.3-9.2"
+    },
+    "completed_at": "2026-05-19T11:22:56.623Z"
+  },
+  "timestamp": "2026-05-19T11:49:07.638191+00:00",
+  "trigger": "update_registry"
+}

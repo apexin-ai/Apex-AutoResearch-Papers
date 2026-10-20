@@ -1,0 +1,883 @@
+# analysis r17 lora rank8 lp compression
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 29
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/chats/worker_analysis_r17_lora_rank8_lp_compression_20260517T073317.jsonl`
+- **Structured JSON:** [`d32dcfdff04fc6002fa8.json`](../../sessions/d3/d32dcfdff04fc6002fa8.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+29 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-17T07:36:32.402698+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-17T07:36:32.403030+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T07:36:32.403282+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output -path \"*023*\" -name \"*.jsonl\" | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/output -path \"*023*\" -name \"*.jsonl\" | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-17T07:36:32.403444+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_023_rank8_inference/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T07:36:32.403574+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_023_rank8_inference/samples.jsonl | python3 -m json.tool | head -60",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_023_rank8_inference/samples.jsonl | python3 -m json.tool | head -60",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T07:36:32.403702+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T07:36:32.403823+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/bin/activate && head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_023_rank8_inference/samples.jsonl | python -m json.tool | head -80",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/bin/activate && head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_023_rank8_inference/samples.jsonl | python -m json.tool | head -80",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T07:36:32.404003+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n    \\\"id\\\": \\\"X96-1059_sent000\\\",\\n    \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\",\\n    \\\"gold\\\": {\\n        \\\"entities\\\": [\\n            {\\n                \\\"text\\\": \\\"Recognition of proper nouns\\\",\\n                \\\"type\\\": \\\"Task\\\",\\n                \\\"start\\\": 0,\\n                \\\"end\\\": 27\\n            },\\n            {\\n                \\\"text\\\": \\\"proper nouns\\\",\\n                \\\"type\\\": \\\"OtherScientificTerm\\\",\\n                \\\"start\\\": 15,\\n                \\\"end\\\": 27\\n            },\\n            {\\n                \\\"text\\\": \\\"Japanese text\\\",\\n                \\\"type\\\": \\\"Material\\\",\\n                \\\"start\\\": 31,\\n                \\\"end\\\": 44\\n            },\\n            {\\n                \\\"text\\\": \\\"morphological analysis\\\",\\n                \\\"type\\\": \\\"Task\\\",\\n                \\\"start\\\": 103,\\n                \\\"end\\\": 125\\n            },\\n            {\\n                \\\"text\\\": \\\"Japanese text processing\\\",\\n                \\\"type\\\": \\\"Task\\\",\\n                \\\"start\\\": 129,\\n                \\\"end\\\": 153\\n            }\\n        ],\\n        \\\"relations\\\": [\\n            {\\n                \\\"head\\\": \\\"Recognition of proper nouns\\\",\\n                \\\"tail\\\": \\\"morphological analysis\\\",\\n                \\\"type\\\": \\\"PART-OF\\\",\\n                \\\"head_start\\\": 0,\\n                \\\"head_end\\\": 27,\\n                \\\"tail_start\\\": 103,\\n                \\\"tail_end\\\": 125\\n            },\\n            {\\n                \\\"head\\\": \\\"proper nouns\\\",\\n                \\\"tail\\\": \\\"Japanese text
+…[truncated 1275 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T07:36:32.404187+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/bin/activate && python -c \"\nimport json\nwith open('/root/autodl-tmp/struct_self_consist_ie/output/exp_023_rank8_inference/samples.jsonl') as f:\n    inst = json.loads(f.readline())\nprint('Keys:', list(inst.keys()))\nprint('Num samples:', len(inst['samples']))\ns = inst['samples'][0]\nprint('Sample keys:', list(s.keys()))\nif 'logprob' in s:\n    print('logprob:', s['logprob'])\nelif 'log_prob' in s:\n    print('log_prob:', s['log_prob'])\nelif 'logprobs' in s:\n    print('logprobs type:', type(s['logprobs']))\nelse:\n    # search for any key containing 'log'\n    for k in s.keys():\n        if 'log' in k.lower() or 'prob' in k.lower():\n            print(f'{k}:', str(s[k])[:200])\n    print('All sample keys:', list(s.keys()))\n    print('Sample snippet:', json.dumps(s, indent=2)[:500])\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/bin/activate && python -c \"\nimport json\nwith open('/root/autodl-tmp/struct_self_consist_ie/output/exp_023_rank8_inference/samples.jsonl') as f:\n    inst = json.loads(f.readline())\nprint('Keys:', list(inst.keys()))\nprint('Num samples:', len(inst['samples']))\ns = inst['samples'][0]\nprint('Sample keys:', list(s.keys()))\nif 'logprob' in s:\n    print('logprob:', s['logprob'])\nelif 'log_prob' in s:\n    print('log_prob:', s['log_prob'])\nelif 'logprobs' in s:\n    print('logprobs type:', type(s['logprobs']))\nelse:\n    # search for any key containing 'log'\n    for k in s.keys():\n        if 'log' in k.lower() or 'prob' in k.lower():\n            print(f'{k}:', str(s[k])[:200])\n    print('All sample keys:', list(s.keys()))\n    print('Sample snippet:', json.dumps(s, indent=2)[:500])\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T07:36:32.404356+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Keys: ['id', 'text', 'gold', 'samples', 'greedy', 'logprobs']\\nNum samples: 8\\nSample keys: ['entities', 'relations', 'events', 'cumulative_logprob', 'n_tokens', 'mean_logprob', 'token_logprobs', 'token_texts']\\ncumulative_logprob: -11.762582614468847\\nmean_logprob: -0.06960108055898727\\ntoken_logprobs: [-1.1920928244535389e-07, -1.1920928244535389e-07, -3.576278118089249e-07, -0.0015147175872698426, 0.0, 0.0, -7.152555099310121e-07, -0.20657242834568024, -0.018152419477701187, -1.9311717551317997e-0\\nAll sample keys: ['entities', 'relations', 'events', 'cumulative_logprob', 'n_tokens', 'mean_logprob', 'token_logprobs', 'token_texts']\\nSample snippet: {\\n  \\\"entities\\\": [\\n    {\\n      \\\"text\\\": \\\"Recognition of proper nouns in Japanese text\\\",\\n      \\\"type\\\": \\\"Task\\\",\\n      \\\"start\\\": 0,\\n      \\\"end\\\": 44\\n    },\\n    {\\n      \\\"text\\\": \\\"Japanese text\\\",\\n      \\\"type\\\": \\\"Material\\\",\\n      \\\"start\\\": 31,\\n      \\\"end\\\": 44\\n    },\\n    {\\n      \\\"text\\\": \\\"morphological analysis in Japanese text processing\\\",\\n      \\\"type\\\": \\\"Task\\\",\\n      \\\"start\\\": 103,\\n      \\\"end\\\": 153\\n    }\\n  ],\\n  \\\"relations\\\": [\\n    {\\n      \\\"head\\\": \\\"Recognition of proper nouns in Japanese text\\\",\\n      \\\"tail\\\": \\\"mo\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T07:36:32.404526+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/bin/activate && python -c \"\nimport json\nwith open('/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl') as f:\n    inst = json.loads(f.readline())\nprint('=== exp_012 (SciERC full rank) ===')\nprint('Keys:', list(inst.keys()))\nprint('Num samples:', len(inst['samples']))\ns = inst['samples'][0]\nprint('Sample keys:', list(s.keys()))\nif 'cumulative_logprob' in s:\n    print('cumulative_logprob:', s['cumulative_logprob'])\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/bin/activate && python -c \"\nimport json\nwith open('/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl') as f:\n    inst = json.loads(f.readline())\nprint('=== exp_012 (SciERC full rank) ===')\nprint('Keys:', list(inst.keys()))\nprint('Num samples:', len(inst['samples']))\ns = inst['samples'][0]\nprint('Sample keys:', list(s.keys()))\nif 'cumulative_logprob' in s:\n    print('cumulative_logprob:', s['cumulative_logprob'])\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T07:36:32.404662+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== exp_012 (SciERC full rank) ===\\nKeys: ['id', 'text', 'gold', 'samples', 'greedy', 'logprobs']\\nNum samples: 8\\nSample keys: ['entities', 'relations', 'events', 'cumulative_logprob', 'n_tokens', 'mean_logprob']\\ncumulative_logprob: -5.878218486708363\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-17T07:36:32.404787+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/bin/activate && python -c \"\nimport json\nwith open('/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/sampled_results.jsonl') as f:\n    inst = json.loads(f.readline())\nprint('=== exp_021 (Few-NERD) ===')\nprint('Keys:', list(inst.keys()))\nprint('Num samples:', len(inst['samples']))\ns = inst['samples'][0]\nprint('Sample keys:', list(s.keys()))\nif 'cumulative_logprob' in s:\n    print('cumulative_logprob:', s['cumulative_logprob'])\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/bin/activate && python -c \"\nimport json\nwith open('/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/sampled_results.jsonl') as f:\n    inst = json.loads(f.readline())\nprint('=== exp_021 (Few-NERD) ===')\nprint('Keys:', list(inst.keys()))\nprint('Num samples:', len(inst['samples']))\ns = inst['samples'][0]\nprint('Sample keys:', list(s.keys()))\nif 'cumulative_logprob' in s:\n    print('cumulative_logprob:', s['cumulative_logprob'])\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T07:36:32.404926+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/bin/activate && python -c \\\"\\\\nimport json\\\\nwith open(\\\\'/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/sampled_results.jsonl\\\\') as f:\\\\n    inst = json.loads(f.readline())\\\\nprint(\\\\'=== exp_021 (Few-NERD) ===\\\\')\\\\nprint(\\\\'Keys:\\\\', list(inst.keys()))\\\\nprint(\\\\'Num samples:\\\\', len(inst[\\\\'samples\\\\']))\\\\ns = inst[\\\\'samples\\\\'][0]\\\\nprint(\\\\'Sample keys:\\\\', list(s.keys()))\\\\nif \\\\'cumulative_logprob\\\\' in s:\\\\n    print(\\\\'cumulative_logprob:\\\\', s[\\\\'cumulative_logprob\\\\'])\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 3, in &lt;module>\\nFileNotFoundError: [Errno 2] No such file or directory: '/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/sampled_results.jsonl'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T07:36:32.405068+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output -path \"*021*\" -name \"*.jsonl\" | head -10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/output -path \"*021*\" -name \"*.jsonl\" | head -10",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T07:36:32.405224+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_full/trainer_log.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_0/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_1/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/shard_3/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-17T07:36:32.405350+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/bin/activate && python -c \"\nimport json\nwith open('/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl') as f:\n    inst = json.loads(f.readline())\nprint('=== exp_021 (Few-NERD) ===')\nprint('Keys:', list(inst.keys()))\nprint('Num samples:', len(inst['samples']))\ns = inst['samples'][0]\nprint('Sample keys:', list(s.keys()))\nif 'cumulative_logprob' in s:\n    print('cumulative_logprob:', s['cumulative_logprob'])\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/bin/activate && python -c \"\nimport json\nwith open('/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl') as f:\n    inst = json.loads(f.readline())\nprint('=== exp_021 (Few-NERD) ===')\nprint('Keys:', list(inst.keys()))\nprint('Num samples:', len(inst['samples']))\ns = inst['samples'][0]\nprint('Sample keys:', list(s.keys()))\nif 'cumulative_logprob' in s:\n    print('cumulative_logprob:', s['cumulative_logprob'])\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T07:36:32.405476+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== exp_021 (Few-NERD) ===\\nKeys: ['id', 'text', 'gold', 'samples', 'greedy', 'logprobs']\\nNum samples: 8\\nSample keys: ['entities', 'relations', 'events', 'cumulative_logprob', 'n_tokens', 'mean_logprob', 'token_logprobs', 'token_texts']\\ncumulative_logprob: -1.4693292819552966\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-17T07:36:32.405629+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/bin/activate && python -c \"\nimport json\n# Check instance counts\nfor path, name in [\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_023_rank8_inference/samples.jsonl', 'exp_023 rank8'),\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl', 'exp_012 full'),\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl', 'exp_021 fewnerd'),\n]:\n    with open(path) as f:\n        n = sum(1 for _ in f)\n    print(f'{name}: {n} instances')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/bin/activate && python -c \"\nimport json\n# Check instance counts\nfor path, name in [\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_023_rank8_inference/samples.jsonl', 'exp_023 rank8'),\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl', 'exp_012 full'),\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl', 'exp_021 fewnerd'),\n]:\n    with open(path) as f:\n        n = sum(1 for _ in f)\n    print(f'{name}: {n} instances')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T07:36:32.405760+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp_023 rank8: 551 instances\\nexp_012 full: 551 instances\\nexp_021 fewnerd: 37648 instances\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.96}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-17T07:36:32.405900+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/bin/activate && cat << 'SCRIPT' > /root/autodl-tmp/struct_self_consist_ie/analyze_lp_compression.py\nimport json\nimport numpy as np\nfrom scipy.stats import spearmanr\nimport os\n\ndef entity_key_set(sample):\n    \"\"\"Extract frozenset of (text, type, start, end) tuples for entities.\"\"\"\n    entities = sample.get('entities', [])\n    return frozenset((e['text'], e['type'], e['start'], e['end']) for e in entities)\n\ndef compute_entity_f1(pred_entities, gold_entities):\n    \"\"\"Compute entity-level micro F1.\"\"\"\n    pred_set = set((e['text'], e['type'], e['start'], e['end']) for e in pred_entities)\n    gold_set = set((e['text'], e['type'], e['start'], e['end']) for e in gold_entities)\n    \n    if len(pred_set) == 0 and len(gold_set) == 0:\n        return 1.0\n    if len(pred_set) == 0 or len(gold_set) == 0:\n        return 0.0\n    \n    tp = len(pred_set & gold_set)\n    precision = tp / len(pred_set) if pred_set else 0.0\n    recall = tp / len(gold_set) if gold_set else 0.0\n    \n    if precision + recall == 0:\n        return 0.0\n    return 2 * precision * recall / (precision + recall)\n\ndef analyze_dataset(filepath, dataset_name, max_instances=None):\n    \"\"\"Analyze LP compression for one dataset.\"\"\"\n    data = []\n    with open(filepath) as f:\n        for i, line in enumerate(f):\n            if max_instances and i >= max_instances:\n                break\n            data.append(json.loads(line))\n    \n    lp_ranges = []\n    within_rhos = []\n    degen_count = 0\n    total = len(data)\n    \n    for inst in data:\n        gold_entities = inst['gold']['entities']\n        samples = inst['samples']\n        \n        # Extract per-sample logprobs and F1s\n        lps = [s['cumulative_logprob'] for s in samples]\n        f1s = [compute_entity_f1(s.get('entities', []), gold_entities) for s in samples]\n        \n        # LP range\n        lp_range = max(lps) - min(lps)\n        lp_ranges.append(lp_range)\n        \n        # Check degeneracy: all samples produce same entity set\n        key_sets = [entity_key_set(s) for s in samples]\n        unique_key_sets = len(set(key_sets))\n        \n        if unique_key_sets <= 1:\n            degen_count += 1\n        else:\n            # Non-degenerate: compute within-instance correlation\n            if len(set(lps)) > 1 and len(set(f1s)) > 1:\n                rho, _ = spearmanr(lps, f1s)\n                if not np.isnan(rho):\n                    within_rhos.append(rho)\n    \n    lp_ranges = np.array(lp_ranges)\n    median_range = float(np.median(lp_ranges))\n    tied_fraction = float(np.mean(lp_ranges < 0.001))\n    degen_frac = degen_count / total\n    mean_within_rho = float(np.mean(within_rhos)) if within_rhos else None\n    median_within_rho = float(np.median(within_rhos)) if within_rhos else None\n    \n    result = {\n        'dataset': dataset_name,\n        'n_instances': total,\n        'degen_fraction': degen_frac,\n        'median_lp_range': median_range,\n        'tied_fraction': tied_fraction,\n        'mean_within_rho': mean_within_rho,\n        'median_within_rho': median_within_rho,\n        'n_non_degen_with_rho': len(within_rhos),\n        'lp_range_percentiles': {\n            'p25': float(np.percentile(lp_ranges, 25)),\n            'p50': float(np.percentile(lp_ranges, 50)),\n            'p75': float(np.percentile(lp_ranges, 75)),\n            'p90': float(np.percentile(lp_ranges, 90)),\n        }\n    }\n    \n    print(f\"\\n{dataset_name} (n={total}):\")\n    print(f\"  Degen fraction: {degen_frac:.1%}\")\n    print(f\"  Median LP range: {median_range:.4f} nats\")\n    print(f\"  LP tied fraction (<0.001): {tied_fraction:.1%}\")\n    print(f\"  LP range percentiles: p25={result['lp_range_percentiles']['p25']:.4f}, p75={result['lp_range_percentiles']['p75']:.4f}, p90={result['lp_range_percentiles']['p90']:.4f}\")\n    if mean_within_rho is not None:\n        print(f\"  Within-instance rho(LP,F1): mean={mean_within_rho:.4f}, median={median_within_rho:.4f}, n={len(within_rhos)}\")\n    else:\n        print(f\"  Within-instance rho(LP,F1): N/A (no valid instances)\")\n    \n    return result\n\nif __name__ == '__main__':\n    datasets = [\n        ('/root/autodl-tmp/struct_self_consist_ie/output/exp_023_rank8_inference/samples.jsonl', 'SciERC_rank8', None),\n        ('/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl', 'SciERC_full_rank', None),\n        ('/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl', 'FewNERD', 5000),\n    ]\n    \n    results = []\n    for path, name, max_inst in datasets:\n        r = analyze_dataset(path, name, max_inst)\n        results.append(r)\n    \n    # Print comparison table\n    print(\"\\n\\n=== LP Compression Analysis (R17 W2) ===\\n\")\n    print(f\"{'Dataset':<20} | {'Degen%':>7} | {'Med LP Range':>12} | {'Tied Frac':>9} | {'Within rho mean':>15} | {'Within rho med':>14} | {'n_rho':>5}\")\n    print(\"-\" * 100)\n    for r in results:\n        rho_mean = f\"{r['mean_within_rho']:.4f}\" if r['mean_within_rho'] is not None else \"N/A\"\n        rho_med = f\"{r['median_within_rho']:.4f}\" if r['median_within_rho'] is not None else \"N/A\"\n        print(f\"{r['dataset']:<20} | {r['degen_fraction']:>6.1%} | {r['median_lp_range']:>12.4f} | {r['tied_fraction']:>8.1%} | {rho_mean:>15} | {rho_med:>14} | {r['n_non_degen_with_rho']:>5}\")\n    \n    # Save results\n    outdir = '/root/autodl-tmp/struct_self_consist_ie/output/r17_analyses'\n    os.makedirs(outdir, exist_ok=True)\n    outpath = os.path.join(outdir, 'lp_compression_comparison.json')\n    with open(outpath, 'w') as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nResults saved to: {outpath}\")\nSCRIPT\necho \"Script written.\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/bin/activate && cat << 'SCRIPT' > /root/autodl-tmp/struct_self_consist_ie/analyze_lp_compression.py\nimport json\nimport numpy as np\nfrom scipy.stats import spearmanr\nimport os\n\ndef entity_key_set(sample):\n    \"\"\"Extract frozenset of (text, type, start, end) tuples for entities.\"\"\"\n    entities = sample.get('entities', [])\n    return frozenset((e['text'], e['type'], e['start'], e['end']) for e in entities)\n\ndef compute_entity_f1(pred_entities, gold_entities):\n    \"\"\"Compute entity-level micro F1.\"\"\"\n    pred_set = set((e['text'], e['type'], e['start'], e['end']) for e in pred_entities)\n    gold_set = set((e['text'], e['type'], e['start'], e['end']) for e in gold_entities)\n    \n    if len(pred_set) == 0 and len(gold_set) == 0:\n        return 1.0\n    if len(pred_set) == 0 or len(gold_set) == 0:\n        return 0.0\n    \n    tp = len(pred_set & gold_set)\n    precision = tp / len(pred_set) if pred_set else 0.0\n    recall = tp / len(gold_set) if gold_set else 0.0\n    \n    if precision + recall == 0:\n        return 0.0\n    return 2 * precision * recall / (precision + recall)\n\ndef analyze_dataset(filepath, dataset_name, max_instances=None):\n    \"\"\"Analyze LP compression for one dataset.\"\"\"\n    data = []\n    with open(filepath) as f:\n        for i, line in enumerate(f):\n            if max_instances and i >= max_instances:\n                break\n            data.append(json.loads(line))\n    \n    lp_ranges = []\n    within_rhos = []\n    degen_count = 0\n    total = len(data)\n    \n    for inst in data:\n        gold_entities = inst['gold']['entities']\n        samples = inst['samples']\n        \n        # Extract per-sample logprobs and F1s\n        lps = [s['cumulative_logprob'] for s in samples]\n        f1s = [compute_entity_f1(s.get('entities', []), gold_entities) for s in samples]\n        \n        # LP range\n        lp_range = max(lps) - min(lps)\n        lp_ranges.append(lp_range)\n        \n        # Check degeneracy: all samples produce same entity set\n        key_sets = [entity_key_set(s) for s in samples]\n        unique_key_sets = len(set(key_sets))\n        \n        if unique_key_sets <= 1:\n            degen_count += 1\n        else:\n            # Non-degenerate: compute within-instance correlation\n            if len(set(lps)) > 1 and len(set(f1s)) > 1:\n                rho, _ = spearmanr(lps, f1s)\n                if not np.isnan(rho):\n                    within_rhos.append(rho)\n    \n    lp_ranges = np.array(lp_ranges)\n    median_range = float(np.median(lp_ranges))\n    tied_fraction = float(np.mean(lp_ranges < 0.001))\n    degen_frac = degen_count / total\n    mean_within_rho = float(np.mean(within_rhos)) if within_rhos else None\n    median_within_rho = float(np.median(within_rhos)) if within_rhos else None\n    \n    result = {\n        'dataset': dataset_name,\n        'n_instances': total,\n        'degen_fraction': degen_frac,\n        'median_lp_range': median_range,\n        'tied_fraction': tied_fraction,\n        'mean_within_rho': mean_within_rho,\n        'median_within_rho': median_within_rho,\n        'n_non_degen_with_rho': len(within_rhos),\n        'lp_range_percentiles': {\n            'p25': float(np.percentile(lp_ranges, 25)),\n            'p50': float(np.percentile(lp_ranges, 50)),\n            'p75': float(np.percentile(lp_ranges, 75)),\n            'p90': float(np.percentile(lp_ranges, 90)),\n        }\n    }\n    \n    print(f\"\\n{dataset_name} (n={total}):\")\n    print(f\"  Degen fraction: {degen_frac:.1%}\")\n    print(f\"  Median LP range: {median_range:.4f} nats\")\n    print(f\"  LP tied fraction (<0.001): {tied_fraction:.1%}\")\n    print(f\"  LP range percentiles: p25={result['lp_range_percentiles']['p25']:.4f}, p75={result['lp_range_percentiles']['p75']:.4f}, p90={result['lp_range_percentiles']['p90']:.4f}\")\n    if mean_within_rho is not None:\n        print(f\"  Within-instance rho(LP,F1): mean={mean_within_rho:.4f}, median={median_within_rho:.4f}, n={len(within_rhos)}\")\n    else:\n        print(f\"  Within-instance rho(LP,F1): N/A (no valid instances)\")\n    \n    return result\n\nif __name__ == '__main__':\n    datasets = [\n        ('/root/autodl-tmp/struct_self_consist_ie/output/exp_023_rank8_inference/samples.jsonl', 'SciERC_rank8', None),\n        ('/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl', 'SciERC_full_rank', None),\n        ('/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl', 'FewNERD', 5000),\n    ]\n    \n    results = []\n    for path, name, max_inst in datasets:\n        r = analyze_dataset(path, name, max_inst)\n        results.append(r)\n    \n    # Print comparison table\n    print(\"\\n\\n=== LP Compression Analysis (R17 W2) ===\\n\")\n    print(f\"{'Dataset':<20} | {'Degen%':>7} | {'Med LP Range':>12} | {'Tied Frac':>9} | {'Within rho mean':>15} | {'Within rho med':>14} | {'n_rho':>5}\")\n    print(\"-\" * 100)\n    for r in results:\n        rho_mean = f\"{r['mean_within_rho']:.4f}\" if r['mean_within_rho'] is not None else \"N/A\"\n        rho_med = f\"{r['median_within_rho']:.4f}\" if r['median_within_rho'] is not None else \"N/A\"\n        print(f\"{r['dataset']:<20} | {r['degen_fraction']:>6.1%} | {r['median_lp_range']:>12.4f} | {r['tied_fraction']:>8.1%} | {rho_mean:>15} | {rho_med:>14} | {r['n_non_degen_with_rho']:>5}\")\n    \n    # Save results\n    outdir = '/root/autodl-tmp/struct_self_consist_ie/output/r17_analyses'\n    os.makedirs(outdir, exist_ok=True)\n    outpath = os.path.join(outdir, 'lp_compression_comparison.json')\n    with open(outpath, 'w') as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nResults saved to: {outpath}\")\nSCRIPT\necho \"Script written.\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T07:36:32.406075+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-17T07:36:32.406218+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python analyze_lp_compression.py",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python analyze_lp_compression.py",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-17T07:36:32.406358+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\nSciERC_rank8 (n=551):\\n  Degen fraction: 3.3%\\n  Median LP range: 10.2636 nats\\n  LP tied fraction (<0.001): 0.2%\\n  LP range percentiles: p25=6.3902, p75=14.9314, p90=19.6306\\n  Within-instance rho(LP,F1): mean=0.1146, median=0.1817, n=506\\n\\nSciERC_full_rank (n=551):\\n  Degen fraction: 11.6%\\n  Median LP range: 6.4767 nats\\n  LP tied fraction (<0.001): 0.5%\\n  LP range percentiles: p25=4.4823, p75=9.1587, p90=12.3233\\n  Within-instance rho(LP,F1): mean=0.0905, median=0.1704, n=448\\n\\nFewNERD (n=5000):\\n  Degen fraction: 19.0%\\n  Median LP range: 3.6062 nats\\n  LP tied fraction (<0.001): 10.8%\\n  LP range percentiles: p25=1.2899, p75=6.3021, p90=9.3254\\n  Within-instance rho(LP,F1): mean=0.4080, median=0.6151, n=3885\\n\\n\\n=== LP Compression Analysis (R17 W2) ===\\n\\nDataset              |  Degen% | Med LP Range | Tied Frac | Within rho mean | Within rho med | n_rho\\n----------------------------------------------------------------------------------------------------\\nSciERC_rank8         |   3.3% |      10.2636 |     0.2% |          0.1146 |         0.1817 |   506\\nSciERC_full_rank     |  11.6% |       6.4767 |     0.5% |          0.0905 |         0.1704 |   448\\nFewNERD              |  19.0% |       3.6062 |    10.8% |          0.4080 |         0.6151 |  3885\\n\\nResults saved to: /root/autodl-tmp/struct_self_consist_ie/output/r17_analyses/lp_compression_comparison.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-17T07:36:32.406544+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/bin/activate && python -c \"\nimport json\nimport numpy as np\nfrom scipy.stats import spearmanr\n\ndef entity_key_set(sample):\n    entities = sample.get('entities', [])\n    return frozenset((e['text'], e['type'], e['start'], e['end']) for e in entities)\n\ndef compute_entity_f1(pred_entities, gold_entities):\n    pred_set = set((e['text'], e['type'], e['start'], e['end']) for e in pred_entities)\n    gold_set = set((e['text'], e['type'], e['start'], e['end']) for e in gold_entities)\n    if len(pred_set) == 0 and len(gold_set) == 0:\n        return 1.0\n    if len(pred_set) == 0 or len(gold_set) == 0:\n        return 0.0\n    tp = len(pred_set & gold_set)\n    p = tp / len(pred_set) if pred_set else 0.0\n    r = tp / len(gold_set) if gold_set else 0.0\n    if p + r == 0:\n        return 0.0\n    return 2 * p * r / (p + r)\n\ndatasets = [\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_023_rank8_inference/samples.jsonl', 'SciERC_rank8', None),\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl', 'SciERC_full_rank', None),\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl', 'FewNERD', 5000),\n]\n\nprint('=== Using MEAN logprob (length-normalized) ===\\n')\nprint(f\\\"{'Dataset':<20} | {'Degen%':>7} | {'Med LP Range':>12} | {'Tied Frac':>9} | {'Within rho mean':>15} | {'Within rho med':>14} | {'n_rho':>5}\\\")\nprint('-' * 100)\n\nfor path, name, max_inst in datasets:\n    data = []\n    with open(path) as f:\n        for i, line in enumerate(f):\n            if max_inst and i >= max_inst:\n                break\n            data.append(json.loads(line))\n    \n    lp_ranges = []\n    within_rhos = []\n    degen_count = 0\n    \n    for inst in data:\n        gold_entities = inst['gold']['entities']\n        samples = inst['samples']\n        \n        lps = [s['mean_logprob'] for s in samples]\n        f1s = [compute_entity_f1(s.get('entities', []), gold_entities) for s in samples]\n        \n        lp_range = max(lps) - min(lps)\n        lp_ranges.append(lp_range)\n        \n        key_sets = [entity_key_set(s) for s in samples]\n        unique_key_sets = len(set(key_sets))\n        \n        if unique_key_sets <= 1:\n            degen_count += 1\n        else:\n            if len(set(lps)) > 1 and len(set(f1s)) > 1:\n                rho, _ = spearmanr(lps, f1s)\n                if not np.isnan(rho):\n                    within_rhos.append(rho)\n    \n    lp_ranges = np.array(lp_ranges)\n    med_range = np.median(lp_ranges)\n    tied = np.mean(lp_ranges < 0.001)\n    degen_frac = degen_count / len(data)\n    mean_rho = np.mean(within_rhos) if within_rhos else None\n    med_rho = np.median(within_rhos) if within_rhos else None\n    \n    rho_m = f'{mean_rho:.4f}' if mean_rho is not None else 'N/A'\n    rho_d = f'{med_rho:.4f}' if med_rho is not None else 'N/A'\n    print(f'{name:<20} | {degen_frac:>6.1%} | {med_range:>12.6f} | {tied:>8.1%} | {rho_m:>15} | {rho_d:>14} | {len(within_rhos):>5}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/bin/activate && python -c \"\nimport json\nimport numpy as np\nfrom scipy.stats import spearmanr\n\ndef entity_key_set(sample):\n    entities = sample.get('entities', [])\n    return frozenset((e['text'], e['type'], e['start'], e['end']) for e in entities)\n\ndef compute_entity_f1(pred_entities, gold_entities):\n    pred_set = set((e['text'], e['type'], e['start'], e['end']) for e in pred_entities)\n    gold_set = set((e['text'], e['type'], e['start'], e['end']) for e in gold_entities)\n    if len(pred_set) == 0 and len(gold_set) == 0:\n        return 1.0\n    if len(pred_set) == 0 or len(gold_set) == 0:\n        return 0.0\n    tp = len(pred_set & gold_set)\n    p = tp / len(pred_set) if pred_set else 0.0\n    r = tp / len(gold_set) if gold_set else 0.0\n    if p + r == 0:\n        return 0.0\n    return 2 * p * r / (p + r)\n\ndatasets = [\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_023_rank8_inference/samples.jsonl', 'SciERC_rank8', None),\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl', 'SciERC_full_rank', None),\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl', 'FewNERD', 5000),\n]\n\nprint('=== Using MEAN logprob (length-normalized) ===\\n')\nprint(f\\\"{'Dataset':<20} | {'Degen%':>7} | {'Med LP Range':>12} | {'Tied Frac':>9} | {'Within rho mean':>15} | {'Within rho med':>14} | {'n_rho':>5}\\\")\nprint('-' * 100)\n\nfor path, name, max_inst in datasets:\n    data = []\n    with open(path) as f:\n        for i, line in enumerate(f):\n            if max_inst and i >= max_inst:\n                break\n            data.append(json.loads(line))\n    \n    lp_ranges = []\n    within_rhos = []\n    degen_count = 0\n    \n    for inst in data:\n        gold_entities = inst['gold']['entities']\n        samples = inst['samples']\n        \n        lps = [s['mean_logprob'] for s in samples]\n        f1s = [compute_entity_f1(s.get('entities', []), gold_entities) for s in samples]\n        \n        lp_range = max(lps) - min(lps)\n        lp_ranges.append(lp_range)\n        \n        key_sets = [entity_key_set(s) for s in samples]\n        unique_key_sets = len(set(key_sets))\n        \n        if unique_key_sets <= 1:\n            degen_count += 1\n        else:\n            if len(set(lps)) > 1 and len(set(f1s)) > 1:\n                rho, _ = spearmanr(lps, f1s)\n                if not np.isnan(rho):\n                    within_rhos.append(rho)\n    \n    lp_ranges = np.array(lp_ranges)\n    med_range = np.median(lp_ranges)\n    tied = np.mean(lp_ranges < 0.001)\n    degen_frac = degen_count / len(data)\n    mean_rho = np.mean(within_rhos) if within_rhos else None\n    med_rho = np.median(within_rhos) if within_rhos else None\n    \n    rho_m = f'{mean_rho:.4f}' if mean_rho is not None else 'N/A'\n    rho_d = f'{med_rho:.4f}' if med_rho is not None else 'N/A'\n    print(f'{name:<20} | {degen_frac:>6.1%} | {med_range:>12.6f} | {tied:>8.1%} | {rho_m:>15} | {rho_d:>14} | {len(within_rhos):>5}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T07:36:32.406714+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Using MEAN logprob (length-normalized) ===\\n\\nDataset              |  Degen% | Med LP Range | Tied Frac | Within rho mean | Within rho med | n_rho\\n----------------------------------------------------------------------------------------------------\\nSciERC_rank8         |   3.3% |     0.056931 |     0.9% |          0.2395 |         0.3164 |   506\\nSciERC_full_rank     |  11.6% |     0.041348 |     1.1% |          0.1823 |         0.2852 |   448\\nFewNERD              |  19.0% |     0.058049 |    17.0% |          0.4988 |         0.6614 |  3885\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-17T07:36:32.406888+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/bin/activate && python -c \"\nimport json, numpy as np\nfrom scipy.stats import spearmanr\n\ndef entity_key_set(sample):\n    entities = sample.get('entities', [])\n    return frozenset((e['text'], e['type'], e['start'], e['end']) for e in entities)\n\ndef compute_entity_f1(pred_entities, gold_entities):\n    pred_set = set((e['text'], e['type'], e['start'], e['end']) for e in pred_entities)\n    gold_set = set((e['text'], e['type'], e['start'], e['end']) for e in gold_entities)\n    if len(pred_set) == 0 and len(gold_set) == 0:\n        return 1.0\n    if len(pred_set) == 0 or len(gold_set) == 0:\n        return 0.0\n    tp = len(pred_set & gold_set)\n    p = tp / len(pred_set) if pred_set else 0.0\n    r = tp / len(gold_set) if gold_set else 0.0\n    if p + r == 0:\n        return 0.0\n    return 2 * p * r / (p + r)\n\ndatasets = [\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_023_rank8_inference/samples.jsonl', 'SciERC_rank8', None),\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl', 'SciERC_full_rank', None),\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl', 'FewNERD', 5000),\n]\n\nall_results = []\nfor path, name, max_inst in datasets:\n    data = []\n    with open(path) as f:\n        for i, line in enumerate(f):\n            if max_inst and i >= max_inst:\n                break\n            data.append(json.loads(line))\n    \n    cum_lp_ranges = []\n    mean_lp_ranges = []\n    cum_within_rhos = []\n    mean_within_rhos = []\n    degen_count = 0\n    \n    for inst in data:\n        gold_entities = inst['gold']['entities']\n        samples = inst['samples']\n        \n        cum_lps = [s['cumulative_logprob'] for s in samples]\n        mean_lps = [s['mean_logprob'] for s in samples]\n        f1s = [compute_entity_f1(s.get('entities', []), gold_entities) for s in samples]\n        \n        cum_lp_ranges.append(max(cum_lps) - min(cum_lps))\n        mean_lp_ranges.append(max(mean_lps) - min(mean_lps))\n        \n        key_sets = [entity_key_set(s) for s in samples]\n        if len(set(key_sets)) <= 1:\n            degen_count += 1\n        else:\n            if len(set(cum_lps)) > 1 and len(set(f1s)) > 1:\n                rho, _ = spearmanr(cum_lps, f1s)\n                if not np.isnan(rho):\n                    cum_within_rhos.append(rho)\n            if len(set(mean_lps)) > 1 and len(set(f1s)) > 1:\n                rho, _ = spearmanr(mean_lps, f1s)\n                if not np.isnan(rho):\n                    mean_within_rhos.append(rho)\n    \n    r = {\n        'dataset': name,\n        'n_instances': len(data),\n        'degen_fraction': degen_count / len(data),\n        'cumulative_logprob': {\n            'median_lp_range': float(np.median(cum_lp_ranges)),\n            'tied_fraction': float(np.mean(np.array(cum_lp_ranges) < 0.001)),\n            'mean_within_rho': float(np.mean(cum_within_rhos)) if cum_within_rhos else None,\n            'median_within_rho': float(np.median(cum_within_rhos)) if cum_within_rhos else None,\n            'n_rho': len(cum_within_rhos),\n            'range_percentiles': {\n                'p25': float(np.percentile(cum_lp_ranges, 25)),\n                'p50': float(np.percentile(cum_lp_ranges, 50)),\n                'p75': float(np.percentile(cum_lp_ranges, 75)),\n                'p90': float(np.percentile(cum_lp_ranges, 90)),\n            }\n        },\n        'mean_logprob': {\n            'median_lp_range': float(np.median(mean_lp_ranges)),\n            'tied_fraction': float(np.mean(np.array(mean_lp_ranges) < 0.001)),\n            'mean_within_rho': float(np.mean(mean_within_rhos)) if mean_within_rhos else None,\n            'median_within_rho': float(np.median(mean_within_rhos)) if mean_within_rhos else None,\n            'n_rho': len(mean_within_rhos),\n            'range_percentiles': {\n                'p25': float(np.percentile(mean_lp_ranges, 25)),\n                'p50': float(np.percentile(mean_lp_ranges, 50)),\n                'p75': float(np.percentile(mean_lp_ranges, 75)),\n                'p90': float(np.percentile(mean_lp_ranges, 90)),\n            }\n        }\n    }\n    all_results.append(r)\n\nimport os\noutdir = '/root/autodl-tmp/struct_self_consist_ie/output/r17_analyses'\nos.makedirs(outdir, exist_ok=True)\noutpath = os.path.join(outdir, 'lp_compression_comparison.json')\nwith open(outpath, 'w') as f:\n    json.dump(all_results, f, indent=2)\nprint(f'Saved to {outpath}')\nprint(json.dumps(all_results, indent=2))\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/bin/activate && python -c \"\nimport json, numpy as np\nfrom scipy.stats import spearmanr\n\ndef entity_key_set(sample):\n    entities = sample.get('entities', [])\n    return frozenset((e['text'], e['type'], e['start'], e['end']) for e in entities)\n\ndef compute_entity_f1(pred_entities, gold_entities):\n    pred_set = set((e['text'], e['type'], e['start'], e['end']) for e in pred_entities)\n    gold_set = set((e['text'], e['type'], e['start'], e['end']) for e in gold_entities)\n    if len(pred_set) == 0 and len(gold_set) == 0:\n        return 1.0\n    if len(pred_set) == 0 or len(gold_set) == 0:\n        return 0.0\n    tp = len(pred_set & gold_set)\n    p = tp / len(pred_set) if pred_set else 0.0\n    r = tp / len(gold_set) if gold_set else 0.0\n    if p + r == 0:\n        return 0.0\n    return 2 * p * r / (p + r)\n\ndatasets = [\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_023_rank8_inference/samples.jsonl', 'SciERC_rank8', None),\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl', 'SciERC_full_rank', None),\n    ('/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl', 'FewNERD', 5000),\n]\n\nall_results = []\nfor path, name, max_inst in datasets:\n    data = []\n    with open(path) as f:\n        for i, line in enumerate(f):\n            if max_inst and i >= max_inst:\n                break\n            data.append(json.loads(line))\n    \n    cum_lp_ranges = []\n    mean_lp_ranges = []\n    cum_within_rhos = []\n    mean_within_rhos = []\n    degen_count = 0\n    \n    for inst in data:\n        gold_entities = inst['gold']['entities']\n        samples = inst['samples']\n        \n        cum_lps = [s['cumulative_logprob'] for s in samples]\n        mean_lps = [s['mean_logprob'] for s in samples]\n        f1s = [compute_entity_f1(s.get('entities', []), gold_entities) for s in samples]\n        \n        cum_lp_ranges.append(max(cum_lps) - min(cum_lps))\n        mean_lp_ranges.append(max(mean_lps) - min(mean_lps))\n        \n        key_sets = [entity_key_set(s) for s in samples]\n        if len(set(key_sets)) <= 1:\n            degen_count += 1\n        else:\n            if len(set(cum_lps)) > 1 and len(set(f1s)) > 1:\n                rho, _ = spearmanr(cum_lps, f1s)\n                if not np.isnan(rho):\n                    cum_within_rhos.append(rho)\n            if len(set(mean_lps)) > 1 and len(set(f1s)) > 1:\n                rho, _ = spearmanr(mean_lps, f1s)\n                if not np.isnan(rho):\n                    mean_within_rhos.append(rho)\n    \n    r = {\n        'dataset': name,\n        'n_instances': len(data),\n        'degen_fraction': degen_count / len(data),\n        'cumulative_logprob': {\n            'median_lp_range': float(np.median(cum_lp_ranges)),\n            'tied_fraction': float(np.mean(np.array(cum_lp_ranges) < 0.001)),\n            'mean_within_rho': float(np.mean(cum_within_rhos)) if cum_within_rhos else None,\n            'median_within_rho': float(np.median(cum_within_rhos)) if cum_within_rhos else None,\n            'n_rho': len(cum_within_rhos),\n            'range_percentiles': {\n                'p25': float(np.percentile(cum_lp_ranges, 25)),\n                'p50': float(np.percentile(cum_lp_ranges, 50)),\n                'p75': float(np.percentile(cum_lp_ranges, 75)),\n                'p90': float(np.percentile(cum_lp_ranges, 90)),\n            }\n        },\n        'mean_logprob': {\n            'median_lp_range': float(np.median(mean_lp_ranges)),\n            'tied_fraction': float(np.mean(np.array(mean_lp_ranges) < 0.001)),\n            'mean_within_rho': float(np.mean(mean_within_rhos)) if mean_within_rhos else None,\n            'median_within_rho': float(np.median(mean_within_rhos)) if mean_within_rhos else None,\n            'n_rho': len(mean_within_rhos),\n            'range_percentiles': {\n                'p25': float(np.percentile(mean_lp_ranges, 25)),\n                'p50': float(np.percentile(mean_lp_ranges, 50)),\n                'p75': float(np.percentile(mean_lp_ranges, 75)),\n                'p90': float(np.percentile(mean_lp_ranges, 90)),\n            }\n        }\n    }\n    all_results.append(r)\n\nimport os\noutdir = '/root/autodl-tmp/struct_self_consist_ie/output/r17_analyses'\nos.makedirs(outdir, exist_ok=True)\noutpath = os.path.join(outdir, 'lp_compression_comparison.json')\nwith open(outpath, 'w') as f:\n    json.dump(all_results, f, indent=2)\nprint(f'Saved to {outpath}')\nprint(json.dumps(all_results, indent=2))\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T07:36:32.407110+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Saved to /root/autodl-tmp/struct_self_consist_ie/output/r17_analyses/lp_compression_comparison.json\\n[\\n  {\\n    \\\"dataset\\\": \\\"SciERC_rank8\\\",\\n    \\\"n_instances\\\": 551,\\n    \\\"degen_fraction\\\": 0.032667876588021776,\\n    \\\"cumulative_logprob\\\": {\\n      \\\"median_lp_range\\\": 10.263628897067058,\\n      \\\"tied_fraction\\\": 0.0018148820326678765,\\n      \\\"mean_within_rho\\\": 0.11461829000607576,\\n      \\\"median_within_rho\\\": 0.1816550978010052,\\n      \\\"n_rho\\\": 506,\\n      \\\"range_percentiles\\\": {\\n        \\\"p25\\\": 6.390167890686449,\\n        \\\"p50\\\": 10.263628897067058,\\n        \\\"p75\\\": 14.931386311927145,\\n        \\\"p90\\\": 19.630555222489015\\n      }\\n    },\\n    \\\"mean_logprob\\\": {\\n      \\\"median_lp_range\\\": 0.05693082740546984,\\n      \\\"tied_fraction\\\": 0.009074410163339383,\\n      \\\"mean_within_rho\\\": 0.23949215570341395,\\n      \\\"median_within_rho\\\": 0.31639038594513447,\\n      \\\"n_rho\\\": 506,\\n      \\\"range_percentiles\\\": {\\n        \\\"p25\\\": 0.03841005575781459,\\n        \\\"p50\\\": 0.05693082740546984,\\n        \\\"p75\\\": 0.09496892133238163,\\n        \\\"p90\\\": 0.1555700364601456\\n      }\\n    }\\n  },\\n  {\\n    \\\"dataset\\\": \\\"SciERC_full_rank\\\",\\n    \\\"n_instances\\\": 551,\\n    \\\"degen_fraction\\\": 0.1161524500907441,\\n    \\\"cumulative_logprob\\\": {\\n      \\\"median_lp_range\\\": 6.476686939176965,\\n      \\\"tied_fraction\\\": 0.0054446460980036296,\\n      \\\"mean_within_rho\\\": 0.09054476410116623,\\n      \\\"median_within_rho\\\": 0.17044543329739303,\\n      \\\"n_rho\\\": 448,\\n      \\\"range_percentiles\\\": {\\n        \\\"p25\\\": 4.482305757163502,\\n        \\\"p50\\\": 6.476686939176965,\\n        \\\"p75\\\": 9.158663425029786,\\n        \\\"p90\\\": 12.323337173233824\\n      }\\n    },\\n    \\\"mean_logprob\\\": {\\n      \\\"media
+…[truncated 1675 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-17T07:36:32.407331+00:00_
+
+分析完成。结果保存在 `output/r17_analyses/lp_compression_comparison.json`。
+
+## 结果汇总
+
+### Cumulative Logprob
+
+| Dataset | Degen% | Med LP Range (nats) | Tied Frac | ρ(LP,F1) mean | ρ(LP,F1) median | n |
+|---------|--------|--------------------:|----------:|--------------:|----------------:|--:|
+| SciERC rank=8 | 3.3% | 10.26 | 0.2% | 0.115 | 0.182 | 506 |
+| SciERC full rank | 11.6% | 6.48 | 0.5% | 0.091 | 0.170 | 448 |
+| Few-NERD | 19.0% | 3.61 | 10.8% | 0.408 | 0.615 | 3885 |
+
+### Mean Logprob (length-normalized)
+
+| Dataset | Degen% | Med LP Range | Tied Frac | ρ(LP,F1) mean | ρ(LP,F1) median | n |
+|---------|--------|-------------:|----------:|--------------:|----------------:|--:|
+| SciERC rank=8 | 3.3% | 0.0569 | 0.9% | 0.240 | 0.316 | 506 |
+| SciERC full rank | 11.6% | 0.0413 | 1.1% | 0.182 | 0.285 | 448 |
+| Few-NERD | 19.0% | 0.0580 | 17.0% | 0.499 | 0.661 | 3885 |
+
+### 关键发现
+
+**与预期相反：rank=8 LP 并未压缩，反而更分散。**
+
+1. **LP range**: rank=8 的 median LP range 比 full rank 更大（cumulative: 10.26 vs 6.48; mean: 0.057 vs 0.041），说明 rank=8 产生的 logprob 变异更大而非更小
+2. **Within-instance ρ(LP, F1)**: rank=8 略高于 full rank（mean 0.24 vs 0.18），LP 对质量的区分力反而稍好
+3. **Degeneracy**: rank=8 显著低于 full rank（3.3% vs 11.6%），说明 rank=8 模型输出更多样
+4. **真正的问题在 SciERC vs Few-NERD**：两个 SciERC 配置的 ρ 都很弱（~0.1-0.3），而 Few-NERD 达到 0.5-0.66，表明 LP 区分力差是 SciERC 任务特性，而非 rank 造成的
+
+**结论**：rank=8 的 LP selection failure 不是因为"LP 压缩"导致无法区分样本，而是与 full rank 相同的根源问题——SciERC 上 LP 本身就不 track entity-level F1（可能因为 SciERC 的实体提取对 token-level confidence 不敏感）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_r17_lora_rank8_lp_compression_20260517T073317"
+}
+```
+
+</details>
+
+---

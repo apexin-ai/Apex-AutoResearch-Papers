@@ -1,0 +1,21 @@
+{
+  "exp_id": "exp_scierc_t05_s456",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T03:24:01.834Z",
+    "updated_at": "2026-05-21T04:23:39.621Z",
+    "hypothesis": "SciERC temperature ablation (T=0.5, seed=456): third seed for SciERC T-ablation 3-seed statistical power. N=8, Qwen3-8B-FT.",
+    "parent": "exp_scierc_t05_s123",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/scierc_t05_s456/",
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/logs/scierc_t05_s456.log"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T04:23:40.043118+00:00",
+  "trigger": "update_registry"
+}

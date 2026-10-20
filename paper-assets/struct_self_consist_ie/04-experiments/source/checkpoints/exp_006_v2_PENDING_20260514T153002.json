@@ -1,0 +1,22 @@
+{
+  "exp_id": "exp_006_v2",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T15:30:02.348Z",
+    "updated_at": "2026-05-14T15:30:02.348Z",
+    "spec": {
+      "command": "python3 code/exp_006_v2_selection.py",
+      "server": "autodl-5090",
+      "data_path": "output/exp_{001_seed42,001_seed123,002_conll,008_re}_v2/",
+      "data_count": 4952,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-14T15:30:02.596552+00:00",
+  "trigger": "update_registry"
+}

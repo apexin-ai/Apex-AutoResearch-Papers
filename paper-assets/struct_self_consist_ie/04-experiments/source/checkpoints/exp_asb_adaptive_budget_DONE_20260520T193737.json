@@ -1,0 +1,81 @@
+{
+  "exp_id": "exp_asb_adaptive_budget",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:37:33.233Z",
+    "updated_at": "2026-05-20T19:37:37.412Z",
+    "hypothesis": "Instance-level features from cheap N=2 subsamples (degeneracy, agreement, entity count, logprob variance, text length) can predict optimal per-instance sample count, enabling adaptive budget allocation that outperforms uniform allocation under a fixed total budget.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/autodl-tmp/struct_self_consist_ie/artifacts/experiments/asb/run_asb.py --data_paths /root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl,/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed42/samples.jsonl,/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl --dataset_names FewNERD,SciERC,CoNLL --output_dir /root/autodl-tmp/struct_self_consist_ie/output/exp_asb_adaptive_budget/ --seed 42\"",
+      "server": "autodl-5090",
+      "gpu": [],
+      "pid": "943151",
+      "log_path": "~/runs/struct_self_consist_ie/exp_asb_adaptive_budget.log",
+      "submitted_at": "2026-05-20T17:55:06.477Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "output/exp_asb_adaptive_budget/asb_results.json",
+      "wall_clock_seconds": 215.1,
+      "gpu_hours": 0.0
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-20T17:58:41.592Z",
+    "metrics": {
+      "v2_fixed": true,
+      "fixes": [
+        "removed greedy_f1 feature (data leak via gold labels)",
+        "max_n-aware adaptive_allocation",
+        "K-fold downstream eval (no train=test leak)",
+        "micro-F1 (global TP/FP/FN)"
+      ],
+      "fewnerd": {
+        "uniform_n8_micro_f1": 0.7842,
+        "adaptive_micro_f1": 0.7842,
+        "delta_adaptive_uniform": 0,
+        "oracle_micro_f1": 0.7842,
+        "greedy_micro_f1": 0.7911,
+        "best_predictor": "MLP",
+        "n_instances": 32565,
+        "max_n": 8,
+        "note": "max_n=budget=8, no room for reallocation"
+      },
+      "scierc": {
+        "uniform_n8_micro_f1": 0.6657,
+        "adaptive_micro_f1": 0.6657,
+        "delta_adaptive_uniform": 0,
+        "oracle_micro_f1": 0.6657,
+        "greedy_micro_f1": 0.6649,
+        "best_predictor": "MLP",
+        "n_instances": 529,
+        "max_n": 8,
+        "note": "max_n=budget=8, no room for reallocation"
+      },
+      "conll": {
+        "uniform_n8_micro_f1": 0.9128,
+        "adaptive_micro_f1": 0.9095,
+        "delta_adaptive_uniform": -0.0033,
+        "oracle_micro_f1": 0.9139,
+        "delta_oracle_uniform": 0.0012,
+        "greedy_micro_f1": 0.9124,
+        "adaptive_fold_mean": 0.91,
+        "adaptive_fold_std": 0.0044,
+        "best_predictor": "RandomForest",
+        "n_instances": 2756,
+        "max_n": 16
+      },
+      "top_features": [
+        "degen_rate_n2",
+        "agreement_n2",
+        "entity_count_n2"
+      ],
+      "key_finding": "After fixing data leak + train=test leak + max_n bug, adaptive allocation shows no improvement over uniform. FewNERD/SciERC have max_n=budget=8 (no reallocation possible). CoNLL (max_n=16) shows slight negative delta (-0.0033). Previous positive results were artifacts of methodological bugs."
+    }
+  },
+  "timestamp": "2026-05-20T19:37:37.786920+00:00",
+  "trigger": "update_registry"
+}

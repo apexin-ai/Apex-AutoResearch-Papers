@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_018_qwen_scierc_seed123",
+  "project": "struct_self_consist_ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T06:07:12.747Z",
+    "updated_at": "2026-05-15T06:07:20.106Z"
+  },
+  "timestamp": "2026-05-15T06:07:20.246802+00:00",
+  "trigger": "update_registry"
+}

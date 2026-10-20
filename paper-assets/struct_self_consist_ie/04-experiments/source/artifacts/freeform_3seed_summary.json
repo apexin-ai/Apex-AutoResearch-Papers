@@ -1,0 +1,271 @@
+{
+  "experiment": "freeform_ablation_3seed",
+  "dataset": "SciERC",
+  "model": "Qwen3-8B (LoRA merged, scierc-v2)",
+  "n_instances": 551,
+  "n_samples_per_instance": 8,
+  "temperature": 1.0,
+  "seeds": [
+    123,
+    456,
+    789
+  ],
+  "n_gold_filtered": {
+    "ner": 529,
+    "re": 397
+  },
+  "freeform_qe": {
+    "ner": {
+      "SJ": {
+        "rho_mean": 0.3856,
+        "rho_std": 0.0078,
+        "auroc_mean": 0.7303,
+        "auroc_std": 0.0208,
+        "rho_per_seed": [
+          0.3842,
+          0.3785,
+          0.394
+        ],
+        "auroc_per_seed": [
+          0.7487,
+          0.7078,
+          0.7345
+        ]
+      },
+      "FK": {
+        "rho_mean": 0.3075,
+        "rho_std": 0.0194,
+        "auroc_mean": 0.7717,
+        "auroc_std": 0.0204,
+        "rho_per_seed": [
+          0.324,
+          0.2862,
+          0.3123
+        ],
+        "auroc_per_seed": [
+          0.766,
+          0.7548,
+          0.7944
+        ]
+      },
+      "LP": {
+        "rho_mean": 0.2305,
+        "rho_std": 0.0152,
+        "auroc_mean": 0.6839,
+        "auroc_std": 0.0157,
+        "rho_per_seed": [
+          0.2173,
+          0.2271,
+          0.2471
+        ],
+        "auroc_per_seed": [
+          0.7017,
+          0.6721,
+          0.6778
+        ]
+      },
+      "EM": {
+        "rho_mean": 0.3224,
+        "rho_std": 0.0039,
+        "auroc_mean": 0.5101,
+        "auroc_std": 0.0279,
+        "rho_per_seed": [
+          0.3269,
+          0.32,
+          0.3204
+        ],
+        "auroc_per_seed": [
+          0.5253,
+          0.4779,
+          0.527
+        ]
+      },
+      "VC": {
+        "rho_mean": 0.4151,
+        "rho_std": 0.0065,
+        "auroc_mean": 0.7748,
+        "auroc_std": 0.0223,
+        "rho_per_seed": [
+          0.4079,
+          0.4169,
+          0.4206
+        ],
+        "auroc_per_seed": [
+          0.7997,
+          0.7565,
+          0.7681
+        ]
+      }
+    },
+    "re": {
+      "SJ": {
+        "rho_mean": 0.2286,
+        "rho_std": 0.0385,
+        "auroc_mean": 0.5869,
+        "auroc_std": 0.0235,
+        "rho_per_seed": [
+          0.2728,
+          0.2113,
+          0.2017
+        ],
+        "auroc_per_seed": [
+          0.6141,
+          0.5723,
+          0.5744
+        ]
+      },
+      "FK": {
+        "rho_mean": 0.2646,
+        "rho_std": 0.0474,
+        "auroc_mean": 0.6548,
+        "auroc_std": 0.0228,
+        "rho_per_seed": [
+          0.3144,
+          0.2591,
+          0.2202
+        ],
+        "auroc_per_seed": [
+          0.6785,
+          0.653,
+          0.633
+        ]
+      },
+      "LP": {
+        "rho_mean": 0.3039,
+        "rho_std": 0.0073,
+        "auroc_mean": 0.6975,
+        "auroc_std": 0.0092,
+        "rho_per_seed": [
+          0.3097,
+          0.3064,
+          0.2958
+        ],
+        "auroc_per_seed": [
+          0.7041,
+          0.7013,
+          0.6871
+        ]
+      },
+      "EM": {
+        "rho_mean": 0.115,
+        "rho_std": 0.0192,
+        "auroc_mean": 0.4746,
+        "auroc_std": 0.0129,
+        "rho_per_seed": [
+          0.1372,
+          0.1043,
+          0.1036
+        ],
+        "auroc_per_seed": [
+          0.4873,
+          0.4616,
+          0.4747
+        ]
+      },
+      "VC": {
+        "rho_mean": 0.3083,
+        "rho_std": 0.0077,
+        "auroc_mean": 0.6395,
+        "auroc_std": 0.0096,
+        "rho_per_seed": [
+          0.3167,
+          0.3015,
+          0.3069
+        ],
+        "auroc_per_seed": [
+          0.6474,
+          0.6289,
+          0.6422
+        ]
+      }
+    }
+  },
+  "freeform_selection_gap": {
+    "ner": {
+      "mean": 0.0021,
+      "std": 0.0012,
+      "per_seed": [
+        0.0028,
+        0.0007,
+        0.0027
+      ]
+    },
+    "re": {
+      "mean": 0.0189,
+      "std": 0.0012,
+      "per_seed": [
+        0.0176,
+        0.02,
+        0.0191
+      ]
+    }
+  },
+  "lp_compression": {
+    "freeform_mean_std": {
+      "mean": 0.0189,
+      "std": 0.0008
+    },
+    "freeform_mean_range": {
+      "mean": 0.0572,
+      "std": 0.0025
+    },
+    "freeform_tied_pct": {
+      "mean": 58.37,
+      "std": 0.65
+    },
+    "constrained_mean_std": 0.020589,
+    "constrained_mean_range": 0.062305,
+    "constrained_tied_pct": 59.7,
+    "var_ratio_std": {
+      "mean": 0.92,
+      "std": 0.044
+    },
+    "var_ratio_range": {
+      "mean": 0.917,
+      "std": 0.04
+    },
+    "tied_reduction_pp": {
+      "mean": 1.333,
+      "std": 0.651
+    }
+  },
+  "parse_rate": {
+    "mean": 99.98,
+    "std": 0.03
+  },
+  "constrained_ref": {
+    "selection_ner": {
+      "greedy": 0.6182,
+      "selected": 0.6241,
+      "gap": 0.0059
+    },
+    "selection_re": {
+      "greedy": 0.2913,
+      "selected": 0.2845,
+      "gap": -0.0068
+    },
+    "qe_ner": {
+      "SJ_rho": 0.3599,
+      "FK_rho": 0.2665,
+      "LP_rho": 0.2052,
+      "EM_rho": 0.2945,
+      "VC_rho": 0.3792
+    },
+    "qe_re": {
+      "SJ_rho": 0.2503,
+      "FK_rho": 0.2752,
+      "LP_rho": 0.2662,
+      "EM_rho": 0.1344,
+      "VC_rho": 0.3498
+    }
+  },
+  "conclusion": {
+    "lp_compression_intrinsic": true,
+    "evidence": "Freeform tied_pct=58.37+/-0.65% vs constrained 59.7%. Variance ratio 0.92+/-0.04x. LP compression persists without grammar constraints, confirming it is model/task intrinsic, not a constrained decoding artifact.",
+    "qe_ranking_ner": "VC (0.415+/-0.007) > SJ (0.386+/-0.008) > EM (0.322+/-0.004) > FK (0.307+/-0.019) > LP (0.230+/-0.015)",
+    "qe_ranking_re": "VC (0.308+/-0.008) > LP (0.304+/-0.007) > FK (0.265+/-0.047) > SJ (0.229+/-0.039) > EM (0.115+/-0.019)",
+    "selection_gap": "NER +0.21+/-0.12pp, RE +1.89+/-0.12pp (freeform consistently positive, stronger for RE)",
+    "parse_rate": "99.98+/-0.03% (near-perfect without grammar constraints)",
+    "key_finding": "LP is the most stable QE signal for RE across seeds (std=0.007), while being the weakest for NER. This task-dependent behavior is preserved in freeform, ruling out grammar-induced artifacts."
+  }
+}

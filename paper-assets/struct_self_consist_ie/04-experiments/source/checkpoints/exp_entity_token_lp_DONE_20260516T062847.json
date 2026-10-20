@@ -1,0 +1,52 @@
+{
+  "exp_id": "exp_entity_token_lp",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:39:44.631Z",
+    "updated_at": "2026-05-16T06:28:46.844Z",
+    "hypothesis": "Entity-token LP: test Discussion hypothesis (d) format-token dilution. Re-inference with per-token logprobs, then compute entity-only LP variance and selection F1. If entity-token LP compression is reduced → pilot remedy for LP selection. Also includes LP z-score normalization as zero-cost baseline. Addresses SF2+SF3 from Round 12.",
+    "server": "autodl-5090",
+    "gpu": "cuda:0,cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "autodl-5090",
+      "gpu": "cuda:0,cuda:1",
+      "started_at": "2026-05-16T05:41:33.768Z"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "scierc_ner": {
+        "greedy_f1": 0.643,
+        "full_lp_sel_f1": 0.6465,
+        "entity_lp_sel_f1": 0.6262,
+        "oracle_f1": 0.7845,
+        "entity_lp_delta_vs_full_lp": -0.0203
+      },
+      "conll_ner": {
+        "greedy_f1": 0.9065,
+        "full_lp_sel_f1": 0.8989,
+        "entity_lp_sel_f1": 0.8659,
+        "oracle_f1": 0.948,
+        "entity_lp_delta_vs_full_lp": -0.033
+      },
+      "finding": "entity-token LP strictly worse than full-sequence LP; CoNLL entity tokens saturated (79.4% tied), SciERC entity tokens too sparse (5.3% of total)"
+    },
+    "spec": {
+      "command": "python analyze_entity_token_lp.py",
+      "server": "autodl-5090",
+      "data_path": "output/exp_012_rerun_1024/ + output/exp_002_conll_rerun_1024/",
+      "data_count": "529 (SciERC NER) + 2756 (CoNLL NER)",
+      "model_name": "Qwen3-8B (finetuned)",
+      "seed": 42,
+      "checkpoint_path": "artifacts/exp_entity_token_lp/results.json",
+      "log_path": "artifacts/exp_entity_token_lp/report.md"
+    },
+    "completed_at": "2026-05-16T06:28:46.845Z"
+  },
+  "timestamp": "2026-05-16T06:28:47.092947+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_conll_n64_s42",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:08:16.160Z",
+    "updated_at": "2026-05-22T04:09:55.263Z",
+    "hypothesis": "N-scaling convergence test: CoNLL N=64 (8× N=8) finetuned model. CoNLL has highest degeneracy (~60% at N=8). Tests whether degeneracy continues declining and whether the marginal MV Δ improvement from N=16→32→64 is negligible. Fourth data point for N-scaling convergence curve. Part of extended N-scaling suite for R34 C1.",
+    "spec": {
+      "data_path": "data/conll2003/",
+      "data_count": 3453,
+      "model_name": "qwen3-8b-conll2003-merged",
+      "seed": 42,
+      "n_samples": 64,
+      "checkpoint_path": "output/conll_n64_seed42/"
+    }
+  },
+  "timestamp": "2026-05-22T04:09:55.802979+00:00",
+  "trigger": "update_registry"
+}

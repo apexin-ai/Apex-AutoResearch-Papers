@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp_017_llama_conll",
+  "project": "struct_self_consist_ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T14:39:32.014Z",
+    "updated_at": "2026-05-14T17:11:50.877Z",
+    "spec": {
+      "command": "llamafactory-cli train train_config_llama_conll2003.yaml",
+      "server": "autodl-5090",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/conll2003",
+      "data_count": 14041,
+      "model_name": "Meta-Llama-3.1-8B-Instruct",
+      "seed": 42,
+      "failure_reason": "No trace on server: PID not found, no log files matching *llama*conll* or *017*, no output directory, no tmux sessions. Process likely never started successfully."
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-14T17:11:50.978927+00:00",
+  "trigger": "update_registry"
+}

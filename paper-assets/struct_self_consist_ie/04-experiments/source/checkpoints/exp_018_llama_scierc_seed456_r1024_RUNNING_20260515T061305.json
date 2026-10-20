@@ -1,0 +1,34 @@
+{
+  "exp_id": "exp_018_llama_scierc_seed456_r1024",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T06:12:43.492Z",
+    "updated_at": "2026-05-15T06:13:04.420Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 456 --max_tokens 1024 --num_test 9999 --collect_logprobs --output_dir output/exp_018_llama_scierc_seed456_r1024\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "157584",
+      "log_path": "~/runs/struct_self_consist_ie/exp_018_llama_scierc_seed456_r1024.log",
+      "submitted_at": "2026-05-15T06:13:03.588Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "autodl-5090",
+    "gpu": "cuda:1",
+    "pid": "157584",
+    "log_path": "~/runs/struct_self_consist_ie/exp_018_llama_scierc_seed456_r1024.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 456 --max_tokens 1024 --num_test 9999 --collect_logprobs --output_dir output/exp_018_llama_scierc_seed456_r1024\""
+    }
+  },
+  "timestamp": "2026-05-15T06:13:05.191359+00:00",
+  "trigger": "update_registry"
+}

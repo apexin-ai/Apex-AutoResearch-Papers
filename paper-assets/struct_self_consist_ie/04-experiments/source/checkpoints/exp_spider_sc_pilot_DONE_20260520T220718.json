@@ -1,0 +1,62 @@
+{
+  "exp_id": "exp_spider_sc_pilot",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:41:49.560Z",
+    "updated_at": "2026-05-20T22:07:17.631Z",
+    "hypothesis": "SC diagnostic cascade (degeneracy, agreement-correctness correlation, failure mode classification F1-F4) validated on NER structured generation will also manifest in SQL structured generation with GPT-5.5 on Spider-dev (200 examples, N=8, T=1.0), demonstrating cross-task universality. Key adaptation: uses execution-result equivalence (not SQL text) for agreement/degeneracy, since semantically equivalent SQL can have different surface forms.",
+    "spec": {
+      "command": "python run_spider_sc.py --n_samples 8 --temperature 1.0 --seed 42 --output_dir ./results --test_api",
+      "server": "local (CPU+API)",
+      "gpu": "cuda:2",
+      "data_path": "xlangai/spider (HF) + spider databases (sqlite)",
+      "data_count": 200,
+      "model_name": "openai/gpt-5.5 via http://47.94.22.126/v1",
+      "seed": 42,
+      "bugfixes": [
+        "F1-F4 failure modes aligned with NER cascade (F2=low_agreement, F3=high_agreement_wrong)",
+        "Degeneracy detection uses execution results instead of SQL text comparison",
+        "Converted from vLLM to API-based (CPU+API experiment)"
+      ],
+      "pid": 1504303,
+      "failure_reason": "402 API balance exhausted at 125/200 instances",
+      "partial_results": "125/200 instances completed before API died",
+      "log_path": "local spider_sc results dir",
+      "checkpoint_path": "local spider_sc results dir"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T22:05:14.976Z",
+    "metrics": {
+      "n_instances": 196,
+      "n_target": 200,
+      "n_skipped": 2,
+      "n_samples": 8,
+      "temperature": 1,
+      "model": "gpt-5.5",
+      "greedy_acc": 0.7653,
+      "mv_acc": 0.7704,
+      "oracle_acc": 0.8061,
+      "mv_gain_pp": 0.51,
+      "degeneracy_rate": 0.8724,
+      "spearman_rho": 0.5501,
+      "spearman_p": 6.77e-17,
+      "kendall_tau": 0.5259,
+      "F1_degeneracy_rate": 0.872,
+      "F2_low_agreement_rate": 0,
+      "F3_high_agree_wrong_rate": 0.082,
+      "F4_selection_gap_rate": 0,
+      "sc_success_rate": 0.046,
+      "nondegen_n": 25,
+      "nondegen_greedy_acc": 0.32,
+      "nondegen_mv_acc": 0.36,
+      "nondegen_oracle_acc": 0.64,
+      "nondegen_spearman_rho": 0.13
+    }
+  },
+  "timestamp": "2026-05-20T22:07:18.031655+00:00",
+  "trigger": "update_registry"
+}

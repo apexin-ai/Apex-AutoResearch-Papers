@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_wnut17_qwen25_7b",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:19:33.960Z",
+    "updated_at": "2026-05-19T06:19:46.535Z",
+    "hypothesis": "The correlation-selection gap extends to noisy social media NER (WNUT-17). Unlike formal-domain datasets (SciERC/CoNLL/FewNERD), WNUT-17 has higher surface-level noise which may affect structural signal reliability differently. This tests domain generalization of the diagnostic framework."
+  },
+  "timestamp": "2026-05-19T06:19:46.823889+00:00",
+  "trigger": "update_registry"
+}

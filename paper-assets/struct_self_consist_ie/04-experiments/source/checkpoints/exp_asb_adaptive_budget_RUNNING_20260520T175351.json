@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp_asb_adaptive_budget",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:37:33.233Z",
+    "updated_at": "2026-05-20T17:53:50.939Z",
+    "hypothesis": "Adaptive Sample Budget: extension of E_θ threshold optimization to sample count N. Instance features (degeneracy, LP variance, agreement rate) predict optimal N per instance. Under fixed total budget=8 (average), adaptive allocation outperforms uniform N=8 by allocating more samples to high-uncertainty instances and fewer to degenerate/easy ones.",
+    "spec": {
+      "command": "python run_asb.py --data_paths fewnerd,scierc,conll --dataset_names FewNERD,SciERC,CoNLL --output_dir output/exp_asb_adaptive_budget/ --seed 42",
+      "server": "autodl-5090",
+      "gpu": [],
+      "pid": "942477",
+      "log_path": "~/runs/struct_self_consist_ie/exp_asb_adaptive_budget.log",
+      "submitted_at": "2026-05-20T17:53:42.754Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "output/exp_021_inference/samples.jsonl,output/exp_026_t10_seed42/samples.jsonl,output/exp_002_conll_n16/samples.jsonl",
+      "data_count": "FewNERD=37648,SciERC=551,CoNLL=3453",
+      "model_name": "LR+RF+MLP",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-20T17:53:51.296049+00:00",
+  "trigger": "update_registry"
+}

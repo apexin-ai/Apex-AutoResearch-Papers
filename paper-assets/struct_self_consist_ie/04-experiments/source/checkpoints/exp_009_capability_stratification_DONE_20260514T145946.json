@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp_009_capability_stratification",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T14:59:24.201Z",
+    "updated_at": "2026-05-14T14:59:46.463Z",
+    "spec": {
+      "command": "python code/exp009_stratification_analysis.py",
+      "server": "autodl-5090",
+      "data_path": "output/exp001_n16_seed42 + output/exp008_re_n16 + output/exp002_conll2003",
+      "data_count": 4555,
+      "model_name": "analysis_only",
+      "seed": 42
+    },
+    "conclusion": "success",
+    "checkpoint_path": "output/exp009_stratification_results.json",
+    "log_path": "/tmp/exp009.log",
+    "completed_at": "2026-05-14T14:59:46.463Z"
+  },
+  "timestamp": "2026-05-14T14:59:46.543257+00:00",
+  "trigger": "update_registry"
+}

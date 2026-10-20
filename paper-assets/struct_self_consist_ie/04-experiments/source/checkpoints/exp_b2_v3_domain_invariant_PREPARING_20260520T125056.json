@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_b2_v3_domain_invariant",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T12:50:49.948Z",
+    "updated_at": "2026-05-20T12:50:56.331Z",
+    "hypothesis": "Removing domain-specific features (dataset_enc, entity_type distributions) forces the verifier to rely on domain-invariant signals, improving cross-domain generalization at the cost of some discriminative power. If LGB AUC improves on held-out domains, domain features were causing negative transfer.",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-20T12:50:56.710719+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp_008_re_n16_v2",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T14:34:06.296Z",
+    "updated_at": "2026-05-14T15:23:35.598Z",
+    "spec": {
+      "description": "RE N=16 on SciERC full set confirmation, ft_002_v2, with logprobs",
+      "hypothesis": "Structural consistency correlates with per-instance RE F1 on SciERC full dataset",
+      "server": "autodl-5090",
+      "data_path": "data/scierc/processed_data",
+      "data_count": 551,
+      "model_name": "ft_002_v2",
+      "seed": 42,
+      "command": "CUDA_VISIBLE_DEVICES=3 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask re --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_008_re_n16_v2",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "78737",
+      "backend": "tmux",
+      "account": "root",
+      "log_path": "output/exp_008_re_n16_v2/run.log"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "sj_rho_full": 0.281,
+      "sj_rho_cond": 0.308,
+      "f1_zero_pct": 44.3,
+      "verdict": "FAIL"
+    },
+    "checkpoint_path": "output/exp_008_re_n16_v2/",
+    "completed_at": "2026-05-14T15:23:35.598Z"
+  },
+  "timestamp": "2026-05-14T15:23:35.688547+00:00",
+  "trigger": "update_registry"
+}

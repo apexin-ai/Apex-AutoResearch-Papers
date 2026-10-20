@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_entity_consensus",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:59:50.628Z",
+    "updated_at": "2026-05-18T19:59:50.628Z"
+  },
+  "timestamp": "2026-05-18T19:59:50.946265+00:00",
+  "trigger": "update_registry"
+}

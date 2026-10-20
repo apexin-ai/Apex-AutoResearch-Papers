@@ -1,0 +1,39 @@
+{
+  "exp_id": "exp_14b_inference_conll",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:36:26.315Z",
+    "updated_at": "2026-05-21T04:38:50.193Z",
+    "hypothesis": "14B Qwen2.5 inference on CoNLL (N∈{1,2,4,8}): filling scale curve between 8B (greedy F1=0.907) and 32B. Tests whether 14B shows intermediate behavior in SC diagnostic metrics.",
+    "reproduce": {
+      "finished_at": "2026-05-20T14:49:00.238Z"
+    },
+    "failure_reason": "Director ordered kill: cross-domain 14B inference deemed valueless by Reviewer. Only FewNERD 14B inference retained.",
+    "conclusion": "killed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T14:49:09.529266+00:00"
+        }
+      ]
+    },
+    "server": "autodl-5090-c",
+    "gpu": "cuda:2",
+    "spec": {
+      "command": "for N in 1 2 4 8; do CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/modelscope_hub/Qwen/Qwen2___5-14B-Instruct --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples $N --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/14b_base_inference/conll2003_n${N} --gpu_memory_utilization 0.95 --max_model_len 2048 --enforce_eager; done",
+      "server": "autodl-5090-c",
+      "data_path": "data/conll2003/",
+      "data_count": 3453,
+      "model_name": "Qwen2.5-14B-Instruct",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-21T04:38:50.619929+00:00",
+  "trigger": "update_registry"
+}

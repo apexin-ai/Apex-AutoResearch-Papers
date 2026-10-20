@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_b1_scd_threshold_ablation",
+  "project": "struct_self_consist_ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:17:42.163Z",
+    "updated_at": "2026-05-20T11:54:59.497Z",
+    "hypothesis": "Construction threshold sweep for SCD pseudo-label generation on FewNERD: θ∈{1/N, 2/N, 3/N, 0.5}. Higher θ = more conservative pseudo-labels (higher precision, lower recall). Optimal θ balances pseudo-label quality vs quantity for SCD training effectiveness."
+  },
+  "timestamp": "2026-05-20T11:54:59.819517+00:00",
+  "trigger": "update_registry"
+}

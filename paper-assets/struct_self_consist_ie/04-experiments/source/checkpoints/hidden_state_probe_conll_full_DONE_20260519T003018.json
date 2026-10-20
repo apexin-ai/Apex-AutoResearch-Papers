@@ -1,0 +1,17 @@
+{
+  "exp_id": "hidden_state_probe_conll_full",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T12:57:45.711Z",
+    "updated_at": "2026-05-19T00:30:18.272Z",
+    "conclusion": "killed",
+    "notes": "Not in D154 Dual Contribution framing",
+    "completed_at": "2026-05-19T00:30:18.272Z"
+  },
+  "timestamp": "2026-05-19T00:30:18.545381+00:00",
+  "trigger": "update_registry"
+}

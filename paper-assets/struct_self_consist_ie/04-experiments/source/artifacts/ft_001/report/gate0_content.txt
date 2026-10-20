@@ -1,0 +1,1 @@
+{"gate0_pass": false, "strict_match": {"ner_f1": 0.114, "ner_precision": 0.109, "ner_recall": 0.119, "re_f1": 0.013, "re_precision": 0.011, "re_recall": 0.016}, "text_match": {"ner_f1": 0.606, "ner_precision": 0.580, "ner_recall": 0.634, "re_f1": 0.339, "re_precision": 0.281, "re_recall": 0.427}, "offset_accuracy": 0.166, "parse_failures": 43, "total_instances": 551}

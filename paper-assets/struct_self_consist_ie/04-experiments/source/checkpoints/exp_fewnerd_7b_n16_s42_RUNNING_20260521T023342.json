@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_fewnerd_7b_n16_s42",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:32:29.897Z",
+    "updated_at": "2026-05-21T02:33:41.650Z",
+    "hypothesis": "FewNERD N=16 with Qwen2.5-7B: extending N-scaling curve to N=16 for 7B model. At N=8 the 7B model shows diminishing oracle gains; N=16 tests whether the plateau continues or breaks, providing a critical data point for the N-scaling law F1(N)=a-b*N^(-c) at the 7B scale.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen25-7b-fewnerd-merged --data_dir data/fewnerd/ --dataset fewnerd --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_7b_n16_seed42/",
+      "server": "autodl-5090-c",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/test.json",
+      "data_count": 37648,
+      "model_name": "qwen25-7b-fewnerd-merged",
+      "seed": 42,
+      "gpu": "cuda:2",
+      "pid": 264869,
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/logs/fewnerd_7b_n16_seed42.log",
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b_n16_seed42/",
+      "checkpoint_source": "/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-fewnerd-merged",
+      "eval_data": "fewnerd test set (37648 instances, N=16)"
+    }
+  },
+  "timestamp": "2026-05-21T02:33:42.073349+00:00",
+  "trigger": "update_registry"
+}

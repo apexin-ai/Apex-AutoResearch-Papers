@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_e2_pretrained_scierc_s42_v2",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T17:50:07.046Z",
+    "updated_at": "2026-05-21T17:52:06.047Z",
+    "hypothesis": "E2 pretrained baseline SciERC s42 v2: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Re-run for cross-validation of E2 pretrained SciERC performance.",
+    "spec": {
+      "command": "python code/run_mvp_pilot.py --model_path Qwen2.5-7B-Instruct --dataset scierc --n_samples 8 --temperature 1.0 --seed 42",
+      "server": "autodl-5090-c",
+      "data_path": "data/scierc/",
+      "data_count": 551,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_path": "output/e2_pretrained_scierc_s42_v2/",
+      "log_path": "output/e2_pretrained_scierc_s42_v2/"
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-21T17:52:06.047Z"
+  },
+  "timestamp": "2026-05-21T17:52:06.534255+00:00",
+  "trigger": "update_registry"
+}

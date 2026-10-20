@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_fewnerd_s789_n8",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:17:34.011Z",
+    "updated_at": "2026-05-18T23:17:52.374Z",
+    "hypothesis": "FewNERD seed789 (4th seed) for statistical CI strengthening: 4-seed protocol provides tighter confidence intervals on LP selection gain and DGS effectiveness in low-degeneracy regime.",
+    "parent": "exp_029a"
+  },
+  "timestamp": "2026-05-18T23:17:52.664154+00:00",
+  "trigger": "update_registry"
+}

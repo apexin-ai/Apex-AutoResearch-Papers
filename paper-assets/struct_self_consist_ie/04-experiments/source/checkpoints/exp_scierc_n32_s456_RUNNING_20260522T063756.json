@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp_scierc_n32_s456",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T05:32:58.842Z",
+    "updated_at": "2026-05-22T06:37:55.511Z",
+    "hypothesis": "N=32 multi-seed robustness: SciERC N=32 finetuned seed=456. Third seed to reduce variance of MV Δ estimate at N=32 (s42 +0.78pp, s123 +0.12pp — high variance). Three seeds enable mean±σ reporting.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 32 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/scierc_n32_seed456/\"",
+      "server": "autodl-5090-c",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "393271",
+      "log_path": "~/runs/struct_self_consist_ie/exp_scierc_n32_s456.log",
+      "submitted_at": "2026-05-22T05:33:11.546Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/scierc/processed_data",
+      "data_count": 551,
+      "model_name": "qwen3-8b-scierc-merged-v2",
+      "seed": 456,
+      "checkpoint_path": "output/scierc_n32_seed456/"
+    },
+    "metrics": {
+      "greedy_f1": 0.6661,
+      "mv_strict_f1": 0.6644,
+      "mv_delta_strict_pp": -0.17,
+      "degeneracy_rate": 0.04
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T06:37:56.036668+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp_fewnerd_mf4v2_s123",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:55:59.499Z",
+    "updated_at": "2026-05-21T14:21:31.746Z",
+    "spec": {
+      "command": "python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123/",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "13035",
+      "log_path": "~/runs/struct_self_consist_ie/exp_fewnerd_mf4v2_s123.log",
+      "submitted_at": "2026-05-21T07:56:58.909Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/fewnerd/",
+      "data_count": 37648,
+      "model_name": "qwen3-8b-fewnerd-exp021-merged",
+      "seed": 123,
+      "wall_clock_seconds": 23072.8,
+      "gpu_hours": 6.41
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-21T14:21:31.746Z"
+  },
+  "timestamp": "2026-05-21T14:21:32.216788+00:00",
+  "trigger": "update_registry"
+}

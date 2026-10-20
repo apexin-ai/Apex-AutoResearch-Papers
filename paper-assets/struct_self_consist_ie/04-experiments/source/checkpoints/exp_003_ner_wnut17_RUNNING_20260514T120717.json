@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp_003_ner_wnut17",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T11:42:17.544Z",
+    "updated_at": "2026-05-14T12:07:17.048Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 llamafactory-cli train wnut17_lora.yaml",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "47778",
+      "log_path": "~/runs/struct_self_consist_ie/exp_003_ner_wnut17.log",
+      "submitted_at": "2026-05-14T12:07:06.137Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/wnut17/",
+      "data_count": 3394,
+      "model_name": "Qwen3-8B + LoRA r=32",
+      "seed": 42,
+      "description": "WNUT-17 NER fine-tune + pilot: validate SJ/voting confidence on social media domain"
+    },
+    "server": "autodl-5090",
+    "gpu": "cuda:2",
+    "account": "root",
+    "reproduce": {
+      "server": "autodl-5090",
+      "gpu": "cuda:2",
+      "started_at": "2026-05-14T11:43:50.537Z"
+    }
+  },
+  "timestamp": "2026-05-14T12:07:17.125767+00:00",
+  "trigger": "update_registry"
+}

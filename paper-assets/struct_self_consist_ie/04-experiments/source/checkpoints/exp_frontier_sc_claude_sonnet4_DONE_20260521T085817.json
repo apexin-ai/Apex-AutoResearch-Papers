@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp_frontier_sc_claude_sonnet4",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T06:20:27.878Z",
+    "updated_at": "2026-05-21T08:58:17.224Z",
+    "hypothesis": "Frontier model Claude Sonnet 4 on FewNERD SC (200 instances, N=8, T=1.0): if correlation-selection gap persists across model families (GPT + Claude + Gemini + DeepSeek), the finding is universal and not model-specific.",
+    "spec": {
+      "command": "python -u code/run_frontier_sc.py --model anthropic/claude-sonnet-4 --base_url http://47.94.22.126/v1 --dataset fewnerd --data_dir data/fewnerd/ --n_instances 200 --n_samples 8 --temperature 1.0 --output_dir output/frontier_sc_claude_sonnet4/ --max_tokens 4096",
+      "server": "autodl-5090",
+      "data_path": "data/fewnerd/test.json",
+      "data_count": 200,
+      "model_name": "anthropic/claude-sonnet-4",
+      "seed": 42,
+      "pid": 6302,
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/logs/frontier_sc_claude_sonnet4.log",
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_claude_sonnet4/",
+      "checkpoint_source": "API (http://47.94.22.126/v1)",
+      "eval_data": "fewnerd test set (200 instances, N=8, T=1.0)",
+      "matching": "text+type (case-insensitive, no offset)",
+      "note": "v2: fixed from offset-based to text-based entity matching for API models"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "greedy_f1": 0.6068,
+      "mv_f1": 0.6226,
+      "oracle_f1": 0.6544,
+      "degeneracy_rate": 0.74,
+      "selection_gap": 0.0318,
+      "parse_failures": 103,
+      "api_calls": 1600,
+      "wall_clock_seconds": 6118,
+      "instances": 200
+    },
+    "completed_at": "2026-05-21T08:58:17.224Z"
+  },
+  "timestamp": "2026-05-21T08:58:17.778508+00:00",
+  "trigger": "update_registry"
+}

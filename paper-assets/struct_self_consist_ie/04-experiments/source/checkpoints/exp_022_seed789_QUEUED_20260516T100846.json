@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_022_seed789",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T10:08:27.375Z",
+    "updated_at": "2026-05-16T10:08:46.338Z",
+    "hypothesis": "3rd seed SciERC inference (seed=789) with ft_002_v2 (Qwen3-8B). N=8, T=1.0, joint NER+RE, logprobs collected. Complements seed42 (exp_012_rerun_1024) and seed123/456 for multi-seed analysis."
+  },
+  "timestamp": "2026-05-16T10:08:46.578445+00:00",
+  "trigger": "update_registry"
+}

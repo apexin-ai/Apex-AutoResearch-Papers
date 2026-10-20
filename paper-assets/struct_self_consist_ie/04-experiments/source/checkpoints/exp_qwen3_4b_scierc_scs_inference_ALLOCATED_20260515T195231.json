@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_qwen3_4b_scierc_scs_inference",
+  "project": "struct_self_consist_ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:45:33.384Z",
+    "updated_at": "2026-05-15T19:52:30.850Z",
+    "hypothesis": "SciERC 4B SCS inference after v4 finetune merge. Complete 2x2 scale matrix (4B SciERC cell). Cross-scale + cross-task evidence for correlation-selection gap."
+  },
+  "timestamp": "2026-05-15T19:52:31.082468+00:00",
+  "trigger": "update_registry"
+}

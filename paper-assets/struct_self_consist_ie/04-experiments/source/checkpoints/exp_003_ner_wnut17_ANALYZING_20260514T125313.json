@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp_003_ner_wnut17",
+  "project": "struct_self_consist_ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T11:42:17.544Z",
+    "updated_at": "2026-05-14T12:53:13.450Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=1 llamafactory-cli train wnut17_lora.yaml\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "55639",
+      "log_path": "~/runs/struct_self_consist_ie/exp_003_ner_wnut17.log",
+      "submitted_at": "2026-05-14T12:18:10.414Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "autodl-5090",
+    "gpu": "cuda:2",
+    "account": "root",
+    "reproduce": {
+      "server": "autodl-5090",
+      "gpu": "cuda:2",
+      "started_at": "2026-05-14T11:43:50.537Z",
+      "finished_at": "2026-05-14T12:53:13.262Z",
+      "training_hours": 1.16
+    }
+  },
+  "timestamp": "2026-05-14T12:53:13.517786+00:00",
+  "trigger": "update_registry"
+}

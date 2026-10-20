@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_llama_fewnerd_lora",
+  "project": "struct_self_consist_ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T13:20:55.859Z",
+    "updated_at": "2026-05-18T13:21:20.372Z",
+    "hypothesis": "LLaMA-based model with LoRA fine-tuning on Few-NERD can provide a second model family (beyond Qwen) for cross-model generalization evidence of structured self-consistency phenomena in NER"
+  },
+  "timestamp": "2026-05-18T13:21:20.615528+00:00",
+  "trigger": "update_registry"
+}

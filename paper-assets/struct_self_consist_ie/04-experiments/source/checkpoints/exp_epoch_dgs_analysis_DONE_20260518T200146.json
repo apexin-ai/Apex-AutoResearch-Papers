@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_epoch_dgs_analysis",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:59:57.921Z",
+    "updated_at": "2026-05-18T20:01:46.134Z",
+    "hypothesis": "DGS benefit is strictly monotonic with degeneracy rate: higher degeneracy → greater DGS improvement, validating that degeneracy rate is the key gating signal",
+    "spec": {
+      "command": "python3 code/epoch_dgs_analysis.py",
+      "server": "autodl-5090",
+      "data_path": "/root/struct_self_consist_ie/data/",
+      "data_count": "all datasets",
+      "model_name": "Qwen3-8B",
+      "seed": 42
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/struct_self_consist_ie/output/epoch_dgs_analysis_results.json",
+    "log_path": "/root/struct_self_consist_ie/output/epoch_dgs_analysis_results.json",
+    "completed_at": "2026-05-18T20:01:46.134Z"
+  },
+  "timestamp": "2026-05-18T20:01:46.387267+00:00",
+  "trigger": "update_registry"
+}

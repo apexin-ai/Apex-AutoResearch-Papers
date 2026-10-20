@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp_spider_sc_pilot",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:41:49.560Z",
+    "updated_at": "2026-05-20T18:41:56.313Z",
+    "hypothesis": "SC diagnostic cascade (degeneracy, LP-quality gap, agreement-correctness correlation) validated on NER structured generation will also manifest in SQL structured generation with Qwen2.5-7B-Instruct on Spider, demonstrating cross-task universality of the diagnostic framework.",
+    "spec": {
+      "command": "source /root/autodl-tmp/struct_self_consist_ie/env.sh && CUDA_VISIBLE_DEVICES=2 python3 /root/autodl-tmp/struct_self_consist_ie/code/run_spider_sc.py",
+      "server": "autodl-5090-b",
+      "gpu": "cuda:2",
+      "data_path": "xlangai/spider (HF) + synthetic databases from tables.json",
+      "data_count": 200,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-20T18:41:57.003332+00:00",
+  "trigger": "update_registry"
+}

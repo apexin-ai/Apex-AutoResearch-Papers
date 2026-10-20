@@ -1,0 +1,39 @@
+{
+  "exp_id": "exp_adaptive_sampling_budget",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T09:29:22.761Z",
+    "updated_at": "2026-05-20T09:29:34.154Z",
+    "hypothesis": "Confidence-aware adaptive sampling budget allocation (fewer samples for high-confidence instances, full N=8 for low-confidence) can recover nearly all SC F1 gains while saving 40-50% of inference cost, because high-confidence instances already have low diversity and gain nothing from additional samples.",
+    "metrics": {
+      "model": "Qwen3-8B FT",
+      "fewnerd": {
+        "n_instances": 37648,
+        "greedy_f1": 0.7884,
+        "uniform_n8_f1": 0.7819,
+        "best_adaptive": "h1_l8",
+        "best_adaptive_f1": 0.7849,
+        "best_delta_vs_u8": "+0.30pp",
+        "sample_savings": "43.8%",
+        "note": "Greedy > U8; adaptive h1/l8 best: greedy for high-conf, N=8 SC for low-conf"
+      },
+      "scierc": {
+        "n_instances": 551,
+        "greedy_f1": 0.6592,
+        "uniform_n8_f1": 0.6712,
+        "best_adaptive": "top67%_h2_l8",
+        "best_adaptive_f1": 0.6707,
+        "best_delta_vs_u8": "-0.05pp",
+        "sample_savings": "50.2%",
+        "note": "U8 > Greedy; top67% h2/l8 saves 50% with negligible loss"
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T09:29:34.460320+00:00",
+  "trigger": "update_registry"
+}

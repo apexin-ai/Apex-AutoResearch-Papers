@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_026_t08",
+  "project": "struct_self_consist_ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T12:57:46.027Z",
+    "updated_at": "2026-05-16T12:57:58.979Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 8 --temperature 0.8 --max_tokens 1024 --seed 42 --collect_logprobs --output_dir output/exp_026_t08",
+      "server": "autodl-5090",
+      "data_path": "data/scierc/processed_data",
+      "data_count": 551,
+      "model_name": "qwen3-8b-scierc-merged-v2",
+      "seed": 42,
+      "description": "Temperature ablation T=0.8 on SciERC full test set (NER), 8 samples, with logprobs"
+    }
+  },
+  "timestamp": "2026-05-16T12:57:59.217825+00:00",
+  "trigger": "update_registry"
+}

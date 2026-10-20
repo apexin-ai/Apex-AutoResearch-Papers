@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp_fewnerd_pretrained_n32_s42_v2",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:49:35.691Z",
+    "updated_at": "2026-05-23T11:37:30.230Z",
+    "hypothesis": "Pretrained N-scaling rerun: FewNERD N=32 with Qwen2.5-7B-Instruct. v1 killed at 70% to prevent UnicodeEncodeError crash at save stage (no incremental checkpoint). Fix (errors='replace') deployed. Same hypothesis: tests pretrained MV advantage at 4× budget (N=32).",
+    "parent": "exp_fewnerd_pretrained_n32_s42",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=3 python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 32 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_pretrained_n32_seed42/\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "157469",
+      "data_count": 37648,
+      "data_path": "data/fewnerd/",
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "n_samples": 32,
+      "log_path": "~/runs/struct_self_consist_ie/exp_fewnerd_pretrained_n32_s42_v2.log",
+      "checkpoint_source": "Qwen2.5-7B-Instruct (pretrained, no finetuning)",
+      "eval_data": "data/fewnerd/ (37648 instances)",
+      "note": "Restarted with verified fix. Old PID 155692 killed (loaded pre-fix code). Server corrected: autodl-5090 (not autodl-5090-c)."
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T11:37:27.391Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-23T11:37:30.788052+00:00",
+  "trigger": "update_registry"
+}

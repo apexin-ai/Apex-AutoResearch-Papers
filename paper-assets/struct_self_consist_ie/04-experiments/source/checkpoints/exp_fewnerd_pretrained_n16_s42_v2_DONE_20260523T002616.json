@@ -1,0 +1,72 @@
+{
+  "exp_id": "exp_fewnerd_pretrained_n16_s42_v2",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:21:18.896Z",
+    "updated_at": "2026-05-23T00:26:15.782Z",
+    "hypothesis": "Pretrained N-scaling: FewNERD N=16 T=1.0 seed=42 with unfinetuned Qwen2.5-7B-Instruct. Fills the N=16 point on the pretrained N-scaling curve (N=8/16/32). Tests whether doubling sample budget from N=8 increases MV delta and oracle headroom for pretrained models.",
+    "parent": "exp_fewnerd_pretrained_n16_s42",
+    "spec": {
+      "command": "python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_pretrained_n16_seed42/",
+      "server": "autodl-5090-c",
+      "gpu": "cuda:1",
+      "pid": 452387,
+      "log_path": "/root/runs/struct_self_consist_ie/exp_fewnerd_pretrained_n16_s42_v2.log",
+      "submitted_at": "2026-05-22T15:21:43.507Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/fewnerd/",
+      "data_count": 602368,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "N/A (pretrained model, retry of v1)",
+      "eval_data": "data/fewnerd/",
+      "wall_clock_seconds": 32661.4,
+      "gpu_hours": 9.07,
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_pretrained_n16_seed42/"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T00:19:06.784Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T00:19:17.288300+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "greedy_f1": 0.5373,
+      "mv_strict_f1": 0.5779,
+      "mv_delta_strict_pp": 4.06,
+      "mv_incl_f1": 0.5722,
+      "oracle_f1": 0.6786,
+      "degeneracy_rate": 0.076,
+      "alpha_crit_eff_strict": 0.4398,
+      "alpha_crit_strict": 0.4064,
+      "mv_capture_rate": 0.2876,
+      "n_total": 37648,
+      "n_gold_nonempty": 32565,
+      "greedy_f1_all": 0.5109,
+      "oracle_f1_all": 0.6433,
+      "sj_rho_full": 0.453,
+      "fk_rho_full": 0.401,
+      "lp_rho_full": 0.192,
+      "structural_beats_surface": true,
+      "note": "Primary metrics (greedy/mv/oracle) computed on gold-nonempty instances (n=32565) via recompute_alpha_crit_unified.py. _all suffix = full instances incl gold-empty."
+    },
+    "checkpoint_path": "output/fewnerd_pretrained_n16_seed42/",
+    "log_path": "/root/runs/struct_self_consist_ie/exp_fewnerd_pretrained_n16_s42_v2.log",
+    "completed_at": "2026-05-23T00:26:04.898Z"
+  },
+  "timestamp": "2026-05-23T00:26:16.408789+00:00",
+  "trigger": "update_registry"
+}

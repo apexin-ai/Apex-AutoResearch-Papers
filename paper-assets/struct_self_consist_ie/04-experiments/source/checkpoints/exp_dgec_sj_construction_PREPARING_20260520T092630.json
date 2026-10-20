@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp_dgec_sj_construction",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:37:58.013Z",
+    "updated_at": "2026-05-20T09:26:30.567Z",
+    "hypothesis": "SJ-weighted entity construction serves as control for VC — if SJ (soft entity overlap) works as well as VC (exact match consensus), any stronger QE signal suffices for construction; if VC specifically outperforms SJ, exact-match consensus has a unique advantage over soft similarity for entity-level selection.",
+    "metrics": {
+      "total_configs": 26,
+      "significant_positive": 1,
+      "significant_negative": 15,
+      "not_significant": 10,
+      "best_config": "scierc/72b/zs +2.0pp p=0.001",
+      "worst_config": "fewnerd/8b_qwen3/ft mean -1.48pp all seeds p=1.0",
+      "qwen3_8b_ft_supplement": {
+        "configs": 9,
+        "sig+": 0,
+        "sig-": 6,
+        "ns": 3,
+        "fewnerd_mean_delta": -1.48,
+        "scierc_mean_delta": -0.4,
+        "conll_mean_delta": -0.5,
+        "note": "SJ fully negative on Qwen3-8B FT — consistent with Qwen2.5-7B FT pattern"
+      },
+      "m030_all_passed": true
+    },
+    "notes": "COMPLETE (26 configs). SJ-weighted construction: 1 sig+ / 15 sig- / 10 ns. Qwen3-8B FT supplement (9 configs): 0+/6-/3ns — fully negative, consistent with 7B FT pattern. FewNERD -1.48pp mean (all seeds p=1.0). Definitively answers control question: NOT any stronger QE signal works for construction. SJ introduces noise at entity level. Only exception: SciERC 72B ZS (lowest precision, lowest degeneracy). Closed per D170/D171.",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-20T09:26:30.874603+00:00",
+  "trigger": "update_registry"
+}

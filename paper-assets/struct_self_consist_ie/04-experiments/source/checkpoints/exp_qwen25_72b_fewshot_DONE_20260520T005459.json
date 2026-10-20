@@ -1,0 +1,110 @@
+{
+  "exp_id": "exp_qwen25_72b_fewshot",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T15:59:44.340Z",
+    "updated_at": "2026-05-20T00:54:59.032Z",
+    "hypothesis": "Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy).",
+    "parent": "exp_qwen25_72b_zeroshot",
+    "server": "autodl-5090-b",
+    "gpu": "cuda:0,cuda:1,cuda:2,cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "autodl-5090-b",
+      "gpu": "cuda:0,cuda:1,cuda:2,cuda:3",
+      "started_at": "2026-05-19T16:22:20.071Z",
+      "finished_at": "2026-05-20T00:47:36.445Z",
+      "training_hours": 8.42
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0,1,2,3 python code/fewshot_inference_72b.py --datasets scierc conll2003 fewnerd --output-dir output/72b_fewshot --seed 42\"",
+      "server": "autodl-5090-b",
+      "gpu": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": 131293,
+      "log_path": "~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log",
+      "submitted_at": "2026-05-19T16:25:57.711Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/{scierc,conll2003,fewnerd}",
+      "data_count": 41652,
+      "model_name": "Qwen2.5-72B-Instruct-AWQ",
+      "seed": 42,
+      "gpu_ids": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "checkpoint_source": "Qwen2.5-72B-Instruct-AWQ (base model, no fine-tuning)",
+      "eval_data": "SciERC + CoNLL-2003 + FewNERD test sets",
+      "wall_clock_seconds": 30541.3,
+      "gpu_hours": 33.93
+    },
+    "metrics": {
+      "scierc": {
+        "lp_rho": 0.06,
+        "sj_rho": 0.293,
+        "fk_rho": 0.301,
+        "vc_rho": 0.258,
+        "em_rho": 0.205,
+        "degen_pct": 16.6,
+        "greedy_f1": 0.461,
+        "oracle_f1": 0.604,
+        "construction_f1": 0.461,
+        "construction_delta_pp": -0.08,
+        "bootstrap_p": 0.544
+      },
+      "conll": {
+        "lp_rho": 0.106,
+        "sj_rho": 0.442,
+        "fk_rho": 0.451,
+        "vc_rho": 0.426,
+        "em_rho": 0.403,
+        "degen_pct": 70,
+        "greedy_f1": 0.745,
+        "oracle_f1": 0.796,
+        "construction_f1": 0.745,
+        "construction_delta_pp": 0.03,
+        "bootstrap_p": 0.417
+      },
+      "fewnerd": {
+        "lp_rho": 0.161,
+        "sj_rho": 0.345,
+        "fk_rho": 0.327,
+        "vc_rho": 0.41,
+        "em_rho": 0.302,
+        "degen_pct": 45.2,
+        "greedy_f1": 0.619,
+        "oracle_f1": 0.702,
+        "construction_f1": 0.619,
+        "construction_delta_pp": 0.02,
+        "bootstrap_p": 0.401
+      }
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T00:47:43.131229+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "output/72b_fewshot/ + output/72b_fewshot_signals/",
+    "log_path": "~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log",
+    "completed_at": "2026-05-20T00:54:59.032Z"
+  },
+  "timestamp": "2026-05-20T00:54:59.338839+00:00",
+  "trigger": "update_registry"
+}

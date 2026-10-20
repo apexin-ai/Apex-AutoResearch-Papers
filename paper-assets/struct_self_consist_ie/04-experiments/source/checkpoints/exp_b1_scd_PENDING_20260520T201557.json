@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_b1_scd",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:12:48.805Z",
+    "updated_at": "2026-05-20T20:15:56.852Z",
+    "hypothesis": "Self-Consistency Distillation via theta2n construction pseudo-labels can teach Qwen3-8B-FT to internalize SC benefits: after iterative SCD (M0→M1→M2→M3), greedy F1 should approach N=8 construction F1 (FewNERD target: 0.764 vs current greedy 0.748). CoNLL serves as negative control (construction Δ=-0.4pp, SCD should not help). Transductive setting: pseudo-labels from test set SC outputs.",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-20T20:15:57.203024+00:00",
+  "trigger": "update_registry"
+}

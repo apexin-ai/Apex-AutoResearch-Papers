@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_qwen3_4b_scierc_merge_inference",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:42:43.332Z",
+    "updated_at": "2026-05-15T19:42:43.332Z"
+  },
+  "timestamp": "2026-05-15T19:42:43.521845+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp_b3_prompted_diversity",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:12:51.750Z",
+    "updated_at": "2026-05-20T17:40:45.878Z",
+    "hypothesis": "Structurally different prompt templates (expert persona, descriptive types, recall-focused) generate more diverse N=8 samples than repeating a single template, improving entity construction F1 via broader coverage of the entity space.",
+    "conclusion": "killed",
+    "metrics": {
+      "single_vc_weighted_f1": 0.7723,
+      "multi_vc_weighted_f1": 0.7311,
+      "delta_vc": -0.0412,
+      "single_lp_weighted_f1": 0.7665,
+      "multi_lp_weighted_f1": 0.7308,
+      "delta_lp": -0.0356,
+      "single_theta2n_f1": 0.7618,
+      "multi_theta2n_f1": 0.7269,
+      "delta_theta2n": -0.0349,
+      "single_unique_entities": 5.29,
+      "multi_unique_entities": 4.06,
+      "within_template_jaccard": 0.474,
+      "cross_template_jaccard": 0.67,
+      "verdict": "Multi-template strictly worse. Templates converge to similar outputs; non-standard templates add noise, diluting construction signals."
+    },
+    "server": "autodl-5090-c",
+    "gpu": "cuda:3",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python /root/autodl-tmp/struct_self_consist_ie/code/exp_b3_prompted_diversity.py --phase both --num_instances 3000 --seed 42",
+      "server": "autodl-5090-c",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/test.json",
+      "data_count": 3000,
+      "model_name": "qwen3-8b-fewnerd-exp021-merged",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "N/A"
+    },
+    "completed_at": "2026-05-20T17:40:45.878Z"
+  },
+  "timestamp": "2026-05-20T17:40:46.212926+00:00",
+  "trigger": "update_registry"
+}

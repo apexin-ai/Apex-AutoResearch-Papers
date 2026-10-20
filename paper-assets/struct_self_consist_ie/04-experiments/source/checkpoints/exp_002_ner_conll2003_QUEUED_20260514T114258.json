@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp_002_ner_conll2003",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T11:42:15.223Z",
+    "updated_at": "2026-05-14T11:42:58.322Z",
+    "spec": {
+      "hypothesis": "Cross-dataset generalization: SJ/voting confidence signals remain strong on news-domain NER (CoNLL-2003) with different entity types.",
+      "plan_id": "exp-002",
+      "model_name": "qwen3-8b (new CoNLL-2003 fine-tune)",
+      "dataset": "CoNLL-2003",
+      "gpu": "cuda:1",
+      "server": "autodl-5090",
+      "gpu_budget_hours": 8,
+      "description": "Fine-tune Qwen3-8B LoRA on CoNLL-2003 + NER pilot (N=8, T=0.7) with log-prob capture."
+    }
+  },
+  "timestamp": "2026-05-14T11:42:58.362049+00:00",
+  "trigger": "update_registry"
+}

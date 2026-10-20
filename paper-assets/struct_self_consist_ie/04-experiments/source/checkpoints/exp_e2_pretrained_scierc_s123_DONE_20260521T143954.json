@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp_e2_pretrained_scierc_s123",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T14:20:29.367Z",
+    "updated_at": "2026-05-21T14:39:53.937Z",
+    "hypothesis": "E2 pre-trained baseline SciERC seed=123: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Additional seed for E2 pre-trained baseline. Tests whether correlation-selection gap and structural vs surface patterns are consistent across seeds on SciERC.",
+    "spec": {
+      "command": "python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/e2_pretrained_scierc_s123/",
+      "server": "autodl-5090-c",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "326377",
+      "log_path": "~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc_s123.log",
+      "submitted_at": "2026-05-21T14:20:52.083Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/scierc/processed_data/",
+      "data_count": 551,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 123,
+      "checkpoint_path": "N/A (inference-only)",
+      "wall_clock_seconds": 1141.9,
+      "gpu_hours": 0.32
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-21T14:39:53.937Z"
+  },
+  "timestamp": "2026-05-21T14:39:54.460889+00:00",
+  "trigger": "update_registry"
+}

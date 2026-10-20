@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp_scierc_n8_s456",
+  "project": "struct_self_consist_ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:01:42.040Z",
+    "updated_at": "2026-05-22T11:35:06.825Z",
+    "hypothesis": "R35-N2 SciERC validation: SciERC N=8 T=1.0 seed=456 finetuned model. Third seed to complete 3-seed mean±σ for SciERC. Uses unified run_mvp_pilot.py pipeline (micro-F1). With s42 and s123, enables statistical power for SciERC core claims.",
+    "server": "autodl-5090",
+    "gpu": "cuda:1",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/scierc_n8_seed456/\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "135921",
+      "log_path": "~/runs/struct_self_consist_ie/exp_scierc_n8_s456.log",
+      "submitted_at": "2026-05-22T11:27:51.619Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "135921",
+    "log_path": "~/runs/struct_self_consist_ie/exp_scierc_n8_s456.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/scierc_n8_seed456/\"",
+      "finished_at": "2026-05-22T11:35:04.266Z"
+    }
+  },
+  "timestamp": "2026-05-22T11:35:07.999119+00:00",
+  "trigger": "update_registry"
+}

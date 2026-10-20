@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_026_t08_scierc",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T15:28:36.084Z",
+    "updated_at": "2026-05-18T15:30:22.527Z",
+    "hypothesis": "Moderate temperature (T=0.8) provides intermediate degeneracy/LP-range tradeoff on SciERC NER, testing sensitivity of structural signals to temperature",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python code/analyze_exp026_temp_5signal.py --data_path output/exp_026_t08/samples.jsonl --output_dir output/exp_026_t08/ --subtasks ner,re\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "665386",
+      "log_path": "~/runs/struct_self_consist_ie/exp_026_t08_scierc.log",
+      "submitted_at": "2026-05-18T15:28:55.394Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T15:30:22.800775+00:00",
+  "trigger": "update_registry"
+}

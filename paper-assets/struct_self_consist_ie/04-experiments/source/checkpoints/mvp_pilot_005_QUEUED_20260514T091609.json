@@ -1,0 +1,24 @@
+{
+  "exp_id": "mvp_pilot_005",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:14:09.456Z",
+    "updated_at": "2026-05-14T09:16:08.991Z",
+    "spec": {
+      "hypothesis": "T=0.7 降低 RE zero rate，恢复 SJ>FK，rho_sj 可能 ≥ 0.30 (MARGINAL threshold)",
+      "model_name": "Qwen3-8B-SciERC-LoRA-v2 (ft_002_v2 final)",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/scierc/processed_data",
+      "data_count": 551,
+      "server": "autodl-5090",
+      "seed": 42,
+      "parent": "ft_002_v2",
+      "method": "N=8 sampling T=0.7 + XGrammar + span realignment + max_tokens=1024 + gold-empty filter + conditional rho"
+    }
+  },
+  "timestamp": "2026-05-14T09:16:09.038774+00:00",
+  "trigger": "update_registry"
+}

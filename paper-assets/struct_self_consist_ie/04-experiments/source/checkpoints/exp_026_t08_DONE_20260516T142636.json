@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp_026_t08",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T12:57:46.027Z",
+    "updated_at": "2026-05-16T14:26:36.243Z",
+    "spec": {
+      "checkpoint_path": "checkpoints/qwen3-8b-scierc-merged-v2",
+      "log_path": "output/exp_026_t08/run.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "temperature": 0.8,
+      "task": "T-ablation"
+    },
+    "completed_at": "2026-05-16T14:26:36.243Z"
+  },
+  "timestamp": "2026-05-16T14:26:36.460979+00:00",
+  "trigger": "update_registry"
+}

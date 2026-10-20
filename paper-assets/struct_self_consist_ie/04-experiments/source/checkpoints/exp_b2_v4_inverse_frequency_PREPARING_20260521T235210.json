@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp_b2_v4_inverse_frequency",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T12:50:51.737Z",
+    "updated_at": "2026-05-21T23:52:10.386Z",
+    "hypothesis": "Inverse-frequency weighting of entity features (agreement_count, vc, sj normalized by log(1+type_freq)) improves cross-domain generalization by reducing dominance of high-frequency entity types. Two variants: A) replace original features, B) augment as additional features.",
+    "conclusion": "killed",
+    "metrics": {
+      "variant_a_replace_fold3_lgb_auc": 0.834,
+      "variant_a_replace_fold3_ece": 0.2188,
+      "variant_a_f1_delta": -0.013,
+      "variant_b_augment_fold3_lgb_auc": 0.8541,
+      "variant_b_augment_fold3_ece": 0.1934,
+      "variant_b_f1_delta": -0.009,
+      "sj_ifw_std_reduction": "54% (0.138→0.063)",
+      "ac_ifw_std_reduction": "10% (0.122→0.110)",
+      "verdict": "IFW improves stability but reduces discriminative power. Augment variant neutral. Replace variant harmful."
+    },
+    "parent": "exp_b2_entity_verifier"
+  },
+  "timestamp": "2026-05-21T23:52:10.914709+00:00",
+  "trigger": "update_registry"
+}

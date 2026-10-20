@@ -1,0 +1,58 @@
+{
+  "exp_id": "exp_llama_fewnerd_inference",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T02:18:49.938Z",
+    "updated_at": "2026-05-19T03:15:04.486Z",
+    "hypothesis": "LLaMA-3.1-8B fine-tuned on FewNERD shows the same structured self-consistency phenomena (degeneracy, LP-F1 alignment, signal ranking) as Qwen models, providing cross-model generalization evidence. 3-seed inference (42/123/456) for statistical robustness.",
+    "parent": "exp_llama_fewnerd_lora",
+    "spec": {
+      "command": "bash code/run_llama_fewnerd_inference.sh",
+      "server": "autodl-5090",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/",
+      "data_count": 37648,
+      "model_name": "LLaMA-3.1-8B-FewNERD-LoRA-merged",
+      "seed": "42,123,456",
+      "checkpoint_source": "exp_llama_fewnerd_lora",
+      "eval_data": "FewNERD test set",
+      "checkpoint_path": "checkpoints/llama3.1-8b-fewnerd-merged/",
+      "log_path": "logs/llama_fewnerd_inference.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "3seed_mean": {
+        "greedy_f1": 0.7842,
+        "oracle_f1": 0.8843,
+        "headroom_pp": 10.01,
+        "degeneracy_pct": 23.36,
+        "lp_delta_pp": 0.36,
+        "dgs_delta_pp": -0.35
+      },
+      "seed_42": {
+        "greedy_f1": 0.7841,
+        "oracle_f1": 0.8854,
+        "degen": 27.32
+      },
+      "seed_123": {
+        "greedy_f1": 0.784,
+        "oracle_f1": 0.8839,
+        "degen": 24.63
+      },
+      "seed_456": {
+        "greedy_f1": 0.7844,
+        "oracle_f1": 0.8835,
+        "degen": 18.13
+      },
+      "signal_ranking": "LP (+0.36pp) > SJ (-0.52) > FK (-0.53) > EM (-1.02) > VC (-2.39)",
+      "lp_only_positive": true,
+      "n_instances_gold_filtered": 32565
+    },
+    "completed_at": "2026-05-19T03:15:04.486Z"
+  },
+  "timestamp": "2026-05-19T03:15:04.764503+00:00",
+  "trigger": "update_registry"
+}

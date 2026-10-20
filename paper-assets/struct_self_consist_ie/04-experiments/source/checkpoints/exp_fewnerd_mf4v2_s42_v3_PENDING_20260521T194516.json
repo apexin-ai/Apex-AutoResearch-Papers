@@ -1,0 +1,22 @@
+{
+  "exp_id": "exp_fewnerd_mf4v2_s42_v3",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T14:24:25.067Z",
+    "updated_at": "2026-05-21T19:45:15.651Z",
+    "hypothesis": "FewNERD MF4v2 s42 re-run v3: corrected model path with nested tokenizer dir. N=8, T=1.0, seed=42.",
+    "spec": {
+      "data_path": "data/fewnerd/",
+      "data_count": 37648,
+      "model_name": "qwen3-8b-fewnerd-exp021-merged",
+      "seed": 42
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-21T19:45:16.171260+00:00",
+  "trigger": "update_registry"
+}

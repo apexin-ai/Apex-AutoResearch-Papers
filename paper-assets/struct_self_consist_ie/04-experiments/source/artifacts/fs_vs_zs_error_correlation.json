@@ -1,0 +1,68 @@
+{
+  "scierc": {
+    "fs": {
+      "mean_pairwise_error_jaccard": 0.4537,
+      "std_pairwise_error_jaccard": 0.3007,
+      "median_pairwise_error_jaccard": 0.489,
+      "mean_entity_entropy": 0.4828,
+      "std_entity_entropy": 0.261
+    },
+    "zs": {
+      "mean_pairwise_error_jaccard": 0.4524,
+      "std_pairwise_error_jaccard": 0.2959,
+      "median_pairwise_error_jaccard": 0.5089,
+      "mean_entity_entropy": 0.4848,
+      "std_entity_entropy": 0.2573
+    },
+    "jaccard_test": {
+      "test_name": "wilcoxon_signed_rank",
+      "statistic": 51318.5,
+      "p_value": 0.8442039112000504,
+      "effect_size_r": 0.0084,
+      "direction": "fs>zs"
+    },
+    "entropy_test": {
+      "test_name": "wilcoxon_signed_rank",
+      "statistic": 57215.0,
+      "p_value": 0.8069014200592761,
+      "effect_size_r": 0.0104,
+      "direction": "zs>fs"
+    },
+    "n_instances": 551,
+    "n_skipped_no_errors": 67,
+    "interpretation": "No significant difference in error overlap between FS and ZS"
+  },
+  "conll": {
+    "fs": {
+      "mean_pairwise_error_jaccard": 0.1026,
+      "std_pairwise_error_jaccard": 0.2329,
+      "median_pairwise_error_jaccard": 0.0,
+      "mean_entity_entropy": 0.2093,
+      "std_entity_entropy": 0.2857
+    },
+    "zs": {
+      "mean_pairwise_error_jaccard": 0.104,
+      "std_pairwise_error_jaccard": 0.2384,
+      "median_pairwise_error_jaccard": 0.0,
+      "mean_entity_entropy": 0.1839,
+      "std_entity_entropy": 0.2812
+    },
+    "jaccard_test": {
+      "test_name": "wilcoxon_signed_rank",
+      "statistic": 229924.0,
+      "p_value": 0.6377686633294677,
+      "effect_size_r": 0.008,
+      "direction": "zs>fs"
+    },
+    "entropy_test": {
+      "test_name": "wilcoxon_signed_rank",
+      "statistic": 451537.5,
+      "p_value": 5.012564773246714e-10,
+      "effect_size_r": 0.1058,
+      "direction": "fs>zs"
+    },
+    "n_instances": 3453,
+    "n_skipped_no_errors": 2380,
+    "interpretation": "No significant difference in error overlap between FS and ZS"
+  }
+}

@@ -1,0 +1,2048 @@
+# analysis scierc metric verification
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 69
+- **Recorded user turns:** 0
+- **Tool calls:** 34
+- **Original source:** `logs/chats/worker_analysis_scierc-metric-verification_20260524T083725.jsonl`
+- **Structured JSON:** [`96dd8251ecc8f9edaf07.json`](../../sessions/96/96dd8251ecc8f9edaf07.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+69 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-24T08:45:37.433264+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-24T08:45:37.433644+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-24T08:45:37.433848+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-24T08:45:37.433986+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-24T08:45:37.434401+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\
+…[truncated 8988 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-24T08:45:37.434712+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"adalp_analysis_results.json\\nadaptive_temperature_results.json\\nalpha_crit_recompute.json\\nalpha_crit_recompute.log\\nanalysis_epsilon_sweep\\nanalysis_fk_bootstrap_ci.json\\nanalysis_fk_bootstrap_per_instance.json\\nanalysis_lp_range_cdf.json\\nanalysis_lp_range_cdf_n16_3seed.json\\nanalysis_mbr_selection.json\\nanalysis_multiseed_selection_f1.json\\nanalysis_round8\\nanalysis_scierc_n16_3seed_selection_f1.json\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\nanalysis_unified_rho_full.json\\nanalyze_s789_rerun.log\\nb5_cross_model_construction.py\\nb5_cross_model_results.json\\nb7_adaptive_budget\\nbh_fdr_sensitivity_results.txt\\nbootstrap_ci_nscaling\\nbootstrap_ci_summary.json\\nbootstrap_ci_tables.tex\\ncalibration_baseline_results.json\\nccs_selection_report.md\\nccs_selection_results.json\\nclaim_audit\\nconditional_filter_diagnosis.json\\nconll_freeform_n8_seed42\\nconll_mf4_seed123\\nconll_mf4_seed456\\nconll_mf4v2_seed123\\nconll_mf4v2_seed456\\nconll_n16_s123\\nconll_n16_s456\\nconll_n16_seed123_v2\\nconll_n16_seed456_v2\\nconll_n32_s42\\nconll_n32_seed123\\nconll_n32_seed456\\nconll_n64_seed42\\nconll_pretrained_n16_seed42\\nconll_pretrained_n64_seed42\\nconstruction_variants\\nd108_greedy_f1\\nd108_lp_vc_combination\\nd108_mbr_within_rho\\nd108_q4q5\\nd110_4b_degeneracy\\nd112_disk_cleanup\\nd112_hybrid_strategy\\nd112_mf3_random_single\\nd112_table2_fix\\nd114_auroc_investigation\\nd140_oracle_gated\\nd141_conditional_decomp\\nd141_degeneracy_scatter\\nd141_entity_merge\\ndals_analysis.json\\ndals_cross_model.json\\ndals_hardening_results.json\\ndeberta_verifier\\ndeberta_verifier_5fold\\ndebug_sj_variance.log\\ndebug_sj_variance_results.json\\ndecomposition_regression\\ndev_set_lp_probe\\ndgs_epoch_rank_analysis.json\\ndgs_selection_results.json\\ndiagnostic_calibration\\ndiagnostic_calibration_results.json\\ndistill_verifier\\ne2_pretrain
+…[truncated 6853 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-24T08:45:37.434878+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"samples.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"samples.jsonl\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-24T08:45:37.435091+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2_ckpt400/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_200only/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/samples.jsonl\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/samples.jsonl\\n/root/autodl-tmp/struct_self_con
+…[truncated 6395 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-24T08:45:37.435274+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"greedy\" /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"greedy\" /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-24T08:45:37.435428+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"80:    print(f\\\"  Greedy F1:      {report[f'{p}greedy_f1']:.4f}\\\")\\n92:    n_zero = report.get(f\\\"{p}n_greedy_f1_zero_filtered\\\", 0)\\n211:    greedy_preds = [inst[\\\"greedy\\\"] for inst in sampled]\\n232:        greedy_metrics = f1_fn(greedy_preds, golds)\\n239:        greedy_f1 = greedy_metrics[\\\"f1\\\"]\\n241:        oracle_headroom = oracle_f1 - greedy_f1\\n244:                        for pred, gold in zip(greedy_preds, golds)]\\n263:        # Conditional ρ: exclude greedy_F1=0 instances (knowledge-gap)\\n276:            \\\"greedy_f1\\\": greedy_f1,\\n286:            \\\"n_greedy_f1_zero_filtered\\\": n_all_zero,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-24T08:45:37.435579+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"metrics.json\" -o -name \"summary.json\" -o -name \"results.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/output -name \"metrics.json\" -o -name \"summary.json\" -o -name \"results.json\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-24T08:45:37.435739+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2_re_rerun/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_nscaling/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/loo_sj_cross_dataset/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/freeform_conll/summary.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/verbalized_confidence/summary.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_entity_token_lp/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/d108_mbr_within_rho/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/d108_greedy_f1/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/d108_lp_vc_combination/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/d110_4b_degeneracy/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/d112_hybrid_strategy/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_022_3seed_analysis/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_019_trained_verifier/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n_ablation/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_020_pilot/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027v2_mlp_verifier/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/deberta_verifier_5fold/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed456/results.json
+…[truncated 780 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-24T08:45:37.435924+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-24T08:45:37.436061+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"report.json\\nsamples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-24T08:45:37.436206+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/scierc_5seed_construction_aligned.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/scierc_5seed_construction_aligned.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-24T08:45:37.436383+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"LP-weighted entity construction\\\",\\n  \\\"theta\\\": 0.25,\\n  \\\"N\\\": 8,\\n  \\\"gold_filter\\\": true,\\n  \\\"n_instances_per_seed\\\": 529,\\n  \\\"per_seed\\\": {\\n    \\\"42\\\": {\\n      \\\"n\\\": 529,\\n      \\\"greedy_f1\\\": 0.6502060031471797,\\n      \\\"constr_f1\\\": 0.6444256353867338,\\n      \\\"delta_pp\\\": -0.5780367760445881,\\n      \\\"p_value\\\": 0.8242,\\n      \\\"ci_95\\\": [\\n        -1.7430429618937344,\\n        0.5973620001548157\\n      ],\\n      \\\"sign\\\": \\\"-\\\"\\n    },\\n    \\\"123\\\": {\\n      \\\"n\\\": 529,\\n      \\\"greedy_f1\\\": 0.6471486024138087,\\n      \\\"constr_f1\\\": 0.6567496449093055,\\n      \\\"delta_pp\\\": 0.960104249549687,\\n      \\\"p_value\\\": 0.0853,\\n      \\\"ci_95\\\": [\\n        -0.40098258838720785,\\n        2.416073882732097\\n      ],\\n      \\\"sign\\\": \\\"+\\\"\\n    },\\n    \\\"456\\\": {\\n      \\\"n\\\": 529,\\n      \\\"greedy_f1\\\": 0.6456395359709047,\\n      \\\"constr_f1\\\": 0.6647340943154352,\\n      \\\"delta_pp\\\": 1.9094558344530443,\\n      \\\"p_value\\\": 0.0031,\\n      \\\"ci_95\\\": [\\n        0.49321483047019565,\\n        3.3680513049536183\\n      ],\\n      \\\"sign\\\": \\\"+\\\"\\n    },\\n    \\\"2024\\\": {\\n      \\\"n\\\": 529,\\n      \\\"greedy_f1\\\": 0.6477508147362478,\\n      \\\"constr_f1\\\": 0.6625047513243888,\\n      \\\"delta_pp\\\": 1.4753936588140948,\\n      \\\"p_value\\\": 0.0233,\\n      \\\"ci_95\\\": [\\n        0.030534324454595616,\\n        2.980681034404763\\n      ],\\n      \\\"sign\\\": \\\"+\\\"\\n    },\\n    \\\"3141\\\": {\\n      \\\"n\\\": 529,\\n      \\\"greedy_f1\\\": 0.6427209020392608,\\n      \\\"constr_f1\\\": 0.660549832316762,\\n      \\\"delta_pp\\\": 1.782893027750121,\\n      \\\"p_value\\\": 0.0075,\\n      \\\"ci_95\\\": [\\n        0.32275583152654164,\\n        3.333943630285229\\n      ],\\n      \\\"
+…[truncated 531 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-24T08:45:37.436537+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -80 /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -80 /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-24T08:45:37.436735+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"MVP pilot experiment script for structured self-consistency IE.\\n\\nIntegrates data loading, vLLM sampling, consistency scoring, and evaluation\\ninto a single CLI-driven pipeline. Outputs a verdict (PASS/MARGINAL/FAIL)\\nbased on the correlation between structural consistency and per-instance F1.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport sys\\n\\nimport numpy as np\\n\\nfrom data_utils import load_scierc, load_ace05, load_conll2003, load_wnut17, load_fewnerd\\nfrom sampling import (\\n    VLLMSampler,\\n    run_sampling_pipeline,\\n    save_sampled_results,\\n    load_sampled_results,\\n    realign_spans,\\n    SCIERC_SCHEMA_HINT,\\n    CONLL2003_SCHEMA_HINT,\\n    WNUT17_SCHEMA_HINT,\\n    FEWNERD_SCHEMA_HINT,\\n)\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import (\\n    per_instance_f1,\\n    compute_ner_f1,\\n    compute_re_f1,\\n    compute_eae_f1,\\n    spearman_correlation,\\n    kendall_correlation,\\n    compute_auroc,\\n    compute_sample_f1_distribution,\\n)\\n\\n\\ndef parse_args() -> argparse.Namespace:\\n    \\\"\\\"\\\"Parse command-line arguments.\\\"\\\"\\\"\\n    p = argparse.ArgumentParser(description=\\\"MVP pilot for structured self-consistency IE\\\")\\n    p.add_argument(\\\"--model_path\\\", type=str, required=True, help=\\\"Path to the fine-tuned model\\\")\\n    p.add_argument(\\\"--data_dir\\\", type=str, required=True, help=\\\"Dataset directory (SciERC or ACE05)\\\")\\n    p.add_argument(\\\"--dataset\\\", type=str, default=\\\"scierc\\\", choices=[\\\"scierc\\\", \\\"ace05\\\", \\\"conll2003\\\", \\\"wnut17\\\", \\\"fewnerd\\\"],\\n                   help=\\\"Dataset name (default: scierc)\\\")\\n    p.add_argument(\\\"--subtask\\\", type=str, default=\\\"ner\\\", choices=[\\\"ner\\\", \\\"re\\\", \\\"eae\\\", \\\"joint\\\"],\\n                   help=\\
+…[truncated 2671 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-24T08:45:37.436894+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/d108_greedy_f1/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/d108_greedy_f1/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-24T08:45:37.437284+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"exp_dir\\\": \\\"exp001_n16_seed123\\\",\\n    \\\"model\\\": \\\"Qwen2.5-7B\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"subtask\\\": \\\"ner\\\",\\n    \\\"n_samples\\\": 16,\\n    \\\"temperature\\\": 1.0,\\n    \\\"num_instances\\\": 551,\\n    \\\"greedy_f1\\\": 0.663101604278075,\\n    \\\"sample_f1_mean\\\": 0.6108958081521371,\\n    \\\"oracle_f1\\\": 0.8089820359281438\\n  },\\n  {\\n    \\\"exp_dir\\\": \\\"exp001_n16_seed123\\\",\\n    \\\"model\\\": \\\"Qwen2.5-7B\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"subtask\\\": \\\"re\\\",\\n    \\\"n_samples\\\": 16,\\n    \\\"temperature\\\": 1.0,\\n    \\\"num_instances\\\": 551,\\n    \\\"greedy_f1\\\": 0.418905472636816,\\n    \\\"sample_f1_mean\\\": 0.35903428060105996,\\n    \\\"oracle_f1\\\": 0.6251896813353567\\n  },\\n  {\\n    \\\"exp_dir\\\": \\\"exp001_n16_seed123_200only\\\",\\n    \\\"model\\\": \\\"Qwen2.5-7B\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"subtask\\\": \\\"ner\\\",\\n    \\\"n_samples\\\": 16,\\n    \\\"temperature\\\": 1.0,\\n    \\\"num_instances\\\": 200,\\n    \\\"greedy_f1\\\": 0.655035685963521,\\n    \\\"sample_f1_mean\\\": 0.6107212679735348,\\n    \\\"oracle_f1\\\": 0.8028169014084506\\n  },\\n  {\\n    \\\"exp_dir\\\": \\\"exp001_n16_seed123_200only\\\",\\n    \\\"model\\\": \\\"Qwen2.5-7B\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"subtask\\\": \\\"re\\\",\\n    \\\"n_samples\\\": 16,\\n    \\\"temperature\\\": 1.0,\\n    \\\"num_instances\\\": 200,\\n    \\\"greedy_f1\\\": 0.4243208279430789,\\n    \\\"sample_f1_mean\\\": 0.3586732304302276,\\n    \\\"oracle_f1\\\": 0.677124183006536\\n  },\\n  {\\n    \\\"exp_dir\\\": \\\"exp001_n16_seed42\\\",\\n    \\\"model\\\": \\\"Qwen2.5-7B\\\",\\n    \\\"dataset\\\": \\\"scierc\\\",\\n    \\\"subtask\\\": \\\"ner\\\",\\n    \\\"n_samples\\\": 16,\\n    \\\"temperature\\\": 1.0,\\n    \\\"num_instances\\\": 551,\\n    \\
+…[truncated 9009 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-24T08:45:37.437501+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-24T08:45:37.437685+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.6650817236255573,\\n  \\\"oracle_f1\\\": 0.7814648729446936,\\n  \\\"oracle_headroom\\\": 0.11638314931913629,\\n  \\\"fleiss_kappa_mean\\\": 0.4026309549168795,\\n  \\\"soft_jaccard_mean\\\": 0.7075193095799391,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.250717098601997,\\n    \\\"p_value\\\": 5.020625623424824e-09,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.35237641769818245,\\n    \\\"p_value\\\": 6.545548202405666e-17,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.1851625535353072,\\n    \\\"p_value\\\": 4.393487085464429e-05,\\n    \\\"n\\\": 481\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3322937020153413,\\n    \\\"p_value\\\": 7.293649906907315e-14,\\n    \\\"n\\\": 481\\n  },\\n  \\\"n_gold_empty_filtered\\\": 22,\\n  \\\"n_greedy_f1_zero_filtered\\\": 48,\\n  \\\"structural_beats_surface\\\": true,\\n  \\\"rho_advantage\\\": 0.10165931909618547,\\n  \\\"sample_f1_mean\\\": 0.6043802075046405,\\n  \\\"sample_f1_std\\\": 0.320579569980076,\\n  \\\"sample_f1_pct_zero\\\": 12.948960302457467,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.2098080596262029,\\n      \\\"p_rho\\\": 1.124711717913164e-06,\\n      \\\"tau\\\": 0.15064291932895899,\\n      \\\"p_tau\\\": 7.870480000610067e-07,\\n      \\\"auroc\\\": 0.5676083138173302,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.16349237060360247,\\n      \\\"p_rho\\\": 0.00031749166138887605,\\n      \\\"tau\\\": 0.1169528663765729,\\n      \\\"p_tau\\\": 0.00027446923925483497,\\n      \\\"auroc\\\": 
+…[truncated 334 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-24T08:45:37.437841+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/scierc_5seed_aligned.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/scierc_5seed_aligned.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-24T08:45:37.438145+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"SciERC 5-seed entity construction: gold-filtered aligned analysis.\\\"\\\"\\\"\\nimport json, math, numpy as np\\nfrom collections import defaultdict\\n\\nSEEDS = [42, 123, 456, 2024, 3141]\\nPATHS = {s: f\\\"/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed{s}/samples.jsonl\\\" for s in SEEDS}\\nN_SAMPLES = 8\\nTHETA = 2.0 / N_SAMPLES  # 0.25\\nB_BOOT = 10000\\n\\ndef load_all(path):\\n    insts = []\\n    with open(path) as f:\\n        for line in f:\\n            if not line.strip():\\n                continue\\n            insts.append(json.loads(line))\\n    return insts\\n\\ndef gold_filter(insts):\\n    return [inst for inst in insts if inst[\\\"gold\\\"].get(\\\"entities\\\", [])]\\n\\ndef entity_set(entities):\\n    return {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in entities}\\n\\ndef compute_f1(pred_set, gold_set):\\n    if not gold_set and not pred_set:\\n        return 1.0\\n    if not pred_set or not gold_set:\\n        return 0.0\\n    tp = len(pred_set & gold_set)\\n    if tp == 0:\\n        return 0.0\\n    p = tp / len(pred_set)\\n    r = tp / len(gold_set)\\n    return 2 * p * r / (p + r)\\n\\ndef get_lp_weights(inst):\\n    samples = inst[\\\"samples\\\"]\\n    lps = []\\n    logprobs = inst.get(\\\"logprobs\\\", None)\\n    for i, s in enumerate(samples):\\n        lp = s.get(\\\"mean_logprob\\\", None)\\n        if lp is None and logprobs is not None and i < len(logprobs):\\n            lp = logprobs[i]\\n        if lp is None or not math.isfinite(lp):\\n            lp = -100.0\\n        lps.append(lp)\\n    max_lp = max(lps)\\n    ws = [math.exp(lp - max_lp) for lp in lps]\\n    total = sum(ws)\\n    return [w / total for w in ws]\\n\\ndef lp_weighted_construction(inst, theta):\\n    ws = get_lp_weights(inst)\\n    entity_counts = defaultdict(float)\\n    for i, sample in enumerate(inst[\\\"samples\\\"][:N_SAMPLES]):\\n        for e in sample.g
+…[truncated 5502 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-24T08:45:37.438337+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -260 /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -260 /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-24T08:45:37.438615+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"MVP pilot experiment script for structured self-consistency IE.\\n\\nIntegrates data loading, vLLM sampling, consistency scoring, and evaluation\\ninto a single CLI-driven pipeline. Outputs a verdict (PASS/MARGINAL/FAIL)\\nbased on the correlation between structural consistency and per-instance F1.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport sys\\n\\nimport numpy as np\\n\\nfrom data_utils import load_scierc, load_ace05, load_conll2003, load_wnut17, load_fewnerd\\nfrom sampling import (\\n    VLLMSampler,\\n    run_sampling_pipeline,\\n    save_sampled_results,\\n    load_sampled_results,\\n    realign_spans,\\n    SCIERC_SCHEMA_HINT,\\n    CONLL2003_SCHEMA_HINT,\\n    WNUT17_SCHEMA_HINT,\\n    FEWNERD_SCHEMA_HINT,\\n)\\nfrom consistency import compute_all_consistency_scores\\nfrom evaluation import (\\n    per_instance_f1,\\n    compute_ner_f1,\\n    compute_re_f1,\\n    compute_eae_f1,\\n    spearman_correlation,\\n    kendall_correlation,\\n    compute_auroc,\\n    compute_sample_f1_distribution,\\n)\\n\\n\\ndef parse_args() -> argparse.Namespace:\\n    \\\"\\\"\\\"Parse command-line arguments.\\\"\\\"\\\"\\n    p = argparse.ArgumentParser(description=\\\"MVP pilot for structured self-consistency IE\\\")\\n    p.add_argument(\\\"--model_path\\\", type=str, required=True, help=\\\"Path to the fine-tuned model\\\")\\n    p.add_argument(\\\"--data_dir\\\", type=str, required=True, help=\\\"Dataset directory (SciERC or ACE05)\\\")\\n    p.add_argument(\\\"--dataset\\\", type=str, default=\\\"scierc\\\", choices=[\\\"scierc\\\", \\\"ace05\\\", \\\"conll2003\\\", \\\"wnut17\\\", \\\"fewnerd\\\"],\\n                   help=\\\"Dataset name (default: scierc)\\\")\\n    p.add_argument(\\\"--subtask\\\", type=str, default=\\\"ner\\\", choices=[\\\"ner\\\", \\\"re\\\", \\\"eae\\\", \\\"joint\\\"],\\n                   help=\\
+…[truncated 7196 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-24T08:45:37.438830+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "python3 -c \"import json; d=json.loads(open('/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl').readline()); print('keys:', sorted(d.keys())); print('has_greedy:', 'greedy' in d)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "python3 -c \"import json; d=json.loads(open('/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl').readline()); print('keys:', sorted(d.keys())); print('has_greedy:', 'greedy' in d)\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-24T08:45:37.438978+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-24T08:45:37.439104+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed123/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed123/report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-24T08:45:37.439298+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.6632956573468173,\\n  \\\"oracle_f1\\\": 0.7777115613825984,\\n  \\\"oracle_headroom\\\": 0.11441590403578117,\\n  \\\"fleiss_kappa_mean\\\": 0.3753747200952214,\\n  \\\"soft_jaccard_mean\\\": 0.6976732886097523,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2457141083105047,\\n    \\\"p_value\\\": 1.0278289279178066e-08,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.36812591470996975,\\n    \\\"p_value\\\": 2.0188846044757044e-18,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.15335587983854876,\\n    \\\"p_value\\\": 0.0007584520000965863,\\n    \\\"n\\\": 479\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3048917044704288,\\n    \\\"p_value\\\": 9.202282566888972e-12,\\n    \\\"n\\\": 479\\n  },\\n  \\\"n_gold_empty_filtered\\\": 22,\\n  \\\"n_greedy_f1_zero_filtered\\\": 50,\\n  \\\"structural_beats_surface\\\": true,\\n  \\\"rho_advantage\\\": 0.12241180639946506,\\n  \\\"sample_f1_mean\\\": 0.6079077840671097,\\n  \\\"sample_f1_std\\\": 0.3169681620959682,\\n  \\\"sample_f1_pct_zero\\\": 12.5,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.22088663649894605,\\n      \\\"p_rho\\\": 2.868361122825225e-07,\\n      \\\"tau\\\": 0.1598584076975524,\\n      \\\"p_tau\\\": 1.559100221506215e-07,\\n      \\\"auroc\\\": 0.5819590643274853,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.15077389773787025,\\n      \\\"p_rho\\\": 0.0009323994846488161,\\n      \\\"tau\\\": 0.1087938966703531,\\n      \\\"p_tau\\\": 0.000722257257489457,\\n      \\\"auroc\\\": 0.5468421052
+…[truncated 322 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-24T08:45:37.439454+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed456/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed456/report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-24T08:45:37.439628+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.6630984240261671,\\n  \\\"oracle_f1\\\": 0.7732142857142857,\\n  \\\"oracle_headroom\\\": 0.1101158616881186,\\n  \\\"fleiss_kappa_mean\\\": 0.3885307952134665,\\n  \\\"soft_jaccard_mean\\\": 0.6945053607212641,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2832042688417946,\\n    \\\"p_value\\\": 3.253926400481254e-11,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.3755666652097744,\\n    \\\"p_value\\\": 3.645631818942636e-19,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.19258485378571713,\\n    \\\"p_value\\\": 2.242704258609393e-05,\\n    \\\"n\\\": 478\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3354840140708899,\\n    \\\"p_value\\\": 4.882558916153692e-14,\\n    \\\"n\\\": 478\\n  },\\n  \\\"n_gold_empty_filtered\\\": 22,\\n  \\\"n_greedy_f1_zero_filtered\\\": 51,\\n  \\\"structural_beats_surface\\\": true,\\n  \\\"rho_advantage\\\": 0.09236239636797977,\\n  \\\"sample_f1_mean\\\": 0.6060749761490283,\\n  \\\"sample_f1_std\\\": 0.32085243617649195,\\n  \\\"sample_f1_pct_zero\\\": 12.901701323251418,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.2183972604549418,\\n      \\\"p_rho\\\": 3.923845757100808e-07,\\n      \\\"tau\\\": 0.15660018190752412,\\n      \\\"p_tau\\\": 2.782644031515382e-07,\\n      \\\"auroc\\\": 0.5751819505094614,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.16277791614178166,\\n      \\\"p_rho\\\": 0.0003523885264784647,\\n      \\\"tau\\\": 0.11553146642496089,\\n      \\\"p_tau\\\": 0.00033600593189805444,\\n      \\\"auroc\\\"
+…[truncated 336 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-24T08:45:37.439777+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed2024/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed2024/report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-24T08:45:37.439947+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.6640857653365099,\\n  \\\"oracle_f1\\\": 0.7913539477634343,\\n  \\\"oracle_headroom\\\": 0.1272681824269244,\\n  \\\"fleiss_kappa_mean\\\": 0.35722740565031563,\\n  \\\"soft_jaccard_mean\\\": 0.6606459152652094,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.23558640837690706,\\n    \\\"p_value\\\": 4.1810220337145165e-08,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.33698352005650445,\\n    \\\"p_value\\\": 1.6326980557024641e-15,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.14645022229239293,\\n    \\\"p_value\\\": 0.0013235816827462917,\\n    \\\"n\\\": 478\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.2889738184569162,\\n    \\\"p_value\\\": 1.200766218136739e-10,\\n    \\\"n\\\": 478\\n  },\\n  \\\"n_gold_empty_filtered\\\": 22,\\n  \\\"n_greedy_f1_zero_filtered\\\": 51,\\n  \\\"structural_beats_surface\\\": true,\\n  \\\"rho_advantage\\\": 0.10139711167959739,\\n  \\\"sample_f1_mean\\\": 0.5970985879523764,\\n  \\\"sample_f1_std\\\": 0.32428924534119935,\\n  \\\"sample_f1_pct_zero\\\": 14.083175803402646,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.18312664844353968,\\n      \\\"p_rho\\\": 2.2568202594747298e-05,\\n      \\\"tau\\\": 0.13145135131655863,\\n      \\\"p_tau\\\": 1.6351382731691056e-05,\\n      \\\"auroc\\\": 0.5629391100702577,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.11961951638608342,\\n      \\\"p_rho\\\": 0.008849219005439585,\\n      \\\"tau\\\": 0.08465756887355227,\\n      \\\"p_tau\\\": 0.00865181041070658,\\n      \\\"auroc
+…[truncated 340 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-24T08:45:37.440099+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed3141/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed3141/report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-24T08:45:37.440293+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.6608903495667762,\\n  \\\"oracle_f1\\\": 0.7644810349897089,\\n  \\\"oracle_headroom\\\": 0.1035906854229327,\\n  \\\"fleiss_kappa_mean\\\": 0.290628264581424,\\n  \\\"soft_jaccard_mean\\\": 0.626464462003852,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2073610692994053,\\n    \\\"p_value\\\": 1.5062474962356499e-06,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.34773768938246363,\\n    \\\"p_value\\\": 1.758280460453104e-16,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.0806123960408722,\\n    \\\"p_value\\\": 0.07860378214308755,\\n    \\\"n\\\": 477\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.2426801355292697,\\n    \\\"p_value\\\": 8.017222986458957e-08,\\n    \\\"n\\\": 477\\n  },\\n  \\\"n_gold_empty_filtered\\\": 22,\\n  \\\"n_greedy_f1_zero_filtered\\\": 52,\\n  \\\"structural_beats_surface\\\": true,\\n  \\\"rho_advantage\\\": 0.14037662008305835,\\n  \\\"sample_f1_mean\\\": 0.5802483909365651,\\n  \\\"sample_f1_std\\\": 0.3357445933785089,\\n  \\\"sample_f1_pct_zero\\\": 16.517013232514177,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.19255331829711078,\\n      \\\"p_rho\\\": 8.19390234325669e-06,\\n      \\\"tau\\\": 0.1376582610386675,\\n      \\\"p_tau\\\": 6.369953294708341e-06,\\n      \\\"auroc\\\": 0.5733042212518195,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.12307094532896291,\\n      \\\"p_rho\\\": 0.007121790259124205,\\n      \\\"tau\\\": 0.08808066699365684,\\n      \\\"p_tau\\\": 0.006348685268540362,\\n      \\\"auroc\\\": 0.5399
+…[truncated 327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-24T08:45:37.440448+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def compute_ner_f1\\|def per_instance_f1\\|micro\\|macro\\|instance\" /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"def compute_ner_f1\\|def per_instance_f1\\|micro\\|macro\\|instance\" /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-24T08:45:37.440579+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-24T08:45:37.440743+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def compute_ner_f1\\|def per_instance_f1\" /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"def compute_ner_f1\\|def per_instance_f1\" /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-24T08:45:37.440872+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-24T08:45:37.440993+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -120 /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -120 /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-24T08:45:37.441191+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluation module for structured self-consistency IE experiments.\\n\\nProvides strict-match NER/EAE evaluation, per-instance F1 computation,\\ncorrelation analysis, and summary report generation.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport statistics\\nfrom typing import Any\\n\\nfrom scipy.stats import kendalltau, spearmanr\\n\\n\\n# ---------------------------------------------------------------------------\\n# NER evaluation (strict match)\\n# ---------------------------------------------------------------------------\\n\\ndef entity_strict_match(\\n    pred_entities: list[dict],\\n    gold_entities: list[dict],\\n) -> tuple[int, int, int]:\\n    \\\"\\\"\\\"Compute strict entity match counts.\\n\\n    Strict match requires exact span (start, end) AND exact type.\\n\\n    Args:\\n        pred_entities: Predicted entity dicts with keys text, type, start, end.\\n        gold_entities: Gold entity dicts with the same schema.\\n\\n    Returns:\\n        (tp, fp, fn) counts.\\n    \\\"\\\"\\\"\\n    pred_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold_set = {(e[\\\"start\\\"], e[\\\"end\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    tp = len(pred_set & gold_set)\\n    fp = len(pred_set - gold_set)\\n    fn = len(gold_set - pred_set)\\n    return tp, fp, fn\\n\\n\\ndef compute_ner_f1(\\n    predictions: list[dict],\\n    golds: list[dict],\\n) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute micro-averaged NER precision, recall, and F1.\\n\\n    Args:\\n        predictions: List of Extraction dicts (one per instance).\\n        golds: List of Extraction dicts (one per instance), aligned with predictions.\\n\\n    Returns:\\n        Dict with keys \\\"precision\\\", \\\"recall\\\", \\\"f1\\\".\\n    \\\"\\\"\\\"\\n    total_tp = total_fp = total_fn = 0\\n    for pred, gold in zip(predictions, golds):\\n        tp, fp, fn = entity_
+…[truncated 2651 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-24T08:45:37.441359+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"greedy\\|save_sampled\\|load_sampled\" /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"greedy\\|save_sampled\\|load_sampled\" /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-24T08:45:37.441491+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-24T08:45:37.441665+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"per_instance_f1\" /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"per_instance_f1\" /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-24T08:45:37.441802+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"167:def per_instance_f1(\\n234:        f1s = [per_instance_f1(sample, gold, subtask) for sample in samples]\\n380:            instance_greedy_f1s.append(per_instance_f1(greedy, gold, subtask))\\n387:            best_sample = max(samples, key=lambda s: per_instance_f1(s, gold, subtask))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-24T08:45:37.441934+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"greedy\" /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"greedy\" /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-24T08:45:37.442107+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"160:            temperature: Sampling temperature (0 = greedy).\\n558:    Also performs a single greedy decoding pass (temperature=0, n=1) as baseline.\\n592:        raw_greedy, greedy_logprobs = sampler.sample(\\n611:        raw_greedy = sampler.sample(\\n620:        greedy_logprobs = None\\n631:        parsed_greedy = parse_extraction_output(raw_greedy[idx][0])\\n636:            parsed_greedy = realign_spans(parsed_greedy, source)\\n643:            \\\"greedy\\\": parsed_greedy,\\n649:            parsed_greedy.update(greedy_logprobs[idx][0])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-24T08:45:37.442293+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"save_sampled\\|def save\\|json.dump\\|jsonl\" /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"save_sampled\\|def save\\|json.dump\\|jsonl\" /root/autodl-tmp/struct_self_consist_ie/code/sampling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-24T08:45:37.442425+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-24T08:45:37.442549+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -1 /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-24T08:45:37.442971+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"NIPS_2016_80_abs_sent003\\\", \\\"text\\\": \\\"We rigorously establish the correctness of the methodology and show by experimentation using LSH that it is competitive in practice with available alternatives .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"LSH\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 93, \\\"end\\\": 96}, {\\\"text\\\": \\\"it\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 102, \\\"end\\\": 104}, {\\\"text\\\": \\\"alternatives\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 147, \\\"end\\\": 159}], \\\"relations\\\": [{\\\"head\\\": \\\"it\\\", \\\"tail\\\": \\\"alternatives\\\", \\\"type\\\": \\\"COMPARE\\\", \\\"head_start\\\": 102, \\\"head_end\\\": 104, \\\"tail_start\\\": 147, \\\"tail_end\\\": 159}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"methodology\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 47, \\\"end\\\": 58}, {\\\"text\\\": \\\"LSH\\\", \\\"type\\\": \\\"Method\\\", \\\"start\\\": 93, \\\"end\\\": 96}, {\\\"text\\\": \\\"it\\\", \\\"type\\\": \\\"Generic\\\", \\\"start\\\": 102, \\\"end\\\": 104}], \\\"relations\\\": [{\\\"head\\\": \\\"LSH\\\", \\\"tail\\\": \\\"methodology\\\", \\\"type\\\": \\\"EVALUATE-FOR\\\", \\\"head_start\\\": 93, \\\"head_end\\\": 96, \\\"tail_start\\\": 47, \\\"tail_end\\\": 58}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -6.074945807645271, \\\"n_tokens\\\": 150, \\\"mean_logprob\\\": -0.04049963871763514, \\\"token_logprobs\\\": [0.0, 0.0, 0.0, -0.00012385078298393637, 0.0, 0.0, 0.0, -0.018788347020745277, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -0.000929400441236794, 0.0, 0.0, 0.0, 0.0, 0.0, -0.03367285802960396, -1.4027308225631714, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0007098776986822486, -5.960462772236497e-07, -0.00017963226127903908, 0.0, 0.0, 0.0, 0.0, -0.02329517900943756, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.011085234582424164, 0.0, 0.0, 0.0, 0.0, 0.0, 
+…[truncated 10485 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-24T08:45:37.443268+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat > /root/autodl-tmp/struct_self_consist_ie/output/scierc_metric_verification.py << 'PYEOF'\n\"\"\"SciERC 5-seed metric consistency verification.\n\nComputes BOTH micro-F1 (paper Table 4 metric) and instance-averaged F1,\nusing the actual greedy decode field from samples.jsonl.\n\"\"\"\nimport json, math, numpy as np\nfrom collections import defaultdict\n\nSEEDS = [42, 123, 456, 2024, 3141]\nPATHS = {s: f\"/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed{s}/samples.jsonl\" for s in SEEDS}\nREPORT_PATHS = {s: f\"/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed{s}/report.json\" for s in SEEDS}\nN_SAMPLES = 8\nTHETA = 2.0 / N_SAMPLES  # 0.25\nB_BOOT = 10000\n\ndef load_all(path):\n    insts = []\n    with open(path) as f:\n        for line in f:\n            if not line.strip():\n                continue\n            insts.append(json.loads(line))\n    return insts\n\ndef gold_filter(insts):\n    return [inst for inst in insts if inst[\"gold\"].get(\"entities\", [])]\n\ndef entity_set(entities):\n    return {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in entities}\n\n# --- Instance-averaged F1 ---\ndef compute_inst_f1(pred_set, gold_set):\n    if not gold_set and not pred_set:\n        return 1.0\n    if not pred_set or not gold_set:\n        return 0.0\n    tp = len(pred_set & gold_set)\n    if tp == 0:\n        return 0.0\n    p = tp / len(pred_set)\n    r = tp / len(gold_set)\n    return 2 * p * r / (p + r)\n\n# --- Micro-F1 (paper metric) ---\ndef compute_micro_f1_from_sets(pred_sets, gold_sets):\n    total_tp = total_fp = total_fn = 0\n    for pred_set, gold_set in zip(pred_sets, gold_sets):\n        tp = len(pred_set & gold_set)\n        fp = len(pred_set - gold_set)\n        fn = len(gold_set - pred_set)\n        total_tp += tp\n        total_fp += fp\n        total_fn += fn\n    if total_tp == 0:\n        return 0.0\n    p = total_tp / (total_tp + total_fp)\n    r = total_tp / (total_tp + total_fn)\n    return 2 * p * r / (p + r)\n\ndef get_lp_weights(inst):\n    samples = inst[\"samples\"]\n    lps = []\n    logprobs = inst.get(\"logprobs\", None)\n    for i, s in enumerate(samples):\n        lp = s.get(\"mean_logprob\", None)\n        if lp is None and logprobs is not None and i < len(logprobs):\n            lp = logprobs[i]\n        if lp is None or not math.isfinite(lp):\n            lp = -100.0\n        lps.append(lp)\n    max_lp = max(lps)\n    ws = [math.exp(lp - max_lp) for lp in lps]\n    total = sum(ws)\n    return [w / total for w in ws]\n\ndef lp_weighted_construction(inst, theta):\n    ws = get_lp_weights(inst)\n    entity_counts = defaultdict(float)\n    for i, sample in enumerate(inst[\"samples\"][:N_SAMPLES]):\n        for e in sample.get(\"entities\", []):\n            key = (e[\"start\"], e[\"end\"], e[\"type\"])\n            entity_counts[key] += ws[i]\n    total_w = sum(ws[:N_SAMPLES])\n    return {k for k, v in entity_counts.items() if v / total_w >= theta}\n\ndef bootstrap_paired_test(f1_a, f1_b, B=B_BOOT, seed=42):\n    \"\"\"Test if f1_a > f1_b via paired bootstrap on instance-level values.\"\"\"\n    rng = np.random.RandomState(seed)\n    n = len(f1_a)\n    diffs = f1_a - f1_b\n    obs = diffs.mean()\n    boot = np.array([diffs[rng.randint(0, n, n)].mean() for _ in range(B)])\n    ci_lo = float(np.percentile(boot, 2.5))\n    ci_hi = float(np.percentile(boot, 97.5))\n    p = float((boot <= 0).mean())\n    return obs, (ci_lo, ci_hi), p\n\ndef bootstrap_micro_test(pred_sets_a, pred_sets_b, gold_sets, B=B_BOOT, seed=42):\n    \"\"\"Bootstrap test for micro-F1 difference.\"\"\"\n    rng = np.random.RandomState(seed)\n    n = len(gold_sets)\n    \n    def micro_f1_on_indices(indices):\n        tp_a = fp_a = fn_a = 0\n        tp_b = fp_b = fn_b = 0\n        for i in indices:\n            ps_a, ps_b, gs = pred_sets_a[i], pred_sets_b[i], gold_sets[i]\n            tp_a += len(ps_a & gs); fp_a += len(ps_a - gs); fn_a += len(gs - ps_a)\n            tp_b += len(ps_b & gs); fp_b += len(ps_b - gs); fn_b += len(gs - ps_b)\n        f1_a = 2*tp_a/(2*tp_a+fp_a+fn_a) if (2*tp_a+fp_a+fn_a) > 0 else 0.0\n        f1_b = 2*tp_b/(2*tp_b+fp_b+fn_b) if (2*tp_b+fp_b+fn_b) > 0 else 0.0\n        return f1_a - f1_b\n    \n    obs = micro_f1_on_indices(list(range(n)))\n    boot = np.array([micro_f1_on_indices(rng.randint(0, n, n)) for _ in range(B)])\n    ci_lo = float(np.percentile(boot, 2.5))\n    ci_hi = float(np.percentile(boot, 97.5))\n    p = float((boot <= 0).mean())\n    return obs, (ci_lo, ci_hi), p\n\n# ======================================================================\n# MAIN\n# ======================================================================\nlines = []\ndef pr(s=\"\"):\n    lines.append(s)\n    print(s)\n\npr(\"=\" * 78)\npr(\"SCIERC 5-SEED METRIC CONSISTENCY VERIFICATION\")\npr(\"=\" * 78)\n\n# Step 1: Check greedy field existence\npr(\"\\n--- Step 1: Greedy Field Check ---\")\nfor s in SEEDS:\n    data = load_all(PATHS[s])\n    n_with_greedy = sum(1 for inst in data if \"greedy\" in inst)\n    pr(f\"Seed {s}: {len(data)} instances, {n_with_greedy} have 'greedy' field\")\n\n# Step 2: Verify report.json greedy_f1 matches recomputed micro-F1\npr(\"\\n--- Step 2: Report.json Greedy F1 vs Recomputed Micro-F1 ---\")\npr(f\"{'Seed':>6} {'report.json':>12} {'recomp(551)':>12} {'recomp(529)':>12} {'match?':>8}\")\npr(\"-\" * 55)\n\nreport_greedy_f1s = {}\nfor s in SEEDS:\n    data_all = load_all(PATHS[s])\n    data_gf = gold_filter(data_all)\n    \n    with open(REPORT_PATHS[s]) as f:\n        report = json.load(f)\n    report_gf1 = report[\"greedy_f1\"]\n    report_greedy_f1s[s] = report_gf1\n    \n    # Recompute micro-F1 on all 551 instances\n    greedy_pred_sets = [entity_set(inst.get(\"greedy\", inst[\"samples\"][0]).get(\"entities\", [])) for inst in data_all]\n    gold_sets = [entity_set(inst[\"gold\"].get(\"entities\", [])) for inst in data_all]\n    micro_all = compute_micro_f1_from_sets(greedy_pred_sets, gold_sets)\n    \n    # Recompute micro-F1 on 529 gold-filtered\n    greedy_pred_sets_gf = [entity_set(inst.get(\"greedy\", inst[\"samples\"][0]).get(\"entities\", [])) for inst in data_gf]\n    gold_sets_gf = [entity_set(inst[\"gold\"].get(\"entities\", [])) for inst in data_gf]\n    micro_gf = compute_micro_f1_from_sets(greedy_pred_sets_gf, gold_sets_gf)\n    \n    match = \"YES\" if abs(report_gf1 - micro_all) < 1e-6 else f\"NO(diff={report_gf1-micro_all:.6f})\"\n    pr(f\"{s:>6} {report_gf1:>12.6f} {micro_all:>12.6f} {micro_gf:>12.6f} {match:>8}\")\n\n# Step 3: Compare metric types\npr(\"\\n--- Step 3: Metric Type Comparison (greedy baseline, gold-filtered n=529) ---\")\npr(f\"{'Seed':>6} {'micro-F1':>10} {'inst-avg':>10} {'gap(pp)':>10}\")\npr(\"-\" * 40)\n\nfor s in SEEDS:\n    data_gf = gold_filter(load_all(PATHS[s]))\n    \n    greedy_pred_sets = [entity_set(inst.get(\"greedy\", inst[\"samples\"][0]).get(\"entities\", [])) for inst in data_gf]\n    gold_sets = [entity_set(inst[\"gold\"].get(\"entities\", [])) for inst in data_gf]\n    \n    micro = compute_micro_f1_from_sets(greedy_pred_sets, gold_sets)\n    inst_avg = np.mean([compute_inst_f1(ps, gs) for ps, gs in zip(greedy_pred_sets, gold_sets)])\n    \n    pr(f\"{s:>6} {micro:>10.4f} {inst_avg:>10.4f} {(micro-inst_avg)*100:>+10.2f}\")\n\n# Step 4: Corrected 5-seed results with BOTH metrics\npr(\"\\n\" + \"=\" * 78)\npr(\"CORRECTED 5-SEED RESULTS\")\npr(\"=\" * 78)\n\n# 4a: Instance-averaged F1 (matches original aligned script)\npr(\"\\n--- A. Instance-Averaged F1 (gold-filtered, n=529) ---\")\npr(f\"{'Seed':>6} {'n':>5} {'Greedy':>10} {'LP Constr':>10} {'Δ(pp)':>8} {'p':>8} {'sig':>4}\")\npr(\"-\" * 55)\n\nall_inst_g = []\nall_inst_c = []\nresults_inst = {}\n\nfor s in SEEDS:\n    data = gold_filter(load_all(PATHS[s]))\n    n = len(data)\n    \n    greedy_pred_sets = [entity_set(inst.get(\"greedy\", inst[\"samples\"][0]).get(\"entities\", [])) for inst in data]\n    gold_sets = [entity_set(inst[\"gold\"].get(\"entities\", [])) for inst in data]\n    constr_pred_sets = [lp_weighted_construction(inst, THETA) for inst in data]\n    \n    g_f1s = np.array([compute_inst_f1(ps, gs) for ps, gs in zip(greedy_pred_sets, gold_sets)])\n    c_f1s = np.array([compute_inst_f1(ps, gs) for ps, gs in zip(constr_pred_sets, gold_sets)])\n    \n    obs, ci, p = bootstrap_paired_test(c_f1s, g_f1s)\n    delta = (c_f1s.mean() - g_f1s.mean()) * 100\n    sig = \"*\" if p < 0.05 else \"\"\n    \n    pr(f\"{s:>6} {n:>5} {g_f1s.mean():>10.4f} {c_f1s.mean():>10.4f} {delta:>+8.2f} {p:>8.4f} {sig:>4}\")\n    \n    results_inst[s] = {\n        \"greedy_f1\": float(g_f1s.mean()),\n        \"constr_f1\": float(c_f1s.mean()),\n        \"delta_pp\": float(delta),\n        \"p_value\": float(p),\n    }\n    all_inst_g.append(g_f1s)\n    all_inst_c.append(c_f1s)\n\ndeltas_inst = [results_inst[s][\"delta_pp\"] for s in SEEDS]\npr(f\"\\nMean ± σ: {np.mean(deltas_inst):+.2f} ± {np.std(deltas_inst, ddof=1):.2f} pp\")\npr(f\"Direction: {sum(1 for d in deltas_inst if d > 0)}/5 positive\")\n\npooled_g = np.concatenate(all_inst_g)\npooled_c = np.concatenate(all_inst_c)\npooled_obs, pooled_ci, pooled_p = bootstrap_paired_test(pooled_c, pooled_g)\npr(f\"Pooled ({len(pooled_g)}): Δ={pooled_obs*100:+.2f}pp, 95% CI [{pooled_ci[0]*100:+.2f}, {pooled_ci[1]*100:+.2f}], p={pooled_p:.4f}\")\n\n# 4b: Micro-F1 (paper-consistent)\npr(\"\\n--- B. Micro-F1 (gold-filtered, n=529) — PAPER-CONSISTENT METRIC ---\")\npr(f\"{'Seed':>6} {'n':>5} {'Greedy':>10} {'LP Constr':>10} {'Δ(pp)':>8} {'p':>8} {'sig':>4}\")\npr(\"-\" * 55)\n\nall_micro_g_sets = []\nall_micro_c_sets = []\nall_micro_gold_sets = []\nresults_micro = {}\n\nfor s in SEEDS:\n    data = gold_filter(load_all(PATHS[s]))\n    n = len(data)\n    \n    greedy_pred_sets = [entity_set(inst.get(\"greedy\", inst[\"samples\"][0]).get(\"entities\", [])) for inst in data]\n    gold_sets = [entity_set(inst[\"gold\"].get(\"entities\", [])) for inst in data]\n    constr_pred_sets = [lp_weighted_construction(inst, THETA) for inst in data]\n    \n    g_micro = compute_micro_f1_from_sets(greedy_pred_sets, gold_sets)\n    c_micro = compute_micro_f1_from_sets(constr_pred_sets, gold_sets)\n    delta = (c_micro - g_micro) * 100\n    \n    obs, ci, p = bootstrap_micro_test(constr_pred_sets, greedy_pred_sets, gold_sets)\n    sig = \"*\" if p < 0.05 else \"\"\n    \n    pr(f\"{s:>6} {n:>5} {g_micro:>10.4f} {c_micro:>10.4f} {delta:>+8.2f} {p:>8.4f} {sig:>4}\")\n    \n    results_micro[s] = {\n        \"greedy_f1\": float(g_micro),\n        \"constr_f1\": float(c_micro),\n        \"delta_pp\": float(delta),\n        \"p_value\": float(p),\n        \"ci_95\": [float(ci[0]*100), float(ci[1]*100)],\n    }\n    \n    all_micro_g_sets.extend(greedy_pred_sets)\n    all_micro_c_sets.extend(constr_pred_sets)\n    all_micro_gold_sets.extend(gold_sets)\n\ndeltas_micro = [results_micro[s][\"delta_pp\"] for s in SEEDS]\npr(f\"\\nMean ± σ: {np.mean(deltas_micro):+.2f} ± {np.std(deltas_micro, ddof=1):.2f} pp\")\npr(f\"Direction: {sum(1 for d in deltas_micro if d > 0)}/5 positive\")\n\npooled_micro_obs, pooled_micro_ci, pooled_micro_p = bootstrap_micro_test(\n    all_micro_c_sets, all_micro_g_sets, all_micro_gold_sets)\npr(f\"Pooled ({len(all_micro_gold_sets)}): Δ={pooled_micro_obs*100:+.2f}pp, 95% CI [{pooled_micro_ci[0]*100:+.2f}, {pooled_micro_ci[1]*100:+.2f}], p={pooled_micro_p:.4f}\")\n\n# Step 5: Discrepancy summary\npr(\"\\n\" + \"=\" * 78)\npr(\"DISCREPANCY ANALYSIS\")\npr(\"=\" * 78)\n\nmean_report_greedy = np.mean([report_greedy_f1s[s] for s in SEEDS])\nmean_inst_greedy = np.mean([results_inst[s][\"greedy_f1\"] for s in SEEDS])\nmean_micro_greedy = np.mean([results_micro[s][\"greedy_f1\"] for s in SEEDS])\n\npr(f\"\\nPaper Table 4 greedy F1 (stated):     0.6630\")\npr(f\"Report.json mean greedy (micro, 551):  {mean_report_greedy:.4f}\")\npr(f\"Recomputed greedy (micro, 529):        {mean_micro_greedy:.4f}\")\npr(f\"Recomputed greedy (inst-avg, 529):     {mean_inst_greedy:.4f}\")\npr(f\"Old aligned script greedy (inst-avg):  0.6467  (from scierc_5seed_construction_aligned.json)\")\n\npr(f\"\\nGap analysis:\")\npr(f\"  micro(551) vs micro(529): {(mean_report_greedy - mean_micro_greedy)*100:+.2f} pp (gold-filter effect)\")\npr(f\"  micro(529) vs inst-avg(529): {(mean_micro_greedy - mean_inst_greedy)*100:+.2f} pp (metric type effect)\")\npr(f\"  Total explained: {(mean_report_greedy - mean_inst_greedy)*100:+.2f} pp\")\n\npr(f\"\\nConstruction gain comparison:\")\npr(f\"  Old (inst-avg, samples[0] baseline): +1.11 pp\")\npr(f\"  New (inst-avg, greedy baseline):     {np.mean(deltas_inst):+.2f} pp\")\npr(f\"  New (micro-F1, greedy baseline):     {np.mean(deltas_micro):+.2f} pp  ← paper-consistent\")\n\n# Save\noutpath = \"/root/autodl-tmp/struct_self_consist_ie/output/scierc_metric_verification.txt\"\nwith open(outpath, \"w\") as f:\n    f.write(\"\\n\".join(lines) + \"\\n\")\n\n# Also save structured JSON\njson_out = {\n    \"greedy_source\": \"greedy field in samples.jsonl (T=0 decode, verified present in all seeds)\",\n    \"paper_metric\": \"micro-F1 (compute_ner_f1: aggregate TP/FP/FN across instances)\",\n    \"old_script_metric\": \"instance-averaged F1 (per-instance F1, then mean)\",\n    \"old_script_baseline\": \"greedy field (not samples[0] — greedy IS present in samples.jsonl)\",\n    \"discrepancy_cause\": \"metric type difference: micro-F1 (paper) vs instance-averaged F1 (old construction script). Greedy field WAS correctly used.\",\n    \"report_greedy_f1\": {str(s): report_greedy_f1s[s] for s in SEEDS},\n    \"results_instance_averaged\": results_inst,\n    \"results_micro_f1\": results_micro,\n    \"aggregate_instance_averaged\": {\n        \"mean_delta_pp\": float(np.mean(deltas_inst)),\n        \"std_delta_pp\": float(np.std(deltas_inst, ddof=1)),\n        \"pooled_p\": float(pooled_p),\n    },\n    \"aggregate_micro_f1\": {\n        \"mean_delta_pp\": float(np.mean(deltas_micro)),\n        \"std_delta_pp\": float(np.std(deltas_micro, ddof=1)),\n        \"pooled_p\": float(pooled_micro_p),\n    },\n}\njson_outpath = \"/root/autodl-tmp/struct_self_consist_ie/output/scierc_metric_verification.json\"\nwith open(json_outpath, \"w\") as f:\n    json.dump(json_out, f, indent=2)\n\npr(f\"\\nSaved to: {outpath}\")\npr(f\"Saved to: {json_outpath}\")\nPYEOF\necho \"Script written.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat > /root/autodl-tmp/struct_self_consist_ie/output/scierc_metric_verification.py << 'PYEOF'\n\"\"\"SciERC 5-seed metric consistency verification.\n\nComputes BOTH micro-F1 (paper Table 4 metric) and instance-averaged F1,\nusing the actual greedy decode field from samples.jsonl.\n\"\"\"\nimport json, math, numpy as np\nfrom collections import defaultdict\n\nSEEDS = [42, 123, 456, 2024, 3141]\nPATHS = {s: f\"/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed{s}/samples.jsonl\" for s in SEEDS}\nREPORT_PATHS = {s: f\"/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed{s}/report.json\" for s in SEEDS}\nN_SAMPLES = 8\nTHETA = 2.0 / N_SAMPLES  # 0.25\nB_BOOT = 10000\n\ndef load_all(path):\n    insts = []\n    with open(path) as f:\n        for line in f:\n            if not line.strip():\n                continue\n            insts.append(json.loads(line))\n    return insts\n\ndef gold_filter(insts):\n    return [inst for inst in insts if inst[\"gold\"].get(\"entities\", [])]\n\ndef entity_set(entities):\n    return {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in entities}\n\n# --- Instance-averaged F1 ---\ndef compute_inst_f1(pred_set, gold_set):\n    if not gold_set and not pred_set:\n        return 1.0\n    if not pred_set or not gold_set:\n        return 0.0\n    tp = len(pred_set & gold_set)\n    if tp == 0:\n        return 0.0\n    p = tp / len(pred_set)\n    r = tp / len(gold_set)\n    return 2 * p * r / (p + r)\n\n# --- Micro-F1 (paper metric) ---\ndef compute_micro_f1_from_sets(pred_sets, gold_sets):\n    total_tp = total_fp = total_fn = 0\n    for pred_set, gold_set in zip(pred_sets, gold_sets):\n        tp = len(pred_set & gold_set)\n        fp = len(pred_set - gold_set)\n        fn = len(gold_set - pred_set)\n        total_tp += tp\n        total_fp += fp\n        total_fn += fn\n    if total_tp == 0:\n        return 0.0\n    p = total_tp / (total_tp + total_fp)\n    r = total_tp / (total_tp + total_fn)\n    return 2 * p * r / (p + r)\n\ndef get_lp_weights(inst):\n    samples = inst[\"samples\"]\n    lps = []\n    logprobs = inst.get(\"logprobs\", None)\n    for i, s in enumerate(samples):\n        lp = s.get(\"mean_logprob\", None)\n        if lp is None and logprobs is not None and i < len(logprobs):\n            lp = logprobs[i]\n        if lp is None or not math.isfinite(lp):\n            lp = -100.0\n        lps.append(lp)\n    max_lp = max(lps)\n    ws = [math.exp(lp - max_lp) for lp in lps]\n    total = sum(ws)\n    return [w / total for w in ws]\n\ndef lp_weighted_construction(inst, theta):\n    ws = get_lp_weights(inst)\n    entity_counts = defaultdict(float)\n    for i, sample in enumerate(inst[\"samples\"][:N_SAMPLES]):\n        for e in sample.get(\"entities\", []):\n            key = (e[\"start\"], e[\"end\"], e[\"type\"])\n            entity_counts[key] += ws[i]\n    total_w = sum(ws[:N_SAMPLES])\n    return {k for k, v in entity_counts.items() if v / total_w >= theta}\n\ndef bootstrap_paired_test(f1_a, f1_b, B=B_BOOT, seed=42):\n    \"\"\"Test if f1_a > f1_b via paired bootstrap on instance-level values.\"\"\"\n    rng = np.random.RandomState(seed)\n    n = len(f1_a)\n    diffs = f1_a - f1_b\n    obs = diffs.mean()\n    boot = np.array([diffs[rng.randint(0, n, n)].mean() for _ in range(B)])\n    ci_lo = float(np.percentile(boot, 2.5))\n    ci_hi = float(np.percentile(boot, 97.5))\n    p = float((boot <= 0).mean())\n    return obs, (ci_lo, ci_hi), p\n\ndef bootstrap_micro_test(pred_sets_a, pred_sets_b, gold_sets, B=B_BOOT, seed=42):\n    \"\"\"Bootstrap test for micro-F1 difference.\"\"\"\n    rng = np.random.RandomState(seed)\n    n = len(gold_sets)\n    \n    def micro_f1_on_indices(indices):\n        tp_a = fp_a = fn_a = 0\n        tp_b = fp_b = fn_b = 0\n        for i in indices:\n            ps_a, ps_b, gs = pred_sets_a[i], pred_sets_b[i], gold_sets[i]\n            tp_a += len(ps_a & gs); fp_a += len(ps_a - gs); fn_a += len(gs - ps_a)\n            tp_b += len(ps_b & gs); fp_b += len(ps_b - gs); fn_b += len(gs - ps_b)\n        f1_a = 2*tp_a/(2*tp_a+fp_a+fn_a) if (2*tp_a+fp_a+fn_a) > 0 else 0.0\n        f1_b = 2*tp_b/(2*tp_b+fp_b+fn_b) if (2*tp_b+fp_b+fn_b) > 0 else 0.0\n        return f1_a - f1_b\n    \n    obs = micro_f1_on_indices(list(range(n)))\n    boot = np.array([micro_f1_on_indices(rng.randint(0, n, n)) for _ in range(B)])\n    ci_lo = float(np.percentile(boot, 2.5))\n    ci_hi = float(np.percentile(boot, 97.5))\n    p = float((boot <= 0).mean())\n    return obs, (ci_lo, ci_hi), p\n\n# ======================================================================\n# MAIN\n# ======================================================================\nlines = []\ndef pr(s=\"\"):\n    lines.append(s)\n    print(s)\n\npr(\"=\" * 78)\npr(\"SCIERC 5-SEED METRIC CONSISTENCY VERIFICATION\")\npr(\"=\" * 78)\n\n# Step 1: Check greedy field existence\npr(\"\\n--- Step 1: Greedy Field Check ---\")\nfor s in SEEDS:\n    data = load_all(PATHS[s])\n    n_with_greedy = sum(1 for inst in data if \"greedy\" in inst)\n    pr(f\"Seed {s}: {len(data)} instances, {n_with_greedy} have 'greedy' field\")\n\n# Step 2: Verify report.json greedy_f1 matches recomputed micro-F1\npr(\"\\n--- Step 2: Report.json Greedy F1 vs Recomputed Micro-F1 ---\")\npr(f\"{'Seed':>6} {'report.json':>12} {'recomp(551)':>12} {'recomp(529)':>12} {'match?':>8}\")\npr(\"-\" * 55)\n\nreport_greedy_f1s = {}\nfor s in SEEDS:\n    data_all = load_all(PATHS[s])\n    data_gf = gold_filter(data_all)\n    \n    with open(REPORT_PATHS[s]) as f:\n        report = json.load(f)\n    report_gf1 = report[\"greedy_f1\"]\n    report_greedy_f1s[s] = report_gf1\n    \n    # Recompute micro-F1 on all 551 instances\n    greedy_pred_sets = [entity_set(inst.get(\"greedy\", inst[\"samples\"][0]).get(\"entities\", [])) for inst in data_all]\n    gold_sets = [entity_set(inst[\"gold\"].get(\"entities\", [])) for inst in data_all]\n    micro_all = compute_micro_f1_from_sets(greedy_pred_sets, gold_sets)\n    \n    # Recompute micro-F1 on 529 gold-filtered\n    greedy_pred_sets_gf = [entity_set(inst.get(\"greedy\", inst[\"samples\"][0]).get(\"entities\", [])) for inst in data_gf]\n    gold_sets_gf = [entity_set(inst[\"gold\"].get(\"entities\", [])) for inst in data_gf]\n    micro_gf = compute_micro_f1_from_sets(greedy_pred_sets_gf, gold_sets_gf)\n    \n    match = \"YES\" if abs(report_gf1 - micro_all) < 1e-6 else f\"NO(diff={report_gf1-micro_all:.6f})\"\n    pr(f\"{s:>6} {report_gf1:>12.6f} {micro_all:>12.6f} {micro_gf:>12.6f} {match:>8}\")\n\n# Step 3: Compare metric types\npr(\"\\n--- Step 3: Metric Type Comparison (greedy baseline, gold-filtered n=529) ---\")\npr(f\"{'Seed':>6} {'micro-F1':>10} {'inst-avg':>10} {'gap(pp)':>10}\")\npr(\"-\" * 40)\n\nfor s in SEEDS:\n    data_gf = gold_filter(load_all(PATHS[s]))\n    \n    greedy_pred_sets = [entity_set(inst.get(\"greedy\", inst[\"samples\"][0]).get(\"entities\", [])) for inst in data_gf]\n    gold_sets = [entity_set(inst[\"gold\"].get(\"entities\", [])) for inst in data_gf]\n    \n    micro = compute_micro_f1_from_sets(greedy_pred_sets, gold_sets)\n    inst_avg = np.mean([compute_inst_f1(ps, gs) for ps, gs in zip(greedy_pred_sets, gold_sets)])\n    \n    pr(f\"{s:>6} {micro:>10.4f} {inst_avg:>10.4f} {(micro-inst_avg)*100:>+10.2f}\")\n\n# Step 4: Corrected 5-seed results with BOTH metrics\npr(\"\\n\" + \"=\" * 78)\npr(\"CORRECTED 5-SEED RESULTS\")\npr(\"=\" * 78)\n\n# 4a: Instance-averaged F1 (matches original aligned script)\npr(\"\\n--- A. Instance-Averaged F1 (gold-filtered, n=529) ---\")\npr(f\"{'Seed':>6} {'n':>5} {'Greedy':>10} {'LP Constr':>10} {'Δ(pp)':>8} {'p':>8} {'sig':>4}\")\npr(\"-\" * 55)\n\nall_inst_g = []\nall_inst_c = []\nresults_inst = {}\n\nfor s in SEEDS:\n    data = gold_filter(load_all(PATHS[s]))\n    n = len(data)\n    \n    greedy_pred_sets = [entity_set(inst.get(\"greedy\", inst[\"samples\"][0]).get(\"entities\", [])) for inst in data]\n    gold_sets = [entity_set(inst[\"gold\"].get(\"entities\", [])) for inst in data]\n    constr_pred_sets = [lp_weighted_construction(inst, THETA) for inst in data]\n    \n    g_f1s = np.array([compute_inst_f1(ps, gs) for ps, gs in zip(greedy_pred_sets, gold_sets)])\n    c_f1s = np.array([compute_inst_f1(ps, gs) for ps, gs in zip(constr_pred_sets, gold_sets)])\n    \n    obs, ci, p = bootstrap_paired_test(c_f1s, g_f1s)\n    delta = (c_f1s.mean() - g_f1s.mean()) * 100\n    sig = \"*\" if p < 0.05 else \"\"\n    \n    pr(f\"{s:>6} {n:>5} {g_f1s.mean():>10.4f} {c_f1s.mean():>10.4f} {delta:>+8.2f} {p:>8.4f} {sig:>4}\")\n    \n    results_inst[s] = {\n        \"greedy_f1\": float(g_f1s.mean()),\n        \"constr_f1\": float(c_f1s.mean()),\n        \"delta_pp\": float(delta),\n        \"p_value\": float(p),\n    }\n    all_inst_g.append(g_f1s)\n    all_inst_c.append(c_f1s)\n\ndeltas_inst = [results_inst[s][\"delta_pp\"] for s in SEEDS]\npr(f\"\\nMean ± σ: {np.mean(deltas_inst):+.2f} ± {np.std(deltas_inst, ddof=1):.2f} pp\")\npr(f\"Direction: {sum(1 for d in deltas_inst if d > 0)}/5 positive\")\n\npooled_g = np.concatenate(all_inst_g)\npooled_c = np.concatenate(all_inst_c)\npooled_obs, pooled_ci, pooled_p = bootstrap_paired_test(pooled_c, pooled_g)\npr(f\"Pooled ({len(pooled_g)}): Δ={pooled_obs*100:+.2f}pp, 95% CI [{pooled_ci[0]*100:+.2f}, {pooled_ci[1]*100:+.2f}], p={pooled_p:.4f}\")\n\n# 4b: Micro-F1 (paper-consistent)\npr(\"\\n--- B. Micro-F1 (gold-filtered, n=529) — PAPER-CONSISTENT METRIC ---\")\npr(f\"{'Seed':>6} {'n':>5} {'Greedy':>10} {'LP Constr':>10} {'Δ(pp)':>8} {'p':>8} {'sig':>4}\")\npr(\"-\" * 55)\n\nall_micro_g_sets = []\nall_micro_c_sets = []\nall_micro_gold_sets = []\nresults_micro = {}\n\nfor s in SEEDS:\n    data = gold_filter(load_all(PATHS[s]))\n    n = len(data)\n    \n    greedy_pred_sets = [entity_set(inst.get(\"greedy\", inst[\"samples\"][0]).get(\"entities\", [])) for inst in data]\n    gold_sets = [entity_set(inst[\"gold\"].get(\"entities\", [])) for inst in data]\n    constr_pred_sets = [lp_weighted_construction(inst, THETA) for inst in data]\n    \n    g_micro = compute_micro_f1_from_sets(greedy_pred_sets, gold_sets)\n    c_micro = compute_micro_f1_from_sets(constr_pred_sets, gold_sets)\n    delta = (c_micro - g_micro) * 100\n    \n    obs, ci, p = bootstrap_micro_test(constr_pred_sets, greedy_pred_sets, gold_sets)\n    sig = \"*\" if p < 0.05 else \"\"\n    \n    pr(f\"{s:>6} {n:>5} {g_micro:>10.4f} {c_micro:>10.4f} {delta:>+8.2f} {p:>8.4f} {sig:>4}\")\n    \n    results_micro[s] = {\n        \"greedy_f1\": float(g_micro),\n        \"constr_f1\": float(c_micro),\n        \"delta_pp\": float(delta),\n        \"p_value\": float(p),\n        \"ci_95\": [float(ci[0]*100), float(ci[1]*100)],\n    }\n    \n    all_micro_g_sets.extend(greedy_pred_sets)\n    all_micro_c_sets.extend(constr_pred_sets)\n    all_micro_gold_sets.extend(gold_sets)\n\ndeltas_micro = [results_micro[s][\"delta_pp\"] for s in SEEDS]\npr(f\"\\nMean ± σ: {np.mean(deltas_micro):+.2f} ± {np.std(deltas_micro, ddof=1):.2f} pp\")\npr(f\"Direction: {sum(1 for d in deltas_micro if d > 0)}/5 positive\")\n\npooled_micro_obs, pooled_micro_ci, pooled_micro_p = bootstrap_micro_test(\n    all_micro_c_sets, all_micro_g_sets, all_micro_gold_sets)\npr(f\"Pooled ({len(all_micro_gold_sets)}): Δ={pooled_micro_obs*100:+.2f}pp, 95% CI [{pooled_micro_ci[0]*100:+.2f}, {pooled_micro_ci[1]*100:+.2f}], p={pooled_micro_p:.4f}\")\n\n# Step 5: Discrepancy summary\npr(\"\\n\" + \"=\" * 78)\npr(\"DISCREPANCY ANALYSIS\")\npr(\"=\" * 78)\n\nmean_report_greedy = np.mean([report_greedy_f1s[s] for s in SEEDS])\nmean_inst_greedy = np.mean([results_inst[s][\"greedy_f1\"] for s in SEEDS])\nmean_micro_greedy = np.mean([results_micro[s][\"greedy_f1\"] for s in SEEDS])\n\npr(f\"\\nPaper Table 4 greedy F1 (stated):     0.6630\")\npr(f\"Report.json mean greedy (micro, 551):  {mean_report_greedy:.4f}\")\npr(f\"Recomputed greedy (micro, 529):        {mean_micro_greedy:.4f}\")\npr(f\"Recomputed greedy (inst-avg, 529):     {mean_inst_greedy:.4f}\")\npr(f\"Old aligned script greedy (inst-avg):  0.6467  (from scierc_5seed_construction_aligned.json)\")\n\npr(f\"\\nGap analysis:\")\npr(f\"  micro(551) vs micro(529): {(mean_report_greedy - mean_micro_greedy)*100:+.2f} pp (gold-filter effect)\")\npr(f\"  micro(529) vs inst-avg(529): {(mean_micro_greedy - mean_inst_greedy)*100:+.2f} pp (metric type effect)\")\npr(f\"  Total explained: {(mean_report_greedy - mean_inst_greedy)*100:+.2f} pp\")\n\npr(f\"\\nConstruction gain comparison:\")\npr(f\"  Old (inst-avg, samples[0] baseline): +1.11 pp\")\npr(f\"  New (inst-avg, greedy baseline):     {np.mean(deltas_inst):+.2f} pp\")\npr(f\"  New (micro-F1, greedy baseline):     {np.mean(deltas_micro):+.2f} pp  ← paper-consistent\")\n\n# Save\noutpath = \"/root/autodl-tmp/struct_self_consist_ie/output/scierc_metric_verification.txt\"\nwith open(outpath, \"w\") as f:\n    f.write(\"\\n\".join(lines) + \"\\n\")\n\n# Also save structured JSON\njson_out = {\n    \"greedy_source\": \"greedy field in samples.jsonl (T=0 decode, verified present in all seeds)\",\n    \"paper_metric\": \"micro-F1 (compute_ner_f1: aggregate TP/FP/FN across instances)\",\n    \"old_script_metric\": \"instance-averaged F1 (per-instance F1, then mean)\",\n    \"old_script_baseline\": \"greedy field (not samples[0] — greedy IS present in samples.jsonl)\",\n    \"discrepancy_cause\": \"metric type difference: micro-F1 (paper) vs instance-averaged F1 (old construction script). Greedy field WAS correctly used.\",\n    \"report_greedy_f1\": {str(s): report_greedy_f1s[s] for s in SEEDS},\n    \"results_instance_averaged\": results_inst,\n    \"results_micro_f1\": results_micro,\n    \"aggregate_instance_averaged\": {\n        \"mean_delta_pp\": float(np.mean(deltas_inst)),\n        \"std_delta_pp\": float(np.std(deltas_inst, ddof=1)),\n        \"pooled_p\": float(pooled_p),\n    },\n    \"aggregate_micro_f1\": {\n        \"mean_delta_pp\": float(np.mean(deltas_micro)),\n        \"std_delta_pp\": float(np.std(deltas_micro, ddof=1)),\n        \"pooled_p\": float(pooled_micro_p),\n    },\n}\njson_outpath = \"/root/autodl-tmp/struct_self_consist_ie/output/scierc_metric_verification.json\"\nwith open(json_outpath, \"w\") as f:\n    json.dump(json_out, f, indent=2)\n\npr(f\"\\nSaved to: {outpath}\")\npr(f\"Saved to: {json_outpath}\")\nPYEOF\necho \"Script written.\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-24T08:45:37.443573+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-24T08:45:37.443718+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 output/scierc_metric_verification.py",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 output/scierc_metric_verification.py",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-24T08:45:37.443854+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-24T08:45:37.443981+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python output/scierc_metric_verification.py",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python output/scierc_metric_verification.py",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-24T08:45:37.444110+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python output/scierc_metric_verification.py'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-24T08:45:37.444346+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat > /root/autodl-tmp/struct_self_consist_ie/output/scierc_metric_verification.py << 'PYEOF'\n\"\"\"SciERC 5-seed metric consistency verification (optimized).\"\"\"\nimport json, math, numpy as np\nfrom collections import defaultdict\n\nSEEDS = [42, 123, 456, 2024, 3141]\nPATHS = {s: f\"/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed{s}/samples.jsonl\" for s in SEEDS}\nREPORT_PATHS = {s: f\"/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed{s}/report.json\" for s in SEEDS}\nN_SAMPLES = 8\nTHETA = 2.0 / N_SAMPLES\nB_BOOT = 5000\n\ndef load_all(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f if line.strip()]\n\ndef gold_filter(insts):\n    return [inst for inst in insts if inst[\"gold\"].get(\"entities\", [])]\n\ndef entity_set(entities):\n    return {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in entities}\n\ndef inst_f1(pred_set, gold_set):\n    if not gold_set and not pred_set: return 1.0\n    if not pred_set or not gold_set: return 0.0\n    tp = len(pred_set & gold_set)\n    if tp == 0: return 0.0\n    p = tp / len(pred_set); r = tp / len(gold_set)\n    return 2 * p * r / (p + r)\n\ndef micro_f1_from_tpfpfn(tps, fps, fns, idx=None):\n    if idx is None: idx = np.arange(len(tps))\n    t = tps[idx].sum(); fp = fps[idx].sum(); fn = fns[idx].sum()\n    denom = 2*t + fp + fn\n    return 2*t / denom if denom > 0 else 0.0\n\ndef get_lp_weights(inst):\n    samples = inst[\"samples\"]\n    lps = []\n    logprobs = inst.get(\"logprobs\", None)\n    for i, s in enumerate(samples):\n        lp = s.get(\"mean_logprob\", None)\n        if lp is None and logprobs is not None and i < len(logprobs):\n            lp = logprobs[i]\n        if lp is None or not math.isfinite(lp): lp = -100.0\n        lps.append(lp)\n    mx = max(lps)\n    ws = [math.exp(lp - mx) for lp in lps]\n    t = sum(ws)\n    return [w / t for w in ws]\n\ndef lp_construction(inst, theta):\n    ws = get_lp_weights(inst)\n    ec = defaultdict(float)\n    for i, sample in enumerate(inst[\"samples\"][:N_SAMPLES]):\n        for e in sample.get(\"entities\", []):\n            ec[(e[\"start\"], e[\"end\"], e[\"type\"])] += ws[i]\n    tw = sum(ws[:N_SAMPLES])\n    return {k for k, v in ec.items() if v / tw >= theta}\n\ndef bootstrap_inst_test(f1_a, f1_b, B=B_BOOT, seed=42):\n    rng = np.random.RandomState(seed)\n    n = len(f1_a)\n    diffs = f1_a - f1_b\n    boot = np.array([diffs[rng.randint(0, n, n)].mean() for _ in range(B)])\n    return float(np.percentile(boot, 2.5)), float(np.percentile(boot, 97.5)), float((boot <= 0).mean())\n\ndef bootstrap_micro_test(tps_a, fps_a, fns_a, tps_b, fps_b, fns_b, B=B_BOOT, seed=42):\n    rng = np.random.RandomState(seed)\n    n = len(tps_a)\n    diffs = []\n    for _ in range(B):\n        idx = rng.randint(0, n, n)\n        fa = micro_f1_from_tpfpfn(tps_a, fps_a, fns_a, idx)\n        fb = micro_f1_from_tpfpfn(tps_b, fps_b, fns_b, idx)\n        diffs.append(fa - fb)\n    diffs = np.array(diffs)\n    return float(np.percentile(diffs, 2.5)), float(np.percentile(diffs, 97.5)), float((diffs <= 0).mean())\n\ndef compute_tpfpfn_arrays(pred_sets, gold_sets):\n    n = len(pred_sets)\n    tps = np.zeros(n, dtype=np.int64)\n    fps = np.zeros(n, dtype=np.int64)\n    fns = np.zeros(n, dtype=np.int64)\n    for i, (ps, gs) in enumerate(zip(pred_sets, gold_sets)):\n        tps[i] = len(ps & gs); fps[i] = len(ps - gs); fns[i] = len(gs - ps)\n    return tps, fps, fns\n\nlines = []\ndef pr(s=\"\"): lines.append(s); print(s)\n\npr(\"=\" * 78)\npr(\"SCIERC 5-SEED METRIC CONSISTENCY VERIFICATION\")\npr(\"=\" * 78)\n\n# Step 1\npr(\"\\n--- Step 1: Greedy Field Check ---\")\nfor s in SEEDS:\n    data = load_all(PATHS[s])\n    n_g = sum(1 for inst in data if \"greedy\" in inst)\n    pr(f\"Seed {s}: {len(data)} instances, {n_g}/{len(data)} have 'greedy' field\")\n\n# Step 2\npr(\"\\n--- Step 2: Report.json vs Recomputed Greedy Micro-F1 ---\")\npr(f\"{'Seed':>6} {'report.json':>12} {'recomp(551)':>12} {'recomp(529)':>12}\")\npr(\"-\" * 48)\n\nreport_gf1 = {}\nfor s in SEEDS:\n    data_all = load_all(PATHS[s])\n    data_gf = gold_filter(data_all)\n    with open(REPORT_PATHS[s]) as f: report = json.load(f)\n    report_gf1[s] = report[\"greedy_f1\"]\n    \n    gps_all = [entity_set(inst.get(\"greedy\", inst[\"samples\"][0]).get(\"entities\", [])) for inst in data_all]\n    gld_all = [entity_set(inst[\"gold\"].get(\"entities\", [])) for inst in data_all]\n    tps, fps, fns = compute_tpfpfn_arrays(gps_all, gld_all)\n    m_all = micro_f1_from_tpfpfn(tps, fps, fns)\n    \n    gps_gf = [entity_set(inst.get(\"greedy\", inst[\"samples\"][0]).get(\"entities\", [])) for inst in data_gf]\n    gld_gf = [entity_set(inst[\"gold\"].get(\"entities\", [])) for inst in data_gf]\n    tps2, fps2, fns2 = compute_tpfpfn_arrays(gps_gf, gld_gf)\n    m_gf = micro_f1_from_tpfpfn(tps2, fps2, fns2)\n    \n    pr(f\"{s:>6} {report_gf1[s]:>12.6f} {m_all:>12.6f} {m_gf:>12.6f}\")\n\n# Step 3\npr(\"\\n--- Step 3: Metric Type Gap (greedy, gold-filtered n=529) ---\")\npr(f\"{'Seed':>6} {'micro-F1':>10} {'inst-avg':>10} {'gap(pp)':>10}\")\npr(\"-\" * 40)\nfor s in SEEDS:\n    data_gf = gold_filter(load_all(PATHS[s]))\n    gps = [entity_set(inst.get(\"greedy\", inst[\"samples\"][0]).get(\"entities\", [])) for inst in data_gf]\n    gld = [entity_set(inst[\"gold\"].get(\"entities\", [])) for inst in data_gf]\n    tps, fps, fns = compute_tpfpfn_arrays(gps, gld)\n    micro = micro_f1_from_tpfpfn(tps, fps, fns)\n    iavg = np.mean([inst_f1(p, g) for p, g in zip(gps, gld)])\n    pr(f\"{s:>6} {micro:>10.4f} {iavg:>10.4f} {(micro-iavg)*100:>+10.2f}\")\n\n# Step 4\npr(\"\\n\" + \"=\" * 78)\npr(\"CORRECTED 5-SEED CONSTRUCTION RESULTS\")\npr(\"=\" * 78)\n\n# 4a Instance-averaged\npr(\"\\n--- A. Instance-Averaged F1 (n=529) ---\")\npr(f\"{'Seed':>6} {'Greedy':>10} {'LP Constr':>10} {'Δpp':>8} {'p':>8}\")\npr(\"-\" * 48)\nall_ig, all_ic = [], []\nres_inst = {}\nfor s in SEEDS:\n    data = gold_filter(load_all(PATHS[s]))\n    gps = [entity_set(inst.get(\"greedy\", inst[\"samples\"][0]).get(\"entities\", [])) for inst in data]\n    gld = [entity_set(inst[\"gold\"].get(\"entities\", [])) for inst in data]\n    cps = [lp_construction(inst, THETA) for inst in data]\n    gf = np.array([inst_f1(p, g) for p, g in zip(gps, gld)])\n    cf = np.array([inst_f1(p, g) for p, g in zip(cps, gld)])\n    d = (cf.mean() - gf.mean()) * 100\n    _, _, p = bootstrap_inst_test(cf, gf)\n    sig = \"*\" if p < 0.05 else \" \"\n    pr(f\"{s:>6} {gf.mean():>10.4f} {cf.mean():>10.4f} {d:>+8.2f} {p:>7.4f}{sig}\")\n    res_inst[s] = {\"greedy\": float(gf.mean()), \"constr\": float(cf.mean()), \"delta\": float(d), \"p\": float(p)}\n    all_ig.append(gf); all_ic.append(cf)\n\ndi = [res_inst[s][\"delta\"] for s in SEEDS]\npr(f\"\\nMean ± σ: {np.mean(di):+.2f} ± {np.std(di,ddof=1):.2f} pp ({sum(1 for d in di if d>0)}/5 positive)\")\npg, pc = np.concatenate(all_ig), np.concatenate(all_ic)\n_, _, pp = bootstrap_inst_test(pc, pg)\npr(f\"Pooled (n={len(pg)}): Δ={( pc.mean()-pg.mean())*100:+.2f}pp, p={pp:.4f}\")\n\n# 4b Micro-F1\npr(\"\\n--- B. Micro-F1 (n=529) — PAPER-CONSISTENT ---\")\npr(f\"{'Seed':>6} {'Greedy':>10} {'LP Constr':>10} {'Δpp':>8} {'p':>8}\")\npr(\"-\" * 48)\nall_mg_t, all_mg_fp, all_mg_fn = [], [], []\nall_mc_t, all_mc_fp, all_mc_fn = [], [], []\nres_micro = {}\nfor s in SEEDS:\n    data = gold_filter(load_all(PATHS[s]))\n    gps = [entity_set(inst.get(\"greedy\", inst[\"samples\"][0]).get(\"entities\", [])) for inst in data]\n    gld = [entity_set(inst[\"gold\"].get(\"entities\", [])) for inst in data]\n    cps = [lp_construction(inst, THETA) for inst in data]\n    gt, gfp, gfn = compute_tpfpfn_arrays(gps, gld)\n    ct, cfp, cfn = compute_tpfpfn_arrays(cps, gld)\n    gm = micro_f1_from_tpfpfn(gt, gfp, gfn)\n    cm = micro_f1_from_tpfpfn(ct, cfp, cfn)\n    d = (cm - gm) * 100\n    _, _, p = bootstrap_micro_test(ct, cfp, cfn, gt, gfp, gfn)\n    sig = \"*\" if p < 0.05 else \" \"\n    pr(f\"{s:>6} {gm:>10.4f} {cm:>10.4f} {d:>+8.2f} {p:>7.4f}{sig}\")\n    res_micro[s] = {\"greedy\": float(gm), \"constr\": float(cm), \"delta\": float(d), \"p\": float(p)}\n    all_mg_t.append(gt); all_mg_fp.append(gfp); all_mg_fn.append(gfn)\n    all_mc_t.append(ct); all_mc_fp.append(cfp); all_mc_fn.append(cfn)\n\ndm = [res_micro[s][\"delta\"] for s in SEEDS]\npr(f\"\\nMean ± σ: {np.mean(dm):+.2f} ± {np.std(dm,ddof=1):.2f} pp ({sum(1 for d in dm if d>0)}/5 positive)\")\namt = np.concatenate(all_mg_t); amfp = np.concatenate(all_mg_fp); amfn = np.concatenate(all_mg_fn)\nact = np.concatenate(all_mc_t); acfp = np.concatenate(all_mc_fp); acfn = np.concatenate(all_mc_fn)\npm_g = micro_f1_from_tpfpfn(amt, amfp, amfn)\npm_c = micro_f1_from_tpfpfn(act, acfp, acfn)\n_, _, pmp = bootstrap_micro_test(act, acfp, acfn, amt, amfp, amfn)\npr(f\"Pooled (n={len(amt)}): Δ={(pm_c-pm_g)*100:+.2f}pp, p={pmp:.4f}\")\n\n# Summary\npr(\"\\n\" + \"=\" * 78)\npr(\"SUMMARY\")\npr(\"=\" * 78)\nmr = np.mean([report_gf1[s] for s in SEEDS])\nmi = np.mean([res_inst[s][\"greedy\"] for s in SEEDS])\nmm = np.mean([res_micro[s][\"greedy\"] for s in SEEDS])\npr(f\"Paper Table 4 greedy:            ~66.3% (micro-F1)\")\npr(f\"Report.json mean (micro, n=551):  {mr*100:.2f}%\")\npr(f\"Recomputed (micro, n=529):        {mm*100:.2f}%\")\npr(f\"Recomputed (inst-avg, n=529):     {mi*100:.2f}%\")\npr(f\"\\nOld aligned script result:         +1.11pp (inst-avg, correct greedy baseline)\")\npr(f\"Corrected (inst-avg):              {np.mean(di):+.2f}pp\")\npr(f\"Corrected (micro, paper-match):    {np.mean(dm):+.2f}pp\")\npr(f\"\\nDiscrepancy explanation: The ~1.6pp gap between old script baseline (64.67%)\")\npr(f\"and paper Table 4 (66.3%) is caused by METRIC TYPE difference:\")\npr(f\"  micro-F1 (paper) vs instance-averaged F1 (construction script).\")\npr(f\"  The greedy field WAS correctly used (not samples[0]).\")\n\noutpath = \"/root/autodl-tmp/struct_self_consist_ie/output/scierc_metric_verification.txt\"\nwith open(outpath, \"w\") as f: f.write(\"\\n\".join(lines) + \"\\n\")\n\njson_out = {\n    \"greedy_source\": \"greedy field in samples.jsonl (T=0 decode, present in all 551 instances per seed)\",\n    \"paper_metric\": \"micro-F1 via compute_ner_f1 (aggregate TP/FP/FN)\",\n    \"old_script_metric\": \"instance-averaged F1 (per-instance then mean)\",\n    \"old_script_baseline_correct\": True,\n    \"discrepancy_cause\": \"metric type: micro-F1 (paper) vs instance-averaged F1 (old script)\",\n    \"report_greedy_f1\": {str(s): report_gf1[s] for s in SEEDS},\n    \"results_inst_avg\": res_inst,\n    \"results_micro_f1\": res_micro,\n    \"agg_inst_avg\": {\"mean_delta\": float(np.mean(di)), \"std\": float(np.std(di, ddof=1)), \"pooled_p\": float(pp)},\n    \"agg_micro_f1\": {\"mean_delta\": float(np.mean(dm)), \"std\": float(np.std(dm, ddof=1)), \"pooled_p\": float(pmp)},\n}\nwith open(\"/root/autodl-tmp/struct_self_consist_ie/output/scierc_metric_verification.json\", \"w\") as f:\n    json.dump(json_out, f, indent=2)\npr(f\"\\nSaved to {outpath}\")\nPYEOF\necho \"Done writing optimized script\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat > /root/autodl-tmp/struct_self_consist_ie/output/scierc_metric_verification.py << 'PYEOF'\n\"\"\"SciERC 5-seed metric consistency verification (optimized).\"\"\"\nimport json, math, numpy as np\nfrom collections import defaultdict\n\nSEEDS = [42, 123, 456, 2024, 3141]\nPATHS = {s: f\"/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed{s}/samples.jsonl\" for s in SEEDS}\nREPORT_PATHS = {s: f\"/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed{s}/report.json\" for s in SEEDS}\nN_SAMPLES = 8\nTHETA = 2.0 / N_SAMPLES\nB_BOOT = 5000\n\ndef load_all(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f if line.strip()]\n\ndef gold_filter(insts):\n    return [inst for inst in insts if inst[\"gold\"].get(\"entities\", [])]\n\ndef entity_set(entities):\n    return {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in entities}\n\ndef inst_f1(pred_set, gold_set):\n    if not gold_set and not pred_set: return 1.0\n    if not pred_set or not gold_set: return 0.0\n    tp = len(pred_set & gold_set)\n    if tp == 0: return 0.0\n    p = tp / len(pred_set); r = tp / len(gold_set)\n    return 2 * p * r / (p + r)\n\ndef micro_f1_from_tpfpfn(tps, fps, fns, idx=None):\n    if idx is None: idx = np.arange(len(tps))\n    t = tps[idx].sum(); fp = fps[idx].sum(); fn = fns[idx].sum()\n    denom = 2*t + fp + fn\n    return 2*t / denom if denom > 0 else 0.0\n\ndef get_lp_weights(inst):\n    samples = inst[\"samples\"]\n    lps = []\n    logprobs = inst.get(\"logprobs\", None)\n    for i, s in enumerate(samples):\n        lp = s.get(\"mean_logprob\", None)\n        if lp is None and logprobs is not None and i < len(logprobs):\n            lp = logprobs[i]\n        if lp is None or not math.isfinite(lp): lp = -100.0\n        lps.append(lp)\n    mx = max(lps)\n    ws = [math.exp(lp - mx) for lp in lps]\n    t = sum(ws)\n    return [w / t for w in ws]\n\ndef lp_construction(inst, theta):\n    ws = get_lp_weights(inst)\n    ec = defaultdict(float)\n    for i, sample in enumerate(inst[\"samples\"][:N_SAMPLES]):\n        for e in sample.get(\"entities\", []):\n            ec[(e[\"start\"], e[\"end\"], e[\"type\"])] += ws[i]\n    tw = sum(ws[:N_SAMPLES])\n    return {k for k, v in ec.items() if v / tw >= theta}\n\ndef bootstrap_inst_test(f1_a, f1_b, B=B_BOOT, seed=42):\n    rng = np.random.RandomState(seed)\n    n = len(f1_a)\n    diffs = f1_a - f1_b\n    boot = np.array([diffs[rng.randint(0, n, n)].mean() for _ in range(B)])\n    return float(np.percentile(boot, 2.5)), float(np.percentile(boot, 97.5)), float((boot <= 0).mean())\n\ndef bootstrap_micro_test(tps_a, fps_a, fns_a, tps_b, fps_b, fns_b, B=B_BOOT, seed=42):\n    rng = np.random.RandomState(seed)\n    n = len(tps_a)\n    diffs = []\n    for _ in range(B):\n        idx = rng.randint(0, n, n)\n        fa = micro_f1_from_tpfpfn(tps_a, fps_a, fns_a, idx)\n        fb = micro_f1_from_tpfpfn(tps_b, fps_b, fns_b, idx)\n        diffs.append(fa - fb)\n    diffs = np.array(diffs)\n    return float(np.percentile(diffs, 2.5)), float(np.percentile(diffs, 97.5)), float((diffs <= 0).mean())\n\ndef compute_tpfpfn_arrays(pred_sets, gold_sets):\n    n = len(pred_sets)\n    tps = np.zeros(n, dtype=np.int64)\n    fps = np.zeros(n, dtype=np.int64)\n    fns = np.zeros(n, dtype=np.int64)\n    for i, (ps, gs) in enumerate(zip(pred_sets, gold_sets)):\n        tps[i] = len(ps & gs); fps[i] = len(ps - gs); fns[i] = len(gs - ps)\n    return tps, fps, fns\n\nlines = []\ndef pr(s=\"\"): lines.append(s); print(s)\n\npr(\"=\" * 78)\npr(\"SCIERC 5-SEED METRIC CONSISTENCY VERIFICATION\")\npr(\"=\" * 78)\n\n# Step 1\npr(\"\\n--- Step 1: Greedy Field Check ---\")\nfor s in SEEDS:\n    data = load_all(PATHS[s])\n    n_g = sum(1 for inst in data if \"greedy\" in inst)\n    pr(f\"Seed {s}: {len(data)} instances, {n_g}/{len(data)} have 'greedy' field\")\n\n# Step 2\npr(\"\\n--- Step 2: Report.json vs Recomputed Greedy Micro-F1 ---\")\npr(f\"{'Seed':>6} {'report.json':>12} {'recomp(551)':>12} {'recomp(529)':>12}\")\npr(\"-\" * 48)\n\nreport_gf1 = {}\nfor s in SEEDS:\n    data_all = load_all(PATHS[s])\n    data_gf = gold_filter(data_all)\n    with open(REPORT_PATHS[s]) as f: report = json.load(f)\n    report_gf1[s] = report[\"greedy_f1\"]\n    \n    gps_all = [entity_set(inst.get(\"greedy\", inst[\"samples\"][0]).get(\"entities\", [])) for inst in data_all]\n    gld_all = [entity_set(inst[\"gold\"].get(\"entities\", [])) for inst in data_all]\n    tps, fps, fns = compute_tpfpfn_arrays(gps_all, gld_all)\n    m_all = micro_f1_from_tpfpfn(tps, fps, fns)\n    \n    gps_gf = [entity_set(inst.get(\"greedy\", inst[\"samples\"][0]).get(\"entities\", [])) for inst in data_gf]\n    gld_gf = [entity_set(inst[\"gold\"].get(\"entities\", [])) for inst in data_gf]\n    tps2, fps2, fns2 = compute_tpfpfn_arrays(gps_gf, gld_gf)\n    m_gf = micro_f1_from_tpfpfn(tps2, fps2, fns2)\n    \n    pr(f\"{s:>6} {report_gf1[s]:>12.6f} {m_all:>12.6f} {m_gf:>12.6f}\")\n\n# Step 3\npr(\"\\n--- Step 3: Metric Type Gap (greedy, gold-filtered n=529) ---\")\npr(f\"{'Seed':>6} {'micro-F1':>10} {'inst-avg':>10} {'gap(pp)':>10}\")\npr(\"-\" * 40)\nfor s in SEEDS:\n    data_gf = gold_filter(load_all(PATHS[s]))\n    gps = [entity_set(inst.get(\"greedy\", inst[\"samples\"][0]).get(\"entities\", [])) for inst in data_gf]\n    gld = [entity_set(inst[\"gold\"].get(\"entities\", [])) for inst in data_gf]\n    tps, fps, fns = compute_tpfpfn_arrays(gps, gld)\n    micro = micro_f1_from_tpfpfn(tps, fps, fns)\n    iavg = np.mean([inst_f1(p, g) for p, g in zip(gps, gld)])\n    pr(f\"{s:>6} {micro:>10.4f} {iavg:>10.4f} {(micro-iavg)*100:>+10.2f}\")\n\n# Step 4\npr(\"\\n\" + \"=\" * 78)\npr(\"CORRECTED 5-SEED CONSTRUCTION RESULTS\")\npr(\"=\" * 78)\n\n# 4a Instance-averaged\npr(\"\\n--- A. Instance-Averaged F1 (n=529) ---\")\npr(f\"{'Seed':>6} {'Greedy':>10} {'LP Constr':>10} {'Δpp':>8} {'p':>8}\")\npr(\"-\" * 48)\nall_ig, all_ic = [], []\nres_inst = {}\nfor s in SEEDS:\n    data = gold_filter(load_all(PATHS[s]))\n    gps = [entity_set(inst.get(\"greedy\", inst[\"samples\"][0]).get(\"entities\", [])) for inst in data]\n    gld = [entity_set(inst[\"gold\"].get(\"entities\", [])) for inst in data]\n    cps = [lp_construction(inst, THETA) for inst in data]\n    gf = np.array([inst_f1(p, g) for p, g in zip(gps, gld)])\n    cf = np.array([inst_f1(p, g) for p, g in zip(cps, gld)])\n    d = (cf.mean() - gf.mean()) * 100\n    _, _, p = bootstrap_inst_test(cf, gf)\n    sig = \"*\" if p < 0.05 else \" \"\n    pr(f\"{s:>6} {gf.mean():>10.4f} {cf.mean():>10.4f} {d:>+8.2f} {p:>7.4f}{sig}\")\n    res_inst[s] = {\"greedy\": float(gf.mean()), \"constr\": float(cf.mean()), \"delta\": float(d), \"p\": float(p)}\n    all_ig.append(gf); all_ic.append(cf)\n\ndi = [res_inst[s][\"delta\"] for s in SEEDS]\npr(f\"\\nMean ± σ: {np.mean(di):+.2f} ± {np.std(di,ddof=1):.2f} pp ({sum(1 for d in di if d>0)}/5 positive)\")\npg, pc = np.concatenate(all_ig), np.concatenate(all_ic)\n_, _, pp = bootstrap_inst_test(pc, pg)\npr(f\"Pooled (n={len(pg)}): Δ={( pc.mean()-pg.mean())*100:+.2f}pp, p={pp:.4f}\")\n\n# 4b Micro-F1\npr(\"\\n--- B. Micro-F1 (n=529) — PAPER-CONSISTENT ---\")\npr(f\"{'Seed':>6} {'Greedy':>10} {'LP Constr':>10} {'Δpp':>8} {'p':>8}\")\npr(\"-\" * 48)\nall_mg_t, all_mg_fp, all_mg_fn = [], [], []\nall_mc_t, all_mc_fp, all_mc_fn = [], [], []\nres_micro = {}\nfor s in SEEDS:\n    data = gold_filter(load_all(PATHS[s]))\n    gps = [entity_set(inst.get(\"greedy\", inst[\"samples\"][0]).get(\"entities\", [])) for inst in data]\n    gld = [entity_set(inst[\"gold\"].get(\"entities\", [])) for inst in data]\n    cps = [lp_construction(inst, THETA) for inst in data]\n    gt, gfp, gfn = compute_tpfpfn_arrays(gps, gld)\n    ct, cfp, cfn = compute_tpfpfn_arrays(cps, gld)\n    gm = micro_f1_from_tpfpfn(gt, gfp, gfn)\n    cm = micro_f1_from_tpfpfn(ct, cfp, cfn)\n    d = (cm - gm) * 100\n    _, _, p = bootstrap_micro_test(ct, cfp, cfn, gt, gfp, gfn)\n    sig = \"*\" if p < 0.05 else \" \"\n    pr(f\"{s:>6} {gm:>10.4f} {cm:>10.4f} {d:>+8.2f} {p:>7.4f}{sig}\")\n    res_micro[s] = {\"greedy\": float(gm), \"constr\": float(cm), \"delta\": float(d), \"p\": float(p)}\n    all_mg_t.append(gt); all_mg_fp.append(gfp); all_mg_fn.append(gfn)\n    all_mc_t.append(ct); all_mc_fp.append(cfp); all_mc_fn.append(cfn)\n\ndm = [res_micro[s][\"delta\"] for s in SEEDS]\npr(f\"\\nMean ± σ: {np.mean(dm):+.2f} ± {np.std(dm,ddof=1):.2f} pp ({sum(1 for d in dm if d>0)}/5 positive)\")\namt = np.concatenate(all_mg_t); amfp = np.concatenate(all_mg_fp); amfn = np.concatenate(all_mg_fn)\nact = np.concatenate(all_mc_t); acfp = np.concatenate(all_mc_fp); acfn = np.concatenate(all_mc_fn)\npm_g = micro_f1_from_tpfpfn(amt, amfp, amfn)\npm_c = micro_f1_from_tpfpfn(act, acfp, acfn)\n_, _, pmp = bootstrap_micro_test(act, acfp, acfn, amt, amfp, amfn)\npr(f\"Pooled (n={len(amt)}): Δ={(pm_c-pm_g)*100:+.2f}pp, p={pmp:.4f}\")\n\n# Summary\npr(\"\\n\" + \"=\" * 78)\npr(\"SUMMARY\")\npr(\"=\" * 78)\nmr = np.mean([report_gf1[s] for s in SEEDS])\nmi = np.mean([res_inst[s][\"greedy\"] for s in SEEDS])\nmm = np.mean([res_micro[s][\"greedy\"] for s in SEEDS])\npr(f\"Paper Table 4 greedy:            ~66.3% (micro-F1)\")\npr(f\"Report.json mean (micro, n=551):  {mr*100:.2f}%\")\npr(f\"Recomputed (micro, n=529):        {mm*100:.2f}%\")\npr(f\"Recomputed (inst-avg, n=529):     {mi*100:.2f}%\")\npr(f\"\\nOld aligned script result:         +1.11pp (inst-avg, correct greedy baseline)\")\npr(f\"Corrected (inst-avg):              {np.mean(di):+.2f}pp\")\npr(f\"Corrected (micro, paper-match):    {np.mean(dm):+.2f}pp\")\npr(f\"\\nDiscrepancy explanation: The ~1.6pp gap between old script baseline (64.67%)\")\npr(f\"and paper Table 4 (66.3%) is caused by METRIC TYPE difference:\")\npr(f\"  micro-F1 (paper) vs instance-averaged F1 (construction script).\")\npr(f\"  The greedy field WAS correctly used (not samples[0]).\")\n\noutpath = \"/root/autodl-tmp/struct_self_consist_ie/output/scierc_metric_verification.txt\"\nwith open(outpath, \"w\") as f: f.write(\"\\n\".join(lines) + \"\\n\")\n\njson_out = {\n    \"greedy_source\": \"greedy field in samples.jsonl (T=0 decode, present in all 551 instances per seed)\",\n    \"paper_metric\": \"micro-F1 via compute_ner_f1 (aggregate TP/FP/FN)\",\n    \"old_script_metric\": \"instance-averaged F1 (per-instance then mean)\",\n    \"old_script_baseline_correct\": True,\n    \"discrepancy_cause\": \"metric type: micro-F1 (paper) vs instance-averaged F1 (old script)\",\n    \"report_greedy_f1\": {str(s): report_gf1[s] for s in SEEDS},\n    \"results_inst_avg\": res_inst,\n    \"results_micro_f1\": res_micro,\n    \"agg_inst_avg\": {\"mean_delta\": float(np.mean(di)), \"std\": float(np.std(di, ddof=1)), \"pooled_p\": float(pp)},\n    \"agg_micro_f1\": {\"mean_delta\": float(np.mean(dm)), \"std\": float(np.std(dm, ddof=1)), \"pooled_p\": float(pmp)},\n}\nwith open(\"/root/autodl-tmp/struct_self_consist_ie/output/scierc_metric_verification.json\", \"w\") as f:\n    json.dump(json_out, f, indent=2)\npr(f\"\\nSaved to {outpath}\")\nPYEOF\necho \"Done writing optimized script\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-24T08:45:37.444599+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Done writing optimized script\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-24T08:45:37.444732+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python output/scierc_metric_verification.py 2>&1",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python output/scierc_metric_verification.py 2>&1",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-24T08:45:37.444908+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"==============================================================================\\nSCIERC 5-SEED METRIC CONSISTENCY VERIFICATION\\n==============================================================================\\n\\n--- Step 1: Greedy Field Check ---\\nSeed 42: 551 instances, 551/551 have 'greedy' field\\nSeed 123: 551 instances, 551/551 have 'greedy' field\\nSeed 456: 551 instances, 551/551 have 'greedy' field\\nSeed 2024: 551 instances, 551/551 have 'greedy' field\\nSeed 3141: 551 instances, 551/551 have 'greedy' field\\n\\n--- Step 2: Report.json vs Recomputed Greedy Micro-F1 ---\\n  Seed  report.json  recomp(551)  recomp(529)\\n------------------------------------------------\\n    42     0.665082     0.665082     0.668259\\n   123     0.663296     0.663296     0.666268\\n   456     0.663098     0.663098     0.666268\\n  2024     0.664086     0.664086     0.667465\\n  3141     0.660890     0.660890     0.663866\\n\\n--- Step 3: Metric Type Gap (greedy, gold-filtered n=529) ---\\n  Seed   micro-F1   inst-avg    gap(pp)\\n----------------------------------------\\n    42     0.6683     0.6502      +1.81\\n   123     0.6663     0.6471      +1.91\\n   456     0.6663     0.6456      +2.06\\n  2024     0.6675     0.6478      +1.97\\n  3141     0.6639     0.6427      +2.11\\n\\n==============================================================================\\nCORRECTED 5-SEED CONSTRUCTION RESULTS\\n==============================================================================\\n\\n--- A. Instance-Averaged F1 (n=529) ---\\n  Seed     Greedy  LP Constr      Δpp        p\\n------------------------------------------------\\n    42     0.6502     0.6444    -0.58  0.8232 \\n   123     0.6471     0.6567    +0.96  0.0802 \\n   456     0.6456     0.6647    +1.91  0.0030*\\n  2024     0.6478     0.6625    +1.48  0.0218*\\n  3141     0.6427     0.6605    +1.78  0.0078*\\n\\nMean ± σ: +1.11 ± 1.01 pp (4/5 positive)\\nPooled (n=264
+…[truncated 1509 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-24T08:45:37.445097+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/scierc_metric_verification.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/scierc_metric_verification.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-24T08:45:37.445297+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"==============================================================================\\nSCIERC 5-SEED METRIC CONSISTENCY VERIFICATION\\n==============================================================================\\n\\n--- Step 1: Greedy Field Check ---\\nSeed 42: 551 instances, 551/551 have 'greedy' field\\nSeed 123: 551 instances, 551/551 have 'greedy' field\\nSeed 456: 551 instances, 551/551 have 'greedy' field\\nSeed 2024: 551 instances, 551/551 have 'greedy' field\\nSeed 3141: 551 instances, 551/551 have 'greedy' field\\n\\n--- Step 2: Report.json vs Recomputed Greedy Micro-F1 ---\\n  Seed  report.json  recomp(551)  recomp(529)\\n------------------------------------------------\\n    42     0.665082     0.665082     0.668259\\n   123     0.663296     0.663296     0.666268\\n   456     0.663098     0.663098     0.666268\\n  2024     0.664086     0.664086     0.667465\\n  3141     0.660890     0.660890     0.663866\\n\\n--- Step 3: Metric Type Gap (greedy, gold-filtered n=529) ---\\n  Seed   micro-F1   inst-avg    gap(pp)\\n----------------------------------------\\n    42     0.6683     0.6502      +1.81\\n   123     0.6663     0.6471      +1.91\\n   456     0.6663     0.6456      +2.06\\n  2024     0.6675     0.6478      +1.97\\n  3141     0.6639     0.6427      +2.11\\n\\n==============================================================================\\nCORRECTED 5-SEED CONSTRUCTION RESULTS\\n==============================================================================\\n\\n--- A. Instance-Averaged F1 (n=529) ---\\n  Seed     Greedy  LP Constr      Δpp        p\\n------------------------------------------------\\n    42     0.6502     0.6444    -0.58  0.8232 \\n   123     0.6471     0.6567    +0.96  0.0802 \\n   456     0.6456     0.6647    +1.91  0.0030*\\n  2024     0.6478     0.6625    +1.48  0.0218*\\n  3141     0.6427     0.6605    +1.78  0.0078*\\n\\nMean ± σ: +1.11 ± 1.01 pp (4/5 positive)\\nPooled (n=264
+…[truncated 1416 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-24T08:45:37.445458+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/scierc_metric_verification.md",
+  "content": "# SciERC 5-Seed Metric Consistency Verification\n\n**Date**: 2026-05-24  \n**Status**: CRITICAL — construction gain disappears under paper-consistent metric\n\n## Key Finding\n\nThe +1.11pp LP construction gain reported in `scierc_5seed_construction_aligned.json` is an **artifact of metric mismatch**. The construction script used instance-averaged F1, but the paper (Table 4) reports micro-F1.\n\n| Metric | Construction Δ | Direction | Pooled p |\n|--------|----------------|-----------|----------|\n| Instance-averaged F1 | **+1.11pp** | 4/5 positive | 0.0000 |\n| **Micro-F1 (paper metric)** | **-0.20pp** | **1/5 positive** | **0.7774** |\n\n## Verification Details\n\n### 1. Greedy Field\n- `greedy` field IS present in all `samples.jsonl` files (551/551 instances per seed)\n- It contains T=0 greedy decode output, NOT samples[0]\n- The old construction script correctly used this field via `inst.get(\"greedy\", inst[\"samples\"][0])`\n\n### 2. Baseline Discrepancy Explained\n| Source | Greedy F1 | Metric |\n|--------|-----------|--------|\n| Paper Table 4 | ~66.3% | micro-F1 |\n| report.json mean (n=551) | 66.33% | micro-F1 |\n| Recomputed (n=529) | 66.64% | micro-F1 |\n| Old construction script (n=529) | 64.67% | instance-averaged |\n\nThe ~1.6pp gap is entirely from metric type (micro vs instance-averaged), not wrong baseline.\n\n### 3. Why Metrics Diverge\nMicro-F1 aggregates TP/FP/FN across all instances before computing P/R/F1. Instance-averaged computes F1 per instance then averages. The gap arises because:\n- Instances with many entities (correctly predicted) contribute more to micro-F1\n- Instances with few/no entities contribute equally to instance-averaged, dragging it down\n- Construction tends to improve instance-averaged by boosting low-entity instances, but this doesn't translate to micro-F1\n\n### 4. Per-Seed Results (Micro-F1, Paper-Consistent)\n\n| Seed | Greedy | LP Constr | Δpp | p |\n|------|--------|-----------|-----|---|\n| 42 | 0.6683 | 0.6597 | -0.85 | 0.940 |\n| 123 | 0.6663 | 0.6652 | -0.10 | 0.577 |\n| 456 | 0.6663 | 0.6683 | +0.20 | 0.367 |\n| 2024 | 0.6675 | 0.6668 | -0.06 | 0.541 |\n| 3141 | 0.6639 | 0.6619 | -0.19 | 0.624 |\n\n**Mean ± σ: -0.20 ± 0.39 pp (1/5 positive)**  \n**Pooled (n=2645): Δ=-0.20pp, p=0.7774**\n\n### 5. Implications for Paper Patch\nThe paper patch claiming +1.11pp construction gain on SciERC is **invalid** when measured with the paper's own metric (micro-F1). Options:\n1. Report instance-averaged F1 consistently throughout (requires changing Table 4 baseline)\n2. Accept that construction doesn't improve SciERC under micro-F1\n3. Investigate why instance-averaged shows improvement but micro doesn't\n\n## Files\n- Server script: `/root/autodl-tmp/struct_self_consist_ie/output/scierc_metric_verification.py`\n- Server results: `/root/autodl-tmp/struct_self_consist_ie/output/scierc_metric_verification.txt`\n- Server JSON: `/root/autodl-tmp/struct_self_consist_ie/output/scierc_metric_verification.json`\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/scierc_metric_verification.md",
+    "content": "# SciERC 5-Seed Metric Consistency Verification\n\n**Date**: 2026-05-24  \n**Status**: CRITICAL — construction gain disappears under paper-consistent metric\n\n## Key Finding\n\nThe +1.11pp LP construction gain reported in `scierc_5seed_construction_aligned.json` is an **artifact of metric mismatch**. The construction script used instance-averaged F1, but the paper (Table 4) reports micro-F1.\n\n| Metric | Construction Δ | Direction | Pooled p |\n|--------|----------------|-----------|----------|\n| Instance-averaged F1 | **+1.11pp** | 4/5 positive | 0.0000 |\n| **Micro-F1 (paper metric)** | **-0.20pp** | **1/5 positive** | **0.7774** |\n\n## Verification Details\n\n### 1. Greedy Field\n- `greedy` field IS present in all `samples.jsonl` files (551/551 instances per seed)\n- It contains T=0 greedy decode output, NOT samples[0]\n- The old construction script correctly used this field via `inst.get(\"greedy\", inst[\"samples\"][0])`\n\n### 2. Baseline Discrepancy Explained\n| Source | Greedy F1 | Metric |\n|--------|-----------|--------|\n| Paper Table 4 | ~66.3% | micro-F1 |\n| report.json mean (n=551) | 66.33% | micro-F1 |\n| Recomputed (n=529) | 66.64% | micro-F1 |\n| Old construction script (n=529) | 64.67% | instance-averaged |\n\nThe ~1.6pp gap is entirely from metric type (micro vs instance-averaged), not wrong baseline.\n\n### 3. Why Metrics Diverge\nMicro-F1 aggregates TP/FP/FN across all instances before computing P/R/F1. Instance-averaged computes F1 per instance then averages. The gap arises because:\n- Instances with many entities (correctly predicted) contribute more to micro-F1\n- Instances with few/no entities contribute equally to instance-averaged, dragging it down\n- Construction tends to improve instance-averaged by boosting low-entity instances, but this doesn't translate to micro-F1\n\n### 4. Per-Seed Results (Micro-F1, Paper-Consistent)\n\n| Seed | Greedy | LP Constr | Δpp | p |\n|------|--------|-----------|-----|---|\n| 42 | 0.6683 | 0.6597 | -0.85 | 0.940 |\n| 123 | 0.6663 | 0.6652 | -0.10 | 0.577 |\n| 456 | 0.6663 | 0.6683 | +0.20 | 0.367 |\n| 2024 | 0.6675 | 0.6668 | -0.06 | 0.541 |\n| 3141 | 0.6639 | 0.6619 | -0.19 | 0.624 |\n\n**Mean ± σ: -0.20 ± 0.39 pp (1/5 positive)**  \n**Pooled (n=2645): Δ=-0.20pp, p=0.7774**\n\n### 5. Implications for Paper Patch\nThe paper patch claiming +1.11pp construction gain on SciERC is **invalid** when measured with the paper's own metric (micro-F1). Options:\n1. Report instance-averaged F1 consistently throughout (requires changing Table 4 baseline)\n2. Accept that construction doesn't improve SciERC under micro-F1\n3. Investigate why instance-averaged shows improvement but micro doesn't\n\n## Files\n- Server script: `/root/autodl-tmp/struct_self_consist_ie/output/scierc_metric_verification.py`\n- Server results: `/root/autodl-tmp/struct_self_consist_ie/output/scierc_metric_verification.txt`\n- Server JSON: `/root/autodl-tmp/struct_self_consist_ie/output/scierc_metric_verification.json`\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-24T08:45:37.445636+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/scierc_metric_verification.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-24T08:45:37.445770+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "SciERC Metric Verification",
+  "type": "report",
+  "description": "SciERC 5-seed construction metric consistency verification: +1.11pp gain disappears under paper-consistent micro-F1 (becomes -0.20pp, p=0.78)",
+  "project": "struct_self_consist_ie",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/scierc_metric_verification.md",
+  "tags": "['scierc', 'construction', 'metric-verification', 'P0']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "SciERC Metric Verification",
+    "type": "report",
+    "description": "SciERC 5-seed construction metric consistency verification: +1.11pp gain disappears under paper-consistent micro-F1 (becomes -0.20pp, p=0.78)",
+    "project": "struct_self_consist_ie",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/scierc_metric_verification.md",
+    "tags": "['scierc', 'construction', 'metric-verification', 'P0']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-24T08:45:37.445918+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260524_343bb5\", \"name\": \"SciERC Metric Verification\", \"type\": \"report\", \"description\": \"SciERC 5-seed construction metric consistency verification: +1.11pp gain disappears under paper-consistent micro-F1 (becomes -0.20pp, p=0.78)\", \"path\": \"projects/struct_self_consist_ie/artifacts/_project/report/scierc_metric_verification.md\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-24T08:45:24.871237+00:00\", \"tags\": [\"scierc\", \"construction\", \"metric-verification\", \"P0\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69 · 2026-05-24T08:45:37.446115+00:00_
+
+验证完成。核心结论：
+
+1. **greedy 字段存在且正确使用** — samples.jsonl 里 551/551 个实例都有 `greedy` 字段（T=0 decode），old script 的 `inst.get("greedy", inst["samples"][0])` 正确取到了它
+
+2. **64.67% vs 66.3% 的差距完全来自 metric 类型** — micro-F1（论文用的）vs instance-averaged F1（construction 脚本用的），差距约 1.8-2.1pp，与观察到的 ~1.6pp 完全吻合
+
+3. **用论文一致的 micro-F1 重算后，LP construction Δ = -0.20pp（p=0.78）**，5个seed中只有1个正向。+1.11pp 的增益完全是 metric 不一致的产物
+
+**对论文 patch 的影响**：SciERC 上的 construction 增益在 micro-F1 下不成立。需要决定：
+- 整篇论文改用 instance-averaged F1（需要修改所有 baseline 数字）
+- 或接受 construction 在 SciERC micro-F1 下无效，调整 claim
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_scierc-metric-verification_20260524T083725"
+}
+```
+
+</details>
+
+---

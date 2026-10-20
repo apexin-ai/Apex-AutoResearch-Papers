@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_entity_construction",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T02:00:12.074Z",
+    "updated_at": "2026-05-19T02:00:23.743Z",
+    "hypothesis": "Entity-level majority vote construction is the correct self-consistency analogy for structured IE: instead of selecting the best instance-level output, assemble a better output from entity-level consensus across N samples. Construction should outperform both greedy and best-of-N selection.",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T02:00:24.046424+00:00",
+  "trigger": "update_registry"
+}

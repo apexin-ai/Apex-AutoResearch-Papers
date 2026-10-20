@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_mrsc_multi_round",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:37:27.523Z",
+    "updated_at": "2026-05-20T15:37:42.881Z",
+    "hypothesis": "Multi-Round Iterative SC: N inverse scaling reveals disputed entities cause failures. Focused re-prompting on disputed entities (agreement < 0.6) with weighted aggregation (Round 2 weight=2) should reduce error rate on disputed entities without affecting non-disputed ones, closing part of the selection gap through iterative refinement rather than single-round aggregation."
+  },
+  "timestamp": "2026-05-20T15:37:43.245263+00:00",
+  "trigger": "update_registry"
+}

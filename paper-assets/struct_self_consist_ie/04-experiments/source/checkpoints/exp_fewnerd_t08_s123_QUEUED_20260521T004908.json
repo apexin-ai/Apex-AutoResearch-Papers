@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_fewnerd_t08_s123",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:47:44.136Z",
+    "updated_at": "2026-05-21T00:49:07.775Z",
+    "hypothesis": "FewNERD T-ablation seed=123 replication (T=0.8): second seed for statistical power on T=0.8 sweet-spot hypothesis (best rho_advantage=0.102 SJ over Fleiss, balanced oracle headroom=8.66% in seed=42). Tests robustness of T=0.8 as optimal operating point for SC diagnostic.",
+    "parent": "exp_fewnerd_t08_s42"
+  },
+  "timestamp": "2026-05-21T00:49:08.192525+00:00",
+  "trigger": "update_registry"
+}

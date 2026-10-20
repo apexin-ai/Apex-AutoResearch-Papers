@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_001_seed123_v2",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T14:34:04.210Z",
+    "updated_at": "2026-05-14T14:34:04.210Z",
+    "spec": {
+      "description": "NER N=16 on SciERC, seed=123, ft_002_v2, with logprobs",
+      "hypothesis": "Structural consistency (Fleiss kappa, Soft Jaccard) correlates with per-instance NER F1 on SciERC (seed robustness check)",
+      "server": "autodl-5090",
+      "data_path": "data/scierc/processed_data",
+      "data_count": 551,
+      "model_name": "ft_002_v2 (qwen3-8b-scierc-merged-v2)",
+      "seed": 123
+    }
+  },
+  "timestamp": "2026-05-14T14:34:04.282774+00:00",
+  "trigger": "update_registry"
+}

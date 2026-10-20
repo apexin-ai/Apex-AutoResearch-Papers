@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp_018_llama_scierc_seed456",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T06:07:15.150Z",
+    "updated_at": "2026-05-15T06:07:51.331Z",
+    "spec": {
+      "hypothesis": "Multi-seed robustness: LLaMA SciERC N=8 seed=456, max_tokens=1024. Re-analysis of exp_007_llama_seed456 data (not independent replication).",
+      "command": "python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --seed 456 --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/exp_007_llama_seed456",
+      "server": "autodl-5090",
+      "seed": 456,
+      "model_name": "LLaMA-3.1-8B-SciERC-merged",
+      "data_path": "data/scierc/processed_data",
+      "data_count": 551,
+      "parent": "exp_007_llama_seed456",
+      "checkpoint_source": "checkpoints/llama3.1-8b-scierc-merged",
+      "eval_data": "data/scierc/processed_data",
+      "is_new_inference": false,
+      "provenance_note": "samples.jsonl copied from exp_007_llama_seed456 (identical MD5: 2034b5e4989c387b84e2b7225c7e5367). This is re-analysis, not independent replication.",
+      "checkpoint_path": "output/exp_018_llama_scierc_seed456/",
+      "log_path": "output/exp_018_llama_scierc_seed456/run.log"
+    }
+  },
+  "timestamp": "2026-05-15T06:07:51.552205+00:00",
+  "trigger": "update_registry"
+}

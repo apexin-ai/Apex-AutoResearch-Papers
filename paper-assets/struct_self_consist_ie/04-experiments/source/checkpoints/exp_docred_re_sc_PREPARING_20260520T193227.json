@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_docred_re_sc",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T19:32:26.943Z",
+    "updated_at": "2026-05-20T19:32:26.943Z"
+  },
+  "timestamp": "2026-05-20T19:32:27.322503+00:00",
+  "trigger": "update_registry"
+}

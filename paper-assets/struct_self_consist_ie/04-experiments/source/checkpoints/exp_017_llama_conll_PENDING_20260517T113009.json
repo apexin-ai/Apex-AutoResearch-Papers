@@ -1,0 +1,22 @@
+{
+  "exp_id": "exp_017_llama_conll",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 1,
+    "created_at": "2026-05-14T14:39:32.014Z",
+    "updated_at": "2026-05-17T11:30:09.746Z",
+    "completed_at": "2026-05-14T17:12:15.687Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "success"
+      }
+    },
+    "hypothesis": "LLaMA-3.1-8B on CoNLL 的 structural confidence signals (SJ, FK, VC) 将显示与 Qwen3-8B on CoNLL 相似的模式——高 degeneracy regime 下 LP selection 失效但 structural signals 仍有诊断价值。Cross-model validation for model-agnostic claim.",
+    "parent": "exp_007_llama_inference"
+  },
+  "timestamp": "2026-05-17T11:30:09.982712+00:00",
+  "trigger": "update_registry"
+}

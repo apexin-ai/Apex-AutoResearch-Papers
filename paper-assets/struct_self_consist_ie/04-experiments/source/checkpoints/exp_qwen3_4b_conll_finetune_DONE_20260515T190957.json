@@ -1,0 +1,56 @@
+{
+  "exp_id": "exp_qwen3_4b_conll_finetune",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-15T17:18:35.501Z",
+    "updated_at": "2026-05-15T19:09:57.601Z",
+    "hypothesis": "Scale ablation: Qwen3-4B CoNLL NER LoRA fine-tune to provide cross-scale evidence (vs 8B). Verify correlation-selection gap, SJ>FK ordering, and LP compression generalize across model scale.",
+    "reproduce": {
+      "finished_at": "2026-05-15T18:45:42.215Z"
+    },
+    "failure_reason": "",
+    "completed_at": "2026-05-15T18:45:43.672Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T18:45:49.686191+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 llamafactory-cli train train_config_conll2003_4b.yaml",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "data/conll2003",
+      "data_count": 14041,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "plan_id": "D096",
+      "log_path": "checkpoints/qwen3-4b-conll2003-lora/trainer_log.jsonl",
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora",
+      "lora_config": {
+        "trainable_params": "66M / 4.09B (1.62%)",
+        "target_modules": "q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj",
+        "epochs": 5,
+        "batch_size": 16,
+        "total_steps": 4390,
+        "enable_thinking": false
+      }
+    },
+    "conclusion": "success",
+    "notes": "Training interrupted at step 3920/4390 (89.3%, epoch 4.46/5.0). Used checkpoint-3800 (eval_loss=0.0231, best available) for merge. Merged to checkpoints/qwen3-4b-conll2003-merged/."
+  },
+  "timestamp": "2026-05-15T19:09:57.826272+00:00",
+  "trigger": "update_registry"
+}

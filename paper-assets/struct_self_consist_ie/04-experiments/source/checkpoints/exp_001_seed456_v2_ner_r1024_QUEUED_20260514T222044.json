@@ -1,0 +1,22 @@
+{
+  "exp_id": "exp_001_seed456_v2_ner_r1024",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:16:55.975Z",
+    "updated_at": "2026-05-14T22:20:43.781Z",
+    "spec": {
+      "hypothesis": "D054 rerun: max_tokens=1024. Verify truncation impact on Qwen SciERC N=16 seed456.",
+      "parent": "exp_001_seed456_v2_ner",
+      "model_name": "qwen3-8b-scierc-merged-v2",
+      "dataset": "SciERC",
+      "seed": 456,
+      "server": "autodl-5090"
+    }
+  },
+  "timestamp": "2026-05-14T22:20:44.269477+00:00",
+  "trigger": "update_registry"
+}

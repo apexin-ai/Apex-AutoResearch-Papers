@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_021_fewnerd_full",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T16:33:44.079Z",
+    "updated_at": "2026-05-16T16:34:00.874Z",
+    "hypothesis": "Full Few-NERD LoRA fine-tune (rank=32, α=64, 3 epochs) on SUPERVISED coarse 8-type NER (131k train). 4-GPU DDP on autodl-5090. Post-training: N=8 inference on full test set, T=1.0, seed=42, collect logprobs for SCS metrics."
+  },
+  "timestamp": "2026-05-16T16:34:01.152328+00:00",
+  "trigger": "update_registry"
+}

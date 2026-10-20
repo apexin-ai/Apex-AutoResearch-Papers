@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_027_mlp_verifier",
+  "project": "struct_self_consist_ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T06:39:22.524Z",
+    "updated_at": "2026-05-18T06:41:36.340Z",
+    "metrics": {
+      "lr_auroc": 0.6522,
+      "mlp_auroc": 0.6381,
+      "rf_auroc": 0.5868,
+      "mlp_15feat_auroc": 0.6341,
+      "lr_sel_f1": 0.6406,
+      "mlp_sel_f1": 0.6278,
+      "greedy_f1": 0.6441,
+      "oracle_f1": 0.8231,
+      "best_single_signal_auroc": 0.6476,
+      "feature_bottleneck_confirmed": true
+    },
+    "hypothesis": "MLP/RF等非线性模型能否通过组合5个QE信号(LP,SJ,FK,EM,VC)超越LR，或通过cross-signal interactions提取额外信息，从而缩小selection gap"
+  },
+  "timestamp": "2026-05-18T06:41:36.583063+00:00",
+  "trigger": "update_registry"
+}

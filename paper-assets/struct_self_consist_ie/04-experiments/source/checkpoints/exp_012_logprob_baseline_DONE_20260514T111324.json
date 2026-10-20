@@ -1,0 +1,131 @@
+{
+  "exp_id": "exp_012_logprob_baseline",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T10:53:16.166Z",
+    "updated_at": "2026-05-14T11:13:24.650Z",
+    "spec": {
+      "hypothesis": "Log-probability baseline: mean sequence log-prob correlates with F1 as well as or better than SJ",
+      "model_name": "ft_002_v2 (qwen3-8b-scierc-merged-v2)",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004",
+      "data_count": 551,
+      "server": "autodl-5090",
+      "seed": 42,
+      "parent": "mvp_pilot_004",
+      "method": "vLLM forward pass for log-probs + Spearman rho + AUROC + Kendall tau",
+      "command": "python3 code/extract_logprobs.py",
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004",
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/logprob_analysis.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T11:06:42.542Z",
+    "metrics": {
+      "ner": {
+        "full_set": {
+          "n": 529,
+          "soft_jaccard": {
+            "rho": 0.3565,
+            "p": 2.66e-17,
+            "tau": 0.2658,
+            "auroc": 0.6892
+          },
+          "fleiss_kappa": {
+            "rho": 0.2651,
+            "p": 5.86e-10,
+            "tau": 0.2027,
+            "auroc": 0.6292
+          },
+          "mean_logprob": {
+            "rho": 0.1396,
+            "p": 0.00129,
+            "tau": 0.1006,
+            "auroc": 0.5907
+          },
+          "greedy_logprob": {
+            "rho": 0.1615,
+            "p": 0.000192,
+            "tau": 0.1184,
+            "auroc": 0.5941
+          }
+        },
+        "cond_set": {
+          "n": 501,
+          "soft_jaccard": {
+            "rho": 0.412,
+            "tau": 0.3017,
+            "auroc": 0.706
+          },
+          "fleiss_kappa": {
+            "rho": 0.306,
+            "tau": 0.2308,
+            "auroc": 0.642
+          },
+          "mean_logprob": {
+            "rho": 0.1627,
+            "tau": 0.116,
+            "auroc": 0.5974
+          }
+        },
+        "winner": "SJ",
+        "delta_rho": 0.2169
+      },
+      "re": {
+        "full_set": {
+          "n": 397,
+          "soft_jaccard": {
+            "rho": 0.2112,
+            "p": 2.21e-05,
+            "tau": 0.1619,
+            "auroc": 0.5916
+          },
+          "fleiss_kappa": {
+            "rho": 0.2528,
+            "p": 3.32e-07,
+            "tau": 0.1967,
+            "auroc": 0.6262
+          },
+          "mean_logprob": {
+            "rho": 0.2467,
+            "p": 6.47e-07,
+            "tau": 0.1808,
+            "auroc": 0.6186
+          },
+          "greedy_logprob": {
+            "rho": 0.2307,
+            "p": 3.4e-06,
+            "tau": 0.1696,
+            "auroc": 0.6131
+          }
+        },
+        "cond_set": {
+          "n": 296,
+          "soft_jaccard": {
+            "rho": 0.3683,
+            "tau": 0.2699,
+            "auroc": 0.6839
+          },
+          "fleiss_kappa": {
+            "rho": 0.3168,
+            "tau": 0.2398,
+            "auroc": 0.6469
+          },
+          "mean_logprob": {
+            "rho": 0.1457,
+            "tau": 0.1039,
+            "auroc": 0.5487
+          }
+        },
+        "winner_full": "LOGPROB_marginal",
+        "winner_cond": "SJ",
+        "delta_rho_full": 0.0355,
+        "delta_rho_cond": 0.2226
+      }
+    }
+  },
+  "timestamp": "2026-05-14T11:13:24.679857+00:00",
+  "trigger": "update_registry"
+}

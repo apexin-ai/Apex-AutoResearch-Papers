@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_qwen25_7b_fewnerd",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:41:43.121Z",
+    "updated_at": "2026-05-19T07:01:41.452Z",
+    "hypothesis": "Qwen2.5-7B fine-tuned on FewNERD provides the baseline point for a pure Qwen2.5 family scale curve (7B/14B/32B/72B). This eliminates the confound of mixing Qwen2.5 and Qwen3 families when studying how the correlation-selection gap changes with model scale."
+  },
+  "timestamp": "2026-05-19T07:01:41.745076+00:00",
+  "trigger": "update_registry"
+}

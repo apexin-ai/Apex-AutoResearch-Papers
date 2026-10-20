@@ -1,0 +1,74 @@
+{
+  "exp_id": "exp_fewnerd_mf4_v2_s42",
+  "project": "struct_self_consist_ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T05:33:24.304Z",
+    "updated_at": "2026-05-21T07:44:46.537Z",
+    "hypothesis": "MF4 pipeline fix v2: FewNERD N=8 T=1.0 seed=42 using run_mvp_pilot.py (greedy_f1/micro-F1). Replaces exp_021 which used incompatible greedy_macro_f1. 3-seed statistical power.",
+    "spec": {
+      "command": "python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed42/",
+      "server": "autodl-5090-b",
+      "gpu": "cuda:0",
+      "pid": 320158,
+      "log_path": "~/runs/struct_self_consist_ie/exp_fewnerd_mf4_v2_s42.log",
+      "submitted_at": "2026-05-21T05:33:33.770Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/fewnerd/test.json",
+      "data_count": 37648,
+      "model_name": "qwen3-8b-fewnerd-exp021-merged",
+      "seed": 42,
+      "checkpoint_path": "output/fewnerd_mf4v2_seed42/",
+      "wall_clock_seconds": 7644
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T07:40:57.810Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T07:41:07.901551+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "greedy_f1": 0.7883,
+      "oracle_f1": 0.8783,
+      "oracle_headroom": 0.09,
+      "fleiss_kappa_mean": 0.3531,
+      "soft_jaccard_mean": 0.6747,
+      "rho_SJ_full": 0.1634,
+      "rho_kappa_full": 0.0476,
+      "rho_SJ_cond": 0.1987,
+      "rho_kappa_cond": -0.0327,
+      "rho_advantage_full": 0.1158,
+      "rho_advantage_cond": 0.2314,
+      "structural_beats_surface": true,
+      "sample_f1_mean": 0.6123,
+      "sample_f1_std": 0.3913,
+      "sample_f1_pct_zero": 23.09,
+      "n_instances": 37648,
+      "n_valid_full": 32565,
+      "n_valid_cond": 28682,
+      "n_gold_empty_filtered": 5083,
+      "n_greedy_f1_zero_filtered": 3883,
+      "logprob_rho_full": 0.1544,
+      "logprob_tau_full": 0.115,
+      "logprob_auroc_full": 0.5771,
+      "logprob_rho_cond": 0.1641,
+      "logprob_tau_cond": 0.123,
+      "logprob_auroc_cond": 0.5768,
+      "verdict": "FAIL"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-21T07:44:46.993185+00:00",
+  "trigger": "update_registry"
+}

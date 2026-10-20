@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_asb_adaptive_budget",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:37:33.233Z",
+    "updated_at": "2026-05-20T15:39:01.709Z",
+    "hypothesis": "Adaptive Sample Budget: extension of E_θ threshold optimization to sample count N. Instance features (degeneracy, LP variance, agreement rate) predict optimal N per instance. Under fixed total budget=8 (average), adaptive allocation outperforms uniform N=8 by allocating more samples to high-uncertainty instances and fewer to degenerate/easy ones."
+  },
+  "timestamp": "2026-05-20T15:39:02.038703+00:00",
+  "trigger": "update_registry"
+}

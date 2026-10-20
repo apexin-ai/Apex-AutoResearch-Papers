@@ -1,0 +1,24 @@
+{
+  "exp_id": "mvp_pilot_004",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:51:38.203Z",
+    "updated_at": "2026-05-14T08:59:23.893Z",
+    "spec": {
+      "hypothesis": "With improved RE quality (F1=41.8%), structural self-consistency (soft Jaccard) correlates with per-instance F1 better than surface Fleiss Kappa, reaching rho_sj >= 0.40 on RE",
+      "model_name": "Qwen3-8B-SciERC-LoRA-v2 (ft_002_v2 final)",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/scierc",
+      "data_count": 551,
+      "server": "autodl-5090",
+      "seed": 42,
+      "parent": "ft_002_v2",
+      "method": "N=8 sampling T=1.0 + XGrammar + span realignment + max_tokens=1024 + gold-empty filter + conditional rho"
+    }
+  },
+  "timestamp": "2026-05-14T08:59:23.938564+00:00",
+  "trigger": "update_registry"
+}

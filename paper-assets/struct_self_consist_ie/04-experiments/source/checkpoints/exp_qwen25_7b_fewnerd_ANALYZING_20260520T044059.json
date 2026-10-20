@@ -1,0 +1,87 @@
+{
+  "exp_id": "exp_qwen25_7b_fewnerd",
+  "project": "struct_self_consist_ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:41:43.121Z",
+    "updated_at": "2026-05-20T04:40:59.376Z",
+    "hypothesis": "Qwen2.5-7B QLoRA fine-tuned on FewNERD will produce structurally diverse samples enabling self-consistency-based entity extraction with meaningful LP-weighted consensus signals, comparable to the 14B model but with lower compute cost.",
+    "spec": {
+      "server": "autodl-5090-c",
+      "gpu_ids": [
+        "cuda:2",
+        "cuda:3"
+      ],
+      "command": "nohup bash run_fewnerd_qwen25_7b_pipeline.sh > logs/pipeline_qwen25_7b_fewnerd.log 2>&1 &",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/llmfactory_train.json",
+      "data_count": 131767,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-fewnerd-qlora-s42",
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/logs/pipeline_qwen25_7b_fewnerd.log",
+      "training_config": "train_config_qwen25_7b_fewnerd_s42.yaml",
+      "export_config": "export_config_qwen25_7b_fewnerd.yaml",
+      "pipeline_script": "run_fewnerd_qwen25_7b_pipeline.sh",
+      "method": "QLoRA 4-bit nf4, rank=32, alpha=64, 5 epochs, lr=2e-4, effective_batch=32",
+      "pipeline_phases": "train -> export/merge -> 3-seed N=8 inference (42/123/456) -> signal analysis -> entity construction"
+    },
+    "notes": "2026-05-19 11:36 UTC: step 138/20590 (0.7%), ~2.34s/it, ETA ~13.3h. Pipeline PID 71837, llamafactory PID 71844. cuda:2,3 98-100% util. Cron registered on pipeline PID.",
+    "server": "autodl-5090-c",
+    "gpu": "cuda:2,cuda:3",
+    "metrics": {
+      "3seed_mean": {
+        "lp_rho": 0.346,
+        "lp_rho_std": 0.021,
+        "sj_rho": 0.388,
+        "sj_rho_std": 0.029,
+        "vc_rho": 0.404,
+        "vc_rho_std": 0.01,
+        "degen_pct": 31.7,
+        "degen_std": 0.9,
+        "greedy_f1": 0.784,
+        "greedy_f1_std": 0.001,
+        "oracle_f1": 0.876,
+        "oracle_f1_std": 0.003,
+        "construction_lp_delta_pp": -0.11,
+        "construction_lp_delta_std": 0.25
+      },
+      "per_seed": {
+        "seed42": {
+          "lp_rho": 0.3221,
+          "sj_rho": 0.3554,
+          "vc_rho": 0.393,
+          "degen_pct": 31.1,
+          "greedy_f1": 0.7851,
+          "oracle_f1": 0.8718,
+          "construction_lp_delta_pp": -0.4
+        },
+        "seed123": {
+          "lp_rho": 0.3538,
+          "sj_rho": 0.3979,
+          "vc_rho": 0.4067,
+          "degen_pct": 32.8,
+          "greedy_f1": 0.785,
+          "oracle_f1": 0.8777,
+          "construction_lp_delta_pp": -0.03,
+          "bootstrap_p": 0.651
+        },
+        "seed456": {
+          "lp_rho": 0.3629,
+          "sj_rho": 0.4105,
+          "vc_rho": 0.4118,
+          "degen_pct": 31.3,
+          "greedy_f1": 0.7825,
+          "oracle_f1": 0.8771,
+          "construction_lp_delta_pp": 0.09,
+          "bootstrap_p": 0.168
+        }
+      },
+      "construction_significant": false
+    }
+  },
+  "timestamp": "2026-05-20T04:40:59.673565+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp_conll_n16_s123",
+  "project": "struct_self_consist_ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 1,
+    "created_at": "2026-05-21T04:30:48.660Z",
+    "updated_at": "2026-05-21T12:02:13.203Z",
+    "hypothesis": "CoNLL N=16 seed=123: second seed for 3-seed N=16 coverage. Tests N-scaling consistency — whether oracle headroom increase from N=8→N=16 is reproducible across seeds.",
+    "server": "autodl-5090",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie/ && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_s123/\"",
+      "finished_at": "2026-05-21T04:51:29.216Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-21T04:51:32.929Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T04:51:39.166251+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "失败原因: tokenizer vocab_file=None — checkpoints/qwen3-8b-conll2003-merged 缺少 vocab.json，vLLM 初始化 tokenizer 时 TypeError。与 exp_conll_n16_s456 同根因。| 已有成果: 无（启动即崩溃）| 建议: 修复 merged checkpoint tokenizer 文件后重跑"
+      }
+    },
+    "notes": "失败原因: tokenizer vocab_file=None — checkpoints/qwen3-8b-conll2003-merged 缺少 vocab.json，vLLM 初始化 tokenizer 时 TypeError。与 exp_conll_n16_s456 同根因。| 已有成果: 无（启动即崩溃）| 建议: 修复 merged checkpoint tokenizer 文件后重跑",
+    "parent": "exp_conll_n16_s42"
+  },
+  "timestamp": "2026-05-21T12:02:13.716562+00:00",
+  "trigger": "update_registry"
+}

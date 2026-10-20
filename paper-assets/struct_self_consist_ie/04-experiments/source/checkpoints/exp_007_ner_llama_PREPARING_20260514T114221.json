@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_007_ner_llama",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T11:42:21.510Z",
+    "updated_at": "2026-05-14T11:42:21.510Z",
+    "spec": {
+      "description": "Fine-tune LLaMA-3.1-8B on SciERC + NER pilot (N=8, T=0.7). Model-agnostic validation.",
+      "hypothesis": "SJ advantage is model-agnostic, not Qwen3-specific",
+      "plan_id": "exp-007",
+      "claim": 1,
+      "model_name": "llama-3.1-8b-instruct (new fine-tune)",
+      "dataset": "SciERC",
+      "priority": "P0"
+    }
+  },
+  "timestamp": "2026-05-14T11:42:21.555097+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,75 @@
+{
+  "exp_id": "exp_e2_pretrained_fewnerd",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T05:52:06.559Z",
+    "updated_at": "2026-05-21T12:38:18.972Z",
+    "hypothesis": "The correlation-selection gap (oracle F1 >> MV F1 despite positive agreement-correctness correlation) is model-intrinsic and exists even in pretrained (non-finetuned) Qwen2.5-7B-Instruct, not a fine-tuning artifact",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2___5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_fewnerd/\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "8406",
+      "log_path": "~/runs/struct_self_consist_ie/exp_e2_pretrained_fewnerd.log",
+      "submitted_at": "2026-05-21T06:59:29.791Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/fewnerd/",
+      "data_count": 37648,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "pretrained_base",
+      "eval_data": "fewnerd",
+      "checkpoint_path": "/root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2___5-7B-Instruct",
+      "wall_clock_seconds": 20329.2,
+      "gpu_hours": 5.65
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T12:34:32.119Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T12:34:40.438881+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "greedy_f1": 0.5121,
+      "oracle_f1": 0.6175,
+      "oracle_headroom": 0.1054,
+      "fleiss_kappa_mean": 0.4501,
+      "soft_jaccard_mean": 0.6881,
+      "sample_f1_mean": 0.5229,
+      "sample_f1_std": 0.3315,
+      "sample_f1_pct_zero": 18.2,
+      "rho_fleiss_f1_full": 0.3828,
+      "rho_sj_f1_full": 0.4329,
+      "rho_fleiss_f1_cond": 0.3706,
+      "rho_sj_f1_cond": 0.4397,
+      "structural_beats_surface": true,
+      "rho_advantage": 0.0501,
+      "lp_full_rho": 0.1886,
+      "lp_full_auroc": 0.5961,
+      "lp_cond_rho": 0.1762,
+      "lp_cond_auroc": 0.593,
+      "n_instances": 37648,
+      "n_gold_empty_filtered": 5083,
+      "n_greedy_f1_zero_filtered": 5662,
+      "verdict": "PASS"
+    },
+    "completed_at": "2026-05-21T12:38:18.972Z"
+  },
+  "timestamp": "2026-05-21T12:38:19.467206+00:00",
+  "trigger": "update_registry"
+}

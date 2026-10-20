@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_qwen25_32b_fewnerd",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:19:25.428Z",
+    "updated_at": "2026-05-19T06:47:21.825Z",
+    "hypothesis": "The correlation-selection gap (high QE correlation but no selection gain) generalizes to 32B-scale models. Qwen2.5-32B QLoRA fine-tuned on FewNERD should show the same pattern: structural signals have high ρ but fail at instance-level selection, while entity construction (θ=2/N) provides significant F1 gain. This fills the 8B→72B scale gap."
+  },
+  "timestamp": "2026-05-19T06:47:22.160501+00:00",
+  "trigger": "update_registry"
+}

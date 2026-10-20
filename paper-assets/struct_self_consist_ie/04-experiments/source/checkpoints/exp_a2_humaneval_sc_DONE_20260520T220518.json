@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp_a2_humaneval_sc",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:15:14.615Z",
+    "updated_at": "2026-05-20T22:05:17.728Z",
+    "hypothesis": "SC failure modes (degeneracy, false agreement) generalize from NER to code generation despite deterministic verification — majority voting on HumanEval will show limited gains over greedy when degeneracy is high, paralleling NER findings.",
+    "spec": {
+      "command": "python -u run_humaneval_sc.py --n_samples 8 --temperature 1.0 --seed 42 --output_dir ./results",
+      "server": "autodl-5090",
+      "pid": 967645,
+      "data_path": "openai/openai_humaneval (HuggingFace)",
+      "data_count": 164,
+      "model_name": "openai/gpt-5.5",
+      "seed": 42,
+      "fix_note": "v2 rerun: fixed extract_code() strip() -> rstrip() + auto-indent for function body. Previous run had 0/164 pass due to IndentationError.",
+      "failure_reason": "402 API balance exhausted after indent bugfix. Fix verified (23/23 greedy pass, 179/184 sample pass) but only 24/164 tasks completed before API died.",
+      "log_path": "autodl-5090 humaneval results dir",
+      "checkpoint_path": "autodl-5090 humaneval results dir"
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-20T22:05:17.728Z"
+  },
+  "timestamp": "2026-05-20T22:05:18.087972+00:00",
+  "trigger": "update_registry"
+}

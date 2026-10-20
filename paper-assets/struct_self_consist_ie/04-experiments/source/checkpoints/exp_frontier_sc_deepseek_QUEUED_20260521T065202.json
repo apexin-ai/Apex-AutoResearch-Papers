@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_frontier_sc_deepseek",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T06:50:26.022Z",
+    "updated_at": "2026-05-21T06:52:01.618Z",
+    "hypothesis": "Frontier model DeepSeek Chat on FewNERD SC (200 inst, N=8, T=1.0): 4-family cross-validation of correlation-selection gap universality."
+  },
+  "timestamp": "2026-05-21T06:52:02.317108+00:00",
+  "trigger": "update_registry"
+}

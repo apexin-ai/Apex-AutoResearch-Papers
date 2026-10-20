@@ -1,0 +1,65 @@
+{
+  "exp_id": "exp_fewnerd_mf4_s456",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T05:09:02.532Z",
+    "updated_at": "2026-05-22T17:55:46.607Z",
+    "hypothesis": "MF4 pipeline fix: FewNERD N=8 T=1.0 seed=456 using run_mvp_pilot.py (greedy_f1/micro-F1). Replaces exp_021 which used incompatible greedy_macro_f1 metric. Required for 3-seed statistical power with unified pipeline.",
+    "conclusion": "success",
+    "server": "autodl-5090-c",
+    "gpu": "cuda:2",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/fewnerd_mf4_seed456/\"",
+      "server": "autodl-5090-c",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "426513",
+      "log_path": "~/runs/struct_self_consist_ie/exp_fewnerd_mf4_s456.log",
+      "submitted_at": "2026-05-22T10:36:28.589Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 26358.0,
+      "gpu_hours": 7.32
+    },
+    "pid": "426513",
+    "log_path": "~/runs/struct_self_consist_ie/exp_fewnerd_mf4_s456.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/fewnerd_mf4_seed456/\"",
+      "finished_at": "2026-05-22T12:43:44.463Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T12:44:05.701851+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "greedy_f1": 0.7909,
+      "oracle_f1": 0.881,
+      "mv_strict_f1": 0.7685,
+      "mv_delta_pp": -2.24,
+      "lp_f1": 0.7921,
+      "lp_delta_pp": 0.12,
+      "degeneracy_rate": 0.081,
+      "oracle_headroom_pp": 9.01,
+      "fleiss_kappa_mean": 0.3555,
+      "soft_jaccard_mean": 0.6845,
+      "rho_sj_full": 0.3122,
+      "rho_sj_cond": 0.2559,
+      "note": "MV/LP/degen from 3-seed unified recompute on gold-nonempty subset (n=32565)"
+    },
+    "checkpoint_path": "output/fewnerd_mf4_seed456/",
+    "completed_at": "2026-05-22T17:55:46.607Z"
+  },
+  "timestamp": "2026-05-22T17:55:47.198831+00:00",
+  "trigger": "update_registry"
+}

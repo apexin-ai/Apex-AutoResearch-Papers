@@ -1,0 +1,1916 @@
+# diag full gpu status check
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 61
+- **Recorded user turns:** 0
+- **Tool calls:** 30
+- **Original source:** `logs/chats/worker_diag_full_gpu_status_check_20260518T114435.jsonl`
+- **Structured JSON:** [`0689d3bb50617486f0d5.json`](../../sessions/06/0689d3bb50617486f0d5.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+61 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T11:47:01.911864+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T11:47:01.912201+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T11:47:01.912409+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && nvidia-smi",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "a100",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && nvidia-smi",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-18T11:47:01.912550+00:00_
+
+Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-18T11:47:01.912676+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "tmux ls 2>/dev/null || echo \"no tmux sessions\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "a100",
+    "command": "tmux ls 2>/dev/null || echo \"no tmux sessions\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T11:47:01.912797+00:00_
+
+Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T11:47:01.912916+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && ps aux | grep -E \"llama.*fewnerd|train.*fewnerd\" | grep -v grep; echo \"---LOG---\"; tail -20 logs/llama_fewnerd_train.log 2>/dev/null || echo \"no log\"; echo \"---CKPT---\"; ls -la checkpoints/llama3.1-8b-fewnerd-lora/ 2>/dev/null || echo \"no ckpt dir\"; echo \"---CKPT_LIST---\"; ls checkpoints/llama3.1-8b-fewnerd-lora/checkpoint-*/ 2>/dev/null | head -10; echo \"---TRAINER_STATE---\"; cat checkpoints/llama3.1-8b-fewnerd-lora/trainer_state.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print('global_step:', d.get('global_step'), 'epoch:', d.get('epoch'), 'best_metric:', d.get('best_metric'))\" 2>/dev/null || echo \"no trainer_state.json\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "a100",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && ps aux | grep -E \"llama.*fewnerd|train.*fewnerd\" | grep -v grep; echo \"---LOG---\"; tail -20 logs/llama_fewnerd_train.log 2>/dev/null || echo \"no log\"; echo \"---CKPT---\"; ls -la checkpoints/llama3.1-8b-fewnerd-lora/ 2>/dev/null || echo \"no ckpt dir\"; echo \"---CKPT_LIST---\"; ls checkpoints/llama3.1-8b-fewnerd-lora/checkpoint-*/ 2>/dev/null | head -10; echo \"---TRAINER_STATE---\"; cat checkpoints/llama3.1-8b-fewnerd-lora/trainer_state.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print('global_step:', d.get('global_step'), 'epoch:', d.get('epoch'), 'best_metric:', d.get('best_metric'))\" 2>/dev/null || echo \"no trainer_state.json\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T11:47:01.913036+00:00_
+
+Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T11:47:01.913204+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---SEED123---\"; wc -l output/exp_021_fewnerd_n8_seed123/samples.jsonl 2>/dev/null || echo \"no samples.jsonl\"; ls output/exp_021_fewnerd_n8_seed123/full_signal_analysis.json 2>/dev/null && echo \"analysis exists\" || echo \"no analysis\"; python3 -c \"\nimport json\ntry:\n    with open('output/exp_021_fewnerd_n8_seed123/full_signal_analysis.json') as f:\n        d = json.load(f)\n    print('greedy_f1:', d.get('greedy_f1'))\n    print('degen:', d.get('degeneracy_cf1_gold_filtered'))\n    print('lp_rho:', d.get('lp_spearman_rho', d.get('logprob_spearman')))\nexcept Exception as e:\n    print('Error:', e)\n\" 2>/dev/null; tail -10 output/exp_021_fewnerd_n8_seed123_run.log 2>/dev/null || echo \"no run log\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "a100",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---SEED123---\"; wc -l output/exp_021_fewnerd_n8_seed123/samples.jsonl 2>/dev/null || echo \"no samples.jsonl\"; ls output/exp_021_fewnerd_n8_seed123/full_signal_analysis.json 2>/dev/null && echo \"analysis exists\" || echo \"no analysis\"; python3 -c \"\nimport json\ntry:\n    with open('output/exp_021_fewnerd_n8_seed123/full_signal_analysis.json') as f:\n        d = json.load(f)\n    print('greedy_f1:', d.get('greedy_f1'))\n    print('degen:', d.get('degeneracy_cf1_gold_filtered'))\n    print('lp_rho:', d.get('lp_spearman_rho', d.get('logprob_spearman')))\nexcept Exception as e:\n    print('Error:', e)\n\" 2>/dev/null; tail -10 output/exp_021_fewnerd_n8_seed123_run.log 2>/dev/null || echo \"no run log\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T11:47:01.913343+00:00_
+
+Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T11:47:01.913465+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---SEED456---\"; wc -l output/exp_021_fewnerd_n8_seed456/samples.jsonl 2>/dev/null || echo \"no samples.jsonl\"; ls output/exp_021_fewnerd_n8_seed456/full_signal_analysis.json 2>/dev/null && echo \"analysis exists\" || echo \"no analysis\"; python3 -c \"\nimport json\ntry:\n    with open('output/exp_021_fewnerd_n8_seed456/full_signal_analysis.json') as f:\n        d = json.load(f)\n    print('greedy_f1:', d.get('greedy_f1'))\n    print('degen:', d.get('degeneracy_cf1_gold_filtered'))\n    print('lp_rho:', d.get('lp_spearman_rho', d.get('logprob_spearman')))\nexcept Exception as e:\n    print('Error:', e)\n\" 2>/dev/null; tail -10 output/exp_021_fewnerd_n8_seed456_run.log 2>/dev/null || echo \"no run log\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "a100",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---SEED456---\"; wc -l output/exp_021_fewnerd_n8_seed456/samples.jsonl 2>/dev/null || echo \"no samples.jsonl\"; ls output/exp_021_fewnerd_n8_seed456/full_signal_analysis.json 2>/dev/null && echo \"analysis exists\" || echo \"no analysis\"; python3 -c \"\nimport json\ntry:\n    with open('output/exp_021_fewnerd_n8_seed456/full_signal_analysis.json') as f:\n        d = json.load(f)\n    print('greedy_f1:', d.get('greedy_f1'))\n    print('degen:', d.get('degeneracy_cf1_gold_filtered'))\n    print('lp_rho:', d.get('lp_spearman_rho', d.get('logprob_spearman')))\nexcept Exception as e:\n    print('Error:', e)\n\" 2>/dev/null; tail -10 output/exp_021_fewnerd_n8_seed456_run.log 2>/dev/null || echo \"no run log\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T11:47:01.913586+00:00_
+
+Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T11:47:01.913702+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---SCIERC PROBE---\"; ls output/hidden_state_probe/results_textbased_goldfiltered.json 2>/dev/null && echo \"SciERC probe done\" || echo \"SciERC probe missing\"; echo \"---FEWNERD PROBE---\"; ls output/hidden_state_probe_fewnerd/ 2>/dev/null || echo \"no fewnerd probe dir\"; cat output/hidden_state_probe_fewnerd/results*.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -30; echo \"---EXP016 PROBE---\"; ls output/hidden_state_probe_exp016/ 2>/dev/null || echo \"no exp016 probe dir\"; cat output/hidden_state_probe_exp016/results*.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -30",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "a100",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---SCIERC PROBE---\"; ls output/hidden_state_probe/results_textbased_goldfiltered.json 2>/dev/null && echo \"SciERC probe done\" || echo \"SciERC probe missing\"; echo \"---FEWNERD PROBE---\"; ls output/hidden_state_probe_fewnerd/ 2>/dev/null || echo \"no fewnerd probe dir\"; cat output/hidden_state_probe_fewnerd/results*.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -30; echo \"---EXP016 PROBE---\"; ls output/hidden_state_probe_exp016/ 2>/dev/null || echo \"no exp016 probe dir\"; cat output/hidden_state_probe_exp016/results*.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -30",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T11:47:01.913820+00:00_
+
+Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T11:47:01.913931+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---TOKEN LP---\"; ls output/token_lp_aggregator/ 2>/dev/null || echo \"no token_lp dir\"; cat output/token_lp_aggregator/results*.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -40",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "a100",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---TOKEN LP---\"; ls output/token_lp_aggregator/ 2>/dev/null || echo \"no token_lp dir\"; cat output/token_lp_aggregator/results*.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -40",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T11:47:01.914042+00:00_
+
+Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T11:47:01.914180+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---CONLL SEED123---\"; wc -l output/exp_002_conll_n8_seed123/samples.jsonl 2>/dev/null || echo \"no seed123\"; ls output/exp_002_conll_n8_seed123/full_signal_analysis.json 2>/dev/null && echo \"analysis exists\" || echo \"no analysis\"; echo \"---CONLL SEED456---\"; wc -l output/exp_002_conll_n8_seed456/samples.jsonl 2>/dev/null || echo \"no seed456\"; ls output/exp_002_conll_n8_seed456/full_signal_analysis.json 2>/dev/null && echo \"analysis exists\" || echo \"no analysis\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "a100",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---CONLL SEED123---\"; wc -l output/exp_002_conll_n8_seed123/samples.jsonl 2>/dev/null || echo \"no seed123\"; ls output/exp_002_conll_n8_seed123/full_signal_analysis.json 2>/dev/null && echo \"analysis exists\" || echo \"no analysis\"; echo \"---CONLL SEED456---\"; wc -l output/exp_002_conll_n8_seed456/samples.jsonl 2>/dev/null || echo \"no seed456\"; ls output/exp_002_conll_n8_seed456/full_signal_analysis.json 2>/dev/null && echo \"analysis exists\" || echo \"no analysis\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T11:47:01.914479+00:00_
+
+Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T11:47:01.914714+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "ps aux | grep -E \"python|vllm|train\" | grep -v grep | grep -v sshd | grep -v bash",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "a100",
+    "command": "ps aux | grep -E \"python|vllm|train\" | grep -v grep | grep -v sshd | grep -v bash",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T11:47:01.915192+00:00_
+
+Error executing tool ssh_execute: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T11:47:01.915455+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && nvidia-smi",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && nvidia-smi",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-18T11:47:01.915664+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tmux ls 2>/dev/null || echo \"no tmux sessions\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tmux ls 2>/dev/null || echo \"no tmux sessions\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-18T11:47:01.915901+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Mon May 18 19:45:23 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 5090        On  |   00000000:38:00.0 Off |                  N/A |\\n| 42%   35C    P8             12W /  575W |       4MiB /  32607MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA GeForce RTX 5090        On  |   00000000:49:00.0 Off |                  N/A |\\n| 62%   64C    P1            270W /  575W |   30888MiB /  32607MiB |     43%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA GeForce RTX 5090        On  |   00000000:5A:00.0 Off |                  N/A |\\n| 65%   71C    P1            460W /  575W |   30934MiB /  32607MiB |     94%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA GeForce RTX 5090        On  |   00000000:98:00.0 Off |                  N/A |\\n| 39%   28C    P8             
+…[truncated 1110 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T11:47:01.916165+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp_011_ood_conll_to_scierc: 1 windows (created Fri May 15 19:48:36 2026)\\nexp_017_llama_conll_n16_r1024: 1 windows (created Fri May 15 18:38:42 2026)\\nexp_017_llama_conll_n16_s456_r1024: 1 windows (created Fri May 15 18:38:44 2026)\\nfewnerd_s456: 1 windows (created Mon May 18 17:31:50 2026)\\nllama_fewnerd: 1 windows (created Mon May 18 17:31:45 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T11:47:01.916367+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && ps aux | grep -E \"llama.*fewnerd|train.*fewnerd\" | grep -v grep; echo \"---LOG---\"; tail -20 logs/llama_fewnerd_train.log 2>/dev/null || echo \"no log\"; echo \"---CKPT---\"; ls -la checkpoints/llama3.1-8b-fewnerd-lora/ 2>/dev/null || echo \"no ckpt dir\"; echo \"---CKPT_LIST---\"; ls checkpoints/llama3.1-8b-fewnerd-lora/checkpoint-*/ 2>/dev/null | head -10; echo \"---TRAINER_STATE---\"; cat checkpoints/llama3.1-8b-fewnerd-lora/trainer_state.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print('global_step:', d.get('global_step'), 'epoch:', d.get('epoch'), 'best_metric:', d.get('best_metric'))\" 2>/dev/null || echo \"no trainer_state.json\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && ps aux | grep -E \"llama.*fewnerd|train.*fewnerd\" | grep -v grep; echo \"---LOG---\"; tail -20 logs/llama_fewnerd_train.log 2>/dev/null || echo \"no log\"; echo \"---CKPT---\"; ls -la checkpoints/llama3.1-8b-fewnerd-lora/ 2>/dev/null || echo \"no ckpt dir\"; echo \"---CKPT_LIST---\"; ls checkpoints/llama3.1-8b-fewnerd-lora/checkpoint-*/ 2>/dev/null | head -10; echo \"---TRAINER_STATE---\"; cat checkpoints/llama3.1-8b-fewnerd-lora/trainer_state.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print('global_step:', d.get('global_step'), 'epoch:', d.get('epoch'), 'best_metric:', d.get('best_metric'))\" 2>/dev/null || echo \"no trainer_state.json\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T11:47:01.916686+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     137791  0.0  0.0   4364  3256 pts/3    Ss+  17:31   0:00 bash -c source /root/miniconda3/bin/activate && bash /root/autodl-tmp/struct_self_consist_ie/code/run_llama_fewnerd_train_single_gpu.sh 2>&1 | tee /root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_train.log\\nroot     137860  0.0  0.0   4364  3216 pts/3    S+   17:31   0:00 bash /root/autodl-tmp/struct_self_consist_ie/code/run_llama_fewnerd_train_single_gpu.sh\\nroot     137861  0.0  0.0   2796  1044 pts/3    S+   17:31   0:01 tee /root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_train.log\\nroot     137865 97.5  0.3 60492460 2703248 pts/3 Sl+ 17:31 130:23 /root/miniconda3/bin/python /root/miniconda3/bin/llamafactory-cli train train_config_llama_fewnerd.yaml\\n---LOG---\\n  \\\"pretraining_tp\\\": 1,\\n  \\\"rms_norm_eps\\\": 1e-05,\\n  \\\"rope_scaling\\\": {\\n    \\\"factor\\\": 8.0,\\n    \\\"high_freq_factor\\\": 4.0,\\n    \\\"low_freq_factor\\\": 1.0,\\n    \\\"original_max_position_embeddings\\\": 8192,\\n    \\\"rope_type\\\": \\\"llama3\\\"\\n  },\\n  \\\"rope_theta\\\": 500000.0,\\n  \\\"tie_word_embeddings\\\": false,\\n  \\\"transformers_version\\\": \\\"4.57.1\\\",\\n  \\\"use_cache\\\": true,\\n  \\\"vocab_size\\\": 128256\\n}\\n\\n[INFO|tokenization_utils_base.py:2421] 2026-05-18 19:30:37,783 >> chat template saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora/checkpoint-3000/chat_template.jinja\\n[INFO|tokenization_utils_base.py:2590] 2026-05-18 19:30:37,785 >> tokenizer config file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora/checkpoint-3000/tokenizer_config.json\\n[INFO|tokenization_utils_base.py:2599] 2026-05-18 19:30:37,785 >> Special tokens file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora/checkpoint-3000/special_tokens_map.json\\n\\r 12%|█▏        | 3001/24708 [1:58:39<1267:50:35, 210.27s/it]
+…[truncated 6578 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T11:47:01.916931+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---SEED123---\"; wc -l output/exp_021_fewnerd_n8_seed123/samples.jsonl 2>/dev/null || echo \"no samples.jsonl\"; ls output/exp_021_fewnerd_n8_seed123/full_signal_analysis.json 2>/dev/null && echo \"analysis exists\" || echo \"no analysis\"; python3 -c \"\nimport json\ntry:\n    with open('output/exp_021_fewnerd_n8_seed123/full_signal_analysis.json') as f:\n        d = json.load(f)\n    print('greedy_f1:', d.get('greedy_f1'))\n    print('degen:', d.get('degeneracy_cf1_gold_filtered'))\n    print('lp_rho:', d.get('lp_spearman_rho', d.get('logprob_spearman')))\nexcept Exception as e:\n    print('Error:', e)\n\" 2>/dev/null; tail -10 output/exp_021_fewnerd_n8_seed123_run.log 2>/dev/null || echo \"no run log\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---SEED123---\"; wc -l output/exp_021_fewnerd_n8_seed123/samples.jsonl 2>/dev/null || echo \"no samples.jsonl\"; ls output/exp_021_fewnerd_n8_seed123/full_signal_analysis.json 2>/dev/null && echo \"analysis exists\" || echo \"no analysis\"; python3 -c \"\nimport json\ntry:\n    with open('output/exp_021_fewnerd_n8_seed123/full_signal_analysis.json') as f:\n        d = json.load(f)\n    print('greedy_f1:', d.get('greedy_f1'))\n    print('degen:', d.get('degeneracy_cf1_gold_filtered'))\n    print('lp_rho:', d.get('lp_spearman_rho', d.get('logprob_spearman')))\nexcept Exception as e:\n    print('Error:', e)\n\" 2>/dev/null; tail -10 output/exp_021_fewnerd_n8_seed123_run.log 2>/dev/null || echo \"no run log\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T11:47:01.917227+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---SEED123---\\n37648 output/exp_021_fewnerd_n8_seed123/samples.jsonl\\nno analysis\\n  person               | 12211 | 0.8173 | 0.9070 | 0.8250 | +0.77pp |  4.7%\\n  organization         | 11603 | 0.7514 | 0.8699 | 0.7591 | +0.78pp |  8.3%\\n  other                |  4839 | 0.6735 | 0.8489 | 0.7075 | +3.40pp | 17.2%\\n  building             |  3496 | 0.7493 | 0.8682 | 0.7501 | +0.08pp |  7.8%\\n  product              |  3271 | 0.6810 | 0.8353 | 0.6963 | +1.54pp | 15.7%\\n  event                |  3191 | 0.7128 | 0.8420 | 0.7161 | +0.33pp |  8.6%\\n  art                  |  2743 | 0.7982 | 0.8802 | 0.7964 | -0.17pp |  5.5%\\n\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123/results.json\\n=== Mon May 18 18:50:58 CST 2026 === All done ===\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-18T11:47:01.917445+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---SEED456---\"; wc -l output/exp_021_fewnerd_n8_seed456/samples.jsonl 2>/dev/null || echo \"no samples.jsonl\"; ls output/exp_021_fewnerd_n8_seed456/full_signal_analysis.json 2>/dev/null && echo \"analysis exists\" || echo \"no analysis\"; python3 -c \"\nimport json\ntry:\n    with open('output/exp_021_fewnerd_n8_seed456/full_signal_analysis.json') as f:\n        d = json.load(f)\n    print('greedy_f1:', d.get('greedy_f1'))\n    print('degen:', d.get('degeneracy_cf1_gold_filtered'))\n    print('lp_rho:', d.get('lp_spearman_rho', d.get('logprob_spearman')))\nexcept Exception as e:\n    print('Error:', e)\n\" 2>/dev/null; tail -10 output/exp_021_fewnerd_n8_seed456_run.log 2>/dev/null || echo \"no run log\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---SEED456---\"; wc -l output/exp_021_fewnerd_n8_seed456/samples.jsonl 2>/dev/null || echo \"no samples.jsonl\"; ls output/exp_021_fewnerd_n8_seed456/full_signal_analysis.json 2>/dev/null && echo \"analysis exists\" || echo \"no analysis\"; python3 -c \"\nimport json\ntry:\n    with open('output/exp_021_fewnerd_n8_seed456/full_signal_analysis.json') as f:\n        d = json.load(f)\n    print('greedy_f1:', d.get('greedy_f1'))\n    print('degen:', d.get('degeneracy_cf1_gold_filtered'))\n    print('lp_rho:', d.get('lp_spearman_rho', d.get('logprob_spearman')))\nexcept Exception as e:\n    print('Error:', e)\n\" 2>/dev/null; tail -10 output/exp_021_fewnerd_n8_seed456_run.log 2>/dev/null || echo \"no run log\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-18T11:47:01.917639+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---SCIERC PROBE---\"; ls output/hidden_state_probe/results_textbased_goldfiltered.json 2>/dev/null && echo \"SciERC probe done\" || echo \"SciERC probe missing\"; echo \"---FEWNERD PROBE---\"; ls output/hidden_state_probe_fewnerd/ 2>/dev/null || echo \"no fewnerd probe dir\"; cat output/hidden_state_probe_fewnerd/results*.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -30; echo \"---EXP016 PROBE---\"; ls output/hidden_state_probe_exp016/ 2>/dev/null || echo \"no exp016 probe dir\"; cat output/hidden_state_probe_exp016/results*.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -30",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---SCIERC PROBE---\"; ls output/hidden_state_probe/results_textbased_goldfiltered.json 2>/dev/null && echo \"SciERC probe done\" || echo \"SciERC probe missing\"; echo \"---FEWNERD PROBE---\"; ls output/hidden_state_probe_fewnerd/ 2>/dev/null || echo \"no fewnerd probe dir\"; cat output/hidden_state_probe_fewnerd/results*.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -30; echo \"---EXP016 PROBE---\"; ls output/hidden_state_probe_exp016/ 2>/dev/null || echo \"no exp016 probe dir\"; cat output/hidden_state_probe_exp016/results*.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -30",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-18T11:47:01.917784+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---TOKEN LP---\"; ls output/token_lp_aggregator/ 2>/dev/null || echo \"no token_lp dir\"; cat output/token_lp_aggregator/results*.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -40",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---TOKEN LP---\"; ls output/token_lp_aggregator/ 2>/dev/null || echo \"no token_lp dir\"; cat output/token_lp_aggregator/results*.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -40",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-18T11:47:01.917916+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---CONLL SEED123---\"; wc -l output/exp_002_conll_n8_seed123/samples.jsonl 2>/dev/null || echo \"no seed123\"; ls output/exp_002_conll_n8_seed123/full_signal_analysis.json 2>/dev/null && echo \"analysis exists\" || echo \"no analysis\"; echo \"---CONLL SEED456---\"; wc -l output/exp_002_conll_n8_seed456/samples.jsonl 2>/dev/null || echo \"no seed456\"; ls output/exp_002_conll_n8_seed456/full_signal_analysis.json 2>/dev/null && echo \"analysis exists\" || echo \"no analysis\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && echo \"---CONLL SEED123---\"; wc -l output/exp_002_conll_n8_seed123/samples.jsonl 2>/dev/null || echo \"no seed123\"; ls output/exp_002_conll_n8_seed123/full_signal_analysis.json 2>/dev/null && echo \"analysis exists\" || echo \"no analysis\"; echo \"---CONLL SEED456---\"; wc -l output/exp_002_conll_n8_seed456/samples.jsonl 2>/dev/null || echo \"no seed456\"; ls output/exp_002_conll_n8_seed456/full_signal_analysis.json 2>/dev/null && echo \"analysis exists\" || echo \"no analysis\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-18T11:47:01.918048+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ps aux | grep -E \"python|vllm|train\" | grep -v grep | grep -v sshd | grep -v bash",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ps aux | grep -E \"python|vllm|train\" | grep -v grep | grep -v sshd | grep -v bash",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-18T11:47:01.918272+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---SEED456---\\nno samples.jsonl\\nno analysis\\n(EngineCore pid=138471) \\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   4%|▍         | 2/51 [00:00<00:02, 16.77it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   8%|▊         | 4/51 [00:00<00:02, 16.76it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  12%|█▏        | 6/51 [00:00<00:02, 16.68it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▌        | 8/51 [00:00<00:02, 16.69it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  20%|█▉        | 10/51 [00:00<00:02, 16.97it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  24%|██▎       | 12/51 [00:00<00:02, 17.19it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  27%|██▋       | 14/51 [00:00<00:02, 17.71it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  31%|███▏      | 16/51 [00:00<00:01, 18.03it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  35%|███▌      | 18/51 [00:01<00:01, 18.38it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  41%|████      | 21/51 [00:01<00:01, 19.41it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  47%|████▋     | 24/51 [00:01<00:01, 20.25it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  53%|█████▎    | 27/51 [00:01<00:01, 21.39it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  59%|█████▉    | 30/51 [00:01<00:01, 20.62it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  65%|██████▍   | 33/51 [00:01<00:00, 21.63it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  71%|███████   | 36/51 [00:01<00:00, 22.79it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  76%|███████▋  | 39/51 [00:01<00:00, 23.34it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  82%|
+…[truncated 6355 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-18T11:47:01.918456+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---SCIERC PROBE---\\noutput/hidden_state_probe/results_textbased_goldfiltered.json\\nSciERC probe done\\n---FEWNERD PROBE---\\nextract.log\\nhidden_states.pt\\nlabels.pt\\nlogprobs.pt\\nmetadata.json\\nprobe.log\\nresults_goldfiltered.json\\nsubsampled_instances.jsonl\\n---EXP016 PROBE---\\nhidden_states.pt\\nlabels.pt\\nlogprobs.pt\\nmetadata.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-18T11:47:01.918597+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---TOKEN LP---\\nresults_fewnerd.json\\nresults_scierc_10epoch.json\\nresults_scierc_3epoch.json\\ntraining_log_fewnerd.txt\\ntraining_log_scierc_10epoch.txt\\ntraining_log_scierc_3epoch.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-18T11:47:01.918725+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---CONLL SEED123---\\n3453 output/exp_002_conll_n8_seed123/samples.jsonl\\noutput/exp_002_conll_n8_seed123/full_signal_analysis.json\\nanalysis exists\\n---CONLL SEED456---\\n3453 output/exp_002_conll_n8_seed456/samples.jsonl\\noutput/exp_002_conll_n8_seed456/full_signal_analysis.json\\nanalysis exists\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-18T11:47:01.918863+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root        935  0.0  0.0 4147828 71852 ?       Sl   May14   2:09 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        939  0.0  0.0 191560 96316 ?        S    May14   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot       1050  0.0  0.0 28341068 10600 ?      Sl   May14   5:19 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_n2g13yqg/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_n2g13yqg/startup_error\\nroot     137861  0.0  0.0   2796  1044 pts/3    S+   17:31   0:01 tee /root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_train.log\\nroot     137865 97.5  0.3 60492460 2703248 pts/3 Sl+ 17:31 130:38 /root/miniconda3/bin/python /root/miniconda3/bin/llamafactory-cli train train_config_llama_fewnerd.yaml\\nroot     138025 34.8  1.7 47873052 14155956 pts/4 Rl+ 17:31  46:37 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/exp_021_fewnerd_n8_seed456\\nroot     174588  0.0  0.0  11360  7868 ?        Ss   May15   0:14 tmux new-session -d -s exp_001_n16_seed456 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --output_dir output/exp001_n16_seed456 --collect_logprobs 2>&1 | tee output/exp001_n16_seed456_run.log\\nroot     969983 7151  0.1 31607536 1312924 ?    Rl   19:43 138:15 pyth
+…[truncated 150 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-18T11:47:01.919045+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && cat output/hidden_state_probe_fewnerd/results_goldfiltered.json | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -40",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && cat output/hidden_state_probe_fewnerd/results_goldfiltered.json | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -40",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-18T11:47:01.919225+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-18T11:47:01.919378+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && cat output/token_lp_aggregator/results_fewnerd.json | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -40",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && cat output/token_lp_aggregator/results_fewnerd.json | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -40",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-18T11:47:01.919512+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-18T11:47:01.919645+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && cat output/token_lp_aggregator/results_scierc_10epoch.json | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -40",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && cat output/token_lp_aggregator/results_scierc_10epoch.json | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(d, indent=2))\" 2>/dev/null | head -40",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-18T11:47:01.919783+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-18T11:47:01.919904+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && cat output/exp_021_fewnerd_n8_seed123/results.json | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps({k:v for k,v in d.items() if 'f1' in k.lower() or 'spearman' in k.lower() or 'rho' in k.lower() or 'degen' in k.lower() or 'greedy' in k.lower()}, indent=2))\" 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && cat output/exp_021_fewnerd_n8_seed123/results.json | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps({k:v for k,v in d.items() if 'f1' in k.lower() or 'spearman' in k.lower() or 'rho' in k.lower() or 'degen' in k.lower() or 'greedy' in k.lower()}, indent=2))\" 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-18T11:47:01.920032+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-18T11:47:01.920200+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json\nf = open('output/hidden_state_probe_fewnerd/results_goldfiltered.json')\nd = json.load(f)\nprint(json.dumps(d, indent=2))\n\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json\nf = open('output/hidden_state_probe_fewnerd/results_goldfiltered.json')\nd = json.load(f)\nprint(json.dumps(d, indent=2))\n\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-18T11:47:01.920339+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-18T11:47:01.920463+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json\nfor name in ['results_fewnerd.json', 'results_scierc_10epoch.json', 'results_scierc_3epoch.json']:\n    try:\n        d = json.load(open('output/token_lp_aggregator/' + name))\n        print(f'=== {name} ===')\n        print(json.dumps(d, indent=2)[:800])\n    except Exception as e:\n        print(f'{name}: Error {e}')\n\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json\nfor name in ['results_fewnerd.json', 'results_scierc_10epoch.json', 'results_scierc_3epoch.json']:\n    try:\n        d = json.load(open('output/token_lp_aggregator/' + name))\n        print(f'=== {name} ===')\n        print(json.dumps(d, indent=2)[:800])\n    except Exception as e:\n        print(f'{name}: Error {e}')\n\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-18T11:47:01.920591+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-18T11:47:01.920717+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json\nd = json.load(open('output/exp_021_fewnerd_n8_seed123/results.json'))\nkeys = [k for k in d if any(x in k.lower() for x in ['f1','spearman','rho','degen','greedy','overall'])]\nprint(json.dumps({k: d[k] for k in keys}, indent=2))\n\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json\nd = json.load(open('output/exp_021_fewnerd_n8_seed123/results.json'))\nkeys = [k for k in d if any(x in k.lower() for x in ['f1','spearman','rho','degen','greedy','overall'])]\nprint(json.dumps({k: d[k] for k in keys}, indent=2))\n\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-18T11:47:01.920851+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-18T11:47:01.920974+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json\nd = json.load(open('output/hidden_state_probe_exp016/metadata.json'))\nprint(json.dumps(d, indent=2)[:500])\n\" 2>/dev/null; ls -la output/hidden_state_probe_exp016/results*.json 2>/dev/null || echo \"no results json in exp016 probe\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json\nd = json.load(open('output/hidden_state_probe_exp016/metadata.json'))\nprint(json.dumps(d, indent=2)[:500])\n\" 2>/dev/null; ls -la output/hidden_state_probe_exp016/results*.json 2>/dev/null || echo \"no results json in exp016 probe\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-18T11:47:01.921151+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"no results json in exp016 probe\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-18T11:47:01.921325+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json\nd = json.load(open('output/hidden_state_probe_fewnerd/results_goldfiltered.json'))\nprint(json.dumps(d, indent=2))\n\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json\nd = json.load(open('output/hidden_state_probe_fewnerd/results_goldfiltered.json'))\nprint(json.dumps(d, indent=2))\n\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-18T11:47:01.921494+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"Few-NERD\\\",\\n  \\\"n_instances\\\": 2000,\\n  \\\"n_samples\\\": 8,\\n  \\\"hidden_dim\\\": 4096,\\n  \\\"cv_folds\\\": 5,\\n  \\\"seeds\\\": [\\n    42,\\n    123,\\n    456\\n  ],\\n  \\\"gold_filtered\\\": true,\\n  \\\"probes\\\": {\\n    \\\"linear\\\": {\\n      \\\"rho_mean\\\": 0.26835628131959166,\\n      \\\"rho_std\\\": 0.016543366428110676,\\n      \\\"rho_per_seed\\\": [\\n        0.28740753332199853,\\n        0.2600432231021971,\\n        0.25761808753457943\\n      ],\\n      \\\"sel_f1_mean\\\": 0.6758165287461537,\\n      \\\"sel_f1_std\\\": 0.0023019664913282905,\\n      \\\"sel_f1_per_seed\\\": [\\n        0.6777910363436768,\\n        0.6732881586189825,\\n        0.6763703912758021\\n      ],\\n      \\\"greedy_f1_mean\\\": 0.7481256065620738,\\n      \\\"oracle_f1_mean\\\": 0.8730770300939913,\\n      \\\"gap_closure\\\": -57.86975111768099\\n    },\\n    \\\"mlp\\\": {\\n      \\\"rho_mean\\\": 0.628514167087423,\\n      \\\"rho_std\\\": 0.007416303127143198,\\n      \\\"rho_per_seed\\\": [\\n        0.6370774850160604,\\n        0.6242936768527164,\\n        0.6241713393934923\\n      ],\\n      \\\"sel_f1_mean\\\": 0.7627593288616265,\\n      \\\"sel_f1_std\\\": 0.0016932862623683762,\\n      \\\"sel_f1_per_seed\\\": [\\n        0.76129633364957,\\n        0.7623674600432631,\\n        0.7646141928920462\\n      ],\\n      \\\"greedy_f1_mean\\\": 0.7481256065620738,\\n      \\\"oracle_f1_mean\\\": 0.8730770300939913,\\n      \\\"gap_closure\\\": 11.711529077389502\\n    }\\n  },\\n  \\\"baselines\\\": {\\n    \\\"lp\\\": {\\n      \\\"rho\\\": 0.6062090280775968,\\n      \\\"sel_f1\\\": 0.7635417067078882,\\n      \\\"greedy_f1\\\": 0.7481256065620738,\\n      \\\"oracle_f1\\\": 0.8730770300939914,\\n      \\\"random_f1\\\": 0.6425844115583691,\\n      \\\"gap_closure\\\": 12.33767468193471\\n    }\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"e
+…[truncated 57 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-18T11:47:01.921652+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json\nfor name in ['results_fewnerd.json', 'results_scierc_10epoch.json', 'results_scierc_3epoch.json']:\n    try:\n        d = json.load(open('output/token_lp_aggregator/' + name))\n        print(f'=== {name} ===')\n        print(json.dumps(d, indent=2)[:1000])\n        print()\n    except Exception as e:\n        print(f'{name}: Error {e}')\n\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json\nfor name in ['results_fewnerd.json', 'results_scierc_10epoch.json', 'results_scierc_3epoch.json']:\n    try:\n        d = json.load(open('output/token_lp_aggregator/' + name))\n        print(f'=== {name} ===')\n        print(json.dumps(d, indent=2)[:1000])\n        print()\n    except Exception as e:\n        print(f'{name}: Error {e}')\n\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-18T11:47:01.921848+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== results_fewnerd.json ===\\n{\\n  \\\"dataset\\\": \\\"fewnerd\\\",\\n  \\\"data_path\\\": \\\"output/exp_021_inference/samples.jsonl\\\",\\n  \\\"n_instances\\\": 2000,\\n  \\\"n_samples\\\": 16000,\\n  \\\"n_folds\\\": 5,\\n  \\\"seeds\\\": [\\n    42,\\n    123,\\n    456\\n  ],\\n  \\\"epochs\\\": 50,\\n  \\\"max_seq_len\\\": 256,\\n  \\\"results\\\": {\\n    \\\"random\\\": {\\n      \\\"selection_f1\\\": 0.6356510519981384,\\n      \\\"selection_f1_std\\\": 0.010440324433147907,\\n      \\\"gap_closure\\\": 0.0\\n    },\\n    \\\"mean_lp\\\": {\\n      \\\"spearman_rho\\\": 0.6037887330957384,\\n      \\\"spearman_rho_std\\\": 0.019180644731986267,\\n      \\\"selection_f1\\\": 0.763300895690918,\\n      \\\"selection_f1_std\\\": 0.010675162076950073,\\n      \\\"gap_closure\\\": 55.765839660865126\\n    },\\n    \\\"attention\\\": {\\n      \\\"spearman_rho\\\": 0.3872574459039929,\\n      \\\"spearman_rho_std\\\": 0.3159971905289272,\\n      \\\"selection_f1\\\": 0.7133861780166626,\\n      \\\"selection_f1_std\\\": 0.06799501180648804,\\n      \\\"gap_closure\\\": 33.95981105937985\\n    },\\n    \\\"cnn\\\": {\\n      \\\"spearman_rho\\\": 0.6420621598516019,\\n      \\\"spearman_rho_std\\\": 0.013913019354340122,\\n      \\\"selection_f1\\\": 0.7647289037\\n\\n=== results_scierc_10epoch.json ===\\n{\\n  \\\"dataset\\\": \\\"scierc_10epoch\\\",\\n  \\\"data_path\\\": \\\"output/exp_029b_scierc_10epoch/samples.jsonl\\\",\\n  \\\"n_instances\\\": 529,\\n  \\\"n_samples\\\": 4232,\\n  \\\"n_folds\\\": 5,\\n  \\\"seeds\\\": [\\n    42,\\n    123,\\n    456\\n  ],\\n  \\\"epochs\\\": 50,\\n  \\\"max_seq_len\\\": 256,\\n  \\\"results\\\": {\\n    \\\"random\\\": {\\n      \\\"selection_f1\\\": 0.6475895643234253,\\n      \\\"selection_f1_std\\\": 0.015404732897877693,\\n      \\\"gap_closure\\\": 0.0\\n    },\\n    \\\"mean_lp\\\": {\\n      \\\"spearman_rho\\\": 0.15759024378063516,\\n      \\\"spearman
+…[truncated 2055 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-18T11:47:01.922007+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json\nd = json.load(open('output/exp_021_fewnerd_n8_seed123/results.json'))\nkeys = [k for k in d if any(x in k.lower() for x in ['f1','spearman','rho','degen','greedy','overall','macro'])]\nprint(json.dumps({k: d[k] for k in keys}, indent=2))\n\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json\nd = json.load(open('output/exp_021_fewnerd_n8_seed123/results.json'))\nkeys = [k for k in d if any(x in k.lower() for x in ['f1','spearman','rho','degen','greedy','overall','macro'])]\nprint(json.dumps({k: d[k] for k in keys}, indent=2))\n\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-18T11:47:01.922160+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-18T11:47:01.922375+00:00_
+
+所有数据已收集。汇总如下：
+
+---
+
+## LLaMA Few-NERD 训练 v2
+- **状态**: RUNNING
+- **GPU**: cuda:1 (30888MiB, 43% util)
+- **进度**: 14% (3499/24708 steps), 已运行 ~2h13m
+- **Checkpoints**: checkpoint-1000, checkpoint-2000, checkpoint-3000
+- **速度**: ~1.7-3.5 s/it
+- **预计剩余**: ~21200 steps × ~1.8s ≈ **~10.6 小时**
+- **输出**: `checkpoints/llama3.1-8b-fewnerd-lora/`, 无 trainer_state.json（训练中）
+
+## Qwen Few-NERD seed=123 推理
+- **状态**: COMPLETED (May 18 18:50:58)
+- **GPU**: 已释放 (cuda:0 空闲)
+- **关键结果**: 按类型 F1 — person 0.817, org 0.751, other 0.674, building 0.749, product 0.681, event 0.713, art 0.798
+- **输出文件**: `output/exp_021_fewnerd_n8_seed123/samples.jsonl` — 37648 行
+- **注意**: `results.json` 为空 `{}`，`full_signal_analysis.json` 未生成 — **分析脚本未运行**
+
+## Qwen Few-NERD seed=456 推理
+- **状态**: RUNNING (88% — 33240/37648)
+- **GPU**: cuda:2 (30934MiB, 94% util, VLLM EngineCore)
+- **速度**: ~30 prompts/s
+- **预计剩余**: ~4400 prompts ÷ 30/s ≈ **~2.5 分钟**
+- **输出**: 尚无 samples.jsonl（推理完成后才写入）
+
+## Hidden State Probe — SciERC (exp_012)
+- **状态**: COMPLETED
+- **输出**: `output/hidden_state_probe/results_textbased_goldfiltered.json`
+
+## Hidden State Probe — Few-NERD
+- **状态**: COMPLETED
+- **关键结果**:
+  - MLP probe: rho=0.629, sel_f1=0.763, gap_closure=11.7%
+  - Linear probe: rho=0.268, sel_f1=0.676, gap_closure=-57.9%
+  - LP baseline: rho=0.606, sel_f1=0.764, gap_closure=12.3%
+- **输出**: `output/hidden_state_probe_fewnerd/results_goldfiltered.json`
+
+## Hidden State Probe — exp016
+- **状态**: RUNNING (PID 969983, `hidden_state_probe_exp016.py`)
+- **GPU**: 无 GPU 占用（CPU 运行中, 7151% CPU = 多核）
+- **已有**: hidden_states.pt, labels.pt, logprobs.pt, metadata.json
+- **缺失**: 无 results*.json — probe 训练仍在进行
+
+## Token-level LP Aggregator
+- **状态**: COMPLETED (3 个变体)
+- **关键结果**:
+  - Few-NERD: mean_lp rho=0.604, CNN rho=0.642, sel_f1=0.765
+  - SciERC 10epoch: mean_lp rho=0.158, CNN rho=0.173
+  - SciERC 3epoch: mean_lp rho=0.354, CNN rho=0.387
+- **输出**: `output/token_lp_aggregator/`
+
+## CoNLL 3-seed 数据
+- **seed=123**: COMPLETED — 3453 行, full_signal_analysis.json 存在
+- **seed=456**: COMPLETED — 3453 行, full_signal_analysis.json 存在
+
+---
+
+## GPU 状态总结
+
+| GPU | 状态 | 内存 | Util | 进程 |
+|-----|------|------|------|------|
+| cuda:0 | **空闲** | 4MiB/32607MiB | 0% | — |
+| cuda:1 | **占用** | 30888MiB/32607MiB | 43% | LLaMA Few-NERD 训练 (14%, ~10.6h 剩余) |
+| cuda:2 | **占用** | 30934MiB/32607MiB | 94% | Qwen seed=456 推理 (88%, ~2.5min 剩余) |
+| cuda:3 | **空闲** | 2MiB/32607MiB | 0% | — |
+
+**空闲 GPU: 2 张** (cuda:0, cuda:3)
+
+**需要注意**:
+1. seed=123 推理已完成但 **分析未运行** (results.json 为空, 无 full_signal_analysis.json)
+2. seed=456 即将完成（~2.5min），完成后 cuda:2 也将释放 → **3 张空闲**
+3. exp016 probe 在 CPU 上运行，不占 GPU
+4. 有残留 tmux session `exp_001_n16_seed456` (May 15) 和 `exp_011`/`exp_017` 系列可能已过时
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_diag_full_gpu_status_check_20260518T114435"
+}
+```
+
+</details>
+
+---

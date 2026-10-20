@@ -1,0 +1,120 @@
+{
+  "exp_id": "exp_016_signal_ensemble",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:15:23.771Z",
+    "updated_at": "2026-05-14T12:27:59.667Z",
+    "spec": {
+      "command": "python code/analyze_exp016_ensemble.py",
+      "server": "autodl-5090",
+      "data_path": "output/exp_012_logprob/samples_with_logprobs.jsonl",
+      "data_count": 551,
+      "model_name": "N/A (CPU-only analysis)",
+      "seed": 42,
+      "checkpoint_source": "N/A",
+      "eval_data": "pilot_004",
+      "checkpoint_path": "N/A",
+      "log_path": "output/exp016_signal_ensemble/"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T12:15:53.341Z",
+    "metrics": {
+      "ner": {
+        "n": 529,
+        "signal_correlation_sj_logprob": {
+          "pearson_r": 0.5672,
+          "spearman_rho": 0.5379
+        },
+        "linear_combo_best": {
+          "sj_votconf": {
+            "alpha": 0.3,
+            "rho": 0.4893
+          },
+          "votconf_logprob": {
+            "alpha": 0.8,
+            "rho": 0.4458
+          },
+          "sj_logprob": {
+            "alpha": 1,
+            "rho": 0.3565
+          }
+        },
+        "ensemble_auroc": 0.735,
+        "single_aurocs": {
+          "voting_confidence": 0.6996,
+          "soft_jaccard": 0.6892,
+          "exact_match": 0.6615,
+          "fleiss_kappa": 0.6317,
+          "logprob": 0.5873
+        },
+        "ensemble_coefficients": {
+          "voting_confidence": 0.8648,
+          "exact_match": 0.6452,
+          "soft_jaccard": 0.1211,
+          "logprob": 0.0383,
+          "fleiss_kappa": -0.338
+        },
+        "selection_f1": {
+          "greedy": 0.6094,
+          "logprob_best": 0.6087,
+          "ensemble_best": 0.6043,
+          "sj_best": 0.6042,
+          "voting_conf_best": 0.5959,
+          "random_avg": 0.5796,
+          "oracle": 0.7692
+        }
+      },
+      "re": {
+        "n": 397,
+        "signal_correlation_sj_logprob": {
+          "pearson_r": 0.4173,
+          "spearman_rho": 0.4892
+        },
+        "linear_combo_best": {
+          "votconf_logprob": {
+            "alpha": 0.6,
+            "rho": 0.4292
+          },
+          "sj_votconf": {
+            "alpha": 0,
+            "rho": 0.4265
+          },
+          "sj_logprob": {
+            "alpha": 0.3,
+            "rho": 0.2871
+          }
+        },
+        "ensemble_auroc": 0.7191,
+        "single_aurocs": {
+          "voting_confidence": 0.721,
+          "fleiss_kappa": 0.6284,
+          "logprob": 0.6207,
+          "soft_jaccard": 0.5909,
+          "exact_match": 0.4959
+        },
+        "ensemble_coefficients": {
+          "voting_confidence": 1.0331,
+          "soft_jaccard": 0.1304,
+          "logprob": 0.0774,
+          "exact_match": -0.0669,
+          "fleiss_kappa": -0.3303
+        },
+        "selection_f1": {
+          "logprob_best": 0.3971,
+          "greedy": 0.3735,
+          "sj_best": 0.368,
+          "ensemble_best": 0.3673,
+          "random_avg": 0.338,
+          "voting_conf_best": 0.3379,
+          "oracle": 0.5608
+        }
+      }
+    }
+  },
+  "timestamp": "2026-05-14T12:27:59.734855+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_vc_lp_cascade_selection",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T04:44:02.658Z",
+    "updated_at": "2026-05-16T04:47:34.371Z",
+    "hypothesis": "VC-filtered LP selection cascade: test if combining VC (pre-filter) + LP (rank) improves selection F1 over single-signal selection. Addresses SF3 reviewer suggestion. Pure analysis on existing data.",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-16T04:47:34.594077+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp_e1_signal_routing",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:13:34.839Z",
+    "updated_at": "2026-05-20T10:13:48.878Z",
+    "hypothesis": "A config-level signal router (RF/LR) can predict the optimal construction signal per config from features (degeneracy_rate, base_f1, oracle_headroom), outperforming always-LP baseline. Router ΔF1 should exceed always-LP ΔF1.",
+    "metrics": {
+      "n_configs": 16,
+      "rf_loo_accuracy": 0.562,
+      "router_avg_delta_f1": 0.39,
+      "always_lp_delta_f1": 0.15,
+      "oracle_delta_f1": 0.56,
+      "top_features": [
+        "oracle_headroom",
+        "degeneracy_rate",
+        "base_f1"
+      ],
+      "label_dist": {
+        "lp_selection": 6,
+        "none": 5,
+        "consensus_theta2n": 3,
+        "consensus_lp_weighted": 1,
+        "majority_vote": 1
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T10:13:49.197785+00:00",
+  "trigger": "update_registry"
+}

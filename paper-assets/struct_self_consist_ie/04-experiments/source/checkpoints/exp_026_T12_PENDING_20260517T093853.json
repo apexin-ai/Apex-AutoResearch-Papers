@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_026_T12",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T09:38:31.060Z",
+    "updated_at": "2026-05-17T09:38:52.976Z",
+    "hypothesis": "T=1.2 will decrease degeneracy rate and expand LP range vs T=1.0, but may degrade generation quality (lower greedy F1). Tests whether reducing degeneracy via higher T recovers selection headroom or if quality degradation offsets the benefit."
+  },
+  "timestamp": "2026-05-17T09:38:53.210552+00:00",
+  "trigger": "update_registry"
+}

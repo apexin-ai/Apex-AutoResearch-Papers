@@ -1,0 +1,92 @@
+{
+  "exp_id": "exp_017_llama_conll",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-14T14:39:32.014Z",
+    "updated_at": "2026-05-17T11:42:18.454Z",
+    "completed_at": "2026-05-14T17:12:15.687Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "success"
+      }
+    },
+    "hypothesis": "On CoNLL (high degeneracy regime), LLaMA should show the same pattern as Qwen3: LP selection fails due to narrow headroom, but structural signals retain diagnostic value (QE rho). Cross-model validation of the degeneracy-driven signal effectiveness framework.",
+    "parent": "exp_007_llama_inference",
+    "server": "autodl-5090",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "autodl-5090",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-17T11:30:53.467Z"
+    },
+    "metrics": {
+      "degeneracy_cf1_gold_filtered": 0.8922,
+      "n_constant_f1": 2459,
+      "n_gold_filtered": 2756,
+      "n_total": 3453,
+      "greedy_f1": 0.9242,
+      "oracle_f1": 0.9426,
+      "random_f1": 0.9207,
+      "headroom_pp": 1.84,
+      "selection_f1": {
+        "SJ": {
+          "f1": 0.9237,
+          "delta_pp": -0.04
+        },
+        "FK": {
+          "f1": 0.924,
+          "delta_pp": -0.02
+        },
+        "VC": {
+          "f1": 0.925,
+          "delta_pp": 0.08
+        },
+        "EM": {
+          "f1": 0.9244,
+          "delta_pp": 0.02
+        },
+        "LP": {
+          "f1": 0.9244,
+          "delta_pp": 0.02
+        }
+      },
+      "qe_rho_full": {
+        "SJ": 0.431,
+        "FK": 0.428,
+        "EM": 0.431,
+        "VC": 0.426,
+        "LP": 0.307
+      },
+      "qe_auroc_full": {
+        "SJ": 0.704,
+        "FK": 0.703,
+        "EM": 0.705,
+        "VC": 0.709,
+        "LP": 0.761
+      },
+      "lp_range": {
+        "mean": 0.0198,
+        "std": 0.0315,
+        "median": 0.0002
+      }
+    },
+    "conclusion": "success",
+    "spec": {
+      "command": "python code/exp017_full_signal_analysis.py",
+      "server": "autodl-5090",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl",
+      "data_count": 3453,
+      "model_name": "llama3.1-8b-conll2003-merged",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/",
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/full_signal_analysis.json"
+    }
+  },
+  "timestamp": "2026-05-17T11:42:18.688093+00:00",
+  "trigger": "update_registry"
+}

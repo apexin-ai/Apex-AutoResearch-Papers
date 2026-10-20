@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_fewnerd_t08_s42",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T22:41:07.634Z",
+    "updated_at": "2026-05-20T22:41:40.733Z",
+    "hypothesis": "FewNERD temperature ablation (T=0.8): test how moderate-low temperature affects degeneracy rate and SC diagnostic cascade on FewNERD, complementing SciERC T-ablation data. N=8, Qwen3-8B-FT, seed=42. T=0.8 is a sweet-spot candidate balancing diversity and quality."
+  },
+  "timestamp": "2026-05-20T22:41:41.422104+00:00",
+  "trigger": "update_registry"
+}

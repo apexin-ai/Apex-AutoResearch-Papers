@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_backup1_het_temp",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T17:09:31.094Z",
+    "updated_at": "2026-05-20T18:12:32.238Z",
+    "hypothesis": "Heterogeneous-Temperature Sampling: MRSC/LSC negative results prove entity-level correction cannot close the selection gap. F4 degeneracy analysis shows T=0.7 has ~62% degeneracy (too homogeneous) while T=1.0 has more diversity but noisier entities. Mixing samples from different temperatures (k from T_low + (8-k) from T_high) breaks temperature-specific degeneracy patterns: low-T samples provide precise entities, high-T samples provide diversity. Mixed-T N=8 pool should achieve lower degeneracy than pure T_low and higher construction F1 than pure T_high. Hypothesis source: entity-level methods (MRSC weighted re-prompting, LSC latent aggregation) both failed → pivot to sampling-level diversity improvement.",
+    "parent": "exp_mrsc_multi_round",
+    "spec": {
+      "command": "bash /root/autodl-tmp/struct_self_consist_ie/run_het_temp_all.sh",
+      "server": "autodl-5090",
+      "gpu": [],
+      "pid": "unknown",
+      "log_path": "~/runs/struct_self_consist_ie/exp_backup1_het_temp.log",
+      "submitted_at": "2026-05-20T18:12:23.931Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-20T18:12:32.605791+00:00",
+  "trigger": "update_registry"
+}

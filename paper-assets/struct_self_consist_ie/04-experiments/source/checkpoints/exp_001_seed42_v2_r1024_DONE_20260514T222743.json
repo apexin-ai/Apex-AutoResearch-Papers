@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp_001_seed42_v2_r1024",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:16:52.571Z",
+    "updated_at": "2026-05-14T22:27:43.836Z",
+    "spec": {
+      "hypothesis": "D054 rerun: max_tokens=1024. Verify truncation impact on Qwen SciERC N=16 seed42.",
+      "parent": "exp_001_seed42_v2",
+      "model_name": "qwen3-8b-scierc-merged-v2",
+      "dataset": "SciERC",
+      "seed": 42,
+      "server": "autodl-5090",
+      "command": "CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_001_seed42_v2_r1024",
+      "data_path": "data/scierc/processed_data",
+      "data_count": 9999
+    },
+    "conclusion": "success",
+    "metrics": {
+      "greedy_f1": 0.6647,
+      "oracle_f1": 0.8106,
+      "softjaccard_rho_full": 0.3928,
+      "fleiss_rho_full": 0.2489,
+      "logprob_rho_full": 0.2136,
+      "softjaccard_rho_cond": 0.3455,
+      "fleiss_rho_cond": 0.163,
+      "logprob_rho_cond": 0.1624,
+      "verdict": "MARGINAL"
+    },
+    "checkpoint_path": "output/exp_001_seed42_v2_r1024",
+    "log_path": "output/exp_001_seed42_v2_r1024/run.log",
+    "completed_at": "2026-05-14T22:27:43.836Z"
+  },
+  "timestamp": "2026-05-14T22:27:43.998756+00:00",
+  "trigger": "update_registry"
+}

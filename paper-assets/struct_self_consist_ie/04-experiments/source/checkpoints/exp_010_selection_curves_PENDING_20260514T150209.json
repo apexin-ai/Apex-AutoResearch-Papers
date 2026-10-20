@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp_010_selection_curves",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T15:01:53.585Z",
+    "updated_at": "2026-05-14T15:02:08.959Z",
+    "spec": {
+      "command": "python3 code/exp010_selection_curves.py",
+      "server": "autodl-5090",
+      "data_path": "output/exp_001_seed42_v2, output/exp_008_re_n16_v2, output/exp002_conll2003",
+      "data_count": "551+397+3453 instances",
+      "model_name": "qwen3-8b-scierc-merged-v2",
+      "seed": 42,
+      "description": "Best-of-N selection curves: F1 vs N for 7 signals across 3 datasets"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T15:02:09.036092+00:00",
+  "trigger": "update_registry"
+}

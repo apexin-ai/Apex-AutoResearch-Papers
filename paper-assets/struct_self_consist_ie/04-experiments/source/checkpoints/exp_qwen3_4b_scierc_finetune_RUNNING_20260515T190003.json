@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp_qwen3_4b_scierc_finetune",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:58:58.948Z",
+    "updated_at": "2026-05-15T19:00:03.661Z",
+    "spec": {
+      "hypothesis": "Scale ablation: Qwen3-4B SciERC NER LoRA fine-tune. Same LoRA config as CoNLL 4B. Forms 2 datasets x 2 scales matrix. Verify correlation-selection gap, SJ>FK ordering, LP compression are scale-invariant.",
+      "server": "autodl-5090",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/llmfactory_train.json",
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "gpu": "cuda:3",
+      "plan_id": "D096",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 llamafactory-cli train train_config_scierc_4b.yaml\"",
+      "data_count": 1351,
+      "description": "Qwen3-4B SciERC NER LoRA fine-tune, same LoRA config as CoNLL 4B (rank=32, alpha=64, lr=2e-4, 5 epochs)"
+    }
+  },
+  "timestamp": "2026-05-15T19:00:03.872974+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,41 @@
+{
+  "exp_id": "exp_fewnerd_mf4_s123",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T05:08:59.588Z",
+    "updated_at": "2026-05-22T10:36:54.915Z",
+    "hypothesis": "MF4 pipeline fix: FewNERD N=8 T=1.0 seed=123 using run_mvp_pilot.py (greedy_f1/micro-F1). Replaces exp_021 which used incompatible greedy_macro_f1 metric. Required for 3-seed statistical power with unified pipeline.",
+    "conclusion": "failed",
+    "server": "autodl-5090",
+    "gpu": "cuda:2",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4_seed123/\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "132631",
+      "log_path": "~/runs/struct_self_consist_ie/exp_fewnerd_mf4_s123.log",
+      "submitted_at": "2026-05-22T10:36:19.234Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 35.7,
+      "gpu_hours": 0.01
+    },
+    "pid": "132631",
+    "log_path": "~/runs/struct_self_consist_ie/exp_fewnerd_mf4_s123.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4_seed123/\"",
+      "finished_at": "2026-05-22T10:36:49.910Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-22T10:36:54.915Z"
+  },
+  "timestamp": "2026-05-22T10:36:55.487229+00:00",
+  "trigger": "update_registry"
+}

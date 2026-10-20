@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp_fewnerd_n16_s456_v2",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-21T07:18:11.587Z",
+    "updated_at": "2026-05-21T14:44:16.244Z",
+    "hypothesis": "FewNERD N=16 (seed=456, v2 rerun): data lost in previous run. Extending N-scaling curve to N=16 for Qwen3-8B-FT, critical for F1(N)=a-b*N^(-c) scaling law. Third seed for 3-seed statistical power.",
+    "completed_at": "2026-05-21T11:30:16.054Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "success",
+        "metrics": {
+          "greedy_f1": 0.7883,
+          "oracle_f1": 0.9058,
+          "oracle_headroom": 0.1175,
+          "fleiss_kappa": 0.4552,
+          "rho_sj_full": 0.285,
+          "rho_fk_full": 0.233,
+          "samples_count": 37648,
+          "mv_f1": "NOT_COMPUTED",
+          "degeneracy_rate": "NOT_COMPUTED",
+          "note": "report.json lacks mv_f1 and degeneracy; need post-processing from samples.jsonl"
+        }
+      }
+    }
+  },
+  "timestamp": "2026-05-21T14:44:16.763113+00:00",
+  "trigger": "update_registry"
+}

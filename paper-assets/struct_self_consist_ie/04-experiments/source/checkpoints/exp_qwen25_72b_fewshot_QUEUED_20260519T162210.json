@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_qwen25_72b_fewshot",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T15:59:44.340Z",
+    "updated_at": "2026-05-19T16:22:10.539Z",
+    "hypothesis": "72B 3-shot few-shot NER will show reduced output diversity compared to zero-shot (higher degeneracy) due to in-context examples constraining output space, while improving greedy baseline F1. The key diagnostic question: does few-shot improve LP-F1 alignment (enabling construction) or does increased degeneracy negate any calibration gain? This fills the zero-shot vs few-shot vs fine-tuned regime comparison for the scaling section. Parent: exp_qwen25_72b_zeroshot (negative — LP near-zero, high degeneracy in ZS).",
+    "parent": "exp_qwen25_72b_zeroshot"
+  },
+  "timestamp": "2026-05-19T16:22:10.867699+00:00",
+  "trigger": "update_registry"
+}

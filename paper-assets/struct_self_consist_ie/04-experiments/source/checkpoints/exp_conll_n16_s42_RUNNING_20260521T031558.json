@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_conll_n16_s42",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T03:11:59.589Z",
+    "updated_at": "2026-05-21T03:15:58.237Z",
+    "hypothesis": "CoNLL N=16 ablation (T=1.0, seed=42): test whether doubling sample count from N=8 to N=16 improves SC diagnostic correlation and oracle F1 on CoNLL-2003. Qwen3-8B-FT.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/conll_n16_s42/",
+      "server": "autodl-5090-c",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/conll2003/test.json",
+      "data_count": 3453,
+      "model_name": "qwen3-8b-conll2003-merged",
+      "seed": 42,
+      "gpu": "cuda:3",
+      "pid": 269975,
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/logs/conll_n16_s42.log",
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_s42/",
+      "checkpoint_source": "/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged",
+      "eval_data": "conll2003 test set (3453 instances, N=16)"
+    }
+  },
+  "timestamp": "2026-05-21T03:15:58.649468+00:00",
+  "trigger": "update_registry"
+}

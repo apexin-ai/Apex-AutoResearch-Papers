@@ -1,0 +1,61 @@
+{
+  "exp_id": "exp_scierc_n8_s2024",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T16:33:46.085Z",
+    "updated_at": "2026-05-22T18:28:21.440Z",
+    "hypothesis": "R40 N2 statistical power: SciERC N=8 T=1.0 seed=2024 finetuned Qwen3-8B. 4th seed to strengthen 5-seed Holm-Bonferroni test for core correlation-selection claim (current p_adj=0.055 with 3 seeds).",
+    "spec": {
+      "command": "python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 2024 --collect_logprobs --output_dir output/scierc_mf4v2_seed2024/",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "158714",
+      "log_path": "~/runs/struct_self_consist_ie/exp_scierc_n8_s2024.log",
+      "submitted_at": "2026-05-22T16:34:02.708Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/scierc",
+      "data_count": 551,
+      "model_name": "qwen3-8b-scierc-merged-v2",
+      "seed": 2024,
+      "wall_clock_seconds": 6858.7,
+      "gpu_hours": 1.91
+    },
+    "metrics": {
+      "greedy_f1": 0.6641,
+      "oracle_f1": 0.7914,
+      "oracle_headroom": 0.1273,
+      "fleiss_kappa_mean": 0.3572,
+      "soft_jaccard_mean": 0.6606,
+      "rho_sj_f1_full": 0.337,
+      "rho_kappa_f1_full": 0.2356,
+      "rho_sj_f1_cond": 0.289,
+      "rho_kappa_f1_cond": 0.1465,
+      "structural_beats_surface": true,
+      "rho_advantage": 0.1014,
+      "logprob_rho_full": 0.1831,
+      "logprob_auroc_full": 0.5629,
+      "logprob_rho_cond": 0.1196,
+      "logprob_auroc_cond": 0.5305,
+      "sample_f1_mean": 0.5971,
+      "sample_f1_std": 0.3243,
+      "sample_f1_pct_zero": 14.1,
+      "n_instances": 551,
+      "degeneracy_rate": 14.1,
+      "verdict": "MARGINAL"
+    },
+    "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed2024/",
+    "log_path": "~/runs/struct_self_consist_ie/exp_scierc_n8_s2024.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-22T18:28:21.440Z"
+  },
+  "timestamp": "2026-05-22T18:28:22.002941+00:00",
+  "trigger": "update_registry"
+}

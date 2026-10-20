@@ -1,0 +1,1293 @@
+# exp qwen fewnerd seed123 v2
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 0
+- **Tool calls:** 21
+- **Original source:** `logs/chats/worker_exp_qwen_fewnerd_seed123_v2_20260518T090848.jsonl`
+- **Structured JSON:** [`4fa598324b84474cf361.json`](../../sessions/4f/4fa598324b84474cf361.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+43 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T09:11:33.249739+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T09:11:33.250054+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T09:11:33.250294+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "ps aux | grep -E \"seed123|exp_021\" | grep -v grep",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "a100",
+    "command": "ps aux | grep -E \"seed123|exp_021\" | grep -v grep",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-18T09:11:33.250452+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-18T09:11:33.250583+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "a100",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T09:11:33.250710+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T09:11:33.250830+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "a100",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_003_fewnerd_n8/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "a100",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_003_fewnerd_n8/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T09:11:33.250948+00:00_
+
+Error executing tool ssh_read_only: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T09:11:33.251101+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ps aux | grep -E \"seed123|exp_021\" | grep -v grep",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ps aux | grep -E \"seed123|exp_021\" | grep -v grep",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T09:11:33.251263+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     133509  0.0  0.0   4364   232 ?        S    16:39   0:00 bash -c cd /root/autodl-tmp/struct_self_consist_ie && nohup bash merge_and_infer_seed123.sh > output/exp_021_fewnerd_n8_seed123_run.log 2>&1 & echo \\\"PID: $!\\\"\\nroot     133510  0.0  0.0   4496  3336 ?        S    16:39   0:00 bash merge_and_infer_seed123.sh\\nroot     133651 37.1  0.6 39102656 5327764 ?    Rl   16:39  11:02 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/exp_021_fewnerd_n8_seed123\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T09:11:33.251401+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123/ 2>/dev/null; echo \"---\"; ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_003_fewnerd_n8/ 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123/ 2>/dev/null; echo \"---\"; ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_003_fewnerd_n8/ 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T09:11:33.251532+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"total 12\\ndrwxr-xr-x   2 root root   10 May 18 16:35 .\\ndrwxr-xr-x 131 root root 8192 May 18 16:35 ..\\n---\\n\", \"stderr\": \"\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T09:11:33.251691+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -100 /root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123_run.log 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -100 /root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123_run.log 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T09:11:33.251885+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Mon May 18 16:39:29 CST 2026 === Step 1: Merging LoRA adapter ===\\nMerged model already exists at checkpoints/qwen3-8b-fewnerd-exp021-merged, skipping...\\n=== Mon May 18 16:39:34 CST 2026 === Step 2: Running inference seed=123 ===\\nLoaded 37648 test instances from fewnerd [index 0:None]\\nINFO 05-18 16:39:43 [utils.py:233] non-default args: {'max_model_len': 4096, 'disable_log_stats': True, 'model': 'checkpoints/qwen3-8b-fewnerd-exp021-merged'}\\nINFO 05-18 16:39:43 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\nINFO 05-18 16:39:43 [model.py:1582] Using max model len 4096\\nINFO 05-18 16:39:43 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=8192.\\nINFO 05-18 16:39:43 [vllm.py:775] Asynchronous scheduling is enabled.\\n(EngineCore pid=133921) INFO 05-18 16:39:44 [core.py:103] Initializing a V1 LLM engine (v0.18.1) with config: model='checkpoints/qwen3-8b-fewnerd-exp021-merged', speculative_config=None, tokenizer='checkpoints/qwen3-8b-fewnerd-exp021-merged', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False,
+…[truncated 6281 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T09:11:33.252035+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "nvidia-smi | grep -E \"MiB|python\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "nvidia-smi | grep -E \"MiB|python\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T09:11:33.252194+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"| 71%   75C    P1            520W /  575W |   30194MiB /  32607MiB |     86%      Default |\\n| 39%   41C    P0            101W /  575W |       2MiB /  32607MiB |    100%      Default |\\n| 42%   38C    P0             96W /  575W |       2MiB /  32607MiB |    100%      Default |\\n| 39%   40C    P0            104W /  575W |       2MiB /  32607MiB |    100%      Default |\\n|    0   N/A  N/A          133921      C   VLLM::EngineCore                      30184MiB |\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T09:11:33.252328+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123/",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123/",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T09:11:33.252451+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 12\\ndrwxr-xr-x   2 root root   10 May 18 16:35 .\\ndrwxr-xr-x 131 root root 8192 May 18 16:35 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T09:11:33.252608+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/merge_and_infer_seed123.sh",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/merge_and_infer_seed123.sh",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T09:11:33.252758+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -e\\nsource /root/miniconda3/bin/activate\\ncd /root/autodl-tmp/struct_self_consist_ie\\n\\nexport CUDA_VISIBLE_DEVICES=0\\n\\necho \\\"=== $(date) === Step 1: Merging LoRA adapter ===\\\"\\npython -c \\\"\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nimport torch, os\\n\\nbase_path = '/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B'\\nadapter_path = 'output/exp_021_fewnerd_full'\\nmerged_path = 'checkpoints/qwen3-8b-fewnerd-exp021-merged'\\n\\nif os.path.exists(os.path.join(merged_path, 'config.json')):\\n    print(f'Merged model already exists at {merged_path}, skipping...')\\nelse:\\n    print('Loading base model...')\\n    model = AutoModelForCausalLM.from_pretrained(base_path, torch_dtype=torch.bfloat16, device_map='cpu')\\n    print('Loading adapter...')\\n    model = PeftModel.from_pretrained(model, adapter_path)\\n    print('Merging...')\\n    model = model.merge_and_unload()\\n    print(f'Saving to {merged_path}...')\\n    os.makedirs(merged_path, exist_ok=True)\\n    model.save_pretrained(merged_path)\\n    print('Saving tokenizer...')\\n    tokenizer = AutoTokenizer.from_pretrained(adapter_path)\\n    tokenizer.save_pretrained(merged_path)\\n    print('Merge complete!')\\n\\\"\\n\\necho \\\"=== $(date) === Step 2: Running inference seed=123 ===\\\"\\npython code/run_mvp_pilot.py \\\\\\n    --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged \\\\\\n    --data_dir data/fewnerd \\\\\\n    --dataset fewnerd \\\\\\n    --subtask ner \\\\\\n    --n_samples 8 \\\\\\n    --temperature 1.0 \\\\\\n    --seed 123 \\\\\\n    --collect_logprobs \\\\\\n    --output_dir output/exp_021_fewnerd_n8_seed123\\n\\necho \\\"=== $(date) === Step 3: Running analysis ===\\\"\\npython code/analyze_fewnerd_results.py \\\\\\n    --input_dir output/exp_021_fewnerd_n8_seed123 \\\\\\n    --output_dir output/exp_021_fewnerd_n8_seed123\\n\\necho \\\"=== $(date) === All d
+…[truncated 118 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T09:11:33.252906+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_003_fewnerd_n8/",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_003_fewnerd_n8/",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T09:11:33.253033+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/struct_self_consist_ie/output/exp_003_fewnerd_n8/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T09:11:33.253253+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -d /root/autodl-tmp/struct_self_consist_ie/output/*fewnerd* 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -d /root/autodl-tmp/struct_self_consist_ie/output/*fewnerd* 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T09:11:33.253393+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_full\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123_run.log\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_028_fewnerd_5epoch\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_dals_multiseed_results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/recompute_tab_fewnerd_results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/unified_tab_fewnerd_maxlp.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T09:11:33.253532+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/unified_tab_fewnerd_maxlp.json 2>/dev/null | head -100",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/unified_tab_fewnerd_maxlp.json 2>/dev/null | head -100",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T09:11:33.253682+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"SciERC\\\": {\\n    \\\"n\\\": 529,\\n    \\\"n_samples\\\": 8,\\n    \\\"greedy_f1\\\": 0.6439219990259687,\\n    \\\"oracle_f1\\\": 0.7758023559647044,\\n    \\\"lp_sel_f1\\\": 0.6500718843902431,\\n    \\\"headroom_pp\\\": 13.188035693873568,\\n    \\\"lp_delta_pp\\\": 0.614988536427441,\\n    \\\"degen_f1_pct\\\": 17.76937618147448,\\n    \\\"lp_rho_max\\\": 0.21488770073659605,\\n    \\\"lp_rho_max_p\\\": 6.065313768450742e-07,\\n    \\\"lp_rho_mean\\\": 0.20517413101613924,\\n    \\\"lp_rho_mean_p\\\": 1.9498006196855416e-06\\n  },\\n  \\\"Few-NERD\\\": {\\n    \\\"n\\\": 32565,\\n    \\\"n_samples\\\": 8,\\n    \\\"greedy_f1\\\": 0.7478465965854552,\\n    \\\"oracle_f1\\\": 0.8718523412957434,\\n    \\\"lp_sel_f1\\\": 0.7613975687723666,\\n    \\\"headroom_pp\\\": 12.400574471028825,\\n    \\\"lp_delta_pp\\\": 1.355097218691148,\\n    \\\"degen_f1_pct\\\": 13.754030400736989,\\n    \\\"lp_rho_max\\\": 0.42151629185166933,\\n    \\\"lp_rho_max_p\\\": 0.0,\\n    \\\"lp_rho_mean\\\": 0.22172877738233274,\\n    \\\"lp_rho_mean_p\\\": 0.0\\n  },\\n  \\\"CoNLL_Qwen_N8\\\": {\\n    \\\"n\\\": 2756,\\n    \\\"n_samples\\\": 8,\\n    \\\"greedy_f1\\\": 0.9078871741063325,\\n    \\\"oracle_f1\\\": 0.948271330346802,\\n    \\\"lp_sel_f1\\\": 0.8974051146077575,\\n    \\\"headroom_pp\\\": 4.038415624046953,\\n    \\\"lp_delta_pp\\\": -1.0482059498574947,\\n    \\\"degen_f1_pct\\\": 59.143686502177076,\\n    \\\"lp_rho_max\\\": 0.3017192331559146,\\n    \\\"lp_rho_max_p\\\": 4.173770842291669e-59,\\n    \\\"lp_rho_mean\\\": 0.3156601023930858,\\n    \\\"lp_rho_mean_p\\\": 8.156803289565863e-65\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T09:11:33.253821+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_dals_multiseed_results.json 2>/dev/null | head -50",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_dals_multiseed_results.json 2>/dev/null | head -50",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T09:11:33.253973+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"task1_multiseed\\\": {\\n    \\\"dataset\\\": \\\"Few-NERD\\\",\\n    \\\"source\\\": \\\"exp_027_fewnerd_n16\\\",\\n    \\\"tau\\\": 0.05,\\n    \\\"n_instances_gold_filtered\\\": 4351,\\n    \\\"greedy_f1\\\": 74.9278,\\n    \\\"lp_sel_f1\\\": 76.7793,\\n    \\\"dals_f1\\\": 76.012,\\n    \\\"n_lp_selected\\\": 3498,\\n    \\\"pct_lp_selected\\\": 80.4,\\n    \\\"seeds\\\": {\\n      \\\"42\\\": {\\n        \\\"dals_gain_pp\\\": 1.0842,\\n        \\\"ci_95\\\": [\\n          0.6984,\\n          1.4709\\n        ],\\n        \\\"p_value\\\": 0.0,\\n        \\\"dals_f1\\\": 76.012\\n      },\\n      \\\"123\\\": {\\n        \\\"dals_gain_pp\\\": 1.0842,\\n        \\\"ci_95\\\": [\\n          0.7049,\\n          1.4794\\n        ],\\n        \\\"p_value\\\": 0.0,\\n        \\\"dals_f1\\\": 76.012\\n      },\\n      \\\"456\\\": {\\n        \\\"dals_gain_pp\\\": 1.0842,\\n        \\\"ci_95\\\": [\\n          0.709,\\n          1.4803\\n        ],\\n        \\\"p_value\\\": 0.0,\\n        \\\"dals_f1\\\": 76.012\\n      }\\n    },\\n    \\\"mean_gain_pp\\\": 1.0842,\\n    \\\"std_gain_pp\\\": 0.0\\n  },\\n  \\\"task2_tau_sensitivity\\\": {\\n    \\\"dataset\\\": \\\"Few-NERD\\\",\\n    \\\"source\\\": \\\"exp_027_fewnerd_n16\\\",\\n    \\\"greedy_f1\\\": 74.9278,\\n    \\\"lp_sel_f1\\\": 76.7793,\\n    \\\"results\\\": [\\n      {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-18T09:11:33.254108+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -d /root/autodl-tmp/struct_self_consist_ie/output/exp_0*/ | head -20",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -d /root/autodl-tmp/struct_self_consist_ie/output/exp_0*/ | head -20",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T09:11:33.254266+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2_r1024/\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner_r1024/\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_003_wnut17_v2_infer/\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_005_v2_temperature/\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_006_v2/\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16/\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16_r1024/\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_seed123/\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2/\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2_re_rerun/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-18T09:11:33.254437+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -80 /root/autodl-tmp/struct_self_consist_ie/code/analyze_fewnerd_results.py",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -80 /root/autodl-tmp/struct_self_consist_ie/code/analyze_fewnerd_results.py",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T09:11:33.254602+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Analyze exp-021 Few-NERD inference results.\\n\\nInput:  samples.jsonl (same format as SciERC: id, text, gold, samples, greedy)\\nOutput: results.json + formatted stdout tables for paper\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport warnings\\nimport numpy as np\\nfrom collections import Counter, defaultdict\\nfrom scipy import stats as scipy_stats\\n\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\nfrom consistency import _ner_soft_jaccard_pair, _extract_surface_keys\\nfrom evaluation import per_instance_f1\\n\\nSUBTASK = \\\"ner\\\"\\nSIGNALS = [\\\"LP\\\", \\\"SJ\\\", \\\"FK\\\", \\\"EM\\\", \\\"VC\\\"]\\nSEED = 42\\n\\n# Source: exp_012_rerun_1024/samples.jsonl, gold-filtered n=529, max_LP, 2026-05-18\\n# Computed by unified_tab_fewnerd_metrics.py (same code path as Few-NERD)\\nSCIERC_REF = {\\n    \\\"n\\\": 529, \\\"greedy\\\": 0.6439, \\\"oracle\\\": 0.7758, \\\"headroom\\\": 13.19,\\n    \\\"degen\\\": 17.8, \\\"lp_rho\\\": 0.215, \\\"lp_delta\\\": 0.61,\\n}\\n\\n# Source: exp002_conll2003/samples.jsonl, gold-filtered n=2756, max_LP, 2026-05-18\\n# Computed by unified_tab_fewnerd_metrics.py (same code path as Few-NERD)\\nCONLL_REF = {\\n    \\\"n\\\": 2756, \\\"greedy\\\": 0.9079, \\\"oracle\\\": 0.9483, \\\"headroom\\\": 4.04,\\n    \\\"degen\\\": 59.1, \\\"lp_rho\\\": 0.302, \\\"lp_delta\\\": -1.05,\\n}\\n\\n\\ndef load_data(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f if line.strip()]\\n\\n\\ndef compute_signals(samples):\\n    n = len(samples)\\n    lp_scores = []\\n    for s in samples:\\n        lp = s.get(\\\"mean_logprob\\\")\\n        if lp is None:\\n            lp = s.get(\\\"cumulative_logprob\\\", -999) / max(s.get(\\\"n_tokens\\\", 1), 1)\\n        lp_scores.append(lp)\\n\\n    key_sets = [frozenset(_extract_surface_keys(s, SUBTASK)) for s in samples]\\n\\
+…[truncated 1138 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-18T09:11:33.254754+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def \\|argparse\\|full_signal\\|dals\\|spearman\\|degeneracy\\|degen\\|sel_f1\\|selection\" /root/autodl-tmp/struct_self_consist_ie/code/analyze_fewnerd_results.py",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"def \\|argparse\\|full_signal\\|dals\\|spearman\\|degeneracy\\|degen\\|sel_f1\\|selection\" /root/autodl-tmp/struct_self_consist_ie/code/analyze_fewnerd_results.py",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-18T09:11:33.254915+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"8:import argparse\\n29:    \\\"degen\\\": 17.8, \\\"lp_rho\\\": 0.215, \\\"lp_delta\\\": 0.61,\\n36:    \\\"degen\\\": 59.1, \\\"lp_rho\\\": 0.302, \\\"lp_delta\\\": -1.05,\\n40:def load_data(path):\\n45:def compute_signals(samples):\\n93:def safe_auroc(labels, scores):\\n100:def safe_spearmanr(x, y):\\n105:        r, p = scipy_stats.spearmanr(x, y)\\n109:def main():\\n110:    parser = argparse.ArgumentParser(description=\\\"Analyze Few-NERD exp-021 inference results\\\")\\n143:    degen_flags = np.zeros(N, dtype=bool)\\n164:            degen_flags[i] = True\\n188:    degeneracy_rate = float(degen_flags.mean()) * 100\\n197:    print(f\\\"  Degeneracy rate:   {degeneracy_rate:.1f}%\\\")\\n210:            rho_global, p_global = safe_spearmanr(instance_max_signal[\\\"LP\\\"], greedy_f1s)  # max_LP, aligned with Few-NERD\\n212:            rho_global, p_global = safe_spearmanr(instance_max_signal[sig], greedy_f1s)\\n214:        non_degen_mask = ~degen_flags\\n215:        if non_degen_mask.sum() > 10:\\n217:                rho_cond, p_cond = safe_spearmanr(\\n218:                    instance_max_signal[\\\"LP\\\"][non_degen_mask],\\n219:                    greedy_f1s[non_degen_mask])  # max_LP\\n221:                rho_cond, p_cond = safe_spearmanr(\\n222:                    instance_max_signal[sig][non_degen_mask],\\n223:                    greedy_f1s[non_degen_mask])\\n229:            \\\"spearman_global\\\": round(rho_global, 4) if not np.isnan(rho_global) else None,\\n230:            \\\"spearman_global_p\\\": round(p_global, 6) if not np.isnan(p_global) else None,\\n231:            \\\"spearman_conditional\\\": round(rho_cond, 4) if not np.isnan(rho_cond) else None,\\n232:            \\\"spearman_conditional_p\\\": round(p_cond, 6) if not np.isnan(p_cond) else None,\\n240:        print(f\\\"  {sig:<6} | {fmt(q['auroc']):>7} | {fmt(q['spearman_global']):>11} | {fmt(q['spearman_conditional']):>10}\\\")\\n247:    s
+…[truncated 966 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-18T09:11:33.255088+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"json\\|dals\\|DALS\\|full_signal\\|save\\|dump\\|write\" /root/autodl-tmp/struct_self_consist_ie/code/analyze_fewnerd_results.py",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"json\\|dals\\|DALS\\|full_signal\\|save\\|dump\\|write\" /root/autodl-tmp/struct_self_consist_ie/code/analyze_fewnerd_results.py",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-18T09:11:33.255250+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"4:Input:  samples.jsonl (same format as SciERC: id, text, gold, samples, greedy)\\n5:Output: results.json + formatted stdout tables for paper\\n9:import json\\n25:# Source: exp_012_rerun_1024/samples.jsonl, gold-filtered n=529, max_LP, 2026-05-18\\n32:# Source: exp002_conll2003/samples.jsonl, gold-filtered n=2756, max_LP, 2026-05-18\\n42:        return [json.loads(line) for line in f if line.strip()]\\n112:                        help=\\\"Directory containing samples.jsonl\\\")\\n123:    input_path = os.path.join(base, args.input_dir, \\\"samples.jsonl\\\")\\n124:    output_path = os.path.join(base, args.output_dir, \\\"results.json\\\")\\n358:        json.dump(results, f, indent=2)\\n359:    print(f\\\"\\\\nResults saved to {output_path}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-18T09:11:33.255414+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/code/ -name \"*.py\" | xargs grep -l \"dals\\|DALS\" 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/struct_self_consist_ie/code/ -name \"*.py\" | xargs grep -l \"dals\\|DALS\" 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-18T09:11:33.255546+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/code/dals_analysis.py\\n/root/autodl-tmp/struct_self_consist_ie/code/dals_fixed_tau_evaluation.py\\n/root/autodl-tmp/struct_self_consist_ie/code/fewnerd_dals_multiseed.py\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_llama_fewnerd.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-18T09:11:33.255668+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -60 /root/autodl-tmp/struct_self_consist_ie/code/dals_fixed_tau_evaluation.py",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -60 /root/autodl-tmp/struct_self_consist_ie/code/dals_fixed_tau_evaluation.py",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-18T09:11:33.255823+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"DALS (Degeneracy-Aware LP Selection) evaluation with fixed tau=0.05 and bootstrap CI.\\\"\\\"\\\"\\n\\nimport json\\nimport numpy as np\\nimport os\\n\\nTAU = 0.05\\nN_BOOTSTRAP = 10000\\nRNG_SEED = 42\\n\\nBASE = \\\"/root/autodl-tmp/struct_self_consist_ie\\\"\\n\\nDATASETS = {\\n    \\\"scierc_n8_seed42\\\": \\\"output/exp_012_rerun_1024/samples.jsonl\\\",\\n    \\\"scierc_n8_seed123\\\": \\\"output/exp_018_qwen_scierc_seed123/samples.jsonl\\\",\\n    \\\"scierc_n8_seed456\\\": \\\"output/exp_018_qwen_scierc_seed456/samples.jsonl\\\",\\n    \\\"scierc_n16_seed42\\\": \\\"output/exp001_n16_seed42/samples.jsonl\\\",\\n    \\\"scierc_n16_seed123\\\": \\\"output/exp001_n16_seed123/samples.jsonl\\\",\\n    \\\"scierc_n16_seed456\\\": \\\"output/exp001_n16_seed456/samples.jsonl\\\",\\n    \\\"conll_qwen_n8\\\": \\\"output/exp002_conll2003/samples.jsonl\\\",\\n    \\\"conll_llama_n8\\\": \\\"output/exp_017_llama_conll_infer/samples.jsonl\\\",\\n    \\\"fewnerd_n8\\\": \\\"output/exp_021_inference/samples.jsonl\\\",\\n}\\n\\n\\ndef compute_entity_f1(pred_entities, gold_entities):\\n    pred_set = {(e[\\\"text\\\"], e[\\\"type\\\"]) for e in pred_entities}\\n    gold_set = {(e[\\\"text\\\"], e[\\\"type\\\"]) for e in gold_entities}\\n    if not gold_set and not pred_set:\\n        return 1.0\\n    if not gold_set or not pred_set:\\n        return 0.0\\n    tp = len(pred_set & gold_set)\\n    p = tp / len(pred_set)\\n    r = tp / len(gold_set)\\n    if p + r == 0:\\n        return 0.0\\n    return 2 * p * r / (p + r)\\n\\n\\ndef evaluate_dals(samples_path, tau=TAU, n_bootstrap=N_BOOTSTRAP):\\n    instances = []\\n    with open(samples_path) as f:\\n        for line in f:\\n            instances.append(json.loads(line))\\n\\n    instances = [inst for inst in instances if len(inst[\\\"gold\\\"][\\\"entities\\\"]) > 0]\\n    n = len(instances)\\n\\n    greedy_f1s = np.zeros(n)\\n    lp
+…[truncated 334 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-18T09:11:33.256021+00:00_
+
+called ScheduleWakeup
+
+<details open><summary>🔧 Tool call — ScheduleWakeup</summary>
+
+````json
+{
+  "delaySeconds": "1800",
+  "reason": "Check seed=123 inference progress (~55% expected)",
+  "prompt": "## 任务：Qwen Few-NERD seed=123 推理 + 分析（重做）\n\n### 紧急背景\nDDL 2026-05-25，之前的推理任务可能未真正启动或已崩溃。重新启动。\n\n### 环境\n- SSH 服务器: `a100`\n- 项目路径: `/root/autodl-tmp/struct_self_consist_ie/`\n- Python 环境: `source /root/miniconda3/bin/activate`\n- **GPU: cuda:1**（设置 `CUDA_VISIBLE_DEVICES=1`）\n\n### 步骤\n\n1. **清理旧进程**（如果有）:\n   ```bash\n   # 检查是否有残留推理进程\n   ps aux | grep -E \"seed123|exp_021\" | grep -v grep\n   # 如果有旧进程，kill 掉\n   ```\n\n2. **找到 Qwen Few-NERD 模型和推理配置**:\n   ```bash\n   # 查看已有推理脚本和配置\n   ls output/exp_003_fewnerd_n8/\n   ls output/exp_021_fewnerd_n8_seed123/ 2>/dev/null\n   # 找推理脚本\n   find code/ -name \"*.py\" -o -name \"*.sh\" | xargs grep -l \"fewnerd\" 2>/dev/null\n   find code/ -name \"*.py\" -o -name \"*.sh\" | xargs grep -l \"vllm\" 2>/dev/null\n   # 查看已有的 seed=42 推理是怎么做的\n   cat code/run_fewnerd_inference.sh 2>/dev/null || cat code/infer_fewnerd.sh 2>/dev/null\n   ```\n\n3. **查看已有 seed=42 推理的完整命令**:\n   ```bash\n   # 从 shell history 或脚本中找\n   history | grep fewnerd | grep -i infer\n   # 或从已有的运行日志中提取\n   ls output/exp_003_fewnerd_n8/*.log 2>/dev/null\n   head -50 output/exp_003_fewnerd_n8/*.log 2>/dev/null\n   ```\n\n4. **执行 seed=123 推理**:\n   - 用与 seed=42 完全相同的配置，只改 seed=123\n   - 必须用 vLLM + XGrammar（与已有实验一致）\n   - N=8 samples per instance, T=1.0\n   - Few-NERD INTRA coarse 8-type setting\n   - 输出到 `output/exp_021_fewnerd_n8_seed123/`\n   - **必须在 tmux session 中运行**:\n     ```bash\n     tmux new-session -d -s fewnerd_s123 \"CUDA_VISIBLE_DEVICES=1 bash run_script.sh\"\n     ```\n   - 用 `submit_training_job` 提交长时间任务（确保有 cron 监控）\n\n5. **验证输出**（推理完成后）:\n   - `wc -l output/exp_021_fewnerd_n8_seed123/samples.jsonl` 应该 ≈ 37,648 行\n   - 检查每行都有 N=8 个 samples\n   - 跑 gold-filter + 全套分析:\n     - Selection F1 (LP, SJ, EM, VC)\n     - Degeneracy rate\n     - LP Spearman ρ\n     - DALS (τ=0.05)\n   - 保存 `full_signal_analysis.json`\n\n6. **汇总报告**:\n   ```\n   seed=123: greedy_f1=?, oracle_f1=?, LP_sel_f1=?, LP_delta=?pp, degen=?%, LP_rho=?\n   vs seed=42: greedy_f1=0.7490, LP_delta=+1.36pp, degen=13.8%\n   ```\n\n### 硬约束\n- 推理完后必须验证 samples.jsonl 行数和内容完整性\n- 不允许虚报完成——必须看到实际输出文件\n- 如果推理预计超过 2h，用 submit_training_job 提交"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "ScheduleWakeup",
+  "tool_args": {
+    "delaySeconds": "1800",
+    "reason": "Check seed=123 inference progress (~55% expected)",
+    "prompt": "## 任务：Qwen Few-NERD seed=123 推理 + 分析（重做）\n\n### 紧急背景\nDDL 2026-05-25，之前的推理任务可能未真正启动或已崩溃。重新启动。\n\n### 环境\n- SSH 服务器: `a100`\n- 项目路径: `/root/autodl-tmp/struct_self_consist_ie/`\n- Python 环境: `source /root/miniconda3/bin/activate`\n- **GPU: cuda:1**（设置 `CUDA_VISIBLE_DEVICES=1`）\n\n### 步骤\n\n1. **清理旧进程**（如果有）:\n   ```bash\n   # 检查是否有残留推理进程\n   ps aux | grep -E \"seed123|exp_021\" | grep -v grep\n   # 如果有旧进程，kill 掉\n   ```\n\n2. **找到 Qwen Few-NERD 模型和推理配置**:\n   ```bash\n   # 查看已有推理脚本和配置\n   ls output/exp_003_fewnerd_n8/\n   ls output/exp_021_fewnerd_n8_seed123/ 2>/dev/null\n   # 找推理脚本\n   find code/ -name \"*.py\" -o -name \"*.sh\" | xargs grep -l \"fewnerd\" 2>/dev/null\n   find code/ -name \"*.py\" -o -name \"*.sh\" | xargs grep -l \"vllm\" 2>/dev/null\n   # 查看已有的 seed=42 推理是怎么做的\n   cat code/run_fewnerd_inference.sh 2>/dev/null || cat code/infer_fewnerd.sh 2>/dev/null\n   ```\n\n3. **查看已有 seed=42 推理的完整命令**:\n   ```bash\n   # 从 shell history 或脚本中找\n   history | grep fewnerd | grep -i infer\n   # 或从已有的运行日志中提取\n   ls output/exp_003_fewnerd_n8/*.log 2>/dev/null\n   head -50 output/exp_003_fewnerd_n8/*.log 2>/dev/null\n   ```\n\n4. **执行 seed=123 推理**:\n   - 用与 seed=42 完全相同的配置，只改 seed=123\n   - 必须用 vLLM + XGrammar（与已有实验一致）\n   - N=8 samples per instance, T=1.0\n   - Few-NERD INTRA coarse 8-type setting\n   - 输出到 `output/exp_021_fewnerd_n8_seed123/`\n   - **必须在 tmux session 中运行**:\n     ```bash\n     tmux new-session -d -s fewnerd_s123 \"CUDA_VISIBLE_DEVICES=1 bash run_script.sh\"\n     ```\n   - 用 `submit_training_job` 提交长时间任务（确保有 cron 监控）\n\n5. **验证输出**（推理完成后）:\n   - `wc -l output/exp_021_fewnerd_n8_seed123/samples.jsonl` 应该 ≈ 37,648 行\n   - 检查每行都有 N=8 个 samples\n   - 跑 gold-filter + 全套分析:\n     - Selection F1 (LP, SJ, EM, VC)\n     - Degeneracy rate\n     - LP Spearman ρ\n     - DALS (τ=0.05)\n   - 保存 `full_signal_analysis.json`\n\n6. **汇总报告**:\n   ```\n   seed=123: greedy_f1=?, oracle_f1=?, LP_sel_f1=?, LP_delta=?pp, degen=?%, LP_rho=?\n   vs seed=42: greedy_f1=0.7490, LP_delta=+1.36pp, degen=13.8%\n   ```\n\n### 硬约束\n- 推理完后必须验证 samples.jsonl 行数和内容完整性\n- 不允许虚报完成——必须看到实际输出文件\n- 如果推理预计超过 2h，用 submit_training_job 提交"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-18T09:11:33.256196+00:00_
+
+Next wakeup scheduled for 09:42:00 (in 1831s).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "tool": "ScheduleWakeup",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-18T09:11:33.256357+00:00_
+
+30 分钟后回来检查推理进度。当前推理正常运行，预计约 18:50 服务器时间完成全部推理 + 自动分析。DALS 分析需在推理完成后额外运行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848"
+}
+```
+
+</details>
+
+---

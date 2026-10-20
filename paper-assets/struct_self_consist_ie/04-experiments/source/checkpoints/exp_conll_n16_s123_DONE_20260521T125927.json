@@ -1,0 +1,75 @@
+{
+  "exp_id": "exp_conll_n16_s123",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-21T04:30:48.660Z",
+    "updated_at": "2026-05-21T12:59:27.132Z",
+    "hypothesis": "CoNLL N=16 seed=123: second seed for 3-seed N=16 coverage. Tests N-scaling consistency — whether oracle headroom increase from N=8→N=16 is reproducible across seeds.",
+    "server": "autodl-5090-c",
+    "gpu": "cuda:2",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie/ && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_s123/\"",
+      "finished_at": "2026-05-21T12:57:26.904Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-21T04:51:32.929Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T04:51:39.166251+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T12:57:34.157153+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "失败原因: tokenizer vocab_file=None — checkpoints/qwen3-8b-conll2003-merged 缺少 vocab.json，vLLM 初始化 tokenizer 时 TypeError。与 exp_conll_n16_s456 同根因。| 已有成果: 无（启动即崩溃）| 建议: 修复 merged checkpoint tokenizer 文件后重跑"
+      }
+    },
+    "notes": "重跑成功（首次因 tokenizer 缺失失败）。CoNLL N=16 seed=123: greedy=0.9077, oracle=0.9631, headroom=+0.0555。vs s42: greedy 0.908, oracle 0.9592, headroom 0.0512。种子间高度一致（greedy Δ<0.5pp, oracle Δ<0.5pp）。Structural > Surface confirmed (delta=+0.0103)。",
+    "parent": "exp_conll_n16_s42",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie/ && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_s123/\"",
+      "server": "autodl-5090-c",
+      "data_path": "data/conll2003/",
+      "data_count": 3453,
+      "model_name": "Qwen3-8B-FT-CoNLL",
+      "seed": 123
+    },
+    "pid": "319306",
+    "log_path": "~/runs/struct_self_consist_ie/exp_conll_n16_s123.log",
+    "metrics": {
+      "greedy_f1": 0.9077,
+      "oracle_f1": 0.9631,
+      "oracle_headroom": 0.0555,
+      "kappa_mean": 0.7674,
+      "sj_mean": 0.8767,
+      "rho_kappa_f1_full": 0.4463,
+      "rho_sj_f1_full": 0.4566,
+      "rho_kappa_f1_cond": 0.3913,
+      "rho_sj_f1_cond": 0.4167,
+      "structural_gt_surface": true,
+      "delta_struct": 0.0103,
+      "lp_rho_full": 0.347,
+      "lp_auroc_full": 0.7754,
+      "lp_rho_cond": 0.3732,
+      "lp_auroc_cond": 0.8251,
+      "degeneracy_pct": 7.5,
+      "n_instances": 3453,
+      "n_eval": 2756
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_s123/"
+  },
+  "timestamp": "2026-05-21T12:59:27.600048+00:00",
+  "trigger": "update_registry"
+}

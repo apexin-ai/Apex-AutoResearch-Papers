@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp_hidden_state_probe_fulldata",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T04:13:17.554Z",
+    "updated_at": "2026-05-21T04:13:49.375Z",
+    "hypothesis": "Hidden states of fine-tuned Qwen3-8B encode entity quality information that a linear probe can detect with AUROC significantly above chance, even under GroupKFold (no instance leakage). CoNLL probe should exceed MV baseline (0.87).",
+    "spec": {
+      "command": "extract_fulldata_hidden_states.py + groupkfold_probe_fulldata.py",
+      "server": "autodl-5090-b (fewnerd), autodl-5090-c (conll, scierc)",
+      "data_path": "output/entity_probe_fulldata/",
+      "data_count": "CoNLL 850inst/14777ent, FewNERD 1698inst/41096ent, SciERC 539inst/13188ent",
+      "model_name": "Qwen3-8B fine-tuned",
+      "seed": "42,123,456"
+    },
+    "log_path": "artifacts/exp_hidden_state_probe_fulldata/data/groupkfold_probe_fulldata_results.json",
+    "checkpoint_path": "output/entity_probe_fulldata/ on autodl-5090-b and autodl-5090-c",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T04:13:49.841623+00:00",
+  "trigger": "update_registry"
+}

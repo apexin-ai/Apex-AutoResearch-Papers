@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_fewnerd_mf4_v2_s456",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T05:34:07.139Z",
+    "updated_at": "2026-05-21T10:08:45.986Z",
+    "hypothesis": "MF4 pipeline fix v2: FewNERD N=8 T=1.0 seed=456 using run_mvp_pilot.py (greedy_f1/micro-F1). Third seed completing 3-seed set for statistical power.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed456/\"",
+      "server": "autodl-5090-b",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "334423",
+      "log_path": "~/runs/struct_self_consist_ie/exp_fewnerd_mf4_v2_s456.log",
+      "submitted_at": "2026-05-21T08:33:57.773Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-21T10:08:46.466322+00:00",
+  "trigger": "update_registry"
+}

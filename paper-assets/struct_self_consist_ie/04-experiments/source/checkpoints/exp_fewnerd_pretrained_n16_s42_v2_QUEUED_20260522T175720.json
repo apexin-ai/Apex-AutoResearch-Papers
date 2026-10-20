@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_fewnerd_pretrained_n16_s42_v2",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:21:18.896Z",
+    "updated_at": "2026-05-22T17:57:19.685Z",
+    "hypothesis": "Pretrained N-scaling rerun: FewNERD N=16 with Qwen2.5-7B-Instruct. v1 crashed at 72% due to UnicodeEncodeError (vLLM lone surrogates). Fix applied (errors='replace' in sampling.py). Same hypothesis: fills pretrained N-scaling curve (N=8/16/32).",
+    "parent": "exp_fewnerd_pretrained_n16_s42",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && rm -rf output/fewnerd_pretrained_n16_seed42 && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_pretrained_n16_seed42/\"",
+      "server": "autodl-5090-c",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "452383",
+      "log_path": "~/runs/struct_self_consist_ie/exp_fewnerd_pretrained_n16_s42_v2.log",
+      "submitted_at": "2026-05-22T15:21:43.507Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-22T17:57:20.260100+00:00",
+  "trigger": "update_registry"
+}

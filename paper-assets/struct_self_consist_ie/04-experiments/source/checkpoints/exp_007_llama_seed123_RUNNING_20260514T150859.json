@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp_007_llama_seed123",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T15:08:50.157Z",
+    "updated_at": "2026-05-14T15:08:59.391Z",
+    "spec": {
+      "description": "LLaMA 3.1-8B SciERC joint extraction, seed=123, cross-model robustness test",
+      "hypothesis": "Structural consistency generalizes across model architectures (LLaMA vs Qwen)",
+      "command": "CUDA_VISIBLE_DEVICES=1 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 123 --num_test 9999 --collect_logprobs --output_dir output/exp_007_llama_seed123",
+      "server": "bjb1-21071",
+      "data_path": "data/scierc/processed_data",
+      "data_count": 551,
+      "model_name": "llama3.1-8b-scierc-merged",
+      "seed": 123,
+      "gpu": [
+        "cuda:1"
+      ],
+      "backend": "tmux",
+      "tmux_session": "exp007_s123",
+      "account": "root",
+      "log_path": "output/exp_007_llama_seed123/run.log"
+    }
+  },
+  "timestamp": "2026-05-14T15:08:59.471986+00:00",
+  "trigger": "update_registry"
+}

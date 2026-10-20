@@ -1,0 +1,26 @@
+{
+  "exp_id": "mvp_pilot_003",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:21:09.847Z",
+    "updated_at": "2026-05-14T08:21:30.319Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python code/run_mvp_pilot.py --model_path /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged --data_dir /root/autodl-tmp/struct_self_consist_ie/data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003 --num_test 551 --seed 42 --tensor_parallel 1",
+      "server": "autodl-5090",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/scierc/processed_data",
+      "data_count": 551,
+      "model_name": "qwen3-8b-scierc-merged",
+      "seed": 42
+    },
+    "log_path": "/root/autodl-tmp/struct_self_consist_ie/mvp_pilot_003.log",
+    "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003",
+    "conclusion": "negative",
+    "completed_at": "2026-05-14T08:21:30.319Z"
+  },
+  "timestamp": "2026-05-14T08:21:30.333283+00:00",
+  "trigger": "update_registry"
+}

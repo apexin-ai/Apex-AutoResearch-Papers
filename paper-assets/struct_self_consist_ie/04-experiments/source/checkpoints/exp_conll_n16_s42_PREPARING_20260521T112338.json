@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp_conll_n16_s42",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-21T03:11:59.589Z",
+    "updated_at": "2026-05-21T11:23:37.821Z",
+    "hypothesis": "CoNLL N=16 scaling: doubling sample count from N=8 to N=16 on high-degeneracy dataset (60%+ degen at N=8) tests whether additional samples break through the degeneracy ceiling or merely confirm it.",
+    "completed_at": "2026-05-21T04:24:19.862Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "success",
+        "metrics": {
+          "greedy_f1": 0.908,
+          "oracle_f1": 0.959,
+          "rho_SJ_full": 0.446,
+          "rho_FK_full": 0.427,
+          "rho_advantage": 0.019,
+          "oracle_headroom": 0.051,
+          "degeneracy_pct": 7.8,
+          "verdict": "PASS"
+        }
+      }
+    }
+  },
+  "timestamp": "2026-05-21T11:23:38.924916+00:00",
+  "trigger": "update_registry"
+}

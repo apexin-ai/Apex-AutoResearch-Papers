@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_dgec_sj_construction",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:37:58.013Z",
+    "updated_at": "2026-05-20T08:37:58.013Z"
+  },
+  "timestamp": "2026-05-20T08:37:58.317312+00:00",
+  "trigger": "update_registry"
+}

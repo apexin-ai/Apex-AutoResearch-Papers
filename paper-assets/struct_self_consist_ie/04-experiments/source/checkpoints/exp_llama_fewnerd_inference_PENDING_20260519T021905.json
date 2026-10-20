@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_llama_fewnerd_inference",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T02:18:49.938Z",
+    "updated_at": "2026-05-19T02:19:04.752Z",
+    "hypothesis": "LLaMA-3.1-8B fine-tuned on FewNERD shows the same structured self-consistency phenomena (degeneracy, LP-F1 alignment, signal ranking) as Qwen models, providing cross-model generalization evidence. 3-seed inference (42/123/456) for statistical robustness.",
+    "parent": "exp_llama_fewnerd_lora"
+  },
+  "timestamp": "2026-05-19T02:19:05.057281+00:00",
+  "trigger": "update_registry"
+}

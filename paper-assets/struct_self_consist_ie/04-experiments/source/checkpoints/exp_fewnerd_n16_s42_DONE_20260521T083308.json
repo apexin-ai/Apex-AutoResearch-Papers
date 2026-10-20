@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp_fewnerd_n16_s42",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T04:30:46.569Z",
+    "updated_at": "2026-05-21T08:33:07.868Z",
+    "hypothesis": "FewNERD N=16 (seed=42): extending N-scaling curve to N=16 for Qwen3-8B-FT. Tests whether oracle gains plateau or continue at higher sample counts, critical for F1(N)=a-b*N^(-c) scaling law estimation.",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_n16_seed42/",
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/logs/fewnerd_n16_seed42.log"
+    },
+    "server": "autodl-5090-b",
+    "gpu": "cuda:2",
+    "conclusion": "success",
+    "metrics": {
+      "greedy_f1": 0.7886,
+      "oracle_f1": 0.9059,
+      "oracle_headroom": 0.117,
+      "rho_fk_full": 0.162,
+      "rho_sj_full": 0.211,
+      "rho_fk_cond": -0.019,
+      "rho_sj_cond": 0.212,
+      "logprob_rho_full": 0.139,
+      "logprob_rho_cond": 0.175,
+      "instances": 37648
+    },
+    "completed_at": "2026-05-21T08:33:07.868Z"
+  },
+  "timestamp": "2026-05-21T08:33:08.336074+00:00",
+  "trigger": "update_registry"
+}

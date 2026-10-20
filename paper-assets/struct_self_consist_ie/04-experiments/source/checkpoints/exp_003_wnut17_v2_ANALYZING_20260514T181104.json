@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp_003_wnut17_v2",
+  "project": "struct_self_consist_ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T15:32:56.415Z",
+    "updated_at": "2026-05-14T18:11:04.236Z",
+    "spec": {
+      "description": "WNUT-17 retrain: downsample gold-empty instances to ≤25%, fine-tune Qwen3-8B, inference N=16 T=1.0 with log-probs",
+      "hypothesis": "After removing excess empty instances, structural consistency signals (SJ) will show stronger correlation on social media NER",
+      "plan_id": "exp-003",
+      "claim": 1,
+      "model_name": "Qwen3-8B",
+      "dataset": "WNUT-17 (downsampled)",
+      "priority": "P0",
+      "parent": "exp_003_ner_wnut17",
+      "command": "CUDA_VISIBLE_DEVICES=1 llamafactory-cli train train_config_wnut17.yaml",
+      "server": "autodl-5090",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/wnut17/llmfactory_train_downsampled.json",
+      "data_count": 1637,
+      "seed": 42,
+      "pid": 92215,
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/logs/train_wnut17.log",
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora",
+      "downsampling": "empty instances 63.8% -> 25.0%, total 3394 -> 1637",
+      "metrics": {
+        "train_loss": 0.105,
+        "eval_loss": 0.0836,
+        "epochs": 5,
+        "train_time_min": 16.37,
+        "train_samples_per_sec": 8.33
+      },
+      "note": "D045: Training succeeded (train_loss=0.105) but inference FAIL: 54% F1=0, SJ rho=0.062 (p=0.106). WNUT-17 abandoned — model capability insufficient on social media NER. Paper reports as Claim 3 (capability boundary) evidence."
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-14T18:11:04.372857+00:00",
+  "trigger": "update_registry"
+}

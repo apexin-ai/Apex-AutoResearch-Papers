@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_026_t05_scierc",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T15:28:34.135Z",
+    "updated_at": "2026-05-18T15:30:21.854Z",
+    "hypothesis": "Lower temperature (T=0.5) increases degeneracy rate and reduces LP range on SciERC NER, as reduced sampling diversity causes more identical outputs",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python code/analyze_exp026_temp_5signal.py --data_path output/exp_026_t05/samples.jsonl --output_dir output/exp_026_t05/ --subtasks ner,re\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "665248",
+      "log_path": "~/runs/struct_self_consist_ie/exp_026_t05_scierc.log",
+      "submitted_at": "2026-05-18T15:28:53.787Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T15:30:22.129621+00:00",
+  "trigger": "update_registry"
+}

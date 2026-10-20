@@ -1,0 +1,59 @@
+{
+  "exp_id": "exp_021_fewnerd_full",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T16:33:44.079Z",
+    "updated_at": "2026-05-16T22:04:16.683Z",
+    "hypothesis": "Full Few-NERD LoRA fine-tune (rank=32, α=64, 3 epochs) on SUPERVISED coarse 8-type NER (131k train). 4-GPU DDP on autodl-5090. Post-training: N=8 inference on full test set, T=1.0, seed=42, collect logprobs for SCS metrics.",
+    "spec": {
+      "gpu": "cuda:0,cuda:1,cuda:2,cuda:3",
+      "gpu_count": 4,
+      "training_mode": "DDP",
+      "checkpoint_path": "output/exp_021_fewnerd_full/checkpoint-6177",
+      "log_path": "output/exp_021_inference/"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "total_steps": 6177,
+      "train_loss": 0.048,
+      "eval_loss": 0.0275,
+      "train_runtime": "3h57m",
+      "epochs": 3,
+      "final_checkpoint": "output/exp_021_fewnerd_full/checkpoint-6177",
+      "adapter_path": "output/exp_021_fewnerd_full/adapter_model.safetensors",
+      "inference_instances": 37648,
+      "inference_n_samples": 8,
+      "greedy_macro_f1": 0.6469,
+      "oracle_macro_f1": 0.7541,
+      "headroom": 0.1073,
+      "zero_f1_rate": 0.1744,
+      "lp_global_rho": -0.0897,
+      "lp_cond_rho": 0.2299,
+      "sj_global_rho": -0.0079,
+      "sj_cond_rho": 0.2619,
+      "fk_global_rho": -0.0418,
+      "fk_cond_rho": 0.0551,
+      "em_global_rho": -0.062,
+      "em_cond_rho": 0.4412,
+      "vc_global_rho": 0.52,
+      "vc_cond_rho": 0.0897,
+      "lp_selection_delta": 0.0117,
+      "sj_selection_delta": -0.0195,
+      "fk_selection_delta": -0.0333,
+      "em_selection_delta": -0.0333,
+      "vc_selection_delta": -0.0154,
+      "lp_bootstrap_ci_95": [
+        0.0102,
+        0.0134
+      ],
+      "scenario": "B"
+    },
+    "completed_at": "2026-05-16T22:04:16.683Z"
+  },
+  "timestamp": "2026-05-16T22:04:16.961913+00:00",
+  "trigger": "update_registry"
+}

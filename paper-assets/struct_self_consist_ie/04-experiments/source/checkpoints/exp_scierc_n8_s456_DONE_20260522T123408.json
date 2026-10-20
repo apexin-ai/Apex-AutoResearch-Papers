@@ -1,0 +1,62 @@
+{
+  "exp_id": "exp_scierc_n8_s456",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:01:42.040Z",
+    "updated_at": "2026-05-22T12:34:08.279Z",
+    "hypothesis": "R35-N2 SciERC validation: SciERC N=8 T=1.0 seed=456 finetuned model. Third seed to complete 3-seed mean±σ for SciERC. Uses unified run_mvp_pilot.py pipeline (micro-F1). With s42 and s123, enables statistical power for SciERC core claims.",
+    "server": "autodl-5090",
+    "gpu": "cuda:1",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/scierc_n8_seed456/\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "135921",
+      "log_path": "~/runs/struct_self_consist_ie/exp_scierc_n8_s456.log",
+      "submitted_at": "2026-05-22T11:27:51.619Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 3976.7,
+      "gpu_hours": 1.1
+    },
+    "pid": "135921",
+    "log_path": "~/runs/struct_self_consist_ie/exp_scierc_n8_s456.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/scierc_n8_seed456/\"",
+      "finished_at": "2026-05-22T11:35:04.266Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T11:35:24.223164+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "greedy_f1": 0.6657,
+      "mv_f1": 0.6573,
+      "mv_delta_pp": -0.84,
+      "lp_f1": 0.6626,
+      "lp_delta_pp": -0.31,
+      "degeneracy_rate": 0.12,
+      "agreement_rate": 0.6597,
+      "oracle_f1": 0.7733,
+      "fleiss_kappa": 0.3864,
+      "soft_jaccard": 0.6939
+    },
+    "conclusion": "success",
+    "checkpoint_path": "output/scierc_n8_seed456/",
+    "completed_at": "2026-05-22T12:34:08.279Z"
+  },
+  "timestamp": "2026-05-22T12:34:08.900473+00:00",
+  "trigger": "update_registry"
+}

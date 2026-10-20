@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp_b2_v3_domain_invariant",
+  "project": "struct_self_consist_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T12:50:49.948Z",
+    "updated_at": "2026-05-21T23:52:04.266Z",
+    "hypothesis": "Removing domain-specific features (dataset_enc, entity_type distributions) forces the verifier to rely on domain-invariant signals, improving cross-domain generalization at the cost of some discriminative power. If LGB AUC improves on held-out domains, domain features were causing negative transfer.",
+    "conclusion": "killed",
+    "metrics": {
+      "fold3_fewnerd_lgb_auc": 0.8562,
+      "fold3_fewnerd_xgb_auc": 0.8518,
+      "fold3_ece": 0.1373,
+      "fold2_scierc_lgb_auc": 0.8152,
+      "fold2_scierc_xgb_auc": 0.8163,
+      "vs_v2_fold3_lgb_delta": 0.0085,
+      "vs_v2_fold2_lgb_delta": 0.0146,
+      "top_features": "agreement_count (58.4%) + vc (30.3%) = 88%",
+      "verdict": "LGB AUC improved by removing domain features, confirming negative transfer. But ECE still high, F1 delta still negative."
+    },
+    "parent": "exp_b2_entity_verifier"
+  },
+  "timestamp": "2026-05-21T23:52:04.797395+00:00",
+  "trigger": "update_registry"
+}

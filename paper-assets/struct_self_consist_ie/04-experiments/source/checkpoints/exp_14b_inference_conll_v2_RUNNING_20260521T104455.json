@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp_14b_inference_conll_v2",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T10:42:21.744Z",
+    "updated_at": "2026-05-21T10:44:54.810Z",
+    "hypothesis": "14B CoNLL rerun: Qwen2.5-14B fine-tuned model (qwen25-14b-fewnerd-merged-final) on CoNLL NER inference N=8 T=1.0. Previous run (exp_14b_inference_conll) crashed at 55% with EngineDeadError on 5090-b. Tests whether 14B scale preserves correlation-selection gap pattern on CoNLL.",
+    "parent": "exp_14b_inference_conll",
+    "spec": {
+      "command": "python -u code/run_mvp_pilot.py --model_path checkpoints/qwen25-14b-fewnerd-merged-final --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/14b_conll_v2/ --gpu_memory_utilization 0.95 --enforce_eager",
+      "server": "autodl-5090-c",
+      "data_path": "data/conll2003",
+      "data_count": 3453,
+      "model_name": "qwen25-14b-fewnerd-merged-final",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/qwen25-14b-fewnerd-merged-final",
+      "eval_data": "conll2003"
+    }
+  },
+  "timestamp": "2026-05-21T10:44:55.277973+00:00",
+  "trigger": "update_registry"
+}

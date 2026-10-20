@@ -1,0 +1,22 @@
+{
+  "exp_id": "exp_007_llama_n16_r1024",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:16:59.685Z",
+    "updated_at": "2026-05-14T22:21:29.624Z",
+    "spec": {
+      "hypothesis": "D054 rerun: max_tokens=1024. Verify truncation impact on LLaMA SciERC N=16.",
+      "parent": "exp_007_llama_n16",
+      "model_name": "llama3.1-8b-scierc-merged",
+      "dataset": "SciERC",
+      "seed": 42,
+      "server": "autodl-5090"
+    }
+  },
+  "timestamp": "2026-05-14T22:21:29.824660+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_freeform_conll_4seed",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:45:17.133Z",
+    "updated_at": "2026-05-16T03:04:08.758Z",
+    "hypothesis": "Free-form CoNLL NER 4-seed ablation: verify LP compression is cross-dataset intrinsic (not SciERC-specific). 4 seeds × N=8, T=1.0 on CoNLL, compare LP range distribution with constrained decoding."
+  },
+  "timestamp": "2026-05-16T03:04:09.219057+00:00",
+  "trigger": "update_registry"
+}

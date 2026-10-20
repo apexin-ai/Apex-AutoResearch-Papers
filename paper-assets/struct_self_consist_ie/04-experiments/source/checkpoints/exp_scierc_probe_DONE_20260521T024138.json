@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp_scierc_probe",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:32:25.557Z",
+    "updated_at": "2026-05-21T02:41:37.846Z",
+    "hypothesis": "SciERC hidden state probe: test if linear classifier on last-layer hidden states can predict entity quality (match vs non-match against gold). If AUROC ≈ 0.98 (consistent with FewNERD=0.987, CoNLL=0.980), confirms entity quality info is universally encoded in representations across datasets, and prompt-based self-judgment (ESJ AUROC=0.51) fails to access this information.",
+    "spec": {
+      "command": "Step 1: CUDA_VISIBLE_DEVICES=1 python -u code/run_mvp_pilot.py --dataset scierc --n_samples 8 --temperature 0.8; Step 2: python code/hidden_state_probe.py --dataset scierc --gpu 1",
+      "server": "autodl-5090-c",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/scierc/processed_data/test.json",
+      "data_count": 551,
+      "model_name": "qwen3-8b-scierc-merged-v2",
+      "seed": 42,
+      "gpu": "cuda:1",
+      "pid": 264061,
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/logs/scierc_8b_inference.log",
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/entity_probe_auroc/",
+      "checkpoint_source": "/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2",
+      "eval_data": "scierc test set (551 instances)"
+    },
+    "metrics": {
+      "scierc_auroc_mean": 0.9766,
+      "scierc_auroc_std": 0.0011,
+      "scierc_auroc_seeds": [
+        0.9771,
+        0.9751,
+        0.9775
+      ],
+      "n_entities": 12933,
+      "positive_rate": 0.654,
+      "interpretation": "HIGH — info in representation, prompt interface fails"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T02:41:37.846Z"
+  },
+  "timestamp": "2026-05-21T02:41:38.251325+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp_003_wnut17_v2",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T15:32:56.415Z",
+    "updated_at": "2026-05-14T15:43:44.874Z",
+    "spec": {
+      "description": "WNUT-17 retrain: downsample gold-empty instances to ≤25%, fine-tune Qwen3-8B, inference N=16 T=1.0 with log-probs",
+      "hypothesis": "After removing excess empty instances, structural consistency signals (SJ) will show stronger correlation on social media NER",
+      "plan_id": "exp-003",
+      "claim": 1,
+      "model_name": "Qwen3-8B",
+      "dataset": "WNUT-17 (downsampled)",
+      "priority": "P0",
+      "parent": "exp_003_ner_wnut17"
+    }
+  },
+  "timestamp": "2026-05-14T15:43:44.997270+00:00",
+  "trigger": "update_registry"
+}
