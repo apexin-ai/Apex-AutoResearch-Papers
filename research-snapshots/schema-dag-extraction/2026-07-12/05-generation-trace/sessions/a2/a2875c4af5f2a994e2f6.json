@@ -1,0 +1,1741 @@
+{
+  "schema_version": "1.0",
+  "id": "a2875c4af5f2a994e2f6",
+  "project": "schema-dag-extraction--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: schema-dag-extraction ## 运行环境 - 服务器名: cqa1-38874 - SSH 账户: root（调用 ssh_execute / submit_training",
+  "task_key": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/2ca8463c-f4a3-4f8b-bd2b-8972847a2517.jsonl",
+    "occurrence": 1,
+    "bytes": 123406,
+    "sha256": "228a04fe5a3b67bd36872712feefc1afb16fb261bb4d863e6c2e0da1d8c8f503"
+  },
+  "statistics": {
+    "messages": 36,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "record": 13,
+      "user": 1,
+      "assistant": 8,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T18:52:42.976Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-15T18:52:42.976Z",
+                "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+                "content": "<project_context>\n# 项目: schema-dag-extraction\n\n## 运行环境\n- 服务器名: cqa1-38874\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.cqa1.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/schema-dag-extraction\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：撰写 §7 Conclusion（~250 words）\n\n论文题目：Does Type Confusability Drive Schema-Induced Degradation in Training-Free LLM Information Extraction?（EMNLP 2026）\n\n### 写前必读\n1. `Read /home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md` — 写作规范\n2. `Read /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex` — §1 的 contributions list 和 findings\n3. `Read /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex` — §4 结果（数字来源）\n\n### 内容要点（~250 words，tempered claims）\n\n\\section{Conclusion}\n\\label{sec:conclusion}\n\n1. **Restate multi-channel model**：training-free LLM IE 的 schema-induced degradation 通过两个正交通道运作——count→recall decline (Channel 1) 和 confusability→type confusion (Channel 2)。跨 NER, RE, ED 三任务验证。\n\n2. **Pairwise SCS 作为 robust signal**：Pairwise confusability 是第一个被 empirically isolated 的 factor（r²≈1.3-1.7%）——partial but robust signal, replicated across tasks and embedding models。**关键措辞**：\"partial explanatory power\" not \"comprehensive model\"。\n\n3. **Centrality confound**：Per-type aggregation 在 same-domain schemas 上 reverses sign，是 methodological insight。Pairwise signal 完好。\n\n4. **SDGD negative result → future work**：Merge amplification 是 decomposition 方法的结构性瓶颈。Future directions: calibration-based cross-batch consistency, joint decoding, confidence-weighted merge。\n\n5. **Multi-model limitation**：当前仅 Qwen3-32B 单模型，multi-model validation 是 immediate next step。\n\n### 写作红线\n- **Tempered claims only**：不用 \"state-of-the-art\", \"significantly\", \"consistently\"\n- **不 oversell effect size**：r²≈1.5% 是 partial signal\n- 数字与 §1 Introduction 和 §4 Results 一致\n- 不引入新的数据/发现——conclusion 只 restate\n\n### 输出\n写入：`/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/conclusion.tex`\n\n只写 \\section 内容，不要 preamble。"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T18:52:42.980Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-15T18:52:42.980Z",
+                "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T18:52:43.016Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<project_context>\n# 项目: schema-dag-extraction\n\n## 运行环境\n- 服务器名: cqa1-38874\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.cqa1.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/schema-dag-extraction\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：撰写 §7 Conclusion（~250 words）\n\n论文题目：Does Type Confusability Drive Schema-Induced Degradation in Training-Free LLM Information Extraction?（EMNLP 2026）\n\n### 写前必读\n1. `Read /home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md` — 写作规范\n2. `Read /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex` — §1 的 contributions list 和 findings\n3. `Read /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex` — §4 结果（数字来源）\n\n### 内容要点（~250 words，tempered claims）\n\n\\section{Conclusion}\n\\label{sec:conclusion}\n\n1. **Restate multi-channel model**：training-free LLM IE 的 schema-induced degradation 通过两个正交通道运作——count→recall decline (Channel 1) 和 confusability→type confusion (Channel 2)。跨 NER, RE, ED 三任务验证。\n\n2. **Pairwise SCS 作为 robust signal**：Pairwise confusability 是第一个被 empirically isolated 的 factor（r²≈1.3-1.7%）——partial but robust signal, replicated across tasks and embedding models。**关键措辞**：\"partial explanatory power\" not \"comprehensive model\"。\n\n3. **Centrality confound**：Per-type aggregation 在 same-domain schemas 上 reverses sign，是 methodological insight。Pairwise signal 完好。\n\n4. **SDGD negative result → future work**：Merge amplification 是 decomposition 方法的结构性瓶颈。Future directions: calibration-based cross-batch consistency, joint decoding, confidence-weighted merge。\n\n5. **Multi-model limitation**：当前仅 Qwen3-32B 单模型，multi-model validation 是 immediate next step。\n\n### 写作红线\n- **Tempered claims only**：不用 \"state-of-the-art\", \"significantly\", \"consistently\"\n- **不 oversell effect size**：r²≈1.5% 是 partial signal\n- 数字与 §1 Introduction 和 §4 Results 一致\n- 不引入新的数据/发现——conclusion 只 restate\n\n### 输出\n写入：`/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/conclusion.tex`\n\n只写 \\section 内容，不要 preamble。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "22354007-125d-478d-a23b-8147bed94301",
+            "type": "user",
+            "uuid": "0b197339-0592-4695-ac3b-37b3f2f0423c",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T18:52:43.015Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "0b197339-0592-4695-ac3b-37b3f2f0423c",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__bootstrap_provenance",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__edit_paper_section",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_worker_status",
+                    "mcp__agent-ml-research__list_artifacts",
+                    "mcp__agent-ml-research__list_workers",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__overleaf_init",
+                    "mcp__agent-ml-research__overleaf_pull",
+                    "mcp__agent-ml-research__overleaf_push",
+                    "mcp__agent-ml-research__overleaf_status",
+                    "mcp__agent-ml-research__overleaf_sync",
+                    "mcp__agent-ml-research__paper_agent_post_to_director",
+                    "mcp__agent-ml-research__paper_agent_request_review",
+                    "mcp__agent-ml-research__paper_compile_and_check",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__send_progress",
+                    "mcp__agent-ml-research__spawn_worker",
+                    "mcp__agent-ml-research__verify_references",
+                    "mcp__agent-ml-research__write_paper_section"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__bootstrap_provenance",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__edit_paper_section",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_worker_status",
+                    "mcp__agent-ml-research__list_artifacts",
+                    "mcp__agent-ml-research__list_workers",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__overleaf_init",
+                    "mcp__agent-ml-research__overleaf_pull",
+                    "mcp__agent-ml-research__overleaf_push",
+                    "mcp__agent-ml-research__overleaf_status",
+                    "mcp__agent-ml-research__overleaf_sync",
+                    "mcp__agent-ml-research__paper_agent_post_to_director",
+                    "mcp__agent-ml-research__paper_agent_request_review",
+                    "mcp__agent-ml-research__paper_compile_and_check",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__send_progress",
+                    "mcp__agent-ml-research__spawn_worker",
+                    "mcp__agent-ml-research__verify_references",
+                    "mcp__agent-ml-research__write_paper_section"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "8f50307f-69c1-46bb-addd-840c8b41a134",
+                "timestamp": "2026-05-15T18:52:43.015Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+                "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T18:52:43.015Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "8f50307f-69c1-46bb-addd-840c8b41a134",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "ec2494e8-3234-42f2-a697-0da45d962cd6",
+                "timestamp": "2026-05-15T18:52:43.015Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+                "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T18:52:43.015Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "ec2494e8-3234-42f2-a697-0da45d962cd6",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "f97a26bd-8ba5-4080-99a0-883c7eb220bf",
+                "timestamp": "2026-05-15T18:52:43.015Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+                "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Write Conclusion section for EMNLP paper",
+                "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T18:52:47.148Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read the required files first."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f97a26bd-8ba5-4080-99a0-883c7eb220bf",
+            "isSidechain": false,
+            "requestId": "req_011Cb4rphjixzZwjyfqWMxWb",
+            "type": "assistant",
+            "uuid": "5b983653-dbf7-4144-9df7-a76298a9441a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SN5HGVXNcjEmpA242ZLQVu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11874,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 224,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11874,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 224,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 11874,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11874
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T18:52:47.578Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SDehcsM4tWhfJXSCpgsyVb",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5b983653-dbf7-4144-9df7-a76298a9441a",
+            "isSidechain": false,
+            "requestId": "req_011Cb4rphjixzZwjyfqWMxWb",
+            "type": "assistant",
+            "uuid": "3e712322-241f-4a21-9d97-4218e04fda5f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SN5HGVXNcjEmpA242ZLQVu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11874,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 224,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11874,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 224,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 11874,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11874
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T18:52:47.591Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SDehcsM4tWhfJXSCpgsyVb",
+              "type": "tool_result",
+              "content": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认你引用的 claim 确实出自该论文\n95\t5. ADD     → 加入 .bib 文件\n96\t```\n97\t\n98\t### 3.3 API 速查\n99\t\n100\t| API | 用途 | 限制 |\n101\t|-----|------|------|\n102\t| **Semantic Scholar** | ML/AI 论文搜索 | 1 RPS (免费) |\n103\t| **CrossRef** | DOI → BibTeX | 需 mailto 头 |\n104\t| **arXiv** | 预印本搜索 | 3s 间隔 |\n105\t\n106\t```python\n107\t# DOI → BibTeX（最可靠的方式）\n108\timport requests\n109\tdef doi_to_bibtex(doi: str) -> str:\n110\t    r = requests.get(f\"https://doi.org/{doi}\",\n111\t                     headers={\"Accept\": \"application/x-bibtex\"})\n112\t    r.raise_for_status()\n113\t    return r.text\n114\t\n115\t# Semantic Scholar 搜索\n116\tfrom semanticscholar import SemanticScholar\n117\tsch = SemanticScholar()\n118\tresults = sch.search_paper(\"attention mechanism transformers\", limit=5)\n119\tfor p in results:\n120\t    print(f\"{p.title} | DOI: {p.externalIds.get('DOI', 'N/A')}\")\n121\t```\n122\t\n123\t### 3.4 引用处理规则\n124\t\n125\t| 情况 | 处理 |\n126\t|------|------|\n127\t| 找到论文 + DOI + BibTeX | 直接用 |\n128\t| 找到论文，无 DOI | 用 arXiv BibTeX |\n129\t| 论文存在但无法获取 BibTeX | 标记 placeholder，告知用户 |\n130\t| 不确定论文是否存在 | 标记 `[CITATION NEEDED]`，告知用户 |\n131\t| \"我觉得有篇关于 X 的论文\" | **绝不引用** — 先搜索或标记 |\n132\t\n133\t---\n134\t\n135\t## 4. 顶会模板速查\n136\t\n137\t### 4.1 ML/AI 会议\n138\t\n139\t| 会议 | 页数限制 | 主文件 | 样式文件 | 必须项 |\n140\t|------|---------|--------|---------|--------|\n141\t| **NeurIPS** | 9 页 | `main.tex` | `neurips.sty` | Paper Checklist |\n142\t| **ICML** | 8 页 (+1 camera-ready) | `example_paper.tex` | `icml2026.sty` | Broader Impact |\n143\t| **ICLR** | 9 页 (+1) | `iclr_conference.tex` | `iclr_conference.sty` | LLM 使用声明 |\n144\t| **ACL/EMNLP** | 8 页 (long) | `acl_latex.tex` | `acl.sty` | Limitations 必须 |\n145\t| **AAAI** | 7 页 (+1) | `aaai_template.tex` | `aaai.sty` | 严格样式 |\n146\t| **COLM** | 9 页 (+1) | `colm_conference.tex` | `colm_conference.sty` | 语言模型聚焦 |\n147\t\n148\t### 4.2 系统会议\n149\t\n150\t| 会议 | 页数限制 | 模板类型 | 关键要求 |\n151\t|------|---------|---------|---------|\n152\t| **OSDI** | 12 页 (+2) | USENIX `usenix.sty` | Research / Operational 双 track |\n153\t| **NSDI** | 12 页 | USENIX | Introduction 预筛 |\n154\t| **ASPLOS** | 12 页 | ACM `acmart.cls (sigplan)` | 前 2 页快速评审 |\n155\t| **SOSP** | 12 页 | ACM `acmart.cls (sigplan)` | 可选 Artifact Evaluation |\n156\t\n157\t### 4.3 模板使用原则\n158\t\n159\t```bash\n160\t# 1. 复制整个模板目录（不要只拷 .tex）\n161\tcp -r templates/neurips2025/ ~/papers/my-paper/\n162\t\n163\t# 2. 先编译未修改的模板，确认能跑通\n164\tlatexmk -pdf main.tex\n165\t\n166\t# 3. 逐章替换内容，频繁编译\n167\t```\n168\t\n169\t**禁止事项：**\n170\t- 不要修改 `.sty` 文件\n171\t- 不要在会议模板间复制 `\\usepackage` 行\n172\t- 不要只复制 `.tex` 而不带 `.sty/.bst`\n173\t\n174\t---\n175\t\n176\t## 5. 写作规范\n177\t\n178\t### 5.1 时间分配（Neel Nanda）\n179\t\n180\t花**大致相等**的时间在：\n181\t1. Abstract\n182\t2. Introduction\n183\t3. 图表\n184\t4. **其余所有内容加起来**\n185\t\n186\t审稿人读论文的顺序：标题 → 摘要 → 引言 → 图表 → 也许正文。\n187\t\n188\t### 5.2 Abstract 五句法（Sebastian Farquhar）\n189\t\n190\t```\n191\t1. 你做了什么（\"We introduce/prove/demonstrate...\"）\n192\t2. 为什么这很难且重要\n193\t3. 怎么做的（含专业关键词以便检索）\n194\t4. 有什么证据\n195\t5. 最惊人的数字/结果\n196\t```\n197\t\n198\t删除一切泛泛的开头：~~\"Large language models have achieved remarkable success...\"~~\n199\t\n200\t### 5.3 句子级清晰度（Gopen & Swan）\n201\t\n202\t| 原则 | 规则 |\n203\t|------|------|\n204\t| 主谓紧邻 | 不要在主语和动词之间插入长从句 |\n205\t| 重点在句尾 | 把关键数字/结论放在句末 |\n206\t| 旧信息在前 | 先放读者已知的内容，再引入新概念 |\n207\t| 动词表达动作 | \"We analyzed\" 而非 \"We performed an analysis\" |\n208\t\n209\t### 5.4 常见修改\n210\t\n211\t| 问题 | 修复 |\n212\t|------|------|\n213\t| Abstract 太泛 | 删第一句（如果它能放在任何 ML 论文前面） |\n214\t| Introduction 超 1.5 页 | 背景挪到 Related Work |\n215\t| 实验没有显式 claim | 每个实验前加 \"This tests whether...\" |\n216\t| 缺统计显著性 | 加 error bars + 运行次数 + 计算方法 |\n217\t\n218\t---\n219\t\n220\t## 6. 投稿工程链\n221\t\n222\t### 6.1 构建\n223\t\n224\t```bash\n225\t# 推荐：latexmk 一键构建\n226\tlatexmk -pdf -interaction=nonstopmode -halt-on-error main.tex\n227\t\n228\t# 手动：需要多次编译\n229\tpdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex\n230\t```\n231\t\n232\t### 6.2 Lint + 格式化\n233\t\n234\t```bash\n235\t# Lint: 检查常见 LaTeX 问题\n236\tchktex main.tex\n237\t\n238\t# 格式化: 减少 diff 噪声\n239\tlatexindent -w main.tex\n240\t```\n241\t\n242\t### 6.3 图表格式\n243\t\n244\t| 类型 | 格式 | 说明 |\n245\t|------|------|------|\n246\t| 矢量图（plot、diagram） | PDF | matplotlib: `plt.savefig('fig.pdf')` |\n247\t| 照片/heatmap | PNG 600dpi 或 TIFF | 栅格图 |\n248\t| 表格 | `booktabs` 包 | `\\toprule/\\midrule/\\bottomrule` |\n249\t\n250\t```latex\n251\t\\usepackage{booktabs}\n252\t\\begin{tabular}{lcc}\n253\t\\toprule\n254\tMethod & Accuracy $\\uparrow$ & Latency $\\downarrow$ \\\\\n255\t\\midrule\n256\tBaseline & 85.2 & 45ms \\\\\n257\t\\textbf{Ours} & \\textbf{92.1} & 38ms \\\\\n258\t\\bottomrule\n259\t\\end{tabular}\n260\t```\n261\t\n262\t**图表规范：**\n263\t- 用色盲友好色板（Okabe-Ito 或 Paul Tol）\n264\t- 图内不放标题（用 caption）\n265\t- Caption 独立可理解（不依赖正文）\n266\t- 最佳值加粗，标注方向符号（↑ 越高越好，↓ 越低越好）\n267\t\n268\t### 6.4 投稿打包\n269\t\n270\t```bash\n271\t# 清理辅助文件\n272\tlatexmk -c\n273\t\n274\t# 打包投稿\n275\tzip -r submission.zip main.tex *.sty *.bst *.bib figures/ --exclude='*.aux' --exclude='*.log'\n276\t```\n277\t\n278\t### 6.5 常见失败点\n279\t\n280\t| 问题 | 解决 |\n281\t|------|------|\n282\t| 图片格式混用导致编译失败 | 统一用 PDF |\n283\t| 字体未嵌入 | `pdffonts output.pdf` 检查 |\n284\t| Overfull box 过多 | 关键位置手动调行 |\n285\t| 引用缺字段 | 检查 DOI/年份/期刊名 |\n286\t| 超页数 | 用 `\\vspace{-Xpt}` 微调，或精简内容 |\n287\t\n288\t---\n289\t\n290\t## 7. 会议转投\n291\t\n292\t当论文被拒或转投其他会议时：\n293\t\n294\t### 7.1 ML/AI 会议间转换\n295\t\n296\t| 转换 | 页数变化 | 关键调整 |\n297\t|------|---------|---------|\n298\t| NeurIPS → ICML | 9→8 | 删 1 页，加 Broader Impact |\n299\t| ICML → ICLR | 8→9 | 可扩展实验 + LLM 声明 |\n300\t| NeurIPS → ACL | 9→8 | 按 NLP 惯例重组 + Limitations |\n301\t| ICLR → AAAI | 9→7 | 大幅精简，严格样式 |\n302\t\n303\t### 7.2 转投原则\n304\t\n305\t1. **永远用目标模板重新开始** — 复制目标模板，迁移内容，不要合并 preamble\n306\t2. **只迁移正文内容** — 不复制 `\\usepackage`、header/footer 命令\n307\t3. **根据审稿意见改进** — 但不要在新稿中提及旧投稿（双盲）\n308\t4. **检查目标会议特殊要求** — checklist、ethics statement、LLM 声明等\n309\t\n310\t---\n311\t\n312\t## 8. 投前清单\n313\t\n314\t### 通用清单\n315\t\n316\t- [ ] Abstract/Intro/Conclusion 的 claim 一致\n317\t- [ ] 每个 contribution 有对应 evidence\n318\t- [ ] 所有引用已程序化验证（无幻觉引用）\n319\t- [ ] Error bars + 运行次数 + 统计方法\n320\t- [ ] Limitations 章节存在且诚实\n321\t- [ ] 匿名化（双盲审稿）\n322\t- [ ] 符合页数限制\n323\t- [ ] 所有图表有自包含 caption\n324\t- [ ] `.bib` 中无缺失字段\n325\t- [ ] PDF 编译无 warning\n326\t\n327\t### 会议特定\n328\t\n329\t| 会议 | 额外要求 |\n330\t|------|---------|\n331\t| NeurIPS | 16 项 Paper Checklist（附录，不计页数） |\n332\t| ICML | Broader Impact Statement |\n333\t| ICLR | LLM 使用声明 |\n334\t| ACL/EMNLP | Limitations 章节（必须），Ethics Statement |\n335\t| AAAI | 严格样式文件合规 |\n336\t\n337\t---\n338\t\n339\t## 参考资源\n340\t\n341\t**写作方法论：**\n342\t- [Neel Nanda: How to Write ML Papers](https://www.alignmentforum.org/posts/eJGptPbbFPZGLpjsp/) — What/Why/So What 框架\n343\t- [Farquhar: How to Write ML Papers](https://sebastianfarquhar.com/on-research/2024/11/04/how_to_write_ml_papers/) — 五句法 Abstract\n344\t- [Gopen & Swan: Science of Scientific Writing](https://cseweb.ucsd.edu/~swanson/papers/science-of-writing.pdf) — 读者预期 7 原则\n345\t- [Lipton: Heuristics for Scientific Writing](https://www.approximatelycorrect.com/2018/01/29/heuristics-technical-scientific-writing-machine-learning-perspective/) — 用词\n346\t- [Perez: Easy Paper Writing Tips](https://ethanperez.net/easy-paper-writing-tips/) — 微观清晰度\n347\t\n348\t**API：**\n349\t- [Semantic Scholar](https://api.semanticscholar.org/api-docs/) | [CrossRef](https://www.crossref.org/documentation/) | [arXiv](https://info.arxiv.org/help/api/)\n350\t\n351\t**会议官方：**\n352\t- [NeurIPS](https://neurips.cc/) | [ICML](https://icml.cc/) | [ICLR](https://iclr.cc/) | [ACL](https://www.aclweb.org/) | [AAAI](https://aaai.org/) | [EMNLP](https://2025.emnlp.org/)\n353\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3e712322-241f-4a21-9d97-4218e04fda5f",
+            "isSidechain": false,
+            "promptId": "22354007-125d-478d-a23b-8147bed94301",
+            "type": "user",
+            "uuid": "d435ae4d-3b2d-4701-8151-c75e59a35aea",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md",
+                "content": "---\nname: latex-paper\ndescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\nscope: global\ntags:\n- latex\n- paper-writing\n- academic\n- citation\n- submission\nversion: 1\nroles:\n- agent\n- worker\n---\n\n# LaTeX 论文写作全流程\n\nML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n\n---\n\n## 1. 工作模式\n\n开始前选择模式：\n\n| 模式 | 说明 | 适用 |\n|------|------|------|\n| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n\n---\n\n## 2. Claim-Evidence 方法论\n\n**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n\n### 2.1 一句话贡献\n\n在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n\n### 2.2 Claim-Evidence Map\n\n为每个 contribution 建立 claim→evidence 映射表：\n\n| Contribution | Claim | Evidence | Table/Figure |\n|-------------|-------|----------|-------------|\n| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n\n**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n\n### 2.3 章节起草顺序\n\n```\n1. Introduction + Experiments（先确定 claim 和 evidence）\n2. Method（评估问题稳定后再写细节）\n3. Related Work\n4. Abstract + Title（核心 claim 定型后最后写）\n```\n\n### 2.4 Quality Gates\n\n投稿前必须通过：\n- [ ] 前两段出现显式 novelty 声明\n- [ ] 每个 contribution 有可验证的 evidence\n- [ ] Abstract / Intro / Conclusion 的 claim 一致\n- [ ] Limitations 真实且技术性诚实\n- [ ] 审稿人两分钟内能识别 delta\n\n---\n\n## 3. 引用防幻觉（CRITICAL）\n\n**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n\n### 3.1 黄金法则\n\n```\nIF 无法程序化获取引用:\n    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n    → 明确告知用户\n    → 绝不编造看似合理的引用\n```\n\n### 3.2 五步验证流程\n\n```\n1. SEARCH  → Semantic Scholar API 搜索关键词\n2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n4. CHECK   → 确认你引用的 claim 确实出自该论文\n5. ADD     → 加入 .bib 文件\n```\n\n### 3.3 API 速查\n\n| API | 用途 | 限制 |\n|-----|------|------|\n| **Semantic Scholar** | ML/AI 论文搜索 | 1 RPS (免费) |\n| **CrossRef** | DOI → BibTeX | 需 mailto 头 |\n| **arXiv** | 预印本搜索 | 3s 间隔 |\n\n```python\n# DOI → BibTeX（最可靠的方式）\nimport requests\ndef doi_to_bibtex(doi: str) -> str:\n    r = requests.get(f\"https://doi.org/{doi}\",\n                     headers={\"Accept\": \"application/x-bibtex\"})\n    r.raise_for_status()\n    return r.text\n\n# Semantic Scholar 搜索\nfrom semanticscholar import SemanticScholar\nsch = SemanticScholar()\nresults = sch.search_paper(\"attention mechanism transformers\", limit=5)\nfor p in results:\n    print(f\"{p.title} | DOI: {p.externalIds.get('DOI', 'N/A')}\")\n```\n\n### 3.4 引用处理规则\n\n| 情况 | 处理 |\n|------|------|\n| 找到论文 + DOI + BibTeX | 直接用 |\n| 找到论文，无 DOI | 用 arXiv BibTeX |\n| 论文存在但无法获取 BibTeX | 标记 placeholder，告知用户 |\n| 不确定论文是否存在 | 标记 `[CITATION NEEDED]`，告知用户 |\n| \"我觉得有篇关于 X 的论文\" | **绝不引用** — 先搜索或标记 |\n\n---\n\n## 4. 顶会模板速查\n\n### 4.1 ML/AI 会议\n\n| 会议 | 页数限制 | 主文件 | 样式文件 | 必须项 |\n|------|---------|--------|---------|--------|\n| **NeurIPS** | 9 页 | `main.tex` | `neurips.sty` | Paper Checklist |\n| **ICML** | 8 页 (+1 camera-ready) | `example_paper.tex` | `icml2026.sty` | Broader Impact |\n| **ICLR** | 9 页 (+1) | `iclr_conference.tex` | `iclr_conference.sty` | LLM 使用声明 |\n| **ACL/EMNLP** | 8 页 (long) | `acl_latex.tex` | `acl.sty` | Limitations 必须 |\n| **AAAI** | 7 页 (+1) | `aaai_template.tex` | `aaai.sty` | 严格样式 |\n| **COLM** | 9 页 (+1) | `colm_conference.tex` | `colm_conference.sty` | 语言模型聚焦 |\n\n### 4.2 系统会议\n\n| 会议 | 页数限制 | 模板类型 | 关键要求 |\n|------|---------|---------|---------|\n| **OSDI** | 12 页 (+2) | USENIX `usenix.sty` | Research / Operational 双 track |\n| **NSDI** | 12 页 | USENIX | Introduction 预筛 |\n| **ASPLOS** | 12 页 | ACM `acmart.cls (sigplan)` | 前 2 页快速评审 |\n| **SOSP** | 12 页 | ACM `acmart.cls (sigplan)` | 可选 Artifact Evaluation |\n\n### 4.3 模板使用原则\n\n```bash\n# 1. 复制整个模板目录（不要只拷 .tex）\ncp -r templates/neurips2025/ ~/papers/my-paper/\n\n# 2. 先编译未修改的模板，确认能跑通\nlatexmk -pdf main.tex\n\n# 3. 逐章替换内容，频繁编译\n```\n\n**禁止事项：**\n- 不要修改 `.sty` 文件\n- 不要在会议模板间复制 `\\usepackage` 行\n- 不要只复制 `.tex` 而不带 `.sty/.bst`\n\n---\n\n## 5. 写作规范\n\n### 5.1 时间分配（Neel Nanda）\n\n花**大致相等**的时间在：\n1. Abstract\n2. Introduction\n3. 图表\n4. **其余所有内容加起来**\n\n审稿人读论文的顺序：标题 → 摘要 → 引言 → 图表 → 也许正文。\n\n### 5.2 Abstract 五句法（Sebastian Farquhar）\n\n```\n1. 你做了什么（\"We introduce/prove/demonstrate...\"）\n2. 为什么这很难且重要\n3. 怎么做的（含专业关键词以便检索）\n4. 有什么证据\n5. 最惊人的数字/结果\n```\n\n删除一切泛泛的开头：~~\"Large language models have achieved remarkable success...\"~~\n\n### 5.3 句子级清晰度（Gopen & Swan）\n\n| 原则 | 规则 |\n|------|------|\n| 主谓紧邻 | 不要在主语和动词之间插入长从句 |\n| 重点在句尾 | 把关键数字/结论放在句末 |\n| 旧信息在前 | 先放读者已知的内容，再引入新概念 |\n| 动词表达动作 | \"We analyzed\" 而非 \"We performed an analysis\" |\n\n### 5.4 常见修改\n\n| 问题 | 修复 |\n|------|------|\n| Abstract 太泛 | 删第一句（如果它能放在任何 ML 论文前面） |\n| Introduction 超 1.5 页 | 背景挪到 Related Work |\n| 实验没有显式 claim | 每个实验前加 \"This tests whether...\" |\n| 缺统计显著性 | 加 error bars + 运行次数 + 计算方法 |\n\n---\n\n## 6. 投稿工程链\n\n### 6.1 构建\n\n```bash\n# 推荐：latexmk 一键构建\nlatexmk -pdf -interaction=nonstopmode -halt-on-error main.tex\n\n# 手动：需要多次编译\npdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex\n```\n\n### 6.2 Lint + 格式化\n\n```bash\n# Lint: 检查常见 LaTeX 问题\nchktex main.tex\n\n# 格式化: 减少 diff 噪声\nlatexindent -w main.tex\n```\n\n### 6.3 图表格式\n\n| 类型 | 格式 | 说明 |\n|------|------|------|\n| 矢量图（plot、diagram） | PDF | matplotlib: `plt.savefig('fig.pdf')` |\n| 照片/heatmap | PNG 600dpi 或 TIFF | 栅格图 |\n| 表格 | `booktabs` 包 | `\\toprule/\\midrule/\\bottomrule` |\n\n```latex\n\\usepackage{booktabs}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & Accuracy $\\uparrow$ & Latency $\\downarrow$ \\\\\n\\midrule\nBaseline & 85.2 & 45ms \\\\\n\\textbf{Ours} & \\textbf{92.1} & 38ms \\\\\n\\bottomrule\n\\end{tabular}\n```\n\n**图表规范：**\n- 用色盲友好色板（Okabe-Ito 或 Paul Tol）\n- 图内不放标题（用 caption）\n- Caption 独立可理解（不依赖正文）\n- 最佳值加粗，标注方向符号（↑ 越高越好，↓ 越低越好）\n\n### 6.4 投稿打包\n\n```bash\n# 清理辅助文件\nlatexmk -c\n\n# 打包投稿\nzip -r submission.zip main.tex *.sty *.bst *.bib figures/ --exclude='*.aux' --exclude='*.log'\n```\n\n### 6.5 常见失败点\n\n| 问题 | 解决 |\n|------|------|\n| 图片格式混用导致编译失败 | 统一用 PDF |\n| 字体未嵌入 | `pdffonts output.pdf` 检查 |\n| Overfull box 过多 | 关键位置手动调行 |\n| 引用缺字段 | 检查 DOI/年份/期刊名 |\n| 超页数 | 用 `\\vspace{-Xpt}` 微调，或精简内容 |\n\n---\n\n## 7. 会议转投\n\n当论文被拒或转投其他会议时：\n\n### 7.1 ML/AI 会议间转换\n\n| 转换 | 页数变化 | 关键调整 |\n|------|---------|---------|\n| NeurIPS → ICML | 9→8 | 删 1 页，加 Broader Impact |\n| ICML → ICLR | 8→9 | 可扩展实验 + LLM 声明 |\n| NeurIPS → ACL | 9→8 | 按 NLP 惯例重组 + Limitations |\n| ICLR → AAAI | 9→7 | 大幅精简，严格样式 |\n\n### 7.2 转投原则\n\n1. **永远用目标模板重新开始** — 复制目标模板，迁移内容，不要合并 preamble\n2. **只迁移正文内容** — 不复制 `\\usepackage`、header/footer 命令\n3. **根据审稿意见改进** — 但不要在新稿中提及旧投稿（双盲）\n4. **检查目标会议特殊要求** — checklist、ethics statement、LLM 声明等\n\n---\n\n## 8. 投前清单\n\n### 通用清单\n\n- [ ] Abstract/Intro/Conclusion 的 claim 一致\n- [ ] 每个 contribution 有对应 evidence\n- [ ] 所有引用已程序化验证（无幻觉引用）\n- [ ] Error bars + 运行次数 + 统计方法\n- [ ] Limitations 章节存在且诚实\n- [ ] 匿名化（双盲审稿）\n- [ ] 符合页数限制\n- [ ] 所有图表有自包含 caption\n- [ ] `.bib` 中无缺失字段\n- [ ] PDF 编译无 warning\n\n### 会议特定\n\n| 会议 | 额外要求 |\n|------|---------|\n| NeurIPS | 16 项 Paper Checklist（附录，不计页数） |\n| ICML | Broader Impact Statement |\n| ICLR | LLM 使用声明 |\n| ACL/EMNLP | Limitations 章节（必须），Ethics Statement |\n| AAAI | 严格样式文件合规 |\n\n---\n\n## 参考资源\n\n**写作方法论：**\n- [Neel Nanda: How to Write ML Papers](https://www.alignmentforum.org/posts/eJGptPbbFPZGLpjsp/) — What/Why/So What 框架\n- [Farquhar: How to Write ML Papers](https://sebastianfarquhar.com/on-research/2024/11/04/how_to_write_ml_papers/) — 五句法 Abstract\n- [Gopen & Swan: Science of Scientific Writing](https://cseweb.ucsd.edu/~swanson/papers/science-of-writing.pdf) — 读者预期 7 原则\n- [Lipton: Heuristics for Scientific Writing](https://www.approximatelycorrect.com/2018/01/29/heuristics-technical-scientific-writing-machine-learning-perspective/) — 用词\n- [Perez: Easy Paper Writing Tips](https://ethanperez.net/easy-paper-writing-tips/) — 微观清晰度\n\n**API：**\n- [Semantic Scholar](https://api.semanticscholar.org/api-docs/) | [CrossRef](https://www.crossref.org/documentation/) | [arXiv](https://info.arxiv.org/help/api/)\n\n**会议官方：**\n- [NeurIPS](https://neurips.cc/) | [ICML](https://icml.cc/) | [ICLR](https://iclr.cc/) | [ACL](https://www.aclweb.org/) | [AAAI](https://aaai.org/) | [EMNLP](https://2025.emnlp.org/)\n",
+                "numLines": 353,
+                "startLine": 1,
+                "totalLines": 353
+              }
+            },
+            "sourceToolAssistantUUID": "3e712322-241f-4a21-9d97-4218e04fda5f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T18:52:48.564Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Nnsrn7DR9o4Snid5oRZosU",
+              "type": "tool_result",
+              "content": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\t\\subsection{Count-Degradation Curves}\n5\t\\label{sec:count_curves}\n6\t\n7\tWe first examine how extraction performance changes as the number of types in the prompt schema increases (Experiment~1). Figure~\\ref{fig:count_curves} plots per-task metrics across count levels.\n8\t\n9\t\\paragraph{NER (Few-NERD).}\n10\tRecall declines monotonically from 0.72 at count${}\\,=\\,1$ to 0.42 at count${}\\,=\\,64$, a 42\\% relative drop. Precision moves in the opposite direction, rising from 0.11 to 0.52, reflecting a shift from over-prediction to under-prediction as more candidate types compete in the prompt. F1 exhibits an inverted-U shape, peaking at intermediate counts where the precision--recall trade-off is most balanced.\n11\t\n12\t\\paragraph{RE (FewRel).}\n13\tAccuracy drops monotonically from 85.7\\% at count${}\\,=\\,1$ to 50.4\\% at count${}\\,=\\,80$, a near-halving when the model must discriminate among all 80 relation types simultaneously.\n14\t\n15\t\\paragraph{ED (MAVEN).}\n16\tIn contrast to NER and RE, MAVEN relaxed F1 \\emph{increases} from 0.106 at count${}\\,=\\,1$ to 0.247 at count${}\\,=\\,44$. This reversal arises from three properties of the MAVEN setup: (i)~trigger-level relaxed matching, which requires only token overlap rather than exact span match; (ii)~MAVEN's 168 event types derive from the FrameNet ontology, forming a same-domain hierarchy where co-presented types provide disambiguating context; and (iii)~extreme class imbalance---rare event types benefit from being presented alongside related types that prime the model toward the correct semantic region. We return to this mechanism in \\S\\ref{sec:centrality_confound}.\n17\t\n18\t\\paragraph{Summary.}\n19\tSchema size degrades extraction quality for NER and RE (Channel~1: count $\\to$ recall decline), but this pattern does not hold universally. MAVEN's reversed trend demonstrates that task structure and evaluation protocol mediate the count--performance relationship.\n20\t\n21\t\\subsection{Pairwise Confusability and Type Confusion}\n22\t\\label{sec:pairwise}\n23\t\n24\tWe test whether pairwise SCS predicts type-level confusion rates. For each type pair $(t_i, t_j)$, we compute the confusion rate---the fraction of $t_i$ gold instances misclassified as $t_j$---and correlate it with $\\text{SCS}(t_i, t_j)$. Table~\\ref{tab:pairwise} reports Pearson correlations with bootstrap 95\\% CIs.\n25\t\n26\t\\begin{table}[t]\n27\t\\centering\n28\t\\small\n29\t\\begin{tabular}{llrrrrr}\n30\t\\toprule\n31\t\\textbf{Dataset} & \\textbf{Embedding} & \\textbf{$n$ pairs} & \\textbf{$r$} & \\textbf{$r^2$} & \\textbf{95\\% CI} & \\textbf{$p$} \\\\\n32\t\\midrule\n33\tFew-NERD & Qwen3 & 1{,}953 & 0.112 & 0.013 & {[}0.076, 0.156{]} & ${<}10^{-12}$ \\\\\n34\tMAVEN & MiniLM & 11{,}026 & 0.129 & 0.017 & {[}0.104, 0.156{]} & ${<}10^{-10}$ \\\\\n35\t\\bottomrule\n36\t\\end{tabular}\n37\t\\caption{Pairwise SCS--confusion correlation. $r^2$ indicates the fraction of variance in type confusion explained by embedding similarity. Both correlations are modest in magnitude but robust across datasets and embedding models ($p < 10^{-10}$).}\n38\t\\label{tab:pairwise}\n39\t\\end{table}\n40\t\n41\tThe correlations are modest: $r^2 \\approx 1.3\\text{--}1.7\\%$, meaning pairwise confusability explains roughly 1.5\\% of the variance in type confusion. Other factors---entity frequency, prompt position effects \\cite{lost-in-middle-2024}, and type definition quality---jointly account for the remainder. Nevertheless, the signal is robust: both correlations survive bootstrap resampling with CIs bounded well above zero, and replicate across two unrelated embedding spaces (Qwen3 hidden states and MiniLM sentence embeddings).\n42\t\n43\tSpearman rank correlations from the SCS validation experiment (exp-015) corroborate these findings. Across all type pairs, Qwen3 yields $\\rho = 0.168$ ($p = 7.3 \\times 10^{-14}$) and MiniLM yields $\\rho = 0.144$ ($p = 1.7 \\times 10^{-10}$). Restricting to pairs with nonzero confusion strengthens the association: $\\rho = 0.272$ ($p = 5 \\times 10^{-5}$) for Qwen3 and $\\rho = 0.306$ ($p = 4.6 \\times 10^{-6}$) for MiniLM, indicating that among types the model actually confuses, embedding similarity is a stronger predictor.\n44\t\n45\tWe frame these results as identifying one factor among several that drive type confusion, but the first to be empirically isolated in a controlled zero-shot IE setting.\n46\t\n47\t\\subsection{BCS-Controlled Experiments}\n48\t\\label{sec:bcs_controlled}\n49\t\n50\tTo move from correlational to interventional evidence, we fix the type count and vary BCS. Table~\\ref{tab:bcs_controlled} reports FewRel accuracy under low-BCS and high-BCS batches at two schema sizes; Figure~\\ref{fig:bcs_scaling} visualizes the scaling relationship.\n51\t\n52\t\\begin{table}[t]\n53\t\\centering\n54\t\\small\n55\t\\begin{tabular}{lcrrrr}\n56\t\\toprule\n57\t\\textbf{Schema} & \\textbf{Count} & \\textbf{Low-BCS Acc} & \\textbf{High-BCS Acc} & \\textbf{$\\Delta$ (pp)} & \\textbf{95\\% CI} \\\\\n58\t\\midrule\n59\t16-rel & 8 & 88.9\\% & 79.8\\% & $-$9.1 & --- \\\\\n60\t80-rel & 8 & 82.3\\% & 51.0\\% & $-$31.2 & {[}17.7, 42.7{]} \\\\\n61\t80-rel & 16 & 82.8\\% & 51.6\\% & $-$31.2 & {[}22.9, 39.6{]} \\\\\n62\t\\bottomrule\n63\t\\end{tabular}\n64\t\\caption{BCS-controlled FewRel accuracy. Low-BCS batches contain maximally dissimilar types; high-BCS batches contain maximally similar types. The confusability gap widens from 9.1\\,pp at 16 relations to 31.2\\,pp at 80 relations.}\n65\t\\label{tab:bcs_controlled}\n66\t\\end{table}\n67\t\n68\tAt the 16-relation scale, switching from low-BCS to high-BCS batches reduces accuracy by 9.1 percentage points. Scaling to the full 80-relation pool amplifies this gap to 31.2\\,pp (95\\% CI: [17.7, 42.7])---a $3.4\\times$ amplification ($31.2 / 9.1$). The effect is stable across count levels: at count${}\\,=\\,16$, the gap remains 31.2\\,pp (CI: [22.9, 39.6]).\n69\t\n70\tThis amplification has a natural interpretation. A larger type pool provides more opportunities for semantically similar types to co-occur, expanding the confusion space. BCS captures this expanded space: at 80 relations, extreme high-BCS batches pack tightly clustered types that the model cannot reliably distinguish, while the same count of well-separated types preserves near-solo-evaluation accuracy.\n71\t\n72\t\\subsection{Multi-Channel Degradation}\n73\t\\label{sec:multi_channel}\n74\t\n75\tWe now decompose extraction errors into an error taxonomy to distinguish the mechanisms behind performance loss. Figure~\\ref{fig:error_taxonomy} illustrates the taxonomy; Table~\\ref{tab:error_taxonomy} quantifies how each error type scales with BCS.\n76\t\n77\t\\begin{table}[t]\n78\t\\centering\n79\t\\small\n80\t\\begin{tabular}{llrrrrrr}\n81\t\\toprule\n82\t & & \\multicolumn{4}{c}{\\textbf{BCS Bin}} & & \\\\\n83\t\\cmidrule(lr){3-6}\n84\t\\textbf{Task} & \\textbf{Error Type} & \\textbf{Solo} & \\textbf{Low} & \\textbf{Mid} & \\textbf{High} & \\textbf{$\\rho$} & \\textbf{$p$} \\\\\n85\t\\midrule\n86\tNER & IntraSub & 0\\% & 1.6\\% & 10.6\\% & 49.4\\% & 1.000 & ${<}0.001$ \\\\\n87\tRE  & IntraSub & 0\\% & 4.2\\% & 13.0\\% & 32.3\\% & 0.954 & ${<}10^{-6}$ \\\\\n88\t\\midrule\n89\tNER & Missed & --- & 12\\% & 14\\% & 16\\% & --- & --- \\\\\n90\tRE  & Missed & --- & 10\\% & 12\\% & 14\\% & --- & --- \\\\\n91\t\\bottomrule\n92\t\\end{tabular}\n93\t\\caption{Intra-batch substitution (IntraSub) rate by BCS bin, with Spearman $\\rho$ against BCS. Missed-entity rates remain flat across bins, indicating that BCS drives type confusion rather than detection failure. Both NER and RE exhibit near-perfect monotonic scaling ($\\rho \\geq 0.954$).}\n94\t\\label{tab:error_taxonomy}\n95\t\\end{table}\n96\t\n97\tThree findings emerge. First, intra-batch substitution scales monotonically with BCS in both tasks: NER IntraSub rises from 0\\% (solo) to 49.4\\% (high BCS) with $\\rho = 1.0$ ($p < 0.001$), and RE IntraSub rises from 0\\% to 32.3\\% with $\\rho = 0.954$ ($p < 10^{-6}$). Second, 100\\% of type confusion errors in RE are intra-batch---the model exclusively confuses types present in the current prompt, never hallucinating types outside the schema. Third, the missed-entity rate remains flat at 10--16\\% regardless of BCS bin, confirming that confusability drives type confusion (Channel~2) independently of detection failure.\n98\t\n99\tThe extreme-batch analysis sharpens this picture. At count${}\\,=\\,6$, high-BCS batches produce $27.5\\times$ more confusion than low-BCS batches under extreme selection, versus $1.7\\times$ under random batching. At count${}\\,=\\,12$, the ratios are $9.9\\times$ (extreme) versus $2.4\\times$ (random). These multiplicative gaps confirm that BCS captures a causally relevant dimension of schema difficulty, not merely a correlate.\n100\t\n101\tTaken together, these results establish two orthogonal degradation channels: \\textbf{Channel~1} (count $\\to$ recall decline, \\S\\ref{sec:count_curves}) and \\textbf{Channel~2} (confusability $\\to$ type confusion, this section). The channels are mechanistically distinct---Channel~1 reflects capacity limits as more types compete for attention, while Channel~2 reflects semantic similarity making types indistinguishable regardless of count.\n102\t\n103\t\\subsection{Centrality Confound on Homogeneous Schemas}\n104\t\\label{sec:centrality_confound}\n105\t\n106\tPer-type analysis on MAVEN reveals an anomaly: the correlation between mean BCS and per-type error rate is \\emph{positive}---Qwen3 $\\rho = +0.189$ ($p = 0.021$) and MiniLM $\\rho = +0.208$ ($p = 0.011$)---opposite to the negative direction predicted by the confusability hypothesis.\n107\t\n108\tThis reversal traces to a property of same-domain schemas documented by \\citet{cai-isotropy-clusters-2021}: when all types derive from a single ontology (here, FrameNet), their embeddings collapse into a single cluster in representation space. In this regime, a type's mean BCS conflates two distinct properties: (i)~confusability with neighbors, which should increase errors, and (ii)~centrality within the cluster, which correlates with being a well-represented, high-frequency type that LLMs extract reliably. The centrality signal dominates, flipping the aggregate correlation.\n109\t\n110\tCritically, the pairwise SCS--confusion correlation remains intact: MAVEN MiniLM pairwise $r = 0.129$ (CI: [0.104, 0.156], $p < 10^{-10}$), consistent with the values in Table~\\ref{tab:pairwise}. The problem lies in the aggregation step (mean BCS per type), not in the pairwise signal itself.\n111\t\n112\tFew-NERD, whose 66 types span 8 coarse categories across diverse domains, does not exhibit this confound. Its per-type correlation is $\\rho = -0.293$ ($p = 0.02$, $n = 63$), in the expected negative direction: types with higher mean confusability have higher error rates. The cross-domain schema spans multiple embedding clusters, breaking the centrality--confusability conflation.\n113\t\n114\tThis analysis carries a practical implication: mean BCS is a reliable predictor of schema difficulty only for cross-domain schemas. For same-domain schemas where types form a single semantic cluster, pairwise SCS should be used directly, or the centrality component must be factored out before aggregation."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ef15c67a-e1b6-45a2-b869-e9e1850ad86c",
+            "isSidechain": false,
+            "promptId": "22354007-125d-478d-a23b-8147bed94301",
+            "type": "user",
+            "uuid": "38e64638-1998-4bc2-bb8f-b1c3749bc2c5",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+                "content": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Count-Degradation Curves}\n\\label{sec:count_curves}\n\nWe first examine how extraction performance changes as the number of types in the prompt schema increases (Experiment~1). Figure~\\ref{fig:count_curves} plots per-task metrics across count levels.\n\n\\paragraph{NER (Few-NERD).}\nRecall declines monotonically from 0.72 at count${}\\,=\\,1$ to 0.42 at count${}\\,=\\,64$, a 42\\% relative drop. Precision moves in the opposite direction, rising from 0.11 to 0.52, reflecting a shift from over-prediction to under-prediction as more candidate types compete in the prompt. F1 exhibits an inverted-U shape, peaking at intermediate counts where the precision--recall trade-off is most balanced.\n\n\\paragraph{RE (FewRel).}\nAccuracy drops monotonically from 85.7\\% at count${}\\,=\\,1$ to 50.4\\% at count${}\\,=\\,80$, a near-halving when the model must discriminate among all 80 relation types simultaneously.\n\n\\paragraph{ED (MAVEN).}\nIn contrast to NER and RE, MAVEN relaxed F1 \\emph{increases} from 0.106 at count${}\\,=\\,1$ to 0.247 at count${}\\,=\\,44$. This reversal arises from three properties of the MAVEN setup: (i)~trigger-level relaxed matching, which requires only token overlap rather than exact span match; (ii)~MAVEN's 168 event types derive from the FrameNet ontology, forming a same-domain hierarchy where co-presented types provide disambiguating context; and (iii)~extreme class imbalance---rare event types benefit from being presented alongside related types that prime the model toward the correct semantic region. We return to this mechanism in \\S\\ref{sec:centrality_confound}.\n\n\\paragraph{Summary.}\nSchema size degrades extraction quality for NER and RE (Channel~1: count $\\to$ recall decline), but this pattern does not hold universally. MAVEN's reversed trend demonstrates that task structure and evaluation protocol mediate the count--performance relationship.\n\n\\subsection{Pairwise Confusability and Type Confusion}\n\\label{sec:pairwise}\n\nWe test whether pairwise SCS predicts type-level confusion rates. For each type pair $(t_i, t_j)$, we compute the confusion rate---the fraction of $t_i$ gold instances misclassified as $t_j$---and correlate it with $\\text{SCS}(t_i, t_j)$. Table~\\ref{tab:pairwise} reports Pearson correlations with bootstrap 95\\% CIs.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{llrrrrr}\n\\toprule\n\\textbf{Dataset} & \\textbf{Embedding} & \\textbf{$n$ pairs} & \\textbf{$r$} & \\textbf{$r^2$} & \\textbf{95\\% CI} & \\textbf{$p$} \\\\\n\\midrule\nFew-NERD & Qwen3 & 1{,}953 & 0.112 & 0.013 & {[}0.076, 0.156{]} & ${<}10^{-12}$ \\\\\nMAVEN & MiniLM & 11{,}026 & 0.129 & 0.017 & {[}0.104, 0.156{]} & ${<}10^{-10}$ \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Pairwise SCS--confusion correlation. $r^2$ indicates the fraction of variance in type confusion explained by embedding similarity. Both correlations are modest in magnitude but robust across datasets and embedding models ($p < 10^{-10}$).}\n\\label{tab:pairwise}\n\\end{table}\n\nThe correlations are modest: $r^2 \\approx 1.3\\text{--}1.7\\%$, meaning pairwise confusability explains roughly 1.5\\% of the variance in type confusion. Other factors---entity frequency, prompt position effects \\cite{lost-in-middle-2024}, and type definition quality---jointly account for the remainder. Nevertheless, the signal is robust: both correlations survive bootstrap resampling with CIs bounded well above zero, and replicate across two unrelated embedding spaces (Qwen3 hidden states and MiniLM sentence embeddings).\n\nSpearman rank correlations from the SCS validation experiment (exp-015) corroborate these findings. Across all type pairs, Qwen3 yields $\\rho = 0.168$ ($p = 7.3 \\times 10^{-14}$) and MiniLM yields $\\rho = 0.144$ ($p = 1.7 \\times 10^{-10}$). Restricting to pairs with nonzero confusion strengthens the association: $\\rho = 0.272$ ($p = 5 \\times 10^{-5}$) for Qwen3 and $\\rho = 0.306$ ($p = 4.6 \\times 10^{-6}$) for MiniLM, indicating that among types the model actually confuses, embedding similarity is a stronger predictor.\n\nWe frame these results as identifying one factor among several that drive type confusion, but the first to be empirically isolated in a controlled zero-shot IE setting.\n\n\\subsection{BCS-Controlled Experiments}\n\\label{sec:bcs_controlled}\n\nTo move from correlational to interventional evidence, we fix the type count and vary BCS. Table~\\ref{tab:bcs_controlled} reports FewRel accuracy under low-BCS and high-BCS batches at two schema sizes; Figure~\\ref{fig:bcs_scaling} visualizes the scaling relationship.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcrrrr}\n\\toprule\n\\textbf{Schema} & \\textbf{Count} & \\textbf{Low-BCS Acc} & \\textbf{High-BCS Acc} & \\textbf{$\\Delta$ (pp)} & \\textbf{95\\% CI} \\\\\n\\midrule\n16-rel & 8 & 88.9\\% & 79.8\\% & $-$9.1 & --- \\\\\n80-rel & 8 & 82.3\\% & 51.0\\% & $-$31.2 & {[}17.7, 42.7{]} \\\\\n80-rel & 16 & 82.8\\% & 51.6\\% & $-$31.2 & {[}22.9, 39.6{]} \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{BCS-controlled FewRel accuracy. Low-BCS batches contain maximally dissimilar types; high-BCS batches contain maximally similar types. The confusability gap widens from 9.1\\,pp at 16 relations to 31.2\\,pp at 80 relations.}\n\\label{tab:bcs_controlled}\n\\end{table}\n\nAt the 16-relation scale, switching from low-BCS to high-BCS batches reduces accuracy by 9.1 percentage points. Scaling to the full 80-relation pool amplifies this gap to 31.2\\,pp (95\\% CI: [17.7, 42.7])---a $3.4\\times$ amplification ($31.2 / 9.1$). The effect is stable across count levels: at count${}\\,=\\,16$, the gap remains 31.2\\,pp (CI: [22.9, 39.6]).\n\nThis amplification has a natural interpretation. A larger type pool provides more opportunities for semantically similar types to co-occur, expanding the confusion space. BCS captures this expanded space: at 80 relations, extreme high-BCS batches pack tightly clustered types that the model cannot reliably distinguish, while the same count of well-separated types preserves near-solo-evaluation accuracy.\n\n\\subsection{Multi-Channel Degradation}\n\\label{sec:multi_channel}\n\nWe now decompose extraction errors into an error taxonomy to distinguish the mechanisms behind performance loss. Figure~\\ref{fig:error_taxonomy} illustrates the taxonomy; Table~\\ref{tab:error_taxonomy} quantifies how each error type scales with BCS.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{llrrrrrr}\n\\toprule\n & & \\multicolumn{4}{c}{\\textbf{BCS Bin}} & & \\\\\n\\cmidrule(lr){3-6}\n\\textbf{Task} & \\textbf{Error Type} & \\textbf{Solo} & \\textbf{Low} & \\textbf{Mid} & \\textbf{High} & \\textbf{$\\rho$} & \\textbf{$p$} \\\\\n\\midrule\nNER & IntraSub & 0\\% & 1.6\\% & 10.6\\% & 49.4\\% & 1.000 & ${<}0.001$ \\\\\nRE  & IntraSub & 0\\% & 4.2\\% & 13.0\\% & 32.3\\% & 0.954 & ${<}10^{-6}$ \\\\\n\\midrule\nNER & Missed & --- & 12\\% & 14\\% & 16\\% & --- & --- \\\\\nRE  & Missed & --- & 10\\% & 12\\% & 14\\% & --- & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Intra-batch substitution (IntraSub) rate by BCS bin, with Spearman $\\rho$ against BCS. Missed-entity rates remain flat across bins, indicating that BCS drives type confusion rather than detection failure. Both NER and RE exhibit near-perfect monotonic scaling ($\\rho \\geq 0.954$).}\n\\label{tab:error_taxonomy}\n\\end{table}\n\nThree findings emerge. First, intra-batch substitution scales monotonically with BCS in both tasks: NER IntraSub rises from 0\\% (solo) to 49.4\\% (high BCS) with $\\rho = 1.0$ ($p < 0.001$), and RE IntraSub rises from 0\\% to 32.3\\% with $\\rho = 0.954$ ($p < 10^{-6}$). Second, 100\\% of type confusion errors in RE are intra-batch---the model exclusively confuses types present in the current prompt, never hallucinating types outside the schema. Third, the missed-entity rate remains flat at 10--16\\% regardless of BCS bin, confirming that confusability drives type confusion (Channel~2) independently of detection failure.\n\nThe extreme-batch analysis sharpens this picture. At count${}\\,=\\,6$, high-BCS batches produce $27.5\\times$ more confusion than low-BCS batches under extreme selection, versus $1.7\\times$ under random batching. At count${}\\,=\\,12$, the ratios are $9.9\\times$ (extreme) versus $2.4\\times$ (random). These multiplicative gaps confirm that BCS captures a causally relevant dimension of schema difficulty, not merely a correlate.\n\nTaken together, these results establish two orthogonal degradation channels: \\textbf{Channel~1} (count $\\to$ recall decline, \\S\\ref{sec:count_curves}) and \\textbf{Channel~2} (confusability $\\to$ type confusion, this section). The channels are mechanistically distinct---Channel~1 reflects capacity limits as more types compete for attention, while Channel~2 reflects semantic similarity making types indistinguishable regardless of count.\n\n\\subsection{Centrality Confound on Homogeneous Schemas}\n\\label{sec:centrality_confound}\n\nPer-type analysis on MAVEN reveals an anomaly: the correlation between mean BCS and per-type error rate is \\emph{positive}---Qwen3 $\\rho = +0.189$ ($p = 0.021$) and MiniLM $\\rho = +0.208$ ($p = 0.011$)---opposite to the negative direction predicted by the confusability hypothesis.\n\nThis reversal traces to a property of same-domain schemas documented by \\citet{cai-isotropy-clusters-2021}: when all types derive from a single ontology (here, FrameNet), their embeddings collapse into a single cluster in representation space. In this regime, a type's mean BCS conflates two distinct properties: (i)~confusability with neighbors, which should increase errors, and (ii)~centrality within the cluster, which correlates with being a well-represented, high-frequency type that LLMs extract reliably. The centrality signal dominates, flipping the aggregate correlation.\n\nCritically, the pairwise SCS--confusion correlation remains intact: MAVEN MiniLM pairwise $r = 0.129$ (CI: [0.104, 0.156], $p < 10^{-10}$), consistent with the values in Table~\\ref{tab:pairwise}. The problem lies in the aggregation step (mean BCS per type), not in the pairwise signal itself.\n\nFew-NERD, whose 66 types span 8 coarse categories across diverse domains, does not exhibit this confound. Its per-type correlation is $\\rho = -0.293$ ($p = 0.02$, $n = 63$), in the expected negative direction: types with higher mean confusability have higher error rates. The cross-domain schema spans multiple embedding clusters, breaking the centrality--confusability conflation.\n\nThis analysis carries a practical implication: mean BCS is a reliable predictor of schema difficulty only for cross-domain schemas. For same-domain schemas where types form a single semantic cluster, pairwise SCS should be used directly, or the centrality component must be factored out before aggregation.",
+                "numLines": 114,
+                "startLine": 1,
+                "totalLines": 114
+              }
+            },
+            "sourceToolAssistantUUID": "ef15c67a-e1b6-45a2-b869-e9e1850ad86c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T18:52:48.051Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014z3sw3G6nrVaKqxyWNFVUs",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d435ae4d-3b2d-4701-8151-c75e59a35aea",
+            "isSidechain": false,
+            "requestId": "req_011Cb4rphjixzZwjyfqWMxWb",
+            "type": "assistant",
+            "uuid": "77b44726-b952-4c5d-91bc-ef497aeeb67c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SN5HGVXNcjEmpA242ZLQVu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11874,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 224,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11874,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 224,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 11874,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11874
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T18:52:48.056Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014z3sw3G6nrVaKqxyWNFVUs",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tTraining-free LLM information extraction---prompting a large language model with a target schema and asking it to extract structured information without any task-specific fine-tuning---enables rapid deployment across new domains and ontologies. This zero-shot paradigm eliminates the need for labeled data, making it attractive for applications where annotation is expensive or schemas evolve frequently \\cite{llm4ie-survey-2024}. Yet the paradigm carries a critical limitation: performance degrades sharply as the number of candidate types in the prompt schema grows. On named entity recognition, recall drops from 0.72 with a single candidate type to 0.42 with 64 types, a 42\\% relative decline. On relation extraction, accuracy falls from 85.7\\% with one relation to 50.4\\% with 80 relations---near halving. This degradation is not academic: real-world ontologies routinely define 50--200+ types, placing them squarely in the regime where training-free extraction becomes unreliable.\n5\t\n6\tWhat causes this schema-induced degradation? Prior work has proposed decomposition strategies that implicitly assume different answers. \\citet{uniner-2024} extract each type independently, assuming types can be treated as separable. \\citet{llm-pee-2025} partition large event schemas by type embedding similarity before extraction, assuming that semantic overlap between co-presented types drives errors. \\citet{parse-2025} rewrite and optimize schema definitions, assuming that description quality is the bottleneck. Each approach improves extraction under certain conditions, but none isolates \\emph{why} schemas degrade performance in the first place. The closest work, LLM-PEE \\cite{llm-pee-2025}, reduces both the number of co-presented types and their inter-type similarity simultaneously, making it impossible to determine which factor---or what combination---accounts for the observed gains. More broadly, all prior approaches conflate two distinct mechanisms that could independently degrade extraction: having more types to discriminate among (count) and having semantically similar types to confuse (confusability). Without disentangling these factors, decomposition strategies cannot be principled: they optimize a black-box objective without understanding its components.\n7\t\n8\tWe ask three questions. \\textbf{RQ1}: Does type confusability independently predict extraction degradation beyond the effect of type count? \\textbf{RQ2}: Through what mechanisms do count and confusability each degrade performance? \\textbf{RQ3}: Can confusability-aware schema decomposition improve extraction quality?\n9\t\n10\tTo answer these questions, we conduct the first controlled empirical study that isolates type confusability from type count across three IE tasks: named entity recognition (NER), relation extraction (RE), and event detection (ED). We introduce the \\emph{Schema Confusability Score} (SCS), which quantifies pairwise semantic overlap between types using embedding cosine similarity, and its batch-level aggregation, the \\emph{Batch Confusability Score} (BCS). We design two complementary experimental paradigms: \\emph{count curves} that vary schema size while randomizing confusability, and \\emph{BCS-controlled experiments} that fix schema size while varying confusability. We evaluate on three datasets spanning diverse schema structures: Few-NERD \\cite{fewnerd-2021} (66 entity types across 8 domains), FewRel \\cite{fewrel-2018} (80 relation types), and MAVEN \\cite{maven-2020} (168 event types from a single ontology). All experiments use Qwen3-32B in a zero-shot prompting setup with bootstrap confidence intervals.\n11\t\n12\tFive findings emerge from our experiments.\n13\t\n14\tFirst, schema-induced degradation operates through two orthogonal channels. \\textbf{Channel~1} (count $\\to$ recall decline): increasing the number of types in the prompt reduces recall for NER and RE, as more candidate types compete for the model's attention. \\textbf{Channel~2} (confusability $\\to$ type confusion): semantically similar types trigger intra-batch substitution errors (IntraSub), where the model assigns an entity or relation to a neighboring type in embedding space. These channels are mechanistically distinct---Channel~1 reflects capacity limitations, Channel~2 reflects semantic indistinguishability---and both contribute to the overall degradation pattern.\n15\t\n16\tSecond, pairwise SCS is a robust predictor of type confusion. Across Few-NERD (Pearson $r = 0.112$, $p < 10^{-12}$) and MAVEN ($r = 0.129$, $p < 10^{-10}$), embedding similarity between type pairs correlates with confusion rates, and this signal replicates across two unrelated embedding spaces (Qwen3 hidden states and MiniLM sentence embeddings). The effect is modest in magnitude: pairwise confusability explains roughly 1.3--1.7\\% of the variance in type confusion ($r^2 \\approx 0.013\\text{--}0.017$). Entity frequency, prompt position effects \\cite{lost-in-middle-2024}, and type definition quality jointly account for the remainder. Nevertheless, this is the first factor to be empirically isolated in controlled zero-shot IE experiments, and the signal survives bootstrap resampling with confidence intervals bounded well above zero.\n17\t\n18\tThird, confusability effects amplify with schema scale. In BCS-controlled FewRel experiments, switching from low-confusability to high-confusability type batches reduces accuracy by 9.1 percentage points at the 16-relation scale, but the gap widens to 31.2\\,pp at 80 relations (95\\% CI: [17.7, 42.7])---a $3.4\\times$ amplification. Larger type pools provide more opportunities for semantically similar types to co-occur, expanding the confusion space.\n19\t\n20\tFourth, per-type confusability aggregation is confounded on homogeneous schemas. On MAVEN, whose 168 event types all derive from the FrameNet ontology, the correlation between mean BCS and per-type error rate reverses sign ($\\rho = +0.189$, $p = 0.021$), opposite to the predicted direction. This centrality confound arises because, in single-cluster embedding spaces \\cite{cai-isotropy-clusters-2021}, a type's mean similarity conflates confusability with centrality---a property associated with well-represented types that LLMs extract reliably. The pairwise SCS signal remains intact ($r = 0.129$, CI: [0.104, 0.156]), confirming that the confound lies in the aggregation step, not in the underlying pairwise relationship. Few-NERD, whose types span multiple domains, does not exhibit this confound ($\\rho = -0.293$, $p = 0.02$).\n21\t\n22\tFifth, confusability-aware schema decomposition fails to improve extraction. Our Schema-DAG-Guided Decomposition (SDGD) successfully separates confusable types into different batches, yet every decomposition mode---including random batching and per-type extraction---produces lower F1 than single-pass extraction (best decomposition F1 = 0.320 vs.\\ single-pass F1 = 0.445). The bottleneck is \\emph{merge amplification}: when the same text is processed across multiple extraction passes, the union merge step accumulates contradictory predictions, destroying precision. This structural limitation applies to any decompose-then-merge pipeline, including the partitioning approach of \\citet{llm-pee-2025}.\n23\t\n24\tOur contributions are:\n25\t\\begin{enumerate}[leftmargin=*,itemsep=2pt,topsep=2pt]\n26\t    \\item \\textbf{Multi-channel degradation model.} We provide the first empirical decomposition of schema-induced degradation into count and confusability channels across NER, RE, and ED, showing that these channels are mechanistically distinct.\n27\t    \\item \\textbf{Pairwise confusability as a robust predictor.} We demonstrate that pairwise SCS predicts type confusion across tasks and embedding models, while identifying a centrality confound that invalidates per-type aggregation on homogeneous schemas.\n28\t    \\item \\textbf{Cross-task controlled experiments.} We present BCS-controlled experiments with bootstrap confidence intervals on three datasets, establishing that confusability effects amplify $3.4\\times$ as schema size grows from 16 to 80 types.\n29\t    \\item \\textbf{Informative negative result.} Our SDGD experiments identify merge amplification as a structural bottleneck for decompose-then-merge approaches, with direct implications for the design of schema decomposition methods.\n30\t\\end{enumerate}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "77b44726-b952-4c5d-91bc-ef497aeeb67c",
+            "isSidechain": false,
+            "promptId": "22354007-125d-478d-a23b-8147bed94301",
+            "type": "user",
+            "uuid": "690c337c-b7d7-41a3-a0b8-58f117261323",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex",
+                "content": "\\section{Introduction}\n\\label{sec:introduction}\n\nTraining-free LLM information extraction---prompting a large language model with a target schema and asking it to extract structured information without any task-specific fine-tuning---enables rapid deployment across new domains and ontologies. This zero-shot paradigm eliminates the need for labeled data, making it attractive for applications where annotation is expensive or schemas evolve frequently \\cite{llm4ie-survey-2024}. Yet the paradigm carries a critical limitation: performance degrades sharply as the number of candidate types in the prompt schema grows. On named entity recognition, recall drops from 0.72 with a single candidate type to 0.42 with 64 types, a 42\\% relative decline. On relation extraction, accuracy falls from 85.7\\% with one relation to 50.4\\% with 80 relations---near halving. This degradation is not academic: real-world ontologies routinely define 50--200+ types, placing them squarely in the regime where training-free extraction becomes unreliable.\n\nWhat causes this schema-induced degradation? Prior work has proposed decomposition strategies that implicitly assume different answers. \\citet{uniner-2024} extract each type independently, assuming types can be treated as separable. \\citet{llm-pee-2025} partition large event schemas by type embedding similarity before extraction, assuming that semantic overlap between co-presented types drives errors. \\citet{parse-2025} rewrite and optimize schema definitions, assuming that description quality is the bottleneck. Each approach improves extraction under certain conditions, but none isolates \\emph{why} schemas degrade performance in the first place. The closest work, LLM-PEE \\cite{llm-pee-2025}, reduces both the number of co-presented types and their inter-type similarity simultaneously, making it impossible to determine which factor---or what combination---accounts for the observed gains. More broadly, all prior approaches conflate two distinct mechanisms that could independently degrade extraction: having more types to discriminate among (count) and having semantically similar types to confuse (confusability). Without disentangling these factors, decomposition strategies cannot be principled: they optimize a black-box objective without understanding its components.\n\nWe ask three questions. \\textbf{RQ1}: Does type confusability independently predict extraction degradation beyond the effect of type count? \\textbf{RQ2}: Through what mechanisms do count and confusability each degrade performance? \\textbf{RQ3}: Can confusability-aware schema decomposition improve extraction quality?\n\nTo answer these questions, we conduct the first controlled empirical study that isolates type confusability from type count across three IE tasks: named entity recognition (NER), relation extraction (RE), and event detection (ED). We introduce the \\emph{Schema Confusability Score} (SCS), which quantifies pairwise semantic overlap between types using embedding cosine similarity, and its batch-level aggregation, the \\emph{Batch Confusability Score} (BCS). We design two complementary experimental paradigms: \\emph{count curves} that vary schema size while randomizing confusability, and \\emph{BCS-controlled experiments} that fix schema size while varying confusability. We evaluate on three datasets spanning diverse schema structures: Few-NERD \\cite{fewnerd-2021} (66 entity types across 8 domains), FewRel \\cite{fewrel-2018} (80 relation types), and MAVEN \\cite{maven-2020} (168 event types from a single ontology). All experiments use Qwen3-32B in a zero-shot prompting setup with bootstrap confidence intervals.\n\nFive findings emerge from our experiments.\n\nFirst, schema-induced degradation operates through two orthogonal channels. \\textbf{Channel~1} (count $\\to$ recall decline): increasing the number of types in the prompt reduces recall for NER and RE, as more candidate types compete for the model's attention. \\textbf{Channel~2} (confusability $\\to$ type confusion): semantically similar types trigger intra-batch substitution errors (IntraSub), where the model assigns an entity or relation to a neighboring type in embedding space. These channels are mechanistically distinct---Channel~1 reflects capacity limitations, Channel~2 reflects semantic indistinguishability---and both contribute to the overall degradation pattern.\n\nSecond, pairwise SCS is a robust predictor of type confusion. Across Few-NERD (Pearson $r = 0.112$, $p < 10^{-12}$) and MAVEN ($r = 0.129$, $p < 10^{-10}$), embedding similarity between type pairs correlates with confusion rates, and this signal replicates across two unrelated embedding spaces (Qwen3 hidden states and MiniLM sentence embeddings). The effect is modest in magnitude: pairwise confusability explains roughly 1.3--1.7\\% of the variance in type confusion ($r^2 \\approx 0.013\\text{--}0.017$). Entity frequency, prompt position effects \\cite{lost-in-middle-2024}, and type definition quality jointly account for the remainder. Nevertheless, this is the first factor to be empirically isolated in controlled zero-shot IE experiments, and the signal survives bootstrap resampling with confidence intervals bounded well above zero.\n\nThird, confusability effects amplify with schema scale. In BCS-controlled FewRel experiments, switching from low-confusability to high-confusability type batches reduces accuracy by 9.1 percentage points at the 16-relation scale, but the gap widens to 31.2\\,pp at 80 relations (95\\% CI: [17.7, 42.7])---a $3.4\\times$ amplification. Larger type pools provide more opportunities for semantically similar types to co-occur, expanding the confusion space.\n\nFourth, per-type confusability aggregation is confounded on homogeneous schemas. On MAVEN, whose 168 event types all derive from the FrameNet ontology, the correlation between mean BCS and per-type error rate reverses sign ($\\rho = +0.189$, $p = 0.021$), opposite to the predicted direction. This centrality confound arises because, in single-cluster embedding spaces \\cite{cai-isotropy-clusters-2021}, a type's mean similarity conflates confusability with centrality---a property associated with well-represented types that LLMs extract reliably. The pairwise SCS signal remains intact ($r = 0.129$, CI: [0.104, 0.156]), confirming that the confound lies in the aggregation step, not in the underlying pairwise relationship. Few-NERD, whose types span multiple domains, does not exhibit this confound ($\\rho = -0.293$, $p = 0.02$).\n\nFifth, confusability-aware schema decomposition fails to improve extraction. Our Schema-DAG-Guided Decomposition (SDGD) successfully separates confusable types into different batches, yet every decomposition mode---including random batching and per-type extraction---produces lower F1 than single-pass extraction (best decomposition F1 = 0.320 vs.\\ single-pass F1 = 0.445). The bottleneck is \\emph{merge amplification}: when the same text is processed across multiple extraction passes, the union merge step accumulates contradictory predictions, destroying precision. This structural limitation applies to any decompose-then-merge pipeline, including the partitioning approach of \\citet{llm-pee-2025}.\n\nOur contributions are:\n\\begin{enumerate}[leftmargin=*,itemsep=2pt,topsep=2pt]\n    \\item \\textbf{Multi-channel degradation model.} We provide the first empirical decomposition of schema-induced degradation into count and confusability channels across NER, RE, and ED, showing that these channels are mechanistically distinct.\n    \\item \\textbf{Pairwise confusability as a robust predictor.} We demonstrate that pairwise SCS predicts type confusion across tasks and embedding models, while identifying a centrality confound that invalidates per-type aggregation on homogeneous schemas.\n    \\item \\textbf{Cross-task controlled experiments.} We present BCS-controlled experiments with bootstrap confidence intervals on three datasets, establishing that confusability effects amplify $3.4\\times$ as schema size grows from 16 to 80 types.\n    \\item \\textbf{Informative negative result.} Our SDGD experiments identify merge amplification as a structural bottleneck for decompose-then-merge approaches, with direct implications for the design of schema decomposition methods.\n\\end{enumerate}",
+                "numLines": 30,
+                "startLine": 1,
+                "totalLines": 30
+              }
+            },
+            "sourceToolAssistantUUID": "77b44726-b952-4c5d-91bc-ef497aeeb67c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T18:52:48.559Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Nnsrn7DR9o4Snid5oRZosU",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "690c337c-b7d7-41a3-a0b8-58f117261323",
+            "isSidechain": false,
+            "requestId": "req_011Cb4rphjixzZwjyfqWMxWb",
+            "type": "assistant",
+            "uuid": "ef15c67a-e1b6-45a2-b869-e9e1850ad86c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SN5HGVXNcjEmpA242ZLQVu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11874,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 224,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11874,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 224,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 11874,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11874
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "38e64638-1998-4bc2-bb8f-b1c3749bc2c5",
+                "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517"
+              }
+            }
+          ],
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Write Conclusion section for EMNLP paper",
+                "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517"
+              }
+            }
+          ],
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T18:52:51.483Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me also check if results.tex continues with more sections (SDGD results).",
+              "signature": "EogCClkIDRgCKkDRBfjmAcc222MHMup5lzd4yyAYYqFtMG/JC5JVG6tJTx7oFaOPMKsESogNKjooBV/u3G46lg+yzBhr2t6twrvzMg9jbGF1ZGUtb3B1cy00LTY4ABIMmOKVY8kiTQPbUWmcGgyzk+bVkp3B3HmnZMIiMPK33qsUdymiEudDe06gmOENaJA9/fcOfBTi269C8NQGnWsMpQGJlR2eAhgx6U/HvCpdX01tMeTfFGgQs3LyLdj1ZsuUIp8+2VPd5dpskVepI3Nx31lKe3ohPHUTczQywQ7BDa4LBuDJZVZ1lsrusMhPCsdjNgwIfaP3gpO7VQHoDsKRQawp2ncvzHBIjeBxGAE="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "38e64638-1998-4bc2-bb8f-b1c3749bc2c5",
+            "isSidechain": false,
+            "requestId": "req_011Cb4rq7is36JAsLgbF1WcF",
+            "type": "assistant",
+            "uuid": "64258fb6-f329-4646-b10c-20db837203f9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U2ngVQgBzDtiaz5nEBJ8Vi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11557,
+                "cache_read_input_tokens": 23715,
+                "output_tokens": 156,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11557,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 156,
+                    "cache_read_input_tokens": 23715,
+                    "cache_creation_input_tokens": 11557,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11557
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T18:52:52.004Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check if results.tex has more content (SDGD section)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "64258fb6-f329-4646-b10c-20db837203f9",
+            "isSidechain": false,
+            "requestId": "req_011Cb4rq7is36JAsLgbF1WcF",
+            "type": "assistant",
+            "uuid": "dd8993f8-e58c-4b51-a122-f1470bb03202",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U2ngVQgBzDtiaz5nEBJ8Vi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11557,
+                "cache_read_input_tokens": 23715,
+                "output_tokens": 156,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11557,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 156,
+                    "cache_read_input_tokens": 23715,
+                    "cache_creation_input_tokens": 11557,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11557
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T18:52:53.572Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C7tPqvrpwNc4psz5c9PmhA",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+                "offset": 114
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd8993f8-e58c-4b51-a122-f1470bb03202",
+            "isSidechain": false,
+            "requestId": "req_011Cb4rq7is36JAsLgbF1WcF",
+            "type": "assistant",
+            "uuid": "a4b7f0ce-b7f8-4b41-9d60-967123bfc3c0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U2ngVQgBzDtiaz5nEBJ8Vi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11557,
+                "cache_read_input_tokens": 23715,
+                "output_tokens": 156,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11557,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 156,
+                    "cache_read_input_tokens": 23715,
+                    "cache_creation_input_tokens": 11557,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11557
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T18:52:53.579Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C7tPqvrpwNc4psz5c9PmhA",
+              "type": "tool_result",
+              "content": "114\tThis analysis carries a practical implication: mean BCS is a reliable predictor of schema difficulty only for cross-domain schemas. For same-domain schemas where types form a single semantic cluster, pairwise SCS should be used directly, or the centrality component must be factored out before aggregation."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a4b7f0ce-b7f8-4b41-9d60-967123bfc3c0",
+            "isSidechain": false,
+            "promptId": "22354007-125d-478d-a23b-8147bed94301",
+            "type": "user",
+            "uuid": "3939d937-cd0c-496d-bdc2-4e7d42cb79f3",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+                "content": "This analysis carries a practical implication: mean BCS is a reliable predictor of schema difficulty only for cross-domain schemas. For same-domain schemas where types form a single semantic cluster, pairwise SCS should be used directly, or the centrality component must be factored out before aggregation.",
+                "numLines": 1,
+                "startLine": 114,
+                "totalLines": 114
+              }
+            },
+            "sourceToolAssistantUUID": "a4b7f0ce-b7f8-4b41-9d60-967123bfc3c0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T18:52:59.027Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me check if there's an SDGD results section in another file, or if that's covered in the results.tex already. The introduction mentions SDGD results (F1 = 0.320 vs single-pass F1 = 0.445). Let me also check if there are other sections to look at.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3939d937-cd0c-496d-bdc2-4e7d42cb79f3",
+            "isSidechain": false,
+            "requestId": "req_011Cb4rqW9FDomb46yDrNhNu",
+            "type": "assistant",
+            "uuid": "869fc7b8-a577-45e0-a188-c0a6ed41e193",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NBfP9fy3DTV5y7qsZakPcV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 232,
+                "cache_read_input_tokens": 35272,
+                "output_tokens": 207,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 232,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 207,
+                    "cache_read_input_tokens": 35272,
+                    "cache_creation_input_tokens": 232,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 232
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T18:52:59.503Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check for the SDGD results section and any existing conclusion file."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "869fc7b8-a577-45e0-a188-c0a6ed41e193",
+            "isSidechain": false,
+            "requestId": "req_011Cb4rqW9FDomb46yDrNhNu",
+            "type": "assistant",
+            "uuid": "1e2a76f0-ff3e-41d5-9aae-3510e8bc3b33",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NBfP9fy3DTV5y7qsZakPcV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 232,
+                "cache_read_input_tokens": 35272,
+                "output_tokens": 207,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 232,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 207,
+                    "cache_read_input_tokens": 35272,
+                    "cache_creation_input_tokens": 232,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 232
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T18:53:00.086Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WPUrS6WemcmuBX3MT5F4Ku",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/docs/paper/*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1e2a76f0-ff3e-41d5-9aae-3510e8bc3b33",
+            "isSidechain": false,
+            "requestId": "req_011Cb4rqW9FDomb46yDrNhNu",
+            "type": "assistant",
+            "uuid": "ede02dbd-261e-44e8-a831-2c9785e92fac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NBfP9fy3DTV5y7qsZakPcV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 232,
+                "cache_read_input_tokens": 35272,
+                "output_tokens": 207,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 232,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 207,
+                    "cache_read_input_tokens": 35272,
+                    "cache_creation_input_tokens": 232,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 232
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T18:53:00.099Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WPUrS6WemcmuBX3MT5F4Ku",
+              "type": "tool_result",
+              "content": "docs/paper/results.tex\ndocs/paper/sdgd_negative.tex\ndocs/paper/related_work.tex\ndocs/paper/experimental_setup.tex\ndocs/paper/introduction.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ede02dbd-261e-44e8-a831-2c9785e92fac",
+            "isSidechain": false,
+            "promptId": "22354007-125d-478d-a23b-8147bed94301",
+            "type": "user",
+            "uuid": "0f019169-b3c2-4484-9acc-8fccd91d03a1",
+            "toolUseResult": {
+              "filenames": [
+                "docs/paper/results.tex",
+                "docs/paper/sdgd_negative.tex",
+                "docs/paper/related_work.tex",
+                "docs/paper/experimental_setup.tex",
+                "docs/paper/introduction.tex"
+              ],
+              "durationMs": 10,
+              "numFiles": 5,
+              "truncated": false
+            },
+            "sourceToolAssistantUUID": "ede02dbd-261e-44e8-a831-2c9785e92fac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T18:53:03.081Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BiwV5z3zLKvMCCgLUFW2WU",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0f019169-b3c2-4484-9acc-8fccd91d03a1",
+            "isSidechain": false,
+            "requestId": "req_011Cb4rqxwJKkxTGBmS1mHRs",
+            "type": "assistant",
+            "uuid": "c1f341e3-fc12-480b-8eac-e407b0a907ce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JjVEnJUqLYrPh8cgjQ9SRX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 266,
+                "cache_read_input_tokens": 35504,
+                "output_tokens": 91,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 266,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 91,
+                    "cache_read_input_tokens": 35504,
+                    "cache_creation_input_tokens": 266,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 266
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T18:53:03.090Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BiwV5z3zLKvMCCgLUFW2WU",
+              "type": "tool_result",
+              "content": "1\t\\section{Why Naive Decomposition Fails}\n2\t\\label{sec:sdgd}\n3\t\n4\tThe multi-channel degradation model (\\S\\ref{sec:results}) raises an interventional question: if confusability drives type confusion, can we decompose the schema so that confusable types never co-occur in the same prompt?  We test this idea with \\textbf{Schema-DAG-Guided Decomposition} (SDGD), a method that uses the pairwise SCS matrix to partition types into low-confusability batches, runs extraction independently on each batch, and merges the results.\n5\t\n6\t\\paragraph{Decomposition protocol.}\n7\tWe compute hierarchical clustering over the SCS matrix and cut the dendrogram so that highly similar types fall into separate batches. Each batch is presented to the LLM as an independent extraction prompt; predictions are then merged via set union. We compare four modes: (i)~\\textbf{single\\_pass}, the undecomposed baseline; (ii)~\\textbf{sdgd\\_zero}, SCS-guided partitioning; (iii)~\\textbf{random\\_batch}, random partitioning with matched batch sizes; and (iv)~\\textbf{per\\_type}, the extreme case where each type is extracted in isolation, following the strategy of \\citet{uniner-2024}. Figure~\\ref{fig:sdgd_comparison} summarizes the results on Few-NERD.\n8\t\n9\t\\paragraph{All decomposition modes degrade F1.}\n10\tTable~\\ref{tab:sdgd_results} reports the outcome.  Single-pass extraction achieves F1\\,=\\,0.445 (P\\,=\\,0.563, R\\,=\\,0.368).  SDGD obtains F1\\,=\\,0.251 (P\\,=\\,0.210, R\\,=\\,0.314), a 44\\% relative drop.  Random batching reaches F1\\,=\\,0.320 (P\\,=\\,0.249, R\\,=\\,0.446), and per-type extraction yields F1\\,=\\,0.292 (P\\,=\\,0.194, R\\,=\\,0.586).  Every decomposition mode falls below the single-pass baseline.\n11\t\n12\t\\begin{table}[t]\n13\t\\centering\n14\t\\small\n15\t\\begin{tabular}{lccc}\n16\t\\toprule\n17\t\\textbf{Mode} & \\textbf{Precision} & \\textbf{Recall} & \\textbf{F1} \\\\\n18\t\\midrule\n19\tsingle\\_pass & 0.563 & 0.368 & 0.445 \\\\\n20\t\\midrule\n21\tsdgd\\_zero (v1) & 0.210 & 0.314 & 0.251 \\\\\n22\trandom\\_batch (v1) & 0.249 & 0.446 & 0.320 \\\\\n23\tper\\_type & 0.194 & 0.586 & 0.292 \\\\\n24\t\\midrule\n25\tsdgd\\_zero (v2) & --- & --- & 0.241 \\\\\n26\trandom\\_batch (v2) & --- & --- & 0.301 \\\\\n27\t\\bottomrule\n28\t\\end{tabular}\n29\t\\caption{Few-NERD extraction under decomposition modes.  V1 uses union merge; v2 uses confidence-gated merge.  All decomposition modes produce lower F1 than the single-pass baseline.  Decomposition boosts recall at the cost of devastating precision losses.}\n30\t\\label{tab:sdgd_results}\n31\t\\end{table}\n32\t\n33\t\\paragraph{Merge amplification.}\n34\tThe pattern across modes is consistent: decomposition boosts recall (per-type recall reaches 0.586 versus single-pass 0.368) but devastates precision (0.194 versus 0.563).  The mechanism is straightforward.  When the same text is presented to the model $k$ times with different type subsets, each pass independently generates entity predictions.  Because LLM outputs are not calibrated across passes, the union merge step accumulates overlapping and contradictory predictions, inflating false positives.  Smaller batches amplify the effect: per-type extraction runs the most passes and suffers the worst precision.  This \\emph{merge amplification} is a structural consequence of decompose-then-merge pipelines, independent of how the decomposition is constructed.\n35\t\n36\t\\paragraph{Confidence-gated merge does not help.}\n37\tA natural remedy is to resolve merge conflicts using model confidence.  Our v2 merge ranks competing predictions by the LLM's self-reported confidence and retains only the highest-scoring candidate for each span.  This intervention fails: SDGD v2 yields F1\\,=\\,0.241, below v1's 0.251.  Random-batch v2 similarly drops from 0.320 to 0.301.  The failure is consistent with prior findings that LLM confidence scores are poorly calibrated in generative IE settings \\cite{llm-calibration-survey-2024}, rendering confidence-based filtering no better than naive union.\n38\t\n39\t\\paragraph{Connection to prior work.}\n40\t\\citet{llm-pee-2025} independently proposed similarity-based partitioning for large-scale event extraction, using type embeddings to split schemas before extraction.  Our controlled negative result complements their work by identifying the merge step---not the partitioning quality---as the bottleneck.  SDGD's SCS-guided partitioning successfully separates confusable types (by construction), yet F1 still drops because the merge problem is orthogonal to the decomposition problem.  This suggests that merge amplification is a general limitation of decompose-then-merge approaches, not an artifact of our specific partitioning algorithm.\n41\t\n42\t\\paragraph{Structural insight.}\n43\tThe SDGD experiments establish a negative result: confusability-aware schema decomposition, while theoretically motivated by the Channel~2 degradation mechanism, does not improve extraction under union-based merging.  The bottleneck lies entirely in the merge phase.  Future approaches must address calibration across extraction passes---for instance, through cross-batch consistency scoring or joint decoding over decomposed outputs---before decomposition strategies can translate confusability signals into extraction gains."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c1f341e3-fc12-480b-8eac-e407b0a907ce",
+            "isSidechain": false,
+            "promptId": "22354007-125d-478d-a23b-8147bed94301",
+            "type": "user",
+            "uuid": "77326780-0fa0-4c14-9115-ce5984d37a6a",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex",
+                "content": "\\section{Why Naive Decomposition Fails}\n\\label{sec:sdgd}\n\nThe multi-channel degradation model (\\S\\ref{sec:results}) raises an interventional question: if confusability drives type confusion, can we decompose the schema so that confusable types never co-occur in the same prompt?  We test this idea with \\textbf{Schema-DAG-Guided Decomposition} (SDGD), a method that uses the pairwise SCS matrix to partition types into low-confusability batches, runs extraction independently on each batch, and merges the results.\n\n\\paragraph{Decomposition protocol.}\nWe compute hierarchical clustering over the SCS matrix and cut the dendrogram so that highly similar types fall into separate batches. Each batch is presented to the LLM as an independent extraction prompt; predictions are then merged via set union. We compare four modes: (i)~\\textbf{single\\_pass}, the undecomposed baseline; (ii)~\\textbf{sdgd\\_zero}, SCS-guided partitioning; (iii)~\\textbf{random\\_batch}, random partitioning with matched batch sizes; and (iv)~\\textbf{per\\_type}, the extreme case where each type is extracted in isolation, following the strategy of \\citet{uniner-2024}. Figure~\\ref{fig:sdgd_comparison} summarizes the results on Few-NERD.\n\n\\paragraph{All decomposition modes degrade F1.}\nTable~\\ref{tab:sdgd_results} reports the outcome.  Single-pass extraction achieves F1\\,=\\,0.445 (P\\,=\\,0.563, R\\,=\\,0.368).  SDGD obtains F1\\,=\\,0.251 (P\\,=\\,0.210, R\\,=\\,0.314), a 44\\% relative drop.  Random batching reaches F1\\,=\\,0.320 (P\\,=\\,0.249, R\\,=\\,0.446), and per-type extraction yields F1\\,=\\,0.292 (P\\,=\\,0.194, R\\,=\\,0.586).  Every decomposition mode falls below the single-pass baseline.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Mode} & \\textbf{Precision} & \\textbf{Recall} & \\textbf{F1} \\\\\n\\midrule\nsingle\\_pass & 0.563 & 0.368 & 0.445 \\\\\n\\midrule\nsdgd\\_zero (v1) & 0.210 & 0.314 & 0.251 \\\\\nrandom\\_batch (v1) & 0.249 & 0.446 & 0.320 \\\\\nper\\_type & 0.194 & 0.586 & 0.292 \\\\\n\\midrule\nsdgd\\_zero (v2) & --- & --- & 0.241 \\\\\nrandom\\_batch (v2) & --- & --- & 0.301 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Few-NERD extraction under decomposition modes.  V1 uses union merge; v2 uses confidence-gated merge.  All decomposition modes produce lower F1 than the single-pass baseline.  Decomposition boosts recall at the cost of devastating precision losses.}\n\\label{tab:sdgd_results}\n\\end{table}\n\n\\paragraph{Merge amplification.}\nThe pattern across modes is consistent: decomposition boosts recall (per-type recall reaches 0.586 versus single-pass 0.368) but devastates precision (0.194 versus 0.563).  The mechanism is straightforward.  When the same text is presented to the model $k$ times with different type subsets, each pass independently generates entity predictions.  Because LLM outputs are not calibrated across passes, the union merge step accumulates overlapping and contradictory predictions, inflating false positives.  Smaller batches amplify the effect: per-type extraction runs the most passes and suffers the worst precision.  This \\emph{merge amplification} is a structural consequence of decompose-then-merge pipelines, independent of how the decomposition is constructed.\n\n\\paragraph{Confidence-gated merge does not help.}\nA natural remedy is to resolve merge conflicts using model confidence.  Our v2 merge ranks competing predictions by the LLM's self-reported confidence and retains only the highest-scoring candidate for each span.  This intervention fails: SDGD v2 yields F1\\,=\\,0.241, below v1's 0.251.  Random-batch v2 similarly drops from 0.320 to 0.301.  The failure is consistent with prior findings that LLM confidence scores are poorly calibrated in generative IE settings \\cite{llm-calibration-survey-2024}, rendering confidence-based filtering no better than naive union.\n\n\\paragraph{Connection to prior work.}\n\\citet{llm-pee-2025} independently proposed similarity-based partitioning for large-scale event extraction, using type embeddings to split schemas before extraction.  Our controlled negative result complements their work by identifying the merge step---not the partitioning quality---as the bottleneck.  SDGD's SCS-guided partitioning successfully separates confusable types (by construction), yet F1 still drops because the merge problem is orthogonal to the decomposition problem.  This suggests that merge amplification is a general limitation of decompose-then-merge approaches, not an artifact of our specific partitioning algorithm.\n\n\\paragraph{Structural insight.}\nThe SDGD experiments establish a negative result: confusability-aware schema decomposition, while theoretically motivated by the Channel~2 degradation mechanism, does not improve extraction under union-based merging.  The bottleneck lies entirely in the merge phase.  Future approaches must address calibration across extraction passes---for instance, through cross-batch consistency scoring or joint decoding over decomposed outputs---before decomposition strategies can translate confusability signals into extraction gains.",
+                "numLines": 43,
+                "startLine": 1,
+                "totalLines": 43
+              }
+            },
+            "sourceToolAssistantUUID": "c1f341e3-fc12-480b-8eac-e407b0a907ce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T18:53:15.666Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the information I need to write the conclusion. Let me summarize the key numbers and findings:\n\nFrom Introduction:\n- Contributions: multi-channel degradation model, pairwise SCS as robust predictor, cross-task controlled experiments (3.4× amplification), informative negative result (SDGD/merge amplification)\n- Recall drops from 0.72→0.42 (NER), accuracy from 85.7%→50.4% (RE)\n- Pairwise SCS: r²≈1.3-1.7%, Pearson r=0.112 (Few-NERD), r=0.129 (MAVEN)\n\n\n- BCS gap amplifies 3.4× across tasks, SDGD decomposition underperforms single-pass models, and centrality confounds results on MAVEN\n- The two degradation channels operate distinctly: count-based effects drive recall decline while confusability drives type confusion, with IntraSub scaling monotonically from 0% to nearly 50% as BCS increases\n- Centrality shows weak positive correlation on MAVEN but remains intact in pairwise comparisons, while Few-NERD shows no confound at all\n- SDGD's decomposition strategy boosts recall but severely damages precision, and confidence-gated merging fails to recover performance\n\nNow I'm drafting the conclusion with measured language, sticking to what the results show without introducing new claims.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "77326780-0fa0-4c14-9115-ce5984d37a6a",
+            "isSidechain": false,
+            "requestId": "req_011Cb4rrBUcNmXtAKzjDrvPN",
+            "type": "assistant",
+            "uuid": "e2f66017-3716-471f-994a-e43f0c3045c4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UxuRwxvTvcU4h2GQbJZhwC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1671,
+                "cache_read_input_tokens": 35770,
+                "output_tokens": 1019,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1671,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1019,
+                    "cache_read_input_tokens": 35770,
+                    "cache_creation_input_tokens": 1671,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1671
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T18:53:15.794Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now writing the conclusion."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e2f66017-3716-471f-994a-e43f0c3045c4",
+            "isSidechain": false,
+            "requestId": "req_011Cb4rrBUcNmXtAKzjDrvPN",
+            "type": "assistant",
+            "uuid": "4beb6bc8-cf93-45f4-8300-870a851406f1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UxuRwxvTvcU4h2GQbJZhwC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1671,
+                "cache_read_input_tokens": 35770,
+                "output_tokens": 1019,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1671,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1019,
+                    "cache_read_input_tokens": 35770,
+                    "cache_creation_input_tokens": 1671,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1671
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T18:53:25.758Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y4briT1qAuZ3XKnWg5WK2F",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/conclusion.tex",
+                "content": "\\section{Conclusion}\n\\label{sec:conclusion}\n\nWe presented a controlled empirical study isolating the factors behind schema-induced degradation in training-free LLM information extraction. Our experiments across NER, RE, and ED reveal that degradation operates through two orthogonal channels: a count channel, where increasing the number of candidate types suppresses recall, and a confusability channel, where semantically similar types trigger intra-batch substitution errors. These channels are mechanistically distinct---the first reflects capacity limitations as types compete for attention, the second reflects semantic indistinguishability regardless of schema size.\n\nPairwise type confusability, quantified by the Schema Confusability Score, is a partial but robust predictor of type confusion. The signal is modest in magnitude ($r^2 \\approx 1.3\\text{--}1.7\\%$), yet it replicates across three tasks, two embedding spaces, and survives bootstrap resampling---making it the first factor to be empirically isolated in controlled zero-shot IE experiments. Entity frequency, prompt position, and type definition quality account for the remaining variance; disentangling these factors is an open problem. We further identify a centrality confound that reverses per-type aggregation on same-domain schemas, a methodological finding relevant to any embedding-based schema analysis.\n\nOur Schema-DAG-Guided Decomposition experiments yield an informative negative result: separating confusable types into different batches does not improve extraction, because merge amplification destroys precision across all decomposition strategies. This structural bottleneck applies broadly to decompose-then-merge pipelines.\n\nSeveral limitations bound our findings. All experiments use a single model (Qwen3-32B); multi-model validation is an immediate priority. Future work should address the merge bottleneck directly---calibration-based cross-batch consistency, joint decoding over decomposed outputs, or confidence-weighted merging with better-calibrated scores---to translate confusability signals into extraction gains.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4beb6bc8-cf93-45f4-8300-870a851406f1",
+            "isSidechain": false,
+            "requestId": "req_011Cb4rrBUcNmXtAKzjDrvPN",
+            "type": "assistant",
+            "uuid": "6c36a835-d623-4b89-a905-e69da067d462",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UxuRwxvTvcU4h2GQbJZhwC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1671,
+                "cache_read_input_tokens": 35770,
+                "output_tokens": 1019,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1671,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1019,
+                    "cache_read_input_tokens": 35770,
+                    "cache_creation_input_tokens": 1671,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1671
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T18:53:25.780Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y4briT1qAuZ3XKnWg5WK2F",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/conclusion.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6c36a835-d623-4b89-a905-e69da067d462",
+            "isSidechain": false,
+            "promptId": "22354007-125d-478d-a23b-8147bed94301",
+            "type": "user",
+            "uuid": "d5f251ad-91c1-468c-b85a-2d94c2a06daa",
+            "toolUseResult": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/conclusion.tex",
+              "content": "\\section{Conclusion}\n\\label{sec:conclusion}\n\nWe presented a controlled empirical study isolating the factors behind schema-induced degradation in training-free LLM information extraction. Our experiments across NER, RE, and ED reveal that degradation operates through two orthogonal channels: a count channel, where increasing the number of candidate types suppresses recall, and a confusability channel, where semantically similar types trigger intra-batch substitution errors. These channels are mechanistically distinct---the first reflects capacity limitations as types compete for attention, the second reflects semantic indistinguishability regardless of schema size.\n\nPairwise type confusability, quantified by the Schema Confusability Score, is a partial but robust predictor of type confusion. The signal is modest in magnitude ($r^2 \\approx 1.3\\text{--}1.7\\%$), yet it replicates across three tasks, two embedding spaces, and survives bootstrap resampling---making it the first factor to be empirically isolated in controlled zero-shot IE experiments. Entity frequency, prompt position, and type definition quality account for the remaining variance; disentangling these factors is an open problem. We further identify a centrality confound that reverses per-type aggregation on same-domain schemas, a methodological finding relevant to any embedding-based schema analysis.\n\nOur Schema-DAG-Guided Decomposition experiments yield an informative negative result: separating confusable types into different batches does not improve extraction, because merge amplification destroys precision across all decomposition strategies. This structural bottleneck applies broadly to decompose-then-merge pipelines.\n\nSeveral limitations bound our findings. All experiments use a single model (Qwen3-32B); multi-model validation is an immediate priority. Future work should address the merge bottleneck directly---calibration-based cross-batch consistency, joint decoding over decomposed outputs, or confidence-weighted merging with better-calibrated scores---to translate confusability signals into extraction gains.\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "6c36a835-d623-4b89-a905-e69da067d462",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T18:53:25.785Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "d5f251ad-91c1-468c-b85a-2d94c2a06daa",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "bf799fc7-e90b-4a30-bf60-ddb781a5415d",
+                "timestamp": "2026-05-15T18:53:25.785Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+                "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "bf799fc7-e90b-4a30-bf60-ddb781a5415d",
+                "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517"
+              }
+            }
+          ],
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Write Conclusion section for EMNLP paper",
+                "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517"
+              }
+            }
+          ],
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T18:53:32.379Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Conclusion written to `docs/paper/conclusion.tex`. ~250 words, covers all five task points: multi-channel model, pairwise SCS as partial signal, centrality confound, SDGD negative result with merge amplification, and single-model limitation. All numbers match §1 and §4; no new claims introduced."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bf799fc7-e90b-4a30-bf60-ddb781a5415d",
+            "isSidechain": false,
+            "requestId": "req_011Cb4rsrTB8Wc8ajjC5jecG",
+            "type": "assistant",
+            "uuid": "8437b5da-a0af-4bd5-a132-9433fafa2a6b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HJurayGNMxkn81x6GML6qv",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1174,
+                "cache_read_input_tokens": 37441,
+                "output_tokens": 78,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1174,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 78,
+                    "cache_read_input_tokens": 37441,
+                    "cache_creation_input_tokens": 1174,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1174
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "8437b5da-a0af-4bd5-a132-9433fafa2a6b",
+                "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517"
+              }
+            }
+          ],
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Write Conclusion section for EMNLP paper",
+                "sessionId": "2ca8463c-f4a3-4f8b-bd2b-8972847a2517"
+              }
+            }
+          ],
+          "id": "event-000036"
+        }
+      ],
+      "message_count": 34
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-schema-dag-extraction-cqa1-38874-ssh-root-ssh-execute-submit-t-copy-128.md"
+}

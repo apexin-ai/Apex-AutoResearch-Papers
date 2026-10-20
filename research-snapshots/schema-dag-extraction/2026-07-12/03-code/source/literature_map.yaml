@@ -1,0 +1,422 @@
+# Literature Map for schema-dag-extraction
+# Updated: 2026-05-15
+# Paper: Multi-channel Degradation Model + SDGD Framework for Training-free LLM IE
+
+# =============================================================================
+# DIRECT COMPETITORS — schema decomposition for LLM-based IE
+# =============================================================================
+
+- id: llm-pee-2025
+  title: "Towards Event Extraction with Massive Types: LLM-based Collaborative Annotation and Partitioning Extraction"
+  year: 2025
+  venue: arXiv
+  url: https://arxiv.org/abs/2503.02628
+  role: direct-competitor
+  relevance_note: >
+    Similarity-based type recall + type-partitioning prompting for massive event types.
+    Divides candidate types into partitions to reduce prompt length.
+    +5.4% event detection, +6.1% argument extraction, +12.9% F1 over mainstream LLMs zero-shot.
+    KEY DIFF: partitions by similarity-based recall, NOT confusability-aware.
+    Our DAG decomposition is confusability-driven, not just similarity-driven.
+
+- id: parse-2025
+  title: "PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction"
+  authors: [Anubhav Shrimal, Aryan Jain, Soumyajit Chowdhury, Promod Yenigalla]
+  year: 2025
+  venue: EMNLP 2025 Industry
+  url: https://arxiv.org/abs/2510.08623
+  role: direct-competitor
+  relevance_note: >
+    ARCHITECT autonomously rewrites JSON schemas for LLM consumption.
+    SCOPE uses reflection-based extraction with guardrails. +64.7% on SWDE.
+    Treats schema optimization as black-box LLM rewriting, not principled decomposition.
+    Does NOT model type confusability explicitly.
+
+- id: dee-2024
+  title: "Decompose, Enrich, and Extract! Schema-aware Event Extraction using LLMs"
+  year: 2024
+  venue: arXiv
+  url: https://arxiv.org/abs/2406.01045
+  role: direct-competitor
+  relevance_note: >
+    Decomposes event extraction into detection + argument extraction.
+    Dynamic schema-aware RAG for augmented prompts.
+    KEY DIFF: task-level decomposition (detection vs argument), not schema-level type decomposition.
+
+- id: crossagentie-2025
+  title: "CROSSAGENTIE: Cross-Type and Cross-Task Multi-Agent LLM Collaboration for Zero-Shot IE"
+  authors: [Meng Lu, Yuzhang Xie, Zhenyu Bi, Shuxiang Cao, Xuan Wang]
+  year: 2025
+  venue: ACL 2025 Findings
+  url: https://aclanthology.org/2025.findings-acl.718/
+  role: direct-competitor
+  relevance_note: >
+    Multi-agent: intra-group cross-type debate (resolves entity-label conflicts)
+    + inter-group cross-task debate (NER↔RE mutual refinement).
+    ⚠️ MODERATE NOVELTY CONCERN: cross-type debate explicitly addresses type confusion.
+    KEY DIFF: reactive debate to resolve confusion post-hoc vs our proactive decomposition to prevent it.
+    Must clearly differentiate in paper.
+
+- id: dlisc-2025
+  title: "Effective and Efficient Schema-aware Information Extraction Using On-Device LLMs"
+  year: 2025
+  venue: arXiv (May 2025)
+  url: https://arxiv.org/abs/2505.14992
+  role: direct-competitor
+  relevance_note: >
+    Dual-LoRA with Incremental Schema Caching.
+    Identification LoRA retrieves relevant schemas, Extraction LoRA performs IE.
+    Focus on efficiency for on-device LLMs, not confusability analysis.
+
+- id: spt-2025
+  title: "Schema as Parameterized Tools for Universal Information Extraction"
+  year: 2025
+  venue: arXiv (June 2025)
+  url: https://arxiv.org/abs/2506.01276
+  role: direct-competitor
+  relevance_note: >
+    Treats schemas as parameterized tools for LLM tool-calling.
+    Schema retrieval + generation + infilling. Novel schema-LLM interface.
+    Does not address type confusability.
+
+- id: zeroner-2025
+  title: "ZeroNER: Fueling Zero-Shot NER via Entity Type Descriptions"
+  year: 2025
+  venue: ACL 2025 Findings
+  url: https://aclanthology.org/2025.findings-acl.805/
+  role: direct-competitor
+  relevance_note: >
+    Description-driven: LLM supervision → BERT student for unseen types.
+    +16% F1 over LLMs on hard zero-shot. Leverages type descriptions.
+    Related to how schema semantics affect extraction quality.
+
+- id: cmas-ner-2025
+  title: "A Cooperative Multi-Agent Framework for Zero-Shot Named Entity Recognition"
+  year: 2025
+  venue: TheWebConf 2025
+  url: https://dl.acm.org/doi/10.1145/3696410.3714923
+  role: direct-competitor
+  relevance_note: >
+    Multi-agent collective intelligence for zero-shot NER.
+    Addresses context correlation and indiscriminate demonstration problems.
+    Outperforms on 6 benchmarks including domain-specific and general-domain.
+
+# =============================================================================
+# METHOD COMPONENTS — techniques we build upon or relate to
+# =============================================================================
+
+- id: uniner-2024
+  title: "UniversalNER: Targeted Distillation from Large Language Models for Open NER"
+  authors: [Wenxuan Zhou et al.]
+  year: 2024
+  venue: ICLR 2024
+  url: https://arxiv.org/abs/2308.03279
+  role: method-component
+  relevance_note: >
+    Instruction-tuning on ChatGPT-generated NER data. 43 datasets, 9 domains, 13K+ types.
+    UniNER-7B outperforms ChatGPT by 7 F1 points.
+    Important baseline for universal NER and schema-at-scale challenges.
+
+- id: gollie-2024
+  title: "GoLLIE: Annotation Guidelines Following Large Language Model for Information Extraction"
+  authors: [Oscar Sainz et al.]
+  year: 2024
+  venue: ICLR 2024
+  url: https://hitz-zentroa.github.io/GoLLIE/
+  role: method-component
+  relevance_note: >
+    Code-style schema definitions + annotation guideline following.
+    Strong zero-shot on unseen IE tasks. Code-Llama based.
+    Baseline for guideline-driven schema representation.
+
+- id: gliner-2024
+  title: "GLiNER: Generalist Model for Named Entity Recognition using Bidirectional Transformer"
+  authors: [Urchade Zaratiana et al.]
+  year: 2024
+  venue: NAACL 2024
+  url: https://arxiv.org/abs/2311.08526
+  role: method-component
+  relevance_note: >
+    Compact bidirectional encoder for zero-shot NER with parallel extraction.
+    Outperforms InstructUIE and larger models. Non-LLM competitive baseline.
+
+- id: gliner2-2025
+  title: "GLiNER2: Efficient Multi-Task IE System with Schema-Driven Interface"
+  authors: [Urchade Zaratiana et al.]
+  year: 2025
+  venue: EMNLP 2025 Demo
+  url: https://arxiv.org/abs/2507.18546
+  role: method-component
+  relevance_note: >
+    Extends GLiNER to multi-task IE (NER+RE+classification). 205M params, CPU-efficient.
+    Schema-driven interface. Shows schema approach scales to multi-task.
+
+- id: kggen-2025
+  title: "KGGen: Extracting Knowledge Graphs from Plain Text with Language Models"
+  authors: [Mo et al.]
+  year: 2025
+  venue: NeurIPS 2025
+  url: https://arxiv.org/abs/2502.09956
+  role: method-component
+  relevance_note: >
+    Two-stage decomposition: entities first, then relations.
+    Entity clustering/deduplication to reduce graph sparsity.
+    Schema decomposition approach for KG construction.
+
+- id: code4uie-2024
+  title: "Retrieval-Augmented Code Generation for Universal Information Extraction"
+  authors: [Yucan Guo et al.]
+  year: 2024
+  venue: NeurIPS 2024 Workshop
+  url: https://arxiv.org/abs/2311.02962
+  role: method-component
+  relevance_note: >
+    Python class-based schema definitions + RAG for code generation.
+    Unified code-style schema for all IE tasks.
+
+- id: iepile-2024
+  title: "IEPile: Unearthing Large-Scale Schema-Based Information Extraction Corpus"
+  authors: [Guanzheng Chen et al., ZJU NLP]
+  year: 2024
+  venue: ACL 2024
+  url: https://arxiv.org/abs/2402.14710
+  role: method-component
+  relevance_note: >
+    0.32B token bilingual IE corpus. Hard negative schema construction =
+    semantically proximate schemas to train type discrimination.
+    ⚠️ RELATED: hard negatives ≈ confusable schemas, but for TRAINING, not inference-time.
+    Our contribution is inference-time confusability-aware decomposition (training-free).
+
+- id: lost-in-middle-2024
+  title: "Lost in the Middle: How Language Models Use Long Contexts"
+  authors: [Nelson F. Liu et al.]
+  year: 2024
+  venue: TACL 2024
+  url: https://arxiv.org/abs/2307.03172
+  role: method-component
+  relevance_note: >
+    LLMs degrade when relevant info is in middle of long contexts (U-shaped attention).
+    Motivates schema decomposition to reduce prompt length.
+    No IE-specific follow-up found — opportunity for us to be first to connect this to IE.
+
+# =============================================================================
+# ZERO-SHOT NER / RE BASELINES
+# =============================================================================
+
+- id: self-improve-ner-2024
+  title: "Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models"
+  year: 2024
+  venue: NAACL 2024
+  url: https://arxiv.org/abs/2311.08921
+  role: background
+  relevance_note: >
+    Self-improving framework using LLM self-generated examples for zero-shot NER.
+
+- id: self-prompting-re-2024
+  title: "Unleashing the Power of LLMs in Zero-shot Relation Extraction via Self-Prompting"
+  year: 2024
+  venue: EMNLP 2024 Findings
+  url: https://arxiv.org/abs/2410.01154
+  role: background
+  relevance_note: >
+    Three-stage self-prompting for zero-shot RE. Generates synthetic ICL samples.
+    Training-free RE baseline.
+
+- id: reasoning-ner-2025
+  title: "A Reasoning Paradigm for Named Entity Recognition"
+  year: 2025
+  venue: arXiv (Nov 2025)
+  url: https://arxiv.org/abs/2511.11978
+  role: background
+  relevance_note: >
+    CoT-based reasoning for NER. Outperforms GPT-4 by 12.3 F1 in zero-shot.
+    Shifts NER from pattern matching to explicit reasoning. Strong zero-shot baseline.
+
+- id: nuner-2024
+  title: "NuNER: Entity Recognition Encoder Pre-training via LLM-Annotated Data"
+  authors: [Sergei Bogdanov et al., NuMind]
+  year: 2024
+  venue: EMNLP 2024
+  url: https://arxiv.org/abs/2402.15343
+  role: background
+  relevance_note: >
+    Contrastive pre-training on LLM-annotated data. Strong few-shot NER foundation model.
+
+# =============================================================================
+# EVALUATION / BENCHMARKING
+# =============================================================================
+
+- id: familiarity-2025
+  title: "Familiarity: Better Evaluation of Zero-Shot NER by Quantifying Label Shifts in Synthetic Training Data"
+  year: 2025
+  venue: NAACL 2025
+  url: https://arxiv.org/abs/2412.10121
+  role: evaluation
+  relevance_note: >
+    "Familiarity" metric for label shift in synthetic NER data.
+    Zero-shot NER scores overestimated due to train-eval label overlap.
+    Quantifies semantic similarity between entity types — related to type confusability.
+    KEY DIFF: measures evaluation bias, not extraction-time confusability.
+
+- id: guidex-2025
+  title: "GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction"
+  authors: [Neil Deshpande et al.]
+  year: 2025
+  venue: ACL 2025 Findings
+  url: https://arxiv.org/abs/2506.00649
+  role: evaluation
+  relevance_note: >
+    Auto-generates domain-specific schemas + guidelines + synthetic labels.
+    SOTA on 7 zero-shot NER benchmarks (+7 F1). Strong baseline.
+
+# =============================================================================
+# SURVEYS
+# =============================================================================
+
+- id: llm4ie-survey-2024
+  title: "Large Language Models for Generative Information Extraction: A Survey"
+  authors: [Derong Xu et al.]
+  year: 2024
+  venue: Frontiers of Computer Science
+  url: https://arxiv.org/abs/2312.17617
+  role: background
+  relevance_note: >
+    Comprehensive survey of LLM-based IE covering prompting, fine-tuning, benchmarks.
+
+- id: knowcoder-2024
+  title: "KnowCoder: Coding Structured Knowledge into LLMs for Universal IE"
+  year: 2024
+  venue: ACL 2024
+  url: https://arxiv.org/abs/2403.07969
+  role: background
+  relevance_note: >
+    Encodes schema knowledge via code structures into LLM.
+    Related to code-based schema representation.
+
+- id: slot-2025
+  title: "SLOT: Structuring the Output of Large Language Models"
+  year: 2025
+  venue: EMNLP 2025 Industry
+  url: https://aclanthology.org/2025.emnlp-industry.32.pdf
+  role: background
+  relevance_note: >
+    Decouples output formatting from NL task. Model-agnostic structured output.
+
+# =============================================================================
+# EMBEDDING ANISOTROPY / REPRESENTATION DEGENERATION
+# — supports "domain boundary" finding: BCS proxy fails for same-domain schemas
+# =============================================================================
+
+- id: gao-repr-degen-2019
+  title: "Representation Degeneration Problem in Training Natural Language Generation Models"
+  authors: [Jun Gao, Di He, Hang Li, Xin Jiang]
+  year: 2019
+  venue: ICLR 2019
+  url: https://arxiv.org/abs/1907.12009
+  role: theoretical-foundation
+  relevance_note: >
+    FOUNDATIONAL. Shows that likelihood maximization + weight tying causes word embeddings
+    to degenerate into a narrow cone with uniformly high cosine similarity.
+    Proposed cosine regularization (MLE-CosReg) to widen the cone aperture.
+    LINK TO OUR WORK: This is the root mechanism behind BCS compression.
+    When Qwen3-32B encodes 168 same-domain FrameNet types, the degeneration effect
+    concentrates them into the same narrow cone (cosine ≥ 0.90), destroying BCS discriminability.
+    Cite as the theoretical explanation for why embedding-based confusability proxies
+    have a principled failure mode on semantically homogeneous schemas.
+
+- id: ethayarajh-contextual-2019
+  title: "How Contextual are Contextualized Word Representations? Comparing the Geometry of BERT, ELMo, and GPT-2 Embeddings"
+  authors: [Kawin Ethayarajh]
+  year: 2019
+  venue: EMNLP 2019
+  url: https://aclanthology.org/D19-1006/
+  role: theoretical-foundation
+  relevance_note: >
+    Shows contextualized representations are anisotropic in ALL layers of BERT/ELMo/GPT-2.
+    Upper layers are more context-specific but still not isotropic.
+    Introduces quantitative measures of anisotropy (avg cosine sim of random word pairs).
+    LINK TO OUR WORK: Establishes that anisotropy is pervasive across architectures —
+    our MAVEN embedding compression is not a Qwen-specific artifact but a general property.
+    Supports the argument that ANY embedding-based confusability proxy inherits this limitation.
+
+- id: cai-isotropy-clusters-2021
+  title: "Isotropy in the Contextual Embedding Space: Clusters and Manifolds"
+  authors: [Xingyu Cai, Jiaji Huang, Yuchen Bian, Kenneth Church]
+  year: 2021
+  venue: ICLR 2021
+  url: https://openreview.net/forum?id=xYGNO86OWDH
+  role: theoretical-foundation
+  relevance_note: >
+    ⭐ MOST DIRECTLY RELEVANT. Key insight: global anisotropy is caused by isolated clusters;
+    WITHIN each cluster, embeddings are locally more isotropic.
+    Resolution: the high average cosine similarity reported in prior work is an artifact of
+    mixing embeddings from different clusters — within-cluster geometry is better behaved.
+    LINK TO OUR WORK: This is the exact mechanism for our "domain boundary" finding.
+    Cross-domain schemas (ACE vs FewNERD) span DIFFERENT clusters → BCS captures real
+    inter-cluster distances → proxy works. Same-domain schemas (MAVEN FrameNet types)
+    fall within ONE cluster → within-cluster variance is low → cosine sim saturates ≥ 0.90
+    → BCS loses discriminability. Our empirical finding is a direct instantiation of their
+    theoretical framework applied to type-level (not token-level) embeddings.
+
+- id: godey-anisotropy-inherent-2024
+  title: "Anisotropy Is Inherent to Self-Attention in Transformers"
+  authors: [Nathan Godey, Éric de la Clergerie, Benoît Sagot]
+  year: 2024
+  venue: EACL 2024
+  url: https://aclanthology.org/2024.eacl-long.3/
+  role: theoretical-foundation
+  relevance_note: >
+    Proves anisotropy is inherent to the self-attention mechanism itself, not just a
+    consequence of cross-entropy training on long-tailed token distributions.
+    Observed across modalities (NLP, vision), ruling out data-distribution explanations.
+    LINK TO OUR WORK: Strengthens the argument that BCS compression is a fundamental
+    architectural limitation, not fixable by better prompting or model choice.
+    Supports our position that structural decomposition (SDGD) is necessary precisely
+    because the embedding space has inherent geometric constraints.
+
+- id: rajaee-cluster-isotropy-2021
+  title: "A Cluster-based Approach for Improving Isotropy in Contextual Embedding Space"
+  authors: [Sara Rajaee, Mohammad Taher Pilehvar]
+  year: 2021
+  venue: ACL 2021
+  url: https://aclanthology.org/2021.acl-short.73/
+  role: theoretical-foundation
+  relevance_note: >
+    Shows local (within-cluster) assessment of isotropy is more accurate than global assessment.
+    Cluster-specific dominant directions encode structural (not semantic) information;
+    removing them improves semantic task performance.
+    LINK TO OUR WORK: Supports that within a semantic domain (one cluster), the dominant
+    directions capture domain-level features rather than fine-grained type distinctions.
+    This explains why MAVEN type embeddings are compressed: the shared "event-ness"
+    dominates over type-specific semantics in the local embedding geometry.
+
+# =============================================================================
+# NOVELTY THREAT ASSESSMENT (2026-05-15)
+# =============================================================================
+#
+# 1. "Type count vs type confusability" disentangling:
+#    ✅ NOVELTY SAFE — No prior work explicitly disentangles these two factors.
+#    - IEPILE hard negatives: closest, but for training, not inference-time decomposition.
+#    - Familiarity metric: measures label similarity for evaluation bias, not extraction.
+#    - CROSSAGENTIE: resolves type confusion via debate, doesn't model as degradation channel.
+#    Our multi-channel degradation model (count + confusability + context) is novel.
+#
+# 2. Schema decomposition baselines to compare:
+#    - LLM-PEE (similarity partitioning) — MUST compare
+#    - PARSE (LLM-driven schema rewriting) — MUST compare
+#    - DEE (task-level decomposition) — discuss in related work
+#    - SPT (schema as tools) — discuss in related work
+#    - DLISC (Dual-LoRA schema caching) — discuss in related work
+#
+# 3. "Lost in the Middle" for IE:
+#    ✅ OPPORTUNITY — No follow-up work applying it to IE task found.
+#    We can be first to connect positional bias to schema prompt design.
+#
+# 4. Multi-agent approaches (CROSSAGENTIE, CMAS):
+#    Growing area. Position clearly: we reduce confusion proactively via decomposition,
+#    they resolve it reactively via debate. Complementary, not conflicting.
+#
+# 5. Overall novelty position:
+#    STRONG — no prior work proposes (a) a formal multi-channel degradation model for
+#    schema complexity in LLM IE, or (b) a DAG-based schema decomposition optimized
+#    for type confusability. Main risk is CROSSAGENTIE's cross-type debate framing.

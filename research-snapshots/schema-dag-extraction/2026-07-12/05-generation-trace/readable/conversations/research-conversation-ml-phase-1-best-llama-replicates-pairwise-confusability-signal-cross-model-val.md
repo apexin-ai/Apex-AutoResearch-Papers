@@ -1,0 +1,2435 @@
+# Research conversation: 你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义： 含义：LLaMA replicates pairwise confusability signal (cross-model validated); SDGD
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction? (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 13
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-1/4f278ef0-1b4e-4870-ab4a-118f61f2ab25.jsonl`
+- **Structured JSON:** [`d99111c5c6d6aa6e79a5.json`](../../sessions/d9/d99111c5c6d6aa6e79a5.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-15T14:09:38.642Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T14:09:38.642Z",
+  "sessionId": "4f278ef0-1b4e-4870-ab4a-118f61f2ab25",
+  "content": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：\n\n含义：LLaMA replicates pairwise confusability signal (cross-model validated); SDGD v2 with merge-dedup achieves F1 gain over single-pass. All three claims hold.\n核心假设：['exp-012 LLaMA pairwise r≥0.10 (p<0.01) on Few-NERD, confusion ratio ≥5x', 'SDGD v2 solves merge amplification (precision drop <5pp vs single-pass)', 'SDGD v2 F1 > single-pass on Few-NERD (≥66 types) by ≥2pp', 'Embedding sensitivity does not block SDGD practical use (Qwen3 or MiniLM sufficient per task)']\n关键指标范围：{'llama_pairwise_r': [0.1, 0.2], 'llama_pairwise_p': ['1e-12', 0.01], 'llama_confusion_ratio_extreme': [5, 30], 'sdgd_v2_f1_delta_vs_single_pass': [0.02, 0.08], 'sdgd_v2_precision_drop_vs_single_pass': [-0.05, 0.02], 'cross_model_bcs_effect_delta_pp': [-35, -15]}\n叙事方向：Original 3-claim framing intact. Empirical study (Claims 1+2) validated cross-task (NER/RE/ED) and cross-model (Qwen3/LLaMA). SDGD (Claim 3) as principled operationalization with positive results. Centrality confound as methodological contribution. Headline: pairwise confusability is a generalizable, actionable signal for LLM IE schema design.\n\n基于以上定义，对 experiment_plan 中每个 planned 实验展开详细数据。\n每条预测都必须给出 result_rationale —— 解释为什么在这个档位下会得到这样的结果。\n\n# Project context\nproject: schema-dag-extraction\nfocus: 80-rel FewRel formal results now available (Δ=-31.2pp, 3.4x scaling). SDGD-zero negative (exp-008). exp-012 multi-model in progress. Evaluate whether Claim 3 (SDGD) should pivot to analysis-only paper or attempt SDGD v2.\n\n## paper_framing.md\n\n# Paper Framing — schema-dag-extraction\n\n## Target Venue\n- Primary: EMNLP 2026 Main (ARR May 25 cycle)\n- Commitment deadline: August 2, 2026\n- Fallback: EMNLP 2026 Findings (same ARR cycle, commitment August 26)\n- Deadline: ARR May 25, 2026 (10 days from today)\n\n## Core Claims (3 conditions) — Revised per D012\n\n1. **Confusability Independence**: Type confusability independently predicts extraction quality degradation in training-free LLM IE, beyond what type count alone explains. The signal is strongest and most robust at the **type-pair level** (pairwise SCS → confusion), validated across NER (Few-NERD), RE (FewRel), and ED (MAVEN with MiniLM). Per-type aggregation (mean BCS) introduces a centrality confound in semantically homogeneous schemas. Evidence required: (a) significant pairwise SCS-confusion correlation on >=2 datasets, (b) extreme-batch accuracy gap on FewRel, (c) >=2 models.\n\n2. **Multi-Channel Degradation**: Count and confusability degrade extraction through orthogonal channels -- count causes entity omission (recall decline), while confusability causes type confusion errors (correct spans labeled with wrong types). Evidence required: error taxonomy showing differential error types per channel, monotonic trends in separate metrics.\n\n3. **SDGD Effectiveness**: Confusability-aware schema decomposition (SDGD) -- partitioning types into low-confusability batches via graph coloring on the pairwise-similarity-thresholded graph -- yields significant F1 gains over single-pass and heuristic decomposition on complex schemas (>=30 types). SDGD directly leverages pairwise confusability (validated signal), avoiding per-type aggregation confounds. Evidence required: SDGD > single-pass, SDGD > random batching (same k), SDGD >= per-type splitting (with lower latency).\n\n## Story Spine — Revised per D012\n\n- **Problem**: Training-free LLM IE degrades severely on complex schemas (20-60 F1 gap vs supervised). All existing decomposition approaches operate on unvalidated assumptions about WHAT makes schemas complex for LLMs.\n\n- **Existing approaches & their gaps**: UniNER splits per-type (gains 3.3 F1 but loses cross-type context, no criterion for when to split). LLM-PEE uses similarity as implicit confusability proxy (never validated empirically). No prior work isolates confusability from count, or characterizes when aggregated confusability measures lose signal.\n\n- **Our framing**: We conduct the first controlled empirical study isolating type confusability from type count in training-free LLM IE across three tasks (NER, RE, ED). We discover: (1) a multi-channel degradation model (count→recall, confusability→type confusion), (2) pairwise type confusability is a robust cross-task signal, (3) per-type aggregation of confusability is confounded by type centrality in homogeneous schemas. We operationalize pairwise confusability into SDGD, a principled framework for confusability-minimizing schema decomposition.\n\n- **Three-task validation**:\n  - NER (Few-NERD, 66 types, cross-domain): Pairwise r=0.156 (p<1e-11), per-type ρ=-0.293 (p=0.02), 10-28x confusion ratio\n  - RE (FewRel, 80 relations, cross-domain): BCS-controlled Δ=-31.2pp (80-rel formal); count curve acc 85.7%→50.4%; BCS effect scales 3.4x vs 16-rel\n  - ED (MAVEN, 168 event types, same-domain): Pairwise MiniLM r=0.120 (p≈0); per-type positive (centrality confound case study)\n\n- **Headline result template**: \"Pairwise type confusability independently predicts extraction degradation across NER, RE, and ED tasks (r=0.12-0.16, p<1e-6), with 10-28x more type confusion errors in high-confusability batches. On semantically homogeneous schemas, per-type aggregation obscures the signal through centrality confounding, but pairwise confusability remains valid. SDGD-zero, operating on pairwise similarity, improves F1 by X points over single-pass on Few-NERD.\"\n\n## Core Insight — Multi-Channel Degradation + Pairwise Robustness\n\nSchema-induced degradation in LLM IE is not a single phenomenon but a multi-channel process:\n- **Channel 1 (Count -> Recall)**: More types in the prompt → attention dilution → entities missed. Monotonic, near-linear. Addressable by reducing batch size.\n- **Channel 2 (Confusability -> Type Confusion)**: Semantically similar co-present types → interference during type assignment → correct entities labeled with wrong types. Addressable by separating confusable types into different batches.\n\nThese channels are orthogonal and independently addressable.\n\n**Pairwise vs Aggregated Confusability**:\n- **Pairwise confusability** (SCS between type pairs) is robust across all tasks and schema types. Validated on Few-NERD (Qwen3, r=0.156) and MAVEN (MiniLM, r=0.120).\n- **Per-type aggregation** (mean BCS = average pairwise similarity to all other types) introduces a centrality confound: in semantically homogeneous schemas (MAVEN), types with many semantic neighbors are central, well-represented types that LLMs extract well → positive correlation (high mean BCS → high F1), masking the pairwise confusability signal.\n- **SDGD operates at pairwise level**, directly using the validated signal to construct the confusability graph for decomposition. It avoids the aggregation confound entirely.\n\n## Evidence Hierarchy (D012)\n\n### Tier 1: PRIMARY — Pairwise SCS → Confusion\n\nThe cleanest evidence. Directly measures: are semantically similar type pairs more often confused?\n\n**Few-NERD (NER)** — Qwen3 embeddings:\n- Pearson r=0.156 (p=4.6e-12, n=1953 type pairs)\n- Nonzero-only Spearman ρ=0.254 (p=1.1e-6)\n- Top confused pairs are all high-BCS semantic neighbors (person-other ↔ person-politician, BCS=0.934)\n- Immune to type frequency confound (operates at type-pair level)\n\n**MAVEN (ED)** — MiniLM embeddings:\n- Pearson r=+0.120 (p≈0, n=11026 type pairs)\n- Nonzero-only Spearman ρ=+0.191 (p<0.001)\n- Cross-task replication on same-domain schema\n- Note: Qwen3 pairwise not significant on MAVEN (r=-0.007, p=0.41) — embedding choice matters for pairwise signal in homogeneous schemas\n\n### Tier 2: STRONG SECONDARY — FewRel Cross-Task Replication\n\nLarge effect size, cross-task (RE), scaling with schema complexity:\n\n**Formal 80-rel study** (exp_fewrel_formal_80rel):\n- Count curve: acc 85.7% (count=1) → 50.4% (count=80), BCS 0→0.97\n- BCS-controlled: count_8 low-BCS 82.3% vs high-BCS 51.0% (Δ=-31.2pp)\n- BCS-controlled: count_16 low-BCS 82.8% vs high-BCS 51.6% (Δ=-31.2pp)\n- **Scaling**: vs 16-rel, degradation 2.8x (35.3pp vs 12.6pp), BCS effect 3.4x (-31.2pp vs -9.1pp)\n\n**16-rel sanity check** (exp_fewrel_formal):\n- count_8: low-BCS 88.9% vs high-BCS 79.8% (Δ=-9.1pp)\n\n**Pilot extreme batches** (fewrel_pilot, MiniLM):\n- count_4: Δ=-20.9pp, count_8: Δ=-50.0pp, count_16: Δ=-48.6pp\n\nKey insight: confusability effect amplifies with schema size — direct evidence for multi-channel degradation scaling\n\n### Tier 3: SUPPORTING — Few-NERD Per-type Analysis\n\nBridges pairwise and batch-level, demonstrates per-type signal in cross-domain schema:\n- Spearman ρ=-0.293 (p=0.020, n=63 types, freq≥5) — Qwen3 embeddings\n- Partial r=-0.200 (p=0.116) controlling for log-frequency\n- Quartile comparison: high-BCS types F1=0.228 vs low-BCS F1=0.310 (Δ=-8.2pp)\n- BCS-frequency uncorrelated at type level (r=0.042, p=0.74)\n- MiniLM per-type: ρ≈0 (p=0.97) — extraction model alignment required for per-type signal\n\n### Tier 4: DISCUSSION — MAVEN Per-type Centrality Confound\n\nMethodological case study on when aggregated confusability measures fail:\n- Qwen3 per-type: ρ=+0.189 (p=0.021) — OPPOSITE direction\n- MiniLM per-type: ρ=+0.208 (p=0.011) — ALSO positive, ruling out embedding compression as sole explanation\n- Both embeddings agree: positive direction on MAVEN is an intrinsic property of the type structure\n- Explanation: in homogeneous schemas, mean BCS conflates confusability with type centrality (types with many semantic neighbors → common/central types → higher F1)\n- This is stronger than \"domain boundary\" — it identifies the specific mechanism (aggregation confound) rather than just the boundary condition\n\n### Tier 5: MECHANISTIC — Error Taxonomy\n\nConfusion rate differential demonstrates the mechanism:\n- Extreme batches: high-BCS 10-28x more type confusion errors vs low-BCS\n- Random batches: 1.7-2.4x ratio (still significant, smaller effect)\n- Type confusion errors increase with count AND with confusability (additive)\n\n## Embedding Ablation (D010)\n\n2×3 matrix: {Qwen3, MiniLM} × {Few-NERD, FewRel, MAVEN}\n\n### Per-type (Layer 2)\n| | Few-NERD | FewRel | MAVEN |\n|---|---|---|---|\n| Qwen3 | ρ=-0.293 ✓ | pending | ρ=+0.189 ✗ |\n| MiniLM | ρ≈0 ✗ | Δ=21-50pp ✓ | ρ=+0.208 ✗ |\n\n### Pairwise (Layer 1)\n| | Few-NERD | MAVEN |\n|---|---|---|\n| Qwen3 | r=0.156 ✓ | r=-0.007 ✗ |\n| MiniLM | — | r=+0.120 ✓ |\n\n**Interpretation**: No single embedding dominates. Extraction-model embeddings (Qwen3) capture per-type confusability in cross-domain schemas. Generic embeddings (MiniLM) capture pairwise confusability in same-domain schemas. SDGD should use task-appropriate embeddings; SDGD-cal (empirical confusion) bypasses embedding choice entirely.\n\n## Venue Fit Risks\n\n- **\"Just an empirical study\"**: Mitigated by SDGD as direct operationalization. Controlled experimental design parallels \"Lost in the Middle\" (TACL 2024).\n- **Training-free IE relevance**: Cite deployment scenarios — clinical, regulatory, multilingual.\n- **Multi-model generalizability**: Qwen3-32B primary + LLaMA-3.3-70B (exp-012).\n- **MAVEN doesn't support hypothesis?**: Pairwise MiniLM does support it. Per-type centrality confound is methodological contribution, not failure.\n- **Embedding sensitivity**: 2×3 ablation matrix is itself a contribution — characterizes when which proxy works.\n\n## Anticipated Reviewer Concerns\n\n| Concern | Response Strategy | Experiment |\n|---------|------------------|------------|\n| Only one model | LLaMA-3.3-70B replication | exp-012 |\n| Cross-task replication | Pairwise: Few-NERD ✓ + MAVEN MiniLM ✓. Batch: FewRel ✓. Three tasks. | exp-002, exp-004, fewrel |\n| No practical method | SDGD framework (-zero, -cal) | exp-008 to exp-011 |\n| Confusability measure validity | Embedding ablation (D010) + pairwise vs per-type analysis | D010, exp-015 |\n| Effect size small | Pairwise r=0.12-0.16 + FewRel Δ=21-50pp + confusion ratio 10-28x | multiple |\n| MAVEN per-type opposite | Centrality confound analysis; pairwise still works | MAVEN MiniLM |\n| Embedding choice matters? | 2×3 ablation table; SDGD-cal bypasses embedding entirely | D010 |\n| Why not per-type splitting? | SDGD vs per-type vs random ablation | exp-013, exp-014 |\n| Latency overhead | Report API calls and wall-clock time | exp-008 |\n\n\n## experiment_plan (with registry status)\n\n- id: exp-001\n  claim:\n  - 1\n  - 2\n  description: 'Count curve baseline: recall/precision/F1 across type counts [1,2,6,12,22,44,66]\n    on Few-NERD with Qwen3-32B-FP8'\n  priority: P0\n  gpu_budget_hours: 3.5\n  deps: []\n  registry_id: exp001_count_baseline\n  status_note: DONE. Recall 0.72->0.42 monotonic. WrongType 0->2434. Over-prediction\n    at low counts.\n  status: DONE\n  conclusion: success\n  metrics:\n    diagnosis: char offset 96.5% fabricated by model\n    text_match_reeval:\n      count_1:\n        f1: 0.184\n        precision: 0.105\n        recall: 0.72\n        pred_gold_ratio: 6.85\n      count_2:\n        f1: 0.123\n        precision: 0.068\n        recall: 0.698\n        pred_gold_ratio: 10.33\n      count_6:\n        f1: 0.155\n        precision: 0.088\n        recall: 0.62\n        pred_gold_ratio: 7.02\n      count_12:\n        f1: 0.246\n        precision: 0.16\n        recall: 0.539\n        pred_gold_ratio: 3.38\n      count_22:\n        f1: 0.322\n        precision: 0.232\n        recall: 0.527\n        pred_gold_ratio: 2.27\n      count_44:\n        f1: 0.473\n        precision: 0.414\n        recall: 0.551\n        pred_gold_ratio: 1.33\n      count_64:\n        f1: 0.463\n        precision: 0.52\n        recall: 0.418\n        pred_gold_ratio: 0.8\n    key_finding: recall monotonically decreases (0.72→0.42), precision monotonically\n      increases (0.11→0.52) due to over-prediction reduction. F1 inverted-U peak at\n      count_44\n    wrong_type_trend: 'type confusion increases with count: 0→2434, supports confusability\n      hypothesis'\n    spurious_dominant: spurious FPs (text in source but not entity) dominate at low\n      count, not hallucination\n    conclusion_text_match: F1 curve inversion caused by over-prediction confound,\n      NOT absence of confusability effect. Recall curve + type confusion pattern support\n      hypothesis.\n- id: exp-002\n  claim:\n  - 1\n  - 2\n  description: 'Confusability controlled: within-count r(metric, BCS) at count=6/12,\n    25 random + extreme batches on Few-NERD'\n  priority: P0\n  gpu_budget_hours: 3\n  deps:\n  - exp-001\n  registry_id: exp002_confusability_controlled\n  status_note: DONE. Partial r=0.303 (p=0.026), count_12 r=0.501 (p=0.008). Confusion\n    rate 10-28x.\n  status: DONE\n  conclusion: success\n  metrics:\n    data_source: exp2_reeval_results.json (text_match, CLEAN)\n    primary_recall_vs_bcs:\n      count_6:\n        r: 0.2754\n        p: 0.1644\n        n: 27\n        verdict: FAIL\n      count_12:\n        r: 0.2219\n        p: 0.266\n        n: 27\n        verdict: FAIL\n      partial:\n        r: 0.2522\n        p: 0.0658\n        n: 54\n        verdict: FAIL\n    secondary_f1_vs_bcs:\n      count_6:\n        r: 0.1754\n        p: 0.3814\n        n: 27\n        verdict: FAIL\n      count_12:\n        r: 0.5012\n        p: 0.0077\n        n: 27\n        verdict: PASS\n      partial:\n        r: 0.3025\n        p: 0.0262\n        n: 54\n        verdict: PASS\n    mechanistic_confusion_rate:\n      random_batches:\n        count_6_high: 0.0157\n        count_6_low: 0.0088\n        ratio_6: 1.7\n        count_12_high: 0.0304\n        count_12_low: 0.0131\n        ratio_12: 2.4\n      extreme_batches:\n        count_6_high: 0.0728\n        count_6_low: 0.0014\n        ratio_6: 27.5\n        count_12_high: 0.048\n        count_12_low: 0.0061\n        ratio_12: 9.9\n      verdict: PASS\n    pairwise_confusion_analysis:\n      all:\n        n_pairs: 1953\n        pearson_r: 0.156\n        pearson_p: 4.6e-12\n        spearman_rho: 0.16\n        spearman_p: 1.3e-12\n      count_6:\n        n_pairs: 1770\n        pearson_r: 0.078\n        pearson_p: 0.001\n      count_12:\n        n_pairs: 1953\n        pearson_r: 0.147\n        pearson_p: 6.7e-11\n      nonzero_only:\n        all_spearman_rho: 0.254\n        all_spearman_p: 1.1e-06\n        count_12_pearson_r: 0.212\n        count_12_p: 0.00034\n      top_confused_pair: person-other <-> person-politician (BCS=0.934, confusion=156)\n    per_type_analysis:\n      n_types: 63\n      filter: freq>=5\n      micro_f1_vs_bcs:\n        pearson_r: -0.1828\n        pearson_p: 0.1516\n        spearman_rho: -0.2927\n        spearman_p: 0.0199\n        partial_r_ctrl_logfreq: -0.1998\n        partial_p: 0.1163\n      mean_f1_vs_bcs:\n        pearson_r: -0.1374\n        pearson_p: 0.283\n        spearman_rho: -0.2412\n        spearman_p: 0.0568\n        partial_r_ctrl_logfreq: -0.1428\n        partial_p: 0.2641\n      quartile_comparison:\n        low_bcs_cutoff: 0.798\n        high_bcs_cutoff: 0.827\n        low_bcs_f1: 0.3098\n        high_bcs_f1: 0.2275\n        delta_f1: -0.0823\n        low_bcs_freq: 2134\n        high_bcs_freq: 2049\n      confound_check:\n        bcs_vs_logfreq_r: 0.042\n        bcs_vs_logfreq_p: 0.74\n        logfreq_vs_f1_r: 0.25\n        logfreq_vs_f1_p: 0.048\n      verdict: Direction supports hypothesis. Spearman significant (p=0.02). Frequency\n        confound absent at type level (r=0.04).\n    overall_verdict: PRIMARY FAIL, SECONDARY PARTIAL PASS, MECHANISTIC PASS, PAIRWISE\n      STRONG PASS, PER-TYPE DIRECTIONAL PASS\n- id: exp-003a\n  claim:\n  - 1\n  - 2\n  description: 'Prompt v2 rerun: clean data without offset fabrication, anti-hallucination\n    instruction. Re-run exp1+exp2.'\n  priority: P0\n  gpu_budget_hours: 3\n  deps:\n  - exp-001\n  - exp-002\n  registry_id: exp003a_prompt_v2_rerun\n  status_note: FAILED (EXIT_CODE=2 syntax error). Needs fix and re-run.\n  status: DONE\n  conclusion: success\n  metrics:\n    eval_mode: text_match\n    exp1_text_match:\n      count_1:\n        f1: 0.323\n        precision: 0.216\n        recall: 0.641\n        pred_gold_ratio: 2.97\n        n_batches: 64\n      count_2:\n        f1: 0.273\n        precision: 0.18\n        recall: 0.56\n        pred_gold_ratio: 3.11\n        n_batches: 5\n      count_6:\n        f1: 0.306\n        precision: 0.226\n        recall: 0.475\n        pred_gold_ratio: 2.1\n        n_batches: 5\n      count_12:\n        f1: 0.347\n        precision: 0.367\n        recall: 0.329\n        pred_gold_ratio: 0.9\n        n_batches: 5\n      count_22:\n        f1: 0.299\n        precision: 0.339\n        recall: 0.267\n        pred_gold_ratio: 0.79\n        n_batches: 5\n      count_44:\n        f1: 0.445\n        precision: 0.506\n        recall: 0.396\n        pred_gold_ratio: 0.78\n        n_batches: 5\n      count_64:\n        f1: 0.414\n        precision: 0.648\n        recall: 0.304\n        pred_gold_ratio: 0.47\n        n_batches: 5\n    exp2_text_match:\n      count_6:\n        f1: 0.32\n        precision: 0.26\n        recall: 0.416\n        pred_gold_ratio: 1.6\n        n_batches: 27\n      count_12:\n        f1: 0.306\n        precision: 0.291\n        recall: 0.323\n        pred_gold_ratio: 1.11\n        n_batches: 27\n    vs_exp001_delta:\n      count_1:\n        f1_delta: +0.139 (+76%)\n        precision_delta: +0.111 (+106%)\n        recall_delta: -0.079 (-11%)\n        overpred_fix: 6.85→2.97\n      count_6:\n        f1_delta: +0.151 (+97%)\n        precision_delta: +0.138 (+157%)\n        recall_delta: -0.145 (-23%)\n      count_12:\n        f1_delta: +0.101 (+41%)\n        precision_delta: +0.207 (+129%)\n        recall_delta: -0.210 (-39%)\n      count_44:\n        f1_delta: -0.028 (-6%)\n        precision_delta: +0.092 (+22%)\n        recall_delta: -0.155 (-28%)\n      count_64:\n        f1_delta: -0.049 (-11%)\n        precision_delta: +0.128 (+25%)\n        recall_delta: -0.114 (-27%)\n    key_finding: 'V2 prompt dramatically reduced over-prediction (pred/gold from 6.85x\n      to 2.97x at count_1), boosting precision and F1 at low counts (+76% F1 at count_1).\n      But over-corrected at high counts: under-prediction (pred/gold<1) caused recall\n      drops of 27-39%, slightly lowering F1 at count_22-64.'\n- id: exp-004\n  claim:\n  - 1\n  - 2\n  - 3\n  description: 'MAVEN confusability study: count curve + within-count BCS correlation\n    on MAVEN Event Detection (168 event types, FrameNet hierarchy). Replicates core\n    finding cross-task (NER→ED) with larger type space and known sibling confusion\n    (14.6-19.8%).'\n  priority: P0\n  gpu_budget_hours: 4\n  deps:\n  - exp-003a\n  registry_id: exp-004\n  status_note: 'DONE (success). MAVEN count curve replicated. Also: exp004_maven_bcs\n    (negative) — BCS within-count correlation weaker on MAVEN due to FrameNet hierarchy\n    structure.'\n  status: DONE\n  conclusion: success\n  metrics:\n    n_event_types: 168\n    n_pairs: 14028\n    scs_mean: 0.2161\n    scs_std: 0.103\n    scs_max: 0.8368\n    scs_median: 0.2121\n    scs_q90: 0.3457\n    scs_q95: 0.3892\n    pairs_above_0.5: 119\n    pct_above_0.5: 0.85\n    train_docs: 2913\n    train_mentions: 77993\n    valid_docs: 710\n    valid_mentions: 18904\n- id: exp-005\n  claim:\n  - 1\n  - 2\n  description: 'DocRED confusability study: count curve + BCS correlation on DocRED\n    (96 relation types). Scaling stress test.'\n  priority: P1\n  gpu_budget_hours: 5\n  deps:\n  - exp-003a\n  status: planned\n- id: exp-006\n  claim:\n  - 2\n  description: 'Interaction effect 2x2: {low count, high count} x {low BCS, high BCS}\n    on Few-NERD. Tests additive vs multiplicative interaction between count and confusability.'\n  priority: P1\n  gpu_budget_hours: 2\n  deps:\n  - exp-003a\n  status: planned\n- id: exp-007\n  claim:\n  - 2\n  description: 'Error taxonomy: systematic FP classification (type_substitution /\n    boundary_error / false_negative / hallucination) across BCS bins. Mechanistic\n    evidence for multi-channel model.'\n  priority: P1\n  gpu_budget_hours: 1\n  deps:\n  - exp-002\n  status_note: Partially done via reeval_text_match.py FP three-way. Needs systematic\n    BCS-binned analysis.\n  status: planned\n- id: exp-012\n  claim:\n  - 1\n  - 2\n  description: 'Multi-model validation: replicate exp-002 protocol with >=1 additional\n    model (candidate: Qwen2.5-72B-Instruct or LLaMA-3.3-70B-Instruct). Addresses single-model\n    generalizability.'\n  priority: P0\n  gpu_budget_hours: 6\n  deps:\n  - exp-003a\n  registry_id: exp012_llama_fewnerd\n  status: QUEUED\n- id: exp-016\n  claim:\n  - 1\n  - 2\n  description: 'FewRel cross-task replication: count curve + BCS correlation on FewRel\n    RE (80 relation types with --use_all). Replicates confusability effect NER→RE.\n    Pilot (fewrel_pilot) confirmed signal; formal run with full count curve [1,4,8,16,32,64,80].'\n  priority: P0\n  gpu_budget_hours: 4\n  deps:\n  - exp-003a\n  registry_id: exp_fewrel_formal\n  status_note: RUNNING (16-rel version). Will rerun with --use_all for 80-rel full\n    count curve after current run completes.\n  status: DONE\n  conclusion: success\n  metrics:\n    note: 16-rel sanity check only\n    exp1:\n      count_1:\n        mean_acc: 0.904\n        n_batches: 16\n      count_4:\n        mean_acc: 0.932\n        n_batches: 5\n      count_8:\n        mean_acc: 0.867\n        n_batches: 5\n      count_16:\n        mean_acc: 0.778\n        n_batches: 5\n        bcs: 0.9\n        zero_variance: true\n    exp2:\n      count_8_low_bcs:\n        acc: 0.889\n        bcs: 0.782\n      count_8_high_bcs:\n        acc: 0.798\n        bcs: 0.892\n      delta_bcs_effect: -0.091\n    trend: 'count↑ → accuracy↓ confirmed. BCS effect: low-BCS 88.9% vs high-BCS 79.8%\n      (Δ=-9.1pp)'\n- id: exp-008\n  claim:\n  - 3\n  description: 'SDGD-zero on Few-NERD: confusability-minimizing batch composition\n    via embedding SCS + graph coloring. Compare vs single-pass full-schema baseline.'\n  priority: P0\n  gpu_budget_hours: 3\n  deps:\n  - exp-003a\n  registry_id: exp008_sdgd_zero_fewnerd_r2\n  status_note: 'DONE (negative). R2 attempt: SDGD-zero did not outperform single-pass\n    baseline on Few-NERD. R1 (exp008_sdgd_zero_fewnerd) failed with script error.'\n  status: DONE\n  conclusion: negative\n  metrics:\n    single_pass:\n      f1: 0.4451\n      precision: 0.5631\n      recall: 0.3679\n      batches: 1\n      time_s: 77.3\n    sdgd_zero:\n      f1: 0.2514\n      precision: 0.2096\n      recall: 0.3141\n      batches: 8\n      time_s: 408.7\n    random_batch:\n      f1: 0.3197\n      precision: 0.2491\n      recall: 0.4462\n      batches: 8\n      time_s: 476.1\n    per_type:\n      f1: 0.2915\n      precision: 0.194\n      recall: 0.5856\n      batches: 66\n      time_s: 2532.2\n    key_finding: All decomposition modes F1 < single_pass. Decomposition boosts recall\n      but kills precision (merge amplification). sdgd_zero worst F1, even below random_batch.\n- id: exp-009\n  claim:\n  - 3\n  description: 'SDGD-zero on MAVEN: confusability-minimizing batch composition on\n    168 event types. Compare vs single-pass + random batching. Cross-task validation\n    of SDGD framework (NER→ED).'\n  priority: P0\n  gpu_budget_hours: 4\n  deps:\n  - exp-004\n  - exp-008\n  status: planned\n- id: exp-010\n  claim:\n  - 3\n  description: 'SDGD-cal on Few-NERD: empirical confusability from 5-10 calibration\n    examples (no gradients). Compare vs SDGD-zero.'\n  priority: P1\n  gpu_budget_hours: 4\n  deps:\n  - exp-008\n  status: planned\n- id: exp-011\n  claim:\n  - 3\n  description: 'SDGD-cal on MAVEN: empirical confusability with calibration on 168\n    event types. Full comparison table.'\n  priority: P1\n  gpu_budget_hours: 4\n  deps:\n  - exp-009\n  - exp-010\n  status: planned\n- id: exp-013\n  claim:\n  - 3\n  description: 'Ablation: random batching -- same batch count k as SDGD, random composition.\n    Isolates confusability-aware grouping from batch count reduction.'\n  priority: P0\n  gpu_budget_hours: 3\n  deps:\n  - exp-008\n  status: planned\n- id: exp-014\n  claim:\n  - 3\n  description: 'Ablation: per-type splitting (UniNER-style, 1 type per batch). Upper\n    bound on decomposition benefit. Reveals latency vs quality tradeoff.'\n  priority: P1\n  gpu_budget_hours: 3\n  deps:\n  - exp-008\n  status: planned\n- id: exp-015\n  claim:\n  - 1\n  description: 'SCS validation: Spearman/Kendall rank correlation between embedding\n    SCS and empirical confusion matrix. Validates embedding proxy for practical use.'\n  priority: P1\n  gpu_budget_hours: 1\n  deps:\n  - exp-010\n  status: planned\n\n\n## registry (completed experiments)\n\n- exp_id: exp001_count_baseline\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    diagnosis: char offset 96.5% fabricated by model\n    text_match_reeval:\n      count_1:\n        f1: 0.184\n        precision: 0.105\n        recall: 0.72\n        pred_gold_ratio: 6.85\n      count_2:\n        f1: 0.123\n        precision: 0.068\n        recall: 0.698\n        pred_gold_ratio: 10.33\n      count_6:\n        f1: 0.155\n        precision: 0.088\n        recall: 0.62\n        pred_gold_ratio: 7.02\n      count_12:\n        f1: 0.246\n        precision: 0.16\n        recall: 0.539\n        pred_gold_ratio: 3.38\n      count_22:\n        f1: 0.322\n        precision: 0.232\n        recall: 0.527\n        pred_gold_ratio: 2.27\n      count_44:\n        f1: 0.473\n        precision: 0.414\n        recall: 0.551\n        pred_gold_ratio: 1.33\n      count_64:\n        f1: 0.463\n        precision: 0.52\n        recall: 0.418\n        pred_gold_ratio: 0.8\n    key_finding: recall monotonically decreases (0.72→0.42), precision monotonically\n      increases (0.11→0.52) due to over-prediction reduction. F1 inverted-U peak at\n      count_44\n    wrong_type_trend: 'type confusion increases with count: 0→2434, supports confusability\n      hypothesis'\n    spurious_dominant: spurious FPs (text in source but not entity) dominate at low\n      count, not hallucination\n    conclusion_text_match: F1 curve inversion caused by over-prediction confound,\n      NOT absence of confusability effect. Recall curve + type confusion pattern support\n      hypothesis.\n- exp_id: exp002_confusability_controlled\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    data_source: exp2_reeval_results.json (text_match, CLEAN)\n    primary_recall_vs_bcs:\n      count_6:\n        r: 0.2754\n        p: 0.1644\n        n: 27\n        verdict: FAIL\n      count_12:\n        r: 0.2219\n        p: 0.266\n        n: 27\n        verdict: FAIL\n      partial:\n        r: 0.2522\n        p: 0.0658\n        n: 54\n        verdict: FAIL\n    secondary_f1_vs_bcs:\n      count_6:\n        r: 0.1754\n        p: 0.3814\n        n: 27\n        verdict: FAIL\n      count_12:\n        r: 0.5012\n        p: 0.0077\n        n: 27\n        verdict: PASS\n      partial:\n        r: 0.3025\n        p: 0.0262\n        n: 54\n        verdict: PASS\n    mechanistic_confusion_rate:\n      random_batches:\n        count_6_high: 0.0157\n        count_6_low: 0.0088\n        ratio_6: 1.7\n        count_12_high: 0.0304\n        count_12_low: 0.0131\n        ratio_12: 2.4\n      extreme_batches:\n        count_6_high: 0.0728\n        count_6_low: 0.0014\n        ratio_6: 27.5\n        count_12_high: 0.048\n        count_12_low: 0.0061\n        ratio_12: 9.9\n      verdict: PASS\n    pairwise_confusion_analysis:\n      all:\n        n_pairs: 1953\n        pearson_r: 0.156\n        pearson_p: 4.6e-12\n        spearman_rho: 0.16\n        spearman_p: 1.3e-12\n      count_6:\n        n_pairs: 1770\n        pearson_r: 0.078\n        pearson_p: 0.001\n      count_12:\n        n_pairs: 1953\n        pearson_r: 0.147\n        pearson_p: 6.7e-11\n      nonzero_only:\n        all_spearman_rho: 0.254\n        all_spearman_p: 1.1e-06\n        count_12_pearson_r: 0.212\n        count_12_p: 0.00034\n      top_confused_pair: person-other <-> person-politician (BCS=0.934, confusion=156)\n    per_type_analysis:\n      n_types: 63\n      filter: freq>=5\n      micro_f1_vs_bcs:\n        pearson_r: -0.1828\n        pearson_p: 0.1516\n        spearman_rho: -0.2927\n        spearman_p: 0.0199\n        partial_r_ctrl_logfreq: -0.1998\n        partial_p: 0.1163\n      mean_f1_vs_bcs:\n        pearson_r: -0.1374\n        pearson_p: 0.283\n        spearman_rho: -0.2412\n        spearman_p: 0.0568\n        partial_r_ctrl_logfreq: -0.1428\n        partial_p: 0.2641\n      quartile_comparison:\n        low_bcs_cutoff: 0.798\n        high_bcs_cutoff: 0.827\n        low_bcs_f1: 0.3098\n        high_bcs_f1: 0.2275\n        delta_f1: -0.0823\n        low_bcs_freq: 2134\n        high_bcs_freq: 2049\n      confound_check:\n        bcs_vs_logfreq_r: 0.042\n        bcs_vs_logfreq_p: 0.74\n        logfreq_vs_f1_r: 0.25\n        logfreq_vs_f1_p: 0.048\n      verdict: Direction supports hypothesis. Spearman significant (p=0.02). Frequency\n        confound absent at type level (r=0.04).\n    overall_verdict: PRIMARY FAIL, SECONDARY PARTIAL PASS, MECHANISTIC PASS, PAIRWISE\n      STRONG PASS, PER-TYPE DIRECTIONAL PASS\n- exp_id: exp003a_prompt_v2_rerun\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    eval_mode: text_match\n    exp1_text_match:\n      count_1:\n        f1: 0.323\n        precision: 0.216\n        recall: 0.641\n        pred_gold_ratio: 2.97\n        n_batches: 64\n      count_2:\n        f1: 0.273\n        precision: 0.18\n        recall: 0.56\n        pred_gold_ratio: 3.11\n        n_batches: 5\n      count_6:\n        f1: 0.306\n        precision: 0.226\n        recall: 0.475\n        pred_gold_ratio: 2.1\n        n_batches: 5\n      count_12:\n        f1: 0.347\n        precision: 0.367\n        recall: 0.329\n        pred_gold_ratio: 0.9\n        n_batches: 5\n      count_22:\n        f1: 0.299\n        precision: 0.339\n        recall: 0.267\n        pred_gold_ratio: 0.79\n        n_batches: 5\n      count_44:\n        f1: 0.445\n        precision: 0.506\n        recall: 0.396\n        pred_gold_ratio: 0.78\n        n_batches: 5\n      count_64:\n        f1: 0.414\n        precision: 0.648\n        recall: 0.304\n        pred_gold_ratio: 0.47\n        n_batches: 5\n    exp2_text_match:\n      count_6:\n        f1: 0.32\n        precision: 0.26\n        recall: 0.416\n        pred_gold_ratio: 1.6\n        n_batches: 27\n      count_12:\n        f1: 0.306\n        precision: 0.291\n        recall: 0.323\n        pred_gold_ratio: 1.11\n        n_batches: 27\n    vs_exp001_delta:\n      count_1:\n        f1_delta: +0.139 (+76%)\n        precision_delta: +0.111 (+106%)\n        recall_delta: -0.079 (-11%)\n        overpred_fix: 6.85→2.97\n      count_6:\n        f1_delta: +0.151 (+97%)\n        precision_delta: +0.138 (+157%)\n        recall_delta: -0.145 (-23%)\n      count_12:\n        f1_delta: +0.101 (+41%)\n        precision_delta: +0.207 (+129%)\n        recall_delta: -0.210 (-39%)\n      count_44:\n        f1_delta: -0.028 (-6%)\n        precision_delta: +0.092 (+22%)\n        recall_delta: -0.155 (-28%)\n      count_64:\n        f1_delta: -0.049 (-11%)\n        precision_delta: +0.128 (+25%)\n        recall_delta: -0.114 (-27%)\n    key_finding: 'V2 prompt dramatically reduced over-prediction (pred/gold from 6.85x\n      to 2.97x at count_1), boosting precision and F1 at low counts (+76% F1 at count_1).\n      But over-corrected at high counts: under-prediction (pred/gold<1) caused recall\n      drops of 27-39%, slightly lowering F1 at count_22-64.'\n- exp_id: exp-004\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    n_event_types: 168\n    n_pairs: 14028\n    scs_mean: 0.2161\n    scs_std: 0.103\n    scs_max: 0.8368\n    scs_median: 0.2121\n    scs_q90: 0.3457\n    scs_q95: 0.3892\n    pairs_above_0.5: 119\n    pct_above_0.5: 0.85\n    train_docs: 2913\n    train_mentions: 77993\n    valid_docs: 710\n    valid_mentions: 18904\n- exp_id: exp004_maven_bcs\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    exp1_count_curve:\n      count_1:\n        n_batches: 64\n        exact_f1: 0.009\n        relaxed_f1: 0.106\n        bcs: 0\n      count_6:\n        n_batches: 5\n        exact_f1: 0.003\n        relaxed_f1: 0.103\n        bcs: 0.892\n      count_12:\n        n_batches: 5\n        exact_f1: 0.008\n        relaxed_f1: 0.146\n        bcs: 0.921\n      count_22:\n        n_batches: 5\n        exact_f1: 0.013\n        relaxed_f1: 0.185\n        bcs: 0.933\n      count_44:\n        n_batches: 5\n        exact_f1: 0.018\n        relaxed_f1: 0.247\n        bcs: 0.967\n      count_64:\n        n_batches: 5\n        exact_f1: 0.013\n        relaxed_f1: 0.245\n        bcs: 0.973\n    exp2_bcs_controlled:\n      count_6_high_bcs:\n        exact_f1: 0.0354\n        relaxed_f1: 0.211\n        bcs: 0.9447\n      count_6_low_bcs:\n        exact_f1: 0.0068\n        relaxed_f1: 0.089\n        bcs: 0.8709\n      count_12_high_bcs:\n        exact_f1: 0.0151\n        relaxed_f1: 0.1568\n        bcs: 0.9447\n      count_12_low_bcs:\n        exact_f1: 0.0068\n        relaxed_f1: 0.105\n        bcs: 0.9148\n    key_finding: 'MAVEN batch-level: high_bcs relaxed_F1 2.4x vs low_bcs (count_6).\n      Direction same as Few-NERD batch-level (positive). Pairwise + per-type analysis\n      needed to control frequency confound.'\n    note: exact_F1 very low (0.003-0.035), relaxed_F1 usable (0.089-0.247). Event\n      trigger boundary matching is fuzzy. A re-run (500 samples) is still in progress\n      in artifacts/exp004/.\n- exp_id: fewrel_pilot\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    embedding: all-MiniLM-L6-v2\n    n_batches: 15\n    n_predictions: 374\n    count_4:\n      low_bcs_acc: 0.917\n      high_bcs_acc: 0.708\n      delta_pp: -20.9\n      low_bcs: 0.42\n      high_bcs: 0.97\n    count_8:\n      low_bcs_acc: 1\n      high_bcs_acc: 0.5\n      delta_pp: -50\n      low_bcs: 0.47\n      high_bcs: 0.97\n    count_16:\n      low_bcs_acc: 0.917\n      high_bcs_acc: 0.431\n      delta_pp: -48.6\n      low_bcs: 0.57\n      high_bcs: 0.97\n    key_finding: 'BCS-accuracy strong negative: high-BCS batches 43-71% vs low-BCS\n      92-100%. Effect increases with count. Cross-task (NER→RE) replication of confusability\n      hypothesis.'\n- exp_id: exp008_sdgd_zero_fewnerd\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: exp008_sdgd_zero_fewnerd_r2\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    single_pass:\n      f1: 0.4451\n      precision: 0.5631\n      recall: 0.3679\n      batches: 1\n      time_s: 77.3\n    sdgd_zero:\n      f1: 0.2514\n      precision: 0.2096\n      recall: 0.3141\n      batches: 8\n      time_s: 408.7\n    random_batch:\n      f1: 0.3197\n      precision: 0.2491\n      recall: 0.4462\n      batches: 8\n      time_s: 476.1\n    per_type:\n      f1: 0.2915\n      precision: 0.194\n      recall: 0.5856\n      batches: 66\n      time_s: 2532.2\n    key_finding: All decomposition modes F1 < single_pass. Decomposition boosts recall\n      but kills precision (merge amplification). sdgd_zero worst F1, even below random_batch.\n- exp_id: exp_fewrel_formal\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    note: 16-rel sanity check only\n    exp1:\n      count_1:\n        mean_acc: 0.904\n        n_batches: 16\n      count_4:\n        mean_acc: 0.932\n        n_batches: 5\n      count_8:\n        mean_acc: 0.867\n        n_batches: 5\n      count_16:\n        mean_acc: 0.778\n        n_batches: 5\n        bcs: 0.9\n        zero_variance: true\n    exp2:\n      count_8_low_bcs:\n        acc: 0.889\n        bcs: 0.782\n      count_8_high_bcs:\n        acc: 0.798\n        bcs: 0.892\n      delta_bcs_effect: -0.091\n    trend: 'count↑ → accuracy↓ confirmed. BCS effect: low-BCS 88.9% vs high-BCS 79.8%\n      (Δ=-9.1pp)'\n- exp_id: exp_fewrel_formal_80rel\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    exp1_count_curve:\n      count_1:\n        acc: 0.8573\n        n_batches: 80\n        bcs: 0\n      count_4:\n        acc: 0.8667\n        n_batches: 5\n        bcs: 0.6335\n      count_8:\n        acc: 0.8021\n        n_batches: 5\n        bcs: 0.7175\n      count_16:\n        acc: 0.6958\n        n_batches: 5\n        bcs: 0.795\n      count_32:\n        acc: 0.6578\n        n_batches: 5\n        bcs: 0.8893\n      count_64:\n        acc: 0.5424\n        n_batches: 5\n        bcs: 0.9434\n      count_80:\n        acc: 0.5042\n        n_batches: 5\n        bcs: 0.9706\n    exp2_bcs_controlled:\n      count_8:\n        low_bcs_acc: 0.8229\n        low_bcs: 0.4715\n        high_bcs_acc: 0.5104\n        high_bcs: 0.9706\n        random_acc: 0.8025\n        delta_pp: -31.2\n      count_16:\n        low_bcs_acc: 0.8281\n        low_bcs: 0.5705\n        high_bcs_acc: 0.5156\n        high_bcs: 0.9706\n        random_acc: 0.7169\n        delta_pp: -31.2\n    vs_16rel:\n      degradation_16rel: -12.6pp (0.904→0.778)\n      degradation_80rel: -35.3pp (0.857→0.504)\n      bcs_effect_16rel: -9.1pp\n      bcs_effect_80rel: -31.2pp\n      amplification: 3.4x\n    key_finding: 80-rel count curve 0.857→0.504 (degradation 35.3pp, 远强于 16-rel 12.6pp).\n      BCS effect -31.2pp (3.4x amplification vs 16-rel). 更多 relations → 更大 confusion\n      space → 更强 degradation + BCS effect.\n- exp_id: exp008_sdgd_v2_fewnerd\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: exp012_llama_fewnerd\n  name: ''\n  status: QUEUED\n  conclusion: ''\n  metrics: {}\n- exp_id: exp007_error_taxonomy\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    exp1_random:\n      bcs_zero:\n        n_fp: 6172\n        intra_sub_pct: 0\n        extra_sub_pct: 90.3\n        intra_sub_per_100_gold: 0\n      bcs_low:\n        n_fp: 2231\n        intra_sub_pct: 1.6\n        extra_sub_pct: 89.9\n        intra_sub_per_100_gold: 3.4\n      bcs_medium:\n        n_fp: 3843\n        intra_sub_pct: 10.6\n        extra_sub_pct: 78.1\n        intra_sub_per_100_gold: 6.47\n      bcs_high:\n        n_fp: 6188\n        intra_sub_pct: 49.4\n        extra_sub_pct: 30.8\n        intra_sub_per_100_gold: 12.93\n    correlation:\n      intra_sub_vs_bcs_spearman_rho: 1\n      intra_sub_vs_bcs_p: <0.001\n      chi_square: 6952\n      chi_square_p: ~0\n    exp2_controlled:\n      trend: IntraSub 3.2% -> 7.3% -> 8.6% (rho=1.0, p<0.001)\n    key_finding: 'BCS>=0.95: 49.4% FP are intra-batch type confusion (13/100 gold).\n      Hallucination+boundary <3%. LLM main error mode is type confusion, not hallucination.'\n\n# 输出格式（YAML，仅输出一个 ```yaml 块）\n\n```yaml\ntier: best\nnarrative_guidance: \"...\"\nimagined_experiments:\n  - name: \"...\"\n    plan_id: \"...\"\n    description: \"...\"\n    expected_results: {metric: value, ...}\n    result_rationale: \"...\"\n    tables: []\n    figures_description: []\n    analysis: \"...\"\n```\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-15T14:09:38.646Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T14:09:38.646Z",
+  "sessionId": "4f278ef0-1b4e-4870-ab4a-118f61f2ab25"
+}
+```
+
+---
+
+## Round 1
+
+11 recorded events
+
+### User
+
+_source line 3 · 2026-05-15T14:09:38.667Z_
+
+你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：
+
+含义：LLaMA replicates pairwise confusability signal (cross-model validated); SDGD v2 with merge-dedup achieves F1 gain over single-pass. All three claims hold.
+核心假设：['exp-012 LLaMA pairwise r≥0.10 (p<0.01) on Few-NERD, confusion ratio ≥5x', 'SDGD v2 solves merge amplification (precision drop <5pp vs single-pass)', 'SDGD v2 F1 > single-pass on Few-NERD (≥66 types) by ≥2pp', 'Embedding sensitivity does not block SDGD practical use (Qwen3 or MiniLM sufficient per task)']
+关键指标范围：{'llama_pairwise_r': [0.1, 0.2], 'llama_pairwise_p': ['1e-12', 0.01], 'llama_confusion_ratio_extreme': [5, 30], 'sdgd_v2_f1_delta_vs_single_pass': [0.02, 0.08], 'sdgd_v2_precision_drop_vs_single_pass': [-0.05, 0.02], 'cross_model_bcs_effect_delta_pp': [-35, -15]}
+叙事方向：Original 3-claim framing intact. Empirical study (Claims 1+2) validated cross-task (NER/RE/ED) and cross-model (Qwen3/LLaMA). SDGD (Claim 3) as principled operationalization with positive results. Centrality confound as methodological contribution. Headline: pairwise confusability is a generalizable, actionable signal for LLM IE schema design.
+
+基于以上定义，对 experiment_plan 中每个 planned 实验展开详细数据。
+每条预测都必须给出 result_rationale —— 解释为什么在这个档位下会得到这样的结果。
+
+# Project context
+project: schema-dag-extraction
+focus: 80-rel FewRel formal results now available (Δ=-31.2pp, 3.4x scaling). SDGD-zero negative (exp-008). exp-012 multi-model in progress. Evaluate whether Claim 3 (SDGD) should pivot to analysis-only paper or attempt SDGD v2.
+
+## paper_framing.md
+
+# Paper Framing — schema-dag-extraction
+
+## Target Venue
+- Primary: EMNLP 2026 Main (ARR May 25 cycle)
+- Commitment deadline: August 2, 2026
+- Fallback: EMNLP 2026 Findings (same ARR cycle, commitment August 26)
+- Deadline: ARR May 25, 2026 (10 days from today)
+
+## Core Claims (3 conditions) — Revised per D012
+
+1. **Confusability Independence**: Type confusability independently predicts extraction quality degradation in training-free LLM IE, beyond what type count alone explains. The signal is strongest and most robust at the **type-pair level** (pairwise SCS → confusion), validated across NER (Few-NERD), RE (FewRel), and ED (MAVEN with MiniLM). Per-type aggregation (mean BCS) introduces a centrality confound in semantically homogeneous schemas. Evidence required: (a) significant pairwise SCS-confusion correlation on >=2 datasets, (b) extreme-batch accuracy gap on FewRel, (c) >=2 models.
+
+2. **Multi-Channel Degradation**: Count and confusability degrade extraction through orthogonal channels -- count causes entity omission (recall decline), while confusability causes type confusion errors (correct spans labeled with wrong types). Evidence required: error taxonomy showing differential error types per channel, monotonic trends in separate metrics.
+
+3. **SDGD Effectiveness**: Confusability-aware schema decomposition (SDGD) -- partitioning types into low-confusability batches via graph coloring on the pairwise-similarity-thresholded graph -- yields significant F1 gains over single-pass and heuristic decomposition on complex schemas (>=30 types). SDGD directly leverages pairwise confusability (validated signal), avoiding per-type aggregation confounds. Evidence required: SDGD > single-pass, SDGD > random batching (same k), SDGD >= per-type splitting (with lower latency).
+
+## Story Spine — Revised per D012
+
+- **Problem**: Training-free LLM IE degrades severely on complex schemas (20-60 F1 gap vs supervised). All existing decomposition approaches operate on unvalidated assumptions about WHAT makes schemas complex for LLMs.
+
+- **Existing approaches & their gaps**: UniNER splits per-type (gains 3.3 F1 but loses cross-type context, no criterion for when to split). LLM-PEE uses similarity as implicit confusability proxy (never validated empirically). No prior work isolates confusability from count, or characterizes when aggregated confusability measures lose signal.
+
+- **Our framing**: We conduct the first controlled empirical study isolating type confusability from type count in training-free LLM IE across three tasks (NER, RE, ED). We discover: (1) a multi-channel degradation model (count→recall, confusability→type confusion), (2) pairwise type confusability is a robust cross-task signal, (3) per-type aggregation of confusability is confounded by type centrality in homogeneous schemas. We operationalize pairwise confusability into SDGD, a principled framework for confusability-minimizing schema decomposition.
+
+- **Three-task validation**:
+  - NER (Few-NERD, 66 types, cross-domain): Pairwise r=0.156 (p<1e-11), per-type ρ=-0.293 (p=0.02), 10-28x confusion ratio
+  - RE (FewRel, 80 relations, cross-domain): BCS-controlled Δ=-31.2pp (80-rel formal); count curve acc 85.7%→50.4%; BCS effect scales 3.4x vs 16-rel
+  - ED (MAVEN, 168 event types, same-domain): Pairwise MiniLM r=0.120 (p≈0); per-type positive (centrality confound case study)
+
+- **Headline result template**: "Pairwise type confusability independently predicts extraction degradation across NER, RE, and ED tasks (r=0.12-0.16, p<1e-6), with 10-28x more type confusion errors in high-confusability batches. On semantically homogeneous schemas, per-type aggregation obscures the signal through centrality confounding, but pairwise confusability remains valid. SDGD-zero, operating on pairwise similarity, improves F1 by X points over single-pass on Few-NERD."
+
+## Core Insight — Multi-Channel Degradation + Pairwise Robustness
+
+Schema-induced degradation in LLM IE is not a single phenomenon but a multi-channel process:
+- **Channel 1 (Count -> Recall)**: More types in the prompt → attention dilution → entities missed. Monotonic, near-linear. Addressable by reducing batch size.
+- **Channel 2 (Confusability -> Type Confusion)**: Semantically similar co-present types → interference during type assignment → correct entities labeled with wrong types. Addressable by separating confusable types into different batches.
+
+These channels are orthogonal and independently addressable.
+
+**Pairwise vs Aggregated Confusability**:
+- **Pairwise confusability** (SCS between type pairs) is robust across all tasks and schema types. Validated on Few-NERD (Qwen3, r=0.156) and MAVEN (MiniLM, r=0.120).
+- **Per-type aggregation** (mean BCS = average pairwise similarity to all other types) introduces a centrality confound: in semantically homogeneous schemas (MAVEN), types with many semantic neighbors are central, well-represented types that LLMs extract well → positive correlation (high mean BCS → high F1), masking the pairwise confusability signal.
+- **SDGD operates at pairwise level**, directly using the validated signal to construct the confusability graph for decomposition. It avoids the aggregation confound entirely.
+
+## Evidence Hierarchy (D012)
+
+### Tier 1: PRIMARY — Pairwise SCS → Confusion
+
+The cleanest evidence. Directly measures: are semantically similar type pairs more often confused?
+
+**Few-NERD (NER)** — Qwen3 embeddings:
+- Pearson r=0.156 (p=4.6e-12, n=1953 type pairs)
+- Nonzero-only Spearman ρ=0.254 (p=1.1e-6)
+- Top confused pairs are all high-BCS semantic neighbors (person-other ↔ person-politician, BCS=0.934)
+- Immune to type frequency confound (operates at type-pair level)
+
+**MAVEN (ED)** — MiniLM embeddings:
+- Pearson r=+0.120 (p≈0, n=11026 type pairs)
+- Nonzero-only Spearman ρ=+0.191 (p<0.001)
+- Cross-task replication on same-domain schema
+- Note: Qwen3 pairwise not significant on MAVEN (r=-0.007, p=0.41) — embedding choice matters for pairwise signal in homogeneous schemas
+
+### Tier 2: STRONG SECONDARY — FewRel Cross-Task Replication
+
+Large effect size, cross-task (RE), scaling with schema complexity:
+
+**Formal 80-rel study** (exp_fewrel_formal_80rel):
+- Count curve: acc 85.7% (count=1) → 50.4% (count=80), BCS 0→0.97
+- BCS-controlled: count_8 low-BCS 82.3% vs high-BCS 51.0% (Δ=-31.2pp)
+- BCS-controlled: count_16 low-BCS 82.8% vs high-BCS 51.6% (Δ=-31.2pp)
+- **Scaling**: vs 16-rel, degradation 2.8x (35.3pp vs 12.6pp), BCS effect 3.4x (-31.2pp vs -9.1pp)
+
+**16-rel sanity check** (exp_fewrel_formal):
+- count_8: low-BCS 88.9% vs high-BCS 79.8% (Δ=-9.1pp)
+
+**Pilot extreme batches** (fewrel_pilot, MiniLM):
+- count_4: Δ=-20.9pp, count_8: Δ=-50.0pp, count_16: Δ=-48.6pp
+
+Key insight: confusability effect amplifies with schema size — direct evidence for multi-channel degradation scaling
+
+### Tier 3: SUPPORTING — Few-NERD Per-type Analysis
+
+Bridges pairwise and batch-level, demonstrates per-type signal in cross-domain schema:
+- Spearman ρ=-0.293 (p=0.020, n=63 types, freq≥5) — Qwen3 embeddings
+- Partial r=-0.200 (p=0.116) controlling for log-frequency
+- Quartile comparison: high-BCS types F1=0.228 vs low-BCS F1=0.310 (Δ=-8.2pp)
+- BCS-frequency uncorrelated at type level (r=0.042, p=0.74)
+- MiniLM per-type: ρ≈0 (p=0.97) — extraction model alignment required for per-type signal
+
+### Tier 4: DISCUSSION — MAVEN Per-type Centrality Confound
+
+Methodological case study on when aggregated confusability measures fail:
+- Qwen3 per-type: ρ=+0.189 (p=0.021) — OPPOSITE direction
+- MiniLM per-type: ρ=+0.208 (p=0.011) — ALSO positive, ruling out embedding compression as sole explanation
+- Both embeddings agree: positive direction on MAVEN is an intrinsic property of the type structure
+- Explanation: in homogeneous schemas, mean BCS conflates confusability with type centrality (types with many semantic neighbors → common/central types → higher F1)
+- This is stronger than "domain boundary" — it identifies the specific mechanism (aggregation confound) rather than just the boundary condition
+
+### Tier 5: MECHANISTIC — Error Taxonomy
+
+Confusion rate differential demonstrates the mechanism:
+- Extreme batches: high-BCS 10-28x more type confusion errors vs low-BCS
+- Random batches: 1.7-2.4x ratio (still significant, smaller effect)
+- Type confusion errors increase with count AND with confusability (additive)
+
+## Embedding Ablation (D010)
+
+2×3 matrix: {Qwen3, MiniLM} × {Few-NERD, FewRel, MAVEN}
+
+### Per-type (Layer 2)
+| | Few-NERD | FewRel | MAVEN |
+|---|---|---|---|
+| Qwen3 | ρ=-0.293 ✓ | pending | ρ=+0.189 ✗ |
+| MiniLM | ρ≈0 ✗ | Δ=21-50pp ✓ | ρ=+0.208 ✗ |
+
+### Pairwise (Layer 1)
+| | Few-NERD | MAVEN |
+|---|---|---|
+| Qwen3 | r=0.156 ✓ | r=-0.007 ✗ |
+| MiniLM | — | r=+0.120 ✓ |
+
+**Interpretation**: No single embedding dominates. Extraction-model embeddings (Qwen3) capture per-type confusability in cross-domain schemas. Generic embeddings (MiniLM) capture pairwise confusability in same-domain schemas. SDGD should use task-appropriate embeddings; SDGD-cal (empirical confusion) bypasses embedding choice entirely.
+
+## Venue Fit Risks
+
+- **"Just an empirical study"**: Mitigated by SDGD as direct operationalization. Controlled experimental design parallels "Lost in the Middle" (TACL 2024).
+- **Training-free IE relevance**: Cite deployment scenarios — clinical, regulatory, multilingual.
+- **Multi-model generalizability**: Qwen3-32B primary + LLaMA-3.3-70B (exp-012).
+- **MAVEN doesn't support hypothesis?**: Pairwise MiniLM does support it. Per-type centrality confound is methodological contribution, not failure.
+- **Embedding sensitivity**: 2×3 ablation matrix is itself a contribution — characterizes when which proxy works.
+
+## Anticipated Reviewer Concerns
+
+| Concern | Response Strategy | Experiment |
+|---------|------------------|------------|
+| Only one model | LLaMA-3.3-70B replication | exp-012 |
+| Cross-task replication | Pairwise: Few-NERD ✓ + MAVEN MiniLM ✓. Batch: FewRel ✓. Three tasks. | exp-002, exp-004, fewrel |
+| No practical method | SDGD framework (-zero, -cal) | exp-008 to exp-011 |
+| Confusability measure validity | Embedding ablation (D010) + pairwise vs per-type analysis | D010, exp-015 |
+| Effect size small | Pairwise r=0.12-0.16 + FewRel Δ=21-50pp + confusion ratio 10-28x | multiple |
+| MAVEN per-type opposite | Centrality confound analysis; pairwise still works | MAVEN MiniLM |
+| Embedding choice matters? | 2×3 ablation table; SDGD-cal bypasses embedding entirely | D010 |
+| Why not per-type splitting? | SDGD vs per-type vs random ablation | exp-013, exp-014 |
+| Latency overhead | Report API calls and wall-clock time | exp-008 |
+
+
+## experiment_plan (with registry status)
+
+- id: exp-001
+  claim:
+  - 1
+  - 2
+  description: 'Count curve baseline: recall/precision/F1 across type counts [1,2,6,12,22,44,66]
+    on Few-NERD with Qwen3-32B-FP8'
+  priority: P0
+  gpu_budget_hours: 3.5
+  deps: []
+  registry_id: exp001_count_baseline
+  status_note: DONE. Recall 0.72->0.42 monotonic. WrongType 0->2434. Over-prediction
+    at low counts.
+  status: DONE
+  conclusion: success
+  metrics:
+    diagnosis: char offset 96.5% fabricated by model
+    text_match_reeval:
+      count_1:
+        f1: 0.184
+        precision: 0.105
+        recall: 0.72
+        pred_gold_ratio: 6.85
+      count_2:
+        f1: 0.123
+        precision: 0.068
+        recall: 0.698
+        pred_gold_ratio: 10.33
+      count_6:
+        f1: 0.155
+        precision: 0.088
+        recall: 0.62
+        pred_gold_ratio: 7.02
+      count_12:
+        f1: 0.246
+        precision: 0.16
+        recall: 0.539
+        pred_gold_ratio: 3.38
+      count_22:
+        f1: 0.322
+        precision: 0.232
+        recall: 0.527
+        pred_gold_ratio: 2.27
+      count_44:
+        f1: 0.473
+        precision: 0.414
+        recall: 0.551
+        pred_gold_ratio: 1.33
+      count_64:
+        f1: 0.463
+        precision: 0.52
+        recall: 0.418
+        pred_gold_ratio: 0.8
+    key_finding: recall monotonically decreases (0.72→0.42), precision monotonically
+      increases (0.11→0.52) due to over-prediction reduction. F1 inverted-U peak at
+      count_44
+    wrong_type_trend: 'type confusion increases with count: 0→2434, supports confusability
+      hypothesis'
+    spurious_dominant: spurious FPs (text in source but not entity) dominate at low
+      count, not hallucination
+    conclusion_text_match: F1 curve inversion caused by over-prediction confound,
+      NOT absence of confusability effect. Recall curve + type confusion pattern support
+      hypothesis.
+- id: exp-002
+  claim:
+  - 1
+  - 2
+  description: 'Confusability controlled: within-count r(metric, BCS) at count=6/12,
+    25 random + extreme batches on Few-NERD'
+  priority: P0
+  gpu_budget_hours: 3
+  deps:
+  - exp-001
+  registry_id: exp002_confusability_controlled
+  status_note: DONE. Partial r=0.303 (p=0.026), count_12 r=0.501 (p=0.008). Confusion
+    rate 10-28x.
+  status: DONE
+  conclusion: success
+  metrics:
+    data_source: exp2_reeval_results.json (text_match, CLEAN)
+    primary_recall_vs_bcs:
+      count_6:
+        r: 0.2754
+        p: 0.1644
+        n: 27
+        verdict: FAIL
+      count_12:
+        r: 0.2219
+        p: 0.266
+        n: 27
+        verdict: FAIL
+      partial:
+        r: 0.2522
+        p: 0.0658
+        n: 54
+        verdict: FAIL
+    secondary_f1_vs_bcs:
+      count_6:
+        r: 0.1754
+        p: 0.3814
+        n: 27
+        verdict: FAIL
+      count_12:
+        r: 0.5012
+        p: 0.0077
+        n: 27
+        verdict: PASS
+      partial:
+        r: 0.3025
+        p: 0.0262
+        n: 54
+        verdict: PASS
+    mechanistic_confusion_rate:
+      random_batches:
+        count_6_high: 0.0157
+        count_6_low: 0.0088
+        ratio_6: 1.7
+        count_12_high: 0.0304
+        count_12_low: 0.0131
+        ratio_12: 2.4
+      extreme_batches:
+        count_6_high: 0.0728
+        count_6_low: 0.0014
+        ratio_6: 27.5
+        count_12_high: 0.048
+        count_12_low: 0.0061
+        ratio_12: 9.9
+      verdict: PASS
+    pairwise_confusion_analysis:
+      all:
+        n_pairs: 1953
+        pearson_r: 0.156
+        pearson_p: 4.6e-12
+        spearman_rho: 0.16
+        spearman_p: 1.3e-12
+      count_6:
+        n_pairs: 1770
+        pearson_r: 0.078
+        pearson_p: 0.001
+      count_12:
+        n_pairs: 1953
+        pearson_r: 0.147
+        pearson_p: 6.7e-11
+      nonzero_only:
+        all_spearman_rho: 0.254
+        all_spearman_p: 1.1e-06
+        count_12_pearson_r: 0.212
+        count_12_p: 0.00034
+      top_confused_pair: person-other <-> person-politician (BCS=0.934, confusion=156)
+    per_type_analysis:
+      n_types: 63
+      filter: freq>=5
+      micro_f1_vs_bcs:
+        pearson_r: -0.1828
+        pearson_p: 0.1516
+        spearman_rho: -0.2927
+        spearman_p: 0.0199
+        partial_r_ctrl_logfreq: -0.1998
+        partial_p: 0.1163
+      mean_f1_vs_bcs:
+        pearson_r: -0.1374
+        pearson_p: 0.283
+        spearman_rho: -0.2412
+        spearman_p: 0.0568
+        partial_r_ctrl_logfreq: -0.1428
+        partial_p: 0.2641
+      quartile_comparison:
+        low_bcs_cutoff: 0.798
+        high_bcs_cutoff: 0.827
+        low_bcs_f1: 0.3098
+        high_bcs_f1: 0.2275
+        delta_f1: -0.0823
+        low_bcs_freq: 2134
+        high_bcs_freq: 2049
+      confound_check:
+        bcs_vs_logfreq_r: 0.042
+        bcs_vs_logfreq_p: 0.74
+        logfreq_vs_f1_r: 0.25
+        logfreq_vs_f1_p: 0.048
+      verdict: Direction supports hypothesis. Spearman significant (p=0.02). Frequency
+        confound absent at type level (r=0.04).
+    overall_verdict: PRIMARY FAIL, SECONDARY PARTIAL PASS, MECHANISTIC PASS, PAIRWISE
+      STRONG PASS, PER-TYPE DIRECTIONAL PASS
+- id: exp-003a
+  claim:
+  - 1
+  - 2
+  description: 'Prompt v2 rerun: clean data without offset fabrication, anti-hallucination
+    instruction. Re-run exp1+exp2.'
+  priority: P0
+  gpu_budget_hours: 3
+  deps:
+  - exp-001
+  - exp-002
+  registry_id: exp003a_prompt_v2_rerun
+  status_note: FAILED (EXIT_CODE=2 syntax error). Needs fix and re-run.
+  status: DONE
+  conclusion: success
+  metrics:
+    eval_mode: text_match
+    exp1_text_match:
+      count_1:
+        f1: 0.323
+        precision: 0.216
+        recall: 0.641
+        pred_gold_ratio: 2.97
+        n_batches: 64
+      count_2:
+        f1: 0.273
+        precision: 0.18
+        recall: 0.56
+        pred_gold_ratio: 3.11
+        n_batches: 5
+      count_6:
+        f1: 0.306
+        precision: 0.226
+        recall: 0.475
+        pred_gold_ratio: 2.1
+        n_batches: 5
+      count_12:
+        f1: 0.347
+        precision: 0.367
+        recall: 0.329
+        pred_gold_ratio: 0.9
+        n_batches: 5
+      count_22:
+        f1: 0.299
+        precision: 0.339
+        recall: 0.267
+        pred_gold_ratio: 0.79
+        n_batches: 5
+      count_44:
+        f1: 0.445
+        precision: 0.506
+        recall: 0.396
+        pred_gold_ratio: 0.78
+        n_batches: 5
+      count_64:
+        f1: 0.414
+        precision: 0.648
+        recall: 0.304
+        pred_gold_ratio: 0.47
+        n_batches: 5
+    exp2_text_match:
+      count_6:
+        f1: 0.32
+        precision: 0.26
+        recall: 0.416
+        pred_gold_ratio: 1.6
+        n_batches: 27
+      count_12:
+        f1: 0.306
+        precision: 0.291
+        recall: 0.323
+        pred_gold_ratio: 1.11
+        n_batches: 27
+    vs_exp001_delta:
+      count_1:
+        f1_delta: +0.139 (+76%)
+        precision_delta: +0.111 (+106%)
+        recall_delta: -0.079 (-11%)
+        overpred_fix: 6.85→2.97
+      count_6:
+        f1_delta: +0.151 (+97%)
+        precision_delta: +0.138 (+157%)
+        recall_delta: -0.145 (-23%)
+      count_12:
+        f1_delta: +0.101 (+41%)
+        precision_delta: +0.207 (+129%)
+        recall_delta: -0.210 (-39%)
+      count_44:
+        f1_delta: -0.028 (-6%)
+        precision_delta: +0.092 (+22%)
+        recall_delta: -0.155 (-28%)
+      count_64:
+        f1_delta: -0.049 (-11%)
+        precision_delta: +0.128 (+25%)
+        recall_delta: -0.114 (-27%)
+    key_finding: 'V2 prompt dramatically reduced over-prediction (pred/gold from 6.85x
+      to 2.97x at count_1), boosting precision and F1 at low counts (+76% F1 at count_1).
+      But over-corrected at high counts: under-prediction (pred/gold<1) caused recall
+      drops of 27-39%, slightly lowering F1 at count_22-64.'
+- id: exp-004
+  claim:
+  - 1
+  - 2
+  - 3
+  description: 'MAVEN confusability study: count curve + within-count BCS correlation
+    on MAVEN Event Detection (168 event types, FrameNet hierarchy). Replicates core
+    finding cross-task (NER→ED) with larger type space and known sibling confusion
+    (14.6-19.8%).'
+  priority: P0
+  gpu_budget_hours: 4
+  deps:
+  - exp-003a
+  registry_id: exp-004
+  status_note: 'DONE (success). MAVEN count curve replicated. Also: exp004_maven_bcs
+    (negative) — BCS within-count correlation weaker on MAVEN due to FrameNet hierarchy
+    structure.'
+  status: DONE
+  conclusion: success
+  metrics:
+    n_event_types: 168
+    n_pairs: 14028
+    scs_mean: 0.2161
+    scs_std: 0.103
+    scs_max: 0.8368
+    scs_median: 0.2121
+    scs_q90: 0.3457
+    scs_q95: 0.3892
+    pairs_above_0.5: 119
+    pct_above_0.5: 0.85
+    train_docs: 2913
+    train_mentions: 77993
+    valid_docs: 710
+    valid_mentions: 18904
+- id: exp-005
+  claim:
+  - 1
+  - 2
+  description: 'DocRED confusability study: count curve + BCS correlation on DocRED
+    (96 relation types). Scaling stress test.'
+  priority: P1
+  gpu_budget_hours: 5
+  deps:
+  - exp-003a
+  status: planned
+- id: exp-006
+  claim:
+  - 2
+  description: 'Interaction effect 2x2: {low count, high count} x {low BCS, high BCS}
+    on Few-NERD. Tests additive vs multiplicative interaction between count and confusability.'
+  priority: P1
+  gpu_budget_hours: 2
+  deps:
+  - exp-003a
+  status: planned
+- id: exp-007
+  claim:
+  - 2
+  description: 'Error taxonomy: systematic FP classification (type_substitution /
+    boundary_error / false_negative / hallucination) across BCS bins. Mechanistic
+    evidence for multi-channel model.'
+  priority: P1
+  gpu_budget_hours: 1
+  deps:
+  - exp-002
+  status_note: Partially done via reeval_text_match.py FP three-way. Needs systematic
+    BCS-binned analysis.
+  status: planned
+- id: exp-012
+  claim:
+  - 1
+  - 2
+  description: 'Multi-model validation: replicate exp-002 protocol with >=1 additional
+    model (candidate: Qwen2.5-72B-Instruct or LLaMA-3.3-70B-Instruct). Addresses single-model
+    generalizability.'
+  priority: P0
+  gpu_budget_hours: 6
+  deps:
+  - exp-003a
+  registry_id: exp012_llama_fewnerd
+  status: QUEUED
+- id: exp-016
+  claim:
+  - 1
+  - 2
+  description: 'FewRel cross-task replication: count curve + BCS correlation on FewRel
+    RE (80 relation types with --use_all). Replicates confusability effect NER→RE.
+    Pilot (fewrel_pilot) confirmed signal; formal run with full count curve [1,4,8,16,32,64,80].'
+  priority: P0
+  gpu_budget_hours: 4
+  deps:
+  - exp-003a
+  registry_id: exp_fewrel_formal
+  status_note: RUNNING (16-rel version). Will rerun with --use_all for 80-rel full
+    count curve after current run completes.
+  status: DONE
+  conclusion: success
+  metrics:
+    note: 16-rel sanity check only
+    exp1:
+      count_1:
+        mean_acc: 0.904
+        n_batches: 16
+      count_4:
+        mean_acc: 0.932
+        n_batches: 5
+      count_8:
+        mean_acc: 0.867
+        n_batches: 5
+      count_16:
+        mean_acc: 0.778
+        n_batches: 5
+        bcs: 0.9
+        zero_variance: true
+    exp2:
+      count_8_low_bcs:
+        acc: 0.889
+        bcs: 0.782
+      count_8_high_bcs:
+        acc: 0.798
+        bcs: 0.892
+      delta_bcs_effect: -0.091
+    trend: 'count↑ → accuracy↓ confirmed. BCS effect: low-BCS 88.9% vs high-BCS 79.8%
+      (Δ=-9.1pp)'
+- id: exp-008
+  claim:
+  - 3
+  description: 'SDGD-zero on Few-NERD: confusability-minimizing batch composition
+    via embedding SCS + graph coloring. Compare vs single-pass full-schema baseline.'
+  priority: P0
+  gpu_budget_hours: 3
+  deps:
+  - exp-003a
+  registry_id: exp008_sdgd_zero_fewnerd_r2
+  status_note: 'DONE (negative). R2 attempt: SDGD-zero did not outperform single-pass
+    baseline on Few-NERD. R1 (exp008_sdgd_zero_fewnerd) failed with script error.'
+  status: DONE
+  conclusion: negative
+  metrics:
+    single_pass:
+      f1: 0.4451
+      precision: 0.5631
+      recall: 0.3679
+      batches: 1
+      time_s: 77.3
+    sdgd_zero:
+      f1: 0.2514
+      precision: 0.2096
+      recall: 0.3141
+      batches: 8
+      time_s: 408.7
+    random_batch:
+      f1: 0.3197
+      precision: 0.2491
+      recall: 0.4462
+      batches: 8
+      time_s: 476.1
+    per_type:
+      f1: 0.2915
+      precision: 0.194
+      recall: 0.5856
+      batches: 66
+      time_s: 2532.2
+    key_finding: All decomposition modes F1 < single_pass. Decomposition boosts recall
+      but kills precision (merge amplification). sdgd_zero worst F1, even below random_batch.
+- id: exp-009
+  claim:
+  - 3
+  description: 'SDGD-zero on MAVEN: confusability-minimizing batch composition on
+    168 event types. Compare vs single-pass + random batching. Cross-task validation
+    of SDGD framework (NER→ED).'
+  priority: P0
+  gpu_budget_hours: 4
+  deps:
+  - exp-004
+  - exp-008
+  status: planned
+- id: exp-010
+  claim:
+  - 3
+  description: 'SDGD-cal on Few-NERD: empirical confusability from 5-10 calibration
+    examples (no gradients). Compare vs SDGD-zero.'
+  priority: P1
+  gpu_budget_hours: 4
+  deps:
+  - exp-008
+  status: planned
+- id: exp-011
+  claim:
+  - 3
+  description: 'SDGD-cal on MAVEN: empirical confusability with calibration on 168
+    event types. Full comparison table.'
+  priority: P1
+  gpu_budget_hours: 4
+  deps:
+  - exp-009
+  - exp-010
+  status: planned
+- id: exp-013
+  claim:
+  - 3
+  description: 'Ablation: random batching -- same batch count k as SDGD, random composition.
+    Isolates confusability-aware grouping from batch count reduction.'
+  priority: P0
+  gpu_budget_hours: 3
+  deps:
+  - exp-008
+  status: planned
+- id: exp-014
+  claim:
+  - 3
+  description: 'Ablation: per-type splitting (UniNER-style, 1 type per batch). Upper
+    bound on decomposition benefit. Reveals latency vs quality tradeoff.'
+  priority: P1
+  gpu_budget_hours: 3
+  deps:
+  - exp-008
+  status: planned
+- id: exp-015
+  claim:
+  - 1
+  description: 'SCS validation: Spearman/Kendall rank correlation between embedding
+    SCS and empirical confusion matrix. Validates embedding proxy for practical use.'
+  priority: P1
+  gpu_budget_hours: 1
+  deps:
+  - exp-010
+  status: planned
+
+
+## registry (completed experiments)
+
+- exp_id: exp001_count_baseline
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    diagnosis: char offset 96.5% fabricated by model
+    text_match_reeval:
+      count_1:
+        f1: 0.184
+        precision: 0.105
+        recall: 0.72
+        pred_gold_ratio: 6.85
+      count_2:
+        f1: 0.123
+        precision: 0.068
+        recall: 0.698
+        pred_gold_ratio: 10.33
+      count_6:
+        f1: 0.155
+        precision: 0.088
+        recall: 0.62
+        pred_gold_ratio: 7.02
+      count_12:
+        f1: 0.246
+        precision: 0.16
+        recall: 0.539
+        pred_gold_ratio: 3.38
+      count_22:
+        f1: 0.322
+        precision: 0.232
+        recall: 0.527
+        pred_gold_ratio: 2.27
+      count_44:
+        f1: 0.473
+        precision: 0.414
+        recall: 0.551
+        pred_gold_ratio: 1.33
+      count_64:
+        f1: 0.463
+        precision: 0.52
+        recall: 0.418
+        pred_gold_ratio: 0.8
+    key_finding: recall monotonically decreases (0.72→0.42), precision monotonically
+      increases (0.11→0.52) due to over-prediction reduction. F1 inverted-U peak at
+      count_44
+    wrong_type_trend: 'type confusion increases with count: 0→2434, supports confusability
+      hypothesis'
+    spurious_dominant: spurious FPs (text in source but not entity) dominate at low
+      count, not hallucination
+    conclusion_text_match: F1 curve inversion caused by over-prediction confound,
+      NOT absence of confusability effect. Recall curve + type confusion pattern support
+      hypothesis.
+- exp_id: exp002_confusability_controlled
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    data_source: exp2_reeval_results.json (text_match, CLEAN)
+    primary_recall_vs_bcs:
+      count_6:
+        r: 0.2754
+        p: 0.1644
+        n: 27
+        verdict: FAIL
+      count_12:
+        r: 0.2219
+        p: 0.266
+        n: 27
+        verdict: FAIL
+      partial:
+        r: 0.2522
+        p: 0.0658
+        n: 54
+        verdict: FAIL
+    secondary_f1_vs_bcs:
+      count_6:
+        r: 0.1754
+        p: 0.3814
+        n: 27
+        verdict: FAIL
+      count_12:
+        r: 0.5012
+        p: 0.0077
+        n: 27
+        verdict: PASS
+      partial:
+        r: 0.3025
+        p: 0.0262
+        n: 54
+        verdict: PASS
+    mechanistic_confusion_rate:
+      random_batches:
+        count_6_high: 0.0157
+        count_6_low: 0.0088
+        ratio_6: 1.7
+        count_12_high: 0.0304
+        count_12_low: 0.0131
+        ratio_12: 2.4
+      extreme_batches:
+        count_6_high: 0.0728
+        count_6_low: 0.0014
+        ratio_6: 27.5
+        count_12_high: 0.048
+        count_12_low: 0.0061
+        ratio_12: 9.9
+      verdict: PASS
+    pairwise_confusion_analysis:
+      all:
+        n_pairs: 1953
+        pearson_r: 0.156
+        pearson_p: 4.6e-12
+        spearman_rho: 0.16
+        spearman_p: 1.3e-12
+      count_6:
+        n_pairs: 1770
+        pearson_r: 0.078
+        pearson_p: 0.001
+      count_12:
+        n_pairs: 1953
+        pearson_r: 0.147
+        pearson_p: 6.7e-11
+      nonzero_only:
+        all_spearman_rho: 0.254
+        all_spearman_p: 1.1e-06
+        count_12_pearson_r: 0.212
+        count_12_p: 0.00034
+      top_confused_pair: person-other <-> person-politician (BCS=0.934, confusion=156)
+    per_type_analysis:
+      n_types: 63
+      filter: freq>=5
+      micro_f1_vs_bcs:
+        pearson_r: -0.1828
+        pearson_p: 0.1516
+        spearman_rho: -0.2927
+        spearman_p: 0.0199
+        partial_r_ctrl_logfreq: -0.1998
+        partial_p: 0.1163
+      mean_f1_vs_bcs:
+        pearson_r: -0.1374
+        pearson_p: 0.283
+        spearman_rho: -0.2412
+        spearman_p: 0.0568
+        partial_r_ctrl_logfreq: -0.1428
+        partial_p: 0.2641
+      quartile_comparison:
+        low_bcs_cutoff: 0.798
+        high_bcs_cutoff: 0.827
+        low_bcs_f1: 0.3098
+        high_bcs_f1: 0.2275
+        delta_f1: -0.0823
+        low_bcs_freq: 2134
+        high_bcs_freq: 2049
+      confound_check:
+        bcs_vs_logfreq_r: 0.042
+        bcs_vs_logfreq_p: 0.74
+        logfreq_vs_f1_r: 0.25
+        logfreq_vs_f1_p: 0.048
+      verdict: Direction supports hypothesis. Spearman significant (p=0.02). Frequency
+        confound absent at type level (r=0.04).
+    overall_verdict: PRIMARY FAIL, SECONDARY PARTIAL PASS, MECHANISTIC PASS, PAIRWISE
+      STRONG PASS, PER-TYPE DIRECTIONAL PASS
+- exp_id: exp003a_prompt_v2_rerun
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    eval_mode: text_match
+    exp1_text_match:
+      count_1:
+        f1: 0.323
+        precision: 0.216
+        recall: 0.641
+        pred_gold_ratio: 2.97
+        n_batches: 64
+      count_2:
+        f1: 0.273
+        precision: 0.18
+        recall: 0.56
+        pred_gold_ratio: 3.11
+        n_batches: 5
+      count_6:
+        f1: 0.306
+        precision: 0.226
+        recall: 0.475
+        pred_gold_ratio: 2.1
+        n_batches: 5
+      count_12:
+        f1: 0.347
+        precision: 0.367
+        recall: 0.329
+        pred_gold_ratio: 0.9
+        n_batches: 5
+      count_22:
+        f1: 0.299
+        precision: 0.339
+        recall: 0.267
+        pred_gold_ratio: 0.79
+        n_batches: 5
+      count_44:
+        f1: 0.445
+        precision: 0.506
+        recall: 0.396
+        pred_gold_ratio: 0.78
+        n_batches: 5
+      count_64:
+        f1: 0.414
+        precision: 0.648
+        recall: 0.304
+        pred_gold_ratio: 0.47
+        n_batches: 5
+    exp2_text_match:
+      count_6:
+        f1: 0.32
+        precision: 0.26
+        recall: 0.416
+        pred_gold_ratio: 1.6
+        n_batches: 27
+      count_12:
+        f1: 0.306
+        precision: 0.291
+        recall: 0.323
+        pred_gold_ratio: 1.11
+        n_batches: 27
+    vs_exp001_delta:
+      count_1:
+        f1_delta: +0.139 (+76%)
+        precision_delta: +0.111 (+106%)
+        recall_delta: -0.079 (-11%)
+        overpred_fix: 6.85→2.97
+      count_6:
+        f1_delta: +0.151 (+97%)
+        precision_delta: +0.138 (+157%)
+        recall_delta: -0.145 (-23%)
+      count_12:
+        f1_delta: +0.101 (+41%)
+        precision_delta: +0.207 (+129%)
+        recall_delta: -0.210 (-39%)
+      count_44:
+        f1_delta: -0.028 (-6%)
+        precision_delta: +0.092 (+22%)
+        recall_delta: -0.155 (-28%)
+      count_64:
+        f1_delta: -0.049 (-11%)
+        precision_delta: +0.128 (+25%)
+        recall_delta: -0.114 (-27%)
+    key_finding: 'V2 prompt dramatically reduced over-prediction (pred/gold from 6.85x
+      to 2.97x at count_1), boosting precision and F1 at low counts (+76% F1 at count_1).
+      But over-corrected at high counts: under-prediction (pred/gold<1) caused recall
+      drops of 27-39%, slightly lowering F1 at count_22-64.'
+- exp_id: exp-004
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    n_event_types: 168
+    n_pairs: 14028
+    scs_mean: 0.2161
+    scs_std: 0.103
+    scs_max: 0.8368
+    scs_median: 0.2121
+    scs_q90: 0.3457
+    scs_q95: 0.3892
+    pairs_above_0.5: 119
+    pct_above_0.5: 0.85
+    train_docs: 2913
+    train_mentions: 77993
+    valid_docs: 710
+    valid_mentions: 18904
+- exp_id: exp004_maven_bcs
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    exp1_count_curve:
+      count_1:
+        n_batches: 64
+        exact_f1: 0.009
+        relaxed_f1: 0.106
+        bcs: 0
+      count_6:
+        n_batches: 5
+        exact_f1: 0.003
+        relaxed_f1: 0.103
+        bcs: 0.892
+      count_12:
+        n_batches: 5
+        exact_f1: 0.008
+        relaxed_f1: 0.146
+        bcs: 0.921
+      count_22:
+        n_batches: 5
+        exact_f1: 0.013
+        relaxed_f1: 0.185
+        bcs: 0.933
+      count_44:
+        n_batches: 5
+        exact_f1: 0.018
+        relaxed_f1: 0.247
+        bcs: 0.967
+      count_64:
+        n_batches: 5
+        exact_f1: 0.013
+        relaxed_f1: 0.245
+        bcs: 0.973
+    exp2_bcs_controlled:
+      count_6_high_bcs:
+        exact_f1: 0.0354
+        relaxed_f1: 0.211
+        bcs: 0.9447
+      count_6_low_bcs:
+        exact_f1: 0.0068
+        relaxed_f1: 0.089
+        bcs: 0.8709
+      count_12_high_bcs:
+        exact_f1: 0.0151
+        relaxed_f1: 0.1568
+        bcs: 0.9447
+      count_12_low_bcs:
+        exact_f1: 0.0068
+        relaxed_f1: 0.105
+        bcs: 0.9148
+    key_finding: 'MAVEN batch-level: high_bcs relaxed_F1 2.4x vs low_bcs (count_6).
+      Direction same as Few-NERD batch-level (positive). Pairwise + per-type analysis
+      needed to control frequency confound.'
+    note: exact_F1 very low (0.003-0.035), relaxed_F1 usable (0.089-0.247). Event
+      trigger boundary matching is fuzzy. A re-run (500 samples) is still in progress
+      in artifacts/exp004/.
+- exp_id: fewrel_pilot
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    embedding: all-MiniLM-L6-v2
+    n_batches: 15
+    n_predictions: 374
+    count_4:
+      low_bcs_acc: 0.917
+      high_bcs_acc: 0.708
+      delta_pp: -20.9
+      low_bcs: 0.42
+      high_bcs: 0.97
+    count_8:
+      low_bcs_acc: 1
+      high_bcs_acc: 0.5
+      delta_pp: -50
+      low_bcs: 0.47
+      high_bcs: 0.97
+    count_16:
+      low_bcs_acc: 0.917
+      high_bcs_acc: 0.431
+      delta_pp: -48.6
+      low_bcs: 0.57
+      high_bcs: 0.97
+    key_finding: 'BCS-accuracy strong negative: high-BCS batches 43-71% vs low-BCS
+      92-100%. Effect increases with count. Cross-task (NER→RE) replication of confusability
+      hypothesis.'
+- exp_id: exp008_sdgd_zero_fewnerd
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: exp008_sdgd_zero_fewnerd_r2
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    single_pass:
+      f1: 0.4451
+      precision: 0.5631
+      recall: 0.3679
+      batches: 1
+      time_s: 77.3
+    sdgd_zero:
+      f1: 0.2514
+      precision: 0.2096
+      recall: 0.3141
+      batches: 8
+      time_s: 408.7
+    random_batch:
+      f1: 0.3197
+      precision: 0.2491
+      recall: 0.4462
+      batches: 8
+      time_s: 476.1
+    per_type:
+      f1: 0.2915
+      precision: 0.194
+      recall: 0.5856
+      batches: 66
+      time_s: 2532.2
+    key_finding: All decomposition modes F1 < single_pass. Decomposition boosts recall
+      but kills precision (merge amplification). sdgd_zero worst F1, even below random_batch.
+- exp_id: exp_fewrel_formal
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    note: 16-rel sanity check only
+    exp1:
+      count_1:
+        mean_acc: 0.904
+        n_batches: 16
+      count_4:
+        mean_acc: 0.932
+        n_batches: 5
+      count_8:
+        mean_acc: 0.867
+        n_batches: 5
+      count_16:
+        mean_acc: 0.778
+        n_batches: 5
+        bcs: 0.9
+        zero_variance: true
+    exp2:
+      count_8_low_bcs:
+        acc: 0.889
+        bcs: 0.782
+      count_8_high_bcs:
+        acc: 0.798
+        bcs: 0.892
+      delta_bcs_effect: -0.091
+    trend: 'count↑ → accuracy↓ confirmed. BCS effect: low-BCS 88.9% vs high-BCS 79.8%
+      (Δ=-9.1pp)'
+- exp_id: exp_fewrel_formal_80rel
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    exp1_count_curve:
+      count_1:
+        acc: 0.8573
+        n_batches: 80
+        bcs: 0
+      count_4:
+        acc: 0.8667
+        n_batches: 5
+        bcs: 0.6335
+      count_8:
+        acc: 0.8021
+        n_batches: 5
+        bcs: 0.7175
+      count_16:
+        acc: 0.6958
+        n_batches: 5
+        bcs: 0.795
+      count_32:
+        acc: 0.6578
+        n_batches: 5
+        bcs: 0.8893
+      count_64:
+        acc: 0.5424
+        n_batches: 5
+        bcs: 0.9434
+      count_80:
+        acc: 0.5042
+        n_batches: 5
+        bcs: 0.9706
+    exp2_bcs_controlled:
+      count_8:
+        low_bcs_acc: 0.8229
+        low_bcs: 0.4715
+        high_bcs_acc: 0.5104
+        high_bcs: 0.9706
+        random_acc: 0.8025
+        delta_pp: -31.2
+      count_16:
+        low_bcs_acc: 0.8281
+        low_bcs: 0.5705
+        high_bcs_acc: 0.5156
+        high_bcs: 0.9706
+        random_acc: 0.7169
+        delta_pp: -31.2
+    vs_16rel:
+      degradation_16rel: -12.6pp (0.904→0.778)
+      degradation_80rel: -35.3pp (0.857→0.504)
+      bcs_effect_16rel: -9.1pp
+      bcs_effect_80rel: -31.2pp
+      amplification: 3.4x
+    key_finding: 80-rel count curve 0.857→0.504 (degradation 35.3pp, 远强于 16-rel 12.6pp).
+      BCS effect -31.2pp (3.4x amplification vs 16-rel). 更多 relations → 更大 confusion
+      space → 更强 degradation + BCS effect.
+- exp_id: exp008_sdgd_v2_fewnerd
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: exp012_llama_fewnerd
+  name: ''
+  status: QUEUED
+  conclusion: ''
+  metrics: {}
+- exp_id: exp007_error_taxonomy
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    exp1_random:
+      bcs_zero:
+        n_fp: 6172
+        intra_sub_pct: 0
+        extra_sub_pct: 90.3
+        intra_sub_per_100_gold: 0
+      bcs_low:
+        n_fp: 2231
+        intra_sub_pct: 1.6
+        extra_sub_pct: 89.9
+        intra_sub_per_100_gold: 3.4
+      bcs_medium:
+        n_fp: 3843
+        intra_sub_pct: 10.6
+        extra_sub_pct: 78.1
+        intra_sub_per_100_gold: 6.47
+      bcs_high:
+        n_fp: 6188
+        intra_sub_pct: 49.4
+        extra_sub_pct: 30.8
+        intra_sub_per_100_gold: 12.93
+    correlation:
+      intra_sub_vs_bcs_spearman_rho: 1
+      intra_sub_vs_bcs_p: <0.001
+      chi_square: 6952
+      chi_square_p: ~0
+    exp2_controlled:
+      trend: IntraSub 3.2% -> 7.3% -> 8.6% (rho=1.0, p<0.001)
+    key_finding: 'BCS>=0.95: 49.4% FP are intra-batch type confusion (13/100 gold).
+      Hallucination+boundary <3%. LLM main error mode is type confusion, not hallucination.'
+
+# 输出格式（YAML，仅输出一个 ```yaml 块）
+
+```yaml
+tier: best
+narrative_guidance: "..."
+imagined_experiments:
+  - name: "..."
+    plan_id: "..."
+    description: "..."
+    expected_results: {metric: value, ...}
+    result_rationale: "..."
+    tables: []
+    figures_description: []
+    analysis: "..."
+```
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "023bd995-2d32-4bff-ab74-44ed579cb1a4",
+  "type": "user",
+  "uuid": "98d887a8-4014-40f9-a77a-12e17cd0edef",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18",
+  "sessionId": "4f278ef0-1b4e-4870-ab4a-118f61f2ab25",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-15T14:09:38.666Z_
+
+```json
+{
+  "parentUuid": "98d887a8-4014-40f9-a77a-12e17cd0edef",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "8eb7d202-760c-45b5-9eba-3ddfd9181992",
+  "timestamp": "2026-05-15T14:09:38.666Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18",
+  "sessionId": "4f278ef0-1b4e-4870-ab4a-118f61f2ab25",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-15T14:09:38.666Z_
+
+```json
+{
+  "parentUuid": "8eb7d202-760c-45b5-9eba-3ddfd9181992",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "d58fda12-b50e-4e1f-be4c-f1def989614d",
+  "timestamp": "2026-05-15T14:09:38.666Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18",
+  "sessionId": "4f278ef0-1b4e-4870-ab4a-118f61f2ab25",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：LLaMA replicates pairwise confusability signal (cross-model validated); SDGD v2 with merge-dedup achieves F1 gain over single-pass. All three claims hold.…",
+  "leafUuid": "d58fda12-b50e-4e1f-be4c-f1def989614d",
+  "sessionId": "4f278ef0-1b4e-4870-ab4a-118f61f2ab25"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "SDGD v2 validation and multi-model confusability replication",
+  "sessionId": "4f278ef0-1b4e-4870-ab4a-118f61f2ab25"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-15T14:12:28.927Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to generate detailed predicted data for every "planned" experiment in the experiment_plan, under the "best" tier scenario. I need to provide result_rationale for each prediction explaining why these results would occur under the best-case framing.
+
+Let me identify all planned experiments:
+- exp-005: DocRED confusability study (P1, planned)
+- exp-006: Interaction effect 2x2 (P1, planned)
+- exp-007: Error taxonomy (P1, planned) — but wait, exp007_error_taxonomy is DONE in registry. The plan says "planned" but registry shows DONE. 
+
+I notice exp-007 has a status conflict: the plan marks it as "planned" with a "Partially done" note, but the registry shows it's already completed successfully, so I'll skip it. Moving on to exp-009 through exp-012, where I need to decide whether to include QUEUED status alongside planned — since the user asked for planned experiments, I'll include QUEUED as it represents experiments that are scheduled to run. I'm noticing a discrepancy between the experiment plan and the registry — exp-007 is marked as planned in the plan but shows as DONE in the registry with full BCS-binned results already computed. Since the registry appears more current, I'll skip exp-007 and focus on the experiments that genuinely lack results yet, including both planned and queued statuses.
+
+For the "best" tier predictions, I need to check whether the key constraints are met: LLaMA pairwise correlation on Few-NERD with sufficient confusion ratio, SDGD v2's ability to handle merge amplification without precision loss, and whether it achieves the F1 improvement target across the type range.
+
+Now I'm looking at the expected metric ranges for these experiments—pairwise correlations between 0.1 and 0.2, p-values well below 0.01, confusion ratios reaching 5 to 30x, and SDGD v2 showing F1 gains of 2-8 percentage points while keeping precision drop minimal. For exp-005 on DocRED with 96 relation types, this is a P1 priority experiment where I'd expect strong cross-task replication under the best tier conditions.
+
+DocRED's document-level complexity makes it harder than FewRel despite similar relation type counts, so I'm anticipating the count curve will show degradation and the BCS effect should be pronounced. For exp-006, the 2x2 interaction should demonstrate additive or super-additive behavior, suggesting the channels are orthogonal. But exp-009 creates a tension—it's testing SDGD-zero on MAVEN, yet under best tier conditions SDGD v2 with merge-dedup should be the one delivering F1 gains, not the zero variant. I'm settling on the approach of predicting results for each planned experiment under the best-tier scenario, where SDGD v2 with merge-dedup would replace SDGD-zero in the relevant experiments. Now I'll work through the predictions systematically, starting with the cross-task experiments and moving through the SDGD variants, outputting the full YAML results. rel) → ~45% (96-rel). BCS effect Δ ≈ -25pp at count_16. Pairwise r ≈ 0.12.
+
+exp-006 shows a count × confusability interaction where both factors are significant but the interaction itself is additive, supporting an orthogonal channel model. exp-007 is already complete in the registry. For exp-009, SDGD v2 with merge-dedup on MAVEN should improve over the very low single-pass baseline by at least 2 percentage points.
+
+Moving to the calibration experiments: empirical confusion matrices outperform embedding proxies, so SDGD-cal v2 beats SDGD-zero v2 on Few-NERD and similarly on MAVEN. With LLaMA across multiple models, I'm expecting pairwise correlations between 0.10–0.20 with confusion ratios of 5x or higher and BCS effects ranging from -35 to -15pp. The confusability-aware grouping in SDGD v2 should outperform random batching at the same k, and while per-type splitting matches SDGD v2 in F1, it requires significantly more batches and higher latency.
+
+For exp-015, the embedding-based SCS should correlate reasonably well with the empirical confusion matrix, with Spearman ρ ≥ 0.4. Now I need to write out the full YAML with detailed expected_results metrics, keeping in mind that SDGD experiments should use v2 with merge-dedup under the best tier, and exp-007 is already marked as done in the registry despite being listed as planned.
+
+For exp-012 with LLaMA, I'm predicting specific values within the best tier ranges: around 0.138 for the pairwise correlation, 2.1e-9 for the p-value, and an 8.2x ratio for the extreme confusion cases.
+
+Now I'm working through the SDGD v2 metrics — the F1 delta should land around +0.035 on Few-NERD, and the precision drop around -0.028. Let me recalibrate these against the baseline F1 of 0.4451 to ensure the predicted values are internally consistent before finalizing the YAML output. Now I'm verifying the F1 calculation works out to 0.48 with precision at 0.538 and recall at 0.433. For MAVEN with SDGD v2, the single-pass relaxed F1 is quite low at 0.245, so I'm predicting a more modest improvement of around 3 percentage points given the 168 relation types. Moving to DocRED, which is document-level relation extraction with 96 types and inherently more complex than sentence-level tasks, I expect the confusability signal should still apply but with lower overall accuracy—I'm estimating the count curve drops from roughly 72% at single relations down to 38% across all 96 types, suggesting a BCS effect of about negative 22 percentage points.
+
+I should clarify that DocRED typically uses F1 rather than accuracy as its metric, so I'll adjust my predictions accordingly. For the 2×2 factorial design on Few-NERD with low versus high count conditions crossed with low versus high BCS, I'm expecting both main effects to be significant while the interaction remains non-significant, which would support an additive model and the orthogonal channel hypothesis. The predicted F1 scores would show the confusability penalty of roughly negative 0.08 when moving from low to high BCS in the low count condition.
+
+For the random batching ablation, since the merge-dedup strategy affects all decomposition modes uniformly, I need to compare SDGD v2 against random batching v2 rather than the original random batching, ensuring both benefit equally from the improved merge strategy.
+
+Looking at the latency-quality tradeoff, per-type splitting v2 achieves slightly higher F1 at 0.490 but requires 66 batches compared to SDGD v2's 8, making SDGD v2 substantially faster while maintaining roughly 98% of the quality at just 12% of the latency cost.
+
+For the validation experiments, I'm predicting the embedding-based confusion scores will correlate with empirical confusion at ρ ≥ 0.40, and the calibrated variants should outperform their zero-shot counterparts—SDGD-cal on Few-NERD reaching around 0.495 F1 and on MAVEN hitting roughly 0.295 relaxed F1 by leveraging actual confusion data from calibration examples.
+
+Now I'm ready to compile the full YAML with these predictions.
+
+I need to decide whether to include exp-007 and exp-012—the user asked for planned experiments, but exp-007 is marked done in the registry while exp-012 is queued. Since the user specifically referenced the experiment_plan, I should probably include exp-007 even though results exist, but I'm uncertain whether the plan is outdated or if they want predictions anyway.
+
+Actually, the registry results for exp-007 appear complete, so the plan just wasn't updated. I'll skip it to avoid redundancy. For exp-012, I'll include it since it's conceptually planned despite being queued. So my final list is exp-005, exp-006, exp-009, and exp-010.
+
+Wait, let me reconsider—I should include all the experiments I listed since they're all either planned or queued. I'll note exp-007's registry results and predict under the best tier scenario. Now I need to write out the YAML with detailed predictions for each experiment.
+
+Generating YAML predictions... my thoughts for each experiment:
+
+### exp-005: DocRED confusability study
+- 96 relation types, document-level RE
+- Count curve + BCS correlation
+- Under best tier: strong replication of FewRel findings
+- DocRED is harder (document-level, multi-hop relations)
+- Accuracy will be lower overall
+- BCS effect should amplify with 96 types (similar to 80-rel FewRel amplification)
+
+Expected results:
+- Count curve: acc 78.2% (count=1) → 35.8% (count=96), degradation 42.4pp
+- BCS-controlled count_8: low-BCS 74.5% vs high-BCS 46.2%, Δ=-28.3pp
+- BCS-controlled count_16: low-BCS 71.8% vs high-BCS 43.1%, Δ=-28.7pp
+- Pairwise r = 0.131 (p < 1e-8), n ≈ 4560 pairs
+- vs FewRel 80-rel: similar BCS effect magnitude
+
+The document-level extraction task adds complexity through cross-sentence reasoning and coreference resolution, which naturally depresses baseline accuracy. However, confusability operates independently of this granularity—the mechanism of semantically similar relations being confused persists regardless. With 96 relation types and fine-grained distinctions like "place of birth" versus "place of death" or "member of" versus "part of", there are even more confusable pairs than in the 80-relation FewRel setup, so the BCS effect should remain substantial.
+
+### exp-006: 2×2 Interaction
+- {low_count=6, high_count=22} × {low_BCS, high_BCS} on Few-NERD
+- Tests additive vs multiplicative effects
+
+I'm expecting the count and confusability factors to operate independently. The ANOVA should show significant main effects for both but a non-significant interaction, with the confusability penalty staying roughly constant across count levels and vice versa, since they degrade performance through different mechanisms—count affects entity coverage during generation while confusability affects type label assignment.
+
+For the error taxonomy analysis, the registry already has strong results showing how error types shift with BCS levels, so I'll keep that section brief and just confirm it aligns with the existing findings.
+
+Now I'm moving to the SDGD v2 experiment on MAVEN with 168 event types under the best tier conditions.
+
+Looking at the merge-dedup results, the single-pass baseline gives a relaxed F1 around 0.245, and I'm comparing that against several approaches: SDGD v2 with k≈12 reaches 0.282 relaxed F1, random baseline at k=12 gets 0.265, and the per-type approach with k=168 achieves 0.291. The key finding is that SDGD v2 improves over single-pass by about 3.5 percentage points on relaxed F1, with precision around 0.258.
+
+The reason this works is that MAVEN's 168 event types create a complex confusability graph where many types are siblings in FrameNet, and SDGD v2's graph coloring separates these into different batches effectively. The merge-dedup strategy prevents the precision drop that happened in earlier SDGD-zero attempts by deduplicating overlapping predictions across batches. The gains are more modest than Few-NERD because MAVEN's event triggers have noisier boundaries and the confusability structure is more uniform, which limits how much graph coloring can help—though the larger type inventory still provides more decomposition opportunity than Few-NERD's 66 types.
+
+For the calibration experiment on Few-NERD, I'm using empirical confusion patterns from just 5-10 examples per type to improve over the zero-shot version. The calibrated model achieves an F1 of 0.493 with 1.3pp gain over SDGD-zero v2 and 4.8pp over single-pass, requiring only 660 API calls for the calibration data. The empirical confusion patterns capture model-specific biases that the embedding-based similarity score approximates but doesn't fully capture—the Qwen3 model has its own quirks in how it confuses certain types.
+
+Now testing the same approach on MAVEN with 12 calibration examples per type, expecting a relaxed F1 of 0.298 with 1.6pp improvement over zero-shot and 5.1pp over single-pass, though the calibration cost scales up to 1680 API calls due to the larger schema.
+
+The calibration advantage is more pronounced here because MAVEN's homogeneous types have similar embedding similarities, so the empirical confusion rates from calibration provide crucial disambiguation that embeddings alone can't capture — especially within the FrameNet hierarchy clusters where embedding scores are uniformly high but actual confusion patterns vary significantly.
+
+Now moving to validate the LLaMA pairwise predictions under tier constraints, checking whether the model's estimates for recall, precision, and confusion ratios align with the expected ranges.
+
+The results confirm the predictions closely: pairwise correlation of 0.138 with strong significance, nonzero confusion showing a Spearman correlation of 0.221, and the extreme batch confusion ratio hitting 8.2x as expected. The per-type analysis reveals a negative correlation with count, and the F1 baseline on single-pass classification sits at 0.408. Comparing across models, Qwen3 shows slightly stronger pairwise correlation at 0.156 versus LLaMA's 0.138, though both are statistically significant.
+
+The confusion ratios differ between models—Qwen3 ranges from 10-28x while LLaMA is lower at 8.2x—but the direction and significance remain consistent. This makes sense given that both models use similar decoder-only transformer architectures with comparable context windows and training distributions. LLaMA's larger parameter count (70B versus 32B) gives it marginally better type discrimination, which explains the slightly attenuated effect size and lower confusion ratio overall, though the confusability gradient persists across both models. The per-type correlation is weaker than expected, suggesting the relationship between type frequency and confusion isn't as straightforward as initially hypothesized.
+
+Now I'm looking at the random batching ablation results to see how SDGD v2 compares against random sampling under the best tier configuration.
+
+The key finding is that SDGD v2 outperforms random v2 by 2.2 percentage points in F1 score, with SDGD also showing notably lower variance across runs (±0.008 vs ±0.015). While random batching with merge-dedup does capture some benefits from smaller batch sizes and deduplication, it lacks the confusability-aware grouping that makes SDGD effective—random batches occasionally group confusable types together by chance, whereas SDGD systematically avoids this. The modest 2.2pp gap reflects that merge-dedup already mitigates the worst precision penalties, so the confusability benefit operates primarily at the margins.
+
+Now looking at the per-type splitting ablation, I'm comparing a per-type approach with k=66 against SDGD v2 with k=8. Per-type achieves slightly better F1 (0.492 vs 0.480, a 1.2pp gain) but at a severe latency cost—2480 seconds versus 395 seconds, making it 6.3x slower. SDGD v2 essentially captures 97.6% of per-type's quality while running at just 15.9% of the latency, which is a much more practical trade-off.
+
+The reason per-type performs better is straightforward: with one type per batch, there's zero within-batch type confusion. But that requires 66 separate API calls, which kills latency. SDGD v2 gets away with only 8 batches because its graph coloring strategy separates the most confusable pairs, keeping within-batch confusion minimal among low-similarity types. The remaining 1.2pp gap comes from moderately similar types (SCS 0.5-0.7) that SDGD groups together to keep batch count reasonable. This is the core value of SDGD—nearly the same quality at a fraction of the latency cost.
+
+Now I'm looking at how well semantic similarity scores correlate with actual confusion patterns across datasets. The embedding-based SCS proxy captures semantic similarity as the main driver of confusion, but it's missing other factors like formatting quirks, label frequency bias, and prompt position effects. The correlations vary by dataset and model—Qwen3 on Few-NERD shows the strongest signal at ρ=0.43, while Qwen3 on MAVEN is much weaker at ρ=0.15, which aligns with what I found earlier about model-dataset alignment.
+
+The key insight is that task-specific embeddings like Qwen3 work better on cross-domain schemas because they capture the model's own semantic space, whereas generic embeddings like MiniLM provide more consistent coverage on homogeneous datasets. This validates the practical recommendation: either choose embeddings carefully for SDGD-zero, or use SDGD-cal to sidestep the embedding choice altogether.
+
+I should now format these findings as YAML and make sure to include exp-007 since the plan lists it as planned.
+
+Formatting YAML structure...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d58fda12-b50e-4e1f-be4c-f1def989614d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4VEiJooXbxtqcLiPkc5",
+  "type": "assistant",
+  "uuid": "223b4954-b4b1-4b1b-85b2-92b1420891a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18",
+  "sessionId": "4f278ef0-1b4e-4870-ab4a-118f61f2ab25",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Xs6sMKcs5oHM8FZUCkD9Q",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 20432,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 20063,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20432,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 20063,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 20432,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20432
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-15T14:15:44.238Z_
+
+```yaml
+tier: best
+narrative_guidance: >
+  Original 3-claim framing intact. LLaMA cross-model validation confirms pairwise confusability
+  as generalizable signal (r≥0.10, p<0.01). SDGD v2 with merge-dedup resolves SDGD-zero's
+  precision collapse, achieving F1 gains over single-pass on both Few-NERD and MAVEN.
+  Centrality confound analysis elevates from limitation to methodological contribution.
+  Headline: pairwise confusability is a generalizable, actionable signal for LLM IE schema design,
+  operationalized via SDGD v2 with positive empirical results across three tasks and two models.
+
+imagined_experiments:
+  - name: "DocRED Cross-Task Replication (96 relations)"
+    plan_id: "exp-005"
+    description: >
+      Count curve + within-count BCS correlation on DocRED document-level RE (96 relation types).
+      Scaling stress test beyond sentence-level FewRel.
+    expected_results:
+      count_curve:
+        count_1_acc: 0.782
+        count_4_acc: 0.753
+        count_8_acc: 0.684
+        count_16_acc: 0.591
+        count_32_acc: 0.502
+        count_64_acc: 0.421
+        count_96_acc: 0.358
+        degradation_total_pp: -42.4
+      bcs_controlled:
+        count_8_low_bcs_acc: 0.745
+        count_8_high_bcs_acc: 0.462
+        count_8_delta_pp: -28.3
+        count_16_low_bcs_acc: 0.718
+        count_16_high_bcs_acc: 0.431
+        count_16_delta_pp: -28.7
+      pairwise:
+        n_pairs: 4560
+        pearson_r: 0.131
+        pearson_p: 3.8e-09
+      vs_fewrel_80rel:
+        degradation_pp: -42.4 vs -35.3
+        bcs_effect_pp: -28.5 vs -31.2
+        amplification_vs_16rel: ~4.1x
+    result_rationale: >
+      Document-level RE introduces cross-sentence reasoning and coreference complexity, lowering
+      baseline accuracy (~78% vs FewRel's 86%). But the confusability mechanism operates at the
+      type-assignment stage regardless of extraction granularity. DocRED's 96 relation types include
+      many fine-grained distinctions ("place of birth" vs "place of death", "member of" vs "part of")
+      creating dense high-confusability clusters. The total degradation (42.4pp) exceeds FewRel's 35.3pp
+      because the document-level context amplifies attention dilution (Channel 1) while the denser
+      relation taxonomy amplifies type confusion (Channel 2). The BCS effect (-28.5pp) is comparable to
+      FewRel because confusability operates at the same mechanism; the slight reduction reflects the fact
+      that some DocRED confusion is driven by discourse structure rather than type semantics alone.
+      Pairwise r=0.131 replicates the range seen on Few-NERD (0.156) and MAVEN-MiniLM (0.120),
+      confirming the signal generalizes to document-level RE.
+    tables:
+      - name: "DocRED Count Curve"
+        columns: ["count", "accuracy", "bcs_mean", "n_batches"]
+        rows:
+          - [1, 0.782, 0.0, 96]
+          - [4, 0.753, 0.618, 5]
+          - [8, 0.684, 0.702, 5]
+          - [16, 0.591, 0.781, 5]
+          - [32, 0.502, 0.874, 5]
+          - [64, 0.421, 0.938, 5]
+          - [96, 0.358, 0.967, 5]
+      - name: "DocRED BCS-Controlled Comparison"
+        columns: ["count", "low_bcs_acc", "high_bcs_acc", "delta_pp"]
+        rows:
+          - [8, 0.745, 0.462, -28.3]
+          - [16, 0.718, 0.431, -28.7]
+    figures_description:
+      - "Count curve: monotonic accuracy decline 78.2%→35.8% across 7 count levels"
+      - "BCS-controlled bar chart: ~28pp gap at both count=8 and count=16"
+      - "Cross-dataset comparison: FewRel-16 / FewRel-80 / DocRED-96 BCS amplification curve"
+    analysis: >
+      Third RE dataset confirms confusability signal on document-level extraction. BCS effect
+      amplification from FewRel-16 (9.1pp) → FewRel-80 (31.2pp) → DocRED-96 (28.5pp) shows
+      the effect scales with schema complexity, with saturation above ~80 types. Pairwise r=0.131
+      provides 4th independent replication of pairwise confusability signal across tasks and schema sizes.
+
+  - name: "2×2 Interaction Effect (Count × Confusability)"
+    plan_id: "exp-006"
+    description: >
+      Factorial design: {low_count=6, high_count=22} × {low_BCS, high_BCS} on Few-NERD.
+      Tests whether count and confusability contribute additively or interact.
+    expected_results:
+      cell_means:
+        low_count_low_bcs_f1: 0.372
+        low_count_high_bcs_f1: 0.288
+        high_count_low_bcs_f1: 0.318
+        high_count_high_bcs_f1: 0.228
+      main_effects:
+        count_effect_pp: -5.7
+        bcs_effect_pp: -8.7
+        combined_observed_pp: -14.4
+        sum_of_individual_pp: -14.4
+      anova:
+        count_F: 8.42
+        count_p: 0.006
+        bcs_F: 14.73
+        bcs_p: 0.001
+        interaction_F: 0.31
+        interaction_p: 0.42
+        model_R2: 0.74
+      error_channel_decomposition:
+        low_count_low_bcs_recall: 0.482
+        low_count_high_bcs_recall: 0.464
+        high_count_low_bcs_recall: 0.385
+        high_count_high_bcs_recall: 0.362
+        recall_delta_by_count: -0.099
+        recall_delta_by_bcs: -0.021
+        low_count_low_bcs_confusion_rate: 0.008
+        low_count_high_bcs_confusion_rate: 0.042
+        high_count_low_bcs_confusion_rate: 0.012
+        high_count_high_bcs_confusion_rate: 0.048
+        confusion_delta_by_count: 0.005
+        confusion_delta_by_bcs: 0.035
+    result_rationale: >
+      The orthogonal channel model predicts additive effects because count and confusability
+      degrade extraction at different processing stages. Count→recall operates at the entity
+      detection stage: more types in the prompt dilute attention, causing entities to be missed
+      entirely. The recall penalty (~10pp from count=6 to count=22) is nearly constant across
+      BCS levels because attention dilution depends on prompt length, not type similarity.
+      Confusability→type confusion operates at the type assignment stage: semantically similar
+      co-present types interfere during label selection. The confusion rate penalty (~3.5x from
+      low to high BCS) is nearly constant across count levels because type interference depends
+      on pairwise similarity, not total count. The non-significant interaction (F=0.31, p=0.42)
+      confirms these are independent channels. The combined penalty (14.4pp) equals the sum of
+      individual penalties (5.7+8.7=14.4), ruling out multiplicative interaction. R²=0.74
+      indicates the two-factor additive model explains most of the variance in extraction quality.
+    tables:
+      - name: "2×2 Factorial Results (F1)"
+        columns: ["", "low_BCS", "high_BCS", "BCS_effect"]
+        rows:
+          - ["count=6", 0.372, 0.288, "-8.4pp"]
+          - ["count=22", 0.318, 0.228, "-9.0pp"]
+          - ["count_effect", "-5.4pp", "-6.0pp", ""]
+      - name: "ANOVA Summary"
+        columns: ["source", "F", "p", "eta_sq"]
+        rows:
+          - ["count", 8.42, 0.006, 0.18]
+          - ["BCS", 14.73, 0.001, 0.32]
+          - ["count×BCS", 0.31, 0.42, 0.01]
+    figures_description:
+      - "Interaction plot: two nearly parallel lines (low-BCS, high-BCS) across count levels → additivity"
+      - "Error channel decomposition: recall bars decline with count (left panel), confusion rate bars increase with BCS (right panel)"
+    analysis: >
+      Non-significant interaction is the key result — directly validates the orthogonal channel model
+      central to Claim 2. The error decomposition shows clean separation: count primarily drives
+      recall loss (9.9pp vs 2.1pp BCS effect on recall), while BCS primarily drives type confusion
+      (3.5x vs 1.4x count effect on confusion rate). This mechanistic dissociation is the strongest
+      evidence for the multi-channel degradation thesis.
+
+  - name: "Systematic BCS-Binned Error Taxonomy"
+    plan_id: "exp-007"
+    description: >
+      Systematic FP classification (intra-batch type substitution / extra-schema substitution /
+      boundary error / hallucination) binned by BCS quartiles. Extends partial analysis from
+      reeval_text_match to full BCS gradient.
+    expected_results:
+      bcs_bin_zero:
+        n_fp: 6172
+        intra_sub_pct: 0.0
+        extra_sub_pct: 90.3
+        boundary_pct: 6.8
+        hallucination_pct: 2.9
+      bcs_bin_low:
+        n_fp: 2231
+        intra_sub_pct: 1.6
+        extra_sub_pct: 89.9
+        boundary_pct: 5.7
+        hallucination_pct: 2.8
+      bcs_bin_medium:
+        n_fp: 3843
+        intra_sub_pct: 10.6
+        extra_sub_pct: 78.1
+        boundary_pct: 7.2
+        hallucination_pct: 4.1
+      bcs_bin_high:
+        n_fp: 6188
+        intra_sub_pct: 49.4
+        extra_sub_pct: 30.8
+        boundary_pct: 14.2
+        hallucination_pct: 5.6
+      correlations:
+        intra_sub_vs_bcs_spearman_rho: 1.0
+        intra_sub_vs_bcs_p: "<0.001"
+        chi_square: 6952
+        chi_square_p: "~0"
+      per_100_gold:
+        bcs_zero_intra_sub: 0.0
+        bcs_low_intra_sub: 3.4
+        bcs_medium_intra_sub: 6.47
+        bcs_high_intra_sub: 12.93
+      exp2_controlled_trend: "IntraSub rate 3.2% → 7.3% → 8.6% (rho=1.0, p<0.001)"
+    result_rationale: >
+      Registry already contains core results (exp007_error_taxonomy). Under best tier, the
+      systematic BCS-binned analysis confirms a clean monotonic gradient: intra-batch type
+      substitution dominates FP at high BCS (49.4%) while being nearly absent at BCS=0.
+      The transition is smooth — BCS acts as a continuous predictor of error type composition,
+      not a threshold effect. Boundary errors and hallucinations remain low (<15%) and BCS-independent,
+      confirming they are not confusability-driven. The chi-square statistic (χ²=6952) reflects
+      massive distributional shift in error types across BCS bins. This provides the mechanistic
+      evidence for Channel 2: confusability literally causes the model to assign the wrong type
+      label to correctly detected entities, rather than failing to detect them.
+    tables:
+      - name: "Error Type Distribution by BCS Bin"
+        columns: ["BCS_bin", "n_FP", "intra_sub_%", "extra_sub_%", "boundary_%", "halluc_%"]
+        rows:
+          - ["0.00", 6172, 0.0, 90.3, 6.8, 2.9]
+          - ["<0.85", 2231, 1.6, 89.9, 5.7, 2.8]
+          - ["0.85-0.95", 3843, 10.6, 78.1, 7.2, 4.1]
+          - ["≥0.95", 6188, 49.4, 30.8, 14.2, 5.6]
+    figures_description:
+      - "Stacked bar chart: error type composition shifts from extra-schema dominant (BCS=0) to intra-batch substitution dominant (BCS≥0.95)"
+      - "Intra-sub per 100 gold entities: monotonic curve from 0 to 12.93 across BCS bins"
+    analysis: >
+      These results (largely already in registry) are the mechanistic backbone of Claim 2.
+      The near-perfect monotonic relationship (ρ=1.0) between BCS and type confusion proportion
+      is the most direct evidence that semantic similarity causes type confusion, not merely
+      correlates with it. The error taxonomy also rules out alternative explanations: hallucination
+      and boundary errors are BCS-independent, confirming confusability operates specifically on
+      the type discrimination channel.
+
+  - name: "SDGD v2 on MAVEN (168 event types)"
+    plan_id: "exp-009"
+    description: >
+      SDGD v2 (with merge-dedup) on MAVEN Event Detection. 168 event types partitioned into
+      low-confusability batches via graph coloring. Compare vs single-pass, random batching v2,
+      and per-type splitting v2.
+    expected_results:
+      single_pass:
+        relaxed_f1: 0.247
+        exact_f1: 0.018
+        precision_relaxed: 0.268
+        recall_relaxed: 0.229
+        batches: 1
+        time_s: 82
+      sdgd_v2:
+        relaxed_f1: 0.282
+        exact_f1: 0.028
+        precision_relaxed: 0.258
+        recall_relaxed: 0.312
+        batches: 12
+        time_s: 485
+        f1_delta_vs_single_pass_pp: "+3.5"
+        precision_drop_vs_single_pass_pp: "-1.0"
+      random_v2:
+        relaxed_f1: 0.265
+        exact_f1: 0.022
+        precision_relaxed: 0.251
+        recall_relaxed: 0.281
+        batches: 12
+        time_s: 510
+      per_type_v2:
+        relaxed_f1: 0.291
+        exact_f1: 0.031
+        precision_relaxed: 0.261
+        recall_relaxed: 0.329
+        batches: 168
+        time_s: 6250
+    result_rationale: >
+      MAVEN's 168 event types create a dense confusability graph with many FrameNet-sibling clusters
+      (e.g., "Attack" vs "Catastrophe" vs "Destroying"). SDGD v2's graph coloring separates these
+      siblings across batches, reducing within-batch type confusion. The merge-dedup strategy is critical:
+      SDGD-zero failed because multi-batch merging without dedup amplified false positives. Merge-dedup
+      resolves this by (a) deduplicating overlapping trigger predictions across batches using span matching,
+      and (b) selecting the highest-confidence prediction when conflicts arise. The +3.5pp relaxed F1
+      gain reflects genuine confusion reduction. The precision drop (-1.0pp) is within the ≤5pp budget
+      because merge-dedup catches most spurious duplicates. The gain is larger than on Few-NERD (+3.5pp
+      vs +3.5pp relaxed) in absolute terms because MAVEN's 168 types provide more room for decomposition:
+      more confusable pairs to separate, and the single-pass baseline is more degraded. Random batching v2
+      captures partial benefit (batch reduction + dedup) but misses confusability-aware separation.
+    tables:
+      - name: "MAVEN SDGD v2 Comparison"
+        columns: ["method", "relaxed_F1", "exact_F1", "precision", "recall", "batches", "time_s"]
+        rows:
+          - ["single_pass", 0.247, 0.018, 0.268, 0.229, 1, 82]
+          - ["sdgd_v2", 0.282, 0.028, 0.258, 0.312, 12, 485]
+          - ["random_v2", 0.265, 0.022, 0.251, 0.281, 12, 510]
+          - ["per_type_v2", 0.291, 0.031, 0.261, 0.329, 168, 6250]
+    figures_description:
+      - "Bar chart: F1 comparison across methods, SDGD v2 > single-pass > random, per-type as upper bound"
+      - "Precision-recall tradeoff: SDGD v2 boosts recall (+8.3pp) with minimal precision loss (-1.0pp)"
+    analysis: >
+      MAVEN replication confirms SDGD v2 generalizes beyond NER. The key insight is that merge-dedup
+      converts decomposition's recall boost into net F1 gain by controlling precision loss. On MAVEN
+      specifically, the improvement is driven by better separation of FrameNet-sibling event types
+      that single-pass conflates. Cross-task (NER+ED) SDGD v2 success strengthens Claim 3.
+
+  - name: "SDGD-cal on Few-NERD (Empirical Calibration)"
+    plan_id: "exp-010"
+    description: >
+      SDGD-cal v2: confusability graph from 5-10 calibration examples (empirical confusion matrix)
+      instead of embedding SCS. Compare vs SDGD-zero v2 and single-pass on Few-NERD.
+    expected_results:
+      sdgd_cal_v2:
+        f1: 0.493
+        precision: 0.548
+        recall: 0.449
+        batches: 8
+        time_s: 405
+        calibration_calls: 660
+        calibration_time_s: 320
+      sdgd_zero_v2:
+        f1: 0.480
+        precision: 0.538
+        recall: 0.433
+      single_pass:
+        f1: 0.445
+        precision: 0.563
+        recall: 0.368
+      deltas:
+        sdgd_cal_vs_zero_pp: "+1.3"
+        sdgd_cal_vs_single_pass_pp: "+4.8"
+      calibration_vs_embedding:
+        spearman_rho_scs_vs_empirical: 0.42
+        kendall_tau_scs_vs_empirical: 0.30
+        n_pair_rank_disagreements_top50: 11
+    result_rationale: >
+      Empirical calibration measures actual model confusion on held-out examples, capturing
+      model-specific biases that embedding SCS approximates but cannot fully predict. For example,
+      Qwen3 may confuse "building-library" ↔ "building-other" more than their embedding similarity
+      suggests (due to prompt formatting or training distribution), and conversely may handle
+      "person-politician" ↔ "person-scholar" better than expected. These rank disagreements
+      (11/50 in top-50 pairs) are enough to reshuffle the confusability graph and produce
+      marginally better batch assignments. The +1.3pp gain over SDGD-zero is modest because
+      (a) the embedding proxy is already ρ=0.42 correlated with empirical confusion, capturing
+      the dominant similarity axis, and (b) Few-NERD's cross-domain schema has clear cluster
+      boundaries that both methods identify. The calibration overhead (660 API calls, ~5min) is
+      acceptable for offline schema decomposition planning. The main value of SDGD-cal is that
+      it bypasses embedding choice entirely — critical for practitioners who cannot determine
+      which embedding best suits their schema a priori.
+    tables:
+      - name: "Few-NERD SDGD-cal vs SDGD-zero"
+        columns: ["method", "F1", "precision", "recall", "Δ_vs_single"]
+        rows:
+          - ["single_pass", 0.445, 0.563, 0.368, "—"]
+          - ["sdgd_zero_v2", 0.480, 0.538, 0.433, "+3.5pp"]
+          - ["sdgd_cal_v2", 0.493, 0.548, 0.449, "+4.8pp"]
+    figures_description:
+      - "Scatter: embedding SCS vs empirical confusion rate (ρ=0.42) with highlighted rank disagreements"
+      - "F1 ladder: single-pass < sdgd-zero < sdgd-cal with confidence intervals"
+    analysis: >
+      SDGD-cal establishes an upper bound for embedding-free SDGD. The ρ=0.42 correlation between
+      SCS and empirical confusion validates the embedding proxy while showing room for improvement.
+      In practice, SDGD-cal is recommended when calibration data is available; SDGD-zero when it is
+      not. Both outperform single-pass, confirming Claim 3.
+
+  - name: "SDGD-cal on MAVEN (Empirical Calibration, 168 types)"
+    plan_id: "exp-011"
+    description: >
+      SDGD-cal v2 on MAVEN with empirical confusion matrix from calibration examples.
+      Full comparison table: single-pass / SDGD-zero v2 / SDGD-cal v2 / random v2 / per-type v2.
+    expected_results:
+      sdgd_cal_v2:
+        relaxed_f1: 0.298
+        exact_f1: 0.032
+        precision_relaxed: 0.264
+        recall_relaxed: 0.342
+        batches: 12
+        calibration_calls: 1680
+        calibration_time_s: 810
+      sdgd_zero_v2:
+        relaxed_f1: 0.282
+        exact_f1: 0.028
+      single_pass:
+        relaxed_f1: 0.247
+        exact_f1: 0.018
+      deltas:
+        sdgd_cal_vs_zero_pp: "+1.6"
+        sdgd_cal_vs_single_pass_pp: "+5.1"
+    result_rationale: >
+      SDGD-cal's advantage over SDGD-zero is slightly larger on MAVEN (+1.6pp vs +1.3pp on Few-NERD)
+      because MAVEN's homogeneous FrameNet-based schema makes embedding similarity less discriminative.
+      Many event type pairs have uniformly high SCS (mean=0.216, narrow distribution), so the embedding
+      proxy struggles to rank confusability among mid-range pairs. Empirical calibration captures
+      within-cluster confusion structure that embedding cosine similarity compresses: "Attack" and
+      "Catastrophe" may have similar SCS to "Attack" and "Protest", but the actual confusion rates differ
+      substantially due to trigger word overlap patterns. The 1680 calibration calls (168 types × 10 examples)
+      are the main cost, but acceptable for a one-time schema analysis. The +5.1pp gain over single-pass
+      on MAVEN is the largest SDGD improvement across all experiments, reflecting MAVEN's 168-type schema
+      as the highest-complexity setting.
+    tables:
+      - name: "MAVEN Full Comparison Table"
+        columns: ["method", "relaxed_F1", "exact_F1", "batches", "total_time_s"]
+        rows:
+          - ["single_pass", 0.247, 0.018, 1, 82]
+          - ["random_v2", 0.265, 0.022, 12, 510]
+          - ["sdgd_zero_v2", 0.282, 0.028, 12, 485]
+          - ["sdgd_cal_v2", 0.298, 0.032, 12, 1295]
+          - ["per_type_v2", 0.291, 0.031, 168, 6250]
+    figures_description:
+      - "Full comparison bar chart: SDGD-cal v2 achieves highest F1, surpassing even per-type v2"
+      - "Calibration ROI plot: F1 gain per additional API call for each method"
+    analysis: >
+      Notably, SDGD-cal v2 (0.298) slightly exceeds per-type v2 (0.291) on MAVEN. This is because
+      per-type splitting eliminates within-batch confusion but loses ALL cross-type context, while
+      SDGD-cal retains beneficial cross-type context (non-confusable types in the same batch help
+      the model discriminate). This inverted result — SDGD-cal > per-type — is a strong argument
+      for confusability-AWARE decomposition over naive per-type splitting. It also addresses the
+      UniNER comparison directly.
+
+  - name: "LLaMA-3.3-70B Multi-Model Validation"
+    plan_id: "exp-012"
+    description: >
+      Full replication of exp-002 protocol with LLaMA-3.3-70B-Instruct on Few-NERD.
+      Count curve + BCS-controlled batches + pairwise analysis + per-type analysis.
+    expected_results:
+      count_curve:
+        count_1:
+          f1: 0.351
+          precision: 0.248
+          recall: 0.598
+        count_6:
+          f1: 0.328
+          precision: 0.258
+          recall: 0.451
+        count_12:
+          f1: 0.364
+          precision: 0.396
+          recall: 0.337
+        count_22:
+          f1: 0.318
+          precision: 0.372
+          recall: 0.278
+        count_44:
+          f1: 0.432
+          precision: 0.510
+          recall: 0.375
+        count_64:
+          f1: 0.408
+          precision: 0.625
+          recall: 0.302
+      pairwise_analysis:
+        all_pairs:
+          n_pairs: 1953
+          pearson_r: 0.138
+          pearson_p: 2.1e-09
+          spearman_rho: 0.142
+          spearman_p: 8.4e-10
+        nonzero_only:
+          spearman_rho: 0.221
+          spearman_p: 3.5e-05
+        count_12:
+          pearson_r: 0.129
+          pearson_p: 1.8e-08
+      extreme_batch_confusion:
+        count_6:
+          high_bcs_confusion_rate: 0.058
+          low_bcs_confusion_rate: 0.003
+          ratio: 19.3
+        count_12:
+          high_bcs_confusion_rate: 0.041
+          low_bcs_confusion_rate: 0.005
+          ratio: 8.2
+      bcs_controlled:
+        count_6_low_bcs_f1: 0.358
+        count_6_high_bcs_f1: 0.271
+        count_6_delta_pp: -8.7
+        count_12_low_bcs_f1: 0.391
+        count_12_high_bcs_f1: 0.286
+        count_12_delta_pp: -10.5
+      per_type_analysis:
+        n_types: 63
+        spearman_rho: -0.248
+        spearman_p: 0.049
+        partial_r_ctrl_logfreq: -0.172
+        partial_p: 0.178
+      cross_model_comparison:
+        qwen3_pairwise_r: 0.156
+        llama_pairwise_r: 0.138
+        qwen3_confusion_ratio_range: "10-28x"
+        llama_confusion_ratio_range: "8-19x"
+        qwen3_bcs_delta_count12: -10.1
+        llama_bcs_delta_count12: -10.5
+    result_rationale: >
+      LLaMA-3.3-70B exhibits the same pairwise confusability signal as Qwen3-32B because the
+      underlying mechanism — semantically similar co-present types cause type interference during
+      label assignment — is architecture-independent. Both models are decoder-only transformers
+      that process type labels as natural language tokens; when two labels share semantic content,
+      the model's next-token prediction distributes probability mass across both, increasing
+      confusion. The effect size is slightly attenuated (r=0.138 vs 0.156) because LLaMA-70B's
+      larger parameter count provides marginally better type discrimination capacity. The confusion
+      ratio (8-19x) is in the same order as Qwen3 (10-28x) but lower because the 70B model makes
+      fewer type confusion errors per entity overall. The per-type signal is weaker (ρ=-0.248,
+      borderline p=0.049) because per-type aggregation introduces noise and LLaMA's different
+      tokenization creates slight rank perturbations. Critically, the pairwise correlation
+      (r=0.138, p=2.1e-9) is highly significant and falls within the best-tier range [0.10, 0.20],
+      confirming the signal is not model-specific. The BCS-controlled delta (-10.5pp at count_12)
+      falls within the cross-model range [-35, -15]pp when scaled to larger schemas.
+    tables:
+      - name: "Cross-Model Pairwise Comparison"
+        columns: ["metric", "Qwen3-32B", "LLaMA-70B"]
+        rows:
+          - ["pairwise Pearson r", 0.156, 0.138]
+          - ["pairwise p-value", "4.6e-12", "2.1e-09"]
+          - ["nonzero Spearman ρ", 0.254, 0.221]
+          - ["confusion ratio (count_6 extreme)", "27.5x", "19.3x"]
+          - ["confusion ratio (count_12 extreme)", "9.9x", "8.2x"]
+          - ["BCS-controlled Δ (count_12)", "-10.1pp", "-10.5pp"]
+          - ["per-type ρ", -0.293, -0.248]
+      - name: "LLaMA Count Curve"
+        columns: ["count", "F1", "precision", "recall"]
+        rows:
+          - [1, 0.351, 0.248, 0.598]
+          - [6, 0.328, 0.258, 0.451]
+          - [12, 0.364, 0.396, 0.337]
+          - [22, 0.318, 0.372, 0.278]
+          - [44, 0.432, 0.510, 0.375]
+          - [64, 0.408, 0.625, 0.302]
+    figures_description:
+      - "Side-by-side pairwise scatter: SCS vs confusion count for Qwen3 (left) and LLaMA (right), both showing positive slope"
+      - "Cross-model count curve overlay: similar recall decline pattern, LLaMA slightly lower baseline"
+      - "Confusion ratio comparison: bar chart showing consistent high/low BCS gap across both models"
+    analysis: >
+      Cross-model validation is the single most important experiment for reviewer concern mitigation.
+      Both models agree on direction, significance, and approximate magnitude of the pairwise
+      confusability effect. The residual differences (r=0.156 vs 0.138, ratio 28x vs 19x) are
+      consistent with model capacity differences rather than contradictory findings. This eliminates
+      the "model-specific artifact" concern and allows the paper to claim the confusability signal
+      is a property of the task structure, not the model.
+
+  - name: "Random Batching Ablation (Same k as SDGD)"
+    plan_id: "exp-013"
+    description: >
+      SDGD v2 vs random batching v2 (same batch count k=8) on Few-NERD. Both use merge-dedup.
+      Isolates confusability-aware grouping from batch count reduction.
+    expected_results:
+      sdgd_v2:
+        f1: 0.480
+        precision: 0.538
+        recall: 0.433
+        batches: 8
+        time_s: 395
+        std_across_5_seeds: 0.008
+      random_v2:
+        f1: 0.458
+        precision: 0.521
+        recall: 0.411
+        batches: 8
+        time_s: 410
+        std_across_5_seeds: 0.015
+      single_pass:
+        f1: 0.445
+        precision: 0.563
+        recall: 0.368
+      deltas:
+        sdgd_v2_vs_random_v2_pp: "+2.2"
+        random_v2_vs_single_pass_pp: "+1.3"
+        sdgd_v2_vs_single_pass_pp: "+3.5"
+      decomposition_attribution:
+        batch_reduction_contribution_pp: 1.3
+        confusability_aware_grouping_pp: 2.2
+        total_sdgd_gain_pp: 3.5
+        pct_from_grouping: 62.9
+    result_rationale: >
+      Merge-dedup resolves the core precision problem for ALL decomposition strategies, so both
+      random and SDGD benefit equally from dedup. The remaining difference (2.2pp) isolates the
+      value of confusability-aware batch composition. Random batching gets 1.3pp from batch
+      reduction alone (smaller batches → better per-entity attention → higher recall, with dedup
+      controlling precision). SDGD adds 2.2pp by ensuring confusable type pairs are separated,
+      reducing within-batch type confusion. The 62.9% attribution to grouping (vs 37.1% to batch
+      reduction) quantifies SDGD's specific contribution. SDGD also shows lower variance (σ=0.008
+      vs 0.015) because its batch composition is deterministic and optimized, while random batching
+      quality fluctuates depending on which confusable types happen to co-occur. The lower variance
+      is practically important — SDGD gives predictable quality.
+    tables:
+      - name: "Ablation: Grouping vs Batch Reduction"
+        columns: ["method", "F1", "Δ_vs_single", "σ(5 seeds)", "source_of_gain"]
+        rows:
+          - ["single_pass", 0.445, "—", "—", "—"]
+          - ["random_v2 (k=8)", 0.458, "+1.3pp", 0.015, "batch reduction only"]
+          - ["sdgd_v2 (k=8)", 0.480, "+3.5pp", 0.008, "batch reduction + grouping"]
+    figures_description:
+      - "Stacked attribution bar: total SDGD gain decomposed into batch-reduction (37%) and confusability-grouping (63%)"
+      - "Box plot: 5-seed F1 distributions for random v2 vs SDGD v2, showing SDGD's tighter spread"
+    analysis: >
+      This ablation is essential for Claim 3: it proves SDGD's value is primarily from confusability-aware
+      grouping (63%), not mere batch reduction. Without this ablation, a reviewer could argue that any
+      decomposition strategy would work equally well. The 2.2pp gap, combined with SDGD's lower variance,
+      makes a clean case for principled decomposition.
+
+  - name: "Per-Type Splitting Ablation (UniNER-style)"
+    plan_id: "exp-014"
+    description: >
+      Per-type splitting v2 (1 type per batch, k=66) on Few-NERD with merge-dedup.
+      Upper bound on decomposition benefit. Quality-latency tradeoff vs SDGD v2.
+    expected_results:
+      per_type_v2:
+        f1: 0.492
+        precision: 0.545
+        recall: 0.449
+        batches: 66
+        time_s: 2480
+        api_calls: 66
+      sdgd_v2:
+        f1: 0.480
+        precision: 0.538
+        recall: 0.433
+        batches: 8
+        time_s: 395
+        api_calls: 8
+      single_pass:
+        f1: 0.445
+        precision: 0.563
+        recall: 0.368
+        batches: 1
+        time_s: 78
+        api_calls: 1
+      quality_vs_latency:
+        sdgd_v2_quality_pct_of_per_type: 97.6
+        sdgd_v2_latency_pct_of_per_type: 15.9
+        sdgd_v2_api_call_pct_of_per_type: 12.1
+      per_type_vs_sdgd_delta_pp: "+1.2"
+      residual_confusion_analysis:
+        sdgd_residual_confusion_pairs: 23
+        mean_scs_of_residual: 0.612
+        max_scs_of_residual: 0.743
+    result_rationale: >
+      Per-type splitting eliminates within-batch type confusion entirely — with one type per batch,
+      there is no co-present type to confuse with. Merge-dedup handles cross-batch deduplication.
+      The resulting F1 (0.492) is the theoretical ceiling for decomposition-based approaches.
+      SDGD v2 achieves 97.6% of this ceiling at 15.9% of the latency because graph coloring
+      concentrates separation effort on the most confusable pairs (SCS > 0.8), while allowing
+      low-similarity types to share batches safely. The residual 1.2pp gap comes from 23 moderately
+      confusable pairs (mean SCS=0.612) that SDGD groups together to keep k=8. These pairs cause
+      occasional type confusion that per-type avoids entirely. The tradeoff is clear: 1.2pp F1
+      costs 6.3x latency and 8.25x API calls. For production deployment, SDGD v2 dominates
+      per-type splitting on cost-effectiveness. For offline analysis where latency is irrelevant,
+      per-type v2 provides the best quality.
+    tables:
+      - name: "Quality-Latency Pareto Frontier"
+        columns: ["method", "F1", "batches", "time_s", "F1_per_minute"]
+        rows:
+          - ["single_pass", 0.445, 1, 78, 0.342]
+          - ["sdgd_v2", 0.480, 8, 395, 0.073]
+          - ["per_type_v2", 0.492, 66, 2480, 0.012]
+    figures_description:
+      - "Pareto curve: F1 vs latency, showing SDGD v2 at the Pareto-optimal knee"
+      - "Residual confusion heatmap: 23 type pairs contributing to SDGD's 1.2pp gap vs per-type"
+    analysis: >
+      The per-type ablation addresses the UniNER comparison directly. UniNER-style per-type splitting
+      provides the highest quality but at prohibitive cost for real-time applications. SDGD v2 offers
+      a principled middle ground — it captures 97.6% of the quality with a data-driven criterion for
+      WHICH types need separation. This is the operational contribution: not just "decompose the schema"
+      but "decompose it optimally given a latency budget."
+
+  - name: "SCS Proxy Validation (Embedding vs Empirical Confusion)"
+    plan_id: "exp-015"
+    description: >
+      Rank correlation between embedding SCS and empirical confusion matrix.
+      Validates embedding proxy for SDGD-zero practical use.
+    expected_results:
+      fewnerd_qwen3:
+        spearman_rho: 0.43
+        kendall_tau: 0.31
+        n_pairs_with_confusion: 287
+        top10_overlap: 7
+      maven_minilm:
+        spearman_rho: 0.38
+        kendall_tau: 0.27
+        n_pairs_with_confusion: 1842
+        top10_overlap: 6
+      maven_qwen3:
+        spearman_rho: 0.15
+        kendall_tau: 0.11
+        n_pairs_with_confusion: 1842
+        top10_overlap: 2
+      fewnerd_minilm:
+        spearman_rho: 0.22
+        kendall_tau: 0.16
+        n_pairs_with_confusion: 287
+        top10_overlap: 4
+      cross_validation:
+        best_embedding_per_dataset:
+          fewnerd: "Qwen3 (ρ=0.43)"
+          maven: "MiniLM (ρ=0.38)"
+        pattern: "extraction-model embeddings excel on cross-domain schemas; generic embeddings excel on homogeneous schemas"
+    result_rationale: >
+      The SCS-confusion correlation (ρ=0.38-0.43 for best embedding per dataset) validates the
+      embedding proxy as a reasonable but imperfect predictor of actual model confusion. The
+      imperfection is expected: embedding SCS captures semantic similarity (the dominant confusion
+      axis) but not model-specific factors like tokenization artifacts, prompt position effects,
+      or label frequency biases. The 2×2 pattern (Qwen3 better for Few-NERD, MiniLM better for
+      MAVEN) replicates the D010 finding at the validated pairwise level. For Few-NERD's cross-domain
+      schema, Qwen3 embeddings align with the extraction model's internal representations, capturing
+      model-specific confusability. For MAVEN's homogeneous FrameNet schema, Qwen3 compresses
+      within-domain distinctions while MiniLM's generic sentence embedding preserves them. The
+      top-10 overlap (6-7/10) shows that both best-embedding conditions identify the most confusable
+      pairs with reasonable fidelity, validating SDGD-zero's practical utility. The gap between
+      ρ=0.43 and a hypothetical perfect proxy (ρ=1.0) explains SDGD-cal's incremental gain.
+    tables:
+      - name: "SCS Proxy Validation Matrix"
+        columns: ["dataset", "embedding", "Spearman_ρ", "Kendall_τ", "top10_overlap"]
+        rows:
+          - ["Few-NERD", "Qwen3", 0.43, 0.31, "7/10"]
+          - ["Few-NERD", "MiniLM", 0.22, 0.16, "4/10"]
+          - ["MAVEN", "MiniLM", 0.38, 0.27, "6/10"]
+          - ["MAVEN", "Qwen3", 0.15, 0.11, "2/10"]
+    figures_description:
+      - "2×2 heatmap: Spearman ρ for each (dataset, embedding) cell, highlighting diagonal as best"
+      - "Scatter: SCS vs confusion rate for best embedding per dataset, with regression line and ρ annotation"
+    analysis: >
+      Validates SDGD-zero as a practical no-calibration method while explaining why SDGD-cal
+      improves: the ρ=0.43 ceiling for embedding-based proxy means ~18% of variance in confusion
+      is captured, leaving room for empirical calibration. The cross-embedding pattern provides
+      practical guidance: use extraction-model embeddings for diverse schemas, generic embeddings
+      for domain-specific schemas, or SDGD-cal to bypass the choice entirely. This completes the
+      SDGD framework: SDGD-zero for zero-cost deployment, SDGD-cal for maximum quality.
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "223b4954-b4b1-4b1b-85b2-92b1420891a3",
+  "isSidechain": false,
+  "requestId": "req_011Cb4VEiJooXbxtqcLiPkc5",
+  "type": "assistant",
+  "uuid": "0c966e27-d11c-4d7d-9d18-6429e6b5b615",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18",
+  "sessionId": "4f278ef0-1b4e-4870-ab4a-118f61f2ab25",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Xs6sMKcs5oHM8FZUCkD9Q",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 20432,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 20063,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20432,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 20063,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 20432,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20432
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：LLaMA replicates pairwise confusability signal (cross-model validated); SDGD v2 with merge-dedup achieves F1 gain over single-pass. All three claims hold.…",
+  "leafUuid": "0c966e27-d11c-4d7d-9d18-6429e6b5b615",
+  "sessionId": "4f278ef0-1b4e-4870-ab4a-118f61f2ab25"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "SDGD v2 validation and multi-model confusability replication",
+  "sessionId": "4f278ef0-1b4e-4870-ab4a-118f61f2ab25"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：LLaMA replicates pairwise confusability signal (cross-model validated); SDGD v2 with merge-dedup achieves F1 gain over single-pass. All three claims hold.…",
+  "leafUuid": "0c966e27-d11c-4d7d-9d18-6429e6b5b615",
+  "sessionId": "4f278ef0-1b4e-4870-ab4a-118f61f2ab25"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "SDGD v2 validation and multi-model confusability replication",
+  "sessionId": "4f278ef0-1b4e-4870-ab4a-118f61f2ab25"
+}
+```
+
+---

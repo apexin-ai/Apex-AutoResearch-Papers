@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "id": "a9001d88ccb4c93f71de",
+  "project": "schema-dag-extraction--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: schema-dag-extraction ## 运行环境 - 服务器名: cqa1-38874 - SSH 账户: root（调用 ssh_execute / submit_training",
+  "task_key": "8b0aa843-4d1c-4f38-8915-dc121317f126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/8b0aa843-4d1c-4f38-8915-dc121317f126.jsonl",
+    "occurrence": 1,
+    "bytes": 1240572,
+    "sha256": "b3c4bab5a40a4ab66c4c640a0a18acd13b5f93791593136aa5a6a036d62e0107"
+  },
+  "statistics": {
+    "messages": 743,
+    "user_turns": 1,
+    "tool_calls": 244,
+    "roles": {
+      "record": 109,
+      "user": 1,
+      "assistant": 145,
+      "tool_call": 244,
+      "tool_result": 244
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a9001d88ccb4c93f71de-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 741,
+      "chunks": [
+        {
+          "path": "a9001d88ccb4c93f71de-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "a9001d88ccb4c93f71de-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a9001d88ccb4c93f71de-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a9001d88ccb4c93f71de-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "a9001d88ccb4c93f71de-part-0005.json",
+          "message_count": 23
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-schema-dag-extraction-cqa1-38874-ssh-root-ssh-execute-submit-t-copy-125.md"
+}

@@ -67,6 +67,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 1424
+        },
+        "schema-dag-extraction": {
+          "status": "uploaded",
+          "project": "schema-dag-extraction",
+          "collection": "schema-dag-extraction--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "e2fed9a127fd347eb4a15ffea77156c3abcbb20d21e8e06a3ea9fd967fbbebf2",
+          "indexed_members": 347,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 342
         }
       },
       "status": "in_progress",

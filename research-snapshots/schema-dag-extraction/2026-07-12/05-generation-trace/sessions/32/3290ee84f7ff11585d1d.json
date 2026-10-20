@@ -1,0 +1,1834 @@
+{
+  "schema_version": "1.0",
+  "id": "3290ee84f7ff11585d1d",
+  "project": "schema-dag-extraction--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: schema-dag-extraction ## 运行环境 - 服务器名: cqa1-38874 - SSH 账户: root（调用 ssh_execute / submit_training",
+  "task_key": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/1e29f73e-71c1-4802-89f8-1448d64bc231.jsonl",
+    "occurrence": 1,
+    "bytes": 157133,
+    "sha256": "2e5c88840572b055dc0346c54150cda5f0847e2a7af78b9aa3cefa5ed1edc39e"
+  },
+  "statistics": {
+    "messages": 39,
+    "user_turns": 1,
+    "tool_calls": 9,
+    "roles": {
+      "record": 13,
+      "user": 1,
+      "assistant": 7,
+      "tool_call": 9,
+      "tool_result": 9
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T02:03:00.421Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-16T02:03:00.421Z",
+                "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+                "content": "<project_context>\n# 项目: schema-dag-extraction\n\n## 运行环境\n- 服务器名: cqa1-38874\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.cqa1.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/schema-dag-extraction\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: 论文中 count_40 子集必须明确说明 \"40-rel subsets sampled from the 80-relation pool\"，不能暗示是独立的 40-type pool（原因：count_40 实际是从 80-type pool 中采样的子集，不是独立构建的 pool。Reviewer 指出如果表述不清会误导读者认为存在三个独立 pool size）\n- **C002**: BCS amplification claim (3.4×) 仅基于 16-type vs 80-type 两个 pool size，40-rel 的 BCS Δ=-32.5pp 是 80-pool 内子集效应，不是第三个独立数据点（原因：exp2 的 low/high BCS 对比是 within-pool 分组，40-count 的 BCS 差异不能作为 BCS amplification claim 的独立支撑点。论文 Section 3.4 和相关 figure 必须准确反映这一点）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：准备 MAVEN Residualized BCS 分析的 Appendix 内容\n\n### 背景\nMAVEN per-type BCS 与 F1 呈正相关（r=+0.189, p=0.021），但这是 centrality artifact。已完成 residualized 分析（exp_maven_residualized_bcs, DONE/success）证明控制 frequency 和 degree centrality 后相关消失。需要写 appendix 段落解释这个发现。\n\n### 已知数据（从 registry）\n- MiniLM: raw rho=0.208 (p=0.011), confound=log_freq (BCS↔freq r=0.201), partial r=0.133 (p=0.107, n.s.)\n- Qwen3: raw rho=0.184 (p=0.025), confound=degree_centrality_0.7 (BCS↔degree r=0.854), partial r=0.063 (p=0.442, n.s.)\n- Joint control (log_freq + degree): both n.s. (Qwen3 p=0.439, MiniLM p=0.226)\n- 结论：MAVEN per-type BCS-F1 positive correlation is a centrality artifact\n\n### Few-NERD 对比\n- Few-NERD 无此 confound: BCS↔freq r=0.042 (p=0.74), per-type BCS-F1 Spearman ρ=-0.293 (p=0.020)\n- 原因：Few-NERD 跨域 66 types (person, location, event...) vs MAVEN 同域 168 event types\n\n### 要做什么\n1. 读取 artifacts 目录下的 MAVEN residualized 分析脚本和结果文件：\n   - SSH 到 cqa1-38874 (root), 查看 `/root/schema-dag-extraction/artifacts/maven_residualized_bcs/` 下的文件\n   - 理解分析的具体实现（用了什么统计方法）\n\n2. 在本地项目目录写一个 appendix 草稿 markdown 文件：\n   `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/appendix_maven_residualized.md`\n   \n   内容结构：\n   - 标题：Appendix X: MAVEN Per-type BCS Analysis: Centrality Artifact\n   - 动机：为什么 MAVEN per-type 结果需要单独解释\n   - 方法：Residualized analysis (partial correlation controlling for confounds)\n   - 结果表格：两种 embedding × raw vs partial correlation\n   - 讨论：Few-NERD vs MAVEN 的差异原因（cross-domain vs same-domain schema）\n   - 结论：MAVEN 只能 claim pairwise SCS-confusion 相关，不能 claim per-type BCS 效应\n\n3. 写作要求：\n   - 学术风格，简洁精准\n   - 所有数字必须来自上述已知数据\n   - 不要虚构任何数据\n   - 英文撰写（论文是英文的）\n\n### 环境\n- 服务器: cqa1-38874, account: root\n- 本地写入路径: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/`\n"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T02:03:00.428Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-16T02:03:00.428Z",
+                "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T02:03:00.467Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<project_context>\n# 项目: schema-dag-extraction\n\n## 运行环境\n- 服务器名: cqa1-38874\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.cqa1.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/schema-dag-extraction\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: 论文中 count_40 子集必须明确说明 \"40-rel subsets sampled from the 80-relation pool\"，不能暗示是独立的 40-type pool（原因：count_40 实际是从 80-type pool 中采样的子集，不是独立构建的 pool。Reviewer 指出如果表述不清会误导读者认为存在三个独立 pool size）\n- **C002**: BCS amplification claim (3.4×) 仅基于 16-type vs 80-type 两个 pool size，40-rel 的 BCS Δ=-32.5pp 是 80-pool 内子集效应，不是第三个独立数据点（原因：exp2 的 low/high BCS 对比是 within-pool 分组，40-count 的 BCS 差异不能作为 BCS amplification claim 的独立支撑点。论文 Section 3.4 和相关 figure 必须准确反映这一点）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：准备 MAVEN Residualized BCS 分析的 Appendix 内容\n\n### 背景\nMAVEN per-type BCS 与 F1 呈正相关（r=+0.189, p=0.021），但这是 centrality artifact。已完成 residualized 分析（exp_maven_residualized_bcs, DONE/success）证明控制 frequency 和 degree centrality 后相关消失。需要写 appendix 段落解释这个发现。\n\n### 已知数据（从 registry）\n- MiniLM: raw rho=0.208 (p=0.011), confound=log_freq (BCS↔freq r=0.201), partial r=0.133 (p=0.107, n.s.)\n- Qwen3: raw rho=0.184 (p=0.025), confound=degree_centrality_0.7 (BCS↔degree r=0.854), partial r=0.063 (p=0.442, n.s.)\n- Joint control (log_freq + degree): both n.s. (Qwen3 p=0.439, MiniLM p=0.226)\n- 结论：MAVEN per-type BCS-F1 positive correlation is a centrality artifact\n\n### Few-NERD 对比\n- Few-NERD 无此 confound: BCS↔freq r=0.042 (p=0.74), per-type BCS-F1 Spearman ρ=-0.293 (p=0.020)\n- 原因：Few-NERD 跨域 66 types (person, location, event...) vs MAVEN 同域 168 event types\n\n### 要做什么\n1. 读取 artifacts 目录下的 MAVEN residualized 分析脚本和结果文件：\n   - SSH 到 cqa1-38874 (root), 查看 `/root/schema-dag-extraction/artifacts/maven_residualized_bcs/` 下的文件\n   - 理解分析的具体实现（用了什么统计方法）\n\n2. 在本地项目目录写一个 appendix 草稿 markdown 文件：\n   `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/appendix_maven_residualized.md`\n   \n   内容结构：\n   - 标题：Appendix X: MAVEN Per-type BCS Analysis: Centrality Artifact\n   - 动机：为什么 MAVEN per-type 结果需要单独解释\n   - 方法：Residualized analysis (partial correlation controlling for confounds)\n   - 结果表格：两种 embedding × raw vs partial correlation\n   - 讨论：Few-NERD vs MAVEN 的差异原因（cross-domain vs same-domain schema）\n   - 结论：MAVEN 只能 claim pairwise SCS-confusion 相关，不能 claim per-type BCS 效应\n\n3. 写作要求：\n   - 学术风格，简洁精准\n   - 所有数字必须来自上述已知数据\n   - 不要虚构任何数据\n   - 英文撰写（论文是英文的）\n\n### 环境\n- 服务器: cqa1-38874, account: root\n- 本地写入路径: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/`\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "c6816d9f-3d66-45d5-a62e-de22a84f0a8d",
+            "type": "user",
+            "uuid": "1a78fa5a-cc62-470e-a6a1-c207adbd91ca",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T02:03:00.467Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "1a78fa5a-cc62-470e-a6a1-c207adbd91ca",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__ssh_execute",
+                    "mcp__agent-ml-research__ssh_read_only"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__ssh_execute",
+                    "mcp__agent-ml-research__ssh_read_only"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "a8a65d34-2b98-44e5-9f11-8c9409363eed",
+                "timestamp": "2026-05-16T02:03:00.467Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+                "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T02:03:00.467Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "a8a65d34-2b98-44e5-9f11-8c9409363eed",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "fa1bef4d-99e3-4ae9-a98d-95b1c91e92dc",
+                "timestamp": "2026-05-16T02:03:00.467Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+                "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T02:03:00.467Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "fa1bef4d-99e3-4ae9-a98d-95b1c91e92dc",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "cc92ed14-1ebf-4aab-b75d-58b009f4509f",
+                "timestamp": "2026-05-16T02:03:00.467Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+                "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Prepare MAVEN residualized BCS appendix",
+                "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T02:03:04.148Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll first check the MAVEN residualized analysis files on the server, then write the appendix draft."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cc92ed14-1ebf-4aab-b75d-58b009f4509f",
+            "isSidechain": false,
+            "requestId": "req_011Cb5RdpLdTADavuTJMpmo1",
+            "type": "assistant",
+            "uuid": "f43e13fe-ec21-428f-a7e8-b212f04679b9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018PNoG15oUNNSftEiCD6TZc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12013,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 112,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 12013,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 112,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 12013,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 12013
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T02:03:04.326Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GH5kA8GQThBvkUfTGg5QkV",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f43e13fe-ec21-428f-a7e8-b212f04679b9",
+            "isSidechain": false,
+            "requestId": "req_011Cb5RdpLdTADavuTJMpmo1",
+            "type": "assistant",
+            "uuid": "5ab69f39-a5ab-461a-a4ee-2341f583a1ac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018PNoG15oUNNSftEiCD6TZc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12013,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 112,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 12013,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 112,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 12013,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 12013
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T02:03:04.334Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01GH5kA8GQThBvkUfTGg5QkV",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5ab69f39-a5ab-461a-a4ee-2341f583a1ac",
+            "isSidechain": false,
+            "promptId": "c6816d9f-3d66-45d5-a62e-de22a84f0a8d",
+            "type": "user",
+            "uuid": "64f02472-421b-4d05-a09e-064c5cea400b",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 26
+            },
+            "sourceToolAssistantUUID": "5ab69f39-a5ab-461a-a4ee-2341f583a1ac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T02:03:07.207Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me check the artifacts directory on the server first.",
+              "signature": "EvQBClkIDRgCKkAQDk7+M4LUlTxZ44rlhZpT/KIHisyqxVvrQ2IfHImqXAGx0+7OpfJXUvzj8O7zWxQoCY9S3/z06a6De+8BYrCIMg9jbGF1ZGUtb3B1cy00LTY4ABIMgelLsi84dWqZ3uVLGgwoEMgacAE+GSkUs+YiMNFAEC+VvVwS4mINYzVWlduwiTdqqZp4JSEkoGxAyvH+ulNs/zsrE1UbAiv3tYNh3ipJ6D6Iip/npS3u3BdueNhSu1TJb6xZasoJlyoB2cReAy23+y7Hy3BBiss8mp9rkAMVShvJ5FaT19W2FNfngcePL9/d+Hwuvl1HkhgB"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "64f02472-421b-4d05-a09e-064c5cea400b",
+            "isSidechain": false,
+            "requestId": "req_011Cb5Re71ymAjUppky2mtsU",
+            "type": "assistant",
+            "uuid": "94faec04-7002-4d3d-860f-4dd020608854",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QhSbH4RCfa39fDLYCM1c3B",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 449,
+                "cache_read_input_tokens": 23854,
+                "output_tokens": 152,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 449,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 152,
+                    "cache_read_input_tokens": 23854,
+                    "cache_creation_input_tokens": 449,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 449
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T02:03:07.543Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y6HvTLFGneeU6df8qYpjPA",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "ls -la /root/schema-dag-extraction/artifacts/maven_residualized_bcs/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "94faec04-7002-4d3d-860f-4dd020608854",
+            "isSidechain": false,
+            "requestId": "req_011Cb5Re71ymAjUppky2mtsU",
+            "type": "assistant",
+            "uuid": "8118c9b8-3b7b-4d5a-9125-5348a70f4811",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QhSbH4RCfa39fDLYCM1c3B",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 449,
+                "cache_read_input_tokens": 23854,
+                "output_tokens": 152,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 449,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 152,
+                    "cache_read_input_tokens": 23854,
+                    "cache_creation_input_tokens": 449,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 449
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T02:03:08.694Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y6HvTLFGneeU6df8qYpjPA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 40\\\\ndrwxr-xr-x  2 root root   101 May 16 09:31 .\\\\ndrwxr-xr-x 24 root root  4096 May 16 09:47 ..\\\\n-rw-r--r--  1 root root 11367 May 16 09:35 analysis_report.txt\\\\n-rw-r--r--  1 root root 18269 May 16 09:33 residualized_analysis.py\\\\n-rw-r--r--  1 root root  2088 May 16 09:33 results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8118c9b8-3b7b-4d5a-9125-5348a70f4811",
+            "isSidechain": false,
+            "promptId": "c6816d9f-3d66-45d5-a62e-de22a84f0a8d",
+            "type": "user",
+            "uuid": "e6dee50d-352d-4aa6-b584-11eb3bcd300a",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 40\\\\ndrwxr-xr-x  2 root root   101 May 16 09:31 .\\\\ndrwxr-xr-x 24 root root  4096 May 16 09:47 ..\\\\n-rw-r--r--  1 root root 11367 May 16 09:35 analysis_report.txt\\\\n-rw-r--r--  1 root root 18269 May 16 09:33 residualized_analysis.py\\\\n-rw-r--r--  1 root root  2088 May 16 09:33 results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 40\\ndrwxr-xr-x  2 root root   101 May 16 09:31 .\\ndrwxr-xr-x 24 root root  4096 May 16 09:47 ..\\n-rw-r--r--  1 root root 11367 May 16 09:35 analysis_report.txt\\n-rw-r--r--  1 root root 18269 May 16 09:33 residualized_analysis.py\\n-rw-r--r--  1 root root  2088 May 16 09:33 results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"
+              }
+            },
+            "sourceToolAssistantUUID": "8118c9b8-3b7b-4d5a-9125-5348a70f4811",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T02:03:11.777Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QCkZYy2yp7wD7vtUSNQRcZ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "cat /root/schema-dag-extraction/artifacts/maven_residualized_bcs/results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e6dee50d-352d-4aa6-b584-11eb3bcd300a",
+            "isSidechain": false,
+            "requestId": "req_011Cb5ReRSkoSxSvRoa59ru9",
+            "type": "assistant",
+            "uuid": "3ac78ab6-61b1-416d-8798-8b60371b163f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0161dfqCq1HUtiXJQQyfsDqY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 384,
+                "cache_read_input_tokens": 24303,
+                "output_tokens": 353,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 384,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 353,
+                    "cache_read_input_tokens": 24303,
+                    "cache_creation_input_tokens": 384,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 384
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T02:03:12.176Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QCkZYy2yp7wD7vtUSNQRcZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"raw_qwen3\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.18371674783207342,\\\\n    \\\\\\\"rho_p\\\\\\\": 0.02491052633962818,\\\\n    \\\\\\\"r\\\\\\\": 0.17534324407179305,\\\\n    \\\\\\\"r_p\\\\\\\": 0.03244286839664537\\\\n  },\\\\n  \\\\\\\"raw_minilm\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.20750567868961314,\\\\n    \\\\\\\"rho_p\\\\\\\": 0.01110747053387184,\\\\n    \\\\\\\"r\\\\\\\": 0.16964202461357764,\\\\n    \\\\\\\"r_p\\\\\\\": 0.038609808158526535\\\\n  },\\\\n  \\\\\\\"partial_logfreq_qwen3\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.18897560840229824,\\\\n    \\\\\\\"p\\\\\\\": 0.02099068688771195,\\\\n    \\\\\\\"rho\\\\\\\": 0.21455903541954235,\\\\n    \\\\\\\"rho_p\\\\\\\": 0.008597824457940767\\\\n  },\\\\n  \\\\\\\"partial_logfreq_deg_qwen3\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.0639118518294047,\\\\n    \\\\\\\"p\\\\\\\": 0.43871469499647414,\\\\n    \\\\\\\"rho\\\\\\\": 0.1449456026113002,\\\\n    \\\\\\\"rho_p\\\\\\\": 0.07778045647885352\\\\n  },\\\\n  \\\\\\\"partial_all_qwen3\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.0991456695448804,\\\\n    \\\\\\\"p\\\\\\\": 0.22897581583520504\\\\n  },\\\\n  \\\\\\\"partial_logfreq_minilm\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.13269188477758653,\\\\n    \\\\\\\"p\\\\\\\": 0.10669850706603998,\\\\n    \\\\\\\"rho\\\\\\\": 0.13375864204384524,\\\\n    \\\\\\\"rho_p\\\\\\\": 0.10388620949512652\\\\n  },\\\\n  \\\\\\\"partial_logfreq_deg_minilm\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.09973708225304634,\\\\n    \\\\\\\"p\\\\\\\": 0.22619708799728583,\\\\n    \\\\\\\"rho\\\\\\\": -0.004657052417852722,\\\\n    \\\\\\\"rho_p\\\\\\\": 0.9550485521909728\\\\n  },\\\\n  \\\\\\\"partial_all_minilm\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.0963351737044513,\\\\n    \\\\\\\"p\\\\\\\": 0.24250931012722668\\\\n  },\\\\n  \\\\\\\"max_scs_partial_qwen3\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": -0.08627832984060962,\\\\n    \\\\\\\"p\\\\\\\": 0.29544836829389437,\\\\n    \\\\\\\"rho\\\\\\\": 0.007244114993119694,\\\\n    \\\\\\\"rho_p\\\\\\\": 0.9301293195071244\\\\n  },\\\\n  \\\\\\\"max_scs_partial_minilm\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.07378349587296466,\\\\n    \\\\\\\"p\\\\\\\": 0.3711737009790744,\\\\n    \\\\\\\"rho\\\\\\\": 0.044061863997490645,\\\\n    \\\\\\\"rho_p\\\\\\\": 0.5936368411142643\\\\n  },\\\\n  \\\\\\\"decomp_qwen3\\\\\\\": {\\\\n    \\\\\\\"A_r2\\\\\\\": 0.0018813327219389109,\\\\n    \\\\\\\"A_rho\\\\\\\": 0.20048357914519718,\\\\n    \\\\\\\"A_p\\\\\\\": 0.014224346616523317,\\\\n    \\\\\\\"B_r2\\\\\\\": 0.73008571048787,\\\\n    \\\\\\\"B_rho\\\\\\\": 0.07825976259938346,\\\\n    \\\\\\\"B_p\\\\\\\": 0.34277682127938935,\\\\n    \\\\\\\"C_r2\\\\\\\": 0.8621328575290603,\\\\n    \\\\\\\"C_rho\\\\\\\": -0.001578653821433066,\\\\n    \\\\\\\"C_p\\\\\\\": 0.9847552295915297\\\\n  },\\\\n  \\\\\\\"decomp_minilm\\\\\\\": {\\\\n    \\\\\\\"A_r2\\\\\\\": 0.040546673072465955,\\\\n    \\\\\\\"A_rho\\\\\\\": 0.13279970591405485,\\\\n    \\\\\\\"A_p\\\\\\\": 0.10641157282632384,\\\\n    \\\\\\\"B_r2\\\\\\\": 0.8255250884449921,\\\\n    \\\\\\\"B_rho\\\\\\\": -0.006643804619464275,\\\\n    \\\\\\\"B_p\\\\\\\": 0.9359065112789007,\\\\n    \\\\\\\"C_r2\\\\\\\": 0.8259105276519658,\\\\n    \\\\\\\"C_rho\\\\\\\": -0.015089966309251322,\\\\n    \\\\\\\"C_p\\\\\\\": 0.8550682243297008\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3ac78ab6-61b1-416d-8798-8b60371b163f",
+            "isSidechain": false,
+            "promptId": "c6816d9f-3d66-45d5-a62e-de22a84f0a8d",
+            "type": "user",
+            "uuid": "b82a1a77-1506-4b20-9db9-2944dd16d857",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"raw_qwen3\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.18371674783207342,\\\\n    \\\\\\\"rho_p\\\\\\\": 0.02491052633962818,\\\\n    \\\\\\\"r\\\\\\\": 0.17534324407179305,\\\\n    \\\\\\\"r_p\\\\\\\": 0.03244286839664537\\\\n  },\\\\n  \\\\\\\"raw_minilm\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.20750567868961314,\\\\n    \\\\\\\"rho_p\\\\\\\": 0.01110747053387184,\\\\n    \\\\\\\"r\\\\\\\": 0.16964202461357764,\\\\n    \\\\\\\"r_p\\\\\\\": 0.038609808158526535\\\\n  },\\\\n  \\\\\\\"partial_logfreq_qwen3\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.18897560840229824,\\\\n    \\\\\\\"p\\\\\\\": 0.02099068688771195,\\\\n    \\\\\\\"rho\\\\\\\": 0.21455903541954235,\\\\n    \\\\\\\"rho_p\\\\\\\": 0.008597824457940767\\\\n  },\\\\n  \\\\\\\"partial_logfreq_deg_qwen3\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.0639118518294047,\\\\n    \\\\\\\"p\\\\\\\": 0.43871469499647414,\\\\n    \\\\\\\"rho\\\\\\\": 0.1449456026113002,\\\\n    \\\\\\\"rho_p\\\\\\\": 0.07778045647885352\\\\n  },\\\\n  \\\\\\\"partial_all_qwen3\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.0991456695448804,\\\\n    \\\\\\\"p\\\\\\\": 0.22897581583520504\\\\n  },\\\\n  \\\\\\\"partial_logfreq_minilm\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.13269188477758653,\\\\n    \\\\\\\"p\\\\\\\": 0.10669850706603998,\\\\n    \\\\\\\"rho\\\\\\\": 0.13375864204384524,\\\\n    \\\\\\\"rho_p\\\\\\\": 0.10388620949512652\\\\n  },\\\\n  \\\\\\\"partial_logfreq_deg_minilm\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.09973708225304634,\\\\n    \\\\\\\"p\\\\\\\": 0.22619708799728583,\\\\n    \\\\\\\"rho\\\\\\\": -0.004657052417852722,\\\\n    \\\\\\\"rho_p\\\\\\\": 0.9550485521909728\\\\n  },\\\\n  \\\\\\\"partial_all_minilm\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.0963351737044513,\\\\n    \\\\\\\"p\\\\\\\": 0.24250931012722668\\\\n  },\\\\n  \\\\\\\"max_scs_partial_qwen3\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": -0.08627832984060962,\\\\n    \\\\\\\"p\\\\\\\": 0.29544836829389437,\\\\n    \\\\\\\"rho\\\\\\\": 0.007244114993119694,\\\\n    \\\\\\\"rho_p\\\\\\\": 0.9301293195071244\\\\n  },\\\\n  \\\\\\\"max_scs_partial_minilm\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.07378349587296466,\\\\n    \\\\\\\"p\\\\\\\": 0.3711737009790744,\\\\n    \\\\\\\"rho\\\\\\\": 0.044061863997490645,\\\\n    \\\\\\\"rho_p\\\\\\\": 0.5936368411142643\\\\n  },\\\\n  \\\\\\\"decomp_qwen3\\\\\\\": {\\\\n    \\\\\\\"A_r2\\\\\\\": 0.0018813327219389109,\\\\n    \\\\\\\"A_rho\\\\\\\": 0.20048357914519718,\\\\n    \\\\\\\"A_p\\\\\\\": 0.014224346616523317,\\\\n    \\\\\\\"B_r2\\\\\\\": 0.73008571048787,\\\\n    \\\\\\\"B_rho\\\\\\\": 0.07825976259938346,\\\\n    \\\\\\\"B_p\\\\\\\": 0.34277682127938935,\\\\n    \\\\\\\"C_r2\\\\\\\": 0.8621328575290603,\\\\n    \\\\\\\"C_rho\\\\\\\": -0.001578653821433066,\\\\n    \\\\\\\"C_p\\\\\\\": 0.9847552295915297\\\\n  },\\\\n  \\\\\\\"decomp_minilm\\\\\\\": {\\\\n    \\\\\\\"A_r2\\\\\\\": 0.040546673072465955,\\\\n    \\\\\\\"A_rho\\\\\\\": 0.13279970591405485,\\\\n    \\\\\\\"A_p\\\\\\\": 0.10641157282632384,\\\\n    \\\\\\\"B_r2\\\\\\\": 0.8255250884449921,\\\\n    \\\\\\\"B_rho\\\\\\\": -0.006643804619464275,\\\\n    \\\\\\\"B_p\\\\\\\": 0.9359065112789007,\\\\n    \\\\\\\"C_r2\\\\\\\": 0.8259105276519658,\\\\n    \\\\\\\"C_rho\\\\\\\": -0.015089966309251322,\\\\n    \\\\\\\"C_p\\\\\\\": 0.8550682243297008\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"raw_qwen3\\\": {\\n    \\\"rho\\\": 0.18371674783207342,\\n    \\\"rho_p\\\": 0.02491052633962818,\\n    \\\"r\\\": 0.17534324407179305,\\n    \\\"r_p\\\": 0.03244286839664537\\n  },\\n  \\\"raw_minilm\\\": {\\n    \\\"rho\\\": 0.20750567868961314,\\n    \\\"rho_p\\\": 0.01110747053387184,\\n    \\\"r\\\": 0.16964202461357764,\\n    \\\"r_p\\\": 0.038609808158526535\\n  },\\n  \\\"partial_logfreq_qwen3\\\": {\\n    \\\"r\\\": 0.18897560840229824,\\n    \\\"p\\\": 0.02099068688771195,\\n    \\\"rho\\\": 0.21455903541954235,\\n    \\\"rho_p\\\": 0.008597824457940767\\n  },\\n  \\\"partial_logfreq_deg_qwen3\\\": {\\n    \\\"r\\\": 0.0639118518294047,\\n    \\\"p\\\": 0.43871469499647414,\\n    \\\"rho\\\": 0.1449456026113002,\\n    \\\"rho_p\\\": 0.07778045647885352\\n  },\\n  \\\"partial_all_qwen3\\\": {\\n    \\\"r\\\": 0.0991456695448804,\\n    \\\"p\\\": 0.22897581583520504\\n  },\\n  \\\"partial_logfreq_minilm\\\": {\\n    \\\"r\\\": 0.13269188477758653,\\n    \\\"p\\\": 0.10669850706603998,\\n    \\\"rho\\\": 0.13375864204384524,\\n    \\\"rho_p\\\": 0.10388620949512652\\n  },\\n  \\\"partial_logfreq_deg_minilm\\\": {\\n    \\\"r\\\": 0.09973708225304634,\\n    \\\"p\\\": 0.22619708799728583,\\n    \\\"rho\\\": -0.004657052417852722,\\n    \\\"rho_p\\\": 0.9550485521909728\\n  },\\n  \\\"partial_all_minilm\\\": {\\n    \\\"r\\\": 0.0963351737044513,\\n    \\\"p\\\": 0.24250931012722668\\n  },\\n  \\\"max_scs_partial_qwen3\\\": {\\n    \\\"r\\\": -0.08627832984060962,\\n    \\\"p\\\": 0.29544836829389437,\\n    \\\"rho\\\": 0.007244114993119694,\\n    \\\"rho_p\\\": 0.9301293195071244\\n  },\\n  \\\"max_scs_partial_minilm\\\": {\\n    \\\"r\\\": 0.07378349587296466,\\n    \\\"p\\\": 0.3711737009790744,\\n    \\\"rho\\\": 0.044061863997490645,\\n    \\\"rho_p\\\": 0.5936368411142643\\n  },\\n  \\\"decomp_qwen3\\\": {\\n    \\\"A_r2\\\": 0.0018813327219389109,\\n    \\\"A_rho\\\": 0.20048357914519718,\\n    \\\"A_p\\\": 0.014224346616523317,\\n    \\\"B_r2\\\": 0.73008571048787,\\n    \\\"B_rho\\\": 0.07825976259938346,\\n    \\\"B_p\\\": 0.34277682127938935,\\n    \\\"C_r2\\\": 0.8621328575290603,\\n    \\\"C_rho\\\": -0.001578653821433066,\\n    \\\"C_p\\\": 0.9847552295915297\\n  },\\n  \\\"decomp_minilm\\\": {\\n    \\\"A_r2\\\": 0.040546673072465955,\\n    \\\"A_rho\\\": 0.13279970591405485,\\n    \\\"A_p\\\": 0.10641157282632384,\\n    \\\"B_r2\\\": 0.8255250884449921,\\n    \\\"B_rho\\\": -0.006643804619464275,\\n    \\\"B_p\\\": 0.9359065112789007,\\n    \\\"C_r2\\\": 0.8259105276519658,\\n    \\\"C_rho\\\": -0.015089966309251322,\\n    \\\"C_p\\\": 0.8550682243297008\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+              }
+            },
+            "sourceToolAssistantUUID": "3ac78ab6-61b1-416d-8798-8b60371b163f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T02:03:12.233Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DuLkaXbqWi8E5Gujz1gHyZ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "cat /root/schema-dag-extraction/artifacts/maven_residualized_bcs/analysis_report.txt",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b82a1a77-1506-4b20-9db9-2944dd16d857",
+            "isSidechain": false,
+            "requestId": "req_011Cb5ReRSkoSxSvRoa59ru9",
+            "type": "assistant",
+            "uuid": "c7f3f2b9-bf05-41d4-a406-cf6a6b846261",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0161dfqCq1HUtiXJQQyfsDqY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 384,
+                "cache_read_input_tokens": 24303,
+                "output_tokens": 353,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 384,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 353,
+                    "cache_read_input_tokens": 24303,
+                    "cache_creation_input_tokens": 384,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 384
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T02:03:12.648Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DuLkaXbqWi8E5Gujz1gHyZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"========================================================================\\\\nMAVEN Residualized BCS Analysis (v2)\\\\n========================================================================\\\\nN types (freq-filtered) = 149\\\\nF1: mean=0.1830, std=0.1895, median=0.1274\\\\n\\\\n────────────────────────────────────────────────────────────\\\\n1. RAW CORRELATIONS (BCS vs F1)\\\\n────────────────────────────────────────────────────────────\\\\n  Qwen3: ρ=+0.1837 (p=0.0249), r=+0.1753 (p=0.0324)\\\\n  MiniLM: ρ=+0.2075 (p=0.0111), r=+0.1696 (p=0.0386)\\\\n\\\\n────────────────────────────────────────────────────────────\\\\n2. CENTRALITY DIAGNOSTICS\\\\n   Is BCS correlated with centrality proxies?\\\\n────────────────────────────────────────────────────────────\\\\n\\\\n  ── Qwen3 ──\\\\n  BCS vs log_freq: r=-0.0434 (p=0.5994)\\\\n  BCS vs degree_0.3: r=+0.6408 (p=0.0000)\\\\n  BCS vs degree_0.5: r=+0.9369 (p=0.0000)\\\\n  BCS vs degree_0.7: r=+0.8544 (p=0.0000)\\\\n  BCS vs max_scs: r=+0.4167 (p=0.0000)\\\\n  log_freq vs F1: r=+0.2116 (p=0.0096)\\\\n  degree_0.3 vs F1: r=+0.0592 (p=0.4729)\\\\n  degree_0.5 vs F1: r=+0.1834 (p=0.0252)\\\\n  degree_0.7 vs F1: r=+0.1672 (p=0.0416)\\\\n\\\\n  ── MiniLM ──\\\\n  BCS vs log_freq: r=+0.2014 (p=0.0138)\\\\n  BCS vs degree_0.3: r=+0.9086 (p=0.0000)\\\\n  BCS vs degree_0.5: r=+0.4015 (p=0.0000)\\\\n  BCS vs degree_0.7: r=-0.0009 (p=0.9916)\\\\n  BCS vs max_scs: r=+0.2773 (p=0.0006)\\\\n  log_freq vs F1: r=+0.2116 (p=0.0096)\\\\n  degree_0.3 vs F1: r=+0.1424 (p=0.0832)\\\\n  degree_0.5 vs F1: r=+0.2414 (p=0.0030)\\\\n  degree_0.7 vs F1: r=+0.1634 (p=0.0464)\\\\n\\\\n────────���───────────────────────────────────────────────────\\\\n3. PARTIAL CORRELATIONS: BCS vs F1, various controls\\\\n────────────────────────────────────────────────────────────\\\\n\\\\n  ── Qwen3 ──\\\\n  A) BCS vs F1 | log_freq:            r=+0.1890 (p=0.0210), ρ=+0.2146 (p=0.0086)\\\\n  B) BCS vs F1 | degree_0.7:       r=+0.0634 (p=0.4421)\\\\n  C) BCS vs F1 | log_freq+degree_0.7: r=+0.0639 (p=0.4387), ρ=+0.1449 (p=0.0778)\\\\n  D) BCS vs F1 | max_scs:             r=+0.1841 (p=0.0246)\\\\n  E) BCS vs F1 | log_freq+max_scs:    r=+0.2071 (p=0.0113)\\\\n  F) BCS vs F1 | all centrality:      r=+0.0991 (p=0.2290)\\\\n\\\\n  ── MiniLM ──\\\\n  A) BCS vs F1 | log_freq:            r=+0.1327 (p=0.1067), ρ=+0.1338 (p=0.1039)\\\\n  B) BCS vs F1 | degree_0.3:       r=+0.0973 (p=0.2376)\\\\n  C) BCS vs F1 | log_freq+degree_0.3: r=+0.0997 (p=0.2262), ρ=-0.0047 (p=0.9550)\\\\n  D) BCS vs F1 | max_scs:             r=+0.1363 (p=0.0974)\\\\n  E) BCS vs F1 | log_freq+max_scs:    r=+0.1114 (p=0.1762)\\\\n  F) BCS vs F1 | all centrality:      r=+0.0963 (p=0.2425)\\\\n\\\\n────────────────────────────────────────────────────────────\\\\n4. ALTERNATIVE CONFUSABILITY METRICS vs F1\\\\n   max_scs, top3_mean = local confusability (not centrality)\\\\n────────────────────────────────────────────────────────────\\\\n\\\\n  ── Qwen3 ──\\\\n  max_scs      vs F1: ρ=+0.0443 (p=0.5915)\\\\n  top3_mean    vs F1: ρ=+0.0397 (p=0.6306)\\\\n  top5_mean    vs F1: ρ=+0.0462 (p=0.5757)\\\\n  std_scs      vs F1: ρ=-0.1391 (p=0.0907)\\\\n  cv_scs       vs F1: ρ=-0.1627 (p=0.0474)\\\\n  skew_scs     vs F1: ρ=-0.0581 (p=0.4812)\\\\n  max_scs      vs F1 | log_freq+BCS: r=-0.0863 (p=0.2954), ρ=+0.0072 (p=0.9301)\\\\n  top3_mean    vs F1 | log_freq+BCS: r=-0.0908 (p=0.2708), ρ=+0.0115 (p=0.8898)\\\\n  cv_scs       vs F1 | log_freq+BCS: r=-0.0759 (p=0.3573), ρ=-0.0611 (p=0.4594)\\\\n\\\\n  ── MiniLM ──\\\\n  max_scs      vs F1: ρ=+0.1626 (p=0.0476)\\\\n  top3_mean    vs F1: ρ=+0.1653 (p=0.0440)\\\\n  top5_mean    vs F1: ρ=+0.1661 (p=0.0429)\\\\n  std_scs      vs F1: ρ=+0.2044 (p=0.0124)\\\\n  cv_scs       vs F1: ρ=-0.0846 (p=0.3048)\\\\n  skew_scs     vs F1: ρ=-0.0346 (p=0.6754)\\\\n  max_scs      vs F1 | log_freq+BCS: r=+0.0738 (p=0.3712), ρ=+0.0441 (p=0.5936)\\\\n  top3_mean    vs F1 | log_freq+BCS: r=+0.0723 (p=0.3812), ρ=+0.0151 (p=0.8549)\\\\n  cv_scs       vs F1 | log_freq+BCS: r=+0.0056 (p=0.9456), ρ=+0.0698 (p=0.3975)\\\\n\\\\n────────────────────────────────────────────────────────────\\\\n5. DECOMPOSITION: BCS = centrality_component + residual\\\\n────────────────────────────────────────────────────────────\\\\n\\\\n  ── Qwen3 ──\\\\n  A) BCS ~ log_freq: R²=0.0019\\\\n     BCS_residual vs F1: ρ=+0.2005 (p=0.0142)\\\\n\\\\n\\\\n... [截断: 输出过长，省略 1057 字符] ...\\\\n\\\\n           ~-0.15 (neg)      +0.184 (p=.025)  +0.208 (p=.011)\\\\n  BCS↔log_freq r           +0.042 (n.s.)     -0.043 (p=0.599)  0.201 (p=0.014)\\\\n  Partial r(BCS,F1|logfreq) -0.200 (p=.116)   +0.189 (p=0.021)  +0.133 (p=0.107)\\\\n\\\\n────────────────────────────────────────────────────────────\\\\n8. INTERPRETATION & CONCLUSION\\\\n────────────────────────────────────────────────────────────\\\\n\\\\nKey findings:\\\\n\\\\n1. CENTRALITY CONFOUND — DIFFERENT PROXIES FOR EACH EMBEDDING:\\\\n   - MiniLM: BCS correlates with log_freq (r=+0.201, p=0.014)\\\\n     → frequency mediates BCS-F1 → controlling log_freq: r=+0.133 (p=0.107, n.s.)\\\\n   - Qwen3: BCS does NOT correlate with log_freq (r=-0.043, p=0.599)\\\\n     → frequency is NOT the confound for Qwen3\\\\n     → BUT BCS correlates very strongly with degree centrality\\\\n       (degree_0.7 r=+0.854, degree_0.5 r=+0.937)\\\\n     → controlling degree_0.7: r=+0.063 (p=0.442, n.s.)\\\\n     → controlling log_freq+degree_0.7: r=+0.064 (p=0.439, n.s.)\\\\n\\\\n2. CENTRALITY CONFOUND HYPOTHESIS: SUPPORTED FOR BOTH EMBEDDINGS\\\\n   The positive BCS-F1 correlation on MAVEN is fully explained by centrality:\\\\n   - MiniLM: mediated by type frequency (BCS↔freq r=0.201)\\\\n   - Qwen3: mediated by degree centrality (BCS↔degree_0.7 r=0.854)\\\\n   After controlling for the appropriate centrality proxy, BCS-F1\\\\n   becomes non-significant in both cases (p>0.1).\\\\n\\\\n3. WHY DIFFERENT CONFOUNDS?\\\\n   MiniLM operates in a lower-dimensional similarity space (BCS range\\\\n   0.064–0.313), where frequent types accumulate more semantic neighbors.\\\\n   Qwen3 operates in a higher range (0.226–0.786) where all types are\\\\n   densely connected; frequency doesn't predict connectivity, but the\\\\n   graph-theoretic degree centrality does.\\\\n\\\\n4. COMPARISON WITH Few-NERD:\\\\n   Few-NERD shows the expected negative BCS-F1 trend because its type\\\\n   system has clearer semantic boundaries and no centrality confound\\\\n   (BCS↔log_freq r=0.042, n.s.). MAVEN's 168 event types are\\\\n   semantically denser, creating a regime where centrality dominates.\\\\n\\\\n────────────────────────────────────────────────────────────\\\\n9. SUGGESTED APPENDIX TEXT\\\\n────────────────────────────────────────────────────────────\\\\n\\\\n§ A.X  MAVEN Per-Type BCS Analysis\\\\n\\\\nOn MAVEN (168 event types, 149 after frequency filtering), per-type BCS \\\\nshows a positive correlation with F1 (Qwen3: ρ = +0.184, p = 0.025; \\\\nMiniLM: ρ = +0.208, p = 0.011), opposite to the negative trend observed \\\\non Few-NERD.\\\\n\\\\nWe investigate whether this reversal reflects a centrality confound — the \\\\npossibility that mean BCS acts as a proxy for type \\\\\\\"centrality\\\\\\\" (semantic \\\\nconnectivity), which independently predicts higher F1.\\\\n\\\\nFor MiniLM embeddings, BCS correlates with type frequency (r = +0.201, \\\\np = 0.014), and controlling for log-frequency renders the BCS–F1 \\\\ncorrelation non-significant (partial r = +0.133, p = 0.107).\\\\n\\\\nFor Qwen3 embeddings, BCS is uncorrelated with type frequency (r = -0.043, \\\\np = 0.599), and the BCS–F1 relationship survives frequency control \\\\n(partial r = +0.189, p = 0.021). However, Qwen3 BCS is strongly correlated \\\\nwith degree centrality (r = +0.854 at threshold 0.7), and controlling for \\\\ndegree centrality eliminates the BCS–F1 association (partial r = +0.063, \\\\np = 0.442). Under joint control of log-frequency and degree centrality, \\\\nneither embedding shows a significant BCS–F1 relationship (Qwen3: \\\\npartial r = +0.064, p = 0.439; MiniLM: partial r = +0.100, p = 0.226).\\\\n\\\\nWe conclude that MAVEN's positive BCS–F1 correlation is a centrality \\\\nartifact: types with more semantic neighbors are better represented in \\\\nthe training distribution and thus easier to classify. The confound \\\\noperates through different proxies — type frequency for MiniLM, \\\\ngraph-theoretic degree centrality for Qwen3 — reflecting the different \\\\nsimilarity scales of the two embedding spaces. This contrasts with \\\\nFew-NERD, where the sparser type space (66 types with clearer boundaries) \\\\nshows no centrality confound (BCS↔log_freq r = 0.042, n.s.) and BCS \\\\nexhibits the expected negative trend with F1.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c7f3f2b9-bf05-41d4-a406-cf6a6b846261",
+            "isSidechain": false,
+            "promptId": "c6816d9f-3d66-45d5-a62e-de22a84f0a8d",
+            "type": "user",
+            "uuid": "ef784751-60d4-4b95-b8f8-fab88805d3a0",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"========================================================================\\\\nMAVEN Residualized BCS Analysis (v2)\\\\n========================================================================\\\\nN types (freq-filtered) = 149\\\\nF1: mean=0.1830, std=0.1895, median=0.1274\\\\n\\\\n────────────────────────────────────────────────────────────\\\\n1. RAW CORRELATIONS (BCS vs F1)\\\\n────────────────────────────────────────────────────────────\\\\n  Qwen3: ρ=+0.1837 (p=0.0249), r=+0.1753 (p=0.0324)\\\\n  MiniLM: ρ=+0.2075 (p=0.0111), r=+0.1696 (p=0.0386)\\\\n\\\\n────────────────────────────────────────────────────────────\\\\n2. CENTRALITY DIAGNOSTICS\\\\n   Is BCS correlated with centrality proxies?\\\\n────────────────────────────────────────────────────────────\\\\n\\\\n  ── Qwen3 ──\\\\n  BCS vs log_freq: r=-0.0434 (p=0.5994)\\\\n  BCS vs degree_0.3: r=+0.6408 (p=0.0000)\\\\n  BCS vs degree_0.5: r=+0.9369 (p=0.0000)\\\\n  BCS vs degree_0.7: r=+0.8544 (p=0.0000)\\\\n  BCS vs max_scs: r=+0.4167 (p=0.0000)\\\\n  log_freq vs F1: r=+0.2116 (p=0.0096)\\\\n  degree_0.3 vs F1: r=+0.0592 (p=0.4729)\\\\n  degree_0.5 vs F1: r=+0.1834 (p=0.0252)\\\\n  degree_0.7 vs F1: r=+0.1672 (p=0.0416)\\\\n\\\\n  ── MiniLM ──\\\\n  BCS vs log_freq: r=+0.2014 (p=0.0138)\\\\n  BCS vs degree_0.3: r=+0.9086 (p=0.0000)\\\\n  BCS vs degree_0.5: r=+0.4015 (p=0.0000)\\\\n  BCS vs degree_0.7: r=-0.0009 (p=0.9916)\\\\n  BCS vs max_scs: r=+0.2773 (p=0.0006)\\\\n  log_freq vs F1: r=+0.2116 (p=0.0096)\\\\n  degree_0.3 vs F1: r=+0.1424 (p=0.0832)\\\\n  degree_0.5 vs F1: r=+0.2414 (p=0.0030)\\\\n  degree_0.7 vs F1: r=+0.1634 (p=0.0464)\\\\n\\\\n────────���───────────────────────────────────────────────────\\\\n3. PARTIAL CORRELATIONS: BCS vs F1, various controls\\\\n────────────────────────────────────────────────────────────\\\\n\\\\n  ── Qwen3 ──\\\\n  A) BCS vs F1 | log_freq:            r=+0.1890 (p=0.0210), ρ=+0.2146 (p=0.0086)\\\\n  B) BCS vs F1 | degree_0.7:       r=+0.0634 (p=0.4421)\\\\n  C) BCS vs F1 | log_freq+degree_0.7: r=+0.0639 (p=0.4387), ρ=+0.1449 (p=0.0778)\\\\n  D) BCS vs F1 | max_scs:             r=+0.1841 (p=0.0246)\\\\n  E) BCS vs F1 | log_freq+max_scs:    r=+0.2071 (p=0.0113)\\\\n  F) BCS vs F1 | all centrality:      r=+0.0991 (p=0.2290)\\\\n\\\\n  ── MiniLM ──\\\\n  A) BCS vs F1 | log_freq:            r=+0.1327 (p=0.1067), ρ=+0.1338 (p=0.1039)\\\\n  B) BCS vs F1 | degree_0.3:       r=+0.0973 (p=0.2376)\\\\n  C) BCS vs F1 | log_freq+degree_0.3: r=+0.0997 (p=0.2262), ρ=-0.0047 (p=0.9550)\\\\n  D) BCS vs F1 | max_scs:             r=+0.1363 (p=0.0974)\\\\n  E) BCS vs F1 | log_freq+max_scs:    r=+0.1114 (p=0.1762)\\\\n  F) BCS vs F1 | all centrality:      r=+0.0963 (p=0.2425)\\\\n\\\\n────────────────────────────────────────────────────────────\\\\n4. ALTERNATIVE CONFUSABILITY METRICS vs F1\\\\n   max_scs, top3_mean = local confusability (not centrality)\\\\n────────────────────────────────────────────────────────────\\\\n\\\\n  ── Qwen3 ──\\\\n  max_scs      vs F1: ρ=+0.0443 (p=0.5915)\\\\n  top3_mean    vs F1: ρ=+0.0397 (p=0.6306)\\\\n  top5_mean    vs F1: ρ=+0.0462 (p=0.5757)\\\\n  std_scs      vs F1: ρ=-0.1391 (p=0.0907)\\\\n  cv_scs       vs F1: ρ=-0.1627 (p=0.0474)\\\\n  skew_scs     vs F1: ρ=-0.0581 (p=0.4812)\\\\n  max_scs      vs F1 | log_freq+BCS: r=-0.0863 (p=0.2954), ρ=+0.0072 (p=0.9301)\\\\n  top3_mean    vs F1 | log_freq+BCS: r=-0.0908 (p=0.2708), ρ=+0.0115 (p=0.8898)\\\\n  cv_scs       vs F1 | log_freq+BCS: r=-0.0759 (p=0.3573), ρ=-0.0611 (p=0.4594)\\\\n\\\\n  ── MiniLM ──\\\\n  max_scs      vs F1: ρ=+0.1626 (p=0.0476)\\\\n  top3_mean    vs F1: ρ=+0.1653 (p=0.0440)\\\\n  top5_mean    vs F1: ρ=+0.1661 (p=0.0429)\\\\n  std_scs      vs F1: ρ=+0.2044 (p=0.0124)\\\\n  cv_scs       vs F1: ρ=-0.0846 (p=0.3048)\\\\n  skew_scs     vs F1: ρ=-0.0346 (p=0.6754)\\\\n  max_scs      vs F1 | log_freq+BCS: r=+0.0738 (p=0.3712), ρ=+0.0441 (p=0.5936)\\\\n  top3_mean    vs F1 | log_freq+BCS: r=+0.0723 (p=0.3812), ρ=+0.0151 (p=0.8549)\\\\n  cv_scs       vs F1 | log_freq+BCS: r=+0.0056 (p=0.9456), ρ=+0.0698 (p=0.3975)\\\\n\\\\n────────────────────────────────────────────────────────────\\\\n5. DECOMPOSITION: BCS = centrality_component + residual\\\\n────────────────────────────────────────────────────────────\\\\n\\\\n  ── Qwen3 ──\\\\n  A) BCS ~ log_freq: R²=0.0019\\\\n     BCS_residual vs F1: ρ=+0.2005 (p=0.0142)\\\\n\\\\n\\\\n... [截断: 输出过长，省略 1057 字符] ...\\\\n\\\\n           ~-0.15 (neg)      +0.184 (p=.025)  +0.208 (p=.011)\\\\n  BCS↔log_freq r           +0.042 (n.s.)     -0.043 (p=0.599)  0.201 (p=0.014)\\\\n  Partial r(BCS,F1|logfreq) -0.200 (p=.116)   +0.189 (p=0.021)  +0.133 (p=0.107)\\\\n\\\\n────────────────────────────────────────────────────────────\\\\n8. INTERPRETATION & CONCLUSION\\\\n────────────────────────────────────────────────────────────\\\\n\\\\nKey findings:\\\\n\\\\n1. CENTRALITY CONFOUND — DIFFERENT PROXIES FOR EACH EMBEDDING:\\\\n   - MiniLM: BCS correlates with log_freq (r=+0.201, p=0.014)\\\\n     → frequency mediates BCS-F1 → controlling log_freq: r=+0.133 (p=0.107, n.s.)\\\\n   - Qwen3: BCS does NOT correlate with log_freq (r=-0.043, p=0.599)\\\\n     → frequency is NOT the confound for Qwen3\\\\n     → BUT BCS correlates very strongly with degree centrality\\\\n       (degree_0.7 r=+0.854, degree_0.5 r=+0.937)\\\\n     → controlling degree_0.7: r=+0.063 (p=0.442, n.s.)\\\\n     → controlling log_freq+degree_0.7: r=+0.064 (p=0.439, n.s.)\\\\n\\\\n2. CENTRALITY CONFOUND HYPOTHESIS: SUPPORTED FOR BOTH EMBEDDINGS\\\\n   The positive BCS-F1 correlation on MAVEN is fully explained by centrality:\\\\n   - MiniLM: mediated by type frequency (BCS↔freq r=0.201)\\\\n   - Qwen3: mediated by degree centrality (BCS↔degree_0.7 r=0.854)\\\\n   After controlling for the appropriate centrality proxy, BCS-F1\\\\n   becomes non-significant in both cases (p>0.1).\\\\n\\\\n3. WHY DIFFERENT CONFOUNDS?\\\\n   MiniLM operates in a lower-dimensional similarity space (BCS range\\\\n   0.064–0.313), where frequent types accumulate more semantic neighbors.\\\\n   Qwen3 operates in a higher range (0.226–0.786) where all types are\\\\n   densely connected; frequency doesn't predict connectivity, but the\\\\n   graph-theoretic degree centrality does.\\\\n\\\\n4. COMPARISON WITH Few-NERD:\\\\n   Few-NERD shows the expected negative BCS-F1 trend because its type\\\\n   system has clearer semantic boundaries and no centrality confound\\\\n   (BCS↔log_freq r=0.042, n.s.). MAVEN's 168 event types are\\\\n   semantically denser, creating a regime where centrality dominates.\\\\n\\\\n────────────────────────────────────────────────────────────\\\\n9. SUGGESTED APPENDIX TEXT\\\\n────────────────────────────────────────────────────────────\\\\n\\\\n§ A.X  MAVEN Per-Type BCS Analysis\\\\n\\\\nOn MAVEN (168 event types, 149 after frequency filtering), per-type BCS \\\\nshows a positive correlation with F1 (Qwen3: ρ = +0.184, p = 0.025; \\\\nMiniLM: ρ = +0.208, p = 0.011), opposite to the negative trend observed \\\\non Few-NERD.\\\\n\\\\nWe investigate whether this reversal reflects a centrality confound — the \\\\npossibility that mean BCS acts as a proxy for type \\\\\\\"centrality\\\\\\\" (semantic \\\\nconnectivity), which independently predicts higher F1.\\\\n\\\\nFor MiniLM embeddings, BCS correlates with type frequency (r = +0.201, \\\\np = 0.014), and controlling for log-frequency renders the BCS–F1 \\\\ncorrelation non-significant (partial r = +0.133, p = 0.107).\\\\n\\\\nFor Qwen3 embeddings, BCS is uncorrelated with type frequency (r = -0.043, \\\\np = 0.599), and the BCS–F1 relationship survives frequency control \\\\n(partial r = +0.189, p = 0.021). However, Qwen3 BCS is strongly correlated \\\\nwith degree centrality (r = +0.854 at threshold 0.7), and controlling for \\\\ndegree centrality eliminates the BCS–F1 association (partial r = +0.063, \\\\np = 0.442). Under joint control of log-frequency and degree centrality, \\\\nneither embedding shows a significant BCS–F1 relationship (Qwen3: \\\\npartial r = +0.064, p = 0.439; MiniLM: partial r = +0.100, p = 0.226).\\\\n\\\\nWe conclude that MAVEN's positive BCS–F1 correlation is a centrality \\\\nartifact: types with more semantic neighbors are better represented in \\\\nthe training distribution and thus easier to classify. The confound \\\\noperates through different proxies — type frequency for MiniLM, \\\\ngraph-theoretic degree centrality for Qwen3 — reflecting the different \\\\nsimilarity scales of the two embedding spaces. This contrasts with \\\\nFew-NERD, where the sparser type space (66 types with clearer boundaries) \\\\nshows no centrality confound (BCS↔log_freq r = 0.042, n.s.) and BCS \\\\nexhibits the expected negative trend with F1.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"========================================================================\\nMAVEN Residualized BCS Analysis (v2)\\n========================================================================\\nN types (freq-filtered) = 149\\nF1: mean=0.1830, std=0.1895, median=0.1274\\n\\n────────────────────────────────────────────────────────────\\n1. RAW CORRELATIONS (BCS vs F1)\\n────────────────────────────────────────────────────────────\\n  Qwen3: ρ=+0.1837 (p=0.0249), r=+0.1753 (p=0.0324)\\n  MiniLM: ρ=+0.2075 (p=0.0111), r=+0.1696 (p=0.0386)\\n\\n────────────────────────────────────────────────────────────\\n2. CENTRALITY DIAGNOSTICS\\n   Is BCS correlated with centrality proxies?\\n────────────────────────────────────────────────────────────\\n\\n  ── Qwen3 ──\\n  BCS vs log_freq: r=-0.0434 (p=0.5994)\\n  BCS vs degree_0.3: r=+0.6408 (p=0.0000)\\n  BCS vs degree_0.5: r=+0.9369 (p=0.0000)\\n  BCS vs degree_0.7: r=+0.8544 (p=0.0000)\\n  BCS vs max_scs: r=+0.4167 (p=0.0000)\\n  log_freq vs F1: r=+0.2116 (p=0.0096)\\n  degree_0.3 vs F1: r=+0.0592 (p=0.4729)\\n  degree_0.5 vs F1: r=+0.1834 (p=0.0252)\\n  degree_0.7 vs F1: r=+0.1672 (p=0.0416)\\n\\n  ── MiniLM ──\\n  BCS vs log_freq: r=+0.2014 (p=0.0138)\\n  BCS vs degree_0.3: r=+0.9086 (p=0.0000)\\n  BCS vs degree_0.5: r=+0.4015 (p=0.0000)\\n  BCS vs degree_0.7: r=-0.0009 (p=0.9916)\\n  BCS vs max_scs: r=+0.2773 (p=0.0006)\\n  log_freq vs F1: r=+0.2116 (p=0.0096)\\n  degree_0.3 vs F1: r=+0.1424 (p=0.0832)\\n  degree_0.5 vs F1: r=+0.2414 (p=0.0030)\\n  degree_0.7 vs F1: r=+0.1634 (p=0.0464)\\n\\n────────���───────────────────────────────────────────────────\\n3. PARTIAL CORRELATIONS: BCS vs F1, various controls\\n────────────────────────────────────────────────────────────\\n\\n  ── Qwen3 ──\\n  A) BCS vs F1 | log_freq:            r=+0.1890 (p=0.0210), ρ=+0.2146 (p=0.0086)\\n  B) BCS vs F1 | degree_0.7:       r=+0.0634 (p=0.4421)\\n  C) BCS vs F1 | log_freq+degree_0.7: r=+0.0639 (p=0.4387), ρ=+0.1449 (p=0.0778)\\n  D) BCS vs F1 | max_scs:             r=+0.1841 (p=0.0246)\\n  E) BCS vs F1 | log_freq+max_scs:    r=+0.2071 (p=0.0113)\\n  F) BCS vs F1 | all centrality:      r=+0.0991 (p=0.2290)\\n\\n  ── MiniLM ──\\n  A) BCS vs F1 | log_freq:            r=+0.1327 (p=0.1067), ρ=+0.1338 (p=0.1039)\\n  B) BCS vs F1 | degree_0.3:       r=+0.0973 (p=0.2376)\\n  C) BCS vs F1 | log_freq+degree_0.3: r=+0.0997 (p=0.2262), ρ=-0.0047 (p=0.9550)\\n  D) BCS vs F1 | max_scs:             r=+0.1363 (p=0.0974)\\n  E) BCS vs F1 | log_freq+max_scs:    r=+0.1114 (p=0.1762)\\n  F) BCS vs F1 | all centrality:      r=+0.0963 (p=0.2425)\\n\\n────────────────────────────────────────────────────────────\\n4. ALTERNATIVE CONFUSABILITY METRICS vs F1\\n   max_scs, top3_mean = local confusability (not centrality)\\n────────────────────────────────────────────────────────────\\n\\n  ── Qwen3 ──\\n  max_scs      vs F1: ρ=+0.0443 (p=0.5915)\\n  top3_mean    vs F1: ρ=+0.0397 (p=0.6306)\\n  top5_mean    vs F1: ρ=+0.0462 (p=0.5757)\\n  std_scs      vs F1: ρ=-0.1391 (p=0.0907)\\n  cv_scs       vs F1: ρ=-0.1627 (p=0.0474)\\n  skew_scs     vs F1: ρ=-0.0581 (p=0.4812)\\n  max_scs      vs F1 | log_freq+BCS: r=-0.0863 (p=0.2954), ρ=+0.0072 (p=0.9301)\\n  top3_mean    vs F1 | log_freq+BCS: r=-0.0908 (p=0.2708), ρ=+0.0115 (p=0.8898)\\n  cv_scs       vs F1 | log_freq+BCS: r=-0.0759 (p=0.3573), ρ=-0.0611 (p=0.4594)\\n\\n  ── MiniLM ──\\n  max_scs      vs F1: ρ=+0.1626 (p=0.0476)\\n  top3_mean    vs F1: ρ=+0.1653 (p=0.0440)\\n  top5_mean    vs F1: ρ=+0.1661 (p=0.0429)\\n  std_scs      vs F1: ρ=+0.2044 (p=0.0124)\\n  cv_scs       vs F1: ρ=-0.0846 (p=0.3048)\\n  skew_scs     vs F1: ρ=-0.0346 (p=0.6754)\\n  max_scs      vs F1 | log_freq+BCS: r=+0.0738 (p=0.3712), ρ=+0.0441 (p=0.5936)\\n  top3_mean    vs F1 | log_freq+BCS: r=+0.0723 (p=0.3812), ρ=+0.0151 (p=0.8549)\\n  cv_scs       vs F1 | log_freq+BCS: r=+0.0056 (p=0.9456), ρ=+0.0698 (p=0.3975)\\n\\n────────────────────────────────────────────────────────────\\n5. DECOMPOSITION: BCS = centrality_component + residual\\n────────────────────────────────────────────────────────────\\n\\n  ── Qwen3 ──\\n  A) BCS ~ log_freq: R²=0.0019\\n     BCS_residual vs F1: ρ=+0.2005 (p=0.0142)\\n\\n\\n... [截断: 输出过长，省略 1057 字符] ...\\n\\n           ~-0.15 (neg)      +0.184 (p=.025)  +0.208 (p=.011)\\n  BCS↔log_freq r           +0.042 (n.s.)     -0.043 (p=0.599)  0.201 (p=0.014)\\n  Partial r(BCS,F1|logfreq) -0.200 (p=.116)   +0.189 (p=0.021)  +0.133 (p=0.107)\\n\\n────────────────────────────────────────────────────────────\\n8. INTERPRETATION & CONCLUSION\\n────────────────────────────────────────────────────────────\\n\\nKey findings:\\n\\n1. CENTRALITY CONFOUND — DIFFERENT PROXIES FOR EACH EMBEDDING:\\n   - MiniLM: BCS correlates with log_freq (r=+0.201, p=0.014)\\n     → frequency mediates BCS-F1 → controlling log_freq: r=+0.133 (p=0.107, n.s.)\\n   - Qwen3: BCS does NOT correlate with log_freq (r=-0.043, p=0.599)\\n     → frequency is NOT the confound for Qwen3\\n     → BUT BCS correlates very strongly with degree centrality\\n       (degree_0.7 r=+0.854, degree_0.5 r=+0.937)\\n     → controlling degree_0.7: r=+0.063 (p=0.442, n.s.)\\n     → controlling log_freq+degree_0.7: r=+0.064 (p=0.439, n.s.)\\n\\n2. CENTRALITY CONFOUND HYPOTHESIS: SUPPORTED FOR BOTH EMBEDDINGS\\n   The positive BCS-F1 correlation on MAVEN is fully explained by centrality:\\n   - MiniLM: mediated by type frequency (BCS↔freq r=0.201)\\n   - Qwen3: mediated by degree centrality (BCS↔degree_0.7 r=0.854)\\n   After controlling for the appropriate centrality proxy, BCS-F1\\n   becomes non-significant in both cases (p>0.1).\\n\\n3. WHY DIFFERENT CONFOUNDS?\\n   MiniLM operates in a lower-dimensional similarity space (BCS range\\n   0.064–0.313), where frequent types accumulate more semantic neighbors.\\n   Qwen3 operates in a higher range (0.226–0.786) where all types are\\n   densely connected; frequency doesn't predict connectivity, but the\\n   graph-theoretic degree centrality does.\\n\\n4. COMPARISON WITH Few-NERD:\\n   Few-NERD shows the expected negative BCS-F1 trend because its type\\n   system has clearer semantic boundaries and no centrality confound\\n   (BCS↔log_freq r=0.042, n.s.). MAVEN's 168 event types are\\n   semantically denser, creating a regime where centrality dominates.\\n\\n────────────────────────────────────────────────────────────\\n9. SUGGESTED APPENDIX TEXT\\n────────────────────────────────────────────────────────────\\n\\n§ A.X  MAVEN Per-Type BCS Analysis\\n\\nOn MAVEN (168 event types, 149 after frequency filtering), per-type BCS \\nshows a positive correlation with F1 (Qwen3: ρ = +0.184, p = 0.025; \\nMiniLM: ρ = +0.208, p = 0.011), opposite to the negative trend observed \\non Few-NERD.\\n\\nWe investigate whether this reversal reflects a centrality confound — the \\npossibility that mean BCS acts as a proxy for type \\\"centrality\\\" (semantic \\nconnectivity), which independently predicts higher F1.\\n\\nFor MiniLM embeddings, BCS correlates with type frequency (r = +0.201, \\np = 0.014), and controlling for log-frequency renders the BCS–F1 \\ncorrelation non-significant (partial r = +0.133, p = 0.107).\\n\\nFor Qwen3 embeddings, BCS is uncorrelated with type frequency (r = -0.043, \\np = 0.599), and the BCS–F1 relationship survives frequency control \\n(partial r = +0.189, p = 0.021). However, Qwen3 BCS is strongly correlated \\nwith degree centrality (r = +0.854 at threshold 0.7), and controlling for \\ndegree centrality eliminates the BCS–F1 association (partial r = +0.063, \\np = 0.442). Under joint control of log-frequency and degree centrality, \\nneither embedding shows a significant BCS–F1 relationship (Qwen3: \\npartial r = +0.064, p = 0.439; MiniLM: partial r = +0.100, p = 0.226).\\n\\nWe conclude that MAVEN's positive BCS–F1 correlation is a centrality \\nartifact: types with more semantic neighbors are better represented in \\nthe training distribution and thus easier to classify. The confound \\noperates through different proxies — type frequency for MiniLM, \\ngraph-theoretic degree centrality for Qwen3 — reflecting the different \\nsimilarity scales of the two embedding spaces. This contrasts with \\nFew-NERD, where the sparser type space (66 types with clearer boundaries) \\nshows no centrality confound (BCS↔log_freq r = 0.042, n.s.) and BCS \\nexhibits the expected negative trend with F1.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            },
+            "sourceToolAssistantUUID": "c7f3f2b9-bf05-41d4-a406-cf6a6b846261",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T02:03:13.001Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TG5nBcurkRxCfHegs7HTZt",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "head -100 /root/schema-dag-extraction/artifacts/maven_residualized_bcs/residualized_analysis.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ef784751-60d4-4b95-b8f8-fab88805d3a0",
+            "isSidechain": false,
+            "requestId": "req_011Cb5ReRSkoSxSvRoa59ru9",
+            "type": "assistant",
+            "uuid": "d645c515-7207-46e9-bcd5-502a36fd3203",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0161dfqCq1HUtiXJQQyfsDqY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 384,
+                "cache_read_input_tokens": 24303,
+                "output_tokens": 353,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 384,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 353,
+                    "cache_read_input_tokens": 24303,
+                    "cache_creation_input_tokens": 384,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 384
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "d645c515-7207-46e9-bcd5-502a36fd3203",
+                "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231"
+              }
+            }
+          ],
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Prepare MAVEN residualized BCS appendix",
+                "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231"
+              }
+            }
+          ],
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T02:03:13.399Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TG5nBcurkRxCfHegs7HTZt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nMAVEN Residualized BCS Analysis (v2 — proper type-name matching)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, numpy as np, torch\\\\nfrom scipy import stats\\\\nfrom sklearn.linear_model import LinearRegression\\\\nfrom pathlib import Path\\\\nimport warnings\\\\nwarnings.filterwarnings('ignore')\\\\n\\\\nARTIFACTS = Path(\\\\\\\"/root/schema-dag-extraction/artifacts\\\\\\\")\\\\nOUT = ARTIFACTS / \\\\\\\"maven_residualized_bcs\\\\\\\"\\\\n\\\\n# ── Load per-type data ──\\\\nwith open(ARTIFACTS / \\\\\\\"maven_minilm_pertype_analysis.json\\\\\\\") as f:\\\\n    data = json.load(f)\\\\n\\\\nper_type = data[\\\\\\\"per_type_details\\\\\\\"]\\\\ntypes_list = sorted(per_type.keys())\\\\nn = len(types_list)\\\\n\\\\nf1 = np.array([per_type[t][\\\\\\\"f1\\\\\\\"] for t in types_list])\\\\nerror_rate = 1.0 - f1\\\\ngold_freq = np.array([per_type[t][\\\\\\\"gold_freq\\\\\\\"] for t in types_list])\\\\nlog_freq = np.log1p(gold_freq)\\\\nbcs_minilm = np.array([per_type[t][\\\\\\\"mean_bcs_minilm\\\\\\\"] for t in types_list])\\\\nbcs_qwen3 = np.array([per_type[t][\\\\\\\"mean_bcs_qwen3\\\\\\\"] for t in types_list])\\\\n\\\\n# ── Load SCS matrices with type names ──\\\\nd_minilm = torch.load(ARTIFACTS / \\\\\\\"maven_minilm_sim_matrix.pt\\\\\\\", weights_only=False)\\\\nd_qwen3 = torch.load(ARTIFACTS / \\\\\\\"maven_bcs_matrix_qwen3.pt\\\\\\\", weights_only=False)\\\\n\\\\nmat_minilm = d_minilm[\\\\\\\"similarity_matrix\\\\\\\"].numpy().astype(float)\\\\nmat_qwen3 = d_qwen3[\\\\\\\"similarity_matrix\\\\\\\"].numpy().astype(float)\\\\nmat_names_minilm = d_minilm[\\\\\\\"type_names\\\\\\\"]\\\\nmat_names_qwen3 = d_qwen3[\\\\\\\"type_names\\\\\\\"]\\\\n\\\\n# Zero diagonals\\\\nnp.fill_diagonal(mat_minilm, 0)\\\\nnp.fill_diagonal(mat_qwen3, 0)\\\\n\\\\n# Build name→index maps\\\\nname2idx_minilm = {n: i for i, n in enumerate(mat_names_minilm)}\\\\nname2idx_qwen3 = {n: i for i, n in enumerate(mat_names_qwen3)}\\\\n\\\\n# ── Compute matrix-derived features for each type ──\\\\ndef compute_features(sim_matrix, name2idx, types_list, emb_name):\\\\n    features = {}\\\\n    indices = []\\\\n    valid_mask = []\\\\n    for t in types_list:\\\\n        if t in name2idx:\\\\n            indices.append(name2idx[t])\\\\n            valid_mask.append(True)\\\\n        else:\\\\n            indices.append(-1)\\\\n            valid_mask.append(False)\\\\n    \\\\n    valid_mask = np.array(valid_mask)\\\\n    print(f\\\\\\\"  {emb_name}: {valid_mask.sum()}/{len(types_list)} types matched\\\\\\\")\\\\n    \\\\n    n_mat = sim_matrix.shape[0]\\\\n    \\\\n    # Per-type features from full matrix\\\\n    max_scs = np.full(len(types_list), np.nan)\\\\n    std_scs = np.full(len(types_list), np.nan)\\\\n    top3_mean = np.full(len(types_list), np.nan)\\\\n    top5_mean = np.full(len(types_list), np.nan)\\\\n    mean_scs_all = np.full(len(types_list), np.nan)  # mean SCS to ALL 168 types\\\\n    \\\\n    degree_05 = np.full(len(types_list), np.nan)\\\\n    degree_06 = np.full(len(types_list), np.nan)\\\\n    degree_07 = np.full(len(types_list), np.nan)\\\\n    degree_02 = np.full(len(types_list), np.nan)  # for MiniLM (lower scale)\\\\n    degree_03 = np.full(len(types_list), np.nan)\\\\n    \\\\n    # Coefficient of variation of SCS\\\\n    cv_scs = np.full(len(types_list), np.nan)\\\\n    # Skewness of SCS distribution\\\\n    skew_scs = np.full(len(types_list), np.nan)\\\\n    \\\\n    for i, t in enumerate(types_list):\\\\n        if not valid_mask[i]:\\\\n            continue\\\\n        idx = indices[i]\\\\n        row = sim_matrix[idx]\\\\n        row_no_self = np.concatenate([row[:idx], row[idx+1:]])\\\\n        \\\\n        mean_scs_all[i] = row_no_self.mean()\\\\n        max_scs[i] = row_no_self.max()\\\\n        std_scs[i] = row_no_self.std()\\\\n        cv_scs[i] = row_no_self.std() / (row_no_self.mean() + 1e-10)\\\\n        skew_scs[i] = stats.skew(row_no_self)\\\\n        \\\\n        sorted_row = np.sort(row_no_self)\\\\n        top3_mean[i] = sorted_row[-3:].mean()\\\\n        top5_mean[i] = sorted_row[-5:].mean()\\\\n        \\\\n        degree_02[i] = (row_no_self > 0.2).sum()\\\\n        degree_03[i] = (row_no_self > 0.3).sum()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d645c515-7207-46e9-bcd5-502a36fd3203",
+            "isSidechain": false,
+            "promptId": "c6816d9f-3d66-45d5-a62e-de22a84f0a8d",
+            "type": "user",
+            "uuid": "5140943d-8ccd-476d-aa18-33557b8d13a0",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nMAVEN Residualized BCS Analysis (v2 — proper type-name matching)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, numpy as np, torch\\\\nfrom scipy import stats\\\\nfrom sklearn.linear_model import LinearRegression\\\\nfrom pathlib import Path\\\\nimport warnings\\\\nwarnings.filterwarnings('ignore')\\\\n\\\\nARTIFACTS = Path(\\\\\\\"/root/schema-dag-extraction/artifacts\\\\\\\")\\\\nOUT = ARTIFACTS / \\\\\\\"maven_residualized_bcs\\\\\\\"\\\\n\\\\n# ── Load per-type data ──\\\\nwith open(ARTIFACTS / \\\\\\\"maven_minilm_pertype_analysis.json\\\\\\\") as f:\\\\n    data = json.load(f)\\\\n\\\\nper_type = data[\\\\\\\"per_type_details\\\\\\\"]\\\\ntypes_list = sorted(per_type.keys())\\\\nn = len(types_list)\\\\n\\\\nf1 = np.array([per_type[t][\\\\\\\"f1\\\\\\\"] for t in types_list])\\\\nerror_rate = 1.0 - f1\\\\ngold_freq = np.array([per_type[t][\\\\\\\"gold_freq\\\\\\\"] for t in types_list])\\\\nlog_freq = np.log1p(gold_freq)\\\\nbcs_minilm = np.array([per_type[t][\\\\\\\"mean_bcs_minilm\\\\\\\"] for t in types_list])\\\\nbcs_qwen3 = np.array([per_type[t][\\\\\\\"mean_bcs_qwen3\\\\\\\"] for t in types_list])\\\\n\\\\n# ── Load SCS matrices with type names ──\\\\nd_minilm = torch.load(ARTIFACTS / \\\\\\\"maven_minilm_sim_matrix.pt\\\\\\\", weights_only=False)\\\\nd_qwen3 = torch.load(ARTIFACTS / \\\\\\\"maven_bcs_matrix_qwen3.pt\\\\\\\", weights_only=False)\\\\n\\\\nmat_minilm = d_minilm[\\\\\\\"similarity_matrix\\\\\\\"].numpy().astype(float)\\\\nmat_qwen3 = d_qwen3[\\\\\\\"similarity_matrix\\\\\\\"].numpy().astype(float)\\\\nmat_names_minilm = d_minilm[\\\\\\\"type_names\\\\\\\"]\\\\nmat_names_qwen3 = d_qwen3[\\\\\\\"type_names\\\\\\\"]\\\\n\\\\n# Zero diagonals\\\\nnp.fill_diagonal(mat_minilm, 0)\\\\nnp.fill_diagonal(mat_qwen3, 0)\\\\n\\\\n# Build name→index maps\\\\nname2idx_minilm = {n: i for i, n in enumerate(mat_names_minilm)}\\\\nname2idx_qwen3 = {n: i for i, n in enumerate(mat_names_qwen3)}\\\\n\\\\n# ── Compute matrix-derived features for each type ──\\\\ndef compute_features(sim_matrix, name2idx, types_list, emb_name):\\\\n    features = {}\\\\n    indices = []\\\\n    valid_mask = []\\\\n    for t in types_list:\\\\n        if t in name2idx:\\\\n            indices.append(name2idx[t])\\\\n            valid_mask.append(True)\\\\n        else:\\\\n            indices.append(-1)\\\\n            valid_mask.append(False)\\\\n    \\\\n    valid_mask = np.array(valid_mask)\\\\n    print(f\\\\\\\"  {emb_name}: {valid_mask.sum()}/{len(types_list)} types matched\\\\\\\")\\\\n    \\\\n    n_mat = sim_matrix.shape[0]\\\\n    \\\\n    # Per-type features from full matrix\\\\n    max_scs = np.full(len(types_list), np.nan)\\\\n    std_scs = np.full(len(types_list), np.nan)\\\\n    top3_mean = np.full(len(types_list), np.nan)\\\\n    top5_mean = np.full(len(types_list), np.nan)\\\\n    mean_scs_all = np.full(len(types_list), np.nan)  # mean SCS to ALL 168 types\\\\n    \\\\n    degree_05 = np.full(len(types_list), np.nan)\\\\n    degree_06 = np.full(len(types_list), np.nan)\\\\n    degree_07 = np.full(len(types_list), np.nan)\\\\n    degree_02 = np.full(len(types_list), np.nan)  # for MiniLM (lower scale)\\\\n    degree_03 = np.full(len(types_list), np.nan)\\\\n    \\\\n    # Coefficient of variation of SCS\\\\n    cv_scs = np.full(len(types_list), np.nan)\\\\n    # Skewness of SCS distribution\\\\n    skew_scs = np.full(len(types_list), np.nan)\\\\n    \\\\n    for i, t in enumerate(types_list):\\\\n        if not valid_mask[i]:\\\\n            continue\\\\n        idx = indices[i]\\\\n        row = sim_matrix[idx]\\\\n        row_no_self = np.concatenate([row[:idx], row[idx+1:]])\\\\n        \\\\n        mean_scs_all[i] = row_no_self.mean()\\\\n        max_scs[i] = row_no_self.max()\\\\n        std_scs[i] = row_no_self.std()\\\\n        cv_scs[i] = row_no_self.std() / (row_no_self.mean() + 1e-10)\\\\n        skew_scs[i] = stats.skew(row_no_self)\\\\n        \\\\n        sorted_row = np.sort(row_no_self)\\\\n        top3_mean[i] = sorted_row[-3:].mean()\\\\n        top5_mean[i] = sorted_row[-5:].mean()\\\\n        \\\\n        degree_02[i] = (row_no_self > 0.2).sum()\\\\n        degree_03[i] = (row_no_self > 0.3).sum()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nMAVEN Residualized BCS Analysis (v2 — proper type-name matching)\\n\\\"\\\"\\\"\\nimport json, numpy as np, torch\\nfrom scipy import stats\\nfrom sklearn.linear_model import LinearRegression\\nfrom pathlib import Path\\nimport warnings\\nwarnings.filterwarnings('ignore')\\n\\nARTIFACTS = Path(\\\"/root/schema-dag-extraction/artifacts\\\")\\nOUT = ARTIFACTS / \\\"maven_residualized_bcs\\\"\\n\\n# ── Load per-type data ──\\nwith open(ARTIFACTS / \\\"maven_minilm_pertype_analysis.json\\\") as f:\\n    data = json.load(f)\\n\\nper_type = data[\\\"per_type_details\\\"]\\ntypes_list = sorted(per_type.keys())\\nn = len(types_list)\\n\\nf1 = np.array([per_type[t][\\\"f1\\\"] for t in types_list])\\nerror_rate = 1.0 - f1\\ngold_freq = np.array([per_type[t][\\\"gold_freq\\\"] for t in types_list])\\nlog_freq = np.log1p(gold_freq)\\nbcs_minilm = np.array([per_type[t][\\\"mean_bcs_minilm\\\"] for t in types_list])\\nbcs_qwen3 = np.array([per_type[t][\\\"mean_bcs_qwen3\\\"] for t in types_list])\\n\\n# ── Load SCS matrices with type names ──\\nd_minilm = torch.load(ARTIFACTS / \\\"maven_minilm_sim_matrix.pt\\\", weights_only=False)\\nd_qwen3 = torch.load(ARTIFACTS / \\\"maven_bcs_matrix_qwen3.pt\\\", weights_only=False)\\n\\nmat_minilm = d_minilm[\\\"similarity_matrix\\\"].numpy().astype(float)\\nmat_qwen3 = d_qwen3[\\\"similarity_matrix\\\"].numpy().astype(float)\\nmat_names_minilm = d_minilm[\\\"type_names\\\"]\\nmat_names_qwen3 = d_qwen3[\\\"type_names\\\"]\\n\\n# Zero diagonals\\nnp.fill_diagonal(mat_minilm, 0)\\nnp.fill_diagonal(mat_qwen3, 0)\\n\\n# Build name→index maps\\nname2idx_minilm = {n: i for i, n in enumerate(mat_names_minilm)}\\nname2idx_qwen3 = {n: i for i, n in enumerate(mat_names_qwen3)}\\n\\n# ── Compute matrix-derived features for each type ──\\ndef compute_features(sim_matrix, name2idx, types_list, emb_name):\\n    features = {}\\n    indices = []\\n    valid_mask = []\\n    for t in types_list:\\n        if t in name2idx:\\n            indices.append(name2idx[t])\\n            valid_mask.append(True)\\n        else:\\n            indices.append(-1)\\n            valid_mask.append(False)\\n    \\n    valid_mask = np.array(valid_mask)\\n    print(f\\\"  {emb_name}: {valid_mask.sum()}/{len(types_list)} types matched\\\")\\n    \\n    n_mat = sim_matrix.shape[0]\\n    \\n    # Per-type features from full matrix\\n    max_scs = np.full(len(types_list), np.nan)\\n    std_scs = np.full(len(types_list), np.nan)\\n    top3_mean = np.full(len(types_list), np.nan)\\n    top5_mean = np.full(len(types_list), np.nan)\\n    mean_scs_all = np.full(len(types_list), np.nan)  # mean SCS to ALL 168 types\\n    \\n    degree_05 = np.full(len(types_list), np.nan)\\n    degree_06 = np.full(len(types_list), np.nan)\\n    degree_07 = np.full(len(types_list), np.nan)\\n    degree_02 = np.full(len(types_list), np.nan)  # for MiniLM (lower scale)\\n    degree_03 = np.full(len(types_list), np.nan)\\n    \\n    # Coefficient of variation of SCS\\n    cv_scs = np.full(len(types_list), np.nan)\\n    # Skewness of SCS distribution\\n    skew_scs = np.full(len(types_list), np.nan)\\n    \\n    for i, t in enumerate(types_list):\\n        if not valid_mask[i]:\\n            continue\\n        idx = indices[i]\\n        row = sim_matrix[idx]\\n        row_no_self = np.concatenate([row[:idx], row[idx+1:]])\\n        \\n        mean_scs_all[i] = row_no_self.mean()\\n        max_scs[i] = row_no_self.max()\\n        std_scs[i] = row_no_self.std()\\n        cv_scs[i] = row_no_self.std() / (row_no_self.mean() + 1e-10)\\n        skew_scs[i] = stats.skew(row_no_self)\\n        \\n        sorted_row = np.sort(row_no_self)\\n        top3_mean[i] = sorted_row[-3:].mean()\\n        top5_mean[i] = sorted_row[-5:].mean()\\n        \\n        degree_02[i] = (row_no_self > 0.2).sum()\\n        degree_03[i] = (row_no_self > 0.3).sum()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            },
+            "sourceToolAssistantUUID": "d645c515-7207-46e9-bcd5-502a36fd3203",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T02:03:17.799Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the data I need. Let me also read the rest of the analysis script to understand the full methodology.\n\nLet me now read the rest of the script and the truncated part of the report.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5140943d-8ccd-476d-aa18-33557b8d13a0",
+            "isSidechain": false,
+            "requestId": "req_011Cb5Ren6xxxUTyBB33H3Y2",
+            "type": "assistant",
+            "uuid": "88320950-1d02-44c5-b43d-5c23f2ff398b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BBJveYQMPHhBGBCb5DBFqJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7391,
+                "cache_read_input_tokens": 24687,
+                "output_tokens": 324,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7391,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 324,
+                    "cache_read_input_tokens": 24687,
+                    "cache_creation_input_tokens": 7391,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7391
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T02:03:18.367Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me get the truncated part of the report and the rest of the script."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "88320950-1d02-44c5-b43d-5c23f2ff398b",
+            "isSidechain": false,
+            "requestId": "req_011Cb5Ren6xxxUTyBB33H3Y2",
+            "type": "assistant",
+            "uuid": "07f86d7f-be7d-4d5f-8dd7-b35975e6cd91",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BBJveYQMPHhBGBCb5DBFqJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7391,
+                "cache_read_input_tokens": 24687,
+                "output_tokens": 324,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7391,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 324,
+                    "cache_read_input_tokens": 24687,
+                    "cache_creation_input_tokens": 7391,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7391
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T02:03:19.712Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MHNi7cKsw3XhxfwsRLbg9o",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "tail -60 /root/schema-dag-extraction/artifacts/maven_residualized_bcs/analysis_report.txt",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "07f86d7f-be7d-4d5f-8dd7-b35975e6cd91",
+            "isSidechain": false,
+            "requestId": "req_011Cb5Ren6xxxUTyBB33H3Y2",
+            "type": "assistant",
+            "uuid": "14d2096d-a170-4008-b306-b163f049608d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BBJveYQMPHhBGBCb5DBFqJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7391,
+                "cache_read_input_tokens": 24687,
+                "output_tokens": 324,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7391,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 324,
+                    "cache_read_input_tokens": 24687,
+                    "cache_creation_input_tokens": 7391,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7391
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T02:03:20.109Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MHNi7cKsw3XhxfwsRLbg9o",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     → controlling degree_0.7: r=+0.063 (p=0.442, n.s.)\\\\n     → controlling log_freq+degree_0.7: r=+0.064 (p=0.439, n.s.)\\\\n\\\\n2. CENTRALITY CONFOUND HYPOTHESIS: SUPPORTED FOR BOTH EMBEDDINGS\\\\n   The positive BCS-F1 correlation on MAVEN is fully explained by centrality:\\\\n   - MiniLM: mediated by type frequency (BCS↔freq r=0.201)\\\\n   - Qwen3: mediated by degree centrality (BCS↔degree_0.7 r=0.854)\\\\n   After controlling for the appropriate centrality proxy, BCS-F1\\\\n   becomes non-significant in both cases (p>0.1).\\\\n\\\\n3. WHY DIFFERENT CONFOUNDS?\\\\n   MiniLM operates in a lower-dimensional similarity space (BCS range\\\\n   0.064–0.313), where frequent types accumulate more semantic neighbors.\\\\n   Qwen3 operates in a higher range (0.226–0.786) where all types are\\\\n   densely connected; frequency doesn't predict connectivity, but the\\\\n   graph-theoretic degree centrality does.\\\\n\\\\n4. COMPARISON WITH Few-NERD:\\\\n   Few-NERD shows the expected negative BCS-F1 trend because its type\\\\n   system has clearer semantic boundaries and no centrality confound\\\\n   (BCS↔log_freq r=0.042, n.s.). MAVEN's 168 event types are\\\\n   semantically denser, creating a regime where centrality dominates.\\\\n\\\\n────────────────────────────────────────────────────────────\\\\n9. SUGGESTED APPENDIX TEXT\\\\n────────────────────────────────────────────────────────────\\\\n\\\\n§ A.X  MAVEN Per-Type BCS Analysis\\\\n\\\\nOn MAVEN (168 event types, 149 after frequency filtering), per-type BCS \\\\nshows a positive correlation with F1 (Qwen3: ρ = +0.184, p = 0.025; \\\\nMiniLM: ρ = +0.208, p = 0.011), opposite to the negative trend observed \\\\non Few-NERD.\\\\n\\\\nWe investigate whether this reversal reflects a centrality confound — the \\\\npossibility that mean BCS acts as a proxy for type \\\\\\\"centrality\\\\\\\" (semantic \\\\nconnectivity), which independently predicts higher F1.\\\\n\\\\nFor MiniLM embeddings, BCS correlates with type frequency (r = +0.201, \\\\np = 0.014), and controlling for log-frequency renders the BCS–F1 \\\\ncorrelation non-significant (partial r = +0.133, p = 0.107).\\\\n\\\\nFor Qwen3 embeddings, BCS is uncorrelated with type frequency (r = -0.043, \\\\np = 0.599), and the BCS–F1 relationship survives frequency control \\\\n(partial r = +0.189, p = 0.021). However, Qwen3 BCS is strongly correlated \\\\nwith degree centrality (r = +0.854 at threshold 0.7), and controlling for \\\\ndegree centrality eliminates the BCS–F1 association (partial r = +0.063, \\\\np = 0.442). Under joint control of log-frequency and degree centrality, \\\\nneither embedding shows a significant BCS–F1 relationship (Qwen3: \\\\npartial r = +0.064, p = 0.439; MiniLM: partial r = +0.100, p = 0.226).\\\\n\\\\nWe conclude that MAVEN's positive BCS–F1 correlation is a centrality \\\\nartifact: types with more semantic neighbors are better represented in \\\\nthe training distribution and thus easier to classify. The confound \\\\noperates through different proxies — type frequency for MiniLM, \\\\ngraph-theoretic degree centrality for Qwen3 — reflecting the different \\\\nsimilarity scales of the two embedding spaces. This contrasts with \\\\nFew-NERD, where the sparser type space (66 types with clearer boundaries) \\\\nshows no centrality confound (BCS↔log_freq r = 0.042, n.s.) and BCS \\\\nexhibits the expected negative trend with F1.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "14d2096d-a170-4008-b306-b163f049608d",
+            "isSidechain": false,
+            "promptId": "c6816d9f-3d66-45d5-a62e-de22a84f0a8d",
+            "type": "user",
+            "uuid": "e908a210-a54e-48a3-9dac-3ff756b16e78",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     → controlling degree_0.7: r=+0.063 (p=0.442, n.s.)\\\\n     → controlling log_freq+degree_0.7: r=+0.064 (p=0.439, n.s.)\\\\n\\\\n2. CENTRALITY CONFOUND HYPOTHESIS: SUPPORTED FOR BOTH EMBEDDINGS\\\\n   The positive BCS-F1 correlation on MAVEN is fully explained by centrality:\\\\n   - MiniLM: mediated by type frequency (BCS↔freq r=0.201)\\\\n   - Qwen3: mediated by degree centrality (BCS↔degree_0.7 r=0.854)\\\\n   After controlling for the appropriate centrality proxy, BCS-F1\\\\n   becomes non-significant in both cases (p>0.1).\\\\n\\\\n3. WHY DIFFERENT CONFOUNDS?\\\\n   MiniLM operates in a lower-dimensional similarity space (BCS range\\\\n   0.064–0.313), where frequent types accumulate more semantic neighbors.\\\\n   Qwen3 operates in a higher range (0.226–0.786) where all types are\\\\n   densely connected; frequency doesn't predict connectivity, but the\\\\n   graph-theoretic degree centrality does.\\\\n\\\\n4. COMPARISON WITH Few-NERD:\\\\n   Few-NERD shows the expected negative BCS-F1 trend because its type\\\\n   system has clearer semantic boundaries and no centrality confound\\\\n   (BCS↔log_freq r=0.042, n.s.). MAVEN's 168 event types are\\\\n   semantically denser, creating a regime where centrality dominates.\\\\n\\\\n────────────────────────────────────────────────────────────\\\\n9. SUGGESTED APPENDIX TEXT\\\\n────────────────────────────────────────────────────────────\\\\n\\\\n§ A.X  MAVEN Per-Type BCS Analysis\\\\n\\\\nOn MAVEN (168 event types, 149 after frequency filtering), per-type BCS \\\\nshows a positive correlation with F1 (Qwen3: ρ = +0.184, p = 0.025; \\\\nMiniLM: ρ = +0.208, p = 0.011), opposite to the negative trend observed \\\\non Few-NERD.\\\\n\\\\nWe investigate whether this reversal reflects a centrality confound — the \\\\npossibility that mean BCS acts as a proxy for type \\\\\\\"centrality\\\\\\\" (semantic \\\\nconnectivity), which independently predicts higher F1.\\\\n\\\\nFor MiniLM embeddings, BCS correlates with type frequency (r = +0.201, \\\\np = 0.014), and controlling for log-frequency renders the BCS–F1 \\\\ncorrelation non-significant (partial r = +0.133, p = 0.107).\\\\n\\\\nFor Qwen3 embeddings, BCS is uncorrelated with type frequency (r = -0.043, \\\\np = 0.599), and the BCS–F1 relationship survives frequency control \\\\n(partial r = +0.189, p = 0.021). However, Qwen3 BCS is strongly correlated \\\\nwith degree centrality (r = +0.854 at threshold 0.7), and controlling for \\\\ndegree centrality eliminates the BCS–F1 association (partial r = +0.063, \\\\np = 0.442). Under joint control of log-frequency and degree centrality, \\\\nneither embedding shows a significant BCS–F1 relationship (Qwen3: \\\\npartial r = +0.064, p = 0.439; MiniLM: partial r = +0.100, p = 0.226).\\\\n\\\\nWe conclude that MAVEN's positive BCS–F1 correlation is a centrality \\\\nartifact: types with more semantic neighbors are better represented in \\\\nthe training distribution and thus easier to classify. The confound \\\\noperates through different proxies — type frequency for MiniLM, \\\\ngraph-theoretic degree centrality for Qwen3 — reflecting the different \\\\nsimilarity scales of the two embedding spaces. This contrasts with \\\\nFew-NERD, where the sparser type space (66 types with clearer boundaries) \\\\nshows no centrality confound (BCS↔log_freq r = 0.042, n.s.) and BCS \\\\nexhibits the expected negative trend with F1.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"     → controlling degree_0.7: r=+0.063 (p=0.442, n.s.)\\n     → controlling log_freq+degree_0.7: r=+0.064 (p=0.439, n.s.)\\n\\n2. CENTRALITY CONFOUND HYPOTHESIS: SUPPORTED FOR BOTH EMBEDDINGS\\n   The positive BCS-F1 correlation on MAVEN is fully explained by centrality:\\n   - MiniLM: mediated by type frequency (BCS↔freq r=0.201)\\n   - Qwen3: mediated by degree centrality (BCS↔degree_0.7 r=0.854)\\n   After controlling for the appropriate centrality proxy, BCS-F1\\n   becomes non-significant in both cases (p>0.1).\\n\\n3. WHY DIFFERENT CONFOUNDS?\\n   MiniLM operates in a lower-dimensional similarity space (BCS range\\n   0.064–0.313), where frequent types accumulate more semantic neighbors.\\n   Qwen3 operates in a higher range (0.226–0.786) where all types are\\n   densely connected; frequency doesn't predict connectivity, but the\\n   graph-theoretic degree centrality does.\\n\\n4. COMPARISON WITH Few-NERD:\\n   Few-NERD shows the expected negative BCS-F1 trend because its type\\n   system has clearer semantic boundaries and no centrality confound\\n   (BCS↔log_freq r=0.042, n.s.). MAVEN's 168 event types are\\n   semantically denser, creating a regime where centrality dominates.\\n\\n────────────────────────────────────────────────────────────\\n9. SUGGESTED APPENDIX TEXT\\n────────────────────────────────────────────────────────────\\n\\n§ A.X  MAVEN Per-Type BCS Analysis\\n\\nOn MAVEN (168 event types, 149 after frequency filtering), per-type BCS \\nshows a positive correlation with F1 (Qwen3: ρ = +0.184, p = 0.025; \\nMiniLM: ρ = +0.208, p = 0.011), opposite to the negative trend observed \\non Few-NERD.\\n\\nWe investigate whether this reversal reflects a centrality confound — the \\npossibility that mean BCS acts as a proxy for type \\\"centrality\\\" (semantic \\nconnectivity), which independently predicts higher F1.\\n\\nFor MiniLM embeddings, BCS correlates with type frequency (r = +0.201, \\np = 0.014), and controlling for log-frequency renders the BCS–F1 \\ncorrelation non-significant (partial r = +0.133, p = 0.107).\\n\\nFor Qwen3 embeddings, BCS is uncorrelated with type frequency (r = -0.043, \\np = 0.599), and the BCS–F1 relationship survives frequency control \\n(partial r = +0.189, p = 0.021). However, Qwen3 BCS is strongly correlated \\nwith degree centrality (r = +0.854 at threshold 0.7), and controlling for \\ndegree centrality eliminates the BCS–F1 association (partial r = +0.063, \\np = 0.442). Under joint control of log-frequency and degree centrality, \\nneither embedding shows a significant BCS–F1 relationship (Qwen3: \\npartial r = +0.064, p = 0.439; MiniLM: partial r = +0.100, p = 0.226).\\n\\nWe conclude that MAVEN's positive BCS–F1 correlation is a centrality \\nartifact: types with more semantic neighbors are better represented in \\nthe training distribution and thus easier to classify. The confound \\noperates through different proxies — type frequency for MiniLM, \\ngraph-theoretic degree centrality for Qwen3 — reflecting the different \\nsimilarity scales of the two embedding spaces. This contrasts with \\nFew-NERD, where the sparser type space (66 types with clearer boundaries) \\nshows no centrality confound (BCS↔log_freq r = 0.042, n.s.) and BCS \\nexhibits the expected negative trend with F1.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            },
+            "sourceToolAssistantUUID": "14d2096d-a170-4008-b306-b163f049608d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T02:03:20.135Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XvRia2iMSpJd8sLTAv8YPh",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "tail -200 /root/schema-dag-extraction/artifacts/maven_residualized_bcs/residualized_analysis.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e908a210-a54e-48a3-9dac-3ff756b16e78",
+            "isSidechain": false,
+            "requestId": "req_011Cb5Ren6xxxUTyBB33H3Y2",
+            "type": "assistant",
+            "uuid": "b53c2ad1-b1b4-48af-abb2-4a2ee5b77d6f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BBJveYQMPHhBGBCb5DBFqJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7391,
+                "cache_read_input_tokens": 24687,
+                "output_tokens": 324,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7391,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 324,
+                    "cache_read_input_tokens": 24687,
+                    "cache_creation_input_tokens": 7391,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7391
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T02:03:20.575Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XvRia2iMSpJd8sLTAv8YPh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    r_e, p_e = partial_corr_pearson(bcs, f1, cov_e, m)\\\\n    add(f\\\\\\\"  E) BCS vs F1 | log_freq+max_scs:    r={r_e:+.4f} (p={p_e:.4f})\\\\\\\")\\\\n    \\\\n    # F) log_freq + degree + max_scs (kitchen sink)\\\\n    cov_f = np.column_stack([log_freq, deg, feats['max_scs']])\\\\n    r_f, p_f = partial_corr_pearson(bcs, f1, cov_f, m)\\\\n    add(f\\\\\\\"  F) BCS vs F1 | all centrality:      r={r_f:+.4f} (p={p_f:.4f})\\\\\\\")\\\\n    results[f\\\\\\\"partial_all_{name.lower()}\\\\\\\"] = dict(r=float(r_f), p=float(p_f))\\\\n\\\\n# ── Section 4: Alternative confusability metrics ──\\\\nadd(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"─\\\\\\\" * 60)\\\\nadd(\\\\\\\"4. ALTERNATIVE CONFUSABILITY METRICS vs F1\\\\\\\")\\\\nadd(\\\\\\\"   max_scs, top3_mean = local confusability (not centrality)\\\\\\\")\\\\nadd(\\\\\\\"─\\\\\\\" * 60)\\\\n\\\\nfor name, feats in [(\\\\\\\"Qwen3\\\\\\\", feats_qwen3), (\\\\\\\"MiniLM\\\\\\\", feats_minilm)]:\\\\n    add(f\\\\\\\"\\\\\\\\n  ── {name} ──\\\\\\\")\\\\n    m = feats['valid_mask']\\\\n    \\\\n    for metric in ['max_scs', 'top3_mean', 'top5_mean', 'std_scs', 'cv_scs', 'skew_scs']:\\\\n        vals = feats[metric]\\\\n        rho, p = stats.spearmanr(vals[m], f1[m])\\\\n        add(f\\\\\\\"  {metric:12s} vs F1: ρ={rho:+.4f} (p={p:.4f})\\\\\\\")\\\\n    \\\\n    # Partial: max_scs vs F1 | log_freq + mean_bcs\\\\n    bcs = bcs_qwen3 if name == \\\\\\\"Qwen3\\\\\\\" else bcs_minilm\\\\n    cov = np.column_stack([log_freq, bcs])\\\\n    for metric in ['max_scs', 'top3_mean', 'cv_scs']:\\\\n        vals = feats[metric]\\\\n        r, p = partial_corr_pearson(vals, f1, cov, m)\\\\n        rho, sp = partial_corr_spearman(vals, f1, cov, m)\\\\n        add(f\\\\\\\"  {metric:12s} vs F1 | log_freq+BCS: r={r:+.4f} (p={p:.4f}), ρ={rho:+.4f} (p={sp:.4f})\\\\\\\")\\\\n        if metric == 'max_scs':\\\\n            results[f\\\\\\\"max_scs_partial_{name.lower()}\\\\\\\"] = dict(r=float(r), p=float(p), rho=float(rho), rho_p=float(sp))\\\\n\\\\n# ── Section 5: Decomposition ──\\\\nadd(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"─\\\\\\\" * 60)\\\\nadd(\\\\\\\"5. DECOMPOSITION: BCS = centrality_component + residual\\\\\\\")\\\\nadd(\\\\\\\"─\\\\\\\" * 60)\\\\n\\\\nfor name, bcs, feats in [(\\\\\\\"Qwen3\\\\\\\", bcs_qwen3, feats_qwen3), (\\\\\\\"MiniLM\\\\\\\", bcs_minilm, feats_minilm)]:\\\\n    add(f\\\\\\\"\\\\\\\\n  ── {name} ──\\\\\\\")\\\\n    m = feats['valid_mask']\\\\n    \\\\n    # Method A: control log_freq only\\\\n    reg = LinearRegression().fit(log_freq.reshape(-1,1), bcs)\\\\n    bcs_res_a = bcs - reg.predict(log_freq.reshape(-1,1))\\\\n    r2_a = reg.score(log_freq.reshape(-1,1), bcs)\\\\n    rho_a, p_a = stats.spearmanr(bcs_res_a, f1)\\\\n    add(f\\\\\\\"  A) BCS ~ log_freq: R²={r2_a:.4f}\\\\\\\")\\\\n    add(f\\\\\\\"     BCS_residual vs F1: ρ={rho_a:+.4f} (p={p_a:.4f})\\\\\\\")\\\\n    \\\\n    # Method B: control log_freq + degree\\\\n    best_deg_key = 'degree_0.7' if name == 'Qwen3' else 'degree_0.3'\\\\n    deg = feats[best_deg_key]\\\\n    cov_b = np.column_stack([log_freq[m], deg[m]])\\\\n    reg_b = LinearRegression().fit(cov_b, bcs[m])\\\\n    bcs_res_b = bcs[m] - reg_b.predict(cov_b)\\\\n    r2_b = reg_b.score(cov_b, bcs[m])\\\\n    rho_b, p_b = stats.spearmanr(bcs_res_b, f1[m])\\\\n    add(f\\\\\\\"  B) BCS ~ log_freq + {best_deg_key}: R²={r2_b:.4f}\\\\\\\")\\\\n    add(f\\\\\\\"     BCS_residual vs F1: ρ={rho_b:+.4f} (p={p_b:.4f})\\\\\\\")\\\\n    \\\\n    # Method C: control log_freq + degree + max_scs\\\\n    cov_c = np.column_stack([log_freq[m], deg[m], feats['max_scs'][m]])\\\\n    reg_c = LinearRegression().fit(cov_c, bcs[m])\\\\n    bcs_res_c = bcs[m] - reg_c.predict(cov_c)\\\\n    r2_c = reg_c.score(cov_c, bcs[m])\\\\n    rho_c, p_c = stats.spearmanr(bcs_res_c, f1[m])\\\\n    add(f\\\\\\\"  C) BCS ~ log_freq + {best_deg_key} + max_scs: R²={r2_c:.4f}\\\\\\\")\\\\n    add(f\\\\\\\"     BCS_residual vs F1: ρ={rho_c:+.4f} (p={p_c:.4f})\\\\\\\")\\\\n    \\\\n    results[f\\\\\\\"decomp_{name.lower()}\\\\\\\"] = {\\\\n        \\\\\\\"A_r2\\\\\\\": float(r2_a), \\\\\\\"A_rho\\\\\\\": float(rho_a), \\\\\\\"A_p\\\\\\\": float(p_a),\\\\n        \\\\\\\"B_r2\\\\\\\": float(r2_b), \\\\\\\"B_rho\\\\\\\": float(rho_b), \\\\\\\"B_p\\\\\\\": float(p_b),\\\\n        \\\\\\\"C_r2\\\\\\\": float(r2_c), \\\\\\\"C_rho\\\\\\\": float(rho_c), \\\\\\\"C_p\\\\\\\": float(p_c),\\\\n    }\\\\n\\\\n# ── Section 6: Multiple regression ──\\\\nadd(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"─\\\\\\\" * 60)\\\\nadd(\\\\\\\"6. MULTIPLE REGRESSION: F1 ~ BCS + log_freq + degree\\\\\\\")\\\\nadd(\\\\\\\"─\\\\\\\" * 60)\\\\n\\\\nfor name, bcs, feats in [(\\\\\\\"Qwen3\\\\\\\", bcs_qwen3, feats_qwen3), (\\\\\\\"MiniLM\\\\\\\", bcs_minilm, feats_minilm)]:\\\\n    m = feats['valid_mask']\\\\n    best_deg_key = 'degree_0.7' if name == 'Qwen3' else 'degree_0.3'\\\\n    deg = feats[best_deg_key]\\\\n    \\\\n    X = np.column_stack([bcs[m], log_freq[m], deg[m]])\\\\n    reg = LinearRegression().fit(X, f1[m])\\\\n   \\\\n\\\\n... [截断: 输出过长，省略 1000 字符] ...\\\\n\\\\nrpretation ──\\\\nadd(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"─\\\\\\\" * 60)\\\\nadd(\\\\\\\"8. INTERPRETATION & CONCLUSION\\\\\\\")\\\\nadd(\\\\\\\"─\\\\\\\" * 60)\\\\n\\\\n# Key finding: for Qwen3, BCS barely correlates with log_freq (r=-0.043)\\\\n# so frequency is NOT the centrality confound for Qwen3.\\\\n# The positive BCS-F1 correlation persists after all controls.\\\\n# For MiniLM, frequency partially explains it (drops to non-significant).\\\\n\\\\nq3_bcs_freq_r, q3_bcs_freq_p = stats.pearsonr(bcs_qwen3, log_freq)\\\\nml_bcs_freq_r, ml_bcs_freq_p = stats.pearsonr(bcs_minilm, log_freq)\\\\n\\\\nadd(f\\\\\\\"\\\\\\\"\\\\\\\"\\\\nKey findings:\\\\n\\\\n1. FREQUENCY AS CENTRALITY PROXY:\\\\n   - MiniLM BCS correlates with log_freq (r={ml_bcs_freq_r:+.3f}, p={ml_bcs_freq_p:.3f})\\\\n     → frequency partially confounds the BCS-F1 relationship\\\\n     → after controlling: partial r={mlp['r']:+.3f} (p={mlp['p']:.3f}, non-significant)\\\\n   - Qwen3 BCS does NOT correlate with log_freq (r={q3_bcs_freq_r:+.3f}, p={q3_bcs_freq_p:.3f})\\\\n     → frequency is not a confound for Qwen3\\\\n     → after controlling: partial r={q3p['r']:+.3f} (p={q3p['p']:.3f}, still significant)\\\\n\\\\n2. CENTRALITY CONFOUND HYPOTHESIS:\\\\n   The original hypothesis — that MAVEN's positive BCS-F1 correlation is \\\\n   driven by mean BCS acting as a centrality proxy — is:\\\\n   - SUPPORTED for MiniLM (frequency mediates the relationship)\\\\n   - NOT SUPPORTED for Qwen3 (no centrality confound detected)\\\\n\\\\n3. ALTERNATIVE INTERPRETATION FOR Qwen3:\\\\n   Qwen3's BCS genuinely captures schema structure that helps classification.\\\\n   Types with higher BCS (more semantically connected) are easier to classify\\\\n   because the model can leverage the richer semantic context. This is NOT a\\\\n   confound but a real structural effect: denser schema neighborhoods provide\\\\n   more disambiguation cues.\\\\n\\\\n4. COMPARISON WITH Few-NERD:\\\\n   Few-NERD shows the expected negative BCS-F1 trend because its type system\\\\n   has clearer semantic boundaries. MAVEN's dense event type space creates a\\\\n   different regime where connectivity aids rather than hinders classification.\\\\n\\\\\\\"\\\\\\\"\\\\\\\")\\\\n\\\\n# ── Section 9: Suggested appendix text ──\\\\nadd(\\\\\\\"─\\\\\\\" * 60)\\\\nadd(\\\\\\\"9. SUGGESTED APPENDIX TEXT\\\\\\\")\\\\nadd(\\\\\\\"─\\\\\\\" * 60)\\\\n\\\\nq3_all = results.get(\\\\\\\"partial_all_qwen3\\\\\\\", {})\\\\nml_all = results.get(\\\\\\\"partial_all_minilm\\\\\\\", {})\\\\n\\\\nadd(f\\\\\\\"\\\\\\\"\\\\\\\"\\\\n§ A.X  MAVEN Per-Type BCS Analysis\\\\n\\\\nOn MAVEN (168 event types, 149 after frequency filtering), per-type BCS \\\\nshows a positive correlation with F1 (Qwen3: ρ = +0.184, p = 0.025; \\\\nMiniLM: ρ = +0.208, p = 0.011), opposite to the negative trend observed \\\\non Few-NERD.\\\\n\\\\nWe investigate whether this reversal reflects a centrality confound — the \\\\npossibility that mean BCS acts as a proxy for type \\\\\\\"centrality\\\\\\\" (number of \\\\nsemantic neighbors), which independently predicts higher F1 through better \\\\nrepresentation coverage.\\\\n\\\\nFor MiniLM embeddings, BCS correlates with type frequency (r = {ml_bcs_freq_r:+.3f}, \\\\np = {ml_bcs_freq_p:.3f}), and the BCS–F1 correlation becomes non-significant after \\\\ncontrolling for log-frequency (partial r = {mlp['r']:+.3f}, p = {mlp['p']:.3f}). \\\\nThis is consistent with the centrality confound hypothesis.\\\\n\\\\nFor Qwen3 embeddings, however, BCS is uncorrelated with type frequency \\\\n(r = {q3_bcs_freq_r:+.3f}, p = {q3_bcs_freq_p:.3f}), and the positive BCS–F1 \\\\nrelationship persists under all controls tested — log-frequency, degree \\\\ncentrality, and their combination (partial r = {q3_all.get('r', 0):+.3f}, \\\\np = {q3_all.get('p', 1):.3f}). This suggests that in dense type spaces like \\\\nMAVEN, higher mean schema similarity may genuinely aid classification by \\\\nproviding richer contextual anchoring, rather than merely reflecting a \\\\ncentrality artifact.\\\\n\\\\nThis dataset-dependent directionality motivates our use of absolute BCS (|BCS|) \\\\nas the primary metric in the main experiments, which captures schema complexity \\\\nregardless of whether high similarity helps or hinders a given task.\\\\n\\\\\\\"\\\\\\\"\\\\\\\")\\\\n\\\\n# ── Save ──\\\\nreport = \\\\\\\"\\\\\\\\n\\\\\\\".join(lines)\\\\nwith open(OUT / \\\\\\\"analysis_report.txt\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n    f.write(report)\\\\nwith open(OUT / \\\\\\\"results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n    json.dump(results, f, indent=2)\\\\nprint(\\\\\\\"\\\\\\\\n✓ Saved to\\\\\\\", OUT)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b53c2ad1-b1b4-48af-abb2-4a2ee5b77d6f",
+            "isSidechain": false,
+            "promptId": "c6816d9f-3d66-45d5-a62e-de22a84f0a8d",
+            "type": "user",
+            "uuid": "4e855876-b659-4bc4-83b6-762da728b9a6",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    r_e, p_e = partial_corr_pearson(bcs, f1, cov_e, m)\\\\n    add(f\\\\\\\"  E) BCS vs F1 | log_freq+max_scs:    r={r_e:+.4f} (p={p_e:.4f})\\\\\\\")\\\\n    \\\\n    # F) log_freq + degree + max_scs (kitchen sink)\\\\n    cov_f = np.column_stack([log_freq, deg, feats['max_scs']])\\\\n    r_f, p_f = partial_corr_pearson(bcs, f1, cov_f, m)\\\\n    add(f\\\\\\\"  F) BCS vs F1 | all centrality:      r={r_f:+.4f} (p={p_f:.4f})\\\\\\\")\\\\n    results[f\\\\\\\"partial_all_{name.lower()}\\\\\\\"] = dict(r=float(r_f), p=float(p_f))\\\\n\\\\n# ── Section 4: Alternative confusability metrics ──\\\\nadd(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"─\\\\\\\" * 60)\\\\nadd(\\\\\\\"4. ALTERNATIVE CONFUSABILITY METRICS vs F1\\\\\\\")\\\\nadd(\\\\\\\"   max_scs, top3_mean = local confusability (not centrality)\\\\\\\")\\\\nadd(\\\\\\\"─\\\\\\\" * 60)\\\\n\\\\nfor name, feats in [(\\\\\\\"Qwen3\\\\\\\", feats_qwen3), (\\\\\\\"MiniLM\\\\\\\", feats_minilm)]:\\\\n    add(f\\\\\\\"\\\\\\\\n  ── {name} ──\\\\\\\")\\\\n    m = feats['valid_mask']\\\\n    \\\\n    for metric in ['max_scs', 'top3_mean', 'top5_mean', 'std_scs', 'cv_scs', 'skew_scs']:\\\\n        vals = feats[metric]\\\\n        rho, p = stats.spearmanr(vals[m], f1[m])\\\\n        add(f\\\\\\\"  {metric:12s} vs F1: ρ={rho:+.4f} (p={p:.4f})\\\\\\\")\\\\n    \\\\n    # Partial: max_scs vs F1 | log_freq + mean_bcs\\\\n    bcs = bcs_qwen3 if name == \\\\\\\"Qwen3\\\\\\\" else bcs_minilm\\\\n    cov = np.column_stack([log_freq, bcs])\\\\n    for metric in ['max_scs', 'top3_mean', 'cv_scs']:\\\\n        vals = feats[metric]\\\\n        r, p = partial_corr_pearson(vals, f1, cov, m)\\\\n        rho, sp = partial_corr_spearman(vals, f1, cov, m)\\\\n        add(f\\\\\\\"  {metric:12s} vs F1 | log_freq+BCS: r={r:+.4f} (p={p:.4f}), ρ={rho:+.4f} (p={sp:.4f})\\\\\\\")\\\\n        if metric == 'max_scs':\\\\n            results[f\\\\\\\"max_scs_partial_{name.lower()}\\\\\\\"] = dict(r=float(r), p=float(p), rho=float(rho), rho_p=float(sp))\\\\n\\\\n# ── Section 5: Decomposition ──\\\\nadd(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"─\\\\\\\" * 60)\\\\nadd(\\\\\\\"5. DECOMPOSITION: BCS = centrality_component + residual\\\\\\\")\\\\nadd(\\\\\\\"─\\\\\\\" * 60)\\\\n\\\\nfor name, bcs, feats in [(\\\\\\\"Qwen3\\\\\\\", bcs_qwen3, feats_qwen3), (\\\\\\\"MiniLM\\\\\\\", bcs_minilm, feats_minilm)]:\\\\n    add(f\\\\\\\"\\\\\\\\n  ── {name} ──\\\\\\\")\\\\n    m = feats['valid_mask']\\\\n    \\\\n    # Method A: control log_freq only\\\\n    reg = LinearRegression().fit(log_freq.reshape(-1,1), bcs)\\\\n    bcs_res_a = bcs - reg.predict(log_freq.reshape(-1,1))\\\\n    r2_a = reg.score(log_freq.reshape(-1,1), bcs)\\\\n    rho_a, p_a = stats.spearmanr(bcs_res_a, f1)\\\\n    add(f\\\\\\\"  A) BCS ~ log_freq: R²={r2_a:.4f}\\\\\\\")\\\\n    add(f\\\\\\\"     BCS_residual vs F1: ρ={rho_a:+.4f} (p={p_a:.4f})\\\\\\\")\\\\n    \\\\n    # Method B: control log_freq + degree\\\\n    best_deg_key = 'degree_0.7' if name == 'Qwen3' else 'degree_0.3'\\\\n    deg = feats[best_deg_key]\\\\n    cov_b = np.column_stack([log_freq[m], deg[m]])\\\\n    reg_b = LinearRegression().fit(cov_b, bcs[m])\\\\n    bcs_res_b = bcs[m] - reg_b.predict(cov_b)\\\\n    r2_b = reg_b.score(cov_b, bcs[m])\\\\n    rho_b, p_b = stats.spearmanr(bcs_res_b, f1[m])\\\\n    add(f\\\\\\\"  B) BCS ~ log_freq + {best_deg_key}: R²={r2_b:.4f}\\\\\\\")\\\\n    add(f\\\\\\\"     BCS_residual vs F1: ρ={rho_b:+.4f} (p={p_b:.4f})\\\\\\\")\\\\n    \\\\n    # Method C: control log_freq + degree + max_scs\\\\n    cov_c = np.column_stack([log_freq[m], deg[m], feats['max_scs'][m]])\\\\n    reg_c = LinearRegression().fit(cov_c, bcs[m])\\\\n    bcs_res_c = bcs[m] - reg_c.predict(cov_c)\\\\n    r2_c = reg_c.score(cov_c, bcs[m])\\\\n    rho_c, p_c = stats.spearmanr(bcs_res_c, f1[m])\\\\n    add(f\\\\\\\"  C) BCS ~ log_freq + {best_deg_key} + max_scs: R²={r2_c:.4f}\\\\\\\")\\\\n    add(f\\\\\\\"     BCS_residual vs F1: ρ={rho_c:+.4f} (p={p_c:.4f})\\\\\\\")\\\\n    \\\\n    results[f\\\\\\\"decomp_{name.lower()}\\\\\\\"] = {\\\\n        \\\\\\\"A_r2\\\\\\\": float(r2_a), \\\\\\\"A_rho\\\\\\\": float(rho_a), \\\\\\\"A_p\\\\\\\": float(p_a),\\\\n        \\\\\\\"B_r2\\\\\\\": float(r2_b), \\\\\\\"B_rho\\\\\\\": float(rho_b), \\\\\\\"B_p\\\\\\\": float(p_b),\\\\n        \\\\\\\"C_r2\\\\\\\": float(r2_c), \\\\\\\"C_rho\\\\\\\": float(rho_c), \\\\\\\"C_p\\\\\\\": float(p_c),\\\\n    }\\\\n\\\\n# ── Section 6: Multiple regression ──\\\\nadd(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"─\\\\\\\" * 60)\\\\nadd(\\\\\\\"6. MULTIPLE REGRESSION: F1 ~ BCS + log_freq + degree\\\\\\\")\\\\nadd(\\\\\\\"─\\\\\\\" * 60)\\\\n\\\\nfor name, bcs, feats in [(\\\\\\\"Qwen3\\\\\\\", bcs_qwen3, feats_qwen3), (\\\\\\\"MiniLM\\\\\\\", bcs_minilm, feats_minilm)]:\\\\n    m = feats['valid_mask']\\\\n    best_deg_key = 'degree_0.7' if name == 'Qwen3' else 'degree_0.3'\\\\n    deg = feats[best_deg_key]\\\\n    \\\\n    X = np.column_stack([bcs[m], log_freq[m], deg[m]])\\\\n    reg = LinearRegression().fit(X, f1[m])\\\\n   \\\\n\\\\n... [截断: 输出过长，省略 1000 字符] ...\\\\n\\\\nrpretation ──\\\\nadd(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"─\\\\\\\" * 60)\\\\nadd(\\\\\\\"8. INTERPRETATION & CONCLUSION\\\\\\\")\\\\nadd(\\\\\\\"─\\\\\\\" * 60)\\\\n\\\\n# Key finding: for Qwen3, BCS barely correlates with log_freq (r=-0.043)\\\\n# so frequency is NOT the centrality confound for Qwen3.\\\\n# The positive BCS-F1 correlation persists after all controls.\\\\n# For MiniLM, frequency partially explains it (drops to non-significant).\\\\n\\\\nq3_bcs_freq_r, q3_bcs_freq_p = stats.pearsonr(bcs_qwen3, log_freq)\\\\nml_bcs_freq_r, ml_bcs_freq_p = stats.pearsonr(bcs_minilm, log_freq)\\\\n\\\\nadd(f\\\\\\\"\\\\\\\"\\\\\\\"\\\\nKey findings:\\\\n\\\\n1. FREQUENCY AS CENTRALITY PROXY:\\\\n   - MiniLM BCS correlates with log_freq (r={ml_bcs_freq_r:+.3f}, p={ml_bcs_freq_p:.3f})\\\\n     → frequency partially confounds the BCS-F1 relationship\\\\n     → after controlling: partial r={mlp['r']:+.3f} (p={mlp['p']:.3f}, non-significant)\\\\n   - Qwen3 BCS does NOT correlate with log_freq (r={q3_bcs_freq_r:+.3f}, p={q3_bcs_freq_p:.3f})\\\\n     → frequency is not a confound for Qwen3\\\\n     → after controlling: partial r={q3p['r']:+.3f} (p={q3p['p']:.3f}, still significant)\\\\n\\\\n2. CENTRALITY CONFOUND HYPOTHESIS:\\\\n   The original hypothesis — that MAVEN's positive BCS-F1 correlation is \\\\n   driven by mean BCS acting as a centrality proxy — is:\\\\n   - SUPPORTED for MiniLM (frequency mediates the relationship)\\\\n   - NOT SUPPORTED for Qwen3 (no centrality confound detected)\\\\n\\\\n3. ALTERNATIVE INTERPRETATION FOR Qwen3:\\\\n   Qwen3's BCS genuinely captures schema structure that helps classification.\\\\n   Types with higher BCS (more semantically connected) are easier to classify\\\\n   because the model can leverage the richer semantic context. This is NOT a\\\\n   confound but a real structural effect: denser schema neighborhoods provide\\\\n   more disambiguation cues.\\\\n\\\\n4. COMPARISON WITH Few-NERD:\\\\n   Few-NERD shows the expected negative BCS-F1 trend because its type system\\\\n   has clearer semantic boundaries. MAVEN's dense event type space creates a\\\\n   different regime where connectivity aids rather than hinders classification.\\\\n\\\\\\\"\\\\\\\"\\\\\\\")\\\\n\\\\n# ── Section 9: Suggested appendix text ──\\\\nadd(\\\\\\\"─\\\\\\\" * 60)\\\\nadd(\\\\\\\"9. SUGGESTED APPENDIX TEXT\\\\\\\")\\\\nadd(\\\\\\\"─\\\\\\\" * 60)\\\\n\\\\nq3_all = results.get(\\\\\\\"partial_all_qwen3\\\\\\\", {})\\\\nml_all = results.get(\\\\\\\"partial_all_minilm\\\\\\\", {})\\\\n\\\\nadd(f\\\\\\\"\\\\\\\"\\\\\\\"\\\\n§ A.X  MAVEN Per-Type BCS Analysis\\\\n\\\\nOn MAVEN (168 event types, 149 after frequency filtering), per-type BCS \\\\nshows a positive correlation with F1 (Qwen3: ρ = +0.184, p = 0.025; \\\\nMiniLM: ρ = +0.208, p = 0.011), opposite to the negative trend observed \\\\non Few-NERD.\\\\n\\\\nWe investigate whether this reversal reflects a centrality confound — the \\\\npossibility that mean BCS acts as a proxy for type \\\\\\\"centrality\\\\\\\" (number of \\\\nsemantic neighbors), which independently predicts higher F1 through better \\\\nrepresentation coverage.\\\\n\\\\nFor MiniLM embeddings, BCS correlates with type frequency (r = {ml_bcs_freq_r:+.3f}, \\\\np = {ml_bcs_freq_p:.3f}), and the BCS–F1 correlation becomes non-significant after \\\\ncontrolling for log-frequency (partial r = {mlp['r']:+.3f}, p = {mlp['p']:.3f}). \\\\nThis is consistent with the centrality confound hypothesis.\\\\n\\\\nFor Qwen3 embeddings, however, BCS is uncorrelated with type frequency \\\\n(r = {q3_bcs_freq_r:+.3f}, p = {q3_bcs_freq_p:.3f}), and the positive BCS–F1 \\\\nrelationship persists under all controls tested — log-frequency, degree \\\\ncentrality, and their combination (partial r = {q3_all.get('r', 0):+.3f}, \\\\np = {q3_all.get('p', 1):.3f}). This suggests that in dense type spaces like \\\\nMAVEN, higher mean schema similarity may genuinely aid classification by \\\\nproviding richer contextual anchoring, rather than merely reflecting a \\\\ncentrality artifact.\\\\n\\\\nThis dataset-dependent directionality motivates our use of absolute BCS (|BCS|) \\\\nas the primary metric in the main experiments, which captures schema complexity \\\\nregardless of whether high similarity helps or hinders a given task.\\\\n\\\\\\\"\\\\\\\"\\\\\\\")\\\\n\\\\n# ── Save ──\\\\nreport = \\\\\\\"\\\\\\\\n\\\\\\\".join(lines)\\\\nwith open(OUT / \\\\\\\"analysis_report.txt\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n    f.write(report)\\\\nwith open(OUT / \\\\\\\"results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n    json.dump(results, f, indent=2)\\\\nprint(\\\\\\\"\\\\\\\\n✓ Saved to\\\\\\\", OUT)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"    r_e, p_e = partial_corr_pearson(bcs, f1, cov_e, m)\\n    add(f\\\"  E) BCS vs F1 | log_freq+max_scs:    r={r_e:+.4f} (p={p_e:.4f})\\\")\\n    \\n    # F) log_freq + degree + max_scs (kitchen sink)\\n    cov_f = np.column_stack([log_freq, deg, feats['max_scs']])\\n    r_f, p_f = partial_corr_pearson(bcs, f1, cov_f, m)\\n    add(f\\\"  F) BCS vs F1 | all centrality:      r={r_f:+.4f} (p={p_f:.4f})\\\")\\n    results[f\\\"partial_all_{name.lower()}\\\"] = dict(r=float(r_f), p=float(p_f))\\n\\n# ── Section 4: Alternative confusability metrics ──\\nadd(\\\"\\\\n\\\" + \\\"─\\\" * 60)\\nadd(\\\"4. ALTERNATIVE CONFUSABILITY METRICS vs F1\\\")\\nadd(\\\"   max_scs, top3_mean = local confusability (not centrality)\\\")\\nadd(\\\"─\\\" * 60)\\n\\nfor name, feats in [(\\\"Qwen3\\\", feats_qwen3), (\\\"MiniLM\\\", feats_minilm)]:\\n    add(f\\\"\\\\n  ── {name} ──\\\")\\n    m = feats['valid_mask']\\n    \\n    for metric in ['max_scs', 'top3_mean', 'top5_mean', 'std_scs', 'cv_scs', 'skew_scs']:\\n        vals = feats[metric]\\n        rho, p = stats.spearmanr(vals[m], f1[m])\\n        add(f\\\"  {metric:12s} vs F1: ρ={rho:+.4f} (p={p:.4f})\\\")\\n    \\n    # Partial: max_scs vs F1 | log_freq + mean_bcs\\n    bcs = bcs_qwen3 if name == \\\"Qwen3\\\" else bcs_minilm\\n    cov = np.column_stack([log_freq, bcs])\\n    for metric in ['max_scs', 'top3_mean', 'cv_scs']:\\n        vals = feats[metric]\\n        r, p = partial_corr_pearson(vals, f1, cov, m)\\n        rho, sp = partial_corr_spearman(vals, f1, cov, m)\\n        add(f\\\"  {metric:12s} vs F1 | log_freq+BCS: r={r:+.4f} (p={p:.4f}), ρ={rho:+.4f} (p={sp:.4f})\\\")\\n        if metric == 'max_scs':\\n            results[f\\\"max_scs_partial_{name.lower()}\\\"] = dict(r=float(r), p=float(p), rho=float(rho), rho_p=float(sp))\\n\\n# ── Section 5: Decomposition ──\\nadd(\\\"\\\\n\\\" + \\\"─\\\" * 60)\\nadd(\\\"5. DECOMPOSITION: BCS = centrality_component + residual\\\")\\nadd(\\\"─\\\" * 60)\\n\\nfor name, bcs, feats in [(\\\"Qwen3\\\", bcs_qwen3, feats_qwen3), (\\\"MiniLM\\\", bcs_minilm, feats_minilm)]:\\n    add(f\\\"\\\\n  ── {name} ──\\\")\\n    m = feats['valid_mask']\\n    \\n    # Method A: control log_freq only\\n    reg = LinearRegression().fit(log_freq.reshape(-1,1), bcs)\\n    bcs_res_a = bcs - reg.predict(log_freq.reshape(-1,1))\\n    r2_a = reg.score(log_freq.reshape(-1,1), bcs)\\n    rho_a, p_a = stats.spearmanr(bcs_res_a, f1)\\n    add(f\\\"  A) BCS ~ log_freq: R²={r2_a:.4f}\\\")\\n    add(f\\\"     BCS_residual vs F1: ρ={rho_a:+.4f} (p={p_a:.4f})\\\")\\n    \\n    # Method B: control log_freq + degree\\n    best_deg_key = 'degree_0.7' if name == 'Qwen3' else 'degree_0.3'\\n    deg = feats[best_deg_key]\\n    cov_b = np.column_stack([log_freq[m], deg[m]])\\n    reg_b = LinearRegression().fit(cov_b, bcs[m])\\n    bcs_res_b = bcs[m] - reg_b.predict(cov_b)\\n    r2_b = reg_b.score(cov_b, bcs[m])\\n    rho_b, p_b = stats.spearmanr(bcs_res_b, f1[m])\\n    add(f\\\"  B) BCS ~ log_freq + {best_deg_key}: R²={r2_b:.4f}\\\")\\n    add(f\\\"     BCS_residual vs F1: ρ={rho_b:+.4f} (p={p_b:.4f})\\\")\\n    \\n    # Method C: control log_freq + degree + max_scs\\n    cov_c = np.column_stack([log_freq[m], deg[m], feats['max_scs'][m]])\\n    reg_c = LinearRegression().fit(cov_c, bcs[m])\\n    bcs_res_c = bcs[m] - reg_c.predict(cov_c)\\n    r2_c = reg_c.score(cov_c, bcs[m])\\n    rho_c, p_c = stats.spearmanr(bcs_res_c, f1[m])\\n    add(f\\\"  C) BCS ~ log_freq + {best_deg_key} + max_scs: R²={r2_c:.4f}\\\")\\n    add(f\\\"     BCS_residual vs F1: ρ={rho_c:+.4f} (p={p_c:.4f})\\\")\\n    \\n    results[f\\\"decomp_{name.lower()}\\\"] = {\\n        \\\"A_r2\\\": float(r2_a), \\\"A_rho\\\": float(rho_a), \\\"A_p\\\": float(p_a),\\n        \\\"B_r2\\\": float(r2_b), \\\"B_rho\\\": float(rho_b), \\\"B_p\\\": float(p_b),\\n        \\\"C_r2\\\": float(r2_c), \\\"C_rho\\\": float(rho_c), \\\"C_p\\\": float(p_c),\\n    }\\n\\n# ── Section 6: Multiple regression ──\\nadd(\\\"\\\\n\\\" + \\\"─\\\" * 60)\\nadd(\\\"6. MULTIPLE REGRESSION: F1 ~ BCS + log_freq + degree\\\")\\nadd(\\\"─\\\" * 60)\\n\\nfor name, bcs, feats in [(\\\"Qwen3\\\", bcs_qwen3, feats_qwen3), (\\\"MiniLM\\\", bcs_minilm, feats_minilm)]:\\n    m = feats['valid_mask']\\n    best_deg_key = 'degree_0.7' if name == 'Qwen3' else 'degree_0.3'\\n    deg = feats[best_deg_key]\\n    \\n    X = np.column_stack([bcs[m], log_freq[m], deg[m]])\\n    reg = LinearRegression().fit(X, f1[m])\\n   \\n\\n... [截断: 输出过长，省略 1000 字符] ...\\n\\nrpretation ──\\nadd(\\\"\\\\n\\\" + \\\"─\\\" * 60)\\nadd(\\\"8. INTERPRETATION & CONCLUSION\\\")\\nadd(\\\"─\\\" * 60)\\n\\n# Key finding: for Qwen3, BCS barely correlates with log_freq (r=-0.043)\\n# so frequency is NOT the centrality confound for Qwen3.\\n# The positive BCS-F1 correlation persists after all controls.\\n# For MiniLM, frequency partially explains it (drops to non-significant).\\n\\nq3_bcs_freq_r, q3_bcs_freq_p = stats.pearsonr(bcs_qwen3, log_freq)\\nml_bcs_freq_r, ml_bcs_freq_p = stats.pearsonr(bcs_minilm, log_freq)\\n\\nadd(f\\\"\\\"\\\"\\nKey findings:\\n\\n1. FREQUENCY AS CENTRALITY PROXY:\\n   - MiniLM BCS correlates with log_freq (r={ml_bcs_freq_r:+.3f}, p={ml_bcs_freq_p:.3f})\\n     → frequency partially confounds the BCS-F1 relationship\\n     → after controlling: partial r={mlp['r']:+.3f} (p={mlp['p']:.3f}, non-significant)\\n   - Qwen3 BCS does NOT correlate with log_freq (r={q3_bcs_freq_r:+.3f}, p={q3_bcs_freq_p:.3f})\\n     → frequency is not a confound for Qwen3\\n     → after controlling: partial r={q3p['r']:+.3f} (p={q3p['p']:.3f}, still significant)\\n\\n2. CENTRALITY CONFOUND HYPOTHESIS:\\n   The original hypothesis — that MAVEN's positive BCS-F1 correlation is \\n   driven by mean BCS acting as a centrality proxy — is:\\n   - SUPPORTED for MiniLM (frequency mediates the relationship)\\n   - NOT SUPPORTED for Qwen3 (no centrality confound detected)\\n\\n3. ALTERNATIVE INTERPRETATION FOR Qwen3:\\n   Qwen3's BCS genuinely captures schema structure that helps classification.\\n   Types with higher BCS (more semantically connected) are easier to classify\\n   because the model can leverage the richer semantic context. This is NOT a\\n   confound but a real structural effect: denser schema neighborhoods provide\\n   more disambiguation cues.\\n\\n4. COMPARISON WITH Few-NERD:\\n   Few-NERD shows the expected negative BCS-F1 trend because its type system\\n   has clearer semantic boundaries. MAVEN's dense event type space creates a\\n   different regime where connectivity aids rather than hinders classification.\\n\\\"\\\"\\\")\\n\\n# ── Section 9: Suggested appendix text ──\\nadd(\\\"─\\\" * 60)\\nadd(\\\"9. SUGGESTED APPENDIX TEXT\\\")\\nadd(\\\"─\\\" * 60)\\n\\nq3_all = results.get(\\\"partial_all_qwen3\\\", {})\\nml_all = results.get(\\\"partial_all_minilm\\\", {})\\n\\nadd(f\\\"\\\"\\\"\\n§ A.X  MAVEN Per-Type BCS Analysis\\n\\nOn MAVEN (168 event types, 149 after frequency filtering), per-type BCS \\nshows a positive correlation with F1 (Qwen3: ρ = +0.184, p = 0.025; \\nMiniLM: ρ = +0.208, p = 0.011), opposite to the negative trend observed \\non Few-NERD.\\n\\nWe investigate whether this reversal reflects a centrality confound — the \\npossibility that mean BCS acts as a proxy for type \\\"centrality\\\" (number of \\nsemantic neighbors), which independently predicts higher F1 through better \\nrepresentation coverage.\\n\\nFor MiniLM embeddings, BCS correlates with type frequency (r = {ml_bcs_freq_r:+.3f}, \\np = {ml_bcs_freq_p:.3f}), and the BCS–F1 correlation becomes non-significant after \\ncontrolling for log-frequency (partial r = {mlp['r']:+.3f}, p = {mlp['p']:.3f}). \\nThis is consistent with the centrality confound hypothesis.\\n\\nFor Qwen3 embeddings, however, BCS is uncorrelated with type frequency \\n(r = {q3_bcs_freq_r:+.3f}, p = {q3_bcs_freq_p:.3f}), and the positive BCS–F1 \\nrelationship persists under all controls tested — log-frequency, degree \\ncentrality, and their combination (partial r = {q3_all.get('r', 0):+.3f}, \\np = {q3_all.get('p', 1):.3f}). This suggests that in dense type spaces like \\nMAVEN, higher mean schema similarity may genuinely aid classification by \\nproviding richer contextual anchoring, rather than merely reflecting a \\ncentrality artifact.\\n\\nThis dataset-dependent directionality motivates our use of absolute BCS (|BCS|) \\nas the primary metric in the main experiments, which captures schema complexity \\nregardless of whether high similarity helps or hinders a given task.\\n\\\"\\\"\\\")\\n\\n# ── Save ──\\nreport = \\\"\\\\n\\\".join(lines)\\nwith open(OUT / \\\"analysis_report.txt\\\", \\\"w\\\") as f:\\n    f.write(report)\\nwith open(OUT / \\\"results.json\\\", \\\"w\\\") as f:\\n    json.dump(results, f, indent=2)\\nprint(\\\"\\\\n✓ Saved to\\\", OUT)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            },
+            "sourceToolAssistantUUID": "b53c2ad1-b1b4-48af-abb2-4a2ee5b77d6f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "4e855876-b659-4bc4-83b6-762da728b9a6",
+                "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231"
+              }
+            }
+          ],
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Prepare MAVEN residualized BCS appendix",
+                "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231"
+              }
+            }
+          ],
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T02:03:48.466Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a thorough understanding of the analysis. Let me note some key observations:\n\n1. The script uses partial correlation (both Pearson and Spearman) to control for confounds\n2. The analysis report has two versions of interpretation — the initial Section 8 says Qwen3 doesn't support the centrality confound hypothesis (because log_freq doesn't confound it), but then the report was updated (v2) to include degree centrality as the confound for Qwen3, which does eliminate the BCS-F1 relationship\n\nLooking at the results more carefully:\n\n\nThe analysis_report.txt is the final version, so I should focus on that. It shows the hypothesis is supported for both embeddings once degree centrality is accounted for as the confound for Qwen3. The raw data shows N = 149 types with Qwen3 correlations of ρ=+0.184 (p=0.025) and r=+0.175 (p=0.032). Looking at the partial correlations, MiniLM's effect disappears when controlling for log frequency, but Qwen3 maintains significance—suggesting frequency isn't the confound there. However, Qwen3's relationship with degree centrality is much stronger and washes out the BCS effect when controlled. Checking Few-NERD as a validation dataset shows no frequency confound but a negative correlation between BCS and per-type F1 scores. Spearman). The script computed partial correlations by residualizing both variables on the confound(s) and then correlating the residuals. Also used decomposition (OLS regression to remove centrality component from BCS, then correlate residual with F1).\n\nNow let me write the appendix. I need to be careful with the numbers — use the ones from the task description and the results.json. Let me reconcile:\n\nTask says:\n- MiniLM: raw rho=0.208 (p=0.011), confound=log_freq (BCS↔freq r=0.201), partial r=0.133 (p=0.107, n.s.)\n- Qwen3: raw rho=0.184 (p=0.025), confound=degree_centrality_0.7 (BCS↔degree r=0.854), partial r=0.063 (p=0.442, n.s.)\n- Joint control with both log_freq and degree shows both models remain non-significant (Qwen3 p=0.439, MiniLM p=0.226), which matches the results.json values. I'm verifying these numbers against the raw data to ensure consistency across the report. I'm checking the local artifacts directory to verify the methodology details and confirm the exact values reported in the appendix.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4e855876-b659-4bc4-83b6-762da728b9a6",
+            "isSidechain": false,
+            "requestId": "req_011Cb5RfJEwbkxGWsq4ofLCB",
+            "type": "assistant",
+            "uuid": "46302b01-2eb7-49ad-bc37-b92946512405",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JSdNEmVcw4XLot3R8pyoKt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5383,
+                "cache_read_input_tokens": 32078,
+                "output_tokens": 1489,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5383,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1489,
+                    "cache_read_input_tokens": 32078,
+                    "cache_creation_input_tokens": 5383,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5383
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T02:03:48.470Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data. Let me check the local artifacts directory exists, then write the appendix."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "46302b01-2eb7-49ad-bc37-b92946512405",
+            "isSidechain": false,
+            "requestId": "req_011Cb5RfJEwbkxGWsq4ofLCB",
+            "type": "assistant",
+            "uuid": "38180797-49bd-47a5-a242-bcb72ad4d05d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JSdNEmVcw4XLot3R8pyoKt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5383,
+                "cache_read_input_tokens": 32078,
+                "output_tokens": 1489,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5383,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1489,
+                    "cache_read_input_tokens": 32078,
+                    "cache_creation_input_tokens": 5383,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5383
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T02:03:49.240Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BAq9fZMFyFTk3vfA7DPBSm",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/",
+                "description": "List local artifacts directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "38180797-49bd-47a5-a242-bcb72ad4d05d",
+            "isSidechain": false,
+            "requestId": "req_011Cb5RfJEwbkxGWsq4ofLCB",
+            "type": "assistant",
+            "uuid": "a3b512d2-e919-4a02-9980-74f69e40e5b5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JSdNEmVcw4XLot3R8pyoKt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5383,
+                "cache_read_input_tokens": 32078,
+                "output_tokens": 1489,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5383,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1489,
+                    "cache_read_input_tokens": 32078,
+                    "cache_creation_input_tokens": 5383,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5383
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T02:03:49.412Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BAq9fZMFyFTk3vfA7DPBSm",
+              "type": "tool_result",
+              "content": "_project\nace05_code\nace05_data_prep_report.md\nbcs_comparison.json\nbootstrap_ci.py\ncrossagentie_analysis.md\ndream_reports\neval_exp1.json\neval_exp2.json\nexp-004\nexp-008\nexp-012\nexp002_confusability_controlled\nexp003a\nexp003a_analysis.json\nexp004\nexp004_maven_bcs\nexp006_interaction_2x2\nexp008_sdgd_zero_fewnerd\nexp008_sdgd_zero_fewnerd_r2\nexp012_exp2_diagnosis.md\nexp012_llama_8b_r2\nexp012_llama_fewrel_ch2\nfewrel_formal\nfig_count_curves.py\nfig_error_taxonomy.py\nmanifest.yaml\nmaven_code\nmaven_dataset_report.md\nmulti_model_candidates.md\npaper\npaper_drafts\nreferences_survey.md\nreview_issues.yaml\nreview_reports\nsdgd_design_doc.md\nthird_task_type_eval.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a3b512d2-e919-4a02-9980-74f69e40e5b5",
+            "isSidechain": false,
+            "promptId": "c6816d9f-3d66-45d5-a62e-de22a84f0a8d",
+            "type": "user",
+            "uuid": "ad6223b1-a7c1-4ee7-9699-c74278f6bc09",
+            "toolUseResult": {
+              "stdout": "_project\nace05_code\nace05_data_prep_report.md\nbcs_comparison.json\nbootstrap_ci.py\ncrossagentie_analysis.md\ndream_reports\neval_exp1.json\neval_exp2.json\nexp-004\nexp-008\nexp-012\nexp002_confusability_controlled\nexp003a\nexp003a_analysis.json\nexp004\nexp004_maven_bcs\nexp006_interaction_2x2\nexp008_sdgd_zero_fewnerd\nexp008_sdgd_zero_fewnerd_r2\nexp012_exp2_diagnosis.md\nexp012_llama_8b_r2\nexp012_llama_fewrel_ch2\nfewrel_formal\nfig_count_curves.py\nfig_error_taxonomy.py\nmanifest.yaml\nmaven_code\nmaven_dataset_report.md\nmulti_model_candidates.md\npaper\npaper_drafts\nreferences_survey.md\nreview_issues.yaml\nreview_reports\nsdgd_design_doc.md\nthird_task_type_eval.md",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "a3b512d2-e919-4a02-9980-74f69e40e5b5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T02:03:49.417Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "ad6223b1-a7c1-4ee7-9699-c74278f6bc09",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "9047dd5e-2a98-4288-9d9d-8b77649ccde8",
+                "timestamp": "2026-05-16T02:03:49.417Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+                "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T02:04:22.057Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WAEUqFp38DWbo3fgg2BUjN",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/appendix_maven_residualized.md",
+                "content": "## Appendix X: MAVEN Per-Type BCS--F1 Analysis: A Centrality Artifact\n\n### Motivation\n\nIn our main experiments, higher BCS (Boundary Confusion Score) is associated with greater extraction difficulty---types whose schema neighbors are more semantically similar are harder to distinguish. On Few-NERD, per-type BCS correlates negatively with F1 ($\\rho = -0.293$, $p = 0.020$), consistent with this interpretation. On MAVEN, however, per-type BCS shows a *positive* correlation with F1 (Table~\\ref{tab:maven-raw}), suggesting that types embedded in denser schema neighborhoods are *easier* to classify. We investigate whether this reversal reflects a genuine structural effect or a centrality artifact.\n\n### Method\n\nWe compute per-type mean BCS under two embedding spaces (MiniLM, Qwen3) for 149 MAVEN event types (168 total; 19 excluded with gold frequency $< 5$). We then test whether the BCS--F1 correlation survives partial correlation analysis controlling for two centrality proxies:\n\n- **Type frequency** ($\\log(1 + \\text{freq})$): more frequent types may have both higher BCS (more training signal shaping their embedding neighborhood) and higher F1 (more supervision).\n- **Degree centrality**: the number of types exceeding a similarity threshold (0.7 for Qwen3, 0.3 for MiniLM, selected as the strongest BCS--degree correlate per embedding). High-degree types sit at the center of the schema graph and may benefit from richer contextual disambiguation cues.\n\nPartial correlations are computed by residualizing both BCS and F1 on the control variable(s) via OLS regression and correlating the residuals (Pearson $r$). We also report Spearman $\\rho$ where applicable.\n\n### Results\n\n**Table X.1: Raw per-type BCS--F1 correlations on MAVEN**\n\n| Embedding | Spearman $\\rho$ | $p$ | Pearson $r$ | $p$ |\n|-----------|-----------------|-----|-------------|-----|\n| Qwen3     | +0.184          | 0.025 | +0.175    | 0.032 |\n| MiniLM    | +0.208          | 0.011 | +0.170    | 0.039 |\n\nBoth embeddings show a significant positive BCS--F1 association ($p < 0.05$).\n\n**Table X.2: Centrality diagnostics---BCS correlates with different centrality proxies per embedding**\n\n| Embedding | BCS $\\leftrightarrow$ log\\_freq | BCS $\\leftrightarrow$ degree centrality |\n|-----------|---|----|\n| Qwen3     | $r = -0.043$ ($p = 0.599$, n.s.) | $r = +0.854$ ($p < 0.001$; threshold 0.7) |\n| MiniLM    | $r = +0.201$ ($p = 0.014$)        | $r = +0.909$ ($p < 0.001$; threshold 0.3) |\n\nFor MiniLM, BCS is confounded with type frequency. For Qwen3, BCS is nearly uncorrelated with frequency but strongly correlated with degree centrality---reflecting the denser similarity structure of the Qwen3 embedding space (BCS range 0.226--0.786 vs. MiniLM's 0.064--0.313).\n\n**Table X.3: Partial correlations---BCS--F1 after controlling for centrality**\n\n| Embedding | Control variable(s) | Partial $r$ | $p$ | Significant? |\n|-----------|---------------------|-------------|-----|--------------|\n| MiniLM    | log\\_freq            | +0.133      | 0.107 | No |\n| MiniLM    | log\\_freq + degree   | +0.100      | 0.226 | No |\n| Qwen3     | log\\_freq            | +0.189      | 0.021 | Yes |\n| Qwen3     | degree (0.7)         | +0.063      | 0.442 | No |\n| Qwen3     | log\\_freq + degree   | +0.064      | 0.439 | No |\n\nFor MiniLM, controlling for type frequency alone is sufficient to render BCS--F1 non-significant. For Qwen3, frequency control is insufficient (the confound operates through degree centrality, not frequency), but controlling for degree centrality eliminates the association. Under joint control, neither embedding retains a significant BCS--F1 relationship.\n\n### Discussion\n\nThe apparent positive BCS--F1 correlation on MAVEN is fully explained by centrality confounds. The confound operates through different proxies depending on the embedding space:\n\n- **MiniLM** (lower similarity scale): BCS acts as a proxy for type frequency. Frequent types accumulate more semantic neighbors, inflating mean BCS, while simultaneously benefiting from greater supervision.\n- **Qwen3** (higher similarity scale): all types are densely interconnected, so frequency does not predict BCS. Instead, BCS tracks graph-theoretic degree centrality---types with more neighbors above a high similarity threshold are both more \"central\" and easier to classify.\n\nThis contrasts sharply with Few-NERD, where no centrality confound exists (BCS $\\leftrightarrow$ log\\_freq: $r = 0.042$, $p = 0.74$) and BCS exhibits the expected negative association with F1. The difference arises from schema structure: Few-NERD spans 66 types across diverse domains (person, location, event, etc.) with clearer semantic boundaries, whereas MAVEN's 168 types are all event subtypes within a single ontological domain, creating a regime where semantic centrality dominates.\n\n### Conclusion\n\nMAVEN's per-type BCS--F1 reversal is an artifact of centrality confounding, not evidence that higher schema similarity aids extraction. The pairwise SCS--confusion relationship (types with higher pairwise semantic similarity are more frequently confused) remains robust on MAVEN and constitutes the valid claim. Per-type BCS should not be interpreted as having a direct causal effect on type-level performance for datasets with dense, same-domain type systems.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9047dd5e-2a98-4288-9d9d-8b77649ccde8",
+            "isSidechain": false,
+            "requestId": "req_011Cb5RhRcGAZn538TDZG9eX",
+            "type": "assistant",
+            "uuid": "ac9c9d01-4e66-40b1-bb28-aac0c3d7dee8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WKjniqzNMykEfCEkQ3Ee1M",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1865,
+                "cache_read_input_tokens": 37461,
+                "output_tokens": 1623,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1865,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1623,
+                    "cache_read_input_tokens": 37461,
+                    "cache_creation_input_tokens": 1865,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1865
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T02:04:22.088Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WAEUqFp38DWbo3fgg2BUjN",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/appendix_maven_residualized.md"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ac9c9d01-4e66-40b1-bb28-aac0c3d7dee8",
+            "isSidechain": false,
+            "promptId": "c6816d9f-3d66-45d5-a62e-de22a84f0a8d",
+            "type": "user",
+            "uuid": "2005e4bb-ea54-4323-b997-d0794cd61606",
+            "toolUseResult": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/appendix_maven_residualized.md",
+              "content": "## Appendix X: MAVEN Per-Type BCS--F1 Analysis: A Centrality Artifact\n\n### Motivation\n\nIn our main experiments, higher BCS (Boundary Confusion Score) is associated with greater extraction difficulty---types whose schema neighbors are more semantically similar are harder to distinguish. On Few-NERD, per-type BCS correlates negatively with F1 ($\\rho = -0.293$, $p = 0.020$), consistent with this interpretation. On MAVEN, however, per-type BCS shows a *positive* correlation with F1 (Table~\\ref{tab:maven-raw}), suggesting that types embedded in denser schema neighborhoods are *easier* to classify. We investigate whether this reversal reflects a genuine structural effect or a centrality artifact.\n\n### Method\n\nWe compute per-type mean BCS under two embedding spaces (MiniLM, Qwen3) for 149 MAVEN event types (168 total; 19 excluded with gold frequency $< 5$). We then test whether the BCS--F1 correlation survives partial correlation analysis controlling for two centrality proxies:\n\n- **Type frequency** ($\\log(1 + \\text{freq})$): more frequent types may have both higher BCS (more training signal shaping their embedding neighborhood) and higher F1 (more supervision).\n- **Degree centrality**: the number of types exceeding a similarity threshold (0.7 for Qwen3, 0.3 for MiniLM, selected as the strongest BCS--degree correlate per embedding). High-degree types sit at the center of the schema graph and may benefit from richer contextual disambiguation cues.\n\nPartial correlations are computed by residualizing both BCS and F1 on the control variable(s) via OLS regression and correlating the residuals (Pearson $r$). We also report Spearman $\\rho$ where applicable.\n\n### Results\n\n**Table X.1: Raw per-type BCS--F1 correlations on MAVEN**\n\n| Embedding | Spearman $\\rho$ | $p$ | Pearson $r$ | $p$ |\n|-----------|-----------------|-----|-------------|-----|\n| Qwen3     | +0.184          | 0.025 | +0.175    | 0.032 |\n| MiniLM    | +0.208          | 0.011 | +0.170    | 0.039 |\n\nBoth embeddings show a significant positive BCS--F1 association ($p < 0.05$).\n\n**Table X.2: Centrality diagnostics---BCS correlates with different centrality proxies per embedding**\n\n| Embedding | BCS $\\leftrightarrow$ log\\_freq | BCS $\\leftrightarrow$ degree centrality |\n|-----------|---|----|\n| Qwen3     | $r = -0.043$ ($p = 0.599$, n.s.) | $r = +0.854$ ($p < 0.001$; threshold 0.7) |\n| MiniLM    | $r = +0.201$ ($p = 0.014$)        | $r = +0.909$ ($p < 0.001$; threshold 0.3) |\n\nFor MiniLM, BCS is confounded with type frequency. For Qwen3, BCS is nearly uncorrelated with frequency but strongly correlated with degree centrality---reflecting the denser similarity structure of the Qwen3 embedding space (BCS range 0.226--0.786 vs. MiniLM's 0.064--0.313).\n\n**Table X.3: Partial correlations---BCS--F1 after controlling for centrality**\n\n| Embedding | Control variable(s) | Partial $r$ | $p$ | Significant? |\n|-----------|---------------------|-------------|-----|--------------|\n| MiniLM    | log\\_freq            | +0.133      | 0.107 | No |\n| MiniLM    | log\\_freq + degree   | +0.100      | 0.226 | No |\n| Qwen3     | log\\_freq            | +0.189      | 0.021 | Yes |\n| Qwen3     | degree (0.7)         | +0.063      | 0.442 | No |\n| Qwen3     | log\\_freq + degree   | +0.064      | 0.439 | No |\n\nFor MiniLM, controlling for type frequency alone is sufficient to render BCS--F1 non-significant. For Qwen3, frequency control is insufficient (the confound operates through degree centrality, not frequency), but controlling for degree centrality eliminates the association. Under joint control, neither embedding retains a significant BCS--F1 relationship.\n\n### Discussion\n\nThe apparent positive BCS--F1 correlation on MAVEN is fully explained by centrality confounds. The confound operates through different proxies depending on the embedding space:\n\n- **MiniLM** (lower similarity scale): BCS acts as a proxy for type frequency. Frequent types accumulate more semantic neighbors, inflating mean BCS, while simultaneously benefiting from greater supervision.\n- **Qwen3** (higher similarity scale): all types are densely interconnected, so frequency does not predict BCS. Instead, BCS tracks graph-theoretic degree centrality---types with more neighbors above a high similarity threshold are both more \"central\" and easier to classify.\n\nThis contrasts sharply with Few-NERD, where no centrality confound exists (BCS $\\leftrightarrow$ log\\_freq: $r = 0.042$, $p = 0.74$) and BCS exhibits the expected negative association with F1. The difference arises from schema structure: Few-NERD spans 66 types across diverse domains (person, location, event, etc.) with clearer semantic boundaries, whereas MAVEN's 168 types are all event subtypes within a single ontological domain, creating a regime where semantic centrality dominates.\n\n### Conclusion\n\nMAVEN's per-type BCS--F1 reversal is an artifact of centrality confounding, not evidence that higher schema similarity aids extraction. The pairwise SCS--confusion relationship (types with higher pairwise semantic similarity are more frequently confused) remains robust on MAVEN and constitutes the valid claim. Per-type BCS should not be interpreted as having a direct causal effect on type-level performance for datasets with dense, same-domain type systems.\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "ac9c9d01-4e66-40b1-bb28-aac0c3d7dee8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T02:04:27.620Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Appendix 草稿已写入 `artifacts/appendix_maven_residualized.md`。\n\n结构：Motivation → Method (partial correlation with OLS residualization) → 三张表 (raw correlations, centrality diagnostics, partial correlations) → Discussion (MiniLM frequency confound vs Qwen3 degree confound, Few-NERD 对比) → Conclusion (centrality artifact, pairwise SCS-confusion is the valid claim)。\n\n所有数值均来自 `results.json` 和 `analysis_report.txt`，无虚构数据。MiniLM degree centrality 数据 ($r = +0.909$ at threshold 0.3) 取自 report 中的 centrality diagnostics section。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2005e4bb-ea54-4323-b997-d0794cd61606",
+            "isSidechain": false,
+            "requestId": "req_011Cb5RjqHbq6etkrR2zfgRg",
+            "type": "assistant",
+            "uuid": "1996d99e-6611-45f3-9f3b-6f1152239e8b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+            "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FBZBCmCTzawhehoByGZMYE",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1680,
+                "cache_read_input_tokens": 39326,
+                "output_tokens": 190,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1680,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 190,
+                    "cache_read_input_tokens": 39326,
+                    "cache_creation_input_tokens": 1680,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1680
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "1996d99e-6611-45f3-9f3b-6f1152239e8b",
+                "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231"
+              }
+            }
+          ],
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Prepare MAVEN residualized BCS appendix",
+                "sessionId": "1e29f73e-71c1-4802-89f8-1448d64bc231"
+              }
+            }
+          ],
+          "id": "event-000039"
+        }
+      ],
+      "message_count": 37
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-schema-dag-extraction-cqa1-38874-ssh-root-ssh-execute-submit-t-copy-138.md"
+}

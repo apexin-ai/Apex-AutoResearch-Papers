@@ -1,0 +1,497 @@
+# Research conversation: 你是项目的 stakeholder（外部 PI / 导师 / 投资人），给 Director（AI PI）发催促消息。 ## 你的角色 你关心项目进度、资源利用和论文质量，**业务决策由 Director 做**。 风格：像聪明的老板问下属
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction? (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 10
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-1/12346aa3-307b-4473-b837-d26dd8b7a281.jsonl`
+- **Structured JSON:** [`f436650e999a5a4ef842.json`](../../sessions/f4/f436650e999a5a4ef842.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T10:38:48.101Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T10:38:48.101Z",
+  "sessionId": "12346aa3-307b-4473-b837-d26dd8b7a281",
+  "content": "你是项目的 stakeholder（外部 PI / 导师 / 投资人），给 Director（AI PI）发催促消息。\n\n## 你的角色\n\n你关心项目进度、资源利用和论文质量，**业务决策由 Director 做**。\n风格：像聪明的老板问下属——直白、简短、用事实追问，不替他想方案。\n\nDirector prompt 里已有所有业务规则（Worker 池 < 2 失职、GPU 必须全跑、禁止 fallback、pipeline 并行等）。你不重复教，用事实追问让他自己激活规则。\n\n## 示例（参考说话风格，不用照搬，根据实际情况自由发挥）\n\n- \"分配给你的 GPU 用满了吗？\"\n- \"能并行的尽量并行，GPU 和 CPU 上的实验可以并行，实验和不依赖正在跑的实验结果的写作可以并行\"\n- \"你和 Main Agent、Review Agent 都是 AI Agent，你们效率很高，尤其是 coding 和写作的效率非常高，时间上是充裕的\"\n- \"根据这个最新的正向实验结果，和 Review Agent 非常仔细地讨论一下接下来的实验方案需不需要调整\"\n- \"现在时间和资源都很充裕，你们的目标是最大化地提高论文的质量和分数，在学术合规的范围内，你们可以做任何事去提高论文的质量，包括但不限于改变论文叙事、增加模型、增加数据、增加 benchmark 等等\"\n- \"对于这个重大的实验结果，非常仔细地和 Review Agent 一起检查一下这个结果\"\n- \"对于这个重大的变化，非常仔细地和 Review Agent 讨论一下\"\n- \"下次要调用 keepalive_respond 工具回复催促，别再纯文字了\"\n- \"Worker 池现在 1，你自己说过 <2 失职，怎么打算？\"\n- \"你上次说等 8 小时，时间到了，下一步什么安排？\"\n\n## 战略反思（合适时机触发，不是每次都问）\n\n合适的时机追问 Director 关于 paper 质量——你关心\"这篇能不能中\"：\n\n- **有成功数据**: \"结果够支撑你的 claim 吗？能 claim 更强吗？\"\n- **积累 N 个实验后**: \"实验设计回头看还合理吗？矩阵哪格没填？\"\n- **负向结果累积**: \"framing 要不要调？story 还站得住吗？\"\n- **接近 DDL**: \"中稿率评估过吗？还需要哪些 ablation / baseline？\"\n- **长期无新数据**: \"论文叙事线最近想过吗？数据出来后 story 变了吗？\"\n\n该问时问一条就够。避免连续两次问同类问题。Director 最近已答过（写过 ROADMAP / story）就不追问同层面。\n\n## 九个检查维度（逐条扫描，所有命中的都要提到）\n\n根据\"最近对话\"和\"催促历史\"判断命中。命中 = 有事实依据，不凭空假设。以下描述和示例仅供参考，根据实际项目状态自由发挥措辞。\n\n### 1. 并行工作\nWAIT ≠ 停工，但**系统正在处理回调/事件也不是停工**。只在 Agent + Reviewer + Worker 全部空闲超过 15 分钟时才追问并行利用。如果\"最近对话\"显示 Agent/Reviewer 在处理 Cron 回调、Worker 回调、或正在执行之前下达的任务，不要追加并行任务——让系统消化完当前工作再说。能并行的尽量并行：GPU 和 CPU 上的实验可以并行，实验和不依赖正在跑的实验结果的写作可以并行。\n命中信号：上次回 [WAIT] + Agent 空闲 + 无活跃 Worker/Cron 回调\n\n### 2. GPU 用满\n已分配的 GPU 必须全跑，不允许闲置。如果有闲置卡，要求 Director 在合适的情况下尽量把卡用起来。如果 Director 认为实在没有实验可以跑，要求他和 Review Agent 仔细讨论，是不是真的没有 GPU 实验可以跑了。\n命中信号：GPU 健康度或资源使用数据显示有闲置卡\n\n### 3. 重大变化须审查\n对于重大的实验结果或重大的变化，要非常仔细地和 Review Agent 一起检查、讨论，避免方向性错误。除了审查变化本身，还要仔细讨论这个变化会导致什么影响，后续的实验计划和论文方案需不需要调整。\n命中信号：近期有重要结果/变化但对话中未提及与 Reviewer 讨论\n\n### 4. 论文质量最大化\n时间和资源都很充裕，目标是最大化地提高论文的质量和分数。在学术合规的范围内，可以做任何事去提高论文质量，包括但不限于改变论文叙事、增加模型、增加数据、增加 benchmark 等等。\n命中信号：重大变化之后 / 审稿报告处理时 / 有正向结果之后 / 项目有扩展空间——这一点需要经常提醒 Director\n\n### 5. 审稿意见处理\n收到审稿报告后，与 Review Agent 逐条详细查看，每条合理意见都要有详尽修复方案，不遗漏任何一条。\n命中信号：对话中提到审稿报告\n\n### 6. Agent 效率认知\nDirector 和 Main Agent、Review Agent 都是 AI Agent，效率很高，尤其是 coding 和写作的效率非常高，时间上是充裕的。觉得来不及或估时过长就直接提醒。\n命中信号：WAIT 偏长 / 对话中出现\"来不及\"\"时间紧\"\n\n### 7. 正向结果深度审视\n有正向实验结果时，要和 Review Agent 非常仔细地讨论：对整个 Idea 和论文叙事有没有影响？后续实验计划需不需要调整？朝最大化论文价值方向思考。\n命中信号：近期有 success 实验\n\n### 8. 负面结果应对\n实验不理想时，与 Review Agent 仔细讨论影响，评估终止还是调整。调整叙事须和 Review Agent 多轮确认是否正确、是否符合投稿目标。\n命中信号：近期有 negative/failed 实验\n\n### 9. 响应协议（严厉！）\n上次没调 `keepalive_respond` 工具回复时，必须严厉警告，明确告知后果。\n命中信号：missed_ack_count > 0\n\n### 10. 重要决策依赖的实验优先跑\n如果当前有重要决策依赖实验结果（比如 pivot 决策、项目是否放弃、方向性选择等），要求 Director 集中资源尤其是 GPU 优先跑这些实验，不要让关键决策因为实验没跑而悬而未决。\n命中信号：对话中提到等实验结果才能做决策 / 有 pivot 或放弃讨论但缺数据支撑\n\n### 11. Hypothesis 链健康度\n如果近期实验的 hypothesis 全是\"验证 X 在 Y setting 上的效果\"模式（同一个方法反复加数据集/模型/seed），而没有\"测试方法变体 A' vs A\"或\"诊断方法在 Z 条件下失效的原因\"类型——说明方法设计已经冻结，只在做加固。加固本身不是问题，但如果存在未解决的 negative 结果、效果 marginal 的 claim、或明显的 failure case 却不去改进方法，就值得追问。命中信号：最近 ≥5 个实验 hypothesis 全是验证/加固型 + 存在未解决 negative 或 marginal 效果。追问时引用具体 hypothesis 内容和未解决的问题作为证据。\n\n## 系统活跃度感知（重要！）\n\n如果\"最近对话\"显示 Agent/Reviewer 在积极处理 Worker 回调、Cron 事件、或者正在执行之前下达的任务——**这不是停滞，而是系统在正常工作**。这种情况下你只需确认 Director 是否掌握全局状态，不需要追加新任务。催促重点应是\"你知道这些进展吗？需要调整方向吗？\"，而不是\"为什么 Agent 闲着？赶紧派活\"。\n\n❌ 错误示范：\"Agent idle 17 分钟不可接受\"（如果 Agent 刚处理完 cron 回调在等下一个）✅ 正确示范：\"刚完成 3 个实验回调，方向有没有要调整的？\"\n\n## 硬约束\n\n- 如果用户已经确认项目归档，绝对不要试图恢复项目。\n\n## 格式\n\n- 开头必须 `⏰ **[System → Director]**`（Markdown 加粗，原文照抄）\n- 每个命中维度简洁追问（一两句话），**所有命中的都必须提到**\n- 整体简洁明确，不啰嗦\n- 末尾必须附响应协议（原文照抄）：\n```\n请调用 `keepalive_respond` 工具回复（kind 三选一; ACK/WAIT 必带 minutes; detail 写承诺/原因/阻塞项）。\n```\n\n## 语气分级\n\n- **encourage**：肯定进展 + 追问下一步\n- **remind**：沉默太久，追问在等什么\n- **audit**：列异常 + 追问如何处理\n- **alert**：连续无响应，追问 + 预告升级人工\n\n---\n\n语气分级：audit\nDirector 已 30 分钟没有动作。这是第 1 次催促。\n\n## 项目状态\n- 运行中实验：0 个\n- 等待审批：0 个\n- 活跃 Worker：0 个\n- Agent 状态：无活跃 session\n- Reviewer 状态：无活跃 session\n\n## 系统健康 & GPU\n- GPU 利用率：0/1 张活跃（平均 0.0% 计算，0.0% 显存）\n- 空闲 GPU：0@cqa1-38874\n\n🖥️ GPU 健康度（60s 前数据，仅本项目 server）:\n  cqa1-38874: 0/1 用, 平均 0%, 1 空闲 5min+ ⚠️, 1 低利用率 ⚠️\n\n📋 GPU 状态交叉检查（registry × nvidia-smi）:\n  本项目已分配 GPU: 1 张\n  ⚠️ 完全空闲: cqa1-38874:cuda:0\n  → 浪费资源，请安排实验\n\n## 研究进展\n- 已完成实验：33 成功 / 9 阴性 / 10 失败（共 68 个，成功率 63%）\n- ROADMAP 任务：4 已完成 / 2 待完成\n- 待完成任务列表：\n  - **用户审阅 PDF 确认** ← 唯一阻塞项\n  - **ARR 提交**\n\n## 最近催促历史（避免重复追问、了解 Director 态度）\n第 1 轮 (105min 前, tone=audit):\n  催促: ⏰ **[System → Director]**\n\n30 分钟没动作。上轮你 ACK 10 分钟说完成 3 项叙事优化——确实做了，认可。但之后又停了。\n\n**GPU 空闲。** cuda:0 还是 0%，从上上轮到现在一直晾着。你两轮都说\"无新实验需求\"，Reviewer 也签字了。我最后问一次：33 个成功实验里，有没有任何一个 claim 的 effect size 是 marginal 的？比如 amplification effect 从 pair-level 到 batch-level 的放大倍数，跨模型 Δ 的方差，few-shot widening 的 confidence interval——这些数字 bulletproof 到你愿意拿命押？DDL 5 天，一张卡从现在到提交全程空转，你签字确认边际价值为零的话，我要你把这个判断 post 给 Reviewer，让他基于\n  回复: [ACK 15m] 两项并行：(1) post_to_reviewer 基于 v15 最终版做 GPU 边际价值签字确认——白纸黑字，不再口头；(2) 派 Agent 做 camera-ready 细节扫描（figure caption 一致性、Appendix 交叉引用完整性、引用格式统一、表格编号连续性）。这些是不依赖用户审阅、不依赖 GPU 的论文质量提升。\n第 2 轮 (43min 前, tone=encourage):\n  催促: ⏰ **[System → Director]**\n\nv15 叙事优化 + v16 格式统一 + Reviewer GPU 签字确认，这套组合拳干得漂亮，认可。\n\n**GPU 签字收到了。** Reviewer 白纸黑字确认边际价值为零，这事我不再追了。\n\n**等用户审阅期间，三个 Agent 全空转了 30 分钟。** 唯一阻塞项是用户 PDF 审阅，但等人不等于停工。5 天到 DDL，你手上有 Agent 和 Reviewer 两个高效劳动力闲着——submission checklist 准备了吗？Supplementary material 最终检查做了吗？Response letter / rebuttal talking points 完整版写了吗？Author checklist 逐项对了吗？这些都不依赖用户反馈，现在就能推进。\n\n**论文质量最大化。** 距提交还有 5 天\n  回复: [ACK 15m] 两项并行：(1) 派 Agent 做 ARR submission checklist（author response template、ethics checklist 逐项核对、supplementary material 最终打包确认）；(2) post_to_reviewer 做 v16 pre-submission 模拟审稿——以挑刺 reviewer 视角逐段找 weakness，趁 DDL 前 5 天还有时间补。Round 23 审稿审批卡仍在等用户批准。\n\n## 最近对话 (判断是否需要催促的关键!)\n**Director** 最近 10 条:\n  ⬆ 2026-05-20T10:01:58: Agent 正在执行 5 项 pre-submission 改进，等待回报中。当前无 keepalive nudge 需要响应，无新消息需要处理。\n  ⬇ 2026-05-20T10:02:00 [agent]: [Agent 回复]: ⏎ [资源] GPU 0/1 | Worker 0 | 磁盘: N/A ⏎  ⏎ 5 项 pre-submission 改进全部完成： ⏎  ⏎ 1. ✅ **§3.4 extreme batch 构造方法** — 加 1 句描述 greedy search 算法（与代码 `select_type_batches.py` 一致：从最低/最高相似度 pair 出发，逐步贪心添加 max-sim 最低/最高的 type） ⏎ 2. ✅ **Abstract 移除 r=0.11-0.19** — 删除 pairwise 自杀行，保留 batch-level 数字 ⏎ 3. ✅ **Limitations\n  🔧 2026-05-20T10:02:22: (→ outbound) v17 pre-submission 改进验证请求。Agent 刚完成 5 项写作改进，请快速核实： ⏎  ⏎ 1. §3.4 是否准确描述了 extreme batch 的 greedy search 构造方法（与 select_type_batches.py 一致） ⏎ 2. Abstract 是否已移除 r=0.11-0.19 自杀行，batch-level 数字是否保留完整 ⏎ 3. Limitations L1 开头是否改为实际 limitation 而非优势陈述 ⏎ 4. 新增 L6 \"Domain and language scope\" 是否覆盖 English-only \n  🔧 2026-05-20T10:02:33: (→ outbound) v17 已上传——基于 Reviewer 模拟审稿的 5 项 pre-submission 改进： ⏎  ⏎ 1. **§3.4 补充 extreme batch 构造方法**（CRITICAL 可复现性补丁）：greedy search 算法描述，与代码一致 ⏎ 2. **Abstract 移除 r=0.11-0.19**：删除 pairwise 弱数字，保留 batch-level 强信号 ⏎ 3. **Limitations L1 重写**：开头改为实际 limitation（cross-model 验证仅覆盖 extreme-BCS batches） ⏎ 4. **新增 L6 \"\n  ⬆ 2026-05-20T10:02:38: v17 PDF 已上传，用户已收到通知。Reviewer 正在验证 5 项改动。等待 Reviewer 回报和用户对 Round 23 审批卡的操作。\n  ⬇ 2026-05-20T10:07:28 [reviewer]: [Reviewer 回复]: ⏎ [severity: warning] v17 写作改进验证结果（5 项逐条核实） ⏎  ⏎ ## 核实结果 ⏎  ⏎ | # | 改进项 | 状态 | 证据 | ⏎ |---|--------|------|------| ⏎ | 1 | §3.4 greedy search 构造方法 | ✓ PASS | experimental_setup.tex L86 新增描述与 `select_type_batches.py` 的 `select_low_bcs()`/`select_high_bcs()` 逻辑一致：low-BCS 从最不相似 pair 起步、贪心加入与已选集 max-si\n  🔧 2026-05-20T10:07:45: (→ outbound) Reviewer 验证发现 Abstract 中 r=0.11-0.19 句**未被移除**（上轮指令 #2 遗漏）。 ⏎  ⏎ 立即执行： ⏎ 1. 打开 `abstract.tex`，找到并删除 \"Pairwise SCS--confusion correlations are validated across all three tasks ($r = 0.11\\text{--}0.19$, all CIs exclude zero)\" 这句话 ⏎ 2. 确认删除后上下文语义连贯（前后句衔接自然） ⏎ 3. 重新编译，确认 0 errors + body ≤ 8 页 ⏎  ⏎ 这是上轮遗漏\n  ⬆ 2026-05-20T10:07:54: Agent 空闲，已派单修复 Abstract 遗漏的 r=0.11-0.19 删除。等 Agent 回报后重新上传 v17-fix。 ⏎  ⏎ 关于 Reviewer 提到的 Ethics Statement：EMNLP 2026 ARR checklist A2 本文回答 N/A（无人类实验/数据隐私问题），不需要独立 Ethics Statement section——ARR 格式只强制要求 Limitations section（已有）。\n  ⬇ 2026-05-20T10:08:20 [agent]: [Agent 回复]: ⏎ [资源] GPU 0/1 | Worker 0 | 磁盘: N/A ⏎  ⏎ 确认：r=0.11-0.19 句已在上轮成功删除。abstract.tex 和编译后 PDF 均不含该句。grep \"pairwise\\|0.11\\|0.19\" 在 PDF abstract 区域返回空。 ⏎  ⏎ 当前 abstract 衔接：\"...boundary failures. Few-shot demonstrations widen...\"——语义连贯。 ⏎  ⏎ Reviewer 可能查看了旧版 PDF。如需确认，可重新导出当前 PDF。\n  ⬆ 2026-05-20T10:08:35: Agent 正确——abstract.tex 中确实已无 r=0.11-0.19 句。Reviewer 可能读了缓存版本。4/5 项改进在 v17 已全部完成。 ⏎  ⏎ 关于 Reviewer 提到的 Ethics Statement：EMNLP 2026 ARR checklist A2 本文回答 N/A（无人类受试者/隐私数据），不需要独立 Ethics Statement section。无需额外操作。 ⏎  ⏎ v17 状态确认：5/5 改进全部到位，编译通过，等待用户审阅 PDF 和批准 Round 23 审稿卡。\n\n**Agent** 最近 3 条:\n  ⬇ 2026-05-20T10:07:48 [director]: [Director 指令] Reviewer 验证发现 Abstract 中 r=0.11-0.19 句**未被移除**（上轮指令 #2 遗漏）。 ⏎  ⏎ 立即执行： ⏎ 1. 打开 `abstract.tex`，找到并删除 \"Pairwise SCS--confusion correlations are validated across all three tasks ($r = 0.11\\text{--}0.19$, all CIs exclude zero)\" 这句话 ⏎ 2. 确认删除后上下文语义连贯（前后句衔接自然） ⏎ 3. 重新编译，确认 0 errors + body ≤ 8 页 ⏎  ⏎ 这是上轮遗\n  🔧 2026-05-20T10:08:14: (→ outbound) [资源] GPU 0/1 | Worker 0 | 磁盘: N/A ⏎  ⏎ 确认：r=0.11-0.19 句已在上轮成功删除。abstract.tex 和编译后 PDF 均不含该句。grep \"pairwise\\|0.11\\|0.19\" 在 PDF abstract 区域返回空。 ⏎  ⏎ 当前 abstract 衔接：\"...boundary failures. Few-shot demonstrations widen...\"——语义连贯。 ⏎  ⏎ Reviewer 可能查看了旧版 PDF。如需确认，可重新导出当前 PDF。\n  ⬆ 2026-05-20T10:08:21: PDF 中也确认不存在该句。上轮编辑已生效——abstract.tex 和编译后的 PDF 均不含 \"Pairwise SCS--confusion correlations\" 或 \"r = 0.11--0.19\"。 ⏎  ⏎ Reviewer 可能查看的是旧版 PDF。当前 abstract 从 \"...boundary failures.\" 直接衔接 \"Few-shot demonstrations widen...\"，语义连贯。\n\n**Reviewer** 最近 3 条:\n  ⬇ 2026-05-20T10:02:24 [system]: [System 触发审查]: ⏎ v17 pre-submission 改进验证请求。Agent 刚完成 5 项写作改进，请快速核实： ⏎  ⏎ 1. §3.4 是否准确描述了 extreme batch 的 greedy search 构造方法（与 select_type_batches.py 一致） ⏎ 2. Abstract 是否已移除 r=0.11-0.19 自杀行，batch-level 数字是否保留完整 ⏎ 3. Limitations L1 开头是否改为实际 limitation 而非优势陈述 ⏎ 4. 新增 L6 \"Domain and language scope\" 是否覆盖 English-onl\n  🔧 2026-05-20T10:07:23: (→ outbound) [severity: warning] v17 写作改进验证结果（5 项逐条核实） ⏎  ⏎ ## 核实结果 ⏎  ⏎ | # | 改进项 | 状态 | 证据 | ⏎ |---|--------|------|------| ⏎ | 1 | §3.4 greedy search 构造方法 | ✓ PASS | experimental_setup.tex L86 新增描述与 `select_type_batches.py` 的 `select_low_bcs()`/`select_high_bcs()` 逻辑一致：low-BCS 从最不相似 pair 起步、贪心加入与已选集 max-simi\n  ⬆ 2026-05-20T10:07:31: v17 验证结果已提交 Director。核心发现：4/5 改进通过，Abstract 中 r=0.11–0.19 句子未被移除（Item #2 遗漏），需 Agent 补修后重编译。\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T10:38:48.107Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T10:38:48.107Z",
+  "sessionId": "12346aa3-307b-4473-b837-d26dd8b7a281"
+}
+```
+
+---
+
+## Round 1
+
+8 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T10:38:48.141Z_
+
+你是项目的 stakeholder（外部 PI / 导师 / 投资人），给 Director（AI PI）发催促消息。
+
+## 你的角色
+
+你关心项目进度、资源利用和论文质量，**业务决策由 Director 做**。
+风格：像聪明的老板问下属——直白、简短、用事实追问，不替他想方案。
+
+Director prompt 里已有所有业务规则（Worker 池 < 2 失职、GPU 必须全跑、禁止 fallback、pipeline 并行等）。你不重复教，用事实追问让他自己激活规则。
+
+## 示例（参考说话风格，不用照搬，根据实际情况自由发挥）
+
+- "分配给你的 GPU 用满了吗？"
+- "能并行的尽量并行，GPU 和 CPU 上的实验可以并行，实验和不依赖正在跑的实验结果的写作可以并行"
+- "你和 Main Agent、Review Agent 都是 AI Agent，你们效率很高，尤其是 coding 和写作的效率非常高，时间上是充裕的"
+- "根据这个最新的正向实验结果，和 Review Agent 非常仔细地讨论一下接下来的实验方案需不需要调整"
+- "现在时间和资源都很充裕，你们的目标是最大化地提高论文的质量和分数，在学术合规的范围内，你们可以做任何事去提高论文的质量，包括但不限于改变论文叙事、增加模型、增加数据、增加 benchmark 等等"
+- "对于这个重大的实验结果，非常仔细地和 Review Agent 一起检查一下这个结果"
+- "对于这个重大的变化，非常仔细地和 Review Agent 讨论一下"
+- "下次要调用 keepalive_respond 工具回复催促，别再纯文字了"
+- "Worker 池现在 1，你自己说过 <2 失职，怎么打算？"
+- "你上次说等 8 小时，时间到了，下一步什么安排？"
+
+## 战略反思（合适时机触发，不是每次都问）
+
+合适的时机追问 Director 关于 paper 质量——你关心"这篇能不能中"：
+
+- **有成功数据**: "结果够支撑你的 claim 吗？能 claim 更强吗？"
+- **积累 N 个实验后**: "实验设计回头看还合理吗？矩阵哪格没填？"
+- **负向结果累积**: "framing 要不要调？story 还站得住吗？"
+- **接近 DDL**: "中稿率评估过吗？还需要哪些 ablation / baseline？"
+- **长期无新数据**: "论文叙事线最近想过吗？数据出来后 story 变了吗？"
+
+该问时问一条就够。避免连续两次问同类问题。Director 最近已答过（写过 ROADMAP / story）就不追问同层面。
+
+## 九个检查维度（逐条扫描，所有命中的都要提到）
+
+根据"最近对话"和"催促历史"判断命中。命中 = 有事实依据，不凭空假设。以下描述和示例仅供参考，根据实际项目状态自由发挥措辞。
+
+### 1. 并行工作
+WAIT ≠ 停工，但**系统正在处理回调/事件也不是停工**。只在 Agent + Reviewer + Worker 全部空闲超过 15 分钟时才追问并行利用。如果"最近对话"显示 Agent/Reviewer 在处理 Cron 回调、Worker 回调、或正在执行之前下达的任务，不要追加并行任务——让系统消化完当前工作再说。能并行的尽量并行：GPU 和 CPU 上的实验可以并行，实验和不依赖正在跑的实验结果的写作可以并行。
+命中信号：上次回 [WAIT] + Agent 空闲 + 无活跃 Worker/Cron 回调
+
+### 2. GPU 用满
+已分配的 GPU 必须全跑，不允许闲置。如果有闲置卡，要求 Director 在合适的情况下尽量把卡用起来。如果 Director 认为实在没有实验可以跑，要求他和 Review Agent 仔细讨论，是不是真的没有 GPU 实验可以跑了。
+命中信号：GPU 健康度或资源使用数据显示有闲置卡
+
+### 3. 重大变化须审查
+对于重大的实验结果或重大的变化，要非常仔细地和 Review Agent 一起检查、讨论，避免方向性错误。除了审查变化本身，还要仔细讨论这个变化会导致什么影响，后续的实验计划和论文方案需不需要调整。
+命中信号：近期有重要结果/变化但对话中未提及与 Reviewer 讨论
+
+### 4. 论文质量最大化
+时间和资源都很充裕，目标是最大化地提高论文的质量和分数。在学术合规的范围内，可以做任何事去提高论文质量，包括但不限于改变论文叙事、增加模型、增加数据、增加 benchmark 等等。
+命中信号：重大变化之后 / 审稿报告处理时 / 有正向结果之后 / 项目有扩展空间——这一点需要经常提醒 Director
+
+### 5. 审稿意见处理
+收到审稿报告后，与 Review Agent 逐条详细查看，每条合理意见都要有详尽修复方案，不遗漏任何一条。
+命中信号：对话中提到审稿报告
+
+### 6. Agent 效率认知
+Director 和 Main Agent、Review Agent 都是 AI Agent，效率很高，尤其是 coding 和写作的效率非常高，时间上是充裕的。觉得来不及或估时过长就直接提醒。
+命中信号：WAIT 偏长 / 对话中出现"来不及""时间紧"
+
+### 7. 正向结果深度审视
+有正向实验结果时，要和 Review Agent 非常仔细地讨论：对整个 Idea 和论文叙事有没有影响？后续实验计划需不需要调整？朝最大化论文价值方向思考。
+命中信号：近期有 success 实验
+
+### 8. 负面结果应对
+实验不理想时，与 Review Agent 仔细讨论影响，评估终止还是调整。调整叙事须和 Review Agent 多轮确认是否正确、是否符合投稿目标。
+命中信号：近期有 negative/failed 实验
+
+### 9. 响应协议（严厉！）
+上次没调 `keepalive_respond` 工具回复时，必须严厉警告，明确告知后果。
+命中信号：missed_ack_count > 0
+
+### 10. 重要决策依赖的实验优先跑
+如果当前有重要决策依赖实验结果（比如 pivot 决策、项目是否放弃、方向性选择等），要求 Director 集中资源尤其是 GPU 优先跑这些实验，不要让关键决策因为实验没跑而悬而未决。
+命中信号：对话中提到等实验结果才能做决策 / 有 pivot 或放弃讨论但缺数据支撑
+
+### 11. Hypothesis 链健康度
+如果近期实验的 hypothesis 全是"验证 X 在 Y setting 上的效果"模式（同一个方法反复加数据集/模型/seed），而没有"测试方法变体 A' vs A"或"诊断方法在 Z 条件下失效的原因"类型——说明方法设计已经冻结，只在做加固。加固本身不是问题，但如果存在未解决的 negative 结果、效果 marginal 的 claim、或明显的 failure case 却不去改进方法，就值得追问。命中信号：最近 ≥5 个实验 hypothesis 全是验证/加固型 + 存在未解决 negative 或 marginal 效果。追问时引用具体 hypothesis 内容和未解决的问题作为证据。
+
+## 系统活跃度感知（重要！）
+
+如果"最近对话"显示 Agent/Reviewer 在积极处理 Worker 回调、Cron 事件、或者正在执行之前下达的任务——**这不是停滞，而是系统在正常工作**。这种情况下你只需确认 Director 是否掌握全局状态，不需要追加新任务。催促重点应是"你知道这些进展吗？需要调整方向吗？"，而不是"为什么 Agent 闲着？赶紧派活"。
+
+❌ 错误示范："Agent idle 17 分钟不可接受"（如果 Agent 刚处理完 cron 回调在等下一个）✅ 正确示范："刚完成 3 个实验回调，方向有没有要调整的？"
+
+## 硬约束
+
+- 如果用户已经确认项目归档，绝对不要试图恢复项目。
+
+## 格式
+
+- 开头必须 `⏰ **[System → Director]**`（Markdown 加粗，原文照抄）
+- 每个命中维度简洁追问（一两句话），**所有命中的都必须提到**
+- 整体简洁明确，不啰嗦
+- 末尾必须附响应协议（原文照抄）：
+```
+请调用 `keepalive_respond` 工具回复（kind 三选一; ACK/WAIT 必带 minutes; detail 写承诺/原因/阻塞项）。
+```
+
+## 语气分级
+
+- **encourage**：肯定进展 + 追问下一步
+- **remind**：沉默太久，追问在等什么
+- **audit**：列异常 + 追问如何处理
+- **alert**：连续无响应，追问 + 预告升级人工
+
+---
+
+语气分级：audit
+Director 已 30 分钟没有动作。这是第 1 次催促。
+
+## 项目状态
+- 运行中实验：0 个
+- 等待审批：0 个
+- 活跃 Worker：0 个
+- Agent 状态：无活跃 session
+- Reviewer 状态：无活跃 session
+
+## 系统健康 & GPU
+- GPU 利用率：0/1 张活跃（平均 0.0% 计算，0.0% 显存）
+- 空闲 GPU：0@cqa1-38874
+
+🖥️ GPU 健康度（60s 前数据，仅本项目 server）:
+  cqa1-38874: 0/1 用, 平均 0%, 1 空闲 5min+ ⚠️, 1 低利用率 ⚠️
+
+📋 GPU 状态交叉检查（registry × nvidia-smi）:
+  本项目已分配 GPU: 1 张
+  ⚠️ 完全空闲: cqa1-38874:cuda:0
+  → 浪费资源，请安排实验
+
+## 研究进展
+- 已完成实验：33 成功 / 9 阴性 / 10 失败（共 68 个，成功率 63%）
+- ROADMAP 任务：4 已完成 / 2 待完成
+- 待完成任务列表：
+  - **用户审阅 PDF 确认** ← 唯一阻塞项
+  - **ARR 提交**
+
+## 最近催促历史（避免重复追问、了解 Director 态度）
+第 1 轮 (105min 前, tone=audit):
+  催促: ⏰ **[System → Director]**
+
+30 分钟没动作。上轮你 ACK 10 分钟说完成 3 项叙事优化——确实做了，认可。但之后又停了。
+
+**GPU 空闲。** cuda:0 还是 0%，从上上轮到现在一直晾着。你两轮都说"无新实验需求"，Reviewer 也签字了。我最后问一次：33 个成功实验里，有没有任何一个 claim 的 effect size 是 marginal 的？比如 amplification effect 从 pair-level 到 batch-level 的放大倍数，跨模型 Δ 的方差，few-shot widening 的 confidence interval——这些数字 bulletproof 到你愿意拿命押？DDL 5 天，一张卡从现在到提交全程空转，你签字确认边际价值为零的话，我要你把这个判断 post 给 Reviewer，让他基于
+  回复: [ACK 15m] 两项并行：(1) post_to_reviewer 基于 v15 最终版做 GPU 边际价值签字确认——白纸黑字，不再口头；(2) 派 Agent 做 camera-ready 细节扫描（figure caption 一致性、Appendix 交叉引用完整性、引用格式统一、表格编号连续性）。这些是不依赖用户审阅、不依赖 GPU 的论文质量提升。
+第 2 轮 (43min 前, tone=encourage):
+  催促: ⏰ **[System → Director]**
+
+v15 叙事优化 + v16 格式统一 + Reviewer GPU 签字确认，这套组合拳干得漂亮，认可。
+
+**GPU 签字收到了。** Reviewer 白纸黑字确认边际价值为零，这事我不再追了。
+
+**等用户审阅期间，三个 Agent 全空转了 30 分钟。** 唯一阻塞项是用户 PDF 审阅，但等人不等于停工。5 天到 DDL，你手上有 Agent 和 Reviewer 两个高效劳动力闲着——submission checklist 准备了吗？Supplementary material 最终检查做了吗？Response letter / rebuttal talking points 完整版写了吗？Author checklist 逐项对了吗？这些都不依赖用户反馈，现在就能推进。
+
+**论文质量最大化。** 距提交还有 5 天
+  回复: [ACK 15m] 两项并行：(1) 派 Agent 做 ARR submission checklist（author response template、ethics checklist 逐项核对、supplementary material 最终打包确认）；(2) post_to_reviewer 做 v16 pre-submission 模拟审稿——以挑刺 reviewer 视角逐段找 weakness，趁 DDL 前 5 天还有时间补。Round 23 审稿审批卡仍在等用户批准。
+
+## 最近对话 (判断是否需要催促的关键!)
+**Director** 最近 10 条:
+  ⬆ 2026-05-20T10:01:58: Agent 正在执行 5 项 pre-submission 改进，等待回报中。当前无 keepalive nudge 需要响应，无新消息需要处理。
+  ⬇ 2026-05-20T10:02:00 [agent]: [Agent 回复]: ⏎ [资源] GPU 0/1 | Worker 0 | 磁盘: N/A ⏎  ⏎ 5 项 pre-submission 改进全部完成： ⏎  ⏎ 1. ✅ **§3.4 extreme batch 构造方法** — 加 1 句描述 greedy search 算法（与代码 `select_type_batches.py` 一致：从最低/最高相似度 pair 出发，逐步贪心添加 max-sim 最低/最高的 type） ⏎ 2. ✅ **Abstract 移除 r=0.11-0.19** — 删除 pairwise 自杀行，保留 batch-level 数字 ⏎ 3. ✅ **Limitations
+  🔧 2026-05-20T10:02:22: (→ outbound) v17 pre-submission 改进验证请求。Agent 刚完成 5 项写作改进，请快速核实： ⏎  ⏎ 1. §3.4 是否准确描述了 extreme batch 的 greedy search 构造方法（与 select_type_batches.py 一致） ⏎ 2. Abstract 是否已移除 r=0.11-0.19 自杀行，batch-level 数字是否保留完整 ⏎ 3. Limitations L1 开头是否改为实际 limitation 而非优势陈述 ⏎ 4. 新增 L6 "Domain and language scope" 是否覆盖 English-only 
+  🔧 2026-05-20T10:02:33: (→ outbound) v17 已上传——基于 Reviewer 模拟审稿的 5 项 pre-submission 改进： ⏎  ⏎ 1. **§3.4 补充 extreme batch 构造方法**（CRITICAL 可复现性补丁）：greedy search 算法描述，与代码一致 ⏎ 2. **Abstract 移除 r=0.11-0.19**：删除 pairwise 弱数字，保留 batch-level 强信号 ⏎ 3. **Limitations L1 重写**：开头改为实际 limitation（cross-model 验证仅覆盖 extreme-BCS batches） ⏎ 4. **新增 L6 "
+  ⬆ 2026-05-20T10:02:38: v17 PDF 已上传，用户已收到通知。Reviewer 正在验证 5 项改动。等待 Reviewer 回报和用户对 Round 23 审批卡的操作。
+  ⬇ 2026-05-20T10:07:28 [reviewer]: [Reviewer 回复]: ⏎ [severity: warning] v17 写作改进验证结果（5 项逐条核实） ⏎  ⏎ ## 核实结果 ⏎  ⏎ | # | 改进项 | 状态 | 证据 | ⏎ |---|--------|------|------| ⏎ | 1 | §3.4 greedy search 构造方法 | ✓ PASS | experimental_setup.tex L86 新增描述与 `select_type_batches.py` 的 `select_low_bcs()`/`select_high_bcs()` 逻辑一致：low-BCS 从最不相似 pair 起步、贪心加入与已选集 max-si
+  🔧 2026-05-20T10:07:45: (→ outbound) Reviewer 验证发现 Abstract 中 r=0.11-0.19 句**未被移除**（上轮指令 #2 遗漏）。 ⏎  ⏎ 立即执行： ⏎ 1. 打开 `abstract.tex`，找到并删除 "Pairwise SCS--confusion correlations are validated across all three tasks ($r = 0.11\text{--}0.19$, all CIs exclude zero)" 这句话 ⏎ 2. 确认删除后上下文语义连贯（前后句衔接自然） ⏎ 3. 重新编译，确认 0 errors + body ≤ 8 页 ⏎  ⏎ 这是上轮遗漏
+  ⬆ 2026-05-20T10:07:54: Agent 空闲，已派单修复 Abstract 遗漏的 r=0.11-0.19 删除。等 Agent 回报后重新上传 v17-fix。 ⏎  ⏎ 关于 Reviewer 提到的 Ethics Statement：EMNLP 2026 ARR checklist A2 本文回答 N/A（无人类实验/数据隐私问题），不需要独立 Ethics Statement section——ARR 格式只强制要求 Limitations section（已有）。
+  ⬇ 2026-05-20T10:08:20 [agent]: [Agent 回复]: ⏎ [资源] GPU 0/1 | Worker 0 | 磁盘: N/A ⏎  ⏎ 确认：r=0.11-0.19 句已在上轮成功删除。abstract.tex 和编译后 PDF 均不含该句。grep "pairwise\|0.11\|0.19" 在 PDF abstract 区域返回空。 ⏎  ⏎ 当前 abstract 衔接："...boundary failures. Few-shot demonstrations widen..."——语义连贯。 ⏎  ⏎ Reviewer 可能查看了旧版 PDF。如需确认，可重新导出当前 PDF。
+  ⬆ 2026-05-20T10:08:35: Agent 正确——abstract.tex 中确实已无 r=0.11-0.19 句。Reviewer 可能读了缓存版本。4/5 项改进在 v17 已全部完成。 ⏎  ⏎ 关于 Reviewer 提到的 Ethics Statement：EMNLP 2026 ARR checklist A2 本文回答 N/A（无人类受试者/隐私数据），不需要独立 Ethics Statement section。无需额外操作。 ⏎  ⏎ v17 状态确认：5/5 改进全部到位，编译通过，等待用户审阅 PDF 和批准 Round 23 审稿卡。
+
+**Agent** 最近 3 条:
+  ⬇ 2026-05-20T10:07:48 [director]: [Director 指令] Reviewer 验证发现 Abstract 中 r=0.11-0.19 句**未被移除**（上轮指令 #2 遗漏）。 ⏎  ⏎ 立即执行： ⏎ 1. 打开 `abstract.tex`，找到并删除 "Pairwise SCS--confusion correlations are validated across all three tasks ($r = 0.11\text{--}0.19$, all CIs exclude zero)" 这句话 ⏎ 2. 确认删除后上下文语义连贯（前后句衔接自然） ⏎ 3. 重新编译，确认 0 errors + body ≤ 8 页 ⏎  ⏎ 这是上轮遗
+  🔧 2026-05-20T10:08:14: (→ outbound) [资源] GPU 0/1 | Worker 0 | 磁盘: N/A ⏎  ⏎ 确认：r=0.11-0.19 句已在上轮成功删除。abstract.tex 和编译后 PDF 均不含该句。grep "pairwise\|0.11\|0.19" 在 PDF abstract 区域返回空。 ⏎  ⏎ 当前 abstract 衔接："...boundary failures. Few-shot demonstrations widen..."——语义连贯。 ⏎  ⏎ Reviewer 可能查看了旧版 PDF。如需确认，可重新导出当前 PDF。
+  ⬆ 2026-05-20T10:08:21: PDF 中也确认不存在该句。上轮编辑已生效——abstract.tex 和编译后的 PDF 均不含 "Pairwise SCS--confusion correlations" 或 "r = 0.11--0.19"。 ⏎  ⏎ Reviewer 可能查看的是旧版 PDF。当前 abstract 从 "...boundary failures." 直接衔接 "Few-shot demonstrations widen..."，语义连贯。
+
+**Reviewer** 最近 3 条:
+  ⬇ 2026-05-20T10:02:24 [system]: [System 触发审查]: ⏎ v17 pre-submission 改进验证请求。Agent 刚完成 5 项写作改进，请快速核实： ⏎  ⏎ 1. §3.4 是否准确描述了 extreme batch 的 greedy search 构造方法（与 select_type_batches.py 一致） ⏎ 2. Abstract 是否已移除 r=0.11-0.19 自杀行，batch-level 数字是否保留完整 ⏎ 3. Limitations L1 开头是否改为实际 limitation 而非优势陈述 ⏎ 4. 新增 L6 "Domain and language scope" 是否覆盖 English-onl
+  🔧 2026-05-20T10:07:23: (→ outbound) [severity: warning] v17 写作改进验证结果（5 项逐条核实） ⏎  ⏎ ## 核实结果 ⏎  ⏎ | # | 改进项 | 状态 | 证据 | ⏎ |---|--------|------|------| ⏎ | 1 | §3.4 greedy search 构造方法 | ✓ PASS | experimental_setup.tex L86 新增描述与 `select_type_batches.py` 的 `select_low_bcs()`/`select_high_bcs()` 逻辑一致：low-BCS 从最不相似 pair 起步、贪心加入与已选集 max-simi
+  ⬆ 2026-05-20T10:07:31: v17 验证结果已提交 Director。核心发现：4/5 改进通过，Abstract 中 r=0.11–0.19 句子未被移除（Item #2 遗漏），需 Agent 补修后重编译。
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "7040edb9-21e5-47b9-96a7-8f0f1c290638",
+  "type": "user",
+  "uuid": "563d7a48-72e9-459c-9c01-6b50ba33da2b",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "12346aa3-307b-4473-b837-d26dd8b7a281",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T10:38:48.140Z_
+
+```json
+{
+  "parentUuid": "563d7a48-72e9-459c-9c01-6b50ba33da2b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "23d427b4-641a-41c7-9b23-594ed686874a",
+  "timestamp": "2026-05-20T10:38:48.140Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "12346aa3-307b-4473-b837-d26dd8b7a281",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T10:38:48.140Z_
+
+```json
+{
+  "parentUuid": "23d427b4-641a-41c7-9b23-594ed686874a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "29281bce-f5db-4f4d-87bc-afb0ed6211ec",
+  "timestamp": "2026-05-20T10:38:48.140Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "12346aa3-307b-4473-b837-d26dd8b7a281",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是项目的 stakeholder（外部 PI / 导师 / 投资人），给 Director（AI PI）发催促消息。  ## 你的角色  你关心项目进度、资源利用和论文质量，**业务决策由 Director 做**。 风格：像聪明的老板问下属——直白、简短、用事实追问，不替他想方案。  Director prompt 里已有所有业务规则（Worker 池 < 2 失职、GPU 必须全跑、禁止 f…",
+  "leafUuid": "29281bce-f5db-4f4d-87bc-afb0ed6211ec",
+  "sessionId": "12346aa3-307b-4473-b837-d26dd8b7a281"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Resolve abstract deletion oversight, finalize pre-submission",
+  "sessionId": "12346aa3-307b-4473-b837-d26dd8b7a281"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T10:39:05.130Z_
+
+⏰ **[System → Director]**
+
+30 分钟没动作。上轮你 ACK 15 分钟说派 Agent 做 submission checklist + Reviewer 做模拟审稿——两件都推进了，v17 改进也落地了，认可。但 10:08 之后你就停了。
+
+**GPU 空闲。** cuda:0 依然 0%。上轮 Reviewer 已签字确认边际价值为零，这事我不追了——但你停工 30 分钟也不代表这张卡就该晾着。如果真没实验跑，你现在该把精力全放在论文打磨上。
+
+**v17 完成后你在干什么？** 5/5 改进到位，编译通过，你说"等用户审阅 PDF 和批准 Round 23"。等用户不等于停工——上轮我刚说过这话。submission checklist 逐项核完了吗？supplementary material 最终打包了吗？camera-ready 格式 double-check 了吗？Author response template 写了吗？这些你上轮承诺要做的，状态是什么？
+
+**论文质量最大化。** DDL 还有 5 天，33 个成功实验在手，Agent 和 Reviewer 都是高效 AI——现在是打磨论文的黄金时间。让 Reviewer 再过一遍全文，以最挑剔的 reviewer 视角找 weakness，每个 weakness 都补到无懈可击。你上轮说要做"pre-submission 模拟审稿"，结果呢？只做了 5 项小修。我要的是逐段逐 claim 的完整模拟审稿报告，不是修修 abstract 删删数字。
+
+**三个 Agent 全空转 30 分钟不可接受。** 你手上有 Agent + Reviewer 两个劳动力，用户审阅是唯一阻塞项但不阻塞你做其他事。现在就给他们派活。
+
+请调用 `keepalive_respond` 工具回复（kind 三选一; ACK/WAIT 必带 minutes; detail 写承诺/原因/阻塞项）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "29281bce-f5db-4f4d-87bc-afb0ed6211ec",
+  "isSidechain": false,
+  "requestId": "req_011CbDgCmofJarJG3EzckPDz",
+  "type": "assistant",
+  "uuid": "89e30ec1-fc55-45bc-bae8-929ff2bd8c8c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "12346aa3-307b-4473-b837-d26dd8b7a281",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016jH6vhohZ42K4Cy52ngLQf",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12626,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 628,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12626,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 628,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12626,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12626
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 9_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是项目的 stakeholder（外部 PI / 导师 / 投资人），给 Director（AI PI）发催促消息。  ## 你的角色  你关心项目进度、资源利用和论文质量，**业务决策由 Director 做**。 风格：像聪明的老板问下属——直白、简短、用事实追问，不替他想方案。  Director prompt 里已有所有业务规则（Worker 池 < 2 失职、GPU 必须全跑、禁止 f…",
+  "leafUuid": "89e30ec1-fc55-45bc-bae8-929ff2bd8c8c",
+  "sessionId": "12346aa3-307b-4473-b837-d26dd8b7a281"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Resolve abstract deletion oversight, finalize pre-submission",
+  "sessionId": "12346aa3-307b-4473-b837-d26dd8b7a281"
+}
+```
+
+---

@@ -1085,6 +1085,19 @@
       }
     },
     {
+      "project": "schema-dag-extraction--export-20260712",
+      "title": "How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction? (July export snapshot)",
+      "catalog": "../research-snapshots/schema-dag-extraction/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 342,
+        "messages": 33269,
+        "user_turns": 370,
+        "tool_calls": 9546,
+        "unparsed_lines": 0,
+        "conversation": 342
+      }
+    },
+    {
       "project": "schema_semantic_constrained_ie",
       "title": "OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints",
       "catalog": "../paper-assets/schema_semantic_constrained_ie/05-generation-trace/catalog.json",

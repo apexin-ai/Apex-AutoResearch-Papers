@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "id": "02d0af8e53b2f0fc4dba",
+  "project": "schema-dag-extraction--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [Round 1 审稿请求]: ## Round 1 审稿任务 — Reviewer 1 **你的侧重**：方法严谨性 + 实验设计 + 统计分析 ### Venue 信息 - **目标**: EMNLP 2026 Main Confere",
+  "task_key": "86223e1c-0915-43fe-90d7-1ded417315b0",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/86223e1c-0915-43fe-90d7-1ded417315b0.jsonl",
+    "occurrence": 1,
+    "bytes": 8274719,
+    "sha256": "116221e388c2f9adf29e6adaa7d1f6000b6ba79382055c73faa2008a6abee67e"
+  },
+  "statistics": {
+    "messages": 125,
+    "user_turns": 1,
+    "tool_calls": 33,
+    "roles": {
+      "record": 35,
+      "user": 1,
+      "assistant": 23,
+      "tool_call": 33,
+      "tool_result": 33
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "02d0af8e53b2f0fc4dba-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 123,
+      "chunks": [
+        {
+          "path": "02d0af8e53b2f0fc4dba-part-0001.json",
+          "message_count": 78
+        },
+        {
+          "path": "02d0af8e53b2f0fc4dba-part-0002.json",
+          "message_count": 2
+        },
+        {
+          "path": "02d0af8e53b2f0fc4dba-part-0003.json",
+          "message_count": 1
+        },
+        {
+          "path": "02d0af8e53b2f0fc4dba-part-0004.json",
+          "message_count": 7
+        },
+        {
+          "path": "02d0af8e53b2f0fc4dba-part-0005.json",
+          "message_count": 1
+        },
+        {
+          "path": "02d0af8e53b2f0fc4dba-part-0006.json",
+          "message_count": 34
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-round-1-round-1-reviewer-1-venue-emnlp-2026-main-confere.md"
+}

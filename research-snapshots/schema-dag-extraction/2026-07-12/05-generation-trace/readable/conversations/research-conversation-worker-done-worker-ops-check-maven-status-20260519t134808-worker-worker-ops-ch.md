@@ -1,0 +1,4570 @@
+# Research conversation: [系统通知 — worker_done:worker_ops_check_maven_status_20260519T134808]: Worker worker_ops_check_maven_status_20260519T134808
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction? (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 84
+- **Recorded user turns:** 1
+- **Tool calls:** 24
+- **Original source:** `logs/chats/exported-trajectories/account-1/60db5846-b656-4714-9ee1-02c5e29c1e4d.jsonl`
+- **Structured JSON:** [`525b559e54d66a270efc.json`](../../sessions/52/525b559e54d66a270efc.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-19T13:51:03.924Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-19T13:51:03.924Z",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "content": "[系统通知 — worker_done:worker_ops_check_maven_status_20260519T134808]:\nWorker worker_ops_check_maven_status_20260519T134808 已完成（status=done），请审查 Agent 的处理结果。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T13:51:03.929Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-19T13:51:03.929Z",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d"
+}
+```
+
+---
+
+## Round 1
+
+82 recorded events
+
+### User
+
+_source line 3 · 2026-05-19T13:51:03.984Z_
+
+[系统通知 — worker_done:worker_ops_check_maven_status_20260519T134808]:
+Worker worker_ops_check_maven_status_20260519T134808 已完成（status=done），请审查 Agent 的处理结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "e45aed8d-10c6-4578-9cbd-b546dc2c021a",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-19T13:51:03.983Z_
+
+```json
+{
+  "parentUuid": "e45aed8d-10c6-4578-9cbd-b546dc2c021a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__check_figures_and_layout",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reviewer_post_to_director",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__tail_training_logs"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__check_figures_and_layout",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reviewer_post_to_director",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__tail_training_logs"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "75c06560-87ec-400f-b6e2-baba951f3f98",
+  "timestamp": "2026-05-19T13:51:03.983Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-19T13:51:03.983Z_
+
+```json
+{
+  "parentUuid": "75c06560-87ec-400f-b6e2-baba951f3f98",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "5d881852-2b65-4d96-9e6a-a8c3f7fb6e08",
+  "timestamp": "2026-05-19T13:51:03.983Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-19T13:51:03.983Z_
+
+```json
+{
+  "parentUuid": "5d881852-2b65-4d96-9e6a-a8c3f7fb6e08",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "6d5ba793-be63-4b83-90af-e0cd0cce7f07",
+  "timestamp": "2026-05-19T13:51:03.983Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review Maven status check worker completion",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-19T13:51:07.957Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+A worker has completed. I need to review the results. Let me first check the registry to understand what this worker did, and also check the current state of the project.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d5ba793-be63-4b83-90af-e0cd0cce7f07",
+  "isSidechain": false,
+  "requestId": "req_011CbC34CzRVesTLXpmfJjcw",
+  "type": "assistant",
+  "uuid": "c0ee1286-b59c-454e-9a09-68caa2235b09",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01THbCupRfuArAimQfy6D4EK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20590,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 208,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20590,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 208,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 20590,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20590
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-19T13:51:08.410Z_
+
+收到 worker 完成通知，开始审查。先读取 registry 和相关状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c0ee1286-b59c-454e-9a09-68caa2235b09",
+  "isSidechain": false,
+  "requestId": "req_011CbC34CzRVesTLXpmfJjcw",
+  "type": "assistant",
+  "uuid": "92e49ad5-6763-4220-a884-eb241ac9577e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01THbCupRfuArAimQfy6D4EK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20590,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 208,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20590,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 208,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 20590,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20590
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-19T13:51:10.493Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Xde8T3TakosuK1vwSzJVPS`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__ssh_read_only",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "92e49ad5-6763-4220-a884-eb241ac9577e",
+  "isSidechain": false,
+  "requestId": "req_011CbC34CzRVesTLXpmfJjcw",
+  "type": "assistant",
+  "uuid": "4cda276e-b9a5-4ce6-abf1-0120077b93a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01THbCupRfuArAimQfy6D4EK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20590,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 208,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20590,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 208,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 20590,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20590
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T13:51:10.500Z_
+
+<details><summary>↩ Tool result · `toolu_01Xde8T3TakosuK1vwSzJVPS`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4cda276e-b9a5-4ce6-abf1-0120077b93a5",
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "b7f1f994-4b5f-4d46-8afc-651151277019",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 35
+  },
+  "sourceToolAssistantUUID": "4cda276e-b9a5-4ce6-abf1-0120077b93a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-19T13:51:14.098Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Euf4nbRYKaTJFnRp6xZdfz`</summary>
+
+```json
+{
+  "project": "schema-dag-extraction",
+  "limit": 10,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b7f1f994-4b5f-4d46-8afc-651151277019",
+  "isSidechain": false,
+  "requestId": "req_011CbC34hMjhgjyyGufYyLo1",
+  "type": "assistant",
+  "uuid": "2a967f76-ca6b-49ee-9cdb-7c5dbb01c1bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01URemnPJCt37pNLJT42HLde",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1300,
+      "cache_read_input_tokens": 32431,
+      "output_tokens": 153,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1300,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 153,
+          "cache_read_input_tokens": 32431,
+          "cache_creation_input_tokens": 1300,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1300
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T13:51:14.104Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01AS3Bkj1EHkcLypWKF91umY`</summary>
+
+```json
+{
+  "project": "schema-dag-extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2a967f76-ca6b-49ee-9cdb-7c5dbb01c1bc",
+  "isSidechain": false,
+  "requestId": "req_011CbC34hMjhgjyyGufYyLo1",
+  "type": "assistant",
+  "uuid": "2b670257-9548-46bd-84f7-6337408230eb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01URemnPJCt37pNLJT42HLde",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1300,
+      "cache_read_input_tokens": 32431,
+      "output_tokens": 153,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1300,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 153,
+          "cache_read_input_tokens": 32431,
+          "cache_creation_input_tokens": 1300,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1300
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T13:51:14.351Z_
+
+<details><summary>↩ Tool result · `toolu_01Euf4nbRYKaTJFnRp6xZdfz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_sdgd_zero_maven\": {\"status\": \"PREPARING\", \"retry_count\": 1, \"created_at\": \"2026-05-19T11:42:11.715Z\", \"updated_at\": \"2026-05-19T13:50:00.727Z\", \"hypothesis\": \"SDGD-zero on MAVEN (168 event types, 18 batches) will reproduce the schema DAG extraction capability observed on DocRED, validating cross-domain generalization from document-level RE to event detection.\", \"notes\": \"Running on cuda:0 PID 610111. 4/5 arms done, last random_batch seed in progress. single_pass F1=0.2068 > sdgd_zero F1=0.1233 > random_batch F1=0.1129-0.1168. Precision collapses 0.287→0.091, pred_count inflates 3.7x. Merge amplification confirmed on event detection.\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"completed_at\": \"2026-05-19T13:09:56.103Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"Code ready at /root/schema-dag-extraction/src/run_sdgd_maven.py. Launch script: launch_sdgd_maven.sh. Dry-run passed (5 samples, F1=0.200). MAVEN decomposition: tau=0.3191, 18 batches (sizes=[39,20,16,12,12,10,10,8,8,6,6,6,5,4,2,2,1,1]). Waiting for exp_docred_bcs_expanded to finish before GPU submission on cuda:0.\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 src/run_sdgd_maven.py\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"610111\", \"log_path\": \"~/runs/schema-dag-extraction/exp_sdgd_zero_maven.log\", \"submitted_at\": \"2026-05-19T13:11:18.603Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp_docred_bcs_expanded\": {\"status\": \"PREPARING\", \"retry_count\": 1, \"created_at\": \"2026-05-19T11:42:10.862Z\", \"updated_at\": \"2026-05-19T12:48:55.325Z\", \"hypothesis\": \"Expanding DocRED BCS-controlled batches from 5 to 15 per count level will narrow the factorial interaction CI (currently [-1.6, 13.0]) sufficiently to resolve whether the BCS-count interaction is bounded or substantial in document-level RE. If the CI narrows to exclude zero, the interaction is genuine and non-additive; if it narrows to include zero tightly, the bounded-interaction claim strengthens.\", \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"completed_at\": \"2026-05-19T12:44:23.943Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 /root/schema-dag-extraction/src/run_docred_bcs_expanded.py --stage all\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"607854\", \"log_path\": \"~/runs/schema-dag-extraction/exp_docred_bcs_expanded.log\", \"submitted_at\": \"2026-05-19T12:47:38.177Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"vLLM OOM crash after 7/40 batches. Waiting for MAVEN to finish before retry. preprocess_config.json preserved.\"}, \"exp_unconstrained_decoding_ablation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T09:54:50.724Z\", \"updated_at\": \"2026-05-18T14:22:10.672Z\", \"hypothesis\": \"The BCS-accuracy correlation in RE arises from semantic confusion rather than forced-choice format artifacts. If removing the enum constraint (relaxed decoding) preserves the negative BCS-accuracy correlation direction and significance, confusability is a genuine semantic property; if the correlation disappears, the effect is specific to constrained classification where all errors are channeled into type substitution. Either outcome strengthens the paper: preservation broadens the claim, disappearance validates the error-channeling hypothesis stated in Discussion.\", \"parent\": \"exp_fewrel_formal_80rel\", \"spec\": {\"command\": \"bash -c \\\"cd /root/schema-dag-extraction && source /root/miniconda3/bin/activate base && python src/run_unconstrained_decoding_ablation.py\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"542072\", \"log_path\": \"~/runs/schema-dag-extraction/exp_unconstrained_decoding_ablation.log\", \"submitted_at\": \"2026-05-18T10:21:03.700Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1903.1, \"gpu_hours\": 0.53}, \"conclusion\": \"success\", \"metrics\": {\"n10\": {\"low_bcs_mean_acc\": 0.8042, \"high_bcs_mean_acc\": 0.725, \"delta_pp\": 7.92, \"spearman_rho\": -0.4303, \"spearman_pval\": 0.214, \"oov_rate\": 0}, \"n25\": {\"low_bcs_mean_acc\": 0.8093, \"high_bcs_mean_acc\": 0.7812, \"delta_pp\": 2.8, \"ci_95_lower_pp\": -4.53, \"ci_95_upper_pp\": 10.56, \"spearman_rho\": -0.1442, \"spearman_pval\": 0.492, \"oov_rate\": 0.0008, \"total_samples\": 2400}}, \"log_path\": \"/root/schema-dag-extraction/results/unconstrained_decoding_ablation/\", \"checkpoint_path\": \"N/A (inference-only ablation)\", \"completed_at\": \"2026-05-18T10:52:46.803Z\"}, \"exp_multiseed_bcs_re\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T06:44:12.639Z\", \"updated_at\": \"2026-05-18T08:07:35.728Z\", \"hypothesis\": \"The BCS-accuracy correlation observed in FewRel BCS-controlled experiments (R²=0.22-0.53) is robust across random seeds. If seed=123 and seed=456 replicate the negative BCS-accuracy correlation direction and significance observed with seed=42, this confirms the finding is not a single-seed artifact. Rebuttal material for R15-W2 single-seed concern.\", \"parent\": \"exp_fewrel_formal_80rel\", \"server\": \"cqa1-38874\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-38874\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-18T07:24:36.762Z\"}, \"spec\": {\"command\": \"bash /root/schema-dag-extraction/scripts/run_multiseed_bcs.sh\", \"server\": \"cqa1-38874\", \"data_path\": \"data/fewrel/fewrel_samples_960.json\", \"data_count\": 14400, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": \"123,456\", \"gpu\": \"cuda:0\", \"pid\": 531145, \"checkpoint_source\": \"Qwen3-32B-FP8 (vLLM inference, no training checkpoint)\", \"eval_data\": \"FewRel 80-rel BCS-controlled batches (25 low-BCS + 25 high-BCS)\", \"note\": \"50 batches x 3 shot conditions x 2 seeds = 300 batches total. Started via nohup (worker bypassed submit_training_job).\"}, \"conclusion\": \"success\", \"log_path\": \"/root/schema-dag-extraction/artifacts/multiseed_bcs_re/run_all.log\", \"checkpoint_path\": \"/root/schema-dag-extraction/artifacts/multiseed_bcs_re/\", \"completed_at\": \"2026-05-18T08:07:29.393Z\", \"metrics\": {\"seed_123\": {\"shot0_delta_pp\": 21.88, \"shot1_delta_pp\": 25.25, \"shot5_delta_pp\": 24.25, \"shot0_ci\": [18.79, 24.83], \"shot1_ci\": [21.08, 29.29], \"shot5_ci\": [19.96, 28.29]}, \"seed_456\": {\"shot0_delta_pp\": 22.38, \"shot1_delta_pp\": 24.38, \"shot5_delta_pp\": 25.08, \"shot0_ci\": [19.58, 24.96], \"shot1_ci\": [20.58, 28.04], \"shot5_ci\": [21.62, 28.58]}, \"finding\": \"Few-shot does NOT mitigate BCS effect; delta increases from ~22pp (0-shot) to ~25pp (5-shot)\"}}, \"exp_gemini_flash_cross_model\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T14:57:39.493Z\", \"updated_at\": \"2026-05-18T07:36:32.176Z\", \"hypothesis\": \"The two-dimensional degradation pattern (count-related decline + confusability-related type confusion) generalizes beyond open-weight models to proprietary API models. Gemini 2.5 Flash should show: (1) monotonic RE accuracy decline with count, and (2) significant BCS-accuracy correlation on extreme batches. If confirmed, the pattern is architecture-family-independent (open-weight Qwen/LLaMA + proprietary Gemini).\", \"spec\": {\"command\": \"python3 scripts/run_gemini_flash_fewrel.py --mode all --sleep 0.15\", \"server\": \"local (tmux session: gemini_flash)\", \"data_path\": \"data/fewrel/fewrel_samples_960.json\", \"data_count\": 960, \"model_name\": \"gemini-2.5-flash\", \"seed\": 42}, \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T02:11:13.608Z\", \"metrics\": {\"count_curve_spearman_rho\": -0.943, \"count_curve_spearman_p\": 0.0048, \"count_1_acc\": 0.8267, \"count_4_acc\": 0.8725, \"count_8_acc\": 0.8204, \"count_16_acc\": 0.7868, \"count_32_acc\": 0.7394, \"count_64_acc\": 0.6343, \"total_drop_count1_to_64_pp\": -19.2, \"complete_count_levels\": \"1,4,8,16,32\", \"partial_count_levels\": \"64 (11/25)\", \"missing\": \"count_80, part2_bcs\", \"note\": \"tmux resumed, still collecting remaining data\"}, \"notes\": \"Gemini 2.5 Flash count curve via local API call. Count 1-32 complete (25 batches each), count 64 partial (11/25). Data at artifacts/exp_gemini_flash/part1/count_curve_analysis.json. Count 80 and part2 BCS not yet collected.\"}, \"exp_schema_intervention\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T14:57:35.343Z\", \"updated_at\": \"2026-05-17T16:25:52.346Z\", \"hypothesis\": \"If type confusability is a causal driver of extraction errors, then renaming high-BCS type pairs to reduce embedding similarity (while preserving semantic equivalence) should improve accuracy on high-BCS batches. This tests the causal direction: SCS → confusion, not merely correlation. If treatment (renamed) accuracy on previously-high-BCS batches improves significantly over control (original names), confusability is actionable via schema design.\", \"spec\": {\"command\": \"python /root/schema-dag-extraction/scripts/run_schema_intervention.py\", \"server\": \"cqa1-38874\", \"data_path\": \"/root/schema-dag-extraction/data/fewrel/\", \"data_count\": 960, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"checkpoint_path\": \"/root/schema-dag-extraction/artifacts/exp_schema_intervention/\", \"log_path\": \"/root/schema-dag-extraction/artifacts/exp_schema_intervention/\"}, \"conclusion\": \"negative\", \"metrics\": {\"high_bcs_control\": 0.693, \"high_bcs_treatment\": 0.605, \"high_bcs_delta\": -0.0883, \"low_bcs_control\": 0.901, \"low_bcs_treatment\": 0.871, \"low_bcs_delta\": -0.0296, \"interaction_delta\": -0.0588, \"interaction_p\": \"<0.001\", \"interaction_t\": -7.23, \"rename_count_correlation_r\": -0.625, \"rename_count_correlation_p\": \"<0.001\", \"cohens_d_high\": -2.92, \"cohens_d_low\": -1.09}, \"completed_at\": \"2026-05-17T16:25:52.346Z\"}, \"exp_fewshot_bcs_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T13:18:15.923Z\", \"updated_at\": \"2026-05-17T14:08:59.677Z\", \"hypothesis\": \"Few-shot demonstrations (1-shot and 5-shot) reduce the BCS-driven confusability effect (high-BCS accuracy penalty) by grounding type boundaries through explicit examples, tested on extreme-BCS batches (low ~0.36, high ~0.80) where 0-shot delta is ~25-31pp. If delta shrinks significantly under few-shot, confusability is addressable via prompting. If delta persists, confusability is a fundamental schema-structural constraint.\", \"parent\": \"exp_fewrel_v2_n25\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate base && cd /root/schema-dag-extraction && python3 src/run_fewshot_bcs_v2.py --stage all --n_shots 0 1 5 --seed 42\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"480497\", \"log_path\": \"~/runs/schema-dag-extraction/exp_fewshot_bcs_v2.log\", \"submitted_at\": \"2026-05-17T13:39:04.351Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema-dag-extraction/data/exp_v2_re_n25/batch_groups.json\", \"data_count\": \"50 batches (25 low-BCS ~0.36, 25 high-BCS ~0.80) x 3 shots = 450 tasks\", \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"checkpoint_source\": \"Qwen3-32B-FP8 (vLLM served, no fine-tuning)\", \"eval_data\": \"FewRel extreme-BCS batches from exp_fewrel_v2_n25/batch_groups.json\", \"wall_clock_seconds\": 1727.9, \"gpu_hours\": 0.48}, \"reproduce\": {\"finished_at\": \"2026-05-17T14:03:41.759Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T14:03:47.723099+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"0shot_low_bcs\": 0.6821, \"0shot_high_bcs\": 0.4975, \"0shot_delta_pp\": 18.46, \"1shot_low_bcs\": 0.7538, \"1shot_high_bcs\": 0.5542, \"1shot_delta_pp\": 19.96, \"5shot_low_bcs\": 0.7154, \"5shot_high_bcs\": 0.4875, \"5shot_delta_pp\": 22.79, \"delta_widening_0to5shot_pp\": 4.33, \"widening_p_value\": 0.014}, \"checkpoint_path\": \"/root/schema-dag-extraction/artifacts/fewshot_bcs_v2/analysis.json\", \"log_path\": \"~/runs/schema-dag-extraction/exp_fewshot_bcs_v2.log\", \"completed_at\": \"2026-05-17T14:07:52.204Z\"}, \"exp_llama70b_cross_model\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T08:20:05.924Z\", \"updated_at\": \"2026-05-17T13:32:11.725Z\", \"hypothesis\": \"LLaMA 3.1 70B-Instruct FP8 will replicate the two-dimensional degradation pattern (count-associated recall decline + confusability-associated type confusion) observed on Qwen3-32B, with BCS-accuracy correlation direction preserved despite potential magnitude differences. 70B scale should show stronger Dimension 2 signal than 8B, closing the gap with 32B.\", \"parent\": \"exp_prompt_sensitivity\", \"spec\": {\"command\": \"bash scripts/run_llama70b_cross_model.sh\", \"server\": \"westd-24295\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"21546\", \"log_path\": \"~/runs/schema-dag-extraction/exp_llama70b_cross_model.log\", \"submitted_at\": \"2026-05-17T08:25:53.099Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema-dag-extraction/data/fewrel_80rel + fewnerd\", \"data_count\": \"~5600 FewRel + ~4000 Few-NERD instances\", \"model_name\": \"neuralmagic/Meta-Llama-3.1-70B-Instruct-FP8\", \"seed\": \"42\", \"checkpoint_source\": \"N/A - inference only, using pretrained FP8 weights\", \"eval_data\": \"FewRel 80-rel (count curves + BCS-controlled extreme batches) + Few-NERD (count curves)\", \"wall_clock_seconds\": 18297.8, \"gpu_hours\": 10.17}, \"metrics\": {\"exp1_fewrel_count_curve\": {\"count_8_to_80_decline_pp\": -30.7, \"vs_qwen3_decline_pp\": -30.1, \"note\": \"slopes near-identical, 70B absolute ~4pp lower\"}, \"exp2_bcs_controlled\": {\"count_16_low_bcs\": 0.7083, \"count_16_high_bcs\": 0.599, \"delta_pp\": 10.94, \"ci_95\": [3.02, 20.1], \"count_8_delta_pp\": -4.2, \"count_8_note\": \"BCS range too narrow, CI crosses zero\"}, \"exp3_fewnerd_unified_protocol\": {\"metric\": \"text_match recall (unified with Qwen3 protocol: offset correction + hallucination detection + greedy matching + type+text)\", \"count_2\": {\"llama70b\": 0.323, \"qwen3\": 0.515, \"delta_pp\": -19}, \"count_6\": {\"llama70b\": 0.3, \"qwen3\": 0.399, \"delta_pp\": -10}, \"count_12\": {\"llama70b\": 0.278, \"qwen3\": 0.318, \"delta_pp\": -4}, \"count_22\": {\"llama70b\": 0.252, \"qwen3\": 0.279, \"delta_pp\": -3}, \"count_44\": {\"llama70b\": 0.297, \"qwen3\": 0.309, \"delta_pp\": -1}, \"count_66\": {\"llama70b\": 0.273, \"qwen3\": 0.407, \"delta_pp\": -13}, \"precision\": {\"count_2\": {\"llama70b\": 0.446, \"qwen3\": 0.32}, \"count_6\": {\"llama70b\": 0.323, \"qwen3\": 0.248}, \"count_12\": {\"llama70b\": 0.311, \"qwen3\": 0.269}, \"count_22\": {\"llama70b\": 0.376, \"qwen3\": 0.365}, \"count_44\": {\"llama70b\": 0.468, \"qwen3\": 0.504}, \"count_66\": {\"llama70b\": 0.609, \"qwen3\": 0.633}}, \"n_batches\": 25, \"status\": \"complete\", \"result_path\": \"/root/schema-dag-extraction/artifacts/d051_llama-3.1-70b-fp8_fewnerd_n25_s42/summary_unified_protocol.json\", \"key_findings\": [\"Old values invalidated: count_2 0.962→0.323 (-64pp)\", \"70B recall lower than Qwen3 at all counts (1-19pp gap)\", \"70B more conservative: higher precision, lower recall\", \"Middle range count_12-44 close (1-4pp gap)\", \"Both models show count-driven decline pattern\"]}}, \"reproduce\": {\"finished_at\": \"2026-05-17T11:06:35.287Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T11:06:38.830667+00:00\"}]}, \"checkpoint_path\": \"/root/schema-dag-extraction/artifacts/d051_llama-3.1-70b-fp8_fewnerd_n25_s42/summary_type_text.json\", \"log_path\": \"~/runs/schema-dag-extraction/exp_llama70b_cross_model.log\", \"conclusion\": \"success\", \"notes\": \"Exp 3 Few-NERD RE-EVALUATED with unified protocol (reeval_text_match.py). Old values invalidated (used simple set intersection). New recall: count_2=0.323 (was 0.962), count_6=0.300 (was 0.900), count_12=0.278 (was 0.822), count_22=0.252 (was 0.666), count_44=0.297 (was 0.480), count_66=0.273 (was 0.339). 70B systematically lower than Qwen3 on NER recall (1-19pp) but higher precision. Count-driven decline pattern preserved. Exp 1 (FewRel RE) and Exp 2 (BCS) unaffected.\", \"completed_at\": \"2026-05-17T13:30:50.858Z\"}, \"exp_fewshot_bcs_mitigation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T11:52:38.715Z\", \"updated_at\": \"2026-05-17T13:18:02.771Z\", \"hypothesis\": \"Few-shot demonstrations (1-shot and 5-shot) reduce the BCS-driven confusability effect (high-BCS accuracy penalty) by grounding type boundaries through explicit examples. If the BCS delta (low-high) shrinks significantly under few-shot, confusability is addressable via better prompting. If delta persists, confusability is a fundamental schema-structural constraint even with demonstrations.\", \"parent\": \"exp_fewrel_formal_80rel\", \"spec\": {\"command\": \"python3 src/run_fewshot_bcs.py --stage all --n_shots 0 1 5 --counts 8 16 --n_batches 25 --seed 42\", \"server\": \"cqa1-38874\", \"gpu\": \"cuda:0\", \"pid\": \"476765\", \"log_path\": \"~/runs/schema-dag-extraction/exp_fewshot_bcs_mitigation.log\", \"submitted_at\": \"2026-05-17T12:50:35.365Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema-dag-extraction/data/fewrel_parquet/{train,val}.parquet\", \"data_count\": 56000, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"checkpoint_source\": \"Qwen/Qwen3-32B-FP8 (pretrained, no finetuning)\", \"eval_data\": \"FewRel 80-rel train+val (960 test samples, 12/rel)\", \"wall_clock_seconds\": 1644.8, \"gpu_hours\": 0.46}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-17T13:18:00.152Z\", \"notes\": \"Killed: BCS grouping contrast only 0.04 (random pool top/bottom), should be ~0.43. 0-shot delta ≈ 0pp, cannot test hypothesis. Redesigning with extreme batch configs from exp_fewrel_v2_n25 (low-BCS 0.35-0.37, high-BCS 0.79-0.81). Replaced by exp_fewshot_bcs_v2.\"}, \"exp_prompt_sensitivity\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T06:20:00.617Z\", \"updated_at\": \"2026-05-17T07:26:09.729Z\", \"hypothesis\": \"BCS-driven type confusion is a schema-structural property independent of prompt wording: the BCS-accuracy correlation direction and significance persist across diverse prompt variants (V2 baseline, instruction-rewrite, chain-of-thought, minimal), confirming that confusability effects arise from schema composition rather than prompt-specific instruction framing.\", \"parent\": \"exp002_confusability_controlled\", \"spec\": {\"command\": \"python experiments/prompt_sensitivity/run_prompt_sensitivity.py\", \"server\": \"cqa1-38874\", \"data_path\": \"FewRel 80-rel val_wiki\", \"data_count\": 56000, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"checkpoint_source\": \"N/A - inference only\", \"eval_data\": \"FewRel val_wiki 80-rel, 4 prompt variants × 2 count levels × 10 batches\"}, \"metrics\": {\"per_condition\": {\"v2_count8\": {\"mean_acc\": 0.7688, \"bcs_r\": -0.3326, \"bcs_p\": 0.348}, \"v2_count32\": {\"mean_acc\": 0.5643, \"bcs_r\": -0.6477, \"bcs_p\": 0.043, \"significant\": true}, \"instruction_rewrite_count8\": {\"mean_acc\": 0.8469, \"bcs_r\": -0.2228, \"bcs_p\": 0.536}, \"instruction_rewrite_count32\": {\"mean_acc\": 0.6617, \"bcs_r\": -0.4693, \"bcs_p\": 0.171}, \"cot_count8\": {\"mean_acc\": 0.749, \"bcs_r\": 0.2543, \"bcs_p\": 0.478}, \"cot_count32\": {\"mean_acc\": 0.6169, \"bcs_r\": -0.5661, \"bcs_p\": 0.088}, \"minimal_count8\": {\"mean_acc\": 0.8521, \"bcs_r\": -0.1703, \"bcs_p\": 0.638}, \"minimal_count32\": {\"mean_acc\": 0.6146, \"bcs_r\": -0.771, \"bcs_p\": 0.009, \"significant\": true}}, \"summary\": {\"negative_direction\": \"7/8 conditions\", \"significant_at_count32\": \"2/4 (v2 p=0.043, minimal p=0.009), 1 marginal (cot p=0.088)\", \"count_as_moderator\": \"count=32 effects stronger than count=8, consistent with BCS range compression at lower counts\", \"cot_anomaly\": \"only variant with positive r at count_8 (0.25, n.s.)\"}, \"key_finding\": \"BCS-accuracy negative correlation is directionally consistent across 4 prompt variants at count=32 (7/8 conditions negative). Prompt design modulates magnitude but does not eliminate the effect. Supports schema-structural interpretation of confusability.\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/schema-dag-extraction/experiments/prompt_sensitivity/results.json\", \"log_path\": \"~/runs/schema-dag-extraction/prompt_sensitivity.log\", \"completed_at\": \"2026-05-17T07:26:09.729Z\"}}, \"count\": 10, \"total\": 64, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2313}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2a967f76-ca6b-49ee-9cdb-7c5dbb01c1bc",
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "0cea2684-2bc6-46f9-9477-de38a11bdce5",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_sdgd_zero_maven\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-19T11:42:11.715Z\\\", \\\"updated_at\\\": \\\"2026-05-19T13:50:00.727Z\\\", \\\"hypothesis\\\": \\\"SDGD-zero on MAVEN (168 event types, 18 batches) will reproduce the schema DAG extraction capability observed on DocRED, validating cross-domain generalization from document-level RE to event detection.\\\", \\\"notes\\\": \\\"Running on cuda:0 PID 610111. 4/5 arms done, last random_batch seed in progress. single_pass F1=0.2068 > sdgd_zero F1=0.1233 > random_batch F1=0.1129-0.1168. Precision collapses 0.287→0.091, pred_count inflates 3.7x. Merge amplification confirmed on event detection.\\\", \\\"failure_reason\\\": \\\"startup recovery: process dead, no active cron monitor\\\", \\\"completed_at\\\": \\\"2026-05-19T13:09:56.103Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"Code ready at /root/schema-dag-extraction/src/run_sdgd_maven.py. Launch script: launch_sdgd_maven.sh. Dry-run passed (5 samples, F1=0.200). MAVEN decomposition: tau=0.3191, 18 batches (sizes=[39,20,16,12,12,10,10,8,8,6,6,6,5,4,2,2,1,1]). Waiting for exp_docred_bcs_expanded to finish before GPU submission on cuda:0.\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 src/run_sdgd_maven.py\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"610111\\\", \\\"log_path\\\": \\\"~/runs/schema-dag-extraction/exp_sdgd_zero_maven.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T13:11:18.603Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"exp_docred_bcs_expanded\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-19T11:42:10.862Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:48:55.325Z\\\", \\\"hypothesis\\\": \\\"Expanding DocRED BCS-controlled batches from 5 to 15 per count level will narrow the factorial interaction CI (currently [-1.6, 13.0]) sufficiently to resolve whether the BCS-count interaction is bounded or substantial in document-level RE. If the CI narrows to exclude zero, the interaction is genuine and non-additive; if it narrows to include zero tightly, the bounded-interaction claim strengthens.\\\", \\\"failure_reason\\\": \\\"startup recovery: RUNNING with no cron and no server/pid info\\\", \\\"completed_at\\\": \\\"2026-05-19T12:44:23.943Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 /root/schema-dag-extraction/src/run_docred_bcs_expanded.py --stage all\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"607854\\\", \\\"log_path\\\": \\\"~/runs/schema-dag-extraction/exp_docred_bcs_expanded.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T12:47:38.177Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"notes\\\": \\\"vLLM OOM crash after 7/40 batches. Waiting for MAVEN to finish before retry. preprocess_config.json preserved.\\\"}, \\\"exp_unconstrained_decoding_ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T09:54:50.724Z\\\", \\\"updated_at\\\": \\\"2026-05-18T14:22:10.672Z\\\", \\\"hypothesis\\\": \\\"The BCS-accuracy correlation in RE arises from semantic confusion rather than forced-choice format artifacts. If removing the enum constraint (relaxed decoding) preserves the negative BCS-accuracy correlation direction and significance, confusability is a genuine semantic property; if the correlation disappears, the effect is specific to constrained classification where all errors are channeled into type substitution. Either outcome strengthens the paper: preservation broadens the claim, disappearance validates the error-channeling hypothesis stated in Discussion.\\\", \\\"parent\\\": \\\"exp_fewrel_formal_80rel\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/schema-dag-extraction && source /root/miniconda3/bin/activate base && python src/run_unconstrained_decoding_ablation.py\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"542072\\\", \\\"log_path\\\": \\\"~/runs/schema-dag-extraction/exp_unconstrained_decoding_ablation.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T10:21:03.700Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 1903.1, \\\"gpu_hours\\\": 0.53}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n10\\\": {\\\"low_bcs_mean_acc\\\": 0.8042, \\\"high_bcs_mean_acc\\\": 0.725, \\\"delta_pp\\\": 7.92, \\\"spearman_rho\\\": -0.4303, \\\"spearman_pval\\\": 0.214, \\\"oov_rate\\\": 0}, \\\"n25\\\": {\\\"low_bcs_mean_acc\\\": 0.8093, \\\"high_bcs_mean_acc\\\": 0.7812, \\\"delta_pp\\\": 2.8, \\\"ci_95_lower_pp\\\": -4.53, \\\"ci_95_upper_pp\\\": 10.56, \\\"spearman_rho\\\": -0.1442, \\\"spearman_pval\\\": 0.492, \\\"oov_rate\\\": 0.0008, \\\"total_samples\\\": 2400}}, \\\"log_path\\\": \\\"/root/schema-dag-extraction/results/unconstrained_decoding_ablation/\\\", \\\"checkpoint_path\\\": \\\"N/A (inference-only ablation)\\\", \\\"completed_at\\\": \\\"2026-05-18T10:52:46.803Z\\\"}, \\\"exp_multiseed_bcs_re\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T06:44:12.639Z\\\", \\\"updated_at\\\": \\\"2026-05-18T08:07:35.728Z\\\", \\\"hypothesis\\\": \\\"The BCS-accuracy correlation observed in FewRel BCS-controlled experiments (R²=0.22-0.53) is robust across random seeds. If seed=123 and seed=456 replicate the negative BCS-accuracy correlation direction and significance observed with seed=42, this confirms the finding is not a single-seed artifact. Rebuttal material for R15-W2 single-seed concern.\\\", \\\"parent\\\": \\\"exp_fewrel_formal_80rel\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-18T07:24:36.762Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash /root/schema-dag-extraction/scripts/run_multiseed_bcs.sh\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"data_path\\\": \\\"data/fewrel/fewrel_samples_960.json\\\", \\\"data_count\\\": 14400, \\\"model_name\\\": \\\"Qwen3-32B-FP8\\\", \\\"seed\\\": \\\"123,456\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 531145, \\\"checkpoint_source\\\": \\\"Qwen3-32B-FP8 (vLLM inference, no training checkpoint)\\\", \\\"eval_data\\\": \\\"FewRel 80-rel BCS-controlled batches (25 low-BCS + 25 high-BCS)\\\", \\\"note\\\": \\\"50 batches x 3 shot conditions x 2 seeds = 300 batches total. Started via nohup (worker bypassed submit_training_job).\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"log_path\\\": \\\"/root/schema-dag-extraction/artifacts/multiseed_bcs_re/run_all.log\\\", \\\"checkpoint_path\\\": \\\"/root/schema-dag-extraction/artifacts/multiseed_bcs_re/\\\", \\\"completed_at\\\": \\\"2026-05-18T08:07:29.393Z\\\", \\\"metrics\\\": {\\\"seed_123\\\": {\\\"shot0_delta_pp\\\": 21.88, \\\"shot1_delta_pp\\\": 25.25, \\\"shot5_delta_pp\\\": 24.25, \\\"shot0_ci\\\": [18.79, 24.83], \\\"shot1_ci\\\": [21.08, 29.29], \\\"shot5_ci\\\": [19.96, 28.29]}, \\\"seed_456\\\": {\\\"shot0_delta_pp\\\": 22.38, \\\"shot1_delta_pp\\\": 24.38, \\\"shot5_delta_pp\\\": 25.08, \\\"shot0_ci\\\": [19.58, 24.96], \\\"shot1_ci\\\": [20.58, 28.04], \\\"shot5_ci\\\": [21.62, 28.58]}, \\\"finding\\\": \\\"Few-shot does NOT mitigate BCS effect; delta increases from ~22pp (0-shot) to ~25pp (5-shot)\\\"}}, \\\"exp_gemini_flash_cross_model\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T14:57:39.493Z\\\", \\\"updated_at\\\": \\\"2026-05-18T07:36:32.176Z\\\", \\\"hypothesis\\\": \\\"The two-dimensional degradation pattern (count-related decline + confusability-related type confusion) generalizes beyond open-weight models to proprietary API models. Gemini 2.5 Flash should show: (1) monotonic RE accuracy decline with count, and (2) significant BCS-accuracy correlation on extreme batches. If confirmed, the pattern is architecture-family-independent (open-weight Qwen/LLaMA + proprietary Gemini).\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 scripts/run_gemini_flash_fewrel.py --mode all --sleep 0.15\\\", \\\"server\\\": \\\"local (tmux session: gemini_flash)\\\", \\\"data_path\\\": \\\"data/fewrel/fewrel_samples_960.json\\\", \\\"data_count\\\": 960, \\\"model_name\\\": \\\"gemini-2.5-flash\\\", \\\"seed\\\": 42}, \\\"failure_reason\\\": \\\"startup recovery: RUNNING with no cron and no server/pid info\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-18T02:11:13.608Z\\\", \\\"metrics\\\": {\\\"count_curve_spearman_rho\\\": -0.943, \\\"count_curve_spearman_p\\\": 0.0048, \\\"count_1_acc\\\": 0.8267, \\\"count_4_acc\\\": 0.8725, \\\"count_8_acc\\\": 0.8204, \\\"count_16_acc\\\": 0.7868, \\\"count_32_acc\\\": 0.7394, \\\"count_64_acc\\\": 0.6343, \\\"total_drop_count1_to_64_pp\\\": -19.2, \\\"complete_count_levels\\\": \\\"1,4,8,16,32\\\", \\\"partial_count_levels\\\": \\\"64 (11/25)\\\", \\\"missing\\\": \\\"count_80, part2_bcs\\\", \\\"note\\\": \\\"tmux resumed, still collecting remaining data\\\"}, \\\"notes\\\": \\\"Gemini 2.5 Flash count curve via local API call. Count 1-32 complete (25 batches each), count 64 partial (11/25). Data at artifacts/exp_gemini_flash/part1/count_curve_analysis.json. Count 80 and part2 BCS not yet collected.\\\"}, \\\"exp_schema_intervention\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T14:57:35.343Z\\\", \\\"updated_at\\\": \\\"2026-05-17T16:25:52.346Z\\\", \\\"hypothesis\\\": \\\"If type confusability is a causal driver of extraction errors, then renaming high-BCS type pairs to reduce embedding similarity (while preserving semantic equivalence) should improve accuracy on high-BCS batches. This tests the causal direction: SCS → confusion, not merely correlation. If treatment (renamed) accuracy on previously-high-BCS batches improves significantly over control (original names), confusability is actionable via schema design.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python /root/schema-dag-extraction/scripts/run_schema_intervention.py\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/fewrel/\\\", \\\"data_count\\\": 960, \\\"model_name\\\": \\\"Qwen3-32B-FP8\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/schema-dag-extraction/artifacts/exp_schema_intervention/\\\", \\\"log_path\\\": \\\"/root/schema-dag-extraction/artifacts/exp_schema_intervention/\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"high_bcs_control\\\": 0.693, \\\"high_bcs_treatment\\\": 0.605, \\\"high_bcs_delta\\\": -0.0883, \\\"low_bcs_control\\\": 0.901, \\\"low_bcs_treatment\\\": 0.871, \\\"low_bcs_delta\\\": -0.0296, \\\"interaction_delta\\\": -0.0588, \\\"interaction_p\\\": \\\"<0.001\\\", \\\"interaction_t\\\": -7.23, \\\"rename_count_correlation_r\\\": -0.625, \\\"rename_count_correlation_p\\\": \\\"<0.001\\\", \\\"cohens_d_high\\\": -2.92, \\\"cohens_d_low\\\": -1.09}, \\\"completed_at\\\": \\\"2026-05-17T16:25:52.346Z\\\"}, \\\"exp_fewshot_bcs_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T13:18:15.923Z\\\", \\\"updated_at\\\": \\\"2026-05-17T14:08:59.677Z\\\", \\\"hypothesis\\\": \\\"Few-shot demonstrations (1-shot and 5-shot) reduce the BCS-driven confusability effect (high-BCS accuracy penalty) by grounding type boundaries through explicit examples, tested on extreme-BCS batches (low ~0.36, high ~0.80) where 0-shot delta is ~25-31pp. If delta shrinks significantly under few-shot, confusability is addressable via prompting. If delta persists, confusability is a fundamental schema-structural constraint.\\\", \\\"parent\\\": \\\"exp_fewrel_v2_n25\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate base && cd /root/schema-dag-extraction && python3 src/run_fewshot_bcs_v2.py --stage all --n_shots 0 1 5 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"480497\\\", \\\"log_path\\\": \\\"~/runs/schema-dag-extraction/exp_fewshot_bcs_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T13:39:04.351Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/exp_v2_re_n25/batch_groups.json\\\", \\\"data_count\\\": \\\"50 batches (25 low-BCS ~0.36, 25 high-BCS ~0.80) x 3 shots = 450 tasks\\\", \\\"model_name\\\": \\\"Qwen3-32B-FP8\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"Qwen3-32B-FP8 (vLLM served, no fine-tuning)\\\", \\\"eval_data\\\": \\\"FewRel extreme-BCS batches from exp_fewrel_v2_n25/batch_groups.json\\\", \\\"wall_clock_seconds\\\": 1727.9, \\\"gpu_hours\\\": 0.48}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-17T14:03:41.759Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T14:03:47.723099+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"0shot_low_bcs\\\": 0.6821, \\\"0shot_high_bcs\\\": 0.4975, \\\"0shot_delta_pp\\\": 18.46, \\\"1shot_low_bcs\\\": 0.7538, \\\"1shot_high_bcs\\\": 0.5542, \\\"1shot_delta_pp\\\": 19.96, \\\"5shot_low_bcs\\\": 0.7154, \\\"5shot_high_bcs\\\": 0.4875, \\\"5shot_delta_pp\\\": 22.79, \\\"delta_widening_0to5shot_pp\\\": 4.33, \\\"widening_p_value\\\": 0.014}, \\\"checkpoint_path\\\": \\\"/root/schema-dag-extraction/artifacts/fewshot_bcs_v2/analysis.json\\\", \\\"log_path\\\": \\\"~/runs/schema-dag-extraction/exp_fewshot_bcs_v2.log\\\", \\\"completed_at\\\": \\\"2026-05-17T14:07:52.204Z\\\"}, \\\"exp_llama70b_cross_model\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T08:20:05.924Z\\\", \\\"updated_at\\\": \\\"2026-05-17T13:32:11.725Z\\\", \\\"hypothesis\\\": \\\"LLaMA 3.1 70B-Instruct FP8 will replicate the two-dimensional degradation pattern (count-associated recall decline + confusability-associated type confusion) observed on Qwen3-32B, with BCS-accuracy correlation direction preserved despite potential magnitude differences. 70B scale should show stronger Dimension 2 signal than 8B, closing the gap with 32B.\\\", \\\"parent\\\": \\\"exp_prompt_sensitivity\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/run_llama70b_cross_model.sh\\\", \\\"server\\\": \\\"westd-24295\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"pid\\\": \\\"21546\\\", \\\"log_path\\\": \\\"~/runs/schema-dag-extraction/exp_llama70b_cross_model.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T08:25:53.099Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/fewrel_80rel + fewnerd\\\", \\\"data_count\\\": \\\"~5600 FewRel + ~4000 Few-NERD instances\\\", \\\"model_name\\\": \\\"neuralmagic/Meta-Llama-3.1-70B-Instruct-FP8\\\", \\\"seed\\\": \\\"42\\\", \\\"checkpoint_source\\\": \\\"N/A - inference only, using pretrained FP8 weights\\\", \\\"eval_data\\\": \\\"FewRel 80-rel (count curves + BCS-controlled extreme batches) + Few-NERD (count curves)\\\", \\\"wall_clock_seconds\\\": 18297.8, \\\"gpu_hours\\\": 10.17}, \\\"metrics\\\": {\\\"exp1_fewrel_count_curve\\\": {\\\"count_8_to_80_decline_pp\\\": -30.7, \\\"vs_qwen3_decline_pp\\\": -30.1, \\\"note\\\": \\\"slopes near-identical, 70B absolute ~4pp lower\\\"}, \\\"exp2_bcs_controlled\\\": {\\\"count_16_low_bcs\\\": 0.7083, \\\"count_16_high_bcs\\\": 0.599, \\\"delta_pp\\\": 10.94, \\\"ci_95\\\": [3.02, 20.1], \\\"count_8_delta_pp\\\": -4.2, \\\"count_8_note\\\": \\\"BCS range too narrow, CI crosses zero\\\"}, \\\"exp3_fewnerd_unified_protocol\\\": {\\\"metric\\\": \\\"text_match recall (unified with Qwen3 protocol: offset correction + hallucination detection + greedy matching + type+text)\\\", \\\"count_2\\\": {\\\"llama70b\\\": 0.323, \\\"qwen3\\\": 0.515, \\\"delta_pp\\\": -19}, \\\"count_6\\\": {\\\"llama70b\\\": 0.3, \\\"qwen3\\\": 0.399, \\\"delta_pp\\\": -10}, \\\"count_12\\\": {\\\"llama70b\\\": 0.278, \\\"qwen3\\\": 0.318, \\\"delta_pp\\\": -4}, \\\"count_22\\\": {\\\"llama70b\\\": 0.252, \\\"qwen3\\\": 0.279, \\\"delta_pp\\\": -3}, \\\"count_44\\\": {\\\"llama70b\\\": 0.297, \\\"qwen3\\\": 0.309, \\\"delta_pp\\\": -1}, \\\"count_66\\\": {\\\"llama70b\\\": 0.273, \\\"qwen3\\\": 0.407, \\\"delta_pp\\\": -13}, \\\"precision\\\": {\\\"count_2\\\": {\\\"llama70b\\\": 0.446, \\\"qwen3\\\": 0.32}, \\\"count_6\\\": {\\\"llama70b\\\": 0.323, \\\"qwen3\\\": 0.248}, \\\"count_12\\\": {\\\"llama70b\\\": 0.311, \\\"qwen3\\\": 0.269}, \\\"count_22\\\": {\\\"llama70b\\\": 0.376, \\\"qwen3\\\": 0.365}, \\\"count_44\\\": {\\\"llama70b\\\": 0.468, \\\"qwen3\\\": 0.504}, \\\"count_66\\\": {\\\"llama70b\\\": 0.609, \\\"qwen3\\\": 0.633}}, \\\"n_batches\\\": 25, \\\"status\\\": \\\"complete\\\", \\\"result_path\\\": \\\"/root/schema-dag-extraction/artifacts/d051_llama-3.1-70b-fp8_fewnerd_n25_s42/summary_unified_protocol.json\\\", \\\"key_findings\\\": [\\\"Old values invalidated: count_2 0.962→0.323 (-64pp)\\\", \\\"70B recall lower than Qwen3 at all counts (1-19pp gap)\\\", \\\"70B more conservative: higher precision, lower recall\\\", \\\"Middle range count_12-44 close (1-4pp gap)\\\", \\\"Both models show count-driven decline pattern\\\"]}}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-17T11:06:35.287Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T11:06:38.830667+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/schema-dag-extraction/artifacts/d051_llama-3.1-70b-fp8_fewnerd_n25_s42/summary_type_text.json\\\", \\\"log_path\\\": \\\"~/runs/schema-dag-extraction/exp_llama70b_cross_model.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"Exp 3 Few-NERD RE-EVALUATED with unified protocol (reeval_text_match.py). Old values invalidated (used simple set intersection). New recall: count_2=0.323 (was 0.962), count_6=0.300 (was 0.900), count_12=0.278 (was 0.822), count_22=0.252 (was 0.666), count_44=0.297 (was 0.480), count_66=0.273 (was 0.339). 70B systematically lower than Qwen3 on NER recall (1-19pp) but higher precision. Count-driven decline pattern preserved. Exp 1 (FewRel RE) and Exp 2 (BCS) unaffected.\\\", \\\"completed_at\\\": \\\"2026-05-17T13:30:50.858Z\\\"}, \\\"exp_fewshot_bcs_mitigation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:52:38.715Z\\\", \\\"updated_at\\\": \\\"2026-05-17T13:18:02.771Z\\\", \\\"hypothesis\\\": \\\"Few-shot demonstrations (1-shot and 5-shot) reduce the BCS-driven confusability effect (high-BCS accuracy penalty) by grounding type boundaries through explicit examples. If the BCS delta (low-high) shrinks significantly under few-shot, confusability is addressable via better prompting. If delta persists, confusability is a fundamental schema-structural constraint even with demonstrations.\\\", \\\"parent\\\": \\\"exp_fewrel_formal_80rel\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 src/run_fewshot_bcs.py --stage all --n_shots 0 1 5 --counts 8 16 --n_batches 25 --seed 42\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"476765\\\", \\\"log_path\\\": \\\"~/runs/schema-dag-extraction/exp_fewshot_bcs_mitigation.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T12:50:35.365Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/fewrel_parquet/{train,val}.parquet\\\", \\\"data_count\\\": 56000, \\\"model_name\\\": \\\"Qwen3-32B-FP8\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"Qwen/Qwen3-32B-FP8 (pretrained, no finetuning)\\\", \\\"eval_data\\\": \\\"FewRel 80-rel train+val (960 test samples, 12/rel)\\\", \\\"wall_clock_seconds\\\": 1644.8, \\\"gpu_hours\\\": 0.46}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-17T13:18:00.152Z\\\", \\\"notes\\\": \\\"Killed: BCS grouping contrast only 0.04 (random pool top/bottom), should be ~0.43. 0-shot delta ≈ 0pp, cannot test hypothesis. Redesigning with extreme batch configs from exp_fewrel_v2_n25 (low-BCS 0.35-0.37, high-BCS 0.79-0.81). Replaced by exp_fewshot_bcs_v2.\\\"}, \\\"exp_prompt_sensitivity\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T06:20:00.617Z\\\", \\\"updated_at\\\": \\\"2026-05-17T07:26:09.729Z\\\", \\\"hypothesis\\\": \\\"BCS-driven type confusion is a schema-structural property independent of prompt wording: the BCS-accuracy correlation direction and significance persist across diverse prompt variants (V2 baseline, instruction-rewrite, chain-of-thought, minimal), confirming that confusability effects arise from schema composition rather than prompt-specific instruction framing.\\\", \\\"parent\\\": \\\"exp002_confusability_controlled\\\", \\\"spec\\\": {\\\"command\\\": \\\"python experiments/prompt_sensitivity/run_prompt_sensitivity.py\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"data_path\\\": \\\"FewRel 80-rel val_wiki\\\", \\\"data_count\\\": 56000, \\\"model_name\\\": \\\"Qwen3-32B-FP8\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A - inference only\\\", \\\"eval_data\\\": \\\"FewRel val_wiki 80-rel, 4 prompt variants × 2 count levels × 10 batches\\\"}, \\\"metrics\\\": {\\\"per_condition\\\": {\\\"v2_count8\\\": {\\\"mean_acc\\\": 0.7688, \\\"bcs_r\\\": -0.3326, \\\"bcs_p\\\": 0.348}, \\\"v2_count32\\\": {\\\"mean_acc\\\": 0.5643, \\\"bcs_r\\\": -0.6477, \\\"bcs_p\\\": 0.043, \\\"significant\\\": true}, \\\"instruction_rewrite_count8\\\": {\\\"mean_acc\\\": 0.8469, \\\"bcs_r\\\": -0.2228, \\\"bcs_p\\\": 0.536}, \\\"instruction_rewrite_count32\\\": {\\\"mean_acc\\\": 0.6617, \\\"bcs_r\\\": -0.4693, \\\"bcs_p\\\": 0.171}, \\\"cot_count8\\\": {\\\"mean_acc\\\": 0.749, \\\"bcs_r\\\": 0.2543, \\\"bcs_p\\\": 0.478}, \\\"cot_count32\\\": {\\\"mean_acc\\\": 0.6169, \\\"bcs_r\\\": -0.5661, \\\"bcs_p\\\": 0.088}, \\\"minimal_count8\\\": {\\\"mean_acc\\\": 0.8521, \\\"bcs_r\\\": -0.1703, \\\"bcs_p\\\": 0.638}, \\\"minimal_count32\\\": {\\\"mean_acc\\\": 0.6146, \\\"bcs_r\\\": -0.771, \\\"bcs_p\\\": 0.009, \\\"significant\\\": true}}, \\\"summary\\\": {\\\"negative_direction\\\": \\\"7/8 conditions\\\", \\\"significant_at_count32\\\": \\\"2/4 (v2 p=0.043, minimal p=0.009), 1 marginal (cot p=0.088)\\\", \\\"count_as_moderator\\\": \\\"count=32 effects stronger than count=8, consistent with BCS range compression at lower counts\\\", \\\"cot_anomaly\\\": \\\"only variant with positive r at count_8 (0.25, n.s.)\\\"}, \\\"key_finding\\\": \\\"BCS-accuracy negative correlation is directionally consistent across 4 prompt variants at count=32 (7/8 conditions negative). Prompt design modulates magnitude but does not eliminate the effect. Supports schema-structural interpretation of confusability.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/schema-dag-extraction/experiments/prompt_sensitivity/results.json\\\", \\\"log_path\\\": \\\"~/runs/schema-dag-extraction/prompt_sensitivity.log\\\", \\\"completed_at\\\": \\\"2026-05-17T07:26:09.729Z\\\"}}, \\\"count\\\": 10, \\\"total\\\": 64, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2313}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_sdgd_zero_maven\": {\"status\": \"PREPARING\", \"retry_count\": 1, \"created_at\": \"2026-05-19T11:42:11.715Z\", \"updated_at\": \"2026-05-19T13:50:00.727Z\", \"hypothesis\": \"SDGD-zero on MAVEN (168 event types, 18 batches) will reproduce the schema DAG extraction capability observed on DocRED, validating cross-domain generalization from document-level RE to event detection.\", \"notes\": \"Running on cuda:0 PID 610111. 4/5 arms done, last random_batch seed in progress. single_pass F1=0.2068 > sdgd_zero F1=0.1233 > random_batch F1=0.1129-0.1168. Precision collapses 0.287→0.091, pred_count inflates 3.7x. Merge amplification confirmed on event detection.\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"completed_at\": \"2026-05-19T13:09:56.103Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"Code ready at /root/schema-dag-extraction/src/run_sdgd_maven.py. Launch script: launch_sdgd_maven.sh. Dry-run passed (5 samples, F1=0.200). MAVEN decomposition: tau=0.3191, 18 batches (sizes=[39,20,16,12,12,10,10,8,8,6,6,6,5,4,2,2,1,1]). Waiting for exp_docred_bcs_expanded to finish before GPU submission on cuda:0.\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 src/run_sdgd_maven.py\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"610111\", \"log_path\": \"~/runs/schema-dag-extraction/exp_sdgd_zero_maven.log\", \"submitted_at\": \"2026-05-19T13:11:18.603Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp_docred_bcs_expanded\": {\"status\": \"PREPARING\", \"retry_count\": 1, \"created_at\": \"2026-05-19T11:42:10.862Z\", \"updated_at\": \"2026-05-19T12:48:55.325Z\", \"hypothesis\": \"Expanding DocRED BCS-controlled batches from 5 to 15 per count level will narrow the factorial interaction CI (currently [-1.6, 13.0]) sufficiently to resolve whether the BCS-count interaction is bounded or substantial in document-level RE. If the CI narrows to exclude zero, the interaction is genuine and non-additive; if it narrows to include zero tightly, the bounded-interaction claim strengthens.\", \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"completed_at\": \"2026-05-19T12:44:23.943Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 /root/schema-dag-extraction/src/run_docred_bcs_expanded.py --stage all\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"607854\", \"log_path\": \"~/runs/schema-dag-extraction/exp_docred_bcs_expanded.log\", \"submitted_at\": \"2026-05-19T12:47:38.177Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"vLLM OOM crash after 7/40 batches. Waiting for MAVEN to finish before retry. preprocess_config.json preserved.\"}, \"exp_unconstrained_decoding_ablation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T09:54:50.724Z\", \"updated_at\": \"2026-05-18T14:22:10.672Z\", \"hypothesis\": \"The BCS-accuracy correlation in RE arises from semantic confusion rather than forced-choice format artifacts. If removing the enum constraint (relaxed decoding) preserves the negative BCS-accuracy correlation direction and significance, confusability is a genuine semantic property; if the correlation disappears, the effect is specific to constrained classification where all errors are channeled into type substitution. Either outcome strengthens the paper: preservation broadens the claim, disappearance validates the error-channeling hypothesis stated in Discussion.\", \"parent\": \"exp_fewrel_formal_80rel\", \"spec\": {\"command\": \"bash -c \\\"cd /root/schema-dag-extraction && source /root/miniconda3/bin/activate base && python src/run_unconstrained_decoding_ablation.py\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"542072\", \"log_path\": \"~/runs/schema-dag-extraction/exp_unconstrained_decoding_ablation.log\", \"submitted_at\": \"2026-05-18T10:21:03.700Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1903.1, \"gpu_hours\": 0.53}, \"conclusion\": \"success\", \"metrics\": {\"n10\": {\"low_bcs_mean_acc\": 0.8042, \"high_bcs_mean_acc\": 0.725, \"delta_pp\": 7.92, \"spearman_rho\": -0.4303, \"spearman_pval\": 0.214, \"oov_rate\": 0}, \"n25\": {\"low_bcs_mean_acc\": 0.8093, \"high_bcs_mean_acc\": 0.7812, \"delta_pp\": 2.8, \"ci_95_lower_pp\": -4.53, \"ci_95_upper_pp\": 10.56, \"spearman_rho\": -0.1442, \"spearman_pval\": 0.492, \"oov_rate\": 0.0008, \"total_samples\": 2400}}, \"log_path\": \"/root/schema-dag-extraction/results/unconstrained_decoding_ablation/\", \"checkpoint_path\": \"N/A (inference-only ablation)\", \"completed_at\": \"2026-05-18T10:52:46.803Z\"}, \"exp_multiseed_bcs_re\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T06:44:12.639Z\", \"updated_at\": \"2026-05-18T08:07:35.728Z\", \"hypothesis\": \"The BCS-accuracy correlation observed in FewRel BCS-controlled experiments (R²=0.22-0.53) is robust across random seeds. If seed=123 and seed=456 replicate the negative BCS-accuracy correlation direction and significance observed with seed=42, this confirms the finding is not a single-seed artifact. Rebuttal material for R15-W2 single-seed concern.\", \"parent\": \"exp_fewrel_formal_80rel\", \"server\": \"cqa1-38874\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-38874\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-18T07:24:36.762Z\"}, \"spec\": {\"command\": \"bash /root/schema-dag-extraction/scripts/run_multiseed_bcs.sh\", \"server\": \"cqa1-38874\", \"data_path\": \"data/fewrel/fewrel_samples_960.json\", \"data_count\": 14400, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": \"123,456\", \"gpu\": \"cuda:0\", \"pid\": 531145, \"checkpoint_source\": \"Qwen3-32B-FP8 (vLLM inference, no training checkpoint)\", \"eval_data\": \"FewRel 80-rel BCS-controlled batches (25 low-BCS + 25 high-BCS)\", \"note\": \"50 batches x 3 shot conditions x 2 seeds = 300 batches total. Started via nohup (worker bypassed submit_training_job).\"}, \"conclusion\": \"success\", \"log_path\": \"/root/schema-dag-extraction/artifacts/multiseed_bcs_re/run_all.log\", \"checkpoint_path\": \"/root/schema-dag-extraction/artifacts/multiseed_bcs_re/\", \"completed_at\": \"2026-05-18T08:07:29.393Z\", \"metrics\": {\"seed_123\": {\"shot0_delta_pp\": 21.88, \"shot1_delta_pp\": 25.25, \"shot5_delta_pp\": 24.25, \"shot0_ci\": [18.79, 24.83], \"shot1_ci\": [21.08, 29.29], \"shot5_ci\": [19.96, 28.29]}, \"seed_456\": {\"shot0_delta_pp\": 22.38, \"shot1_delta_pp\": 24.38, \"shot5_delta_pp\": 25.08, \"shot0_ci\": [19.58, 24.96], \"shot1_ci\": [20.58, 28.04], \"shot5_ci\": [21.62, 28.58]}, \"finding\": \"Few-shot does NOT mitigate BCS effect; delta increases from ~22pp (0-shot) to ~25pp (5-shot)\"}}, \"exp_gemini_flash_cross_model\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T14:57:39.493Z\", \"updated_at\": \"2026-05-18T07:36:32.176Z\", \"hypothesis\": \"The two-dimensional degradation pattern (count-related decline + confusability-related type confusion) generalizes beyond open-weight models to proprietary API models. Gemini 2.5 Flash should show: (1) monotonic RE accuracy decline with count, and (2) significant BCS-accuracy correlation on extreme batches. If confirmed, the pattern is architecture-family-independent (open-weight Qwen/LLaMA + proprietary Gemini).\", \"spec\": {\"command\": \"python3 scripts/run_gemini_flash_fewrel.py --mode all --sleep 0.15\", \"server\": \"local (tmux session: gemini_flash)\", \"data_path\": \"data/fewrel/fewrel_samples_960.json\", \"data_count\": 960, \"model_name\": \"gemini-2.5-flash\", \"seed\": 42}, \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T02:11:13.608Z\", \"metrics\": {\"count_curve_spearman_rho\": -0.943, \"count_curve_spearman_p\": 0.0048, \"count_1_acc\": 0.8267, \"count_4_acc\": 0.8725, \"count_8_acc\": 0.8204, \"count_16_acc\": 0.7868, \"count_32_acc\": 0.7394, \"count_64_acc\": 0.6343, \"total_drop_count1_to_64_pp\": -19.2, \"complete_count_levels\": \"1,4,8,16,32\", \"partial_count_levels\": \"64 (11/25)\", \"missing\": \"count_80, part2_bcs\", \"note\": \"tmux resumed, still collecting remaining data\"}, \"notes\": \"Gemini 2.5 Flash count curve via local API call. Count 1-32 complete (25 batches each), count 64 partial (11/25). Data at artifacts/exp_gemini_flash/part1/count_curve_analysis.json. Count 80 and part2 BCS not yet collected.\"}, \"exp_schema_intervention\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T14:57:35.343Z\", \"updated_at\": \"2026-05-17T16:25:52.346Z\", \"hypothesis\": \"If type confusability is a causal driver of extraction errors, then renaming high-BCS type pairs to reduce embedding similarity (while preserving semantic equivalence) should improve accuracy on high-BCS batches. This tests the causal direction: SCS → confusion, not merely correlation. If treatment (renamed) accuracy on previously-high-BCS batches improves significantly over control (original names), confusability is actionable via schema design.\", \"spec\": {\"command\": \"python /root/schema-dag-extraction/scripts/run_schema_intervention.py\", \"server\": \"cqa1-38874\", \"data_path\": \"/root/schema-dag-extraction/data/fewrel/\", \"data_count\": 960, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"checkpoint_path\": \"/root/schema-dag-extraction/artifacts/exp_schema_intervention/\", \"log_path\": \"/root/schema-dag-extraction/artifacts/exp_schema_intervention/\"}, \"conclusion\": \"negative\", \"metrics\": {\"high_bcs_control\": 0.693, \"high_bcs_treatment\": 0.605, \"high_bcs_delta\": -0.0883, \"low_bcs_control\": 0.901, \"low_bcs_treatment\": 0.871, \"low_bcs_delta\": -0.0296, \"interaction_delta\": -0.0588, \"interaction_p\": \"<0.001\", \"interaction_t\": -7.23, \"rename_count_correlation_r\": -0.625, \"rename_count_correlation_p\": \"<0.001\", \"cohens_d_high\": -2.92, \"cohens_d_low\": -1.09}, \"completed_at\": \"2026-05-17T16:25:52.346Z\"}, \"exp_fewshot_bcs_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T13:18:15.923Z\", \"updated_at\": \"2026-05-17T14:08:59.677Z\", \"hypothesis\": \"Few-shot demonstrations (1-shot and 5-shot) reduce the BCS-driven confusability effect (high-BCS accuracy penalty) by grounding type boundaries through explicit examples, tested on extreme-BCS batches (low ~0.36, high ~0.80) where 0-shot delta is ~25-31pp. If delta shrinks significantly under few-shot, confusability is addressable via prompting. If delta persists, confusability is a fundamental schema-structural constraint.\", \"parent\": \"exp_fewrel_v2_n25\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate base && cd /root/schema-dag-extraction && python3 src/run_fewshot_bcs_v2.py --stage all --n_shots 0 1 5 --seed 42\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"480497\", \"log_path\": \"~/runs/schema-dag-extraction/exp_fewshot_bcs_v2.log\", \"submitted_at\": \"2026-05-17T13:39:04.351Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema-dag-extraction/data/exp_v2_re_n25/batch_groups.json\", \"data_count\": \"50 batches (25 low-BCS ~0.36, 25 high-BCS ~0.80) x 3 shots = 450 tasks\", \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"checkpoint_source\": \"Qwen3-32B-FP8 (vLLM served, no fine-tuning)\", \"eval_data\": \"FewRel extreme-BCS batches from exp_fewrel_v2_n25/batch_groups.json\", \"wall_clock_seconds\": 1727.9, \"gpu_hours\": 0.48}, \"reproduce\": {\"finished_at\": \"2026-05-17T14:03:41.759Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T14:03:47.723099+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"0shot_low_bcs\": 0.6821, \"0shot_high_bcs\": 0.4975, \"0shot_delta_pp\": 18.46, \"1shot_low_bcs\": 0.7538, \"1shot_high_bcs\": 0.5542, \"1shot_delta_pp\": 19.96, \"5shot_low_bcs\": 0.7154, \"5shot_high_bcs\": 0.4875, \"5shot_delta_pp\": 22.79, \"delta_widening_0to5shot_pp\": 4.33, \"widening_p_value\": 0.014}, \"checkpoint_path\": \"/root/schema-dag-extraction/artifacts/fewshot_bcs_v2/analysis.json\", \"log_path\": \"~/runs/schema-dag-extraction/exp_fewshot_bcs_v2.log\", \"completed_at\": \"2026-05-17T14:07:52.204Z\"}, \"exp_llama70b_cross_model\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T08:20:05.924Z\", \"updated_at\": \"2026-05-17T13:32:11.725Z\", \"hypothesis\": \"LLaMA 3.1 70B-Instruct FP8 will replicate the two-dimensional degradation pattern (count-associated recall decline + confusability-associated type confusion) observed on Qwen3-32B, with BCS-accuracy correlation direction preserved despite potential magnitude differences. 70B scale should show stronger Dimension 2 signal than 8B, closing the gap with 32B.\", \"parent\": \"exp_prompt_sensitivity\", \"spec\": {\"command\": \"bash scripts/run_llama70b_cross_model.sh\", \"server\": \"westd-24295\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"21546\", \"log_path\": \"~/runs/schema-dag-extraction/exp_llama70b_cross_model.log\", \"submitted_at\": \"2026-05-17T08:25:53.099Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema-dag-extraction/data/fewrel_80rel + fewnerd\", \"data_count\": \"~5600 FewRel + ~4000 Few-NERD instances\", \"model_name\": \"neuralmagic/Meta-Llama-3.1-70B-Instruct-FP8\", \"seed\": \"42\", \"checkpoint_source\": \"N/A - inference only, using pretrained FP8 weights\", \"eval_data\": \"FewRel 80-rel (count curves + BCS-controlled extreme batches) + Few-NERD (count curves)\", \"wall_clock_seconds\": 18297.8, \"gpu_hours\": 10.17}, \"metrics\": {\"exp1_fewrel_count_curve\": {\"count_8_to_80_decline_pp\": -30.7, \"vs_qwen3_decline_pp\": -30.1, \"note\": \"slopes near-identical, 70B absolute ~4pp lower\"}, \"exp2_bcs_controlled\": {\"count_16_low_bcs\": 0.7083, \"count_16_high_bcs\": 0.599, \"delta_pp\": 10.94, \"ci_95\": [3.02, 20.1], \"count_8_delta_pp\": -4.2, \"count_8_note\": \"BCS range too narrow, CI crosses zero\"}, \"exp3_fewnerd_unified_protocol\": {\"metric\": \"text_match recall (unified with Qwen3 protocol: offset correction + hallucination detection + greedy matching + type+text)\", \"count_2\": {\"llama70b\": 0.323, \"qwen3\": 0.515, \"delta_pp\": -19}, \"count_6\": {\"llama70b\": 0.3, \"qwen3\": 0.399, \"delta_pp\": -10}, \"count_12\": {\"llama70b\": 0.278, \"qwen3\": 0.318, \"delta_pp\": -4}, \"count_22\": {\"llama70b\": 0.252, \"qwen3\": 0.279, \"delta_pp\": -3}, \"count_44\": {\"llama70b\": 0.297, \"qwen3\": 0.309, \"delta_pp\": -1}, \"count_66\": {\"llama70b\": 0.273, \"qwen3\": 0.407, \"delta_pp\": -13}, \"precision\": {\"count_2\": {\"llama70b\": 0.446, \"qwen3\": 0.32}, \"count_6\": {\"llama70b\": 0.323, \"qwen3\": 0.248}, \"count_12\": {\"llama70b\": 0.311, \"qwen3\": 0.269}, \"count_22\": {\"llama70b\": 0.376, \"qwen3\": 0.365}, \"count_44\": {\"llama70b\": 0.468, \"qwen3\": 0.504}, \"count_66\": {\"llama70b\": 0.609, \"qwen3\": 0.633}}, \"n_batches\": 25, \"status\": \"complete\", \"result_path\": \"/root/schema-dag-extraction/artifacts/d051_llama-3.1-70b-fp8_fewnerd_n25_s42/summary_unified_protocol.json\", \"key_findings\": [\"Old values invalidated: count_2 0.962→0.323 (-64pp)\", \"70B recall lower than Qwen3 at all counts (1-19pp gap)\", \"70B more conservative: higher precision, lower recall\", \"Middle range count_12-44 close (1-4pp gap)\", \"Both models show count-driven decline pattern\"]}}, \"reproduce\": {\"finished_at\": \"2026-05-17T11:06:35.287Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T11:06:38.830667+00:00\"}]}, \"checkpoint_path\": \"/root/schema-dag-extraction/artifacts/d051_llama-3.1-70b-fp8_fewnerd_n25_s42/summary_type_text.json\", \"log_path\": \"~/runs/schema-dag-extraction/exp_llama70b_cross_model.log\", \"conclusion\": \"success\", \"notes\": \"Exp 3 Few-NERD RE-EVALUATED with unified protocol (reeval_text_match.py). Old values invalidated (used simple set intersection). New recall: count_2=0.323 (was 0.962), count_6=0.300 (was 0.900), count_12=0.278 (was 0.822), count_22=0.252 (was 0.666), count_44=0.297 (was 0.480), count_66=0.273 (was 0.339). 70B systematically lower than Qwen3 on NER recall (1-19pp) but higher precision. Count-driven decline pattern preserved. Exp 1 (FewRel RE) and Exp 2 (BCS) unaffected.\", \"completed_at\": \"2026-05-17T13:30:50.858Z\"}, \"exp_fewshot_bcs_mitigation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T11:52:38.715Z\", \"updated_at\": \"2026-05-17T13:18:02.771Z\", \"hypothesis\": \"Few-shot demonstrations (1-shot and 5-shot) reduce the BCS-driven confusability effect (high-BCS accuracy penalty) by grounding type boundaries through explicit examples. If the BCS delta (low-high) shrinks significantly under few-shot, confusability is addressable via better prompting. If delta persists, confusability is a fundamental schema-structural constraint even with demonstrations.\", \"parent\": \"exp_fewrel_formal_80rel\", \"spec\": {\"command\": \"python3 src/run_fewshot_bcs.py --stage all --n_shots 0 1 5 --counts 8 16 --n_batches 25 --seed 42\", \"server\": \"cqa1-38874\", \"gpu\": \"cuda:0\", \"pid\": \"476765\", \"log_path\": \"~/runs/schema-dag-extraction/exp_fewshot_bcs_mitigation.log\", \"submitted_at\": \"2026-05-17T12:50:35.365Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema-dag-extraction/data/fewrel_parquet/{train,val}.parquet\", \"data_count\": 56000, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"checkpoint_source\": \"Qwen/Qwen3-32B-FP8 (pretrained, no finetuning)\", \"eval_data\": \"FewRel 80-rel train+val (960 test samples, 12/rel)\", \"wall_clock_seconds\": 1644.8, \"gpu_hours\": 0.46}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-17T13:18:00.152Z\", \"notes\": \"Killed: BCS grouping contrast only 0.04 (random pool top/bottom), should be ~0.43. 0-shot delta ≈ 0pp, cannot test hypothesis. Redesigning with extreme batch configs from exp_fewrel_v2_n25 (low-BCS 0.35-0.37, high-BCS 0.79-0.81). Replaced by exp_fewshot_bcs_v2.\"}, \"exp_prompt_sensitivity\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T06:20:00.617Z\", \"updated_at\": \"2026-05-17T07:26:09.729Z\", \"hypothesis\": \"BCS-driven type confusion is a schema-structural property independent of prompt wording: the BCS-accuracy correlation direction and significance persist across diverse prompt variants (V2 baseline, instruction-rewrite, chain-of-thought, minimal), confirming that confusability effects arise from schema composition rather than prompt-specific instruction framing.\", \"parent\": \"exp002_confusability_controlled\", \"spec\": {\"command\": \"python experiments/prompt_sensitivity/run_prompt_sensitivity.py\", \"server\": \"cqa1-38874\", \"data_path\": \"FewRel 80-rel val_wiki\", \"data_count\": 56000, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"checkpoint_source\": \"N/A - inference only\", \"eval_data\": \"FewRel val_wiki 80-rel, 4 prompt variants × 2 count levels × 10 batches\"}, \"metrics\": {\"per_condition\": {\"v2_count8\": {\"mean_acc\": 0.7688, \"bcs_r\": -0.3326, \"bcs_p\": 0.348}, \"v2_count32\": {\"mean_acc\": 0.5643, \"bcs_r\": -0.6477, \"bcs_p\": 0.043, \"significant\": true}, \"instruction_rewrite_count8\": {\"mean_acc\": 0.8469, \"bcs_r\": -0.2228, \"bcs_p\": 0.536}, \"instruction_rewrite_count32\": {\"mean_acc\": 0.6617, \"bcs_r\": -0.4693, \"bcs_p\": 0.171}, \"cot_count8\": {\"mean_acc\": 0.749, \"bcs_r\": 0.2543, \"bcs_p\": 0.478}, \"cot_count32\": {\"mean_acc\": 0.6169, \"bcs_r\": -0.5661, \"bcs_p\": 0.088}, \"minimal_count8\": {\"mean_acc\": 0.8521, \"bcs_r\": -0.1703, \"bcs_p\": 0.638}, \"minimal_count32\": {\"mean_acc\": 0.6146, \"bcs_r\": -0.771, \"bcs_p\": 0.009, \"significant\": true}}, \"summary\": {\"negative_direction\": \"7/8 conditions\", \"significant_at_count32\": \"2/4 (v2 p=0.043, minimal p=0.009), 1 marginal (cot p=0.088)\", \"count_as_moderator\": \"count=32 effects stronger than count=8, consistent with BCS range compression at lower counts\", \"cot_anomaly\": \"only variant with positive r at count_8 (0.25, n.s.)\"}, \"key_finding\": \"BCS-accuracy negative correlation is directionally consistent across 4 prompt variants at count=32 (7/8 conditions negative). Prompt design modulates magnitude but does not eliminate the effect. Supports schema-structural interpretation of confusability.\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/schema-dag-extraction/experiments/prompt_sensitivity/results.json\", \"log_path\": \"~/runs/schema-dag-extraction/prompt_sensitivity.log\", \"completed_at\": \"2026-05-17T07:26:09.729Z\"}}, \"count\": 10, \"total\": 64, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2313}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2a967f76-ca6b-49ee-9cdb-7c5dbb01c1bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T13:51:14.376Z_
+
+<details><summary>↩ Tool result · `toolu_01AS3Bkj1EHkcLypWKF91umY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ROADMAP.md\", \"content\": \"# schema-dag-extraction — Research Dashboard\\n\\n> 最后更新: 2026-05-19 04:25 UTC | 更新原因: v8 final confirmed by Reviewer — writing-level improvements exhausted, structural limitations acknowledged\\n\\n## 核心方向\\nTraining-free LLM IE 中 schema 复杂度如何预测性能下降：count-related recall decline (Dim1, cross-task) + confusability-related type substitution (Dim2, RE batch-level specific, format-dependent via error channeling)。详见 paper_framing.md。\\n\\n## 当前阶段：Final Submission（DDL 2026-05-25）\\n\\n**论文状态 v8 (final)**：Reviewer 系统性审查全部 PASS，writing-level 改进空间已穷尽。\\n- Acceptance likelihood: 3.0 (Findings, 45%), 3.5 (Borderline Conference, 25%)\\n- Structural 限制（效应量 r²=1.3% + 无可行方案 + SCS novelty）不可通过写作改善\\n- Thoroughness 5.0/5 是明确加分项\\n\\n**v4→v8 增量汇总**：\\n- v5: DocRED factorial TOST 主动披露（additivity 限定为 sentence-level RE）\\n- v6: NER U-shape 假说恢复 + Limitations FewRel 限定\\n- v7: Few-shot appendix 交叉引用 + bib 匿名清理\\n- v8: Practical Implications 扩展为 4 条 actionable recommendations\\n\\n**实验状态**：62 个实验，49 completed，33 成功。Reviewer 三次独立确认 cuda:0 无高 ROI 实验可跑。\\n\\n**提交前检查（全部完成）**：\\n- [x] Claim-evidence 强度审查 — 4/4 Strong/Adequate\\n- [x] 阴性结果叙事审查 — 8/8 妥善处理\\n- [x] 6 维度系统性审查 — 全部 PASS\\n- [x] v8 压缩验证 — 无信息丢失\\n- [x] Writing-level 改进评估 — 已穷尽\\n- [x] Camera-ready 预准备 — 4 份材料\\n- [x] Rebuttal template + 8 条 talking points\\n- [x] Submission metadata\\n- [ ] **用户审阅 PDF 确认** ← 唯一阻塞项\\n- [ ] **ARR 提交**\\n\\n## GPU 预算\\n- cqa1-38874 cuda:0：空闲（Reviewer 三次确认无高 ROI 实验）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D063 | 2026-05-19 | D063: 补充 2 个低风险实验：DocRED BCS 扩样本量 + SDGD-zero MAVE | exp_docred_confusability, exp008_sdgd_v2_fewnerd |\\n| D062 | 2026-05-19 | D062: 不做 contrastive definitions 实验，v9 为最终实验版本 | — |\\n| D061 | 2026-05-19 | v9 写作冻结：scope re-scoping 完成，写作层面提分空间归零 | — |\\n| D060 | 2026-05-18 | D060: Gemini Flash Dimension 1 确认 (ρ=-0.943, p=0.0 | exp_gemini_flash_cross_model |\\n| D059 | 2026-05-17 | D059: 批准 Greedy Auto-Renaming 自动化工具实验，目标将论文从 chara | exp_schema_intervention, exp_gemini_flash_cross_model |\\n| D058 | 2026-05-17 | D058: 用户决定方案 B 冲 Main — 加 schema intervention 实验 + | exp_fewshot_bcs_v2 |\\n| D057 | 2026-05-17 | D057: Round 12 Action Matrix — 9 个 should-fix + Q3 | exp_fewshot_bcs_v2 |\\n| D056 | 2026-05-17 | D056: few-shot BCS v2 结果确认 confusability 为 schema- | exp_fewshot_bcs_v2 |\\n| D055 | 2026-05-17 | D055: 70B NER Exp 3 统一评估后 narrative 调整 — \\\"方向一致\\\" 替代 | exp_llama70b_cross_model |\\n| D054 | 2026-05-17 | D054: Round 11 Action Matrix — SYSTEMIC A (general | exp_llama70b_cross_model |\\n\\n\", \"lines\": 53}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2b670257-9548-46bd-84f7-6337408230eb",
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "e4ad0765-b871-400b-a027-01e502c7be8d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ROADMAP.md\\\", \\\"content\\\": \\\"# schema-dag-extraction — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-19 04:25 UTC | 更新原因: v8 final confirmed by Reviewer — writing-level improvements exhausted, structural limitations acknowledged\\\\n\\\\n## 核心方向\\\\nTraining-free LLM IE 中 schema 复杂度如何预测性能下降：count-related recall decline (Dim1, cross-task) + confusability-related type substitution (Dim2, RE batch-level specific, format-dependent via error channeling)。详见 paper_framing.md。\\\\n\\\\n## 当前阶段：Final Submission（DDL 2026-05-25）\\\\n\\\\n**论文状态 v8 (final)**：Reviewer 系统性审查全部 PASS，writing-level 改进空间已穷尽。\\\\n- Acceptance likelihood: 3.0 (Findings, 45%), 3.5 (Borderline Conference, 25%)\\\\n- Structural 限制（效应量 r²=1.3% + 无可行方案 + SCS novelty）不可通过写作改善\\\\n- Thoroughness 5.0/5 是明确加分项\\\\n\\\\n**v4→v8 增量汇总**：\\\\n- v5: DocRED factorial TOST 主动披露（additivity 限定为 sentence-level RE）\\\\n- v6: NER U-shape 假说恢复 + Limitations FewRel 限定\\\\n- v7: Few-shot appendix 交叉引用 + bib 匿名清理\\\\n- v8: Practical Implications 扩展为 4 条 actionable recommendations\\\\n\\\\n**实验状态**：62 个实验，49 completed，33 成功。Reviewer 三次独立确认 cuda:0 无高 ROI 实验可跑。\\\\n\\\\n**提交前检查（全部完成）**：\\\\n- [x] Claim-evidence 强度审查 — 4/4 Strong/Adequate\\\\n- [x] 阴性结果叙事审查 — 8/8 妥善处理\\\\n- [x] 6 维度系统性审查 — 全部 PASS\\\\n- [x] v8 压缩验证 — 无信息丢失\\\\n- [x] Writing-level 改进评估 — 已穷尽\\\\n- [x] Camera-ready 预准备 — 4 份材料\\\\n- [x] Rebuttal template + 8 条 talking points\\\\n- [x] Submission metadata\\\\n- [ ] **用户审阅 PDF 确认** ← 唯一阻塞项\\\\n- [ ] **ARR 提交**\\\\n\\\\n## GPU 预算\\\\n- cqa1-38874 cuda:0：空闲（Reviewer 三次确认无高 ROI 实验）\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D063 | 2026-05-19 | D063: 补充 2 个低风险实验：DocRED BCS 扩样本量 + SDGD-zero MAVE | exp_docred_confusability, exp008_sdgd_v2_fewnerd |\\\\n| D062 | 2026-05-19 | D062: 不做 contrastive definitions 实验，v9 为最终实验版本 | — |\\\\n| D061 | 2026-05-19 | v9 写作冻结：scope re-scoping 完成，写作层面提分空间归零 | — |\\\\n| D060 | 2026-05-18 | D060: Gemini Flash Dimension 1 确认 (ρ=-0.943, p=0.0 | exp_gemini_flash_cross_model |\\\\n| D059 | 2026-05-17 | D059: 批准 Greedy Auto-Renaming 自动化工具实验，目标将论文从 chara | exp_schema_intervention, exp_gemini_flash_cross_model |\\\\n| D058 | 2026-05-17 | D058: 用户决定方案 B 冲 Main — 加 schema intervention 实验 + | exp_fewshot_bcs_v2 |\\\\n| D057 | 2026-05-17 | D057: Round 12 Action Matrix — 9 个 should-fix + Q3 | exp_fewshot_bcs_v2 |\\\\n| D056 | 2026-05-17 | D056: few-shot BCS v2 结果确认 confusability 为 schema- | exp_fewshot_bcs_v2 |\\\\n| D055 | 2026-05-17 | D055: 70B NER Exp 3 统一评估后 narrative 调整 — \\\\\\\"方向一致\\\\\\\" 替代 | exp_llama70b_cross_model |\\\\n| D054 | 2026-05-17 | D054: Round 11 Action Matrix — SYSTEMIC A (general | exp_llama70b_cross_model |\\\\n\\\\n\\\", \\\"lines\\\": 53}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ROADMAP.md\", \"content\": \"# schema-dag-extraction — Research Dashboard\\n\\n> 最后更新: 2026-05-19 04:25 UTC | 更新原因: v8 final confirmed by Reviewer — writing-level improvements exhausted, structural limitations acknowledged\\n\\n## 核心方向\\nTraining-free LLM IE 中 schema 复杂度如何预测性能下降：count-related recall decline (Dim1, cross-task) + confusability-related type substitution (Dim2, RE batch-level specific, format-dependent via error channeling)。详见 paper_framing.md。\\n\\n## 当前阶段：Final Submission（DDL 2026-05-25）\\n\\n**论文状态 v8 (final)**：Reviewer 系统性审查全部 PASS，writing-level 改进空间已穷尽。\\n- Acceptance likelihood: 3.0 (Findings, 45%), 3.5 (Borderline Conference, 25%)\\n- Structural 限制（效应量 r²=1.3% + 无可行方案 + SCS novelty）不可通过写作改善\\n- Thoroughness 5.0/5 是明确加分项\\n\\n**v4→v8 增量汇总**：\\n- v5: DocRED factorial TOST 主动披露（additivity 限定为 sentence-level RE）\\n- v6: NER U-shape 假说恢复 + Limitations FewRel 限定\\n- v7: Few-shot appendix 交叉引用 + bib 匿名清理\\n- v8: Practical Implications 扩展为 4 条 actionable recommendations\\n\\n**实验状态**：62 个实验，49 completed，33 成功。Reviewer 三次独立确认 cuda:0 无高 ROI 实验可跑。\\n\\n**提交前检查（全部完成）**：\\n- [x] Claim-evidence 强度审查 — 4/4 Strong/Adequate\\n- [x] 阴性结果叙事审查 — 8/8 妥善处理\\n- [x] 6 维度系统性审查 — 全部 PASS\\n- [x] v8 压缩验证 — 无信息丢失\\n- [x] Writing-level 改进评估 — 已穷尽\\n- [x] Camera-ready 预准备 — 4 份材料\\n- [x] Rebuttal template + 8 条 talking points\\n- [x] Submission metadata\\n- [ ] **用户审阅 PDF 确认** ← 唯一阻塞项\\n- [ ] **ARR 提交**\\n\\n## GPU 预算\\n- cqa1-38874 cuda:0：空闲（Reviewer 三次确认无高 ROI 实验）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D063 | 2026-05-19 | D063: 补充 2 个低风险实验：DocRED BCS 扩样本量 + SDGD-zero MAVE | exp_docred_confusability, exp008_sdgd_v2_fewnerd |\\n| D062 | 2026-05-19 | D062: 不做 contrastive definitions 实验，v9 为最终实验版本 | — |\\n| D061 | 2026-05-19 | v9 写作冻结：scope re-scoping 完成，写作层面提分空间归零 | — |\\n| D060 | 2026-05-18 | D060: Gemini Flash Dimension 1 确认 (ρ=-0.943, p=0.0 | exp_gemini_flash_cross_model |\\n| D059 | 2026-05-17 | D059: 批准 Greedy Auto-Renaming 自动化工具实验，目标将论文从 chara | exp_schema_intervention, exp_gemini_flash_cross_model |\\n| D058 | 2026-05-17 | D058: 用户决定方案 B 冲 Main — 加 schema intervention 实验 + | exp_fewshot_bcs_v2 |\\n| D057 | 2026-05-17 | D057: Round 12 Action Matrix — 9 个 should-fix + Q3 | exp_fewshot_bcs_v2 |\\n| D056 | 2026-05-17 | D056: few-shot BCS v2 结果确认 confusability 为 schema- | exp_fewshot_bcs_v2 |\\n| D055 | 2026-05-17 | D055: 70B NER Exp 3 统一评估后 narrative 调整 — \\\"方向一致\\\" 替代 | exp_llama70b_cross_model |\\n| D054 | 2026-05-17 | D054: Round 11 Action Matrix — SYSTEMIC A (general | exp_llama70b_cross_model |\\n\\n\", \"lines\": 53}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2b670257-9548-46bd-84f7-6337408230eb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_ops_check_maven_status_20260519T134808]: Worker worker_ops_check_maven_status_20260519T134808 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "e4ad0765-b871-400b-a027-01e502c7be8d",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review Maven status check worker completion",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-19T13:51:27.780Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The worker `worker_ops_check_maven_status_20260519T134808` completed. Looking at the registry, I see `exp_sdgd_zero_maven` is in `PREPARING` status with notes about results so far. Let me check what the worker actually did - it seems to be checking the status of the MAVEN experiment. Let me also check the report and look at what's happening with the two PREPARING experiments.
+
+Key observations so far:
+1. `exp_sdgd_zero_maven` - PREPARING, running on cqa1-38874 cuda:0, PID 610111. Notes say 4/5 arms done, last random_batch seed in progress. 
+
+The results show single_pass is outperforming both sdgd_zero and random_batch by a significant margin. Meanwhile, `exp_docred_bcs_expanded` hit an out-of-memory error after processing just 7 of 40 batches. I need to verify the MAVEN experiment is actually running on the GPU, check its logs, and confirm it's using the correct GPU allocation. The project is in final submission phase with a deadline of May 25, 2026.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e4ad0765-b871-400b-a027-01e502c7be8d",
+  "isSidechain": false,
+  "requestId": "req_011CbC34yS7xauWJfwPHK9Ce",
+  "type": "assistant",
+  "uuid": "4ad5ad9d-9013-4d21-bc26-3ebbaf5eb051",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FTj2qrHxVm4M3YZcASAtQc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10077,
+      "cache_read_input_tokens": 33731,
+      "output_tokens": 735,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10077,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 735,
+          "cache_read_input_tokens": 33731,
+          "cache_creation_input_tokens": 10077,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10077
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-19T13:51:27.975Z_
+
+Worker 完成了 MAVEN 状态检查。需要核实两个 PREPARING 实验的实际运行状况。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ad5ad9d-9013-4d21-bc26-3ebbaf5eb051",
+  "isSidechain": false,
+  "requestId": "req_011CbC34yS7xauWJfwPHK9Ce",
+  "type": "assistant",
+  "uuid": "38332e0e-c24b-4e63-9044-3a6239da0c66",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FTj2qrHxVm4M3YZcASAtQc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10077,
+      "cache_read_input_tokens": 33731,
+      "output_tokens": 735,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10077,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 735,
+          "cache_read_input_tokens": 33731,
+          "cache_creation_input_tokens": 10077,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10077
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-19T13:51:29.043Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011AGHE985kvTCFwcpoUg48y`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "38332e0e-c24b-4e63-9044-3a6239da0c66",
+  "isSidechain": false,
+  "requestId": "req_011CbC34yS7xauWJfwPHK9Ce",
+  "type": "assistant",
+  "uuid": "45915603-b15b-4ea9-9ee9-b478d8d5b9f6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FTj2qrHxVm4M3YZcASAtQc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10077,
+      "cache_read_input_tokens": 33731,
+      "output_tokens": 735,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10077,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 735,
+          "cache_read_input_tokens": 33731,
+          "cache_creation_input_tokens": 10077,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10077
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-19T13:51:29.893Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014wumymMA6VpPUx7oCqH1ak`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ps -p 610111 -o pid,stat,etime,cmd --no-headers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "45915603-b15b-4ea9-9ee9-b478d8d5b9f6",
+  "isSidechain": false,
+  "requestId": "req_011CbC34yS7xauWJfwPHK9Ce",
+  "type": "assistant",
+  "uuid": "7ecaa7c4-d84d-4b21-992e-cb5c12b8c167",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FTj2qrHxVm4M3YZcASAtQc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10077,
+      "cache_read_input_tokens": 33731,
+      "output_tokens": 735,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10077,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 735,
+          "cache_read_input_tokens": 33731,
+          "cache_creation_input_tokens": 10077,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10077
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T13:51:30.252Z_
+
+<details><summary>↩ Tool result · `toolu_011AGHE985kvTCFwcpoUg48y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 MiB, 97887 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.19}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "45915603-b15b-4ea9-9ee9-b478d8d5b9f6",
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "1447116a-1148-4d7b-8899-ee7cbc724b5d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 MiB, 97887 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.19}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 MiB, 97887 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.19}}"
+    }
+  },
+  "sourceToolAssistantUUID": "45915603-b15b-4ea9-9ee9-b478d8d5b9f6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T13:51:30.476Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs · `toolu_01Lva6rsKxUNpBUwPTfok9TD`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "log_path": "~/runs/schema-dag-extraction/exp_sdgd_zero_maven.log",
+  "n_lines": "40"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1447116a-1148-4d7b-8899-ee7cbc724b5d",
+  "isSidechain": false,
+  "requestId": "req_011CbC34yS7xauWJfwPHK9Ce",
+  "type": "assistant",
+  "uuid": "f7f9baff-b26c-4e88-baef-b2c75c24b7ed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FTj2qrHxVm4M3YZcASAtQc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10077,
+      "cache_read_input_tokens": 33731,
+      "output_tokens": 735,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10077,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 735,
+          "cache_read_input_tokens": 33731,
+          "cache_creation_input_tokens": 10077,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10077
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T13:51:30.751Z_
+
+<details><summary>↩ Tool result · `toolu_014wumymMA6VpPUx7oCqH1ak`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7ecaa7c4-d84d-4b21-992e-cb5c12b8c167",
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "8bfa1fba-2030-4e89-853f-50ca792af62f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  },
+  "sourceToolAssistantUUID": "7ecaa7c4-d84d-4b21-992e-cb5c12b8c167",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T13:51:31.408Z_
+
+<details><summary>↩ Tool result · `toolu_01Lva6rsKxUNpBUwPTfok9TD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"Processed prompts:   0%|          | 0/1000 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   4%|▍         | 45/1000 [00:00<00:09, 97.68it/s, est. speed input: 16257.31 toks/s, output: 195.37 toks/s]\\rProcessed prompts:   9%|▉         | 90/1000 [00:02<00:27, 33.23it/s, est. speed input: 6017.37 toks/s, output: 73.77 toks/s]  \\rProcessed prompts:  18%|█▊        | 177/1000 [00:04<00:20, 39.25it/s, est. speed input: 6612.83 toks/s, output: 80.51 toks/s]\\rProcessed prompts:  33%|███▎      | 326/1000 [00:06<00:12, 55.18it/s, est. speed input: 8472.50 toks/s, output: 102.88 toks/s]\\rProcessed prompts:  49%|████▉     | 494/1000 [00:07<00:06, 77.29it/s, est. speed input: 10670.67 toks/s, output: 129.73 toks/s]\\rProcessed prompts:  64%|██████▎   | 636/1000 [00:07<00:03, 114.69it/s, est. speed input: 13426.41 toks/s, output: 162.05 toks/s]\\rProcessed prompts:  78%|███████▊  | 779/1000 [00:08<00:01, 161.13it/s, est. speed input: 16044.72 toks/s, output: 193.09 toks/s]\\rProcessed prompts:  84%|████████▎ | 835/1000 [00:09<00:01, 95.41it/s, est. speed input: 14042.91 toks/s, output: 170.62 toks/s] \\rProcessed prompts:  86%|████████▋ | 863/1000 [00:10<00:01, 77.93it/s, est. speed input: 13291.19 toks/s, output: 199.89 toks/s]\\rProcessed prompts:  88%|████████▊ | 884/1000 [00:11<00:01, 79.14it/s, est. speed input: 13339.95 toks/s, output: 228.36 toks/s]\\rProcessed prompts:  90%|█████████ | 901/1000 [00:11<00:01, 77.93it/s, est. speed input: 13301.92 toks/s, output: 248.73 toks/s]\\rProcessed prompts:  92%|█████████▏| 915/1000 [00:11<00:01, 67.07it/s, est. speed input: 13002.01 toks/s, output: 260.39 toks/s]\\rProcessed prompts:  93%|█████████▎| 926/1000 [00:13<00:02, 32.99it/s, est. speed input: 11480.00 toks/s, output: 245.22 toks/s]\\rProcessed prompts:  93%|█████████▎| 934/1000 [00:13<00:02, 30.67it/s, est. speed input: 11227.98 toks/s, output: 255.53 toks/s]\\rProcessed prompts:  94%|█████████▍| 940/1000 [00:14<00:01, 30.42it/s, est. speed input: 11132.47 toks/s, output: 264.73 toks/s]\\rProcessed prompts:  94%|█████████▍| 945/1000 [00:14<00:02, 26.09it/s, est. speed input: 10869.25 toks/s, output: 268.35 toks/s]\\rProcessed prompts:  95%|█████████▍| 949/1000 [00:15<00:02, 17.56it/s, est. speed input: 10314.70 toks/s, output: 263.04 toks/s]\\rProcessed prompts:  95%|█████████▌| 952/1000 [00:16<00:03, 12.49it/s, est. speed input: 9811.04 toks/s, output: 256.98 toks/s] \\rProcessed prompts:  96%|█████████▌| 955/1000 [00:16<00:03, 11.40it/s, est. speed input: 9598.70 toks/s, output: 258.75 toks/s]\\rProcessed prompts:  96%|█████████▌| 958/1000 [00:16<00:03, 11.79it/s, est. speed input: 9513.44 toks/s, output: 263.47 toks/s]\\rProcessed prompts:  96%|█████████▌| 960/1000 [00:17<00:03, 11.47it/s, est. speed input: 9418.85 toks/s, output: 265.61 toks/s]\\rProcessed prompts:  96%|█████████▋| 965/1000 [00:17<00:02, 13.73it/s, est. speed input: 9359.49 toks/s, output: 275.67 toks/s]\\rProcessed prompts:  97%|█████████▋| 972/1000 [00:17<00:01, 17.89it/s, est. speed input: 9322.21 toks/s, output: 290.95 toks/s]\\rProcessed prompts:  98%|█████████▊| 976/1000 [00:17<00:01, 18.33it/s, est. speed input: 9257.08 toks/s, output: 298.22 toks/s]\\rProcessed prompts:  98%|█████████▊| 979/1000 [00:17<00:01, 17.50it/s, est. speed input: 9183.07 toks/s, output: 302.96 toks/s]\\rProcessed prompts:  98%|█████████▊| 981/1000 [00:18<00:01, 15.55it/s, est. speed input: 9100.60 toks/s, output: 305.27 toks/s]\\rProcessed prompts:  98%|█████████▊| 983/1000 [00:19<00:02,  6.85it/s, est. speed input: 8645.25 toks/s, output: 294.92 toks/s]\\rProcessed prompts:  98%|█████████▊| 985/1000 [00:19<00:02,  5.62it/s, est. speed input: 8403.71 toks/s, output: 292.07 toks/s]\\rProcessed prompts:  99%|█████████▊| 986/1000 [00:19<00:02,  5.53it/s, est. speed input: 8328.66 toks/s, output: 292.02 toks/s]\\rProcessed prompts:  99%|█████████▊| 987/1000 [00:20<00:02,  5.45it/s, est. speed input: 8254.93 toks/s, output: 292.08 toks/s]\\rProcessed prompts:  99%|█████████▉| 988/1000 [00:20<00:02,  5.\", \"\", \"... [截断: 输出过长，省略 74019 字符] ...\", \"\", \"/s, output: 491.94 toks/s]\\rProcessed prompts:  96%|█████████▌| 957/1000 [00:23<00:04, 10.43it/s, est. speed input: 8616.00 toks/s, output: 488.12 toks/s]\\rProcessed prompts:  96%|█████████▌| 960/1000 [00:24<00:03, 11.39it/s, est. speed input: 8571.10 toks/s, output: 491.08 toks/s]\\rProcessed prompts:  96%|█████████▋| 965/1000 [00:24<00:02, 14.54it/s, est. speed input: 8547.72 toks/s, output: 498.40 toks/s]\\rProcessed prompts:  97%|█████████▋| 971/1000 [00:24<00:01, 14.65it/s, est. speed input: 8460.64 toks/s, output: 504.22 toks/s]\\rProcessed prompts:  97%|█████████▋| 973/1000 [00:24<00:01, 13.59it/s, est. speed input: 8410.29 toks/s, output: 504.92 toks/s]\\rProcessed prompts:  98%|█████████▊| 976/1000 [00:25<00:01, 13.89it/s, est. speed input: 8369.60 toks/s, output: 508.05 toks/s]\\rProcessed prompts:  98%|████████���▊| 980/1000 [00:25<00:01, 10.18it/s, est. speed input: 8209.19 toks/s, output: 505.64 toks/s]\\rProcessed prompts:  98%|█████████▊| 982/1000 [00:26<00:02,  6.43it/s, est. speed input: 7979.10 toks/s, output: 495.67 toks/s]\\rProcessed prompts:  98%|█████████▊| 985/1000 [00:26<00:01,  7.72it/s, est. speed input: 7946.04 toks/s, output: 499.73 toks/s]\\rProcessed prompts:  99%|█████████▉| 988/1000 [00:27<00:01,  7.66it/s, est. speed input: 7855.56 toks/s, output: 500.02 toks/s]\\rProcessed prompts:  99%|█████████▉| 991/1000 [00:28<00:01,  5.28it/s, est. speed input: 7606.00 toks/s, output: 490.15 toks/s]\\rProcessed prompts:  99%|█████████▉| 993/1000 [00:28<00:01,  5.23it/s, est. speed input: 7515.98 toks/s, output: 488.78 toks/s]\\rProcessed prompts:  99%|█████████▉| 994/1000 [00:28<00:01,  4.56it/s, est. speed input: 7421.43 toks/s, output: 484.83 toks/s]\\rProcessed prompts: 100%|█████████▉| 995/1000 [00:29<00:01,  4.64it/s, est. speed input: 7378.75 toks/s, output: 484.25 toks/s]\\rProcessed prompts: 100%|█████████▉| 996/1000 [00:29<00:00,  4.69it/s, est. speed input: 7336.81 toks/s, output: 483.72 toks/s]\\rProcessed prompts: 100%|█████████▉| 997/1000 [00:30<00:01,  2.97it/s, est. speed input: 7150.40 toks/s, output: 473.75 toks/s]\\rProcessed prompts: 100%|█████████▉| 998/1000 [00:30<00:00,  2.53it/s, est. speed input: 7021.09 toks/s, output: 467.46 toks/s]\\rProcessed prompts: 100%|█████████▉| 999/1000 [00:31<00:00,  1.69it/s, est. speed input: 6769.26 toks/s, output: 453.20 toks/s]\\rProcessed prompts: 100%|██████████| 1000/1000 [00:32<00:00,  2.06it/s, est. speed input: 6735.98 toks/s, output: 453.39 toks/s]\\rProcessed prompts: 100%|██████████| 1000/1000 [00:32<00:00,  2.06it/s, est. speed input: 6735.98 toks/s, output: 453.39 toks/s]\\rProcessed prompts: 100%|██████████| 1000/1000 [00:32<00:00, 31.16it/s, est. speed input: 6735.98 toks/s, output: 453.39 toks/s]\", \"2026-05-19 21:49:49,533 INFO Random (seed=44): F1=0.1045 P=0.0733 R=0.1815\", \"2026-05-19 21:49:49,627 INFO All results saved to /root/schema-dag-extraction/artifacts/exp_sdgd_zero_maven\", \"(EngineCore pid=610513) INFO 05-19 21:49:49 [core.py:1238] Shutdown initiated (timeout=0)\", \"(EngineCore pid=610513) INFO 05-19 21:49:49 [core.py:1261] Shutdown complete\", \"\", \"======================================================================\", \"SDGD-zero on MAVEN: Three-arm Comparison\", \"======================================================================\", \"Dataset: MAVEN (168 event types, 1000 samples)\", \"Model: /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\", \"----------------------------------------------------------------------\", \"Mode                       Precision     Recall         F1\", \"----------------------------------------------------------------------\", \"single_pass                   0.2866     0.1618     0.2068\", \"random_batch (avg)            0.0820     0.1769     0.1114\", \"sdgd_zero                     0.0911     0.1907     0.1233\", \"----------------------------------------------------------------------\", \"SDGD vs SP:   dF1=-0.0835  dP=-0.1955  dR=+0.0289\", \"RB   vs SP:   dF1=-0.0955  dP=-0.2046  dR=+0.0151\", \"SDGD merge:   5242 raw -> 5212 merged\", \"======================================================================\", \"EXIT_CODE=129\"], \"line_count\": 27, \"log_path\": \"~/runs/schema-dag-extraction/exp_sdgd_zero_maven.log\", \"anomalies\": []}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f7f9baff-b26c-4e88-baef-b2c75c24b7ed",
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "b27665c3-6fa4-4cc6-a60c-89c1ec221acd",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"Processed prompts:   0%|          | 0/1000 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\\\rProcessed prompts:   4%|▍         | 45/1000 [00:00<00:09, 97.68it/s, est. speed input: 16257.31 toks/s, output: 195.37 toks/s]\\\\rProcessed prompts:   9%|▉         | 90/1000 [00:02<00:27, 33.23it/s, est. speed input: 6017.37 toks/s, output: 73.77 toks/s]  \\\\rProcessed prompts:  18%|█▊        | 177/1000 [00:04<00:20, 39.25it/s, est. speed input: 6612.83 toks/s, output: 80.51 toks/s]\\\\rProcessed prompts:  33%|███▎      | 326/1000 [00:06<00:12, 55.18it/s, est. speed input: 8472.50 toks/s, output: 102.88 toks/s]\\\\rProcessed prompts:  49%|████▉     | 494/1000 [00:07<00:06, 77.29it/s, est. speed input: 10670.67 toks/s, output: 129.73 toks/s]\\\\rProcessed prompts:  64%|██████▎   | 636/1000 [00:07<00:03, 114.69it/s, est. speed input: 13426.41 toks/s, output: 162.05 toks/s]\\\\rProcessed prompts:  78%|███████▊  | 779/1000 [00:08<00:01, 161.13it/s, est. speed input: 16044.72 toks/s, output: 193.09 toks/s]\\\\rProcessed prompts:  84%|████████▎ | 835/1000 [00:09<00:01, 95.41it/s, est. speed input: 14042.91 toks/s, output: 170.62 toks/s] \\\\rProcessed prompts:  86%|████████▋ | 863/1000 [00:10<00:01, 77.93it/s, est. speed input: 13291.19 toks/s, output: 199.89 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 884/1000 [00:11<00:01, 79.14it/s, est. speed input: 13339.95 toks/s, output: 228.36 toks/s]\\\\rProcessed prompts:  90%|█████████ | 901/1000 [00:11<00:01, 77.93it/s, est. speed input: 13301.92 toks/s, output: 248.73 toks/s]\\\\rProcessed prompts:  92%|█████████▏| 915/1000 [00:11<00:01, 67.07it/s, est. speed input: 13002.01 toks/s, output: 260.39 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 926/1000 [00:13<00:02, 32.99it/s, est. speed input: 11480.00 toks/s, output: 245.22 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 934/1000 [00:13<00:02, 30.67it/s, est. speed input: 11227.98 toks/s, output: 255.53 toks/s]\\\\rProcessed prompts:  94%|█████████▍| 940/1000 [00:14<00:01, 30.42it/s, est. speed input: 11132.47 toks/s, output: 264.73 toks/s]\\\\rProcessed prompts:  94%|█████████▍| 945/1000 [00:14<00:02, 26.09it/s, est. speed input: 10869.25 toks/s, output: 268.35 toks/s]\\\\rProcessed prompts:  95%|█████████▍| 949/1000 [00:15<00:02, 17.56it/s, est. speed input: 10314.70 toks/s, output: 263.04 toks/s]\\\\rProcessed prompts:  95%|█████████▌| 952/1000 [00:16<00:03, 12.49it/s, est. speed input: 9811.04 toks/s, output: 256.98 toks/s] \\\\rProcessed prompts:  96%|█████████▌| 955/1000 [00:16<00:03, 11.40it/s, est. speed input: 9598.70 toks/s, output: 258.75 toks/s]\\\\rProcessed prompts:  96%|█████████▌| 958/1000 [00:16<00:03, 11.79it/s, est. speed input: 9513.44 toks/s, output: 263.47 toks/s]\\\\rProcessed prompts:  96%|█████████▌| 960/1000 [00:17<00:03, 11.47it/s, est. speed input: 9418.85 toks/s, output: 265.61 toks/s]\\\\rProcessed prompts:  96%|█████████▋| 965/1000 [00:17<00:02, 13.73it/s, est. speed input: 9359.49 toks/s, output: 275.67 toks/s]\\\\rProcessed prompts:  97%|█████████▋| 972/1000 [00:17<00:01, 17.89it/s, est. speed input: 9322.21 toks/s, output: 290.95 toks/s]\\\\rProcessed prompts:  98%|█████████▊| 976/1000 [00:17<00:01, 18.33it/s, est. speed input: 9257.08 toks/s, output: 298.22 toks/s]\\\\rProcessed prompts:  98%|█████████▊| 979/1000 [00:17<00:01, 17.50it/s, est. speed input: 9183.07 toks/s, output: 302.96 toks/s]\\\\rProcessed prompts:  98%|█████████▊| 981/1000 [00:18<00:01, 15.55it/s, est. speed input: 9100.60 toks/s, output: 305.27 toks/s]\\\\rProcessed prompts:  98%|█████████▊| 983/1000 [00:19<00:02,  6.85it/s, est. speed input: 8645.25 toks/s, output: 294.92 toks/s]\\\\rProcessed prompts:  98%|█████████▊| 985/1000 [00:19<00:02,  5.62it/s, est. speed input: 8403.71 toks/s, output: 292.07 toks/s]\\\\rProcessed prompts:  99%|█████████▊| 986/1000 [00:19<00:02,  5.53it/s, est. speed input: 8328.66 toks/s, output: 292.02 toks/s]\\\\rProcessed prompts:  99%|█████████▊| 987/1000 [00:20<00:02,  5.45it/s, est. speed input: 8254.93 toks/s, output: 292.08 toks/s]\\\\rProcessed prompts:  99%|█████████▉| 988/1000 [00:20<00:02,  5.\\\", \\\"\\\", \\\"... [截断: 输出过长，省略 74019 字符] ...\\\", \\\"\\\", \\\"/s, output: 491.94 toks/s]\\\\rProcessed prompts:  96%|█████████▌| 957/1000 [00:23<00:04, 10.43it/s, est. speed input: 8616.00 toks/s, output: 488.12 toks/s]\\\\rProcessed prompts:  96%|█████████▌| 960/1000 [00:24<00:03, 11.39it/s, est. speed input: 8571.10 toks/s, output: 491.08 toks/s]\\\\rProcessed prompts:  96%|█████████▋| 965/1000 [00:24<00:02, 14.54it/s, est. speed input: 8547.72 toks/s, output: 498.40 toks/s]\\\\rProcessed prompts:  97%|█████████▋| 971/1000 [00:24<00:01, 14.65it/s, est. speed input: 8460.64 toks/s, output: 504.22 toks/s]\\\\rProcessed prompts:  97%|█████████▋| 973/1000 [00:24<00:01, 13.59it/s, est. speed input: 8410.29 toks/s, output: 504.92 toks/s]\\\\rProcessed prompts:  98%|█████████▊| 976/1000 [00:25<00:01, 13.89it/s, est. speed input: 8369.60 toks/s, output: 508.05 toks/s]\\\\rProcessed prompts:  98%|████████���▊| 980/1000 [00:25<00:01, 10.18it/s, est. speed input: 8209.19 toks/s, output: 505.64 toks/s]\\\\rProcessed prompts:  98%|█████████▊| 982/1000 [00:26<00:02,  6.43it/s, est. speed input: 7979.10 toks/s, output: 495.67 toks/s]\\\\rProcessed prompts:  98%|█████████▊| 985/1000 [00:26<00:01,  7.72it/s, est. speed input: 7946.04 toks/s, output: 499.73 toks/s]\\\\rProcessed prompts:  99%|█████████▉| 988/1000 [00:27<00:01,  7.66it/s, est. speed input: 7855.56 toks/s, output: 500.02 toks/s]\\\\rProcessed prompts:  99%|█████████▉| 991/1000 [00:28<00:01,  5.28it/s, est. speed input: 7606.00 toks/s, output: 490.15 toks/s]\\\\rProcessed prompts:  99%|█████████▉| 993/1000 [00:28<00:01,  5.23it/s, est. speed input: 7515.98 toks/s, output: 488.78 toks/s]\\\\rProcessed prompts:  99%|█████████▉| 994/1000 [00:28<00:01,  4.56it/s, est. speed input: 7421.43 toks/s, output: 484.83 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 995/1000 [00:29<00:01,  4.64it/s, est. speed input: 7378.75 toks/s, output: 484.25 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 996/1000 [00:29<00:00,  4.69it/s, est. speed input: 7336.81 toks/s, output: 483.72 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 997/1000 [00:30<00:01,  2.97it/s, est. speed input: 7150.40 toks/s, output: 473.75 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 998/1000 [00:30<00:00,  2.53it/s, est. speed input: 7021.09 toks/s, output: 467.46 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 999/1000 [00:31<00:00,  1.69it/s, est. speed input: 6769.26 toks/s, output: 453.20 toks/s]\\\\rProcessed prompts: 100%|██████████| 1000/1000 [00:32<00:00,  2.06it/s, est. speed input: 6735.98 toks/s, output: 453.39 toks/s]\\\\rProcessed prompts: 100%|██████████| 1000/1000 [00:32<00:00,  2.06it/s, est. speed input: 6735.98 toks/s, output: 453.39 toks/s]\\\\rProcessed prompts: 100%|██████████| 1000/1000 [00:32<00:00, 31.16it/s, est. speed input: 6735.98 toks/s, output: 453.39 toks/s]\\\", \\\"2026-05-19 21:49:49,533 INFO Random (seed=44): F1=0.1045 P=0.0733 R=0.1815\\\", \\\"2026-05-19 21:49:49,627 INFO All results saved to /root/schema-dag-extraction/artifacts/exp_sdgd_zero_maven\\\", \\\"(EngineCore pid=610513) INFO 05-19 21:49:49 [core.py:1238] Shutdown initiated (timeout=0)\\\", \\\"(EngineCore pid=610513) INFO 05-19 21:49:49 [core.py:1261] Shutdown complete\\\", \\\"\\\", \\\"======================================================================\\\", \\\"SDGD-zero on MAVEN: Three-arm Comparison\\\", \\\"======================================================================\\\", \\\"Dataset: MAVEN (168 event types, 1000 samples)\\\", \\\"Model: /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\\", \\\"----------------------------------------------------------------------\\\", \\\"Mode                       Precision     Recall         F1\\\", \\\"----------------------------------------------------------------------\\\", \\\"single_pass                   0.2866     0.1618     0.2068\\\", \\\"random_batch (avg)            0.0820     0.1769     0.1114\\\", \\\"sdgd_zero                     0.0911     0.1907     0.1233\\\", \\\"----------------------------------------------------------------------\\\", \\\"SDGD vs SP:   dF1=-0.0835  dP=-0.1955  dR=+0.0289\\\", \\\"RB   vs SP:   dF1=-0.0955  dP=-0.2046  dR=+0.0151\\\", \\\"SDGD merge:   5242 raw -> 5212 merged\\\", \\\"======================================================================\\\", \\\"EXIT_CODE=129\\\"], \\\"line_count\\\": 27, \\\"log_path\\\": \\\"~/runs/schema-dag-extraction/exp_sdgd_zero_maven.log\\\", \\\"anomalies\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"lines\": [\"Processed prompts:   0%|          | 0/1000 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts:   4%|▍         | 45/1000 [00:00<00:09, 97.68it/s, est. speed input: 16257.31 toks/s, output: 195.37 toks/s]\\rProcessed prompts:   9%|▉         | 90/1000 [00:02<00:27, 33.23it/s, est. speed input: 6017.37 toks/s, output: 73.77 toks/s]  \\rProcessed prompts:  18%|█▊        | 177/1000 [00:04<00:20, 39.25it/s, est. speed input: 6612.83 toks/s, output: 80.51 toks/s]\\rProcessed prompts:  33%|███▎      | 326/1000 [00:06<00:12, 55.18it/s, est. speed input: 8472.50 toks/s, output: 102.88 toks/s]\\rProcessed prompts:  49%|████▉     | 494/1000 [00:07<00:06, 77.29it/s, est. speed input: 10670.67 toks/s, output: 129.73 toks/s]\\rProcessed prompts:  64%|██████▎   | 636/1000 [00:07<00:03, 114.69it/s, est. speed input: 13426.41 toks/s, output: 162.05 toks/s]\\rProcessed prompts:  78%|███████▊  | 779/1000 [00:08<00:01, 161.13it/s, est. speed input: 16044.72 toks/s, output: 193.09 toks/s]\\rProcessed prompts:  84%|████████▎ | 835/1000 [00:09<00:01, 95.41it/s, est. speed input: 14042.91 toks/s, output: 170.62 toks/s] \\rProcessed prompts:  86%|████████▋ | 863/1000 [00:10<00:01, 77.93it/s, est. speed input: 13291.19 toks/s, output: 199.89 toks/s]\\rProcessed prompts:  88%|████████▊ | 884/1000 [00:11<00:01, 79.14it/s, est. speed input: 13339.95 toks/s, output: 228.36 toks/s]\\rProcessed prompts:  90%|█████████ | 901/1000 [00:11<00:01, 77.93it/s, est. speed input: 13301.92 toks/s, output: 248.73 toks/s]\\rProcessed prompts:  92%|█████████▏| 915/1000 [00:11<00:01, 67.07it/s, est. speed input: 13002.01 toks/s, output: 260.39 toks/s]\\rProcessed prompts:  93%|█████████▎| 926/1000 [00:13<00:02, 32.99it/s, est. speed input: 11480.00 toks/s, output: 245.22 toks/s]\\rProcessed prompts:  93%|█████████▎| 934/1000 [00:13<00:02, 30.67it/s, est. speed input: 11227.98 toks/s, output: 255.53 toks/s]\\rProcessed prompts:  94%|█████████▍| 940/1000 [00:14<00:01, 30.42it/s, est. speed input: 11132.47 toks/s, output: 264.73 toks/s]\\rProcessed prompts:  94%|█████████▍| 945/1000 [00:14<00:02, 26.09it/s, est. speed input: 10869.25 toks/s, output: 268.35 toks/s]\\rProcessed prompts:  95%|█████████▍| 949/1000 [00:15<00:02, 17.56it/s, est. speed input: 10314.70 toks/s, output: 263.04 toks/s]\\rProcessed prompts:  95%|█████████▌| 952/1000 [00:16<00:03, 12.49it/s, est. speed input: 9811.04 toks/s, output: 256.98 toks/s] \\rProcessed prompts:  96%|█████████▌| 955/1000 [00:16<00:03, 11.40it/s, est. speed input: 9598.70 toks/s, output: 258.75 toks/s]\\rProcessed prompts:  96%|█████████▌| 958/1000 [00:16<00:03, 11.79it/s, est. speed input: 9513.44 toks/s, output: 263.47 toks/s]\\rProcessed prompts:  96%|█████████▌| 960/1000 [00:17<00:03, 11.47it/s, est. speed input: 9418.85 toks/s, output: 265.61 toks/s]\\rProcessed prompts:  96%|█████████▋| 965/1000 [00:17<00:02, 13.73it/s, est. speed input: 9359.49 toks/s, output: 275.67 toks/s]\\rProcessed prompts:  97%|█████████▋| 972/1000 [00:17<00:01, 17.89it/s, est. speed input: 9322.21 toks/s, output: 290.95 toks/s]\\rProcessed prompts:  98%|█████████▊| 976/1000 [00:17<00:01, 18.33it/s, est. speed input: 9257.08 toks/s, output: 298.22 toks/s]\\rProcessed prompts:  98%|█████████▊| 979/1000 [00:17<00:01, 17.50it/s, est. speed input: 9183.07 toks/s, output: 302.96 toks/s]\\rProcessed prompts:  98%|█████████▊| 981/1000 [00:18<00:01, 15.55it/s, est. speed input: 9100.60 toks/s, output: 305.27 toks/s]\\rProcessed prompts:  98%|█████████▊| 983/1000 [00:19<00:02,  6.85it/s, est. speed input: 8645.25 toks/s, output: 294.92 toks/s]\\rProcessed prompts:  98%|█████████▊| 985/1000 [00:19<00:02,  5.62it/s, est. speed input: 8403.71 toks/s, output: 292.07 toks/s]\\rProcessed prompts:  99%|█████████▊| 986/1000 [00:19<00:02,  5.53it/s, est. speed input: 8328.66 toks/s, output: 292.02 toks/s]\\rProcessed prompts:  99%|█████████▊| 987/1000 [00:20<00:02,  5.45it/s, est. speed input: 8254.93 toks/s, output: 292.08 toks/s]\\rProcessed prompts:  99%|█████████▉| 988/1000 [00:20<00:02,  5.\", \"\", \"... [截断: 输出过长，省略 74019 字符] ...\", \"\", \"/s, output: 491.94 toks/s]\\rProcessed prompts:  96%|█████████▌| 957/1000 [00:23<00:04, 10.43it/s, est. speed input: 8616.00 toks/s, output: 488.12 toks/s]\\rProcessed prompts:  96%|█████████▌| 960/1000 [00:24<00:03, 11.39it/s, est. speed input: 8571.10 toks/s, output: 491.08 toks/s]\\rProcessed prompts:  96%|█████████▋| 965/1000 [00:24<00:02, 14.54it/s, est. speed input: 8547.72 toks/s, output: 498.40 toks/s]\\rProcessed prompts:  97%|█████████▋| 971/1000 [00:24<00:01, 14.65it/s, est. speed input: 8460.64 toks/s, output: 504.22 toks/s]\\rProcessed prompts:  97%|█████████▋| 973/1000 [00:24<00:01, 13.59it/s, est. speed input: 8410.29 toks/s, output: 504.92 toks/s]\\rProcessed prompts:  98%|█████████▊| 976/1000 [00:25<00:01, 13.89it/s, est. speed input: 8369.60 toks/s, output: 508.05 toks/s]\\rProcessed prompts:  98%|████████���▊| 980/1000 [00:25<00:01, 10.18it/s, est. speed input: 8209.19 toks/s, output: 505.64 toks/s]\\rProcessed prompts:  98%|█████████▊| 982/1000 [00:26<00:02,  6.43it/s, est. speed input: 7979.10 toks/s, output: 495.67 toks/s]\\rProcessed prompts:  98%|█████████▊| 985/1000 [00:26<00:01,  7.72it/s, est. speed input: 7946.04 toks/s, output: 499.73 toks/s]\\rProcessed prompts:  99%|█████████▉| 988/1000 [00:27<00:01,  7.66it/s, est. speed input: 7855.56 toks/s, output: 500.02 toks/s]\\rProcessed prompts:  99%|█████████▉| 991/1000 [00:28<00:01,  5.28it/s, est. speed input: 7606.00 toks/s, output: 490.15 toks/s]\\rProcessed prompts:  99%|█████████▉| 993/1000 [00:28<00:01,  5.23it/s, est. speed input: 7515.98 toks/s, output: 488.78 toks/s]\\rProcessed prompts:  99%|█████████▉| 994/1000 [00:28<00:01,  4.56it/s, est. speed input: 7421.43 toks/s, output: 484.83 toks/s]\\rProcessed prompts: 100%|█████████▉| 995/1000 [00:29<00:01,  4.64it/s, est. speed input: 7378.75 toks/s, output: 484.25 toks/s]\\rProcessed prompts: 100%|█████████▉| 996/1000 [00:29<00:00,  4.69it/s, est. speed input: 7336.81 toks/s, output: 483.72 toks/s]\\rProcessed prompts: 100%|█████████▉| 997/1000 [00:30<00:01,  2.97it/s, est. speed input: 7150.40 toks/s, output: 473.75 toks/s]\\rProcessed prompts: 100%|█████████▉| 998/1000 [00:30<00:00,  2.53it/s, est. speed input: 7021.09 toks/s, output: 467.46 toks/s]\\rProcessed prompts: 100%|█████████▉| 999/1000 [00:31<00:00,  1.69it/s, est. speed input: 6769.26 toks/s, output: 453.20 toks/s]\\rProcessed prompts: 100%|██████████| 1000/1000 [00:32<00:00,  2.06it/s, est. speed input: 6735.98 toks/s, output: 453.39 toks/s]\\rProcessed prompts: 100%|██████████| 1000/1000 [00:32<00:00,  2.06it/s, est. speed input: 6735.98 toks/s, output: 453.39 toks/s]\\rProcessed prompts: 100%|██████████| 1000/1000 [00:32<00:00, 31.16it/s, est. speed input: 6735.98 toks/s, output: 453.39 toks/s]\", \"2026-05-19 21:49:49,533 INFO Random (seed=44): F1=0.1045 P=0.0733 R=0.1815\", \"2026-05-19 21:49:49,627 INFO All results saved to /root/schema-dag-extraction/artifacts/exp_sdgd_zero_maven\", \"(EngineCore pid=610513) INFO 05-19 21:49:49 [core.py:1238] Shutdown initiated (timeout=0)\", \"(EngineCore pid=610513) INFO 05-19 21:49:49 [core.py:1261] Shutdown complete\", \"\", \"======================================================================\", \"SDGD-zero on MAVEN: Three-arm Comparison\", \"======================================================================\", \"Dataset: MAVEN (168 event types, 1000 samples)\", \"Model: /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\", \"----------------------------------------------------------------------\", \"Mode                       Precision     Recall         F1\", \"----------------------------------------------------------------------\", \"single_pass                   0.2866     0.1618     0.2068\", \"random_batch (avg)            0.0820     0.1769     0.1114\", \"sdgd_zero                     0.0911     0.1907     0.1233\", \"----------------------------------------------------------------------\", \"SDGD vs SP:   dF1=-0.0835  dP=-0.1955  dR=+0.0289\", \"RB   vs SP:   dF1=-0.0955  dP=-0.2046  dR=+0.0151\", \"SDGD merge:   5242 raw -> 5212 merged\", \"======================================================================\", \"EXIT_CODE=129\"], \"line_count\": 27, \"log_path\": \"~/runs/schema-dag-extraction/exp_sdgd_zero_maven.log\", \"anomalies\": []}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f7f9baff-b26c-4e88-baef-b2c75c24b7ed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_ops_check_maven_status_20260519T134808]: Worker worker_ops_check_maven_status_20260519T134808 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "b27665c3-6fa4-4cc6-a60c-89c1ec221acd",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review Maven status check worker completion",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-19T13:51:54.735Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key findings:
+
+1. **exp_sdgd_zero_maven** (PID 610111): Process is **dead** (ps returns exit code 1), and the GPU is completely idle (0 MiB, 0% utilization). The log shows the experiment has completed with final results:
+   - single_pass: F1=0.2068, P=0.2866, R=0.1618
+   - random_batch (avg): F1=0.1114, P=0.0820, R=0.1769
+   - sdgd_zero: F1=0.1233, P=0.0911, R=0.1907
+
+The experiment finished all arms through the final random seed, though it exited with code 129 (SIGKILL), which is odd. The registry still shows the experiment as `PREPARING` despite completion.
+
+Looking at the discrepancy: the exit code 129 suggests the tmux session was terminated while writing, but all three arms have results and the last seed (44) clearly finished. The registry claims only 4/5 arms are done with random_batch still in progress, yet the logs show it's complete. I should verify the GPU compliance and check what the worker status check actually did, then look into the docred_bcs_expanded experiment as well.
+
+Now examining the MAVEN results more closely—SDGD-zero significantly underperforms single_pass (F1 drops from 0.2068 to 0.1233), with random_batch performing worst at 0.1114. The precision collapse is dramatic, falling from 0.287 to 0.091, while recall gains slightly from 0.162 to 0.191.
+
+This confirms the merge amplification hypothesis: SDGD's schema decomposition is actually degrading performance on event detection, with the precision collapse being the critical failure point. Let me check if there are updates in the DocRED experiment and review the full results directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b27665c3-6fa4-4cc6-a60c-89c1ec221acd",
+  "isSidechain": false,
+  "requestId": "req_011CbC36EGNQpjJA3aZREiXa",
+  "type": "assistant",
+  "uuid": "a893a16f-b922-4667-a7b4-580d649471e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FgZ8TagFep9vkyXg95NTe5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5156,
+      "cache_read_input_tokens": 43808,
+      "output_tokens": 1191,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5156,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1191,
+          "cache_read_input_tokens": 43808,
+          "cache_creation_input_tokens": 5156,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5156
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-19T13:51:54.782Z_
+
+实验已完成但状态未更新。检查结果详情和 docred 实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a893a16f-b922-4667-a7b4-580d649471e5",
+  "isSidechain": false,
+  "requestId": "req_011CbC36EGNQpjJA3aZREiXa",
+  "type": "assistant",
+  "uuid": "bb4bfc15-29f1-4de1-b373-dbfaca61710a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FgZ8TagFep9vkyXg95NTe5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5156,
+      "cache_read_input_tokens": 43808,
+      "output_tokens": 1191,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5156,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1191,
+          "cache_read_input_tokens": 43808,
+          "cache_creation_input_tokens": 5156,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5156
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-19T13:51:55.436Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PsLr4YA3LihvqbWEKFgB7H`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/schema-dag-extraction/artifacts/exp_sdgd_zero_maven/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bb4bfc15-29f1-4de1-b373-dbfaca61710a",
+  "isSidechain": false,
+  "requestId": "req_011CbC36EGNQpjJA3aZREiXa",
+  "type": "assistant",
+  "uuid": "c37aa8d4-78dd-4f23-85d0-4589aa6b86dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FgZ8TagFep9vkyXg95NTe5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5156,
+      "cache_read_input_tokens": 43808,
+      "output_tokens": 1191,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5156,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1191,
+          "cache_read_input_tokens": 43808,
+          "cache_creation_input_tokens": 5156,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5156
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-19T13:51:55.855Z_
+
+<details><summary>↩ Tool result · `toolu_01PsLr4YA3LihvqbWEKFgB7H`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1652\\ndrwxr-xr-x  2 root root   4096 May 19 21:49 .\\ndrwxr-xr-x 61 root root   4096 May 19 19:51 ..\\n-rw-r--r--  1 root root   4296 May 19 21:22 decomposition_sdgd_zero.json\\n-rw-r--r--  1 root root  11856 May 19 19:56 dry_run.log\\n-rw-r--r--  1 root root   2745 May 19 19:56 dry_run_results.json\\n-rw-r--r--  1 root root  14764 May 19 21:12 full_run.log\\n-rw-r--r--  1 root root 295759 May 19 21:31 random_batch_seed42_predictions.json\\n-rw-r--r--  1 root root   2108 May 19 21:31 random_batch_seed42_results.json\\n-rw-r--r--  1 root root 415549 May 19 21:40 random_batch_seed43_predictions.json\\n-rw-r--r--  1 root root   2110 May 19 21:40 random_batch_seed43_results.json\\n-rw-r--r--  1 root root 430464 May 19 21:49 random_batch_seed44_predictions.json\\n-rw-r--r--  1 root root   2109 May 19 21:49 random_batch_seed44_results.json\\n-rw-r--r--  1 root root 358242 May 19 21:22 sdgd_zero_predictions.json\\n-rw-r--r--  1 root root   2526 May 19 21:22 sdgd_zero_results.json\\n-rw-r--r--  1 root root 102099 May 19 21:13 single_pass_predictions.json\\n-rw-r--r--  1 root root    414 May 19 21:13 single_pass_results.json\\n-rw-r--r--  1 root root   1681 May 19 21:49 summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c37aa8d4-78dd-4f23-85d0-4589aa6b86dc",
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "30dd900f-50ed-42a9-9417-5f44a7ba9af0",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1652\\\\ndrwxr-xr-x  2 root root   4096 May 19 21:49 .\\\\ndrwxr-xr-x 61 root root   4096 May 19 19:51 ..\\\\n-rw-r--r--  1 root root   4296 May 19 21:22 decomposition_sdgd_zero.json\\\\n-rw-r--r--  1 root root  11856 May 19 19:56 dry_run.log\\\\n-rw-r--r--  1 root root   2745 May 19 19:56 dry_run_results.json\\\\n-rw-r--r--  1 root root  14764 May 19 21:12 full_run.log\\\\n-rw-r--r--  1 root root 295759 May 19 21:31 random_batch_seed42_predictions.json\\\\n-rw-r--r--  1 root root   2108 May 19 21:31 random_batch_seed42_results.json\\\\n-rw-r--r--  1 root root 415549 May 19 21:40 random_batch_seed43_predictions.json\\\\n-rw-r--r--  1 root root   2110 May 19 21:40 random_batch_seed43_results.json\\\\n-rw-r--r--  1 root root 430464 May 19 21:49 random_batch_seed44_predictions.json\\\\n-rw-r--r--  1 root root   2109 May 19 21:49 random_batch_seed44_results.json\\\\n-rw-r--r--  1 root root 358242 May 19 21:22 sdgd_zero_predictions.json\\\\n-rw-r--r--  1 root root   2526 May 19 21:22 sdgd_zero_results.json\\\\n-rw-r--r--  1 root root 102099 May 19 21:13 single_pass_predictions.json\\\\n-rw-r--r--  1 root root    414 May 19 21:13 single_pass_results.json\\\\n-rw-r--r--  1 root root   1681 May 19 21:49 summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 1652\\ndrwxr-xr-x  2 root root   4096 May 19 21:49 .\\ndrwxr-xr-x 61 root root   4096 May 19 19:51 ..\\n-rw-r--r--  1 root root   4296 May 19 21:22 decomposition_sdgd_zero.json\\n-rw-r--r--  1 root root  11856 May 19 19:56 dry_run.log\\n-rw-r--r--  1 root root   2745 May 19 19:56 dry_run_results.json\\n-rw-r--r--  1 root root  14764 May 19 21:12 full_run.log\\n-rw-r--r--  1 root root 295759 May 19 21:31 random_batch_seed42_predictions.json\\n-rw-r--r--  1 root root   2108 May 19 21:31 random_batch_seed42_results.json\\n-rw-r--r--  1 root root 415549 May 19 21:40 random_batch_seed43_predictions.json\\n-rw-r--r--  1 root root   2110 May 19 21:40 random_batch_seed43_results.json\\n-rw-r--r--  1 root root 430464 May 19 21:49 random_batch_seed44_predictions.json\\n-rw-r--r--  1 root root   2109 May 19 21:49 random_batch_seed44_results.json\\n-rw-r--r--  1 root root 358242 May 19 21:22 sdgd_zero_predictions.json\\n-rw-r--r--  1 root root   2526 May 19 21:22 sdgd_zero_results.json\\n-rw-r--r--  1 root root 102099 May 19 21:13 single_pass_predictions.json\\n-rw-r--r--  1 root root    414 May 19 21:13 single_pass_results.json\\n-rw-r--r--  1 root root   1681 May 19 21:49 summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c37aa8d4-78dd-4f23-85d0-4589aa6b86dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-19T13:51:56.284Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018sxTvBJBBsAMsbumCBo7na`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ps -p 607854 -o pid,stat,etime,cmd --no-headers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "30dd900f-50ed-42a9-9417-5f44a7ba9af0",
+  "isSidechain": false,
+  "requestId": "req_011CbC36EGNQpjJA3aZREiXa",
+  "type": "assistant",
+  "uuid": "8f3e3f1b-2277-47a8-b606-7277372d1f9b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FgZ8TagFep9vkyXg95NTe5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5156,
+      "cache_read_input_tokens": 43808,
+      "output_tokens": 1191,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5156,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1191,
+          "cache_read_input_tokens": 43808,
+          "cache_creation_input_tokens": 5156,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5156
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-19T13:51:56.684Z_
+
+<details><summary>↩ Tool result · `toolu_018sxTvBJBBsAMsbumCBo7na`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8f3e3f1b-2277-47a8-b606-7277372d1f9b",
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "f852e30b-8770-4388-a639-81a072866118",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8f3e3f1b-2277-47a8-b606-7277372d1f9b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-19T13:51:57.251Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs · `toolu_014fPkJH1CwbtNrrb2e9qjT9`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "log_path": "~/runs/schema-dag-extraction/exp_docred_bcs_expanded.log",
+  "n_lines": "30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f852e30b-8770-4388-a639-81a072866118",
+  "isSidechain": false,
+  "requestId": "req_011CbC36EGNQpjJA3aZREiXa",
+  "type": "assistant",
+  "uuid": "1ec729b4-d664-4b05-8454-495c6a6f51b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FgZ8TagFep9vkyXg95NTe5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5156,
+      "cache_read_input_tokens": 43808,
+      "output_tokens": 1191,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5156,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1191,
+          "cache_read_input_tokens": 43808,
+          "cache_creation_input_tokens": 5156,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5156
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-19T13:51:57.661Z_
+
+<details><summary>↩ Tool result · `toolu_014fPkJH1CwbtNrrb2e9qjT9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"2026-05-19 20:52:36,133 INFO New predictions: 4660\", \"2026-05-19 20:52:37,440 INFO Saved 12865 total predictions (reused 8205 + new 4660)\", \"2026-05-19 20:52:37,485 INFO ============================================================\", \"2026-05-19 20:52:37,485 INFO BCS-CONTROLLED (expanded)\", \"2026-05-19 20:52:37,485 INFO   bcs_count_16_high_bcs: acc=0.4216+/-0.0613  BCS=0.7225  n_batches=15\", \"2026-05-19 20:52:37,485 INFO   bcs_count_16_low_bcs: acc=0.6720+/-0.0209  BCS=0.3849  n_batches=15\", \"2026-05-19 20:52:37,485 INFO   bcs_count_16_random: acc=0.6103+/-0.0769  BCS=0.5437  n_batches=25\", \"2026-05-19 20:52:37,485 INFO   bcs_count_32_high_bcs: acc=0.4115+/-0.0177  BCS=0.6811  n_batches=15\", \"2026-05-19 20:52:37,486 INFO   bcs_count_32_low_bcs: acc=0.5679+/-0.0197  BCS=0.4341  n_batches=15\", \"2026-05-19 20:52:37,486 INFO   bcs_count_32_random: acc=0.5280+/-0.0595  BCS=0.5493  n_batches=25\", \"2026-05-19 20:52:37,486 INFO ============================================================\", \"2026-05-19 20:52:41,993 INFO Running bootstrap regression analysis...\", \"2026-05-19 20:53:28,354 INFO Running 2x2 factorial + TOST analysis...\", \"2026-05-19 20:53:28,357 INFO   factorial cell (16, 'high_bcs'): n=15, mean=0.4216, std=0.0613\", \"2026-05-19 20:53:28,358 INFO   factorial cell (16, 'low_bcs'): n=15, mean=0.6720, std=0.0209\", \"2026-05-19 20:53:28,358 INFO   factorial cell (32, 'high_bcs'): n=15, mean=0.4115, std=0.0177\", \"2026-05-19 20:53:28,358 INFO   factorial cell (32, 'low_bcs'): n=15, mean=0.5679, std=0.0197\", \"2026-05-19 20:53:31,268 INFO ============================================================\", \"2026-05-19 20:53:31,268 INFO BOOTSTRAP REGRESSION\", \"2026-05-19 20:53:31,268 INFO   count_16:\", \"2026-05-19 20:53:31,269 INFO     Spearman r=-0.7623 (p=0.000000)\", \"2026-05-19 20:53:31,269 INFO     Slope=-0.7317 [-0.8606, -0.6194] R2=0.6528 p=0.000000\", \"2026-05-19 20:53:31,269 INFO     Quartile gap=0.2505 [0.1751, 0.2818] (low_n=14, high_n=15)\", \"2026-05-19 20:53:31,269 INFO       high_bcs: acc=0.4216+/-0.0613 (n=15)\", \"2026-05-19 20:53:31,269 INFO       low_bcs: acc=0.6720+/-0.0209 (n=15)\", \"2026-05-19 20:53:31,270 INFO       random: acc=0.6103+/-0.0769 (n=25)\", \"2026-05-19 20:53:31,270 INFO   count_32:\", \"2026-05-19 20:53:31,270 INFO     Spearman r=-0.6929 (p=0.000000)\", \"2026-05-19 20:53:31,270 INFO     Slope=-0.6296 [-0.7078, -0.5565] R2=0.6135 p=0.000000\", \"2026-05-19 20:53:31,270 INFO     Quartile gap=0.1558 [0.0988, 0.1748] (low_n=14, high_n=15)\", \"2026-05-19 20:53:31,270 INFO       high_bcs: acc=0.4115+/-0.0177 (n=15)\", \"2026-05-19 20:53:31,270 INFO       low_bcs: acc=0.5679+/-0.0197 (n=15)\", \"2026-05-19 20:53:31,270 INFO       random: acc=0.5280+/-0.0595 (n=25)\", \"2026-05-19 20:53:31,270 INFO ============================================================\", \"2026-05-19 20:53:31,270 INFO 2x2 FACTORIAL ANALYSIS\", \"2026-05-19 20:53:31,271 INFO   count_16_high_bcs: mean=0.4216 (n=15)\", \"2026-05-19 20:53:31,271 INFO   count_16_low_bcs: mean=0.6720 (n=15)\", \"2026-05-19 20:53:31,271 INFO   count_32_high_bcs: mean=0.4115 (n=15)\", \"2026-05-19 20:53:31,271 INFO   count_32_low_bcs: mean=0.5679 (n=15)\", \"2026-05-19 20:53:31,271 INFO   Main BCS effect: 20.34 pp [18.63758914880079, 22.125915272621885]\", \"2026-05-19 20:53:31,271 INFO   Main count effect: -5.71 pp [-7.443442181789112, -3.908779289541379]\", \"2026-05-19 20:53:31,271 INFO   BCS effect @16: 25.04 pp [21.904761904761916, 28.339151505788134]\", \"2026-05-19 20:53:31,271 INFO   BCS effect @32: 15.65 pp [14.329842397517547, 16.97071152485164]\", \"2026-05-19 20:53:31,271 INFO   Interaction: -9.39 pp, 95%CI=[-12.909377384395068, -5.949972963822566], 90%CI=[-12.342989742391165, -6.433086248326958]\", \"2026-05-19 20:53:31,271 INFO TOST EQUIVALENCE\", \"2026-05-19 20:53:31,271 INFO   delta_2pp: equiv_90ci=False, equiv_95ci=False\", \"2026-05-19 20:53:31,271 INFO   delta_3pp: equiv_90ci=False, equiv_95ci=False\", \"2026-05-19 20:53:31,272 INFO   delta_5pp: equiv_90ci=False, equiv_95ci=False\", \"2026-05-19 20:53:31,272 INFO ============================================================\", \"EXIT_CODE=129\"], \"line_count\": 50, \"log_path\": \"~/runs/schema-dag-extraction/exp_docred_bcs_expanded.log\", \"anomalies\": []}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1ec729b4-d664-4b05-8454-495c6a6f51b4",
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "5278c1c0-4c01-4a45-be2f-d06523a295d2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-19 20:52:36,133 INFO New predictions: 4660\\\", \\\"2026-05-19 20:52:37,440 INFO Saved 12865 total predictions (reused 8205 + new 4660)\\\", \\\"2026-05-19 20:52:37,485 INFO ============================================================\\\", \\\"2026-05-19 20:52:37,485 INFO BCS-CONTROLLED (expanded)\\\", \\\"2026-05-19 20:52:37,485 INFO   bcs_count_16_high_bcs: acc=0.4216+/-0.0613  BCS=0.7225  n_batches=15\\\", \\\"2026-05-19 20:52:37,485 INFO   bcs_count_16_low_bcs: acc=0.6720+/-0.0209  BCS=0.3849  n_batches=15\\\", \\\"2026-05-19 20:52:37,485 INFO   bcs_count_16_random: acc=0.6103+/-0.0769  BCS=0.5437  n_batches=25\\\", \\\"2026-05-19 20:52:37,485 INFO   bcs_count_32_high_bcs: acc=0.4115+/-0.0177  BCS=0.6811  n_batches=15\\\", \\\"2026-05-19 20:52:37,486 INFO   bcs_count_32_low_bcs: acc=0.5679+/-0.0197  BCS=0.4341  n_batches=15\\\", \\\"2026-05-19 20:52:37,486 INFO   bcs_count_32_random: acc=0.5280+/-0.0595  BCS=0.5493  n_batches=25\\\", \\\"2026-05-19 20:52:37,486 INFO ============================================================\\\", \\\"2026-05-19 20:52:41,993 INFO Running bootstrap regression analysis...\\\", \\\"2026-05-19 20:53:28,354 INFO Running 2x2 factorial + TOST analysis...\\\", \\\"2026-05-19 20:53:28,357 INFO   factorial cell (16, 'high_bcs'): n=15, mean=0.4216, std=0.0613\\\", \\\"2026-05-19 20:53:28,358 INFO   factorial cell (16, 'low_bcs'): n=15, mean=0.6720, std=0.0209\\\", \\\"2026-05-19 20:53:28,358 INFO   factorial cell (32, 'high_bcs'): n=15, mean=0.4115, std=0.0177\\\", \\\"2026-05-19 20:53:28,358 INFO   factorial cell (32, 'low_bcs'): n=15, mean=0.5679, std=0.0197\\\", \\\"2026-05-19 20:53:31,268 INFO ============================================================\\\", \\\"2026-05-19 20:53:31,268 INFO BOOTSTRAP REGRESSION\\\", \\\"2026-05-19 20:53:31,268 INFO   count_16:\\\", \\\"2026-05-19 20:53:31,269 INFO     Spearman r=-0.7623 (p=0.000000)\\\", \\\"2026-05-19 20:53:31,269 INFO     Slope=-0.7317 [-0.8606, -0.6194] R2=0.6528 p=0.000000\\\", \\\"2026-05-19 20:53:31,269 INFO     Quartile gap=0.2505 [0.1751, 0.2818] (low_n=14, high_n=15)\\\", \\\"2026-05-19 20:53:31,269 INFO       high_bcs: acc=0.4216+/-0.0613 (n=15)\\\", \\\"2026-05-19 20:53:31,269 INFO       low_bcs: acc=0.6720+/-0.0209 (n=15)\\\", \\\"2026-05-19 20:53:31,270 INFO       random: acc=0.6103+/-0.0769 (n=25)\\\", \\\"2026-05-19 20:53:31,270 INFO   count_32:\\\", \\\"2026-05-19 20:53:31,270 INFO     Spearman r=-0.6929 (p=0.000000)\\\", \\\"2026-05-19 20:53:31,270 INFO     Slope=-0.6296 [-0.7078, -0.5565] R2=0.6135 p=0.000000\\\", \\\"2026-05-19 20:53:31,270 INFO     Quartile gap=0.1558 [0.0988, 0.1748] (low_n=14, high_n=15)\\\", \\\"2026-05-19 20:53:31,270 INFO       high_bcs: acc=0.4115+/-0.0177 (n=15)\\\", \\\"2026-05-19 20:53:31,270 INFO       low_bcs: acc=0.5679+/-0.0197 (n=15)\\\", \\\"2026-05-19 20:53:31,270 INFO       random: acc=0.5280+/-0.0595 (n=25)\\\", \\\"2026-05-19 20:53:31,270 INFO ============================================================\\\", \\\"2026-05-19 20:53:31,270 INFO 2x2 FACTORIAL ANALYSIS\\\", \\\"2026-05-19 20:53:31,271 INFO   count_16_high_bcs: mean=0.4216 (n=15)\\\", \\\"2026-05-19 20:53:31,271 INFO   count_16_low_bcs: mean=0.6720 (n=15)\\\", \\\"2026-05-19 20:53:31,271 INFO   count_32_high_bcs: mean=0.4115 (n=15)\\\", \\\"2026-05-19 20:53:31,271 INFO   count_32_low_bcs: mean=0.5679 (n=15)\\\", \\\"2026-05-19 20:53:31,271 INFO   Main BCS effect: 20.34 pp [18.63758914880079, 22.125915272621885]\\\", \\\"2026-05-19 20:53:31,271 INFO   Main count effect: -5.71 pp [-7.443442181789112, -3.908779289541379]\\\", \\\"2026-05-19 20:53:31,271 INFO   BCS effect @16: 25.04 pp [21.904761904761916, 28.339151505788134]\\\", \\\"2026-05-19 20:53:31,271 INFO   BCS effect @32: 15.65 pp [14.329842397517547, 16.97071152485164]\\\", \\\"2026-05-19 20:53:31,271 INFO   Interaction: -9.39 pp, 95%CI=[-12.909377384395068, -5.949972963822566], 90%CI=[-12.342989742391165, -6.433086248326958]\\\", \\\"2026-05-19 20:53:31,271 INFO TOST EQUIVALENCE\\\", \\\"2026-05-19 20:53:31,271 INFO   delta_2pp: equiv_90ci=False, equiv_95ci=False\\\", \\\"2026-05-19 20:53:31,271 INFO   delta_3pp: equiv_90ci=False, equiv_95ci=False\\\", \\\"2026-05-19 20:53:31,272 INFO   delta_5pp: equiv_90ci=False, equiv_95ci=False\\\", \\\"2026-05-19 20:53:31,272 INFO ============================================================\\\", \\\"EXIT_CODE=129\\\"], \\\"line_count\\\": 50, \\\"log_path\\\": \\\"~/runs/schema-dag-extraction/exp_docred_bcs_expanded.log\\\", \\\"anomalies\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"lines\": [\"2026-05-19 20:52:36,133 INFO New predictions: 4660\", \"2026-05-19 20:52:37,440 INFO Saved 12865 total predictions (reused 8205 + new 4660)\", \"2026-05-19 20:52:37,485 INFO ============================================================\", \"2026-05-19 20:52:37,485 INFO BCS-CONTROLLED (expanded)\", \"2026-05-19 20:52:37,485 INFO   bcs_count_16_high_bcs: acc=0.4216+/-0.0613  BCS=0.7225  n_batches=15\", \"2026-05-19 20:52:37,485 INFO   bcs_count_16_low_bcs: acc=0.6720+/-0.0209  BCS=0.3849  n_batches=15\", \"2026-05-19 20:52:37,485 INFO   bcs_count_16_random: acc=0.6103+/-0.0769  BCS=0.5437  n_batches=25\", \"2026-05-19 20:52:37,485 INFO   bcs_count_32_high_bcs: acc=0.4115+/-0.0177  BCS=0.6811  n_batches=15\", \"2026-05-19 20:52:37,486 INFO   bcs_count_32_low_bcs: acc=0.5679+/-0.0197  BCS=0.4341  n_batches=15\", \"2026-05-19 20:52:37,486 INFO   bcs_count_32_random: acc=0.5280+/-0.0595  BCS=0.5493  n_batches=25\", \"2026-05-19 20:52:37,486 INFO ============================================================\", \"2026-05-19 20:52:41,993 INFO Running bootstrap regression analysis...\", \"2026-05-19 20:53:28,354 INFO Running 2x2 factorial + TOST analysis...\", \"2026-05-19 20:53:28,357 INFO   factorial cell (16, 'high_bcs'): n=15, mean=0.4216, std=0.0613\", \"2026-05-19 20:53:28,358 INFO   factorial cell (16, 'low_bcs'): n=15, mean=0.6720, std=0.0209\", \"2026-05-19 20:53:28,358 INFO   factorial cell (32, 'high_bcs'): n=15, mean=0.4115, std=0.0177\", \"2026-05-19 20:53:28,358 INFO   factorial cell (32, 'low_bcs'): n=15, mean=0.5679, std=0.0197\", \"2026-05-19 20:53:31,268 INFO ============================================================\", \"2026-05-19 20:53:31,268 INFO BOOTSTRAP REGRESSION\", \"2026-05-19 20:53:31,268 INFO   count_16:\", \"2026-05-19 20:53:31,269 INFO     Spearman r=-0.7623 (p=0.000000)\", \"2026-05-19 20:53:31,269 INFO     Slope=-0.7317 [-0.8606, -0.6194] R2=0.6528 p=0.000000\", \"2026-05-19 20:53:31,269 INFO     Quartile gap=0.2505 [0.1751, 0.2818] (low_n=14, high_n=15)\", \"2026-05-19 20:53:31,269 INFO       high_bcs: acc=0.4216+/-0.0613 (n=15)\", \"2026-05-19 20:53:31,269 INFO       low_bcs: acc=0.6720+/-0.0209 (n=15)\", \"2026-05-19 20:53:31,270 INFO       random: acc=0.6103+/-0.0769 (n=25)\", \"2026-05-19 20:53:31,270 INFO   count_32:\", \"2026-05-19 20:53:31,270 INFO     Spearman r=-0.6929 (p=0.000000)\", \"2026-05-19 20:53:31,270 INFO     Slope=-0.6296 [-0.7078, -0.5565] R2=0.6135 p=0.000000\", \"2026-05-19 20:53:31,270 INFO     Quartile gap=0.1558 [0.0988, 0.1748] (low_n=14, high_n=15)\", \"2026-05-19 20:53:31,270 INFO       high_bcs: acc=0.4115+/-0.0177 (n=15)\", \"2026-05-19 20:53:31,270 INFO       low_bcs: acc=0.5679+/-0.0197 (n=15)\", \"2026-05-19 20:53:31,270 INFO       random: acc=0.5280+/-0.0595 (n=25)\", \"2026-05-19 20:53:31,270 INFO ============================================================\", \"2026-05-19 20:53:31,270 INFO 2x2 FACTORIAL ANALYSIS\", \"2026-05-19 20:53:31,271 INFO   count_16_high_bcs: mean=0.4216 (n=15)\", \"2026-05-19 20:53:31,271 INFO   count_16_low_bcs: mean=0.6720 (n=15)\", \"2026-05-19 20:53:31,271 INFO   count_32_high_bcs: mean=0.4115 (n=15)\", \"2026-05-19 20:53:31,271 INFO   count_32_low_bcs: mean=0.5679 (n=15)\", \"2026-05-19 20:53:31,271 INFO   Main BCS effect: 20.34 pp [18.63758914880079, 22.125915272621885]\", \"2026-05-19 20:53:31,271 INFO   Main count effect: -5.71 pp [-7.443442181789112, -3.908779289541379]\", \"2026-05-19 20:53:31,271 INFO   BCS effect @16: 25.04 pp [21.904761904761916, 28.339151505788134]\", \"2026-05-19 20:53:31,271 INFO   BCS effect @32: 15.65 pp [14.329842397517547, 16.97071152485164]\", \"2026-05-19 20:53:31,271 INFO   Interaction: -9.39 pp, 95%CI=[-12.909377384395068, -5.949972963822566], 90%CI=[-12.342989742391165, -6.433086248326958]\", \"2026-05-19 20:53:31,271 INFO TOST EQUIVALENCE\", \"2026-05-19 20:53:31,271 INFO   delta_2pp: equiv_90ci=False, equiv_95ci=False\", \"2026-05-19 20:53:31,271 INFO   delta_3pp: equiv_90ci=False, equiv_95ci=False\", \"2026-05-19 20:53:31,272 INFO   delta_5pp: equiv_90ci=False, equiv_95ci=False\", \"2026-05-19 20:53:31,272 INFO ============================================================\", \"EXIT_CODE=129\"], \"line_count\": 50, \"log_path\": \"~/runs/schema-dag-extraction/exp_docred_bcs_expanded.log\", \"anomalies\": []}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  },
+  "sourceToolAssistantUUID": "1ec729b4-d664-4b05-8454-495c6a6f51b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36 · 2026-05-19T13:51:57.666Z_
+
+```json
+{
+  "parentUuid": "5278c1c0-4c01-4a45-be2f-d06523a295d2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "1ae2831b-89fd-4d80-9810-99c07dbeea82",
+  "timestamp": "2026-05-19T13:51:57.666Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_ops_check_maven_status_20260519T134808]: Worker worker_ops_check_maven_status_20260519T134808 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "1ae2831b-89fd-4d80-9810-99c07dbeea82",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review Maven status check worker completion",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-19T13:52:22.249Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both experiments have completed! Let me review:
+
+**exp_sdgd_zero_maven**:
+- Process 610111 is dead
+- GPU is idle (0 MiB, 0%)
+- All results saved to /root/schema-dag-extraction/artifacts/exp_sdgd_zero_maven
+- Summary: single_pass F1=0.2068 > sdgd_zero F1=0.1233 > random_batch avg F1=0.1114
+- EXIT_CODE=129 (SIGHUP)
+- Status still PREPARING in registry - needs to be updated to DONE
+
+
+**exp_docred_bcs_expanded**:
+- Process 607854 is dead
+- The BCS-controlled expanded experiment shows a strong main effect of 20.34 pp [18.64, 22.13] with low_bcs consistently outperforming high_bcs across both count conditions, while increasing count size reduces accuracy by about 5.71 pp.
+- The interaction between BCS and count is significant at -9.39 pp with a 95% CI of [-12.91, -5.95] that excludes zero, and fails all equivalence tests, indicating the interaction effect is real and not bounded as originally hypothesized.
+- Despite the registry showing an OOM crash after 7 batches, the logs reveal the experiment completed all 15 batches per condition with EXIT_CODE=129, contradicting the expected failure.
+- The CI has flipped from the original [-1.6, 13.0] to [-12.91, -5.95], now entirely negative, meaning the BCS effect weakens substantially at higher counts (25.04 pp at count=16 versus 15.65 pp at count=32), confirming a genuine interaction in the opposite direction from what was initially expected.
+
+Now I'm checking the MAVEN results in summary.json and reviewing the experiment status. Both experiments show PREPARING in the registry despite being complete, with EXIT_CODE=129 (SIGHUP) suggesting the tmux session closed while processes were running, though results were already saved. Both used the correct GPU allocation on cqa1-38874.
+
+The MAVEN findings show SDGD-zero significantly underperforming single_pass, confirming the merge amplification effect on event detection. For DocRED with the expanded BCS setup, the interaction confidence interval has tightened considerably and no longer crosses zero—the interaction effect is -9.39 percentage points and statistically significant at 95%, which is a notable result that could impact the paper's conclusions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ae2831b-89fd-4d80-9810-99c07dbeea82",
+  "isSidechain": false,
+  "requestId": "req_011CbC38ATUs77z7yMAVjnP5",
+  "type": "assistant",
+  "uuid": "ef66d7c6-ea3c-469e-89b6-a84e1dd0a50f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01STBJfGWmGF4PryqDm51Mum",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4232,
+      "cache_read_input_tokens": 48964,
+      "output_tokens": 1321,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4232,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1321,
+          "cache_read_input_tokens": 48964,
+          "cache_creation_input_tokens": 4232,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4232
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-19T13:52:22.262Z_
+
+两个实验都已完成但 registry 状态未更新。检查详细结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef66d7c6-ea3c-469e-89b6-a84e1dd0a50f",
+  "isSidechain": false,
+  "requestId": "req_011CbC38ATUs77z7yMAVjnP5",
+  "type": "assistant",
+  "uuid": "17dbe807-de98-49a5-af7e-5ebf4cb36456",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01STBJfGWmGF4PryqDm51Mum",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4232,
+      "cache_read_input_tokens": 48964,
+      "output_tokens": 1321,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4232,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1321,
+          "cache_read_input_tokens": 48964,
+          "cache_creation_input_tokens": 4232,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4232
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-19T13:52:22.299Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UTC5Bxj9ztjdhGf7mAE5aH`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/exp_sdgd_zero_maven/summary.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "17dbe807-de98-49a5-af7e-5ebf4cb36456",
+  "isSidechain": false,
+  "requestId": "req_011CbC38ATUs77z7yMAVjnP5",
+  "type": "assistant",
+  "uuid": "169147d2-f3c2-454f-9f1f-96c29bdbc19d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01STBJfGWmGF4PryqDm51Mum",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4232,
+      "cache_read_input_tokens": 48964,
+      "output_tokens": 1321,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4232,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1321,
+          "cache_read_input_tokens": 48964,
+          "cache_creation_input_tokens": 4232,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4232
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-19T13:52:22.714Z_
+
+<details><summary>↩ Tool result · `toolu_01UTC5Bxj9ztjdhGf7mAE5aH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp_sdgd_zero_maven\\\",\\n  \\\"dataset\\\": \\\"maven\\\",\\n  \\\"task\\\": \\\"event_detection\\\",\\n  \\\"n_types\\\": 168,\\n  \\\"n_samples\\\": 1000,\\n  \\\"model\\\": \\\"/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\\",\\n  \\\"comparison\\\": {\\n    \\\"single_pass\\\": {\\n      \\\"f1\\\": 0.20682576340774955,\\n      \\\"precision\\\": 0.28662873399715505,\\n      \\\"recall\\\": 0.16178241670012045,\\n      \\\"pred_count\\\": 1406,\\n      \\\"gold_count\\\": 2491,\\n      \\\"tp\\\": 403\\n    },\\n    \\\"sdgd_zero\\\": {\\n      \\\"f1\\\": 0.12332857328313643,\\n      \\\"precision\\\": 0.09113584036838066,\\n      \\\"recall\\\": 0.190686471296668,\\n      \\\"pred_count\\\": 5212,\\n      \\\"gold_count\\\": 2491,\\n      \\\"tp\\\": 475,\\n      \\\"n_batches\\\": 18,\\n      \\\"tau\\\": 0.3190944045782089,\\n      \\\"raw_preds\\\": 5242,\\n      \\\"merged_preds\\\": 5212\\n    },\\n    \\\"random_batch_avg\\\": {\\n      \\\"f1\\\": 0.11136018755191161,\\n      \\\"precision\\\": 0.08201796659221873,\\n      \\\"recall\\\": 0.17690351933627727\\n    },\\n    \\\"random_batch_per_seed\\\": [\\n      {\\n        \\\"seed\\\": 42,\\n        \\\"f1\\\": 0.11285266457680251,\\n        \\\"precision\\\": 0.08982889733840305,\\n        \\\"recall\\\": 0.15174628663187475\\n      },\\n      {\\n        \\\"seed\\\": 43,\\n        \\\"f1\\\": 0.11676753292986827,\\n        \\\"precision\\\": 0.08288409703504043,\\n        \\\"recall\\\": 0.19751103974307507\\n      },\\n      {\\n        \\\"seed\\\": 44,\\n        \\\"f1\\\": 0.10446036514906402,\\n        \\\"precision\\\": 0.07334090540321273,\\n        \\\"recall\\\": 0.18145323163388197\\n      }\\n    ]\\n  },\\n  \\\"merge_amplification\\\": {\\n    \\\"sdgd_vs_sp\\\": {\\n      \\\"delta_f1\\\": -0.08349719012461312,\\n      \\\"delta_p\\\": -0.1954928936287744,\\n      \\\"delta_r\\\": 0.028904054596547546\\n    },\\n    \\\"rb_avg_vs_sp\\\": {\\n      \\\"delta_f1\\\": -0.09546557585583794,\\n      \\\"delta_p\\\": -0.20461076740493633,\\n      \\\"delta_r\\\": 0.015121102636156819\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "169147d2-f3c2-454f-9f1f-96c29bdbc19d",
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "7e140440-5b0b-4de1-a5da-d90efdfa6842",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp_sdgd_zero_maven\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"maven\\\\\\\",\\\\n  \\\\\\\"task\\\\\\\": \\\\\\\"event_detection\\\\\\\",\\\\n  \\\\\\\"n_types\\\\\\\": 168,\\\\n  \\\\\\\"n_samples\\\\\\\": 1000,\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\\\\\\",\\\\n  \\\\\\\"comparison\\\\\\\": {\\\\n    \\\\\\\"single_pass\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.20682576340774955,\\\\n      \\\\\\\"precision\\\\\\\": 0.28662873399715505,\\\\n      \\\\\\\"recall\\\\\\\": 0.16178241670012045,\\\\n      \\\\\\\"pred_count\\\\\\\": 1406,\\\\n      \\\\\\\"gold_count\\\\\\\": 2491,\\\\n      \\\\\\\"tp\\\\\\\": 403\\\\n    },\\\\n    \\\\\\\"sdgd_zero\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.12332857328313643,\\\\n      \\\\\\\"precision\\\\\\\": 0.09113584036838066,\\\\n      \\\\\\\"recall\\\\\\\": 0.190686471296668,\\\\n      \\\\\\\"pred_count\\\\\\\": 5212,\\\\n      \\\\\\\"gold_count\\\\\\\": 2491,\\\\n      \\\\\\\"tp\\\\\\\": 475,\\\\n      \\\\\\\"n_batches\\\\\\\": 18,\\\\n      \\\\\\\"tau\\\\\\\": 0.3190944045782089,\\\\n      \\\\\\\"raw_preds\\\\\\\": 5242,\\\\n      \\\\\\\"merged_preds\\\\\\\": 5212\\\\n    },\\\\n    \\\\\\\"random_batch_avg\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.11136018755191161,\\\\n      \\\\\\\"precision\\\\\\\": 0.08201796659221873,\\\\n      \\\\\\\"recall\\\\\\\": 0.17690351933627727\\\\n    },\\\\n    \\\\\\\"random_batch_per_seed\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"seed\\\\\\\": 42,\\\\n        \\\\\\\"f1\\\\\\\": 0.11285266457680251,\\\\n        \\\\\\\"precision\\\\\\\": 0.08982889733840305,\\\\n        \\\\\\\"recall\\\\\\\": 0.15174628663187475\\\\n      },\\\\n      {\\\\n        \\\\\\\"seed\\\\\\\": 43,\\\\n        \\\\\\\"f1\\\\\\\": 0.11676753292986827,\\\\n        \\\\\\\"precision\\\\\\\": 0.08288409703504043,\\\\n        \\\\\\\"recall\\\\\\\": 0.19751103974307507\\\\n      },\\\\n      {\\\\n        \\\\\\\"seed\\\\\\\": 44,\\\\n        \\\\\\\"f1\\\\\\\": 0.10446036514906402,\\\\n        \\\\\\\"precision\\\\\\\": 0.07334090540321273,\\\\n        \\\\\\\"recall\\\\\\\": 0.18145323163388197\\\\n      }\\\\n    ]\\\\n  },\\\\n  \\\\\\\"merge_amplification\\\\\\\": {\\\\n    \\\\\\\"sdgd_vs_sp\\\\\\\": {\\\\n      \\\\\\\"delta_f1\\\\\\\": -0.08349719012461312,\\\\n      \\\\\\\"delta_p\\\\\\\": -0.1954928936287744,\\\\n      \\\\\\\"delta_r\\\\\\\": 0.028904054596547546\\\\n    },\\\\n    \\\\\\\"rb_avg_vs_sp\\\\\\\": {\\\\n      \\\\\\\"delta_f1\\\\\\\": -0.09546557585583794,\\\\n      \\\\\\\"delta_p\\\\\\\": -0.20461076740493633,\\\\n      \\\\\\\"delta_r\\\\\\\": 0.015121102636156819\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp_sdgd_zero_maven\\\",\\n  \\\"dataset\\\": \\\"maven\\\",\\n  \\\"task\\\": \\\"event_detection\\\",\\n  \\\"n_types\\\": 168,\\n  \\\"n_samples\\\": 1000,\\n  \\\"model\\\": \\\"/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\\",\\n  \\\"comparison\\\": {\\n    \\\"single_pass\\\": {\\n      \\\"f1\\\": 0.20682576340774955,\\n      \\\"precision\\\": 0.28662873399715505,\\n      \\\"recall\\\": 0.16178241670012045,\\n      \\\"pred_count\\\": 1406,\\n      \\\"gold_count\\\": 2491,\\n      \\\"tp\\\": 403\\n    },\\n    \\\"sdgd_zero\\\": {\\n      \\\"f1\\\": 0.12332857328313643,\\n      \\\"precision\\\": 0.09113584036838066,\\n      \\\"recall\\\": 0.190686471296668,\\n      \\\"pred_count\\\": 5212,\\n      \\\"gold_count\\\": 2491,\\n      \\\"tp\\\": 475,\\n      \\\"n_batches\\\": 18,\\n      \\\"tau\\\": 0.3190944045782089,\\n      \\\"raw_preds\\\": 5242,\\n      \\\"merged_preds\\\": 5212\\n    },\\n    \\\"random_batch_avg\\\": {\\n      \\\"f1\\\": 0.11136018755191161,\\n      \\\"precision\\\": 0.08201796659221873,\\n      \\\"recall\\\": 0.17690351933627727\\n    },\\n    \\\"random_batch_per_seed\\\": [\\n      {\\n        \\\"seed\\\": 42,\\n        \\\"f1\\\": 0.11285266457680251,\\n        \\\"precision\\\": 0.08982889733840305,\\n        \\\"recall\\\": 0.15174628663187475\\n      },\\n      {\\n        \\\"seed\\\": 43,\\n        \\\"f1\\\": 0.11676753292986827,\\n        \\\"precision\\\": 0.08288409703504043,\\n        \\\"recall\\\": 0.19751103974307507\\n      },\\n      {\\n        \\\"seed\\\": 44,\\n        \\\"f1\\\": 0.10446036514906402,\\n        \\\"precision\\\": 0.07334090540321273,\\n        \\\"recall\\\": 0.18145323163388197\\n      }\\n    ]\\n  },\\n  \\\"merge_amplification\\\": {\\n    \\\"sdgd_vs_sp\\\": {\\n      \\\"delta_f1\\\": -0.08349719012461312,\\n      \\\"delta_p\\\": -0.1954928936287744,\\n      \\\"delta_r\\\": 0.028904054596547546\\n    },\\n    \\\"rb_avg_vs_sp\\\": {\\n      \\\"delta_f1\\\": -0.09546557585583794,\\n      \\\"delta_p\\\": -0.20461076740493633,\\n      \\\"delta_r\\\": 0.015121102636156819\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  },
+  "sourceToolAssistantUUID": "169147d2-f3c2-454f-9f1f-96c29bdbc19d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-19T13:52:22.730Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019tNj7kgtXAYDqCRwvKKSE7`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/exp_sdgd_zero_maven/sdgd_zero_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7e140440-5b0b-4de1-a5da-d90efdfa6842",
+  "isSidechain": false,
+  "requestId": "req_011CbC38ATUs77z7yMAVjnP5",
+  "type": "assistant",
+  "uuid": "4bdd43ca-448e-4fa8-a1fd-835cedba1c06",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01STBJfGWmGF4PryqDm51Mum",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4232,
+      "cache_read_input_tokens": 48964,
+      "output_tokens": 1321,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4232,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1321,
+          "cache_read_input_tokens": 48964,
+          "cache_creation_input_tokens": 4232,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4232
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-19T13:52:23.181Z_
+
+<details><summary>↩ Tool result · `toolu_019tNj7kgtXAYDqCRwvKKSE7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"sdgd_zero\\\",\\n  \\\"n_batches\\\": 18,\\n  \\\"batch_sizes\\\": [\\n    39,\\n    16,\\n    20,\\n    12,\\n    12,\\n    10,\\n    10,\\n    6,\\n    8,\\n    8,\\n    6,\\n    4,\\n    6,\\n    5,\\n    2,\\n    2,\\n    1,\\n    1\\n  ],\\n  \\\"latency_s\\\": 521.5592265129089,\\n  \\\"total_raw_predictions\\\": 5242,\\n  \\\"total_merged_predictions\\\": 5212,\\n  \\\"merge_expansion_ratio\\\": 1.0057559478127398,\\n  \\\"batch_stats\\\": [\\n    {\\n      \\\"batch_id\\\": 0,\\n      \\\"n_types\\\": 39,\\n      \\\"n_predictions\\\": 1283\\n    },\\n    {\\n      \\\"batch_id\\\": 1,\\n      \\\"n_types\\\": 16,\\n      \\\"n_predictions\\\": 90\\n    },\\n    {\\n      \\\"batch_id\\\": 2,\\n      \\\"n_types\\\": 20,\\n      \\\"n_predictions\\\": 377\\n    },\\n    {\\n      \\\"batch_id\\\": 3,\\n      \\\"n_types\\\": 12,\\n      \\\"n_predictions\\\": 300\\n    },\\n    {\\n      \\\"batch_id\\\": 4,\\n      \\\"n_types\\\": 12,\\n      \\\"n_predictions\\\": 267\\n    },\\n    {\\n      \\\"batch_id\\\": 5,\\n      \\\"n_types\\\": 10,\\n      \\\"n_predictions\\\": 173\\n    },\\n    {\\n      \\\"batch_id\\\": 6,\\n      \\\"n_types\\\": 10,\\n      \\\"n_predictions\\\": 358\\n    },\\n    {\\n      \\\"batch_id\\\": 7,\\n      \\\"n_types\\\": 6,\\n      \\\"n_predictions\\\": 624\\n    },\\n    {\\n      \\\"batch_id\\\": 8,\\n      \\\"n_types\\\": 8,\\n      \\\"n_predictions\\\": 136\\n    },\\n    {\\n      \\\"batch_id\\\": 9,\\n      \\\"n_types\\\": 8,\\n      \\\"n_predictions\\\": 64\\n    },\\n    {\\n      \\\"batch_id\\\": 10,\\n      \\\"n_types\\\": 6,\\n      \\\"n_predictions\\\": 212\\n    },\\n    {\\n      \\\"batch_id\\\": 11,\\n      \\\"n_types\\\": 4,\\n      \\\"n_predictions\\\": 510\\n    },\\n    {\\n      \\\"batch_id\\\": 12,\\n      \\\"n_types\\\": 6,\\n      \\\"n_predictions\\\": 550\\n    },\\n    {\\n      \\\"batch_id\\\": 13,\\n      \\\"n_types\\\": 5,\\n      \\\"n_predictions\\\": 151\\n    },\\n    {\\n      \\\"batch_id\\\": 14,\\n      \\\"n_types\\\": 2,\\n      \\\"n_predictions\\\": 7\\n    },\\n    {\\n      \\\"batch_id\\\": 15,\\n      \\\"n_types\\\": 2,\\n      \\\"n_predictions\\\": 23\\n    },\\n    {\\n      \\\"batch_id\\\": 16,\\n      \\\"n_types\\\": 1,\\n      \\\"n_predictions\\\": 23\\n    },\\n    {\\n      \\\"batch_id\\\": 17,\\n      \\\"n_types\\\": 1,\\n      \\\"n_predictions\\\": 94\\n    }\\n  ],\\n  \\\"tau\\\": 0.3190944045782089,\\n  \\\"k\\\": 1.0,\\n  \\\"graph_stats\\\": {\\n    \\\"n_nodes\\\": 168,\\n    \\\"n_edges\\\": 2110,\\n    \\\"n_colors\\\": 18,\\n    \\\"max_batch_size\\\": 39,\\n    \\\"min_batch_size\\\": 1,\\n    \\\"mean_batch_size\\\": 9.333333333333334,\\n    \\\"batch_sizes\\\": [\\n      39,\\n      20,\\n      16,\\n      12,\\n      12,\\n      10,\\n      10,\\n      8,\\n      8,\\n      6,\\n      6,\\n      6,\\n      5,\\n      4,\\n      2,\\n      2,\\n      1,\\n      1\\n    ]\\n  },\\n  \\\"metrics\\\": {\\n    \\\"precision\\\": 0.09113584036838066,\\n    \\\"recall\\\": 0.190686471296668,\\n    \\\"f1\\\": 0.12332857328313643,\\n    \\\"tp\\\": 475,\\n    \\\"pred_count\\\": 5212,\\n    \\\"gold_count\\\": 2491\\n  },\\n  \\\"n_samples\\\": 1000,\\n  \\\"task\\\": \\\"event\\\",\\n  \\\"dataset\\\": \\\"maven\\\",\\n  \\\"prompt_version\\\": \\\"v2\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4bdd43ca-448e-4fa8-a1fd-835cedba1c06",
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "7f0dcec4-c591-4e2f-838c-f55c139207ee",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"sdgd_zero\\\\\\\",\\\\n  \\\\\\\"n_batches\\\\\\\": 18,\\\\n  \\\\\\\"batch_sizes\\\\\\\": [\\\\n    39,\\\\n    16,\\\\n    20,\\\\n    12,\\\\n    12,\\\\n    10,\\\\n    10,\\\\n    6,\\\\n    8,\\\\n    8,\\\\n    6,\\\\n    4,\\\\n    6,\\\\n    5,\\\\n    2,\\\\n    2,\\\\n    1,\\\\n    1\\\\n  ],\\\\n  \\\\\\\"latency_s\\\\\\\": 521.5592265129089,\\\\n  \\\\\\\"total_raw_predictions\\\\\\\": 5242,\\\\n  \\\\\\\"total_merged_predictions\\\\\\\": 5212,\\\\n  \\\\\\\"merge_expansion_ratio\\\\\\\": 1.0057559478127398,\\\\n  \\\\\\\"batch_stats\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": 0,\\\\n      \\\\\\\"n_types\\\\\\\": 39,\\\\n      \\\\\\\"n_predictions\\\\\\\": 1283\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": 1,\\\\n      \\\\\\\"n_types\\\\\\\": 16,\\\\n      \\\\\\\"n_predictions\\\\\\\": 90\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": 2,\\\\n      \\\\\\\"n_types\\\\\\\": 20,\\\\n      \\\\\\\"n_predictions\\\\\\\": 377\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": 3,\\\\n      \\\\\\\"n_types\\\\\\\": 12,\\\\n      \\\\\\\"n_predictions\\\\\\\": 300\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": 4,\\\\n      \\\\\\\"n_types\\\\\\\": 12,\\\\n      \\\\\\\"n_predictions\\\\\\\": 267\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": 5,\\\\n      \\\\\\\"n_types\\\\\\\": 10,\\\\n      \\\\\\\"n_predictions\\\\\\\": 173\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": 6,\\\\n      \\\\\\\"n_types\\\\\\\": 10,\\\\n      \\\\\\\"n_predictions\\\\\\\": 358\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": 7,\\\\n      \\\\\\\"n_types\\\\\\\": 6,\\\\n      \\\\\\\"n_predictions\\\\\\\": 624\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": 8,\\\\n      \\\\\\\"n_types\\\\\\\": 8,\\\\n      \\\\\\\"n_predictions\\\\\\\": 136\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": 9,\\\\n      \\\\\\\"n_types\\\\\\\": 8,\\\\n      \\\\\\\"n_predictions\\\\\\\": 64\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": 10,\\\\n      \\\\\\\"n_types\\\\\\\": 6,\\\\n      \\\\\\\"n_predictions\\\\\\\": 212\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": 11,\\\\n      \\\\\\\"n_types\\\\\\\": 4,\\\\n      \\\\\\\"n_predictions\\\\\\\": 510\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": 12,\\\\n      \\\\\\\"n_types\\\\\\\": 6,\\\\n      \\\\\\\"n_predictions\\\\\\\": 550\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": 13,\\\\n      \\\\\\\"n_types\\\\\\\": 5,\\\\n      \\\\\\\"n_predictions\\\\\\\": 151\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": 14,\\\\n      \\\\\\\"n_types\\\\\\\": 2,\\\\n      \\\\\\\"n_predictions\\\\\\\": 7\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": 15,\\\\n      \\\\\\\"n_types\\\\\\\": 2,\\\\n      \\\\\\\"n_predictions\\\\\\\": 23\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": 16,\\\\n      \\\\\\\"n_types\\\\\\\": 1,\\\\n      \\\\\\\"n_predictions\\\\\\\": 23\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": 17,\\\\n      \\\\\\\"n_types\\\\\\\": 1,\\\\n      \\\\\\\"n_predictions\\\\\\\": 94\\\\n    }\\\\n  ],\\\\n  \\\\\\\"tau\\\\\\\": 0.3190944045782089,\\\\n  \\\\\\\"k\\\\\\\": 1.0,\\\\n  \\\\\\\"graph_stats\\\\\\\": {\\\\n    \\\\\\\"n_nodes\\\\\\\": 168,\\\\n    \\\\\\\"n_edges\\\\\\\": 2110,\\\\n    \\\\\\\"n_colors\\\\\\\": 18,\\\\n    \\\\\\\"max_batch_size\\\\\\\": 39,\\\\n    \\\\\\\"min_batch_size\\\\\\\": 1,\\\\n    \\\\\\\"mean_batch_size\\\\\\\": 9.333333333333334,\\\\n    \\\\\\\"batch_sizes\\\\\\\": [\\\\n      39,\\\\n      20,\\\\n      16,\\\\n      12,\\\\n      12,\\\\n      10,\\\\n      10,\\\\n      8,\\\\n      8,\\\\n      6,\\\\n      6,\\\\n      6,\\\\n      5,\\\\n      4,\\\\n      2,\\\\n      2,\\\\n      1,\\\\n      1\\\\n    ]\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.09113584036838066,\\\\n    \\\\\\\"recall\\\\\\\": 0.190686471296668,\\\\n    \\\\\\\"f1\\\\\\\": 0.12332857328313643,\\\\n    \\\\\\\"tp\\\\\\\": 475,\\\\n    \\\\\\\"pred_count\\\\\\\": 5212,\\\\n    \\\\\\\"gold_count\\\\\\\": 2491\\\\n  },\\\\n  \\\\\\\"n_samples\\\\\\\": 1000,\\\\n  \\\\\\\"task\\\\\\\": \\\\\\\"event\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"maven\\\\\\\",\\\\n  \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"sdgd_zero\\\",\\n  \\\"n_batches\\\": 18,\\n  \\\"batch_sizes\\\": [\\n    39,\\n    16,\\n    20,\\n    12,\\n    12,\\n    10,\\n    10,\\n    6,\\n    8,\\n    8,\\n    6,\\n    4,\\n    6,\\n    5,\\n    2,\\n    2,\\n    1,\\n    1\\n  ],\\n  \\\"latency_s\\\": 521.5592265129089,\\n  \\\"total_raw_predictions\\\": 5242,\\n  \\\"total_merged_predictions\\\": 5212,\\n  \\\"merge_expansion_ratio\\\": 1.0057559478127398,\\n  \\\"batch_stats\\\": [\\n    {\\n      \\\"batch_id\\\": 0,\\n      \\\"n_types\\\": 39,\\n      \\\"n_predictions\\\": 1283\\n    },\\n    {\\n      \\\"batch_id\\\": 1,\\n      \\\"n_types\\\": 16,\\n      \\\"n_predictions\\\": 90\\n    },\\n    {\\n      \\\"batch_id\\\": 2,\\n      \\\"n_types\\\": 20,\\n      \\\"n_predictions\\\": 377\\n    },\\n    {\\n      \\\"batch_id\\\": 3,\\n      \\\"n_types\\\": 12,\\n      \\\"n_predictions\\\": 300\\n    },\\n    {\\n      \\\"batch_id\\\": 4,\\n      \\\"n_types\\\": 12,\\n      \\\"n_predictions\\\": 267\\n    },\\n    {\\n      \\\"batch_id\\\": 5,\\n      \\\"n_types\\\": 10,\\n      \\\"n_predictions\\\": 173\\n    },\\n    {\\n      \\\"batch_id\\\": 6,\\n      \\\"n_types\\\": 10,\\n      \\\"n_predictions\\\": 358\\n    },\\n    {\\n      \\\"batch_id\\\": 7,\\n      \\\"n_types\\\": 6,\\n      \\\"n_predictions\\\": 624\\n    },\\n    {\\n      \\\"batch_id\\\": 8,\\n      \\\"n_types\\\": 8,\\n      \\\"n_predictions\\\": 136\\n    },\\n    {\\n      \\\"batch_id\\\": 9,\\n      \\\"n_types\\\": 8,\\n      \\\"n_predictions\\\": 64\\n    },\\n    {\\n      \\\"batch_id\\\": 10,\\n      \\\"n_types\\\": 6,\\n      \\\"n_predictions\\\": 212\\n    },\\n    {\\n      \\\"batch_id\\\": 11,\\n      \\\"n_types\\\": 4,\\n      \\\"n_predictions\\\": 510\\n    },\\n    {\\n      \\\"batch_id\\\": 12,\\n      \\\"n_types\\\": 6,\\n      \\\"n_predictions\\\": 550\\n    },\\n    {\\n      \\\"batch_id\\\": 13,\\n      \\\"n_types\\\": 5,\\n      \\\"n_predictions\\\": 151\\n    },\\n    {\\n      \\\"batch_id\\\": 14,\\n      \\\"n_types\\\": 2,\\n      \\\"n_predictions\\\": 7\\n    },\\n    {\\n      \\\"batch_id\\\": 15,\\n      \\\"n_types\\\": 2,\\n      \\\"n_predictions\\\": 23\\n    },\\n    {\\n      \\\"batch_id\\\": 16,\\n      \\\"n_types\\\": 1,\\n      \\\"n_predictions\\\": 23\\n    },\\n    {\\n      \\\"batch_id\\\": 17,\\n      \\\"n_types\\\": 1,\\n      \\\"n_predictions\\\": 94\\n    }\\n  ],\\n  \\\"tau\\\": 0.3190944045782089,\\n  \\\"k\\\": 1.0,\\n  \\\"graph_stats\\\": {\\n    \\\"n_nodes\\\": 168,\\n    \\\"n_edges\\\": 2110,\\n    \\\"n_colors\\\": 18,\\n    \\\"max_batch_size\\\": 39,\\n    \\\"min_batch_size\\\": 1,\\n    \\\"mean_batch_size\\\": 9.333333333333334,\\n    \\\"batch_sizes\\\": [\\n      39,\\n      20,\\n      16,\\n      12,\\n      12,\\n      10,\\n      10,\\n      8,\\n      8,\\n      6,\\n      6,\\n      6,\\n      5,\\n      4,\\n      2,\\n      2,\\n      1,\\n      1\\n    ]\\n  },\\n  \\\"metrics\\\": {\\n    \\\"precision\\\": 0.09113584036838066,\\n    \\\"recall\\\": 0.190686471296668,\\n    \\\"f1\\\": 0.12332857328313643,\\n    \\\"tp\\\": 475,\\n    \\\"pred_count\\\": 5212,\\n    \\\"gold_count\\\": 2491\\n  },\\n  \\\"n_samples\\\": 1000,\\n  \\\"task\\\": \\\"event\\\",\\n  \\\"dataset\\\": \\\"maven\\\",\\n  \\\"prompt_version\\\": \\\"v2\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4bdd43ca-448e-4fa8-a1fd-835cedba1c06",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_ops_check_maven_status_20260519T134808]: Worker worker_ops_check_maven_status_20260519T134808 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "7f0dcec4-c591-4e2f-838c-f55c139207ee",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review Maven status check worker completion",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-19T13:52:27.290Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. Let me also check the DocRED expanded results more carefully. Let me read the full results file.
+
+Let me check the constraints/gpu_ids to verify compliance.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7f0dcec4-c591-4e2f-838c-f55c139207ee",
+  "isSidechain": false,
+  "requestId": "req_011CbC3A3b3C9gARno2tSwDf",
+  "type": "assistant",
+  "uuid": "dabbf091-975a-4edf-9215-290d806ff3a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BY86TBmyzv5hzJ6DmfkoZK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4156,
+      "cache_read_input_tokens": 53196,
+      "output_tokens": 266,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4156,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 266,
+          "cache_read_input_tokens": 53196,
+          "cache_creation_input_tokens": 4156,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4156
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48 · 2026-05-19T13:52:28.215Z_
+
+现在检查 DocRED 扩样本量实验的完整结果和 GPU 合规。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dabbf091-975a-4edf-9215-290d806ff3a3",
+  "isSidechain": false,
+  "requestId": "req_011CbC3A3b3C9gARno2tSwDf",
+  "type": "assistant",
+  "uuid": "799288fd-dd2c-4059-986f-fc9709eb7759",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BY86TBmyzv5hzJ6DmfkoZK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4156,
+      "cache_read_input_tokens": 53196,
+      "output_tokens": 266,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4156,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 266,
+          "cache_read_input_tokens": 53196,
+          "cache_creation_input_tokens": 4156,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4156
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-19T13:52:29.331Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QTwd45YVUL1Qa8TFyP9NyU`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/artifacts/ -name \"*docred_bcs*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "799288fd-dd2c-4059-986f-fc9709eb7759",
+  "isSidechain": false,
+  "requestId": "req_011CbC3A3b3C9gARno2tSwDf",
+  "type": "assistant",
+  "uuid": "38b7bfaa-50e2-46ca-bc32-75781aa9ebb3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BY86TBmyzv5hzJ6DmfkoZK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4156,
+      "cache_read_input_tokens": 53196,
+      "output_tokens": 266,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4156,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 266,
+          "cache_read_input_tokens": 53196,
+          "cache_creation_input_tokens": 4156,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4156
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-19T13:52:29.514Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01TMttZDL6wfbU5BHjFaieW6`</summary>
+
+```json
+{
+  "project": "schema-dag-extraction",
+  "file": "constraints.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "38b7bfaa-50e2-46ca-bc32-75781aa9ebb3",
+  "isSidechain": false,
+  "requestId": "req_011CbC3A3b3C9gARno2tSwDf",
+  "type": "assistant",
+  "uuid": "496e0f73-8502-4021-aad9-cbcfd643735c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BY86TBmyzv5hzJ6DmfkoZK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4156,
+      "cache_read_input_tokens": 53196,
+      "output_tokens": 266,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4156,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 266,
+          "cache_read_input_tokens": 53196,
+          "cache_creation_input_tokens": 4156,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4156
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-19T13:52:29.745Z_
+
+<details><summary>↩ Tool result · `toolu_01QTwd45YVUL1Qa8TFyP9NyU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "38b7bfaa-50e2-46ca-bc32-75781aa9ebb3",
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "f2ee0c48-8a25-4b32-922e-093b83e5a11b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  },
+  "sourceToolAssistantUUID": "38b7bfaa-50e2-46ca-bc32-75781aa9ebb3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-19T13:52:29.755Z_
+
+<details><summary>↩ Tool result · `toolu_01TMttZDL6wfbU5BHjFaieW6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/constraints.yaml\", \"content\": \"_next_id: 3\\nconstraints:\\n- id: C001\\n  added: 2026-05-15 22:03 UTC\\n  summary: 论文中 count_40 子集必须明确说明 \\\"40-rel subsets sampled from the 80-relation pool\\\"，不能暗示是独立的\\n    40-type pool\\n  scope: all\\n  reason: count_40 实际是从 80-type pool 中采样的子集，不是独立构建的 pool。Reviewer 指出如果表述不清会误导读者认为存在三个独立\\n    pool size\\n\", \"total_chars\": 291, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "496e0f73-8502-4021-aad9-cbcfd643735c",
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "7dc1c870-7b96-429f-92c4-2f6f8ee702ee",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/constraints.yaml\\\", \\\"content\\\": \\\"_next_id: 3\\\\nconstraints:\\\\n- id: C001\\\\n  added: 2026-05-15 22:03 UTC\\\\n  summary: 论文中 count_40 子集必须明确说明 \\\\\\\"40-rel subsets sampled from the 80-relation pool\\\\\\\"，不能暗示是独立的\\\\n    40-type pool\\\\n  scope: all\\\\n  reason: count_40 实际是从 80-type pool 中采样的子集，不是独立构建的 pool。Reviewer 指出如果表述不清会误导读者认为存在三个独立\\\\n    pool size\\\\n\\\", \\\"total_chars\\\": 291, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/constraints.yaml\", \"content\": \"_next_id: 3\\nconstraints:\\n- id: C001\\n  added: 2026-05-15 22:03 UTC\\n  summary: 论文中 count_40 子集必须明确说明 \\\"40-rel subsets sampled from the 80-relation pool\\\"，不能暗示是独立的\\n    40-type pool\\n  scope: all\\n  reason: count_40 实际是从 80-type pool 中采样的子集，不是独立构建的 pool。Reviewer 指出如果表述不清会误导读者认为存在三个独立\\n    pool size\\n\", \"total_chars\": 291, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "496e0f73-8502-4021-aad9-cbcfd643735c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-19T13:52:37.393Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The constraints file doesn't have explicit gpu_ids listed. Let me check the project config for execution.gpu_ids.
+
+The DocRED expanded experiment doesn't have artifacts in the artifacts directory (find returned empty). Let me look more broadly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7dc1c870-7b96-429f-92c4-2f6f8ee702ee",
+  "isSidechain": false,
+  "requestId": "req_011CbC3AYDyXyDsBdShT8cqa",
+  "type": "assistant",
+  "uuid": "18911520-f7c8-4863-ab7e-e7dcf1bbdc6e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VhoQbkwqzdWK1MreYoFmz7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 669,
+      "cache_read_input_tokens": 57352,
+      "output_tokens": 241,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 669,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 241,
+          "cache_read_input_tokens": 57352,
+          "cache_creation_input_tokens": 669,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 669
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-19T13:52:38.566Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JfWZEFVwmmX8KmwQASxHe3`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/ -name \"*bcs_expanded*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "18911520-f7c8-4863-ab7e-e7dcf1bbdc6e",
+  "isSidechain": false,
+  "requestId": "req_011CbC3AYDyXyDsBdShT8cqa",
+  "type": "assistant",
+  "uuid": "efd6a94c-1212-4200-9462-c47ba384df1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VhoQbkwqzdWK1MreYoFmz7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 669,
+      "cache_read_input_tokens": 57352,
+      "output_tokens": 241,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 669,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 241,
+          "cache_read_input_tokens": 57352,
+          "cache_creation_input_tokens": 669,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 669
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-19T13:52:38.977Z_
+
+<details><summary>↩ Tool result · `toolu_01JfWZEFVwmmX8KmwQASxHe3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/run_docred_bcs_expanded.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "efd6a94c-1212-4200-9462-c47ba384df1d",
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "5bdf85cb-c517-46f0-b3cc-ce1a975b60e1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/src/run_docred_bcs_expanded.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/run_docred_bcs_expanded.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  },
+  "sourceToolAssistantUUID": "efd6a94c-1212-4200-9462-c47ba384df1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-19T13:52:39.045Z_
+
+<details><summary>↩ Tool result · `toolu_013ppLmDnR4TXePBd3xc4gWh`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_constraints"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "361e6baa-c860-4d30-a9fc-a5a16405896d",
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "88e4241d-8f59-4e26-9f70-dcaea61bd8f5",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__list_constraints"
+    ],
+    "query": "select:mcp__agent-ml-research__list_constraints",
+    "total_deferred_tools": 35
+  },
+  "sourceToolAssistantUUID": "361e6baa-c860-4d30-a9fc-a5a16405896d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-19T13:52:39.041Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_013ppLmDnR4TXePBd3xc4gWh`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_constraints",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5bdf85cb-c517-46f0-b3cc-ce1a975b60e1",
+  "isSidechain": false,
+  "requestId": "req_011CbC3AYDyXyDsBdShT8cqa",
+  "type": "assistant",
+  "uuid": "361e6baa-c860-4d30-a9fc-a5a16405896d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VhoQbkwqzdWK1MreYoFmz7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 669,
+      "cache_read_input_tokens": 57352,
+      "output_tokens": 241,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 669,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 241,
+          "cache_read_input_tokens": 57352,
+          "cache_creation_input_tokens": 669,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 669
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-19T13:52:43.782Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Er6j4kRxMU3mc8NPBuoCxY`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/artifacts/ -name \"*docred*\" -type d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "88e4241d-8f59-4e26-9f70-dcaea61bd8f5",
+  "isSidechain": false,
+  "requestId": "req_011CbC3BFGHgZxPLyPXa3SFF",
+  "type": "assistant",
+  "uuid": "98683c3f-3d8a-4cc4-8127-6df831f355db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TVHX3hS3VcW6dNwmp8FJpc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 548,
+      "cache_read_input_tokens": 58021,
+      "output_tokens": 215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 548,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 215,
+          "cache_read_input_tokens": 58021,
+          "cache_creation_input_tokens": 548,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 548
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-19T13:52:44.189Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LbiLMhuxPVFAfxhH881zab`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/results/ -name \"*bcs_expanded*\" -o -name \"*docred_bcs*\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "98683c3f-3d8a-4cc4-8127-6df831f355db",
+  "isSidechain": false,
+  "requestId": "req_011CbC3BFGHgZxPLyPXa3SFF",
+  "type": "assistant",
+  "uuid": "2a7b1c96-9556-41b0-9e5d-202c96cba23b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TVHX3hS3VcW6dNwmp8FJpc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 548,
+      "cache_read_input_tokens": 58021,
+      "output_tokens": 215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 548,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 215,
+          "cache_read_input_tokens": 58021,
+          "cache_creation_input_tokens": 548,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 548
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-19T13:52:44.196Z_
+
+<details><summary>↩ Tool result · `toolu_01Er6j4kRxMU3mc8NPBuoCxY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/exp_docred_confusability\\n/root/schema-dag-extraction/artifacts/docred_factorial_tost\\n/root/schema-dag-extraction/artifacts/exp_docred_bcs_expanded\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "98683c3f-3d8a-4cc4-8127-6df831f355db",
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "28309e70-425d-4b18-b8ee-047593a6ba8d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/artifacts/exp_docred_confusability\\\\n/root/schema-dag-extraction/artifacts/docred_factorial_tost\\\\n/root/schema-dag-extraction/artifacts/exp_docred_bcs_expanded\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/exp_docred_confusability\\n/root/schema-dag-extraction/artifacts/docred_factorial_tost\\n/root/schema-dag-extraction/artifacts/exp_docred_bcs_expanded\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  },
+  "sourceToolAssistantUUID": "98683c3f-3d8a-4cc4-8127-6df831f355db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-19T13:52:44.205Z_
+
+<details><summary>↩ Tool result · `toolu_01LbiLMhuxPVFAfxhH881zab`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2a7b1c96-9556-41b0-9e5d-202c96cba23b",
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "603c3821-c3b3-4690-8697-aa72834eb8a4",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2a7b1c96-9556-41b0-9e5d-202c96cba23b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 62 · 2026-05-19T13:52:44.259Z_
+
+```json
+{
+  "parentUuid": "603c3821-c3b3-4690-8697-aa72834eb8a4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "8a34d0da-8315-49bd-83ac-1480378f7a06",
+  "timestamp": "2026-05-19T13:52:44.259Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-19T13:52:47.149Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TKmMtkyRNs9yrH44yhxDKi`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/schema-dag-extraction/artifacts/exp_docred_bcs_expanded/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8a34d0da-8315-49bd-83ac-1480378f7a06",
+  "isSidechain": false,
+  "requestId": "req_011CbC3Bbf8FkdTisPnNY5oX",
+  "type": "assistant",
+  "uuid": "d2738d51-4be8-435b-b9f6-ab8928a3febb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L6qNVqQ4GASRxnuGvrrfJK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 610,
+      "cache_read_input_tokens": 58569,
+      "output_tokens": 109,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 610,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 109,
+          "cache_read_input_tokens": 58569,
+          "cache_creation_input_tokens": 610,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 610
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-19T13:52:47.570Z_
+
+<details><summary>↩ Tool result · `toolu_01TKmMtkyRNs9yrH44yhxDKi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 732\\ndrwxr-xr-x  3 root root   4096 May 19 20:53 .\\ndrwxr-xr-x 61 root root   4096 May 19 19:51 ..\\ndrwxr-xr-x  2 root root     42 May 19 20:52 all_predictions\\n-rw-r--r--  1 root root   7892 May 19 20:52 bcs_controlled_results.json\\n-rw-r--r--  1 root root   2620 May 19 20:53 bootstrap_analysis.json\\n-rw-r--r--  1 root root  29977 May 19 20:52 eval_results.json\\n-rw-r--r--  1 root root   1755 May 19 20:53 factorial_analysis.json\\n-rw-r--r--  1 root root 686235 May 19 20:47 preprocess_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d2738d51-4be8-435b-b9f6-ab8928a3febb",
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "57ed4810-6f28-4e9d-af9b-95081d7b1e4b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 732\\\\ndrwxr-xr-x  3 root root   4096 May 19 20:53 .\\\\ndrwxr-xr-x 61 root root   4096 May 19 19:51 ..\\\\ndrwxr-xr-x  2 root root     42 May 19 20:52 all_predictions\\\\n-rw-r--r--  1 root root   7892 May 19 20:52 bcs_controlled_results.json\\\\n-rw-r--r--  1 root root   2620 May 19 20:53 bootstrap_analysis.json\\\\n-rw-r--r--  1 root root  29977 May 19 20:52 eval_results.json\\\\n-rw-r--r--  1 root root   1755 May 19 20:53 factorial_analysis.json\\\\n-rw-r--r--  1 root root 686235 May 19 20:47 preprocess_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 732\\ndrwxr-xr-x  3 root root   4096 May 19 20:53 .\\ndrwxr-xr-x 61 root root   4096 May 19 19:51 ..\\ndrwxr-xr-x  2 root root     42 May 19 20:52 all_predictions\\n-rw-r--r--  1 root root   7892 May 19 20:52 bcs_controlled_results.json\\n-rw-r--r--  1 root root   2620 May 19 20:53 bootstrap_analysis.json\\n-rw-r--r--  1 root root  29977 May 19 20:52 eval_results.json\\n-rw-r--r--  1 root root   1755 May 19 20:53 factorial_analysis.json\\n-rw-r--r--  1 root root 686235 May 19 20:47 preprocess_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d2738d51-4be8-435b-b9f6-ab8928a3febb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-19T13:52:51.038Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CZpLk955ChRFaKKR7kXNkv`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/exp_docred_bcs_expanded/factorial_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "57ed4810-6f28-4e9d-af9b-95081d7b1e4b",
+  "isSidechain": false,
+  "requestId": "req_011CbC3BqquoSDsDNu4KSyQZ",
+  "type": "assistant",
+  "uuid": "135d73cb-5ba2-4917-976c-b570ae66d3b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XW51dAbpQQxmqLvYVMVUyQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 439,
+      "cache_read_input_tokens": 59179,
+      "output_tokens": 207,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 439,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 207,
+          "cache_read_input_tokens": 59179,
+          "cache_creation_input_tokens": 439,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 439
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-19T13:52:51.155Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FViaB6MTJ9oEqdrqghqjzB`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/exp_docred_bcs_expanded/bootstrap_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "135d73cb-5ba2-4917-976c-b570ae66d3b2",
+  "isSidechain": false,
+  "requestId": "req_011CbC3BqquoSDsDNu4KSyQZ",
+  "type": "assistant",
+  "uuid": "e6e38965-2e37-46bf-8034-7ada4b10e0d0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XW51dAbpQQxmqLvYVMVUyQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 439,
+      "cache_read_input_tokens": 59179,
+      "output_tokens": 207,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 439,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 207,
+          "cache_read_input_tokens": 59179,
+          "cache_creation_input_tokens": 439,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 439
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-19T13:52:51.442Z_
+
+<details><summary>↩ Tool result · `toolu_01CZpLk955ChRFaKKR7kXNkv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"cell_means\\\": {\\n    \\\"count_16_high_bcs\\\": 0.42164502164502166,\\n    \\\"count_16_low_bcs\\\": 0.6720499879836581,\\n    \\\"count_32_high_bcs\\\": 0.41146496815286626,\\n    \\\"count_32_low_bcs\\\": 0.5679487179487179\\n  },\\n  \\\"cell_sizes\\\": {\\n    \\\"count_16_high_bcs\\\": 15,\\n    \\\"count_16_low_bcs\\\": 15,\\n    \\\"count_32_high_bcs\\\": 15,\\n    \\\"count_32_low_bcs\\\": 15\\n  },\\n  \\\"main_effect_bcs\\\": {\\n    \\\"estimate_pp\\\": 20.344435806724405,\\n    \\\"ci_95_pp\\\": [\\n      18.63758914880079,\\n      22.125915272621885\\n    ],\\n    \\\"interpretation\\\": \\\"low_bcs - high_bcs (positive = low BCS has higher accuracy)\\\"\\n  },\\n  \\\"main_effect_count\\\": {\\n    \\\"estimate_pp\\\": -5.714066176354776,\\n    \\\"ci_95_pp\\\": [\\n      -7.443442181789112,\\n      -3.908779289541379\\n    ],\\n    \\\"interpretation\\\": \\\"count_32 - count_16 (negative = more types hurt accuracy)\\\"\\n  },\\n  \\\"bcs_effect_by_count\\\": {\\n    \\\"count_16_pp\\\": 25.040496633863647,\\n    \\\"count_16_ci_95_pp\\\": [\\n      21.904761904761916,\\n      28.339151505788134\\n    ],\\n    \\\"count_32_pp\\\": 15.648374979585167,\\n    \\\"count_32_ci_95_pp\\\": [\\n      14.329842397517547,\\n      16.97071152485164\\n    ]\\n  },\\n  \\\"interaction\\\": {\\n    \\\"estimate_pp\\\": -9.39212165427848,\\n    \\\"ci_95_pp\\\": [\\n      -12.909377384395068,\\n      -5.949972963822566\\n    ],\\n    \\\"ci_90_pp\\\": [\\n      -12.342989742391165,\\n      -6.433086248326958\\n    ],\\n    \\\"se_pp\\\": 1.7925684400770068,\\n    \\\"interpretation\\\": \\\"BCS_effect_at_32 - BCS_effect_at_16 (pp)\\\"\\n  },\\n  \\\"tost\\\": {\\n    \\\"delta_2pp\\\": {\\n      \\\"delta\\\": 0.02,\\n      \\\"equivalence_by_90ci\\\": false,\\n      \\\"equivalence_by_95ci\\\": false\\n    },\\n    \\\"delta_3pp\\\": {\\n      \\\"delta\\\": 0.03,\\n      \\\"equivalence_by_90ci\\\": false,\\n      \\\"equivalence_by_95ci\\\": false\\n    },\\n    \\\"delta_5pp\\\": {\\n      \\\"delta\\\": 0.05,\\n      \\\"equivalence_by_90ci\\\": false,\\n      \\\"equivalence_by_95ci\\\": false\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "135d73cb-5ba2-4917-976c-b570ae66d3b2",
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "8a60d571-e7d9-4e93-a08e-0c24489baf16",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"cell_means\\\\\\\": {\\\\n    \\\\\\\"count_16_high_bcs\\\\\\\": 0.42164502164502166,\\\\n    \\\\\\\"count_16_low_bcs\\\\\\\": 0.6720499879836581,\\\\n    \\\\\\\"count_32_high_bcs\\\\\\\": 0.41146496815286626,\\\\n    \\\\\\\"count_32_low_bcs\\\\\\\": 0.5679487179487179\\\\n  },\\\\n  \\\\\\\"cell_sizes\\\\\\\": {\\\\n    \\\\\\\"count_16_high_bcs\\\\\\\": 15,\\\\n    \\\\\\\"count_16_low_bcs\\\\\\\": 15,\\\\n    \\\\\\\"count_32_high_bcs\\\\\\\": 15,\\\\n    \\\\\\\"count_32_low_bcs\\\\\\\": 15\\\\n  },\\\\n  \\\\\\\"main_effect_bcs\\\\\\\": {\\\\n    \\\\\\\"estimate_pp\\\\\\\": 20.344435806724405,\\\\n    \\\\\\\"ci_95_pp\\\\\\\": [\\\\n      18.63758914880079,\\\\n      22.125915272621885\\\\n    ],\\\\n    \\\\\\\"interpretation\\\\\\\": \\\\\\\"low_bcs - high_bcs (positive = low BCS has higher accuracy)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"main_effect_count\\\\\\\": {\\\\n    \\\\\\\"estimate_pp\\\\\\\": -5.714066176354776,\\\\n    \\\\\\\"ci_95_pp\\\\\\\": [\\\\n      -7.443442181789112,\\\\n      -3.908779289541379\\\\n    ],\\\\n    \\\\\\\"interpretation\\\\\\\": \\\\\\\"count_32 - count_16 (negative = more types hurt accuracy)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"bcs_effect_by_count\\\\\\\": {\\\\n    \\\\\\\"count_16_pp\\\\\\\": 25.040496633863647,\\\\n    \\\\\\\"count_16_ci_95_pp\\\\\\\": [\\\\n      21.904761904761916,\\\\n      28.339151505788134\\\\n    ],\\\\n    \\\\\\\"count_32_pp\\\\\\\": 15.648374979585167,\\\\n    \\\\\\\"count_32_ci_95_pp\\\\\\\": [\\\\n      14.329842397517547,\\\\n      16.97071152485164\\\\n    ]\\\\n  },\\\\n  \\\\\\\"interaction\\\\\\\": {\\\\n    \\\\\\\"estimate_pp\\\\\\\": -9.39212165427848,\\\\n    \\\\\\\"ci_95_pp\\\\\\\": [\\\\n      -12.909377384395068,\\\\n      -5.949972963822566\\\\n    ],\\\\n    \\\\\\\"ci_90_pp\\\\\\\": [\\\\n      -12.342989742391165,\\\\n      -6.433086248326958\\\\n    ],\\\\n    \\\\\\\"se_pp\\\\\\\": 1.7925684400770068,\\\\n    \\\\\\\"interpretation\\\\\\\": \\\\\\\"BCS_effect_at_32 - BCS_effect_at_16 (pp)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"tost\\\\\\\": {\\\\n    \\\\\\\"delta_2pp\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.02,\\\\n      \\\\\\\"equivalence_by_90ci\\\\\\\": false,\\\\n      \\\\\\\"equivalence_by_95ci\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"delta_3pp\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.03,\\\\n      \\\\\\\"equivalence_by_90ci\\\\\\\": false,\\\\n      \\\\\\\"equivalence_by_95ci\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"delta_5pp\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.05,\\\\n      \\\\\\\"equivalence_by_90ci\\\\\\\": false,\\\\n      \\\\\\\"equivalence_by_95ci\\\\\\\": false\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"cell_means\\\": {\\n    \\\"count_16_high_bcs\\\": 0.42164502164502166,\\n    \\\"count_16_low_bcs\\\": 0.6720499879836581,\\n    \\\"count_32_high_bcs\\\": 0.41146496815286626,\\n    \\\"count_32_low_bcs\\\": 0.5679487179487179\\n  },\\n  \\\"cell_sizes\\\": {\\n    \\\"count_16_high_bcs\\\": 15,\\n    \\\"count_16_low_bcs\\\": 15,\\n    \\\"count_32_high_bcs\\\": 15,\\n    \\\"count_32_low_bcs\\\": 15\\n  },\\n  \\\"main_effect_bcs\\\": {\\n    \\\"estimate_pp\\\": 20.344435806724405,\\n    \\\"ci_95_pp\\\": [\\n      18.63758914880079,\\n      22.125915272621885\\n    ],\\n    \\\"interpretation\\\": \\\"low_bcs - high_bcs (positive = low BCS has higher accuracy)\\\"\\n  },\\n  \\\"main_effect_count\\\": {\\n    \\\"estimate_pp\\\": -5.714066176354776,\\n    \\\"ci_95_pp\\\": [\\n      -7.443442181789112,\\n      -3.908779289541379\\n    ],\\n    \\\"interpretation\\\": \\\"count_32 - count_16 (negative = more types hurt accuracy)\\\"\\n  },\\n  \\\"bcs_effect_by_count\\\": {\\n    \\\"count_16_pp\\\": 25.040496633863647,\\n    \\\"count_16_ci_95_pp\\\": [\\n      21.904761904761916,\\n      28.339151505788134\\n    ],\\n    \\\"count_32_pp\\\": 15.648374979585167,\\n    \\\"count_32_ci_95_pp\\\": [\\n      14.329842397517547,\\n      16.97071152485164\\n    ]\\n  },\\n  \\\"interaction\\\": {\\n    \\\"estimate_pp\\\": -9.39212165427848,\\n    \\\"ci_95_pp\\\": [\\n      -12.909377384395068,\\n      -5.949972963822566\\n    ],\\n    \\\"ci_90_pp\\\": [\\n      -12.342989742391165,\\n      -6.433086248326958\\n    ],\\n    \\\"se_pp\\\": 1.7925684400770068,\\n    \\\"interpretation\\\": \\\"BCS_effect_at_32 - BCS_effect_at_16 (pp)\\\"\\n  },\\n  \\\"tost\\\": {\\n    \\\"delta_2pp\\\": {\\n      \\\"delta\\\": 0.02,\\n      \\\"equivalence_by_90ci\\\": false,\\n      \\\"equivalence_by_95ci\\\": false\\n    },\\n    \\\"delta_3pp\\\": {\\n      \\\"delta\\\": 0.03,\\n      \\\"equivalence_by_90ci\\\": false,\\n      \\\"equivalence_by_95ci\\\": false\\n    },\\n    \\\"delta_5pp\\\": {\\n      \\\"delta\\\": 0.05,\\n      \\\"equivalence_by_90ci\\\": false,\\n      \\\"equivalence_by_95ci\\\": false\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  },
+  "sourceToolAssistantUUID": "135d73cb-5ba2-4917-976c-b570ae66d3b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 68_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_ops_check_maven_status_20260519T134808]: Worker worker_ops_check_maven_status_20260519T134808 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "8a60d571-e7d9-4e93-a08e-0c24489baf16",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 69_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review Maven status check worker completion",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d"
+}
+```
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-19T13:52:51.921Z_
+
+<details><summary>↩ Tool result · `toolu_01FViaB6MTJ9oEqdrqghqjzB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_16\\\": {\\n    \\\"n_batches\\\": 55,\\n    \\\"bcs_range\\\": [\\n      0.37963757539788884,\\n      0.7570966427524884\\n    ],\\n    \\\"acc_range\\\": [\\n      0.2987012987012987,\\n      0.75\\n    ],\\n    \\\"spearman_r\\\": -0.762254771270759,\\n    \\\"spearman_p\\\": 1.3737636015552895e-11,\\n    \\\"regression\\\": {\\n      \\\"slope\\\": -0.7316661051875889,\\n      \\\"intercept\\\": 0.977487374598605,\\n      \\\"r_squared\\\": 0.6528292306186455,\\n      \\\"p_value\\\": 8.925682180933223e-14,\\n      \\\"slope_95ci\\\": [\\n        -0.8606367461041239,\\n        -0.6193657152412085\\n      ]\\n    },\\n    \\\"quartile_analysis\\\": {\\n      \\\"q25_threshold\\\": 0.38950070415933924,\\n      \\\"q75_threshold\\\": 0.6510756264130274,\\n      \\\"low_bcs_quartile_mean_acc\\\": 0.6721212277268513,\\n      \\\"high_bcs_quartile_mean_acc\\\": 0.42164502164502166,\\n      \\\"gap\\\": 0.2504762060818297,\\n      \\\"gap_95ci\\\": [\\n        0.1751301488879079,\\n        0.2818345233260276\\n      ],\\n      \\\"n_low\\\": 14,\\n      \\\"n_high\\\": 15\\n    },\\n    \\\"strategy_breakdown\\\": {\\n      \\\"high_bcs\\\": {\\n        \\\"mean\\\": 0.42164502164502166,\\n        \\\"std\\\": 0.061258088143060524,\\n        \\\"n\\\": 15\\n      },\\n      \\\"low_bcs\\\": {\\n        \\\"mean\\\": 0.6720499879836581,\\n        \\\"std\\\": 0.02087493552543715,\\n        \\\"n\\\": 15\\n      },\\n      \\\"random\\\": {\\n        \\\"mean\\\": 0.6103171929689594,\\n        \\\"std\\\": 0.07686467783092508,\\n        \\\"n\\\": 25\\n      }\\n    }\\n  },\\n  \\\"count_32\\\": {\\n    \\\"n_batches\\\": 55,\\n    \\\"bcs_range\\\": [\\n      0.4324798233086063,\\n      0.694971195512241\\n    ],\\n    \\\"acc_range\\\": [\\n      0.37579617834394907,\\n      0.6470588235294118\\n    ],\\n    \\\"spearman_r\\\": -0.6929482388738422,\\n    \\\"spearman_p\\\": 4.56079014158981e-09,\\n    \\\"regression\\\": {\\n      \\\"slope\\\": -0.6296417217571051,\\n      \\\"intercept\\\": 0.85581375967262,\\n      \\\"r_squared\\\": 0.6134831092373411,\\n      \\\"p_value\\\": 1.5811457877238493e-12,\\n      \\\"slope_95ci\\\": [\\n        -0.7078249056034828,\\n        -0.5565217994966969\\n      ]\\n    },\\n    \\\"quartile_analysis\\\": {\\n      \\\"q25_threshold\\\": 0.43758595939124784,\\n      \\\"q75_threshold\\\": 0.6467956425321679,\\n      \\\"low_bcs_quartile_mean_acc\\\": 0.5673076923076922,\\n      \\\"high_bcs_quartile_mean_acc\\\": 0.41146496815286626,\\n      \\\"gap\\\": 0.15584272415482592,\\n      \\\"gap_95ci\\\": [\\n        0.09875009850190891,\\n        0.17482365216984377\\n      ],\\n      \\\"n_low\\\": 14,\\n      \\\"n_high\\\": 15\\n    },\\n    \\\"strategy_breakdown\\\": {\\n      \\\"high_bcs\\\": {\\n        \\\"mean\\\": 0.41146496815286626,\\n        \\\"std\\\": 0.017682091561492152,\\n        \\\"n\\\": 15\\n      },\\n      \\\"low_bcs\\\": {\\n        \\\"mean\\\": 0.5679487179487179,\\n        \\\"std\\\": 0.019695245507355408,\\n        \\\"n\\\": 15\\n      },\\n      \\\"random\\\": {\\n        \\\"mean\\\": 0.5279936898162826,\\n        \\\"std\\\": 0.05946117447025351,\\n        \\\"n\\\": 25\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e6e38965-2e37-46bf-8034-7ada4b10e0d0",
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "c6342e92-2a2d-489c-85e5-4832b16911d0",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"count_16\\\\\\\": {\\\\n    \\\\\\\"n_batches\\\\\\\": 55,\\\\n    \\\\\\\"bcs_range\\\\\\\": [\\\\n      0.37963757539788884,\\\\n      0.7570966427524884\\\\n    ],\\\\n    \\\\\\\"acc_range\\\\\\\": [\\\\n      0.2987012987012987,\\\\n      0.75\\\\n    ],\\\\n    \\\\\\\"spearman_r\\\\\\\": -0.762254771270759,\\\\n    \\\\\\\"spearman_p\\\\\\\": 1.3737636015552895e-11,\\\\n    \\\\\\\"regression\\\\\\\": {\\\\n      \\\\\\\"slope\\\\\\\": -0.7316661051875889,\\\\n      \\\\\\\"intercept\\\\\\\": 0.977487374598605,\\\\n      \\\\\\\"r_squared\\\\\\\": 0.6528292306186455,\\\\n      \\\\\\\"p_value\\\\\\\": 8.925682180933223e-14,\\\\n      \\\\\\\"slope_95ci\\\\\\\": [\\\\n        -0.8606367461041239,\\\\n        -0.6193657152412085\\\\n      ]\\\\n    },\\\\n    \\\\\\\"quartile_analysis\\\\\\\": {\\\\n      \\\\\\\"q25_threshold\\\\\\\": 0.38950070415933924,\\\\n      \\\\\\\"q75_threshold\\\\\\\": 0.6510756264130274,\\\\n      \\\\\\\"low_bcs_quartile_mean_acc\\\\\\\": 0.6721212277268513,\\\\n      \\\\\\\"high_bcs_quartile_mean_acc\\\\\\\": 0.42164502164502166,\\\\n      \\\\\\\"gap\\\\\\\": 0.2504762060818297,\\\\n      \\\\\\\"gap_95ci\\\\\\\": [\\\\n        0.1751301488879079,\\\\n        0.2818345233260276\\\\n      ],\\\\n      \\\\\\\"n_low\\\\\\\": 14,\\\\n      \\\\\\\"n_high\\\\\\\": 15\\\\n    },\\\\n    \\\\\\\"strategy_breakdown\\\\\\\": {\\\\n      \\\\\\\"high_bcs\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.42164502164502166,\\\\n        \\\\\\\"std\\\\\\\": 0.061258088143060524,\\\\n        \\\\\\\"n\\\\\\\": 15\\\\n      },\\\\n      \\\\\\\"low_bcs\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6720499879836581,\\\\n        \\\\\\\"std\\\\\\\": 0.02087493552543715,\\\\n        \\\\\\\"n\\\\\\\": 15\\\\n      },\\\\n      \\\\\\\"random\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6103171929689594,\\\\n        \\\\\\\"std\\\\\\\": 0.07686467783092508,\\\\n        \\\\\\\"n\\\\\\\": 25\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_32\\\\\\\": {\\\\n    \\\\\\\"n_batches\\\\\\\": 55,\\\\n    \\\\\\\"bcs_range\\\\\\\": [\\\\n      0.4324798233086063,\\\\n      0.694971195512241\\\\n    ],\\\\n    \\\\\\\"acc_range\\\\\\\": [\\\\n      0.37579617834394907,\\\\n      0.6470588235294118\\\\n    ],\\\\n    \\\\\\\"spearman_r\\\\\\\": -0.6929482388738422,\\\\n    \\\\\\\"spearman_p\\\\\\\": 4.56079014158981e-09,\\\\n    \\\\\\\"regression\\\\\\\": {\\\\n      \\\\\\\"slope\\\\\\\": -0.6296417217571051,\\\\n      \\\\\\\"intercept\\\\\\\": 0.85581375967262,\\\\n      \\\\\\\"r_squared\\\\\\\": 0.6134831092373411,\\\\n      \\\\\\\"p_value\\\\\\\": 1.5811457877238493e-12,\\\\n      \\\\\\\"slope_95ci\\\\\\\": [\\\\n        -0.7078249056034828,\\\\n        -0.5565217994966969\\\\n      ]\\\\n    },\\\\n    \\\\\\\"quartile_analysis\\\\\\\": {\\\\n      \\\\\\\"q25_threshold\\\\\\\": 0.43758595939124784,\\\\n      \\\\\\\"q75_threshold\\\\\\\": 0.6467956425321679,\\\\n      \\\\\\\"low_bcs_quartile_mean_acc\\\\\\\": 0.5673076923076922,\\\\n      \\\\\\\"high_bcs_quartile_mean_acc\\\\\\\": 0.41146496815286626,\\\\n      \\\\\\\"gap\\\\\\\": 0.15584272415482592,\\\\n      \\\\\\\"gap_95ci\\\\\\\": [\\\\n        0.09875009850190891,\\\\n        0.17482365216984377\\\\n      ],\\\\n      \\\\\\\"n_low\\\\\\\": 14,\\\\n      \\\\\\\"n_high\\\\\\\": 15\\\\n    },\\\\n    \\\\\\\"strategy_breakdown\\\\\\\": {\\\\n      \\\\\\\"high_bcs\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.41146496815286626,\\\\n        \\\\\\\"std\\\\\\\": 0.017682091561492152,\\\\n        \\\\\\\"n\\\\\\\": 15\\\\n      },\\\\n      \\\\\\\"low_bcs\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5679487179487179,\\\\n        \\\\\\\"std\\\\\\\": 0.019695245507355408,\\\\n        \\\\\\\"n\\\\\\\": 15\\\\n      },\\\\n      \\\\\\\"random\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5279936898162826,\\\\n        \\\\\\\"std\\\\\\\": 0.05946117447025351,\\\\n        \\\\\\\"n\\\\\\\": 25\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_16\\\": {\\n    \\\"n_batches\\\": 55,\\n    \\\"bcs_range\\\": [\\n      0.37963757539788884,\\n      0.7570966427524884\\n    ],\\n    \\\"acc_range\\\": [\\n      0.2987012987012987,\\n      0.75\\n    ],\\n    \\\"spearman_r\\\": -0.762254771270759,\\n    \\\"spearman_p\\\": 1.3737636015552895e-11,\\n    \\\"regression\\\": {\\n      \\\"slope\\\": -0.7316661051875889,\\n      \\\"intercept\\\": 0.977487374598605,\\n      \\\"r_squared\\\": 0.6528292306186455,\\n      \\\"p_value\\\": 8.925682180933223e-14,\\n      \\\"slope_95ci\\\": [\\n        -0.8606367461041239,\\n        -0.6193657152412085\\n      ]\\n    },\\n    \\\"quartile_analysis\\\": {\\n      \\\"q25_threshold\\\": 0.38950070415933924,\\n      \\\"q75_threshold\\\": 0.6510756264130274,\\n      \\\"low_bcs_quartile_mean_acc\\\": 0.6721212277268513,\\n      \\\"high_bcs_quartile_mean_acc\\\": 0.42164502164502166,\\n      \\\"gap\\\": 0.2504762060818297,\\n      \\\"gap_95ci\\\": [\\n        0.1751301488879079,\\n        0.2818345233260276\\n      ],\\n      \\\"n_low\\\": 14,\\n      \\\"n_high\\\": 15\\n    },\\n    \\\"strategy_breakdown\\\": {\\n      \\\"high_bcs\\\": {\\n        \\\"mean\\\": 0.42164502164502166,\\n        \\\"std\\\": 0.061258088143060524,\\n        \\\"n\\\": 15\\n      },\\n      \\\"low_bcs\\\": {\\n        \\\"mean\\\": 0.6720499879836581,\\n        \\\"std\\\": 0.02087493552543715,\\n        \\\"n\\\": 15\\n      },\\n      \\\"random\\\": {\\n        \\\"mean\\\": 0.6103171929689594,\\n        \\\"std\\\": 0.07686467783092508,\\n        \\\"n\\\": 25\\n      }\\n    }\\n  },\\n  \\\"count_32\\\": {\\n    \\\"n_batches\\\": 55,\\n    \\\"bcs_range\\\": [\\n      0.4324798233086063,\\n      0.694971195512241\\n    ],\\n    \\\"acc_range\\\": [\\n      0.37579617834394907,\\n      0.6470588235294118\\n    ],\\n    \\\"spearman_r\\\": -0.6929482388738422,\\n    \\\"spearman_p\\\": 4.56079014158981e-09,\\n    \\\"regression\\\": {\\n      \\\"slope\\\": -0.6296417217571051,\\n      \\\"intercept\\\": 0.85581375967262,\\n      \\\"r_squared\\\": 0.6134831092373411,\\n      \\\"p_value\\\": 1.5811457877238493e-12,\\n      \\\"slope_95ci\\\": [\\n        -0.7078249056034828,\\n        -0.5565217994966969\\n      ]\\n    },\\n    \\\"quartile_analysis\\\": {\\n      \\\"q25_threshold\\\": 0.43758595939124784,\\n      \\\"q75_threshold\\\": 0.6467956425321679,\\n      \\\"low_bcs_quartile_mean_acc\\\": 0.5673076923076922,\\n      \\\"high_bcs_quartile_mean_acc\\\": 0.41146496815286626,\\n      \\\"gap\\\": 0.15584272415482592,\\n      \\\"gap_95ci\\\": [\\n        0.09875009850190891,\\n        0.17482365216984377\\n      ],\\n      \\\"n_low\\\": 14,\\n      \\\"n_high\\\": 15\\n    },\\n    \\\"strategy_breakdown\\\": {\\n      \\\"high_bcs\\\": {\\n        \\\"mean\\\": 0.41146496815286626,\\n        \\\"std\\\": 0.017682091561492152,\\n        \\\"n\\\": 15\\n      },\\n      \\\"low_bcs\\\": {\\n        \\\"mean\\\": 0.5679487179487179,\\n        \\\"std\\\": 0.019695245507355408,\\n        \\\"n\\\": 15\\n      },\\n      \\\"random\\\": {\\n        \\\"mean\\\": 0.5279936898162826,\\n        \\\"std\\\": 0.05946117447025351,\\n        \\\"n\\\": 25\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e6e38965-2e37-46bf-8034-7ada4b10e0d0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-19T13:53:38.091Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture. Let me compile my review findings for both experiments.
+
+## exp_sdgd_zero_maven
+
+**Status**: Completed, but registry still shows PREPARING. All 5 arms done (single_pass + sdgd_zero + 3 random_batch seeds).
+
+**Results**:
+- single_pass: F1=0.2068, P=0.2866, R=0.1618 (1406 preds / 2491 gold)
+
+
+- sdgd_zero: F1=0.1233, P=0.0911, R=0.1907 (5212 preds / 2491 gold)
+- random_batch avg: F1=0.1114, P=0.0820, R=0.1769
+- SDGD vs SP: dF1=-0.0835, dP=-0.1955, dR=+0.0289
+
+**Key observations**:
+1. SDGD-zero produces 3.7x more predictions than single_pass (5212 vs 1406), confirming "merge amplification"
+2. Despite more predictions (higher recall +2.9pp), precision drops significantly, resulting in lower F1 overall
+3. SDGD-zero barely outperforms random batch decomposition (F1 0.1233 vs 0.1114)
+4. The merge step is ineffective—only 0.6% deduplication across 5242 raw predictions
+
+**Issues**:
+- EXIT_CODE=129 (SIGHUP) appears to be a tmux cleanup issue; results seem intact
+- Registry not updated to DONE
+- GPU compliance verified on cqa1-38874
+
+**Assessment**: The merge amplification hypothesis holds for event detection, but SDGD decomposition doesn't improve MAVEN performance. The absolute F1 scores remain concerningly low across all methods.
+
+Now looking at the DocRED experiment results—it completed successfully despite the registry showing an OOM crash. The BCS effect is substantial: with 16 counts, low BCS achieves 67.2% accuracy while high BCS drops to 42.2%, a 25-point difference. The correlation is strong (Spearman r=-0.762) with high statistical significance. The count_32 condition shows similar patterns with slightly weaker effects.
+
+The factorial analysis reveals something crucial: there's a significant negative interaction between BCS and count of -9.39 percentage points, and the 95% confidence interval doesn't cross zero, which means this interaction is statistically real. The equivalence tests confirm it's not just noise—the effect is genuinely different from zero across all thresholds. This contrasts sharply with the original experiment where the interaction CI spanned from -1.6 to 13.0, allowing them to claim the interaction was negligible.
+
+With the larger sample of 15 batches, I can now see that the BCS effect actually weakens substantially when moving from count_16 (25.04pp) to count_32 (15.65pp)—a drop of about 9.4 percentage points. This directly contradicts the paper's earlier claim that the BCS and count effects were approximately additive for DocRED. The interaction is substantial and negative, not bounded or negligible as previously reported.
+
+But I'm noticing something odd here: the original experiment showed a confidence interval that could have been positive, suggesting the BCS effect might strengthen at higher counts, yet this new result shows the opposite—the effect actually weakens. I need to double-check my sign convention to make sure I'm interpreting the interaction direction correctly.
+
+The negative interaction makes intuitive sense though: as the count increases and overall accuracy drops, the marginal benefit of BCS diminishes because we're working from a lower baseline. This is a meaningful finding that contradicts what the paper currently claims about additivity, so I should verify what the paper's v5 actually states about the DocRED factorial analysis before deciding how to handle this discrepancy.
+
+Looking at the original experiment with just 5 batches per condition, the confidence interval was wide enough that the paper was appropriately cautious. Now with 15 batches, the non-additive pattern is much clearer, which means if the paper is still making an additivity claim, that needs to be revised.
+
+I'm also noticing some infrastructure issues: the GPU setup is compliant, but the registry shows a vLLM OOM crash that didn't actually happen—the experiments completed successfully despite the EXIT_CODE=129 errors. I need to document these discrepancies in my review.
+
+The critical finding here is the DocRED BCS results. The expanded dataset shows a clear interaction effect with a confidence interval that excludes zero, and the BCS effect actually diminishes as the count increases. This directly contradicts an additivity assumption if the paper makes one. I should check the paper's framing to see how significant this revision would be.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c6342e92-2a2d-489c-85e5-4832b16911d0",
+  "isSidechain": false,
+  "requestId": "req_011CbC3CARMkp4EjA5rp8LRe",
+  "type": "assistant",
+  "uuid": "36b3431c-dc4f-49c0-802d-628b695164fd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MAaE61KtY9i8gaeFSciKvC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2911,
+      "cache_read_input_tokens": 59618,
+      "output_tokens": 2191,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2911,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2191,
+          "cache_read_input_tokens": 59618,
+          "cache_creation_input_tokens": 2911,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2911
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72 · 2026-05-19T13:53:38.140Z_
+
+DocRED 扩样本实验也完成了，且结果有重要发现。检查论文当前对 additivity 的表述。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "36b3431c-dc4f-49c0-802d-628b695164fd",
+  "isSidechain": false,
+  "requestId": "req_011CbC3CARMkp4EjA5rp8LRe",
+  "type": "assistant",
+  "uuid": "fc937ffe-b53b-4bf1-b6fa-f94a4893f4bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MAaE61KtY9i8gaeFSciKvC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2911,
+      "cache_read_input_tokens": 59618,
+      "output_tokens": 2191,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2911,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2191,
+          "cache_read_input_tokens": 59618,
+          "cache_creation_input_tokens": 2911,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2911
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-19T13:53:38.422Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01FLzd5yMiCHmheyTYU7iPYh`</summary>
+
+```json
+{
+  "project": "schema-dag-extraction",
+  "file": "paper_framing.md",
+  "max_chars": 12000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fc937ffe-b53b-4bf1-b6fa-f94a4893f4bb",
+  "isSidechain": false,
+  "requestId": "req_011CbC3CARMkp4EjA5rp8LRe",
+  "type": "assistant",
+  "uuid": "0c59dccf-cdfe-4576-ad0c-acbf3112f78f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MAaE61KtY9i8gaeFSciKvC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2911,
+      "cache_read_input_tokens": 59618,
+      "output_tokens": 2191,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2911,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2191,
+          "cache_read_input_tokens": 59618,
+          "cache_creation_input_tokens": 2911,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2911
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-19T13:53:38.443Z_
+
+<details><summary>↩ Tool result · `toolu_01FLzd5yMiCHmheyTYU7iPYh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_framing.md\", \"content\": \"# Paper Framing — schema-dag-extraction\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR May 25 cycle)\\n- Commitment deadline: August 2, 2026\\n- Fallback: EMNLP 2026 Findings (same ARR cycle, commitment August 26)\\n- Deadline: ARR May 25, 2026 (10 days from today)\\n\\n## Core Claims (2 claims) — Revised per D019\\n\\n1. **Confusability Independence**: Type confusability independently predicts extraction quality degradation in training-free LLM IE, beyond what type count alone explains. The signal is strongest and most robust at the **type-pair level** (pairwise SCS → confusion), validated across NER (Few-NERD), RE (FewRel), and ED (MAVEN with MiniLM). Per-type aggregation (mean BCS) introduces a centrality confound in semantically homogeneous schemas. The effect amplifies with schema complexity (3.4× between 16-type and 80-type schemas). Evidence required: (a) significant pairwise SCS-confusion correlation on >=2 datasets, (b) BCS-controlled accuracy gap on FewRel, (c) >=2 models.\\n\\n2. **Multi-Channel Degradation**: Count and confusability degrade extraction through channels with bounded association -- count causes entity omission (recall decline), while confusability causes type confusion errors (correct spans labeled with wrong types). Cross-task validated: NER IntraSub ρ=1.0, RE IntraSub ρ=0.954. Evidence required: error taxonomy showing differential error types per channel, monotonic trends in separate metrics.\\n\\n~~3. **SDGD Effectiveness**~~ — **DROPPED (D019)**: SDGD-zero v1 F1=0.251, v2 F1=0.241, both far below single-pass baseline 0.445. Merge amplification is an intrinsic challenge of schema decomposition that merge strategies (union+dedup, confidence-gated) cannot resolve. **Discussed as negative result + future work direction** — \\\"why naive decomposition fails\\\" is itself a contribution.\\n\\n## Story Spine — Revised per D012\\n\\n- **Problem**: Training-free LLM IE degrades severely on complex schemas (20-60 F1 gap vs supervised). All existing decomposition approaches operate on unvalidated assumptions about WHAT makes schemas complex for LLMs.\\n\\n- **Existing approaches & their gaps**: UniNER splits per-type (gains 3.3 F1 but loses cross-type context, no criterion for when to split). LLM-PEE uses similarity as implicit confusability proxy (never validated empirically). No prior work isolates confusability from count, or characterizes when aggregated confusability measures lose signal.\\n\\n- **Our framing**: We conduct the first controlled empirical study isolating type confusability from type count in training-free LLM IE across three tasks (NER, RE, ED). We discover: (1) a multi-channel degradation model (count→recall, confusability→type confusion), (2) pairwise type confusability is a robust cross-task signal that amplifies with schema complexity, (3) per-type aggregation of confusability is confounded by type centrality in homogeneous schemas. We further show that naive confusability-aware decomposition (SDGD) fails due to merge amplification — a structural challenge that points to calibration-based approaches as future work.\\n\\n- **Three-task validation**:\\n  - NER (Few-NERD, 66 types, cross-domain): Pairwise r=0.112 [0.076, 0.156] (n=1953), per-type ρ=-0.293 [-0.492, -0.054] (p=0.02), 10-28x confusion ratio\\n  - RE (FewRel, 80 relations, cross-domain): BCS-controlled Δ=-31.2pp (80-rel formal); count curve acc 85.7%→50.4%; BCS effect scales 3.4x vs 16-rel\\n  - ED (MAVEN, 168 event types, same-domain): Pairwise MiniLM r=0.120 (p≈0); per-type positive (centrality confound case study)\\n\\n- **Headline result template**: \\\"Pairwise type confusability independently predicts extraction degradation across NER, RE, and ED tasks (r=0.11-0.13, all CIs exclude zero), with 10-28x more type confusion errors in high-confusability batches. The effect amplifies with schema complexity: 3.4× stronger BCS effect on 80-type vs 16-type schemas (Δ=-31.2pp vs -9.1pp). On semantically homogeneous schemas, per-type aggregation obscures the signal through centrality confounding, but pairwise confusability remains valid.\\\"\\n\\n## Core Insight — Multi-Channel Degradation + Pairwise Robustness\\n\\nSchema-induced degradation in LLM IE is not a single phenomenon but a multi-channel process:\\n- **Channel 1 (Count -> Recall)**: More types in the prompt → attention dilution → entities missed. Monotonic, near-linear. Addressable by reducing batch size.\\n- **Channel 2 (Confusability -> Type Confusion)**: Semantically similar co-present types → interference during type assignment → correct entities labeled with wrong types. Addressable by separating confusable types into different batches.\\n\\nThese channels exhibit bounded association (TOST p=0.003 at ±3pp in RE) and are independently addressable.\\n\\n**Pairwise vs Aggregated Confusability**:\\n- **Pairwise confusability** (SCS between type pairs) is robust across all tasks and schema types. Validated on Few-NERD (Qwen3, r=0.112 [0.076, 0.156]) and MAVEN (MiniLM, r=0.129 [0.104, 0.156]). SCS validated as effective confusion proxy: Qwen3 ρ=0.168 (p=7e-14), MiniLM ρ=0.306 nonzero-only (p=5e-6).\\n- **Per-type aggregation** (mean BCS = average pairwise similarity to all other types) introduces a centrality confound: in semantically homogeneous schemas (MAVEN), types with many semantic neighbors are central, well-represented types that LLMs extract well → positive correlation (high mean BCS → high F1), masking the pairwise confusability signal.\\n- **SDGD operates at pairwise level**, directly using the validated signal to construct the confusability graph for decomposition. It avoids the aggregation confound entirely.\\n\\n## Evidence Hierarchy (D012)\\n\\n### Tier 1: PRIMARY — Pairwise SCS → Confusion\\n\\nThe cleanest evidence. Directly measures: are semantically similar type pairs more often confused?\\n\\n**Few-NERD (NER)** — Qwen3 embeddings:\\n- Pearson r=0.112 [0.076, 0.156] (n=1953 type pairs) — corrected via bootstrap recomputation\\n- Nonzero-only Spearman ρ=0.272 (p=5e-5)\\n- Top confused pairs are all high-BCS semantic neighbors (person-other ↔ person-politician, BCS=0.934)\\n- Immune to type frequency confound (operates at type-pair level)\\n\\n**MAVEN (ED)** — MiniLM embeddings:\\n- Pearson r=+0.129 [0.104, 0.156] (n=11026 type pairs) — corrected via bootstrap\\n- Nonzero-only Spearman ρ=+0.191 (p<0.001)\\n- Cross-task replication on same-domain schema\\n- Note: Qwen3 pairwise not significant on MAVEN (r=-0.007, p=0.41) — embedding choice matters for pairwise signal in homogeneous schemas\\n\\n### Tier 2: STRONG SECONDARY — FewRel Cross-Task Replication\\n\\nLarge effect size, cross-task (RE), scaling with schema complexity:\\n\\n**Formal 80-rel study** (exp_fewrel_formal_80rel):\\n- Count curve: acc 85.7% (count=1) → 50.4% (count=80), BCS 0→0.97\\n- BCS-controlled: count_8 low-BCS 82.3% vs high-BCS 51.0% (Δ=-31.2pp)\\n- BCS-controlled: count_16 low-BCS 82.8% vs high-BCS 51.6% (Δ=-31.2pp)\\n- **Scaling**: vs 16-rel, degradation 2.8x (35.3pp vs 12.6pp), BCS effect 3.4x (-31.2pp vs -9.1pp)\\n\\n**16-rel sanity check** (exp_fewrel_formal):\\n- count_8: low-BCS 88.9% vs high-BCS 79.8% (Δ=-9.1pp)\\n\\n**Pilot extreme batches** (fewrel_pilot, MiniLM):\\n- count_4: Δ=-20.9pp, count_8: Δ=-50.0pp, count_16: Δ=-48.6pp\\n\\nKey insight: confusability effect amplifies with schema size — direct evidence for multi-channel degradation scaling\\n\\n### Tier 3: SUPPORTING — Few-NERD Per-type Analysis\\n\\nBridges pairwise and batch-level, demonstrates per-type signal in cross-domain schema:\\n- Spearman ρ=-0.293 (p=0.020, n=63 types, freq≥5) — Qwen3 embeddings\\n- Partial r=-0.200 (p=0.116) controlling for log-frequency\\n- Quartile comparison: high-BCS types F1=0.228 vs low-BCS F1=0.310 (Δ=-8.2pp)\\n- BCS-frequency uncorrelated at type level (r=0.042, p=0.74)\\n- MiniLM per-type: ρ≈0 (p=0.97) — extraction model alignment required for per-type signal\\n\\n### Tier 4: DISCUSSION — MAVEN Per-type Centrality Confound\\n\\nMethodological case study on when aggregated confusability measures fail:\\n- Qwen3 per-type: ρ=+0.189 (p=0.021) — OPPOSITE direction\\n- MiniLM per-type: ρ=+0.208 (p=0.011) — ALSO positive, ruling out embedding compression as sole explanation\\n- Both embeddings agree: positive direction on MAVEN is an intrinsic property of the type structure\\n- Explanation: in homogeneous schemas, mean BCS conflates confusability with type centrality (types with many semantic neighbors → common/central types → higher F1)\\n- This is stronger than \\\"domain boundary\\\" — it identifies the specific mechanism (aggregation confound) rather than just the boundary condition\\n\\n### Tier 5: MECHANISTIC — Error Taxonomy (Cross-Task)\\n\\nIntraSub rate monotonically increases with BCS on both NER and RE:\\n\\n**Few-NERD (NER, exp-007)**: IntraSub 0%→1.6%→10.6%→49.4%, ρ=1.0\\n**FewRel 80-rel (RE)**: IntraSub 0%→4.2%→13.0%→20.3%→32.3%, ρ=0.954 (p=0.0, n=154 batches)\\n- extra_sub=0 on both tasks — type confusion is purely intra-batch phenomenon\\n- Same mechanism, different absolute magnitudes — consistent with cross-task expectations\\n\\nAdditional from extreme batch design:\\n- Extreme batches: high-BCS 10-28x more type confusion errors vs low-BCS\\n- Random batches: 1.7-2.4x ratio (still significant, smaller effect)\\n\\n## Embedding Ablation (D010)\\n\\n2×3 matrix: {Qwen3, MiniLM} × {Few-NERD, FewRel, MAVEN}\\n\\n### Per-type (Layer 2)\\n| | Few-NERD | FewRel | MAVEN |\\n|---|---|---|---|\\n| Qwen3 | ρ=-0.293 ✓ | pending | ρ=+0.189 ✗ |\\n| MiniLM | ρ≈0 ✗ | Δ=21-50pp ✓ | ρ=+0.208 ✗ |\\n\\n### Pairwise (Layer 1)\\n| | Few-NERD | MAVEN |\\n|---|---|---|\\n| Qwen3 | r=0.112 [0.076,0.156] ✓ | r=-0.007 ✗ |\\n| MiniLM | — | r=+0.129 [0.104,0.156] ✓ |\\n\\n### SCS→Empirical Confusion Validation (exp-015 fast)\\n| | Qwen3 | MiniLM |\\n|---|---|---|\\n| All pairs ρ | 0.168 (p=7e-14) ✓ | 0.144 (p=2e-10) ✓ |\\n| Nonzero-only ρ | 0.272 (p=5e-5) | 0.306 (p=5e-6) ✓ |\\n\\n**Interpretation**: No single embedding dominates. Extraction-model embeddings (Qwen3) capture per-type confusability in cross-domain schemas. Generic embeddings (MiniLM) capture pairwise confusability in same-domain schemas. SDGD should use task-appropriate embeddings; SDGD-cal (empirical confusion) bypasses embedding choice entirely.\\n\\n## Venue Fit Risks\\n\\n- **\\\"Just an empirical study\\\"**: Mitigated by SDGD as direct operationalization. Controlled experimental design parallels \\\"Lost in the Middle\\\" (TACL 2024).\\n- **Training-free IE relevance**: Cite deployment scenarios — clinical, regulatory, multilingual.\\n- **Multi-model generalizability**: Qwen3-32B primary + LLaMA-3.1-70B-Instruct (FP8) (exp-012).\\n- **MAVEN doesn't support hypothesis?**: Pairwise MiniLM does support it. Per-type centrality confound is methodological contribution, not failure.\\n- **Embedding sensitivity**: 2×3 ablation matrix is itself a contribution — characterizes when which proxy works.\\n\\n## Anticipated Reviewer Concerns\\n\\n| Concern | Response Strategy | Experiment |\\n|---------|------------------|------------|\\n| Only one model | LLaMA-3.1-70B-Instruct (FP8) replication | exp-012 |\\n| Cross-task replication | Pairwise: Few-NERD ✓ + MAVEN MiniLM ✓. Batch: FewRel ✓. Three tasks. | exp-002, exp-004, fewrel |\\n| No practical method | SDGD framework (-zero, -cal) | exp-008 to exp-011 |\\n| Confusability measure validity | Embedding ablation (D010) + pairwise vs per-type analysis | D010, exp-015 |\\n| Effect size small | Pairwise r=0.12-0.16 + FewRel Δ=21-50pp + confusion ratio 10-28x | multiple |\\n| MAVEN per-type opposite | Centrality confound analysis; pairwise still works | MAVEN MiniLM |\\n| Embedding choice matters? | 2×3 ablation table; SDGD-cal bypasses embedding entirely | D010 |\\n| Why not per-type splitting? | SDGD vs per-type vs random ablation | exp-013, exp-014 |\\n| Latency overhead | Report API calls and wall-clock time | exp-008 |\\n\", \"total_chars\": 11658, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0c59dccf-cdfe-4576-ad0c-acbf3112f78f",
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "cad39e2f-4007-4228-9e3e-954fc9e4cce6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — schema-dag-extraction\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (ARR May 25 cycle)\\\\n- Commitment deadline: August 2, 2026\\\\n- Fallback: EMNLP 2026 Findings (same ARR cycle, commitment August 26)\\\\n- Deadline: ARR May 25, 2026 (10 days from today)\\\\n\\\\n## Core Claims (2 claims) — Revised per D019\\\\n\\\\n1. **Confusability Independence**: Type confusability independently predicts extraction quality degradation in training-free LLM IE, beyond what type count alone explains. The signal is strongest and most robust at the **type-pair level** (pairwise SCS → confusion), validated across NER (Few-NERD), RE (FewRel), and ED (MAVEN with MiniLM). Per-type aggregation (mean BCS) introduces a centrality confound in semantically homogeneous schemas. The effect amplifies with schema complexity (3.4× between 16-type and 80-type schemas). Evidence required: (a) significant pairwise SCS-confusion correlation on >=2 datasets, (b) BCS-controlled accuracy gap on FewRel, (c) >=2 models.\\\\n\\\\n2. **Multi-Channel Degradation**: Count and confusability degrade extraction through channels with bounded association -- count causes entity omission (recall decline), while confusability causes type confusion errors (correct spans labeled with wrong types). Cross-task validated: NER IntraSub ρ=1.0, RE IntraSub ρ=0.954. Evidence required: error taxonomy showing differential error types per channel, monotonic trends in separate metrics.\\\\n\\\\n~~3. **SDGD Effectiveness**~~ — **DROPPED (D019)**: SDGD-zero v1 F1=0.251, v2 F1=0.241, both far below single-pass baseline 0.445. Merge amplification is an intrinsic challenge of schema decomposition that merge strategies (union+dedup, confidence-gated) cannot resolve. **Discussed as negative result + future work direction** — \\\\\\\"why naive decomposition fails\\\\\\\" is itself a contribution.\\\\n\\\\n## Story Spine — Revised per D012\\\\n\\\\n- **Problem**: Training-free LLM IE degrades severely on complex schemas (20-60 F1 gap vs supervised). All existing decomposition approaches operate on unvalidated assumptions about WHAT makes schemas complex for LLMs.\\\\n\\\\n- **Existing approaches & their gaps**: UniNER splits per-type (gains 3.3 F1 but loses cross-type context, no criterion for when to split). LLM-PEE uses similarity as implicit confusability proxy (never validated empirically). No prior work isolates confusability from count, or characterizes when aggregated confusability measures lose signal.\\\\n\\\\n- **Our framing**: We conduct the first controlled empirical study isolating type confusability from type count in training-free LLM IE across three tasks (NER, RE, ED). We discover: (1) a multi-channel degradation model (count→recall, confusability→type confusion), (2) pairwise type confusability is a robust cross-task signal that amplifies with schema complexity, (3) per-type aggregation of confusability is confounded by type centrality in homogeneous schemas. We further show that naive confusability-aware decomposition (SDGD) fails due to merge amplification — a structural challenge that points to calibration-based approaches as future work.\\\\n\\\\n- **Three-task validation**:\\\\n  - NER (Few-NERD, 66 types, cross-domain): Pairwise r=0.112 [0.076, 0.156] (n=1953), per-type ρ=-0.293 [-0.492, -0.054] (p=0.02), 10-28x confusion ratio\\\\n  - RE (FewRel, 80 relations, cross-domain): BCS-controlled Δ=-31.2pp (80-rel formal); count curve acc 85.7%→50.4%; BCS effect scales 3.4x vs 16-rel\\\\n  - ED (MAVEN, 168 event types, same-domain): Pairwise MiniLM r=0.120 (p≈0); per-type positive (centrality confound case study)\\\\n\\\\n- **Headline result template**: \\\\\\\"Pairwise type confusability independently predicts extraction degradation across NER, RE, and ED tasks (r=0.11-0.13, all CIs exclude zero), with 10-28x more type confusion errors in high-confusability batches. The effect amplifies with schema complexity: 3.4× stronger BCS effect on 80-type vs 16-type schemas (Δ=-31.2pp vs -9.1pp). On semantically homogeneous schemas, per-type aggregation obscures the signal through centrality confounding, but pairwise confusability remains valid.\\\\\\\"\\\\n\\\\n## Core Insight — Multi-Channel Degradation + Pairwise Robustness\\\\n\\\\nSchema-induced degradation in LLM IE is not a single phenomenon but a multi-channel process:\\\\n- **Channel 1 (Count -> Recall)**: More types in the prompt → attention dilution → entities missed. Monotonic, near-linear. Addressable by reducing batch size.\\\\n- **Channel 2 (Confusability -> Type Confusion)**: Semantically similar co-present types → interference during type assignment → correct entities labeled with wrong types. Addressable by separating confusable types into different batches.\\\\n\\\\nThese channels exhibit bounded association (TOST p=0.003 at ±3pp in RE) and are independently addressable.\\\\n\\\\n**Pairwise vs Aggregated Confusability**:\\\\n- **Pairwise confusability** (SCS between type pairs) is robust across all tasks and schema types. Validated on Few-NERD (Qwen3, r=0.112 [0.076, 0.156]) and MAVEN (MiniLM, r=0.129 [0.104, 0.156]). SCS validated as effective confusion proxy: Qwen3 ρ=0.168 (p=7e-14), MiniLM ρ=0.306 nonzero-only (p=5e-6).\\\\n- **Per-type aggregation** (mean BCS = average pairwise similarity to all other types) introduces a centrality confound: in semantically homogeneous schemas (MAVEN), types with many semantic neighbors are central, well-represented types that LLMs extract well → positive correlation (high mean BCS → high F1), masking the pairwise confusability signal.\\\\n- **SDGD operates at pairwise level**, directly using the validated signal to construct the confusability graph for decomposition. It avoids the aggregation confound entirely.\\\\n\\\\n## Evidence Hierarchy (D012)\\\\n\\\\n### Tier 1: PRIMARY — Pairwise SCS → Confusion\\\\n\\\\nThe cleanest evidence. Directly measures: are semantically similar type pairs more often confused?\\\\n\\\\n**Few-NERD (NER)** — Qwen3 embeddings:\\\\n- Pearson r=0.112 [0.076, 0.156] (n=1953 type pairs) — corrected via bootstrap recomputation\\\\n- Nonzero-only Spearman ρ=0.272 (p=5e-5)\\\\n- Top confused pairs are all high-BCS semantic neighbors (person-other ↔ person-politician, BCS=0.934)\\\\n- Immune to type frequency confound (operates at type-pair level)\\\\n\\\\n**MAVEN (ED)** — MiniLM embeddings:\\\\n- Pearson r=+0.129 [0.104, 0.156] (n=11026 type pairs) — corrected via bootstrap\\\\n- Nonzero-only Spearman ρ=+0.191 (p<0.001)\\\\n- Cross-task replication on same-domain schema\\\\n- Note: Qwen3 pairwise not significant on MAVEN (r=-0.007, p=0.41) — embedding choice matters for pairwise signal in homogeneous schemas\\\\n\\\\n### Tier 2: STRONG SECONDARY — FewRel Cross-Task Replication\\\\n\\\\nLarge effect size, cross-task (RE), scaling with schema complexity:\\\\n\\\\n**Formal 80-rel study** (exp_fewrel_formal_80rel):\\\\n- Count curve: acc 85.7% (count=1) → 50.4% (count=80), BCS 0→0.97\\\\n- BCS-controlled: count_8 low-BCS 82.3% vs high-BCS 51.0% (Δ=-31.2pp)\\\\n- BCS-controlled: count_16 low-BCS 82.8% vs high-BCS 51.6% (Δ=-31.2pp)\\\\n- **Scaling**: vs 16-rel, degradation 2.8x (35.3pp vs 12.6pp), BCS effect 3.4x (-31.2pp vs -9.1pp)\\\\n\\\\n**16-rel sanity check** (exp_fewrel_formal):\\\\n- count_8: low-BCS 88.9% vs high-BCS 79.8% (Δ=-9.1pp)\\\\n\\\\n**Pilot extreme batches** (fewrel_pilot, MiniLM):\\\\n- count_4: Δ=-20.9pp, count_8: Δ=-50.0pp, count_16: Δ=-48.6pp\\\\n\\\\nKey insight: confusability effect amplifies with schema size — direct evidence for multi-channel degradation scaling\\\\n\\\\n### Tier 3: SUPPORTING — Few-NERD Per-type Analysis\\\\n\\\\nBridges pairwise and batch-level, demonstrates per-type signal in cross-domain schema:\\\\n- Spearman ρ=-0.293 (p=0.020, n=63 types, freq≥5) — Qwen3 embeddings\\\\n- Partial r=-0.200 (p=0.116) controlling for log-frequency\\\\n- Quartile comparison: high-BCS types F1=0.228 vs low-BCS F1=0.310 (Δ=-8.2pp)\\\\n- BCS-frequency uncorrelated at type level (r=0.042, p=0.74)\\\\n- MiniLM per-type: ρ≈0 (p=0.97) — extraction model alignment required for per-type signal\\\\n\\\\n### Tier 4: DISCUSSION — MAVEN Per-type Centrality Confound\\\\n\\\\nMethodological case study on when aggregated confusability measures fail:\\\\n- Qwen3 per-type: ρ=+0.189 (p=0.021) — OPPOSITE direction\\\\n- MiniLM per-type: ρ=+0.208 (p=0.011) — ALSO positive, ruling out embedding compression as sole explanation\\\\n- Both embeddings agree: positive direction on MAVEN is an intrinsic property of the type structure\\\\n- Explanation: in homogeneous schemas, mean BCS conflates confusability with type centrality (types with many semantic neighbors → common/central types → higher F1)\\\\n- This is stronger than \\\\\\\"domain boundary\\\\\\\" — it identifies the specific mechanism (aggregation confound) rather than just the boundary condition\\\\n\\\\n### Tier 5: MECHANISTIC — Error Taxonomy (Cross-Task)\\\\n\\\\nIntraSub rate monotonically increases with BCS on both NER and RE:\\\\n\\\\n**Few-NERD (NER, exp-007)**: IntraSub 0%→1.6%→10.6%→49.4%, ρ=1.0\\\\n**FewRel 80-rel (RE)**: IntraSub 0%→4.2%→13.0%→20.3%→32.3%, ρ=0.954 (p=0.0, n=154 batches)\\\\n- extra_sub=0 on both tasks — type confusion is purely intra-batch phenomenon\\\\n- Same mechanism, different absolute magnitudes — consistent with cross-task expectations\\\\n\\\\nAdditional from extreme batch design:\\\\n- Extreme batches: high-BCS 10-28x more type confusion errors vs low-BCS\\\\n- Random batches: 1.7-2.4x ratio (still significant, smaller effect)\\\\n\\\\n## Embedding Ablation (D010)\\\\n\\\\n2×3 matrix: {Qwen3, MiniLM} × {Few-NERD, FewRel, MAVEN}\\\\n\\\\n### Per-type (Layer 2)\\\\n| | Few-NERD | FewRel | MAVEN |\\\\n|---|---|---|---|\\\\n| Qwen3 | ρ=-0.293 ✓ | pending | ρ=+0.189 ✗ |\\\\n| MiniLM | ρ≈0 ✗ | Δ=21-50pp ✓ | ρ=+0.208 ✗ |\\\\n\\\\n### Pairwise (Layer 1)\\\\n| | Few-NERD | MAVEN |\\\\n|---|---|---|\\\\n| Qwen3 | r=0.112 [0.076,0.156] ✓ | r=-0.007 ✗ |\\\\n| MiniLM | — | r=+0.129 [0.104,0.156] ✓ |\\\\n\\\\n### SCS→Empirical Confusion Validation (exp-015 fast)\\\\n| | Qwen3 | MiniLM |\\\\n|---|---|---|\\\\n| All pairs ρ | 0.168 (p=7e-14) ✓ | 0.144 (p=2e-10) ✓ |\\\\n| Nonzero-only ρ | 0.272 (p=5e-5) | 0.306 (p=5e-6) ✓ |\\\\n\\\\n**Interpretation**: No single embedding dominates. Extraction-model embeddings (Qwen3) capture per-type confusability in cross-domain schemas. Generic embeddings (MiniLM) capture pairwise confusability in same-domain schemas. SDGD should use task-appropriate embeddings; SDGD-cal (empirical confusion) bypasses embedding choice entirely.\\\\n\\\\n## Venue Fit Risks\\\\n\\\\n- **\\\\\\\"Just an empirical study\\\\\\\"**: Mitigated by SDGD as direct operationalization. Controlled experimental design parallels \\\\\\\"Lost in the Middle\\\\\\\" (TACL 2024).\\\\n- **Training-free IE relevance**: Cite deployment scenarios — clinical, regulatory, multilingual.\\\\n- **Multi-model generalizability**: Qwen3-32B primary + LLaMA-3.1-70B-Instruct (FP8) (exp-012).\\\\n- **MAVEN doesn't support hypothesis?**: Pairwise MiniLM does support it. Per-type centrality confound is methodological contribution, not failure.\\\\n- **Embedding sensitivity**: 2×3 ablation matrix is itself a contribution — characterizes when which proxy works.\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n| Concern | Response Strategy | Experiment |\\\\n|---------|------------------|------------|\\\\n| Only one model | LLaMA-3.1-70B-Instruct (FP8) replication | exp-012 |\\\\n| Cross-task replication | Pairwise: Few-NERD ✓ + MAVEN MiniLM ✓. Batch: FewRel ✓. Three tasks. | exp-002, exp-004, fewrel |\\\\n| No practical method | SDGD framework (-zero, -cal) | exp-008 to exp-011 |\\\\n| Confusability measure validity | Embedding ablation (D010) + pairwise vs per-type analysis | D010, exp-015 |\\\\n| Effect size small | Pairwise r=0.12-0.16 + FewRel Δ=21-50pp + confusion ratio 10-28x | multiple |\\\\n| MAVEN per-type opposite | Centrality confound analysis; pairwise still works | MAVEN MiniLM |\\\\n| Embedding choice matters? | 2×3 ablation table; SDGD-cal bypasses embedding entirely | D010 |\\\\n| Why not per-type splitting? | SDGD vs per-type vs random ablation | exp-013, exp-014 |\\\\n| Latency overhead | Report API calls and wall-clock time | exp-008 |\\\\n\\\", \\\"total_chars\\\": 11658, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_framing.md\", \"content\": \"# Paper Framing — schema-dag-extraction\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR May 25 cycle)\\n- Commitment deadline: August 2, 2026\\n- Fallback: EMNLP 2026 Findings (same ARR cycle, commitment August 26)\\n- Deadline: ARR May 25, 2026 (10 days from today)\\n\\n## Core Claims (2 claims) — Revised per D019\\n\\n1. **Confusability Independence**: Type confusability independently predicts extraction quality degradation in training-free LLM IE, beyond what type count alone explains. The signal is strongest and most robust at the **type-pair level** (pairwise SCS → confusion), validated across NER (Few-NERD), RE (FewRel), and ED (MAVEN with MiniLM). Per-type aggregation (mean BCS) introduces a centrality confound in semantically homogeneous schemas. The effect amplifies with schema complexity (3.4× between 16-type and 80-type schemas). Evidence required: (a) significant pairwise SCS-confusion correlation on >=2 datasets, (b) BCS-controlled accuracy gap on FewRel, (c) >=2 models.\\n\\n2. **Multi-Channel Degradation**: Count and confusability degrade extraction through channels with bounded association -- count causes entity omission (recall decline), while confusability causes type confusion errors (correct spans labeled with wrong types). Cross-task validated: NER IntraSub ρ=1.0, RE IntraSub ρ=0.954. Evidence required: error taxonomy showing differential error types per channel, monotonic trends in separate metrics.\\n\\n~~3. **SDGD Effectiveness**~~ — **DROPPED (D019)**: SDGD-zero v1 F1=0.251, v2 F1=0.241, both far below single-pass baseline 0.445. Merge amplification is an intrinsic challenge of schema decomposition that merge strategies (union+dedup, confidence-gated) cannot resolve. **Discussed as negative result + future work direction** — \\\"why naive decomposition fails\\\" is itself a contribution.\\n\\n## Story Spine — Revised per D012\\n\\n- **Problem**: Training-free LLM IE degrades severely on complex schemas (20-60 F1 gap vs supervised). All existing decomposition approaches operate on unvalidated assumptions about WHAT makes schemas complex for LLMs.\\n\\n- **Existing approaches & their gaps**: UniNER splits per-type (gains 3.3 F1 but loses cross-type context, no criterion for when to split). LLM-PEE uses similarity as implicit confusability proxy (never validated empirically). No prior work isolates confusability from count, or characterizes when aggregated confusability measures lose signal.\\n\\n- **Our framing**: We conduct the first controlled empirical study isolating type confusability from type count in training-free LLM IE across three tasks (NER, RE, ED). We discover: (1) a multi-channel degradation model (count→recall, confusability→type confusion), (2) pairwise type confusability is a robust cross-task signal that amplifies with schema complexity, (3) per-type aggregation of confusability is confounded by type centrality in homogeneous schemas. We further show that naive confusability-aware decomposition (SDGD) fails due to merge amplification — a structural challenge that points to calibration-based approaches as future work.\\n\\n- **Three-task validation**:\\n  - NER (Few-NERD, 66 types, cross-domain): Pairwise r=0.112 [0.076, 0.156] (n=1953), per-type ρ=-0.293 [-0.492, -0.054] (p=0.02), 10-28x confusion ratio\\n  - RE (FewRel, 80 relations, cross-domain): BCS-controlled Δ=-31.2pp (80-rel formal); count curve acc 85.7%→50.4%; BCS effect scales 3.4x vs 16-rel\\n  - ED (MAVEN, 168 event types, same-domain): Pairwise MiniLM r=0.120 (p≈0); per-type positive (centrality confound case study)\\n\\n- **Headline result template**: \\\"Pairwise type confusability independently predicts extraction degradation across NER, RE, and ED tasks (r=0.11-0.13, all CIs exclude zero), with 10-28x more type confusion errors in high-confusability batches. The effect amplifies with schema complexity: 3.4× stronger BCS effect on 80-type vs 16-type schemas (Δ=-31.2pp vs -9.1pp). On semantically homogeneous schemas, per-type aggregation obscures the signal through centrality confounding, but pairwise confusability remains valid.\\\"\\n\\n## Core Insight — Multi-Channel Degradation + Pairwise Robustness\\n\\nSchema-induced degradation in LLM IE is not a single phenomenon but a multi-channel process:\\n- **Channel 1 (Count -> Recall)**: More types in the prompt → attention dilution → entities missed. Monotonic, near-linear. Addressable by reducing batch size.\\n- **Channel 2 (Confusability -> Type Confusion)**: Semantically similar co-present types → interference during type assignment → correct entities labeled with wrong types. Addressable by separating confusable types into different batches.\\n\\nThese channels exhibit bounded association (TOST p=0.003 at ±3pp in RE) and are independently addressable.\\n\\n**Pairwise vs Aggregated Confusability**:\\n- **Pairwise confusability** (SCS between type pairs) is robust across all tasks and schema types. Validated on Few-NERD (Qwen3, r=0.112 [0.076, 0.156]) and MAVEN (MiniLM, r=0.129 [0.104, 0.156]). SCS validated as effective confusion proxy: Qwen3 ρ=0.168 (p=7e-14), MiniLM ρ=0.306 nonzero-only (p=5e-6).\\n- **Per-type aggregation** (mean BCS = average pairwise similarity to all other types) introduces a centrality confound: in semantically homogeneous schemas (MAVEN), types with many semantic neighbors are central, well-represented types that LLMs extract well → positive correlation (high mean BCS → high F1), masking the pairwise confusability signal.\\n- **SDGD operates at pairwise level**, directly using the validated signal to construct the confusability graph for decomposition. It avoids the aggregation confound entirely.\\n\\n## Evidence Hierarchy (D012)\\n\\n### Tier 1: PRIMARY — Pairwise SCS → Confusion\\n\\nThe cleanest evidence. Directly measures: are semantically similar type pairs more often confused?\\n\\n**Few-NERD (NER)** — Qwen3 embeddings:\\n- Pearson r=0.112 [0.076, 0.156] (n=1953 type pairs) — corrected via bootstrap recomputation\\n- Nonzero-only Spearman ρ=0.272 (p=5e-5)\\n- Top confused pairs are all high-BCS semantic neighbors (person-other ↔ person-politician, BCS=0.934)\\n- Immune to type frequency confound (operates at type-pair level)\\n\\n**MAVEN (ED)** — MiniLM embeddings:\\n- Pearson r=+0.129 [0.104, 0.156] (n=11026 type pairs) — corrected via bootstrap\\n- Nonzero-only Spearman ρ=+0.191 (p<0.001)\\n- Cross-task replication on same-domain schema\\n- Note: Qwen3 pairwise not significant on MAVEN (r=-0.007, p=0.41) — embedding choice matters for pairwise signal in homogeneous schemas\\n\\n### Tier 2: STRONG SECONDARY — FewRel Cross-Task Replication\\n\\nLarge effect size, cross-task (RE), scaling with schema complexity:\\n\\n**Formal 80-rel study** (exp_fewrel_formal_80rel):\\n- Count curve: acc 85.7% (count=1) → 50.4% (count=80), BCS 0→0.97\\n- BCS-controlled: count_8 low-BCS 82.3% vs high-BCS 51.0% (Δ=-31.2pp)\\n- BCS-controlled: count_16 low-BCS 82.8% vs high-BCS 51.6% (Δ=-31.2pp)\\n- **Scaling**: vs 16-rel, degradation 2.8x (35.3pp vs 12.6pp), BCS effect 3.4x (-31.2pp vs -9.1pp)\\n\\n**16-rel sanity check** (exp_fewrel_formal):\\n- count_8: low-BCS 88.9% vs high-BCS 79.8% (Δ=-9.1pp)\\n\\n**Pilot extreme batches** (fewrel_pilot, MiniLM):\\n- count_4: Δ=-20.9pp, count_8: Δ=-50.0pp, count_16: Δ=-48.6pp\\n\\nKey insight: confusability effect amplifies with schema size — direct evidence for multi-channel degradation scaling\\n\\n### Tier 3: SUPPORTING — Few-NERD Per-type Analysis\\n\\nBridges pairwise and batch-level, demonstrates per-type signal in cross-domain schema:\\n- Spearman ρ=-0.293 (p=0.020, n=63 types, freq≥5) — Qwen3 embeddings\\n- Partial r=-0.200 (p=0.116) controlling for log-frequency\\n- Quartile comparison: high-BCS types F1=0.228 vs low-BCS F1=0.310 (Δ=-8.2pp)\\n- BCS-frequency uncorrelated at type level (r=0.042, p=0.74)\\n- MiniLM per-type: ρ≈0 (p=0.97) — extraction model alignment required for per-type signal\\n\\n### Tier 4: DISCUSSION — MAVEN Per-type Centrality Confound\\n\\nMethodological case study on when aggregated confusability measures fail:\\n- Qwen3 per-type: ρ=+0.189 (p=0.021) — OPPOSITE direction\\n- MiniLM per-type: ρ=+0.208 (p=0.011) — ALSO positive, ruling out embedding compression as sole explanation\\n- Both embeddings agree: positive direction on MAVEN is an intrinsic property of the type structure\\n- Explanation: in homogeneous schemas, mean BCS conflates confusability with type centrality (types with many semantic neighbors → common/central types → higher F1)\\n- This is stronger than \\\"domain boundary\\\" — it identifies the specific mechanism (aggregation confound) rather than just the boundary condition\\n\\n### Tier 5: MECHANISTIC — Error Taxonomy (Cross-Task)\\n\\nIntraSub rate monotonically increases with BCS on both NER and RE:\\n\\n**Few-NERD (NER, exp-007)**: IntraSub 0%→1.6%→10.6%→49.4%, ρ=1.0\\n**FewRel 80-rel (RE)**: IntraSub 0%→4.2%→13.0%→20.3%→32.3%, ρ=0.954 (p=0.0, n=154 batches)\\n- extra_sub=0 on both tasks — type confusion is purely intra-batch phenomenon\\n- Same mechanism, different absolute magnitudes — consistent with cross-task expectations\\n\\nAdditional from extreme batch design:\\n- Extreme batches: high-BCS 10-28x more type confusion errors vs low-BCS\\n- Random batches: 1.7-2.4x ratio (still significant, smaller effect)\\n\\n## Embedding Ablation (D010)\\n\\n2×3 matrix: {Qwen3, MiniLM} × {Few-NERD, FewRel, MAVEN}\\n\\n### Per-type (Layer 2)\\n| | Few-NERD | FewRel | MAVEN |\\n|---|---|---|---|\\n| Qwen3 | ρ=-0.293 ✓ | pending | ρ=+0.189 ✗ |\\n| MiniLM | ρ≈0 ✗ | Δ=21-50pp ✓ | ρ=+0.208 ✗ |\\n\\n### Pairwise (Layer 1)\\n| | Few-NERD | MAVEN |\\n|---|---|---|\\n| Qwen3 | r=0.112 [0.076,0.156] ✓ | r=-0.007 ✗ |\\n| MiniLM | — | r=+0.129 [0.104,0.156] ✓ |\\n\\n### SCS→Empirical Confusion Validation (exp-015 fast)\\n| | Qwen3 | MiniLM |\\n|---|---|---|\\n| All pairs ρ | 0.168 (p=7e-14) ✓ | 0.144 (p=2e-10) ✓ |\\n| Nonzero-only ρ | 0.272 (p=5e-5) | 0.306 (p=5e-6) ✓ |\\n\\n**Interpretation**: No single embedding dominates. Extraction-model embeddings (Qwen3) capture per-type confusability in cross-domain schemas. Generic embeddings (MiniLM) capture pairwise confusability in same-domain schemas. SDGD should use task-appropriate embeddings; SDGD-cal (empirical confusion) bypasses embedding choice entirely.\\n\\n## Venue Fit Risks\\n\\n- **\\\"Just an empirical study\\\"**: Mitigated by SDGD as direct operationalization. Controlled experimental design parallels \\\"Lost in the Middle\\\" (TACL 2024).\\n- **Training-free IE relevance**: Cite deployment scenarios — clinical, regulatory, multilingual.\\n- **Multi-model generalizability**: Qwen3-32B primary + LLaMA-3.1-70B-Instruct (FP8) (exp-012).\\n- **MAVEN doesn't support hypothesis?**: Pairwise MiniLM does support it. Per-type centrality confound is methodological contribution, not failure.\\n- **Embedding sensitivity**: 2×3 ablation matrix is itself a contribution — characterizes when which proxy works.\\n\\n## Anticipated Reviewer Concerns\\n\\n| Concern | Response Strategy | Experiment |\\n|---------|------------------|------------|\\n| Only one model | LLaMA-3.1-70B-Instruct (FP8) replication | exp-012 |\\n| Cross-task replication | Pairwise: Few-NERD ✓ + MAVEN MiniLM ✓. Batch: FewRel ✓. Three tasks. | exp-002, exp-004, fewrel |\\n| No practical method | SDGD framework (-zero, -cal) | exp-008 to exp-011 |\\n| Confusability measure validity | Embedding ablation (D010) + pairwise vs per-type analysis | D010, exp-015 |\\n| Effect size small | Pairwise r=0.12-0.16 + FewRel Δ=21-50pp + confusion ratio 10-28x | multiple |\\n| MAVEN per-type opposite | Centrality confound analysis; pairwise still works | MAVEN MiniLM |\\n| Embedding choice matters? | 2×3 ablation table; SDGD-cal bypasses embedding entirely | D010 |\\n| Why not per-type splitting? | SDGD vs per-type vs random ablation | exp-013, exp-014 |\\n| Latency overhead | Report API calls and wall-clock time | exp-008 |\\n\", \"total_chars\": 11658, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0c59dccf-cdfe-4576-ad0c-acbf3112f78f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-19T13:53:39.072Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01KEpAA7ZSCEqmptXDydEq3X`</summary>
+
+```json
+{
+  "project": "schema-dag-extraction",
+  "file": "report.md",
+  "max_chars": 8000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cad39e2f-4007-4228-9e3e-954fc9e4cce6",
+  "isSidechain": false,
+  "requestId": "req_011CbC3CARMkp4EjA5rp8LRe",
+  "type": "assistant",
+  "uuid": "14ea9344-e7f5-4433-87c0-94f531ec3b9b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MAaE61KtY9i8gaeFSciKvC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2911,
+      "cache_read_input_tokens": 59618,
+      "output_tokens": 2191,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2911,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2191,
+          "cache_read_input_tokens": 59618,
+          "cache_creation_input_tokens": 2911,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2911
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-19T13:53:39.084Z_
+
+<details><summary>↩ Tool result · `toolu_01KEpAA7ZSCEqmptXDydEq3X`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/report.md\", \"content\": \"# Handover — 2026-05-19\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_sdgd_zero_maven | SDGD-zero on MAVEN (168 event types, 18 batches) will reproduce the schema DAG extraction capability observed on DocRED, validating cross-domain generalization from document-level RE to event detection. | — | — | — |\\n\\n## 待处理\\n- exp_docred_bcs_expanded: Expanding DocRED BCS-controlled batches from 5 to 15 per count level will narrow the factorial interaction CI (currently [-1.6, 13.0]) sufficiently to resolve whether the BCS-count interaction is bounded or substantial in document-level RE. If the CI narrows to exclude zero, the interaction is genuine and non-additive; if it narrows to include zero tightly, the bounded-interaction claim strengthens.（准备中）\\n- prompt_sensitivity（准备中）\\n- prompt_sensitivity_dry4（准备中）\\n- prompt_sensitivity_dry3（准备中）\\n- prompt_sensitivity_dry2（准备中）\\n- prompt_sensitivity_dry（准备中）\\n- exp_aggregation_monte_carlo（准备中）\\n- exp_scs_name_def_ablation（准备中）\\n- exp_fewrel_contamination_check（准备中）\\n- exp017_gpt4o_mini_fewrel（准备中）\\n- …另有 3 项\\n\\n## 近期结论\\n- **exp_unconstrained_decoding_ablation** (success): The BCS-accuracy correlation in RE arises from semantic confusion rather than forced-choice format artifacts. If removing the enum constraint (relaxed decoding) preserves the negative BCS-accuracy correlation direction and significance, confusability is a genuine semantic property; if the correlation disappears, the effect is specific to constrained classification where all errors are channeled into type substitution. Either outcome strengthens the paper: preservation broadens the claim, disappearance validates the error-channeling hypothesis stated in Discussion. ← 基于 exp_fewrel_formal_80rel\\n  [unconstrained_decoding_ablation_n25_results](/api/workspace-files/projects/schema-dag-extraction/artifacts/exp_unconstrained_decoding_ablation/data/results_summary.txt)\\n- **exp_multiseed_bcs_re** (success): The BCS-accuracy correlation observed in FewRel BCS-controlled experiments (R²=0.22-0.53) is robust across random seeds. If seed=123 and seed=456 replicate the negative BCS-accuracy correlation direction and significance observed with seed=42, this confirms the finding is not a single-seed artifact. Rebuttal material for R15-W2 single-seed concern. ← 基于 exp_fewrel_formal_80rel\\n- **exp_gemini_flash_cross_model** (success): The two-dimensional degradation pattern (count-related decline + confusability-related type confusion) generalizes beyond open-weight models to proprietary API models. Gemini 2.5 Flash should show: (1) monotonic RE accuracy decline with count, and (2) significant BCS-accuracy correlation on extreme batches. If confirmed, the pattern is architecture-family-independent (open-weight Qwen/LLaMA + proprietary Gemini).\\n\\n## 趋势\\n成功 28 / 负向 8 / 失败 10 / 共 50\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\ncqa1-38874: 无 GPU 信息\\nwestd-24295: 无 GPU 信息\\n\\n## 告警\\n- exp008_sdgd_zero_fewnerd: 训练失败 — unknown\\n- exp012_llama_fewnerd: 训练失败 — unknown\\n- exp012_llama_fewnerd_r2: 训练失败 — unknown\\n- exp012_llama_fewnerd_r3: 训练失败 — unknown\\n- exp012_llama_8b: 已被终止 — unknown\\n- exp_fewrel_40rel: 训练失败 — unknown\\n- exp012_llama_awq: 已被终止 — unknown\\n- exp012_llama_fewnerd_r4: 训练失败 — unknown\\n- exp012_llama_8b_fewnerd: 训练失败 — unknown\\n- exp_fewrel_40rel_r2: 训练失败 — unknown\\n- exp_fewrel_40rel_r3: 训练失败 — unknown\\n- exp012_llama_8b_r3: 训练失败 — unknown\\n- exp_fewrel_16rel_100batch: 已被终止 — unknown\\n- exp_fewshot_bcs_mitigation: 已被终止 — unknown\\n\", \"total_chars\": 3524, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "14ea9344-e7f5-4433-87c0-94f531ec3b9b",
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "858c8fa3-d612-4c25-b558-939a714de8d9",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-19\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp_sdgd_zero_maven | SDGD-zero on MAVEN (168 event types, 18 batches) will reproduce the schema DAG extraction capability observed on DocRED, validating cross-domain generalization from document-level RE to event detection. | — | — | — |\\\\n\\\\n## 待处理\\\\n- exp_docred_bcs_expanded: Expanding DocRED BCS-controlled batches from 5 to 15 per count level will narrow the factorial interaction CI (currently [-1.6, 13.0]) sufficiently to resolve whether the BCS-count interaction is bounded or substantial in document-level RE. If the CI narrows to exclude zero, the interaction is genuine and non-additive; if it narrows to include zero tightly, the bounded-interaction claim strengthens.（准备中）\\\\n- prompt_sensitivity（准备中）\\\\n- prompt_sensitivity_dry4（准备中）\\\\n- prompt_sensitivity_dry3（准备中）\\\\n- prompt_sensitivity_dry2（准备中）\\\\n- prompt_sensitivity_dry（准备中）\\\\n- exp_aggregation_monte_carlo（准备中）\\\\n- exp_scs_name_def_ablation（准备中）\\\\n- exp_fewrel_contamination_check（准备中）\\\\n- exp017_gpt4o_mini_fewrel（准备中）\\\\n- …另有 3 项\\\\n\\\\n## 近期结论\\\\n- **exp_unconstrained_decoding_ablation** (success): The BCS-accuracy correlation in RE arises from semantic confusion rather than forced-choice format artifacts. If removing the enum constraint (relaxed decoding) preserves the negative BCS-accuracy correlation direction and significance, confusability is a genuine semantic property; if the correlation disappears, the effect is specific to constrained classification where all errors are channeled into type substitution. Either outcome strengthens the paper: preservation broadens the claim, disappearance validates the error-channeling hypothesis stated in Discussion. ← 基于 exp_fewrel_formal_80rel\\\\n  [unconstrained_decoding_ablation_n25_results](/api/workspace-files/projects/schema-dag-extraction/artifacts/exp_unconstrained_decoding_ablation/data/results_summary.txt)\\\\n- **exp_multiseed_bcs_re** (success): The BCS-accuracy correlation observed in FewRel BCS-controlled experiments (R²=0.22-0.53) is robust across random seeds. If seed=123 and seed=456 replicate the negative BCS-accuracy correlation direction and significance observed with seed=42, this confirms the finding is not a single-seed artifact. Rebuttal material for R15-W2 single-seed concern. ← 基于 exp_fewrel_formal_80rel\\\\n- **exp_gemini_flash_cross_model** (success): The two-dimensional degradation pattern (count-related decline + confusability-related type confusion) generalizes beyond open-weight models to proprietary API models. Gemini 2.5 Flash should show: (1) monotonic RE accuracy decline with count, and (2) significant BCS-accuracy correlation on extreme batches. If confirmed, the pattern is architecture-family-independent (open-weight Qwen/LLaMA + proprietary Gemini).\\\\n\\\\n## 趋势\\\\n成功 28 / 负向 8 / 失败 10 / 共 50\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\ncqa1-38874: 无 GPU 信息\\\\nwestd-24295: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- exp008_sdgd_zero_fewnerd: 训练失败 — unknown\\\\n- exp012_llama_fewnerd: 训练失败 — unknown\\\\n- exp012_llama_fewnerd_r2: 训练失败 — unknown\\\\n- exp012_llama_fewnerd_r3: 训练失败 — unknown\\\\n- exp012_llama_8b: 已被终止 — unknown\\\\n- exp_fewrel_40rel: 训练失败 — unknown\\\\n- exp012_llama_awq: 已被终止 — unknown\\\\n- exp012_llama_fewnerd_r4: 训练失败 — unknown\\\\n- exp012_llama_8b_fewnerd: 训练失败 — unknown\\\\n- exp_fewrel_40rel_r2: 训练失败 — unknown\\\\n- exp_fewrel_40rel_r3: 训练失败 — unknown\\\\n- exp012_llama_8b_r3: 训练失败 — unknown\\\\n- exp_fewrel_16rel_100batch: 已被终止 — unknown\\\\n- exp_fewshot_bcs_mitigation: 已被终止 — unknown\\\\n\\\", \\\"total_chars\\\": 3524, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/report.md\", \"content\": \"# Handover — 2026-05-19\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_sdgd_zero_maven | SDGD-zero on MAVEN (168 event types, 18 batches) will reproduce the schema DAG extraction capability observed on DocRED, validating cross-domain generalization from document-level RE to event detection. | — | — | — |\\n\\n## 待处理\\n- exp_docred_bcs_expanded: Expanding DocRED BCS-controlled batches from 5 to 15 per count level will narrow the factorial interaction CI (currently [-1.6, 13.0]) sufficiently to resolve whether the BCS-count interaction is bounded or substantial in document-level RE. If the CI narrows to exclude zero, the interaction is genuine and non-additive; if it narrows to include zero tightly, the bounded-interaction claim strengthens.（准备中）\\n- prompt_sensitivity（准备中）\\n- prompt_sensitivity_dry4（准备中）\\n- prompt_sensitivity_dry3（准备中）\\n- prompt_sensitivity_dry2（准备中）\\n- prompt_sensitivity_dry（准备中）\\n- exp_aggregation_monte_carlo（准备中）\\n- exp_scs_name_def_ablation（准备中）\\n- exp_fewrel_contamination_check（准备中）\\n- exp017_gpt4o_mini_fewrel（准备中）\\n- …另有 3 项\\n\\n## 近期结论\\n- **exp_unconstrained_decoding_ablation** (success): The BCS-accuracy correlation in RE arises from semantic confusion rather than forced-choice format artifacts. If removing the enum constraint (relaxed decoding) preserves the negative BCS-accuracy correlation direction and significance, confusability is a genuine semantic property; if the correlation disappears, the effect is specific to constrained classification where all errors are channeled into type substitution. Either outcome strengthens the paper: preservation broadens the claim, disappearance validates the error-channeling hypothesis stated in Discussion. ← 基于 exp_fewrel_formal_80rel\\n  [unconstrained_decoding_ablation_n25_results](/api/workspace-files/projects/schema-dag-extraction/artifacts/exp_unconstrained_decoding_ablation/data/results_summary.txt)\\n- **exp_multiseed_bcs_re** (success): The BCS-accuracy correlation observed in FewRel BCS-controlled experiments (R²=0.22-0.53) is robust across random seeds. If seed=123 and seed=456 replicate the negative BCS-accuracy correlation direction and significance observed with seed=42, this confirms the finding is not a single-seed artifact. Rebuttal material for R15-W2 single-seed concern. ← 基于 exp_fewrel_formal_80rel\\n- **exp_gemini_flash_cross_model** (success): The two-dimensional degradation pattern (count-related decline + confusability-related type confusion) generalizes beyond open-weight models to proprietary API models. Gemini 2.5 Flash should show: (1) monotonic RE accuracy decline with count, and (2) significant BCS-accuracy correlation on extreme batches. If confirmed, the pattern is architecture-family-independent (open-weight Qwen/LLaMA + proprietary Gemini).\\n\\n## 趋势\\n成功 28 / 负向 8 / 失败 10 / 共 50\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\ncqa1-38874: 无 GPU 信息\\nwestd-24295: 无 GPU 信息\\n\\n## 告警\\n- exp008_sdgd_zero_fewnerd: 训练失败 — unknown\\n- exp012_llama_fewnerd: 训练失败 — unknown\\n- exp012_llama_fewnerd_r2: 训练失败 — unknown\\n- exp012_llama_fewnerd_r3: 训练失败 — unknown\\n- exp012_llama_8b: 已被终止 — unknown\\n- exp_fewrel_40rel: 训练失败 — unknown\\n- exp012_llama_awq: 已被终止 — unknown\\n- exp012_llama_fewnerd_r4: 训练失败 — unknown\\n- exp012_llama_8b_fewnerd: 训练失败 — unknown\\n- exp_fewrel_40rel_r2: 训练失败 — unknown\\n- exp_fewrel_40rel_r3: 训练失败 — unknown\\n- exp012_llama_8b_r3: 训练失败 — unknown\\n- exp_fewrel_16rel_100batch: 已被终止 — unknown\\n- exp_fewshot_bcs_mitigation: 已被终止 — unknown\\n\", \"total_chars\": 3524, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "14ea9344-e7f5-4433-87c0-94f531ec3b9b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 77_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_ops_check_maven_status_20260519T134808]: Worker worker_ops_check_maven_status_20260519T134808 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "858c8fa3-d612-4c25-b558-939a714de8d9",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 78_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review Maven status check worker completion",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 79 · 2026-05-19T13:54:16.594Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Let me analyze the key implications:
+
+**Critical finding for paper_framing.md**: The paper_framing.md states in Core Insight:
+> "These channels exhibit bounded association (TOST p=0.003 at ±3pp in RE) and are independently addressable."
+
+And Claim 2 says:
+> "**Multi-Channel Degradation**: Count and confusability degrade extraction through channels with **bounded association**"
+
+But the DocRED BCS expanded experiment (exp_docred_bcs_expanded) now shows:
+- Interaction = -9.39 pp, 95%CI = [-12.91, -5.95] — CI excludes zero
+
+
+- TOST equivalence testing fails across all margins (±2pp, ±3pp, ±5pp), indicating the channels aren't actually bounded in their association at the document level.
+
+This creates a tension: the original TOST equivalence was demonstrated on FewRel (sentence-level RE), but the paper's Claim 2 about bounded association is stated generically without that scope limitation. Looking back at the roadmap, I see the additivity claim was supposed to be restricted to sentence-level RE, with DocRED's different behavior already disclosed—so the framing might actually be consistent if I'm reading the disclosure correctly.
+
+The key difference is that the original DocRED analysis had an inconclusive confidence interval crossing zero, whereas the expanded experiment now shows a definitive negative interaction of -9.39pp. This strengthens rather than contradicts the paper's existing cautious position, moving from "inconclusive" to "conclusively non-additive at document level."
+
+But I'm noticing a tension: the paper makes a general claim about "bounded association" across extraction tasks, yet the expanded DocRED results demonstrate that this association is decidedly NOT bounded in document-level RE. The paper needs to clarify whether "bounded association" applies only to sentence-level tasks like FewRel, or if it's making a broader claim that the new evidence contradicts.
+
+Now I'm drafting the review report, starting with the most critical issues: the registry entries that need closure, the MAVEN results confirming merge amplification, and flagging the bounded association claim as needing verification against the actual paper text.
+
+The DocRED BCS expanded results are particularly important—the interaction effect flipped from potentially positive to definitively negative, with the confidence interval now excluding zero entirely. This substantially changes the narrative and reinforces that the bounded association claim requires proper qualification in the framing document.
+
+I'm also noting the GPU compliance checks passed and the exit codes are consistent with normal session cleanup, so the experimental results themselves are reliable.
+
+Looking at the expanded results more carefully, the BCS effect actually weakens as count increases—25.04pp at count_16 down to 15.65pp at count_32. This makes intuitive sense as a ceiling/floor effect: when overall accuracy is already degrading at higher counts, there's less room for BCS confusability to worsen things further. The original narrow confidence interval from just 5 batches was misleading about the true interaction pattern, but with 15 batches the picture is clear—the effect is genuinely non-additive, and the paper should reflect this nuance about how BCS and count interact in document-level relation extraction.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "858c8fa3-d612-4c25-b558-939a714de8d9",
+  "isSidechain": false,
+  "requestId": "req_011CbC3FeRRxLdUV8hEdVRv5",
+  "type": "assistant",
+  "uuid": "a243fd0a-94f3-4e04-89a8-dcb8e6530141",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WJRdNqjsHLd7zJtoZByJwY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7928,
+      "cache_read_input_tokens": 62529,
+      "output_tokens": 1546,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7928,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1546,
+          "cache_read_input_tokens": 62529,
+          "cache_creation_input_tokens": 7928,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7928
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80 · 2026-05-19T13:54:16.596Z_
+
+两个实验都已完成，关键发现需要报告。发送审查报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a243fd0a-94f3-4e04-89a8-dcb8e6530141",
+  "isSidechain": false,
+  "requestId": "req_011CbC3FeRRxLdUV8hEdVRv5",
+  "type": "assistant",
+  "uuid": "56dc396b-7964-4b56-b9c3-0ed4f41eb7bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WJRdNqjsHLd7zJtoZByJwY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7928,
+      "cache_read_input_tokens": 62529,
+      "output_tokens": 1546,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7928,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1546,
+          "cache_read_input_tokens": 62529,
+          "cache_creation_input_tokens": 7928,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7928
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-19T13:54:16.749Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_012M6yYEZ1GM9EqK72nrrtr9`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__reviewer_post_to_director",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "56dc396b-7964-4b56-b9c3-0ed4f41eb7bc",
+  "isSidechain": false,
+  "requestId": "req_011CbC3FeRRxLdUV8hEdVRv5",
+  "type": "assistant",
+  "uuid": "8f9469ea-2ca9-4686-93c7-ab2ad45f4b7e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WJRdNqjsHLd7zJtoZByJwY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7928,
+      "cache_read_input_tokens": 62529,
+      "output_tokens": 1546,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7928,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1546,
+          "cache_read_input_tokens": 62529,
+          "cache_creation_input_tokens": 7928,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7928
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-19T13:54:16.754Z_
+
+<details><summary>↩ Tool result · `toolu_012M6yYEZ1GM9EqK72nrrtr9`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reviewer_post_to_director"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8f9469ea-2ca9-4686-93c7-ab2ad45f4b7e",
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "5a98998c-01c4-4551-aee9-fce3e70bcdf1",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__reviewer_post_to_director"
+    ],
+    "query": "select:mcp__agent-ml-research__reviewer_post_to_director",
+    "total_deferred_tools": 35
+  },
+  "sourceToolAssistantUUID": "8f9469ea-2ca9-4686-93c7-ab2ad45f4b7e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-19T13:54:53.226Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director · `toolu_01K9ToGaQCYsKbYCAVjqegVT`</summary>
+
+```json
+{
+  "text": "## 审查报告 — exp_sdgd_zero_maven + exp_docred_bcs_expanded\n\nWorker `worker_ops_check_maven_status_20260519T134808` 完成后触发审查。两个 PREPARING 实验实际上均已完成，独立核实如下。\n\n---\n\n### 1. exp_sdgd_zero_maven — 实验已完成，registry 未更新\n\n[severity: warning] **进程已死（PID 610111 不存在），GPU cuda:0 完全空闲（0 MiB / 0%），但 registry 仍为 PREPARING。**\n\n实验结果完整（5 arms 全部完成，artifacts 齐全）：\n- single_pass: F1=0.2068, P=0.287, R=0.162（1406 preds / 2491 gold）\n- sdgd_zero: F1=0.1233, P=0.091, R=0.191（5212 preds / 2491 gold）\n- random_batch avg: F1=0.1114, P=0.082, R=0.177\n- SDGD vs SP: dF1=-0.0835, dP=-0.196, dR=+0.029\n\n**核实结论**：结果与 registry notes 一致，merge amplification 在 event detection 上确认——SDGD 产生 3.7x 预测量（5212 vs 1406），precision 崩溃 0.287→0.091，merge 几乎无效（5242→5212，仅 0.6% 去重）。SDGD-zero 仅微弱优于随机分解（+1.2pp F1），与论文 \"naive decomposition fails due to merge amplification\" 叙事一致。\n\nEXIT_CODE=129（SIGHUP），推测 tmux 清理，结果不受影响。\n\n**GPU 合规**：CUDA_VISIBLE_DEVICES=0 on cqa1-38874 ✓\n\n**需要 Agent 操作**：更新 registry 状态为 DONE，补全 conclusion/metrics。\n\n---\n\n### 2. exp_docred_bcs_expanded — 实验已完成，结果有重要发现\n\n[severity: warning] **进程已死（PID 607854 不存在），registry 仍为 PREPARING 且 notes 说 \"vLLM OOM crash after 7/40 batches\"——但实际已完整运行，6 个条件全部完成（2 counts × 3 strategies，各 15/15/25 batches）。**\n\n核实结果：\n- count_16: low_bcs acc=0.672±0.021, high_bcs acc=0.422±0.061, BCS effect=25.04pp [21.90, 28.34]\n- count_32: low_bcs acc=0.568±0.020, high_bcs acc=0.412±0.018, BCS effect=15.65pp [14.33, 16.97]\n- Spearman: count_16 r=-0.762 (p=1.4e-11), count_32 r=-0.693 (p=4.6e-9)\n- **Factorial interaction: -9.39pp, 95%CI=[-12.91, -5.95]** — CI 完全排除零\n- **TOST equivalence at ±2pp/±3pp/±5pp: 全部拒绝** — interaction 不等价于零\n\n**关键对比**：原实验（n=5/condition）interaction CI=[-1.6, 13.0]（跨零，不显著）。扩样本后（n=15/condition）CI=[-12.91, -5.95]（显著，方向翻转为负）。\n\n**解读**：BCS confusability 效应在 DocRED 上随 count 增加而**减弱**（25pp@count16 → 16pp@count32），呈 sub-additive 交互。这是合理的 ceiling/floor 效应——高 count 时整体 accuracy 已低，BCS 的边际影响缩小。\n\n[severity: warning] **论文影响**：paper_framing.md Claim 2 仍写 \"bounded association\" 未加限定语。ROADMAP 记录 v5 已将 additivity \"限定为 sentence-level RE\"，但 framing 文档未同步更新。需确认论文正文是否已正确限定——DocRED 现在有 definitive evidence 反对 additivity（interaction -9.39pp, p<0.001）。建议：\n1. 更新 paper_framing.md Claim 2 加限定：\"bounded association **in sentence-level RE (FewRel TOST p=0.003)**; document-level RE shows sub-additive interaction (-9.39pp, CI excludes zero)\"\n2. 论文 Discussion/Limitation 中将 DocRED expanded 结果作为 additivity 边界条件的 evidence\n\n**GPU 合规**：CUDA_VISIBLE_DEVICES=0 on cqa1-38874 ✓\n\n**需要 Agent 操作**：\n1. 更新 registry 状态为 DONE，纠正 \"OOM crash\" notes\n2. 补全 conclusion + metrics（建议 conclusion=success，hypothesis confirmed：interaction is genuine and non-additive）\n3. 评估是否需要更新论文对 DocRED additivity 的表述\n\n---\n\n### 3. GPU 状态\n\ncqa1-38874 cuda:0 现在完全空闲（0 MiB, 0% util）。两个实验都已结束。如有后续实验计划可立即启动。",
+  "project": "schema-dag-extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5a98998c-01c4-4551-aee9-fce3e70bcdf1",
+  "isSidechain": false,
+  "requestId": "req_011CbC3JR9o94y3yS4hyaRvM",
+  "type": "assistant",
+  "uuid": "ec6342e0-5a83-4d58-b835-e028b9c17728",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011n5qhT7YjcYJxyYvnd3D39",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1782,
+      "cache_read_input_tokens": 70457,
+      "output_tokens": 1595,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1595,
+          "cache_read_input_tokens": 70457,
+          "cache_creation_input_tokens": 1782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-19T13:54:57.031Z_
+
+<details><summary>↩ Tool result · `toolu_01K9ToGaQCYsKbYCAVjqegVT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ec6342e0-5a83-4d58-b835-e028b9c17728",
+  "isSidechain": false,
+  "promptId": "7e394838-e086-40d7-9ad6-b0e7e9a2206c",
+  "type": "user",
+  "uuid": "b70f1a64-ee38-406d-80bb-bec287b7ad78",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "ec6342e0-5a83-4d58-b835-e028b9c17728",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc",
+  "sessionId": "60db5846-b656-4714-9ee1-02c5e29c1e4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---

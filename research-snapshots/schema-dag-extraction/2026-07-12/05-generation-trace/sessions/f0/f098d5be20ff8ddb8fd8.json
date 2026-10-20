@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "f098d5be20ff8ddb8fd8",
+  "project": "schema-dag-extraction--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: schema-dag-extraction ## 运行环境 - 服务器名: cqa1-38874 - SSH 账户: root（调用 ssh_execute / submit_training",
+  "task_key": "b381ba06-0d9b-4787-a512-fb250bcb3e03",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/b381ba06-0d9b-4787-a512-fb250bcb3e03.jsonl",
+    "occurrence": 1,
+    "bytes": 675784,
+    "sha256": "3b5b3e8d6c9e93e0dbaf5075848e222e778ed4acb3690170b4571c699b208749"
+  },
+  "statistics": {
+    "messages": 270,
+    "user_turns": 1,
+    "tool_calls": 80,
+    "roles": {
+      "record": 52,
+      "user": 1,
+      "assistant": 57,
+      "tool_call": 80,
+      "tool_result": 80
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "f098d5be20ff8ddb8fd8-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 268,
+      "chunks": [
+        {
+          "path": "f098d5be20ff8ddb8fd8-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "f098d5be20ff8ddb8fd8-part-0002.json",
+          "message_count": 90
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-schema-dag-extraction-cqa1-38874-ssh-root-ssh-execute-submit-t-copy-27.md"
+}

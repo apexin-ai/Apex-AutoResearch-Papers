@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "id": "1b06c11c79337d6ce3cd",
+  "project": "schema-dag-extraction--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: schema-dag-extraction ## 运行环境 - 服务器名: cqa1-38874 - SSH 账户: root（调用 ssh_execute / submit_training",
+  "task_key": "3af76eec-7791-4402-894a-6f3df2648ddf",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/3af76eec-7791-4402-894a-6f3df2648ddf.jsonl",
+    "occurrence": 1,
+    "bytes": 1168452,
+    "sha256": "d25c2dce24866ffaa6ee33df67fef75bd36a1e7d1c86dc01b98bc90add021ae1"
+  },
+  "statistics": {
+    "messages": 331,
+    "user_turns": 2,
+    "tool_calls": 99,
+    "roles": {
+      "record": 73,
+      "user": 2,
+      "assistant": 57,
+      "tool_call": 99,
+      "tool_result": 99,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "1b06c11c79337d6ce3cd-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 259,
+      "chunks": [
+        {
+          "path": "1b06c11c79337d6ce3cd-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "1b06c11c79337d6ce3cd-part-0002.json",
+          "message_count": 81
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 70,
+      "chunks": [
+        {
+          "path": "1b06c11c79337d6ce3cd-part-0002.json",
+          "message_count": 59
+        },
+        {
+          "path": "1b06c11c79337d6ce3cd-part-0003.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-schema-dag-extraction-cqa1-38874-ssh-root-ssh-execute-submit-t-copy-89.md"
+}

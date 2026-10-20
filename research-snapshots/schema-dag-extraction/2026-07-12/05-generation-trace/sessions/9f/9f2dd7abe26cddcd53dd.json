@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "9f2dd7abe26cddcd53dd",
+  "project": "schema-dag-extraction--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> exp-008 tests SDGD effectiveness (Claim 3). 4 modes: sdgd_zero, single_pass, per_type, random_batch on F",
+  "task_key": "75467e27-d8f2-41c2-a084-0875963932cc",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/75467e27-d8f2-41c2-a084-0875963932cc.jsonl",
+    "occurrence": 1,
+    "bytes": 834994,
+    "sha256": "568eaa5d16c9ab5ed8c8d3b0a925995a497f5bcf41d569f1dd7a41af58351efa"
+  },
+  "statistics": {
+    "messages": 345,
+    "user_turns": 1,
+    "tool_calls": 109,
+    "roles": {
+      "record": 59,
+      "user": 1,
+      "assistant": 67,
+      "tool_call": 109,
+      "tool_result": 109
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "9f2dd7abe26cddcd53dd-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 343,
+      "chunks": [
+        {
+          "path": "9f2dd7abe26cddcd53dd-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "9f2dd7abe26cddcd53dd-part-0002.json",
+          "message_count": 165
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-exp-008-tests-sdgd-effectiveness-claim-3-4-modes-sdgd-zero-singl.md"
+}

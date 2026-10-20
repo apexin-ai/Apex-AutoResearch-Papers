@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "166055dde223b975b730",
+  "project": "schema-dag-extraction--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 实验已 ALLOCATED (exp_fewrel_16rel_bootstrap)，GPU cuda:0 on cqa1-38874。D033 已批准，Claim 2 关联。 关键环境变量（Blackwel",
+  "task_key": "e7de4f3f-3c6f-4b95-b5ac-8146e4c92b07",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/e7de4f3f-3c6f-4b95-b5ac-8146e4c92b07.jsonl",
+    "occurrence": 1,
+    "bytes": 1063477,
+    "sha256": "74122596d202dbeeb35234c6fd67f2b548fb7f26935620023497a9e8bc183bb6"
+  },
+  "statistics": {
+    "messages": 476,
+    "user_turns": 2,
+    "tool_calls": 156,
+    "roles": {
+      "record": 82,
+      "user": 2,
+      "assistant": 80,
+      "tool_call": 156,
+      "tool_result": 156
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "166055dde223b975b730-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 473,
+      "chunks": [
+        {
+          "path": "166055dde223b975b730-part-0001.json",
+          "message_count": 168
+        },
+        {
+          "path": "166055dde223b975b730-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "166055dde223b975b730-part-0003.json",
+          "message_count": 125
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "166055dde223b975b730-part-0003.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-allocated-exp-fewrel-16rel-bootstrap-gpu-cuda-0-on-cqa1-38874d03.md"
+}
